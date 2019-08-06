@@ -136,7 +136,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.DatabaseUsers = &DatabaseUsersServiceOp{client: c}
 	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{client: c}
 	c.Projects = &ProjectsServiceOp{client: c}
-	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{client: c}
+	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{client: c}
 	c.Clusters = &ClustersServiceOp{client: c}
 	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{client: c}
 	c.APIKeys = &APIKeysServiceOp{client: c}
