@@ -328,11 +328,8 @@ func TestProject_AddTeamsToProject(t *testing.T) {
 	projectID := "5a0a1e7e0f2912c554080adc"
 
 	createRequest := &ProjectTeam{
-		TeamID: "{TEAM-ID}",
-		Roles: []*RoleName{
-			{RoleName: GroupOwner},
-			{RoleName: GroupReadOnly},
-		},
+		TeamID:    "{TEAM-ID}",
+		RoleNames: []string{"GROUP_OWNER", "GROUP_READ_ONLY"},
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/teams", projectID), func(w http.ResponseWriter, r *http.Request) {
