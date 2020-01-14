@@ -344,7 +344,7 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"roleNames": []interface{}{"GROUP_OWNER"},
 		}
