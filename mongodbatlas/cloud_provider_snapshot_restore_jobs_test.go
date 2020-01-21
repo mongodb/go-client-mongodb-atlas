@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -96,7 +95,7 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 
 	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotRestoreJobs.List(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.List returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshotRestoreJobs.List returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshotRestoreJobs{
@@ -172,9 +171,6 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 	if diff := deep.Equal(cloudProviderSnapshots, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(cloudProviderSnapshots, expected) {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.List\n got=%#v\nwant=%#v", cloudProviderSnapshots, expected)
-	}
 }
 
 func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
@@ -224,7 +220,7 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.Get(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.Get returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshotRestoreJobs.Get returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshotRestoreJob{
@@ -259,9 +255,6 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.Get\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
 	}
 }
 
@@ -300,9 +293,6 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Error(diff)
 		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
 
 		fmt.Fprint(w, `{
 			"cancelled": false,
@@ -337,7 +327,7 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.Create(ctx, requestParameters, createRequest)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.Create returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshotRestoreJobs.Create returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshotRestoreJob{
@@ -373,9 +363,6 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.Create\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
-	}
 }
 
 func TestCloudProviderSnapshotRestoreJobs_Delete(t *testing.T) {
@@ -396,6 +383,6 @@ func TestCloudProviderSnapshotRestoreJobs_Delete(t *testing.T) {
 
 	_, err := client.CloudProviderSnapshotRestoreJobs.Delete(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshotRestoreJobs.Delete returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshotRestoreJobs.Delete returned error: %v", err)
 	}
 }

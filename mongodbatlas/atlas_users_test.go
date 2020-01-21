@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestAtlasUsers_List(t *testing.T) {
@@ -83,7 +84,7 @@ func TestAtlasUsers_List(t *testing.T) {
 	teams, _, err := client.AtlasUsers.List(ctx, "1", nil)
 
 	if err != nil {
-		t.Errorf("AtlasUsers.List returned error: %v", err)
+		t.Fatalf("AtlasUsers.List returned error: %v", err)
 	}
 
 	expected := []AtlasUser{
@@ -121,8 +122,8 @@ func TestAtlasUsers_List(t *testing.T) {
 			Username: "jim.bloggs",
 		},
 	}
-	if !reflect.DeepEqual(teams, expected) {
-		t.Errorf("AtlasUsers.List\n got=%#v\nwant=%#v", teams, expected)
+	if diff := deep.Equal(teams, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -169,7 +170,7 @@ func TestAtlasUsers_Get(t *testing.T) {
 
 	team, _, err := client.AtlasUsers.Get(ctx, userID)
 	if err != nil {
-		t.Errorf("AtlasUsers.Get returned error: %v", err)
+		t.Fatalf("AtlasUsers.Get returned error: %v", err)
 	}
 
 	expected := &AtlasUser{
@@ -194,8 +195,8 @@ func TestAtlasUsers_Get(t *testing.T) {
 		Username: "john.doe@example.com",
 	}
 
-	if !reflect.DeepEqual(team, expected) {
-		t.Errorf("AtlasUsers.Get\n got=%#v\nwant=%#v", team, expected)
+	if diff := deep.Equal(team, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -242,7 +243,7 @@ func TestAtlasUsers_GetByName(t *testing.T) {
 
 	team, _, err := client.AtlasUsers.GetByName(ctx, username)
 	if err != nil {
-		t.Errorf("AtlasUsers.GetByName returned error: %v", err)
+		t.Fatalf("AtlasUsers.GetByName returned error: %v", err)
 	}
 
 	expected := &AtlasUser{
@@ -267,8 +268,8 @@ func TestAtlasUsers_GetByName(t *testing.T) {
 		Username: "john.doe@example.com",
 	}
 
-	if !reflect.DeepEqual(team, expected) {
-		t.Errorf("AtlasUsers.Get\n got=%#v\nwant=%#v", team, expected)
+	if diff := deep.Equal(team, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -358,8 +359,8 @@ func TestAtlasUsers_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -367,7 +368,7 @@ func TestAtlasUsers_Create(t *testing.T) {
 
 	atlasUser, _, err := client.AtlasUsers.Create(ctx, createRequest)
 	if err != nil {
-		t.Errorf("AtlasUsers.Create returned error: %v", err)
+		t.Fatalf("AtlasUsers.Create returned error: %v", err)
 	}
 
 	if name := atlasUser.Username; name != "john.doe@example.com" {

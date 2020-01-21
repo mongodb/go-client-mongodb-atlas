@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -62,7 +61,7 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 
 	whitelistAPIKeys, _, err := client.WhitelistAPIKeys.List(ctx, orgID, apiKeyID)
 	if err != nil {
-		t.Errorf("WhitelistAPIKeys.List returned error: %v", err)
+		t.Fatalf("WhitelistAPIKeys.List returned error: %v", err)
 	}
 
 	expected := &WhitelistAPIKeys{
@@ -108,9 +107,6 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 	if diff := deep.Equal(whitelistAPIKeys, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(whitelistAPIKeys, expected) {
-		t.Errorf("WhitelistAPIKeys.List\n got=%#v\nwant=%#v", whitelistAPIKeys, expected)
-	}
 }
 
 func TestWhitelistAPIKeys_Get(t *testing.T) {
@@ -139,7 +135,7 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 
 	whitelistAPIKey, _, err := client.WhitelistAPIKeys.Get(ctx, orgID, apiKeyID, ipAddress)
 	if err != nil {
-		t.Errorf("WhitelistAPIKeys.Get returned error: %v", err)
+		t.Fatalf("WhitelistAPIKeys.Get returned error: %v", err)
 	}
 
 	expected := &WhitelistAPIKey{
@@ -157,9 +153,6 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 
 	if diff := deep.Equal(whitelistAPIKey, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(whitelistAPIKey, expected) {
-		t.Errorf("WhitelistAPIKeys.Get\n got=%#v\nwant=%#v", whitelistAPIKey, expected)
 	}
 }
 
@@ -193,9 +186,6 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Error(diff)
-		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
 		}
 
 		fmt.Fprint(w, `{
@@ -241,7 +231,7 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 
 	whitelistAPIKey, _, err := client.WhitelistAPIKeys.Create(ctx, orgID, apiKeyID, createRequest)
 	if err != nil {
-		t.Errorf("WhitelistAPIKeys.Create returned error: %v", err)
+		t.Fatalf("WhitelistAPIKeys.Create returned error: %v", err)
 	}
 
 	expected := &WhitelistAPIKeys{
@@ -287,9 +277,6 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 	if diff := deep.Equal(whitelistAPIKey, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(whitelistAPIKey, expected) {
-		t.Errorf("WhitelistAPIKeys.Create\n got=%#v\nwant=%#v", whitelistAPIKey, expected)
-	}
 }
 
 func TestWhitelistAPIKeys_Delete(t *testing.T) {
@@ -306,6 +293,6 @@ func TestWhitelistAPIKeys_Delete(t *testing.T) {
 
 	_, err := client.WhitelistAPIKeys.Delete(ctx, orgID, apiKeyID, ipAddress)
 	if err != nil {
-		t.Errorf("WhitelistAPIKeys.Delete returned error: %v", err)
+		t.Fatalf("WhitelistAPIKeys.Delete returned error: %v", err)
 	}
 }

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -38,7 +37,7 @@ func TestTeams_List(t *testing.T) {
 	teams, _, err := client.Teams.List(ctx, "1", nil)
 
 	if err != nil {
-		t.Errorf("Teams.List returned error: %v", err)
+		t.Fatalf("Teams.List returned error: %v", err)
 	}
 
 	expected := []Team{
@@ -55,8 +54,9 @@ func TestTeams_List(t *testing.T) {
 			Name: "Technical Documentation",
 		},
 	}
-	if !reflect.DeepEqual(teams, expected) {
-		t.Errorf("Teams.List\n got=%#v\nwant=%#v", teams, expected)
+
+	if diff := deep.Equal(teams, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -83,7 +83,7 @@ func TestTeams_Get(t *testing.T) {
 
 	team, _, err := client.Teams.Get(ctx, orgID, teamID)
 	if err != nil {
-		t.Errorf("Teams.Get returned error: %v", err)
+		t.Fatalf("Teams.Get returned error: %v", err)
 	}
 
 	expected := &Team{
@@ -91,8 +91,8 @@ func TestTeams_Get(t *testing.T) {
 		Name: "myNewTeam",
 	}
 
-	if !reflect.DeepEqual(team, expected) {
-		t.Errorf("Teams.Get\n got=%#v\nwant=%#v", team, expected)
+	if diff := deep.Equal(team, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -119,7 +119,7 @@ func TestTeams_GetOneTeamByName(t *testing.T) {
 
 	team, _, err := client.Teams.GetOneTeamByName(ctx, orgID, teamName)
 	if err != nil {
-		t.Errorf("Teams.Get returned error: %v", err)
+		t.Fatalf("Teams.Get returned error: %v", err)
 	}
 
 	expected := &Team{
@@ -127,8 +127,8 @@ func TestTeams_GetOneTeamByName(t *testing.T) {
 		Name: "myNewTeam",
 	}
 
-	if !reflect.DeepEqual(team, expected) {
-		t.Errorf("Teams.Get\n got=%#v\nwant=%#v", team, expected)
+	if diff := deep.Equal(team, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -181,7 +181,7 @@ func TestProject_GetTeamUsersAssigned(t *testing.T) {
 
 	teamsAssigned, _, err := client.Teams.GetTeamUsersAssigned(ctx, orgID, "1")
 	if err != nil {
-		t.Errorf("Projects.GetTeamUsersAssigned returned error: %v", err)
+		t.Fatalf("Projects.GetTeamUsersAssigned returned error: %v", err)
 	}
 
 	expected := []AtlasUser{
@@ -210,10 +210,6 @@ func TestProject_GetTeamUsersAssigned(t *testing.T) {
 
 	if diff := deep.Equal(teamsAssigned, expected); diff != nil {
 		t.Error(diff)
-	}
-
-	if !reflect.DeepEqual(teamsAssigned, expected) {
-		t.Errorf("Projects.GetProjectTeamsAssigned\n got=%+v\nwant=%+v", teamsAssigned, expected)
 	}
 }
 
@@ -254,8 +250,8 @@ func TestTeams_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -263,7 +259,7 @@ func TestTeams_Create(t *testing.T) {
 
 	team, _, err := client.Teams.Create(ctx, orgID, createRequest)
 	if err != nil {
-		t.Errorf("Teams.Create returned error: %v", err)
+		t.Fatalf("Teams.Create returned error: %v", err)
 	}
 
 	if name := team.Name; name != "myNewTeam" {
@@ -310,8 +306,8 @@ func TestTeams_Rename(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -319,7 +315,7 @@ func TestTeams_Rename(t *testing.T) {
 
 	team, _, err := client.Teams.Rename(ctx, orgID, teamID, renameRequest)
 	if err != nil {
-		t.Errorf("Teams.Rename returned error: %v", err)
+		t.Fatalf("Teams.Rename returned error: %v", err)
 	}
 
 	if name := team.Name; name != renameRequest {
@@ -329,7 +325,6 @@ func TestTeams_Rename(t *testing.T) {
 	if id := team.ID; id != teamID {
 		t.Errorf("expected id '%s', received '%s'", teamID, id)
 	}
-
 }
 
 func TestTeams_UpdateTeamRoles(t *testing.T) {
@@ -387,8 +382,8 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -396,7 +391,7 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 
 	teams, _, err := client.Teams.UpdateTeamRoles(ctx, orgID, teamID, updateTeamRolesRequest)
 	if err != nil {
-		t.Errorf("Teams.UpdateTeamRoles returned error: %v", err)
+		t.Fatalf("Teams.UpdateTeamRoles returned error: %v", err)
 	}
 
 	if teamCount := len(teams); teamCount != 3 {
@@ -406,7 +401,6 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 	if id := teams[0].TeamID; id != teamID {
 		t.Errorf("expected id '%s', received '%s'", teamID, id)
 	}
-
 }
 
 func TestTeams_AddUsersToTeam(t *testing.T) {
@@ -435,7 +429,7 @@ func TestTeams_AddUsersToTeam(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Diff\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, `{
@@ -501,7 +495,7 @@ func TestTeams_AddUsersToTeam(t *testing.T) {
 
 	atlasUsers, _, err := client.Teams.AddUsersToTeam(ctx, orgID, teamID, usersID)
 	if err != nil {
-		t.Errorf("Teams.AddUsersToTeam returned error: %v", err)
+		t.Fatalf("Teams.AddUsersToTeam returned error: %v", err)
 	}
 
 	if userCount := len(atlasUsers); userCount != 2 {
@@ -524,7 +518,7 @@ func TestTeams_RemoveUserToTeam(t *testing.T) {
 
 	_, err := client.Teams.RemoveUserToTeam(ctx, orgID, teamID, userID)
 	if err != nil {
-		t.Errorf("Teams.RemoveUserToTeam returned error: %v", err)
+		t.Fatalf("Teams.RemoveUserToTeam returned error: %v", err)
 	}
 }
 
@@ -541,7 +535,7 @@ func TestTeams_RemoveTeamFromOrganization(t *testing.T) {
 
 	_, err := client.Teams.RemoveTeamFromOrganization(ctx, orgID, teamID)
 	if err != nil {
-		t.Errorf("Teams.RemoveTeamFromOrganization returned error: %v", err)
+		t.Fatalf("Teams.RemoveTeamFromOrganization returned error: %v", err)
 	}
 }
 
@@ -558,6 +552,6 @@ func TestTeams_RemoveTeamFromProject(t *testing.T) {
 
 	_, err := client.Teams.RemoveTeamFromProject(ctx, groupID, teamID)
 	if err != nil {
-		t.Errorf("Teams.RemoveTeamFromProject returned error: %v", err)
+		t.Fatalf("Teams.RemoveTeamFromProject returned error: %v", err)
 	}
 }

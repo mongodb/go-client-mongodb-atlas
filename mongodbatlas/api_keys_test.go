@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -58,7 +57,7 @@ func TestAPIKeys_ListAPIKeys(t *testing.T) {
 	apiKeys, _, err := client.APIKeys.List(ctx, "1", nil)
 
 	if err != nil {
-		t.Errorf("APIKeys.List returned error: %v", err)
+		t.Fatalf("APIKeys.List returned error: %v", err)
 	}
 
 	expected := []APIKey{
@@ -95,8 +94,8 @@ func TestAPIKeys_ListAPIKeys(t *testing.T) {
 			},
 		},
 	}
-	if !reflect.DeepEqual(apiKeys, expected) {
-		t.Errorf("APIKeys.List\n got=%#v\nwant=%#v", apiKeys, expected)
+	if diff := deep.Equal(apiKeys, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -261,11 +260,7 @@ func TestAPIKeys_Create(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Clusters.Create Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -304,10 +299,6 @@ func TestAPIKeys_GetAPIKey(t *testing.T) {
 
 	if diff := deep.Equal(apiKeys, expected); diff != nil {
 		t.Errorf("Clusters.Get = %v", diff)
-	}
-
-	if !reflect.DeepEqual(apiKeys, expected) {
-		t.Errorf("APIKeys.Get\n got=%#v\nwant=%#v", apiKeys, expected)
 	}
 }
 
@@ -353,8 +344,8 @@ func TestAPIKeys_Update(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -362,7 +353,7 @@ func TestAPIKeys_Update(t *testing.T) {
 
 	apiKey, _, err := client.APIKeys.Update(ctx, orgID, "5c47503320eef5699e1cce8d", updateRequest)
 	if err != nil {
-		t.Errorf("APIKeys.Create returned error: %v", err)
+		t.Fatalf("APIKeys.Create returned error: %v", err)
 	}
 
 	if desc := apiKey.Desc; desc != "test-apikey" {

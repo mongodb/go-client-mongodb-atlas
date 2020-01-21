@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -26,7 +25,7 @@ func TestPrivateIPMode_Get(t *testing.T) {
 
 	privateIPMode, _, err := client.PrivateIPMode.Get(ctx, groupID)
 	if err != nil {
-		t.Errorf("PrivateIPMode.Get returned error: %v", err)
+		t.Fatalf("PrivateIPMode.Get returned error: %v", err)
 	}
 
 	expected := &PrivateIPMode{
@@ -35,10 +34,6 @@ func TestPrivateIPMode_Get(t *testing.T) {
 
 	if diff := deep.Equal(privateIPMode, expected); diff != nil {
 		t.Error(diff)
-	}
-
-	if !reflect.DeepEqual(privateIPMode, expected) {
-		t.Errorf("PrivateIPMode.Get\n got=%#v\nwant=%#v", privateIPMode, expected)
 	}
 }
 
@@ -70,10 +65,7 @@ func TestPrivateIPMode_Update(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("PrivateIPMode.Update Request Body = %v", diff)
-		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -81,7 +73,7 @@ func TestPrivateIPMode_Update(t *testing.T) {
 
 	privateIPMode, _, err := client.PrivateIPMode.Update(ctx, groupID, updateRequest)
 	if err != nil {
-		t.Errorf("PrivateIPMode.Update returned error: %v", err)
+		t.Fatalf("PrivateIPMode.Update returned error: %v", err)
 	}
 
 	if enabled := pointy.BoolValue(privateIPMode.Enabled, false); !enabled {

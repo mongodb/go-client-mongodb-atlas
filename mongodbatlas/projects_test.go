@@ -3,7 +3,6 @@ package mongodbatlas
 import (
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -47,7 +46,7 @@ func TestProject_GetAllProjects(t *testing.T) {
 
 	projects, _, err := client.Projects.GetAllProjects(ctx)
 	if err != nil {
-		t.Errorf("Projects.GetAllProjects returned error: %v", err)
+		t.Fatalf("Projects.GetAllProjects returned error: %v", err)
 	}
 
 	expected := &Projects{
@@ -88,8 +87,8 @@ func TestProject_GetAllProjects(t *testing.T) {
 		TotalCount: 2,
 	}
 
-	if !reflect.DeepEqual(projects, expected) {
-		t.Errorf("Projects.GetAllProjects\n got=%#v\nwant=%#v", projects, expected)
+	if diff := deep.Equal(projects, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -133,8 +132,8 @@ func TestProject_GetOneProject(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(projectResponse, expected) {
-		t.Errorf("Projects.GetOneProject\n got=%#v\nwant=%#v", projectResponse, expected)
+	if diff := deep.Equal(projectResponse, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -161,7 +160,7 @@ func TestProject_GetOneProjectByName(t *testing.T) {
 
 	projectResponse, _, err := client.Projects.GetOneProjectByName(ctx, projectName)
 	if err != nil {
-		t.Errorf("Projects.GetOneProject returned error: %v", err)
+		t.Fatalf("Projects.GetOneProject returned error: %v", err)
 	}
 
 	expected := &Project{
@@ -180,9 +179,6 @@ func TestProject_GetOneProjectByName(t *testing.T) {
 
 	if diff := deep.Equal(projectResponse, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(projectResponse, expected) {
-		t.Errorf("Projects.GetOneProject\n got=%#v\nwant=%#v", projectResponse, expected)
 	}
 }
 
@@ -211,7 +207,7 @@ func TestProject_Create(t *testing.T) {
 
 	project, _, err := client.Projects.Create(ctx, createRequest)
 	if err != nil {
-		t.Errorf("Projects.Create returned error: %v", err)
+		t.Fatalf("Projects.Create returned error: %v", err)
 	}
 
 	expected := &Project{
@@ -231,9 +227,6 @@ func TestProject_Create(t *testing.T) {
 	if diff := deep.Equal(project, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(project, expected) {
-		t.Errorf("DatabaseUsers.Get\n got=%#v\nwant=%#v", project, expected)
-	}
 }
 
 func TestProject_Delete(t *testing.T) {
@@ -248,7 +241,7 @@ func TestProject_Delete(t *testing.T) {
 
 	_, err := client.Projects.Delete(ctx, projectID)
 	if err != nil {
-		t.Errorf("Projects.Delete returned error: %v", err)
+		t.Fatalf("Projects.Delete returned error: %v", err)
 	}
 }
 
@@ -287,7 +280,7 @@ func TestProject_GetProjectTeamsAssigned(t *testing.T) {
 
 	teamsAssigned, _, err := client.Projects.GetProjectTeamsAssigned(ctx, projectID)
 	if err != nil {
-		t.Errorf("Projects.GetProjectTeamsAssigned returned error: %v", err)
+		t.Fatalf("Projects.GetProjectTeamsAssigned returned error: %v", err)
 	}
 
 	expected := &TeamsAssigned{
@@ -314,10 +307,6 @@ func TestProject_GetProjectTeamsAssigned(t *testing.T) {
 
 	if diff := deep.Equal(teamsAssigned, expected); diff != nil {
 		t.Error(diff)
-	}
-
-	if !reflect.DeepEqual(teamsAssigned, expected) {
-		t.Errorf("Projects.GetProjectTeamsAssigned\n got=%+v\nwant=%+v", teamsAssigned, expected)
 	}
 }
 
@@ -379,8 +368,5 @@ func TestProject_AddTeamsToProject(t *testing.T) {
 
 	if diff := deep.Equal(team, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(team, expected) {
-		t.Errorf("DatabaseUsers.Get\n got=%#v\nwant=%#v", team, expected)
 	}
 }

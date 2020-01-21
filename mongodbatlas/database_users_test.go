@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
@@ -19,12 +20,12 @@ func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
 
 	dbUsers, _, err := client.DatabaseUsers.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("DatabaseUsers.List returned error: %v", err)
+		t.Fatalf("DatabaseUsers.List returned error: %v", err)
 	}
 
 	expected := []DatabaseUser{{GroupID: "1", Username: "test-username"}, {GroupID: "1", Username: "test-username-1"}}
-	if !reflect.DeepEqual(dbUsers, expected) {
-		t.Errorf("DatabaseUsers.List\n got=%#v\nwant=%#v", dbUsers, expected)
+	if diff := deep.Equal(dbUsers, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -171,8 +172,8 @@ func TestDatabaseUsers_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -180,7 +181,7 @@ func TestDatabaseUsers_Create(t *testing.T) {
 
 	dbUser, _, err := client.DatabaseUsers.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("DatabaseUsers.Create returned error: %v", err)
+		t.Fatalf("DatabaseUsers.Create returned error: %v", err)
 	}
 
 	if username := dbUser.Username; username != "test-username" {
@@ -204,12 +205,12 @@ func TestDatabaseUsers_GetDatabaseUser(t *testing.T) {
 
 	dbUsers, _, err := client.DatabaseUsers.Get(ctx, "1", "test-username")
 	if err != nil {
-		t.Errorf("DatabaseUser.Get returned error: %v", err)
+		t.Fatalf("DatabaseUser.Get returned error: %v", err)
 	}
 
 	expected := &DatabaseUser{Username: "test-username"}
-	if !reflect.DeepEqual(dbUsers, expected) {
-		t.Errorf("DatabaseUsers.Get\n got=%#v\nwant=%#v", dbUsers, expected)
+	if diff := deep.Equal(dbUsers, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -266,8 +267,8 @@ func TestDatabaseUsers_Update(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -275,7 +276,7 @@ func TestDatabaseUsers_Update(t *testing.T) {
 
 	dbUser, _, err := client.DatabaseUsers.Update(ctx, groupID, "test-username", createRequest)
 	if err != nil {
-		t.Errorf("DatabaseUsers.Update returned error: %v", err)
+		t.Fatalf("DatabaseUsers.Update returned error: %v", err)
 	}
 
 	if username := dbUser.Username; username != "test-username" {
@@ -301,6 +302,6 @@ func TestDatabaseUsers_Delete(t *testing.T) {
 
 	_, err := client.DatabaseUsers.Delete(ctx, groupID, username)
 	if err != nil {
-		t.Errorf("DatabaseUser.Delete returned error: %v", err)
+		t.Fatalf("DatabaseUser.Delete returned error: %v", err)
 	}
 }

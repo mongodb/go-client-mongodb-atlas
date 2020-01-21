@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -102,7 +101,7 @@ func TestClusters_ListClusters(t *testing.T) {
 
 	clusters, _, err := client.Clusters.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("Clusters.List returned error: %v", err)
+		t.Fatalf("Clusters.List returned error: %v", err)
 	}
 
 	cluster1 := Cluster{
@@ -141,8 +140,8 @@ func TestClusters_ListClusters(t *testing.T) {
 	}
 
 	expected := []Cluster{cluster1, cluster1}
-	if !reflect.DeepEqual(clusters, expected) {
-		t.Errorf("Clusters.List\n got=%#v\nwant=%#v", clusters, expected)
+	if diff := deep.Equal(clusters, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -358,16 +357,12 @@ func TestClusters_Create(t *testing.T) {
 			t.Errorf("Clusters.Create Request Body = %v", diff)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
-
 		fmt.Fprint(w, jsonBlob)
 	})
 
 	cluster, _, err := client.Clusters.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("Clusters.Create returned error: %v", err)
+		t.Fatalf("Clusters.Create returned error: %v", err)
 	}
 
 	expectedName := "AppData"
@@ -516,16 +511,13 @@ func TestClusters_Update(t *testing.T) {
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Errorf("Clusters.Update Request Body = %v", diff)
 		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
 
 		fmt.Fprint(w, jsonBlob)
 	})
 
 	dbUser, _, err := client.Clusters.Update(ctx, groupID, clusterName, updateRequest)
 	if err != nil {
-		t.Errorf("Clusters.Update returned error: %v", err)
+		t.Fatalf("Clusters.Update returned error: %v", err)
 	}
 
 	if name := dbUser.Name; name != clusterName {
@@ -551,7 +543,7 @@ func TestClusters_Delete(t *testing.T) {
 
 	_, err := client.Clusters.Delete(ctx, groupID, name)
 	if err != nil {
-		t.Errorf("Cluster.Delete returned error: %v", err)
+		t.Fatalf("Cluster.Delete returned error: %v", err)
 	}
 }
 
@@ -605,11 +597,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Clusters.UpdateProcessArgs Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -617,7 +605,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 
 	processArgs, _, err := client.Clusters.UpdateProcessArgs(ctx, groupID, clusterName, updateRequest)
 	if err != nil {
-		t.Errorf("Clusters.UpdateProcessArgs returned error: %v", err)
+		t.Fatalf("Clusters.UpdateProcessArgs returned error: %v", err)
 	}
 
 	if tls := processArgs.MinimumEnabledTLSProtocol; tls != tlsProtocol {
@@ -652,7 +640,7 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 
 	processArgs, _, err := client.Clusters.GetProcessArgs(ctx, groupID, clusterName)
 	if err != nil {
-		t.Errorf("Clusters.GetProcessArgs returned error: %v", err)
+		t.Fatalf("Clusters.GetProcessArgs returned error: %v", err)
 	}
 
 	expected := &ProcessArgs{
@@ -665,14 +653,14 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 		SampleRefreshIntervalBIConnector: pointy.Int64(300),
 	}
 
-	if !reflect.DeepEqual(processArgs, expected) {
-		t.Errorf("Clusters.GetProcessArgs\n got=%#v\nwant=%#v", processArgs, expected)
+	if diff := deep.Equal(processArgs, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
 func TestClusters_checkClusterNameParam(t *testing.T) {
 	if err := checkClusterNameParam(""); err == nil {
-		t.Errorf("checkClusterNameParam didn't return error")
+		t.Fatalf("checkClusterNameParam didn't return error")
 	}
 }
 
@@ -728,7 +716,7 @@ func TestClusters_Get(t *testing.T) {
 
 	cluster, _, err := client.Clusters.Get(ctx, groupID, clusterName)
 	if err != nil {
-		t.Errorf("Clusters.Get returned error: %v", err)
+		t.Fatalf("Clusters.Get returned error: %v", err)
 	}
 
 	expected := &Cluster{
@@ -767,7 +755,7 @@ func TestClusters_Get(t *testing.T) {
 		StateName:  "IDLE",
 	}
 
-	if !reflect.DeepEqual(cluster, expected) {
-		t.Errorf("Clusters.Get\n got=%#v\nwant=%#v", cluster, expected)
+	if diff := deep.Equal(cluster, expected); diff != nil {
+		t.Error(diff)
 	}
 }

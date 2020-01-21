@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -78,9 +77,6 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Error(diff)
 		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
 
 		fmt.Fprint(w, `{
 			"awsKms": {
@@ -108,7 +104,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.EncryptionsAtRest.Create(ctx, createRequest)
 	if err != nil {
-		t.Errorf("EncryptionsAtRest.Create returned error: %v", err)
+		t.Fatalf("EncryptionsAtRest.Create returned error: %v", err)
 	}
 
 	expected := &EncryptionAtRest{
@@ -136,9 +132,6 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("EncryptionsAtRest.Create\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
 	}
 }
 
@@ -176,7 +169,7 @@ func TestEncryptionsAtRest_Get(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.EncryptionsAtRest.Get(ctx, groupID)
 	if err != nil {
-		t.Errorf("EncryptionsAtRest.Get returned error: %v", err)
+		t.Fatalf("EncryptionsAtRest.Get returned error: %v", err)
 	}
 
 	expected := &EncryptionAtRest{
@@ -204,8 +197,5 @@ func TestEncryptionsAtRest_Get(t *testing.T) {
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("EncryptionsAtRest.Get\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
 	}
 }
