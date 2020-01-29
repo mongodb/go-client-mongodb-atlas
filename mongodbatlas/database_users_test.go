@@ -118,6 +118,73 @@ func TestDatabaseUsers_RetrievePageByNumber(t *testing.T) {
 	checkCurrentPage(t, resp, 2)
 }
 
+func TestDatabaseUsers_CreateWithX509Type(t *testing.T) {
+	setup()
+	defer teardown()
+
+	groupID := "1"
+
+	createRequest := &DatabaseUser{
+		DatabaseName: "$external",
+		Username:     "test-username",
+		GroupID:      groupID,
+		X509Type:     "MANAGED",
+		Roles: []Role{{
+			DatabaseName: "admin",
+			RoleName:     "readWriteAnyDatabase",
+		}},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"databaseName": "$external",
+			"username":     "test-username",
+			"groupId":      groupID,
+			"x509Type":     "MANAGED",
+
+			"roles": []interface{}{map[string]interface{}{
+				"databaseName": "admin",
+				"roleName":     "readWriteAnyDatabase",
+			}},
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if !reflect.DeepEqual(v, expected) {
+			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		}
+
+		fmt.Fprint(w, `{
+			"databaseName": "$external",
+			"username": "test-username",
+			"groupId": "1",
+			"x509Type": "MANAGED",
+			"roles": [
+				{
+					"databaseName": "admin",
+					"roleName": "readWriteAnyDatabase"
+				}
+			]
+		}`)
+	})
+
+	dbUser, _, err := client.DatabaseUsers.Create(ctx, groupID, createRequest)
+	if err != nil {
+		t.Errorf("DatabaseUsers.Create returned error: %v", err)
+	}
+	if username := dbUser.Username; username != "test-username" {
+		t.Errorf("expected username '%s', received '%s'", "test-username", username)
+	}
+	if id := dbUser.GroupID; id != groupID {
+		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+
+}
+
 func TestDatabaseUsers_Create(t *testing.T) {
 	setup()
 	defer teardown()
