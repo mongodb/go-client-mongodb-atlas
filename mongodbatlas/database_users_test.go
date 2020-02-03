@@ -269,7 +269,7 @@ func TestDatabaseUsers_GetDatabaseUser(t *testing.T) {
 		fmt.Fprint(w, `{"username":"test-username"}`)
 	})
 
-	dbUsers, _, err := client.DatabaseUsers.Get(ctx, "1", "test-username")
+	dbUsers, _, err := client.DatabaseUsers.Get(ctx, "admin", "1", "test-username")
 	if err != nil {
 		t.Errorf("DatabaseUser.Get returned error: %v", err)
 	}
@@ -366,7 +366,7 @@ func TestDatabaseUsers_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.DatabaseUsers.Delete(ctx, groupID, username)
+	_, err := client.DatabaseUsers.Delete(ctx, "admin", groupID, username)
 	if err != nil {
 		t.Errorf("DatabaseUser.Delete returned error: %v", err)
 	}
