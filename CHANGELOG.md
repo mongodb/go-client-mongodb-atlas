@@ -1,3 +1,27 @@
+## [v0.1.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.3) (2020-01-24)
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.2...v0.1.3)
+
+**Implemented enhancements:**
+
+- Label argument missing on Database User [\#28](https://github.com/mongodb/go-client-mongodb-atlas/issues/28)
+
+**Closed issues:**
+
+- Missing awsSecurityGroup property for ProjectIPWhitelist [\#40](https://github.com/mongodb/go-client-mongodb-atlas/issues/40)
+
+**Merged pull requests:**
+
+- add DefaultDiskSizeGB for each provider [\#47](https://github.com/mongodb/go-client-mongodb-atlas/pull/47) ([marinsalinas](https://github.com/marinsalinas))
+- Custom DB Roles [\#45](https://github.com/mongodb/go-client-mongodb-atlas/pull/45) ([PacoDw](https://github.com/PacoDw))
+- Teams and projects resource were refactored due to issues [\#44](https://github.com/mongodb/go-client-mongodb-atlas/pull/44) ([PacoDw](https://github.com/PacoDw))
+- Added the label attribute to the cluster struct [\#43](https://github.com/mongodb/go-client-mongodb-atlas/pull/43) ([PacoDw](https://github.com/PacoDw))
+- Added Label struct and array inside the database users  [\#42](https://github.com/mongodb/go-client-mongodb-atlas/pull/42) ([PacoDw](https://github.com/PacoDw))
+- changed the AddUsersToTeam function to allow a string array of users id [\#41](https://github.com/mongodb/go-client-mongodb-atlas/pull/41) ([PacoDw](https://github.com/PacoDw))
+- Alert Configuration [\#39](https://github.com/mongodb/go-client-mongodb-atlas/pull/39) ([PacoDw](https://github.com/PacoDw))
+- Enable golint and fix errors [\#38](https://github.com/mongodb/go-client-mongodb-atlas/pull/38) ([gssbzn](https://github.com/gssbzn))
+- Udpate changelog for v0.1.2 release [\#37](https://github.com/mongodb/go-client-mongodb-atlas/pull/37) ([marinsalinas](https://github.com/marinsalinas))
+- Whitelist [\#35](https://github.com/mongodb/go-client-mongodb-atlas/pull/35) ([PacoDw](https://github.com/PacoDw))
+
 ## [v0.1.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.2) (2019-12-23)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.1...v0.1.2)
 
