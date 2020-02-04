@@ -52,6 +52,7 @@ type Client struct {
 	Auditing                         AuditingsService
 	AlertConfigurations              AlertConfigurationsService
 	PrivateEndpoints                 PrivateEndpointsService
+	X509AuthDBUsers                  X509AuthDBUsersService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -163,6 +164,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Auditing = &AuditingsServiceOp{client: c}
 	c.AlertConfigurations = &AlertConfigurationsServiceOp{client: c}
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{client: c}
+	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{client: c}
 
 	return c
 }
