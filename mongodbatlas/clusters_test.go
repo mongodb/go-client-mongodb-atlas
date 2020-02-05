@@ -328,7 +328,8 @@ func TestClusters_Create(t *testing.T) {
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
             "name": "AppData",
             "numShards": 1,
-            "paused": false,
+			"paused": false,
+			"pitEnabled": false,
             "providerSettings": {
                 "providerName": "AWS",
                 "diskIOPS": 1320,
@@ -378,6 +379,10 @@ func TestClusters_Create(t *testing.T) {
 
 	if id := cluster.GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+
+	if pitEnabled := cluster.PitEnabled; *pitEnabled {
+		t.Errorf("expected pitEnabled 'false', received '%t'", *pitEnabled)
 	}
 
 }
@@ -486,7 +491,8 @@ func TestClusters_Update(t *testing.T) {
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
             "name": "AppData",
             "numShards": 1,
-            "paused": false,
+			"paused": false,
+			"pitEnabled": false,
             "providerSettings": {
                 "providerName": "AWS",
                 "diskIOPS": 1320,
@@ -705,7 +711,8 @@ func TestClusters_Get(t *testing.T) {
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
             "name": "AppData",
             "numShards": 1,
-            "paused": false,
+			"paused": false,
+			"pitEnabled": false,
             "providerSettings": {
                 "providerName": "AWS",
                 "diskIOPS": 1320,
@@ -747,6 +754,7 @@ func TestClusters_Get(t *testing.T) {
 		Name:                     "AppData",
 		NumShards:                pointy.Int64(1),
 		Paused:                   pointy.Bool(false),
+		PitEnabled:               pointy.Bool(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
 			DiskIOPS:         pointy.Int64(1320),
