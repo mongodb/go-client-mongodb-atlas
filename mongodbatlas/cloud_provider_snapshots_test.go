@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -56,7 +55,7 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 
 	cloudProviderSnapshots, _, err := client.CloudProviderSnapshots.GetAllCloudProviderSnapshots(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshots.GetAllCloudProviderSnapshots returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshots.GetAllCloudProviderSnapshots returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshots{
@@ -91,9 +90,6 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 
 	if diff := deep.Equal(cloudProviderSnapshots, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(cloudProviderSnapshots, expected) {
-		t.Errorf("CloudProviderSnapshots.GetAllCloudProviderSnapshots\n got=%#v\nwant=%#v", cloudProviderSnapshots, expected)
 	}
 }
 
@@ -136,7 +132,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshots.GetOneCloudProviderSnapshot(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshots.GetOneCloudProviderSnapshot returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshots.GetOneCloudProviderSnapshot returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshot{
@@ -163,9 +159,6 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
-	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("CloudProviderSnapshots.GetOneCloudProviderSnapshot\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
 	}
 }
 
@@ -199,9 +192,6 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Error(diff)
 		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
 
 		fmt.Fprint(w, `{
 			"createdAt": "2018-12-31T20:54:03Z",
@@ -228,7 +218,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshots.Create(ctx, requestParameters, createRequest)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshots.Create returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshots.Create returned error: %v", err)
 	}
 
 	expected := &CloudProviderSnapshot{
@@ -256,9 +246,6 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
 		t.Error(diff)
 	}
-	if !reflect.DeepEqual(cloudProviderSnapshot, expected) {
-		t.Errorf("CloudProviderSnapshots.Create\n got=%#v\nwant=%#v", cloudProviderSnapshot, expected)
-	}
 }
 
 func TestCloudProviderSnapshots_Delete(t *testing.T) {
@@ -279,6 +266,6 @@ func TestCloudProviderSnapshots_Delete(t *testing.T) {
 
 	_, err := client.CloudProviderSnapshots.Delete(ctx, requestParameters)
 	if err != nil {
-		t.Errorf("CloudProviderSnapshots.Delete returned error: %v", err)
+		t.Fatalf("CloudProviderSnapshots.Delete returned error: %v", err)
 	}
 }

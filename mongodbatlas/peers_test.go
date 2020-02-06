@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -39,7 +38,7 @@ func TestPeers_ListPeers(t *testing.T) {
 
 	peers, _, err := client.Peers.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("Peers.List returned error: %v", err)
+		t.Fatalf("Peers.List returned error: %v", err)
 	}
 
 	peer := Peer{
@@ -51,8 +50,8 @@ func TestPeers_ListPeers(t *testing.T) {
 	}
 
 	expected := []Peer{peer, peer}
-	if !reflect.DeepEqual(peers, expected) {
-		t.Errorf("Peers.List\n got=%#v\nwant=%#v", peers, expected)
+	if diff := deep.Equal(peers, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -187,11 +186,7 @@ func TestPeers_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Peers.Create Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -199,7 +194,7 @@ func TestPeers_Create(t *testing.T) {
 
 	peer, _, err := client.Peers.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("Peers.Create returned error: %v", err)
+		t.Fatalf("Peers.Create returned error: %v", err)
 	}
 
 	expectedCID := "507f1f77bcf86cd799439011"
@@ -258,16 +253,13 @@ func TestPeers_Update(t *testing.T) {
 		if diff := deep.Equal(v, expected); diff != nil {
 			t.Errorf("Peers.Update Request Body = %v", diff)
 		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
 
 		fmt.Fprint(w, jsonBlob)
 	})
 
 	perr, _, err := client.Peers.Update(ctx, groupID, peerID, updateRequest)
 	if err != nil {
-		t.Errorf("Peers.Update returned error: %v", err)
+		t.Fatalf("Peers.Update returned error: %v", err)
 	}
 
 	if pID := perr.ID; pID != peerID {
@@ -295,6 +287,6 @@ func TestPeers_Delete(t *testing.T) {
 
 	_, err := client.Peers.Delete(ctx, groupID, id)
 	if err != nil {
-		t.Errorf("Peer.Delete returned error: %v", err)
+		t.Fatalf("Peer.Delete returned error: %v", err)
 	}
 }

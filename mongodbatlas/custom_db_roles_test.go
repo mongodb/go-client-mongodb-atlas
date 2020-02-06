@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
@@ -19,7 +21,7 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 
 	customDBRoles, _, err := client.CustomDBRoles.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("CustomDBRoles.List returned error: %v", err)
+		t.Fatalf("CustomDBRoles.List returned error: %v", err)
 	}
 
 	expected := &[]CustomDBRole{{
@@ -36,8 +38,9 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 		}},
 		RoleName: "test-role-name",
 	}}
-	if !reflect.DeepEqual(customDBRoles, expected) {
-		t.Errorf("CustomDBRoles.List\n got=%#v\nwant=%#v", customDBRoles, expected)
+
+	if diff := deep.Equal(customDBRoles, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -52,7 +55,7 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 
 	customDBRole, _, err := client.CustomDBRoles.Get(ctx, "1", "test-role-name")
 	if err != nil {
-		t.Errorf("CustomDBRoles.Get returned error: %v", err)
+		t.Fatalf("CustomDBRoles.Get returned error: %v", err)
 	}
 
 	expected := &CustomDBRole{
@@ -69,8 +72,8 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 		}},
 		RoleName: "test-role-name",
 	}
-	if !reflect.DeepEqual(customDBRole, expected) {
-		t.Errorf("CustomDBRoles.List\n got=%#v\nwant=%#v", customDBRole, expected)
+	if diff := deep.Equal(customDBRole, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -138,8 +141,8 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -147,7 +150,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 
 	customDBRole, _, err := client.CustomDBRoles.Create(ctx, "1", createRequest)
 	if err != nil {
-		t.Errorf("CustomDBRoles.Create returned error: %v", err)
+		t.Fatalf("CustomDBRoles.Create returned error: %v", err)
 	}
 
 	if roleName := customDBRole.RoleName; roleName != "test-role-name" {
@@ -228,7 +231,7 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 
 	customDBRole, _, err := client.CustomDBRoles.Update(ctx, "1", "test-role-name", updateRequest)
 	if err != nil {
-		t.Errorf("CustomDBRoles.Update returned error: %v", err)
+		t.Fatalf("CustomDBRoles.Update returned error: %v", err)
 	}
 
 	if roleName := customDBRole.RoleName; roleName != "test-role-name" {
@@ -249,6 +252,6 @@ func TestDatabaseUsers_DeleteCustomDBRole(t *testing.T) {
 
 	_, err := client.CustomDBRoles.Delete(ctx, groupID, roleName)
 	if err != nil {
-		t.Errorf("CustomDBRole.Delete returned error: %v", err)
+		t.Fatalf("CustomDBRole.Delete returned error: %v", err)
 	}
 }

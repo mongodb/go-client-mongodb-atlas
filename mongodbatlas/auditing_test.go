@@ -49,8 +49,7 @@ func TestConfigureAuditing(t *testing.T) {
 
 	auditingResponse, _, err := client.Auditing.Configure(ctx, groupID, auditingRequest)
 	if err != nil {
-		t.Errorf("Auditing.Configure returned error: %v", err)
-		return
+		t.Fatalf("Auditing.Configure returned error: %v", err)
 	}
 
 	expected := &Auditing{
@@ -83,7 +82,7 @@ func TestAuditing_Get(t *testing.T) {
 
 	auditing, _, err := client.Auditing.Get(ctx, groupID)
 	if err != nil {
-		t.Errorf("Auditing.Get returned error: %v", err)
+		t.Fatalf("Auditing.Get returned error: %v", err)
 	}
 
 	expected := &Auditing{

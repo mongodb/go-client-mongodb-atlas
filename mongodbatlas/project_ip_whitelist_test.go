@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
@@ -19,12 +20,12 @@ func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
 
 	projectIPWhitelists, _, err := client.ProjectIPWhitelist.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.List returned error: %v", err)
+		t.Fatalf("ProjectIPWhitelist.List returned error: %v", err)
 	}
 
 	expected := []ProjectIPWhitelist{{GroupID: "1", CIDRBlock: "0.0.0.0/12", IPAddress: "0.0.0.0"}, {GroupID: "1", CIDRBlock: "0.0.0.1/12", IPAddress: "0.0.0.1"}}
-	if !reflect.DeepEqual(projectIPWhitelists, expected) {
-		t.Errorf("ProjectIPWhitelist.List\n got=%#v\nwant=%#v", projectIPWhitelists, expected)
+	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -147,8 +148,8 @@ func TestProjectIPWhitelist_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -156,8 +157,7 @@ func TestProjectIPWhitelist_Create(t *testing.T) {
 
 	projectIPWhitelist, _, err := client.ProjectIPWhitelist.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.Create returned error: %v", err)
-		return
+		t.Fatalf("ProjectIPWhitelist.Create returned error: %v", err)
 	}
 
 	if len(projectIPWhitelist) > 1 {
@@ -187,12 +187,13 @@ func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
 
 	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", ipAddress)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.Get returned error: %v", err)
+		t.Fatalf("ProjectIPWhitelist.Get returned error: %v", err)
 	}
 
 	expected := &ProjectIPWhitelist{IPAddress: ipAddress}
-	if !reflect.DeepEqual(projectIPWhitelists, expected) {
-		t.Errorf("ProjectIPWhitelist.Get\n got=%#v\nwant=%#v", projectIPWhitelists, expected)
+
+	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -209,12 +210,12 @@ func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
 
 	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", cidr)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.Get returned error: %v", err)
+		t.Fatalf("ProjectIPWhitelist.Get returned error: %v", err)
 	}
 
 	expected := &ProjectIPWhitelist{CIDRBlock: cidr}
-	if !reflect.DeepEqual(projectIPWhitelists, expected) {
-		t.Errorf("ProjectIPWhitelist.Get\n got=%#v\nwant=%#v", projectIPWhitelists, expected)
+	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -253,8 +254,8 @@ func TestProjectIPWhitelist_Update(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -262,8 +263,7 @@ func TestProjectIPWhitelist_Update(t *testing.T) {
 
 	projectIPWhitelist, _, err := client.ProjectIPWhitelist.Update(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.Update returned error: %v", err)
-		return
+		t.Fatalf("ProjectIPWhitelist.Update returned error: %v", err)
 	}
 
 	if ip := projectIPWhitelist[0].IPAddress; ip != ipAddress {
@@ -289,6 +289,6 @@ func TestProjectIPWhitelist_Delete(t *testing.T) {
 
 	_, err := client.ProjectIPWhitelist.Delete(ctx, groupID, ipAddress)
 	if err != nil {
-		t.Errorf("ProjectIPWhitelist.Delete returned error: %v", err)
+		t.Fatalf("ProjectIPWhitelist.Delete returned error: %v", err)
 	}
 }

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -48,7 +47,7 @@ func TestGlobalClusters_Get(t *testing.T) {
 
 	cluster, _, err := client.GlobalClusters.Get(ctx, groupID, clusterName)
 	if err != nil {
-		t.Errorf("GlobalClusters.Get returned error: %v", err)
+		t.Fatalf("GlobalClusters.Get returned error: %v", err)
 	}
 
 	expected := &GlobalCluster{
@@ -79,8 +78,8 @@ func TestGlobalClusters_Get(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(cluster, expected) {
-		t.Errorf("GlobalClusters.Get\n got=%#v\nwant=%#v", cluster, expected)
+	if diff := deep.Equal(cluster, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -138,11 +137,7 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 		if diff := deep.Equal(v, expectedRequest); diff != nil {
-			t.Errorf("GlobalClusters.AddManagedNamespace Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expectedRequest) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expectedRequest)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -235,7 +230,7 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 	globalCluster, _, err := client.GlobalClusters.DeleteManagedNamespace(ctx, groupID, name, &mn)
 
 	if err != nil {
-		t.Errorf("GlobalClusters.DeleteManagedNamespace returned error: %v", err)
+		t.Fatalf("GlobalClusters.DeleteManagedNamespace returned error: %v", err)
 	}
 
 	expected := &GlobalCluster{
@@ -267,7 +262,7 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 	}
 
 	if diff := deep.Equal(globalCluster, expected); diff != nil {
-		t.Errorf("GlobalClusters.DeleteCustomZoneMappings Response Body = %v", diff)
+		t.Error(diff)
 	}
 }
 
@@ -313,11 +308,7 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 		if diff := deep.Equal(v, expectedRequest); diff != nil {
-			t.Errorf("GlobalClusters.AddCustomZoneMappings Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expectedRequest) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expectedRequest)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -325,7 +316,7 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 
 	globalCluster, _, err := client.GlobalClusters.AddCustomZoneMappings(ctx, groupID, clusterName, createRequest)
 	if err != nil {
-		t.Errorf("GlobalClusters.AddCustomZoneMappings returned error: %v", err)
+		t.Fatalf("GlobalClusters.AddCustomZoneMappings returned error: %v", err)
 	}
 
 	if namespacesCount := len(globalCluster.ManagedNamespaces); namespacesCount != 1 {
@@ -335,7 +326,6 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 	if id := globalCluster.CustomZoneMapping["CA"]; id != "5b50bf4180eef547653df4d0" {
 		t.Errorf("expected CustomZoneMapping.CA '%s', received '%s'", "5b50bf4180eef547653df4d0", id)
 	}
-
 }
 
 func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
@@ -365,7 +355,7 @@ func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
 	globalCluster, _, err := client.GlobalClusters.DeleteCustomZoneMappings(ctx, groupID, name)
 
 	if err != nil {
-		t.Errorf("Cluster.Delete returned error: %v", err)
+		t.Fatalf("Cluster.Delete returned error: %v", err)
 	}
 
 	expected := &GlobalCluster{
@@ -380,6 +370,6 @@ func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
 	}
 
 	if diff := deep.Equal(globalCluster, expected); diff != nil {
-		t.Errorf("GlobalClusters.AddCustomZoneMappings Response Body = %v", diff)
+		t.Error(diff)
 	}
 }

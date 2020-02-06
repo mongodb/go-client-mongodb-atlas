@@ -6,9 +6,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/mwielbut/pointy"
-
 	"github.com/go-test/deep"
+	"github.com/mwielbut/pointy"
 )
 
 func TestAlertConfiguration_Create(t *testing.T) {
@@ -153,7 +152,7 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 
 	alertConfiguration, _, err := client.AlertConfigurations.EnableAnAlertConfig(ctx, groupID, alertConfigID, pointy.Bool(true))
 	if err != nil {
-		t.Errorf("AlertConfiguration.EnableAnAlertConfig returned error: %v", err)
+		t.Fatalf("AlertConfiguration.EnableAnAlertConfig returned error: %v", err)
 	}
 
 	expected := &AlertConfiguration{
@@ -176,7 +175,7 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfiguration, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -223,7 +222,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 
 	alertConfiguration, _, err := client.AlertConfigurations.GetAnAlertConfig(ctx, groupID, alertConfigID)
 	if err != nil {
-		t.Errorf("AlertConfigurations.GetAnAlertConfig returned error: %v", err)
+		t.Fatalf("AlertConfigurations.GetAnAlertConfig returned error: %v", err)
 	}
 
 	expected := &AlertConfiguration{
@@ -258,7 +257,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfiguration, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -309,7 +308,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 
 	alertConfigurations, _, err := client.AlertConfigurations.GetOpenAlertsConfig(ctx, groupID, alertConfigID)
 	if err != nil {
-		t.Errorf("AlertConfigurations.GetOpenAlertsConfig returned error: %v", err)
+		t.Fatalf("AlertConfigurations.GetOpenAlertsConfig returned error: %v", err)
 	}
 
 	expected := []AlertConfiguration{
@@ -345,7 +344,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfigurations, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfigurations, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -426,7 +425,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 
 	alertConfigurations, _, err := client.AlertConfigurations.List(ctx, groupID, nil)
 	if err != nil {
-		t.Errorf("AlertConfigurations.List returned error: %v", err)
+		t.Fatalf("AlertConfigurations.List returned error: %v", err)
 	}
 
 	expected := []AlertConfiguration{
@@ -493,7 +492,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfigurations, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfigurations, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -566,7 +565,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 
 	alertConfiguration, _, err := client.AlertConfigurations.Update(ctx, groupID, alertConfigID, alertReq)
 	if err != nil {
-		t.Errorf("AlertConfiguration.Update returned error: %v", err)
+		t.Fatalf("AlertConfiguration.Update returned error: %v", err)
 		return
 	}
 
@@ -589,7 +588,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfiguration, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -606,6 +605,6 @@ func TestAlertConfiguration_Delete(t *testing.T) {
 
 	_, err := client.AlertConfigurations.Delete(ctx, groupID, alertConfigID)
 	if err != nil {
-		t.Errorf("AlertConfigurations.Delete returned error: %v", err)
+		t.Fatalf("AlertConfigurations.Delete returned error: %v", err)
 	}
 }

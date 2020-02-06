@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -42,7 +41,7 @@ func TestContainers_ListContainers(t *testing.T) {
 
 	containers, _, err := client.Containers.List(ctx, "1", nil)
 	if err != nil {
-		t.Errorf("Containers.List returned error: %v", err)
+		t.Fatalf("Containers.List returned error: %v", err)
 	}
 
 	GCPContainer := Container{
@@ -64,8 +63,9 @@ func TestContainers_ListContainers(t *testing.T) {
 	}
 
 	expected := []Container{GCPContainer, AWSContainer}
-	if !reflect.DeepEqual(containers, expected) {
-		t.Errorf("Containers.List\n got=%#v\nwant=%#v", containers, expected)
+
+	if diff := deep.Equal(containers, expected); diff != nil {
+		t.Error(diff)
 	}
 }
 
@@ -199,11 +199,7 @@ func TestContainers_Create(t *testing.T) {
 			t.Fatalf("decode json: %v", err)
 		}
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Containers.Create Request Body = %v", diff)
-		}
-
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -211,7 +207,7 @@ func TestContainers_Create(t *testing.T) {
 
 	container, _, err := client.Containers.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Errorf("Containers.Create returned error: %v", err)
+		t.Fatalf("Containers.Create returned error: %v", err)
 	}
 
 	expectedCID := "1112269b3bf99403840e8934"
@@ -269,10 +265,7 @@ func TestContainers_Update(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Containers.Update Request Body = %v", diff)
-		}
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, jsonBlob)
@@ -280,7 +273,7 @@ func TestContainers_Update(t *testing.T) {
 
 	container, _, err := client.Containers.Update(ctx, groupID, containerID, updateRequest)
 	if err != nil {
-		t.Errorf("Containers.Update returned error: %v", err)
+		t.Fatalf("Containers.Update returned error: %v", err)
 	}
 
 	if cID := container.ID; cID != containerID {
@@ -312,6 +305,6 @@ func TestContainers_Delete(t *testing.T) {
 
 	_, err := client.Containers.Delete(ctx, groupID, id)
 	if err != nil {
-		t.Errorf("Container.Delete returned error: %v", err)
+		t.Fatalf("Container.Delete returned error: %v", err)
 	}
 }

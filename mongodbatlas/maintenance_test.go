@@ -31,7 +31,7 @@ func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, `{}`)
@@ -46,7 +46,7 @@ func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
 
 	_, err := client.MaintenanceWindows.Update(ctx, groupID, maintenanceRequest)
 	if err != nil {
-		t.Errorf("MaintenanceWindow.Update returned error: %v", err)
+		t.Fatalf("MaintenanceWindow.Update returned error: %v", err)
 		return
 	}
 }
@@ -69,7 +69,7 @@ func TestMaintenanceWindows_UpdateWithStartNow(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, `{}`)
@@ -113,7 +113,7 @@ func TestMaintenanceWindows_Get(t *testing.T) {
 	}
 
 	if diff := deep.Equal(maintenanceWindow, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", maintenanceWindow, expected, diff)
+		t.Error(diff)
 	}
 }
 
