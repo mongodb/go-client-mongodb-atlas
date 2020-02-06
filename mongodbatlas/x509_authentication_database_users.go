@@ -34,7 +34,7 @@ type UserCertificate struct {
 	MonthsUntilExpiration int    `json:"monthsUntilExpiration,omitempty"` // A number of months that the created certificate is valid for before expiry, up to 24 months.default 3.
 	Certificate           string `json:"certificate,omitempty"`
 
-	ID        string `json:"_id,omitempty"`       // Serial number of this certificate.
+	ID        *int64 `json:"_id,omitempty"`       // Serial number of this certificate.
 	CreatedAt string `json:"createdAt,omitempty"` // Timestamp in ISO 8601 date and time format in UTC when Atlas created this X.509 certificate.
 	GroupID   string `json:"groupId,omitempty"`   // Unique identifier of the Atlas project to which this certificate belongs.
 	NotAfter  string `json:"notAfter,omitempty"`  // Timestamp in ISO 8601 date and time format in UTC when this certificate expires.
@@ -136,7 +136,7 @@ func (s *X509AuthDBUsersServiceOp) SaveConfiguration(ctx context.Context, groupI
 
 	path := fmt.Sprintf(x509CustomerAuthDBUserPath, groupID)
 
-	req, err := s.client.NewRequest(ctx, http.MethodPost, path, customerX509)
+	req, err := s.client.NewRequest(ctx, http.MethodPatch, path, &UserSecurity{CustomerX509: *customerX509})
 	if err != nil {
 		return nil, nil, err
 	}
