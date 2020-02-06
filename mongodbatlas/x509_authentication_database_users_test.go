@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/mwielbut/pointy"
 )
 
 func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {
@@ -71,14 +72,14 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 			],
 			"results": [
 				{
-					"_id": "5433027191242719574",
+					"_id": 5433027191242719574,
 					"createdAt": "2019-12-03T21:00:42Z",
 					"groupId": "ec13d5f09d521a5206e5d726",
 					"notAfter": "2020-06-03T22:00:42Z",
 					"subject": "CN=myX509User"
 				},
 				{
-					"_id": "0946028664465903704",
+					"_id": 946028664465903704,
 					"createdAt": "2019-12-05T13:50:49Z",
 					"groupId": "ec13d5f09d521a5206e5d726",
 					"notAfter": "2020-03-05T14:50:49Z",
@@ -96,14 +97,14 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 
 	expected := []UserCertificate{
 		{
-			ID:        "5433027191242719574",
+			ID:        pointy.Int64(5433027191242719574),
 			CreatedAt: "2019-12-03T21:00:42Z",
 			GroupID:   "ec13d5f09d521a5206e5d726",
 			NotAfter:  "2020-06-03T22:00:42Z",
 			Subject:   "CN=myX509User",
 		},
 		{
-			ID:        "0946028664465903704",
+			ID:        pointy.Int64(946028664465903704),
 			CreatedAt: "2019-12-05T13:50:49Z",
 			GroupID:   "ec13d5f09d521a5206e5d726",
 			NotAfter:  "2020-03-05T14:50:49Z",
@@ -127,7 +128,9 @@ func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
-			"cas": "-BEGIN CERTIFICATE--MIIFCTCCAvGgAwIBAgIIb--END CERTIFICATE---BEGIN PRIVATE KEY--MIIJQgIBADANBgkqhkiG==--END PRIVATE KEY--",
+			"customerX509": map[string]interface{}{
+				"cas": "-BEGIN CERTIFICATE--MIIFCTCCAvGgAwIBAgIIb--END CERTIFICATE---BEGIN PRIVATE KEY--MIIJQgIBADANBgkqhkiG==--END PRIVATE KEY--",
+			},
 		}
 
 		var v map[string]interface{}
