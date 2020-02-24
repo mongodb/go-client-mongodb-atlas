@@ -32,7 +32,7 @@ var _ AlertConfigurationsService = &AlertConfigurationsServiceOp{}
 // AlertConfiguration represents MongoDB Alert Configuration.
 type AlertConfiguration struct {
 	ID                     string           `json:"id,omitempty"`                     // Unique identifier.
-	GroupID                string           `json:"groupID,omitempty"`                // Unique identifier of the project that owns this alert configuration.
+	GroupID                string           `json:"groupId,omitempty"`                // Unique identifier of the project that owns this alert configuration.
 	AlertConfigID          string           `json:"alertConfigId,omitempty"`          // ID of the alert configuration that triggered this alert.
 	EventTypeName          string           `json:"eventTypeName,omitempty"`          // The type of event that will trigger an alert.
 	Created                string           `json:"created,omitempty"`                // Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
