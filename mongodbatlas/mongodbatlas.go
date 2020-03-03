@@ -47,6 +47,7 @@ type Client struct {
 	PrivateIPMode                    PrivateIPModeService
 	MaintenanceWindows               MaintenanceWindowsService
 	Teams                            TeamsService
+	Organizations                    OrganizationsService
 	AtlasUsers                       AtlasUsersService
 	GlobalClusters                   GlobalClustersService
 	Auditing                         AuditingsService
@@ -159,6 +160,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.PrivateIPMode = &PrivateIPModeServiceOp{client: c}
 	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{client: c}
 	c.Teams = &TeamsServiceOp{client: c}
+	c.Organizations = &OrganizationsServiceOp{client: c}
 	c.AtlasUsers = &AtlasUsersServiceOp{client: c}
 	c.GlobalClusters = &GlobalClustersServiceOp{client: c}
 	c.Auditing = &AuditingsServiceOp{client: c}
