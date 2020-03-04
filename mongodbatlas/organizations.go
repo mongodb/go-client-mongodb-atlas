@@ -39,9 +39,9 @@ type OrganizationResponse struct {
 
 // Organization
 type Organization struct {
-	Name  string `json:"name"`
-	ID    string `json:"id,omitempty"`
-	Links string `json:"links"`
+	Name  string  `json:"name"`
+	ID    string  `json:"id,omitempty"`
+	Links []*Link `json:"links"`
 }
 
 //List gets all organizations.
