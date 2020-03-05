@@ -47,10 +47,8 @@ type Organization struct {
 //List gets all organizations.
 //See more: https://docs.atlas.mongodb.com/reference/api/organization-get-all/
 func (s *OrganizationsServiceOp) List(ctx context.Context, listOptions *ListOptions) ([]Organization, *Response, error) {
-	path := fmt.Sprintf(organizationsBasePath)
-
 	//Add query params from listOptions
-	path, err := setListOptions(path, listOptions)
+	path, err := setListOptions(organizationsBasePath, listOptions)
 	if err != nil {
 		return nil, nil, err
 	}
