@@ -25,7 +25,7 @@ const (
 )
 
 type RequestDoer interface {
-	NewRequest( context.Context, string, string,  interface{}) (*http.Request, error)
+	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
 	Do(context.Context, *http.Request, interface{}) (*Response, error)
 	OnRequestCompleted(RequestCompletionCallback)
 }

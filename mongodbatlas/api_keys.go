@@ -23,7 +23,7 @@ type APIKeysService interface {
 // APIKeysServiceOp handles communication with the APIKey related methods
 // of the MongoDB Atlas API
 type APIKeysServiceOp struct {
-	client *RequestDoer
+	client RequestDoer
 }
 
 var _ APIKeysService = &APIKeysServiceOp{}
