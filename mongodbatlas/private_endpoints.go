@@ -24,7 +24,7 @@ type PrivateEndpointsService interface {
 // PrivateEndpointsServiceOp handles communication with the PrivateEndpoints related methods
 // of the MongoDB Atlas API
 type PrivateEndpointsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ PrivateEndpointsService = &PrivateEndpointsServiceOp{}

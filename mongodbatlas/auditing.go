@@ -21,7 +21,7 @@ type AuditingsService interface {
 // AuditingsServiceOp handles communication with the Auditings related methods
 // of the MongoDB Atlas API
 type AuditingsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ AuditingsService = &AuditingsServiceOp{}

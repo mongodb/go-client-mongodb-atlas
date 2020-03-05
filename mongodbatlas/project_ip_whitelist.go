@@ -23,7 +23,7 @@ type ProjectIPWhitelistService interface {
 //ProjectIPWhitelistServiceOp handles communication with the ProjectIPWhitelist related methods
 // of the MongoDB Atlas API
 type ProjectIPWhitelistServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ ProjectIPWhitelistService = &ProjectIPWhitelistServiceOp{}

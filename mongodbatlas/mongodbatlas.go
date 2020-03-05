@@ -24,6 +24,12 @@ const (
 	mediaType      = "application/json"
 )
 
+type RequestDoer interface {
+	NewRequest( context.Context, string, string,  interface{}) (*http.Request, error)
+	Do(context.Context, *http.Request, interface{}) (*Response, error)
+	OnRequestCompleted(RequestCompletionCallback)
+}
+
 // Client manages communication with MongoDBAtlas v1.0 API
 type Client struct {
 	client    *http.Client

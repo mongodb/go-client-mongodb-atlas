@@ -23,7 +23,7 @@ type CloudProviderSnapshotRestoreJobsService interface {
 //CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methos of the
 //MongoDB Atlas API
 type CloudProviderSnapshotRestoreJobsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ CloudProviderSnapshotRestoreJobsService = &CloudProviderSnapshotRestoreJobsServiceOp{}

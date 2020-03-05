@@ -22,7 +22,7 @@ type DatabaseUsersService interface {
 //DatabaseUsersServiceOp handles communication with the DatabaseUsers related methos of the
 //MongoDB Atlas API
 type DatabaseUsersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ DatabaseUsersService = &DatabaseUsersServiceOp{}

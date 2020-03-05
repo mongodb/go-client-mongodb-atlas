@@ -23,7 +23,7 @@ type PeersService interface {
 //PeersServiceOp handles communication with the Network Peering Connection related methods
 // of the MongoDB Atlas API
 type PeersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ PeersService = &PeersServiceOp{}

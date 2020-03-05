@@ -22,7 +22,7 @@ type CustomDBRolesService interface {
 //CustomDBRolesServiceOp handles communication with the CustomDBRoles related methods of the
 //MongoDB Atlas API
 type CustomDBRolesServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ CustomDBRolesService = &CustomDBRolesServiceOp{}

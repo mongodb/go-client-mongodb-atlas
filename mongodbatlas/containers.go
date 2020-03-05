@@ -23,7 +23,7 @@ type ContainersService interface {
 //ContainersServiceOp handles communication with the Network Peering Container related methods
 // of the MongoDB Atlas API
 type ContainersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ ContainersService = &ContainersServiceOp{}

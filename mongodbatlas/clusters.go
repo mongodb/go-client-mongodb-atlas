@@ -25,7 +25,7 @@ type ClustersService interface {
 //ClustersServiceOp handles communication with the Cluster related methods
 // of the MongoDB Atlas API
 type ClustersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ ClustersService = &ClustersServiceOp{}

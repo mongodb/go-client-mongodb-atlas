@@ -23,7 +23,7 @@ type X509AuthDBUsersService interface {
 // X509AuthDBUsersServiceOp handles communication with the  X509AuthDBUsers related methods
 // of the MongoDB Atlas API
 type X509AuthDBUsersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ X509AuthDBUsersService = &X509AuthDBUsersServiceOp{}

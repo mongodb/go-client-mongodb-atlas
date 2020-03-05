@@ -21,7 +21,7 @@ type WhitelistAPIKeysService interface {
 // WhitelistAPIKeysServiceOp handles communication with the Whitelist API keys related methods of the
 // MongoDB Atlas API
 type WhitelistAPIKeysServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ WhitelistAPIKeysService = &WhitelistAPIKeysServiceOp{}

@@ -21,7 +21,7 @@ type ProjectAPIKeysService interface {
 //ProjectAPIKeysOp handles communication with the APIKey related methods
 // of the MongoDB Atlas API
 type ProjectAPIKeysOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ ProjectAPIKeysService = &ProjectAPIKeysOp{}

@@ -64,7 +64,7 @@ type EncryptionsAtRestService interface {
 //EncryptionsAtRestServiceOp handles communication with the DatabaseUsers related methods of the
 //MongoDB Atlas API
 type EncryptionsAtRestServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ EncryptionsAtRestService = &EncryptionsAtRestServiceOp{}

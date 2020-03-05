@@ -36,7 +36,7 @@ type ProjectsService interface {
 //ProjectsServiceOp handles communication with the Projects related methos of the
 //MongoDB Atlas API
 type ProjectsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ ProjectsService = &ProjectsServiceOp{}

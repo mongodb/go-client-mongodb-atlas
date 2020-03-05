@@ -19,7 +19,7 @@ type PrivateIPModeService interface {
 //PrivateIPModeServiceOp handles communication with the Private IP Mode related methods
 // of the MongoDB Atlas API
 type PrivateIPModeServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ PrivateIPModeService = &PrivateIPModeServiceOp{}

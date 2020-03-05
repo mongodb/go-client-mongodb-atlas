@@ -23,7 +23,7 @@ type AtlasUsersService interface {
 //AtlasUsersServiceOp handles communication with the AtlasUsers related methos of the
 //MongoDB Atlas API
 type AtlasUsersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ AtlasUsersService = &AtlasUsersServiceOp{}

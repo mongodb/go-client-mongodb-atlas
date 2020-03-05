@@ -22,7 +22,7 @@ type GlobalClustersService interface {
 //GlobalClustersServiceOp handles communication with the GlobalClusters related methos of the
 //MongoDB Atlas API
 type GlobalClustersServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ GlobalClustersService = &GlobalClustersServiceOp{}

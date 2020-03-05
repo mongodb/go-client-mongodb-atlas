@@ -23,7 +23,7 @@ type CloudProviderSnapshotsService interface {
 //CloudProviderSnapshotsServiceOp handles communication with the DatabaseUsers related methos of the
 //MongoDB Atlas API
 type CloudProviderSnapshotsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ CloudProviderSnapshotsService = &CloudProviderSnapshotsServiceOp{}

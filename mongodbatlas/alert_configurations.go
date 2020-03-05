@@ -24,7 +24,7 @@ type AlertConfigurationsService interface {
 // AlertConfigurationsServiceOp handles communication with the AlertConfiguration related methods
 // of the MongoDB Atlas API
 type AlertConfigurationsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ AlertConfigurationsService = &AlertConfigurationsServiceOp{}

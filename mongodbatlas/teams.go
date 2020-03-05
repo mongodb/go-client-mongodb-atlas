@@ -30,7 +30,7 @@ type TeamsService interface {
 //TeamsServiceOp handles communication with the Teams related methos of the
 //MongoDB Atlas API
 type TeamsServiceOp struct {
-	client *Client
+	client RequestDoer
 }
 
 var _ TeamsService = &TeamsServiceOp{}
