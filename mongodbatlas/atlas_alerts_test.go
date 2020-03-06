@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestAlert_GetAnAlert(t *testing.T) {
+func TestAlert_Get(t *testing.T) {
 	setup()
 	defer teardown()
 
@@ -51,7 +51,7 @@ func TestAlert_GetAnAlert(t *testing.T) {
 
 	alert, _, err := client.Alerts.Get(ctx, groupID, alertID)
 	if err != nil {
-		t.Fatalf("Alerts.GetAnAlert returned error: %v", err)
+		t.Fatalf("Alerts.Get returned error: %v", err)
 	}
 
 	expected := &Alert{
@@ -238,7 +238,7 @@ func TestAlerts_List(t *testing.T) {
 	}
 }
 
-func TestAlert_AckAnAlert(t *testing.T) {
+func TestAlert_Acknowledge(t *testing.T) {
 	setup()
 	defer teardown()
 
@@ -274,7 +274,7 @@ func TestAlert_AckAnAlert(t *testing.T) {
 
 	alert, _, err := client.Alerts.Acknowledge(ctx, groupID, alertID, &params)
 	if err != nil {
-		t.Fatalf("Alerts.AckAnAlert returned error: %v", err)
+		t.Fatalf("Alerts.Acknowledge returned error: %v", err)
 	}
 
 	expected := &Alert{
