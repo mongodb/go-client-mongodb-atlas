@@ -10,8 +10,8 @@ const alertPath = "groups/%s/alerts"
 
 type AlertsService interface {
 	List(context.Context, string, *ListOptions) ([]Alert, *Response, error)
-	GetAnAlert(context.Context, string, string) (*Alert, *Response, error)
-	AckAnAlert(context.Context, string, string, *AlertsRequest) (*Alert, *Response, error)
+	Get(context.Context, string, string) (*Alert, *Response, error)
+	Acknowledge(context.Context, string, string, *AcknowledgeRequest) (*Alert, *Response, error)
 }
 
 // AlertServiceOp handles communication with the Alert related methods
@@ -48,7 +48,7 @@ type Alert struct {
 }
 
 // AlertsRequest contains the request Body Parameters
-type AlertsRequest struct {
+type AcknowledgeRequest struct {
 	AcknowledgedUntil      string `json:"acknowledgedUntil,omitempty"`      // The date through which the alert has been acknowledged. Will not be present if the alert has never been acknowledged.
 	AcknowledgementComment string `json:"acknowledgementComment,omitempty"` // The comment left by the user who acknowledged the alert. Will not be present if the alert has never been acknowledged.
 }
@@ -62,7 +62,7 @@ type AlertsResponse struct {
 
 // GetAnAlert gets the alert specified to {ALERT-ID} for the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-get-alert/
-func (s *AlertsServiceOp) GetAnAlert(ctx context.Context, groupID string, alertID string) (*Alert, *Response, error) {
+func (s *AlertsServiceOp) Get(ctx context.Context, groupID string, alertID string) (*Alert, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -122,7 +122,7 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 
 // AckAnAlert allows to acknowledge an alert
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-acknowledge-alert/
-func (s *AlertsServiceOp) AckAnAlert(ctx context.Context, groupID string, alertID string, params *AlertsRequest) (*Alert, *Response, error) {
+func (s *AlertsServiceOp) Acknowledge(ctx context.Context, groupID string, alertID string, params *AcknowledgeRequest) (*Alert, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

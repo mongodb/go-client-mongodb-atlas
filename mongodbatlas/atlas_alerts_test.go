@@ -49,7 +49,7 @@ func TestAlert_GetAnAlert(t *testing.T) {
 		}`)
 	})
 
-	alert, _, err := client.Alerts.GetAnAlert(ctx, groupID, alertID)
+	alert, _, err := client.Alerts.Get(ctx, groupID, alertID)
 	if err != nil {
 		t.Fatalf("Alerts.GetAnAlert returned error: %v", err)
 	}
@@ -245,7 +245,7 @@ func TestAlert_AckAnAlert(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertID := "533dc40ae4b00835ff81eaee"
 
-	params := AlertsRequest{
+	params := AcknowledgeRequest{
 		AcknowledgedUntil:      "2026-10-01T00:00:00-0400",
 		AcknowledgementComment: "This is normal. Please ignore.",
 	}
@@ -272,7 +272,7 @@ func TestAlert_AckAnAlert(t *testing.T) {
 
 	})
 
-	alert, _, err := client.Alerts.AckAnAlert(ctx, groupID, alertID, &params)
+	alert, _, err := client.Alerts.Acknowledge(ctx, groupID, alertID, &params)
 	if err != nil {
 		t.Fatalf("Alerts.AckAnAlert returned error: %v", err)
 	}
