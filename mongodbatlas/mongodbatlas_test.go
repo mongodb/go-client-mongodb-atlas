@@ -197,7 +197,7 @@ func TestDo_httpError(t *testing.T) {
 	}
 }
 
-// Test handling of an error caused by the internal http client's Do()
+// Test handling of an error caused by the internal http Client's Do()
 // function.
 func TestDo_redirectLoop(t *testing.T) {
 	setup()

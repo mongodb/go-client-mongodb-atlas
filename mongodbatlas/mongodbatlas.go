@@ -149,28 +149,28 @@ func NewClient(httpClient *http.Client) *Client {
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
-	c.APIKeys = &APIKeysServiceOp{client: c}
-	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{client: c}
-	c.CloudProviderSnapshotRestoreJobs = &CloudProviderSnapshotRestoreJobsServiceOp{client: c}
-	c.Clusters = &ClustersServiceOp{client: c}
-	c.Containers = &ContainersServiceOp{client: c}
-	c.CustomDBRoles = &CustomDBRolesServiceOp{client: c}
-	c.DatabaseUsers = &DatabaseUsersServiceOp{client: c}
-	c.EncryptionsAtRest = &EncryptionsAtRestServiceOp{client: c}
-	c.Projects = &ProjectsServiceOp{client: c}
-	c.ProjectAPIKeys = &ProjectAPIKeysOp{client: c}
-	c.Peers = &PeersServiceOp{client: c}
-	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{client: c}
-	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{client: c}
-	c.PrivateIPMode = &PrivateIPModeServiceOp{client: c}
-	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{client: c}
-	c.Teams = &TeamsServiceOp{client: c}
-	c.AtlasUsers = &AtlasUsersServiceOp{client: c}
-	c.GlobalClusters = &GlobalClustersServiceOp{client: c}
-	c.Auditing = &AuditingsServiceOp{client: c}
-	c.AlertConfigurations = &AlertConfigurationsServiceOp{client: c}
-	c.PrivateEndpoints = &PrivateEndpointsServiceOp{client: c}
-	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{client: c}
+	c.APIKeys = &APIKeysServiceOp{Client: c}
+	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{Client: c}
+	c.CloudProviderSnapshotRestoreJobs = &CloudProviderSnapshotRestoreJobsServiceOp{Client: c}
+	c.Clusters = &ClustersServiceOp{Client: c}
+	c.Containers = &ContainersServiceOp{Client: c}
+	c.CustomDBRoles = &CustomDBRolesServiceOp{Client: c}
+	c.DatabaseUsers = &DatabaseUsersServiceOp{Client: c}
+	c.EncryptionsAtRest = &EncryptionsAtRestServiceOp{Client: c}
+	c.Projects = &ProjectsServiceOp{Client: c}
+	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
+	c.Peers = &PeersServiceOp{Client: c}
+	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{Client: c}
+	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{Client: c}
+	c.PrivateIPMode = &PrivateIPModeServiceOp{Client: c}
+	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{Client: c}
+	c.Teams = &TeamsServiceOp{Client: c}
+	c.AtlasUsers = &AtlasUsersServiceOp{Client: c}
+	c.GlobalClusters = &GlobalClustersServiceOp{Client: c}
+	c.Auditing = &AuditingsServiceOp{Client: c}
+	c.AlertConfigurations = &AlertConfigurationsServiceOp{Client: c}
+	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
+	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
 
 	return c
 }
@@ -178,7 +178,7 @@ func NewClient(httpClient *http.Client) *Client {
 // ClientOpt are options for New.
 type ClientOpt func(*Client) error
 
-// New returns a new MongoDBAtlas API client instance.
+// New returns a new MongoDBAtlas API Client instance.
 func New(httpClient *http.Client, opts ...ClientOpt) (*Client, error) {
 	c := NewClient(httpClient)
 	for _, opt := range opts {
@@ -190,7 +190,7 @@ func New(httpClient *http.Client, opts ...ClientOpt) (*Client, error) {
 	return c, nil
 }
 
-// SetBaseURL is a client option for setting the base URL.
+// SetBaseURL is a Client option for setting the base URL.
 func SetBaseURL(bu string) ClientOpt {
 	return func(c *Client) error {
 		u, err := url.Parse(bu)
@@ -203,7 +203,7 @@ func SetBaseURL(bu string) ClientOpt {
 	}
 }
 
-// SetUserAgent is a client option for setting the user agent.
+// SetUserAgent is a Client option for setting the user agent.
 func SetUserAgent(ua string) ClientOpt {
 	return func(c *Client) error {
 		c.UserAgent = fmt.Sprintf("%s %s", ua, c.UserAgent)
@@ -321,7 +321,7 @@ func newResponse(r *http.Response) *Response {
 	return &response
 }
 
-// DoRequestWithClient submits an HTTP request using the specified client.
+// DoRequestWithClient submits an HTTP request using the specified Client.
 func DoRequestWithClient(
 	ctx context.Context,
 	client *http.Client,
