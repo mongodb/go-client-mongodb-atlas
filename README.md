@@ -37,7 +37,7 @@ import (
 	"log"
 	"os"
 
-    "github.com/Sectorbob/mlab-ns2/gae/ns/digest"
+	"github.com/Sectorbob/mlab-ns2/gae/ns/digest"
 	"github.com/mongodb/go-client-mongodb-atlas/mongodbatlas"
 )
 
@@ -87,12 +87,10 @@ Each version of the client is tagged and the version is updated accordingly.
 To see the list of past versions, run `git tag`.
 
 
-## Development and contribution
+# Contributing
 
-Feel free to open an Issue or PR! Our contribution guidelines are a WIP but generally follow the official [Terraform Guidelines](https://www.terraform.io/docs/extend/community/contributing.html).
+See our [CONTRIBUTING.md](CONTRIBUTING.md) Guide.
 
-```
-git clone git@github.com:mongodb/go-client-mongodb-atlas.git
-make tools
-make check
-```
+# License
+
+`go-client-mongodb-atlas` is released under the Apache 2.0 license. See [LICENSE](LICENSE)
