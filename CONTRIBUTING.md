@@ -1,4 +1,4 @@
-# Contributing to MongoDB CLI
+# Contributing to go-client-mongodb-atlas
 
 Thanks for your interest in contributing to `go-client-mongodb-atlas`, 
 this document describe the necessary steps to get a development environment going and the best way to contribute back to the project
