@@ -40,7 +40,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, `{
@@ -79,7 +79,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 
 	alertConfiguration, _, err := client.AlertConfigurations.Create(ctx, groupID, alertReq)
 	if err != nil {
-		t.Errorf("AlertConfiguration.Create returned error: %v", err)
+		t.Fatalf("AlertConfiguration.Create returned error: %v", err)
 		return
 	}
 
@@ -103,7 +103,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 	}
 
 	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
-		t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", alertConfiguration, expected, diff)
+		t.Error(diff)
 	}
 }
 
@@ -127,7 +127,7 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 		}
 
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+			t.Error(diff)
 		}
 
 		fmt.Fprint(w, `{
