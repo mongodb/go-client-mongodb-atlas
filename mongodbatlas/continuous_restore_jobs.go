@@ -6,23 +6,23 @@ import (
 	"net/http"
 )
 
-const continuousBackupRestoreJobsPath = "/groups/%s/clusters/%s/restoreJobs"
+const continuousRestoreJobsPath = "groups/%s/clusters/%s/restoreJobs"
 
-type ContinuousBackupRestoreJobsService interface {
-	List(context.Context, string, string, *ListOptions) (*ContinuousBackupJobs, *Response, error)
-	Get(context.Context, string, string, string) (*ContinuousBackupJob, *Response, error)
-	Create(context.Context, string, string, *JobRequest) (*ContinuousBackupJob, *Response, error)
+type ContinuousRestoreJobsService interface {
+	List(context.Context, string, string, *ListOptions) (*ContinuousJobs, *Response, error)
+	Get(context.Context, string, string, string) (*ContinuousJob, *Response, error)
+	Create(context.Context, string, string, *ContinuousJobRequest) (*ContinuousJob, *Response, error)
 }
 
-// ContinuousBackupRestoreJobsServiceOp handles communication with the Continuous Backup Restore Jobs related methods
+// ContinuousRestoreJobsServiceOp handles communication with the Continuous Backup Restore Jobs related methods
 // of the MongoDB Atlas API
-type ContinuousBackupRestoreJobsServiceOp struct {
+type ContinuousRestoreJobsServiceOp struct {
 	Client RequestDoer
 }
 
-var _ ContinuousBackupRestoreJobsService = &ContinuousBackupRestoreJobsServiceOp{}
+var _ ContinuousRestoreJobsService = &ContinuousRestoreJobsServiceOp{}
 
-type ContinuousBackupJob struct {
+type ContinuousJob struct {
 	BatchID           string            `json:"batchId,omitempty"`
 	ClusterID         string            `json:"clusterId,omitempty"`
 	Created           string            `json:"created"`
@@ -40,10 +40,10 @@ type ContinuousBackupJob struct {
 	Timestamp         SnapshotTimestamp `json:"timestamp"`
 }
 
-type ContinuousBackupJobs struct {
-	Results    []*ContinuousBackupJob `json:"results,omitempty"`
-	Links      []*Link                `json:"links,omitempty"`
-	TotalCount int64                  `json:"totalCount,omitempty"`
+type ContinuousJobs struct {
+	Results    []*ContinuousJob `json:"results,omitempty"`
+	Links      []*Link          `json:"links,omitempty"`
+	TotalCount int64            `json:"totalCount,omitempty"`
 }
 
 type SnapshotTimestamp struct {
@@ -69,18 +69,18 @@ type Hash struct {
 	Hash     string `json:"hash"`
 }
 
-type JobRequest struct {
+type ContinuousJobRequest struct {
 	CheckPointID         string   `json:"checkPointId,omitempty"`
 	Delivery             Delivery `json:"delivery"`
 	OplogTs              string   `json:"oplogTs,omitempty"`
-	OplogInc             string   `json:"oplogInc,omitempty"`
+	OplogInc             int64    `json:"oplogInc,omitempty"`
 	PointInTimeUTCMillis float64  `json:"pointInTimeUTCMillis,omitempty"`
 	SnapshotID           string   `json:"snapshotId,omitempty"`
 }
 
 // List list all continuous backup jobs in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-get-all/
-func (s *ContinuousBackupRestoreJobsServiceOp) List(ctx context.Context, groupID, clusterID string, opts *ListOptions) (*ContinuousBackupJobs, *Response, error) {
+func (s *ContinuousRestoreJobsServiceOp) List(ctx context.Context, groupID, clusterID string, opts *ListOptions) (*ContinuousJobs, *Response, error) {
 
 	if clusterID == "" {
 		return nil, nil, NewArgError("clusterID", "must be set")
@@ -89,7 +89,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) List(ctx context.Context, groupID
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(continuousBackupRestoreJobsPath, groupID, clusterID)
+	path := fmt.Sprintf(continuousRestoreJobsPath, groupID, clusterID)
 
 	path, err := setListOptions(path, opts)
 	if err != nil {
@@ -101,7 +101,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) List(ctx context.Context, groupID
 		return nil, nil, err
 	}
 
-	root := new(ContinuousBackupJobs)
+	root := new(ContinuousJobs)
 	resp, err := s.Client.Do(ctx, req, root)
 
 	return root, resp, err
@@ -109,7 +109,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) List(ctx context.Context, groupID
 
 // Get gets a continuous backup job in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-get-one/
-func (s *ContinuousBackupRestoreJobsServiceOp) Get(ctx context.Context, groupID, clusterID, jobID string) (*ContinuousBackupJob, *Response, error) {
+func (s *ContinuousRestoreJobsServiceOp) Get(ctx context.Context, groupID, clusterID, jobID string) (*ContinuousJob, *Response, error) {
 
 	if clusterID == "" {
 		return nil, nil, NewArgError("clusterID", "must be set")
@@ -120,7 +120,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) Get(ctx context.Context, groupID,
 	if jobID == "" {
 		return nil, nil, NewArgError("jobID", "must be set")
 	}
-	defaultPath := fmt.Sprintf(continuousBackupRestoreJobsPath, groupID, clusterID)
+	defaultPath := fmt.Sprintf(continuousRestoreJobsPath, groupID, clusterID)
 
 	path := fmt.Sprintf("%s/%s", defaultPath, jobID)
 
@@ -130,7 +130,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) Get(ctx context.Context, groupID,
 		return nil, nil, err
 	}
 
-	root := new(ContinuousBackupJob)
+	root := new(ContinuousJob)
 	resp, err := s.Client.Do(ctx, req, root)
 
 	return root, resp, err
@@ -138,7 +138,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) Get(ctx context.Context, groupID,
 
 // Create creates a continuous backup job in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-create-one/
-func (s *ContinuousBackupRestoreJobsServiceOp) Create(ctx context.Context, groupID, clusterID string, request *JobRequest) (*ContinuousBackupJob, *Response, error) {
+func (s *ContinuousRestoreJobsServiceOp) Create(ctx context.Context, groupID, clusterID string, request *ContinuousJobRequest) (*ContinuousJob, *Response, error) {
 
 	if request == nil {
 		return nil, nil, NewArgError("request", "must be set")
@@ -150,7 +150,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) Create(ctx context.Context, group
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(continuousBackupRestoreJobsPath, groupID, clusterID)
+	path := fmt.Sprintf(continuousRestoreJobsPath, groupID, clusterID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, request)
 
@@ -158,7 +158,7 @@ func (s *ContinuousBackupRestoreJobsServiceOp) Create(ctx context.Context, group
 		return nil, nil, err
 	}
 
-	root := new(ContinuousBackupJob)
+	root := new(ContinuousJob)
 	resp, err := s.Client.Do(ctx, req, root)
 
 	return root, resp, err

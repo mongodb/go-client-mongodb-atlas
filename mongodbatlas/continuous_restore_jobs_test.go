@@ -3,9 +3,10 @@ package mongodbatlas
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-test/deep"
 	"net/http"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestContinuousBackupRestore_List(t *testing.T) {
@@ -72,8 +73,8 @@ func TestContinuousBackupRestore_List(t *testing.T) {
 	}
 	pointInTimeValue := false
 
-	expected := &ContinuousBackupJobs{
-		Results: []*ContinuousBackupJob{{
+	expected := &ContinuousJobs{
+		Results: []*ContinuousJob{{
 			BatchID:     "5a66783b80eef5354c77ee13",
 			ClusterID:   "7c88887880eef52e5f4d0e2d",
 			ClusterName: "Cluster0",
@@ -176,7 +177,7 @@ func TestContinuousBackupRestore_Get(t *testing.T) {
 	}
 	pointInTimeValue := false
 
-	expected := &ContinuousBackupJob{
+	expected := &ContinuousJob{
 		BatchID:     "5a66783b80eef5354c77ee13",
 		ClusterID:   "5a66689487d9d61443b46149",
 		ClusterName: "Cluster0",
@@ -271,7 +272,7 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 		)
 	})
 
-	request := &JobRequest{
+	request := &ContinuousJobRequest{
 		Delivery: Delivery{
 			MethodName:        "AUTOMATED_RESTORE",
 			TargetClusterName: "Cluster0",
@@ -285,7 +286,7 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 		t.Fatalf("ContinuousBackupRestoreJobs.Create returned error: %v", err)
 	}
 
-	expected := &ContinuousBackupJob{
+	expected := &ContinuousJob{
 		BatchID:     "5a66783b80eef5354c77ee13",
 		ClusterID:   "5a66689487d9d61443b46149",
 		ClusterName: "Cluster0",
