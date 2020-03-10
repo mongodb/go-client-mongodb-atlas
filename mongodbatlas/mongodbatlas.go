@@ -59,6 +59,7 @@ type Client struct {
 	AlertConfigurations              AlertConfigurationsService
 	PrivateEndpoints                 PrivateEndpointsService
 	X509AuthDBUsers                  X509AuthDBUsersService
+	ContinuousBackupRestoreJobs      ContinuousBackupRestoreJobsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -171,6 +172,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.AlertConfigurations = &AlertConfigurationsServiceOp{Client: c}
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
 	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
+	c.ContinuousBackupRestoreJobs = &ContinuousBackupRestoreJobsServiceOp{Client: c}
 
 	return c
 }
