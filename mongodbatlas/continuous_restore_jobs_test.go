@@ -67,9 +67,9 @@ func TestContinuousBackupRestore_List(t *testing.T) {
 		)
 	})
 
-	customDBRoles, _, err := client.ContinuousBackupRestoreJobs.List(ctx, "6b77777887d9d61443b41645", "Cluster0", nil)
+	customDBRoles, _, err := client.ContinuousRestoreJobs.List(ctx, "6b77777887d9d61443b41645", "Cluster0", nil)
 	if err != nil {
-		t.Fatalf("ContinuousBackupRestoreJobs.List returned error: %v", err)
+		t.Fatalf("ContinuousRestoreJobs.List returned error: %v", err)
 	}
 	pointInTimeValue := false
 
@@ -171,9 +171,9 @@ func TestContinuousBackupRestore_Get(t *testing.T) {
 		)
 	})
 
-	customDBRoles, _, err := client.ContinuousBackupRestoreJobs.Get(ctx, "5a66666887d9d61443b41645", "Cluster0", "5a6669d9fcc178211a0d86b9")
+	customDBRoles, _, err := client.ContinuousRestoreJobs.Get(ctx, "5a66666887d9d61443b41645", "Cluster0", "5a6669d9fcc178211a0d86b9")
 	if err != nil {
-		t.Fatalf("ContinuousBackupRestoreJobs.Get returned error: %v", err)
+		t.Fatalf("ContinuousRestoreJobs.Get returned error: %v", err)
 	}
 	pointInTimeValue := false
 
@@ -281,9 +281,9 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 		PointInTimeUTCMillis: 1536610288000,
 	}
 
-	customDBRoles, _, err := client.ContinuousBackupRestoreJobs.Create(ctx, "5a66666887d9d61443b41645", "Cluster0", request)
+	customDBRoles, _, err := client.ContinuousRestoreJobs.Create(ctx, "5a66666887d9d61443b41645", "Cluster0", request)
 	if err != nil {
-		t.Fatalf("ContinuousBackupRestoreJobs.Create returned error: %v", err)
+		t.Fatalf("ContinuousRestoreJobs.Create returned error: %v", err)
 	}
 
 	expected := &ContinuousJob{
