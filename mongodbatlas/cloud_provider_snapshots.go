@@ -20,8 +20,8 @@ type CloudProviderSnapshotsService interface {
 	Delete(context.Context, *SnapshotReqPathParameters) (*Response, error)
 }
 
-//CloudProviderSnapshotsServiceOp handles communication with the DatabaseUsers related methos of the
-//MongoDB Atlas API
+// CloudProviderSnapshotsServiceOp handles communication with the CloudProviderSnapshotsService related methods of the
+// MongoDB Atlas API
 type CloudProviderSnapshotsServiceOp struct {
 	Client RequestDoer
 }

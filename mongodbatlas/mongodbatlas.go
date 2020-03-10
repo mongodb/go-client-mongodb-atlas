@@ -59,6 +59,7 @@ type Client struct {
 	AlertConfigurations              AlertConfigurationsService
 	PrivateEndpoints                 PrivateEndpointsService
 	X509AuthDBUsers                  X509AuthDBUsersService
+	ContinuousSnapshots              ContinuousSnapshotsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -151,6 +152,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	c.APIKeys = &APIKeysServiceOp{Client: c}
 	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{Client: c}
+	c.ContinuousSnapshots = &ContinuousSnapshotsServiceOp{Client: c}
 	c.CloudProviderSnapshotRestoreJobs = &CloudProviderSnapshotRestoreJobsServiceOp{Client: c}
 	c.Clusters = &ClustersServiceOp{Client: c}
 	c.Containers = &ContainersServiceOp{Client: c}
@@ -178,7 +180,7 @@ func NewClient(httpClient *http.Client) *Client {
 // ClientOpt are options for New.
 type ClientOpt func(*Client) error
 
-// New returns a new MongoDBAtlas API Client instance.
+// New returns a new MongoDBAtlas API client instance.
 func New(httpClient *http.Client, opts ...ClientOpt) (*Client, error) {
 	c := NewClient(httpClient)
 	for _, opt := range opts {
@@ -190,7 +192,7 @@ func New(httpClient *http.Client, opts ...ClientOpt) (*Client, error) {
 	return c, nil
 }
 
-// SetBaseURL is a Client option for setting the base URL.
+// SetBaseURL is a client option for setting the base URL.
 func SetBaseURL(bu string) ClientOpt {
 	return func(c *Client) error {
 		u, err := url.Parse(bu)
@@ -203,7 +205,7 @@ func SetBaseURL(bu string) ClientOpt {
 	}
 }
 
-// SetUserAgent is a Client option for setting the user agent.
+// SetUserAgent is a client option for setting the user agent.
 func SetUserAgent(ua string) ClientOpt {
 	return func(c *Client) error {
 		c.UserAgent = fmt.Sprintf("%s %s", ua, c.UserAgent)
@@ -321,7 +323,7 @@ func newResponse(r *http.Response) *Response {
 	return &response
 }
 
-// DoRequestWithClient submits an HTTP request using the specified Client.
+// DoRequestWithClient submits an HTTP request using the specified client.
 func DoRequestWithClient(
 	ctx context.Context,
 	client *http.Client,
