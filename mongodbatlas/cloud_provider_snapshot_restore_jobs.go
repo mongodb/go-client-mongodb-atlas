@@ -20,7 +20,7 @@ type CloudProviderSnapshotRestoreJobsService interface {
 	Delete(context.Context, *SnapshotReqPathParameters) (*Response, error)
 }
 
-//CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methos of the
+//CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methods of the
 //MongoDB Atlas API
 type CloudProviderSnapshotRestoreJobsServiceOp struct {
 	Client RequestDoer
