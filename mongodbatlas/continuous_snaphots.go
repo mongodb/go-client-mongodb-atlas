@@ -45,11 +45,6 @@ type ContinuousSnapshot struct {
 	Parts                     []*Part            `json:"parts,omitempty"`
 }
 
-type SnapshotTimestamp struct {
-	Date      string `json:"date"`
-	Increment int64  `json:"increment"`
-}
-
 type Part struct {
 	ClusterID          string `json:"clusterId"`
 	CompressionSetting string `json:"compressionSetting"`
