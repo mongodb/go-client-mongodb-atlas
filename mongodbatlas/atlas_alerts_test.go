@@ -2,10 +2,11 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/go-test/deep"
-	"github.com/mwielbut/pointy"
 	"net/http"
 	"testing"
+
+	"github.com/go-test/deep"
+	"github.com/mwielbut/pointy"
 )
 
 func TestAlert_Get(t *testing.T) {

@@ -17,7 +17,7 @@ type AlertsService interface {
 // AlertServiceOp handles communication with the Alert related methods
 // of the MongoDB Atlas API
 type AlertsServiceOp struct {
-	client *Client
+	Client RequestDoer
 }
 
 var _ AlertsService = &AlertsServiceOp{}
@@ -73,13 +73,13 @@ func (s *AlertsServiceOp) Get(ctx context.Context, groupID string, alertID strin
 	basePath := fmt.Sprintf(alertPath, groupID)
 	path := fmt.Sprintf("%s/%s", basePath, alertID)
 
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	root := new(Alert)
-	resp, err := s.client.Do(ctx, req, root)
+	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
 	}
@@ -102,13 +102,13 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 		return nil, nil, err
 	}
 
-	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	root := new(AlertsResponse)
-	resp, err := s.client.Do(ctx, req, root)
+	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
 	}
@@ -139,14 +139,14 @@ func (s *AlertsServiceOp) Acknowledge(ctx context.Context, groupID string, alert
 
 	path := fmt.Sprintf("%s/%s", basePath, alertID)
 
-	req, err := s.client.NewRequest(ctx, http.MethodPatch, path, params)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, params)
 
 	if err != nil {
 		return nil, nil, err
 	}
 
 	root := new(Alert)
-	resp, err := s.client.Do(ctx, req, root)
+	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
 	}
