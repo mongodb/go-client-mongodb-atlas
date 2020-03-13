@@ -10,9 +10,9 @@ const (
 	backupCheckpoints = "groups/%s/clusters/%s/backupCheckpoints"
 )
 
-// CheckpointService is an interface for interfacing with the Checkpoint
+// CheckpointsService is an interface for interfacing with the Checkpoint
 // endpoints of the MongoDB Atlas API.
-type CheckpointService interface {
+type CheckpointsService interface {
 	List(context.Context, string, string, *ListOptions) (*Checkpoints, *Response, error)
 	Get(context.Context, string, string, string) (*Checkpoint, *Response, error)
 }
@@ -23,7 +23,7 @@ type CheckpointsServiceOp struct {
 	Client RequestDoer
 }
 
-var _ CheckpointService = &CheckpointsServiceOp{}
+var _ CheckpointsService = &CheckpointsServiceOp{}
 
 type Checkpoint struct {
 	ClusterID  string  `json:"clusterId"`

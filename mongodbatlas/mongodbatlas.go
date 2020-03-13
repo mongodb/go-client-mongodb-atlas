@@ -51,17 +51,17 @@ type Client struct {
 	EncryptionsAtRest                EncryptionsAtRestService
 	WhitelistAPIKeys                 WhitelistAPIKeysService
 	PrivateIPMode                    PrivateIPModeService
-	MaintenanceWindows               MaintenanceWindowsService
-	Teams                            TeamsService
-	AtlasUsers                       AtlasUsersService
-	GlobalClusters                   GlobalClustersService
-	Auditing                         AuditingsService
-	AlertConfigurations              AlertConfigurationsService
-	PrivateEndpoints                 PrivateEndpointsService
-	X509AuthDBUsers                  X509AuthDBUsersService
-	ContinuousSnapshots              ContinuousSnapshotsService
-	ContinuousRestoreJobs            ContinuousRestoreJobsService
-	AtlasCheckpoints                 CheckpointService
+	MaintenanceWindows    MaintenanceWindowsService
+	Teams                 TeamsService
+	AtlasUsers            AtlasUsersService
+	GlobalClusters        GlobalClustersService
+	Auditing              AuditingsService
+	AlertConfigurations   AlertConfigurationsService
+	PrivateEndpoints      PrivateEndpointsService
+	X509AuthDBUsers       X509AuthDBUsersService
+	ContinuousSnapshots   ContinuousSnapshotsService
+	ContinuousRestoreJobs ContinuousRestoreJobsService
+	Checkpoints           CheckpointsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -176,7 +176,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
 	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
 	c.ContinuousRestoreJobs = &ContinuousRestoreJobsServiceOp{Client: c}
-	c.AtlasCheckpoints = &CheckpointsServiceOp{Client: c}
+	c.Checkpoints = &CheckpointsServiceOp{Client: c}
 
 	return c
 }
