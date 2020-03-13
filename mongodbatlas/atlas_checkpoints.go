@@ -10,20 +10,20 @@ const (
 	backupCheckpoints = "groups/%s/clusters/%s/backupCheckpoints"
 )
 
-// CheckpointService is an interface for interfacing with the Checkpoint
+// AtlasCheckpointService is an interface for interfacing with the Checkpoint
 // endpoints of the MongoDB Atlas API.
-type CheckpointService interface {
+type AtlasCheckpointService interface {
 	List(context.Context, string, string, *ListOptions) (*Checkpoints, *Response, error)
 	Get(context.Context, string, string, string) (*Checkpoint, *Response, error)
 }
 
-//CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methods of the
-//MongoDB Atlas API
-type CheckpointsServiceOp struct {
+// AtlasCheckpointsServiceOp handles communication with the checkpoint related methods of the
+// MongoDB Atlas API
+type AtlasCheckpointsServiceOp struct {
 	Client RequestDoer
 }
 
-var _ CheckpointService = &CheckpointsServiceOp{}
+var _ AtlasCheckpointService = &AtlasCheckpointsServiceOp{}
 
 type Checkpoint struct {
 	ClusterID  string  `json:"clusterId"`
@@ -37,22 +37,22 @@ type Checkpoint struct {
 	Timestamp  string  `json:"timestamp"`
 }
 
-// Checkpoints represents all the backup checkpoints related to a cluster.
+// AtlasCheckpoints represents all the backup checkpoints related to a cluster.
 type Checkpoints struct {
 	Results    []*Checkpoint `json:"results,omitempty"`    // Includes one Checkpoint object for each item detailed in the results array section.
 	Links      []*Link       `json:"links,omitempty"`      // One or more links to sub-resources and/or related resources.
 	TotalCount int           `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
-func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterID string, listOptions *ListOptions) (*Checkpoints, *Response, error) {
+func (s AtlasCheckpointsServiceOp) List(ctx context.Context, groupID, clusterName string, listOptions *ListOptions) (*Checkpoints, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
-	if clusterID == "" {
-		return nil, nil, NewArgError("clusterID", "must be set")
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
 	}
 
-	path := fmt.Sprintf(backupCheckpoints, groupID, clusterID)
+	path := fmt.Sprintf(backupCheckpoints, groupID, clusterName)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, listOptions)
 	if err != nil {
@@ -65,18 +65,18 @@ func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterID strin
 	return root, resp, err
 }
 
-func (s CheckpointsServiceOp) Get(ctx context.Context, groupID, clusterID, checkpointID string) (*Checkpoint, *Response, error) {
+func (s AtlasCheckpointsServiceOp) Get(ctx context.Context, groupID, clusterName, checkpointID string) (*Checkpoint, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
-	if clusterID == "" {
-		return nil, nil, NewArgError("clusterID", "must be set")
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
 	}
 	if checkpointID == "" {
 		return nil, nil, NewArgError("checkpointID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(backupCheckpoints, groupID, clusterID)
+	basePath := fmt.Sprintf(backupCheckpoints, groupID, clusterName)
 	path := fmt.Sprintf("%s/%s", basePath, checkpointID)
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 

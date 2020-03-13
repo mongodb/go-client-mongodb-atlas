@@ -61,7 +61,7 @@ type Client struct {
 	X509AuthDBUsers                  X509AuthDBUsersService
 	ContinuousSnapshots              ContinuousSnapshotsService
 	ContinuousRestoreJobs            ContinuousRestoreJobsService
-	Checkpoints                      CheckpointService
+	AtlasCheckpoints                 AtlasCheckpointService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -176,7 +176,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
 	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
 	c.ContinuousRestoreJobs = &ContinuousRestoreJobsServiceOp{Client: c}
-	c.Checkpoints = &CheckpointsServiceOp{Client: c}
+	c.AtlasCheckpoints = &AtlasCheckpointsServiceOp{Client: c}
 
 	return c
 }
