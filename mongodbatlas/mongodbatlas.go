@@ -51,17 +51,17 @@ type Client struct {
 	EncryptionsAtRest                EncryptionsAtRestService
 	WhitelistAPIKeys                 WhitelistAPIKeysService
 	PrivateIPMode                    PrivateIPModeService
-	MaintenanceWindows    MaintenanceWindowsService
-	Teams                 TeamsService
-	AtlasUsers            AtlasUsersService
-	GlobalClusters        GlobalClustersService
-	Auditing              AuditingsService
-	AlertConfigurations   AlertConfigurationsService
-	PrivateEndpoints      PrivateEndpointsService
-	X509AuthDBUsers       X509AuthDBUsersService
-	ContinuousSnapshots   ContinuousSnapshotsService
-	ContinuousRestoreJobs ContinuousRestoreJobsService
-	Checkpoints           CheckpointsService
+	MaintenanceWindows               MaintenanceWindowsService
+	Teams                            TeamsService
+	AtlasUsers                       AtlasUsersService
+	GlobalClusters                   GlobalClustersService
+	Auditing                         AuditingsService
+	AlertConfigurations              AlertConfigurationsService
+	PrivateEndpoints                 PrivateEndpointsService
+	X509AuthDBUsers                  X509AuthDBUsersService
+	ContinuousSnapshots              ContinuousSnapshotsService
+	ContinuousRestoreJobs            ContinuousRestoreJobsService
+	Checkpoints                      CheckpointsService
 
 	onRequestCompleted RequestCompletionCallback
 }
