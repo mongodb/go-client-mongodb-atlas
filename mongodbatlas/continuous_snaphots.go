@@ -46,19 +46,21 @@ type ContinuousSnapshot struct {
 }
 
 type Part struct {
-	ClusterID          string            `json:"clusterId,omitempty"`
-	CompressionSetting string            `json:"compressionSetting,omitempty"`
-	DataSizeBytes      int64             `json:"dataSizeBytes,omitempty"`
-	EncryptionEnabled  bool              `json:"encryptionEnabled,omitempty"`
-	FileSizeBytes      int64             `json:"fileSizeBytes,omitempty"`
-	MasterKeyUUID      string            `json:"masterKeyUUID,omitempty"`
-	MongodVersion      string            `json:"mongodVersion,omitempty"`
-	ReplicaSetName     string            `json:"replicaSetName,omitempty"`
-	StorageSizeBytes   int64             `json:"storageSizeBytes,omitempty"`
-	TypeName           string            `json:"typeName"`
-	ShardName          string            `json:"shardName,omitempty"`
-	TokenDiscovered    bool              `json:"tokenDiscovered,omitempty"`
-	TokenTimestamp     SnapshotTimestamp `json:"tokenTimestamp,omitempty"`
+	ReplicaSetName string `json:"replicaSetName"`
+	TypeName       string `json:"typeName"`
+	SnapshotPart
+	CheckpointPart
+}
+
+type SnapshotPart struct {
+	ClusterID          string `json:"clusterId"`
+	CompressionSetting string `json:"compressionSetting"`
+	DataSizeBytes      int64  `json:"dataSizeBytes"`
+	EncryptionEnabled  bool   `json:"encryptionEnabled"`
+	FileSizeBytes      int64  `json:"fileSizeBytes"`
+	MasterKeyUUID      string `json:"masterKeyUUID,omitempty"`
+	MongodVersion      string `json:"mongodVersion"`
+	StorageSizeBytes   int64  `json:"storageSizeBytes"`
 }
 
 type NamespaceFilter struct {

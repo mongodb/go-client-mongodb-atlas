@@ -3,9 +3,10 @@ package mongodbatlas
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mwielbut/pointy"
 	"net/http"
 	"testing"
+
+	"github.com/mwielbut/pointy"
 
 	"github.com/go-test/deep"
 )
@@ -97,15 +98,16 @@ func TestContinuousSnapshots_List(t *testing.T) {
 				},
 				Parts: []*Part{
 					{
-						ClusterID:          "7c2487d833e9e75286093696",
-						CompressionSetting: "GZIP",
-						DataSizeBytes:      4502,
-						EncryptionEnabled:  false,
-						FileSizeBytes:      324760,
-						MongodVersion:      "3.6.10",
-						ReplicaSetName:     "Cluster0-shard-0",
-						StorageSizeBytes:   53248,
-						TypeName:           "REPLICA_SET",
+						ReplicaSetName: "Cluster0-shard-0",
+						TypeName:       "REPLICA_SET",
+						SnapshotPart: SnapshotPart{
+							ClusterID:          "7c2487d833e9e75286093696",
+							CompressionSetting: "GZIP",
+							DataSizeBytes:      4502,
+							EncryptionEnabled:  false,
+							FileSizeBytes:      324760,
+							MongodVersion:      "3.6.10",
+							StorageSizeBytes:   53248},
 					},
 				},
 			},
@@ -190,15 +192,16 @@ func TestContinuousSnapshots_Get(t *testing.T) {
 		},
 		Parts: []*Part{
 			{
-				ClusterID:          "7c2487d833e9e75286093696",
-				CompressionSetting: "GZIP",
-				DataSizeBytes:      4502,
-				EncryptionEnabled:  false,
-				FileSizeBytes:      324760,
-				MongodVersion:      "3.6.10",
-				ReplicaSetName:     "Cluster0-shard-0",
-				StorageSizeBytes:   53248,
-				TypeName:           "REPLICA_SET",
+				ReplicaSetName: "Cluster0-shard-0",
+				TypeName:       "REPLICA_SET",
+				SnapshotPart: SnapshotPart{
+					ClusterID:          "7c2487d833e9e75286093696",
+					CompressionSetting: "GZIP",
+					DataSizeBytes:      4502,
+					EncryptionEnabled:  false,
+					FileSizeBytes:      324760,
+					MongodVersion:      "3.6.10",
+					StorageSizeBytes:   53248},
 			},
 		},
 	}
@@ -302,16 +305,17 @@ func TestContinuousSnapshots_ChangeExpiry(t *testing.T) {
 		},
 		Parts: []*Part{
 			{
-				ClusterID:          "57c2487d833e9e75286093696",
-				CompressionSetting: "GZIP",
-				DataSizeBytes:      4502,
-				EncryptionEnabled:  false,
-				FileSizeBytes:      324760,
-				MongodVersion:      "3.6.10",
-				ReplicaSetName:     "Cluster0-shard-0",
-				StorageSizeBytes:   53248,
-				TypeName:           "REPLICA_SET",
-			},
+				ReplicaSetName: "Cluster0-shard-0",
+				TypeName:       "REPLICA_SET",
+				SnapshotPart: SnapshotPart{
+					ClusterID:          "57c2487d833e9e75286093696",
+					CompressionSetting: "GZIP",
+					DataSizeBytes:      4502,
+					EncryptionEnabled:  false,
+					FileSizeBytes:      324760,
+					MongodVersion:      "3.6.10",
+					StorageSizeBytes:   53248,
+				}},
 		},
 	}
 
