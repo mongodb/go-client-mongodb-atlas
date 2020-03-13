@@ -9,7 +9,7 @@ build:
 	go install ./$(PKG_NAME)
 
 test:
-	go test $(TEST) -timeout=30s -parallel=4 -cover
+	go test $(TEST) -timeout=30s -parallel=4 -cover -race
 
 fmt:
 	@echo "==> Fixing source code with gofmt..."
