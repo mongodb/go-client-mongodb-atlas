@@ -57,6 +57,7 @@ type Client struct {
 	GlobalClusters                   GlobalClustersService
 	Auditing                         AuditingsService
 	AlertConfigurations              AlertConfigurationsService
+	Alerts                           AlertsService
 	PrivateEndpoints                 PrivateEndpointsService
 	X509AuthDBUsers                  X509AuthDBUsersService
 	ContinuousSnapshots              ContinuousSnapshotsService
@@ -175,7 +176,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
 	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
 	c.ContinuousRestoreJobs = &ContinuousRestoreJobsServiceOp{Client: c}
-
+	c.Alerts = &AlertsServiceOp{Client: c}
 	return c
 }
 
