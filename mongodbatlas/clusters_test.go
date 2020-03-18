@@ -29,14 +29,14 @@ func TestClusters_ListClusters(t *testing.T) {
 					},
 					"clusterType": "REPLICASET",
 					"connectionStrings": {
+						"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 						"standardSrv": "mongodb+srv://cluster0-auylw.mongodb.net",
 						"awsPrivateLink": {
 							"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"
 						},
 						"awsPrivateLinkSrv": {
 							"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
-						},
-						"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0"
+						}
 					},
 					"diskSizeGB": 160,
 					"encryptionAtRestProvider": "AWS",
@@ -77,14 +77,14 @@ func TestClusters_ListClusters(t *testing.T) {
 					},
 					"clusterType": "REPLICASET",
 					"connectionStrings": {
+						"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 						"standardSrv": "mongodb+srv://cluster0-auylw.mongodb.net",
 						"awsPrivateLink": {
 							"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"
 						},
 						"awsPrivateLinkSrv": {
 							"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
-						},
-						"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0"
+						}
 					},
 					"diskSizeGB": 160,
 					"encryptionAtRestProvider": "AWS",
@@ -717,14 +717,14 @@ func TestClusters_Get(t *testing.T) {
             },
             "clusterType": "REPLICASET",
 			"connectionStrings": {
+				"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 				"standardSrv": "mongodb+srv://cluster0-auylw.mongodb.net",
 				"awsPrivateLink": {
 					"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"
 				},
 				"awsPrivateLinkSrv": {
 					"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
-				},
-				"standard": "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0"
+				}
 			},
             "diskSizeGB": 160,
             "encryptionAtRestProvider": "AWS",
@@ -763,11 +763,11 @@ func TestClusters_Get(t *testing.T) {
 	}
 
 	expected := &Cluster{
-		ID:                       "1",
-		AutoScaling:              AutoScaling{DiskGBEnabled: pointy.Bool(true)},
-		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
-		ClusterType:              "REPLICASET",
+		ID:            "1",
+		AutoScaling:   AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		BackupEnabled: pointy.Bool(true),
+		BiConnector:   BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:   "REPLICASET",
 		ConnectionStrings: &ConnectionStrings{
 			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 			StandardSrv:       "mongodb+srv://cluster0-auylw.mongodb.net",
