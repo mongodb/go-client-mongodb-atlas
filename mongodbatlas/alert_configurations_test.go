@@ -75,7 +75,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 				DelayMin:     pointy.Int(0),
 				SMSEnabled:   pointy.Bool(false),
 				EmailEnabled: pointy.Bool(true),
-				Roles:        &[]string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 	}
@@ -100,7 +100,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 				IntervalMin:  5,
 				SMSEnabled:   pointy.Bool(false),
 				TypeName:     "GROUP",
-				Roles:        &[]string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 		Updated: "2016-08-19T20:36:44Z",
@@ -250,7 +250,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 				IntervalMin:  5,
 				DelayMin:     pointy.Int(0),
 				MobileNumber: "2343454567",
-				Roles:        &[]string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
+				Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 			},
 		},
 		MetricThreshold: &MetricThreshold{
@@ -457,7 +457,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 					IntervalMin:  5,
 					DelayMin:     pointy.Int(0),
 					MobileNumber: "2343454567",
-					Roles:        &[]string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
+					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
 			},
 			MetricThreshold: &MetricThreshold{
@@ -488,7 +488,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 					IntervalMin:  5,
 					DelayMin:     pointy.Int(0),
 					MobileNumber: "2343454567",
-					Roles:        &[]string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
+					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
 			},
 			MetricThreshold: &MetricThreshold{
@@ -571,7 +571,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 				DelayMin:     pointy.Int(5),
 				SMSEnabled:   pointy.Bool(true),
 				EmailEnabled: pointy.Bool(false),
-				Roles:        &[]string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 	}
@@ -595,7 +595,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 				DelayMin:     pointy.Int(5),
 				SMSEnabled:   pointy.Bool(true),
 				EmailEnabled: pointy.Bool(false),
-				Roles:        &[]string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 		Updated: "2016-08-19T20:45:29Z",
