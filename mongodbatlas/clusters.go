@@ -104,7 +104,7 @@ type Cluster struct {
 	ReplicationSpecs         []ReplicationSpec        `json:"replicationSpecs,omitempty"`
 	SrvAddress               string                   `json:"srvAddress,omitempty"`
 	StateName                string                   `json:"stateName,omitempty"`
-	ConnectionStrings        ConnectionStrings        `json:"connectionStrings,omitempty"`
+	ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster
