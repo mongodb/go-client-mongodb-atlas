@@ -11,7 +11,7 @@ const continuousRestoreJobsPath = "groups/%s/clusters/%s/restoreJobs"
 type ContinuousRestoreJobsService interface {
 	List(context.Context, string, string, *ListOptions) (*ContinuousJobs, *Response, error)
 	Get(context.Context, string, string, string) (*ContinuousJob, *Response, error)
-	Create(context.Context, string, string, *ContinuousJobRequest) (*ContinuousJob, *Response, error)
+	Create(context.Context, string, string, *ContinuousJobRequest) (*ContinuousJobs, *Response, error)
 }
 
 // ContinuousRestoreJobsServiceOp handles communication with the Continuous Backup Restore Jobs related methods
@@ -138,7 +138,7 @@ func (s *ContinuousRestoreJobsServiceOp) Get(ctx context.Context, groupID, clust
 
 // Create creates a continuous backup job in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-create-one/
-func (s *ContinuousRestoreJobsServiceOp) Create(ctx context.Context, groupID, clusterID string, request *ContinuousJobRequest) (*ContinuousJob, *Response, error) {
+func (s *ContinuousRestoreJobsServiceOp) Create(ctx context.Context, groupID, clusterID string, request *ContinuousJobRequest) (*ContinuousJobs, *Response, error) {
 
 	if request == nil {
 		return nil, nil, NewArgError("request", "must be set")
@@ -158,7 +158,7 @@ func (s *ContinuousRestoreJobsServiceOp) Create(ctx context.Context, groupID, cl
 		return nil, nil, err
 	}
 
-	root := new(ContinuousJob)
+	root := new(ContinuousJobs)
 	resp, err := s.Client.Do(ctx, req, root)
 
 	return root, resp, err

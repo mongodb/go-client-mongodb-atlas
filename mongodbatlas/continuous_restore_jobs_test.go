@@ -247,28 +247,35 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 		}
 
 		fmt.Fprint(w, `{
-						  "batchId": "5a66783b80eef5354c77ee13",
-						  "clusterId": "5a66689487d9d61443b46149",
-						  "clusterName": "Cluster0",
-						  "created": "2018-09-20T15:02:00Z",
-						  "delivery": {
-							"methodName": "HTTP",
-							"statusName": "READY"
-						  },
-						  "encryptionEnabled": false,
-						  "groupId": "5a66666887d9d61443b41645",
-						  "id": "6b77893b80eef5354c77ee15",
-						  "links": [{
-							"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/1",
-							"rel": "self"
-						  }],
-						  "snapshotId": "6b77893b80eef5354c77ee15",
-						  "statusName": "FINISHED",
-						  "timestamp": {
-							"date": "2018-09-15T15:53:00Z",
-							"increment": 1
-						  }
-						}`,
+		  "links" : [ {
+			"href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs",
+			"rel" : "self"
+		  } ],
+		  "results" : [{
+				  "batchId": "5a66783b80eef5354c77ee13",
+				  "clusterId": "5a66689487d9d61443b46149",
+				  "clusterName": "Cluster0",
+				  "created": "2018-09-20T15:02:00Z",
+				  "delivery": {
+						"methodName": "HTTP",
+						"statusName": "READY"
+				  },
+				  "encryptionEnabled": false,
+				  "groupId": "5a66666887d9d61443b41645",
+				  "id": "6b77893b80eef5354c77ee15",
+				  "links": [{
+						"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/1",
+						"rel": "self"
+				  }],
+				  "snapshotId": "6b77893b80eef5354c77ee15",
+				  "statusName": "FINISHED",
+				  "timestamp": {
+					"date": "2018-09-15T15:53:00Z",
+					"increment": 1
+				  }
+			}],
+		  "totalCount" : 1
+		}}`,
 		)
 	})
 
@@ -286,30 +293,41 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 		t.Fatalf("ContinuousRestoreJobs.Create returned error: %v", err)
 	}
 
-	expected := &ContinuousJob{
-		BatchID:     "5a66783b80eef5354c77ee13",
-		ClusterID:   "5a66689487d9d61443b46149",
-		ClusterName: "Cluster0",
-		Created:     "2018-09-20T15:02:00Z",
-		Delivery: &Delivery{
-			MethodName: "HTTP",
-			StatusName: "READY",
-		},
-		EncryptionEnabled: false,
-		GroupID:           "5a66666887d9d61443b41645",
-		ID:                "6b77893b80eef5354c77ee15",
+	expected := &ContinuousJobs{
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/1",
+				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs",
 				Rel:  "self",
 			},
 		},
-		SnapshotID: "6b77893b80eef5354c77ee15",
-		StatusName: "FINISHED",
-		Timestamp: SnapshotTimestamp{
-			Date:      "2018-09-15T15:53:00Z",
-			Increment: 1,
+		Results: []*ContinuousJob{
+			{
+				BatchID:     "5a66783b80eef5354c77ee13",
+				ClusterID:   "5a66689487d9d61443b46149",
+				ClusterName: "Cluster0",
+				Created:     "2018-09-20T15:02:00Z",
+				Delivery: &Delivery{
+					MethodName: "HTTP",
+					StatusName: "READY",
+				},
+				EncryptionEnabled: false,
+				GroupID:           "5a66666887d9d61443b41645",
+				ID:                "6b77893b80eef5354c77ee15",
+				Links: []*Link{
+					{
+						Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/1",
+						Rel:  "self",
+					},
+				},
+				SnapshotID: "6b77893b80eef5354c77ee15",
+				StatusName: "FINISHED",
+				Timestamp: SnapshotTimestamp{
+					Date:      "2018-09-15T15:53:00Z",
+					Increment: 1,
+				},
+			},
 		},
+		TotalCount: 1,
 	}
 
 	if diff := deep.Equal(customDBRoles, expected); diff != nil {
