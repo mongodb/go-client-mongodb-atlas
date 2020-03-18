@@ -25,6 +25,7 @@ type CheckpointsServiceOp struct {
 
 var _ CheckpointsService = &CheckpointsServiceOp{}
 
+// Checkpoint represents MongoDB Checkpoint
 type Checkpoint struct {
 	ClusterID  string  `json:"clusterId"`
 	Completed  string  `json:"completed,omitempty"`
@@ -37,6 +38,7 @@ type Checkpoint struct {
 	Timestamp  string  `json:"timestamp"`
 }
 
+// CheckpointPart represents the individual parts that comprise the complete checkpoint.
 type CheckpointPart struct {
 	ShardName       string            `json:"shardName"`
 	TokenDiscovered bool              `json:"tokenDiscovered"`
@@ -50,6 +52,8 @@ type Checkpoints struct {
 	TotalCount int           `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
+// List all checkpoints for the specified sharded cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/checkpoints-get-all/
 func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterName string, listOptions *ListOptions) (*Checkpoints, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -71,6 +75,8 @@ func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterName str
 	return root, resp, err
 }
 
+// Get one checkpoint for the specified sharded cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/checkpoints-get-one/
 func (s CheckpointsServiceOp) Get(ctx context.Context, groupID, clusterName, checkpointID string) (*Checkpoint, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
