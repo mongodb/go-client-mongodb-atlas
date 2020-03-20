@@ -9,7 +9,7 @@ import (
 const alertPath = "groups/%s/alerts"
 
 type AlertsService interface {
-	List(context.Context, string, *ListOptions) ([]Alert, *Response, error)
+	List(context.Context, string, *AlertsListOptions) ([]Alert, *Response, error)
 	Get(context.Context, string, string) (*Alert, *Response, error)
 	Acknowledge(context.Context, string, string, *AcknowledgeRequest) (*Alert, *Response, error)
 }
@@ -53,6 +53,12 @@ type AcknowledgeRequest struct {
 	AcknowledgementComment string `json:"acknowledgementComment,omitempty"` // The comment left by the user who acknowledged the alert. Will not be present if the alert has never been acknowledged.
 }
 
+// AlertsListOptions contains the alerts list of options
+type AlertsListOptions struct {
+	Status string `url:"status,omitempty"`
+	ListOptions
+}
+
 // AlertResponse is the response from the AlertService.List.
 type AlertsResponse struct {
 	Links      []*Link `json:"links"`
@@ -89,7 +95,7 @@ func (s *AlertsServiceOp) Get(ctx context.Context, groupID string, alertID strin
 
 // List gets all alert for the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-get-all-alerts/
-func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]Alert, *Response, error) {
+func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions *AlertsListOptions) ([]Alert, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -98,6 +104,7 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 
 	//Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
+
 	if err != nil {
 		return nil, nil, err
 	}
