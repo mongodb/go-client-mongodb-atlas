@@ -53,7 +53,7 @@ type AcknowledgeRequest struct {
 	AcknowledgementComment string `json:"acknowledgementComment,omitempty"` // The comment left by the user who acknowledged the alert. Will not be present if the alert has never been acknowledged.
 }
 
-// AlertsListOptions contains the alerts list of options
+// AlertsListOptions contains the list of options for Alerts
 type AlertsListOptions struct {
 	Status string `url:"status,omitempty"`
 	ListOptions
@@ -104,7 +104,6 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 
 	//Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
-
 	if err != nil {
 		return nil, nil, err
 	}
