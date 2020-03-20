@@ -9,7 +9,7 @@ import (
 const alertPath = "groups/%s/alerts"
 
 type AlertsService interface {
-	List(context.Context, string, *AlertsListOptions) ([]Alert, *Response, error)
+	List(context.Context, string, *AlertsListOptions) (*AlertsResponse, *Response, error)
 	Get(context.Context, string, string) (*Alert, *Response, error)
 	Acknowledge(context.Context, string, string, *AcknowledgeRequest) (*Alert, *Response, error)
 }
@@ -95,7 +95,7 @@ func (s *AlertsServiceOp) Get(ctx context.Context, groupID string, alertID strin
 
 // List gets all alert for the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-get-all-alerts/
-func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions *AlertsListOptions) ([]Alert, *Response, error) {
+func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions *AlertsListOptions) (*AlertsResponse, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -123,7 +123,7 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 		resp.Links = l
 	}
 
-	return root.Results, resp, nil
+	return root, resp, nil
 }
 
 // AckAnAlert allows to acknowledge an alert
