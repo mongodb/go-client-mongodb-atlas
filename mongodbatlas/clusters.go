@@ -75,6 +75,7 @@ type Cluster struct {
 	BackupEnabled            *bool                    `json:"backupEnabled,omitempty"`
 	BiConnector              BiConnector              `json:"biConnector,omitempty"`
 	ClusterType              string                   `json:"clusterType,omitempty"`
+	ConnectionStrings        []map[string]string      `json:"connectionStrings,omitempty"`
 	DiskSizeGB               *float64                 `json:"diskSizeGB,omitempty"`
 	EncryptionAtRestProvider string                   `json:"encryptionAtRestProvider,omitempty"`
 	Labels                   []Label                  `json:"labels,omitempty"`
