@@ -69,42 +69,52 @@ type ReplicationSpec struct {
 	RegionsConfig map[string]RegionsConfig `json:"regionsConfig,omitempty"`
 }
 
-// ConnectionStrings represent all connection string to connect to the cluster
-type ConnectionStrings struct {
-	StandardSrv       string            `json:"standardSrv,omitempty"`
-	Standard          string            `json:"standard,omitempty"`
-	AwsPrivateLink    map[string]string `json:"awsPrivateLink,omitempty"`
+// ConnectionStringsStandard represent all connection string to connect to the cluster
+type ConnectionStringsStandard struct {
+	StandardSrv string `json:"standardSrv,omitempty"`
+	Standard    string `json:"standard,omitempty"`
+}
+
+// ConnectionStringsPrivateLink represent all connection string to connect to the cluster
+type ConnectionStringsPrivateLink struct {
+	AwsPrivateLink map[string]string `json:"awsPrivateLink,omitempty"`
+}
+
+// ConnectionStringsPrivateLinkSvr represent all connection string to connect to the cluster
+type ConnectionStringsPrivateLinkSrv struct {
 	AwsPrivateLinkSrv map[string]string `json:"awsPrivateLinkSrv,omitempty"`
 }
 
 // Cluster represents MongoDB cluster.
 type Cluster struct {
-	AutoScaling              AutoScaling              `json:"autoScaling,omitempty"`
-	BackupEnabled            *bool                    `json:"backupEnabled,omitempty"`
-	BiConnector              BiConnector              `json:"biConnector,omitempty"`
-	ClusterType              string                   `json:"clusterType,omitempty"`
-	ConnectionStrings        ConnectionStrings        `json:"connectionStrings,omitempty"`
-	DiskSizeGB               *float64                 `json:"diskSizeGB,omitempty"`
-	EncryptionAtRestProvider string                   `json:"encryptionAtRestProvider,omitempty"`
-	Labels                   []Label                  `json:"labels,omitempty"`
-	ID                       string                   `json:"id,omitempty"`
-	GroupID                  string                   `json:"groupId,omitempty"`
-	MongoDBVersion           string                   `json:"mongoDBVersion,omitempty"`
-	MongoDBMajorVersion      string                   `json:"mongoDBMajorVersion,omitempty"`
-	MongoURI                 string                   `json:"mongoURI,omitempty"`
-	MongoURIUpdated          string                   `json:"mongoURIUpdated,omitempty"`
-	MongoURIWithOptions      string                   `json:"mongoURIWithOptions,omitempty"`
-	Name                     string                   `json:"name,omitempty"`
-	NumShards                *int64                   `json:"numShards,omitempty"`
-	Paused                   *bool                    `json:"paused,omitempty"`
-	PitEnabled               *bool                    `json:"pitEnabled,omitempty"`
-	ProviderBackupEnabled    *bool                    `json:"providerBackupEnabled,omitempty"`
-	ProviderSettings         *ProviderSettings        `json:"providerSettings,omitempty"`
-	ReplicationFactor        *int64                   `json:"replicationFactor,omitempty"`
-	ReplicationSpec          map[string]RegionsConfig `json:"replicationSpec,omitempty"`
-	ReplicationSpecs         []ReplicationSpec        `json:"replicationSpecs,omitempty"`
-	SrvAddress               string                   `json:"srvAddress,omitempty"`
-	StateName                string                   `json:"stateName,omitempty"`
+	AutoScaling                     AutoScaling                     `json:"autoScaling,omitempty"`
+	BackupEnabled                   *bool                           `json:"backupEnabled,omitempty"`
+	BiConnector                     BiConnector                     `json:"biConnector,omitempty"`
+	ClusterType                     string                          `json:"clusterType,omitempty"`
+	ConnectionStringsStandard       ConnectionStringsStandard       `json:"connectionStrings,omitempty"`
+	ConnectionStringsPrivateLink    ConnectionStringsPrivateLink    `json:"connectionStrings,omitempty"`
+	ConnectionStringsPrivateLinkSrv ConnectionStringsPrivateLinkSrv `json:"connectionStrings,omitempty"`
+	DiskSizeGB                      *float64                        `json:"diskSizeGB,omitempty"`
+	EncryptionAtRestProvider        string                          `json:"encryptionAtRestProvider,omitempty"`
+	Labels                          []Label                         `json:"labels,omitempty"`
+	ID                              string                          `json:"id,omitempty"`
+	GroupID                         string                          `json:"groupId,omitempty"`
+	MongoDBVersion                  string                          `json:"mongoDBVersion,omitempty"`
+	MongoDBMajorVersion             string                          `json:"mongoDBMajorVersion,omitempty"`
+	MongoURI                        string                          `json:"mongoURI,omitempty"`
+	MongoURIUpdated                 string                          `json:"mongoURIUpdated,omitempty"`
+	MongoURIWithOptions             string                          `json:"mongoURIWithOptions,omitempty"`
+	Name                            string                          `json:"name,omitempty"`
+	NumShards                       *int64                          `json:"numShards,omitempty"`
+	Paused                          *bool                           `json:"paused,omitempty"`
+	PitEnabled                      *bool                           `json:"pitEnabled,omitempty"`
+	ProviderBackupEnabled           *bool                           `json:"providerBackupEnabled,omitempty"`
+	ProviderSettings                *ProviderSettings               `json:"providerSettings,omitempty"`
+	ReplicationFactor               *int64                          `json:"replicationFactor,omitempty"`
+	ReplicationSpec                 map[string]RegionsConfig        `json:"replicationSpec,omitempty"`
+	ReplicationSpecs                []ReplicationSpec               `json:"replicationSpecs,omitempty"`
+	SrvAddress                      string                          `json:"srvAddress,omitempty"`
+	StateName                       string                          `json:"stateName,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster
