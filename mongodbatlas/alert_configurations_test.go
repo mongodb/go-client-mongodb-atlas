@@ -622,3 +622,43 @@ func TestAlertConfiguration_Delete(t *testing.T) {
 		t.Fatalf("AlertConfigurations.Delete returned error: %v", err)
 	}
 }
+
+func TestAlertConfiguration_ListMatcherFields(t *testing.T) {
+	setup()
+	defer teardown()
+
+	mux.HandleFunc("/alertConfigs/matchers/fieldNames", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+
+		fmt.Fprint(w, `
+				[
+					"TYPE_NAME",
+					"HOSTNAME",
+					"PORT",
+					"HOSTNAME_AND_PORT",
+					"REPLICA_SET_NAME",
+					"SHARD_NAME",
+					"CLUSTER_NAME"
+				]
+		`)
+	})
+
+	alertConfigurations, _, err := client.AlertConfigurations.ListMatcherFields(ctx)
+	if err != nil {
+		t.Fatalf("AlertConfigurations.ListMatcherFields returned error: %v", err)
+	}
+
+	expected := &[]string{
+		"TYPE_NAME",
+		"HOSTNAME",
+		"PORT",
+		"HOSTNAME_AND_PORT",
+		"REPLICA_SET_NAME",
+		"SHARD_NAME",
+		"CLUSTER_NAME",
+	}
+
+	if diff := deep.Equal(alertConfigurations, expected); diff != nil {
+		t.Error(diff)
+	}
+}
