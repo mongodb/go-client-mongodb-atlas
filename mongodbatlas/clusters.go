@@ -74,7 +74,7 @@ type ConnectionStrings struct {
 	StandardSrv       string            `json:"standardSrv,omitempty"`
 	Standard          string            `json:"standard,omitempty"`
 	AwsPrivateLink    map[string]string `json:"awsPrivateLink,omitempty"`
-	awsPrivateLinkSrv map[string]string `json:"awsPrivateLinkSrv,omitempty"`
+	AwsPrivateLinkSrv map[string]string `json:"awsPrivateLinkSrv,omitempty"`
 }
 
 // Cluster represents MongoDB cluster.
