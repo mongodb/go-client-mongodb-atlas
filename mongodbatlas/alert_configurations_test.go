@@ -648,7 +648,7 @@ func TestAlertConfiguration_ListMatcherFields(t *testing.T) {
 		t.Fatalf("AlertConfigurations.ListMatcherFields returned error: %v", err)
 	}
 
-	expected := &[]string{
+	expected := []string{
 		"TYPE_NAME",
 		"HOSTNAME",
 		"PORT",

@@ -17,7 +17,7 @@ type AlertConfigurationsService interface {
 	GetAnAlertConfig(context.Context, string, string) (*AlertConfiguration, *Response, error)
 	GetOpenAlertsConfig(context.Context, string, string) ([]AlertConfiguration, *Response, error)
 	List(context.Context, string, *ListOptions) ([]AlertConfiguration, *Response, error)
-	ListMatcherFields(ctx context.Context) (*[]string, *Response, error)
+	ListMatcherFields(ctx context.Context) ([]string, *Response, error)
 	Update(context.Context, string, string, *AlertConfiguration) (*AlertConfiguration, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
 }
@@ -313,7 +313,7 @@ func (s *AlertConfigurationsServiceOp) Delete(ctx context.Context, groupID, aler
 
 // ListMatcherFields gets all field names that the matchers.fieldName parameter accepts when you create or update an Alert Configuration.
 // See more: https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-matchers-field-names/
-func (s *AlertConfigurationsServiceOp) ListMatcherFields(ctx context.Context) (*[]string, *Response, error) {
+func (s *AlertConfigurationsServiceOp) ListMatcherFields(ctx context.Context) ([]string, *Response, error) {
 	path := "alertConfigs/matchers/fieldNames"
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
@@ -326,5 +326,5 @@ func (s *AlertConfigurationsServiceOp) ListMatcherFields(ctx context.Context) (*
 		return nil, resp, err
 	}
 
-	return &root, resp, err
+	return root, resp, err
 }
