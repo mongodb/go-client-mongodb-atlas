@@ -37,32 +37,33 @@ type Client struct {
 	UserAgent string
 
 	//Services used for communicating with the API
-	CustomDBRoles                    CustomDBRolesService
-	DatabaseUsers                    DatabaseUsersService
-	ProjectIPWhitelist               ProjectIPWhitelistService
-	Projects                         ProjectsService
-	Clusters                         ClustersService
-	CloudProviderSnapshots           CloudProviderSnapshotsService
-	APIKeys                          APIKeysService
-	ProjectAPIKeys                   ProjectAPIKeysService
-	CloudProviderSnapshotRestoreJobs CloudProviderSnapshotRestoreJobsService
-	Peers                            PeersService
-	Containers                       ContainersService
-	EncryptionsAtRest                EncryptionsAtRestService
-	WhitelistAPIKeys                 WhitelistAPIKeysService
-	PrivateIPMode                    PrivateIPModeService
-	MaintenanceWindows               MaintenanceWindowsService
-	Teams                            TeamsService
-	AtlasUsers                       AtlasUsersService
-	GlobalClusters                   GlobalClustersService
-	Auditing                         AuditingsService
-	AlertConfigurations              AlertConfigurationsService
-	Alerts                           AlertsService
-	PrivateEndpoints                 PrivateEndpointsService
-	X509AuthDBUsers                  X509AuthDBUsersService
-	ContinuousSnapshots              ContinuousSnapshotsService
-	ContinuousRestoreJobs            ContinuousRestoreJobsService
-	Checkpoints                      CheckpointsService
+	CustomDBRoles                       CustomDBRolesService
+	DatabaseUsers                       DatabaseUsersService
+	ProjectIPWhitelist                  ProjectIPWhitelistService
+	Projects                            ProjectsService
+	Clusters                            ClustersService
+	CloudProviderSnapshots              CloudProviderSnapshotsService
+	APIKeys                             APIKeysService
+	ProjectAPIKeys                      ProjectAPIKeysService
+	CloudProviderSnapshotRestoreJobs    CloudProviderSnapshotRestoreJobsService
+	Peers                               PeersService
+	Containers                          ContainersService
+	EncryptionsAtRest                   EncryptionsAtRestService
+	WhitelistAPIKeys                    WhitelistAPIKeysService
+	PrivateIPMode                       PrivateIPModeService
+	MaintenanceWindows                  MaintenanceWindowsService
+	Teams                               TeamsService
+	AtlasUsers                          AtlasUsersService
+	GlobalClusters                      GlobalClustersService
+	Auditing                            AuditingsService
+	AlertConfigurations                 AlertConfigurationsService
+	PrivateEndpoints                    PrivateEndpointsService
+	X509AuthDBUsers                     X509AuthDBUsersService
+	ContinuousSnapshots                 ContinuousSnapshotsService
+	ContinuousRestoreJobs               ContinuousRestoreJobsService
+	Checkpoints                         CheckpointsService
+	Alerts                              AlertsService
+	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -179,6 +180,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ContinuousRestoreJobs = &ContinuousRestoreJobsServiceOp{Client: c}
 	c.Checkpoints = &CheckpointsServiceOp{Client: c}
 	c.Alerts = &AlertsServiceOp{Client: c}
+	c.CloudProviderSnapshotBackupPolicies = &CloudProviderSnapshotBackupPoliciesServiceOp{Client: c}
 
 	return c
 }
