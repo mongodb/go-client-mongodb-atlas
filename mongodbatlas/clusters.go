@@ -69,13 +69,21 @@ type ReplicationSpec struct {
 	RegionsConfig map[string]RegionsConfig `json:"regionsConfig,omitempty"`
 }
 
+// ConnectionStrings represent all connection string to connect to the cluster
+type ConnectionStrings struct {
+	StandardSrv       string            `json:"standardSrv,omitempty"`
+	Standard          string            `json:"standard,omitempty"`
+	AwsPrivateLink    map[string]string `json:"awsPrivateLink,omitempty"`
+	awsPrivateLinkSrv map[string]string `json:"awsPrivateLinkSrv,omitempty"`
+}
+
 // Cluster represents MongoDB cluster.
 type Cluster struct {
 	AutoScaling              AutoScaling              `json:"autoScaling,omitempty"`
 	BackupEnabled            *bool                    `json:"backupEnabled,omitempty"`
 	BiConnector              BiConnector              `json:"biConnector,omitempty"`
 	ClusterType              string                   `json:"clusterType,omitempty"`
-	ConnectionStrings        []map[string]string      `json:"connectionStrings,omitempty"`
+	ConnectionStrings        ConnectionStrings        `json:"connectionStrings,omitempty"`
 	DiskSizeGB               *float64                 `json:"diskSizeGB,omitempty"`
 	EncryptionAtRestProvider string                   `json:"encryptionAtRestProvider,omitempty"`
 	Labels                   []Label                  `json:"labels,omitempty"`
