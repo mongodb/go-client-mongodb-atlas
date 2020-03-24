@@ -64,6 +64,7 @@ type Client struct {
 	Checkpoints                         CheckpointsService
 	Alerts                              AlertsService
 	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
+	Processes                           ProcessesService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -166,6 +167,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Projects = &ProjectsServiceOp{Client: c}
 	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
 	c.Peers = &PeersServiceOp{Client: c}
+	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{Client: c}
 	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{Client: c}
 	c.PrivateIPMode = &PrivateIPModeServiceOp{Client: c}
