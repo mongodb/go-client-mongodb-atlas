@@ -45,12 +45,14 @@ type ContinuousSnapshot struct {
 	Parts                     []*Part            `json:"parts,omitempty"`
 }
 
-type SnapshotTimestamp struct {
-	Date      string `json:"date"`
-	Increment int64  `json:"increment"`
+type Part struct {
+	ReplicaSetName string `json:"replicaSetName"`
+	TypeName       string `json:"typeName"`
+	SnapshotPart
+	CheckpointPart
 }
 
-type Part struct {
+type SnapshotPart struct {
 	ClusterID          string `json:"clusterId"`
 	CompressionSetting string `json:"compressionSetting"`
 	DataSizeBytes      int64  `json:"dataSizeBytes"`
@@ -58,9 +60,7 @@ type Part struct {
 	FileSizeBytes      int64  `json:"fileSizeBytes"`
 	MasterKeyUUID      string `json:"masterKeyUUID,omitempty"`
 	MongodVersion      string `json:"mongodVersion"`
-	ReplicaSetName     string `json:"replicaSetName"`
 	StorageSizeBytes   int64  `json:"storageSizeBytes"`
-	TypeName           string `json:"typeName"`
 }
 
 type NamespaceFilter struct {

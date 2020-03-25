@@ -29,6 +29,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 					"delayMin":     float64(0),
 					"smsEnabled":   false,
 					"emailEnabled": true,
+					"roles":        []interface{}{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 				},
 			},
 		}
@@ -56,7 +57,8 @@ func TestAlertConfiguration_Create(t *testing.T) {
 					"emailEnabled": true,
 					"intervalMin": 5,
 					"smsEnabled": false,
-					"typeName": "GROUP"
+					"typeName": "GROUP",
+					"roles" : ["GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"]
 				}
 			],
 			"updated": "2016-08-19T20:36:44Z"
@@ -73,6 +75,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 				DelayMin:     pointy.Int(0),
 				SMSEnabled:   pointy.Bool(false),
 				EmailEnabled: pointy.Bool(true),
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 	}
@@ -97,6 +100,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 				IntervalMin:  5,
 				SMSEnabled:   pointy.Bool(false),
 				TypeName:     "GROUP",
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 		Updated: "2016-08-19T20:36:44Z",
@@ -207,7 +211,8 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 					"typeName": "SMS",
 					"intervalMin": 5,
 					"delayMin": 0,
-					"mobileNumber": "2343454567"
+					"mobileNumber": "2343454567",
+					"roles" : ["GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"]
 				}
 			],
 			"metricThreshold": {
@@ -245,6 +250,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 				IntervalMin:  5,
 				DelayMin:     pointy.Int(0),
 				MobileNumber: "2343454567",
+				Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 			},
 		},
 		MetricThreshold: &MetricThreshold{
@@ -377,7 +383,8 @@ func TestAlertConfiguration_List(t *testing.T) {
 							"typeName": "SMS",
 							"intervalMin": 5,
 							"delayMin": 0,
-							"mobileNumber": "2343454567"
+							"mobileNumber": "2343454567",
+							"roles" : ["GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"]
 						}
 					],
 					"metricThreshold": {
@@ -407,7 +414,8 @@ func TestAlertConfiguration_List(t *testing.T) {
 							"typeName": "SMS",
 							"intervalMin": 5,
 							"delayMin": 0,
-							"mobileNumber": "2343454567"
+							"mobileNumber": "2343454567",
+							"roles" : ["GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"]
 						}
 					],
 					"metricThreshold": {
@@ -449,6 +457,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 					IntervalMin:  5,
 					DelayMin:     pointy.Int(0),
 					MobileNumber: "2343454567",
+					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
 			},
 			MetricThreshold: &MetricThreshold{
@@ -479,6 +488,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 					IntervalMin:  5,
 					DelayMin:     pointy.Int(0),
 					MobileNumber: "2343454567",
+					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
 			},
 			MetricThreshold: &MetricThreshold{
@@ -516,6 +526,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 					"delayMin":     float64(5),
 					"smsEnabled":   true,
 					"emailEnabled": false,
+					"roles":        []interface{}{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 				},
 			},
 		}
@@ -542,7 +553,8 @@ func TestAlertConfiguration_Update(t *testing.T) {
 					"intervalMin": 5,
 					"delayMin": 5,
 					"smsEnabled": true,
-					"emailEnabled": false
+					"emailEnabled": false,
+					"roles" : ["GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"]
 				}
 			],
 			"updated": "2016-08-19T20:45:29Z"
@@ -559,6 +571,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 				DelayMin:     pointy.Int(5),
 				SMSEnabled:   pointy.Bool(true),
 				EmailEnabled: pointy.Bool(false),
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 	}
@@ -582,6 +595,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 				DelayMin:     pointy.Int(5),
 				SMSEnabled:   pointy.Bool(true),
 				EmailEnabled: pointy.Bool(false),
+				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
 		Updated: "2016-08-19T20:45:29Z",
