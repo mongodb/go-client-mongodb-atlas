@@ -8,6 +8,9 @@ import (
 
 const alertPath = "groups/%s/alerts"
 
+// AlertsService is an interface for interfacing with the Alerts
+// endpoints of the MongoDB Atlas API.
+// See more: https://docs.atlas.mongodb.com/reference/api/alerts/
 type AlertsService interface {
 	List(context.Context, string, *AlertsListOptions) (*AlertsResponse, *Response, error)
 	Get(context.Context, string, string) (*Alert, *Response, error)
