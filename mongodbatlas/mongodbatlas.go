@@ -64,6 +64,7 @@ type Client struct {
 	Checkpoints                         CheckpointsService
 	Alerts                              AlertsService
 	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
+	Events                              EventsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -181,6 +182,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Checkpoints = &CheckpointsServiceOp{Client: c}
 	c.Alerts = &AlertsServiceOp{Client: c}
 	c.CloudProviderSnapshotBackupPolicies = &CloudProviderSnapshotBackupPoliciesServiceOp{Client: c}
+	c.Events = &EventsServiceOp{Client: c}
 
 	return c
 }
