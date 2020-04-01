@@ -23,13 +23,14 @@ type ProcessDisksServiceOp struct {
 
 var _ ProcessDisksService = &ProcessDisksServiceOp{}
 
-// AlertResponse is the response from the AlertService.List.
+// ProcessDisksResponse is the response from the ProcessDisksService.List.
 type ProcessDisksResponse struct {
 	Links      []*Link        `json:"links"`
 	Results    []*ProcessDisk `json:"results"`
 	TotalCount int            `json:"totalCount"`
 }
 
+// ProcessDisk is the partition information of a process
 type ProcessDisk struct {
 	Links         []*Link `json:"links"`
 	PartitionName string  `json:"partitionName"`
