@@ -15,7 +15,7 @@ type ProcessMeasurementsService interface {
 	Get(context.Context, string, string, string, *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error)
 }
 
-// ProcessMeasurementsServiceOp handles communication with the GlobalClusters related methods of the
+// ProcessMeasurementsServiceOp handles communication with the Process Measurements related methods of the
 // MongoDB Atlas API
 type ProcessMeasurementsServiceOp struct {
 	Client RequestDoer
