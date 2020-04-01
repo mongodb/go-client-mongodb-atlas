@@ -6,13 +6,13 @@ import (
 	"net/http"
 )
 
-const processMeasurementsPath = "groups/%s/processes/%s:%s/measurements"
+const processMeasurementsPath = "groups/%s/processes/%s:%d/measurements"
 
 // ProcessMeasurementsService is an interface for interfacing with the Process Measurements
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-measurements/
 type ProcessMeasurementsService interface {
-	Get(context.Context, string, string, string, *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error)
+	List(context.Context, string, string, int, *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error)
 }
 
 // ProcessMeasurementsServiceOp handles communication with the Process Measurements related methods of the
@@ -60,7 +60,7 @@ type ProcessMeasurementListOptions struct {
 
 // Get gets measurements for a specific Atlas MongoDB process.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-measurements/
-func (s *ProcessMeasurementsServiceOp) Get(ctx context.Context, groupID string, host string, port string, opts *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error) {
+func (s *ProcessMeasurementsServiceOp) List(ctx context.Context, groupID string, host string, port int, opts *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error) {
 
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -68,10 +68,6 @@ func (s *ProcessMeasurementsServiceOp) Get(ctx context.Context, groupID string, 
 
 	if host == "" {
 		return nil, nil, NewArgError("host", "must be set")
-	}
-
-	if port == "" {
-		return nil, nil, NewArgError("port", "must be set")
 	}
 
 	basePath := fmt.Sprintf(processMeasurementsPath, groupID, host, port)

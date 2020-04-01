@@ -8,15 +8,15 @@ import (
 	"github.com/go-test/deep"
 )
 
-func TestProcessMeasurements_Get(t *testing.T) {
+func TestProcessMeasurements_List(t *testing.T) {
 	setup()
 	defer teardown()
 
 	groups := "12345678"
 	host := "shard-00-00.mongodb.net"
-	port := "27017"
+	port := 27017
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%s/measurements", groups, host, port), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/measurements", groups, host, port), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				  "end" : "2017-08-22T20:31:14Z",
@@ -51,7 +51,7 @@ func TestProcessMeasurements_Get(t *testing.T) {
 		Period:      "PT1M",
 	}
 
-	measurements, _, err := client.ProcessMeasurements.Get(ctx, groups, host, port, opts)
+	measurements, _, err := client.ProcessMeasurements.List(ctx, groups, host, port, opts)
 	if err != nil {
 		t.Fatalf("Teams.Get returned error: %v", err)
 	}
