@@ -171,67 +171,71 @@ func TestAlerts_List(t *testing.T) {
 		t.Fatalf("Alerts.List returned error: %v", err)
 	}
 
-	expected := []Alert{
-		{
-			ID:            "533dc40ae4b00835ff81eaee",
-			GroupID:       "535683b3794d371327b",
-			EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
-			Created:       "2016-08-23T20:26:50Z",
-			Updated:       "2016-08-23T20:26:50Z",
-			Enabled:       pointy.Bool(true),
-			Matchers: []Matcher{
-				{
-					FieldName: "HOSTNAME_AND_PORT",
-					Operator:  "EQUALS",
-					Value:     "mongo.example.com:27017",
+	expected := &AlertsResponse{
+		Links: nil,
+		Results: []Alert{
+			{
+				ID:            "533dc40ae4b00835ff81eaee",
+				GroupID:       "535683b3794d371327b",
+				EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
+				Created:       "2016-08-23T20:26:50Z",
+				Updated:       "2016-08-23T20:26:50Z",
+				Enabled:       pointy.Bool(true),
+				Matchers: []Matcher{
+					{
+						FieldName: "HOSTNAME_AND_PORT",
+						Operator:  "EQUALS",
+						Value:     "mongo.example.com:27017",
+					},
+				},
+				Notifications: []Notification{
+					{
+						TypeName:     "SMS",
+						IntervalMin:  5,
+						DelayMin:     pointy.Int(0),
+						MobileNumber: "2343454567",
+					},
+				},
+				MetricThreshold: &MetricThreshold{
+					MetricName: "ASSERT_REGULAR",
+					Operator:   "LESS_THAN",
+					Threshold:  99.0,
+					Units:      "RAW",
+					Mode:       "AVERAGE",
 				},
 			},
-			Notifications: []Notification{
-				{
-					TypeName:     "SMS",
-					IntervalMin:  5,
-					DelayMin:     pointy.Int(0),
-					MobileNumber: "2343454567",
+			{
+				ID:            "533dc40ae4b00835ff81eaee",
+				GroupID:       "535683b3794d371327b",
+				EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
+				Created:       "2016-08-23T20:26:50Z",
+				Updated:       "2016-08-23T20:26:50Z",
+				Enabled:       pointy.Bool(true),
+				Matchers: []Matcher{
+					{
+						FieldName: "HOSTNAME_AND_PORT",
+						Operator:  "EQUALS",
+						Value:     "mongo.example.com:27017",
+					},
 				},
-			},
-			MetricThreshold: &MetricThreshold{
-				MetricName: "ASSERT_REGULAR",
-				Operator:   "LESS_THAN",
-				Threshold:  99.0,
-				Units:      "RAW",
-				Mode:       "AVERAGE",
+				Notifications: []Notification{
+					{
+						TypeName:     "SMS",
+						IntervalMin:  5,
+						DelayMin:     pointy.Int(0),
+						MobileNumber: "2343454567",
+					},
+				},
+				MetricThreshold: &MetricThreshold{
+					MetricName: "ASSERT_REGULAR",
+					Operator:   "LESS_THAN",
+					Threshold:  99.0,
+					Units:      "RAW",
+					Mode:       "AVERAGE",
+				},
 			},
 		},
-		{
-			ID:            "533dc40ae4b00835ff81eaee",
-			GroupID:       "535683b3794d371327b",
-			EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
-			Created:       "2016-08-23T20:26:50Z",
-			Updated:       "2016-08-23T20:26:50Z",
-			Enabled:       pointy.Bool(true),
-			Matchers: []Matcher{
-				{
-					FieldName: "HOSTNAME_AND_PORT",
-					Operator:  "EQUALS",
-					Value:     "mongo.example.com:27017",
-				},
-			},
-			Notifications: []Notification{
-				{
-					TypeName:     "SMS",
-					IntervalMin:  5,
-					DelayMin:     pointy.Int(0),
-					MobileNumber: "2343454567",
-				},
-			},
-			MetricThreshold: &MetricThreshold{
-				MetricName: "ASSERT_REGULAR",
-				Operator:   "LESS_THAN",
-				Threshold:  99.0,
-				Units:      "RAW",
-				Mode:       "AVERAGE",
-			},
-		},
+		TotalCount: 2,
 	}
 
 	if diff := deep.Equal(alerts, expected); diff != nil {
