@@ -65,6 +65,7 @@ type Client struct {
 	Alerts                              AlertsService
 	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
 	Events                              EventsService
+	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
 	ProcessDisks                        ProcessDisksService
 
@@ -185,6 +186,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Alerts = &AlertsServiceOp{Client: c}
 	c.CloudProviderSnapshotBackupPolicies = &CloudProviderSnapshotBackupPoliciesServiceOp{Client: c}
 	c.Events = &EventsServiceOp{Client: c}
+	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
 
