@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-const indexesPath = "groups/%s/clusters/%s/indexes"
+const indexesPath = "groups/%s/clusters/%s/index"
 
 // IndexesService is an interface for interfacing with the clusters indexes
 // endpoints of the MongoDB Atlas API.
