@@ -68,7 +68,7 @@ type Client struct {
 	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
 	ProcessDisks                        ProcessDisksService
-	DiskMeasurements                    ProcessDiskMeasurementsService
+	ProcessDiskMeasurements             ProcessDiskMeasurementsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -190,7 +190,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
-	c.DiskMeasurements = &ProcessDiskMeasurementsServiceOp{Client: c}
+	c.ProcessDiskMeasurements = &ProcessDiskMeasurementsServiceOp{Client: c}
 
 	return c
 }
