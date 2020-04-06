@@ -28,7 +28,7 @@ func TestIndexesServiceOp_Create(t *testing.T) {
 			Unique: true,
 		},
 	}
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/indexes", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/index", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		expected := map[string]interface{}{
 			"db":         "test",
