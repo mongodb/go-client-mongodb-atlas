@@ -25,11 +25,11 @@ var _ IndexesService = &IndexesServiceOp{}
 
 // IndexConfiguration represents current value of the metric that triggered the alert. Only present for alerts of type HOST_METRIC.
 type IndexConfiguration struct {
-	DB         string              `json:"db"`         // The value of the metric.
-	Collection string              `json:"collection"` // The units for the value. Depends on the type of metric.
-	Keys       []map[string]string `json:"keys"`
-	Options    *IndexOptions       `json:"options,omitempty"`
-	Collation  *CollationOptions   `json:"collation,omitempty"`
+	DB         string              `json:"db"`         // DB the database of the index
+	Collection string              `json:"collection"` // Collection the collection of the index
+	Keys       []map[string]string `json:"keys"` // Keys array of keys to index and their type, sorting of keys is important for an index
+	Options    *IndexOptions       `json:"options,omitempty"` // Options MongoDB index options
+	Collation  *CollationOptions   `json:"collation,omitempty"`// Collation Mongo collation index options
 }
 
 // IndexOptions, represents mdb index options
