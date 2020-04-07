@@ -12,7 +12,7 @@ const ProcessDiskMeasurementsPath = processesDisksPath + "/%s/measurements"
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-disks-measurements/#get-measurements-of-a-disk-for-a-mongodb-process
 type ProcessDiskMeasurementsService interface {
-	Get(context.Context, string, string, int, string, *ProcessMeasurementListOptions) (*ProcessDiskMeasurements, *Response, error)
+	List(context.Context, string, string, int, string, *ProcessMeasurementListOptions) (*ProcessDiskMeasurements, *Response, error)
 }
 
 // ProcessDiskMeasurementsServiceOp handles communication with the Process Disk Measurements related methods of the
@@ -31,7 +31,7 @@ var _ ProcessDiskMeasurementsService = &ProcessDiskMeasurementsServiceOp{}
 
 // Get gets measurements for a specific Atlas MongoDB disk.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-disks-measurements/#get-measurements-of-a-disk-for-a-mongodb-process
-func (s *ProcessDiskMeasurementsServiceOp) Get(ctx context.Context, groupID, hostName string, port int, diskName string, opts *ProcessMeasurementListOptions) (*ProcessDiskMeasurements, *Response, error) {
+func (s *ProcessDiskMeasurementsServiceOp) List(ctx context.Context, groupID, hostName string, port int, diskName string, opts *ProcessMeasurementListOptions) (*ProcessDiskMeasurements, *Response, error) {
 
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")

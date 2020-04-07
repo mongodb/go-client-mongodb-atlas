@@ -53,7 +53,7 @@ func TestDiskMeasurements_List(t *testing.T) {
 		Period:      "PT1M",
 	}
 
-	measurements, _, err := client.DiskMeasurements.Get(ctx, groups, host, port, disk, opts)
+	measurements, _, err := client.ProcessDiskMeasurements.List(ctx, groups, host, port, disk, opts)
 	if err != nil {
 		t.Fatalf("Teams.Get returned error: %v", err)
 	}
