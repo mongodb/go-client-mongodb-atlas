@@ -2,6 +2,7 @@ package mongodbatlas
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -100,6 +101,23 @@ type testRequestBody struct {
 	TestName    string `json:"testName"`
 	TestCounter int64  `json:"testCounter"`
 	TestData    string `json:"testUserData"`
+}
+
+// If a nil body is passed to mongodbatlas.NewRequest, make sure that nil is also
+// passed to http.NewRequest. In most cases, passing an io.Reader that returns
+// no content is fine, since there is no difference between an HTTP request
+// body that is an empty string versus one that is not set at all. However in
+// certain cases, intermediate systems may treat these differently resulting in
+// subtle errors.
+func TestNewRequest_emptyBody(t *testing.T) {
+	c := NewClient(nil)
+	req, err := c.NewRequest(ctx, http.MethodGet, ".", nil)
+	if err != nil {
+		t.Fatalf("NewRequest returned unexpected error: %v", err)
+	}
+	if req.Body != nil {
+		t.Fatalf("constructed request contains a non-nil Body")
+	}
 }
 
 func TestNewRequest_withUserData(t *testing.T) {
@@ -215,6 +233,23 @@ func TestDo_redirectLoop(t *testing.T) {
 	}
 	if err, ok := err.(*url.Error); !ok {
 		t.Errorf("Expected a URL error; got %#v.", err)
+	}
+}
+
+func TestDo_noContent(t *testing.T) {
+	setup()
+	defer teardown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	})
+
+	var body json.RawMessage
+
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
+	_, err := client.Do(context.Background(), req, &body)
+	if err != nil {
+		t.Fatalf("Do returned unexpected error: %v", err)
 	}
 }
 
