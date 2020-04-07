@@ -266,7 +266,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 		}
 	}
 
-	req, err := http.NewRequestWithContext(ctx, method, u.String(), buf)
+	req, err := http.NewRequest(method, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}
@@ -291,7 +291,7 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*ht
 
 	u := c.BaseURL.ResolveReference(rel)
 
-	req, err := http.NewRequestWithContext(ctx, method, u.String(), nil)
+	req, err := http.NewRequest(method, u.String(), nil)
 	if err != nil {
 		return nil, err
 	}
