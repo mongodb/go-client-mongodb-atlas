@@ -275,7 +275,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	return req, nil
 }
 
-// ReadBody returns an ReadWriter object containing the body for the http request
+// ReadBody returns an ReadWriter object containing the body of the http request
 func (c *Client) ReadBody(body interface{}) (io.ReadWriter, error) {
 	var buf io.ReadWriter
 	if body != nil {
