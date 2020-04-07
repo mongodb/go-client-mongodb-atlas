@@ -22,13 +22,27 @@ const (
 	defaultBaseURL = "https://cloud.mongodb.com/api/atlas/v1.0/"
 	userAgent      = "go-mongodbatlas" + libraryVersion
 	mediaType      = "application/json"
+	gzipMediaType  = "application/gzip"
 )
 
-type RequestDoer interface {
-	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
-	NewGZipRequest(context.Context, string, string, interface{}) (*http.Request, error)
+type Doer interface {
 	Do(context.Context, *http.Request, interface{}) (*Response, error)
+}
+
+type Completer interface {
 	OnRequestCompleted(RequestCompletionCallback)
+}
+
+type RequestDoer interface {
+	Doer
+	Completer
+	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
+}
+
+type GZipRequestDoer interface {
+	Doer
+	Completer
+	NewGZipRequest(context.Context, string, string) (*http.Request, error)
 }
 
 // Client manages communication with MongoDBAtlas v1.0 API
@@ -236,36 +250,40 @@ func SetUserAgent(ua string) ClientOpt {
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash. If specified, the
 // value pointed to by body is JSON encoded and included in as the request body.
 func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
-	rel, err := url.Parse(urlStr)
+	u, err := c.BaseURL.Parse(urlStr)
 	if err != nil {
 		return nil, err
 	}
 
-	u := c.BaseURL.ResolveReference(rel)
-
-	buf := new(bytes.Buffer)
+	var buf io.ReadWriter
 	if body != nil {
-		err = json.NewEncoder(buf).Encode(body)
+		buf = &bytes.Buffer{}
+		enc := json.NewEncoder(buf)
+		enc.SetEscapeHTML(false)
+		err := enc.Encode(body)
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := http.NewRequestWithContext(ctx, method, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Add("Content-Type", mediaType)
+	if body != nil {
+		req.Header.Set("Content-Type", mediaType)
+	}
 	req.Header.Add("Accept", mediaType)
-	req.Header.Add("User-Agent", c.UserAgent)
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	}
 	return req, nil
 }
 
 // NewGZipRequest creates an API request that accepts gzip. A relative URL can be provided in urlStr, which will be resolved to the
-// BaseURL of the Client. Relative URLS should always be specified without a preceding slash. If specified, the
-// value pointed to by body is JSON encoded and included in as the request body.
-func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
+// BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
+func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
 		return nil, err
@@ -273,23 +291,15 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string, body
 
 	u := c.BaseURL.ResolveReference(rel)
 
-	buf := new(bytes.Buffer)
-	if body != nil {
-		err = json.NewEncoder(buf).Encode(body)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := http.NewRequestWithContext(ctx, method, u.String(), nil)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Add("Content-Type", mediaType)
-	req.Header.Add("Accept", "application/gzip")
-	req.Header.Add("Content-Encoding", "gzip")
-	req.Header.Add("User-Agent", c.UserAgent)
+	req.Header.Add("Accept", gzipMediaType)
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	}
 	return req, nil
 }
 
@@ -304,6 +314,14 @@ func (c *Client) OnRequestCompleted(rc RequestCompletionCallback) {
 func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Response, error) {
 	resp, err := DoRequestWithClient(ctx, c.client, req)
 	if err != nil {
+		// If we got an error, and the context has been canceled,
+		// the context's error is probably more useful.
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		default:
+		}
+
 		return nil, err
 	}
 	if c.onRequestCompleted != nil {
@@ -316,7 +334,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		}
 	}()
 
-	response := newResponse(resp)
+	response := &Response{Response: resp}
 
 	err = CheckResponse(resp)
 	if err != nil {
@@ -330,13 +348,15 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 				return nil, err
 			}
 		} else {
-			err = json.NewDecoder(resp.Body).Decode(v)
-			if err != nil {
-				return nil, err
+			decErr := json.NewDecoder(resp.Body).Decode(v)
+			if decErr == io.EOF {
+				decErr = nil // ignore EOF errors caused by empty response body
+			}
+			if decErr != nil {
+				err = decErr
 			}
 		}
 	}
-
 	return response, err
 }
 
@@ -364,13 +384,6 @@ func CheckResponse(r *http.Response) error {
 	}
 
 	return errorResponse
-}
-
-// newResponse creates a new Response for the provided http.Response
-func newResponse(r *http.Response) *Response {
-	response := Response{Response: r}
-
-	return &response
 }
 
 // DoRequestWithClient submits an HTTP request using the specified client.
