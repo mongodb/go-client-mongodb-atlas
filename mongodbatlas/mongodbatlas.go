@@ -42,7 +42,7 @@ type RequestDoer interface {
 type GZipRequestDoer interface {
 	Doer
 	Completer
-	NewGZipRequest(context.Context, string, string, interface{}) (*http.Request, error)
+	NewGZipRequest(context.Context, string, string) (*http.Request, error)
 }
 
 // Client manages communication with MongoDBAtlas v1.0 API
@@ -255,7 +255,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 		return nil, err
 	}
 
-	buf, err := c.ReadBody(body)
+	buf, err := c.serializeRequestBody(body)
 	if err != nil {
 		return nil, err
 	}
@@ -275,8 +275,8 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	return req, nil
 }
 
-// ReadBody returns an ReadWriter object containing the body of the http request
-func (c *Client) ReadBody(body interface{}) (io.ReadWriter, error) {
+// serializeRequestBody returns an ReadWriter object containing the body of the http request
+func (c *Client) serializeRequestBody(body interface{}) (io.ReadWriter, error) {
 	var buf io.ReadWriter
 	if body != nil {
 		buf = &bytes.Buffer{}
@@ -293,7 +293,7 @@ func (c *Client) ReadBody(body interface{}) (io.ReadWriter, error) {
 
 // NewGZipRequest creates an API request that accepts gzip. A relative URL can be provided in urlStr, which will be resolved to the
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
-func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
+func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
 		return nil, err
@@ -301,12 +301,7 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string, body
 
 	u := c.BaseURL.ResolveReference(rel)
 
-	buf, err := c.ReadBody(body)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := http.NewRequest(method, u.String(), nil)
 	if err != nil {
 		return nil, err
 	}

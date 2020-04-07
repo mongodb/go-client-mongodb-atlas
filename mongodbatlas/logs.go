@@ -51,7 +51,7 @@ func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string
 		return nil, err
 	}
 
-	req, err := s.Client.NewGZipRequest(ctx, http.MethodGet, path, nil)
+	req, err := s.Client.NewGZipRequest(ctx, http.MethodGet, path)
 	if err != nil {
 		return nil, err
 	}

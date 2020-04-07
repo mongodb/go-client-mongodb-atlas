@@ -173,41 +173,12 @@ func TestNewRequest_withCustomUserAgent(t *testing.T) {
 
 func TestNewGZipRequest_emptyBody(t *testing.T) {
 	c := NewClient(nil)
-	req, err := c.NewGZipRequest(ctx, http.MethodGet, ".", nil)
+	req, err := c.NewGZipRequest(ctx, http.MethodGet, ".")
 	if err != nil {
 		t.Fatalf("NewRequest returned unexpected error: %v", err)
 	}
 	if req.Body != nil {
 		t.Fatalf("constructed request contains a non-nil Body")
-	}
-}
-
-func TestNewGZipRequest_withUserData(t *testing.T) {
-	c := NewClient(nil)
-
-	requestPath := "foo"
-
-	inURL, outURL := requestPath, defaultBaseURL+requestPath
-	inBody, outBody := &testRequestBody{TestName: "l", TestData: "u"},
-		`{"testName":"l","testCounter":0,`+
-			`"testUserData":"u"}`+"\n"
-	req, _ := c.NewGZipRequest(ctx, http.MethodGet, inURL, inBody)
-
-	// test relative URL was expanded
-	if req.URL.String() != outURL {
-		t.Errorf("NewRequest(%v) URL = %v, expected %v", inURL, req.URL, outURL)
-	}
-
-	// test body was JSON encoded
-	body, _ := ioutil.ReadAll(req.Body)
-	if string(body) != outBody {
-		t.Errorf("NewRequest(%v)Body = %v, expected %v", inBody, string(body), outBody)
-	}
-
-	// test default user-agent is attached to the request
-	userAgent := req.Header.Get("User-Agent")
-	if c.UserAgent != userAgent {
-		t.Errorf("NewRequest() User-Agent = %v, expected %v", userAgent, c.UserAgent)
 	}
 }
 
@@ -219,7 +190,7 @@ func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
 		t.Fatalf("New() unexpected error: %v", err)
 	}
 
-	req, _ := c.NewGZipRequest(ctx, http.MethodGet, "/foo", nil)
+	req, _ := c.NewGZipRequest(ctx, http.MethodGet, "/foo")
 
 	expected := fmt.Sprintf("%s %s", ua, userAgent)
 	if got := req.Header.Get("User-Agent"); got != expected {
@@ -229,7 +200,7 @@ func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
 
 func TestNewGZipRequest_badURL(t *testing.T) {
 	c := NewClient(nil)
-	_, err := c.NewGZipRequest(ctx, http.MethodGet, ":/.", nil)
+	_, err := c.NewGZipRequest(ctx, http.MethodGet, ":/.")
 	testURLParseError(t, err)
 }
 
