@@ -68,6 +68,7 @@ type Client struct {
 	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
 	ProcessDisks                        ProcessDisksService
+	Logs                                LogsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -189,6 +190,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
+	c.Logs = &LogsServiceOp{Client: c}
 
 	return c
 }
