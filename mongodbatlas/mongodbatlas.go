@@ -42,7 +42,7 @@ type RequestDoer interface {
 type GZipRequestDoer interface {
 	Doer
 	Completer
-	NewGZipRequest(context.Context, string, string) (*http.Request, error)
+	NewGZipRequest(context.Context, string, string, interface{}) (*http.Request, error)
 }
 
 // Client manages communication with MongoDBAtlas v1.0 API
@@ -255,15 +255,9 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 		return nil, err
 	}
 
-	var buf io.ReadWriter
-	if body != nil {
-		buf = &bytes.Buffer{}
-		enc := json.NewEncoder(buf)
-		enc.SetEscapeHTML(false)
-		err := enc.Encode(body)
-		if err != nil {
-			return nil, err
-		}
+	buf, err := c.ReadBody(body)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest(method, u.String(), buf)
@@ -281,9 +275,25 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	return req, nil
 }
 
+// ReadBody returns an ReadWriter object containing the body for the http request
+func (c *Client) ReadBody(body interface{}) (io.ReadWriter, error) {
+	var buf io.ReadWriter
+	if body != nil {
+		buf = &bytes.Buffer{}
+		enc := json.NewEncoder(buf)
+		enc.SetEscapeHTML(false)
+		err := enc.Encode(body)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return buf, nil
+}
+
 // NewGZipRequest creates an API request that accepts gzip. A relative URL can be provided in urlStr, which will be resolved to the
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
-func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*http.Request, error) {
+func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
 		return nil, err
@@ -291,7 +301,12 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*ht
 
 	u := c.BaseURL.ResolveReference(rel)
 
-	req, err := http.NewRequest(method, u.String(), nil)
+	buf, err := c.ReadBody(body)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(method, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}
