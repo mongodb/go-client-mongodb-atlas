@@ -23,7 +23,7 @@ type IndexesServiceOp struct {
 
 var _ IndexesService = &IndexesServiceOp{}
 
-// IndexConfiguration represents current value of the metric that triggered the alert. Only present for alerts of type HOST_METRIC.
+// IndexConfiguration represents a new index requests for a given database and collection.
 type IndexConfiguration struct {
 	DB         string              `json:"db"`                  // DB the database of the index
 	Collection string              `json:"collection"`          // Collection the collection of the index
