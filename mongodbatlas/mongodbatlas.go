@@ -83,6 +83,9 @@ type Client struct {
 	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
 	ProcessDisks                        ProcessDisksService
+	ProcessDiskMeasurements             ProcessDiskMeasurementsService
+	ProcessDatabases                    ProcessDatabasesService
+	Indexes                             IndexesService
 	Logs                                LogsService
 
 	onRequestCompleted RequestCompletionCallback
@@ -205,6 +208,9 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
+	c.ProcessDiskMeasurements = &ProcessDiskMeasurementsServiceOp{Client: c}
+	c.ProcessDatabases = &ProcessDatabasesServiceOp{Client: c}
+	c.Indexes = &IndexesServiceOp{Client: c}
 	c.Logs = &LogsServiceOp{Client: c}
 
 	return c
@@ -367,6 +373,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 			}
 		}
 	}
+
 	return response, err
 }
 
