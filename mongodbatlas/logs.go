@@ -28,6 +28,11 @@ type LogsListOptions struct {
 	EndDate   string `url:"endDate,omitempty"`
 }
 
+// Download creates a file with the name specified in logName.
+func (s *LogsServiceOp) Download(logName string) (*os.File, error) {
+	return os.Create(logName)
+}
+
 // Get gets a compressed (.gz) log file that contains a range of log messages for a particular host in an Atlas cluster.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
 func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, opts *LogsListOptions) (*Response, error) {
@@ -56,7 +61,7 @@ func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string
 		return nil, err
 	}
 
-	out, err := os.Create(logName)
+	out, err := s.Download(logName)
 	if err != nil {
 		return nil, err
 	}
