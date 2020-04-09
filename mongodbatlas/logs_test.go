@@ -20,6 +20,6 @@ func TestLogs_Get(t *testing.T) {
 
 	_, err := client.Logs.Get(ctx, groupID, cluster, log, nil, nil)
 	if err != nil {
-		t.Fatalf("DatabaseUser.Delete returned error: %v", err)
+		t.Fatalf("Logs.Get returned error: %v", err)
 	}
 }
