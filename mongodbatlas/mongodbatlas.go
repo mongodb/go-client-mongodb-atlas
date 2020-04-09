@@ -262,11 +262,9 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	}
 	var buf io.Reader
 	if body != nil {
-		buf, err = c.newEncodedBody(body)
-	}
-
-	if err != nil {
-		return nil, err
+		if buf, err = c.newEncodedBody(body); err != nil {
+			return nil, err
+		}
 	}
 
 	req, err := http.NewRequest(method, u.String(), buf)
@@ -290,11 +288,7 @@ func (c *Client) newEncodedBody(body interface{}) (io.Reader, error) {
 	enc := json.NewEncoder(buf)
 	enc.SetEscapeHTML(false)
 	err := enc.Encode(body)
-	if err != nil {
-		return nil, err
-	}
-
-	return buf, nil
+	return buf, err
 }
 
 // NewGZipRequest creates an API request that accepts gzip. A relative URL can be provided in urlStr, which will be resolved to the
