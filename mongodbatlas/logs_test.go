@@ -18,7 +18,7 @@ func TestLogs_Get(t *testing.T) {
 		testMethod(t, r, http.MethodGet)
 	})
 
-	_, err := client.Logs.Get(ctx, groupID, cluster, log, nil)
+	_, err := client.Logs.Get(ctx, groupID, cluster, log, nil, nil)
 	if err != nil {
 		t.Fatalf("DatabaseUser.Delete returned error: %v", err)
 	}

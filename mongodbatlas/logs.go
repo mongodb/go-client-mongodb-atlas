@@ -3,8 +3,8 @@ package mongodbatlas
 import (
 	"context"
 	"fmt"
+	"io"
 	"net/http"
-	"os"
 )
 
 const logsPath = "groups/%s/clusters/%s/logs/%s"
@@ -13,7 +13,7 @@ const logsPath = "groups/%s/clusters/%s/logs/%s"
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
 type LogsService interface {
-	Get(context.Context, string, string, string, *LogsListOptions) (*Response, error)
+	Get(context.Context, string, string, string, io.Writer, *LogsListOptions) (*Response, error)
 }
 
 // LogsServiceOp handles communication with the Logs related methods of the
@@ -22,20 +22,27 @@ type LogsServiceOp struct {
 	Client GZipRequestDoer
 }
 
-// EventListOptions specifies the optional parameters to the Event List methods.
+// LogsListOptions specifies the optional parameters to the LogsService List method.
 type LogsListOptions struct {
 	StartDate string `url:"startDate,omitempty"`
 	EndDate   string `url:"endDate,omitempty"`
 }
 
 // Download creates a file with the name specified in logName.
-func (s *LogsServiceOp) Download(logName string) (*os.File, error) {
-	return os.Create(logName)
+func (s *LogsServiceOp) Download(ctx context.Context, req *http.Request, out io.Writer) (*Response, error) {
+
+	resp, err := s.Client.Do(ctx, req, out)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
 
-// Get gets a compressed (.gz) log file that contains a range of log messages for a particular host in an Atlas cluster.
+// Get gets a compressed (.gz) log file that contains a range of log messages for a particular host in an Atlas host.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
-func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, opts *LogsListOptions) (*Response, error) {
+func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, out io.Writer, opts *LogsListOptions) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
 	}
@@ -61,17 +68,5 @@ func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string
 		return nil, err
 	}
 
-	out, err := s.Download(logName)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.Client.Do(ctx, req, out)
-	defer out.Close()
-
-	if err != nil {
-		return resp, err
-	}
-
-	return resp, err
+	return s.Download(ctx, req, out)
 }
