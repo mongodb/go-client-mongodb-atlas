@@ -8,7 +8,7 @@ import (
 
 const processDatabaseMeasurementsPath = processesDatabasesPath + "/%s/measurements"
 
-// ProcessDatabaseMeasurementsService is an interface for interfacing with the Process Disk Measurements
+// ProcessDatabaseMeasurementsService is an interface for interfacing with the process database measurements
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-databases-measurements/
 type ProcessDatabaseMeasurementsService interface {
@@ -21,7 +21,7 @@ type ProcessDatabaseMeasurementsServiceOp struct {
 	Client RequestDoer
 }
 
-// ProcessDiskMeasurements represents a MongoDB Process Disk Measurements.
+// ProcessDiskMeasurements represents a MongoDB process database measurements.
 type ProcessDatabaseMeasurements struct {
 	*ProcessMeasurements
 	DatabaseName string `json:"databaseName"`
