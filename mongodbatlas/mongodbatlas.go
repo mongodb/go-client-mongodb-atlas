@@ -260,8 +260,11 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	if err != nil {
 		return nil, err
 	}
+	var buf io.Reader
+	if body != nil {
+		buf, err = c.newEncodedBody(body)
+	}
 
-	buf, err := c.serializeRequestBody(body)
 	if err != nil {
 		return nil, err
 	}
@@ -281,17 +284,14 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	return req, nil
 }
 
-// serializeRequestBody returns an ReadWriter object containing the body of the http request
-func (c *Client) serializeRequestBody(body interface{}) (io.ReadWriter, error) {
-	var buf io.ReadWriter
-	if body != nil {
-		buf = &bytes.Buffer{}
-		enc := json.NewEncoder(buf)
-		enc.SetEscapeHTML(false)
-		err := enc.Encode(body)
-		if err != nil {
-			return nil, err
-		}
+// newEncodedBody returns an ReadWriter object containing the body of the http request
+func (c *Client) newEncodedBody(body interface{}) (io.Reader, error) {
+	buf := &bytes.Buffer{}
+	enc := json.NewEncoder(buf)
+	enc.SetEscapeHTML(false)
+	err := enc.Encode(body)
+	if err != nil {
+		return nil, err
 	}
 
 	return buf, nil

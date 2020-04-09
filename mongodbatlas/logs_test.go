@@ -1,6 +1,7 @@
 package mongodbatlas
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 	"testing"
@@ -16,10 +17,13 @@ func TestLogs_Get(t *testing.T) {
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/logs/%s", groupID, cluster, log), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, "test")
 	})
 
-	_, err := client.Logs.Get(ctx, groupID, cluster, log, nil, nil)
-	if err != nil {
+	buf := new(bytes.Buffer)
+	_, err := client.Logs.Get(ctx, groupID, cluster, log, buf, nil)
+
+	if buf.String() != "test" {
 		t.Fatalf("Logs.Get returned error: %v", err)
 	}
 }

@@ -13,7 +13,7 @@ const logsPath = "groups/%s/clusters/%s/logs/%s"
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
 type LogsService interface {
-	Get(context.Context, string, string, string, io.Writer, *LogsListOptions) (*Response, error)
+	Get(context.Context, string, string, string, io.Writer, *DateRangetOptions) (*Response, error)
 }
 
 // LogsServiceOp handles communication with the Logs related methods of the
@@ -22,15 +22,16 @@ type LogsServiceOp struct {
 	Client GZipRequestDoer
 }
 
-// LogsListOptions specifies the optional parameters to the LogsService List method.
-type LogsListOptions struct {
+// DateRangetOptions specifies an optional date range query.
+type DateRangetOptions struct {
 	StartDate string `url:"startDate,omitempty"`
 	EndDate   string `url:"endDate,omitempty"`
 }
 
-// Get gets a compressed (.gz) log file that contains a range of log messages for a particular host in an Atlas host.
+// Get gets a compressed (.gz) log file that contains a range of log messages for a particular host.
+// Note: The input parameter out (io.Writer) is not closed by this function.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
-func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, out io.Writer, opts *LogsListOptions) (*Response, error) {
+func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, out io.Writer, opts *DateRangetOptions) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
 	}
