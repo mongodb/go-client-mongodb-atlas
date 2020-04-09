@@ -21,7 +21,7 @@ type ProcessDatabaseMeasurementsServiceOp struct {
 	Client RequestDoer
 }
 
-// ProcessDiskMeasurements represents a MongoDB process database measurements.
+// ProcessDatabaseMeasurements represents a MongoDB process database measurements.
 type ProcessDatabaseMeasurements struct {
 	*ProcessMeasurements
 	DatabaseName string `json:"databaseName"`
