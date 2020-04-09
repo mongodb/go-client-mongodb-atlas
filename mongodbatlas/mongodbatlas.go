@@ -85,6 +85,7 @@ type Client struct {
 	ProcessDisks                        ProcessDisksService
 	ProcessDiskMeasurements             ProcessDiskMeasurementsService
 	ProcessDatabases                    ProcessDatabasesService
+	ProcessDatabaseMeasurements         ProcessDatabaseMeasurementsService
 	Indexes                             IndexesService
 	Logs                                LogsService
 
@@ -210,6 +211,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
 	c.ProcessDiskMeasurements = &ProcessDiskMeasurementsServiceOp{Client: c}
 	c.ProcessDatabases = &ProcessDatabasesServiceOp{Client: c}
+	c.ProcessDatabaseMeasurements = &ProcessDatabaseMeasurementsServiceOp{Client: c}
 	c.Indexes = &IndexesServiceOp{Client: c}
 	c.Logs = &LogsServiceOp{Client: c}
 
