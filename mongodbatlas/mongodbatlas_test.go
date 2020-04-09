@@ -204,6 +204,32 @@ func TestNewGZipRequest_badURL(t *testing.T) {
 	testURLParseError(t, err)
 }
 
+func TestNewGZipRequest(t *testing.T) {
+	c := NewClient(nil)
+
+	requestPath := "foo"
+
+	inURL, outURL := requestPath, defaultBaseURL+requestPath
+	req, _ := c.NewGZipRequest(ctx, http.MethodGet, inURL)
+
+	// test relative URL was expanded
+	if req.URL.String() != outURL {
+		t.Errorf("NewGZipRequest(%v) URL = %v, expected %v", inURL, req.URL, outURL)
+	}
+
+	// test accept content type is correct
+	accept := req.Header.Get("Accept")
+	if gzipMediaType != accept {
+		t.Errorf("NewGZipRequest() Accept = %v, expected %v", accept, gzipMediaType)
+	}
+
+	// test default user-agent is attached to the request
+	userAgent := req.Header.Get("User-Agent")
+	if c.UserAgent != userAgent {
+		t.Errorf("NewGZipRequest() User-Agent = %v, expected %v", userAgent, c.UserAgent)
+	}
+}
+
 func TestDo(t *testing.T) {
 	setup()
 	defer teardown()
