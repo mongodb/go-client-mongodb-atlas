@@ -2,6 +2,7 @@ package mongodbatlas
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -102,6 +103,23 @@ type testRequestBody struct {
 	TestData    string `json:"testUserData"`
 }
 
+// If a nil body is passed to mongodbatlas.NewRequest, make sure that nil is also
+// passed to http.NewRequest. In most cases, passing an io.Reader that returns
+// no content is fine, since there is no difference between an HTTP request
+// body that is an empty string versus one that is not set at all. However in
+// certain cases, intermediate systems may treat these differently resulting in
+// subtle errors.
+func TestNewRequest_emptyBody(t *testing.T) {
+	c := NewClient(nil)
+	req, err := c.NewRequest(ctx, http.MethodGet, ".", nil)
+	if err != nil {
+		t.Fatalf("NewRequest returned unexpected error: %v", err)
+	}
+	if req.Body != nil {
+		t.Fatalf("constructed request contains a non-nil Body")
+	}
+}
+
 func TestNewRequest_withUserData(t *testing.T) {
 	c := NewClient(nil)
 
@@ -150,6 +168,65 @@ func TestNewRequest_withCustomUserAgent(t *testing.T) {
 	expected := fmt.Sprintf("%s %s", ua, userAgent)
 	if got := req.Header.Get("User-Agent"); got != expected {
 		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
+	}
+}
+
+func TestNewGZipRequest_emptyBody(t *testing.T) {
+	c := NewClient(nil)
+	req, err := c.NewGZipRequest(ctx, http.MethodGet, ".")
+	if err != nil {
+		t.Fatalf("NewRequest returned unexpected error: %v", err)
+	}
+	if req.Body != nil {
+		t.Fatalf("constructed request contains a non-nil Body")
+	}
+}
+
+func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
+	ua := "testing/0.0.1"
+	c, err := New(nil, SetUserAgent(ua))
+
+	if err != nil {
+		t.Fatalf("New() unexpected error: %v", err)
+	}
+
+	req, _ := c.NewGZipRequest(ctx, http.MethodGet, "/foo")
+
+	expected := fmt.Sprintf("%s %s", ua, userAgent)
+	if got := req.Header.Get("User-Agent"); got != expected {
+		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
+	}
+}
+
+func TestNewGZipRequest_badURL(t *testing.T) {
+	c := NewClient(nil)
+	_, err := c.NewGZipRequest(ctx, http.MethodGet, ":/.")
+	testURLParseError(t, err)
+}
+
+func TestNewGZipRequest(t *testing.T) {
+	c := NewClient(nil)
+
+	requestPath := "foo"
+
+	inURL, outURL := requestPath, defaultBaseURL+requestPath
+	req, _ := c.NewGZipRequest(ctx, http.MethodGet, inURL)
+
+	// test relative URL was expanded
+	if req.URL.String() != outURL {
+		t.Errorf("NewGZipRequest(%v) URL = %v, expected %v", inURL, req.URL, outURL)
+	}
+
+	// test accept content type is correct
+	accept := req.Header.Get("Accept")
+	if gzipMediaType != accept {
+		t.Errorf("NewGZipRequest() Accept = %v, expected %v", accept, gzipMediaType)
+	}
+
+	// test default user-agent is attached to the request
+	userAgent := req.Header.Get("User-Agent")
+	if c.UserAgent != userAgent {
+		t.Errorf("NewGZipRequest() User-Agent = %v, expected %v", userAgent, c.UserAgent)
 	}
 }
 
@@ -215,6 +292,23 @@ func TestDo_redirectLoop(t *testing.T) {
 	}
 	if err, ok := err.(*url.Error); !ok {
 		t.Errorf("Expected a URL error; got %#v.", err)
+	}
+}
+
+func TestDo_noContent(t *testing.T) {
+	setup()
+	defer teardown()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	})
+
+	var body json.RawMessage
+
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
+	_, err := client.Do(context.Background(), req, &body)
+	if err != nil {
+		t.Fatalf("Do returned unexpected error: %v", err)
 	}
 }
 
