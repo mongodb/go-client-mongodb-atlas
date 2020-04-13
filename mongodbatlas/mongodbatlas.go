@@ -21,7 +21,7 @@ const (
 	libraryVersion = "0.1"
 	defaultBaseURL = "https://cloud.mongodb.com/api/atlas/v1.0/"
 	userAgent      = "go-mongodbatlas" + libraryVersion
-	mediaType      = "application/json"
+	jsonMediaType  = "application/json"
 	gzipMediaType  = "application/gzip"
 )
 
@@ -85,6 +85,7 @@ type Client struct {
 	ProcessDisks                        ProcessDisksService
 	ProcessDiskMeasurements             ProcessDiskMeasurementsService
 	ProcessDatabases                    ProcessDatabasesService
+	ProcessDatabaseMeasurements         ProcessDatabaseMeasurementsService
 	Indexes                             IndexesService
 	Logs                                LogsService
 
@@ -210,6 +211,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ProcessDisks = &ProcessDisksServiceOp{Client: c}
 	c.ProcessDiskMeasurements = &ProcessDiskMeasurementsServiceOp{Client: c}
 	c.ProcessDatabases = &ProcessDatabasesServiceOp{Client: c}
+	c.ProcessDatabaseMeasurements = &ProcessDatabaseMeasurementsServiceOp{Client: c}
 	c.Indexes = &IndexesServiceOp{Client: c}
 	c.Logs = &LogsServiceOp{Client: c}
 
@@ -273,9 +275,9 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	}
 
 	if body != nil {
-		req.Header.Set("Content-Type", mediaType)
+		req.Header.Set("Content-Type", jsonMediaType)
 	}
-	req.Header.Add("Accept", mediaType)
+	req.Header.Add("Accept", jsonMediaType)
 	if c.UserAgent != "" {
 		req.Header.Set("User-Agent", c.UserAgent)
 	}

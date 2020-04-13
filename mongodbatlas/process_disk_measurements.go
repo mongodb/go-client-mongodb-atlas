@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-const ProcessDiskMeasurementsPath = processesDisksPath + "/%s/measurements"
+const processDiskMeasurementsPath = processesDisksPath + "/%s/measurements"
 
 // ProcessDiskMeasurementsService is an interface for interfacing with the Process Disk Measurements
 // endpoints of the MongoDB Atlas API.
@@ -29,7 +29,7 @@ type ProcessDiskMeasurements struct {
 
 var _ ProcessDiskMeasurementsService = &ProcessDiskMeasurementsServiceOp{}
 
-// Get gets measurements for a specific Atlas MongoDB disk.
+// List lists measurements for a specific Atlas MongoDB disk.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-disks-measurements/#get-measurements-of-a-disk-for-a-mongodb-process
 func (s *ProcessDiskMeasurementsServiceOp) List(ctx context.Context, groupID, hostName string, port int, diskName string, opts *ProcessMeasurementListOptions) (*ProcessDiskMeasurements, *Response, error) {
 
@@ -45,7 +45,7 @@ func (s *ProcessDiskMeasurementsServiceOp) List(ctx context.Context, groupID, ho
 		return nil, nil, NewArgError("diskName", "must be set")
 	}
 
-	basePath := fmt.Sprintf(ProcessDiskMeasurementsPath, groupID, hostName, port, diskName)
+	basePath := fmt.Sprintf(processDiskMeasurementsPath, groupID, hostName, port, diskName)
 
 	//Add query params from listOptions
 	path, err := setListOptions(basePath, opts)

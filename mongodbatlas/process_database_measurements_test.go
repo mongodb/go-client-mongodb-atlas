@@ -8,16 +8,16 @@ import (
 	"github.com/go-test/deep"
 )
 
-func TestProcessDiskMeasurements_List(t *testing.T) {
+func TestProcessDatabaseMeasurements_List(t *testing.T) {
 	setup()
 	defer teardown()
 
 	groups := "12345678"
 	host := "shard-00-00.mongodb.net"
 	port := 27017
-	disk := "disk"
+	database := "database"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/disks/%s/measurements", groups, host, port, disk), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/databases/%s/measurements", groups, host, port, database), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				  "end" : "2017-08-22T20:31:14Z",
@@ -25,7 +25,7 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 				  "groupId" : "12345678",
 				  "hostId" : "shard-00-00.mongodb.net:27017",
 				  "links" : [ {
-					"href" : "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/measurements?granularity=PT1M&period=PT1M",
+					"href" : "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/dataabses/database/measurements?granularity=PT1M&period=PT1M",
 					"rel" : "self"
 				  }, {
 					"href" : "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017",
@@ -42,7 +42,7 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 					"name" : "DISK_PARTITION_IOPS_READ",
 					"units" : "SCALAR_PER_SECOND"
 				  }],
-                  "partitionName":"xvdb",
+                  "databaseName":"database",
 				  "processId" : "shard-00-00.mongodb.net:27017",
 				  "start" : "2017-08-22T20:30:45Z"
 				}`)
@@ -53,12 +53,12 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 		Period:      "PT1M",
 	}
 
-	measurements, _, err := client.ProcessDiskMeasurements.List(ctx, groups, host, port, disk, opts)
+	measurements, _, err := client.ProcessDatabaseMeasurements.List(ctx, groups, host, port, database, opts)
 	if err != nil {
-		t.Fatalf("ProcessDiskMeasurements.List returned error: %v", err)
+		t.Fatalf("ProcessDatabaseMeasurements.List returned error: %v", err)
 	}
 
-	expected := &ProcessDiskMeasurements{
+	expected := &ProcessDatabaseMeasurements{
 		ProcessMeasurements: &ProcessMeasurements{
 			End:         "2017-08-22T20:31:14Z",
 			Granularity: "PT1M",
@@ -67,7 +67,7 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 			Links: []*Link{
 				{
 					Rel:  "self",
-					Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/measurements?granularity=PT1M&period=PT1M",
+					Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/dataabses/database/measurements?granularity=PT1M&period=PT1M",
 				},
 				{
 					Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017",
@@ -93,7 +93,7 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 			ProcessID: "shard-00-00.mongodb.net:27017",
 			Start:     "2017-08-22T20:30:45Z",
 		},
-		PartitionName: "xvdb",
+		DatabaseName: "database",
 	}
 
 	if diff := deep.Equal(measurements, expected); diff != nil {
