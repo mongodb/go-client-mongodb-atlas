@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/mongodb/go-client-mongodb-atlas/tree/HEAD)
-
-[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...HEAD)
+## [v0.2.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.2.0) (2020-04-20)
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...v0.2.0)
 
 **Merged pull requests:**
 
