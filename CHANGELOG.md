@@ -1,3 +1,44 @@
+# Change Log
+
+## [Unreleased](https://github.com/mongodb/go-client-mongodb-atlas/tree/HEAD)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...HEAD)
+
+**Merged pull requests:**
+
+- Add database measurements Endpoint [\#80](https://github.com/mongodb/go-client-mongodb-atlas/pull/80) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-60178: Implement logs API, Atlas [\#79](https://github.com/mongodb/go-client-mongodb-atlas/pull/79) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-60177: Implement Get Measurements of a Disk for a MongoDB Process, Atlas [\#78](https://github.com/mongodb/go-client-mongodb-atlas/pull/78) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Connection strings private [\#77](https://github.com/mongodb/go-client-mongodb-atlas/pull/77) ([coderGo93](https://github.com/coderGo93))
+- CLOUDP-60176: Implement Get Available Databases for a MongoDB Process [\#76](https://github.com/mongodb/go-client-mongodb-atlas/pull/76) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-60028: Implement index creation in atlas client [\#75](https://github.com/mongodb/go-client-mongodb-atlas/pull/75) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-60022: List available disks for a process, Atlas [\#74](https://github.com/mongodb/go-client-mongodb-atlas/pull/74) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-59968: implement list measurements on atlas go client [\#73](https://github.com/mongodb/go-client-mongodb-atlas/pull/73) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-57848: Implement events resource in the atlas go client [\#72](https://github.com/mongodb/go-client-mongodb-atlas/pull/72) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Add get processes in a group [\#71](https://github.com/mongodb/go-client-mongodb-atlas/pull/71) ([mmb](https://github.com/mmb))
+- CLOUDP-59516: List available matchers for alerts in the Atlas client [\#70](https://github.com/mongodb/go-client-mongodb-atlas/pull/70) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-59435: Update alert list to use status in Atlas [\#69](https://github.com/mongodb/go-client-mongodb-atlas/pull/69) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Connection strings [\#68](https://github.com/mongodb/go-client-mongodb-atlas/pull/68) ([coderGo93](https://github.com/coderGo93))
+- Cloud Provider Snapshot Backup Policy [\#67](https://github.com/mongodb/go-client-mongodb-atlas/pull/67) ([PacoDw](https://github.com/PacoDw))
+- fix: added field roles in notifications for alert configurations, add… [\#66](https://github.com/mongodb/go-client-mongodb-atlas/pull/66) ([coderGo93](https://github.com/coderGo93))
+- CLOUDP-58634: Add support for checkpoints in the Atlas client [\#65](https://github.com/mongodb/go-client-mongodb-atlas/pull/65) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-58969: Create restore job returns a list and not a single job [\#64](https://github.com/mongodb/go-client-mongodb-atlas/pull/64) ([gssbzn](https://github.com/gssbzn))
+- Improve Travis [\#63](https://github.com/mongodb/go-client-mongodb-atlas/pull/63) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-58633: Add Restore Jobs support to atlas client [\#62](https://github.com/mongodb/go-client-mongodb-atlas/pull/62) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-58632: Add Continuous Backup Snapshots support for atlas go client [\#60](https://github.com/mongodb/go-client-mongodb-atlas/pull/60) ([gssbzn](https://github.com/gssbzn))
+- Make the ServiceOp depend on an interface [\#59](https://github.com/mongodb/go-client-mongodb-atlas/pull/59) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-57632: Implementing Alerts resource [\#58](https://github.com/mongodb/go-client-mongodb-atlas/pull/58) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Fix incorrect json tag for groupId [\#56](https://github.com/mongodb/go-client-mongodb-atlas/pull/56) ([gssbzn](https://github.com/gssbzn))
+- fix Database Users: added the reflect missing dependency [\#55](https://github.com/mongodb/go-client-mongodb-atlas/pull/55) ([PacoDw](https://github.com/PacoDw))
+- x509AuthDBUsers: Fixed the id type [\#54](https://github.com/mongodb/go-client-mongodb-atlas/pull/54) ([PacoDw](https://github.com/PacoDw))
+- feat: add pitEnabled attribute un clusters service [\#53](https://github.com/mongodb/go-client-mongodb-atlas/pull/53) ([marinsalinas](https://github.com/marinsalinas))
+- chore: add changelog file for 0.1.3 version [\#52](https://github.com/mongodb/go-client-mongodb-atlas/pull/52) ([marinsalinas](https://github.com/marinsalinas))
+- X509 auth db users [\#51](https://github.com/mongodb/go-client-mongodb-atlas/pull/51) ([PacoDw](https://github.com/PacoDw))
+- fix license [\#50](https://github.com/mongodb/go-client-mongodb-atlas/pull/50) ([themantissa](https://github.com/themantissa))
+- Database Users [\#49](https://github.com/mongodb/go-client-mongodb-atlas/pull/49) ([PacoDw](https://github.com/PacoDw))
+- Private Endpoints [\#48](https://github.com/mongodb/go-client-mongodb-atlas/pull/48) ([PacoDw](https://github.com/PacoDw))
+- Simplify tests [\#46](https://github.com/mongodb/go-client-mongodb-atlas/pull/46) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.1.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.3) (2020-01-24)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.2...v0.1.3)
 
