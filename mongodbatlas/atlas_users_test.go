@@ -10,7 +10,7 @@ import (
 )
 
 func TestAtlasUsers_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/users", func(w http.ResponseWriter, r *http.Request) {
@@ -128,7 +128,7 @@ func TestAtlasUsers_List(t *testing.T) {
 }
 
 func TestAtlasUsers_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	userID := "5af1c27a0a7fa48c76d3a761"
@@ -201,7 +201,7 @@ func TestAtlasUsers_Get(t *testing.T) {
 }
 
 func TestAtlasUsers_GetByName(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	username := "john.doe@example.com"
@@ -274,7 +274,7 @@ func TestAtlasUsers_GetByName(t *testing.T) {
 }
 
 func TestAtlasUsers_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	createRequest := &AtlasUser{

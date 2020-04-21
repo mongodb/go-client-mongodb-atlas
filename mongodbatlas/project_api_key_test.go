@@ -10,7 +10,7 @@ import (
 )
 
 func TestProjectAPIKeys_ListAPIKeys(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
@@ -100,7 +100,7 @@ func TestProjectAPIKeys_ListAPIKeys(t *testing.T) {
 }
 
 func TestProjectAPIKeys_Assign(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "5953c5f380eef53887615f9a"
@@ -117,7 +117,7 @@ func TestProjectAPIKeys_Assign(t *testing.T) {
 }
 
 func TestProjectAPIKeys_Unassign(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "5953c5f380eef53887615f9a"
@@ -134,7 +134,7 @@ func TestProjectAPIKeys_Unassign(t *testing.T) {
 }
 
 func TestProjectAPIKeys_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"

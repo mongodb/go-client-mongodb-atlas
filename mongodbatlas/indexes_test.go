@@ -10,7 +10,7 @@ import (
 )
 
 func TestIndexesServiceOp_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

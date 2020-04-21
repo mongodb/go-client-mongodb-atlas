@@ -10,7 +10,7 @@ import (
 )
 
 func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -174,7 +174,7 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 }
 
 func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -259,7 +259,7 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 }
 
 func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -366,7 +366,7 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 }
 
 func TestCloudProviderSnapshotRestoreJobs_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{

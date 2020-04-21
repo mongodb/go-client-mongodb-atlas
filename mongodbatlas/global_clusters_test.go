@@ -10,7 +10,7 @@ import (
 )
 
 func TestGlobalClusters_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -84,7 +84,7 @@ func TestGlobalClusters_Get(t *testing.T) {
 }
 
 func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -174,7 +174,7 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 }
 
 func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -267,7 +267,7 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 }
 
 func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -329,7 +329,7 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 }
 
 func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

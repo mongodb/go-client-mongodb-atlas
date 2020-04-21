@@ -12,7 +12,7 @@ import (
 )
 
 func TestPrivateEndpoint_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -67,7 +67,7 @@ func TestPrivateEndpoint_Create(t *testing.T) {
 }
 
 func TestPrivateEndpoints_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -103,7 +103,7 @@ func TestPrivateEndpoints_Get(t *testing.T) {
 }
 
 func TestPrivateEndpoints_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -156,7 +156,7 @@ func TestPrivateEndpoints_List(t *testing.T) {
 }
 
 func TestPrivateEndpoints_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -173,7 +173,7 @@ func TestPrivateEndpoints_Delete(t *testing.T) {
 }
 
 func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -220,7 +220,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
 }
 
 func TestPrivateEndpoints_GetOneInterfaceEndpoint(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -253,7 +253,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpoint(t *testing.T) {
 }
 
 func TestPrivateEndpoints_DeleteOneInterfaceEndpoint(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

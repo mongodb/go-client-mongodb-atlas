@@ -10,7 +10,7 @@ import (
 )
 
 func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -94,7 +94,7 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 }
 
 func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -163,7 +163,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 }
 
 func TestCloudProviderSnapshots_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{
@@ -249,7 +249,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 }
 
 func TestCloudProviderSnapshots_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	requestParameters := &SnapshotReqPathParameters{

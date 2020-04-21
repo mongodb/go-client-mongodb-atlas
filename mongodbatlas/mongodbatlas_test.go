@@ -9,32 +9,53 @@ import (
 	"net/http/httptest"
 	"net/http/httputil"
 	"net/url"
+	"os"
 	"reflect"
 	"strings"
 	"testing"
 )
 
 var (
-	mux *http.ServeMux
-
 	ctx = context.TODO()
-
-	client *Client
-
-	server *httptest.Server
 )
 
-func setup() {
+const (
+	// baseURLPath is a non-empty Client.BaseURL path to use during tests,
+	// to ensure relative URLs are used for all endpoints.
+	baseURLPath = "/api-v1"
+)
+
+// setup sets up a test HTTP server along with a github.Client that is
+// configured to talk to that test server. Tests should register handlers on
+// mux which provide mock responses for the API method being tested.
+func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown func()) {
+	// mux is the HTTP request multiplexer used with the test server.
 	mux = http.NewServeMux()
-	server = httptest.NewServer(mux)
 
+	// We want to ensure that tests catch mistakes where the endpoint URL is
+	// specified as absolute rather than relative. It only makes a difference
+	// when there's a non-empty base URL path. So, use that. See issue #752.
+	apiHandler := http.NewServeMux()
+	apiHandler.Handle(baseURLPath+"/", http.StripPrefix(baseURLPath, mux))
+	apiHandler.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		fmt.Fprintln(os.Stderr, "FAIL: Client.BaseURL path prefix is not preserved in the request URL:")
+		fmt.Fprintln(os.Stderr)
+		fmt.Fprintln(os.Stderr, "\t"+req.URL.String())
+		fmt.Fprintln(os.Stderr)
+		fmt.Fprintln(os.Stderr, "\tDid you accidentally use an absolute endpoint URL rather than relative?")
+		http.Error(w, "Client.BaseURL path prefix is not preserved in the request URL.", http.StatusInternalServerError)
+	})
+
+	// server is a test HTTP server used to provide mock API responses.
+	server := httptest.NewServer(apiHandler)
+
+	// client is the GitHub client being tested and is
+	// configured to use test server.
 	client = NewClient(nil)
-	url, _ := url.Parse(server.URL)
+	url, _ := url.Parse(server.URL + baseURLPath + "/")
 	client.BaseURL = url
-}
 
-func teardown() {
-	server.Close()
+	return client, mux, server.URL, server.Close
 }
 
 func testMethod(t *testing.T, r *http.Request, expected string) {
@@ -231,7 +252,7 @@ func TestNewGZipRequest(t *testing.T) {
 }
 
 func TestDo(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	type foo struct {
@@ -245,7 +266,7 @@ func TestDo(t *testing.T) {
 		fmt.Fprint(w, `{"A":"a"}`)
 	})
 
-	req, _ := client.NewRequest(ctx, http.MethodGet, "/", nil)
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
 	body := new(foo)
 	_, err := client.Do(context.Background(), req, body)
 	if err != nil {
@@ -259,14 +280,14 @@ func TestDo(t *testing.T) {
 }
 
 func TestDo_httpError(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad Request", 400)
 	})
 
-	req, _ := client.NewRequest(ctx, http.MethodGet, "/", nil)
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
 	_, err := client.Do(context.Background(), req, nil)
 
 	if err == nil {
@@ -277,14 +298,14 @@ func TestDo_httpError(t *testing.T) {
 // Test handling of an error caused by the internal http Client's Do()
 // function.
 func TestDo_redirectLoop(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "/", http.StatusFound)
+		http.Redirect(w, r, baseURLPath, http.StatusFound)
 	})
 
-	req, _ := client.NewRequest(ctx, http.MethodGet, "/", nil)
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
 	_, err := client.Do(context.Background(), req, nil)
 
 	if err == nil {
@@ -296,7 +317,7 @@ func TestDo_redirectLoop(t *testing.T) {
 }
 
 func TestDo_noContent(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -366,7 +387,7 @@ func TestErrorResponse_Error(t *testing.T) {
 }
 
 func TestDo_completion_callback(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	type foo struct {
@@ -380,7 +401,7 @@ func TestDo_completion_callback(t *testing.T) {
 		fmt.Fprint(w, `{"A":"a"}`)
 	})
 
-	req, _ := client.NewRequest(ctx, http.MethodGet, "/", nil)
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
 	body := new(foo)
 	var completedReq *http.Request
 	var completedResp string
