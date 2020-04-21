@@ -18,7 +18,7 @@ go get github.com/mongodb/go-client-mongodb-atlas
 import "github.com/mongodb/go-client-mongodb-atlas/mongodbatlas"
 ```
 
-## Authentication 
+## Authentication
 
 The Atlas API uses [HTTP Digest Authentication](https://docs.atlas.mongodb.com/api/#api-authentication). Provide your Atlas PUBLIC_KEY as the username and PRIVATE_KEY as the password as part of the HTTP request. See Programmatic API Keys docs for more detailed information: https://docs.atlas.mongodb.com/configure-api-access/#atlas-prog-api-key.
 
@@ -28,7 +28,7 @@ https://github.com/Sectorbob/mlab-ns2/gae/ns/digest
 
 ## Example Usage
 
-```go 
+```go
 package main
 
 import (
@@ -37,7 +37,7 @@ import (
 	"log"
 	"os"
 
-    "github.com/Sectorbob/mlab-ns2/gae/ns/digest"
+	"github.com/Sectorbob/mlab-ns2/gae/ns/digest"
 	"github.com/mongodb/go-client-mongodb-atlas/mongodbatlas"
 )
 
@@ -82,17 +82,22 @@ func main() {
 ```
 
 ## Versioning
+
 Each version of the client is tagged and the version is updated accordingly.
 
 To see the list of past versions, run `git tag`.
 
+## Roadmap
 
-## Development and contribution
+This library is being initially developed for [mongocli](https://github.com/mongodb/mongocli),
+[Atlas Terraform Provider](https://github.com/terraform-providers/terraform-provider-mongodbatlas), [Atlas Vault Plugin](https://github.com/hashicorp/vault-plugin-secrets-mongodbatlas), and [Atlas Cloudformation Provider](https://github.com/mongodb/mongodbatlas-cloudformation-resources)
+so API methods will likely be implemented in the order that they are
+needed by those those projects.
 
-Feel free to open an Issue or PR! Our contribution guidelines are a WIP but generally follow the official [Terraform Guidelines](https://www.terraform.io/docs/extend/community/contributing.html).
+## Contributing
 
-```
-git clone git@github.com:mongodb/go-client-mongodb-atlas.git
-make tools
-make check
-```
+See our [CONTRIBUTING.md](CONTRIBUTING.md) Guide.
+
+## License
+
+`go-client-mongodb-atlas` is released under the Apache 2.0 license. See [LICENSE](LICENSE)
