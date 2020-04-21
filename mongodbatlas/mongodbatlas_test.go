@@ -25,7 +25,7 @@ const (
 	baseURLPath = "/api-v1"
 )
 
-// setup sets up a test HTTP server along with a github.Client that is
+// setup sets up a test HTTP server along with a mongodbatlas.Client that is
 // configured to talk to that test server. Tests should register handlers on
 // mux which provide mock responses for the API method being tested.
 func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown func()) {
@@ -34,7 +34,7 @@ func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown fun
 
 	// We want to ensure that tests catch mistakes where the endpoint URL is
 	// specified as absolute rather than relative. It only makes a difference
-	// when there's a non-empty base URL path. So, use that. See issue #752.
+	// when there's a non-empty base URL path. So, use that.
 	apiHandler := http.NewServeMux()
 	apiHandler.Handle(baseURLPath+"/", http.StripPrefix(baseURLPath, mux))
 	apiHandler.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
@@ -189,6 +189,29 @@ func TestNewRequest_withCustomUserAgent(t *testing.T) {
 	expected := fmt.Sprintf("%s %s", ua, userAgent)
 	if got := req.Header.Get("User-Agent"); got != expected {
 		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
+	}
+}
+
+func TestNewRequest_errorForNoTrailingSlash(t *testing.T) {
+	tests := []struct {
+		rawurl    string
+		wantError bool
+	}{
+		{rawurl: "https://example.com/api/v1", wantError: true},
+		{rawurl: "https://example.com/api/v1/", wantError: false},
+	}
+	c := NewClient(nil)
+	for _, test := range tests {
+		u, err := url.Parse(test.rawurl)
+		if err != nil {
+			t.Fatalf("url.Parse returned unexpected error: %v.", err)
+		}
+		c.BaseURL = u
+		if _, err := c.NewRequest(ctx, http.MethodGet, "test", nil); test.wantError && err == nil {
+			t.Fatalf("Expected error to be returned.")
+		} else if !test.wantError && err != nil {
+			t.Fatalf("NewRequest returned unexpected error: %v.", err)
+		}
 	}
 }
 
