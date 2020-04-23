@@ -51,10 +51,10 @@ type DataPoints struct {
 // ProcessMeasurementListOptions contains the list of options for Process Measurements.
 type ProcessMeasurementListOptions struct {
 	*ListOptions
-	Granularity string `url:"granularity"`
-	Period      string `url:"period,omitempty"`
-	Start       string `url:"start,omitempty"`
-	End         string `url:"end,omitempty"`
+	Granularity string   `url:"granularity"`
+	Period      string   `url:"period,omitempty"`
+	Start       string   `url:"start,omitempty"`
+	End         string   `url:"end,omitempty"`
 	M           []string `url:"m,omitempty"`
 }
 
