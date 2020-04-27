@@ -129,9 +129,9 @@ func TestClusters_ListClusters(t *testing.T) {
 	}
 
 	cluster1 := Cluster{
-		AutoScaling:   AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
 		BackupEnabled: pointy.Bool(true),
-		BiConnector:   BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
 		ConnectionStrings: &ConnectionStrings{
 			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
@@ -263,9 +263,9 @@ func TestClusters_Create(t *testing.T) {
 
 	createRequest := &Cluster{
 		ID:                       "1",
-		AutoScaling:              AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling:              &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
 		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
 		DiskSizeGB:               pointy.Float64(160),
 		EncryptionAtRestProvider: "AWS",
@@ -423,9 +423,9 @@ func TestClusters_Update(t *testing.T) {
 
 	updateRequest := &Cluster{
 		ID:                       "1",
-		AutoScaling:              AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling:              &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
 		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
 		DiskSizeGB:               pointy.Float64(160),
 		EncryptionAtRestProvider: "AWS",
@@ -772,9 +772,9 @@ func TestClusters_Get(t *testing.T) {
 
 	expected := &Cluster{
 		ID:            "1",
-		AutoScaling:   AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
 		BackupEnabled: pointy.Bool(true),
-		BiConnector:   BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
 		ConnectionStrings: &ConnectionStrings{
 			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
