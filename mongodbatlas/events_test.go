@@ -232,9 +232,7 @@ func TestEvents_ListProjectEvents(t *testing.T) {
 					}`)
 	})
 
-	opts := &ListOptions{}
-
-	cluster, _, err := client.Events.ListProjectEvents(ctx, groupID, opts)
+	cluster, _, err := client.Events.ListProjectEvents(ctx, groupID, nil)
 	if err != nil {
 		t.Fatalf("Events.ListOrganizationEvents returned error: %v", err)
 	}
