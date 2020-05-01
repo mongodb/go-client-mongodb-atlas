@@ -12,7 +12,7 @@ import (
 )
 
 func TestContinuousSnapshots_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6c7498dg87d9e6526801572b"
@@ -121,7 +121,7 @@ func TestContinuousSnapshots_List(t *testing.T) {
 }
 
 func TestContinuousSnapshots_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6c7498dg87d9e6526801572b"
@@ -212,7 +212,7 @@ func TestContinuousSnapshots_Get(t *testing.T) {
 }
 
 func TestContinuousSnapshots_ChangeExpiry(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6c7498dg87d9e6526801572b"
@@ -325,7 +325,7 @@ func TestContinuousSnapshots_ChangeExpiry(t *testing.T) {
 }
 
 func TestContinuousSnapshots_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6c7498dg87d9e6526801572b"

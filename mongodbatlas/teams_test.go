@@ -10,7 +10,7 @@ import (
 )
 
 func TestTeams_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/orgs/1/teams", func(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +61,7 @@ func TestTeams_List(t *testing.T) {
 }
 
 func TestTeams_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -97,7 +97,7 @@ func TestTeams_Get(t *testing.T) {
 }
 
 func TestTeams_GetOneTeamByName(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -133,7 +133,7 @@ func TestTeams_GetOneTeamByName(t *testing.T) {
 }
 
 func TestProject_GetTeamUsersAssigned(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "5a0a1e7e0f2912c554080adc"
@@ -214,7 +214,7 @@ func TestProject_GetTeamUsersAssigned(t *testing.T) {
 }
 
 func TestTeams_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -276,7 +276,7 @@ func TestTeams_Create(t *testing.T) {
 }
 
 func TestTeams_Rename(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -328,7 +328,7 @@ func TestTeams_Rename(t *testing.T) {
 }
 
 func TestTeams_UpdateTeamRoles(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -404,7 +404,7 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 }
 
 func TestTeams_AddUsersToTeam(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -504,7 +504,7 @@ func TestTeams_AddUsersToTeam(t *testing.T) {
 }
 
 func TestTeams_RemoveUserToTeam(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -523,7 +523,7 @@ func TestTeams_RemoveUserToTeam(t *testing.T) {
 }
 
 func TestTeams_RemoveTeamFromOrganization(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -540,7 +540,7 @@ func TestTeams_RemoveTeamFromOrganization(t *testing.T) {
 }
 
 func TestTeams_RemoveTeamFromProject(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

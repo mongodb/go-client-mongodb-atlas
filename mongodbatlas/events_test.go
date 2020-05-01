@@ -9,7 +9,7 @@ import (
 )
 
 func TestEvents_ListOrganizationEvents(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "5b478b3afc4625789ce616a3"
@@ -122,7 +122,7 @@ func TestEvents_ListOrganizationEvents(t *testing.T) {
 }
 
 func TestEvents_GetOrganizationEvent(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "5b478b3afc4625789ce616a3"
@@ -178,7 +178,7 @@ func TestEvents_GetOrganizationEvent(t *testing.T) {
 }
 
 func TestEvents_ListProjectEvents(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "5b43d04087d9d6357de591a2"
@@ -289,7 +289,7 @@ func TestEvents_ListProjectEvents(t *testing.T) {
 }
 
 func TestEvents_GetProjectEvent(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "5b478b3afc4625789ce616a3"

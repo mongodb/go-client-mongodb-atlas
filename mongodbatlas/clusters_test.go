@@ -11,7 +11,7 @@ import (
 )
 
 func TestClusters_ListClusters(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
@@ -178,7 +178,7 @@ func TestClusters_ListClusters(t *testing.T) {
 }
 
 func TestClusters_ListClustersMultiplePages(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
@@ -211,7 +211,7 @@ func TestClusters_ListClustersMultiplePages(t *testing.T) {
 }
 
 func TestClusters_RetrievePageByNumber(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -256,7 +256,7 @@ func TestClusters_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestClusters_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -415,7 +415,7 @@ func TestClusters_Create(t *testing.T) {
 }
 
 func TestClusters_Update(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -569,7 +569,7 @@ func TestClusters_Update(t *testing.T) {
 }
 
 func TestClusters_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -586,7 +586,7 @@ func TestClusters_Delete(t *testing.T) {
 }
 
 func TestClusters_UpdateProcessArgs(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -657,7 +657,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 }
 
 func TestClusters_GetProcessArgs(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -703,7 +703,7 @@ func TestClusters_checkClusterNameParam(t *testing.T) {
 }
 
 func TestClusters_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

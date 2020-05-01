@@ -9,9 +9,9 @@ import (
 )
 
 func TestProcessDisksService_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
-	// https://cloud.mongodb.com/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/disks
+
 	mux.HandleFunc("/groups/12345678/processes/shard-00-00.mongodb.net:27017/disks", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{

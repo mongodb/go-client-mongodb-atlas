@@ -11,7 +11,7 @@ import (
 )
 
 func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +31,7 @@ func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
 }
 
 func TestDatabaseUsers_ListDatabaseUsersMultiplePages(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
@@ -64,7 +64,7 @@ func TestDatabaseUsers_ListDatabaseUsersMultiplePages(t *testing.T) {
 }
 
 func TestDatabaseUsers_RetrievePageByNumber(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -121,7 +121,7 @@ func TestDatabaseUsers_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestDatabaseUsers_CreateWithX509Type(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -188,7 +188,7 @@ func TestDatabaseUsers_CreateWithX509Type(t *testing.T) {
 }
 
 func TestDatabaseUsers_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -263,7 +263,7 @@ func TestDatabaseUsers_Create(t *testing.T) {
 }
 
 func TestDatabaseUsers_GetDatabaseUser(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/databaseUsers/admin/test-username", func(w http.ResponseWriter, r *http.Request) {
@@ -283,7 +283,7 @@ func TestDatabaseUsers_GetDatabaseUser(t *testing.T) {
 }
 
 func TestDatabaseUsers_Update(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -358,7 +358,7 @@ func TestDatabaseUsers_Update(t *testing.T) {
 }
 
 func TestDatabaseUsers_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

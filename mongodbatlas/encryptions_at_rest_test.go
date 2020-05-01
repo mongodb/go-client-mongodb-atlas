@@ -11,7 +11,7 @@ import (
 )
 
 func TestEncryptionsAtRest_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	createRequest := &EncryptionAtRest{
@@ -136,7 +136,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 }
 
 func TestEncryptionsAtRest_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"

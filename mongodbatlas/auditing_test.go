@@ -11,7 +11,7 @@ import (
 )
 
 func TestConfigureAuditing(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -65,7 +65,7 @@ func TestConfigureAuditing(t *testing.T) {
 }
 
 func TestAuditing_Get(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"

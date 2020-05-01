@@ -9,7 +9,7 @@ import (
 )
 
 func TestProcessDatabaseMeasurements_List(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groups := "12345678"

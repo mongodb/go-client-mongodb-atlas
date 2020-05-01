@@ -10,7 +10,7 @@ import (
 )
 
 func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/whitelist", func(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +30,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/whitelist", func(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +63,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -113,7 +113,7 @@ func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -175,7 +175,7 @@ func TestProjectIPWhitelist_Create(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	ipAddress := "0.0.0.0"
@@ -198,7 +198,7 @@ func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	cidr := "0.0.0.0/32"
@@ -220,7 +220,7 @@ func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_Update(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -277,7 +277,7 @@ func TestProjectIPWhitelist_Update(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

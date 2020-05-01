@@ -10,7 +10,7 @@ import (
 )
 
 func TestAPIKeys_ListAPIKeys(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
@@ -100,7 +100,7 @@ func TestAPIKeys_ListAPIKeys(t *testing.T) {
 }
 
 func TestAPIKeys_ListAPIKeysMultiplePages(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
@@ -163,7 +163,7 @@ func TestAPIKeys_ListAPIKeysMultiplePages(t *testing.T) {
 }
 
 func TestAPIKeys_RetrievePageByNumber(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -218,7 +218,7 @@ func TestAPIKeys_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestAPIKeys_Create(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -282,7 +282,7 @@ func TestAPIKeys_Create(t *testing.T) {
 }
 
 func TestAPIKeys_GetAPIKey(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/orgs/1/apiKeys/5c47503320eef5699e1cce8d", func(w http.ResponseWriter, r *http.Request) {
@@ -303,7 +303,7 @@ func TestAPIKeys_GetAPIKey(t *testing.T) {
 }
 
 func TestAPIKeys_Update(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
@@ -367,7 +367,7 @@ func TestAPIKeys_Update(t *testing.T) {
 }
 
 func TestAPIKeys_Delete(t *testing.T) {
-	setup()
+	client, mux, _, teardown := setup()
 	defer teardown()
 
 	orgID := "1"
