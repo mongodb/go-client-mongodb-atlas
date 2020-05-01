@@ -1,4 +1,4 @@
-module github.com/mongodb/go-client-mongodb-atlas
+module go.mongodb.org/atlas
 
 go 1.12
 

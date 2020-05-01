@@ -9,13 +9,13 @@ You can view the Official API docs here: https://docs.atlas.mongodb.com/api/
 To get the latest version run this command:
 
 ```sh
-go get github.com/mongodb/go-client-mongodb-atlas
+go get go.mongodb.org/atlas
 ```
 
 ## Usage
 
 ```go
-import "github.com/mongodb/go-client-mongodb-atlas/mongodbatlas"
+import "go.mongodb.org/atlas/mongodbatlas"
 ```
 
 ## Authentication
@@ -38,7 +38,7 @@ import (
 	"os"
 
 	"github.com/Sectorbob/mlab-ns2/gae/ns/digest"
-	"github.com/mongodb/go-client-mongodb-atlas/mongodbatlas"
+	"go.mongodb.org/atlas/mongodbatlas"
 )
 
 func newClient(publicKey, privateKey string) (*mongodbatlas.Client, error) {
