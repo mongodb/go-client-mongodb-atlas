@@ -44,7 +44,7 @@ func TestProject_GetAllProjects(t *testing.T) {
 		}`)
 	})
 
-	projects, _, err := client.Projects.GetAllProjects(ctx)
+	projects, _, err := client.Projects.GetAllProjects(ctx, nil)
 	if err != nil {
 		t.Fatalf("Projects.GetAllProjects returned error: %v", err)
 	}
