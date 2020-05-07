@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/mwielbut/pointy"
+	"github.com/openlyinc/pointy"
 )
 
 func TestConfigureAuditing(t *testing.T) {

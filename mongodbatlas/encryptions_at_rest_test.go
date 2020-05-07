@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/mwielbut/pointy"
+	"github.com/openlyinc/pointy"
 )
 
 func TestEncryptionsAtRest_Create(t *testing.T) {
