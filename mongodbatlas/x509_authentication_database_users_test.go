@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/mwielbut/pointy"
+	"github.com/openlyinc/pointy"
 )
 
 func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {

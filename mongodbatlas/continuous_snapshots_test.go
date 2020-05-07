@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/mwielbut/pointy"
+	"github.com/openlyinc/pointy"
 
 	"github.com/go-test/deep"
 )
