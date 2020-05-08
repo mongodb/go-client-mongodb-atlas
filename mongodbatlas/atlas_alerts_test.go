@@ -249,9 +249,10 @@ func TestAlert_Acknowledge(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 	alertID := "533dc40ae4b00835ff81eaee"
+	acknowledgedUntil := "2026-10-01T00:00:00-0400"
 
 	params := AcknowledgeRequest{
-		AcknowledgedUntil:      "2026-10-01T00:00:00-0400",
+		AcknowledgedUntil:      &acknowledgedUntil,
 		AcknowledgementComment: "This is normal. Please ignore.",
 	}
 
