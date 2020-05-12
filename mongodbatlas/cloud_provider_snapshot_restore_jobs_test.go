@@ -87,8 +87,8 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 					],
 					"snapshotId": "5b6211ff87d9d663c59d3feg",
 					"timestamp": "2018-08-01T20:02:07Z",
-					"oplogTs":	"2018-08-01T20:02:07Z",
-					"pointInTimeUTCSeconds":	1583753751
+					"oplogTs":	1583753751,
+					"oplogInc":	1
 				}
 			],
 			"totalCount": 2
@@ -163,10 +163,10 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 						Rel:  "http://mms.mongodb.com/group",
 					},
 				},
-				SnapshotID:            "5b6211ff87d9d663c59d3feg",
-				Timestamp:             "2018-08-01T20:02:07Z",
-				OplogTs:               "2018-08-01T20:02:07Z",
-				PointInTimeUTCSeconds: 1583753751,
+				SnapshotID: "5b6211ff87d9d663c59d3feg",
+				Timestamp:  "2018-08-01T20:02:07Z",
+				OplogTs:    1583753751,
+				OplogInc:   1,
 			},
 		},
 		TotalCount: 2,
@@ -219,8 +219,8 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 			"targetClusterName": "MyOtherCluster",
 			"targetGroupId": "5b6212af90dc76637950a2c6",
 			"timestamp": "2018-08-01T20:02:07Z",
-			"oplogTs":	"2018-08-01T20:02:07Z",
-			"pointInTimeUTCSeconds": 1583753751
+			"oplogTs":	1583753751,
+			"oplogInc":	1
 		}`)
 	})
 
@@ -253,12 +253,12 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 				Rel:  "http://mms.mongodb.com/group",
 			},
 		},
-		SnapshotID:            "5b6211ff87d9d663c59d3feg",
-		TargetClusterName:     "MyOtherCluster",
-		TargetGroupID:         "5b6212af90dc76637950a2c6",
-		Timestamp:             "2018-08-01T20:02:07Z",
-		OplogTs:               "2018-08-01T20:02:07Z",
-		PointInTimeUTCSeconds: 1583753751,
+		SnapshotID:        "5b6211ff87d9d663c59d3feg",
+		TargetClusterName: "MyOtherCluster",
+		TargetGroupID:     "5b6212af90dc76637950a2c6",
+		Timestamp:         "2018-08-01T20:02:07Z",
+		OplogTs:           1583753751,
+		OplogInc:          1,
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
@@ -330,8 +330,8 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 			"targetClusterName": "MyOtherCluster",
 			"targetGroupId": "5b6212af90dc76637950a2c6",
 			"timestamp": "2018-08-01T20:02:07Z",
-			"oplogTs":	"2018-08-01T20:02:07Z",
-			"pointInTimeUTCSeconds": 1583753751
+			"oplogTs":	1583753751,
+			"oplogInc":	1
 		}`)
 	})
 
@@ -364,12 +364,12 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 				Rel:  "http://mms.mongodb.com/group",
 			},
 		},
-		SnapshotID:            "5b6211ff87d9d663c59d3feg",
-		TargetClusterName:     "MyOtherCluster",
-		TargetGroupID:         "5b6212af90dc76637950a2c6",
-		Timestamp:             "2018-08-01T20:02:07Z",
-		OplogTs:               "2018-08-01T20:02:07Z",
-		PointInTimeUTCSeconds: 1583753751,
+		SnapshotID:        "5b6211ff87d9d663c59d3feg",
+		TargetClusterName: "MyOtherCluster",
+		TargetGroupID:     "5b6212af90dc76637950a2c6",
+		Timestamp:         "2018-08-01T20:02:07Z",
+		OplogTs:           1583753751,
+		OplogInc:          1,
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
