@@ -20,7 +20,11 @@ func TestClusters_ListClusters(t *testing.T) {
 			"results": [
 				{
 					"autoScaling": {
-						"diskGBEnabled": true
+						"diskGBEnabled": true,
+						"compute": {
+						  "enabled": true,
+						  "scaleDownEnabled": true
+						}
 					},
 					"backupEnabled": true,
 					"biConnector": {
@@ -55,7 +59,13 @@ func TestClusters_ListClusters(t *testing.T) {
 						"diskIOPS": 1320,
 						"encryptEBSVolume": false,
 						"instanceSizeName": "M40",
-						"regionName": "US_WEST_2"
+						"regionName": "US_WEST_2",
+						"autoScaling": {
+							"compute": {
+							  "maxInstanceSize": "M40",
+							  "minInstanceSize": "M10"
+							}
+						}
 					},
 					"replicationFactor": 3,
 					"replicationSpec": {
@@ -70,7 +80,11 @@ func TestClusters_ListClusters(t *testing.T) {
 				},
 				{
 					"autoScaling": {
-						"diskGBEnabled": true
+						"diskGBEnabled": true,
+						"compute": {
+						  "enabled": true,
+						  "scaleDownEnabled": true
+						}
 					},
 					"backupEnabled": true,
 					"biConnector": {
@@ -105,7 +119,13 @@ func TestClusters_ListClusters(t *testing.T) {
 						"diskIOPS": 1320,
 						"encryptEBSVolume": false,
 						"instanceSizeName": "M40",
-						"regionName": "US_WEST_2"
+						"regionName": "US_WEST_2",
+						"autoScaling": {
+							"compute": {
+							  "maxInstanceSize": "M40",
+							  "minInstanceSize": "M10"
+							}
+						}
 					},
 					"replicationFactor": 3,
 					"replicationSpec": {
@@ -129,7 +149,13 @@ func TestClusters_ListClusters(t *testing.T) {
 	}
 
 	cluster1 := Cluster{
-		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling: &AutoScaling{
+			DiskGBEnabled: pointy.Bool(true),
+			Compute: &Compute{
+				Enabled:          pointy.Bool(true),
+				ScaleDownEnabled: pointy.Bool(true),
+			},
+		},
 		BackupEnabled: pointy.Bool(true),
 		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
@@ -141,6 +167,7 @@ func TestClusters_ListClusters(t *testing.T) {
 			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
 		},
+
 		DiskSizeGB:               pointy.Float64(160),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  "5356823b3794de37132bb7b",
@@ -157,6 +184,12 @@ func TestClusters_ListClusters(t *testing.T) {
 			EncryptEBSVolume: pointy.Bool(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
+			AutoScaling: &AutoScaling{
+				Compute: &Compute{
+					MaxInstanceSize: "M40",
+					MinInstanceSize: "M10",
+				},
+			},
 		},
 		ReplicationFactor: pointy.Int64(3),
 
