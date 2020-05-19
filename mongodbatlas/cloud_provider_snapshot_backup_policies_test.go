@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
@@ -119,9 +120,9 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    17,
-		ReferenceMinuteOfHour: 24,
-		RestoreWindowDays:     7,
+		ReferenceHourOfDay:    pointy.Int64(17),
+		ReferenceMinuteOfHour: pointy.Int64(24),
+		RestoreWindowDays:     pointy.Int64(7),
 	}
 
 	if diff := deep.Equal(snapshotBackupPolicy, expected); diff != nil {
@@ -217,8 +218,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	})
 
 	updateRequest := &CloudProviderSnapshotBackupPolicy{
-		ReferenceHourOfDay:    12,
-		ReferenceMinuteOfHour: 30,
+		ReferenceHourOfDay:    pointy.Int64(12),
+		ReferenceMinuteOfHour: pointy.Int64(30),
 		Policies: []Policy{
 			{
 				ID: "5c95242c87d9d636e70c28ef",
@@ -240,7 +241,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		UpdateSnapshots: true,
+		UpdateSnapshots: pointy.Bool(true),
 	}
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotBackupPolicies.Update(ctx, groupID, clusterName, updateRequest)
@@ -273,8 +274,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    12,
-		ReferenceMinuteOfHour: 30,
+		ReferenceHourOfDay:    pointy.Int64(12),
+		ReferenceMinuteOfHour: pointy.Int64(30),
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
