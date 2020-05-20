@@ -20,7 +20,11 @@ func TestClusters_ListClusters(t *testing.T) {
 			"results": [
 				{
 					"autoScaling": {
-						"diskGBEnabled": true
+						"diskGBEnabled": true,
+						"compute": {
+						  "enabled": true,
+						  "scaleDownEnabled": true
+						}
 					},
 					"backupEnabled": true,
 					"biConnector": {
@@ -55,7 +59,13 @@ func TestClusters_ListClusters(t *testing.T) {
 						"diskIOPS": 1320,
 						"encryptEBSVolume": false,
 						"instanceSizeName": "M40",
-						"regionName": "US_WEST_2"
+						"regionName": "US_WEST_2",
+						"autoScaling": {
+							"compute": {
+							  "maxInstanceSize": "M60",
+							  "minInstanceSize": "M10"
+							}
+						}
 					},
 					"replicationFactor": 3,
 					"replicationSpec": {
@@ -70,7 +80,11 @@ func TestClusters_ListClusters(t *testing.T) {
 				},
 				{
 					"autoScaling": {
-						"diskGBEnabled": true
+						"diskGBEnabled": true,
+						"compute": {
+						  "enabled": true,
+						  "scaleDownEnabled": true
+						}
 					},
 					"backupEnabled": true,
 					"biConnector": {
@@ -105,7 +119,13 @@ func TestClusters_ListClusters(t *testing.T) {
 						"diskIOPS": 1320,
 						"encryptEBSVolume": false,
 						"instanceSizeName": "M40",
-						"regionName": "US_WEST_2"
+						"regionName": "US_WEST_2",
+						"autoScaling": {
+							"compute": {
+							  "maxInstanceSize": "M60",
+							  "minInstanceSize": "M10"
+							}
+						}
 					},
 					"replicationFactor": 3,
 					"replicationSpec": {
@@ -129,7 +149,13 @@ func TestClusters_ListClusters(t *testing.T) {
 	}
 
 	cluster1 := Cluster{
-		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		AutoScaling: &AutoScaling{
+			DiskGBEnabled: pointy.Bool(true),
+			Compute: &Compute{
+				Enabled:          pointy.Bool(true),
+				ScaleDownEnabled: pointy.Bool(true),
+			},
+		},
 		BackupEnabled: pointy.Bool(true),
 		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
@@ -141,6 +167,7 @@ func TestClusters_ListClusters(t *testing.T) {
 			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
 		},
+
 		DiskSizeGB:               pointy.Float64(160),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  "5356823b3794de37132bb7b",
@@ -157,6 +184,12 @@ func TestClusters_ListClusters(t *testing.T) {
 			EncryptEBSVolume: pointy.Bool(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
+			AutoScaling: &AutoScaling{
+				Compute: &Compute{
+					MaxInstanceSize: "M60",
+					MinInstanceSize: "M10",
+				},
+			},
 		},
 		ReplicationFactor: pointy.Int64(3),
 
@@ -262,8 +295,9 @@ func TestClusters_Create(t *testing.T) {
 	groupID := "1"
 
 	createRequest := &Cluster{
-		ID:                       "1",
-		AutoScaling:              &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		ID: "1",
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
+			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
 		BackupEnabled:            pointy.Bool(true),
 		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
@@ -283,6 +317,7 @@ func TestClusters_Create(t *testing.T) {
 			EncryptEBSVolume: pointy.Bool(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
+			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M10", MaxInstanceSize: "M60"}},
 		},
 		ReplicationFactor: pointy.Int64(3),
 
@@ -302,6 +337,10 @@ func TestClusters_Create(t *testing.T) {
 			"id": "1",
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
+				"compute": map[string]interface{}{
+					"enabled":          true,
+					"scaleDownEnabled": true,
+				},
 			},
 			"backupEnabled": true,
 			"biConnector": map[string]interface{}{
@@ -325,6 +364,12 @@ func TestClusters_Create(t *testing.T) {
 				"encryptEBSVolume": false,
 				"instanceSizeName": "M40",
 				"regionName":       "US_WEST_2",
+				"autoScaling": map[string]interface{}{
+					"compute": map[string]interface{}{
+						"minInstanceSize": "M10",
+						"maxInstanceSize": "M60",
+					},
+				},
 			},
 			"replicationFactor": float64(3),
 			"replicationSpec": map[string]interface{}{
@@ -342,7 +387,11 @@ func TestClusters_Create(t *testing.T) {
 		{	
 			"id":"1",
 			"autoScaling": {
-                "diskGBEnabled": true
+                "diskGBEnabled": true,
+				"compute": {
+				  "enabled": true,
+				  "scaleDownEnabled": true
+				}
             },
             "backupEnabled": true,
             "biConnector": {
@@ -366,7 +415,13 @@ func TestClusters_Create(t *testing.T) {
                 "diskIOPS": 1320,
                 "encryptEBSVolume": false,
                 "instanceSizeName": "M40",
-                "regionName": "US_WEST_2"
+                "regionName": "US_WEST_2",
+				"autoScaling": {
+					"compute": {
+					  "minInstanceSize": "M10",
+					  "maxInstanceSize": "M60"
+					}
+				}
             },
             "replicationFactor": 3,
             "replicationSpec": {
@@ -422,8 +477,9 @@ func TestClusters_Update(t *testing.T) {
 	clusterName := "AppData"
 
 	updateRequest := &Cluster{
-		ID:                       "1",
-		AutoScaling:              &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		ID: "1",
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
+			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
 		BackupEnabled:            pointy.Bool(true),
 		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
@@ -443,6 +499,7 @@ func TestClusters_Update(t *testing.T) {
 			EncryptEBSVolume: pointy.Bool(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
+			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
 		},
 		ReplicationFactor: pointy.Int64(3),
 
@@ -462,6 +519,10 @@ func TestClusters_Update(t *testing.T) {
 			"id": "1",
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
+				"compute": map[string]interface{}{
+					"enabled":          true,
+					"scaleDownEnabled": true,
+				},
 			},
 			"backupEnabled": true,
 			"biConnector": map[string]interface{}{
@@ -485,6 +546,12 @@ func TestClusters_Update(t *testing.T) {
 				"encryptEBSVolume": false,
 				"instanceSizeName": "M40",
 				"regionName":       "US_WEST_2",
+				"autoScaling": map[string]interface{}{
+					"compute": map[string]interface{}{
+						"minInstanceSize": "M20",
+						"maxInstanceSize": "M80",
+					},
+				},
 			},
 			"replicationFactor": float64(3),
 			"replicationSpec": map[string]interface{}{
@@ -501,7 +568,11 @@ func TestClusters_Update(t *testing.T) {
 		jsonBlob := `
 		{
 			"autoScaling": {
-                "diskGBEnabled": true
+                "diskGBEnabled": true,
+				"compute": {
+				  "enabled": true,
+				  "scaleDownEnabled": true
+				}
             },
             "backupEnabled": true,
             "biConnector": {
@@ -525,7 +596,13 @@ func TestClusters_Update(t *testing.T) {
                 "diskIOPS": 1320,
                 "encryptEBSVolume": false,
                 "instanceSizeName": "M40",
-                "regionName": "US_WEST_2"
+                "regionName": "US_WEST_2",
+				"autoScaling": {
+					"compute": {
+					  "minInstanceSize": "M10",
+					  "maxInstanceSize": "M60"
+					}
+				}
             },
             "replicationFactor": 3,
             "replicationSpec": {
