@@ -95,7 +95,7 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 		}`)
 	})
 
-	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotRestoreJobs.List(ctx, requestParameters)
+	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotRestoreJobs.List(ctx, requestParameters, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotRestoreJobs.List returned error: %v", err)
 	}
