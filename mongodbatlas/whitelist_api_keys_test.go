@@ -59,7 +59,7 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 		}`)
 	})
 
-	whitelistAPIKeys, _, err := client.WhitelistAPIKeys.List(ctx, orgID, apiKeyID)
+	whitelistAPIKeys, _, err := client.WhitelistAPIKeys.List(ctx, orgID, apiKeyID, nil)
 	if err != nil {
 		t.Fatalf("WhitelistAPIKeys.List returned error: %v", err)
 	}
