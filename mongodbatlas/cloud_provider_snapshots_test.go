@@ -53,7 +53,7 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 		}`)
 	})
 
-	cloudProviderSnapshots, _, err := client.CloudProviderSnapshots.GetAllCloudProviderSnapshots(ctx, requestParameters)
+	cloudProviderSnapshots, _, err := client.CloudProviderSnapshots.GetAllCloudProviderSnapshots(ctx, requestParameters, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshots.GetAllCloudProviderSnapshots returned error: %v", err)
 	}
