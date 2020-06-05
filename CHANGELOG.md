@@ -1,5 +1,35 @@
 # Change Log
 
+## [v0.3.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.3.0) (2020-06-01)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.2.0...v0.3.0)
+
+**Fixed bugs:**
+
+- Fix cluster struct to allow pasue/start a cluster [\#84](https://github.com/mongodb/go-client-mongodb-atlas/pull/84) ([gssbzn](https://github.com/gssbzn))
+
+**Closed issues:**
+
+- Support pagination [\#95](https://github.com/mongodb/go-client-mongodb-atlas/issues/95)
+- CloudProviderSnapshotBackupPolicy: Zero Values are ignored  [\#93](https://github.com/mongodb/go-client-mongodb-atlas/issues/93)
+
+**Merged pull requests:**
+
+- feat: support the pagination of WhitelistAPIKeysService.List [\#98](https://github.com/mongodb/go-client-mongodb-atlas/pull/98) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
+- feat: support the pagination at CloudProviderSnapshotRestoreJobsService.List [\#97](https://github.com/mongodb/go-client-mongodb-atlas/pull/97) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
+- feat: support the pagination at GetAllCloudProviderSnapshots [\#96](https://github.com/mongodb/go-client-mongodb-atlas/pull/96) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
+- fix: fixes \#93 CloudProviderSnapshotBackupPolicy zero values are ignored [\#94](https://github.com/mongodb/go-client-mongodb-atlas/pull/94) ([gmlp](https://github.com/gmlp))
+- Cluster autoscaling compute [\#92](https://github.com/mongodb/go-client-mongodb-atlas/pull/92) ([coderGo93](https://github.com/coderGo93))
+- Three new fields for Snapshot restore jobs options [\#91](https://github.com/mongodb/go-client-mongodb-atlas/pull/91) ([coderGo93](https://github.com/coderGo93))
+- CLOUDP-62220: Update the AcknowledgedUntil field to be a pointer in the atlas client [\#90](https://github.com/mongodb/go-client-mongodb-atlas/pull/90) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Fix and update pointy dependency [\#89](https://github.com/mongodb/go-client-mongodb-atlas/pull/89) ([acroca](https://github.com/acroca))
+- Fix projects lists [\#88](https://github.com/mongodb/go-client-mongodb-atlas/pull/88) ([gssbzn](https://github.com/gssbzn))
+- Fix event list options [\#86](https://github.com/mongodb/go-client-mongodb-atlas/pull/86) ([gssbzn](https://github.com/gssbzn))
+- Make the measurements param an array [\#85](https://github.com/mongodb/go-client-mongodb-atlas/pull/85) ([gssbzn](https://github.com/gssbzn))
+- Validate base url trailing slash [\#83](https://github.com/mongodb/go-client-mongodb-atlas/pull/83) ([gssbzn](https://github.com/gssbzn))
+- Update CHANGELOG.md [\#82](https://github.com/mongodb/go-client-mongodb-atlas/pull/82) ([marinsalinas](https://github.com/marinsalinas))
+- Improve docs [\#61](https://github.com/mongodb/go-client-mongodb-atlas/pull/61) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.2.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.2.0) (2020-04-20)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...v0.2.0)
 
