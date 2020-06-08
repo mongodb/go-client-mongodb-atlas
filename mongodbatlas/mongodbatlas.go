@@ -1,4 +1,4 @@
-package mongodbatlas
+package mongodbatlas // import "go.mongodb.org/atlas/mongodbatlas"
 
 import (
 	"bytes"
