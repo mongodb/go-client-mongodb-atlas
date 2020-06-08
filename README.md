@@ -1,16 +1,10 @@
-# go-client-mongodb-atlas [![Build Status](https://travis-ci.org/mongodb/go-client-mongodb-atlas.svg?branch=master)](https://travis-ci.org/mongodb/go-client-mongodb-atlas)
+# go-client-mongodb-atlas
+[![GoDoc](https://img.shields.io/static/v1?label=godoc&message=reference&color=blue)](https://pkg.go.dev/go.mongodb.org/atlas/mongodbatlas)
+[![Build Status](https://travis-ci.org/mongodb/go-client-mongodb-atlas.svg?branch=master)](https://travis-ci.org/mongodb/go-client-mongodb-atlas)
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/).
 
-You can view the Official API docs here: https://docs.atlas.mongodb.com/api/
-
-## Installation
-
-To get the latest version run this command:
-
-```sh
-go get go.mongodb.org/atlas
-```
+Currently, **atlas requires Go version 1.12 or greater**.
 
 ## Usage
 
@@ -18,68 +12,54 @@ go get go.mongodb.org/atlas
 import "go.mongodb.org/atlas/mongodbatlas"
 ```
 
-## Authentication
-
-The Atlas API uses [HTTP Digest Authentication](https://docs.atlas.mongodb.com/api/#api-authentication). Provide your Atlas PUBLIC_KEY as the username and PRIVATE_KEY as the password as part of the HTTP request. See Programmatic API Keys docs for more detailed information: https://docs.atlas.mongodb.com/configure-api-access/#atlas-prog-api-key.
-
-We use the following library to get HTTP Digest Auth:
-
-https://github.com/Sectorbob/mlab-ns2/gae/ns/digest
-
-## Example Usage
+Construct a new Atlas client, then use the various services on the client to
+access different parts of the Atlas API. For example:
 
 ```go
-package main
+client := mongodbatlas.NewClient(nil)
+```
 
+The services of a client divide the API into logical chunks and correspond to
+the structure of the Atlas API documentation at
+https://docs.atlas.mongodb.com/api/.
+
+**NOTE:** Using the [context](https://godoc.org/context) package, one can easily
+pass cancellation signals and deadlines to various services of the client for
+handling a request. In case there is no context available, then `context.Background()`
+can be used as a starting point.
+
+### Authentication
+
+The mongodbatlas library does not directly handle authentication. Instead, when
+creating a new client, pass an http.Client that can handle authentication for
+you. The easiest and recommended way to do this is using the [digest](https://github.com/Sectorbob/mlab-ns2/gae/ns/digest)
+library, but you can always use any other library that provides an `http.Client`.
+If you have a private and public API token pair, you can
+use it with the digest library using:
+```go
 import (
-	"context"
-	"fmt"
-	"log"
-	"os"
+    "context"
+    "log"
 
-	"github.com/Sectorbob/mlab-ns2/gae/ns/digest"
-	"go.mongodb.org/atlas/mongodbatlas"
+    "github.com/Sectorbob/mlab-ns2/gae/ns/digest"
+    "go.mongodb.org/atlas/mongodbatlas"
 )
 
-func newClient(publicKey, privateKey string) (*mongodbatlas.Client, error) {
-
-	//Setup a transport to handle digest
-	transport := digest.NewTransport(publicKey, privateKey)
-
-	//Initialize the client
-	client, err := transport.Client()
-	if err != nil {
-		return nil, err
-	}
-
-	//Initialize the MongoDB Atlas API Client.
-	return mongodbatlas.NewClient(client), nil
-}
-
 func main() {
-	publicKey := os.Getenv("MONGODB_ATLAS_PUBLIC_KEY")
-	privateKey := os.Getenv("MONGODB_ATLAS_PRIVATE_KEY")
-	projectID := os.Getenv("MONGODB_ATLAS_PROJECT_ID")
+    t := digest.NewTransport("your public key", "your private key")
+    tc, err := t.Client()
+    if err != nil {
+        log.Fatalf(err.Error())
+    }
 
-	if publicKey == "" || privateKey == "" || projectID == "" {
-		log.Fatalln("MONGODB_ATLAS_PROJECT_ID, MONGODB_ATLAS_PUBLIC_KEY and MONGODB_ATLAS_PRIVATE_KEY must be set to run this example")
-	}
-
-	client, err := newClient(publicKey, privateKey)
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-
-	clusters, _, err := client.Clusters.List(context.Background(), projectID, nil)
-
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-
-	fmt.Printf("%+v \n", clusters)
-
+    client := mongodbatlas.NewClient(tc)
+    orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
 }
 ```
+
+Note that when using an authenticated Client, all calls made by the client will
+include the specified tokens. Therefore, authenticated clients should
+almost never be shared between different users.
 
 ## Versioning
 
@@ -90,9 +70,11 @@ To see the list of past versions, run `git tag`.
 ## Roadmap
 
 This library is being initially developed for [mongocli](https://github.com/mongodb/mongocli),
-[Atlas Terraform Provider](https://github.com/terraform-providers/terraform-provider-mongodbatlas), [Atlas Vault Plugin](https://github.com/hashicorp/vault-plugin-secrets-mongodbatlas), and [Atlas Cloudformation Provider](https://github.com/mongodb/mongodbatlas-cloudformation-resources)
+[Atlas Terraform Provider](https://github.com/terraform-providers/terraform-provider-mongodbatlas), 
+[Atlas Vault Plugin](https://github.com/hashicorp/vault-plugin-secrets-mongodbatlas), and 
+[Atlas Cloudformation Provider](https://github.com/mongodb/mongodbatlas-cloudformation-resources)
 so API methods will likely be implemented in the order that they are
-needed by those those projects.
+needed by those projects.
 
 ## Contributing
 
