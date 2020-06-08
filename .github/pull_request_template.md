@@ -13,10 +13,10 @@ Link to any related issue(s):
 
 ## Required Checklist:
 
-- [ ] I have signed the MongoDB CLA
+- [ ] I have signed the [MongoDB CLA](https://www.mongodb.com/legal/contributor-agreement)
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] I have added any necessary documentation (if appropriate)
-- [ ] I have run make fmt and formatted my code
+- [ ] I have run `make fmt` and formatted my code
 
 ## Further comments
 
