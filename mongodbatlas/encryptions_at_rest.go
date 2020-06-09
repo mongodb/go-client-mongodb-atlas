@@ -61,11 +61,9 @@ type EncryptionsAtRestService interface {
 	Delete(context.Context, string) (*Response, error)
 }
 
-//EncryptionsAtRestServiceOp handles communication with the DatabaseUsers related methods of the
-//MongoDB Atlas API
-type EncryptionsAtRestServiceOp struct {
-	Client RequestDoer
-}
+// EncryptionsAtRestServiceOp handles communication with the DatabaseUsers related methods of the
+// MongoDB Atlas API
+type EncryptionsAtRestServiceOp service
 
 var _ EncryptionsAtRestService = &EncryptionsAtRestServiceOp{}
 
@@ -106,8 +104,8 @@ type GoogleCloudKms struct {
 	KeyVersionResourceID string `json:"keyVersionResourceID,omitempty"` // 	The Key Version Resource ID from your GCP account.
 }
 
-//Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
-//See more: https://docs.atlas.mongodb.com/reference/api/enable-configure-encryptionatrest/
+// Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
+// See more: https://docs.atlas.mongodb.com/reference/api/enable-configure-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Create(ctx context.Context, createRequest *EncryptionAtRest) (*EncryptionAtRest, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
@@ -132,7 +130,7 @@ func (s *EncryptionsAtRestServiceOp) Create(ctx context.Context, createRequest *
 }
 
 // Get retrieves the current configuration for Encryption at Rest for an Atlas project.
-//See more: https://docs.atlas.mongodb.com/reference/api/get-configuration-encryptionatrest/
+// See more: https://docs.atlas.mongodb.com/reference/api/get-configuration-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Get(ctx context.Context, groupID string) (*EncryptionAtRest, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -154,7 +152,7 @@ func (s *EncryptionsAtRestServiceOp) Get(ctx context.Context, groupID string) (*
 	return root, resp, err
 }
 
-//Delete disable the AWS, Azure and Google Encryption at Rest.
+// Delete disable the AWS, Azure and Google Encryption at Rest.
 // See more: https://docs.atlas.mongodb.com/reference/api/enable-configure-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Delete(ctx context.Context, groupID string) (*Response, error) {
 	if groupID == "" {

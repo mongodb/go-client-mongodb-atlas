@@ -22,9 +22,7 @@ type ContinuousSnapshotsService interface {
 
 // ContinuousSnapshotsServiceOp handles communication with the Continuous Snapshots related methods of the
 // MongoDB Atlas API
-type ContinuousSnapshotsServiceOp struct {
-	Client RequestDoer
-}
+type ContinuousSnapshotsServiceOp service
 
 var _ ContinuousSnapshotsService = &ContinuousSnapshotsServiceOp{}
 
@@ -87,7 +85,7 @@ type ContinuousSnapshots struct {
 
 // List lists continuous snapshots for the given cluster
 // See more: https://docs.atlas.mongodb.com/reference/api/snapshots-get-all/
-func (s *ContinuousSnapshotsServiceOp) List(ctx context.Context, groupID string, clusterID string, listOptions *ListOptions) (*ContinuousSnapshots, *Response, error) {
+func (s *ContinuousSnapshotsServiceOp) List(ctx context.Context, groupID, clusterID string, listOptions *ListOptions) (*ContinuousSnapshots, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}

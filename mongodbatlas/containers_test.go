@@ -11,7 +11,7 @@ import (
 )
 
 func TestContainers_ListContainers(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
@@ -70,7 +70,7 @@ func TestContainers_ListContainers(t *testing.T) {
 }
 
 func TestContainers_ListContainersMultiplePages(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
@@ -117,7 +117,7 @@ func TestContainers_ListContainersMultiplePages(t *testing.T) {
 }
 
 func TestContainers_RetrievePageByNumber(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -166,7 +166,7 @@ func TestContainers_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestContainers_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -224,11 +224,10 @@ func TestContainers_Create(t *testing.T) {
 	if isProvisioned := container.Provisioned; !*isProvisioned {
 		t.Errorf("expected provisioned '%t', received '%t'", true, *isProvisioned)
 	}
-
 }
 
 func TestContainers_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -289,11 +288,10 @@ func TestContainers_Update(t *testing.T) {
 	if isProvisioned := container.Provisioned; !*isProvisioned {
 		t.Errorf("expected provisioned '%t', received '%t'", true, *isProvisioned)
 	}
-
 }
 
 func TestContainers_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

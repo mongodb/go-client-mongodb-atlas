@@ -9,9 +9,9 @@ import (
 
 const projectIPWhitelistPath = "groups/%s/whitelist"
 
-//ProjectIPWhitelistService is an interface for interfacing with the Project IP Whitelist
+// ProjectIPWhitelistService is an interface for interfacing with the Project IP Whitelist
 // endpoints of the MongoDB Atlas API.
-//See more: https://docs.atlas.mongodb.com/reference/api/whitelist/
+// See more: https://docs.atlas.mongodb.com/reference/api/whitelist/
 type ProjectIPWhitelistService interface {
 	List(context.Context, string, *ListOptions) ([]ProjectIPWhitelist, *Response, error)
 	Get(context.Context, string, string) (*ProjectIPWhitelist, *Response, error)
@@ -20,11 +20,9 @@ type ProjectIPWhitelistService interface {
 	Delete(context.Context, string, string) (*Response, error)
 }
 
-//ProjectIPWhitelistServiceOp handles communication with the ProjectIPWhitelist related methods
+// ProjectIPWhitelistServiceOp handles communication with the ProjectIPWhitelist related methods
 // of the MongoDB Atlas API
-type ProjectIPWhitelistServiceOp struct {
-	Client RequestDoer
-}
+type ProjectIPWhitelistServiceOp service
 
 var _ ProjectIPWhitelistService = &ProjectIPWhitelistServiceOp{}
 
@@ -74,7 +72,7 @@ func (s *ProjectIPWhitelistServiceOp) Create(ctx context.Context, groupID string
 
 // Get gets the whitelist entry specified to {WHITELIST-ENTRY} from the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-get-one-entry/
-func (s *ProjectIPWhitelistServiceOp) Get(ctx context.Context, groupID string, whiteListEntry string) (*ProjectIPWhitelist, *Response, error) {
+func (s *ProjectIPWhitelistServiceOp) Get(ctx context.Context, groupID, whiteListEntry string) (*ProjectIPWhitelist, *Response, error) {
 	if whiteListEntry == "" {
 		return nil, nil, NewArgError("whiteListEntry", "must be set")
 	}
@@ -153,9 +151,9 @@ func (s *ProjectIPWhitelistServiceOp) Update(ctx context.Context, groupID string
 	return root.Results, resp, err
 }
 
-//Delete the whitelist entry specified to {WHITELIST-ENTRY} from the project associated to {GROUP-ID}.
+// Delete the whitelist entry specified to {WHITELIST-ENTRY} from the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-delete-one/
-func (s *ProjectIPWhitelistServiceOp) Delete(ctx context.Context, groupID string, whitelistEntry string) (*Response, error) {
+func (s *ProjectIPWhitelistServiceOp) Delete(ctx context.Context, groupID, whitelistEntry string) (*Response, error) {
 	if whitelistEntry == "" {
 		return nil, NewArgError("whitelistEntry", "must be set")
 	}

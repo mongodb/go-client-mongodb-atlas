@@ -10,7 +10,7 @@ import (
 )
 
 func TestGlobalClusters_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -84,7 +84,7 @@ func TestGlobalClusters_Get(t *testing.T) {
 }
 
 func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -170,11 +170,10 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 	if diff := deep.Equal(globalCluster.CustomZoneMapping, expectedCustomZoneMapping); diff != nil {
 		t.Errorf("expected globalCluster.CustomZoneMapping = %v", diff)
 	}
-
 }
 
 func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -186,7 +185,6 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, name), func(w http.ResponseWriter, r *http.Request) {
-
 		if collection := r.URL.Query().Get("collection"); collection != mn.Collection {
 			t.Errorf("expected query param collection = '%s', received '%s'", mn.Collection, collection)
 		}
@@ -267,7 +265,7 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 }
 
 func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -329,14 +327,13 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 }
 
 func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
 	name := "appData"
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/globalWrites/customZoneMapping", groupID, name), func(w http.ResponseWriter, r *http.Request) {
-
 		jsonBlob := `
 		{
 			"customZoneMapping" : { },

@@ -20,11 +20,9 @@ type AtlasUsersService interface {
 	Create(context.Context, *AtlasUser) (*AtlasUser, *Response, error)
 }
 
-//AtlasUsersServiceOp handles communication with the AtlasUsers related methods of the
-//MongoDB Atlas API
-type AtlasUsersServiceOp struct {
-	Client RequestDoer
-}
+// AtlasUsersServiceOp handles communication with the AtlasUsers related methods of the
+// MongoDB Atlas API
+type AtlasUsersServiceOp service
 
 var _ AtlasUsersService = &AtlasUsersServiceOp{}
 
@@ -48,12 +46,12 @@ type AtlasUser struct {
 	Country      string      `json:"country"`
 }
 
-//List gets all users.
-//See more: https://docs.atlas.mongodb.com/reference/api/user-get-all/
+// List gets all users.
+// See more: https://docs.atlas.mongodb.com/reference/api/user-get-all/
 func (s *AtlasUsersServiceOp) List(ctx context.Context, orgID string, listOptions *ListOptions) ([]AtlasUser, *Response, error) {
 	path := fmt.Sprintf(usersBasePath, orgID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -77,8 +75,8 @@ func (s *AtlasUsersServiceOp) List(ctx context.Context, orgID string, listOption
 	return root.Results, resp, nil
 }
 
-//Get gets a single atlas user.
-//See more: https://docs.atlas.mongodb.com/reference/api/user-get-by-id/
+// Get gets a single atlas user.
+// See more: https://docs.atlas.mongodb.com/reference/api/user-get-by-id/
 func (s *AtlasUsersServiceOp) Get(ctx context.Context, userID string) (*AtlasUser, *Response, error) {
 	if userID == "" {
 		return nil, nil, NewArgError("userID", "must be set")
@@ -100,8 +98,8 @@ func (s *AtlasUsersServiceOp) Get(ctx context.Context, userID string) (*AtlasUse
 	return root, resp, err
 }
 
-//GetByName gets a single atlas user by name.
-//See more: https://docs.atlas.mongodb.com/reference/api/user-get-one-by-name/
+// GetByName gets a single atlas user by name.
+// See more: https://docs.atlas.mongodb.com/reference/api/user-get-one-by-name/
 func (s *AtlasUsersServiceOp) GetByName(ctx context.Context, username string) (*AtlasUser, *Response, error) {
 	if username == "" {
 		return nil, nil, NewArgError("username", "must be set")
@@ -123,14 +121,14 @@ func (s *AtlasUsersServiceOp) GetByName(ctx context.Context, username string) (*
 	return root, resp, err
 }
 
-//Create creates an Atlas User.
-//See more: https://docs.atlas.mongodb.com/reference/api/user-create/
+// Create creates an Atlas User.
+// See more: https://docs.atlas.mongodb.com/reference/api/user-create/
 func (s *AtlasUsersServiceOp) Create(ctx context.Context, createRequest *AtlasUser) (*AtlasUser, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, fmt.Sprintf("users"), createRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, "users", createRequest)
 	if err != nil {
 		return nil, nil, err
 	}

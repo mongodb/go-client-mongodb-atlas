@@ -19,9 +19,7 @@ type AlertsService interface {
 
 // AlertServiceOp handles communication with the Alert related methods
 // of the MongoDB Atlas API
-type AlertsServiceOp struct {
-	Client RequestDoer
-}
+type AlertsServiceOp service
 
 var _ AlertsService = &AlertsServiceOp{}
 
@@ -71,7 +69,7 @@ type AlertsResponse struct {
 
 // GetAnAlert gets the alert specified to {ALERT-ID} for the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-get-alert/
-func (s *AlertsServiceOp) Get(ctx context.Context, groupID string, alertID string) (*Alert, *Response, error) {
+func (s *AlertsServiceOp) Get(ctx context.Context, groupID, alertID string) (*Alert, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -105,7 +103,7 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 
 	path := fmt.Sprintf(alertPath, groupID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -131,7 +129,7 @@ func (s *AlertsServiceOp) List(ctx context.Context, groupID string, listOptions 
 
 // AckAnAlert allows to acknowledge an alert
 // See more: https://docs.atlas.mongodb.com/reference/api/alerts-acknowledge-alert/
-func (s *AlertsServiceOp) Acknowledge(ctx context.Context, groupID string, alertID string, params *AcknowledgeRequest) (*Alert, *Response, error) {
+func (s *AlertsServiceOp) Acknowledge(ctx context.Context, groupID, alertID string, params *AcknowledgeRequest) (*Alert, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

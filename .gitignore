@@ -33,3 +33,6 @@ vendor/
 *.winfile eol=crlf
 /.vs
 node_modules
+
+# Output of the go coverage tool
+*.out

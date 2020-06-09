@@ -24,9 +24,7 @@ type AlertConfigurationsService interface {
 
 // AlertConfigurationsServiceOp handles communication with the AlertConfiguration related methods
 // of the MongoDB Atlas API
-type AlertConfigurationsServiceOp struct {
-	Client RequestDoer
-}
+type AlertConfigurationsServiceOp service
 
 var _ AlertConfigurationsService = &AlertConfigurationsServiceOp{}
 
@@ -234,7 +232,7 @@ func (s *AlertConfigurationsServiceOp) List(ctx context.Context, groupID string,
 
 	path := fmt.Sprintf(alertConfigurationPath, groupID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err

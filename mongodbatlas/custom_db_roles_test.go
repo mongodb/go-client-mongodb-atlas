@@ -11,7 +11,7 @@ import (
 )
 
 func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +45,7 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 }
 
 func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +78,7 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 }
 
 func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	createRequest := &CustomDBRole{
@@ -159,7 +159,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 }
 
 func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	updateRequest := &CustomDBRole{
@@ -240,7 +240,7 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 }
 
 func TestDatabaseUsers_DeleteCustomDBRole(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

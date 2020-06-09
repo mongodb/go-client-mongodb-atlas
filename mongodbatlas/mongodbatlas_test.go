@@ -28,7 +28,7 @@ const (
 // setup sets up a test HTTP server along with a mongodbatlas.Client that is
 // configured to talk to that test server. Tests should register handlers on
 // mux which provide mock responses for the API method being tested.
-func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown func()) {
+func setup() (client *Client, mux *http.ServeMux, teardown func()) {
 	// mux is the HTTP request multiplexer used with the test server.
 	mux = http.NewServeMux()
 
@@ -52,10 +52,10 @@ func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown fun
 	// client is the GitHub client being tested and is
 	// configured to use test server.
 	client = NewClient(nil)
-	url, _ := url.Parse(server.URL + baseURLPath + "/")
-	client.BaseURL = url
+	u, _ := url.Parse(server.URL + baseURLPath + "/")
+	client.BaseURL = u
 
-	return client, mux, server.URL, server.Close
+	return client, mux, server.Close
 }
 
 func testMethod(t *testing.T, r *http.Request, expected string) {
@@ -275,7 +275,7 @@ func TestNewGZipRequest(t *testing.T) {
 }
 
 func TestDo(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	type foo struct {
@@ -303,7 +303,7 @@ func TestDo(t *testing.T) {
 }
 
 func TestDo_httpError(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -321,7 +321,7 @@ func TestDo_httpError(t *testing.T) {
 // Test handling of an error caused by the internal http Client's Do()
 // function.
 func TestDo_redirectLoop(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -340,7 +340,7 @@ func TestDo_redirectLoop(t *testing.T) {
 }
 
 func TestDo_noContent(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -410,7 +410,7 @@ func TestErrorResponse_Error(t *testing.T) {
 }
 
 func TestDo_completion_callback(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	type foo struct {
@@ -484,7 +484,7 @@ func TestCustomBaseURL_badURL(t *testing.T) {
 	testURLParseError(t, err)
 }
 
-func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) {
+func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) { //nolint:unparam // currently we alyas check for 2 but that may change
 	p, err := resp.CurrentPage()
 	if err != nil {
 		t.Fatal(err)

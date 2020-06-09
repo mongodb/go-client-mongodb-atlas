@@ -10,7 +10,7 @@ import (
 )
 
 func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/whitelist", func(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +30,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/whitelist", func(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +63,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -113,7 +113,7 @@ func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -171,18 +171,17 @@ func TestProjectIPWhitelist_Create(t *testing.T) {
 	if id := projectIPWhitelist[0].GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
-
 }
 
 func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	ipAddress := "0.0.0.0"
 
 	mux.HandleFunc(fmt.Sprintf("/groups/1/whitelist/%s", ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, fmt.Sprintf(`{"ipAddress":"%s"}`, ipAddress))
+		fmt.Fprintf(w, `{"ipAddress":"%s"}`, ipAddress)
 	})
 
 	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", ipAddress)
@@ -198,14 +197,14 @@ func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	cidr := "0.0.0.0/32"
 
 	mux.HandleFunc(fmt.Sprintf("/groups/1/whitelist/%s", cidr), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, fmt.Sprintf(`{"cidrBlock":"%s"}`, cidr))
+		fmt.Fprintf(w, `{"cidrBlock":"%s"}`, cidr)
 	})
 
 	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", cidr)
@@ -220,7 +219,7 @@ func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
 }
 
 func TestProjectIPWhitelist_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -273,11 +272,10 @@ func TestProjectIPWhitelist_Update(t *testing.T) {
 	if id := projectIPWhitelist[0].GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
-
 }
 
 func TestProjectIPWhitelist_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

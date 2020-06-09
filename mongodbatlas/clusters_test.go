@@ -11,7 +11,7 @@ import (
 )
 
 func TestClusters_ListClusters(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
@@ -211,7 +211,7 @@ func TestClusters_ListClusters(t *testing.T) {
 }
 
 func TestClusters_ListClustersMultiplePages(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
@@ -244,7 +244,7 @@ func TestClusters_ListClustersMultiplePages(t *testing.T) {
 }
 
 func TestClusters_RetrievePageByNumber(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -289,7 +289,7 @@ func TestClusters_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestClusters_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -466,11 +466,10 @@ func TestClusters_Create(t *testing.T) {
 	if pitEnabled := cluster.PitEnabled; *pitEnabled {
 		t.Errorf("expected pitEnabled 'false', received '%t'", *pitEnabled)
 	}
-
 }
 
 func TestClusters_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -642,11 +641,10 @@ func TestClusters_Update(t *testing.T) {
 	if id := dbUser.GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
-
 }
 
 func TestClusters_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -663,7 +661,7 @@ func TestClusters_Delete(t *testing.T) {
 }
 
 func TestClusters_UpdateProcessArgs(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -730,11 +728,10 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 	if jsEnabled := processArgs.JavascriptEnabled; pointy.BoolValue(jsEnabled, false) != false {
 		t.Errorf("expected javascriptEnabled '%t', received '%t'", pointy.BoolValue(jsEnabled, false), false)
 	}
-
 }
 
 func TestClusters_GetProcessArgs(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -780,7 +777,7 @@ func TestClusters_checkClusterNameParam(t *testing.T) {
 }
 
 func TestClusters_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

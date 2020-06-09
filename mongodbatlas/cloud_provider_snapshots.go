@@ -22,9 +22,7 @@ type CloudProviderSnapshotsService interface {
 
 // CloudProviderSnapshotsServiceOp handles communication with the CloudProviderSnapshotsService related methods of the
 // MongoDB Atlas API
-type CloudProviderSnapshotsServiceOp struct {
-	Client RequestDoer
-}
+type CloudProviderSnapshotsServiceOp service
 
 var _ CloudProviderSnapshotsService = &CloudProviderSnapshotsServiceOp{}
 
@@ -56,11 +54,11 @@ type SnapshotReqPathParameters struct {
 	GroupID     string `json:"groupId,omitempty"`     // The unique identifier of the project for the Atlas cluster.
 	SnapshotID  string `json:"snapshotId,omitempty"`  // The unique identifier of the snapshot you want to retrieve.
 	ClusterName string `json:"clusterName,omitempty"` // The name of the Atlas cluster that contains the snapshots you want to retrieve.
-	JobID       string `json:"jobId,omitempty"`       //The unique identifier of the restore job to retrieve.
+	JobID       string `json:"jobId,omitempty"`       // The unique identifier of the restore job to retrieve.
 }
 
-//GetAllCloudProviderSnapshots gets all cloud provider snapshots for the specified cluster.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-all/
+// GetAllCloudProviderSnapshots gets all cloud provider snapshots for the specified cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-all/
 func (s *CloudProviderSnapshotsServiceOp) GetAllCloudProviderSnapshots(ctx context.Context, requestParameters *SnapshotReqPathParameters, listOptions *ListOptions) (*CloudProviderSnapshots, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -94,8 +92,8 @@ func (s *CloudProviderSnapshotsServiceOp) GetAllCloudProviderSnapshots(ctx conte
 	return root, resp, nil
 }
 
-//GetOneCloudProviderSnapshot gets the snapshot associated to {SNAPSHOT-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/
+// GetOneCloudProviderSnapshot gets the snapshot associated to {SNAPSHOT-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/
 func (s *CloudProviderSnapshotsServiceOp) GetOneCloudProviderSnapshot(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*CloudProviderSnapshot, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -123,8 +121,8 @@ func (s *CloudProviderSnapshotsServiceOp) GetOneCloudProviderSnapshot(ctx contex
 	return root, resp, err
 }
 
-//Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-take-one-ondemand/
+// Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-take-one-ondemand/
 func (s *CloudProviderSnapshotsServiceOp) Create(ctx context.Context, requestParameters *SnapshotReqPathParameters, createRequest *CloudProviderSnapshot) (*CloudProviderSnapshot, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -152,7 +150,7 @@ func (s *CloudProviderSnapshotsServiceOp) Create(ctx context.Context, requestPar
 	return root, resp, err
 }
 
-//Delete deletes the snapshot associated to {SNAPSHOT-ID}.
+// Delete deletes the snapshot associated to {SNAPSHOT-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-delete-one/
 func (s *CloudProviderSnapshotsServiceOp) Delete(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*Response, error) {
 	if requestParameters.GroupID == "" {

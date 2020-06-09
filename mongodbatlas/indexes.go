@@ -17,9 +17,7 @@ type IndexesService interface {
 
 // IndexesServiceOp handles communication with the Cluster related methods
 // of the MongoDB Atlas API
-type IndexesServiceOp struct {
-	Client RequestDoer
-}
+type IndexesServiceOp service
 
 var _ IndexesService = &IndexesServiceOp{}
 
@@ -69,7 +67,7 @@ type CollationOptions struct {
 
 // Create creates a request for a rolling index creation for the project associated to {GROUP-ID} and the {CLUSTER-NAME}.
 // See more: https://docs.atlas.mongodb.com/reference/api/rolling-index-create-one/
-func (s *IndexesServiceOp) Create(ctx context.Context, groupID string, clusterName string, createReq *IndexConfiguration) (*Response, error) {
+func (s *IndexesServiceOp) Create(ctx context.Context, groupID, clusterName string, createReq *IndexConfiguration) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
 	}

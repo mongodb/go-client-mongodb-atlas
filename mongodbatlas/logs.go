@@ -31,7 +31,7 @@ type DateRangetOptions struct {
 // Get gets a compressed (.gz) log file that contains a range of log messages for a particular host.
 // Note: The input parameter out (io.Writer) is not closed by this function.
 // See more: https://docs.atlas.mongodb.com/reference/api/logs/
-func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string, logName string, out io.Writer, opts *DateRangetOptions) (*Response, error) {
+func (s *LogsServiceOp) Get(ctx context.Context, groupID, hostName, logName string, out io.Writer, opts *DateRangetOptions) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
 	}
@@ -63,5 +63,4 @@ func (s *LogsServiceOp) Get(ctx context.Context, groupID string, hostName string
 	}
 
 	return resp, nil
-
 }

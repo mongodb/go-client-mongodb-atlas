@@ -33,11 +33,9 @@ type ProjectsService interface {
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
 }
 
-//ProjectsServiceOp handles communication with the Projects related methods of the
-//MongoDB Atlas API
-type ProjectsServiceOp struct {
-	Client RequestDoer
-}
+// ProjectsServiceOp handles communication with the Projects related methods of the
+// MongoDB Atlas API
+type ProjectsServiceOp service
 
 var _ ProjectsService = &ProjectsServiceOp{}
 
@@ -78,10 +76,9 @@ type TeamsAssigned struct {
 	TotalCount int       `json:"totalCount"`
 }
 
-//GetAllProjects gets all project.
-//See more: https://docs.atlas.mongodb.com/reference/api/project-get-all/
+// GetAllProjects gets all project.
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-all/
 func (s *ProjectsServiceOp) GetAllProjects(ctx context.Context, listOptions *ListOptions) (*Projects, *Response, error) {
-
 	path, err := setListOptions(projectBasePath, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -105,8 +102,8 @@ func (s *ProjectsServiceOp) GetAllProjects(ctx context.Context, listOptions *Lis
 	return root, resp, nil
 }
 
-//GetOneProject gets a single project.
-//See more: https://docs.atlas.mongodb.com/reference/api/project-get-one/
+// GetOneProject gets a single project.
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-one/
 func (s *ProjectsServiceOp) GetOneProject(ctx context.Context, projectID string) (*Project, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
@@ -128,8 +125,8 @@ func (s *ProjectsServiceOp) GetOneProject(ctx context.Context, projectID string)
 	return root, resp, err
 }
 
-//GetOneProjectByName gets a single project by its name.
-//See more: https://docs.atlas.mongodb.com/reference/api/project-get-one-by-name/
+// GetOneProjectByName gets a single project by its name.
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-one-by-name/
 func (s *ProjectsServiceOp) GetOneProjectByName(ctx context.Context, projectName string) (*Project, *Response, error) {
 	if projectName == "" {
 		return nil, nil, NewArgError("projectName", "must be set")
@@ -151,8 +148,8 @@ func (s *ProjectsServiceOp) GetOneProjectByName(ctx context.Context, projectName
 	return root, resp, err
 }
 
-//Create creates a project.
-//See more: https://docs.atlas.mongodb.com/reference/api/project-create-one/
+// Create creates a project.
+// See more: https://docs.atlas.mongodb.com/reference/api/project-create-one/
 func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project) (*Project, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
@@ -172,7 +169,7 @@ func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project) 
 	return root, resp, err
 }
 
-//Delete deletes a project.
+// Delete deletes a project.
 // See more: https://docs.atlas.mongodb.com/reference/api/project-delete-one/
 func (s *ProjectsServiceOp) Delete(ctx context.Context, projectID string) (*Response, error) {
 	if projectID == "" {
@@ -191,8 +188,8 @@ func (s *ProjectsServiceOp) Delete(ctx context.Context, projectID string) (*Resp
 	return resp, err
 }
 
-//GetProjectTeamsAssigned gets all the teams assigned to a project.
-//See more: https://docs.atlas.mongodb.com/reference/api/project-get-teams/
+// GetProjectTeamsAssigned gets all the teams assigned to a project.
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-teams/
 func (s *ProjectsServiceOp) GetProjectTeamsAssigned(ctx context.Context, projectID string) (*TeamsAssigned, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
@@ -214,8 +211,8 @@ func (s *ProjectsServiceOp) GetProjectTeamsAssigned(ctx context.Context, project
 	return root, resp, err
 }
 
-//AddTeamsToProject adds teams to a project
-//See more: https://docs.atlas.mongodb.com/reference/api/project-add-team/
+// AddTeamsToProject adds teams to a project
+// See more: https://docs.atlas.mongodb.com/reference/api/project-add-team/
 func (s *ProjectsServiceOp) AddTeamsToProject(ctx context.Context, projectID string, createRequest []*ProjectTeam) (*TeamsAssigned, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")

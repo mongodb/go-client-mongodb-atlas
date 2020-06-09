@@ -52,7 +52,7 @@ type Client struct {
 	BaseURL   *url.URL
 	UserAgent string
 
-	//Services used for communicating with the API
+	// Services used for communicating with the API
 	CustomDBRoles                       CustomDBRolesService
 	DatabaseUsers                       DatabaseUsersService
 	ProjectIPWhitelist                  ProjectIPWhitelistService
@@ -96,6 +96,10 @@ type Client struct {
 // RequestCompletionCallback defines the type of the request callback function
 type RequestCompletionCallback func(*http.Request, *http.Response)
 
+type service struct {
+	Client RequestDoer
+}
+
 // Response is a MongoDBAtlas response. This wraps the standard http.Response returned from MongoDBAtlas API.
 type Response struct {
 	*http.Response
@@ -114,17 +118,17 @@ type ListOptions struct {
 	ItemsPerPage int `url:"itemsPerPage,omitempty"`
 }
 
-//ErrorResponse reports the error caused by an API request.
+// ErrorResponse reports the error caused by an API request.
 type ErrorResponse struct {
 	// HTTP response that caused this error
 	Response *http.Response
-	//The error code, which is simply the HTTP status code.
+	// The error code, which is simply the HTTP status code.
 	ErrorCode int `json:"Error"`
 
-	//A short description of the error, which is simply the HTTP status phrase.
+	// A short description of the error, which is simply the HTTP status phrase.
 	Reason string `json:"reason"`
 
-	//A more detailed description of the error.
+	// A more detailed description of the error.
 	Detail string `json:"detail,omitempty"`
 }
 
@@ -144,12 +148,12 @@ func (resp *Response) getLinkByRef(ref string) *Link {
 	return nil
 }
 
-//IsLastPage returns true if the current page is the last page
+// IsLastPage returns true if the current page is the last page
 func (resp *Response) IsLastPage() bool {
 	return resp.getLinkByRef("next") == nil
 }
 
-//CurrentPage gets the current page for list pagination request.
+// CurrentPage gets the current page for list pagination request.
 func (resp *Response) CurrentPage() (int, error) {
 	link, err := resp.getCurrentPageLink()
 	if err != nil {
@@ -260,7 +264,7 @@ func SetUserAgent(ua string) ClientOpt {
 // value pointed to by body is JSON encoded and included in as the request body.
 func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
-		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
+		return nil, fmt.Errorf("base URL must have a trailing slash, but %q does not", c.BaseURL)
 	}
 	u, err := c.BaseURL.Parse(urlStr)
 	if err != nil {

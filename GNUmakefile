@@ -1,5 +1,8 @@
-TEST?=./...
+SOURCE_FILES?=./...
 PKG_NAME=mongodbatlas
+GOLANGCI_VERSION=v1.27.0
+COVERAGE=coverage.out
+
 export GO111MODULE := on
 export PATH := ./bin:$(PATH)
 
@@ -9,19 +12,18 @@ build:
 	go install ./$(PKG_NAME)
 
 test:
-	go test $(TEST) -timeout=30s -parallel=4 -cover -race
+	go test $(SOURCE_FILES) -coverprofile $(COVERAGE) -timeout=30s -parallel=4 -cover -race
 
 fmt:
 	@echo "==> Fixing source code with gofmt..."
 	gofmt -s -w ./$(PKG_NAME)
 
 lint:
-	@echo "==> Checking source code against linters..."
-	golangci-lint run $(TEST) -E gofmt -E golint -E misspell
+	golangci-lint run $(SOURCE_FILES)
 
 check: test lint
 
 tools:
-	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s v1.21.0
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s $(GOLANGCI_VERSION)
 
 .PHONY: build test fmt lint check tools
