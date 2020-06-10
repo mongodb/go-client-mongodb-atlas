@@ -484,7 +484,7 @@ func TestCustomBaseURL_badURL(t *testing.T) {
 	testURLParseError(t, err)
 }
 
-func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) { //nolint:unparam // currently we alyas check for 2 but that may change
+func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) { //nolint:unparam // currently we always use expectedPage with value 2 but that may change
 	p, err := resp.CurrentPage()
 	if err != nil {
 		t.Fatal(err)
