@@ -11,7 +11,7 @@ import (
 )
 
 func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -52,7 +52,7 @@ func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
 }
 
 func TestMaintenanceWindows_UpdateWithStartNow(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -87,18 +87,18 @@ func TestMaintenanceWindows_UpdateWithStartNow(t *testing.T) {
 }
 
 func TestMaintenanceWindows_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
 
 	mux.HandleFunc(fmt.Sprintf("/"+maintenanceWindowsPath, groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, fmt.Sprintf(`{
+		fmt.Fprint(w, `{
 				"dayOfWeek": 2,
 				"hourOfDay": 3,
 				"numberOfDeferrals": 4
-		}`))
+		}`)
 	})
 
 	maintenanceWindow, _, err := client.MaintenanceWindows.Get(ctx, groupID)
@@ -118,7 +118,7 @@ func TestMaintenanceWindows_Get(t *testing.T) {
 }
 
 func TestMaintenanceWindows_Defer(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -135,7 +135,7 @@ func TestMaintenanceWindows_Defer(t *testing.T) {
 }
 
 func TestMaintenanceWindows_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"

@@ -11,7 +11,7 @@ import (
 )
 
 func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "5b6212af90dc76637950a2c6"
@@ -131,7 +131,7 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 }
 
 func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "5b6212af90dc76637950a2c6"

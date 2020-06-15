@@ -17,9 +17,7 @@ type ProcessDatabasesService interface {
 
 // ProcessDatabasesOp handles communication with the process disks related methods of the
 // MongoDB Atlas API
-type ProcessDatabasesServiceOp struct {
-	Client RequestDoer
-}
+type ProcessDatabasesServiceOp service
 
 var _ ProcessDatabasesService = &ProcessDatabasesServiceOp{}
 
@@ -38,8 +36,7 @@ type ProcessDatabase struct {
 
 // List gets databases for a specific Atlas MongoDB process.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-databases/
-func (s *ProcessDatabasesServiceOp) List(ctx context.Context, groupID string, host string, port int, opts *ListOptions) (*ProcessDatabasesResponse, *Response, error) {
-
+func (s *ProcessDatabasesServiceOp) List(ctx context.Context, groupID, host string, port int, opts *ListOptions) (*ProcessDatabasesResponse, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

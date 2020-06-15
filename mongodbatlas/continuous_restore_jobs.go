@@ -16,9 +16,7 @@ type ContinuousRestoreJobsService interface {
 
 // ContinuousRestoreJobsServiceOp handles communication with the Continuous Backup Restore Jobs related methods
 // of the MongoDB Atlas API
-type ContinuousRestoreJobsServiceOp struct {
-	Client RequestDoer
-}
+type ContinuousRestoreJobsServiceOp service
 
 var _ ContinuousRestoreJobsService = &ContinuousRestoreJobsServiceOp{}
 
@@ -72,7 +70,7 @@ type Hash struct {
 type ContinuousJobRequest struct {
 	CheckPointID         string   `json:"checkPointId,omitempty"`
 	Delivery             Delivery `json:"delivery"`
-	OplogTs              string   `json:"oplogTs,omitempty"`
+	OplogTS              string   `json:"oplogTs,omitempty"`
 	OplogInc             int64    `json:"oplogInc,omitempty"`
 	PointInTimeUTCMillis float64  `json:"pointInTimeUTCMillis,omitempty"`
 	SnapshotID           string   `json:"snapshotId,omitempty"`
@@ -81,7 +79,6 @@ type ContinuousJobRequest struct {
 // List list all continuous backup jobs in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-get-all/
 func (s *ContinuousRestoreJobsServiceOp) List(ctx context.Context, groupID, clusterID string, opts *ListOptions) (*ContinuousJobs, *Response, error) {
-
 	if clusterID == "" {
 		return nil, nil, NewArgError("clusterID", "must be set")
 	}
@@ -110,7 +107,6 @@ func (s *ContinuousRestoreJobsServiceOp) List(ctx context.Context, groupID, clus
 // Get gets a continuous backup job in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-get-one/
 func (s *ContinuousRestoreJobsServiceOp) Get(ctx context.Context, groupID, clusterID, jobID string) (*ContinuousJob, *Response, error) {
-
 	if clusterID == "" {
 		return nil, nil, NewArgError("clusterID", "must be set")
 	}
@@ -139,7 +135,6 @@ func (s *ContinuousRestoreJobsServiceOp) Get(ctx context.Context, groupID, clust
 // Create creates a continuous backup job in Atlas
 // See more: https://docs.atlas.mongodb.com/reference/api/restore-jobs-create-one/
 func (s *ContinuousRestoreJobsServiceOp) Create(ctx context.Context, groupID, clusterID string, request *ContinuousJobRequest) (*ContinuousJobs, *Response, error) {
-
 	if request == nil {
 		return nil, nil, NewArgError("request", "must be set")
 	}

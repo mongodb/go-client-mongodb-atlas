@@ -11,7 +11,7 @@ const apiKeysPath = "orgs/%s/apiKeys"
 
 // APIKeysService is an interface for interfacing with the APIKeys
 // endpoints of the MongoDB Atlas API.
-//See more: https://docs.atlas.mongodb.com/reference/api/apiKeys/
+// See more: https://docs.atlas.mongodb.com/reference/api/apiKeys/
 type APIKeysService interface {
 	List(context.Context, string, *ListOptions) ([]APIKey, *Response, error)
 	Get(context.Context, string, string) (*APIKey, *Response, error)
@@ -22,9 +22,7 @@ type APIKeysService interface {
 
 // APIKeysServiceOp handles communication with the APIKey related methods
 // of the MongoDB Atlas API
-type APIKeysServiceOp struct {
-	Client RequestDoer
-}
+type APIKeysServiceOp service
 
 var _ APIKeysService = &APIKeysServiceOp{}
 
@@ -57,12 +55,12 @@ type apiKeysResponse struct {
 	TotalCount int      `json:"totalCount,omitempty"`
 }
 
-//List all API-KEY in the organization associated to {ORG-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-get-all/
+// List all API-KEY in the organization associated to {ORG-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-get-all/
 func (s *APIKeysServiceOp) List(ctx context.Context, orgID string, listOptions *ListOptions) ([]APIKey, *Response, error) {
 	path := fmt.Sprintf(apiKeysPath, orgID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -86,9 +84,9 @@ func (s *APIKeysServiceOp) List(ctx context.Context, orgID string, listOptions *
 	return root.Results, resp, nil
 }
 
-//Get gets the APIKey specified to {API-KEY-ID} from the organization associated to {ORG-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-get-one/
-func (s *APIKeysServiceOp) Get(ctx context.Context, orgID string, apiKeyID string) (*APIKey, *Response, error) {
+// Get gets the APIKey specified to {API-KEY-ID} from the organization associated to {ORG-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-get-one/
+func (s *APIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID string) (*APIKey, *Response, error) {
 	if apiKeyID == "" {
 		return nil, nil, NewArgError("name", "must be set")
 	}
@@ -111,8 +109,8 @@ func (s *APIKeysServiceOp) Get(ctx context.Context, orgID string, apiKeyID strin
 	return root, resp, err
 }
 
-//Create an API Key by the {ORG-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-create-one/
+// Create an API Key by the {ORG-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-create-one/
 func (s *APIKeysServiceOp) Create(ctx context.Context, orgID string, createRequest *APIKeyInput) (*APIKey, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
@@ -134,9 +132,9 @@ func (s *APIKeysServiceOp) Create(ctx context.Context, orgID string, createReque
 	return root, resp, err
 }
 
-//Update a API Key in the organization associated to {ORG-ID}
-//See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-update-one/
-func (s *APIKeysServiceOp) Update(ctx context.Context, orgID string, apiKeyID string, updateRequest *APIKeyInput) (*APIKey, *Response, error) {
+// Update a API Key in the organization associated to {ORG-ID}
+// See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-orgs-update-one/
+func (s *APIKeysServiceOp) Update(ctx context.Context, orgID, apiKeyID string, updateRequest *APIKeyInput) (*APIKey, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -158,9 +156,9 @@ func (s *APIKeysServiceOp) Update(ctx context.Context, orgID string, apiKeyID st
 	return root, resp, err
 }
 
-//Delete the API Key specified to {API-KEY-ID} from the organization associated to {ORG-ID}.
+// Delete the API Key specified to {API-KEY-ID} from the organization associated to {ORG-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/apiKey-delete-one-apiKey/
-func (s *APIKeysServiceOp) Delete(ctx context.Context, orgID string, apiKeyID string) (*Response, error) {
+func (s *APIKeysServiceOp) Delete(ctx context.Context, orgID, apiKeyID string) (*Response, error) {
 	if apiKeyID == "" {
 		return nil, NewArgError("apiKeyID", "must be set")
 	}

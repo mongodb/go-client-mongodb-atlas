@@ -9,7 +9,7 @@ import (
 )
 
 func TestProcessDatabasesService_List(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 	mux.HandleFunc("/groups/12345678/processes/shard-00-00.mongodb.net:27017/databases", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)

@@ -10,7 +10,7 @@ import (
 )
 
 func TestWhitelistAPIKeys_List(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"
@@ -110,7 +110,7 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 }
 
 func TestWhitelistAPIKeys_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"
@@ -157,7 +157,7 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 }
 
 func TestWhitelistAPIKeys_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"
@@ -280,7 +280,7 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 }
 
 func TestWhitelistAPIKeys_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"

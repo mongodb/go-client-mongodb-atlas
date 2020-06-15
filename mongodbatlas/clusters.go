@@ -9,9 +9,9 @@ import (
 
 const clustersPath = "groups/%s/clusters"
 
-//ClustersService is an interface for interfacing with the Clusters
+// ClustersService is an interface for interfacing with the Clusters
 // endpoints of the MongoDB Atlas API.
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters/
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters/
 type ClustersService interface {
 	List(context.Context, string, *ListOptions) ([]Cluster, *Response, error)
 	Get(context.Context, string, string) (*Cluster, *Response, error)
@@ -22,11 +22,9 @@ type ClustersService interface {
 	GetProcessArgs(context.Context, string, string) (*ProcessArgs, *Response, error)
 }
 
-//ClustersServiceOp handles communication with the Cluster related methods
+// ClustersServiceOp handles communication with the Cluster related methods
 // of the MongoDB Atlas API
-type ClustersServiceOp struct {
-	Client RequestDoer
-}
+type ClustersServiceOp service
 
 var _ ClustersService = &ClustersServiceOp{}
 
@@ -139,7 +137,7 @@ type clustersResponse struct {
 
 // DefaultDiskSizeGB represents the Tier and the default disk size for each one
 // it can be use like: DefaultDiskSizeGB["AWS"]["M10"]
-var DefaultDiskSizeGB map[string]map[string]float64 = map[string]map[string]float64{
+var DefaultDiskSizeGB = map[string]map[string]float64{
 	"TENANT": {
 		"M2": 2,
 		"M5": 5,
@@ -192,12 +190,12 @@ var DefaultDiskSizeGB map[string]map[string]float64 = map[string]map[string]floa
 	},
 }
 
-//List all clusters in the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-all/
+// List all clusters in the project associated to {GROUP-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-all/
 func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]Cluster, *Response, error) {
 	path := fmt.Sprintf(clustersPath, groupID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -221,9 +219,9 @@ func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOption
 	return root.Results, resp, nil
 }
 
-//Get gets the cluster specified to {ClUSTER-NAME} from the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-one/
-func (s *ClustersServiceOp) Get(ctx context.Context, groupID string, clusterName string) (*Cluster, *Response, error) {
+// Get gets the cluster specified to {ClUSTER-NAME} from the project associated to {GROUP-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-one/
+func (s *ClustersServiceOp) Get(ctx context.Context, groupID, clusterName string) (*Cluster, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}
@@ -247,7 +245,7 @@ func (s *ClustersServiceOp) Get(ctx context.Context, groupID string, clusterName
 }
 
 // Create adds a cluster to the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-create-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-create-one/
 func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRequest *Cluster) (*Cluster, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
@@ -269,9 +267,9 @@ func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRe
 	return root, resp, err
 }
 
-//Update a cluster in the project associated to {GROUP-ID}
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-one/
-func (s *ClustersServiceOp) Update(ctx context.Context, groupID string, clusterName string, updateRequest *Cluster) (*Cluster, *Response, error) {
+// Update a cluster in the project associated to {GROUP-ID}
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-one/
+func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName string, updateRequest *Cluster) (*Cluster, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -293,9 +291,9 @@ func (s *ClustersServiceOp) Update(ctx context.Context, groupID string, clusterN
 	return root, resp, err
 }
 
-//Delete the cluster specified to {CLUSTER-NAME} from the project associated to {GROUP-ID}.
+// Delete the cluster specified to {CLUSTER-NAME} from the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-delete-one/
-func (s *ClustersServiceOp) Delete(ctx context.Context, groupID string, clusterName string) (*Response, error) {
+func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*Response, error) {
 	if clusterName == "" {
 		return nil, NewArgError("clusterName", "must be set")
 	}
@@ -314,9 +312,9 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID string, clusterN
 	return resp, err
 }
 
-//UpdateProcessArgs Modifies Advanced Configuration Options for One Cluster
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-advanced-configuration-options/
-func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID string, clusterName string, updateRequest *ProcessArgs) (*ProcessArgs, *Response, error) {
+// UpdateProcessArgs Modifies Advanced Configuration Options for One Cluster
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-advanced-configuration-options/
+func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clusterName string, updateRequest *ProcessArgs) (*ProcessArgs, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -338,9 +336,9 @@ func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID strin
 	return root, resp, err
 }
 
-//GetProcessArgs gets the Advanced Configuration Options for One Cluster
-//See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-advanced-configuration-options/#get-advanced-configuration-options-for-one-cluster
-func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID string, clusterName string) (*ProcessArgs, *Response, error) {
+// GetProcessArgs gets the Advanced Configuration Options for One Cluster
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-advanced-configuration-options/#get-advanced-configuration-options-for-one-cluster
+func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}

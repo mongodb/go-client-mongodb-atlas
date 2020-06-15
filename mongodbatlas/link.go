@@ -2,7 +2,7 @@ package mongodbatlas
 
 import "net/url"
 
-//Link is the link to sub-resources and/or related resources.
+// Link is the link to sub-resources and/or related resources.
 type Link struct {
 	Rel  string `json:"rel,omitempty"`
 	Href string `json:"href,omitempty"`

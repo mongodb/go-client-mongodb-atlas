@@ -17,9 +17,7 @@ type ProcessMeasurementsService interface {
 
 // ProcessMeasurementsServiceOp handles communication with the Process Measurements related methods of the
 // MongoDB Atlas API
-type ProcessMeasurementsServiceOp struct {
-	Client RequestDoer
-}
+type ProcessMeasurementsServiceOp service
 
 var _ ProcessMeasurementsService = &ProcessMeasurementsServiceOp{}
 
@@ -60,8 +58,7 @@ type ProcessMeasurementListOptions struct {
 
 // List lists measurements for a specific Atlas MongoDB process.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-measurements/
-func (s *ProcessMeasurementsServiceOp) List(ctx context.Context, groupID string, host string, port int, opts *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error) {
-
+func (s *ProcessMeasurementsServiceOp) List(ctx context.Context, groupID, host string, port int, opts *ProcessMeasurementListOptions) (*ProcessMeasurements, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -72,7 +69,7 @@ func (s *ProcessMeasurementsServiceOp) List(ctx context.Context, groupID string,
 
 	basePath := fmt.Sprintf(processMeasurementsPath, groupID, host, port)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(basePath, opts)
 	if err != nil {
 		return nil, nil, err

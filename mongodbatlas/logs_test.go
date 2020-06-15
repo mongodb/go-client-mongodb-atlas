@@ -8,7 +8,7 @@ import (
 )
 
 func TestLogs_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

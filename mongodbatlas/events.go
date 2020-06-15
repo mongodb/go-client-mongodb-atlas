@@ -21,9 +21,7 @@ type EventsService interface {
 
 // EventsServiceOp handles communication with the Event related methods
 // of the MongoDB Atlas API
-type EventsServiceOp struct {
-	Client RequestDoer
-}
+type EventsServiceOp service
 
 var _ EventsService = &EventsServiceOp{}
 
@@ -83,7 +81,7 @@ func (s *EventsServiceOp) ListOrganizationEvents(ctx context.Context, orgID stri
 	}
 	path := fmt.Sprintf(eventsPathOrganization, orgID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -105,7 +103,7 @@ func (s *EventsServiceOp) ListOrganizationEvents(ctx context.Context, orgID stri
 
 // GetOrganizationEvent gets the alert specified to {EVENT-ID} from the organization associated to {ORG-ID}.
 // See more: https://docs.opsmanager.mongodb.com/current/reference/api/events/get-one-event-for-org/
-func (s *EventsServiceOp) GetOrganizationEvent(ctx context.Context, orgID string, eventID string) (*Event, *Response, error) {
+func (s *EventsServiceOp) GetOrganizationEvent(ctx context.Context, orgID, eventID string) (*Event, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
@@ -137,7 +135,7 @@ func (s *EventsServiceOp) ListProjectEvents(ctx context.Context, groupID string,
 	}
 	path := fmt.Sprintf(eventsPathProjects, groupID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -159,7 +157,7 @@ func (s *EventsServiceOp) ListProjectEvents(ctx context.Context, groupID string,
 
 // GetProjectEvent gets the alert specified to {EVENT-ID} from the project associated to {PROJECT-ID}.
 // See more: https://docs.opsmanager.mongodb.com/current/reference/api/events/get-one-event-for-project/
-func (s *EventsServiceOp) GetProjectEvent(ctx context.Context, groupID string, eventID string) (*Event, *Response, error) {
+func (s *EventsServiceOp) GetProjectEvent(ctx context.Context, groupID, eventID string) (*Event, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

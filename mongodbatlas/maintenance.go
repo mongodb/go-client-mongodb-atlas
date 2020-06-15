@@ -36,9 +36,7 @@ type MaintenanceWindowsService interface {
 
 // MaintenanceWindowsServiceOp handles communication with the MaintenanceWindows related methods
 // of the MongoDB Atlas API
-type MaintenanceWindowsServiceOp struct {
-	Client RequestDoer
-}
+type MaintenanceWindowsServiceOp service
 
 var _ MaintenanceWindowsService = &MaintenanceWindowsServiceOp{}
 

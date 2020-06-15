@@ -10,7 +10,7 @@ import (
 )
 
 func TestAlert_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -92,7 +92,7 @@ func TestAlert_Get(t *testing.T) {
 }
 
 func TestAlerts_List(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -244,7 +244,7 @@ func TestAlerts_List(t *testing.T) {
 }
 
 func TestAlert_Acknowledge(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -275,7 +275,6 @@ func TestAlert_Acknowledge(t *testing.T) {
 				"units" : "RAW"
   			}
 		}`)
-
 	})
 
 	alert, _, err := client.Alerts.Acknowledge(ctx, groupID, alertID, &params)

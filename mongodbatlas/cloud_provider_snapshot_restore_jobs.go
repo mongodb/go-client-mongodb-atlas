@@ -20,11 +20,9 @@ type CloudProviderSnapshotRestoreJobsService interface {
 	Delete(context.Context, *SnapshotReqPathParameters) (*Response, error)
 }
 
-//CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methods of the
-//MongoDB Atlas API
-type CloudProviderSnapshotRestoreJobsServiceOp struct {
-	Client RequestDoer
-}
+// CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methods of the
+// MongoDB Atlas API
+type CloudProviderSnapshotRestoreJobsServiceOp service
 
 var _ CloudProviderSnapshotRestoreJobsService = &CloudProviderSnapshotRestoreJobsServiceOp{}
 
@@ -43,7 +41,7 @@ type CloudProviderSnapshotRestoreJob struct {
 	FinishedAt            string   `json:"finishedAt,omitempty"`            // UTC ISO 8601 formatted point in time when the restore job completed.
 	Links                 []*Link  `json:"links,omitempty"`                 // One or more links to sub-resources and/or related resources. The relations between URLs are explained in the Web Linking Specification.
 	Timestamp             string   `json:"timestamp,omitempty"`             // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-	OplogTs               int64    `json:"oplogTs,omitempty"`               // Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+	OplogTs               int64    `json:"oplogTs,omitempty"`               //nolint:stylecheck // not changing this // Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
 	OplogInc              int64    `json:"oplogInc,omitempty"`              // Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
 	PointInTimeUTCSeconds int64    `json:"pointInTimeUTCSeconds,omitempty"` // Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
 }
@@ -55,8 +53,8 @@ type CloudProviderSnapshotRestoreJobs struct {
 	TotalCount int                                `json:"totalCount"`
 }
 
-//List gets all cloud provider snapshot restore jobs for the specified cluster.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-all/
+// List gets all cloud provider snapshot restore jobs for the specified cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-all/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) List(ctx context.Context, requestParameters *SnapshotReqPathParameters, listOptions *ListOptions) (*CloudProviderSnapshotRestoreJobs, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -89,8 +87,8 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) List(ctx context.Context, re
 	return root, resp, nil
 }
 
-//Get gets one cloud provider snapshot restore jobs for the specified cluster.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-one/
+// Get gets one cloud provider snapshot restore jobs for the specified cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Get(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*CloudProviderSnapshotRestoreJob, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -118,8 +116,8 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Get(ctx context.Context, req
 	return root, resp, err
 }
 
-//Create creates a new restore job from a cloud provider snapshot associated to the specified cluster.
-//See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-create-one/
+// Create creates a new restore job from a cloud provider snapshot associated to the specified cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-create-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Create(ctx context.Context, requestParameters *SnapshotReqPathParameters, createRequest *CloudProviderSnapshotRestoreJob) (*CloudProviderSnapshotRestoreJob, *Response, error) {
 	// Verify if is download or automated
 	if requestParameters.GroupID == "" {
@@ -157,7 +155,7 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Create(ctx context.Context, 
 	return root, resp, err
 }
 
-//Delete cancels the cloud provider snapshot manual download restore job associated to {JOB-ID}.
+// Delete cancels the cloud provider snapshot manual download restore job associated to {JOB-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-delete-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Delete(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*Response, error) {
 	if requestParameters.GroupID == "" {

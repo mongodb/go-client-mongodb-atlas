@@ -11,7 +11,7 @@ import (
 )
 
 func TestConfigureAuditing(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -65,19 +65,19 @@ func TestConfigureAuditing(t *testing.T) {
 }
 
 func TestAuditing_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
 
 	mux.HandleFunc(fmt.Sprintf("/"+auditingsPath, groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, fmt.Sprintf(`{
+		fmt.Fprint(w, `{
 			"auditAuthorizationSuccess": false,
 			"auditFilter": "{\n  \"atype\": \"authenticate\",\n  \"param\": {\n    \"user\": \"auditAdmin\",\n    \"db\": \"admin\",\n    \"mechanism\": \"SCRAM-SHA-1\"\n  }\n}",
 			"configurationType": "FILTER_JSON",
 			"enabled": true
-		}`))
+		}`)
 	})
 
 	auditing, _, err := client.Auditing.Get(ctx, groupID)

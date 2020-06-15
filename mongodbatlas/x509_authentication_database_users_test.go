@@ -12,7 +12,7 @@ import (
 )
 
 func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -55,7 +55,7 @@ func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {
 }
 
 func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -118,7 +118,7 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 }
 
 func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -164,7 +164,7 @@ func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
 }
 
 func TestX509AuthDBUsers_GetCurrentX509Conf(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -194,7 +194,7 @@ func TestX509AuthDBUsers_GetCurrentX509Conf(t *testing.T) {
 }
 
 func TestX509AuthDBUsers_DisableCustomerX509(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

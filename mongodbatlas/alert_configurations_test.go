@@ -11,7 +11,7 @@ import (
 )
 
 func TestAlertConfiguration_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -112,7 +112,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 }
 
 func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -184,7 +184,7 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 }
 
 func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -268,7 +268,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 }
 
 func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -355,7 +355,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 }
 
 func TestAlertConfiguration_List(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -507,7 +507,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 }
 
 func TestAlertConfiguration_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -607,7 +607,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 }
 
 func TestAlertConfiguration_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "535683b3794d371327b"
@@ -624,7 +624,7 @@ func TestAlertConfiguration_Delete(t *testing.T) {
 }
 
 func TestAlertConfiguration_ListMatcherFields(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/alertConfigs/matchers/fieldNames", func(w http.ResponseWriter, r *http.Request) {

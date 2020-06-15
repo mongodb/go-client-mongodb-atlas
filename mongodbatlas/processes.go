@@ -17,9 +17,7 @@ type ProcessesService interface {
 
 // ProcessesServiceOp handles communication with the Process related methods
 // of the MongoDB Atlas API.
-type ProcessesServiceOp struct {
-	Client RequestDoer
-}
+type ProcessesServiceOp service
 
 var _ ProcessesService = &ProcessesServiceOp{}
 

@@ -10,7 +10,7 @@ import (
 )
 
 func TestProcesses_ListProcesses(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
@@ -91,7 +91,7 @@ func TestProcesses_ListProcesses(t *testing.T) {
 }
 
 func TestProcesses_ListProcessesMultiplePages(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
@@ -158,7 +158,7 @@ func TestProcesses_ListProcessesMultiplePages(t *testing.T) {
 }
 
 func TestProcesses_RetrievePageByNumber(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	jBlob := `

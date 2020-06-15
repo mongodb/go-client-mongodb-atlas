@@ -9,9 +9,9 @@ import (
 
 const peersPath = "groups/%s/peers"
 
-//PeersService is an interface for interfacing with the Peers
+// PeersService is an interface for interfacing with the Peers
 // endpoints of the MongoDB Atlas API.
-//See more: https://docs.atlas.mongodb.com/reference/api/peers/
+// See more: https://docs.atlas.mongodb.com/reference/api/peers/
 type PeersService interface {
 	List(context.Context, string, *ListOptions) ([]Peer, *Response, error)
 	Get(context.Context, string, string) (*Peer, *Response, error)
@@ -20,11 +20,9 @@ type PeersService interface {
 	Delete(context.Context, string, string) (*Response, error)
 }
 
-//PeersServiceOp handles communication with the Network Peering Connection related methods
+// PeersServiceOp handles communication with the Network Peering Connection related methods
 // of the MongoDB Atlas API
-type PeersServiceOp struct {
-	Client RequestDoer
-}
+type PeersServiceOp service
 
 var _ PeersService = &PeersServiceOp{}
 
@@ -59,12 +57,12 @@ type peersResponse struct {
 	TotalCount int     `json:"totalCount,omitempty"`
 }
 
-//List all peers in the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/vpc-get-connections-list/
+// List all peers in the project associated to {GROUP-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/vpc-get-connections-list/
 func (s *PeersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]Peer, *Response, error) {
 	path := fmt.Sprintf(peersPath, groupID)
 
-	//Add query params from listOptions
+	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -88,9 +86,9 @@ func (s *PeersServiceOp) List(ctx context.Context, groupID string, listOptions *
 	return root.Results, resp, nil
 }
 
-//Get gets the netwprk peering connection specified to {PEER-ID} from the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/vpc-get-connection/
-func (s *PeersServiceOp) Get(ctx context.Context, groupID string, peerID string) (*Peer, *Response, error) {
+// Get gets the netwprk peering connection specified to {PEER-ID} from the project associated to {GROUP-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/vpc-get-connection/
+func (s *PeersServiceOp) Get(ctx context.Context, groupID, peerID string) (*Peer, *Response, error) {
 	if peerID == "" {
 		return nil, nil, NewArgError("perrID", "must be set")
 	}
@@ -113,8 +111,8 @@ func (s *PeersServiceOp) Get(ctx context.Context, groupID string, peerID string)
 	return root, resp, err
 }
 
-//Add a peer connection to the project associated to {GROUP-ID}.
-//See more: https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+// Add a peer connection to the project associated to {GROUP-ID}.
+// See more: https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
 func (s *PeersServiceOp) Create(ctx context.Context, groupID string, createRequest *Peer) (*Peer, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
@@ -136,9 +134,9 @@ func (s *PeersServiceOp) Create(ctx context.Context, groupID string, createReque
 	return root, resp, err
 }
 
-//Update a peer connection in the project associated to {GROUP-ID}
-//See more: https://docs.atlas.mongodb.com/reference/api/vpc-update-peering-connection/
-func (s *PeersServiceOp) Update(ctx context.Context, groupID string, peerID string, updateRequest *Peer) (*Peer, *Response, error) {
+// Update a peer connection in the project associated to {GROUP-ID}
+// See more: https://docs.atlas.mongodb.com/reference/api/vpc-update-peering-connection/
+func (s *PeersServiceOp) Update(ctx context.Context, groupID, peerID string, updateRequest *Peer) (*Peer, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -160,9 +158,9 @@ func (s *PeersServiceOp) Update(ctx context.Context, groupID string, peerID stri
 	return root, resp, err
 }
 
-//Delete the peer connection specified to {PEER-ID} from the project associated to {GROUP-ID}.
+// Delete the peer connection specified to {PEER-ID} from the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/vpc-delete-peering-connection/
-func (s *PeersServiceOp) Delete(ctx context.Context, groupID string, peerID string) (*Response, error) {
+func (s *PeersServiceOp) Delete(ctx context.Context, groupID, peerID string) (*Response, error) {
 	if peerID == "" {
 		return nil, NewArgError("peerID", "must be set")
 	}

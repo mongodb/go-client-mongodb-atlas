@@ -17,9 +17,7 @@ type ProcessDisksService interface {
 
 // ProcessDisksServiceOp handles communication with the process disks related methods of the
 // MongoDB Atlas API
-type ProcessDisksServiceOp struct {
-	Client RequestDoer
-}
+type ProcessDisksServiceOp service
 
 var _ ProcessDisksService = &ProcessDisksServiceOp{}
 
@@ -38,8 +36,7 @@ type ProcessDisk struct {
 
 // List gets partitions for a specific Atlas MongoDB process.
 // See more: https://docs.atlas.mongodb.com/reference/api/process-disks/
-func (s *ProcessDisksServiceOp) List(ctx context.Context, groupID string, host string, port int, opts *ListOptions) (*ProcessDisksResponse, *Response, error) {
-
+func (s *ProcessDisksServiceOp) List(ctx context.Context, groupID, host string, port int, opts *ListOptions) (*ProcessDisksResponse, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

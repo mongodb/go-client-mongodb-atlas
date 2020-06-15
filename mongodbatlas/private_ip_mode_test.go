@@ -11,7 +11,7 @@ import (
 )
 
 func TestPrivateIPMode_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "6d2065c687d9d64ae7acdg41"
@@ -38,7 +38,7 @@ func TestPrivateIPMode_Get(t *testing.T) {
 }
 
 func TestPrivateIPMode_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"

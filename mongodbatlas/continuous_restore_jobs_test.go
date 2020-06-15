@@ -10,7 +10,7 @@ import (
 )
 
 func TestContinuousBackupRestore_List(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/6b77777887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {
@@ -126,7 +126,7 @@ func TestContinuousBackupRestore_List(t *testing.T) {
 }
 
 func TestContinuousBackupRestore_Get(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/5a6669d9fcc178211a0d86b9", func(w http.ResponseWriter, r *http.Request) {
@@ -221,7 +221,7 @@ func TestContinuousBackupRestore_Get(t *testing.T) {
 }
 
 func TestContinuousBackupRestore_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {

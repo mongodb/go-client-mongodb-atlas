@@ -10,7 +10,7 @@ import (
 )
 
 func TestPeers_ListPeers(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
@@ -56,7 +56,7 @@ func TestPeers_ListPeers(t *testing.T) {
 }
 
 func TestPeers_ListPeersMultiplePages(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
@@ -101,7 +101,7 @@ func TestPeers_ListPeersMultiplePages(t *testing.T) {
 }
 
 func TestPeers_RetrievePageByNumber(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	jBlob := `
@@ -148,7 +148,7 @@ func TestPeers_RetrievePageByNumber(t *testing.T) {
 }
 
 func TestPeers_Create(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -207,11 +207,10 @@ func TestPeers_Create(t *testing.T) {
 	if id := peer.GCPProjectID; id != expectedGCPID {
 		t.Errorf("expected gcpProjectId '%s', received '%s'", expectedGCPID, id)
 	}
-
 }
 
 func TestPeers_Update(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
@@ -271,11 +270,10 @@ func TestPeers_Update(t *testing.T) {
 	if id := perr.GCPProjectID; id != expectedGCPID {
 		t.Errorf("expected groupId '%s', received '%s'", expectedGCPID, id)
 	}
-
 }
 
 func TestPeers_Delete(t *testing.T) {
-	client, mux, _, teardown := setup()
+	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
