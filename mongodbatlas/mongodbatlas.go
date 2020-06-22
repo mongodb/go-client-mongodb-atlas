@@ -56,6 +56,7 @@ type Client struct {
 	CustomDBRoles                       CustomDBRolesService
 	DatabaseUsers                       DatabaseUsersService
 	ProjectIPWhitelist                  ProjectIPWhitelistService
+	Organizations                       OrganizationsService
 	Projects                            ProjectsService
 	Clusters                            ClustersService
 	CloudProviderSnapshots              CloudProviderSnapshotsService
@@ -192,6 +193,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CustomDBRoles = &CustomDBRolesServiceOp{Client: c}
 	c.DatabaseUsers = &DatabaseUsersServiceOp{Client: c}
 	c.EncryptionsAtRest = &EncryptionsAtRestServiceOp{Client: c}
+	c.Organizations = &OrganizationsServiceOp{Client: c}
 	c.Projects = &ProjectsServiceOp{Client: c}
 	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
 	c.Peers = &PeersServiceOp{Client: c}
