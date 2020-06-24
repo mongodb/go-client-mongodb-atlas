@@ -62,6 +62,7 @@ func (s *OrganizationsServiceOp) List(ctx context.Context, opts *ListOptions) (*
 	if err != nil {
 		return nil, nil, err
 	}
+
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
@@ -132,7 +133,7 @@ func (s *OrganizationsServiceOp) Projects(ctx context.Context, orgID string, opt
 	return root, resp, err
 }
 
-// Users gets all projects for the given organization ID.
+// Users gets all users for the given organization ID.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/organization-users-get-all-users/
 func (s *OrganizationsServiceOp) Users(ctx context.Context, orgID string, opts *ListOptions) (*AtlasUsersResponse, *Response, error) {

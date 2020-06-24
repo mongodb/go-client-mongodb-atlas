@@ -103,10 +103,10 @@ func TestOrganizationsServiceOp_Get(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/%s/%s", orgsBasePath, ID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
-		"id": "56a10a80e4b0fd3b9a9bb0c2",
+		"id": "5a0a1e7e0f2912c554080adc",
 		"lastActiveAgent": "2016-03-09T18:19:37Z",
 		"links": [{
-			"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+			"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc",
 			"rel": "self"
 		}],
 		"name": "012i3091203jioawjioej"
@@ -119,10 +119,10 @@ func TestOrganizationsServiceOp_Get(t *testing.T) {
 	}
 
 	expected := &Organization{
-		ID: "56a10a80e4b0fd3b9a9bb0c2",
+		ID: "5a0a1e7e0f2912c554080adc",
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc",
 				Rel:  "self",
 			},
 		},
@@ -148,28 +148,13 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 				"rel": "self"
 			}],
 			"results": [{
-				"activeAgentCount": 0,
-				"hostCounts": {
-					"arbiter": 0,	
-					"config": 0,
-					"master": 0,
-					"mongos": 0,
-					"primary": 0,
-					"secondary": 0,
-					"slave": 0
-				},
 				"id": "56a10a80e4b0fd3b9a9bb0c2",
-				"lastActiveAgent": "2016-03-09T18:19:37Z",
 				"links": [{
 					"href": "https://cloud.mongodb.com/api/public/v1.0/groups/56a10a80e4b0fd3b9a9bb0c2",
 					"rel": "self"
 				}],
 				"name": "012i3091203jioawjioej",
 				"orgId": "5980cfdf0b6d97029d82f86e",
-				"publicApiEnabled": true,
-				"replicaSetCount": 0,
-				"shardCount": 0,
-				"tags": []
 			}],
 			"totalCount": 1
 		}`)
