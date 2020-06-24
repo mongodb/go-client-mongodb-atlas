@@ -154,7 +154,7 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 					"rel": "self"
 				}],
 				"name": "012i3091203jioawjioej",
-				"orgId": "5980cfdf0b6d97029d82f86e",
+				"orgId": "5980cfdf0b6d97029d82f86e"
 			}],
 			"totalCount": 1
 		}`)
@@ -269,7 +269,7 @@ func TestOrganizationsServiceOp_Users(t *testing.T) {
 
 	users, _, err := client.Organizations.Users(ctx, ID, nil)
 	if err != nil {
-		t.Fatalf("Organizations.GetProjects returned error: %v", err)
+		t.Fatalf("Organizations.Users returned error: %v", err)
 	}
 
 	expected := &AtlasUsersResponse{
