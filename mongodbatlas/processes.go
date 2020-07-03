@@ -8,8 +8,8 @@ import (
 
 const processesPath = "groups/%s/processes"
 
-// ProcessesService is for interfacing with the project Processes endpoints of
-// the MongoDB Atlas API.
+// ProcessesService provides access to the alert processes related functions in the Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/monitoring-and-logs/
 type ProcessesService interface {
 	List(context.Context, string, *ProcessesListOptions) ([]*Process, *Response, error)
@@ -49,9 +49,13 @@ type ProcessesListOptions struct {
 	ClusterID string `url:"clusterId,omitempty"`
 }
 
-// List all processes in the project associated to {GROUP-ID}.
+// List lists all processes in the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/processes-get-all/
 func (s *ProcessesServiceOp) List(ctx context.Context, groupID string, listOptions *ProcessesListOptions) ([]*Process, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
 	path := fmt.Sprintf(processesPath, groupID)
 
 	path, err := setListOptions(path, listOptions)
