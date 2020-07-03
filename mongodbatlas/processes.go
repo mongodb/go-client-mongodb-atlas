@@ -43,9 +43,15 @@ type processesResponse struct {
 	TotalCount int        `json:"totalCount,omitempty"`
 }
 
+// ProcessesListOptions filter options for the processes API
+type ProcessesListOptions struct {
+	ListOptions
+	ClusterID string `json:"clusterId,omitempty"`
+}
+
 // List all processes in the project associated to {GROUP-ID}.
 // See more: https://docs.atlas.mongodb.com/reference/api/processes-get-all/
-func (s *ProcessesServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]*Process, *Response, error) {
+func (s *ProcessesServiceOp) List(ctx context.Context, groupID string, listOptions *ProcessesListOptions) ([]*Process, *Response, error) {
 	path := fmt.Sprintf(processesPath, groupID)
 
 	path, err := setListOptions(path, listOptions)
