@@ -210,7 +210,8 @@ func TestProcesses_RetrievePageByNumber(t *testing.T) {
 		fmt.Fprint(w, jBlob)
 	})
 
-	opt := &ListOptions{PageNum: 2}
+	opt := &ProcessesListOptions{}
+	opt.PageNum = 2
 	_, resp, err := client.Processes.List(ctx, "1", opt)
 
 	if err != nil {

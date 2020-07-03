@@ -46,7 +46,7 @@ type processesResponse struct {
 // ProcessesListOptions filter options for the processes API
 type ProcessesListOptions struct {
 	ListOptions
-	ClusterID string `json:"clusterId,omitempty"`
+	ClusterID string `url:"clusterId,omitempty"`
 }
 
 // List all processes in the project associated to {GROUP-ID}.
