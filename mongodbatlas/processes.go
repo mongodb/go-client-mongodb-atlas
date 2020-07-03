@@ -12,7 +12,7 @@ const processesPath = "groups/%s/processes"
 // the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/monitoring-and-logs/
 type ProcessesService interface {
-	List(context.Context, string, *ListOptions) ([]*Process, *Response, error)
+	List(context.Context, string, *ProcessesListOptions) ([]*Process, *Response, error)
 }
 
 // ProcessesServiceOp handles communication with the Process related methods
