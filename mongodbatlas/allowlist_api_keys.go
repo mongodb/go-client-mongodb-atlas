@@ -6,51 +6,51 @@ import (
 	"net/http"
 )
 
-const whitelistAPIKeysPath = "orgs/%s/apiKeys/%s/whitelist"
+const allowlistAPIKeysPath = "orgs/%s/apiKeys/%s/whitelist"
 
-// WhitelistAPIKeysService is an interface for interfacing with the Whitelist API Keys
+// AllowlistAPIKeysService is an interface for interfacing with the Allowlist API Keys
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/apiKeys/#organization-api-key-endpoints
-type WhitelistAPIKeysService interface {
-	List(context.Context, string, string, *ListOptions) (*WhitelistAPIKeys, *Response, error)
-	Get(context.Context, string, string, string) (*WhitelistAPIKey, *Response, error)
-	Create(context.Context, string, string, []*WhitelistAPIKeysReq) (*WhitelistAPIKeys, *Response, error)
+type AllowlistAPIKeysService interface {
+	List(context.Context, string, string, *ListOptions) (*AllowlistAPIKeys, *Response, error)
+	Get(context.Context, string, string, string) (*AllowlistAPIKey, *Response, error)
+	Create(context.Context, string, string, []*AllowlistAPIKeysReq) (*AllowlistAPIKeys, *Response, error)
 	Delete(context.Context, string, string, string) (*Response, error)
 }
 
-// WhitelistAPIKeysServiceOp handles communication with the Whitelist API keys related methods of the
+// AllowlistAPIKeysServiceOp handles communication with the Allowlist API keys related methods of the
 // MongoDB Atlas API
-type WhitelistAPIKeysServiceOp service
+type AllowlistAPIKeysServiceOp service
 
-var _ WhitelistAPIKeysService = &WhitelistAPIKeysServiceOp{}
+var _ AllowlistAPIKeysService = &AllowlistAPIKeysServiceOp{}
 
-// WhitelistAPIKey represents a Whitelist API key.
-type WhitelistAPIKey struct {
-	CidrBlock       string  `json:"cidrBlock,omitempty"`       // CIDR-notated range of whitelisted IP addresses.
+// AllowlistAPIKey represents an Allowlist API key.
+type AllowlistAPIKey struct {
+	CidrBlock       string  `json:"cidrBlock,omitempty"`       // CIDR-notated range of allowlisted IP addresses.
 	Count           int     `json:"count,omitempty"`           // Total number of requests that have originated from this IP address.
-	Created         string  `json:"created,omitempty"`         // Date this IP address was added to the whitelist.
-	IPAddress       string  `json:"ipAddress,omitempty"`       // Whitelisted IP address.
-	LastUsed        string  `json:"lastUsed,omitempty"`        // Date of the most recent request that originated from this IP address. This field only appears if at least one request has originated from this IP address, and is only updated when a whitelisted resource is accessed.
+	Created         string  `json:"created,omitempty"`         // Date this IP address was added to the allowlist.
+	IPAddress       string  `json:"ipAddress,omitempty"`       // Allowed IP address.
+	LastUsed        string  `json:"lastUsed,omitempty"`        // Date of the most recent request that originated from this IP address. This field only appears if at least one request has originated from this IP address, and is only updated when an allowlisted resource is accessed.
 	LastUsedAddress string  `json:"lastUsedAddress,omitempty"` // IP address from which the last call to the API was issued. This field only appears if at least one request has originated from this IP address.
 	Links           []*Link `json:"links,omitempty"`           // An array of documents, representing a link to one or more sub-resources and/or related resources such as list pagination. See Linking for more information.}
 }
 
-// WhitelistAPIKeys represents all Whitelist API keys.
-type WhitelistAPIKeys struct {
-	Results    []*WhitelistAPIKey `json:"results,omitempty"`    // Includes one WhitelistAPIKey object for each item detailed in the results array section.
+// AllowlistAPIKeys represents all Allowlisted API keys.
+type AllowlistAPIKeys struct {
+	Results    []*AllowlistAPIKey `json:"results,omitempty"`    // Includes one AllowlistAPIKey object for each item detailed in the results array section.
 	Links      []*Link            `json:"links,omitempty"`      // One or more links to sub-resources and/or related resources.
 	TotalCount int                `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
-// WhitelistAPIKeysReq represents the request to the mehtod create
-type WhitelistAPIKeysReq struct {
-	IPAddress string `json:"ipAddress,omitempty"` // IP address to be added to the whitelist for the API key.
-	CidrBlock string `json:"cidrBlock,omitempty"` // Whitelist entry in CIDR notation to be added for the API key.
+// AllowlistAPIKeysReq represents the request to the mehtod create
+type AllowlistAPIKeysReq struct {
+	IPAddress string `json:"ipAddress,omitempty"` // IP address to be added to the allowlist for the API key.
+	CidrBlock string `json:"cidrBlock,omitempty"` // Allowed entry in CIDR notation to be added for the API key.
 }
 
-// List gets all Whitelist API keys.
+// List gets all Allowlisted API keys.
 // See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-org-whitelist-get-all/
-func (s *WhitelistAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID string, listOptions *ListOptions) (*WhitelistAPIKeys, *Response, error) {
+func (s *AllowlistAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID string, listOptions *ListOptions) (*AllowlistAPIKeys, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
@@ -58,7 +58,7 @@ func (s *WhitelistAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID st
 		return nil, nil, NewArgError("apiKeyID", "must be set")
 	}
 
-	path := fmt.Sprintf(whitelistAPIKeysPath, orgID, apiKeyID)
+	path := fmt.Sprintf(allowlistAPIKeysPath, orgID, apiKeyID)
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err
@@ -69,7 +69,7 @@ func (s *WhitelistAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID st
 		return nil, nil, err
 	}
 
-	root := new(WhitelistAPIKeys)
+	root := new(AllowlistAPIKeys)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -82,9 +82,9 @@ func (s *WhitelistAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID st
 	return root, resp, nil
 }
 
-// Get gets the Whitelist API keys.
+// Get gets the Allowlist API keys.
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/
-func (s *WhitelistAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, ipAddress string) (*WhitelistAPIKey, *Response, error) {
+func (s *AllowlistAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, ipAddress string) (*AllowlistAPIKey, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
@@ -95,14 +95,14 @@ func (s *WhitelistAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, ip
 		return nil, nil, NewArgError("ipAddress", "must be set")
 	}
 
-	path := fmt.Sprintf(whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress)
+	path := fmt.Sprintf(allowlistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	root := new(WhitelistAPIKey)
+	root := new(AllowlistAPIKey)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -111,9 +111,9 @@ func (s *WhitelistAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, ip
 	return root, resp, err
 }
 
-// Create a submit a POST request containing ipAddress or cidrBlock values which are not already present in the whitelist, Atlas adds those entries to the list of existing entries in the whitelist.
+// Create a submit a POST request containing ipAddress or cidrBlock values which are not already present in the allowlist, Atlas adds those entries to the list of existing entries in the allowlist.
 // See more: https://docs.atlas.mongodb.com/reference/api/apiKeys-org-whitelist-create/
-func (s *WhitelistAPIKeysServiceOp) Create(ctx context.Context, orgID, apiKeyID string, createRequest []*WhitelistAPIKeysReq) (*WhitelistAPIKeys, *Response, error) {
+func (s *AllowlistAPIKeysServiceOp) Create(ctx context.Context, orgID, apiKeyID string, createRequest []*AllowlistAPIKeysReq) (*AllowlistAPIKeys, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
@@ -124,14 +124,14 @@ func (s *WhitelistAPIKeysServiceOp) Create(ctx context.Context, orgID, apiKeyID 
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
 
-	path := fmt.Sprintf(whitelistAPIKeysPath, orgID, apiKeyID)
+	path := fmt.Sprintf(allowlistAPIKeysPath, orgID, apiKeyID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	root := new(WhitelistAPIKeys)
+	root := new(AllowlistAPIKeys)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -140,9 +140,9 @@ func (s *WhitelistAPIKeysServiceOp) Create(ctx context.Context, orgID, apiKeyID 
 	return root, resp, err
 }
 
-// Delete deletes the Whitelist API keys.
+// Delete deletes the Allowlist API keys.
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-delete-one/
-func (s *WhitelistAPIKeysServiceOp) Delete(ctx context.Context, orgID, apiKeyID, ipAddress string) (*Response, error) {
+func (s *AllowlistAPIKeysServiceOp) Delete(ctx context.Context, orgID, apiKeyID, ipAddress string) (*Response, error) {
 	if orgID == "" {
 		return nil, NewArgError("groupId", "must be set")
 	}
@@ -153,7 +153,7 @@ func (s *WhitelistAPIKeysServiceOp) Delete(ctx context.Context, orgID, apiKeyID,
 		return nil, NewArgError("snapshotId", "must be set")
 	}
 
-	path := fmt.Sprintf(whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress)
+	path := fmt.Sprintf(allowlistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {

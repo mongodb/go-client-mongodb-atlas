@@ -9,14 +9,14 @@ import (
 	"github.com/go-test/deep"
 )
 
-func TestWhitelistAPIKeys_List(t *testing.T) {
+func TestAllowlistAPIKeys_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"
 	apiKeyID := "API-KEY-ID"
 
-	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath, orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+allowlistAPIKeysPath, orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [
@@ -59,19 +59,19 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 		}`)
 	})
 
-	whitelistAPIKeys, _, err := client.WhitelistAPIKeys.List(ctx, orgID, apiKeyID, nil)
+	allowlistAPIKeys, _, err := client.AllowlistAPIKeys.List(ctx, orgID, apiKeyID, nil)
 	if err != nil {
-		t.Fatalf("WhitelistAPIKeys.List returned error: %v", err)
+		t.Fatalf("AllowlistAPIKeys.List returned error: %v", err)
 	}
 
-	expected := &WhitelistAPIKeys{
+	expected := &AllowlistAPIKeys{
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/whitelist/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
-		Results: []*WhitelistAPIKey{
+		Results: []*AllowlistAPIKey{
 			{
 				CidrBlock:       "147.58.184.16/32",
 				Count:           0,
@@ -104,12 +104,12 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 		TotalCount: 2,
 	}
 
-	if diff := deep.Equal(whitelistAPIKeys, expected); diff != nil {
+	if diff := deep.Equal(allowlistAPIKeys, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestWhitelistAPIKeys_Get(t *testing.T) {
+func TestAllowlistAPIKeys_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -117,7 +117,7 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 	apiKeyID := "API-KEY-ID"
 	ipAddress := "IP-ADDRESS"
 
-	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+allowlistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"cidrBlock": "147.58.184.16/32",
@@ -133,12 +133,12 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 		}`)
 	})
 
-	whitelistAPIKey, _, err := client.WhitelistAPIKeys.Get(ctx, orgID, apiKeyID, ipAddress)
+	allowlistAPIKey, _, err := client.AllowlistAPIKeys.Get(ctx, orgID, apiKeyID, ipAddress)
 	if err != nil {
-		t.Fatalf("WhitelistAPIKeys.Get returned error: %v", err)
+		t.Fatalf("AllowlistAPIKeys.Get returned error: %v", err)
 	}
 
-	expected := &WhitelistAPIKey{
+	expected := &AllowlistAPIKey{
 		CidrBlock: "147.58.184.16/32",
 		Count:     0,
 		Created:   "2019-01-24T16:34:57Z",
@@ -151,26 +151,26 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 		},
 	}
 
-	if diff := deep.Equal(whitelistAPIKey, expected); diff != nil {
+	if diff := deep.Equal(allowlistAPIKey, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestWhitelistAPIKeys_Create(t *testing.T) {
+func TestAllowlistAPIKeys_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	orgID := "ORG-ID"
 	apiKeyID := "API-KEY-ID"
 
-	createRequest := []*WhitelistAPIKeysReq{
+	createRequest := []*AllowlistAPIKeysReq{
 		{
 			IPAddress: "77.54.32.11",
 			CidrBlock: "77.54.32.11/32",
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath, orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+allowlistAPIKeysPath, orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
 		expected := []map[string]interface{}{
 			{
 				"ipAddress": "77.54.32.11",
@@ -229,19 +229,19 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 		}`)
 	})
 
-	whitelistAPIKey, _, err := client.WhitelistAPIKeys.Create(ctx, orgID, apiKeyID, createRequest)
+	allowlistAPIKey, _, err := client.AllowlistAPIKeys.Create(ctx, orgID, apiKeyID, createRequest)
 	if err != nil {
-		t.Fatalf("WhitelistAPIKeys.Create returned error: %v", err)
+		t.Fatalf("AllowlistAPIKeys.Create returned error: %v", err)
 	}
 
-	expected := &WhitelistAPIKeys{
+	expected := &AllowlistAPIKeys{
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/whitelist/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
-		Results: []*WhitelistAPIKey{
+		Results: []*AllowlistAPIKey{
 			{
 				CidrBlock:       "147.58.184.16/32",
 				Count:           0,
@@ -274,12 +274,12 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 		TotalCount: 2,
 	}
 
-	if diff := deep.Equal(whitelistAPIKey, expected); diff != nil {
+	if diff := deep.Equal(allowlistAPIKey, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestWhitelistAPIKeys_Delete(t *testing.T) {
+func TestAllowlistAPIKeys_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -287,12 +287,12 @@ func TestWhitelistAPIKeys_Delete(t *testing.T) {
 	apiKeyID := "API-KEY-ID"
 	ipAddress := "IP-ADDRESS"
 
-	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+allowlistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.WhitelistAPIKeys.Delete(ctx, orgID, apiKeyID, ipAddress)
+	_, err := client.AllowlistAPIKeys.Delete(ctx, orgID, apiKeyID, ipAddress)
 	if err != nil {
-		t.Fatalf("WhitelistAPIKeys.Delete returned error: %v", err)
+		t.Fatalf("AllowlistAPIKeys.Delete returned error: %v", err)
 	}
 }

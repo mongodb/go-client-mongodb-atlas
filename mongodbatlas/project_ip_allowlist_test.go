@@ -9,7 +9,7 @@ import (
 	"github.com/go-test/deep"
 )
 
-func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
+func TestProjectIPAllowlist_ListProjectIPAllowlist(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -18,26 +18,26 @@ func TestProjectIPWhitelist_ListProjectIPWhitelist(t *testing.T) {
 		fmt.Fprint(w, `{"results": [{"groupId":"1", "cidrBlock":"0.0.0.0/12", "ipAddress":"0.0.0.0"},{"groupId":"1", "cidrBlock":"0.0.0.1/12", "ipAddress":"0.0.0.1"}], "totalCount":2}`)
 	})
 
-	projectIPWhitelists, _, err := client.ProjectIPWhitelist.List(ctx, "1", nil)
+	projectIPAllowlists, _, err := client.ProjectIPAllowlist.List(ctx, "1", nil)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.List returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.List returned error: %v", err)
 	}
 
-	expected := []ProjectIPWhitelist{{GroupID: "1", CIDRBlock: "0.0.0.0/12", IPAddress: "0.0.0.0"}, {GroupID: "1", CIDRBlock: "0.0.0.1/12", IPAddress: "0.0.0.1"}}
-	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+	expected := []ProjectIPAllowlist{{GroupID: "1", CIDRBlock: "0.0.0.0/12", IPAddress: "0.0.0.0"}, {GroupID: "1", CIDRBlock: "0.0.0.1/12", IPAddress: "0.0.0.1"}}
+	if diff := deep.Equal(projectIPAllowlists, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
+func TestProjectIPAllowlist_ListProjectIPAllowlistMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/groups/1/whitelist", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
-		dr := projectIPWhitelistsResponse{
-			Results: []ProjectIPWhitelist{
+		dr := projectIPAllowlistsResponse{
+			Results: []ProjectIPAllowlist{
 				{GroupID: "1", CIDRBlock: "0.0.0.1/12"},
 				{GroupID: "1", CIDRBlock: "0.0.0.0/12"},
 			},
@@ -54,7 +54,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
 		fmt.Fprint(w, string(b))
 	})
 
-	_, resp, err := client.ProjectIPWhitelist.List(ctx, "1", nil)
+	_, resp, err := client.ProjectIPAllowlist.List(ctx, "1", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -62,7 +62,7 @@ func TestProjectIPWhitelist_ListProjectIPWhitelistMultiplePages(t *testing.T) {
 	checkCurrentPage(t, resp, 2)
 }
 
-func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
+func TestProjectIPAllowlist_RetrievePageByNumber(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -104,7 +104,7 @@ func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
 	})
 
 	opt := &ListOptions{PageNum: 2}
-	_, resp, err := client.ProjectIPWhitelist.List(ctx, "1", opt)
+	_, resp, err := client.ProjectIPAllowlist.List(ctx, "1", opt)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -112,13 +112,13 @@ func TestProjectIPWhitelist_RetrievePageByNumber(t *testing.T) {
 	checkCurrentPage(t, resp, 2)
 }
 
-func TestProjectIPWhitelist_Create(t *testing.T) {
+func TestProjectIPAllowlist_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
 
-	createRequest := []*ProjectIPWhitelist{
+	createRequest := []*ProjectIPAllowlist{
 		{
 			GroupID:   groupID,
 			CIDRBlock: "0.0.0.1/12",
@@ -155,25 +155,25 @@ func TestProjectIPWhitelist_Create(t *testing.T) {
 		fmt.Fprint(w, jsonBlob)
 	})
 
-	projectIPWhitelist, _, err := client.ProjectIPWhitelist.Create(ctx, groupID, createRequest)
+	projectIPAllowlist, _, err := client.ProjectIPAllowlist.Create(ctx, groupID, createRequest)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.Create returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.Create returned error: %v", err)
 	}
 
-	if len(projectIPWhitelist) > 1 {
-		t.Error("expected projectIPWhitelist response a list of one element")
+	if len(projectIPAllowlist) > 1 {
+		t.Error("expected projectIPAllowlist response a list of one element")
 	}
 
-	if cidrBlock := projectIPWhitelist[0].CIDRBlock; cidrBlock != "0.0.0.1/12" {
+	if cidrBlock := projectIPAllowlist[0].CIDRBlock; cidrBlock != "0.0.0.1/12" {
 		t.Errorf("expected cidrBlock '%s', received '%s'", "0.0.0.1/12", cidrBlock)
 	}
 
-	if id := projectIPWhitelist[0].GroupID; id != groupID {
+	if id := projectIPAllowlist[0].GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
 }
 
-func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
+func TestProjectIPAllowlist_GetProjectIPAllowlist(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -184,19 +184,19 @@ func TestProjectIPWhitelist_GetProjectIPWhitelist(t *testing.T) {
 		fmt.Fprintf(w, `{"ipAddress":"%s"}`, ipAddress)
 	})
 
-	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", ipAddress)
+	projectIPAllowlists, _, err := client.ProjectIPAllowlist.Get(ctx, "1", ipAddress)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.Get returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.Get returned error: %v", err)
 	}
 
-	expected := &ProjectIPWhitelist{IPAddress: ipAddress}
+	expected := &ProjectIPAllowlist{IPAddress: ipAddress}
 
-	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+	if diff := deep.Equal(projectIPAllowlists, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
+func TestProjectIPAllowlist_GetProjectIPAllowlistByCIDR(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -207,25 +207,25 @@ func TestProjectIPWhitelist_GetProjectIPWhitelistByCIDR(t *testing.T) {
 		fmt.Fprintf(w, `{"cidrBlock":"%s"}`, cidr)
 	})
 
-	projectIPWhitelists, _, err := client.ProjectIPWhitelist.Get(ctx, "1", cidr)
+	projectIPAllowlists, _, err := client.ProjectIPAllowlist.Get(ctx, "1", cidr)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.Get returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.Get returned error: %v", err)
 	}
 
-	expected := &ProjectIPWhitelist{CIDRBlock: cidr}
-	if diff := deep.Equal(projectIPWhitelists, expected); diff != nil {
+	expected := &ProjectIPAllowlist{CIDRBlock: cidr}
+	if diff := deep.Equal(projectIPAllowlists, expected); diff != nil {
 		t.Error(diff)
 	}
 }
 
-func TestProjectIPWhitelist_Update(t *testing.T) {
+func TestProjectIPAllowlist_Update(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	groupID := "1"
 	ipAddress := "0.0.0.1"
 
-	createRequest := []*ProjectIPWhitelist{{
+	createRequest := []*ProjectIPAllowlist{{
 		GroupID:   groupID,
 		IPAddress: ipAddress,
 	}}
@@ -260,21 +260,21 @@ func TestProjectIPWhitelist_Update(t *testing.T) {
 		fmt.Fprint(w, jsonBlob)
 	})
 
-	projectIPWhitelist, _, err := client.ProjectIPWhitelist.Update(ctx, groupID, createRequest)
+	projectIPAllowlist, _, err := client.ProjectIPAllowlist.Update(ctx, groupID, createRequest)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.Update returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.Update returned error: %v", err)
 	}
 
-	if ip := projectIPWhitelist[0].IPAddress; ip != ipAddress {
+	if ip := projectIPAllowlist[0].IPAddress; ip != ipAddress {
 		t.Errorf("expected ipAddress '%s', received '%s'", ipAddress, ipAddress)
 	}
 
-	if id := projectIPWhitelist[0].GroupID; id != groupID {
+	if id := projectIPAllowlist[0].GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
 }
 
-func TestProjectIPWhitelist_Delete(t *testing.T) {
+func TestProjectIPAllowlist_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -285,8 +285,8 @@ func TestProjectIPWhitelist_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.ProjectIPWhitelist.Delete(ctx, groupID, ipAddress)
+	_, err := client.ProjectIPAllowlist.Delete(ctx, groupID, ipAddress)
 	if err != nil {
-		t.Fatalf("ProjectIPWhitelist.Delete returned error: %v", err)
+		t.Fatalf("ProjectIPAllowlist.Delete returned error: %v", err)
 	}
 }

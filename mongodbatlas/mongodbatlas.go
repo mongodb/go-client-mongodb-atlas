@@ -55,7 +55,7 @@ type Client struct {
 	// Services used for communicating with the API
 	CustomDBRoles                       CustomDBRolesService
 	DatabaseUsers                       DatabaseUsersService
-	ProjectIPWhitelist                  ProjectIPWhitelistService
+	ProjectIPAllowlist                  ProjectIPAllowlistService
 	Organizations                       OrganizationsService
 	Projects                            ProjectsService
 	Clusters                            ClustersService
@@ -66,7 +66,7 @@ type Client struct {
 	Peers                               PeersService
 	Containers                          ContainersService
 	EncryptionsAtRest                   EncryptionsAtRestService
-	WhitelistAPIKeys                    WhitelistAPIKeysService
+	AllowlistAPIKeys                    AllowlistAPIKeysService
 	PrivateIPMode                       PrivateIPModeService
 	MaintenanceWindows                  MaintenanceWindowsService
 	Teams                               TeamsService
@@ -197,8 +197,8 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Projects = &ProjectsServiceOp{Client: c}
 	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
 	c.Peers = &PeersServiceOp{Client: c}
-	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{Client: c}
-	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{Client: c}
+	c.ProjectIPAllowlist = &ProjectIPAllowlistServiceOp{Client: c}
+	c.AllowlistAPIKeys = &AllowlistAPIKeysServiceOp{Client: c}
 	c.PrivateIPMode = &PrivateIPModeServiceOp{Client: c}
 	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{Client: c}
 	c.Teams = &TeamsServiceOp{Client: c}

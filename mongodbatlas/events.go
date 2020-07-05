@@ -55,7 +55,7 @@ type Event struct {
 	TeamID          string        `json:"teamId,omitempty"`
 	UserID          string        `json:"userId,omitempty"`
 	Username        string        `json:"username,omitempty"`
-	WhitelistEntry  string        `json:"whitelistEntry,omitempty"`
+	AllowlistEntry  string        `json:"allowlistEntry,omitempty"`
 }
 
 // EventResponse is the response from the EventsService.List.
