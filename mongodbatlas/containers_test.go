@@ -10,13 +10,13 @@ import (
 	"github.com/openlyinc/pointy"
 )
 
-func TestContainers_ListContainers(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
-
-	mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, `{
+func TestContainers_List(t *testing.T) {
+	t.Run("default", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
+		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodGet)
+			fmt.Fprint(w, `{
 			"results": [
 				{
 					"atlasCidrBlock": "10.8.0.0/18",
@@ -37,90 +37,87 @@ func TestContainers_ListContainers(t *testing.T) {
 			],
 			"totalCount": 2
 		}`)
-	})
+		})
 
-	containers, _, err := client.Containers.List(ctx, "1", nil)
-	if err != nil {
-		t.Fatalf("Containers.List returned error: %v", err)
-	}
-
-	GCPContainer := Container{
-		AtlasCIDRBlock: "10.8.0.0/18",
-		ID:             "1112269b3bf99403840e8934",
-		GCPProjectID:   "my-sample-project-191923",
-		NetworkName:    "test1",
-		ProviderName:   "GCP",
-		Provisioned:    pointy.Bool(true),
-	}
-
-	AWSContainer := Container{
-		AtlasCIDRBlock: "10.8.0.0/21",
-		ID:             "1112269b3bf99403840e8934",
-		ProviderName:   "AWS",
-		Provisioned:    pointy.Bool(true),
-		RegionName:     "US_EAST_1",
-		VPCID:          "vpc-zz0zzzzz",
-	}
-
-	expected := []Container{GCPContainer, AWSContainer}
-
-	if diff := deep.Equal(containers, expected); diff != nil {
-		t.Error(diff)
-	}
-}
-
-func TestContainers_ListContainersMultiplePages(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
-
-	mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodGet)
-
-		dr := containersResponse{
-			Results: []Container{
-				{
-					AtlasCIDRBlock: "10.8.0.0/18",
-					ID:             "1112269b3bf99403840e8934",
-					GCPProjectID:   "my-sample-project-191923",
-					NetworkName:    "test1",
-					ProviderName:   "GCP",
-					Provisioned:    pointy.Bool(true),
-				},
-				{
-					AtlasCIDRBlock: "10.8.0.0/21",
-					ID:             "1112269b3bf99403840e8934",
-					ProviderName:   "AWS",
-					Provisioned:    pointy.Bool(true),
-					RegionName:     "US_EAST_1",
-					VPCID:          "vpc-zz0zzzzz",
-				},
-			},
-			Links: []*Link{
-				{Href: "http://example.com/api/atlas/v1.0/groups/1/containers?pageNum=2&itemsPerPage=2", Rel: "self"},
-				{Href: "http://example.com/api/atlas/v1.0/groups/1/containers?pageNum=2&itemsPerPage=2", Rel: "previous"},
-			},
+		containers, _, err := client.Containers.List(ctx, "1", nil)
+		if err != nil {
+			t.Fatalf("Containers.List returned error: %v", err)
 		}
 
-		b, err := json.Marshal(dr)
+		GCPContainer := Container{
+			AtlasCIDRBlock: "10.8.0.0/18",
+			ID:             "1112269b3bf99403840e8934",
+			GCPProjectID:   "my-sample-project-191923",
+			NetworkName:    "test1",
+			ProviderName:   "GCP",
+			Provisioned:    pointy.Bool(true),
+		}
+
+		AWSContainer := Container{
+			AtlasCIDRBlock: "10.8.0.0/21",
+			ID:             "1112269b3bf99403840e8934",
+			ProviderName:   "AWS",
+			Provisioned:    pointy.Bool(true),
+			RegionName:     "US_EAST_1",
+			VPCID:          "vpc-zz0zzzzz",
+		}
+
+		expected := []Container{GCPContainer, AWSContainer}
+
+		if diff := deep.Equal(containers, expected); diff != nil {
+			t.Error(diff)
+		}
+	})
+
+	t.Run("multiple pages", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
+		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodGet)
+
+			dr := containersResponse{
+				Results: []Container{
+					{
+						AtlasCIDRBlock: "10.8.0.0/18",
+						ID:             "1112269b3bf99403840e8934",
+						GCPProjectID:   "my-sample-project-191923",
+						NetworkName:    "test1",
+						ProviderName:   "GCP",
+						Provisioned:    pointy.Bool(true),
+					},
+					{
+						AtlasCIDRBlock: "10.8.0.0/21",
+						ID:             "1112269b3bf99403840e8934",
+						ProviderName:   "AWS",
+						Provisioned:    pointy.Bool(true),
+						RegionName:     "US_EAST_1",
+						VPCID:          "vpc-zz0zzzzz",
+					},
+				},
+				Links: []*Link{
+					{Href: "http://example.com/api/atlas/v1.0/groups/1/containers?pageNum=2&itemsPerPage=2", Rel: "self"},
+					{Href: "http://example.com/api/atlas/v1.0/groups/1/containers?pageNum=2&itemsPerPage=2", Rel: "previous"},
+				},
+			}
+
+			b, err := json.Marshal(dr)
+			if err != nil {
+				t.Fatal(err)
+			}
+			fmt.Fprint(w, string(b))
+		})
+
+		_, resp, err := client.Containers.List(ctx, "1", nil)
 		if err != nil {
 			t.Fatal(err)
 		}
-		fmt.Fprint(w, string(b))
+
+		checkCurrentPage(t, resp, 2)
 	})
-
-	_, resp, err := client.Containers.List(ctx, "1", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	checkCurrentPage(t, resp, 2)
-}
-
-func TestContainers_RetrievePageByNumber(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
-
-	jBlob := `
+	t.Run("by page number", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
+		jBlob := `
 	{
 		"links": [
 			{
@@ -149,20 +146,79 @@ func TestContainers_RetrievePageByNumber(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodGet)
+		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodGet)
 
-		fmt.Fprint(w, jBlob)
+			fmt.Fprint(w, jBlob)
+		})
+
+		opt := &ContainersListOptions{ListOptions: ListOptions{PageNum: 2}, ProviderName: "GCP"}
+		_, resp, err := client.Containers.List(ctx, "1", opt)
+
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		checkCurrentPage(t, resp, 2)
+	})
+}
+
+func TestContainers_ListAll(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+	mux.HandleFunc("/groups/1/containers/all", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"results": [
+				{
+					"atlasCidrBlock": "10.8.0.0/18",
+					"id": "1112269b3bf99403840e8934",
+					"gcpProjectId": "my-sample-project-191923",
+					"networkName": "test1",
+					"providerName": "GCP",
+					"provisioned": true
+				},
+				{
+					"atlasCidrBlock" : "10.8.0.0/21",
+					"id" : "1112269b3bf99403840e8934",
+					"providerName" : "AWS",
+					"provisioned" : true,
+					"regionName" : "US_EAST_1",
+					"vpcId" : "vpc-zz0zzzzz"
+				}
+			],
+			"totalCount": 2
+		}`)
 	})
 
-	opt := &ContainersListOptions{ListOptions: ListOptions{PageNum: 2}, ProviderName: "GCP"}
-	_, resp, err := client.Containers.List(ctx, "1", opt)
-
+	containers, _, err := client.Containers.ListAll(ctx, "1", nil)
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("Containers.List returned error: %v", err)
 	}
 
-	checkCurrentPage(t, resp, 2)
+	GCPContainer := Container{
+		AtlasCIDRBlock: "10.8.0.0/18",
+		ID:             "1112269b3bf99403840e8934",
+		GCPProjectID:   "my-sample-project-191923",
+		NetworkName:    "test1",
+		ProviderName:   "GCP",
+		Provisioned:    pointy.Bool(true),
+	}
+
+	AWSContainer := Container{
+		AtlasCIDRBlock: "10.8.0.0/21",
+		ID:             "1112269b3bf99403840e8934",
+		ProviderName:   "AWS",
+		Provisioned:    pointy.Bool(true),
+		RegionName:     "US_EAST_1",
+		VPCID:          "vpc-zz0zzzzz",
+	}
+
+	expected := []Container{GCPContainer, AWSContainer}
+
+	if diff := deep.Equal(containers, expected); diff != nil {
+		t.Error(diff)
+	}
 }
 
 func TestContainers_Create(t *testing.T) {
