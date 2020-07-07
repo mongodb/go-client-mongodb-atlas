@@ -103,7 +103,7 @@ func (s *OnlineArchiveServiceOp) Create(ctx context.Context, projectID, clusterN
 
 // Update let's you pause or resume archiving for an online archive or modify the archiving criteria.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-update-one/
 func (s *OnlineArchiveServiceOp) Update(ctx context.Context, projectID, clusterName, archiveID string, r *OnlineArchive) (*OnlineArchive, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
@@ -131,7 +131,7 @@ func (s *OnlineArchiveServiceOp) Update(ctx context.Context, projectID, clusterN
 
 // Delete deletes an online archive.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-delete-one/
 func (s *OnlineArchiveServiceOp) Delete(ctx context.Context, projectID, clusterName, archiveID string) (*Response, error) {
 	if projectID == "" {
 		return nil, NewArgError("projectID", "must be set")
