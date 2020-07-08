@@ -8,8 +8,6 @@ import (
 
 const (
 	dataLakesBasePath = "groups"
-	Active            = "ACTIVE"
-	Unverified        = "UNVERIFIED"
 )
 
 // DataLakeService is an interface for interfacing with the Data Lake endpoints of the MongoDB Atlas API.
@@ -86,7 +84,7 @@ type DataLake struct {
 	Hostnames           []string                   `json:"hostnames,omitempty"`           // List of hostnames for the data lake.
 	Name                string                     `json:"name,omitempty"`                // Name of the data lake.
 	State               string                     `json:"state,omitempty"`               // Current state of the data lake.
-	Storage             `json:"storage,omitempty"` // Configuration for each data store and its mapping to MongoDB collections / databases.
+	Storage             Storage 				   `json:"storage,omitempty"` 			  // Configuration for each data store and its mapping to MongoDB collections / databases.
 }
 
 // DataLakeReqPathParameters represents all the possible parameters to make the request
@@ -95,11 +93,13 @@ type DataLakeReqPathParameters struct {
 	Name    string `json:"name,omitempty"`    // The name of the Data Lake.
 }
 
+// DataLakeReqPathParameters represents all possible fields that can be updated in a data lake
 type DataLakeUpdateRequest struct {
 	CloudProviderConfig CloudProviderConfig `json:"cloudProviderConfig,omitempty"`
 	DataProcessRegion   DataProcessRegion   `json:"dataProcessRegion,omitempty"`
 }
 
+// DataLakeReqPathParameters represents the required fields to create a new data lake
 type DataLakeCreateRequest struct {
 	Name string `json:"name,omitempty"`
 }
@@ -132,14 +132,14 @@ func (s *DataLakeServiceOp) List(ctx context.Context, requestParameters *DataLak
 	return *root, resp, nil
 }
 
-// Gets gets the data laked associated with a specific name.
+// Get gets the data laked associated with a specific name.
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-one-tenant/
 func (s *DataLakeServiceOp) Get(ctx context.Context, requestParameters *DataLakeReqPathParameters) (*DataLake, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
 	if requestParameters.Name == "" {
-		return nil, nil, NewArgError("dataLakeName", "must be set")
+		return nil, nil, NewArgError("name", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, requestParameters.GroupID, requestParameters.Name)
@@ -165,7 +165,7 @@ func (s *DataLakeServiceOp) Create(ctx context.Context, requestParameters *DataL
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
 	if createRequest == nil {
-		return nil, nil, NewArgError("clusterName", "must be set")
+		return nil, nil, NewArgError("name", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, requestParameters.GroupID)
@@ -191,7 +191,7 @@ func (s *DataLakeServiceOp) Update(ctx context.Context, requestParameters *DataL
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
 	if requestParameters.Name == "" {
-		return nil, nil, NewArgError("clusterName", "must be set")
+		return nil, nil, NewArgError("name", "must be set")
 	}
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
@@ -220,7 +220,7 @@ func (s *DataLakeServiceOp) Delete(ctx context.Context, requestParameters *DataL
 		return nil, NewArgError("groupId", "must be set")
 	}
 	if requestParameters.Name == "" {
-		return nil, NewArgError("clusterName", "must be set")
+		return nil, NewArgError("name", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, requestParameters.GroupID, requestParameters.Name)
