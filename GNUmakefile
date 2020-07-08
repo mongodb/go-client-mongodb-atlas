@@ -8,6 +8,11 @@ export PATH := ./bin:$(PATH)
 
 default: build
 
+.PHONY: link-git-hooks
+link-git-hooks:
+	find .git/hooks -type l -exec rm {} \;
+	find githooks -type f -exec ln -sf ../../{} .git/hooks/ \;
+
 build:
 	go install ./$(PKG_NAME)
 
