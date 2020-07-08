@@ -78,13 +78,13 @@ type Storage struct {
 
 // DataLake represents a data lake.
 type DataLake struct {
-	CloudProviderConfig CloudProviderConfig        `json:"cloudProviderConfig,omitempty"` // Configuration for the cloud service where Data Lake source data is stored.
-	DataProcessRegion   DataProcessRegion          `json:"dataProcessRegion,omitempty"`   // Cloud provider region which clients are routed to for data processing.
-	GroupID             string                     `json:"groupId,omitempty"`             // Unique identifier for the project.
-	Hostnames           []string                   `json:"hostnames,omitempty"`           // List of hostnames for the data lake.
-	Name                string                     `json:"name,omitempty"`                // Name of the data lake.
-	State               string                     `json:"state,omitempty"`               // Current state of the data lake.
-	Storage             Storage 				   `json:"storage,omitempty"` 			  // Configuration for each data store and its mapping to MongoDB collections / databases.
+	CloudProviderConfig CloudProviderConfig `json:"cloudProviderConfig,omitempty"` // Configuration for the cloud service where Data Lake source data is stored.
+	DataProcessRegion   DataProcessRegion   `json:"dataProcessRegion,omitempty"`   // Cloud provider region which clients are routed to for data processing.
+	GroupID             string              `json:"groupId,omitempty"`             // Unique identifier for the project.
+	Hostnames           []string            `json:"hostnames,omitempty"`           // List of hostnames for the data lake.
+	Name                string              `json:"name,omitempty"`                // Name of the data lake.
+	State               string              `json:"state,omitempty"`               // Current state of the data lake.
+	Storage             Storage             `json:"storage,omitempty"`             // Configuration for each data store and its mapping to MongoDB collections / databases.
 }
 
 // DataLakeReqPathParameters represents all the possible parameters to make the request
