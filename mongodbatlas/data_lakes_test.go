@@ -78,11 +78,7 @@ func TestDataLakes_List(t *testing.T) {
 		]`)
 	})
 
-	requestParameters := DataLakeReqPathParameters{
-		GroupID: groupID,
-	}
-
-	snapshots, _, err := client.DataLakes.List(ctx, &requestParameters)
+	snapshots, _, err := client.DataLakes.List(ctx, groupID)
 	if err != nil {
 		t.Fatalf("DataLake.List returned error: %v", err)
 	}
@@ -175,18 +171,13 @@ func TestDataLake_Get(t *testing.T) {
 			  "name": "UserMetricData",
 			  "state": "ACTIVE",
 			  "storage": {
-				  "databases": {},
+				  "databases": [],
 				  "stores": []
 			  }
 		}`)
 	})
 
-	requestParameters := DataLakeReqPathParameters{
-		GroupID: groupID,
-		Name:    dataLakeName,
-	}
-
-	cloudProviderSnapshot, _, err := client.DataLakes.Get(ctx, &requestParameters)
+	cloudProviderSnapshot, _, err := client.DataLakes.Get(ctx, groupID, dataLakeName)
 	if err != nil {
 		t.Fatalf("DataLake.Get returned error: %v", err)
 	}
@@ -281,18 +272,13 @@ func TestDataLake_Update(t *testing.T) {
 			  "name": "UserMetricData",
 			  "state": "ACTIVE",
 			  "storage": {
-				  "databases": {},
+				  "databases": [],
 				  "stores": []
 			  }
 		}`)
 	})
 
-	requestParameters := DataLakeReqPathParameters{
-		GroupID: groupID,
-		Name:    dataLakeName,
-	}
-
-	updatedDataLake, _, err := client.DataLakes.Update(ctx, &requestParameters, updateRequest)
+	updatedDataLake, _, err := client.DataLakes.Update(ctx, groupID, dataLakeName, updateRequest)
 	if err != nil {
 		t.Fatalf("DataLake.Update returned error: %v", err)
 	}
@@ -369,17 +355,13 @@ func TestDataLake_Create(t *testing.T) {
 			  "name": "UserMetricData",
 			  "state": "UNVERIFIED",
 			  "storage": {
-				  "databases": {},
+				  "databases": [],
 				  "stores": []
 			  }
 		}`)
 	})
 
-	requestParameters := DataLakeReqPathParameters{
-		GroupID: groupID,
-	}
-
-	updatedDataLake, _, err := client.DataLakes.Create(ctx, &requestParameters, createRequest)
+	updatedDataLake, _, err := client.DataLakes.Create(ctx, groupID, createRequest)
 	if err != nil {
 		t.Fatalf("DataLake.Create returned error: %v", err)
 	}
@@ -423,12 +405,7 @@ func TestDataLake_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	requestParameters := DataLakeReqPathParameters{
-		GroupID: groupID,
-		Name:    dataLakeName,
-	}
-
-	_, err := client.DataLakes.Delete(ctx, &requestParameters)
+	_, err := client.DataLakes.Delete(ctx, groupID, dataLakeName)
 	if err != nil {
 		t.Fatalf("DataLakes.Delete returned error: %v", err)
 	}

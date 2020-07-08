@@ -14,11 +14,11 @@ const (
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/datalakes-api
 type DataLakeService interface {
-	List(context.Context, *DataLakeReqPathParameters) ([]DataLake, *Response, error)
-	Get(context.Context, *DataLakeReqPathParameters) (*DataLake, *Response, error)
-	Create(context.Context, *DataLakeReqPathParameters, *DataLakeCreateRequest) (*DataLake, *Response, error)
-	Update(context.Context, *DataLakeReqPathParameters, *DataLakeUpdateRequest) (*DataLake, *Response, error)
-	Delete(context.Context, *DataLakeReqPathParameters) (*Response, error)
+	List(context.Context, string) ([]DataLake, *Response, error)
+	Get(context.Context, string, string) (*DataLake, *Response, error)
+	Create(context.Context, string, *DataLakeCreateRequest) (*DataLake, *Response, error)
+	Update(context.Context, string, string, *DataLakeUpdateRequest) (*DataLake, *Response, error)
+	Delete(context.Context, string, string) (*Response, error)
 }
 
 // DataLakeServiceOp handles communication with the DataLakeService related methods of the
@@ -97,12 +97,6 @@ type DataLake struct {
 	Storage             Storage             `json:"storage,omitempty"`             // Configuration for each data store and its mapping to MongoDB collections / databases.
 }
 
-// DataLakeReqPathParameters represents all the possible parameters to make the request
-type DataLakeReqPathParameters struct {
-	GroupID string `json:"groupId,omitempty"` // The unique identifier of the project for the Atlas cluster.
-	Name    string `json:"name,omitempty"`    // The name of the Data Lake.
-}
-
 // DataLakeReqPathParameters represents all possible fields that can be updated in a data lake
 type DataLakeUpdateRequest struct {
 	CloudProviderConfig CloudProviderConfig `json:"cloudProviderConfig,omitempty"`
@@ -117,12 +111,12 @@ type DataLakeCreateRequest struct {
 // List gets all data lakes for the specified group.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-all-tenants
-func (s *DataLakeServiceOp) List(ctx context.Context, requestParameters *DataLakeReqPathParameters) ([]DataLake, *Response, error) {
-	if requestParameters.GroupID == "" {
-		return nil, nil, NewArgError("groupId", "must be set")
+func (s *DataLakeServiceOp) List(ctx context.Context, groupID string) ([]DataLake, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, requestParameters.GroupID)
+	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
@@ -141,15 +135,15 @@ func (s *DataLakeServiceOp) List(ctx context.Context, requestParameters *DataLak
 // Get gets the data laked associated with a specific name.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-one-tenant/
-func (s *DataLakeServiceOp) Get(ctx context.Context, requestParameters *DataLakeReqPathParameters) (*DataLake, *Response, error) {
-	if requestParameters.GroupID == "" {
-		return nil, nil, NewArgError("groupId", "must be set")
+func (s *DataLakeServiceOp) Get(ctx context.Context, groupID string, name string) (*DataLake, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
-	if requestParameters.Name == "" {
+	if name == "" {
 		return nil, nil, NewArgError("name", "must be set")
 	}
 
-	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, requestParameters.GroupID, requestParameters.Name)
+	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, groupID, name)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
@@ -168,15 +162,15 @@ func (s *DataLakeServiceOp) Get(ctx context.Context, requestParameters *DataLake
 // Create creates a new Data Lake.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-create-one-tenant/
-func (s *DataLakeServiceOp) Create(ctx context.Context, requestParameters *DataLakeReqPathParameters, createRequest *DataLakeCreateRequest) (*DataLake, *Response, error) {
-	if requestParameters.GroupID == "" {
-		return nil, nil, NewArgError("groupId", "must be set")
+func (s *DataLakeServiceOp) Create(ctx context.Context, groupID string, createRequest *DataLakeCreateRequest) (*DataLake, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "must be set")
 	}
 
-	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, requestParameters.GroupID)
+	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
 	if err != nil {
@@ -195,18 +189,18 @@ func (s *DataLakeServiceOp) Create(ctx context.Context, requestParameters *DataL
 // Update updates an existing Data Lake.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-update-one-tenant/
-func (s *DataLakeServiceOp) Update(ctx context.Context, requestParameters *DataLakeReqPathParameters, updateRequest *DataLakeUpdateRequest) (*DataLake, *Response, error) {
-	if requestParameters.GroupID == "" {
-		return nil, nil, NewArgError("groupId", "must be set")
+func (s *DataLakeServiceOp) Update(ctx context.Context, groupID string, name string, updateRequest *DataLakeUpdateRequest) (*DataLake, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
-	if requestParameters.Name == "" {
+	if name == "" {
 		return nil, nil, NewArgError("name", "must be set")
 	}
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
 
-	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, requestParameters.GroupID, requestParameters.Name)
+	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, groupID, name)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
 	if err != nil {
@@ -225,15 +219,15 @@ func (s *DataLakeServiceOp) Update(ctx context.Context, requestParameters *DataL
 // Delete deletes the Data Lake with a given name.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-delete-one-tenant/
-func (s *DataLakeServiceOp) Delete(ctx context.Context, requestParameters *DataLakeReqPathParameters) (*Response, error) {
-	if requestParameters.GroupID == "" {
+func (s *DataLakeServiceOp) Delete(ctx context.Context, groupID string, name string) (*Response, error) {
+	if groupID == "" {
 		return nil, NewArgError("groupId", "must be set")
 	}
-	if requestParameters.Name == "" {
+	if name == "" {
 		return nil, NewArgError("name", "must be set")
 	}
 
-	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, requestParameters.GroupID, requestParameters.Name)
+	path := fmt.Sprintf("%s/%s/dataLakes/%s", dataLakesBasePath, groupID, name)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
