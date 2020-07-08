@@ -135,7 +135,7 @@ func (s *DataLakeServiceOp) List(ctx context.Context, groupID string) ([]DataLak
 // Get gets the data laked associated with a specific name.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-one-tenant/
-func (s *DataLakeServiceOp) Get(ctx context.Context, groupID string, name string) (*DataLake, *Response, error) {
+func (s *DataLakeServiceOp) Get(ctx context.Context, groupID, name string) (*DataLake, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -189,7 +189,7 @@ func (s *DataLakeServiceOp) Create(ctx context.Context, groupID string, createRe
 // Update updates an existing Data Lake.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-update-one-tenant/
-func (s *DataLakeServiceOp) Update(ctx context.Context, groupID string, name string, updateRequest *DataLakeUpdateRequest) (*DataLake, *Response, error) {
+func (s *DataLakeServiceOp) Update(ctx context.Context, groupID, name string, updateRequest *DataLakeUpdateRequest) (*DataLake, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -219,7 +219,7 @@ func (s *DataLakeServiceOp) Update(ctx context.Context, groupID string, name str
 // Delete deletes the Data Lake with a given name.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-delete-one-tenant/
-func (s *DataLakeServiceOp) Delete(ctx context.Context, groupID string, name string) (*Response, error) {
+func (s *DataLakeServiceOp) Delete(ctx context.Context, groupID, name string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupId", "must be set")
 	}
