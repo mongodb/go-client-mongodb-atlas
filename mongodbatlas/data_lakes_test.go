@@ -3,11 +3,11 @@ package mongodbatlas
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestDataLakes_List(t *testing.T) {
