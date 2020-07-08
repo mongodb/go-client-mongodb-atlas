@@ -11,9 +11,10 @@ const (
 )
 
 // DataLakeService is an interface for interfacing with the Data Lake endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/datalakes-api
 type DataLakeService interface {
-	List(context.Context, *DataLakeReqPathParameters, *ListOptions) ([]DataLake, *Response, error)
+	List(context.Context, *DataLakeReqPathParameters) ([]DataLake, *Response, error)
 	Get(context.Context, *DataLakeReqPathParameters) (*DataLake, *Response, error)
 	Create(context.Context, *DataLakeReqPathParameters, *DataLakeCreateRequest) (*DataLake, *Response, error)
 	Update(context.Context, *DataLakeReqPathParameters, *DataLakeUpdateRequest) (*DataLake, *Response, error)
@@ -24,20 +25,24 @@ type DataLakeService interface {
 // MongoDB Atlas API
 type DataLakeServiceOp service
 
+// AwsCloudProviderConfig is the data lake configuration for AWS
 type AwsCloudProviderConfig struct {
 	IAMAssumedRoleARN string `json:"iamAssumedRoleARN,omitempty"`
 	TestS3Bucket      string `json:"testS3Bucket,omitempty"`
 }
 
+// CloudProviderConfig represents the configuration for all supported cloud providers
 type CloudProviderConfig struct {
 	AWSConfig AwsCloudProviderConfig `json:"aws,omitempty"`
 }
 
+// DataProcessRegion represents the region where a data lake is processed
 type DataProcessRegion struct {
 	CloudProvider string `json:"cloudProvider,omitempty"`
 	Region        string `json:"region,omitempty"`
 }
 
+// DataLakeStore represents a store of data lake data
 type DataLakeStore struct {
 	Name        string `json:"name,omitempty"`
 	Provider    string `json:"provider,omitempty"`
@@ -48,32 +53,37 @@ type DataLakeStore struct {
 	IncludeTags *bool  `json:"includeTags,omitempty"`
 }
 
+// DataLakeDataSource represents the data source of a data lake
 type DataLakeDataSource struct {
 	StoreName     string `json:"storeName,omitempty"`
 	DefaultFormat string `json:"defaultFormat,omitempty"`
 	Path          string `json:"path,omitempty"`
 }
 
+// DataLakeCollection represents collections under a DataLakeDatabase
 type DataLakeCollection struct {
 	Name        string               `json:"name,omitempty"`
 	DataSources []DataLakeDataSource `json:"dataSources,omitempty"`
 }
 
+// DataLakeDatabaseView represents any view under a DataLakeDatabase
 type DataLakeDatabaseView struct {
 	Name     string `json:"name,omitempty"`
 	Source   string `json:"source,omitempty"`
 	Pipeline string `json:"pipeline,omitempty"`
 }
 
+// DataLakeDatabase represents the mapping of a data lake to a database
 type DataLakeDatabase struct {
 	Name        string                 `json:"name,omitempty"`
 	Collections []DataLakeCollection   `json:"collections,omitempty"`
 	Views       []DataLakeDatabaseView `json:"views,omitempty"`
 }
 
+// Storage represents the storage configuration for a data lake
 type Storage struct {
-	Databases map[string]DataLakeDatabase `json:"databases,omitempty"`
-	Stores    []DataLakeStore             `json:"stores,omitempty"`
+	Databases []DataLakeDatabase `json:"databases,omitempty"`
+	Stores    []DataLakeStore    `json:"stores,omitempty"`
 }
 
 // DataLake represents a data lake.
@@ -105,34 +115,31 @@ type DataLakeCreateRequest struct {
 }
 
 // List gets all data lakes for the specified group.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-all-tenants
-func (s *DataLakeServiceOp) List(ctx context.Context, requestParameters *DataLakeReqPathParameters, listOptions *ListOptions) ([]DataLake, *Response, error) {
+func (s *DataLakeServiceOp) List(ctx context.Context, requestParameters *DataLakeReqPathParameters) ([]DataLake, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, requestParameters.GroupID)
 
-	path, err := setListOptions(path, listOptions)
-	if err != nil {
-		return nil, nil, err
-	}
-
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	root := new([]DataLake)
-	resp, err := s.Client.Do(ctx, req, root)
+	var root []DataLake
+	resp, err := s.Client.Do(ctx, req, &root)
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return *root, resp, nil
+	return root, resp, nil
 }
 
 // Get gets the data laked associated with a specific name.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-get-one-tenant/
 func (s *DataLakeServiceOp) Get(ctx context.Context, requestParameters *DataLakeReqPathParameters) (*DataLake, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -159,13 +166,14 @@ func (s *DataLakeServiceOp) Get(ctx context.Context, requestParameters *DataLake
 }
 
 // Create creates a new Data Lake.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-create-one-tenant/
 func (s *DataLakeServiceOp) Create(ctx context.Context, requestParameters *DataLakeReqPathParameters, createRequest *DataLakeCreateRequest) (*DataLake, *Response, error) {
 	if requestParameters.GroupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
 	if createRequest == nil {
-		return nil, nil, NewArgError("name", "must be set")
+		return nil, nil, NewArgError("createRequest", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/dataLakes", dataLakesBasePath, requestParameters.GroupID)
@@ -185,6 +193,7 @@ func (s *DataLakeServiceOp) Create(ctx context.Context, requestParameters *DataL
 }
 
 // Update updates an existing Data Lake.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-update-one-tenant/
 func (s *DataLakeServiceOp) Update(ctx context.Context, requestParameters *DataLakeReqPathParameters, updateRequest *DataLakeUpdateRequest) (*DataLake, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -214,6 +223,7 @@ func (s *DataLakeServiceOp) Update(ctx context.Context, requestParameters *DataL
 }
 
 // Delete deletes the Data Lake with a given name.
+//
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-delete-one-tenant/
 func (s *DataLakeServiceOp) Delete(ctx context.Context, requestParameters *DataLakeReqPathParameters) (*Response, error) {
 	if requestParameters.GroupID == "" {

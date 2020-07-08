@@ -38,8 +38,8 @@ func TestDataLakes_List(t *testing.T) {
 			  	"name": "UserMetricData",
 			  	"state": "ACTIVE",
 			  	"storage": {
-				  	"databases": {
-						"my.database": {
+				  	"databases": [
+						{
 							"name": "my.database",
 							"collections": [
 								{
@@ -61,7 +61,7 @@ func TestDataLakes_List(t *testing.T) {
 								}
 							]
 						}
-					},
+					],
 					"stores": [
 						{
 							"name": "datacenter-alpha",
@@ -82,7 +82,7 @@ func TestDataLakes_List(t *testing.T) {
 		GroupID: groupID,
 	}
 
-	snapshots, _, err := client.DataLakes.List(ctx, &requestParameters, nil)
+	snapshots, _, err := client.DataLakes.List(ctx, &requestParameters)
 	if err != nil {
 		t.Fatalf("DataLake.List returned error: %v", err)
 	}
@@ -104,8 +104,8 @@ func TestDataLakes_List(t *testing.T) {
 			Name:      "UserMetricData",
 			State:     "ACTIVE",
 			Storage: Storage{
-				Databases: map[string]DataLakeDatabase{
-					"my.database": {
+				Databases: []DataLakeDatabase{
+					{
 						Name: "my.database",
 						Collections: []DataLakeCollection{
 							{
@@ -207,7 +207,7 @@ func TestDataLake_Get(t *testing.T) {
 		Name:      "UserMetricData",
 		State:     "ACTIVE",
 		Storage: Storage{
-			Databases: map[string]DataLakeDatabase{},
+			Databases: []DataLakeDatabase{},
 			Stores:    []DataLakeStore{},
 		},
 	}
@@ -313,7 +313,94 @@ func TestDataLake_Update(t *testing.T) {
 		Name:      "UserMetricData",
 		State:     "ACTIVE",
 		Storage: Storage{
-			Databases: map[string]DataLakeDatabase{},
+			Databases: []DataLakeDatabase{},
+			Stores:    []DataLakeStore{},
+		},
+	}
+
+	if diff := deep.Equal(updatedDataLake, &expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataLake_Create(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	dataLakeName := "UserMetricData"
+
+	createRequest := &DataLakeCreateRequest{
+		Name: dataLakeName,
+	}
+
+	path := fmt.Sprintf("/groups/%s/dataLakes", groupID)
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		expected := map[string]interface{}{
+			"name": "UserMetricData",
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("Decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
+		}
+
+		fmt.Fprint(w, `{
+			  "cloudProviderConfig": {
+				  "aws": {
+					  "iamAssumedRoleARN": "new_arn",
+					  "testS3Bucket": "new_bucket"
+				  }
+			  },
+			  "dataProcessRegion": {
+				"cloudProvider" : "AWS",
+				"region" : "DUBLIN_IRL"
+			  },
+			  "groupId": "6c7498dg87d9e6526801572b",
+			  "hostnames": [
+				  "usermetricdata.mongodb.example.net"
+			  ],
+			  "name": "UserMetricData",
+			  "state": "UNVERIFIED",
+			  "storage": {
+				  "databases": {},
+				  "stores": []
+			  }
+		}`)
+	})
+
+	requestParameters := DataLakeReqPathParameters{
+		GroupID: groupID,
+	}
+
+	updatedDataLake, _, err := client.DataLakes.Create(ctx, &requestParameters, createRequest)
+	if err != nil {
+		t.Fatalf("DataLake.Create returned error: %v", err)
+	}
+
+	expected := DataLake{
+		CloudProviderConfig: CloudProviderConfig{
+			AWSConfig: AwsCloudProviderConfig{
+				IAMAssumedRoleARN: "new_arn",
+				TestS3Bucket:      "new_bucket",
+			},
+		},
+		DataProcessRegion: DataProcessRegion{
+			CloudProvider: "AWS",
+			Region:        "DUBLIN_IRL",
+		},
+		GroupID:   groupID,
+		Hostnames: []string{"usermetricdata.mongodb.example.net"},
+		Name:      "UserMetricData",
+		State:     "UNVERIFIED",
+		Storage: Storage{
+			Databases: []DataLakeDatabase{},
 			Stores:    []DataLakeStore{},
 		},
 	}
