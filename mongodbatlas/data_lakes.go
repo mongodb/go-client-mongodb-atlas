@@ -45,7 +45,7 @@ type DataLakeStore struct {
 	Bucket      string `json:"bucket,omitempty"`
 	Prefix      string `json:"prefix,omitempty"`
 	Delimiter   string `json:"delimiter,omitempty"`
-	IncludeTags bool   `json:"includeTags,omitempty"`
+	IncludeTags *bool  `json:"includeTags,omitempty"`
 }
 
 type DataLakeDataSource struct {

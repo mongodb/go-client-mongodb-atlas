@@ -3,6 +3,7 @@ package mongodbatlas
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
 
@@ -135,7 +136,7 @@ func TestDataLakes_List(t *testing.T) {
 						Bucket:      "datacenter-alpha",
 						Prefix:      "/metrics",
 						Delimiter:   "/",
-						IncludeTags: false,
+						IncludeTags: pointy.Bool(false),
 					},
 				},
 			},
