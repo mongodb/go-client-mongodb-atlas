@@ -50,9 +50,32 @@ type DataLakeStore struct {
 	IncludeTags bool   `json:"includeTags,omitempty"`
 }
 
+type DataLakeDataSource struct {
+	StoreName     string `json:"storeName,omitempty"`
+	DefaultFormat string `json:"defaultFormat,omitempty"`
+	Path          string `json:"path,omitempty"`
+}
+
+type DataLakeCollection struct {
+	Name        string               `json:"name,omitempty"`
+	DataSources []DataLakeDataSource `json:"dataSources,omitempty"`
+}
+
+type DataLakeDatabaseView struct {
+	Name     string `json:"name,omitempty"`
+	Source   string `json:"source,omitempty"`
+	Pipeline string `json:"pipeline,omitempty"`
+}
+
+type DataLakeDatabase struct {
+	Name        string                 `json:"name,omitempty"`
+	Collections []DataLakeCollection   `json:"collections,omitempty"`
+	Views       []DataLakeDatabaseView `json:"views,omitempty"`
+}
+
 type Storage struct {
-	Databases interface{}     `json:"databases,omitempty"`
-	Stores    []DataLakeStore `json:"stores,omitempty"`
+	Databases map[string]DataLakeDatabase `json:"databases,omitempty"`
+	Stores    []DataLakeStore             `json:"stores,omitempty"`
 }
 
 // DataLake represents a data lake.

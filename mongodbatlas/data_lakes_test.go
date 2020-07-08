@@ -15,45 +15,64 @@ func TestDataLakes_List(t *testing.T) {
 
 	groupID := "6c7498dg87d9e6526801572b"
 
-	path := fmt.Sprintf("/groups/%s/datalakes", groupID)
+	path := fmt.Sprintf("/groups/%s/dataLakes", groupID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 			{
 				"cloudProviderConfig": {
-					"aws": {}
-				},
-				"dataProcessRegion": {},
-				"groupId": "6c7498dg87d9e6526801572b",
-				"hostnames": [
-					"datalake0-ta1ir.a.query.mongodb.net"
-				],
-				"name": "DataLake0",
-				"state": "UNVERIFIED",
-				"storage": {
-					"databases": []
-			}
-			{
-			  "cloudProviderConfig": {
-				  "aws": {
+					"aws": {
 					  "iamAssumedRoleARN": "arn:aws:iam::123456789012:role/ReadS3BucketRole"
-				  }
-			  },
-			  "dataProcessRegion": {
-				"cloudProvider" : "AWS",
-				"region" : "VIRGINIA_USA"
-			  },
-			  "groupId": "6c7498dg87d9e6526801572b",
-			  "hostnames": [
-				  "usermetricdata.mongodb.example.net"
-			  ],
-			  "name": "UserMetricData",
-			  "state": "ACTIVE",
-			  "storage": {
-				  "databases": {},
-				  "stores": []
-			  }
+				  	}
+			  	},
+			  	"dataProcessRegion": {
+					"cloudProvider" : "AWS",
+					"region" : "VIRGINIA_USA"
+			  	},
+			  	"groupId": "6c7498dg87d9e6526801572b",
+			  	"hostnames": [
+					"usermetricdata.mongodb.example.net"
+			  	],
+			  	"name": "UserMetricData",
+			  	"state": "ACTIVE",
+			  	"storage": {
+				  	"databases": {
+						"my.database": {
+							"name": "my.database",
+							"collections": [
+								{
+									"name": "my.collection",
+									"dataSources": [
+										{
+												"storeName" : "store",
+												"defaultFormat" : ".json",
+												"path" : "/path"
+										}
+									]
+								}
+							],
+							"views": [
+								{
+									"name" : "my.view",
+									"source" : "source",
+									"pipeline" : "my.pipeline"
+								}
+							]
+						}
+					},
+					"stores": [
+						{
+							"name": "datacenter-alpha",
+							"provider": "s3",
+						  	"region": "us-east-1",
+						  	"bucket": "datacenter-alpha",
+						  	"prefix": "/metrics",
+						  	"delimiter": "/",
+						  	"includeTags": false
+						}
+					]
+				}
 			}
 		]`)
 	})
@@ -65,18 +84,14 @@ func TestDataLakes_List(t *testing.T) {
 		t.Fatalf("DataLake.List returned error: %v", err)
 	}
 
-	expected := []*DataLake{
+	expected := []DataLake{
 		{
-			CloudProviderConfig: CloudProviderConfig{},
-			DataProcessRegion:   DataProcessRegion{},
-			GroupID:             groupID,
-			Hostnames:           []string{"my.data.lake"},
-			Name:                "dataLake1",
-			State:               "UNVERIFIED",
-			Storage:             Storage{},
-		},
-		{
-			CloudProviderConfig: CloudProviderConfig{},
+			CloudProviderConfig: CloudProviderConfig{
+				AWSConfig: AwsCloudProviderConfig{
+					IAMAssumedRoleARN: "arn:aws:iam::123456789012:role/ReadS3BucketRole",
+					TestS3Bucket:      "",
+				},
+			},
 			DataProcessRegion: DataProcessRegion{
 				CloudProvider: "AWS",
 				Region:        "VIRGINIA_USA",
@@ -86,8 +101,41 @@ func TestDataLakes_List(t *testing.T) {
 			Name:      "UserMetricData",
 			State:     "ACTIVE",
 			Storage: Storage{
-				Databases: nil,
-				Stores:    []DataLakeStore{},
+				Databases: map[string]DataLakeDatabase{
+					"my.database": {
+						Name: "my.database",
+						Collections: []DataLakeCollection{
+							{
+								Name: "my.collection",
+								DataSources: []DataLakeDataSource{
+									{
+										StoreName:     "store",
+										DefaultFormat: ".json",
+										Path:          "/path",
+									},
+								},
+							},
+						},
+						Views: []DataLakeDatabaseView{
+							{
+								Name:     "my.view",
+								Source:   "source",
+								Pipeline: "my.pipeline",
+							},
+						},
+					},
+				},
+				Stores: []DataLakeStore{
+					{
+						Name:        "datacenter-alpha",
+						Provider:    "s3",
+						Region:      "us-east-1",
+						Bucket:      "datacenter-alpha",
+						Prefix:      "/metrics",
+						Delimiter:   "/",
+						IncludeTags: false,
+					},
+				},
 			},
 		},
 	}
@@ -103,7 +151,7 @@ func TestDataLake_Get(t *testing.T) {
 
 	groupID := "6c7498dg87d9e6526801572b"
 	dataLakeName := "UserMetricData"
-	path := fmt.Sprintf("/groups/%s/datalakes/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -127,7 +175,7 @@ func TestDataLake_Get(t *testing.T) {
 				  "databases": {},
 				  "stores": []
 			  }
-			}`)
+		}`)
 	})
 
 	cloudProviderSnapshot, _, err := client.DataLakes.Get(ctx, &DataLakeReqPathParameters{
@@ -139,7 +187,12 @@ func TestDataLake_Get(t *testing.T) {
 	}
 
 	expected := DataLake{
-		CloudProviderConfig: CloudProviderConfig{},
+		CloudProviderConfig: CloudProviderConfig{
+			AWSConfig: AwsCloudProviderConfig{
+				IAMAssumedRoleARN: "arn:aws:iam::123456789012:role/ReadS3BucketRole",
+				TestS3Bucket:      "",
+			},
+		},
 		DataProcessRegion: DataProcessRegion{
 			CloudProvider: "AWS",
 			Region:        "VIRGINIA_USA",
@@ -149,12 +202,12 @@ func TestDataLake_Get(t *testing.T) {
 		Name:      "UserMetricData",
 		State:     "ACTIVE",
 		Storage: Storage{
-			Databases: nil,
+			Databases: map[string]DataLakeDatabase{},
 			Stores:    []DataLakeStore{},
 		},
 	}
 
-	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
+	if diff := deep.Equal(cloudProviderSnapshot, &expected); diff != nil {
 		t.Error(diff)
 	}
 }
@@ -175,15 +228,24 @@ func TestDataLake_Update(t *testing.T) {
 		},
 		DataProcessRegion: DataProcessRegion{
 			CloudProvider: "AWS",
-			Region:        "VIRGINIA_USA",
+			Region:        "DUBLIN_IRL",
 		},
 	}
 
-	path := fmt.Sprintf("/groups/%s/datalakes/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		expected := map[string]interface{}{
-			"expires": "2018-12-01",
+			"cloudProviderConfig": map[string]interface{}{
+				"aws": map[string]interface{}{
+					"iamAssumedRoleARN": "new_arn",
+					"testS3Bucket":      "new_bucket",
+				},
+			},
+			"dataProcessRegion": map[string]interface{}{
+				"cloudProvider": "AWS",
+				"region":        "DUBLIN_IRL",
+			},
 		}
 
 		var v map[string]interface{}
@@ -197,39 +259,26 @@ func TestDataLake_Update(t *testing.T) {
 		}
 
 		fmt.Fprint(w, `{
-		  "clusterId": "57c2487d833e9e75286093696",
-		  "complete": true,
-		  "created": {
-			"date": "2017-12-26T16:32:16Z",
-			"increment": 1
-		  },
-		  "doNotDelete": false,
-		  "expires": "2018-12-01T00:00:00Z",
-		  "groupId": "6c7498dg87d9e6526801572b",
-		  "id": "6b5380e6jvn128560506942b",
-		  "lastOplogAppliedTimestamp": {
-			"date": "2017-12-26T16:32:15Z",
-			"increment": 1
-		  },
-		  "links": [
-			{
-			  "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/6c7498dg87d9e6526801572b/clusters/Cluster0/snapshots/6b5380e6jvn128560506942b",
-			  "rel": "self"
-			}
-		  ],
-		  "parts": [
-			{
-			  "clusterId": "57c2487d833e9e75286093696",
-			  "compressionSetting": "GZIP",
-			  "dataSizeBytes": 4502,
-			  "encryptionEnabled": false,
-			  "fileSizeBytes": 324760,
-			  "mongodVersion": "3.6.10",
-			  "replicaSetName": "Cluster0-shard-0",
-			  "storageSizeBytes": 53248,
-			  "typeName": "REPLICA_SET"
-			}
-		  ]
+			  "cloudProviderConfig": {
+				  "aws": {
+					  "iamAssumedRoleARN": "new_arn",
+					  "testS3Bucket": "new_bucket"
+				  }
+			  },
+			  "dataProcessRegion": {
+				"cloudProvider" : "AWS",
+				"region" : "DUBLIN_IRL"
+			  },
+			  "groupId": "6c7498dg87d9e6526801572b",
+			  "hostnames": [
+				  "usermetricdata.mongodb.example.net"
+			  ],
+			  "name": "UserMetricData",
+			  "state": "ACTIVE",
+			  "storage": {
+				  "databases": {},
+				  "stores": []
+			  }
 		}`)
 	})
 
@@ -242,22 +291,27 @@ func TestDataLake_Update(t *testing.T) {
 	}
 
 	expected := DataLake{
-		CloudProviderConfig: CloudProviderConfig{},
+		CloudProviderConfig: CloudProviderConfig{
+			AWSConfig: AwsCloudProviderConfig{
+				IAMAssumedRoleARN: "new_arn",
+				TestS3Bucket:      "new_bucket",
+			},
+		},
 		DataProcessRegion: DataProcessRegion{
 			CloudProvider: "AWS",
-			Region:        "VIRGINIA_USA",
+			Region:        "DUBLIN_IRL",
 		},
 		GroupID:   groupID,
 		Hostnames: []string{"usermetricdata.mongodb.example.net"},
 		Name:      "UserMetricData",
 		State:     "ACTIVE",
 		Storage: Storage{
-			Databases: nil,
+			Databases: map[string]DataLakeDatabase{},
 			Stores:    []DataLakeStore{},
 		},
 	}
 
-	if diff := deep.Equal(updatedDataLake, expected); diff != nil {
+	if diff := deep.Equal(updatedDataLake, &expected); diff != nil {
 		t.Error(diff)
 	}
 }
@@ -269,7 +323,7 @@ func TestDataLake_Delete(t *testing.T) {
 	groupID := "6c7498dg87d9e6526801572b"
 	dataLakeName := "dataLake"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
