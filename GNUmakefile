@@ -17,13 +17,17 @@ test:
 fmt:
 	@echo "==> Fixing source code with gofmt..."
 	gofmt -s -w ./$(PKG_NAME)
+	goimports -w ./$(PKG_NAME)
+
+lint-fix:
+	golangci-lint run --fix
 
 lint:
 	golangci-lint run $(SOURCE_FILES)
 
-check: test lint
+check: test lint-fix
 
 tools:
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s $(GOLANGCI_VERSION)
 
-.PHONY: build test fmt lint check tools
+.PHONY: build test fmt lint lint-fix check tools
