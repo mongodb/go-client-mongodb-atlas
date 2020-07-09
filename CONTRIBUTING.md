@@ -63,3 +63,5 @@ The following is a short list of commands that can be run in the root of the pro
 
 - Run `make test` to run all unit tests.
 - Run `make lint` to validate against our linting rules.
+
+We provide a git pre-commit hook to format and check the code, to install it run `make link-git-hooks`
