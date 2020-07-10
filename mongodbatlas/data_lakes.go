@@ -99,8 +99,8 @@ type DataLake struct {
 
 // DataLakeReqPathParameters represents all possible fields that can be updated in a data lake
 type DataLakeUpdateRequest struct {
-	CloudProviderConfig CloudProviderConfig `json:"cloudProviderConfig,omitempty"`
-	DataProcessRegion   DataProcessRegion   `json:"dataProcessRegion,omitempty"`
+	CloudProviderConfig *CloudProviderConfig `json:"cloudProviderConfig,omitempty"`
+	DataProcessRegion   *DataProcessRegion   `json:"dataProcessRegion,omitempty"`
 }
 
 // DataLakeReqPathParameters represents the required fields to create a new data lake

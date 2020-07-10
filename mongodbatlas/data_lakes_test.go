@@ -216,13 +216,13 @@ func TestDataLake_Update(t *testing.T) {
 	dataLakeName := "UserMetricData"
 
 	updateRequest := &DataLakeUpdateRequest{
-		CloudProviderConfig: CloudProviderConfig{
+		CloudProviderConfig: &CloudProviderConfig{
 			AWSConfig: AwsCloudProviderConfig{
 				IAMAssumedRoleARN: "new_arn",
 				TestS3Bucket:      "new_bucket",
 			},
 		},
-		DataProcessRegion: DataProcessRegion{
+		DataProcessRegion: &DataProcessRegion{
 			CloudProvider: "AWS",
 			Region:        "DUBLIN_IRL",
 		},
