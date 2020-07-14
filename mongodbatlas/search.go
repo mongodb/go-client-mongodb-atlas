@@ -118,7 +118,7 @@ func (s *SearchServiceOp) CreateIndex(ctx context.Context, projectID, clusterNam
 
 // Update updates an Atlas Search index by its indexId.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-update-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/fts-indexes-update-one/
 func (s *SearchServiceOp) UpdateIndex(ctx context.Context, projectID, clusterName, indexID string, r *SearchIndex) (*SearchIndex, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
