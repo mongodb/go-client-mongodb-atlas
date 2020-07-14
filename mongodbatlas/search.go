@@ -200,13 +200,6 @@ func (s *SearchServiceOp) ListAnalyzers(ctx context.Context, groupID, clusterNam
 	return root, resp, err
 }
 
-// SearchIndexes paginated response from indexes.
-type SearchIndexes struct {
-	Links      []*Link        `json:"links,omitempty"`
-	Results    []*SearchIndex `json:"results,omitempty"`
-	TotalCount int            `json:"totalCount,omitempty"`
-}
-
 // SearchIndex index definition.
 type SearchIndex struct {
 	CollectionName string        `json:"collectionName,omitempty"`
