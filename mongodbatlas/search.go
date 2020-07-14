@@ -30,22 +30,22 @@ var _ SearchService = &SearchServiceOp{}
 // ListIndexes Get all Atlas Search indexes for a specified collection.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/
-func (s *SearchServiceOp) ListIndexes(ctx context.Context, groupID, clusterName, dbName, collName string, opts *ListOptions) ([]*SearchIndex, *Response, error) {
+func (s *SearchServiceOp) ListIndexes(ctx context.Context, groupID, clusterName, databaseName, collectionName string, opts *ListOptions) ([]*SearchIndex, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("GroupID", "must be set")
 	}
 	if clusterName == "" {
 		return nil, nil, NewArgError("ClusterName", "must be set")
 	}
-	if dbName == "" {
-		return nil, nil, NewArgError("DatabaseName", "must be set")
+	if databaseName == "" {
+		return nil, nil, NewArgError("databaseName", "must be set")
 	}
-	if collName == "" {
-		return nil, nil, NewArgError("CollectionName", "must be set")
+	if collectionName == "" {
+		return nil, nil, NewArgError("collectionName", "must be set")
 	}
 
 	path := fmt.Sprintf(searchBasePath, groupID, clusterName)
-	path = fmt.Sprintf("%s/indexes/%s/%s", path, dbName, collName)
+	path = fmt.Sprintf("%s/indexes/%s/%s", path, databaseName, collectionName)
 
 	path, err := setListOptions(path, opts)
 	if err != nil {
@@ -66,9 +66,9 @@ func (s *SearchServiceOp) ListIndexes(ctx context.Context, groupID, clusterName,
 // Get gets one Atlas Search index by its indexId.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-one/
-func (s *SearchServiceOp) GetIndex(ctx context.Context, projectID, clusterName, indexID string) (*SearchIndex, *Response, error) {
-	if projectID == "" {
-		return nil, nil, NewArgError("projectID", "must be set")
+func (s *SearchServiceOp) GetIndex(ctx context.Context, groupID, clusterName, indexID string) (*SearchIndex, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
 	if clusterName == "" {
 		return nil, nil, NewArgError("clusterName", "must be set")
@@ -77,7 +77,7 @@ func (s *SearchServiceOp) GetIndex(ctx context.Context, projectID, clusterName, 
 		return nil, nil, NewArgError("indexID", "must be set")
 	}
 
-	path := fmt.Sprintf(searchBasePath, projectID, clusterName)
+	path := fmt.Sprintf(searchBasePath, groupID, clusterName)
 	path = fmt.Sprintf("%s/indexes/%s", path, indexID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
