@@ -93,7 +93,8 @@ type Client struct {
 	DataLakes                           DataLakeService
 	OnlineArchives                      OnlineArchiveService
 	Search                              SearchService
-	onRequestCompleted                  RequestCompletionCallback
+
+	onRequestCompleted RequestCompletionCallback
 }
 
 // RequestCompletionCallback defines the type of the request callback function
