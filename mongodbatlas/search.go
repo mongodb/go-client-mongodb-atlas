@@ -211,7 +211,7 @@ type SearchIndex struct {
 	SearchAnalyzer string        `json:"searchAnalyzer,omitempty"`
 }
 
-// IndexMapping criteria to use for archiving data.
+// IndexMapping containing index specifications for the collection fields.
 type IndexMapping struct {
 	Dynamic bool                   `json:"dynamic"`
 	Fields  *map[string]IndexField `json:"fields,omitempty"`
@@ -223,7 +223,7 @@ type IndexField struct {
 	Type     string `json:"type"`
 }
 
-// SearchAnalyzer custom analyzer definition
+// SearchAnalyzer custom analyzer definition.
 type SearchAnalyzer struct {
 	BaseAnalyzer     string   `json:"baseAnalyzer"`
 	MaxTokenLength   *float64 `json:"maxTokenLength,omitempty"`
