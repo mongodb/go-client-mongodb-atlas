@@ -202,11 +202,13 @@ func (s *SearchServiceOp) ListAnalyzers(ctx context.Context, groupID, clusterNam
 
 // SearchIndex index definition.
 type SearchIndex struct {
-	CollectionName string        `json:"collectionName,omitempty"`
-	Database       string        `json:"database,omitempty"`
+	Analyzer       string        `json:"analyzer,omitempty"`
+	CollectionName string        `json:"collectionName"`
+	Database       string        `json:"database"`
 	IndexID        string        `json:"indexID,omitempty"`
 	Mappings       *IndexMapping `json:"mappings,omitempty"`
-	Name           string        `json:"name,omitempty"`
+	Name           string        `json:"name"`
+	SearchAnalyzer string        `json:"searchAnalyzer,omitempty"`
 }
 
 // IndexMapping criteria to use for archiving data.

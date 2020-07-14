@@ -17,6 +17,7 @@ func TestSearch_ListIndexes(t *testing.T) {
 	clusterName := "test"
 	collectionName := "movies"
 	databaseName := "sample_mflix"
+
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s/%s", groupID, clusterName, databaseName, collectionName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
@@ -176,14 +177,15 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 			"mappings": map[string]interface{}{
 				"dynamic": true,
 			},
-			"name": "default"}
+			"name": "default",
+		}
 
 		var v map[string]interface{}
 		if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
 			t.Fatalf("decode json: %v", err)
 		}
 		if diff := deep.Equal(v, expected); diff != nil {
-			t.Errorf("Search.Create Request Body = %v", diff)
+			t.Errorf("Search.CreateIndex Request Body = %v", diff)
 		}
 
 		jsonBlob := `{
@@ -209,6 +211,79 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 		IndexID:        "5d12990380eef5303341accd",
 		Mappings:       &IndexMapping{Dynamic: true},
 		Name:           "default",
+	}
+
+	if diff := deep.Equal(index, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestSearchServiceOp_UpdateIndex(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "5a0a1e7e0f2912c554080adc"
+	clusterName := "test"
+	indexID := "5d129aef87d9d64f310bd79f"
+
+	updateRequest := &SearchIndex{
+		Analyzer:       "lucene.swedish",
+		CollectionName: "orders",
+		Database:       "fiscalYear2018",
+		Mappings: &IndexMapping{
+			Dynamic: true,
+		},
+		Name:           "2018ordersIndex",
+		SearchAnalyzer: "lucene.whitespace",
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s", groupID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"analyzer":       "lucene.swedish",
+			"searchAnalyzer": "lucene.whitespace",
+			"collectionName": "orders",
+			"database":       "fiscalYear2018",
+			"mappings": map[string]interface{}{
+				"dynamic": true,
+			},
+			"name": "2018ordersIndex",
+		}
+
+		var v map[string]interface{}
+		if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Search.UpdateIndex Request Body = %v", diff)
+		}
+
+		jsonBlob := `{
+		  "analyzer" : "lucene.swedish",
+		  "searchAnalyzer" : "lucene.whitespace",
+		  "collectionName" : "orders",
+		  "database" : "fiscalYear2018",
+		  "indexID" : "5d129aef87d9d64f310bd79f",
+		  "mappings" : {
+			"dynamic" : true
+		  },
+		  "name" : "2018ordersIndex"
+		}`
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	index, _, err := client.Search.UpdateIndex(ctx, groupID, clusterName, indexID, updateRequest)
+	if err != nil {
+		t.Fatalf("Search.UpdateIndex returned error: %v", err)
+	}
+
+	expected := &SearchIndex{
+		Analyzer:       "lucene.swedish",
+		CollectionName: "orders",
+		Database:       "fiscalYear2018",
+		IndexID:        "5d129aef87d9d64f310bd79f",
+		Mappings:       &IndexMapping{Dynamic: true},
+		Name:           "2018ordersIndex",
+		SearchAnalyzer: "lucene.whitespace",
 	}
 
 	if diff := deep.Equal(index, expected); diff != nil {
