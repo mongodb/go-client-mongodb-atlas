@@ -186,6 +186,72 @@ func TestDatabaseUsers_CreateWithX509Type(t *testing.T) {
 	}
 }
 
+func TestDatabaseUsers_CreateWithAWSIAMType(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	createRequest := &DatabaseUser{
+		DatabaseName: "$external",
+		Username:     "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user",
+		GroupID:      groupID,
+		AWSIAMType:   "USER",
+		Roles: []Role{{
+			DatabaseName: "admin",
+			RoleName:     "readWriteAnyDatabase",
+		}},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"databaseName": "$external",
+			"username":     "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user",
+			"groupId":      groupID,
+			"awsIAMType":   "USER",
+
+			"roles": []interface{}{map[string]interface{}{
+				"databaseName": "admin",
+				"roleName":     "readWriteAnyDatabase",
+			}},
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if !reflect.DeepEqual(v, expected) {
+			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		}
+
+		fmt.Fprint(w, `{
+			"databaseName": "$external",
+			"username": "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user",
+			"groupId": "1",
+			"awsIAMType": "USER",
+			"roles": [
+				{
+					"databaseName": "admin",
+					"roleName": "readWriteAnyDatabase"
+				}
+			]
+		}`)
+	})
+
+	dbUser, _, err := client.DatabaseUsers.Create(ctx, groupID, createRequest)
+	if err != nil {
+		t.Errorf("DatabaseUsers.Create returned error: %v", err)
+	}
+	if username := dbUser.Username; username != "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user" {
+		t.Errorf("expected username '%s', received '%s'", "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user", username)
+	}
+	if id := dbUser.GroupID; id != groupID {
+		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+}
+
 func TestDatabaseUsers_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
