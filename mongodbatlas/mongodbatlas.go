@@ -19,9 +19,8 @@ import (
 )
 
 const (
-	libraryVersion = "0.1"
 	defaultBaseURL = "https://cloud.mongodb.com/api/atlas/v1.0/"
-	userAgent      = "go-mongodbatlas" + libraryVersion
+	userAgent      = "go-mongodbatlas"
 	jsonMediaType  = "application/json"
 	gzipMediaType  = "application/gzip"
 )
