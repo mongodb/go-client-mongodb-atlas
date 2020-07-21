@@ -93,8 +93,8 @@ func testClientDefaultBaseURL(t *testing.T, c *Client) {
 }
 
 func testClientDefaultUserAgent(t *testing.T, c *Client) {
-	if c.UserAgent != userAgent {
-		t.Errorf("NewClient UserAgent = %v, expected %v", c.UserAgent, userAgent)
+	if c.UserAgent != DefaultUserAgent() {
+		t.Errorf("NewClient UserAgent = %v, expected %v", c.UserAgent, DefaultUserAgent())
 	}
 }
 
@@ -177,7 +177,7 @@ func TestNewRequest_badURL(t *testing.T) {
 }
 
 func TestNewRequest_withCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", ClientVersion)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
@@ -186,7 +186,7 @@ func TestNewRequest_withCustomUserAgent(t *testing.T) {
 
 	req, _ := c.NewRequest(ctx, http.MethodGet, "/foo", nil)
 
-	expected := fmt.Sprintf("%s %s", ua, userAgent)
+	expected := fmt.Sprintf("%s %s", ua, DefaultUserAgent())
 	if got := req.Header.Get("User-Agent"); got != expected {
 		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
 	}
@@ -227,7 +227,7 @@ func TestNewGZipRequest_emptyBody(t *testing.T) {
 }
 
 func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", ClientVersion)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
@@ -236,7 +236,7 @@ func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
 
 	req, _ := c.NewGZipRequest(ctx, http.MethodGet, "/foo")
 
-	expected := fmt.Sprintf("%s %s", ua, userAgent)
+	expected := fmt.Sprintf("%s %s", ua, DefaultUserAgent())
 	if got := req.Header.Get("User-Agent"); got != expected {
 		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
 	}
@@ -450,14 +450,14 @@ func TestDo_completion_callback(t *testing.T) {
 }
 
 func TestCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", ClientVersion)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
 		t.Fatalf("New() unexpected error: %v", err)
 	}
 
-	expected := fmt.Sprintf("%s %s", ua, userAgent)
+	expected := fmt.Sprintf("%s %s", ua, DefaultUserAgent())
 	if got := c.UserAgent; got != expected {
 		t.Errorf("New() UserAgent = %s; expected %s", got, expected)
 	}

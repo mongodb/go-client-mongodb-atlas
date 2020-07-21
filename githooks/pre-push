@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# A simple pre-push hook which ensures that the tag being pushed to GitHub
+# matches the version defined in the VERSION_FILE.
+#
+declare -r VERSION_FILE="mongodbatlas/version.go"
+
+# Determine if a tag is being pushed
+tag=
+input=$(</dev/stdin)
+for arg in $input; do
+    if [[ "$arg" =~ ^refs\/tags ]]; then
+        tag="${arg/refs\/tags\//}"
+        if [[ "$tag" =~ ^v ]]; then
+            # Remove the 'v' prefix
+            tag="${tag:1}"
+        fi
+    fi
+done
+
+# Releasing a tag
+if [[ -n "$tag" ]]; then
+    echo ""
+    echo "Releasing '$tag'..."
+    if ! grep -q "ClientVersion = \"$tag\"" "$VERSION_FILE"; then
+        echo ""
+        echo "ERROR: Mismatch between the release version ('$tag') and '$VERSION_FILE'"
+        echo "$VERSION_FILE:"
+        echo "---------"
+        grep "ClientVersion = " "$VERSION_FILE"
+        echo "---------"
+        echo
+        exit 1
+    fi
+fi

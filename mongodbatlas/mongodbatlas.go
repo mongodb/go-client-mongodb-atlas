@@ -20,7 +20,6 @@ import (
 
 const (
 	defaultBaseURL = "https://cloud.mongodb.com/api/atlas/v1.0/"
-	userAgent      = "go-mongodbatlas"
 	jsonMediaType  = "application/json"
 	gzipMediaType  = "application/gzip"
 )
@@ -185,7 +184,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	baseURL, _ := url.Parse(defaultBaseURL)
 
-	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
+	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: DefaultUserAgent()}
 
 	c.APIKeys = &APIKeysServiceOp{Client: c}
 	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{Client: c}
@@ -263,7 +262,7 @@ func SetBaseURL(bu string) ClientOpt {
 // SetUserAgent is a client option for setting the user agent.
 func SetUserAgent(ua string) ClientOpt {
 	return func(c *Client) error {
-		c.UserAgent = fmt.Sprintf("%s %s", ua, c.UserAgent)
+		c.UserAgent = fmt.Sprintf("%s %s", ua, DefaultUserAgent())
 		return nil
 	}
 }
