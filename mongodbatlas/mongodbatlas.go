@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -22,6 +23,13 @@ const (
 	defaultBaseURL = "https://cloud.mongodb.com/api/atlas/v1.0/"
 	jsonMediaType  = "application/json"
 	gzipMediaType  = "application/gzip"
+	libraryName    = "go-mongodbatlas"
+	// Version the version of the current API client
+	Version = "0.4.0" // Should be set to the next version planned to be released
+)
+
+var (
+	userAgent = fmt.Sprintf("%s/%s (%s;%s)", libraryName, Version, runtime.GOOS, runtime.GOARCH)
 )
 
 type Doer interface {
@@ -184,7 +192,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	baseURL, _ := url.Parse(defaultBaseURL)
 
-	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: DefaultUserAgent()}
+	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
 	c.APIKeys = &APIKeysServiceOp{Client: c}
 	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{Client: c}
@@ -262,7 +270,7 @@ func SetBaseURL(bu string) ClientOpt {
 // SetUserAgent is a client option for setting the user agent.
 func SetUserAgent(ua string) ClientOpt {
 	return func(c *Client) error {
-		c.UserAgent = fmt.Sprintf("%s %s", ua, DefaultUserAgent())
+		c.UserAgent = fmt.Sprintf("%s %s", ua, userAgent)
 		return nil
 	}
 }
