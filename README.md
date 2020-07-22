@@ -67,7 +67,7 @@ Each version of the client is tagged and the version is updated accordingly.
 
 To see the list of past versions, run `git tag`.
 
-To release a new version, first ensure that `[Version](./mongodbatlas/mongodbatlas.go)' is updated 
+To release a new version, first ensure that [Version](./mongodbatlas/mongodbatlas.go) is updated 
 (i.e., before running `git push origin vx.y.z`, verify that `Version=x.y.z` should match the tag being pushed to GitHub)
 
 ## Roadmap
