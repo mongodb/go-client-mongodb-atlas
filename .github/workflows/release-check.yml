@@ -6,12 +6,12 @@ on:
 
 jobs:
   tests:
-    name: Continuous Integration Tests
+    name: Release sanity tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
-      - name: Checking the code
+      - name: Checking code health
         run: make tools lint test
 
       - name: Checking the version
