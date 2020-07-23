@@ -39,7 +39,8 @@ The mongodbatlas library does not directly handle authentication. Instead, when
 creating a new client, pass an http.Client that can handle Digest Access authentication for
 you. The easiest way to do this is using the https://github.com/mongodb-forks/digest
 library, but you can always use any other library that provides an `http.Client`.
-If you have a private and public API token pair, you can use it with the digest library using:
+If you have a private and public API token pair (https://docs.atlas.mongodb.com/configure-api-access),
+you can use it with the digest library using:
 
 	import (
 		"context"
