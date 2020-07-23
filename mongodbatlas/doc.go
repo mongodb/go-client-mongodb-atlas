@@ -40,26 +40,26 @@ creating a new client, pass an http.Client that can handle Digest Access authent
 you. The easiest way to do this is using the [digest](https://github.com/mongodb-forks/digest)
 library, but you can always use any other library that provides an `http.Client`.
 If you have a private and public API token pair, you can use it with the digest library using:
-```go
-import (
-    "context"
-    "log"
 
-    "github.com/mongodb-forks/digest"
-    "go.mongodb.org/atlas/mongodbatlas"
-)
+	import (
+		"context"
+		"log"
 
-func main() {
-    t := digest.NewTransport("your public key", "your private key")
-    tc, err := t.Client()
-    if err != nil {
-        log.Fatalf(err.Error())
-    }
+		"github.com/mongodb-forks/digest"
+		"go.mongodb.org/atlas/mongodbatlas"
+	)
 
-    client := mongodbatlas.NewClient(tc)
-    orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
-}
-```
+	func main() {
+		t := digest.NewTransport("your public key", "your private key")
+		tc, err := t.Client()
+		if err != nil {
+			log.Fatalf(err.Error())
+		}
+
+		client := mongodbatlas.NewClient(tc)
+		orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
+	}
+
 
 Note that when using an authenticated Client, all calls made by the client will
 include the specified tokens. Therefore, authenticated clients should
