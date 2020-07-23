@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# A simple pre-push hook which ensures that the tag being pushed to GitHub
+# matches the version defined in code.
+#
+# Determine if a tag is being pushed
+tag=
+input=$(</dev/stdin)
+for arg in $input; do
+    if [[ "$arg" =~ ^refs\/tags ]]; then
+        tag="${arg/refs\/tags\//}"
+        if [[ "$tag" =~ ^v ]]; then
+            # Remove the 'v' prefix
+            tag="${tag:1}"
+        fi
+    fi
+done
+
+# Releasing a tag
+if [[ -n "$tag" ]]; then
+    make check-version TAG="$tag"
+fi

@@ -164,9 +164,9 @@ func TestNewRequest_withUserData(t *testing.T) {
 	}
 
 	// test default user-agent is attached to the request
-	userAgent := req.Header.Get("User-Agent")
-	if c.UserAgent != userAgent {
-		t.Errorf("NewRequest() User-Agent = %v, expected %v", userAgent, c.UserAgent)
+	uA := req.Header.Get("User-Agent")
+	if c.UserAgent != uA {
+		t.Errorf("NewRequest() User-Agent = %v, expected %v", uA, c.UserAgent)
 	}
 }
 
@@ -177,7 +177,7 @@ func TestNewRequest_badURL(t *testing.T) {
 }
 
 func TestNewRequest_withCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", Version)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
@@ -227,7 +227,7 @@ func TestNewGZipRequest_emptyBody(t *testing.T) {
 }
 
 func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", Version)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
@@ -268,9 +268,9 @@ func TestNewGZipRequest(t *testing.T) {
 	}
 
 	// test default user-agent is attached to the request
-	userAgent := req.Header.Get("User-Agent")
-	if c.UserAgent != userAgent {
-		t.Errorf("NewGZipRequest() User-Agent = %v, expected %v", userAgent, c.UserAgent)
+	uA := req.Header.Get("User-Agent")
+	if c.UserAgent != uA {
+		t.Errorf("NewGZipRequest() User-Agent = %v, expected %v", uA, c.UserAgent)
 	}
 }
 
@@ -450,7 +450,7 @@ func TestDo_completion_callback(t *testing.T) {
 }
 
 func TestCustomUserAgent(t *testing.T) {
-	ua := "testing/0.0.1"
+	ua := fmt.Sprintf("testing/%s", Version)
 	c, err := New(nil, SetUserAgent(ua))
 
 	if err != nil {
