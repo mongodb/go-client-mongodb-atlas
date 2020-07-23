@@ -36,30 +36,30 @@ can be used as a starting point.
 Authentication
 
 The mongodbatlas library does not directly handle authentication. Instead, when
-creating a new client, pass an http.Client that can handle authentication for
-you. The easiest and recommended way to do this is using the https://github.com/Sectorbob/mlab-ns2/gae/ns/digest
-library, but you can always use any other library that provides an http.Client.
-If you have a private and public API token pair, you can
-use it with the digest library using:
+creating a new client, pass an http.Client that can handle Digest Access authentication for
+you. The easiest way to do this is using the [digest](https://github.com/mongodb-forks/digest)
+library, but you can always use any other library that provides an `http.Client`.
+If you have a private and public API token pair, you can use it with the digest library using:
+```go
+import (
+    "context"
+    "log"
 
-	import (
-		"context"
-		"log"
+    "github.com/mongodb-forks/digest"
+    "go.mongodb.org/atlas/mongodbatlas"
+)
 
-		"github.com/Sectorbob/mlab-ns2/gae/ns/digest"
-		"go.mongodb.org/atlas/mongodbatlas"
-	)
+func main() {
+    t := digest.NewTransport("your public key", "your private key")
+    tc, err := t.Client()
+    if err != nil {
+        log.Fatalf(err.Error())
+    }
 
-	func main() {
-		t := digest.NewTransport("your public key", "your private key")
-		tc, err := t.Client()
-		if err != nil {
-			log.Fatalf(err.Error())
-		}
-
-		client := mongodbatlas.NewClient(tc)
-		orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
-	}
+    client := mongodbatlas.NewClient(tc)
+    orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
+}
+```
 
 Note that when using an authenticated Client, all calls made by the client will
 include the specified tokens. Therefore, authenticated clients should
