@@ -1,6 +1,6 @@
 SOURCE_FILES?=./...
 PKG_NAME=mongodbatlas
-GOLANGCI_VERSION=v1.27.0
+GOLANGCI_VERSION=v1.30.0
 COVERAGE=coverage.out
 
 export GO111MODULE := on
