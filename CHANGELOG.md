@@ -5,7 +5,13 @@
 
 **Implemented enhancements:**
 
-- Organizations endpoints [\#100](https://github.com/mongodb/go-client-mongodb-atlas/issues/100)
+- Updated Database user for AWS IAM [\#114](https://github.com/mongodb/go-client-mongodb-atlas/pull/114) ([coderGo93](https://github.com/coderGo93)
+- Added Custom AWS DNS support [\#112](https://github.com/mongodb/go-client-mongodb-atlas/pull/112) ([gssbzn](https://github.com/gssbzn))
+- Implemented Atlas Search support [\#111](https://github.com/mongodb/go-client-mongodb-atlas/pull/111) ([gssbzn](https://github.com/gssbzn))
+- Added Atlas Data Lakes support [\#108](https://github.com/mongodb/go-client-mongodb-atlas/pull/108) ([robcarlan-mlab](https://github.com/robcarlan-mlab))
+- Added Online Archive support [\#107](https://github.com/mongodb/go-client-mongodb-atlas/pull/107) ([gssbzn](https://github.com/gssbzn))
+- Added Organization API [\#103](https://github.com/mongodb/go-client-mongodb-atlas/pull/103) ([gssbzn](https://github.com/gssbzn))
+- Added vanity URL [\#87](https://github.com/mongodb/go-client-mongodb-atlas/pull/87) ([gssbzn](https://github.com/gssbzn))
 
 **Closed issues:**
 
