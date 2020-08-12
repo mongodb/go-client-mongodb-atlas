@@ -5,3 +5,5 @@ updates:
     schedule:
       interval: weekly
       day: monday
+    reviewers:
+      - "mongodb/dependabot-team"
