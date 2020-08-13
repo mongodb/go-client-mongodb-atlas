@@ -1,6 +1,45 @@
 # Change Log
 
-## [v0.3.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.3.0) (2020-06-01)
+## [0.4.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.4.0) (August 10, 2020)
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.3.0...0.4.0)
+
+**Implemented enhancements:**
+
+- Updated Database user for AWS IAM [\#114](https://github.com/mongodb/go-client-mongodb-atlas/pull/114) ([coderGo93](https://github.com/coderGo93)
+- Added Custom AWS DNS support [\#112](https://github.com/mongodb/go-client-mongodb-atlas/pull/112) ([gssbzn](https://github.com/gssbzn))
+- Implemented Atlas Search support [\#111](https://github.com/mongodb/go-client-mongodb-atlas/pull/111) ([gssbzn](https://github.com/gssbzn))
+- Added Atlas Data Lakes support [\#108](https://github.com/mongodb/go-client-mongodb-atlas/pull/108) ([robcarlan-mlab](https://github.com/robcarlan-mlab))
+- Added Online Archive support [\#107](https://github.com/mongodb/go-client-mongodb-atlas/pull/107) ([gssbzn](https://github.com/gssbzn))
+- Added Organization API [\#103](https://github.com/mongodb/go-client-mongodb-atlas/pull/103) ([gssbzn](https://github.com/gssbzn))
+- Added vanity URL [\#87](https://github.com/mongodb/go-client-mongodb-atlas/pull/87) ([gssbzn](https://github.com/gssbzn))
+
+**Closed issues:**
+
+- CloudProviderSnapshotBackupPolicy: Zero Values are ignored  [\#93](https://github.com/mongodb/go-client-mongodb-atlas/issues/93)
+
+**Merged pull requests:**
+
+- Create SECURITY.md [\#118](https://github.com/mongodb/go-client-mongodb-atlas/pull/118) ([gssbzn](https://github.com/gssbzn))
+- fix: add more fields to the search field [\#117](https://github.com/mongodb/go-client-mongodb-atlas/pull/117) ([gssbzn](https://github.com/gssbzn))
+- Updated the references to the digest library [\#116](https://github.com/mongodb/go-client-mongodb-atlas/pull/116) ([MihaiBojin](https://github.com/MihaiBojin))
+- Add a hook to ensure the client's version is updated before pushing a tag/release [\#115](https://github.com/mongodb/go-client-mongodb-atlas/pull/115) ([MihaiBojin](https://github.com/MihaiBojin))
+- Added field for aws iam type for database user [\#114](https://github.com/mongodb/go-client-mongodb-atlas/pull/114) ([coderGo93](https://github.com/coderGo93))
+- Remove libraryVersion from user agent [\#113](https://github.com/mongodb/go-client-mongodb-atlas/pull/113) ([gssbzn](https://github.com/gssbzn))
+- Add custom AWS DNS support [\#112](https://github.com/mongodb/go-client-mongodb-atlas/pull/112) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-67056: Implement search API in the go client [\#111](https://github.com/mongodb/go-client-mongodb-atlas/pull/111) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-66612: fix json marshaling [\#110](https://github.com/mongodb/go-client-mongodb-atlas/pull/110) ([robcarlan-mlab](https://github.com/robcarlan-mlab))
+- Update GNUmakefile [\#109](https://github.com/mongodb/go-client-mongodb-atlas/pull/109) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-66607: Atlas Data Lakes [\#108](https://github.com/mongodb/go-client-mongodb-atlas/pull/108) ([robcarlan-mlab](https://github.com/robcarlan-mlab))
+- CLOUDP-66608: Implement Online Archive in the Go client [\#107](https://github.com/mongodb/go-client-mongodb-atlas/pull/107) ([gssbzn](https://github.com/gssbzn))
+- Add the ability to filter processes by cluster ID [\#105](https://github.com/mongodb/go-client-mongodb-atlas/pull/105) ([gssbzn](https://github.com/gssbzn))
+- feat: Add missing method to get all containers [\#104](https://github.com/mongodb/go-client-mongodb-atlas/pull/104) ([gssbzn](https://github.com/gssbzn))
+- feat: adds organization API [\#103](https://github.com/mongodb/go-client-mongodb-atlas/pull/103) ([gssbzn](https://github.com/gssbzn))
+- task: Update and fix linting [\#102](https://github.com/mongodb/go-client-mongodb-atlas/pull/102) ([gssbzn](https://github.com/gssbzn))
+- Improve docs [\#101](https://github.com/mongodb/go-client-mongodb-atlas/pull/101) ([gssbzn](https://github.com/gssbzn))
+- Updated Changelog for v0.3.0 release [\#99](https://github.com/mongodb/go-client-mongodb-atlas/pull/99) ([PacoDw](https://github.com/PacoDw))
+- Use the new vanity url [\#87](https://github.com/mongodb/go-client-mongodb-atlas/pull/87) ([gssbzn](https://github.com/gssbzn))
+
+## [v0.3.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.3.0) (June 01, 2020)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.2.0...v0.3.0)
 
@@ -30,7 +69,7 @@
 - Update CHANGELOG.md [\#82](https://github.com/mongodb/go-client-mongodb-atlas/pull/82) ([marinsalinas](https://github.com/marinsalinas))
 - Improve docs [\#61](https://github.com/mongodb/go-client-mongodb-atlas/pull/61) ([gssbzn](https://github.com/gssbzn))
 
-## [v0.2.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.2.0) (2020-04-20)
+## [v0.2.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.2.0) (April 20, 2020)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...v0.2.0)
 
 **Merged pull requests:**
@@ -68,7 +107,7 @@
 - Private Endpoints [\#48](https://github.com/mongodb/go-client-mongodb-atlas/pull/48) ([PacoDw](https://github.com/PacoDw))
 - Simplify tests [\#46](https://github.com/mongodb/go-client-mongodb-atlas/pull/46) ([gssbzn](https://github.com/gssbzn))
 
-## [v0.1.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.3) (2020-01-24)
+## [v0.1.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.3) (January 24, 2020)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.2...v0.1.3)
 
 **Implemented enhancements:**
@@ -92,7 +131,7 @@
 - Udpate changelog for v0.1.2 release [\#37](https://github.com/mongodb/go-client-mongodb-atlas/pull/37) ([marinsalinas](https://github.com/marinsalinas))
 - Whitelist [\#35](https://github.com/mongodb/go-client-mongodb-atlas/pull/35) ([PacoDw](https://github.com/PacoDw))
 
-## [v0.1.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.2) (2019-12-23)
+## [v0.1.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.2) (December 23, 2019)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.1...v0.1.2)
 
 **Merged pull requests:**
@@ -108,7 +147,7 @@
 - Maintance windows [\#25](https://github.com/mongodb/go-client-mongodb-atlas/pull/25) ([PacoDw](https://github.com/PacoDw))
 - Service for manipulating Custom MongoDB Roles [\#20](https://github.com/mongodb/go-client-mongodb-atlas/pull/20) ([mpaluchowski](https://github.com/mpaluchowski))
 
-## [v0.1.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.1) (2019-11-05)
+## [v0.1.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.1) (November 05, 2019)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.0...v0.1.1)
 
 **Closed issues:**
@@ -122,7 +161,7 @@
 - Add cluster advaced configuration support [\#23](https://github.com/mongodb/go-client-mongodb-atlas/pull/23) ([marinsalinas](https://github.com/marinsalinas))
 - Fix Linting issues. [\#21](https://github.com/mongodb/go-client-mongodb-atlas/pull/21) ([marinsalinas](https://github.com/marinsalinas))
 
-## [v0.1.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.0) (2019-09-18)
+## [v0.1.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.0) (September 18, 2019)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.0.3...v0.1.0)
 
 **Merged pull requests:**
@@ -130,7 +169,7 @@
 - feat: add private ip mode service [\#19](https://github.com/mongodb/go-client-mongodb-atlas/pull/19) ([marinsalinas](https://github.com/marinsalinas))
 - chore: update changelog [\#17](https://github.com/mongodb/go-client-mongodb-atlas/pull/17) ([marinsalinas](https://github.com/marinsalinas))
 
-## [v0.0.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.3) (2019-08-14)
+## [v0.0.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.3) (August 14, 2019)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.0.2...v0.0.3)
 
 **Merged pull requests:**
@@ -138,7 +177,7 @@
 - Add AssignAPIKey struct to Assign request [\#16](https://github.com/mongodb/go-client-mongodb-atlas/pull/16) ([thetonymaster](https://github.com/thetonymaster))
 - chore: add changelog for new release [\#15](https://github.com/mongodb/go-client-mongodb-atlas/pull/15) ([marinsalinas](https://github.com/marinsalinas))
 
-## [v0.0.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.2) (2019-08-08)
+## [v0.0.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.2) (August 08, 2019)
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.0.1...v0.0.2)
 
 **Merged pull requests:**
@@ -147,7 +186,7 @@
 - Chore: Sort the services alphabetically [\#13](https://github.com/mongodb/go-client-mongodb-atlas/pull/13) ([thetonymaster](https://github.com/thetonymaster))
 - Whitelist API Keys [\#11](https://github.com/mongodb/go-client-mongodb-atlas/pull/11) ([PacoDw](https://github.com/PacoDw))
 
-## [v0.0.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.1) (2019-07-17)
+## [v0.0.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.0.1) (July 17, 2019)
 **Merged pull requests:**
 
 - chore: add changelog file [\#10](https://github.com/mongodb/go-client-mongodb-atlas/pull/10) ([marinsalinas](https://github.com/marinsalinas))
@@ -163,4 +202,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
