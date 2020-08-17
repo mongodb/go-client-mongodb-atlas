@@ -137,7 +137,11 @@ func TestPeers_RetrievePageByNumber(t *testing.T) {
 		fmt.Fprint(w, jBlob)
 	})
 
-	opt := &ListOptions{PageNum: 2}
+	opt := &PeeringListOptions{
+		ListOptions: ListOptions{
+			PageNum: 2,
+		},
+	}
 	_, resp, err := client.Peers.List(ctx, "1", opt)
 
 	if err != nil {

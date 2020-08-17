@@ -152,7 +152,7 @@ func TestContainers_List(t *testing.T) {
 			fmt.Fprint(w, jBlob)
 		})
 
-		opt := &ContainersListOptions{ListOptions: ListOptions{PageNum: 2}, ProviderName: "GCP"}
+		opt := &PeeringListOptions{ListOptions: ListOptions{PageNum: 2}, ProviderName: "GCP"}
 		_, resp, err := client.Containers.List(ctx, "1", opt)
 
 		if err != nil {
