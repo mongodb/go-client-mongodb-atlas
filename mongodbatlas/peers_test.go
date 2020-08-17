@@ -137,7 +137,7 @@ func TestPeers_RetrievePageByNumber(t *testing.T) {
 		fmt.Fprint(w, jBlob)
 	})
 
-	opt := &PeeringListOptions{
+	opt := &NetworkPeeringListOptions{
 		ListOptions: ListOptions{
 			PageNum: 2,
 		},
