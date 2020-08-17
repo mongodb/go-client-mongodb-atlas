@@ -255,3 +255,73 @@ func TestDatabaseUsers_DeleteCustomDBRole(t *testing.T) {
 		t.Fatalf("CustomDBRole.Delete returned error: %v", err)
 	}
 }
+
+func TestCustomDBRoles_DeleteInheritedRole(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	updateRequest := &CustomDBRole{
+		Actions: []Action{{
+			Action: "CREATE_INDEX",
+			Resources: []Resource{{
+				Collection: "test-collection",
+				Db:         "test-db",
+			}},
+		}},
+		InheritedRoles: []InheritedRole{},
+		RoleName:       "test-role-name",
+	}
+
+	mux.HandleFunc("/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"actions": []interface{}{map[string]interface{}{
+				"action": "CREATE_INDEX",
+				"resources": []interface{}{map[string]interface{}{
+					"collection": "test-collection",
+					"db":         "test-db",
+				}},
+			}},
+			"inheritedRoles": []interface{}{},
+			"roleName":       "test-role-name",
+		}
+
+		jsonBlob := `
+		{
+			"actions": [
+				{
+					"action": "CREATE_INDEX",
+					"resources": [
+						{
+							"collection": "test-collection",
+							"db": "test-db"
+						}
+					]
+				}
+			],
+			"inheritedRoles": [],
+			"roleName":"test-role-name"
+		}
+		`
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if !reflect.DeepEqual(v, expected) {
+			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
+		}
+
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	customDBRole, _, err := client.CustomDBRoles.Update(ctx, "1", "test-role-name", updateRequest)
+	if err != nil {
+		t.Fatalf("CustomDBRoles.Update returned error: %v", err)
+	}
+
+	if roleName := customDBRole.RoleName; roleName != "test-role-name" {
+		t.Errorf("expected roleName '%s', received '%s'", "test-role-name", roleName)
+	}
+}
