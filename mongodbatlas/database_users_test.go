@@ -16,7 +16,13 @@ func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
 
 	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		fmt.Fprint(w, `{"results": [{"groupId":"1", "username":"test-username"},{"groupId":"1", "username":"test-username-1"}], "totalCount":2}`)
+		fmt.Fprint(w, `{"results": [
+				{"groupId":"1", "username":"test-username"},
+				{"groupId":"1", "username":"test-username-1"},
+				{"groupId":"1", "username":"test-username-2", "scopes": [{"name":"test", "type":"CLUSTER"}]}
+			],
+			"totalCount": 3
+		}`)
 	})
 
 	dbUsers, _, err := client.DatabaseUsers.List(ctx, "1", nil)
@@ -24,7 +30,20 @@ func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
 		t.Fatalf("DatabaseUsers.List returned error: %v", err)
 	}
 
-	expected := []DatabaseUser{{GroupID: "1", Username: "test-username"}, {GroupID: "1", Username: "test-username-1"}}
+	expected := []DatabaseUser{
+		{GroupID: "1", Username: "test-username"},
+		{GroupID: "1", Username: "test-username-1"},
+		{
+			GroupID:  "1",
+			Username: "test-username-2",
+			Scopes: []Scope{
+				{
+					Name: "test",
+					Type: "CLUSTER",
+				},
+			},
+		},
+	}
 	if diff := deep.Equal(dbUsers, expected); diff != nil {
 		t.Error(diff)
 	}
@@ -294,6 +313,96 @@ func TestDatabaseUsers_Create(t *testing.T) {
 					"databaseName": "test-databasename",
 					"collectionName": "test-collection-name",
 					"roleName": "test-role-name"
+				}
+			]
+		}
+		`
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
+		}
+
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	dbUser, _, err := client.DatabaseUsers.Create(ctx, groupID, createRequest)
+	if err != nil {
+		t.Fatalf("DatabaseUsers.Create returned error: %v", err)
+	}
+
+	if username := dbUser.Username; username != "test-username" {
+		t.Errorf("expected username '%s', received '%s'", "test-username", username)
+	}
+
+	if id := dbUser.GroupID; id != groupID {
+		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+}
+
+func TestDatabaseUsers_CreateWithScopes(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	createRequest := &DatabaseUser{
+		GroupID:      groupID,
+		Username:     "test-username",
+		Password:     "test-password",
+		DatabaseName: "test-databasename",
+		Roles: []Role{{
+			DatabaseName:   "test-databasename",
+			CollectionName: "test-collection-name",
+			RoleName:       "test-role-name",
+		}},
+		Scopes: []Scope{
+			{
+				Name: "Test",
+				Type: "CLUSTER",
+			},
+		},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"username":     "test-username",
+			"password":     "test-password",
+			"databaseName": "test-databasename",
+			"groupId":      groupID,
+			"roles": []interface{}{map[string]interface{}{
+				"databaseName":   "test-databasename",
+				"collectionName": "test-collection-name",
+				"roleName":       "test-role-name",
+			}},
+			"scopes": []interface{}{map[string]interface{}{
+				"name": "Test",
+				"type": "CLUSTER",
+			}},
+		}
+
+		jsonBlob := `
+		{
+			"username": "test-username",
+			"password": "test-password",
+			"databaseName": "test-databasename",
+			"groupId": "1",
+			"roles": [
+				{
+					"databaseName": "test-databasename",
+					"collectionName": "test-collection-name",
+					"roleName": "test-role-name"
+				}
+			],
+			"scopes": [
+				{
+					"name": "Test",
+					"type": "CLUSTER"
 				}
 			]
 		}

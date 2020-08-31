@@ -43,8 +43,15 @@ type DatabaseUser struct {
 	AWSIAMType      string  `json:"awsIAMType,omitempty"`
 	GroupID         string  `json:"groupId,omitempty"`
 	Roles           []Role  `json:"roles,omitempty"`
+	Scopes          []Scope `json:"scopes,omitempty"`
 	Password        string  `json:"password,omitempty"`
 	Username        string  `json:"username,omitempty"`
+}
+
+// Scope represents a level of access to a particular cluster o data lake a database user may have
+type Scope struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 // Label containing key-value pairs that tag and categorize the database user
