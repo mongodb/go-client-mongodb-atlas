@@ -48,7 +48,8 @@ type DatabaseUser struct {
 	Username        string  `json:"username,omitempty"`
 }
 
-// Scope represents a level of access to a particular cluster o data lake a database user may have
+// Scope if presents a database user only have access to the indicated resource
+// if none is given then it has access to all
 type Scope struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
