@@ -22,6 +22,7 @@ const (
 
 // ProjectsService is an interface for interfacing with the Projects
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/projects/
 type ProjectsService interface {
 	GetAllProjects(context.Context, *ListOptions) (*Projects, *Response, error)
@@ -78,6 +79,7 @@ type TeamsAssigned struct {
 }
 
 // GetAllProjects gets all project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-get-all/
 func (s *ProjectsServiceOp) GetAllProjects(ctx context.Context, listOptions *ListOptions) (*Projects, *Response, error) {
 	path, err := setListOptions(projectBasePath, listOptions)
@@ -104,6 +106,7 @@ func (s *ProjectsServiceOp) GetAllProjects(ctx context.Context, listOptions *Lis
 }
 
 // GetOneProject gets a single project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-get-one/
 func (s *ProjectsServiceOp) GetOneProject(ctx context.Context, projectID string) (*Project, *Response, error) {
 	if projectID == "" {
@@ -127,6 +130,7 @@ func (s *ProjectsServiceOp) GetOneProject(ctx context.Context, projectID string)
 }
 
 // GetOneProjectByName gets a single project by its name.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-get-one-by-name/
 func (s *ProjectsServiceOp) GetOneProjectByName(ctx context.Context, projectName string) (*Project, *Response, error) {
 	if projectName == "" {
@@ -150,6 +154,7 @@ func (s *ProjectsServiceOp) GetOneProjectByName(ctx context.Context, projectName
 }
 
 // Create creates a project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-create-one/
 func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project) (*Project, *Response, error) {
 	if createRequest == nil {
@@ -171,6 +176,7 @@ func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project) 
 }
 
 // Delete deletes a project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-delete-one/
 func (s *ProjectsServiceOp) Delete(ctx context.Context, projectID string) (*Response, error) {
 	if projectID == "" {
@@ -190,6 +196,7 @@ func (s *ProjectsServiceOp) Delete(ctx context.Context, projectID string) (*Resp
 }
 
 // GetProjectTeamsAssigned gets all the teams assigned to a project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-get-teams/
 func (s *ProjectsServiceOp) GetProjectTeamsAssigned(ctx context.Context, projectID string) (*TeamsAssigned, *Response, error) {
 	if projectID == "" {
@@ -213,6 +220,7 @@ func (s *ProjectsServiceOp) GetProjectTeamsAssigned(ctx context.Context, project
 }
 
 // AddTeamsToProject adds teams to a project
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-add-team/
 func (s *ProjectsServiceOp) AddTeamsToProject(ctx context.Context, projectID string, createRequest []*ProjectTeam) (*TeamsAssigned, *Response, error) {
 	if createRequest == nil {
@@ -236,6 +244,7 @@ func (s *ProjectsServiceOp) AddTeamsToProject(ctx context.Context, projectID str
 }
 
 // RemoveUserFromProject removes user from a project
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/project-remove-user/
 func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID, userID string) (*Response, error) {
 	if projectID == "" {
