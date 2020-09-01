@@ -371,15 +371,14 @@ func TestProject_AddTeamsToProject(t *testing.T) {
 	}
 }
 
-
 func TestProject_RemoveUserFromProject(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	projectID := "5a0a1e7e0f2912c554080adc"
-	userID:="1213232233243434"
+	userID := "1213232233243434"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/users/%s", projectID,userID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/users/%s", projectID, userID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

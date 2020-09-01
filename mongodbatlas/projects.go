@@ -237,7 +237,7 @@ func (s *ProjectsServiceOp) AddTeamsToProject(ctx context.Context, projectID str
 
 // RemoveUserFromProject removes user from a project
 // See more: https://docs.atlas.mongodb.com/reference/api/project-remove-user/
-func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID, userID string) (*Response, error){
+func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID, userID string) (*Response, error) {
 	if projectID == "" {
 		return nil, NewArgError("projectID", "must be set")
 	}
@@ -249,7 +249,7 @@ func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID
 	path := fmt.Sprintf("%s/%s/users/%s", projectBasePath, projectID, userID)
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 
 	resp, err := s.Client.Do(ctx, req, nil)
