@@ -158,7 +158,15 @@ func (s *DatabaseUsersServiceOp) Update(ctx context.Context, groupID, username s
 	}
 
 	basePath := fmt.Sprintf(dbUsersBasePath, groupID)
-	path := fmt.Sprintf("%s/admin/%s", basePath, username)
+
+	// default
+	authDatabaseName := "admin"
+
+	if updateRequest.DatabaseName != "" {
+		authDatabaseName = updateRequest.DatabaseName
+	}
+
+	path := fmt.Sprintf("%s/%s/%s", basePath, authDatabaseName, username)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
 	if err != nil {
