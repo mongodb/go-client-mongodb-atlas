@@ -31,6 +31,7 @@ type ProjectsService interface {
 	Delete(context.Context, string) (*Response, error)
 	GetProjectTeamsAssigned(context.Context, string) (*TeamsAssigned, *Response, error)
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
+	RemoveUserFromProject(context.Context, string, string) (*Response, error)
 }
 
 // ProjectsServiceOp handles communication with the Projects related methods of the
@@ -232,4 +233,25 @@ func (s *ProjectsServiceOp) AddTeamsToProject(ctx context.Context, projectID str
 	}
 
 	return root, resp, err
+}
+
+// RemoveUserFromProject removes user from a project
+// See more: https://docs.atlas.mongodb.com/reference/api/project-remove-user/
+func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID, userID string) (*Response, error){
+	if projectID == "" {
+		return nil, NewArgError("projectID", "must be set")
+	}
+
+	if userID == "" {
+		return nil, NewArgError("userID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s/users/%s", projectBasePath, projectID, userID)
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil,err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+	return resp, err
 }
