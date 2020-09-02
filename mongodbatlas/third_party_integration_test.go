@@ -55,12 +55,12 @@ func TestThirdPartyIntegration_List(t *testing.T) {
 		Results: []*ThirdPartyService{
 			{
 				Type:   "DATADOG",
-				ApiKey: "112233",
+				APIKey: "112233",
 				Region: "US",
 			},
 			{
 				Type:        "SLACK",
-				ApiToken:    "112233",
+				APIToken:    "112233",
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},
@@ -98,7 +98,7 @@ func TestThirdPartyIntegration_Get(t *testing.T) {
 
 	expected := &ThirdPartyService{
 		Type:   "DATADOG",
-		ApiKey: "112233",
+		APIKey: "112233",
 		Region: "US",
 	}
 
@@ -159,7 +159,7 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 
 	service := &ThirdPartyService{
 		Type:   "DATADOG",
-		ApiKey: "112233",
+		APIKey: "112233",
 		Region: "US",
 	}
 
@@ -178,12 +178,12 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 		Results: []*ThirdPartyService{
 			{
 				Type:   "DATADOG",
-				ApiKey: "112233",
+				APIKey: "112233",
 				Region: "US",
 			},
 			{
 				Type:        "SLACK",
-				ApiToken:    "112233",
+				APIToken:    "112233",
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},
@@ -231,7 +231,7 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 
 	service := &ThirdPartyService{
 		Type:   "DATADOG",
-		ApiKey: "112233",
+		APIKey: "112233",
 		Region: "US",
 	}
 
@@ -250,12 +250,12 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 		Results: []*ThirdPartyService{
 			{
 				Type:   "DATADOG",
-				ApiKey: "112233",
+				APIKey: "112233",
 				Region: "US",
 			},
 			{
 				Type:        "SLACK",
-				ApiToken:    "112233",
+				APIToken:    "112233",
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},

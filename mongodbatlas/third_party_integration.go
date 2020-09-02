@@ -32,19 +32,19 @@ var _ IntegrationsService = &IntegrationsServiceOp{}
 type ThirdPartyService struct {
 	Type        string `json:"type,omitempty"`
 	LicenseKey  string `json:"licenseKey,omitempty"`
-	AccountId   string `json:"accountId,omitempty"`
+	AccountID   string `json:"accountId,omitempty"`
 	WriteToken  string `json:"writeToken,omitempty"`
 	ReadToken   string `json:"readToken,omitempty"`
-	ApiKey      string `json:"apiKey,omitempty"`
+	APIKey      string `json:"apiKey,omitempty"`
 	Region      string `json:"region,omitempty"`
 	ServiceKey  string `json:"serviceKey,omitempty"`
-	ApiToken    string `json:"apiToken,omitempty"`
+	APIToken    string `json:"apiToken,omitempty"`
 	TeamName    string `json:"teamName,omitempty"`
 	ChannelName string `json:"channelName,omitempty"`
 	RoutingKey  string `json:"routingKey,omitempty"`
 	FlowName    string `json:"flowName,omitempty"`
 	OrgName     string `json:"orgName,omitempty"`
-	Url         string `json:"url,omitempty"`
+	URL         string `json:"url,omitempty"`
 	Secret      string `json:"secret,omitempty"`
 }
 
@@ -142,7 +142,7 @@ func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrati
 	}
 
 	resp, err := s.Client.Do(ctx, req, nil)
-	return resp, nil
+	return resp, err
 }
 
 // Get retrieves a specific third-party integration configuration
