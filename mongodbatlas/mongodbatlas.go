@@ -100,6 +100,7 @@ type Client struct {
 	OnlineArchives                      OnlineArchiveService
 	Search                              SearchService
 	CustomAWSDNS                        AWSCustomDNSService
+	Integrations						IntegrationsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -235,6 +236,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.OnlineArchives = &OnlineArchiveServiceOp{Client: c}
 	c.Search = &SearchServiceOp{Client: c}
 	c.CustomAWSDNS = &AWSCustomDNSServiceOp{Client: c}
+	c.Integrations = &IntegrationsServiceOp{Client:c}
 
 	return c
 }
