@@ -22,7 +22,7 @@ type IntegrationsService interface {
 	List(context.Context, string) (*ThirdPartyIntegrations, *Response, error)
 }
 
-// TeamsServiceOp handles communication with the Teams related methods of the MongoDB Atlas API
+// IntegrationsServiceOp handles communication with the third-party integrations related methods of the MongoDB Atlas API
 type IntegrationsServiceOp service
 
 var _ IntegrationsService = &IntegrationsServiceOp{}
