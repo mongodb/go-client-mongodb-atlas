@@ -244,7 +244,7 @@ func TestNewGZipRequest_withCustomUserAgent(t *testing.T) {
 
 func TestNewGZipRequest_badURL(t *testing.T) {
 	c := NewClient(nil)
-	_, err := c.NewGZipRequest(ctx, http.MethodGet, ":/.")
+	_, err := c.NewGZipRequest(ctx, http.MethodGet, ":")
 	testURLParseError(t, err)
 }
 
