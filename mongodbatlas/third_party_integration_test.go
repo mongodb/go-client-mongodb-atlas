@@ -45,14 +45,14 @@ func TestThirdPartyIntegration_List(t *testing.T) {
 		t.Fatalf("Integrations.List returned error: %v", err)
 	}
 
-	expected := &IntegrationResponse{
+	expected := &ThirdPartyIntegrations{
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/whitelist/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
-		Results: []*ThirdPartyService{
+		Results: []*ThirdPartyIntegration{
 			{
 				Type:   "DATADOG",
 				APIKey: "112233",
@@ -96,7 +96,7 @@ func TestThirdPartyIntegration_Get(t *testing.T) {
 		t.Fatalf("Integrations.Get returned error: %v", err)
 	}
 
-	expected := &ThirdPartyService{
+	expected := &ThirdPartyIntegration{
 		Type:   "DATADOG",
 		APIKey: "112233",
 		Region: "US",
@@ -157,7 +157,7 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 		}`)
 	})
 
-	service := &ThirdPartyService{
+	service := &ThirdPartyIntegration{
 		Type:   "DATADOG",
 		APIKey: "112233",
 		Region: "US",
@@ -168,14 +168,14 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 		t.Fatalf("Integrations.Create returned error: %v", err)
 	}
 
-	expected := &IntegrationResponse{
+	expected := &ThirdPartyIntegrations{
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/whitelist/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
-		Results: []*ThirdPartyService{
+		Results: []*ThirdPartyIntegration{
 			{
 				Type:   "DATADOG",
 				APIKey: "112233",
@@ -229,7 +229,7 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 		}`)
 	})
 
-	service := &ThirdPartyService{
+	service := &ThirdPartyIntegration{
 		Type:   "DATADOG",
 		APIKey: "112233",
 		Region: "US",
@@ -240,14 +240,14 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 		t.Fatalf("Integrations.Replace returned error: %v", err)
 	}
 
-	expected := &IntegrationResponse{
+	expected := &ThirdPartyIntegrations{
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/whitelist/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
-		Results: []*ThirdPartyService{
+		Results: []*ThirdPartyIntegration{
 			{
 				Type:   "DATADOG",
 				APIKey: "112233",

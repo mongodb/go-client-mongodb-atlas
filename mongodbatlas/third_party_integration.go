@@ -12,24 +12,23 @@ const (
 
 // IntegrationsService is an interface for interfacing with the Third-Party Integrations
 // endpoints of the MongoDB Atlas API.
-
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings/
 type IntegrationsService interface {
-	Create(context.Context, string, string, *ThirdPartyService) (*IntegrationResponse, *Response, error)
-	Replace(context.Context, string, string, *ThirdPartyService) (*IntegrationResponse, *Response, error)
+	Create(context.Context, string, string, *ThirdPartyIntegration) (*ThirdPartyIntegrations, *Response, error)
+	Replace(context.Context, string, string, *ThirdPartyIntegration) (*ThirdPartyIntegrations, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
-	Get(context.Context, string, string) (*ThirdPartyService, *Response, error)
-	List(context.Context, string) (*IntegrationResponse, *Response, error)
+	Get(context.Context, string, string) (*ThirdPartyIntegration, *Response, error)
+	List(context.Context, string) (*ThirdPartyIntegrations, *Response, error)
 }
 
-// TeamsServiceOp handles communication with the Teams related methods of the
-// MongoDB Atlas API
+// TeamsServiceOp handles communication with the Teams related methods of the MongoDB Atlas API
 type IntegrationsServiceOp service
 
 var _ IntegrationsService = &IntegrationsServiceOp{}
 
-// IntegrationRequest contains parameters for different third-party services
-type ThirdPartyService struct {
+// ThirdPartyIntegration contains parameters for different third-party services
+type ThirdPartyIntegration struct {
 	Type        string `json:"type,omitempty"`
 	LicenseKey  string `json:"licenseKey,omitempty"`
 	AccountID   string `json:"accountId,omitempty"`
@@ -48,17 +47,17 @@ type ThirdPartyService struct {
 	Secret      string `json:"secret,omitempty"`
 }
 
-// IntegrationResponse contains the response from the endpoint
-type IntegrationResponse struct {
-	Links      []*Link              `json:"links"`
-	Results    []*ThirdPartyService `json:"results"`
-	TotalCount int                  `json:"totalCount"`
+// ThirdPartyIntegrations contains the response from the endpoint
+type ThirdPartyIntegrations struct {
+	Links      []*Link                  `json:"links"`
+	Results    []*ThirdPartyIntegration `json:"results"`
+	TotalCount int                      `json:"totalCount"`
 }
 
 // Create adds a new third-party integration configuration.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/index.html
-func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrationType string, body *ThirdPartyService) (*IntegrationResponse, *Response, error) {
+func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrationType string, body *ThirdPartyIntegration) (*ThirdPartyIntegrations, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -75,7 +74,7 @@ func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrati
 		return nil, nil, err
 	}
 
-	root := new(IntegrationResponse)
+	root := new(ThirdPartyIntegrations)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -91,7 +90,7 @@ func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrati
 // Replace replaces the third-party integration configuration with a new configuration, or add a new configuration if there is no configuration.
 //
 // https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-update/
-func (s *IntegrationsServiceOp) Replace(ctx context.Context, projectID, integrationType string, body *ThirdPartyService) (*IntegrationResponse, *Response, error) {
+func (s *IntegrationsServiceOp) Replace(ctx context.Context, projectID, integrationType string, body *ThirdPartyIntegration) (*ThirdPartyIntegrations, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -108,7 +107,7 @@ func (s *IntegrationsServiceOp) Replace(ctx context.Context, projectID, integrat
 		return nil, nil, err
 	}
 
-	root := new(IntegrationResponse)
+	root := new(ThirdPartyIntegrations)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -148,7 +147,7 @@ func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrati
 // Get retrieves a specific third-party integration configuration
 //
 // https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-get-one/
-func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationType string) (*ThirdPartyService, *Response, error) {
+func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationType string) (*ThirdPartyIntegration, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -165,7 +164,7 @@ func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationT
 		return nil, nil, err
 	}
 
-	root := new(ThirdPartyService)
+	root := new(ThirdPartyIntegration)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -177,7 +176,7 @@ func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationT
 // List retrieves all third-party integration configurations.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-get-all/
-func (s *IntegrationsServiceOp) List(ctx context.Context, projectID string) (*IntegrationResponse, *Response, error) {
+func (s *IntegrationsServiceOp) List(ctx context.Context, projectID string) (*ThirdPartyIntegrations, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -189,7 +188,7 @@ func (s *IntegrationsServiceOp) List(ctx context.Context, projectID string) (*In
 		return nil, nil, err
 	}
 
-	root := new(IntegrationResponse)
+	root := new(ThirdPartyIntegrations)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
