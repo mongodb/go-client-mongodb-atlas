@@ -4,7 +4,7 @@
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/).
 
-Currently, **atlas requires Go version 1.12 or greater**.
+Note that atlas only supports the two most recent major versions of Go.
 
 ## Usage
 
