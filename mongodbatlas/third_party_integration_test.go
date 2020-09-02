@@ -2,9 +2,10 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/go-test/deep"
 	"net/http"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestThirdPartyIntegration_List(t *testing.T) {
@@ -53,9 +54,9 @@ func TestThirdPartyIntegration_List(t *testing.T) {
 		},
 		Results: []*ThirdPartyService{
 			{
-				Type:        "DATADOG",
-				ApiKey:      "112233",
-				Region:      "US",
+				Type:   "DATADOG",
+				ApiKey: "112233",
+				Region: "US",
 			},
 			{
 				Type:        "SLACK",
@@ -79,7 +80,7 @@ func TestThirdPartyIntegration_Get(t *testing.T) {
 	projectID := "ORG-ID"
 	integrationType := "DATADOG"
 
-	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath + "/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+"/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			
@@ -90,22 +91,21 @@ func TestThirdPartyIntegration_Get(t *testing.T) {
 		}`)
 	})
 
-	integrationAPIKeys, _, err := client.Integrations.Get(ctx,projectID, integrationType)
+	integrationAPIKeys, _, err := client.Integrations.Get(ctx, projectID, integrationType)
 	if err != nil {
 		t.Fatalf("Integrations.Get returned error: %v", err)
 	}
 
 	expected := &ThirdPartyService{
-				Type:        "DATADOG",
-				ApiKey:      "112233",
-				Region:      "US",
+		Type:   "DATADOG",
+		ApiKey: "112233",
+		Region: "US",
 	}
 
 	if diff := deep.Equal(integrationAPIKeys, expected); diff != nil {
 		t.Error(diff)
 	}
 }
-
 
 func TestThirdPartyIntegration_Delete(t *testing.T) {
 	client, mux, teardown := setup()
@@ -114,15 +114,15 @@ func TestThirdPartyIntegration_Delete(t *testing.T) {
 	projectID := "ORG-ID"
 	integrationType := "DATADOG"
 
-	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath + "/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodDelete)})
+	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+"/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
 
-	 _, err := client.Integrations.Delete(ctx,projectID, integrationType)
+	_, err := client.Integrations.Delete(ctx, projectID, integrationType)
 	if err != nil {
 		t.Fatalf("WhitelistAPIKeys.Delete returned error: %v", err)
 	}
 }
-
 
 func TestThirdPartyIntegration_Create(t *testing.T) {
 	client, mux, teardown := setup()
@@ -131,7 +131,7 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 	projectID := "ORG-ID"
 	integrationType := "DATADOG"
 
-	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+ "/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+"/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{
 			"links": [
@@ -158,9 +158,9 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 	})
 
 	service := &ThirdPartyService{
-		Type:        "DATADOG",
-		ApiKey:      "112233",
-		Region:      "US",
+		Type:   "DATADOG",
+		ApiKey: "112233",
+		Region: "US",
 	}
 
 	integrationAPIKeys, _, err := client.Integrations.Create(ctx, projectID, integrationType, service)
@@ -177,9 +177,9 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 		},
 		Results: []*ThirdPartyService{
 			{
-				Type:        "DATADOG",
-				ApiKey:      "112233",
-				Region:      "US",
+				Type:   "DATADOG",
+				ApiKey: "112233",
+				Region: "US",
 			},
 			{
 				Type:        "SLACK",
@@ -203,7 +203,7 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 	projectID := "ORG-ID"
 	integrationType := "DATADOG"
 
-	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+ "/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+integrationBasePath+"/%s", projectID, integrationType), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 		fmt.Fprint(w, `{
 			"links": [
@@ -230,9 +230,9 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 	})
 
 	service := &ThirdPartyService{
-		Type:        "DATADOG",
-		ApiKey:      "112233",
-		Region:      "US",
+		Type:   "DATADOG",
+		ApiKey: "112233",
+		Region: "US",
 	}
 
 	integrationAPIKeys, _, err := client.Integrations.Replace(ctx, projectID, integrationType, service)
@@ -249,9 +249,9 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 		},
 		Results: []*ThirdPartyService{
 			{
-				Type:        "DATADOG",
-				ApiKey:      "112233",
-				Region:      "US",
+				Type:   "DATADOG",
+				ApiKey: "112233",
+				Region: "US",
 			},
 			{
 				Type:        "SLACK",

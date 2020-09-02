@@ -22,50 +22,48 @@ type IntegrationsService interface {
 	List(context.Context, string) (*IntegrationResponse, *Response, error)
 }
 
-
 // TeamsServiceOp handles communication with the Teams related methods of the
 // MongoDB Atlas API
 type IntegrationsServiceOp service
 
 var _ IntegrationsService = &IntegrationsServiceOp{}
 
-
 // IntegrationRequest contains parameters for different third-party services
-type ThirdPartyService struct{
-	Type string `json:"type,omitempty"`
-	LicenseKey string `json:"licenseKey,omitempty"`
-	AccountId string `json:"accountId,omitempty"`
-	WriteToken string `json:"writeToken,omitempty"`
-	ReadToken string `json:"readToken,omitempty"`
-	ApiKey string `json:"apiKey,omitempty"`
-	Region string `json:"region,omitempty"`
-	ServiceKey string `json:"serviceKey,omitempty"`
-	ApiToken string `json:"apiToken,omitempty"`
-	TeamName string `json:"teamName,omitempty"`
+type ThirdPartyService struct {
+	Type        string `json:"type,omitempty"`
+	LicenseKey  string `json:"licenseKey,omitempty"`
+	AccountId   string `json:"accountId,omitempty"`
+	WriteToken  string `json:"writeToken,omitempty"`
+	ReadToken   string `json:"readToken,omitempty"`
+	ApiKey      string `json:"apiKey,omitempty"`
+	Region      string `json:"region,omitempty"`
+	ServiceKey  string `json:"serviceKey,omitempty"`
+	ApiToken    string `json:"apiToken,omitempty"`
+	TeamName    string `json:"teamName,omitempty"`
 	ChannelName string `json:"channelName,omitempty"`
-	RoutingKey string `json:"routingKey,omitempty"`
-	FlowName string `json:"flowName,omitempty"`
-	OrgName string `json:"orgName,omitempty"`
-	Url string `json:"url,omitempty"`
-	Secret string `json:"secret,omitempty"`
+	RoutingKey  string `json:"routingKey,omitempty"`
+	FlowName    string `json:"flowName,omitempty"`
+	OrgName     string `json:"orgName,omitempty"`
+	Url         string `json:"url,omitempty"`
+	Secret      string `json:"secret,omitempty"`
 }
 
 // IntegrationResponse contains the response from the endpoint
-type IntegrationResponse struct{
-	Links      []*Link     `json:"links"`
+type IntegrationResponse struct {
+	Links      []*Link              `json:"links"`
 	Results    []*ThirdPartyService `json:"results"`
-	TotalCount int         `json:"totalCount"`
+	TotalCount int                  `json:"totalCount"`
 }
 
 // Create adds a new third-party integration configuration.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/index.html
 func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrationType string, body *ThirdPartyService) (*IntegrationResponse, *Response, error) {
-	if projectID == ""{
+	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 
-	if integrationType == ""{
+	if integrationType == "" {
 		return nil, nil, NewArgError("integrationType", "must be set")
 	}
 
@@ -94,11 +92,11 @@ func (s *IntegrationsServiceOp) Create(ctx context.Context, projectID, integrati
 //
 // https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-update/
 func (s *IntegrationsServiceOp) Replace(ctx context.Context, projectID, integrationType string, body *ThirdPartyService) (*IntegrationResponse, *Response, error) {
-	if projectID == ""{
+	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 
-	if integrationType == ""{
+	if integrationType == "" {
 		return nil, nil, NewArgError("integrationType", "must be set")
 	}
 
@@ -126,13 +124,13 @@ func (s *IntegrationsServiceOp) Replace(ctx context.Context, projectID, integrat
 // Delete removes the third-party integration configuration
 //
 // https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-delete/
-func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrationType string)  (*Response, error) {
-	if projectID == ""{
-		return  nil, NewArgError("projectID", "must be set")
+func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrationType string) (*Response, error) {
+	if projectID == "" {
+		return nil, NewArgError("projectID", "must be set")
 	}
 
-	if integrationType == ""{
-		return  nil, NewArgError("integrationType", "must be set")
+	if integrationType == "" {
+		return nil, NewArgError("integrationType", "must be set")
 	}
 
 	basePath := fmt.Sprintf(integrationBasePath, projectID)
@@ -140,7 +138,7 @@ func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrati
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
-		return  nil, err
+		return nil, err
 	}
 
 	resp, err := s.Client.Do(ctx, req, nil)
@@ -151,11 +149,11 @@ func (s *IntegrationsServiceOp) Delete(ctx context.Context, projectID, integrati
 //
 // https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-get-one/
 func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationType string) (*ThirdPartyService, *Response, error) {
-	if projectID == ""{
+	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 
-	if integrationType == ""{
+	if integrationType == "" {
 		return nil, nil, NewArgError("integrationType", "must be set")
 	}
 
@@ -180,10 +178,9 @@ func (s *IntegrationsServiceOp) Get(ctx context.Context, projectID, integrationT
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-get-all/
 func (s *IntegrationsServiceOp) List(ctx context.Context, projectID string) (*IntegrationResponse, *Response, error) {
-	if projectID == ""{
+	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
-
 
 	path := fmt.Sprintf(integrationBasePath, projectID)
 
