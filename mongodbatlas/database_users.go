@@ -9,13 +9,13 @@ import (
 const dbUsersBasePath = "groups/%s/databaseUsers"
 
 var adminX509Type = map[string]struct{}{
-	"MANAGED":  struct{}{},
-	"CUSTOMER": struct{}{},
+	"MANAGED":  {},
+	"CUSTOMER": {},
 }
 
 var awsIAMType = map[string]struct{}{
-	"USER": struct{}{},
-	"ROLE": struct{}{},
+	"USER": {},
+	"ROLE": {},
 }
 
 // DatabaseUsersService is an interface for interfacing with the Database Users
