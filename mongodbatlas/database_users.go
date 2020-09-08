@@ -8,6 +8,16 @@ import (
 
 const dbUsersBasePath = "groups/%s/databaseUsers"
 
+var adminX509Type = map[string]struct{}{
+	"MANAGED":  struct{}{},
+	"CUSTOMER": struct{}{},
+}
+
+var awsIAMType = map[string]struct{}{
+	"USER": struct{}{},
+	"ROLE": struct{}{},
+}
+
 // DatabaseUsersService is an interface for interfacing with the Database Users
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users/index.html
@@ -159,11 +169,15 @@ func (s *DatabaseUsersServiceOp) Update(ctx context.Context, groupID, username s
 
 	basePath := fmt.Sprintf(dbUsersBasePath, groupID)
 
-	// default
+	// documentation
+	// https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/database_user
 	authDatabaseName := "admin"
 
-	if updateRequest.DatabaseName != "" {
-		authDatabaseName = updateRequest.DatabaseName
+	_, isX509 := adminX509Type[updateRequest.Username]
+	_, isIAM := awsIAMType[updateRequest.AWSIAMType]
+
+	if isX509 || isIAM {
+		authDatabaseName = "$external"
 	}
 
 	path := fmt.Sprintf("%s/%s/%s", basePath, authDatabaseName, username)
