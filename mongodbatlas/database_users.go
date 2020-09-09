@@ -58,8 +58,8 @@ type DatabaseUser struct {
 	Username        string  `json:"username,omitempty"`
 }
 
-//GetAuthDB by now just two dbs admin and &external
-func (user DatabaseUser) GetAuthDB() (name string) {
+// GetAuthDB by now just two dbs admin and &external
+func (user *DatabaseUser) GetAuthDB() (name string) {
 	// base documentation https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/database_user
 	name = "admin"
 	_, isX509 := adminX509Type[user.X509Type]
