@@ -23,8 +23,7 @@ type LDAPConfigurationsService interface {
 	Delete(context.Context, string) (*LDAPConfiguration, *Response, error)
 }
 
-// LDAPConfigurationsServiceOp handles communication with the LDAP Configuration related methods
-// of the MongoDB Atlas API
+// LDAPConfigurationsServiceOp handles communication with the LDAP Configuration related methods of the MongoDB Atlas API
 type LDAPConfigurationsServiceOp service
 
 var _ LDAPConfigurationsService = &LDAPConfigurationsServiceOp{}
