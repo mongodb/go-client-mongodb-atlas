@@ -37,7 +37,7 @@ func TestLDAPConfigurations_Verify(t *testing.T) {
 	expected := &LDAPConfiguration{
 		RequestID: "{REQUEST-ID}",
 		GroupID:   "{PROJECT-ID}",
-		Request: LDAPRequest{
+		Request: &LDAPRequest{
 			Hostname:     "atlas-ldaps-01.ldap.myteam.com",
 			Port:         636,
 			BindUsername: "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
