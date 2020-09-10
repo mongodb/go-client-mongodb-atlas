@@ -105,6 +105,7 @@ type Client struct {
 	Search                              SearchService
 	CustomAWSDNS                        AWSCustomDNSService
 	Integrations                        IntegrationsService
+	LDAPConfigurations                  LDAPConfigurationsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -241,6 +242,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Search = &SearchServiceOp{Client: c}
 	c.CustomAWSDNS = &AWSCustomDNSServiceOp{Client: c}
 	c.Integrations = &IntegrationsServiceOp{Client: c}
+	c.LDAPConfigurations = &LDAPConfigurationsServiceOp{Client: c}
 
 	return c
 }
