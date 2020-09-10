@@ -80,6 +80,10 @@ func (s *LDAPConfigurationsServiceOp) Verify(ctx context.Context, groupID string
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
+	if configuration == nil {
+		return nil, nil, NewArgError("configuration", "must be set")
+	}
+
 	path := fmt.Sprintf(ldapVerifyConfigurationPath, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, configuration)
@@ -132,6 +136,10 @@ func (s *LDAPConfigurationsServiceOp) Save(ctx context.Context, groupID string, 
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
+	if configuration == nil {
+		return nil, nil, NewArgError("configuration", "must be set")
+	}
+
 	path := fmt.Sprintf(ldapConfigurationPath, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, configuration)
@@ -173,7 +181,8 @@ func (s *LDAPConfigurationsServiceOp) Get(ctx context.Context, groupID string) (
 }
 
 // Delete removes the current userToDNMapping from the LDAP configuration for an Atlas project.
-// See more: https://docs.atlas.mongodb.com/reference/api/alert-configurations-delete-config/
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-remove-usertodnmapping/
 func (s *LDAPConfigurationsServiceOp) Delete(ctx context.Context, groupID string) (*LDAPConfiguration, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
