@@ -30,13 +30,13 @@ var _ LDAPConfigurationsService = &LDAPConfigurationsServiceOp{}
 
 // LDAPConfiguration represents MongoDB LDAP Configuration.
 type LDAPConfiguration struct {
-	RequestID   string           `json:"requestId,omitempty"`   // Identifier for the Atlas project associated with the request to verify an LDAP over TLS/SSL configuration.
-	GroupID     string           `json:"groupId,omitempty"`     // Unique identifier of the project that owns this alert configuration.
-	Request     LDAPRequest      `json:"request,omitempty"`     // Contains the details of the request to verify an LDAP over TLS/SSL configuration.
-	Status      string           `json:"status,omitempty"`      // The current status of the LDAP over TLS/SSL configuration.
-	Validations []LDAPValidation `json:"validations,omitempty"` // Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details.
-	Links       []Link           `json:"links,omitempty"`
-	LDAP        LDAP             `json:"ldap,omitempty"` // Specifies the LDAP over TLS/SSL configuration details for an Atlas group.
+	RequestID   string            `json:"requestId,omitempty"`   // Identifier for the Atlas project associated with the request to verify an LDAP over TLS/SSL configuration.
+	GroupID     string            `json:"groupId,omitempty"`     // Unique identifier of the project that owns this alert configuration.
+	Request     *LDAPRequest      `json:"request,omitempty"`     // Contains the details of the request to verify an LDAP over TLS/SSL configuration.
+	Status      string            `json:"status,omitempty"`      // The current status of the LDAP over TLS/SSL configuration.
+	Validations []*LDAPValidation `json:"validations,omitempty"` // Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details.
+	Links       []*Link           `json:"links,omitempty"`
+	LDAP        *LDAP             `json:"ldap,omitempty"` // Specifies the LDAP over TLS/SSL configuration details for an Atlas group.
 }
 
 type LDAP struct {

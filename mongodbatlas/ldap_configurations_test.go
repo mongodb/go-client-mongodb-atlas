@@ -86,13 +86,13 @@ func TestLDAPConfigurations_GetStatus(t *testing.T) {
 	expected := &LDAPConfiguration{
 		RequestID: "{REQUEST-ID}",
 		GroupID:   "{PROJECT-ID}",
-		Request: LDAPRequest{
+		Request: &LDAPRequest{
 			Hostname:     "atlas-ldaps-01.ldap.myteam.com",
 			Port:         636,
 			BindUsername: "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
 		},
 		Status: "SUCCESS",
-		Validations: []LDAPValidation{
+		Validations: []*LDAPValidation{
 			{
 				Status:         "OK",
 				ValidationType: "PARSE_AUTHZ_QUERY_TEMPLATE",
@@ -140,7 +140,7 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 	}
 
 	expected := &LDAPConfiguration{
-		LDAP: LDAP{
+		LDAP: &LDAP{
 			AuthenticationEnabled: true,
 			AuthorizationEnabled:  true,
 			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
@@ -191,7 +191,7 @@ func TestLDAPConfigurations_Get(t *testing.T) {
 	}
 
 	expected := &LDAPConfiguration{
-		LDAP: LDAP{
+		LDAP: &LDAP{
 			AuthenticationEnabled: true,
 			AuthorizationEnabled:  true,
 			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
@@ -242,7 +242,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 	}
 
 	expected := &LDAPConfiguration{
-		LDAP: LDAP{
+		LDAP: &LDAP{
 			AuthenticationEnabled: true,
 			AuthorizationEnabled:  true,
 			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
