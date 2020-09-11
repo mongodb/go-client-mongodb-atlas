@@ -133,7 +133,7 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 		}`)
 	})
 
-	request := &LDAP{}
+	request := &LDAPConfiguration{}
 	ldap, _, err := client.LDAPConfigurations.Save(ctx, groupID, request)
 	if err != nil {
 		t.Fatalf("LDAPConfigurations.Save returned error: %v", err)
