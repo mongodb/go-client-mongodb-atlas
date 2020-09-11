@@ -28,7 +28,12 @@ func TestLDAPConfigurations_Verify(t *testing.T) {
 		}`)
 	})
 
-	request := &LDAP{}
+	request := &LDAP{
+		Hostname:     "atlas-ldaps-01.ldap.myteam.com",
+		Port:         636,
+		BindUsername: "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+		BindPassword: "admin",
+	}
 	ldap, _, err := client.LDAPConfigurations.Verify(ctx, groupID, request)
 	if err != nil {
 		t.Fatalf("LDAPConfigurations.Verify returned error: %v", err)
@@ -133,7 +138,16 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 		}`)
 	})
 
-	request := &LDAP{}
+	request := &LDAPConfiguration{
+		LDAP: &LDAP{
+			AuthenticationEnabled: true,
+			AuthorizationEnabled:  true,
+			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
+			Port:                  636,
+			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+			BindPassword:          "admin",
+		},
+	}
 	ldap, _, err := client.LDAPConfigurations.Save(ctx, groupID, request)
 	if err != nil {
 		t.Fatalf("LDAPConfigurations.Save returned error: %v", err)
@@ -218,7 +232,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity/ldap/userToDNMapping", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 		fmt.Fprint(w, `{
 			  "ldap" : {
@@ -227,11 +241,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 				"authzQueryTemplate" : "{USER}?memberOf?base",
 				"bindUsername" : "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
 				"hostname" : "atlas-ldaps-01.ldap.myteam.com",
-				"port" : 636,
-				"userToDNMapping" : [ {
-				  "match" : "(.*)",
-				  "substitution" : "CN={0},CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"
-				} ]
+				"port" : 636
 			  }
 		}`)
 	})
@@ -248,13 +258,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
 			Port:                  636,
 			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-			UserToDNMapping: []*UserToDNMapping{
-				{
-					Match:        "(.*)",
-					Substitution: "CN={0},CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-				},
-			},
-			AuthzQueryTemplate: "{USER}?memberOf?base",
+			AuthzQueryTemplate:    "{USER}?memberOf?base",
 		},
 	}
 

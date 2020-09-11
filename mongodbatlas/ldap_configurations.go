@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	ldapConfigurationPath       = "groups/%s/userSecurity"
-	ldapVerifyConfigurationPath = ldapConfigurationPath + "/ldap/verify"
+	ldapConfigurationPath                = "groups/%s/userSecurity"
+	ldapConfigurationPathuserToDNMapping = ldapConfigurationPath + "/ldap/userToDNMapping"
+	ldapVerifyConfigurationPath          = ldapConfigurationPath + "/ldap/verify"
 )
 
 // LDAPConfigurationsService is an interface of the LDAP Configuration
@@ -19,7 +20,7 @@ type LDAPConfigurationsService interface {
 	Verify(context.Context, string, *LDAP) (*LDAPConfiguration, *Response, error)
 	Get(context.Context, string) (*LDAPConfiguration, *Response, error)
 	GetStatus(context.Context, string, string) (*LDAPConfiguration, *Response, error)
-	Save(context.Context, string, *LDAP) (*LDAPConfiguration, *Response, error)
+	Save(context.Context, string, *LDAPConfiguration) (*LDAPConfiguration, *Response, error)
 	Delete(context.Context, string) (*LDAPConfiguration, *Response, error)
 }
 
@@ -131,7 +132,7 @@ func (s *LDAPConfigurationsServiceOp) GetStatus(ctx context.Context, groupID, re
 // Save saves an LDAP configuration for a Atlas project.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/
-func (s *LDAPConfigurationsServiceOp) Save(ctx context.Context, groupID string, configuration *LDAP) (*LDAPConfiguration, *Response, error) {
+func (s *LDAPConfigurationsServiceOp) Save(ctx context.Context, groupID string, configuration *LDAPConfiguration) (*LDAPConfiguration, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -188,7 +189,7 @@ func (s *LDAPConfigurationsServiceOp) Delete(ctx context.Context, groupID string
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(ldapConfigurationPath, groupID)
+	path := fmt.Sprintf(ldapConfigurationPathuserToDNMapping, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
