@@ -28,7 +28,12 @@ func TestLDAPConfigurations_Verify(t *testing.T) {
 		}`)
 	})
 
-	request := &LDAP{}
+	request := &LDAP{
+		Hostname:     "atlas-ldaps-01.ldap.myteam.com",
+		Port:         636,
+		BindUsername: "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+		BindPassword: "admin",
+	}
 	ldap, _, err := client.LDAPConfigurations.Verify(ctx, groupID, request)
 	if err != nil {
 		t.Fatalf("LDAPConfigurations.Verify returned error: %v", err)
@@ -133,7 +138,16 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 		}`)
 	})
 
-	request := &LDAPConfiguration{}
+	request := &LDAPConfiguration{
+		LDAP: &LDAP{
+			AuthenticationEnabled: true,
+			AuthorizationEnabled:  true,
+			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
+			Port:                  636,
+			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+			BindPassword:          "admin",
+		},
+	}
 	ldap, _, err := client.LDAPConfigurations.Save(ctx, groupID, request)
 	if err != nil {
 		t.Fatalf("LDAPConfigurations.Save returned error: %v", err)
