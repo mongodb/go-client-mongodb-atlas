@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	ldapConfigurationPath       = "groups/%s/userSecurity"
-	ldapVerifyConfigurationPath = ldapConfigurationPath + "/ldap/verify"
+	ldapConfigurationPath                = "groups/%s/userSecurity"
+	ldapConfigurationPathuserToDNMapping = ldapConfigurationPath + "/ldap/userToDNMapping"
+	ldapVerifyConfigurationPath          = ldapConfigurationPath + "/ldap/verify"
 )
 
 // LDAPConfigurationsService is an interface of the LDAP Configuration
@@ -188,7 +189,7 @@ func (s *LDAPConfigurationsServiceOp) Delete(ctx context.Context, groupID string
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(ldapConfigurationPath + "/ldap/userToDNMapping", groupID)
+	path := fmt.Sprintf(ldapConfigurationPathuserToDNMapping, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {

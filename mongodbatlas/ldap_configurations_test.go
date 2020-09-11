@@ -258,7 +258,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
 			Port:                  636,
 			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-			AuthzQueryTemplate: "{USER}?memberOf?base",
+			AuthzQueryTemplate:    "{USER}?memberOf?base",
 		},
 	}
 
