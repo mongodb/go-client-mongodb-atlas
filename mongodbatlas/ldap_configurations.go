@@ -188,7 +188,7 @@ func (s *LDAPConfigurationsServiceOp) Delete(ctx context.Context, groupID string
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(ldapConfigurationPath, groupID)
+	path := fmt.Sprintf(ldapConfigurationPath + "/ldap/userToDNMapping", groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
