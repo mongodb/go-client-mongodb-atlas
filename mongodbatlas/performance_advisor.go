@@ -93,14 +93,14 @@ type SuggestedIndexes struct {
 
 // PerformanceAdvisorRequest contains the request query parameters for the API request.
 type PerformanceAdvisorRequest struct {
-	Since      float64 `json:"since,omitempty"`      // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
-	Duration   float64 `json:"duration,omitempty"`   // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
-	Envelope   bool    `json:"envelope,omitempty"`   // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
-	Namespaces string  `json:"namespaces,omitempty"` // Namespaces from which to retrieve slow query logs. A namespace consists of the database and collection resource separated by a ., such as <database>.<collection>.
-	NLogs      int64   `json:"nLogs,omitempty"`      // Maximum number of log lines to return. Defaults to 20000.
-	Pretty     bool    `json:"pretty,omitempty"`     // Display response in a prettyprint format. Defaults to false.
-	NIndexes   int64   `json:"nIndexes,omitempty"`   // Maximum number of indexes to suggest. Defaults to unlimited.
-	NExamples  int64   `json:"NExamples,omitempty"`  // Maximum number of examples queries to provide that will be improved by a suggested index. Defaults to 5.
+	Since      int64  `json:"since,omitempty"`      // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
+	Duration   int64  `json:"duration,omitempty"`   // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
+	Envelope   bool   `json:"envelope,omitempty"`   // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
+	Namespaces string `json:"namespaces,omitempty"` // Namespaces from which to retrieve slow query logs. A namespace consists of the database and collection resource separated by a ., such as <database>.<collection>.
+	NLogs      int64  `json:"nLogs,omitempty"`      // Maximum number of log lines to return. Defaults to 20000.
+	Pretty     bool   `json:"pretty,omitempty"`     // Display response in a prettyprint format. Defaults to false.
+	NIndexes   int64  `json:"nIndexes,omitempty"`   // Maximum number of indexes to suggest. Defaults to unlimited.
+	NExamples  int64  `json:"NExamples,omitempty"`  // Maximum number of examples queries to provide that will be improved by a suggested index. Defaults to 5.
 }
 
 // GetNamespaces retrieves the namespaces for collections experiencing slow queries for a specified host.
