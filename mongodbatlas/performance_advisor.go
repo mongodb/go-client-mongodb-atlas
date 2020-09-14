@@ -13,20 +13,20 @@ const (
 	performanceAdvisorSuggestedIndexesLogsPath = performanceAdvisorPath + "/suggestedIndexes"
 )
 
-// ProcessAdvisorService is an interface of the Process Advisor
+// PerformanceAdvisorService is an interface of the Performance Advisor
 // endpoints of the MongoDB Atlas API.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/performance-advisor/
-type ProcessAdvisorService interface {
+type PerformanceAdvisorService interface {
 	GetNamespaces(context.Context, string, string, *PerformanceAdvisorRequest) (*Namespaces, *Response, error)
 	GetSlowQueries(context.Context, string, string, *PerformanceAdvisorRequest) (*SlowQueries, *Response, error)
 	GetSuggestedIndexes(context.Context, string, string, *PerformanceAdvisorRequest) (*SuggestedIndexes, *Response, error)
 }
 
-// ProcessAdvisorService handles communication with the Process Advisor related methods of the MongoDB Atlas API
-type ProcessAdvisorServiceOp service
+// PerformanceAdvisorServiceOp handles communication with the Performance Advisor related methods of the MongoDB Atlas API
+type PerformanceAdvisorServiceOp service
 
-var _ ProcessAdvisorService = &ProcessAdvisorServiceOp{}
+var _ PerformanceAdvisorService = &PerformanceAdvisorServiceOp{}
 
 // Namespace represents a Namespace.
 type Namespace struct {
@@ -106,7 +106,7 @@ type PerformanceAdvisorRequest struct {
 // GetNamespaces retrieves the namespaces for collections experiencing slow queries for a specified host.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-namespaces-get-all/
-func (s *ProcessAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*Namespaces, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*Namespaces, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -138,7 +138,7 @@ func (s *ProcessAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID, pr
 // GetSlowQueries gets log lines for slow queries as determined by the Performance Advisor.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-get-slow-query-logs/
-func (s *ProcessAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SlowQueries, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SlowQueries, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -170,7 +170,7 @@ func (s *ProcessAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupID, p
 // GetSuggestedIndexes gets suggested indexes as determined by the Performance Advisor.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-suggested-indexes-get-all/
-func (s *ProcessAdvisorServiceOp) GetSuggestedIndexes(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SuggestedIndexes, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetSuggestedIndexes(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SuggestedIndexes, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
