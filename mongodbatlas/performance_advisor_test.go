@@ -28,12 +28,12 @@ func TestPerformanceAdvisor_GetNamespaces(t *testing.T) {
 		}`)
 	})
 
-	body := &NamespaceOptions{
+	opts := &NamespaceOptions{
 		Since:    2,
 		Duration: 2,
 	}
 
-	namespaces, _, err := client.PerformanceAdvisor.GetNamespaces(ctx, projectID, processName, body)
+	namespaces, _, err := client.PerformanceAdvisor.GetNamespaces(ctx, projectID, processName, opts)
 	if err != nil {
 		t.Fatalf("PerformanceAdvisor.GetNamespaces returned error: %v", err)
 	}
@@ -76,13 +76,13 @@ func TestPerformanceAdvisor_GetSlowQueries(t *testing.T) {
 		}`)
 	})
 
-	body := &SlowQueryOptions{
+	opts := &SlowQueryOptions{
 		NamespaceOptions: NamespaceOptions{Since: 2, Duration: 2},
 		Namespaces:       "test",
 		NLogs:            2,
 	}
 
-	queries, _, err := client.PerformanceAdvisor.GetSlowQueries(ctx, projectID, processName, body)
+	queries, _, err := client.PerformanceAdvisor.GetSlowQueries(ctx, projectID, processName, opts)
 	if err != nil {
 		t.Fatalf("PerformanceAdvisor.GetSlowQueries returned error: %v", err)
 	}
@@ -161,14 +161,14 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 		}`)
 	})
 
-	body := &SuggestedIndexOptions{
+	opts := &SuggestedIndexOptions{
 		NamespaceOptions: NamespaceOptions{Since: 2, Duration: 2},
 		Namespaces:       "test",
 		NIndexes:         55,
 		NExamples:        4,
 	}
 
-	indexes, _, err := client.PerformanceAdvisor.GetSuggestedIndexes(ctx, projectID, processName, body)
+	indexes, _, err := client.PerformanceAdvisor.GetSuggestedIndexes(ctx, projectID, processName, opts)
 	if err != nil {
 		t.Fatalf("PerformanceAdvisor.GetSuggestedIndexes returned error: %v", err)
 	}
