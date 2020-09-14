@@ -28,10 +28,9 @@ func TestPerformanceAdvisor_GetNamespaces(t *testing.T) {
 		}`)
 	})
 
-	body := &NamespacesOptions{
+	body := &NamespaceOptions{
 		Since:    2,
 		Duration: 2,
-		Envelope: false,
 	}
 
 	namespaces, _, err := client.PerformanceAdvisor.GetNamespaces(ctx, projectID, processName, body)
@@ -77,13 +76,10 @@ func TestPerformanceAdvisor_GetSlowQueries(t *testing.T) {
 		}`)
 	})
 
-	body := &SlowQueriesOptions{
-		Since:      2,
-		Duration:   2,
-		Envelope:   false,
-		Namespaces: "test",
-		Pretty:     false,
-		NLogs:      2,
+	body := &SlowQueryOptions{
+		NamespaceOptions: NamespaceOptions{Since: 2, Duration: 2},
+		Namespaces:       "test",
+		NLogs:            2,
 	}
 
 	queries, _, err := client.PerformanceAdvisor.GetSlowQueries(ctx, projectID, processName, body)
@@ -165,13 +161,11 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 		}`)
 	})
 
-	body := &SuggestedIndexesOptions{
-		Since:      2,
-		Duration:   2,
-		Envelope:   false,
-		Namespaces: "test",
-		NIndexes:   55,
-		NExamples:  4,
+	body := &SuggestedIndexOptions{
+		NamespaceOptions: NamespaceOptions{Since: 2, Duration: 2},
+		Namespaces:       "test",
+		NIndexes:         55,
+		NExamples:        4,
 	}
 
 	indexes, _, err := client.PerformanceAdvisor.GetSuggestedIndexes(ctx, projectID, processName, body)
