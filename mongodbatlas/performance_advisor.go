@@ -18,9 +18,9 @@ const (
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/performance-advisor/
 type PerformanceAdvisorService interface {
-	GetNamespaces(context.Context, string, string, *PerformanceAdvisorRequest) (*Namespaces, *Response, error)
-	GetSlowQueries(context.Context, string, string, *PerformanceAdvisorRequest) (*SlowQueries, *Response, error)
-	GetSuggestedIndexes(context.Context, string, string, *PerformanceAdvisorRequest) (*SuggestedIndexes, *Response, error)
+	GetNamespaces(context.Context, string, string, *NamespacesOptions) (*Namespaces, *Response, error)
+	GetSlowQueries(context.Context, string, string, *SlowQueriesOptions) (*SlowQueries, *Response, error)
+	GetSuggestedIndexes(context.Context, string, string, *SuggestedIndexesOptions) (*SuggestedIndexes, *Response, error)
 }
 
 // PerformanceAdvisorServiceOp handles communication with the Performance Advisor related methods of the MongoDB Atlas API
@@ -91,22 +91,40 @@ type SuggestedIndexes struct {
 
 }
 
-// PerformanceAdvisorRequest contains the request query parameters for the API request.
-type PerformanceAdvisorRequest struct {
-	Since      int64  `json:"since,omitempty"`      // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
-	Duration   int64  `json:"duration,omitempty"`   // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
-	Envelope   bool   `json:"envelope,omitempty"`   // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
-	Namespaces string `json:"namespaces,omitempty"` // Namespaces from which to retrieve slow query logs. A namespace consists of the database and collection resource separated by a ., such as <database>.<collection>.
-	NLogs      int64  `json:"nLogs,omitempty"`      // Maximum number of log lines to return. Defaults to 20000.
-	Pretty     bool   `json:"pretty,omitempty"`     // Display response in a prettyprint format. Defaults to false.
-	NIndexes   int64  `json:"nIndexes,omitempty"`   // Maximum number of indexes to suggest. Defaults to unlimited.
-	NExamples  int64  `json:"NExamples,omitempty"`  // Maximum number of examples queries to provide that will be improved by a suggested index. Defaults to 5.
+// SlowQueriesOptions contains the request query parameters for the API request.
+type SlowQueriesOptions struct {
+	Since      int64  `url:"since,omitempty"`      // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
+	Duration   int64  `url:"duration,omitempty"`   // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
+	Envelope   bool   `url:"envelope,omitempty"`   // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
+	Namespaces string `url:"namespaces,omitempty"` // Namespaces from which to retrieve slow query logs. A namespace consists of the database and collection resource separated by a ., such as <database>.<collection>.
+	NLogs      int64  `url:"nLogs,omitempty"`      // Maximum number of log lines to return. Defaults to 20000.
+	Pretty     bool   `url:"pretty,omitempty"`     // Display response in a prettyprint format. Defaults to false.
+}
+
+// NamespacesOptions contains the request query parameters for the API request.
+type NamespacesOptions struct {
+	Since    int64 `url:"since,omitempty"`    // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
+	Duration int64 `url:"duration,omitempty"` // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
+	Envelope bool  `url:"envelope,omitempty"` // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
+	Pretty   bool  `url:"pretty,omitempty"`   // Display response in a prettyprint format. Defaults to false.
+}
+
+// SuggestedIndexesOptions contains the request query parameters for the API request.
+type SuggestedIndexesOptions struct {
+	Since      int64  `url:"since,omitempty"`      // Point in time, specified as milliseconds since the Unix Epoch, from which you want to receive results.
+	Duration   int64  `url:"duration,omitempty"`   // 	Length of time from the since parameter, in milliseconds, for which you want to receive results.
+	Envelope   bool   `url:"envelope,omitempty"`   // Boolean that specifies whether or not to wrap the response in an envelope. Default is false.
+	Pretty     bool   `url:"pretty,omitempty"`     // Display response in a prettyprint format. Defaults to false.
+	Namespaces string `url:"namespaces,omitempty"` // Namespaces from which to retrieve slow query logs. A namespace consists of the database and collection resource separated by a ., such as <database>.<collection>.
+	NIndexes   int64  `url:"nIndexes,omitempty"`   // Maximum number of indexes to suggest. Defaults to unlimited.
+	NExamples  int64  `url:"NExamples,omitempty"`  // Maximum number of examples queries to provide that will be improved by a suggested index. Defaults to 5.
+
 }
 
 // GetNamespaces retrieves the namespaces for collections experiencing slow queries for a specified host.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-namespaces-get-all/
-func (s *PerformanceAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*Namespaces, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID, processName string, opts *NamespacesOptions) (*Namespaces, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -115,13 +133,17 @@ func (s *PerformanceAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID
 		return nil, nil, NewArgError("processName", "must be set")
 	}
 
-	if body == nil {
-		return nil, nil, NewArgError("body", "must be set")
+	if opts == nil {
+		return nil, nil, NewArgError("opts", "must be set")
 	}
 
 	path := fmt.Sprintf(performanceAdvisorNamespacesPath, groupID, processName)
+	path, err := setListOptions(path, opts)
+	if err != nil {
+		return nil, nil, err
+	}
 
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, body)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -138,7 +160,7 @@ func (s *PerformanceAdvisorServiceOp) GetNamespaces(ctx context.Context, groupID
 // GetSlowQueries gets log lines for slow queries as determined by the Performance Advisor.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-get-slow-query-logs/
-func (s *PerformanceAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SlowQueries, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupID, processName string, opts *SlowQueriesOptions) (*SlowQueries, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -147,13 +169,17 @@ func (s *PerformanceAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupI
 		return nil, nil, NewArgError("processName", "must be set")
 	}
 
-	if body == nil {
-		return nil, nil, NewArgError("body", "must be set")
+	if opts == nil {
+		return nil, nil, NewArgError("opts", "must be set")
 	}
 
 	path := fmt.Sprintf(performanceAdvisorSlowQueryLogsPath, groupID, processName)
+	path, err := setListOptions(path, opts)
+	if err != nil {
+		return nil, nil, err
+	}
 
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, body)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -170,7 +196,7 @@ func (s *PerformanceAdvisorServiceOp) GetSlowQueries(ctx context.Context, groupI
 // GetSuggestedIndexes gets suggested indexes as determined by the Performance Advisor.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/pa-suggested-indexes-get-all/
-func (s *PerformanceAdvisorServiceOp) GetSuggestedIndexes(ctx context.Context, groupID, processName string, body *PerformanceAdvisorRequest) (*SuggestedIndexes, *Response, error) {
+func (s *PerformanceAdvisorServiceOp) GetSuggestedIndexes(ctx context.Context, groupID, processName string, opts *SuggestedIndexesOptions) (*SuggestedIndexes, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -179,13 +205,17 @@ func (s *PerformanceAdvisorServiceOp) GetSuggestedIndexes(ctx context.Context, g
 		return nil, nil, NewArgError("processName", "must be set")
 	}
 
-	if body == nil {
-		return nil, nil, NewArgError("body", "must be set")
+	if opts == nil {
+		return nil, nil, NewArgError("opts", "must be set")
 	}
 
 	path := fmt.Sprintf(performanceAdvisorSuggestedIndexesLogsPath, groupID, processName)
+	path, err := setListOptions(path, opts)
+	if err != nil {
+		return nil, nil, err
+	}
 
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, body)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}

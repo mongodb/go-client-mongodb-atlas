@@ -28,7 +28,7 @@ func TestPerformanceAdvisor_GetNamespaces(t *testing.T) {
 		}`)
 	})
 
-	body := &PerformanceAdvisorRequest{
+	body := &NamespacesOptions{
 		Since:    2,
 		Duration: 2,
 		Envelope: false,
@@ -77,7 +77,7 @@ func TestPerformanceAdvisor_GetSlowQueries(t *testing.T) {
 		}`)
 	})
 
-	body := &PerformanceAdvisorRequest{
+	body := &SlowQueriesOptions{
 		Since:      2,
 		Duration:   2,
 		Envelope:   false,
@@ -165,7 +165,7 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 		}`)
 	})
 
-	body := &PerformanceAdvisorRequest{
+	body := &SuggestedIndexesOptions{
 		Since:      2,
 		Duration:   2,
 		Envelope:   false,
