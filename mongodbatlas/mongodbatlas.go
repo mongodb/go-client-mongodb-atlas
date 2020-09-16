@@ -106,6 +106,7 @@ type Client struct {
 	CustomAWSDNS                        AWSCustomDNSService
 	Integrations                        IntegrationsService
 	LDAPConfigurations                  LDAPConfigurationsService
+	PerformanceAdvisor                  PerformanceAdvisorService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -243,6 +244,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CustomAWSDNS = &AWSCustomDNSServiceOp{Client: c}
 	c.Integrations = &IntegrationsServiceOp{Client: c}
 	c.LDAPConfigurations = &LDAPConfigurationsServiceOp{Client: c}
+	c.PerformanceAdvisor = &PerformanceAdvisorServiceOp{Client: c}
 
 	return c
 }
