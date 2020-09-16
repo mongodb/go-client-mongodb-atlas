@@ -58,14 +58,18 @@ type DatabaseUser struct {
 	Username        string  `json:"username,omitempty"`
 }
 
-// GetAuthDB by now just two dbs admin and &external
+// GetAuthDB determines the authentication database based on the type of user.
+// LDAP, X509 and AWSIAM should all use $external.
+// SCRAM-SHA should use admin
 func (user *DatabaseUser) GetAuthDB() (name string) {
 	// base documentation https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/database_user
 	name = "admin"
 	_, isX509 := adminX509Type[user.X509Type]
 	_, isIAM := awsIAMType[user.AWSIAMType]
 
-	if isX509 || isIAM {
+	isLDAP := len(user.LDAPAuthType) > 0 && user.LDAPAuthType != "NONE"
+
+	if isX509 || isIAM || isLDAP {
 		name = "$external"
 	}
 
