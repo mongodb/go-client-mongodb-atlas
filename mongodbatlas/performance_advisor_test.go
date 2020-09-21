@@ -122,7 +122,6 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 			"inefficiencyScore" : 50000,
 			"namespace" : "test.users",
 			"operations" : [ {
-			  "predicates" : [{ "find" : { "emails" : "la@sa.kp" } }],
 			  "raw" : "2018-08-15T17:14:11.115+0000 I COMMAND  [conn4576] command test.users appName: \"MongoDB Shell\" command: find { find: \"users\", filter: { emails: \"la@sa.kp\" }, lsid: { id: UUID(\"1a4e71d3-9b67-4e9c-b078-9fdf3fae9091\") }, $clusterTime: { clusterTime: Timestamp(1534353241, 1), signature: { hash: BinData(0, AB91938B7CF7BC87994A2909A98D87F29101EFA0), keyId: 6589681559618453505 } }, $db: \"test\" } planSummary: COLLSCAN keysExamined:0 docsExamined:50000 cursorExhausted:1 numYields:391 nreturned:1 reslen:339 locks:{ Global: { acquireCount: { r: 784 } }, Database: { acquireCount: { r: 392 } }, Collection: { acquireCount: { r: 392 } } } protocol:op_msg 34ms",
 			  "stats" : {
 				"ms" : 34,
@@ -131,8 +130,7 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 				"ts" : 1534353251147
 			  }
 			}, {
-			  "predicates" : [{ "find" : { "emails" : "tocde@fijoow.to" } }],
-			  "raw" : "2018-08-15T17:14:18.665+0000 I COMMAND  [conn4576] command test.users appName: \"MongoDB Shell\" command: find { find: \"users\", filter: { emails: \"tocde@fijoow.to\" }, lsid: { id: UUID(\"1a4e71d3-9b67-4e9c-b078-9fdf3fae9091\") }, $clusterTime: { clusterTime: Timestamp(1534353241, 1), signature: { hash: BinData(0, AB91938B7CF7BC87994A2909A98D87F29101EFA0), keyId: 6589681559618453505 } }, $db: \"test\" } planSummary: COLLSCAN keysExamined:0 docsExamined:50000 cursorExhausted:1 numYields:390 nreturned:1 reslen:342 locks:{ Global: { acquireCount: { r: 782 } }, Database: { acquireCount: { r: 391 } }, Collection: { acquireCount: { r: 391 } } } protocol:op_msg 36ms",
+              "raw" : "2018-08-15T17:14:18.665+0000 I COMMAND  [conn4576] command test.users appName: \"MongoDB Shell\" command: find { find: \"users\", filter: { emails: \"tocde@fijoow.to\" }, lsid: { id: UUID(\"1a4e71d3-9b67-4e9c-b078-9fdf3fae9091\") }, $clusterTime: { clusterTime: Timestamp(1534353241, 1), signature: { hash: BinData(0, AB91938B7CF7BC87994A2909A98D87F29101EFA0), keyId: 6589681559618453505 } }, $db: \"test\" } planSummary: COLLSCAN keysExamined:0 docsExamined:50000 cursorExhausted:1 numYields:390 nreturned:1 reslen:342 locks:{ Global: { acquireCount: { r: 782 } }, Database: { acquireCount: { r: 391 } }, Collection: { acquireCount: { r: 391 } } } protocol:op_msg 36ms",
 			  "stats" : {
 				"ms" : 36,
 				"nReturned" : 1,
@@ -210,9 +208,6 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 							NScanned:  50000,
 							TS:        1534353251147,
 						},
-						Predicates: []map[string]map[string]string{
-							{"find": {"emails": "la@sa.kp"}},
-						},
 					},
 					{
 						Raw: "2018-08-15T17:14:18.665+0000 I COMMAND  [conn4576] command test.users appName: \"MongoDB Shell\" command: find { find: \"users\", filter: { emails: \"tocde@fijoow.to\" }, lsid: { id: UUID(\"1a4e71d3-9b67-4e9c-b078-9fdf3fae9091\") }, $clusterTime: { clusterTime: Timestamp(1534353241, 1), signature: { hash: BinData(0, AB91938B7CF7BC87994A2909A98D87F29101EFA0), keyId: 6589681559618453505 } }, $db: \"test\" } planSummary: COLLSCAN keysExamined:0 docsExamined:50000 cursorExhausted:1 numYields:390 nreturned:1 reslen:342 locks:{ Global: { acquireCount: { r: 782 } }, Database: { acquireCount: { r: 391 } }, Collection: { acquireCount: { r: 391 } } } protocol:op_msg 36ms",
@@ -221,9 +216,6 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 							NReturned: 1,
 							NScanned:  50000,
 							TS:        1534353258697,
-						},
-						Predicates: []map[string]map[string]string{
-							{"find": {"emails": "tocde@fijoow.to"}},
 						},
 					},
 				},
