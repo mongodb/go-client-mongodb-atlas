@@ -66,6 +66,7 @@ type Client struct {
 	CustomDBRoles                       CustomDBRolesService
 	DatabaseUsers                       DatabaseUsersService
 	ProjectIPWhitelist                  ProjectIPWhitelistService
+	ProjectIPAccessList                 ProjectIPAccessListService
 	Organizations                       OrganizationsService
 	Projects                            ProjectsService
 	Clusters                            ClustersService
@@ -215,6 +216,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
 	c.Peers = &PeersServiceOp{Client: c}
 	c.ProjectIPWhitelist = &ProjectIPWhitelistServiceOp{Client: c}
+	c.ProjectIPAccessList = &ProjectIPAccessListServiceOp{Client: c}
 	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{Client: c}
 	c.PrivateIPMode = &PrivateIPModeServiceOp{Client: c}
 	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{Client: c}
