@@ -1,6 +1,33 @@
-# Change Log
+# Changelog
 
-## [0.4.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.4.0) (August 10, 2020)
+## [v0.5.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.5.0) (October 01, 2020)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.4.0...v0.5.0)
+
+**Closed issues:**
+
+- Wrong import path? [\#119](https://github.com/mongodb/go-client-mongodb-atlas/issues/119)
+
+**Merged pull requests:**
+
+- feat: add access list API [\#139](https://github.com/mongodb/go-client-mongodb-atlas/pull/139) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-73368: fixing the Operation struct in the atlas go client [\#138](https://github.com/mongodb/go-client-mongodb-atlas/pull/138) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-72746: Add Performance Advisor API call to atlas go client [\#137](https://github.com/mongodb/go-client-mongodb-atlas/pull/137) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-72727: Fix LDAPConfigurationsService.Save to pass LDAPConfiguration as input [\#136](https://github.com/mongodb/go-client-mongodb-atlas/pull/136) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-72643: Add LDAP Configurations to atlas go client [\#135](https://github.com/mongodb/go-client-mongodb-atlas/pull/135) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- feat: add IsDeleted to organizations [\#134](https://github.com/mongodb/go-client-mongodb-atlas/pull/134) ([gssbzn](https://github.com/gssbzn))
+- Setting the right auth db name  [\#133](https://github.com/mongodb/go-client-mongodb-atlas/pull/133) ([leofigy](https://github.com/leofigy))
+- doc: update and fix a lot of the go doc references [\#132](https://github.com/mongodb/go-client-mongodb-atlas/pull/132) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-70872: Adding Third-Party Integration Settings [\#131](https://github.com/mongodb/go-client-mongodb-atlas/pull/131) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- chore: update supported go versions [\#130](https://github.com/mongodb/go-client-mongodb-atlas/pull/130) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-70755: Add DELETE /groups/{GROUP-ID}/users/{USER-ID} to atlas go client [\#129](https://github.com/mongodb/go-client-mongodb-atlas/pull/129) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- feature: add scope support for db users [\#128](https://github.com/mongodb/go-client-mongodb-atlas/pull/128) ([gssbzn](https://github.com/gssbzn))
+- Added threshold attribute [\#127](https://github.com/mongodb/go-client-mongodb-atlas/pull/127) ([PacoDw](https://github.com/PacoDw))
+- Custom db roles [\#126](https://github.com/mongodb/go-client-mongodb-atlas/pull/126) ([PacoDw](https://github.com/PacoDw))
+- CLOUDP-69426: Atlas go client - Update PeersService.List to use providerName [\#125](https://github.com/mongodb/go-client-mongodb-atlas/pull/125) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
+## [v0.4.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.4.0) (August 10, 2020)
+
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.3.0...0.4.0)
 
 **Implemented enhancements:**
@@ -70,6 +97,7 @@
 - Improve docs [\#61](https://github.com/mongodb/go-client-mongodb-atlas/pull/61) ([gssbzn](https://github.com/gssbzn))
 
 ## [v0.2.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.2.0) (April 20, 2020)
+
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.3...v0.2.0)
 
 **Merged pull requests:**
@@ -108,6 +136,7 @@
 - Simplify tests [\#46](https://github.com/mongodb/go-client-mongodb-atlas/pull/46) ([gssbzn](https://github.com/gssbzn))
 
 ## [v0.1.3](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.3) (January 24, 2020)
+
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.2...v0.1.3)
 
 **Implemented enhancements:**
@@ -132,6 +161,7 @@
 - Whitelist [\#35](https://github.com/mongodb/go-client-mongodb-atlas/pull/35) ([PacoDw](https://github.com/PacoDw))
 
 ## [v0.1.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.1.2) (December 23, 2019)
+
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.1.1...v0.1.2)
 
 **Merged pull requests:**
