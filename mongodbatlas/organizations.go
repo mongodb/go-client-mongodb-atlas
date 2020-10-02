@@ -42,7 +42,8 @@ var _ OrganizationsService = &OrganizationsServiceOp{}
 
 // OrganizationsListOptions filtering options for organizations
 type OrganizationsListOptions struct {
-	Name string `url:"name,omitempty"`
+	Name               string `url:"name,omitempty"`
+	IncludeDeletedOrgs *bool  `url:"includeDeletedOrgs,omitempty"`
 	ListOptions
 }
 
