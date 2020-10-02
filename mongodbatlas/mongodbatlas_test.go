@@ -532,6 +532,7 @@ func TestSetListOptions_EmptyBoolPtr(t *testing.T) {
 	}
 
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.testName, func(t *testing.T) {
 			t.Helper()
 			t.Log(tt.testName)
