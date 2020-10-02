@@ -503,7 +503,7 @@ func TestSetListOptions_EmptyBoolPtr(t *testing.T) {
 	boolPtr := func(b bool) *bool {
 		return &b
 	}
-	testBaseUrl := "www.example.com"
+	testBaseURL := "www.example.com"
 
 	tests := []struct {
 		testName string
@@ -515,19 +515,19 @@ func TestSetListOptions_EmptyBoolPtr(t *testing.T) {
 			arg: &testListOptions{
 				Exists: boolPtr(true),
 			},
-			expected: testBaseUrl + "?exists=true",
+			expected: testBaseURL + "?exists=true",
 		},
 		{
 			testName: "false value",
 			arg: &testListOptions{
 				Exists: boolPtr(false),
 			},
-			expected: testBaseUrl + "?exists=false",
+			expected: testBaseURL + "?exists=false",
 		},
 		{
 			testName: "omitted null value",
 			arg:      &testListOptions{},
-			expected: testBaseUrl,
+			expected: testBaseURL,
 		},
 	}
 
@@ -536,7 +536,7 @@ func TestSetListOptions_EmptyBoolPtr(t *testing.T) {
 			t.Helper()
 			t.Log(tt.testName)
 
-			actual, err := setListOptions(testBaseUrl, tt.arg)
+			actual, err := setListOptions(testBaseURL, tt.arg)
 			if err != nil {
 				t.Errorf("setListOptions() error = %v", err)
 			}
