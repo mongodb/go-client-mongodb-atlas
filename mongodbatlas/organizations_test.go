@@ -23,75 +23,151 @@ import (
 )
 
 func TestOrganizationsServiceOp_List(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
+	t.Run("default", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
 
-	mux.HandleFunc("/orgs", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodGet)
-		_, _ = fmt.Fprint(w, `{
-			"links": [{
-				"href": "https://cloud.mongodb.com/api/public/v1.0/orgs",
-				"rel": "self"
-			}],
-			"results": [{
-				"id": "56a10a80e4b0fd3b9a9bb0c2",
+		mux.HandleFunc("/orgs", func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodGet)
+			_, _ = fmt.Fprint(w, `{
 				"links": [{
-					"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+					"href": "https://cloud.mongodb.com/api/public/v1.0/orgs",
 					"rel": "self"
 				}],
-				"name": "012i3091203jioawjioej"
-			}, {
-				"id": "56aa691ce4b0a0e8c4be51f7",
-				"links": [{
-					"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56aa691ce4b0a0e8c4be51f7",
-					"rel": "self"
+				"results": [{
+					"id": "56a10a80e4b0fd3b9a9bb0c2",
+					"links": [{
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+						"rel": "self"
+					}],
+					"name": "012i3091203jioawjioej"
+				}, {
+					"id": "56aa691ce4b0a0e8c4be51f7",
+					"links": [{
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56aa691ce4b0a0e8c4be51f7",
+						"rel": "self"
+					}],
+					"name": "1454008603036"
 				}],
-				"name": "1454008603036"
-			}],
-			"totalCount": 2
-		}`)
+				"totalCount": 2
+			}`)
+		})
+
+		orgs, _, err := client.Organizations.List(ctx, nil)
+		if err != nil {
+			t.Fatalf("Organizations.List returned error: %v", err)
+		}
+
+		expected := &Organizations{
+			Links: []*Link{
+				{
+					Href: "https://cloud.mongodb.com/api/public/v1.0/orgs",
+					Rel:  "self",
+				},
+			},
+			Results: []*Organization{
+				{
+					ID: "56a10a80e4b0fd3b9a9bb0c2",
+					Links: []*Link{
+						{
+							Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+							Rel:  "self",
+						},
+					},
+					Name: "012i3091203jioawjioej",
+				},
+				{
+					ID: "56aa691ce4b0a0e8c4be51f7",
+					Links: []*Link{
+						{
+							Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56aa691ce4b0a0e8c4be51f7",
+							Rel:  "self",
+						},
+					},
+					Name: "1454008603036",
+				},
+			},
+			TotalCount: 2,
+		}
+
+		if diff := deep.Equal(orgs, expected); diff != nil {
+			t.Error(diff)
+		}
 	})
+	t.Run("by page number", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
 
-	orgs, _, err := client.Organizations.List(ctx, nil)
-	if err != nil {
-		t.Fatalf("Organizations.List returned error: %v", err)
-	}
-
-	expected := &Organizations{
-		Links: []*Link{
-			{
-				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs",
-				Rel:  "self",
-			},
-		},
-		Results: []*Organization{
-			{
-				ID: "56a10a80e4b0fd3b9a9bb0c2",
-				Links: []*Link{
+		mux.HandleFunc("/orgs", func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodGet)
+			_, _ = fmt.Fprint(w, `{
+				"links": [
 					{
-						Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
-						Rel:  "self",
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs?pageNum=1&itemsPerPage=1",
+						"rel": "previous"
 					},
-				},
-				Name: "012i3091203jioawjioej",
-			},
-			{
-				ID: "56aa691ce4b0a0e8c4be51f7",
-				Links: []*Link{
 					{
-						Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56aa691ce4b0a0e8c4be51f7",
-						Rel:  "self",
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs?pageNum=2&itemsPerPage=1",
+						"rel": "self"
 					},
-				},
-				Name: "1454008603036",
-			},
-		},
-		TotalCount: 2,
-	}
+					{
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs?itemsPerPage=3&pageNum=2",
+						"rel": "next"
+					}
+				],
+				"results": [{
+					"id": "56a10a80e4b0fd3b9a9bb0c2",
+					"links": [{
+						"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+						"rel": "self"
+					}],
+					"name": "FooBar"
+				}],
+				"totalCount": 3
+			}`)
+		})
 
-	if diff := deep.Equal(orgs, expected); diff != nil {
-		t.Error(diff)
-	}
+		opt := &OrganizationsListOptions{ListOptions: ListOptions{PageNum: 2}, Name: "FooBar"}
+
+		orgs, _, err := client.Organizations.List(ctx, opt)
+		if err != nil {
+			t.Fatalf("Organizations.List returned error: %v", err)
+		}
+
+		expected := &Organizations{
+			Links: []*Link{
+				{
+					Href: "https://cloud.mongodb.com/api/public/v1.0/orgs?pageNum=1&itemsPerPage=1",
+					Rel:  "previous",
+				},
+				{
+					Href: "https://cloud.mongodb.com/api/public/v1.0/orgs?pageNum=2&itemsPerPage=1",
+					Rel:  "self",
+				},
+				{
+					Href: "https://cloud.mongodb.com/api/public/v1.0/orgs?itemsPerPage=3&pageNum=2",
+					Rel:  "next",
+				},
+			},
+			Results: []*Organization{
+				{
+					ID: "56a10a80e4b0fd3b9a9bb0c2",
+					Links: []*Link{
+						{
+							Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/56a10a80e4b0fd3b9a9bb0c2",
+							Rel:  "self",
+						},
+					},
+					Name: "FooBar",
+				},
+			},
+			TotalCount: 3,
+		}
+
+		if diff := deep.Equal(orgs, expected); diff != nil {
+			t.Error(diff)
+		}
+	})
 }
 
 func TestOrganizationsServiceOp_Get(t *testing.T) {

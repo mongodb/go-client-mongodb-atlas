@@ -494,3 +494,56 @@ func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) { //nolint
 		t.Fatalf("expected current page to be '%d', was '%d'", expectedPage, p)
 	}
 }
+
+func TestSetListOptions_EmptyBoolPtr(t *testing.T) {
+	type testListOptions struct {
+		Exists *bool `url:"exists,omitempty"`
+	}
+
+	boolPtr := func(b bool) *bool {
+		return &b
+	}
+	testBaseURL := "www.example.com"
+
+	tests := []struct {
+		testName string
+		arg      *testListOptions
+		expected string
+	}{
+		{
+			testName: "true value",
+			arg: &testListOptions{
+				Exists: boolPtr(true),
+			},
+			expected: testBaseURL + "?exists=true",
+		},
+		{
+			testName: "false value",
+			arg: &testListOptions{
+				Exists: boolPtr(false),
+			},
+			expected: testBaseURL + "?exists=false",
+		},
+		{
+			testName: "omitted null value",
+			arg:      &testListOptions{},
+			expected: testBaseURL,
+		},
+	}
+
+	for _, tt := range tests {
+		tt := tt
+		t.Run(tt.testName, func(t *testing.T) {
+			t.Helper()
+			t.Log(tt.testName)
+
+			actual, err := setListOptions(testBaseURL, tt.arg)
+			if err != nil {
+				t.Errorf("setListOptions() error = %v", err)
+			}
+			if actual != tt.expected {
+				t.Errorf("setListOptions() actual = %s, expected = %s", actual, tt.expected)
+			}
+		})
+	}
+}
