@@ -53,6 +53,7 @@ type InterfaceEndpointConnection struct {
 }
 
 // Create one private endpoint service for AWS or Azure in an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/
 func (s *PrivateEndpointsServiceOp) Create(ctx context.Context, groupID string, createRequest *PrivateEndpointConnection) (*PrivateEndpointConnection, *Response, error) {
 	if groupID == "" {
@@ -110,6 +111,7 @@ func (s *PrivateEndpointsServiceOp) Get(ctx context.Context, groupID, cloudProvi
 }
 
 // List retrieve details for all private endpoint services for AWS or Azure in one Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-all/
 func (s *PrivateEndpointsServiceOp) List(ctx context.Context, groupID, cloudProvider string, listOptions *ListOptions) ([]PrivateEndpointConnection, *Response, error) {
 	if groupID == "" {
@@ -143,7 +145,8 @@ func (s *PrivateEndpointsServiceOp) List(ctx context.Context, groupID, cloudProv
 }
 
 // Delete one private endpoint service for AWS or Azure in an Atlas project.
-// See morehttps://docs.atlas.mongodb.com/reference/api/private-endpoints-service-delete-one/
+//
+// See more https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-delete-one/
 func (s *PrivateEndpointsServiceOp) Delete(ctx context.Context, groupID, cloudProvider, endpointServiceID string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
@@ -167,6 +170,7 @@ func (s *PrivateEndpointsServiceOp) Delete(ctx context.Context, groupID, cloudPr
 }
 
 // AddOnePrivateEndpoint Adds one private endpoint for AWS or Azure in an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/
 func (s *PrivateEndpointsServiceOp) AddOnePrivateEndpoint(ctx context.Context, groupID, cloudProvider, endpointServiceID string, createRequest *InterfaceEndpointConnection) (*InterfaceEndpointConnection, *Response, error) {
 	if groupID == "" {
@@ -199,7 +203,8 @@ func (s *PrivateEndpointsServiceOp) AddOnePrivateEndpoint(ctx context.Context, g
 	return root, resp, err
 }
 
-// GetOnePrivateEndpoint retrieve details for one private endpoint for AWS or Azure in an Atlas project..
+// GetOnePrivateEndpoint retrieve details for one private endpoint for AWS or Azure in an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-get-one/
 func (s *PrivateEndpointsServiceOp) GetOnePrivateEndpoint(ctx context.Context, groupID, cloudProvider, endpointServiceID, privateEndpointID string) (*InterfaceEndpointConnection, *Response, error) {
 	if groupID == "" {
@@ -233,6 +238,7 @@ func (s *PrivateEndpointsServiceOp) GetOnePrivateEndpoint(ctx context.Context, g
 }
 
 // DeleteOnePrivateEndpoint remove one private endpoint for AWS or Azure from an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-delete-one/
 func (s *PrivateEndpointsServiceOp) DeleteOnePrivateEndpoint(ctx context.Context, groupID, cloudProvider, endpointServiceID, privateEndpointID string) (*Response, error) {
 	if groupID == "" {
