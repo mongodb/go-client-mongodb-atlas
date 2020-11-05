@@ -82,6 +82,7 @@ func (s *PrivateEndpointsServiceOp) Create(ctx context.Context, groupID string, 
 }
 
 // Get retrieve details for one private endpoint service for AWS or Azure in an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-one/
 func (s *PrivateEndpointsServiceOp) Get(ctx context.Context, groupID, cloudProvider, endpointServiceID string) (*PrivateEndpointConnection, *Response, error) {
 	if groupID == "" {
