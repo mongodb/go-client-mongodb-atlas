@@ -10,6 +10,7 @@ const privateEndpointsPath = "groups/%s/privateEndpoint"
 
 // PrivateEndpointsService is an interface for interfacing with the Private Endpoints
 // of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoint/
 type PrivateEndpointsService interface {
 	Create(context.Context, string, *PrivateEndpointConnection) (*PrivateEndpointConnection, *Response, error)
