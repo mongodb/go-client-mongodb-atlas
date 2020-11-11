@@ -34,7 +34,8 @@ func TestProcesses_ListProcesses(t *testing.T) {
 						"replicaSetName": "replica-set-0",
 						"shardName": "shard-0",
 						"typeName": "REPLICA_PRIMARY",
-						"version": "3.6.7"
+						"version": "3.6.7",
+						"userAlias": "zuul",
 					},
 					{
 						"created": "2017-08-22T15:14:06Z",
@@ -52,7 +53,8 @@ func TestProcesses_ListProcesses(t *testing.T) {
 						"replicaSetName": "replica-set-0",
 						"shardName": "shard-0",
 						"typeName": "REPLICA_PRIMARY",
-						"version": "3.6.7"
+						"version": "3.6.7",
+						"userAlias": "zuul",
 					}
 				],
 				"totalCount": 2
@@ -82,6 +84,7 @@ func TestProcesses_ListProcesses(t *testing.T) {
 		ReplicaSetName: "replica-set-0",
 		TypeName:       "REPLICA_PRIMARY",
 		Version:        "3.6.7",
+		UserAlias:      "zuul",
 	}
 
 	expected := []*Process{&process, &process}
@@ -116,6 +119,7 @@ func TestProcesses_ListProcessesMultiplePages(t *testing.T) {
 					ReplicaSetName: "replica-set-0",
 					TypeName:       "REPLICA_PRIMARY",
 					Version:        "3.6.7",
+					UserAlias:      "zuul",
 				},
 				{
 					Created:  "2017-08-22T15:14:06Z",
@@ -134,6 +138,7 @@ func TestProcesses_ListProcessesMultiplePages(t *testing.T) {
 					ReplicaSetName: "replica-set-0",
 					TypeName:       "REPLICA_PRIMARY",
 					Version:        "3.6.7",
+					UserAlias:      "zuul",
 				},
 			},
 			Links: []*Link{
@@ -194,7 +199,8 @@ func TestProcesses_RetrievePageByNumber(t *testing.T) {
 					"replicaSetName": "replica-set-0",
 					"shardName": "shard-0",
 					"typeName": "REPLICA_PRIMARY",
-					"version": "3.6.7"
+					"version": "3.6.7",
+					"userAlias": "zuul"
 				}
 			],
 			"totalCount": 1
