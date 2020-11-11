@@ -54,7 +54,7 @@ func TestProcesses_ListProcesses(t *testing.T) {
 						"shardName": "shard-0",
 						"typeName": "REPLICA_PRIMARY",
 						"version": "3.6.7",
-						"userAlias": "zuul",
+						"userAlias": "zuul"
 					}
 				],
 				"totalCount": 2
