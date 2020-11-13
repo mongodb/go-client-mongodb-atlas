@@ -35,7 +35,7 @@ func TestProcesses_ListProcesses(t *testing.T) {
 						"shardName": "shard-0",
 						"typeName": "REPLICA_PRIMARY",
 						"version": "3.6.7",
-						"userAlias": "zuul",
+						"userAlias": "zuul"
 					},
 					{
 						"created": "2017-08-22T15:14:06Z",
