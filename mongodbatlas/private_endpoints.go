@@ -44,6 +44,7 @@ type PrivateEndpointConnection struct {
 
 // InterfaceEndpointConnection represents MongoDB Interface Endpoint Connection.
 type InterfaceEndpointConnection struct {
+	ID                            string `json:"id,omitempty"`                            // Unique identifier of the private endpoint you created in your AWS VPC or Azure VNet.
 	InterfaceEndpointID           string `json:"interfaceEndpointId,omitempty"`           // Unique identifier of the interface endpoint.
 	PrivateEndpointConnectionName string `json:"privateEndpointConnectionName,omitempty"` // Name of the connection for this private endpoint that Atlas generates.
 	PrivateEndpointIPAddress      string `json:"privateEndpointIPAddress,omitempty"`      // Private IP address of the private endpoint network interface.
