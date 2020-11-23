@@ -15,7 +15,7 @@ type CloudProviderAccessService interface {
 	ListRoles(context.Context, string) (*CloudProviderAccessRoles, *Response, error)
 	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error)
 	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error)
-	DeauthorizeRole(context.Context, string, string, *CloudProviderDeauthorizationRequest) (*Response, error)
+	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
 }
 
 // ProjectIPAccessListServiceOp provides an implementation of the CloudProviderAccessService interface
@@ -59,7 +59,9 @@ type CloudProviderAuthorizationRequest struct {
 
 // CloudProviderAuthorizationRequest
 type CloudProviderDeauthorizationRequest struct {
-	ProviderName string `json:"providerName"`
+	ProviderName string
+	GroupID      string
+	RoleID       string
 }
 
 // ListRoles retrieve existing AWS IAM roles.
@@ -138,13 +140,13 @@ func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupI
 // DeauthorizeRole deauthorizes an AWS Assumed IAM role.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-deauthorize-one-role/
-func (s *CloudProviderAccessServiceOp) DeauthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderDeauthorizationRequest) (*Response, error) {
-	if roleID == "" {
+func (s *CloudProviderAccessServiceOp) DeauthorizeRole(ctx context.Context, request *CloudProviderDeauthorizationRequest) (*Response, error) {
+	if request.RoleID == "" {
 		return nil, NewArgError("roleID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(cloudProviderAccessPath, groupID)
-	path := fmt.Sprintf("%s/%s/%s", basePath, request.ProviderName, roleID)
+	basePath := fmt.Sprintf(cloudProviderAccessPath, request.GroupID)
+	path := fmt.Sprintf("%s/%s/%s", basePath, request.ProviderName, request.RoleID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {

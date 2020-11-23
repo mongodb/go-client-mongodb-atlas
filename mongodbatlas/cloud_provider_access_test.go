@@ -180,10 +180,12 @@ func TestCloudProviderAccessServiceOp_DeauthorizeRole(t *testing.T) {
 	})
 
 	request := &CloudProviderDeauthorizationRequest{
+		GroupID:      "1",
+		RoleID:       roleID,
 		ProviderName: "AWS",
 	}
 
-	if _, err := client.CloudProviderAccess.DeauthorizeRole(ctx, "1", roleID, request); err != nil {
+	if _, err := client.CloudProviderAccess.DeauthorizeRole(ctx, request); err != nil {
 		t.Fatalf("CloudProviderAccess.DeauthorizeRole returned error: %v", err)
 	}
 }
