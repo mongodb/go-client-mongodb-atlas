@@ -175,11 +175,15 @@ func TestCloudProviderAccessServiceOp_DeauthorizeRole(t *testing.T) {
 
 	roleID := "5f232b94af0a6b41747bcc2d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/1/cloudProviderAccess/%s/%s", "AWS", roleID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	if _, err := client.CloudProviderAccess.DeauthorizeRole(ctx, "1", roleID); err != nil {
+	request := &CloudProviderDeauthorizationRequest{
+		ProviderName: "AWS",
+	}
+
+	if _, err := client.CloudProviderAccess.DeauthorizeRole(ctx, "1", roleID, request); err != nil {
 		t.Fatalf("CloudProviderAccess.DeauthorizeRole returned error: %v", err)
 	}
 }
