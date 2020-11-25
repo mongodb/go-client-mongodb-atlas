@@ -27,6 +27,8 @@ linters:
     - depguard
     - dogsled
     - errcheck
+    - exhaustive
+    - gochecknoinits
     - gocritic
     - gocyclo
     - gofmt
@@ -54,19 +56,20 @@ linters:
     - whitespace
 
   # don't enable:
-  # - gochecknoinits
-  # - goconst
-  # - funlen
-  # - lll
-  # - gomnd
   # - asciicheck
+  # - dupl
+  # - funlen
   # - gochecknoglobals
   # - gocognit
+  # - goconst
   # - godot
   # - godox
   # - goerr113
+  # - gomnd
+  # - lll
   # - maligned
   # - nestif
+  # - noctx
   # - prealloc
   # - testpackage
   # - wsl
