@@ -31,7 +31,13 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 	clusterName := "myTestClstr"
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
-		_, _ = fmt.Fprint(w, `[
+		_, _ = fmt.Fprint(w, `{"links": [
+			 {
+				 "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5e2211c17a3e5a48f5497de3/clusters/myTestCluster/onlineArchives?pageNum=1&itemsPerPage=100",
+				 "rel": "self"
+			 }
+		  ],
+		  "results": [
 		  {
 			 "_id": "5ebad3c1fe9c0ab8d37d61e1",
 			 "clusterName": "myTestClstr",
@@ -90,7 +96,9 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 			 ],
 			 "paused": false
 		  }
-		]`)
+		],
+		"totalCount": 2 
+		}`)
 	})
 
 	archives, _, err := client.OnlineArchives.List(ctx, groupID, clusterName)
@@ -98,65 +106,74 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 		t.Fatalf("OnlineArchives.List returned error: %v", err)
 	}
 
-	expected := []*OnlineArchive{
-		{
-			ID:          "5ebad3c1fe9c0ab8d37d61e1",
-			ClusterName: clusterName,
-			CollName:    "employees",
-			Criteria: &OnlineArchiveCriteria{
-				DateField:       "created",
-				ExpireAfterDays: 5,
+	expected := &OnlineArchives{
+		Links: []*Link{
+			{
+				Rel:  "self",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5e2211c17a3e5a48f5497de3/clusters/myTestCluster/onlineArchives?pageNum=1&itemsPerPage=100",
 			},
-			DBName:  "people",
-			GroupID: groupID,
-			PartitionFields: []*PartitionFields{
-				{
-					FieldName: "firstName",
-					FieldType: "string",
-					Order:     pointy.Float64(0),
-				},
-				{
-					FieldName: "lastName",
-					FieldType: "string",
-					Order:     pointy.Float64(1),
-				},
-				{
-					FieldName: "created",
-					FieldType: "date",
-					Order:     pointy.Float64(2),
-				},
-			},
-			Paused: pointy.Bool(false),
 		},
-		{
-			ID:          "5ebc2789fe9c0ab8d33b96cd",
-			ClusterName: clusterName,
-			CollName:    "invoices",
-			Criteria: &OnlineArchiveCriteria{
-				DateField:       "year",
-				ExpireAfterDays: 5,
+		Results: []*OnlineArchive{
+			{
+				ID:          "5ebad3c1fe9c0ab8d37d61e1",
+				ClusterName: clusterName,
+				CollName:    "employees",
+				Criteria: &OnlineArchiveCriteria{
+					DateField:       "created",
+					ExpireAfterDays: 5,
+				},
+				DBName:  "people",
+				GroupID: groupID,
+				PartitionFields: []*PartitionFields{
+					{
+						FieldName: "firstName",
+						FieldType: "string",
+						Order:     pointy.Float64(0),
+					},
+					{
+						FieldName: "lastName",
+						FieldType: "string",
+						Order:     pointy.Float64(1),
+					},
+					{
+						FieldName: "created",
+						FieldType: "date",
+						Order:     pointy.Float64(2),
+					},
+				},
+				Paused: pointy.Bool(false),
 			},
-			DBName:  "accounting",
-			GroupID: groupID,
-			PartitionFields: []*PartitionFields{
-				{
-					FieldName: "year",
-					FieldType: "date",
-					Order:     pointy.Float64(0),
+			{
+				ID:          "5ebc2789fe9c0ab8d33b96cd",
+				ClusterName: clusterName,
+				CollName:    "invoices",
+				Criteria: &OnlineArchiveCriteria{
+					DateField:       "year",
+					ExpireAfterDays: 5,
 				},
-				{
-					FieldName: "month",
-					FieldType: "string",
-					Order:     pointy.Float64(1),
+				DBName:  "accounting",
+				GroupID: groupID,
+				PartitionFields: []*PartitionFields{
+					{
+						FieldName: "year",
+						FieldType: "date",
+						Order:     pointy.Float64(0),
+					},
+					{
+						FieldName: "month",
+						FieldType: "string",
+						Order:     pointy.Float64(1),
+					},
+					{
+						FieldName: "invoiceNumber",
+						FieldType: "int",
+						Order:     pointy.Float64(2),
+					},
 				},
-				{
-					FieldName: "invoiceNumber",
-					FieldType: "int",
-					Order:     pointy.Float64(2),
-				},
+				Paused: pointy.Bool(false),
 			},
-			Paused: pointy.Bool(false),
 		},
+		TotalCount: 2,
 	}
 
 	if diff := deep.Equal(archives, expected); diff != nil {
