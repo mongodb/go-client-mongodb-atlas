@@ -101,7 +101,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 		}`)
 	})
 
-	archives, _, err := client.OnlineArchives.List(ctx, groupID, clusterName)
+	archives, _, err := client.OnlineArchives.List(ctx, groupID, clusterName, nil)
 	if err != nil {
 		t.Fatalf("OnlineArchives.List returned error: %v", err)
 	}

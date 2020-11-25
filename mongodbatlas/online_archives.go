@@ -14,7 +14,7 @@ const (
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/online-archive/
 type OnlineArchiveService interface {
-	List(context.Context, string, string) (*OnlineArchives, *Response, error)
+	List(context.Context, string, string, *ListOptions) (*OnlineArchives, *Response, error)
 	Get(context.Context, string, string, string) (*OnlineArchive, *Response, error)
 	Create(context.Context, string, string, *OnlineArchive) (*OnlineArchive, *Response, error)
 	Update(context.Context, string, string, string, *OnlineArchive) (*OnlineArchive, *Response, error)
@@ -29,7 +29,7 @@ var _ OnlineArchiveService = &OnlineArchiveServiceOp{}
 // List gets all online archives.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/#api-online-archive-get-all-for-clstr
-func (s *OnlineArchiveServiceOp) List(ctx context.Context, projectID, clusterName string) (*OnlineArchives, *Response, error) {
+func (s *OnlineArchiveServiceOp) List(ctx context.Context, projectID, clusterName string, listOptions *ListOptions) (*OnlineArchives, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -38,6 +38,11 @@ func (s *OnlineArchiveServiceOp) List(ctx context.Context, projectID, clusterNam
 	}
 
 	path := fmt.Sprintf(onlineArchiveBasePath, projectID, clusterName)
+	// Add query params from listOptions
+	path, err := setListOptions(path, listOptions)
+	if err != nil {
+		return nil, nil, err
+	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
