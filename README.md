@@ -1,6 +1,6 @@
 # go-client-mongodb-atlas
-[![GoDoc](https://img.shields.io/static/v1?label=godoc&message=reference&color=blue)](https://pkg.go.dev/go.mongodb.org/atlas/mongodbatlas)
-[![Build Status](https://travis-ci.org/mongodb/go-client-mongodb-atlas.svg?branch=master)](https://travis-ci.org/mongodb/go-client-mongodb-atlas)
+[![PkgGoDev](https://pkg.go.dev/badge/go.mongodb.org/atlas)](https://pkg.go.dev/go.mongodb.org/atlas)
+![CI](https://github.com/mongodb/go-client-mongodb-atlas/workflows/CI/badge.svg)
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/).
 
