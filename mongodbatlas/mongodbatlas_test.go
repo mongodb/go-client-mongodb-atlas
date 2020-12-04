@@ -374,7 +374,7 @@ func TestCheckResponse(t *testing.T) {
 
 	expected := &ErrorResponse{
 		Response:  res,
-		HttpError: 409,
+		HTTPCode:  409,
 		ErrorCode: "GROUP_ALREADY_EXISTS",
 		Reason:    "Conflict",
 		Detail:    `A group with name "Test" already exists`,

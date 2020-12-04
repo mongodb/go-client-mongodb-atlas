@@ -151,7 +151,7 @@ type ErrorResponse struct {
 	ErrorCode string `json:"errorCode"`
 
 	// HTTP status code.
-	HttpError int `json:"error"`
+	HTTPCode int `json:"error"`
 
 	// A short description of the error, which is simply the HTTP status phrase.
 	Reason string `json:"reason"`
