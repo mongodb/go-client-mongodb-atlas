@@ -360,7 +360,11 @@ func TestCheckResponse(t *testing.T) {
 	res := &http.Response{
 		Request:    &http.Request{},
 		StatusCode: http.StatusBadRequest,
-		Body:       ioutil.NopCloser(strings.NewReader(`{"error":400, "reason":"r", "detail":"d"}`)),
+		Body: ioutil.NopCloser(
+			strings.NewReader(
+				`{"error":409, "errorCode": "GROUP_ALREADY_EXISTS", "reason":"Conflict", "detail":"A group with name \"Test\" already exists"}`,
+			),
+		),
 	}
 	err := CheckResponse(res).(*ErrorResponse)
 
@@ -370,9 +374,10 @@ func TestCheckResponse(t *testing.T) {
 
 	expected := &ErrorResponse{
 		Response:  res,
-		ErrorCode: 400,
-		Reason:    "r",
-		Detail:    "d",
+		HttpError: 409,
+		ErrorCode: "GROUP_ALREADY_EXISTS",
+		Reason:    "Conflict",
+		Detail:    `A group with name "Test" already exists`,
 	}
 	if !reflect.DeepEqual(err, expected) {
 		t.Errorf("Error = %#v, expected %#v", err, expected)
