@@ -10,7 +10,7 @@ import (
 )
 
 /* IMPORTANT: DEPRECATION NOTICE
-Access List Replaces Whitelist
+Deprecated: Access List Replaces Whitelist
 Atlas now refers to its cluster firewall management as IP Access Lists.
 Atlas has deprecated the whitelist resource and will disable it in June 2021.
 Please update any dependent work to use project_ip_access_list.go
