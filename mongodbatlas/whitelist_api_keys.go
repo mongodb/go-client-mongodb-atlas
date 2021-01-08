@@ -6,10 +6,10 @@ import (
 	"net/http"
 )
 
-/*  IMPORTANT: DEPRECATION NOTICE
+/* IMPORTANT: DEPRECATION NOTICE
 Access List Replaces Whitelist
-Atlas now refers to programmatic API key whitelists as access lists. 
-Atlas has deprecated the whitelist method and will disable it in June 2021. 
+Atlas now refers to programmatic API key whitelists as access lists.
+Atlas has deprecated the whitelist method and will disable it in June 2021.
 Please update any dependent work to use accesslist_api_keys.go
 */
 
