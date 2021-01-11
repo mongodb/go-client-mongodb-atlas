@@ -11,7 +11,13 @@ const projectIPWhitelistPath = "groups/%s/whitelist"
 
 // ProjectIPWhitelistService is an interface for interfacing with the Project IP Whitelist
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist/
+//
+// Deprecated: ProjectIPAccessListService replaces ProjectIPWhitelistService.
+// Atlas now refers to its cluster firewall management as IP Access Lists.
+// Atlas has deprecated the whitelist resource and will disable it in June 2021.
+// Please update any dependent work to use ProjectIPWhitelistService
 type ProjectIPWhitelistService interface {
 	List(context.Context, string, *ListOptions) ([]ProjectIPWhitelist, *Response, error)
 	Get(context.Context, string, string) (*ProjectIPWhitelist, *Response, error)
@@ -19,13 +25,6 @@ type ProjectIPWhitelistService interface {
 	Update(context.Context, string, []*ProjectIPWhitelist) ([]ProjectIPWhitelist, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
 }
-
-/* IMPORTANT: DEPRECATION NOTICE
-Deprecated: Access List Replaces Whitelist
-Atlas now refers to its cluster firewall management as IP Access Lists.
-Atlas has deprecated the whitelist resource and will disable it in June 2021.
-Please update any dependent work to use project_ip_access_list.go
-*/
 
 // ProjectIPWhitelistServiceOp handles communication with the ProjectIPWhitelist related methods
 // of the MongoDB Atlas API
