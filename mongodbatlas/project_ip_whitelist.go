@@ -7,13 +7,6 @@ import (
 	"net/url"
 )
 
-/* IMPORTANT: DEPRECATION NOTICE
-Deprecated: Access List Replaces Whitelist
-Atlas now refers to its cluster firewall management as IP Access Lists.
-Atlas has deprecated the whitelist resource and will disable it in June 2021.
-Please update any dependent work to use project_ip_access_list.go
-*/
-
 const projectIPWhitelistPath = "groups/%s/whitelist"
 
 // ProjectIPWhitelistService is an interface for interfacing with the Project IP Whitelist
@@ -26,6 +19,13 @@ type ProjectIPWhitelistService interface {
 	Update(context.Context, string, []*ProjectIPWhitelist) ([]ProjectIPWhitelist, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
 }
+
+/* IMPORTANT: DEPRECATION NOTICE
+Deprecated: Access List Replaces Whitelist
+Atlas now refers to its cluster firewall management as IP Access Lists.
+Atlas has deprecated the whitelist resource and will disable it in June 2021.
+Please update any dependent work to use project_ip_access_list.go
+*/
 
 // ProjectIPWhitelistServiceOp handles communication with the ProjectIPWhitelist related methods
 // of the MongoDB Atlas API
