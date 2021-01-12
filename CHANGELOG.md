@@ -12,8 +12,6 @@
 - INTMDB-144: deleted omitempty for scopes of database users [\#162](https://github.com/mongodb/go-client-mongodb-atlas/pull/162) ([coderGo93](https://github.com/coderGo93))
 - INTMDB-138: Post release version bump [\#161](https://github.com/mongodb/go-client-mongodb-atlas/pull/161) ([gssbzn](https://github.com/gssbzn))
 
-# Changelog
-
 ## [v0.6.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.6.0) (December 14, 2020)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.5.0...v0.6.0)
