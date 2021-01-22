@@ -318,6 +318,12 @@ func TestDataLake_Create(t *testing.T) {
 
 	createRequest := &DataLakeCreateRequest{
 		Name: dataLakeName,
+		CloudProviderConfig: &CloudProviderConfig{
+			AWSConfig: AwsCloudProviderConfig{
+				RoleID:       "1a234bcd5e67f89a12b345c6",
+				TestS3Bucket: "user-metric-data-bucket",
+			},
+		},
 	}
 
 	path := fmt.Sprintf("/groups/%s/dataLakes", groupID)
@@ -325,6 +331,12 @@ func TestDataLake_Create(t *testing.T) {
 		testMethod(t, r, http.MethodPost)
 		expected := map[string]interface{}{
 			"name": "UserMetricData",
+			"cloudProviderConfig": map[string]interface{}{
+				"aws": map[string]interface{}{
+					"roleId":       "1a234bcd5e67f89a12b345c6",
+					"testS3Bucket": "user-metric-data-bucket",
+				},
+			},
 		}
 
 		var v map[string]interface{}
@@ -339,26 +351,25 @@ func TestDataLake_Create(t *testing.T) {
 
 		fmt.Fprint(w, `{
 			  "cloudProviderConfig": {
-				  "aws": {
-					  "iamAssumedRoleARN": "new_arn",
-					  "testS3Bucket": "new_bucket"
-				  }
+				"aws": {
+				  "externalId" : "12a3bc45-de6f-7890-12gh-3i45jklm6n7o",
+				  "iamAssumedRoleARN": "arn:aws:iam::123456789012:role/ReadS3BucketRole",
+				  "iamUserARN": "arn:aws:iam::1234567890123:root",
+				  "roleId": "1a234bcd5e67f89a12b345c6"
+				}
 			  },
-			  "dataProcessRegion": {
-				"cloudProvider" : "AWS",
-				"region" : "DUBLIN_IRL"
-			  },
+			  "dataProcessRegion": null,
 			  "groupId": "6c7498dg87d9e6526801572b",
 			  "hostnames": [
-				  "usermetricdata.mongodb.example.net"
+				"hardwaremetricdata.mongodb.example.net"
 			  ],
 			  "name": "UserMetricData",
-			  "state": "UNVERIFIED",
+			  "state": "ACTIVE",
 			  "storage": {
-				  "databases": [],
-				  "stores": []
+				"databases": [],
+				"stores": []
 			  }
-		}`)
+			}`)
 	})
 
 	updatedDataLake, _, err := client.DataLakes.Create(ctx, groupID, createRequest)
@@ -369,18 +380,16 @@ func TestDataLake_Create(t *testing.T) {
 	expected := DataLake{
 		CloudProviderConfig: CloudProviderConfig{
 			AWSConfig: AwsCloudProviderConfig{
-				IAMAssumedRoleARN: "new_arn",
-				TestS3Bucket:      "new_bucket",
+				ExternalID:        "12a3bc45-de6f-7890-12gh-3i45jklm6n7o",
+				IAMAssumedRoleARN: "arn:aws:iam::123456789012:role/ReadS3BucketRole",
+				IAMUserARN:        "arn:aws:iam::1234567890123:root",
+				RoleID:            "1a234bcd5e67f89a12b345c6",
 			},
 		},
-		DataProcessRegion: DataProcessRegion{
-			CloudProvider: "AWS",
-			Region:        "DUBLIN_IRL",
-		},
 		GroupID:   groupID,
-		Hostnames: []string{"usermetricdata.mongodb.example.net"},
+		Hostnames: []string{"hardwaremetricdata.mongodb.example.net"},
 		Name:      "UserMetricData",
-		State:     "UNVERIFIED",
+		State:     "ACTIVE",
 		Storage: Storage{
 			Databases: []DataLakeDatabase{},
 			Stores:    []DataLakeStore{},
