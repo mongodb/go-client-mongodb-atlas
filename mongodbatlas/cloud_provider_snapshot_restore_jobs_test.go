@@ -62,6 +62,16 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 				{
 					"cancelled": false,
 					"createdAt": "2018-08-01T22:05:41Z",
+					"components": [
+						{
+							"downloadUrl": "https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f-config.tar.gz",
+							"replicaSetName": "atlas-abcdef-config-0"
+						},
+						{
+							"downloadUrl": "https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f.tar.gz",
+							"replicaSetName": "atlas-abcdef-shard-0"
+						}
+					],
 					"deliveryType": "download",
 					"deliveryUrl": ["https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f.tar.gz"],
 					"expired": false,
@@ -90,6 +100,7 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 					"oplogTs":	1583753751,
 					"oplogInc":	1
 				}
+
 			],
 			"totalCount": 2
 		}`)
@@ -138,8 +149,18 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 				Timestamp:         "2018-08-01T20:02:07Z",
 			},
 			{
-				Cancelled:    false,
-				CreatedAt:    "2018-08-01T22:05:41Z",
+				Cancelled: false,
+				CreatedAt: "2018-08-01T22:05:41Z",
+				Components: []*Component{
+					{
+						DownloadURL:    "https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f-config.tar.gz",
+						ReplicaSetName: "atlas-abcdef-config-0",
+					},
+					{
+						DownloadURL:    "https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f.tar.gz",
+						ReplicaSetName: "atlas-abcdef-shard-0",
+					},
+				},
 				DeliveryType: "download",
 				DeliveryURL:  []string{"https://restore.mongodb.net:27017/restore-5b622e3587d9d6039faf713f.tar.gz"},
 				Expired:      false,
