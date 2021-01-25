@@ -479,7 +479,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "/subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
-	path :=fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint%s", groupID, "AZURE", privateLinkID, interfaceEndpointID)
+	path := fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint%s", groupID, "AZURE", privateLinkID, interfaceEndpointID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
