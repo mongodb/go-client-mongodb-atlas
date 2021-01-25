@@ -541,3 +541,57 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAzure(t *testing.T) {
 		t.Errorf("PrivateEndpoints.DeleteOnePrivateEndpoint returned error: %v", err)
 	}
 }
+
+func TestPrivateEndpoints_UpdateRegionalizedPrivateEndpointSetting(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, `{
+			"enabled" : true
+		}`)
+	})
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting(ctx, groupID, true)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting returned error: %v", err)
+	}
+
+	expected := &RegionalizedPrivateEndpointSetting{
+		Enabled: true,
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
+
+func TestPrivateEndpoints_GetRegionalizedPrivateEndpointSetting(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"enabled" : true
+		}`)
+	})
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.GetRegionalizedPrivateEndpointSetting(ctx, groupID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting returned error: %v", err)
+	}
+
+	expected := &RegionalizedPrivateEndpointSetting{
+		Enabled: true,
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
