@@ -532,7 +532,7 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAzure(t *testing.T) {
 
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
-	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
+	interfaceEndpointID := "subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AZURE", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)

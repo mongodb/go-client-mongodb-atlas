@@ -259,7 +259,7 @@ func (s *PrivateEndpointsServiceOp) DeleteOnePrivateEndpoint(ctx context.Context
 	}
 
 	basePath := fmt.Sprintf(privateEndpointsPath, groupID)
-	path := fmt.Sprintf("%s/%s/endpointService/%s/endpoint/%s", basePath, cloudProvider, endpointServiceID, privateEndpointID)
+	path := fmt.Sprintf("%s/%s/endpointService/%s/endpoint/%s", basePath, cloudProvider, endpointServiceID, url.PathEscape(privateEndpointID))
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
