@@ -477,12 +477,14 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
-	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
+	interfaceEndpointID := "/subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AZURE", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	path := fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint%s", groupID, "AZURE", privateLinkID, interfaceEndpointID)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
-			"privateEndpointResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
+			"privateEndpointResourceId": "/subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test",
 			"privateEndpointIPAddress": "10.0.0.4",
 			"connectionStatus": "INITIATING",
 			"deleteRequested": false
@@ -496,7 +498,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 
 	expected := &InterfaceEndpointConnection{
 		PrivateEndpointIPAddress:  "10.0.0.4",
-		PrivateEndpointResourceID: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
+		PrivateEndpointResourceID: interfaceEndpointID,
 		ConnectionStatus:          "INITIATING",
 		DeleteRequested:           pointy.Bool(false),
 	}
@@ -530,7 +532,7 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAzure(t *testing.T) {
 
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
-	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
+	interfaceEndpointID := "subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AZURE", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
