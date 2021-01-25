@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 const privateEndpointsPath = "groups/%s/privateEndpoint"
@@ -224,7 +225,7 @@ func (s *PrivateEndpointsServiceOp) GetOnePrivateEndpoint(ctx context.Context, g
 	}
 
 	basePath := fmt.Sprintf(privateEndpointsPath, groupID)
-	path := fmt.Sprintf("%s/%s/endpointService/%s/endpoint/%s", basePath, cloudProvider, endpointServiceID, privateEndpointID)
+	path := fmt.Sprintf("%s/%s/endpointService/%s/endpoint/%s", basePath, cloudProvider, endpointServiceID, url.PathEscape(privateEndpointID))
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
