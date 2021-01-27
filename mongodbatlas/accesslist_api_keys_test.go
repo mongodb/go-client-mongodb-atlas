@@ -1,3 +1,17 @@
+// Copyright 2021 MongoDB Inc
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package mongodbatlas
 
 import (
@@ -21,7 +35,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 		fmt.Fprint(w, `{
 			"links": [
 				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accesslist/?pretty=true&pageNum=1&itemsPerPage=100",
+					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accessList/?pretty=true&pageNum=1&itemsPerPage=100",
 					"rel": "self"
 				}
 			],
@@ -35,7 +49,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 					"lastUsedAddress": "147.58.184.16",
 					"links": [
 						{
-							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 							"rel": "self"
 						}
 					]
@@ -49,7 +63,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 					"lastUsedAddress": "84.255.48.125",
 					"links": [
 						{
-							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/206.252.195.126",
+							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/206.252.195.126",
 							"rel": "self"
 						}
 					]
@@ -67,7 +81,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 	expected := &AccessListAPIKeys{
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accesslist/?pretty=true&pageNum=1&itemsPerPage=100",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accessList/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
@@ -81,7 +95,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 				LastUsedAddress: "147.58.184.16",
 				Links: []*Link{
 					{
-						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 						Rel:  "self",
 					},
 				},
@@ -95,7 +109,7 @@ func TestAccessListAPIKeys_List(t *testing.T) {
 				LastUsedAddress: "84.255.48.125",
 				Links: []*Link{
 					{
-						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/206.252.195.126",
+						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/206.252.195.126",
 						Rel:  "self",
 					},
 				},
@@ -126,14 +140,14 @@ func TestAccessListAPIKeys_Get(t *testing.T) {
 			"ipAddress": "147.58.184.16",
 			"links": [
 				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 					"rel": "self"
 				}
 			]
 		}`)
 	})
 
-	accesslistAPIKey, _, err := client.AccessListAPIKeys.Get(ctx, orgID, apiKeyID, ipAddress)
+	accessListAPIKey, _, err := client.AccessListAPIKeys.Get(ctx, orgID, apiKeyID, ipAddress)
 	if err != nil {
 		t.Fatalf("AccessListAPIKeys.Get returned error: %v", err)
 	}
@@ -145,13 +159,13 @@ func TestAccessListAPIKeys_Get(t *testing.T) {
 		IPAddress: "147.58.184.16",
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 				Rel:  "self",
 			},
 		},
 	}
 
-	if diff := deep.Equal(accesslistAPIKey, expected); diff != nil {
+	if diff := deep.Equal(accessListAPIKey, expected); diff != nil {
 		t.Error(diff)
 	}
 }
@@ -191,7 +205,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 		fmt.Fprint(w, `{
 			"links": [
 				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accesslist/?pretty=true&pageNum=1&itemsPerPage=100",
+					"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accessList/?pretty=true&pageNum=1&itemsPerPage=100",
 					"rel": "self"
 				}
 			],
@@ -205,7 +219,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 					"lastUsedAddress": "147.58.184.16",
 					"links": [
 						{
-							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 							"rel": "self"
 						}
 					]
@@ -219,7 +233,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 					"lastUsedAddress": "77.54.32.11",
 					"links": [
 						{
-							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/77.54.32.11",
+							"href": "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/77.54.32.11",
 							"rel": "self"
 						}
 					]
@@ -229,7 +243,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 		}`)
 	})
 
-	accesslistAPIKey, _, err := client.AccessListAPIKeys.Create(ctx, orgID, apiKeyID, createRequest)
+	accessListAPIKey, _, err := client.AccessListAPIKeys.Create(ctx, orgID, apiKeyID, createRequest)
 	if err != nil {
 		t.Fatalf("AccessListAPIKeys.Create returned error: %v", err)
 	}
@@ -237,7 +251,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 	expected := &AccessListAPIKeys{
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accesslist/?pretty=true&pageNum=1&itemsPerPage=100",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/599c510c80eef518f3b63fe1/apiKeys/5c49e72980eef544a218f8f8/accessList/?pretty=true&pageNum=1&itemsPerPage=100",
 				Rel:  "self",
 			},
 		},
@@ -251,7 +265,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 				LastUsedAddress: "147.58.184.16",
 				Links: []*Link{
 					{
-						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/147.58.184.16",
+						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/147.58.184.16",
 						Rel:  "self",
 					},
 				},
@@ -265,7 +279,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 				LastUsedAddress: "77.54.32.11",
 				Links: []*Link{
 					{
-						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist/77.54.32.11",
+						Href: "https://cloud.mongodb.com/api/atlas/v1.0/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accessList/77.54.32.11",
 						Rel:  "self",
 					},
 				},
@@ -274,7 +288,7 @@ func TestAccessListAPIKeys_Create(t *testing.T) {
 		TotalCount: 2,
 	}
 
-	if diff := deep.Equal(accesslistAPIKey, expected); diff != nil {
+	if diff := deep.Equal(accessListAPIKey, expected); diff != nil {
 		t.Error(diff)
 	}
 }
