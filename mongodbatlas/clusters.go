@@ -86,6 +86,7 @@ type PrivateEndpoint struct {
 	ConnectionString    string     `json:"connectionString,omitempty"`
 	Endpoints           []Endpoint `json:"endpoints,omitempty"`
 	SRVConnectionString string     `json:"srvConnectionString,omitempty"`
+	Type                string     `json:"type,omitempty"`
 }
 
 // Endpoint through which you connect to Atlas
@@ -93,7 +94,6 @@ type Endpoint struct {
 	EndpointID   string `json:"endpointId,omitempty"`
 	ProviderName string `json:"providerName,omitempty"`
 	Region       string `json:"region,omitempty"`
-	Type         string `json:"type,omitempty"`
 }
 
 // ConnectionStrings configuration for applications use to connect to this cluster

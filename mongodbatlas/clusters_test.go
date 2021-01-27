@@ -42,7 +42,21 @@ func TestClusters_ListClusters(t *testing.T) {
 							"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
 						},
 						"private": "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-						"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net"
+						"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+						"privateEndpoint": [
+						 {
+						  "connectionString": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+						  "endpoints": [
+						   {
+							"endpointId": "vpce-0d00c26273372c6ef",
+							"providerName": "AWS",
+							"region": "US_EAST_1"
+						   }
+						  ],
+						  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+						  "type": "MONGOD"
+						 }
+						]
 					},
 					"diskSizeGB": 160,
 					"encryptionAtRestProvider": "AWS",
@@ -102,7 +116,21 @@ func TestClusters_ListClusters(t *testing.T) {
 							"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
 						},
 						"private": "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-						"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net"
+						"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+						"privateEndpoint": [
+						 {
+						  "connectionString": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+						  "endpoints": [
+						   {
+							"endpointId": "vpce-0d00c26273372c6ef",
+							"providerName": "AWS",
+							"region": "US_EAST_1"
+						   }
+						  ],
+						  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+						  "type": "MONGOD"
+						 }
+						]
 					},
 					"diskSizeGB": 160,
 					"encryptionAtRestProvider": "AWS",
@@ -166,6 +194,20 @@ func TestClusters_ListClusters(t *testing.T) {
 			AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
 			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+			PrivateEndpoint: []PrivateEndpoint{
+				{
+					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					Type:                "MONGOD",
+					Endpoints: []Endpoint{
+						{
+							EndpointID:   "vpce-0d00c26273372c6ef",
+							Region:       "US_EAST_1",
+							ProviderName: "AWS",
+						},
+					},
+				},
+			},
 		},
 
 		DiskSizeGB:               pointy.Float64(160),
@@ -806,7 +848,21 @@ func TestClusters_Get(t *testing.T) {
 					"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"
 				},
 				"private": "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-				"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net"
+				"privateSrv": "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+				"privateEndpoint": [
+				 {
+				  "connectionString": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+				  "endpoints": [
+				   {
+					"endpointId": "vpce-0d00c26273372c6ef",
+					"providerName": "AWS",
+					"region": "US_EAST_1"
+				   }
+				  ],
+				  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+				  "type": "MONGOD"
+				 }
+				]
 			},
             "diskSizeGB": 160,
             "encryptionAtRestProvider": "AWS",
@@ -857,6 +913,20 @@ func TestClusters_Get(t *testing.T) {
 			AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
 			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+			PrivateEndpoint: []PrivateEndpoint{
+				{
+					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					Type:                "MONGOD",
+					Endpoints: []Endpoint{
+						{
+							EndpointID:   "vpce-0d00c26273372c6ef",
+							Region:       "US_EAST_1",
+							ProviderName: "AWS",
+						},
+					},
+				},
+			},
 		},
 		DiskSizeGB:               pointy.Float64(160),
 		EncryptionAtRestProvider: "AWS",
