@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.7.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.1) (January 26, 2021)
+## [v0.7.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.1) (January 27, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.0...v0.7.1)
 
@@ -10,6 +10,9 @@
 
 **Merged pull requests:**
 
+- INTMDB-173: Update the path of AccessListAPIKeys service [\#178](https://github.com/mongodb/go-client-mongodb-atlas/pull/178) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-158: changed field type to another object [\#177](https://github.com/mongodb/go-client-mongodb-atlas/pull/177) ([coderGo93](https://github.com/coderGo93))
+- Apply License header to source files [\#175](https://github.com/mongodb/go-client-mongodb-atlas/pull/175) ([gssbzn](https://github.com/gssbzn))
 - CLOUDP-81043: add Regionalized Private Endpoint Status to atlas go client [\#174](https://github.com/mongodb/go-client-mongodb-atlas/pull/174) ([andreaangiolillo](https://github.com/andreaangiolillo))
 - INTMDB-167: URL encode private enpoint ID [\#173](https://github.com/mongodb/go-client-mongodb-atlas/pull/173) ([andreaangiolillo](https://github.com/andreaangiolillo))
 - Add support for components in `CloudProviderSnapshotRestoreJob` [\#172](https://github.com/mongodb/go-client-mongodb-atlas/pull/172) ([Stovoy](https://github.com/Stovoy))
@@ -17,8 +20,6 @@
 - INTMDB-165: Update connection strings for cluster [\#169](https://github.com/mongodb/go-client-mongodb-atlas/pull/169) ([gssbzn](https://github.com/gssbzn))
 - INTMDB-164: Update data lake to support new required fields for creation [\#168](https://github.com/mongodb/go-client-mongodb-atlas/pull/168) ([gssbzn](https://github.com/gssbzn))
 - CLOUDP-80413: \[go-client\] add service to get default mongodb major version [\#167](https://github.com/mongodb/go-client-mongodb-atlas/pull/167) ([gssbzn](https://github.com/gssbzn))
-
-# Changelog
 
 ## [v0.7.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.0) (January 12, 2021)
 
