@@ -389,7 +389,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointAWS(t *testing.T) {
 
 	expected := &InterfaceEndpointConnection{
 		InterfaceEndpointID: "vpce-08fb7e9319909ec7b",
-		ConnectionStatus:    "PENDING",
+		AWSConnectionStatus: "PENDING",
 		DeleteRequested:     pointy.Bool(false),
 	}
 
@@ -443,7 +443,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		PrivateEndpointIPAddress:  "10.0.0.4",
 		PrivateEndpointResourceID: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
-		ConnectionStatus:          "INITIATING",
+		AWSConnectionStatus:       "INITIATING",
 		DeleteRequested:           pointy.Bool(false),
 	}
 
@@ -476,7 +476,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAWS(t *testing.T) {
 
 	expected := &InterfaceEndpointConnection{
 		InterfaceEndpointID: "vpce-08fb7e9319909ec7b",
-		ConnectionStatus:    "PENDING",
+		AWSConnectionStatus: "PENDING",
 		DeleteRequested:     pointy.Bool(false),
 	}
 
@@ -500,7 +500,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 		fmt.Fprint(w, `{
 			"privateEndpointResourceId": "/subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test",
 			"privateEndpointIPAddress": "10.0.0.4",
-			"connectionStatus": "INITIATING",
+			"status": "INITIATING",
 			"deleteRequested": false
 		}`)
 	})
@@ -513,7 +513,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		PrivateEndpointIPAddress:  "10.0.0.4",
 		PrivateEndpointResourceID: interfaceEndpointID,
-		ConnectionStatus:          "INITIATING",
+		AzureStatus:               "INITIATING",
 		DeleteRequested:           pointy.Bool(false),
 	}
 
