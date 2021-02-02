@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.7.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.2) (February 02, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.1...v0.7.2)
+
+**Merged pull requests:**
+
+- INTMDB-175: Added azure status in endpoint service [\#179](https://github.com/mongodb/go-client-mongodb-atlas/pull/179) ([coderGo93](https://github.com/coderGo93))
+
+# Changelog
+
 ## [v0.7.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.1) (January 27, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.0...v0.7.1)
