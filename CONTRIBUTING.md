@@ -48,7 +48,7 @@ please check [this section](#reporting-bugs-or-suggesting-enhancements) on how w
 
 #### Prerequisite Tools
 - [Git](https://git-scm.com/)
-- [Go (at least Go 1.12)](https://golang.org/dl/)
+- [Go (at least Go 1.14)](https://golang.org/dl/)
 
 #### Environment
 - Fork the repository.
@@ -65,3 +65,7 @@ The following is a short list of commands that can be run in the root of the pro
 - Run `make lint` to validate against our linting rules.
 
 We provide a git pre-commit hook to format and check the code, to install it run `make link-git-hooks`
+
+## Maintainer's Guide
+
+Reviewers, please ensure that the CLA has been signed by referring to [the contributors tool](https://contributors.corp.mongodb.com/) (internal link).
