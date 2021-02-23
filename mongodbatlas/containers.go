@@ -56,9 +56,9 @@ type Container struct {
 	NetworkName         string   `json:"networkName,omitempty"`
 	ProviderName        string   `json:"providerName,omitempty"`
 	Provisioned         *bool    `json:"provisioned,omitempty"`
-	Region              string   `json:"region,omitempty"`  // Region is available for AZURE and AWS
-	Regions             []string `json:"regions,omitempty"` // Regions are available for GCP
-	RegionName          string   `json:"regionName,omitempty"`
+	Region              string   `json:"region,omitempty"`     // Region is available for AZURE
+	Regions             []string `json:"regions,omitempty"`    // Regions are available for GCP
+	RegionName          string   `json:"regionName,omitempty"` // RegionName is available for AWS
 	VNetName            string   `json:"vnetName,omitempty"`
 	VPCID               string   `json:"vpcId,omitempty"`
 }
