@@ -376,3 +376,127 @@ func TestContainers_Delete(t *testing.T) {
 		t.Fatalf("Container.Delete returned error: %v", err)
 	}
 }
+
+func TestContainersServiceOp_Create(t *testing.T) {
+	type args struct {
+		request          *Container
+		expectedRequest  map[string]interface{}
+		response         string
+		expectedResponse *Container
+	}
+	groupID := "1"
+	tests := map[string]args{
+		"AWS": {
+			request: &Container{
+				AtlasCIDRBlock: "10.8.0.0/21",
+				RegionName:     "US_EAST_1",
+				ProviderName:   "AWS",
+			},
+			expectedRequest: map[string]interface{}{
+				"atlasCidrBlock": "10.8.0.0/21",
+				"regionName":     "US_EAST_1",
+				"providerName":   "AWS",
+			},
+			response: `{
+  "atlasCidrBlock" : "10.8.0.0/21",
+  "id" : "1112269b3bf99403840e8934",
+  "provisioned" : true,
+  "regionName" : "US_EAST_1",
+  "vpcId" : "vpc-zz0zzzzz"
+}`,
+			expectedResponse: &Container{
+				AtlasCIDRBlock: "10.8.0.0/21",
+				ID:             "1112269b3bf99403840e8934",
+				Provisioned:    pointy.Bool(true),
+				RegionName:     "US_EAST_1",
+				VPCID:          "vpc-zz0zzzzz",
+			},
+		},
+		"AZURE": {
+			request: &Container{
+				AtlasCIDRBlock: "10.8.0.0/21",
+				Region:         "US_EAST_2",
+				ProviderName:   "AZURE",
+			},
+			expectedRequest: map[string]interface{}{
+				"atlasCidrBlock": "10.8.0.0/21",
+				"region":         "US_EAST_2",
+				"providerName":   "AZURE",
+			},
+			response: `{
+  "atlasCidrBlock":"10.8.0.0/21",
+  "azureSubscriptionId":"602336d43d098d433845971g",
+  "id":"5cbf563d87d9d67253be590a",
+  "providerName":"AZURE",
+  "provisioned":false,
+  "region":"US_EAST_2",
+  "vnetName":null
+}`,
+			expectedResponse: &Container{
+				AtlasCIDRBlock:      "10.8.0.0/21",
+				AzureSubscriptionID: "602336d43d098d433845971g",
+				ID:                  "5cbf563d87d9d67253be590a",
+				Provisioned:         pointy.Bool(false),
+				ProviderName:        "AZURE",
+				Region:              "US_EAST_2",
+			},
+		},
+		"GCP": {
+			request: &Container{
+				AtlasCIDRBlock: "10.8.0.0/18",
+				ProviderName:   "GCP",
+			},
+			expectedRequest: map[string]interface{}{
+				"atlasCidrBlock": "10.8.0.0/18",
+				"providerName":   "GCP",
+			},
+			response: `{
+  "atlasCidrBlock" : "10.8.0.0/18",
+  "id" : "1112269b3bf99403840e8934",
+  "gcpProjectId" : "null",
+  "networkName" : "null",
+  "provisioned" : true
+}`,
+			expectedResponse: &Container{
+				AtlasCIDRBlock: "10.8.0.0/18",
+				ID:             "1112269b3bf99403840e8934",
+				Provisioned:    pointy.Bool(true),
+				NetworkName:    "null",
+				GCPProjectID:   "null",
+			},
+		},
+	}
+	for test, args := range tests {
+		request := args.request
+		expectedRequest := args.expectedRequest
+		response := args.response
+		expectedResponse := args.expectedResponse
+		t.Run(test, func(t *testing.T) {
+			client, mux, teardown := setup()
+			defer teardown()
+			mux.HandleFunc(fmt.Sprintf("/groups/%s/containers", groupID), func(w http.ResponseWriter, r *http.Request) {
+				expected := expectedRequest
+				jsonBlob := response
+
+				var v map[string]interface{}
+				err := json.NewDecoder(r.Body).Decode(&v)
+				if err != nil {
+					t.Fatalf("decode json: %v", err)
+				}
+
+				if diff := deep.Equal(v, expected); diff != nil {
+					t.Error(diff)
+				}
+
+				fmt.Fprint(w, jsonBlob)
+			})
+			container, _, err := client.Containers.Create(ctx, groupID, request)
+			if err != nil {
+				t.Fatalf("Containers.Update returned error: %v", err)
+			}
+			if diff := deep.Equal(container, expectedResponse); diff != nil {
+				t.Error(diff)
+			}
+		})
+	}
+}
