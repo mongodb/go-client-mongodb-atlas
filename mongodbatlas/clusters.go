@@ -21,19 +21,27 @@ import (
 	"net/url"
 )
 
+type ChangeStatus string
+
+const (
+	ChangeStatusApplied ChangeStatus = "APPLIED"
+	ChangeStatusPending ChangeStatus = "PENDING"
+)
+
 const clustersPath = "groups/%s/clusters"
 
 // ClustersService is an interface for interfacing with the Clusters
 // endpoints of the MongoDB Atlas API.
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters/
 type ClustersService interface {
-	List(context.Context, string, *ListOptions) ([]Cluster, *Response, error)
-	Get(context.Context, string, string) (*Cluster, *Response, error)
-	Create(context.Context, string, *Cluster) (*Cluster, *Response, error)
-	Update(context.Context, string, string, *Cluster) (*Cluster, *Response, error)
-	Delete(context.Context, string, string) (*Response, error)
-	UpdateProcessArgs(context.Context, string, string, *ProcessArgs) (*ProcessArgs, *Response, error)
-	GetProcessArgs(context.Context, string, string) (*ProcessArgs, *Response, error)
+	List(ctx context.Context, groupID string, options *ListOptions) ([]Cluster, *Response, error)
+	Get(ctx context.Context, groupID, clusterName string) (*Cluster, *Response, error)
+	Create(ctx context.Context, groupID string, cluster *Cluster) (*Cluster, *Response, error)
+	Update(ctx context.Context, groupID, clusterName string, cluster *Cluster) (*Cluster, *Response, error)
+	Delete(ctx context.Context, groupID, clusterName string) (*Response, error)
+	UpdateProcessArgs(ctx context.Context, groupID, clusterName string, args *ProcessArgs) (*ProcessArgs, *Response, error)
+	GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error)
+	Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error)
 }
 
 // ClustersServiceOp handles communication with the Cluster related methods
@@ -160,6 +168,11 @@ type ProcessArgs struct {
 	OplogSizeMB                      *int64 `json:"oplogSizeMB,omitempty"`
 	SampleSizeBIConnector            *int64 `json:"sampleSizeBIConnector,omitempty"`
 	SampleRefreshIntervalBIConnector *int64 `json:"sampleRefreshIntervalBIConnector,omitempty"`
+}
+
+// ClusterStatus is the status of the operations on the cluster
+type ClusterStatus struct {
+	ChangeStatus ChangeStatus `json:"changeStatus"`
 }
 
 // clustersResponse is the response from the ClustersService.List.
@@ -393,6 +406,31 @@ func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, cluster
 	}
 
 	return root, resp, err
+}
+
+// Status gets the status of the operation on the Cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-check-operation-status/
+func (s *ClustersServiceOp) Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error) {
+	if err := checkClusterNameParam(clusterName); err != nil {
+		return ClusterStatus{}, nil, err
+	}
+
+	basePath := fmt.Sprintf(clustersPath, groupID)
+	escapedEntry := url.PathEscape(clusterName)
+	path := fmt.Sprintf("%s/%s/status", basePath, escapedEntry)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return ClusterStatus{}, nil, err
+	}
+
+	root := new(ClusterStatus)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return ClusterStatus{}, resp, err
+	}
+
+	return *root, resp, err
 }
 
 func checkClusterNameParam(clusterName string) error {
