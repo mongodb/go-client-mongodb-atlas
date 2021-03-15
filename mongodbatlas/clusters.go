@@ -420,18 +420,14 @@ func (s *ClustersServiceOp) Status(ctx context.Context, groupID, clusterName str
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s/status", basePath, escapedEntry)
 
+	var root ClusterStatus
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
-		return ClusterStatus{}, nil, err
+		return root, nil, err
 	}
 
-	root := new(ClusterStatus)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return ClusterStatus{}, resp, err
-	}
-
-	return *root, resp, err
+	resp, err := s.Client.Do(ctx, req, &root)
+	return root, resp, err
 }
 
 func checkClusterNameParam(clusterName string) error {
