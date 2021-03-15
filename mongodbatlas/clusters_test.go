@@ -977,3 +977,27 @@ func TestClusters_Get(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestClusters_Status(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	clusterName := "appData"
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/status", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{ "changeStatus": "PENDING" }`)
+	})
+
+	status, _, err := client.Clusters.Status(ctx, groupID, clusterName)
+	if err != nil {
+		t.Fatalf("Clusters.Status returned error: %v", err)
+	}
+
+	expected := ClusterStatus{ChangeStatus: ChangeStatusPending}
+
+	if status != expected {
+		t.Errorf("Expected %v but got %v", expected, status)
+	}
+}
