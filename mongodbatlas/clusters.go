@@ -409,6 +409,7 @@ func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, cluster
 }
 
 // Status gets the status of the operation on the Cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-check-operation-status/
 func (s *ClustersServiceOp) Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
