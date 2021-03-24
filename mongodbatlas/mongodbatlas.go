@@ -136,6 +136,7 @@ type Client struct {
 	PerformanceAdvisor                  PerformanceAdvisorService
 	CloudProviderAccess                 CloudProviderAccessService
 	DefaultMongoDBMajorVersion          DefaultMongoDBMajorVersionService
+	CloudProviderRegions				CloudProviderRegionsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -286,6 +287,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.PerformanceAdvisor = &PerformanceAdvisorServiceOp{Client: c}
 	c.CloudProviderAccess = &CloudProviderAccessServiceOp{Client: c}
 	c.DefaultMongoDBMajorVersion = &DefaultMongoDBMajorVersionServiceOp{Client: c}
+	c.CloudProviderRegions = &CloudProviderRegionsServiceOp{Client:c}
 
 	return c
 }
