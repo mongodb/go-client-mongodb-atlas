@@ -65,7 +65,7 @@ type CloudProviders struct {
 type CloudProviderRegionsOptions struct {
 	Provider           string `url:"provider,omitempty"`
 	Tier               string `url:"tier,omitempty"`
-	CrossCloudProvider bool   `url:"maxDate"`
+	CrossCloudProvider bool   `url:"crossCloudProvider"`
 }
 
 // List gets the available regions for each cloud provider
