@@ -16,9 +16,10 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/go-test/deep"
 	"net/http"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestCloudProviderRegions_Get(t *testing.T) {
@@ -131,18 +132,18 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 	}
 
 	expected := &CloudProviders{
-		Links:      []*Link{
+		Links: []*Link{
 			{
 				Rel:  "self",
 				Href: "http://mongodb-cloud.com/api/atlas/v1.0/groups/60585bf86e35cb1e7fbe739f/clusters/provider/regions",
 			},
 		},
-		Results:    []*CloudProvider{
+		Results: []*CloudProvider{
 			{
-				Provider:      "AWS",
+				Provider: "AWS",
 				InstanceSizes: []*InstanceSize{
 					{
-						Name:             "R50",
+						Name: "R50",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "US_EAST_1",
@@ -155,7 +156,7 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 						},
 					},
 					{
-						Name:             "M0",
+						Name: "M0",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "US_EAST_1",
@@ -166,10 +167,10 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 				},
 			},
 			{
-				Provider:      "AZURE",
+				Provider: "AZURE",
 				InstanceSizes: []*InstanceSize{
 					{
-						Name:             "R50",
+						Name: "R50",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "US_WEST_2",
@@ -182,7 +183,7 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 						},
 					},
 					{
-						Name:             "M0",
+						Name: "M0",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "US_WEST_2",
@@ -193,10 +194,10 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 				},
 			},
 			{
-				Provider:      "GCP",
+				Provider: "GCP",
 				InstanceSizes: []*InstanceSize{
 					{
-						Name:             "R50",
+						Name: "R50",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "CENTRAL_US",
@@ -209,7 +210,7 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 						},
 					},
 					{
-						Name:             "M0",
+						Name: "M0",
 						AvailableRegions: []*AvailableRegion{
 							{
 								Name:    "CENTRAL_US",
@@ -219,11 +220,10 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 					},
 				},
 			},
-
 		},
 		TotalCount: 3,
 	}
-	
+
 	if diff := deep.Equal(availableRegions, expected); diff != nil {
 		t.Error(diff)
 	}

@@ -37,39 +37,39 @@ type CloudProviderRegionsServiceOp service
 var _ CloudProviderRegionsService = &CloudProviderRegionsServiceOp{}
 
 // CloudProvider represents a cloud provider of the MongoDB Atlas API
-type CloudProvider struct{
-	Provider string `json:"provider,omitempty"`
+type CloudProvider struct {
+	Provider      string          `json:"provider,omitempty"`
 	InstanceSizes []*InstanceSize `json:"instanceSizes,omitempty"`
 }
 
 // InstanceSize represents an instance size of the MongoDB Atlas API
-type InstanceSize struct{
-	Name string `json:"name,omitempty"`
+type InstanceSize struct {
+	Name             string             `json:"name,omitempty"`
 	AvailableRegions []*AvailableRegion `json:"availableRegions,omitempty"`
 }
 
 // AvailableRegion represents an available region of the MongoDB Atlas API
-type AvailableRegion struct{
-	Name string `json:"name,omitempty"`
-	Default bool `json:"default,omitempty"`
+type AvailableRegion struct {
+	Name    string `json:"name,omitempty"`
+	Default bool   `json:"default,omitempty"`
 }
 
 // CloudProviders represents the response from CloudProviderRegionsService.Get
-type CloudProviders struct{
-	Links      []*Link   `json:"links,omitempty"`
+type CloudProviders struct {
+	Links      []*Link          `json:"links,omitempty"`
 	Results    []*CloudProvider `json:"results,omitempty"`
-	TotalCount int       `json:"totalCount,omitempty"`
+	TotalCount int              `json:"totalCount,omitempty"`
 }
 
 // CloudProviderRegionsOptions specifies the optional parameters to the CloudProviderRegions Get method.
 type CloudProviderRegionsOptions struct {
-	Provider string `url:"provider,omitempty"`
-	Tier   string   `url:"tier,omitempty"`
-	CrossCloudProvider   bool   `url:"maxDate"`
+	Provider           string `url:"provider,omitempty"`
+	Tier               string `url:"tier,omitempty"`
+	CrossCloudProvider bool   `url:"maxDate"`
 }
 
 // Get gets the available regions for each cloud provider
-func (s *CloudProviderRegionsServiceOp) Get(ctx context.Context, groupID string , options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
+func (s *CloudProviderRegionsServiceOp) Get(ctx context.Context, groupID string, options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
