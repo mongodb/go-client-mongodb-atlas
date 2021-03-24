@@ -126,7 +126,7 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 					}`)
 	})
 
-	availableRegions, _, err := client.CloudProviderRegions.Get(ctx, groupID, nil)
+	availableRegions, _, err := client.CloudProviderRegions.List(ctx, groupID, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderRegions.Get returned error: %v", err)
 	}

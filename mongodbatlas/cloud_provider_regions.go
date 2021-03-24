@@ -27,7 +27,7 @@ const (
 // CloudProviderRegionsService is an interface for interfacing with the Cloud Provider Regions
 // endpoints of the MongoDB Atlas API.
 type CloudProviderRegionsService interface {
-	Get(context.Context, string, *CloudProviderRegionsOptions) (*CloudProviders, *Response, error)
+	List(context.Context, string, *CloudProviderRegionsOptions) (*CloudProviders, *Response, error)
 }
 
 // CloudProviderRegionsServiceOp handles communication with the CloudProviderRegionsService related methods of the
@@ -68,8 +68,8 @@ type CloudProviderRegionsOptions struct {
 	CrossCloudProvider bool   `url:"maxDate"`
 }
 
-// Get gets the available regions for each cloud provider
-func (s *CloudProviderRegionsServiceOp) Get(ctx context.Context, groupID string, options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
+// List gets the available regions for each cloud provider
+func (s *CloudProviderRegionsServiceOp) List(ctx context.Context, groupID string, options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
