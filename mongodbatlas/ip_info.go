@@ -30,9 +30,7 @@ type IPInfoService interface {
 }
 
 // IPInfoService is an implementation of IPInfoService
-type IPInfoServiceOp struct {
-	Client PlainRequestDoer
-}
+type IPInfoServiceOp service
 
 var _ IPInfoService = &IPInfoServiceOp{}
 
@@ -42,7 +40,7 @@ type IPInfo struct {
 
 // Get gets the public ip address of the client
 func (s *IPInfoServiceOp) Get(ctx context.Context) (*IPInfo, *Response, error) {
-	req, err := s.Client.NewPlainRequest(ctx, http.MethodGet, ipInfoPath)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, ipInfoPath, nil)
 	if err != nil {
 		return nil, nil, err
 	}
