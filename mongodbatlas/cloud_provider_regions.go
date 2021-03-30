@@ -63,9 +63,8 @@ type CloudProviders struct {
 
 // CloudProviderRegionsOptions specifies the optional parameters to the CloudProviderRegions Get method.
 type CloudProviderRegionsOptions struct {
-	Provider           string `url:"provider,omitempty"`
-	Tier               string `url:"tier,omitempty"`
-	CrossCloudProvider bool   `url:"crossCloudProvider"`
+	Providers []*string `url:"providers,omitempty"`
+	Tier      string    `url:"tier,omitempty"`
 }
 
 // List gets the available regions for each cloud provider
