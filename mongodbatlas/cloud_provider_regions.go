@@ -63,7 +63,7 @@ type CloudProviders struct {
 
 // CloudProviderRegionsOptions specifies the optional parameters to the CloudProviderRegions Get method.
 type CloudProviderRegionsOptions struct {
-	Providers string `url:"providers,omitempty"`
+	Providers []*string `url:"providers,omitempty"`
 	Tier      string `url:"tier,omitempty"`
 }
 
