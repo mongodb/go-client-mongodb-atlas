@@ -191,7 +191,7 @@ type SampleDatasetJob struct {
 	CompleteDate string `json:"completeDate,omitempty"`
 	CreateDate   string `json:"createDate,omitempty"`
 	ErrorMessage string `json:"errorMessage,omitempty"`
-	ID           string `json:"id"`
+	ID           string `json:"_id"`
 	State        string `json:"state"`
 }
 

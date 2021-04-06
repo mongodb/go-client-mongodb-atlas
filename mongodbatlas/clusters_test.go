@@ -1012,7 +1012,7 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{ 
-							 "id": "1",
+							 "_id": "1",
 							  "clusterName": "appData",
 							  "completeDate": null,
 							  "createDate": "2021-03-26T16:30:47Z",
@@ -1047,7 +1047,7 @@ func TestClusters_GetSampleDatasetStatus(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, jobID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{ 
-							 "id": "1",
+							 "_id": "1",
 							  "clusterName": "appData",
 							  "completeDate": null,
 							  "createDate": "2021-03-26T16:30:47Z",
