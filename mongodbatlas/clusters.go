@@ -32,6 +32,7 @@ const (
 
 // ClustersService is an interface for interfacing with the Clusters
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters/
 type ClustersService interface {
 	List(ctx context.Context, groupID string, options *ListOptions) ([]Cluster, *Response, error)
@@ -42,8 +43,8 @@ type ClustersService interface {
 	UpdateProcessArgs(ctx context.Context, groupID, clusterName string, args *ProcessArgs) (*ProcessArgs, *Response, error)
 	GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error)
 	Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error)
-	LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetLoadJob, *Response, error)
-	GetSampleDataset(ctx context.Context, groupID, id string) (*SampleDatasetLoadJob, *Response, error)
+	LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetJob, *Response, error)
+	GetSampleDatasetStatus(ctx context.Context, groupID, id string) (*SampleDatasetJob, *Response, error)
 }
 
 // ClustersServiceOp handles communication with the Cluster related methods
@@ -184,8 +185,8 @@ type clustersResponse struct {
 	TotalCount int       `json:"totalCount,omitempty"`
 }
 
-// SampleDatasetLoadJob represents a sample dataset load job
-type SampleDatasetLoadJob struct {
+// SampleDatasetJob represents a sample dataset load job
+type SampleDatasetJob struct {
 	ClusterName  string `json:"clusterName"`
 	CompleteDate string `json:"completeDate,omitempty"`
 	CreateDate   string `json:"createDate,omitempty"`
@@ -250,6 +251,7 @@ var DefaultDiskSizeGB = map[string]map[string]float64{
 }
 
 // List all clusters in the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-all/
 func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]Cluster, *Response, error) {
 	path := fmt.Sprintf(clustersPath, groupID)
@@ -279,6 +281,7 @@ func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOption
 }
 
 // Get gets the cluster specified to {ClUSTER-NAME} from the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-one/
 func (s *ClustersServiceOp) Get(ctx context.Context, groupID, clusterName string) (*Cluster, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
@@ -304,6 +307,7 @@ func (s *ClustersServiceOp) Get(ctx context.Context, groupID, clusterName string
 }
 
 // Create adds a cluster to the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-create-one/
 func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRequest *Cluster) (*Cluster, *Response, error) {
 	if createRequest == nil {
@@ -327,6 +331,7 @@ func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRe
 }
 
 // Update a cluster in the project associated to {GROUP-ID}
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-one/
 func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName string, updateRequest *Cluster) (*Cluster, *Response, error) {
 	if updateRequest == nil {
@@ -351,6 +356,7 @@ func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName str
 }
 
 // Delete the cluster specified to {CLUSTER-NAME} from the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-delete-one/
 func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*Response, error) {
 	if clusterName == "" {
@@ -372,6 +378,7 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName str
 }
 
 // UpdateProcessArgs Modifies Advanced Configuration Options for One Cluster
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-advanced-configuration-options/
 func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clusterName string, updateRequest *ProcessArgs) (*ProcessArgs, *Response, error) {
 	if updateRequest == nil {
@@ -396,6 +403,7 @@ func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clus
 }
 
 // GetProcessArgs gets the Advanced Configuration Options for One Cluster
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-advanced-configuration-options/#get-advanced-configuration-options-for-one-cluster
 func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
@@ -421,8 +429,9 @@ func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, cluster
 }
 
 // LoadSampleDataset loads the sample dataset into your cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cluster/load-dataset/
-func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetLoadJob, *Response, error) {
+func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetJob, *Response, error) {
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}
@@ -436,7 +445,7 @@ func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clus
 		return nil, nil, err
 	}
 
-	root := new(SampleDatasetLoadJob)
+	root := new(SampleDatasetJob)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -445,9 +454,10 @@ func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clus
 	return root, resp, err
 }
 
-// GetSampleDataset gets the Sample Dataset load job
+// GetSampleDatasetStatus gets the Sample Dataset job
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cluster/check-dataset-status/
-func (s *ClustersServiceOp) GetSampleDataset(ctx context.Context, groupID, id string) (*SampleDatasetLoadJob, *Response, error) {
+func (s *ClustersServiceOp) GetSampleDatasetStatus(ctx context.Context, groupID, id string) (*SampleDatasetJob, *Response, error) {
 	basePath := fmt.Sprintf(sampleDatasetLoadPath, groupID)
 	path := fmt.Sprintf("%s/%s", basePath, id)
 
@@ -456,7 +466,7 @@ func (s *ClustersServiceOp) GetSampleDataset(ctx context.Context, groupID, id st
 		return nil, nil, err
 	}
 
-	root := new(SampleDatasetLoadJob)
+	root := new(SampleDatasetJob)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err

@@ -1025,7 +1025,7 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 		t.Fatalf("Clusters.LoadSampleDataset returned error: %v", err)
 	}
 
-	expected := &SampleDatasetLoadJob{
+	expected := &SampleDatasetJob{
 		ClusterName: clusterName,
 		CreateDate:  "2021-03-26T16:30:47Z",
 		ID:          "1",
@@ -1037,7 +1037,7 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 	}
 }
 
-func TestClusters_GetSampleDatasett(t *testing.T) {
+func TestClusters_GetSampleDatasetStatus(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -1055,12 +1055,12 @@ func TestClusters_GetSampleDatasett(t *testing.T) {
 							  "state": "WORKING"}`)
 	})
 
-	job, _, err := client.Clusters.GetSampleDataset(ctx, groupID, jobID)
+	job, _, err := client.Clusters.GetSampleDatasetStatus(ctx, groupID, jobID)
 	if err != nil {
-		t.Fatalf("Clusters.GetSampleDataset returned error: %v", err)
+		t.Fatalf("Clusters.GetSampleDatasetStatus returned error: %v", err)
 	}
 
-	expected := &SampleDatasetLoadJob{
+	expected := &SampleDatasetJob{
 		ClusterName: "appData",
 		CreateDate:  "2021-03-26T16:30:47Z",
 		ID:          "1",
