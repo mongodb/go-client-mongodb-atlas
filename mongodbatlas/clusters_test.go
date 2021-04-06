@@ -1001,3 +1001,73 @@ func TestClusters_Status(t *testing.T) {
 		t.Errorf("Expected %v but got %v", expected, status)
 	}
 }
+
+func TestClusters_LoadSampleDataset(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	clusterName := "appData"
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		fmt.Fprint(w, `{ 
+							 "_id": "1",
+							  "clusterName": "appData",
+							  "completeDate": null,
+							  "createDate": "2021-03-26T16:30:47Z",
+							  "errorMessage": null,
+							  "state": "WORKING"}`)
+	})
+
+	job, _, err := client.Clusters.LoadSampleDataset(ctx, groupID, clusterName)
+	if err != nil {
+		t.Fatalf("Clusters.LoadSampleDataset returned error: %v", err)
+	}
+
+	expected := &SampleDatasetJob{
+		ClusterName: clusterName,
+		CreateDate:  "2021-03-26T16:30:47Z",
+		ID:          "1",
+		State:       "WORKING",
+	}
+
+	if diff := deep.Equal(job, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestClusters_GetSampleDatasetStatus(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	jobID := "1"
+
+	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, jobID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{ 
+							 "_id": "1",
+							  "clusterName": "appData",
+							  "completeDate": null,
+							  "createDate": "2021-03-26T16:30:47Z",
+							  "errorMessage": null,
+							  "state": "WORKING"}`)
+	})
+
+	job, _, err := client.Clusters.GetSampleDatasetStatus(ctx, groupID, jobID)
+	if err != nil {
+		t.Fatalf("Clusters.GetSampleDatasetStatus returned error: %v", err)
+	}
+
+	expected := &SampleDatasetJob{
+		ClusterName: "appData",
+		CreateDate:  "2021-03-26T16:30:47Z",
+		ID:          "1",
+		State:       "WORKING",
+	}
+
+	if diff := deep.Equal(job, expected); diff != nil {
+		t.Error(diff)
+	}
+}
