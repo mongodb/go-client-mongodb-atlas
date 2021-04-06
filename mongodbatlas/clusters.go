@@ -24,11 +24,11 @@ import (
 type ChangeStatus string
 
 const (
-	ChangeStatusApplied ChangeStatus = "APPLIED"
-	ChangeStatusPending ChangeStatus = "PENDING"
+	ChangeStatusApplied   ChangeStatus = "APPLIED"
+	ChangeStatusPending   ChangeStatus = "PENDING"
+	clustersPath                       = "groups/%s/clusters"
+	sampleDatasetLoadPath              = "groups/%s/sampleDatasetLoad"
 )
-
-const clustersPath = "groups/%s/clusters"
 
 // ClustersService is an interface for interfacing with the Clusters
 // endpoints of the MongoDB Atlas API.
@@ -42,6 +42,8 @@ type ClustersService interface {
 	UpdateProcessArgs(ctx context.Context, groupID, clusterName string, args *ProcessArgs) (*ProcessArgs, *Response, error)
 	GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error)
 	Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error)
+	LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetLoadJob, *Response, error)
+	GetSampleDataset(ctx context.Context, groupID, id string) (*SampleDatasetLoadJob, *Response, error)
 }
 
 // ClustersServiceOp handles communication with the Cluster related methods
@@ -180,6 +182,16 @@ type clustersResponse struct {
 	Links      []*Link   `json:"links,omitempty"`
 	Results    []Cluster `json:"results,omitempty"`
 	TotalCount int       `json:"totalCount,omitempty"`
+}
+
+// SampleDatasetLoadJob represents a sample dataset load job
+type SampleDatasetLoadJob struct {
+	ClusterName  string `json:"clusterName"`
+	CompleteDate string `json:"completeDate,omitempty"`
+	CreateDate   string `json:"createDate,omitempty"`
+	ErrorMessage string `json:"errorMessage,omitempty"`
+	ID           string `json:"id"`
+	State        string `json:"state"`
 }
 
 // DefaultDiskSizeGB represents the Tier and the default disk size for each one
@@ -400,6 +412,51 @@ func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, cluster
 	}
 
 	root := new(ProcessArgs)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// LoadSampleDataset loads the sample dataset into your cluster.
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster/load-dataset/
+func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetLoadJob, *Response, error) {
+	if err := checkClusterNameParam(clusterName); err != nil {
+		return nil, nil, err
+	}
+
+	basePath := fmt.Sprintf(sampleDatasetLoadPath, groupID)
+	escapedEntry := url.PathEscape(clusterName)
+	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(SampleDatasetLoadJob)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// GetSampleDataset gets the Sample Dataset load job
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster/check-dataset-status/
+func (s *ClustersServiceOp) GetSampleDataset(ctx context.Context, groupID, id string) (*SampleDatasetLoadJob, *Response, error) {
+	basePath := fmt.Sprintf(sampleDatasetLoadPath, groupID)
+	path := fmt.Sprintf("%s/%s", basePath, id)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(SampleDatasetLoadJob)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
