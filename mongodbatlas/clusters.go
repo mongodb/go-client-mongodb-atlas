@@ -185,7 +185,7 @@ type clustersResponse struct {
 	TotalCount int       `json:"totalCount,omitempty"`
 }
 
-// SampleDatasetJob represents a sample dataset load job
+// SampleDatasetJob represents a sample dataset job
 type SampleDatasetJob struct {
 	ClusterName  string `json:"clusterName"`
 	CompleteDate string `json:"completeDate,omitempty"`
