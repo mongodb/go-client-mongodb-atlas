@@ -40,6 +40,7 @@ const (
 
 // MaintenanceWindowsService is an interface for interfacing with the Maintenance Windows
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/maintenance-windows/
 type MaintenanceWindowsService interface {
 	Get(context.Context, string) (*MaintenanceWindow, *Response, error)
@@ -63,6 +64,7 @@ type MaintenanceWindow struct {
 }
 
 // Get gets the current user-defined maintenance window for the given project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/maintenance-windows-view-in-one-project/
 func (s *MaintenanceWindowsServiceOp) Get(ctx context.Context, groupID string) (*MaintenanceWindow, *Response, error) {
 	if groupID == "" {
@@ -85,6 +87,7 @@ func (s *MaintenanceWindowsServiceOp) Get(ctx context.Context, groupID string) (
 }
 
 // Update the current maintenance window for the given project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/maintenance-window-update/
 func (s *MaintenanceWindowsServiceOp) Update(ctx context.Context, groupID string, updateRequest *MaintenanceWindow) (*Response, error) {
 	if updateRequest == nil {
@@ -110,6 +113,7 @@ func (s *MaintenanceWindowsServiceOp) Update(ctx context.Context, groupID string
 }
 
 // Defer maintenance for the given project for one week.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/maintenance-window-defer/
 func (s *MaintenanceWindowsServiceOp) Defer(ctx context.Context, groupID string) (*Response, error) {
 	if groupID == "" {
@@ -129,6 +133,7 @@ func (s *MaintenanceWindowsServiceOp) Defer(ctx context.Context, groupID string)
 }
 
 // Reset clears the current maintenance window for the given project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/maintenance-window-clear/
 func (s *MaintenanceWindowsServiceOp) Reset(ctx context.Context, groupID string) (*Response, error) {
 	if groupID == "" {

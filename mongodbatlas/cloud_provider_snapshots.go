@@ -26,6 +26,7 @@ const (
 
 // CloudProviderSnapshotsService is an interface for interfacing with the Cloud Provider Snapshots
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot/
 type CloudProviderSnapshotsService interface {
 	GetAllCloudProviderSnapshots(context.Context, *SnapshotReqPathParameters, *ListOptions) (*CloudProviderSnapshots, *Response, error)
@@ -72,6 +73,7 @@ type SnapshotReqPathParameters struct {
 }
 
 // GetAllCloudProviderSnapshots gets all cloud provider snapshots for the specified cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-all/
 func (s *CloudProviderSnapshotsServiceOp) GetAllCloudProviderSnapshots(ctx context.Context, requestParameters *SnapshotReqPathParameters, listOptions *ListOptions) (*CloudProviderSnapshots, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -107,6 +109,7 @@ func (s *CloudProviderSnapshotsServiceOp) GetAllCloudProviderSnapshots(ctx conte
 }
 
 // GetOneCloudProviderSnapshot gets the snapshot associated to {SNAPSHOT-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/
 func (s *CloudProviderSnapshotsServiceOp) GetOneCloudProviderSnapshot(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*CloudProviderSnapshot, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -136,6 +139,7 @@ func (s *CloudProviderSnapshotsServiceOp) GetOneCloudProviderSnapshot(ctx contex
 }
 
 // Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-take-one-ondemand/
 func (s *CloudProviderSnapshotsServiceOp) Create(ctx context.Context, requestParameters *SnapshotReqPathParameters, createRequest *CloudProviderSnapshot) (*CloudProviderSnapshot, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -165,6 +169,7 @@ func (s *CloudProviderSnapshotsServiceOp) Create(ctx context.Context, requestPar
 }
 
 // Delete deletes the snapshot associated to {SNAPSHOT-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-delete-one/
 func (s *CloudProviderSnapshotsServiceOp) Delete(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*Response, error) {
 	if requestParameters.GroupID == "" {

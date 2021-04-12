@@ -26,6 +26,7 @@ const (
 
 // CloudProviderSnapshotBackupPoliciesService is an interface for interfacing with the Cloud Provider Snapshots Backup Policy
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-schedule/
 type CloudProviderSnapshotBackupPoliciesService interface {
 	Get(context.Context, string, string) (*CloudProviderSnapshotBackupPolicy, *Response, error)

@@ -121,6 +121,7 @@ type GoogleCloudKms struct {
 }
 
 // Create takes one on-demand snapshot. Atlas takes on-demand snapshots immediately, unlike scheduled snapshots which occur at regular intervals.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/enable-configure-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Create(ctx context.Context, createRequest *EncryptionAtRest) (*EncryptionAtRest, *Response, error) {
 	if createRequest == nil {
@@ -146,6 +147,7 @@ func (s *EncryptionsAtRestServiceOp) Create(ctx context.Context, createRequest *
 }
 
 // Get retrieves the current configuration for Encryption at Rest for an Atlas project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/get-configuration-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Get(ctx context.Context, groupID string) (*EncryptionAtRest, *Response, error) {
 	if groupID == "" {
@@ -169,6 +171,7 @@ func (s *EncryptionsAtRestServiceOp) Get(ctx context.Context, groupID string) (*
 }
 
 // Delete disable the AWS, Azure and Google Encryption at Rest.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/enable-configure-encryptionatrest/
 func (s *EncryptionsAtRestServiceOp) Delete(ctx context.Context, groupID string) (*Response, error) {
 	if groupID == "" {

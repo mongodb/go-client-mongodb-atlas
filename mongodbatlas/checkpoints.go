@@ -65,6 +65,7 @@ type Checkpoints struct {
 }
 
 // List all checkpoints for the specified sharded cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/checkpoints-get-all/
 func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterName string, listOptions *ListOptions) (*Checkpoints, *Response, error) {
 	if groupID == "" {
@@ -92,6 +93,7 @@ func (s CheckpointsServiceOp) List(ctx context.Context, groupID, clusterName str
 }
 
 // Get one checkpoint for the specified sharded cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/checkpoints-get-one/
 func (s CheckpointsServiceOp) Get(ctx context.Context, groupID, clusterName, checkpointID string) (*Checkpoint, *Response, error) {
 	if groupID == "" {

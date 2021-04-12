@@ -47,6 +47,7 @@ type Auditing struct {
 }
 
 // Get audit configuration for the project associated with {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/auditing-get-auditLog/
 func (s *AuditingsServiceOp) Get(ctx context.Context, groupID string) (*Auditing, *Response, error) {
 	if groupID == "" {
@@ -69,6 +70,7 @@ func (s *AuditingsServiceOp) Get(ctx context.Context, groupID string) (*Auditing
 }
 
 // Configure the audit configuration for the project associated with {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/auditing-set-auditLog/
 func (s *AuditingsServiceOp) Configure(ctx context.Context, groupID string, configRequest *Auditing) (*Auditing, *Response, error) {
 	if configRequest == nil {

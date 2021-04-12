@@ -91,6 +91,7 @@ func (s *ProjectIPWhitelistServiceOp) Create(ctx context.Context, groupID string
 }
 
 // Get gets the whitelist entry specified to {WHITELIST-ENTRY} from the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-get-one-entry/
 func (s *ProjectIPWhitelistServiceOp) Get(ctx context.Context, groupID, whiteListEntry string) (*ProjectIPWhitelist, *Response, error) {
 	if whiteListEntry == "" {
@@ -116,6 +117,7 @@ func (s *ProjectIPWhitelistServiceOp) Get(ctx context.Context, groupID, whiteLis
 }
 
 // List all whitelist entries in the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-get-all/
 func (s *ProjectIPWhitelistServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]ProjectIPWhitelist, *Response, error) {
 	path := fmt.Sprintf(projectIPWhitelistPath, groupID)
@@ -144,7 +146,8 @@ func (s *ProjectIPWhitelistServiceOp) List(ctx context.Context, groupID string, 
 	return root.Results, resp, nil
 }
 
-// Update one or more whitelist entries in the project associated to {GROUP-ID}
+// Update one or more whitelist entries in the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-update-one/
 func (s *ProjectIPWhitelistServiceOp) Update(ctx context.Context, groupID string, updateRequest []*ProjectIPWhitelist) ([]ProjectIPWhitelist, *Response, error) {
 	if updateRequest == nil {
@@ -172,6 +175,7 @@ func (s *ProjectIPWhitelistServiceOp) Update(ctx context.Context, groupID string
 }
 
 // Delete the whitelist entry specified to {WHITELIST-ENTRY} from the project associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/whitelist-delete-one/
 func (s *ProjectIPWhitelistServiceOp) Delete(ctx context.Context, groupID, whitelistEntry string) (*Response, error) {
 	if whitelistEntry == "" {
