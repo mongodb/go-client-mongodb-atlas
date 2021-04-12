@@ -24,10 +24,11 @@ import (
 type ChangeStatus string
 
 const (
-	ChangeStatusApplied   ChangeStatus = "APPLIED"
-	ChangeStatusPending   ChangeStatus = "PENDING"
-	clustersPath                       = "groups/%s/clusters"
-	sampleDatasetLoadPath              = "groups/%s/sampleDatasetLoad"
+	ChangeStatusApplied          ChangeStatus = "APPLIED"
+	ChangeStatusPending          ChangeStatus = "PENDING"
+	clustersPath                              = "groups/%s/clusters"
+	sampleDatasetLoadPath                     = "groups/%s/sampleDatasetLoad"
+	cloudProviderRegionsBasePath              = clustersPath + "/provider/regions"
 )
 
 // ClustersService is an interface for interfacing with the Clusters
@@ -45,6 +46,7 @@ type ClustersService interface {
 	Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error)
 	LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetJob, *Response, error)
 	GetSampleDatasetStatus(ctx context.Context, groupID, id string) (*SampleDatasetJob, *Response, error)
+	ListCloudProviderRegions(context.Context, string, *CloudProviderRegionsOptions) (*CloudProviders, *Response, error)
 }
 
 // ClustersServiceOp handles communication with the Cluster related methods
@@ -195,6 +197,37 @@ type SampleDatasetJob struct {
 	State        string `json:"state"`
 }
 
+// CloudProvider represents a cloud provider of the MongoDB Atlas API
+type CloudProvider struct {
+	Provider      string          `json:"provider,omitempty"`
+	InstanceSizes []*InstanceSize `json:"instanceSizes,omitempty"`
+}
+
+// InstanceSize represents an instance size of the MongoDB Atlas API
+type InstanceSize struct {
+	Name             string             `json:"name,omitempty"`
+	AvailableRegions []*AvailableRegion `json:"availableRegions,omitempty"`
+}
+
+// AvailableRegion represents an available region of the MongoDB Atlas API
+type AvailableRegion struct {
+	Name    string `json:"name,omitempty"`
+	Default bool   `json:"default,omitempty"`
+}
+
+// CloudProviders represents the response from CloudProviderRegionsService.Get
+type CloudProviders struct {
+	Links      []*Link          `json:"links,omitempty"`
+	Results    []*CloudProvider `json:"results,omitempty"`
+	TotalCount int              `json:"totalCount,omitempty"`
+}
+
+// CloudProviderRegionsOptions specifies the optional parameters to the CloudProviderRegions Get method.
+type CloudProviderRegionsOptions struct {
+	Providers []*string `url:"providers,omitempty"`
+	Tier      string    `url:"tier,omitempty"`
+}
+
 // DefaultDiskSizeGB represents the Tier and the default disk size for each one
 // it can be use like: DefaultDiskSizeGB["AWS"]["M10"]
 var DefaultDiskSizeGB = map[string]map[string]float64{
@@ -254,6 +287,9 @@ var DefaultDiskSizeGB = map[string]map[string]float64{
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-all/
 func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]Cluster, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	path := fmt.Sprintf(clustersPath, groupID)
 
 	// Add query params from listOptions
@@ -284,6 +320,9 @@ func (s *ClustersServiceOp) List(ctx context.Context, groupID string, listOption
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-one/
 func (s *ClustersServiceOp) Get(ctx context.Context, groupID, clusterName string) (*Cluster, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}
@@ -310,6 +349,9 @@ func (s *ClustersServiceOp) Get(ctx context.Context, groupID, clusterName string
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-create-one/
 func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRequest *Cluster) (*Cluster, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
@@ -334,6 +376,9 @@ func (s *ClustersServiceOp) Create(ctx context.Context, groupID string, createRe
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-one/
 func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName string, updateRequest *Cluster) (*Cluster, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -359,6 +404,9 @@ func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName str
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-delete-one/
 func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
 	if clusterName == "" {
 		return nil, NewArgError("clusterName", "must be set")
 	}
@@ -381,6 +429,9 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName str
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-advanced-configuration-options/
 func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clusterName string, updateRequest *ProcessArgs) (*ProcessArgs, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -406,6 +457,9 @@ func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clus
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-advanced-configuration-options/#get-advanced-configuration-options-for-one-cluster
 func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}
@@ -432,6 +486,9 @@ func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, cluster
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cluster/load-dataset/
 func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetJob, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	if err := checkClusterNameParam(clusterName); err != nil {
 		return nil, nil, err
 	}
@@ -458,6 +515,9 @@ func (s *ClustersServiceOp) LoadSampleDataset(ctx context.Context, groupID, clus
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cluster/check-dataset-status/
 func (s *ClustersServiceOp) GetSampleDatasetStatus(ctx context.Context, groupID, id string) (*SampleDatasetJob, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
 	basePath := fmt.Sprintf(sampleDatasetLoadPath, groupID)
 	path := fmt.Sprintf("%s/%s", basePath, id)
 
@@ -479,21 +539,52 @@ func (s *ClustersServiceOp) GetSampleDatasetStatus(ctx context.Context, groupID,
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/clusters-check-operation-status/
 func (s *ClustersServiceOp) Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error) {
+	var root ClusterStatus
+	if groupID == "" {
+		return root, nil, NewArgError("groupId", "must be set")
+	}
 	if err := checkClusterNameParam(clusterName); err != nil {
-		return ClusterStatus{}, nil, err
+		return root, nil, err
 	}
 
 	basePath := fmt.Sprintf(clustersPath, groupID)
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s/status", basePath, escapedEntry)
 
-	var root ClusterStatus
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return root, nil, err
 	}
 
 	resp, err := s.Client.Do(ctx, req, &root)
+	return root, resp, err
+}
+
+// ListCloudProviderRegions gets the available regions for each cloud provider
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-get-regions/
+func (s *ClustersServiceOp) ListCloudProviderRegions(ctx context.Context, groupID string, options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	path := fmt.Sprintf(cloudProviderRegionsBasePath, groupID)
+
+	path, err := setListOptions(path, options)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviders)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
 	return root, resp, err
 }
 
