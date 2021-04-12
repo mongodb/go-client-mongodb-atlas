@@ -20,9 +20,7 @@ import (
 	"net/http"
 )
 
-const (
-	dataLakesBasePath = "groups"
-)
+const dataLakesBasePath = "groups"
 
 // DataLakeService is an interface for interfacing with the Data Lake endpoints of the MongoDB Atlas API.
 //

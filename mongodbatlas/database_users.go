@@ -34,6 +34,7 @@ var awsIAMType = map[string]struct{}{
 
 // DatabaseUsersService is an interface for interfacing with the Database Users
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users/index.html
 type DatabaseUsersService interface {
 	List(context.Context, string, *ListOptions) ([]DatabaseUser, *Response, error)
@@ -111,6 +112,7 @@ type databaseUsers struct {
 }
 
 // List gets all users in the project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users-get-all-users/
 func (s *DatabaseUsersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]DatabaseUser, *Response, error) {
 	path := fmt.Sprintf(dbUsersBasePath, groupID)
@@ -140,6 +142,7 @@ func (s *DatabaseUsersServiceOp) List(ctx context.Context, groupID string, listO
 }
 
 // Get gets a single user in the project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/
 func (s *DatabaseUsersServiceOp) Get(ctx context.Context, databaseName, groupID, username string) (*DatabaseUser, *Response, error) {
 	if databaseName == "" {
@@ -170,6 +173,7 @@ func (s *DatabaseUsersServiceOp) Get(ctx context.Context, databaseName, groupID,
 }
 
 // Create creates a user for the project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/
 func (s *DatabaseUsersServiceOp) Create(ctx context.Context, groupID string, createRequest *DatabaseUser) (*DatabaseUser, *Response, error) {
 	if createRequest == nil {
@@ -193,6 +197,7 @@ func (s *DatabaseUsersServiceOp) Create(ctx context.Context, groupID string, cre
 }
 
 // Update updates a user for the project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users-update-a-user/
 func (s *DatabaseUsersServiceOp) Update(ctx context.Context, groupID, username string, updateRequest *DatabaseUser) (*DatabaseUser, *Response, error) {
 	if updateRequest == nil {
@@ -218,6 +223,7 @@ func (s *DatabaseUsersServiceOp) Update(ctx context.Context, groupID, username s
 }
 
 // Delete deletes a user for the project.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/database-users-delete-a-user/
 func (s *DatabaseUsersServiceOp) Delete(ctx context.Context, databaseName, groupID, username string) (*Response, error) {
 	if databaseName == "" {

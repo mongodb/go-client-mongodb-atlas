@@ -20,12 +20,11 @@ import (
 	"net/http"
 )
 
-const (
-	cloudProviderSnapshotRestoreJobBasePath = "groups"
-)
+const cloudProviderSnapshotRestoreJobBasePath = "groups"
 
 // CloudProviderSnapshotRestoreJobsService is an interface for interfacing with the CloudProviderSnapshotRestoreJobs
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs/
 type CloudProviderSnapshotRestoreJobsService interface {
 	List(context.Context, *SnapshotReqPathParameters, *ListOptions) (*CloudProviderSnapshotRestoreJobs, *Response, error)
@@ -74,6 +73,7 @@ type Component struct {
 }
 
 // List gets all cloud provider snapshot restore jobs for the specified cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-all/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) List(ctx context.Context, requestParameters *SnapshotReqPathParameters, listOptions *ListOptions) (*CloudProviderSnapshotRestoreJobs, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -108,6 +108,7 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) List(ctx context.Context, re
 }
 
 // Get gets one cloud provider snapshot restore jobs for the specified cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Get(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*CloudProviderSnapshotRestoreJob, *Response, error) {
 	if requestParameters.GroupID == "" {
@@ -137,6 +138,7 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Get(ctx context.Context, req
 }
 
 // Create creates a new restore job from a cloud provider snapshot associated to the specified cluster.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-create-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Create(ctx context.Context, requestParameters *SnapshotReqPathParameters, createRequest *CloudProviderSnapshotRestoreJob) (*CloudProviderSnapshotRestoreJob, *Response, error) {
 	// Verify if is download or automated
@@ -176,6 +178,7 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Create(ctx context.Context, 
 }
 
 // Delete cancels the cloud provider snapshot manual download restore job associated to {JOB-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-delete-one/
 func (s *CloudProviderSnapshotRestoreJobsServiceOp) Delete(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*Response, error) {
 	if requestParameters.GroupID == "" {

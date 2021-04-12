@@ -24,6 +24,7 @@ const projectAPIKeysPath = "groups/%s/apiKeys"
 
 // ProjectAPIKeysService is an interface for interfacing with the APIKeys
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/apiKeys/#organization-api-keys-on-projects-endpoints
 type ProjectAPIKeysService interface {
 	List(context.Context, string, *ListOptions) ([]APIKey, *Response, error)
@@ -44,6 +45,7 @@ type AssignAPIKey struct {
 }
 
 // List all API-KEY in the organization associated to {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/
 func (s *ProjectAPIKeysOp) List(ctx context.Context, groupID string, listOptions *ListOptions) ([]APIKey, *Response, error) {
 	path := fmt.Sprintf(projectAPIKeysPath, groupID)
@@ -73,6 +75,7 @@ func (s *ProjectAPIKeysOp) List(ctx context.Context, groupID string, listOptions
 }
 
 // Create an API Key by the {GROUP-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/projectApiKeys/create-one-apiKey-in-one-project/
 func (s *ProjectAPIKeysOp) Create(ctx context.Context, groupID string, createRequest *APIKeyInput) (*APIKey, *Response, error) {
 	if createRequest == nil {
@@ -96,6 +99,7 @@ func (s *ProjectAPIKeysOp) Create(ctx context.Context, groupID string, createReq
 }
 
 // Assign an API-KEY related to {GROUP-ID} to a the project with {API-KEY-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/projectApiKeys/assign-one-org-apiKey-to-one-project/
 func (s *ProjectAPIKeysOp) Assign(ctx context.Context, groupID, keyID string, assignAPIKeyRequest *AssignAPIKey) (*Response, error) {
 	if groupID == "" {
@@ -121,6 +125,7 @@ func (s *ProjectAPIKeysOp) Assign(ctx context.Context, groupID, keyID string, as
 }
 
 // Unassign an API-KEY related to {GROUP-ID} to a the project with {API-KEY-ID}.
+//
 // See more: https://docs.atlas.mongodb.com/reference/api/projectApiKeys/delete-one-apiKey-in-one-project/
 func (s *ProjectAPIKeysOp) Unassign(ctx context.Context, groupID, keyID string) (*Response, error) {
 	if groupID == "" {

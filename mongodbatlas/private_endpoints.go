@@ -29,7 +29,7 @@ const (
 // PrivateEndpointsService is an interface for interfacing with the Private Endpoints
 // of the MongoDB Atlas API.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/private-endpoint/
+// See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints/
 type PrivateEndpointsService interface {
 	Create(context.Context, string, *PrivateEndpointConnection) (*PrivateEndpointConnection, *Response, error)
 	Get(context.Context, string, string, string) (*PrivateEndpointConnection, *Response, error)

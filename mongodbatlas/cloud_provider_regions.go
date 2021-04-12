@@ -20,12 +20,12 @@ import (
 	"net/http"
 )
 
-const (
-	cloudProviderRegionsBasePath = "groups/%s/clusters/provider/regions"
-)
+const cloudProviderRegionsBasePath = "groups/%s/clusters/provider/regions"
 
 // CloudProviderRegionsService is an interface for interfacing with the Cloud Provider Regions
 // endpoints of the MongoDB Atlas API.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-get-regions/
 type CloudProviderRegionsService interface {
 	List(context.Context, string, *CloudProviderRegionsOptions) (*CloudProviders, *Response, error)
 }
@@ -67,7 +67,9 @@ type CloudProviderRegionsOptions struct {
 	Tier      string    `url:"tier,omitempty"`
 }
 
-// List gets the available regions for each cloud provider
+// List gets the available regions for each cloud provider.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-get-regions/
 func (s *CloudProviderRegionsServiceOp) List(ctx context.Context, groupID string, options *CloudProviderRegionsOptions) (*CloudProviders, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
