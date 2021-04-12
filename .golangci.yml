@@ -28,6 +28,7 @@ linters:
     - dogsled
     - errcheck
     - exhaustive
+    - exportloopref
     - gochecknoinits
     - gocritic
     - gocyclo
@@ -39,12 +40,10 @@ linters:
     - gosimple
     - govet
     - ineffassign
-    - interfacer
     - misspell
     - nakedret
     - nolintlint
     - rowserrcheck
-    - scopelint
     - staticcheck
     - structcheck
     - stylecheck
