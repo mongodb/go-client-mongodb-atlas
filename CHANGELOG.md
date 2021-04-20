@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.8.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.8.0) (April 15, 2021)
+## [v0.8.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.8.0) (April 20, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.2...v0.8.0)
 
