@@ -1,5 +1,29 @@
 # Changelog
 
+## [v0.8.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.8.0) (April 20, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.2...v0.8.0)
+
+**Closed issues:**
+
+- Delete user does not work for IAM based users [\#189](https://github.com/mongodb/go-client-mongodb-atlas/issues/189)
+
+**Merged pull requests:**
+
+- feat: move cloud provider regions method to cluster [\#198](https://github.com/mongodb/go-client-mongodb-atlas/pull/198) ([gssbzn](https://github.com/gssbzn))
+- fix: fix username path escape for db username [\#199](https://github.com/mongodb/go-client-mongodb-atlas/pull/199) ([gssbzn](https://github.com/gssbzn))
+- docs fix godoc rendering [\#196](https://github.com/mongodb/go-client-mongodb-atlas/pull/196) ([gssbzn](https://github.com/gssbzn))
+- task: update golangci-lint to 1.39.0 [\#197](https://github.com/mongodb/go-client-mongodb-atlas/pull/197) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-86937: Add support to the Atlas Go Client to load sample data into a cluster [\#195](https://github.com/mongodb/go-client-mongodb-atlas/pull/195) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-86337: Update atlas region service to use new parameters - atlas go client [\#193](https://github.com/mongodb/go-client-mongodb-atlas/pull/193) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-85933: Add service to get the public ip to the atlas go client [\#191](https://github.com/mongodb/go-client-mongodb-atlas/pull/191) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-85749: Add new available region endpoint to the atlas go client [\#190](https://github.com/mongodb/go-client-mongodb-atlas/pull/190) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-83026: support for cluster status endpoint [\#188](https://github.com/mongodb/go-client-mongodb-atlas/pull/190) ([antonlisovenko](https://github.com/antonlisovenko))
+- feat: add regions to GCP containers [\#186](https://github.com/mongodb/go-client-mongodb-atlas/pull/186) ([gssbzn](https://github.com/gssbzn))
+- docs: update contributing guidelines [\#185](https://github.com/mongodb/go-client-mongodb-atlas/pull/185) ([gssbzn](https://github.com/gssbzn))
+- build: add go1.16 tests [\#184](https://github.com/mongodb/go-client-mongodb-atlas/pull/184) ([gssbzn](https://github.com/gssbzn))
+- lint: update GOLANGCI_VERSION to 1.37.0 [\#183](https://github.com/mongodb/go-client-mongodb-atlas/pull/183) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.7.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.2) (February 02, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.1...v0.7.2)
@@ -7,8 +31,6 @@
 **Merged pull requests:**
 
 - INTMDB-175: Added azure status in endpoint service [\#179](https://github.com/mongodb/go-client-mongodb-atlas/pull/179) ([coderGo93](https://github.com/coderGo93))
-
-# Changelog
 
 ## [v0.7.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.7.1) (January 27, 2021)
 
