@@ -83,7 +83,8 @@ func (user *DatabaseUser) GetAuthDB() (name string) {
 	_, isX509 := adminX509Type[user.X509Type]
 	_, isIAM := awsIAMType[user.AWSIAMType]
 
-	isLDAP := len(user.LDAPAuthType) > 0 && user.LDAPAuthType != "NONE"
+	// just USER is external
+	isLDAP := len(user.LDAPAuthType) > 0 && user.LDAPAuthType == "USER"
 
 	if isX509 || isIAM || isLDAP {
 		name = "$external"
