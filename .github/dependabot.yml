@@ -6,11 +6,11 @@ updates:
       interval: weekly
       day: monday
     reviewers:
-      - "mongodb/dependabot-team"
+      - "mongodb/apix"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
       day: tuesday
     reviewers:
-      - "mongodb/dependabot-team"
+      - "mongodb/apix"
