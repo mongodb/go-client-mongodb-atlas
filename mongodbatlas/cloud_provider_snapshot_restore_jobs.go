@@ -68,8 +68,8 @@ type CloudProviderSnapshotRestoreJobs struct {
 }
 
 type Component struct {
-	DownloadURL    string `json:"downloadUrl"`    // URL from which the snapshot of the components.replicaSetName should be downloaded. Atlas returns null for this parameter if the download URL has expired, has been used, or hasn't been created.
-	ReplicaSetName string `json:"replicaSetName"` // Name of the shard or config server included in the snapshot.
+	DownloadURL    string `json:"downloadUrl"`    // DownloadURL from which the snapshot of the components.replicaSetName should be downloaded. Atlas returns null for this parameter if the download URL has expired, has been used, or hasn't been created.
+	ReplicaSetName string `json:"replicaSetName"` // ReplicaSetName of the shard or config server included in the snapshot.
 }
 
 // List gets all cloud provider snapshot restore jobs for the specified cluster.

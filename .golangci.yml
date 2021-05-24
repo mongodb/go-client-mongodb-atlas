@@ -16,6 +16,13 @@ linters-settings:
     check-shadowing: true
   maligned:
     suggest-new: true
+  tagliatelle:
+    # check the struck tag name case
+    case:
+      use-field-name: true
+      rules:
+        json: camel
+        yaml: camel
 
 linters:
   # please, do not use `enable-all`: it's deprecated and will be removed soon.
