@@ -403,8 +403,8 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 	}
 
 	expectedExpireAfterDays := pointy.Float64(6)
-	if archive.Criteria.ExpireAfterDays != expectedExpireAfterDays {
-		t.Errorf("expected name '%f', received '%s'", *expectedExpireAfterDays, archive.DBName)
+	if *(archive.Criteria.ExpireAfterDays) != *expectedExpireAfterDays {
+		t.Errorf("expected expireAfterDays '%f', received '%f'", *expectedExpireAfterDays, *archive.Criteria.ExpireAfterDays)
 	}
 }
 
