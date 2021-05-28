@@ -199,7 +199,7 @@ type OnlineArchiveCriteria struct {
 	DateField       string   `json:"dateField,omitempty"` // DateField is mandatory when Type is DATE
 	DateFormat      string   `json:"dateFormat,omitempty"`
 	ExpireAfterDays *float64 `json:"expireAfterDays,omitempty"`
-	Query           string `json:"query,omitempty"` // Query is mandatory when Type is CUSTOM
+	Query           string   `json:"query,omitempty"` // Query is mandatory when Type is CUSTOM
 	Type            string   `json:"type,omitempty"`
 }
 
