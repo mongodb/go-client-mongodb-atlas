@@ -120,7 +120,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "employees",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "created",
-					ExpireAfterDays: 5,
+					ExpireAfterDays: pointy.Float64(5),
 				},
 				DBName:  "people",
 				GroupID: groupID,
@@ -149,7 +149,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "invoices",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "year",
-					ExpireAfterDays: 5,
+					ExpireAfterDays: pointy.Float64(5),
 				},
 				DBName:  "accounting",
 				GroupID: groupID,
@@ -231,7 +231,7 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 		CollName:    "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: 5,
+			ExpireAfterDays: pointy.Float64(5),
 		},
 		DBName:  "people",
 		GroupID: groupID,
@@ -271,7 +271,7 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 		CollName: "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: 5,
+			ExpireAfterDays: pointy.Float64(5),
 		},
 		DBName: "people",
 		PartitionFields: []*PartitionFields{
@@ -358,7 +358,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 
 	updateRequest := &OnlineArchive{
 		Criteria: &OnlineArchiveCriteria{
-			ExpireAfterDays: 6,
+			ExpireAfterDays: pointy.Float64(6),
 		},
 	}
 
@@ -402,9 +402,9 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 		t.Fatalf("OnlineArchives.Update returned error: %v", err)
 	}
 
-	expectedExpireAfterDays := float64(6)
-	if archive.Criteria.ExpireAfterDays != expectedExpireAfterDays {
-		t.Errorf("expected name '%f', received '%s'", expectedExpireAfterDays, archive.DBName)
+	expectedExpireAfterDays := pointy.Float64(6)
+	if *(archive.Criteria.ExpireAfterDays) != *expectedExpireAfterDays {
+		t.Errorf("expected expireAfterDays '%f', received '%f'", *expectedExpireAfterDays, *archive.Criteria.ExpireAfterDays)
 	}
 }
 
