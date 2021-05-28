@@ -196,10 +196,11 @@ type OnlineArchive struct {
 
 // OnlineArchiveCriteria criteria to use for archiving data.
 type OnlineArchiveCriteria struct {
-	DateField       string  `json:"dateField,omitempty"`
-	DateFormat      string  `json:"dateFormat,omitempty"`
-	ExpireAfterDays float64 `json:"expireAfterDays"`
-	Type            string  `json:"type,omitempty"`
+	DateField       string   `json:"dateField,omitempty"`
+	DateFormat      string   `json:"dateFormat,omitempty"`
+	ExpireAfterDays *float64 `json:"expireAfterDays,omitempty"`
+	Type            string   `json:"type,omitempty"`
+	Query           string   `json:"query,omitempty"`
 }
 
 // PartitionFields fields to use to partition data
