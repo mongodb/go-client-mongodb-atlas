@@ -59,13 +59,14 @@ type DataProcessRegion struct {
 
 // DataLakeStore represents a store of data lake data
 type DataLakeStore struct {
-	Name        string `json:"name,omitempty"`
-	Provider    string `json:"provider,omitempty"`
-	Region      string `json:"region,omitempty"`
-	Bucket      string `json:"bucket,omitempty"`
-	Prefix      string `json:"prefix,omitempty"`
-	Delimiter   string `json:"delimiter,omitempty"`
-	IncludeTags *bool  `json:"includeTags,omitempty"`
+	Name                     string   `json:"name,omitempty"`
+	Provider                 string   `json:"provider,omitempty"`
+	Region                   string   `json:"region,omitempty"`
+	Bucket                   string   `json:"bucket,omitempty"`
+	Prefix                   string   `json:"prefix,omitempty"`
+	Delimiter                string   `json:"delimiter,omitempty"`
+	IncludeTags              *bool    `json:"includeTags,omitempty"`
+	AdditionalStorageClasses []string `json:"additionalStorageClasses,omitempty"`
 }
 
 // DataLakeDataSource represents the data source of a data lake
@@ -90,9 +91,10 @@ type DataLakeDatabaseView struct {
 
 // DataLakeDatabase represents the mapping of a data lake to a database
 type DataLakeDatabase struct {
-	Name        string                 `json:"name,omitempty"`
-	Collections []DataLakeCollection   `json:"collections,omitempty"`
-	Views       []DataLakeDatabaseView `json:"views,omitempty"`
+	Name                   string                 `json:"name,omitempty"`
+	Collections            []DataLakeCollection   `json:"collections,omitempty"`
+	Views                  []DataLakeDatabaseView `json:"views,omitempty"`
+	MaxWildcardCollections *int64                 `json:"maxWildcardCollections,omitempty"`
 }
 
 // Storage represents the storage configuration for a data lake
