@@ -57,7 +57,7 @@ type DataProcessRegion struct {
 	Region        string `json:"region,omitempty"`
 }
 
-// DataLakeStore represents a store of data lake data
+// DataLakeStore represents a store of data lake data. Docs: https://docs.mongodb.com/datalake/reference/format/data-lake-configuration/#stores
 type DataLakeStore struct {
 	Name                     string   `json:"name,omitempty"`
 	Provider                 string   `json:"provider,omitempty"`
@@ -89,7 +89,7 @@ type DataLakeDatabaseView struct {
 	Pipeline string `json:"pipeline,omitempty"`
 }
 
-// DataLakeDatabase represents the mapping of a data lake to a database
+// DataLakeDatabase represents the mapping of a data lake to a database. Docs: https://docs.mongodb.com/datalake/reference/format/data-lake-configuration/#databases
 type DataLakeDatabase struct {
 	Name                   string                 `json:"name,omitempty"`
 	Collections            []DataLakeCollection   `json:"collections,omitempty"`
