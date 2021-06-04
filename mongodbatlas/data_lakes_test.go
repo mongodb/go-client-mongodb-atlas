@@ -73,7 +73,8 @@ func TestDataLakes_List(t *testing.T) {
 									"source" : "source",
 									"pipeline" : "my.pipeline"
 								}
-							]
+							],
+							"maxWildcardCollections" : 92
 						}
 					],
 					"stores": [
@@ -84,7 +85,8 @@ func TestDataLakes_List(t *testing.T) {
 						  	"bucket": "datacenter-alpha",
 						  	"prefix": "/metrics",
 						  	"delimiter": "/",
-						  	"includeTags": false
+						  	"includeTags": false,
+							"additionalStorageClasses" : ["STANDARD_IA"]
 						}
 					]
 				}
@@ -136,17 +138,19 @@ func TestDataLakes_List(t *testing.T) {
 								Pipeline: "my.pipeline",
 							},
 						},
+						MaxWildcardCollections: pointy.Int64(92),
 					},
 				},
 				Stores: []DataLakeStore{
 					{
-						Name:        "datacenter-alpha",
-						Provider:    "s3",
-						Region:      "us-east-1",
-						Bucket:      "datacenter-alpha",
-						Prefix:      "/metrics",
-						Delimiter:   "/",
-						IncludeTags: pointy.Bool(false),
+						Name:                     "datacenter-alpha",
+						Provider:                 "s3",
+						Region:                   "us-east-1",
+						Bucket:                   "datacenter-alpha",
+						Prefix:                   "/metrics",
+						Delimiter:                "/",
+						IncludeTags:              pointy.Bool(false),
+						AdditionalStorageClasses: []string{"STANDARD_IA"},
 					},
 				},
 			},
