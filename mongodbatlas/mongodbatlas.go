@@ -34,17 +34,13 @@ import (
 )
 
 const (
-	CloudURL       = "https://cloud.mongodb.com/"
-	defaultBaseURL = CloudURL + APIPublicPath
-	APIPublicPath  = "api/atlas/%s/"
+	defaultBaseURL = "http://cloud.mongodb.com/"
 	jsonMediaType  = "application/json"
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
 	libraryName    = "go-mongodbatlas"
 	// Version the version of the current API client. Should be set to the next version planned to be released
 	Version = "0.8.0"
-	ApiV10  = "v1.0"
-	ApiV15  = "v1.5"
 )
 
 var (
@@ -82,18 +78,6 @@ type PlainRequestDoer interface {
 	Completer
 	NewPlainRequest(context.Context, string, string) (*http.Request, error)
 }
-
-// Client manages communication with MongoDBAtlas v1.5 API
-//type ClientV15 struct {
-//	client    *http.Client
-//	BaseURL   *url.URL
-//	UserAgent string
-//
-//	// Services used for communicating with the API
-//	AdvancedClusters AdvancedClustersService
-//
-//	onRequestCompleted RequestCompletionCallback
-//}
 
 // Client manages communication with MongoDBAtlas v1.0 API
 type Client struct {
@@ -249,7 +233,7 @@ func NewClient(httpClient *http.Client) *Client {
 		httpClient = http.DefaultClient
 	}
 
-	//baseURL, _ := url.Parse(defaultBaseURL)
+	baseURL, _ := url.Parse(defaultBaseURL)
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
