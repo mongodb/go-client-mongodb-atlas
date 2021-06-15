@@ -27,7 +27,7 @@ func TestContinuousBackupRestore_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/6b77777887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/6b77777887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `
 					{
@@ -143,7 +143,7 @@ func TestContinuousBackupRestore_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/5a6669d9fcc178211a0d86b9", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs/5a6669d9fcc178211a0d86b9", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 					  "batchId": "5a66783b80eef5354c77ee13",
@@ -238,7 +238,7 @@ func TestContinuousBackupRestore_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/5a66666887d9d61443b41645/clusters/Cluster0/restoreJobs", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		var pointInTimeUTCMillis float64 = 1536610288000
 		expected := map[string]interface{}{

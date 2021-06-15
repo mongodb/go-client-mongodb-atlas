@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	backupCheckpoints = "groups/%s/clusters/%s/backupCheckpoints"
+	backupCheckpoints = "api/atlas/v1.0/groups/%s/clusters/%s/backupCheckpoints"
 )
 
 // CheckpointsService is an interface for interfacing with the Checkpoint

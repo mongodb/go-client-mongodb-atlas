@@ -28,7 +28,7 @@ func TestCustomAWSDNSOp_Get(t *testing.T) {
 	defer teardown()
 	groupID := "5e2211c17a3e5a48f5497de3"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/awsCustomDNS", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/awsCustomDNS", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
 				"enabled": true
@@ -59,7 +59,7 @@ func TestCustomAWSDNSOp_Update(t *testing.T) {
 		Enabled: true,
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/awsCustomDNS", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/awsCustomDNS", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"enabled": true,
 		}

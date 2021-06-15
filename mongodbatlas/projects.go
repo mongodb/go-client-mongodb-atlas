@@ -31,7 +31,7 @@ const (
 	GroupDataAccessReadWrite = "GROUP_DATA_ACCESS_READ_WRITE"
 	// GroupDataAccessReadOnly - Project Data Access Read Only
 	GroupDataAccessReadOnly = "GROUP_DATA_ACCESS_READ_ONLY"
-	projectBasePath         = "groups"
+	projectBasePath         = "api/atlas/v1.0/groups"
 )
 
 // ProjectsService is an interface for interfacing with the Projects

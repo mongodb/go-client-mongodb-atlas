@@ -28,7 +28,7 @@ func TestEvents_ListOrganizationEvents(t *testing.T) {
 
 	orgID := "5b478b3afc4625789ce616a3"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/events", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/events", orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 						"links": [
@@ -142,7 +142,7 @@ func TestEvents_GetOrganizationEvent(t *testing.T) {
 	orgID := "5b478b3afc4625789ce616a3"
 	eventID := "b3ad04e680eef540be141abe"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/events/%s", orgID, eventID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/events/%s", orgID, eventID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 								"created": "2018-07-12T16:30:05Z",
@@ -197,7 +197,7 @@ func TestEvents_ListProjectEvents(t *testing.T) {
 
 	groupID := "5b43d04087d9d6357de591a2"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/events", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/events", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 						"links": [
@@ -309,7 +309,7 @@ func TestEvents_GetProjectEvent(t *testing.T) {
 	groupID := "5b478b3afc4625789ce616a3"
 	eventID := "b3ad04e680eef540be141abe"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/events/%s", groupID, eventID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/events/%s", groupID, eventID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 								"created": "2018-07-12T16:30:05Z",

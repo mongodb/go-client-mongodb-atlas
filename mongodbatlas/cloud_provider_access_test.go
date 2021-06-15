@@ -27,7 +27,7 @@ func TestCloudProviderAccessServiceOp_ListRoles(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 		  "awsIamRoles": [{
@@ -75,7 +75,7 @@ func TestCloudProviderAccessServiceOp_CreateRole(t *testing.T) {
 		ProviderName: "AWS",
 	}
 
-	mux.HandleFunc("/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"providerName": "AWS",
 		}
@@ -133,7 +133,7 @@ func TestCloudProviderAccessServiceOp_AuthorizeRole(t *testing.T) {
 		IAMAssumedRoleARN: "arn:aws:iam::772401394250:role/test-user-role",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"providerName":      "AWS",
 			"iamAssumedRoleArn": "arn:aws:iam::772401394250:role/test-user-role",
@@ -189,7 +189,7 @@ func TestCloudProviderAccessServiceOp_DeauthorizeRole(t *testing.T) {
 
 	roleID := "5f232b94af0a6b41747bcc2d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/1/cloudProviderAccess/%s/%s", "AWS", roleID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/cloudProviderAccess/%s/%s", "AWS", roleID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

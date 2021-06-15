@@ -34,13 +34,11 @@ import (
 )
 
 const (
-	CloudURL        = "https://cloud.mongodb.com/"
-	defaultBaseURL  = CloudURL + APIPublicV1Path
-	APIPublicV1Path = "api/atlas/v1.0/" // APIPublicV1Path specifies the v1 api path
-	jsonMediaType   = "application/json"
-	plainMediaType  = "text/plain"
-	gzipMediaType   = "application/gzip"
-	libraryName     = "go-mongodbatlas"
+	defaultBaseURL = "https://cloud.mongodb.com/"
+	jsonMediaType  = "application/json"
+	plainMediaType = "text/plain"
+	gzipMediaType  = "application/gzip"
+	libraryName    = "go-mongodbatlas"
 	// Version the version of the current API client. Should be set to the next version planned to be released
 	Version = "0.8.0"
 )

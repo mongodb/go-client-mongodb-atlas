@@ -29,7 +29,7 @@ func TestLogs_Get(t *testing.T) {
 	cluster := "test-username"
 	log := "log"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/logs/%s", groupID, cluster, log), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/logs/%s", groupID, cluster, log), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, "test")
 	})

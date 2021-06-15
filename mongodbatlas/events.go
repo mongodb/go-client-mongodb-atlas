@@ -21,8 +21,8 @@ import (
 )
 
 const (
-	eventsPathProjects     = "groups/%s/events"
-	eventsPathOrganization = "orgs/%s/events"
+	eventsPathProjects     = "api/atlas/v1.0/groups/%s/events"
+	eventsPathOrganization = "api/atlas/v1.0/orgs/%s/events"
 )
 
 // EventsService is an interface for interfacing with the Events

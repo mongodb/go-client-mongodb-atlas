@@ -28,7 +28,7 @@ func TestContainers_List(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
-		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 			fmt.Fprint(w, `{
 			"results": [
@@ -86,7 +86,7 @@ func TestContainers_List(t *testing.T) {
 	t.Run("multiple pages", func(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
-		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 
 			dr := containersResponse{
@@ -160,7 +160,7 @@ func TestContainers_List(t *testing.T) {
 		"totalCount": 3
 	}`
 
-		mux.HandleFunc("/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/groups/1/containers", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 
 			fmt.Fprint(w, jBlob)
@@ -180,7 +180,7 @@ func TestContainers_List(t *testing.T) {
 func TestContainers_ListAll(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-	mux.HandleFunc("/groups/1/containers/all", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/containers/all", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -246,7 +246,7 @@ func TestContainers_Create(t *testing.T) {
 		ProviderName:   "GCP",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/containers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/containers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"atlasCidrBlock": "10.8.0.0/18",
 			"providerName":   "GCP",
@@ -309,7 +309,7 @@ func TestContainers_Update(t *testing.T) {
 		ProviderName:   "GCP",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/containers/%s", groupID, containerID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/containers/%s", groupID, containerID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"atlasCidrBlock": "10.8.0.0/18",
 			"gcpProjectId":   "my-sample-project-191923",
@@ -367,7 +367,7 @@ func TestContainers_Delete(t *testing.T) {
 	groupID := "1"
 	id := "1112222b3bf99403840e8934"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/containers/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/containers/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -474,7 +474,7 @@ func TestContainersServiceOp_Create(t *testing.T) {
 		t.Run(test, func(t *testing.T) {
 			client, mux, teardown := setup()
 			defer teardown()
-			mux.HandleFunc(fmt.Sprintf("/groups/%s/containers", groupID), func(w http.ResponseWriter, r *http.Request) {
+			mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/containers", groupID), func(w http.ResponseWriter, r *http.Request) {
 				expected := expectedRequest
 				jsonBlob := response
 

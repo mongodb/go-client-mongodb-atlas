@@ -33,7 +33,7 @@ func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {
 	username := "username_test"
 	monthsUntilExpiration := 4
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers/%s/certs", groupID, username), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers/%s/certs", groupID, username), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"monthsUntilExpiration": float64(4),
 		}
@@ -75,7 +75,7 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 	groupID := "1"
 	username := "username_test"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers/%s/certs", groupID, username), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers/%s/certs", groupID, username), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [
@@ -140,7 +140,7 @@ func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
 		Cas: "-BEGIN CERTIFICATE--MIIFCTCCAvGgAwIBAgIIb--END CERTIFICATE---BEGIN PRIVATE KEY--MIIJQgIBADANBgkqhkiG==--END PRIVATE KEY--",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"customerX509": map[string]interface{}{
 				"cas": "-BEGIN CERTIFICATE--MIIFCTCCAvGgAwIBAgIIb--END CERTIFICATE---BEGIN PRIVATE KEY--MIIJQgIBADANBgkqhkiG==--END PRIVATE KEY--",
@@ -183,7 +183,7 @@ func TestX509AuthDBUsers_GetCurrentX509Conf(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"ldap": {},
@@ -213,7 +213,7 @@ func TestX509AuthDBUsers_DisableCustomerX509(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity/customerX509", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity/customerX509", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

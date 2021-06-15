@@ -63,7 +63,7 @@ const (
 	// AzureGermany represents `AZURE_GERMANY` AZURE where the Azure account credentials reside
 	AzureGermany = "AZURE_GERMANY"
 
-	encryptionsAtRestBasePath = "groups/%s/encryptionAtRest"
+	encryptionsAtRestBasePath = "api/atlas/v1.0/groups/%s/encryptionAtRest"
 )
 
 // EncryptionsAtRestService is an interface for interfacing with the Encryption at Rest

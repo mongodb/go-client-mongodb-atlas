@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const privateIPModePath = "groups/%s/privateIpMode"
+const privateIPModePath = "api/atlas/v1.0/groups/%s/privateIpMode"
 
 // PrivateIPModeService is an interface for interfacing with the PrivateIpMode
 // endpoints of the MongoDB Atlas API.

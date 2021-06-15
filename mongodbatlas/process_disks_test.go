@@ -26,7 +26,7 @@ func TestProcessDisksService_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/12345678/processes/shard-00-00.mongodb.net:27017/disks", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/12345678/processes/shard-00-00.mongodb.net:27017/disks", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 		   "links":[

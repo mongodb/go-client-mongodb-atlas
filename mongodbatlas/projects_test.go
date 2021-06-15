@@ -26,7 +26,7 @@ func TestProject_GetAllProjects(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links" : [ {
@@ -205,7 +205,7 @@ func TestProject_Create(t *testing.T) {
 		Name:  "ProjectFoobar",
 	}
 
-	mux.HandleFunc("/groups", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, `{
 			"clusterCount": 2,
 			"created": "2016-07-14T14:19:33Z",
@@ -249,7 +249,7 @@ func TestProject_Delete(t *testing.T) {
 
 	projectID := "5a0a1e7e0f2912c554080adc"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s", projectID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s", projectID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -335,7 +335,7 @@ func TestProject_AddTeamsToProject(t *testing.T) {
 		RoleNames: []string{"GROUP_OWNER", "GROUP_READ_ONLY"},
 	}}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/teams", projectID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/teams", projectID), func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, `{
 			"links": [{
 				"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/teams",
@@ -392,7 +392,7 @@ func TestProject_RemoveUserFromProject(t *testing.T) {
 	projectID := "5a0a1e7e0f2912c554080adc"
 	userID := "1213232233243434"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/users/%s", projectID, userID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/users/%s", projectID, userID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

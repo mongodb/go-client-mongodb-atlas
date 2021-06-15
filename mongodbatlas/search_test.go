@@ -32,7 +32,7 @@ func TestSearch_ListIndexes(t *testing.T) {
 	collectionName := "movies"
 	databaseName := "sample_mflix"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s/%s", groupID, clusterName, databaseName, collectionName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s/%s", groupID, clusterName, databaseName, collectionName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 		  {
@@ -115,7 +115,7 @@ func TestSearch_GetIndex(t *testing.T) {
 	clusterName := "test"
 	indexID := "5d1268a980eef518dac0cf41"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s", projectID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s", projectID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 		  "collectionName": "movies",
@@ -184,7 +184,7 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 		Name: "default",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"collectionName": "orders",
 			"database":       "fiscalYear2018",
@@ -251,7 +251,7 @@ func TestSearchServiceOp_UpdateIndex(t *testing.T) {
 		SearchAnalyzer: "lucene.whitespace",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s", groupID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s", groupID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"analyzer":       "lucene.swedish",
 			"searchAnalyzer": "lucene.whitespace",
@@ -312,7 +312,7 @@ func TestSearchServiceOp_DeleteIndex(t *testing.T) {
 	projectID := "5a0a1e7e0f2912c554080adc"
 	clusterName := "test"
 	indexID := "5d1268a980eef518dac0cf41"
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/indexes/%s", projectID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s", projectID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -327,7 +327,7 @@ func TestSearch_ListAnalyzers(t *testing.T) {
 	defer teardown()
 	groupID := "1"
 	clusterName := "test"
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/fts/analyzers", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/analyzers", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 		  {

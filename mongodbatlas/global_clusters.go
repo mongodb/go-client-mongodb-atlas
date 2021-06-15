@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const globalClustersBasePath = "groups/%s/clusters/%s/globalWrites/%s"
+const globalClustersBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/%s"
 
 // GlobalClustersService is an interface for interfacing with the Global Clusters
 // endpoints of the MongoDB Atlas API.
@@ -72,7 +72,7 @@ func (s *GlobalClustersServiceOp) Get(ctx context.Context, groupID, clusterName 
 		return nil, nil, NewArgError("username", "must be set")
 	}
 
-	path := fmt.Sprintf("groups/%s/clusters/%s/globalWrites", groupID, clusterName)
+	path := fmt.Sprintf("api/atlas/v1.0/groups/%s/clusters/%s/globalWrites", groupID, clusterName)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {

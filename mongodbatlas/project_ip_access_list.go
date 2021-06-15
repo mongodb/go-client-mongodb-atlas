@@ -21,7 +21,7 @@ import (
 	"net/url"
 )
 
-const projectIPAccessListPath = "groups/%s/accessList"
+const projectIPAccessListPath = "api/atlas/v1.0/groups/%s/accessList"
 
 // ProjectIPAccessListService provides access to the project access list related functions in the Atlas API.
 //

@@ -36,7 +36,7 @@ func TestPrivateEndpointAWS_Create(t *testing.T) {
 		Region:       "us-east-1",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/endpointService", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/endpointService", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"providerName": "AWS",
 			"region":       "us-east-1",
@@ -91,7 +91,7 @@ func TestPrivateEndpointAzure_Create(t *testing.T) {
 		Region:       "eastus2",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/endpointService", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/endpointService", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"providerName": "AZURE",
 			"region":       "eastus2",
@@ -142,7 +142,7 @@ func TestPrivateEndpointsAWS_Get(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"endpointServiceName": "com.amazonaws.vpce.us-east-1.vpce-svc-0aee615d3fe32c14e",
@@ -178,7 +178,7 @@ func TestPrivateEndpointsAzure_Get(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"privateLinkServiceName": "pls_5f7b96cd8c39f93d0e5f1911",
@@ -215,7 +215,7 @@ func TestPrivateEndpointsAWS_List(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService", groupID, "AWS"), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService", groupID, "AWS"), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 				{
@@ -268,7 +268,7 @@ func TestPrivateEndpointsAzure_List(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService", groupID, "AZURE"), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService", groupID, "AZURE"), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 		  {
@@ -322,7 +322,7 @@ func TestPrivateEndpointsAWS_Delete(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -339,7 +339,7 @@ func TestPrivateEndpointsAzure_Delete(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -359,7 +359,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointAWS(t *testing.T) {
 		InterfaceEndpointID: "vpce-0b9c5701325cb15dd",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "AWS", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"interfaceEndpointId": "vpce-0b9c5701325cb15dd",
 		}
@@ -410,7 +410,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
 		PrivateEndpointIPAddress:  "10.0.0.4",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"privateEndpointResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
 			"privateEndpointIPAddress":  "10.0.0.4",
@@ -460,7 +460,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAWS(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AWS", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AWS", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"interfaceEndpointId": "vpce-08fb7e9319909ec7b",
@@ -493,7 +493,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "/subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
-	path := fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint%s", groupID, "AZURE", privateLinkID, interfaceEndpointID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint%s", groupID, "AZURE", privateLinkID, interfaceEndpointID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -530,7 +530,7 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAWS(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AWS", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AWS", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -548,7 +548,7 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAzure(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "subscriptions/19265c27-b60e-4c3b-9426-ae3f507300b5/resourceGroups/test/providers/Microsoft.Network/privateEndpoints/test"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AZURE", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "AZURE", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -564,7 +564,7 @@ func TestPrivateEndpoints_UpdateRegionalizedPrivateEndpointSetting(t *testing.T)
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		fmt.Fprint(w, `{
 			"enabled" : true
@@ -591,7 +591,7 @@ func TestPrivateEndpoints_GetRegionalizedPrivateEndpointSetting(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/regionalMode", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"enabled" : true
