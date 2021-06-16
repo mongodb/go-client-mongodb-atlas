@@ -111,6 +111,12 @@ func (s *ContinuousSnapshotsServiceOp) List(ctx context.Context, groupID, cluste
 
 	path := fmt.Sprintf(continuousSnapshotsBasePath, groupID, clusterID)
 
+	// Add query params
+	path, err := setListOptions(path, listOptions)
+	if err != nil {
+		return  nil, nil, err
+	}
+
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
