@@ -198,45 +198,42 @@ func TestClusters_ListClusters(t *testing.T) {
 				ScaleDownEnabled: pointy.Bool(true),
 			},
 		},
-		BaseCluster: &BaseCluster{
-			BackupEnabled: pointy.Bool(true),
-			BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
-			ClusterType:   "REPLICASET",
-			ConnectionStrings: &ConnectionStrings{
-				Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-				StandardSrv:       "mongodb+srv://cluster0-auylw.mongodb.net",
-				AwsPrivateLink:    map[string]string{"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"},
-				AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
-				Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-				PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
-				PrivateEndpoint: []PrivateEndpoint{
-					{
-						ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
-						SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
-						Type:                "MONGOD",
-						Endpoints: []Endpoint{
-							{
-								EndpointID:   "vpce-0d00c26273372c6ef",
-								Region:       "US_EAST_1",
-								ProviderName: "AWS",
-							},
+		BackupEnabled: pointy.Bool(true),
+		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:   "REPLICASET",
+		ConnectionStrings: &ConnectionStrings{
+			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
+			StandardSrv:       "mongodb+srv://cluster0-auylw.mongodb.net",
+			AwsPrivateLink:    map[string]string{"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"},
+			AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
+			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
+			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+			PrivateEndpoint: []PrivateEndpoint{
+				{
+					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					Type:                "MONGOD",
+					Endpoints: []Endpoint{
+						{
+							EndpointID:   "vpce-0d00c26273372c6ef",
+							Region:       "US_EAST_1",
+							ProviderName: "AWS",
 						},
 					},
 				},
 			},
-			DiskSizeGB:               pointy.Float64(160),
-			EncryptionAtRestProvider: "AWS",
-			GroupID:                  "5356823b3794de37132bb7b",
-			MongoDBVersion:           "3.4.9",
-			Name:                     "AppData",
-			Paused:                   pointy.Bool(false),
-			StateName:                "IDLE",
 		},
 
-		MongoURI:            "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		MongoURIUpdated:     "2017-10-23T21:26:17Z",
-		MongoURIWithOptions: "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-		NumShards:           pointy.Int64(1),
+		DiskSizeGB:               pointy.Float64(160),
+		EncryptionAtRestProvider: "AWS",
+		GroupID:                  "5356823b3794de37132bb7b",
+		MongoDBVersion:           "3.4.9",
+		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		MongoURIUpdated:          "2017-10-23T21:26:17Z",
+		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+		Name:                     "AppData",
+		NumShards:                pointy.Int64(1),
+		Paused:                   pointy.Bool(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
 			DiskIOPS:         pointy.Int64(1320),
@@ -260,6 +257,7 @@ func TestClusters_ListClusters(t *testing.T) {
 			},
 		},
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:  "IDLE",
 	}
 
 	expected := []Cluster{cluster1, cluster1}
@@ -277,8 +275,8 @@ func TestClusters_ListClustersMultiplePages(t *testing.T) {
 
 		dr := clustersResponse{
 			Results: []Cluster{
-				{BaseCluster: &BaseCluster{GroupID: "1", Name: "test-one"}},
-				{BaseCluster: &BaseCluster{GroupID: "1", Name: "test-two"}},
+				{GroupID: "1", Name: "test-one"},
+				{GroupID: "1", Name: "test-two"},
 			},
 			Links: []*Link{
 				{Href: "http://example.com/api/atlas/v1.0/groups/1/clusters?pageNum=2&itemsPerPage=2", Rel: "self"},
@@ -353,26 +351,22 @@ func TestClusters_Create(t *testing.T) {
 	groupID := "1"
 
 	createRequest := &Cluster{
-		BaseCluster: &BaseCluster{
-			ID:                       "1",
-			BackupEnabled:            pointy.Bool(true),
-			BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
-			ClusterType:              "REPLICASET",
-			DiskSizeGB:               pointy.Float64(160),
-			EncryptionAtRestProvider: "AWS",
-			GroupID:                  groupID,
-			MongoDBVersion:           "3.4.9",
-			Name:                     "AppData",
-			Paused:                   pointy.Bool(false),
-			StateName:                "IDLE",
-		},
-
+		ID: "1",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
 			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
-		MongoURI:            "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		MongoURIUpdated:     "2017-10-23T21:26:17Z",
-		MongoURIWithOptions: "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-		NumShards:           pointy.Int64(1),
+		BackupEnabled:            pointy.Bool(true),
+		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:              "REPLICASET",
+		DiskSizeGB:               pointy.Float64(160),
+		EncryptionAtRestProvider: "AWS",
+		GroupID:                  groupID,
+		MongoDBVersion:           "3.4.9",
+		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		MongoURIUpdated:          "2017-10-23T21:26:17Z",
+		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+		Name:                     "AppData",
+		NumShards:                pointy.Int64(1),
+		Paused:                   pointy.Bool(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
 			DiskIOPS:         pointy.Int64(1320),
@@ -391,6 +385,7 @@ func TestClusters_Create(t *testing.T) {
 			},
 		},
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:  "IDLE",
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
@@ -537,25 +532,22 @@ func TestClusters_Update(t *testing.T) {
 	clusterName := "AppData"
 
 	updateRequest := &Cluster{
-		BaseCluster: &BaseCluster{
-			ID:                       "1",
-			BackupEnabled:            pointy.Bool(true),
-			BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
-			ClusterType:              "REPLICASET",
-			DiskSizeGB:               pointy.Float64(160),
-			EncryptionAtRestProvider: "AWS",
-			GroupID:                  groupID,
-			MongoDBVersion:           "3.4.9",
-			Name:                     clusterName,
-			Paused:                   pointy.Bool(false),
-			StateName:                "IDLE",
-		},
+		ID: "1",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
 			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
-		MongoURI:            "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		MongoURIUpdated:     "2017-10-23T21:26:17Z",
-		MongoURIWithOptions: "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-		NumShards:           pointy.Int64(1),
+		BackupEnabled:            pointy.Bool(true),
+		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:              "REPLICASET",
+		DiskSizeGB:               pointy.Float64(160),
+		EncryptionAtRestProvider: "AWS",
+		GroupID:                  groupID,
+		MongoDBVersion:           "3.4.9",
+		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		MongoURIUpdated:          "2017-10-23T21:26:17Z",
+		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+		Name:                     clusterName,
+		NumShards:                pointy.Int64(1),
+		Paused:                   pointy.Bool(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
 			DiskIOPS:         pointy.Int64(1320),
@@ -574,6 +566,7 @@ func TestClusters_Update(t *testing.T) {
 			},
 		},
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:  "IDLE",
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -922,48 +915,44 @@ func TestClusters_Get(t *testing.T) {
 	}
 
 	expected := &Cluster{
-		BaseCluster: &BaseCluster{
-			ID:            "1",
-			BackupEnabled: pointy.Bool(true),
-			BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
-			ClusterType:   "REPLICASET",
-			ConnectionStrings: &ConnectionStrings{
-				Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-				StandardSrv:       "mongodb+srv://cluster0-auylw.mongodb.net",
-				AwsPrivateLink:    map[string]string{"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"},
-				AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
-				Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
-				PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
-				PrivateEndpoint: []PrivateEndpoint{
-					{
-						ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
-						SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
-						Type:                "MONGOD",
-						Endpoints: []Endpoint{
-							{
-								EndpointID:   "vpce-0d00c26273372c6ef",
-								Region:       "US_EAST_1",
-								ProviderName: "AWS",
-							},
+		ID:            "1",
+		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
+		BackupEnabled: pointy.Bool(true),
+		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:   "REPLICASET",
+		ConnectionStrings: &ConnectionStrings{
+			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
+			StandardSrv:       "mongodb+srv://cluster0-auylw.mongodb.net",
+			AwsPrivateLink:    map[string]string{"vpce-0d00c26273372c6ef": "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0"},
+			AwsPrivateLinkSrv: map[string]string{"vpce-0d00c26273372c6ef": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net"},
+			Private:           "mongodb://cluster0-shard-00-00-pri.auylw.mongodb.net:27017,cluster0-shard-00-01-pri.auylw.mongodb.net:27017,cluster0-shard-00-02-pri.auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
+			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
+			PrivateEndpoint: []PrivateEndpoint{
+				{
+					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					Type:                "MONGOD",
+					Endpoints: []Endpoint{
+						{
+							EndpointID:   "vpce-0d00c26273372c6ef",
+							Region:       "US_EAST_1",
+							ProviderName: "AWS",
 						},
 					},
 				},
 			},
-			DiskSizeGB:               pointy.Float64(160),
-			EncryptionAtRestProvider: "AWS",
-			GroupID:                  groupID,
-			MongoDBVersion:           "3.4.9",
-			Name:                     "AppData",
-			Paused:                   pointy.Bool(false),
-			PitEnabled:               pointy.Bool(false),
-			StateName:                "IDLE",
 		},
-
-		AutoScaling:         &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
-		MongoURI:            "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		MongoURIUpdated:     "2017-10-23T21:26:17Z",
-		MongoURIWithOptions: "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-		NumShards:           pointy.Int64(1),
+		DiskSizeGB:               pointy.Float64(160),
+		EncryptionAtRestProvider: "AWS",
+		GroupID:                  groupID,
+		MongoDBVersion:           "3.4.9",
+		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		MongoURIUpdated:          "2017-10-23T21:26:17Z",
+		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+		Name:                     "AppData",
+		NumShards:                pointy.Int64(1),
+		Paused:                   pointy.Bool(false),
+		PitEnabled:               pointy.Bool(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
 			DiskIOPS:         pointy.Int64(1320),
@@ -981,6 +970,7 @@ func TestClusters_Get(t *testing.T) {
 			},
 		},
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:  "IDLE",
 	}
 
 	if diff := deep.Equal(cluster, expected); diff != nil {

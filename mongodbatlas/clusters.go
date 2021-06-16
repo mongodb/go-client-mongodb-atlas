@@ -136,36 +136,32 @@ type ConnectionStrings struct {
 
 // Cluster represents MongoDB cluster.
 type Cluster struct {
-	*BaseCluster
-	AutoScaling           *AutoScaling             `json:"autoScaling,omitempty"`
-	MongoURI              string                   `json:"mongoURI,omitempty"`
-	MongoURIUpdated       string                   `json:"mongoURIUpdated,omitempty"`
-	MongoURIWithOptions   string                   `json:"mongoURIWithOptions,omitempty"`
-	NumShards             *int64                   `json:"numShards,omitempty"`
-	ProviderBackupEnabled *bool                    `json:"providerBackupEnabled,omitempty"`
-	ProviderSettings      *ProviderSettings        `json:"providerSettings,omitempty"`
-	ReplicationFactor     *int64                   `json:"replicationFactor,omitempty"`
-	ReplicationSpec       map[string]RegionsConfig `json:"replicationSpec,omitempty"`
-	ReplicationSpecs      []ReplicationSpec        `json:"replicationSpecs,omitempty"`
-	SrvAddress            string                   `json:"srvAddress,omitempty"`
-}
-
-type BaseCluster struct {
-	BackupEnabled            *bool              `json:"backupEnabled,omitempty"`
-	BiConnector              *BiConnector       `json:"biConnector,omitempty"`
-	ClusterType              string             `json:"clusterType,omitempty"`
-	ConnectionStrings        *ConnectionStrings `json:"connectionStrings,omitempty"`
-	DiskSizeGB               *float64           `json:"diskSizeGB,omitempty"`
-	EncryptionAtRestProvider string             `json:"encryptionAtRestProvider,omitempty"`
-	GroupID                  string             `json:"groupId,omitempty"`
-	ID                       string             `json:"id,omitempty"`
-	Labels                   []Label            `json:"labels,omitempty"`
-	MongoDBMajorVersion      string             `json:"mongoDBMajorVersion,omitempty"`
-	MongoDBVersion           string             `json:"mongoDBVersion,omitempty"`
-	Name                     string             `json:"name,omitempty"`
-	Paused                   *bool              `json:"paused,omitempty"`
-	PitEnabled               *bool              `json:"pitEnabled,omitempty"`
-	StateName                string             `json:"stateName,omitempty"`
+	AutoScaling              *AutoScaling             `json:"autoScaling,omitempty"`
+	BackupEnabled            *bool                    `json:"backupEnabled,omitempty"` // Deprecated: Use ProviderBackupEnabled instead
+	BiConnector              *BiConnector             `json:"biConnector,omitempty"`
+	ClusterType              string                   `json:"clusterType,omitempty"`
+	DiskSizeGB               *float64                 `json:"diskSizeGB,omitempty"`
+	EncryptionAtRestProvider string                   `json:"encryptionAtRestProvider,omitempty"`
+	Labels                   []Label                  `json:"labels,omitempty"`
+	ID                       string                   `json:"id,omitempty"`
+	GroupID                  string                   `json:"groupId,omitempty"`
+	MongoDBVersion           string                   `json:"mongoDBVersion,omitempty"`
+	MongoDBMajorVersion      string                   `json:"mongoDBMajorVersion,omitempty"`
+	MongoURI                 string                   `json:"mongoURI,omitempty"`
+	MongoURIUpdated          string                   `json:"mongoURIUpdated,omitempty"`
+	MongoURIWithOptions      string                   `json:"mongoURIWithOptions,omitempty"`
+	Name                     string                   `json:"name,omitempty"`
+	NumShards                *int64                   `json:"numShards,omitempty"`
+	Paused                   *bool                    `json:"paused,omitempty"`
+	PitEnabled               *bool                    `json:"pitEnabled,omitempty"`
+	ProviderBackupEnabled    *bool                    `json:"providerBackupEnabled,omitempty"`
+	ProviderSettings         *ProviderSettings        `json:"providerSettings,omitempty"`
+	ReplicationFactor        *int64                   `json:"replicationFactor,omitempty"`
+	ReplicationSpec          map[string]RegionsConfig `json:"replicationSpec,omitempty"`
+	ReplicationSpecs         []ReplicationSpec        `json:"replicationSpecs,omitempty"`
+	SrvAddress               string                   `json:"srvAddress,omitempty"`
+	StateName                string                   `json:"stateName,omitempty"`
+	ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster

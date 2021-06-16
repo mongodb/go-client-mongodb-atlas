@@ -216,24 +216,23 @@ func TestAdvancedClusters_List(t *testing.T) {
 
 		Results: []*AdvancedCluster{
 			{
-				BaseCluster: &BaseCluster{
-					BackupEnabled: &backupEnabled,
-					BiConnector: &BiConnector{
-						Enabled:        &enabled,
-						ReadPreference: "secondary",
-					},
-					ClusterType:              "REPLICASET",
-					DiskSizeGB:               &diskSizeGB,
-					EncryptionAtRestProvider: "NONE",
-					GroupID:                  "1",
-					ID:                       "1",
-					MongoDBMajorVersion:      "4.4",
-					MongoDBVersion:           "4.4.4",
-					Name:                     "basicReplicaSet",
-					Paused:                   &paused,
-					PitEnabled:               &pitEnabled,
-					StateName:                "CREATING",
+				BackupEnabled: &backupEnabled,
+				BiConnector: &BiConnector{
+					Enabled:        &enabled,
+					ReadPreference: "secondary",
 				},
+				ClusterType:              "REPLICASET",
+				DiskSizeGB:               &diskSizeGB,
+				EncryptionAtRestProvider: "NONE",
+				GroupID:                  "1",
+				ID:                       "1",
+				MongoDBMajorVersion:      "4.4",
+				MongoDBVersion:           "4.4.4",
+				Name:                     "basicReplicaSet",
+				Paused:                   &paused,
+				PitEnabled:               &pitEnabled,
+				StateName:                "CREATING",
+
 				ReplicationSpecs: []*AdvancedRegionSpec{
 					{
 						ID:        "1",
@@ -270,24 +269,22 @@ func TestAdvancedClusters_List(t *testing.T) {
 				RootCertType: "DST",
 			},
 			{
-				BaseCluster: &BaseCluster{
-					BackupEnabled: &backupEnabled,
-					BiConnector: &BiConnector{
-						Enabled:        &enabled,
-						ReadPreference: "secondary",
-					},
-					ClusterType:              "GEOSHARDED",
-					DiskSizeGB:               &diskSizeGBGeoSharded,
-					EncryptionAtRestProvider: "NONE",
-					GroupID:                  "2",
-					ID:                       "2",
-					MongoDBMajorVersion:      "4.4",
-					MongoDBVersion:           "4.4.4",
-					Name:                     "globalCluster",
-					Paused:                   &paused,
-					PitEnabled:               &pitEnabled,
-					StateName:                "CREATING",
+				BackupEnabled: &backupEnabled,
+				BiConnector: &BiConnector{
+					Enabled:        &enabled,
+					ReadPreference: "secondary",
 				},
+				ClusterType:              "GEOSHARDED",
+				DiskSizeGB:               &diskSizeGBGeoSharded,
+				EncryptionAtRestProvider: "NONE",
+				GroupID:                  "2",
+				ID:                       "2",
+				MongoDBMajorVersion:      "4.4",
+				MongoDBVersion:           "4.4.4",
+				Name:                     "globalCluster",
+				Paused:                   &paused,
+				PitEnabled:               &pitEnabled,
+				StateName:                "CREATING",
 				ReplicationSpecs: []*AdvancedRegionSpec{
 					{
 						ID:        "2",
@@ -488,24 +485,22 @@ func TestAdvancedClusters_Get(t *testing.T) {
 	nodeCount := 3
 
 	expected := &AdvancedCluster{
-		BaseCluster: &BaseCluster{
-			BackupEnabled: &backupEnabled,
-			BiConnector: &BiConnector{
-				Enabled:        &enabled,
-				ReadPreference: "secondary",
-			},
-			ClusterType:              "GEOSHARDED",
-			DiskSizeGB:               &diskSizeGBGeoSharded,
-			EncryptionAtRestProvider: "NONE",
-			GroupID:                  "2",
-			ID:                       "2",
-			MongoDBMajorVersion:      "4.4",
-			MongoDBVersion:           "4.4.4",
-			Name:                     clusterName,
-			Paused:                   &paused,
-			PitEnabled:               &pitEnabled,
-			StateName:                "CREATING",
+		BackupEnabled: &backupEnabled,
+		BiConnector: &BiConnector{
+			Enabled:        &enabled,
+			ReadPreference: "secondary",
 		},
+		ClusterType:              "GEOSHARDED",
+		DiskSizeGB:               &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider: "NONE",
+		GroupID:                  "2",
+		ID:                       "2",
+		MongoDBMajorVersion:      "4.4",
+		MongoDBVersion:           "4.4.4",
+		Name:                     clusterName,
+		Paused:                   &paused,
+		PitEnabled:               &pitEnabled,
+		StateName:                "CREATING",
 		ReplicationSpecs: []*AdvancedRegionSpec{
 			{
 				ID:        "2",
@@ -700,24 +695,22 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	nodeCount := 3
 
 	requestCluster := &AdvancedCluster{
-		BaseCluster: &BaseCluster{
-			BackupEnabled: &backupEnabled,
-			BiConnector: &BiConnector{
-				Enabled:        &enabled,
-				ReadPreference: "secondary",
-			},
-			ClusterType:              "GEOSHARDED",
-			DiskSizeGB:               &diskSizeGBGeoSharded,
-			EncryptionAtRestProvider: "NONE",
-			GroupID:                  "2",
-			ID:                       "2",
-			MongoDBMajorVersion:      "4.4",
-			MongoDBVersion:           "4.4.4",
-			Name:                     clusterName,
-			Paused:                   &paused,
-			PitEnabled:               &pitEnabled,
-			StateName:                "CREATING",
+		BackupEnabled: &backupEnabled,
+		BiConnector: &BiConnector{
+			Enabled:        &enabled,
+			ReadPreference: "secondary",
 		},
+		ClusterType:              "GEOSHARDED",
+		DiskSizeGB:               &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider: "NONE",
+		GroupID:                  "2",
+		ID:                       "2",
+		MongoDBMajorVersion:      "4.4",
+		MongoDBVersion:           "4.4.4",
+		Name:                     clusterName,
+		Paused:                   &paused,
+		PitEnabled:               &pitEnabled,
+		StateName:                "CREATING",
 		ReplicationSpecs: []*AdvancedRegionSpec{
 			{
 				ID:        "2",
@@ -801,24 +794,22 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	}
 
 	expected := &AdvancedCluster{
-		BaseCluster: &BaseCluster{
-			BackupEnabled: &backupEnabled,
-			BiConnector: &BiConnector{
-				Enabled:        &enabled,
-				ReadPreference: "secondary",
-			},
-			ClusterType:              "GEOSHARDED",
-			DiskSizeGB:               &diskSizeGBGeoSharded,
-			EncryptionAtRestProvider: "NONE",
-			GroupID:                  "2",
-			ID:                       "2",
-			MongoDBMajorVersion:      "4.4",
-			MongoDBVersion:           "4.4.4",
-			Name:                     clusterName,
-			Paused:                   &paused,
-			PitEnabled:               &pitEnabled,
-			StateName:                "CREATING",
+		BackupEnabled: &backupEnabled,
+		BiConnector: &BiConnector{
+			Enabled:        &enabled,
+			ReadPreference: "secondary",
 		},
+		ClusterType:              "GEOSHARDED",
+		DiskSizeGB:               &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider: "NONE",
+		GroupID:                  "2",
+		ID:                       "2",
+		MongoDBMajorVersion:      "4.4",
+		MongoDBVersion:           "4.4.4",
+		Name:                     clusterName,
+		Paused:                   &paused,
+		PitEnabled:               &pitEnabled,
+		StateName:                "CREATING",
 		ReplicationSpecs: []*AdvancedRegionSpec{
 			{
 				ID:        "2",
@@ -1013,24 +1004,22 @@ func TestAdvancedClusters_Update(t *testing.T) {
 	nodeCount := 3
 
 	requestCluster := &AdvancedCluster{
-		BaseCluster: &BaseCluster{
-			BackupEnabled: &backupEnabled,
-			BiConnector: &BiConnector{
-				Enabled:        &enabled,
-				ReadPreference: "secondary",
-			},
-			ClusterType:              "GEOSHARDED",
-			DiskSizeGB:               &diskSizeGBGeoSharded,
-			EncryptionAtRestProvider: "NONE",
-			GroupID:                  "2",
-			ID:                       "2",
-			MongoDBMajorVersion:      "4.4",
-			MongoDBVersion:           "4.4.4",
-			Name:                     clusterName,
-			Paused:                   &paused,
-			PitEnabled:               &pitEnabled,
-			StateName:                "CREATING",
+		BackupEnabled: &backupEnabled,
+		BiConnector: &BiConnector{
+			Enabled:        &enabled,
+			ReadPreference: "secondary",
 		},
+		ClusterType:              "GEOSHARDED",
+		DiskSizeGB:               &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider: "NONE",
+		GroupID:                  "2",
+		ID:                       "2",
+		MongoDBMajorVersion:      "4.4",
+		MongoDBVersion:           "4.4.4",
+		Name:                     clusterName,
+		Paused:                   &paused,
+		PitEnabled:               &pitEnabled,
+		StateName:                "CREATING",
 		ReplicationSpecs: []*AdvancedRegionSpec{
 			{
 				ID:        "2",
@@ -1114,24 +1103,22 @@ func TestAdvancedClusters_Update(t *testing.T) {
 	}
 
 	expected := &AdvancedCluster{
-		BaseCluster: &BaseCluster{
-			BackupEnabled: &backupEnabled,
-			BiConnector: &BiConnector{
-				Enabled:        &enabled,
-				ReadPreference: "secondary",
-			},
-			ClusterType:              "GEOSHARDED",
-			DiskSizeGB:               &diskSizeGBGeoSharded,
-			EncryptionAtRestProvider: "NONE",
-			GroupID:                  "2",
-			ID:                       "2",
-			MongoDBMajorVersion:      "4.4",
-			MongoDBVersion:           "4.4.4",
-			Name:                     clusterName,
-			Paused:                   &paused,
-			PitEnabled:               &pitEnabled,
-			StateName:                "CREATING",
+		BackupEnabled: &backupEnabled,
+		BiConnector: &BiConnector{
+			Enabled:        &enabled,
+			ReadPreference: "secondary",
 		},
+		ClusterType:              "GEOSHARDED",
+		DiskSizeGB:               &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider: "NONE",
+		GroupID:                  "2",
+		ID:                       "2",
+		MongoDBMajorVersion:      "4.4",
+		MongoDBVersion:           "4.4.4",
+		Name:                     clusterName,
+		Paused:                   &paused,
+		PitEnabled:               &pitEnabled,
+		StateName:                "CREATING",
 		ReplicationSpecs: []*AdvancedRegionSpec{
 			{
 				ID:        "2",
