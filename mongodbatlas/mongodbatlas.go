@@ -34,7 +34,8 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://cloud.mongodb.com/"
+	CloudURL       = "https://cloud.mongodb.com/"
+	defaultBaseURL = CloudURL
 	jsonMediaType  = "application/json"
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
