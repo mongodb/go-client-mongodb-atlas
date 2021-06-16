@@ -21,7 +21,7 @@ import (
 	"net/http"
 )
 
-const logsPath = "groups/%s/clusters/%s/logs/%s"
+const logsPath = "api/atlas/v1.0/groups/%s/clusters/%s/logs/%s"
 
 // LogsService is an interface for interfacing with the Logs
 // endpoints of the MongoDB Atlas API.

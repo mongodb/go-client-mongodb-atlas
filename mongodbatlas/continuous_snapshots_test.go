@@ -32,7 +32,7 @@ func TestContinuousSnapshots_List(t *testing.T) {
 	groupID := "6c7498dg87d9e6526801572b"
 	clusterName := "Cluster0"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/snapshots", groupID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/snapshots", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -141,7 +141,7 @@ func TestContinuousSnapshots_Get(t *testing.T) {
 	groupID := "6c7498dg87d9e6526801572b"
 	clusterName := "Cluster0"
 	snapshotID := "6b5380e6jvn128560506942b"
-	path := fmt.Sprintf("/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -237,7 +237,7 @@ func TestContinuousSnapshots_ChangeExpiry(t *testing.T) {
 		Expires: "2018-12-01",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		expected := map[string]interface{}{
@@ -346,7 +346,7 @@ func TestContinuousSnapshots_Delete(t *testing.T) {
 	clusterName := "Cluster0"
 	snapshotID := "6b5380e6jvn128560506942b"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/snapshots/%s", groupID, clusterName, snapshotID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)

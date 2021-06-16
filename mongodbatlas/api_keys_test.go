@@ -27,7 +27,7 @@ func TestAPIKeys_ListAPIKeys(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -117,7 +117,7 @@ func TestAPIKeys_ListAPIKeysMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := apiKeysResponse{
@@ -217,7 +217,7 @@ func TestAPIKeys_RetrievePageByNumber(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/orgs/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, jBlob)
 	})
@@ -242,7 +242,7 @@ func TestAPIKeys_Create(t *testing.T) {
 		Roles: []string{"GROUP_OWNER"},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/apiKeys", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/apiKeys", orgID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"desc":  "test-apiKey",
 			"roles": []interface{}{"GROUP_OWNER"},
@@ -298,7 +298,7 @@ func TestAPIKeys_GetAPIKey(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/orgs/1/apiKeys/5c47503320eef5699e1cce8d", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/orgs/1/apiKeys/5c47503320eef5699e1cce8d", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{"desc":"test-desc"}`)
 	})
@@ -326,7 +326,7 @@ func TestAPIKeys_Update(t *testing.T) {
 		Roles: []string{"GROUP_OWNER"},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/apiKeys/%s", orgID, "5c47503320eef5699e1cce8d"), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/apiKeys/%s", orgID, "5c47503320eef5699e1cce8d"), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"desc":  "test-apiKey",
 			"roles": []interface{}{"GROUP_OWNER"},
@@ -385,7 +385,7 @@ func TestAPIKeys_Delete(t *testing.T) {
 	orgID := "1"
 	apiKeyID := "5c47503320eef5699e1cce8d"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/apiKeys/%s", orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/apiKeys/%s", orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

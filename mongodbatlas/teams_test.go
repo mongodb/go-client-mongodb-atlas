@@ -27,7 +27,7 @@ func TestTeams_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/orgs/1/teams", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/orgs/1/teams", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [{
@@ -81,7 +81,7 @@ func TestTeams_Get(t *testing.T) {
 	orgID := "1"
 	teamID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"id": "1",
@@ -117,7 +117,7 @@ func TestTeams_GetOneTeamByName(t *testing.T) {
 	orgID := "1"
 	teamName := "myNewTeam"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/byName/%s", orgID, teamName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/byName/%s", orgID, teamName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"id": "1",
@@ -152,7 +152,7 @@ func TestProject_GetTeamUsersAssigned(t *testing.T) {
 
 	orgID := "5a0a1e7e0f2912c554080adc"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/1/users", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/1/users", orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [
@@ -238,7 +238,7 @@ func TestTeams_Create(t *testing.T) {
 		Usernames: []string{"user1", "user2", "user3"},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams", orgID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"name":      "myNewTeam",
 			"usernames": []interface{}{"user1", "user2", "user3"},
@@ -298,7 +298,7 @@ func TestTeams_Rename(t *testing.T) {
 	renameRequest := "newTeamName"
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"name": renameRequest,
 		}
@@ -353,7 +353,7 @@ func TestTeams_UpdateTeamRoles(t *testing.T) {
 
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"roleNames": []interface{}{"GROUP_OWNER"},
 		}
@@ -426,7 +426,7 @@ func TestTeams_AddUsersToTeam(t *testing.T) {
 	usersID := []string{"1", "2"}
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s/users", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/%s/users", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		expected := []map[string]interface{}{
 			{
 				"id": usersID[0],
@@ -526,7 +526,7 @@ func TestTeams_RemoveUserToTeam(t *testing.T) {
 	userID := "1"
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s/users/%s", orgID, teamID, userID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/%s/users/%s", orgID, teamID, userID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -543,7 +543,7 @@ func TestTeams_RemoveTeamFromOrganization(t *testing.T) {
 	orgID := "1"
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s/teams/%s", orgID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -560,7 +560,7 @@ func TestTeams_RemoveTeamFromProject(t *testing.T) {
 	groupID := "1"
 	teamID := "6b720e1087d9d66b272f1c86"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/teams/%s", groupID, teamID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/teams/%s", groupID, teamID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

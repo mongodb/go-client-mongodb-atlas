@@ -21,7 +21,8 @@ import (
 )
 
 const (
-	teamsBasePath = "orgs/%s/teams"
+	teamsOrgBasePath  = "api/atlas/v1.0/orgs/%s/teams"
+	teamsProjBasePath = "api/atlas/v1.0/groups/%s/teams/%s"
 )
 
 // TeamsService is an interface for interfacing with the Teams
@@ -92,7 +93,7 @@ type TeamRoles struct {
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/project-get-all/
 func (s *TeamsServiceOp) List(ctx context.Context, orgID string, listOptions *ListOptions) ([]Team, *Response, error) {
-	path := fmt.Sprintf(teamsBasePath, orgID)
+	path := fmt.Sprintf(teamsOrgBasePath, orgID)
 
 	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
@@ -129,7 +130,7 @@ func (s *TeamsServiceOp) Get(ctx context.Context, orgID, teamID string) (*Team, 
 		return nil, nil, NewArgError("teamID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
@@ -157,7 +158,7 @@ func (s *TeamsServiceOp) GetOneTeamByName(ctx context.Context, orgID, teamName s
 		return nil, nil, NewArgError("teamName", "must be set")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/byName/%s", basePath, teamName)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
@@ -185,7 +186,7 @@ func (s *TeamsServiceOp) GetTeamUsersAssigned(ctx context.Context, orgID, teamID
 		return nil, nil, NewArgError("teamID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s/users", basePath, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
@@ -217,7 +218,7 @@ func (s *TeamsServiceOp) Create(ctx context.Context, orgID string, createRequest
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, fmt.Sprintf(teamsBasePath, orgID), createRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, fmt.Sprintf(teamsOrgBasePath, orgID), createRequest)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -245,7 +246,7 @@ func (s *TeamsServiceOp) Rename(ctx context.Context, orgID, teamID, teamName str
 		return nil, nil, NewArgError("teamName", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, map[string]interface{}{
@@ -278,7 +279,7 @@ func (s *TeamsServiceOp) UpdateTeamRoles(ctx context.Context, orgID, teamID stri
 		return nil, nil, NewArgError("updateTeamRolesRequest", "cannot be nil")
 	}
 
-	path := fmt.Sprintf("groups/%s/teams/%s", orgID, teamID)
+	path := fmt.Sprintf(teamsProjBasePath, orgID, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateTeamRolesRequest)
 	if err != nil {
@@ -312,7 +313,7 @@ func (s *TeamsServiceOp) AddUsersToTeam(ctx context.Context, orgID, teamID strin
 		return nil, nil, NewArgError("usersID", "cannot empty at leas one userID must be set")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s/users", basePath, teamID)
 
 	users := make([]map[string]interface{}, len(usersID))
@@ -353,7 +354,7 @@ func (s *TeamsServiceOp) RemoveUserToTeam(ctx context.Context, orgID, teamID, us
 		return nil, NewArgError("userID", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s/users/%s", basePath, teamID, userID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
@@ -380,7 +381,7 @@ func (s *TeamsServiceOp) RemoveTeamFromOrganization(ctx context.Context, orgID, 
 		return nil, NewArgError("teamID", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(teamsBasePath, orgID)
+	basePath := fmt.Sprintf(teamsOrgBasePath, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
@@ -407,7 +408,7 @@ func (s *TeamsServiceOp) RemoveTeamFromProject(ctx context.Context, groupID, tea
 		return nil, NewArgError("teamID", "cannot be nil")
 	}
 
-	path := fmt.Sprintf("groups/%s/teams/%s", groupID, teamID)
+	path := fmt.Sprintf(teamsProjBasePath, groupID, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {

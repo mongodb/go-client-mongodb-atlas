@@ -29,7 +29,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 	defer teardown()
 	groupID := "5e2211c17a3e5a48f5497de3"
 	clusterName := "myTestClstr"
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{"links": [
 			 {
@@ -187,7 +187,7 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 	groupID := "5e2211c17a3e5a48f5497de3"
 	clusterName := "myTestClstr"
 	archiveID := "5ebad3c1fe9c0ab8d37d61e1"
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
 			 "_id": "5ebad3c1fe9c0ab8d37d61e1",
@@ -283,7 +283,7 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"collName": "employees",
 			"criteria": map[string]interface{}{
@@ -362,7 +362,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"criteria": map[string]interface{}{
 				"expireAfterDays": float64(6),
@@ -416,7 +416,7 @@ func TestOnlineArchiveServiceOp_Delete(t *testing.T) {
 	clusterName := "myTestClstr"
 	archiveID := "5ebad3c1fe9c0ab8d37d61e1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives/%s", groupID, clusterName, archiveID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

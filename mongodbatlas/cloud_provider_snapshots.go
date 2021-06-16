@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	cloudProviderSnapshotsBasePath = "groups"
+	cloudProviderSnapshotsBasePath = "api/atlas/v1.0/groups"
 )
 
 // CloudProviderSnapshotsService is an interface for interfacing with the Cloud Provider Snapshots

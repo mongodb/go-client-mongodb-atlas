@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	performanceAdvisorPath                     = "groups/%s/processes/%s/performanceAdvisor"
+	performanceAdvisorPath                     = "api/atlas/v1.0/groups/%s/processes/%s/performanceAdvisor"
 	performanceAdvisorNamespacesPath           = performanceAdvisorPath + "/namespaces"
 	performanceAdvisorSlowQueryLogsPath        = performanceAdvisorPath + "/slowQueryLogs"
 	performanceAdvisorSuggestedIndexesLogsPath = performanceAdvisorPath + "/suggestedIndexes"

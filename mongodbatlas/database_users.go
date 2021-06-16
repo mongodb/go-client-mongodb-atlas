@@ -21,7 +21,7 @@ import (
 	"net/url"
 )
 
-const dbUsersBasePath = "groups/%s/databaseUsers"
+const dbUsersBasePath = "api/atlas/v1.0/groups/%s/databaseUsers"
 
 var adminX509Type = map[string]struct{}{
 	"MANAGED":  {},

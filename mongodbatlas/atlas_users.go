@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	usersBasePath = "groups/%s/users"
+	usersBasePath = "api/atlas/v1.0/groups/%s/users"
 )
 
 // AtlasUsersService is an interface for interfacing with the AtlasUsers
@@ -100,7 +100,7 @@ func (s *AtlasUsersServiceOp) Get(ctx context.Context, userID string) (*AtlasUse
 		return nil, nil, NewArgError("userID", "must be set")
 	}
 
-	path := fmt.Sprintf("users/%s", userID)
+	path := fmt.Sprintf("api/atlas/v1.0/users/%s", userID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
@@ -124,7 +124,7 @@ func (s *AtlasUsersServiceOp) GetByName(ctx context.Context, username string) (*
 		return nil, nil, NewArgError("username", "must be set")
 	}
 
-	path := fmt.Sprintf("users/byName/%s", username)
+	path := fmt.Sprintf("api/atlas/v1.0/users/byName/%s", username)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {

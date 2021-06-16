@@ -27,7 +27,7 @@ func TestPeers_ListPeers(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -73,7 +73,7 @@ func TestPeers_ListPeersMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := peersResponse{
@@ -146,7 +146,7 @@ func TestPeers_RetrievePageByNumber(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/peers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, jBlob)
 	})
@@ -179,7 +179,7 @@ func TestPeers_Create(t *testing.T) {
 		Status:       "ADDING_PEER",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/peers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/peers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"containerId":  "507f1f77bcf86cd799439011",
 			"gcpProjectId": "my-sample-project-191923",
@@ -242,7 +242,7 @@ func TestPeers_Update(t *testing.T) {
 		Status:       "ADDING_PEER",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/peers/%s", groupID, peerID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/peers/%s", groupID, peerID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"containerId":  "507f1f77bcf86cd799439011",
 			"gcpProjectId": "my-sample-project-191923",
@@ -297,7 +297,7 @@ func TestPeers_Delete(t *testing.T) {
 	groupID := "1"
 	id := "1112222b3bf99403840e8934"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/peers/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/peers/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

@@ -27,7 +27,7 @@ func TestOrganizationsServiceOp_List(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
 
-		mux.HandleFunc("/orgs", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/orgs", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 			_, _ = fmt.Fprint(w, `{
 				"links": [{
@@ -98,7 +98,7 @@ func TestOrganizationsServiceOp_List(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
 
-		mux.HandleFunc("/orgs", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/orgs", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 			_, _ = fmt.Fprint(w, `{
 				"links": [
@@ -404,7 +404,7 @@ func TestOrganizations_Delete(t *testing.T) {
 
 	orgID := "5a0a1e7e0f2912c554080adc"
 
-	mux.HandleFunc(fmt.Sprintf("/orgs/%s", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s", orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

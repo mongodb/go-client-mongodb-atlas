@@ -22,7 +22,7 @@ import (
 )
 
 const (
-	privateEndpointsPath = "groups/%s/privateEndpoint"
+	privateEndpointsPath = "api/atlas/v1.0/groups/%s/privateEndpoint"
 	regionalModePath     = privateEndpointsPath + "/regionalMode"
 )
 

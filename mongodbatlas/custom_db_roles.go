@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const dbCustomDBRolesBasePath = "groups/%s/customDBRoles/roles"
+const dbCustomDBRolesBasePath = "api/atlas/v1.0/groups/%s/customDBRoles/roles"
 
 // CustomDBRolesService is an interface for working wit the Custom MongoDB Roles
 // endpoints of the MongoDB Atlas API.

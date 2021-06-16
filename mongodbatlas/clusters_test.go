@@ -28,7 +28,7 @@ func TestClusters_ListClusters(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -272,7 +272,7 @@ func TestClusters_ListClustersMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := clustersResponse{
@@ -331,7 +331,7 @@ func TestClusters_RetrievePageByNumber(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/clusters", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, jBlob)
 	})
@@ -393,7 +393,7 @@ func TestClusters_Create(t *testing.T) {
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"id": "1",
 			"autoScaling": map[string]interface{}{
@@ -576,7 +576,7 @@ func TestClusters_Update(t *testing.T) {
 		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"id": "1",
 			"autoScaling": map[string]interface{}{
@@ -713,7 +713,7 @@ func TestClusters_Delete(t *testing.T) {
 	groupID := "1"
 	name := "test-name"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s", groupID, name), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, name), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -741,7 +741,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		SampleRefreshIntervalBIConnector: pointy.Int64(300),
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"failIndexKeyTooLong":              false,
 			"javascriptEnabled":                false,
@@ -800,7 +800,7 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 	groupID := "1"
 	clusterName := "test-cluster"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"failIndexKeyTooLong": false,
@@ -846,7 +846,7 @@ func TestClusters_Get(t *testing.T) {
 	groupID := "1"
 	clusterName := "appData"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{	
 			"id":"1",
@@ -995,7 +995,7 @@ func TestClusters_Status(t *testing.T) {
 	groupID := "1"
 	clusterName := "appData"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/clusters/%s/status", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/status", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{ "changeStatus": "PENDING" }`)
 	})
@@ -1019,7 +1019,7 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 	groupID := "1"
 	clusterName := "appData"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/sampleDatasetLoad/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{ 
 							 "_id": "1",
@@ -1054,7 +1054,7 @@ func TestClusters_GetSampleDatasetStatus(t *testing.T) {
 	groupID := "1"
 	jobID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/sampleDatasetLoad/%s", groupID, jobID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/sampleDatasetLoad/%s", groupID, jobID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{ 
 							 "_id": "1",
@@ -1088,7 +1088,7 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 
 	groupID := "5b6212af90dc76637950a2c6"
 
-	path := fmt.Sprintf("/groups/%s/clusters/provider/regions", groupID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/provider/regions", groupID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)

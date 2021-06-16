@@ -30,7 +30,7 @@ func TestAlert_Get(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alerts/%s", groupID, alertID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alerts/%s", groupID, alertID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"id": "533dc40ae4b00835ff81eaee",
@@ -111,7 +111,7 @@ func TestAlerts_List(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alerts", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alerts", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -270,7 +270,7 @@ func TestAlert_Acknowledge(t *testing.T) {
 		AcknowledgementComment: "This is normal. Please ignore.",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alerts/%s", groupID, alertID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alerts/%s", groupID, alertID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		fmt.Fprint(w, `{
 			"id": "533dc40ae4b00835ff81eaee",

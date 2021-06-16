@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const processesDatabasesPath = "groups/%s/processes/%s:%d/databases"
+const processesDatabasesPath = "api/atlas/v1.0/groups/%s/processes/%s:%d/databases"
 
 // ProcessDatabasesService is an interface for interfacing with the Process Measurements
 // endpoints of the MongoDB Atlas API.

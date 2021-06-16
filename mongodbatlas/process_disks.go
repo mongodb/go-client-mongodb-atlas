@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const processesDisksPath = "groups/%s/processes/%s:%d/disks"
+const processesDisksPath = "api/atlas/v1.0/groups/%s/processes/%s:%d/disks"
 
 // ProcessDisksService is an interface for interfacing with the Process Measurements
 // endpoints of the MongoDB Atlas API.

@@ -28,7 +28,7 @@ func TestLDAPConfigurations_Verify(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity/ldap/verify", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity/ldap/verify", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{
 			"groupId" : "{PROJECT-ID}",
@@ -76,7 +76,7 @@ func TestLDAPConfigurations_GetStatus(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	requestID := "22"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity/ldap/verify/%s", groupID, requestID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity/ldap/verify/%s", groupID, requestID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"groupId" : "{PROJECT-ID}",
@@ -134,7 +134,7 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		fmt.Fprint(w, `{
 			  "ldap" : {
@@ -195,7 +195,7 @@ func TestLDAPConfigurations_Get(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			  "ldap" : {
@@ -246,7 +246,7 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/userSecurity/ldap/userToDNMapping", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity/ldap/userToDNMapping", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 		fmt.Fprint(w, `{
 			  "ldap" : {

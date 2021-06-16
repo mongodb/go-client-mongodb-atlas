@@ -29,7 +29,7 @@ func TestCheckpoints_List(t *testing.T) {
 	groupID := "6b8cd3c380eef5349ef77gf7"
 	clusterName := "Cluster0"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backupCheckpoints", groupID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backupCheckpoints", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -266,7 +266,7 @@ func TestCheckpoints_Get(t *testing.T) {
 	groupID := "6b8cd3c380eef5349ef77gf7"
 	clusterName := "Cluster0"
 	checkpointID := "6b8cd61180eef547110159d9"
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backupCheckpoints/%s", groupID, clusterName, checkpointID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backupCheckpoints/%s", groupID, clusterName, checkpointID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)

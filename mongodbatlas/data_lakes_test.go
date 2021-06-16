@@ -30,7 +30,7 @@ func TestDataLakes_List(t *testing.T) {
 
 	groupID := "6c7498dg87d9e6526801572b"
 
-	path := fmt.Sprintf("/groups/%s/dataLakes", groupID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataLakes", groupID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -168,7 +168,7 @@ func TestDataLake_Get(t *testing.T) {
 
 	groupID := "6c7498dg87d9e6526801572b"
 	dataLakeName := "UserMetricData"
-	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataLakes/%s", groupID, dataLakeName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -246,7 +246,7 @@ func TestDataLake_Update(t *testing.T) {
 		},
 	}
 
-	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataLakes/%s", groupID, dataLakeName)
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		expected := map[string]interface{}{
@@ -344,7 +344,7 @@ func TestDataLake_Create(t *testing.T) {
 		},
 	}
 
-	path := fmt.Sprintf("/groups/%s/dataLakes", groupID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataLakes", groupID)
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		expected := map[string]interface{}{
@@ -426,7 +426,7 @@ func TestDataLake_Delete(t *testing.T) {
 	groupID := "6c7498dg87d9e6526801572b"
 	dataLakeName := "dataLake"
 
-	path := fmt.Sprintf("/groups/%s/dataLakes/%s", groupID, dataLakeName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataLakes/%s", groupID, dataLakeName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)

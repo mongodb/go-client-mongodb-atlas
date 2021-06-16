@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const cloudProviderSnapshotRestoreJobBasePath = "groups"
+const cloudProviderSnapshotRestoreJobBasePath = "api/atlas/v1.0/groups"
 
 // CloudProviderSnapshotRestoreJobsService is an interface for interfacing with the CloudProviderSnapshotRestoreJobs
 // endpoints of the MongoDB Atlas API.

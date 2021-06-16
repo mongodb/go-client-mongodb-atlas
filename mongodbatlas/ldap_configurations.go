@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	ldapConfigurationPath                = "groups/%s/userSecurity"
+	ldapConfigurationPath                = "api/atlas/v1.0/groups/%s/userSecurity"
 	ldapConfigurationPathuserToDNMapping = ldapConfigurationPath + "/ldap/userToDNMapping"
 	ldapVerifyConfigurationPath          = ldapConfigurationPath + "/ldap/verify"
 )

@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	cloudProviderSnapshotBackupPolicesBasePath = "groups/%s/clusters/%s/backup/schedule"
+	cloudProviderSnapshotBackupPolicesBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule"
 )
 
 // CloudProviderSnapshotBackupPoliciesService is an interface for interfacing with the Cloud Provider Snapshots Backup Policy

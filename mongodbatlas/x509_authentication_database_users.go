@@ -21,8 +21,8 @@ import (
 	"net/http"
 )
 
-const x509AuthDBUsersPath = "groups/%s/databaseUsers/%s/certs"
-const x509CustomerAuthDBUserPath = "groups/%s/userSecurity"
+const x509AuthDBUsersPath = "api/atlas/v1.0/groups/%s/databaseUsers/%s/certs"
+const x509CustomerAuthDBUserPath = "api/atlas/v1.0/groups/%s/userSecurity"
 
 // X509AuthDBUsersService is an interface for interfacing with the x509 Authentication Database Users.
 //

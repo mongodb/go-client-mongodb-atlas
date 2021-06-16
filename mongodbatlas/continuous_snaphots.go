@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	continuousSnapshotsBasePath = "groups/%s/clusters/%s/snapshots"
+	continuousSnapshotsBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/snapshots"
 )
 
 // ContinuousSnapshotsService is an interface for interfacing with the Continuous Snapshots

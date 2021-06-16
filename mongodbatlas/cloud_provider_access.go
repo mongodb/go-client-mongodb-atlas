@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const cloudProviderAccessPath = "groups/%s/cloudProviderAccess"
+const cloudProviderAccessPath = "api/atlas/v1.0/groups/%s/cloudProviderAccess"
 
 // CloudProviderAccessService provides access to the cloud provider access functions in the Atlas API.
 //
