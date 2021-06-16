@@ -34,7 +34,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://cloud.mongodb.com/"
+	CloudURL = "https://cloud.mongodb.com/"
 	jsonMediaType  = "application/json"
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
@@ -231,7 +231,7 @@ func NewClient(httpClient *http.Client) *Client {
 		httpClient = http.DefaultClient
 	}
 
-	baseURL, _ := url.Parse(defaultBaseURL)
+	baseURL, _ := url.Parse(CloudURL)
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
