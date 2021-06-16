@@ -203,6 +203,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 	pitEnabled := true
 	diskSizeGB := 10.0
 	diskSizeGBGeoSharded := 40.0
+	priority := 7
 	expected := &AdvancedClustersResponse{
 
 		Links: []*Link{{
@@ -212,7 +213,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 
 		Results: []*AdvancedCluster{
 			{
-				BaseCluster: BaseCluster{
+				BaseCluster: &BaseCluster{
 					BackupEnabled: &backupEnabled,
 					BiConnector: &BiConnector{
 						Enabled:        &enabled,
@@ -255,7 +256,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 									InstanceSize:  "M10",
 									NodeCount:     0,
 								},
-								Priority:     7,
+								Priority:     &priority,
 								ProviderName: "AWS",
 								RegionName:   "US_EAST_1",
 							},
@@ -266,7 +267,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 				RootCertType: "DST",
 			},
 			{
-				BaseCluster: BaseCluster{
+				BaseCluster: &BaseCluster{
 					BackupEnabled: &backupEnabled,
 					BiConnector: &BiConnector{
 						Enabled:        &enabled,
@@ -303,7 +304,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 									InstanceSize: "M30",
 									NodeCount:    0,
 								},
-								Priority:     7,
+								Priority:     &priority,
 								ProviderName: "GCP",
 								RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 							},
@@ -327,7 +328,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 									InstanceSize: "M30",
 									NodeCount:    0,
 								},
-								Priority:     7,
+								Priority:     &priority,
 								ProviderName: "GCP",
 								RegionName:   "ASIA_NORTHEAST_2",
 							},
@@ -351,7 +352,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 									InstanceSize: "M30",
 									NodeCount:    0,
 								},
-								Priority:     7,
+								Priority:     &priority,
 								ProviderName: "GCP",
 								RegionName:   "EUROPE_WEST_6",
 							},
@@ -479,9 +480,10 @@ func TestAdvancedClusters_Get(t *testing.T) {
 	paused := false
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
+	priority := 7
 
 	expected := &AdvancedCluster{
-		BaseCluster: BaseCluster{
+		BaseCluster: &BaseCluster{
 			BackupEnabled: &backupEnabled,
 			BiConnector: &BiConnector{
 				Enabled:        &enabled,
@@ -518,7 +520,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 					},
@@ -542,7 +544,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "ASIA_NORTHEAST_2",
 					},
@@ -566,7 +568,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "EUROPE_WEST_6",
 					},
@@ -688,9 +690,10 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	paused := false
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
+	priority := 7
 
 	requestCluster := &AdvancedCluster{
-		BaseCluster: BaseCluster{
+		BaseCluster: &BaseCluster{
 			BackupEnabled: &backupEnabled,
 			BiConnector: &BiConnector{
 				Enabled:        &enabled,
@@ -727,7 +730,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 					},
@@ -751,7 +754,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "ASIA_NORTHEAST_2",
 					},
@@ -775,7 +778,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "EUROPE_WEST_6",
 					},
@@ -791,7 +794,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	}
 
 	expected := &AdvancedCluster{
-		BaseCluster: BaseCluster{
+		BaseCluster: &BaseCluster{
 			BackupEnabled: &backupEnabled,
 			BiConnector: &BiConnector{
 				Enabled:        &enabled,
@@ -828,7 +831,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 					},
@@ -852,7 +855,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "ASIA_NORTHEAST_2",
 					},
@@ -876,7 +879,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "EUROPE_WEST_6",
 					},
@@ -998,9 +1001,10 @@ func TestAdvancedClusters_Update(t *testing.T) {
 	paused := false
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
+	priority := 7
 
 	requestCluster := &AdvancedCluster{
-		BaseCluster: BaseCluster{
+		BaseCluster: &BaseCluster{
 			BackupEnabled: &backupEnabled,
 			BiConnector: &BiConnector{
 				Enabled:        &enabled,
@@ -1037,7 +1041,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 					},
@@ -1061,7 +1065,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "ASIA_NORTHEAST_2",
 					},
@@ -1085,7 +1089,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "EUROPE_WEST_6",
 					},
@@ -1101,7 +1105,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 	}
 
 	expected := &AdvancedCluster{
-		BaseCluster: BaseCluster{
+		BaseCluster: &BaseCluster{
 			BackupEnabled: &backupEnabled,
 			BiConnector: &BiConnector{
 				Enabled:        &enabled,
@@ -1138,7 +1142,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "NORTH_AMERICA_NORTHEAST_1",
 					},
@@ -1162,7 +1166,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "ASIA_NORTHEAST_2",
 					},
@@ -1186,7 +1190,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							InstanceSize: "M30",
 							NodeCount:    0,
 						},
-						Priority:     7,
+						Priority:     &priority,
 						ProviderName: "GCP",
 						RegionName:   "EUROPE_WEST_6",
 					},

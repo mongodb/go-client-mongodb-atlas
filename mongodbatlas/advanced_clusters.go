@@ -26,7 +26,7 @@ const advancedClustersPath = "api/atlas/v1.5/groups/%s/clusters"
 // AdvancedClustersService is an interface for interfacing with the Clusters (Advanced)
 // endpoints of the MongoDB Atlas API.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/clusters-advanced/
+// See more: https://docs.atlas.mongodb.com/reference/api/clusters-advanced/
 type AdvancedClustersService interface {
 	List(ctx context.Context, groupID string, options *ListOptions) (*AdvancedClustersResponse, *Response, error)
 	Get(ctx context.Context, groupID, clusterName string) (*AdvancedCluster, *Response, error)
@@ -43,7 +43,7 @@ var _ AdvancedClustersService = &AdvancedClustersServiceOp{}
 
 // AdvancedCluster represents MongoDB cluster.
 type AdvancedCluster struct {
-	BaseCluster
+	*BaseCluster
 	ReplicationSpecs []*AdvancedRegionSpec `json:"replicationSpecs,omitempty"`
 	CreateDate       string                `json:"createDate,omitempty"`
 	RootCertType     string                `json:"rootCertType,omitempty"`
@@ -61,7 +61,7 @@ type AdvancedRegionConfig struct {
 	ElectableSpecs      *Specs `json:"electableSpecs,omitempty"`
 	ReadOnlySpecs       *Specs `json:"readOnlySpecs,omitempty"`
 	BackingProviderName string `json:"backingProviderName,omitempty"`
-	Priority            int    `json:"priority,omitempty"`
+	Priority            *int   `json:"priority,omitempty"`
 	ProviderName        string `json:"providerName,omitempty"`
 	RegionName          string `json:"regionName,omitempty"`
 }
@@ -91,7 +91,7 @@ type AdvancedClustersResponse struct {
 
 // List all clusters in the project associated to {GROUP-ID}.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-all/
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-advanced/get-all-cluster-advanced/
 func (s *AdvancedClustersServiceOp) List(ctx context.Context, groupID string, listOptions *ListOptions) (*AdvancedClustersResponse, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -124,7 +124,7 @@ func (s *AdvancedClustersServiceOp) List(ctx context.Context, groupID string, li
 
 // Get gets the cluster specified to {ClUSTER-NAME} from the project associated to {GROUP-ID}.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-advanced/get-one-cluster-advanced/
 func (s *AdvancedClustersServiceOp) Get(ctx context.Context, groupID, clusterName string) (*AdvancedCluster, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -153,7 +153,7 @@ func (s *AdvancedClustersServiceOp) Get(ctx context.Context, groupID, clusterNam
 
 // Create adds a cluster to the project associated to {GROUP-ID}.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-create-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/
 func (s *AdvancedClustersServiceOp) Create(ctx context.Context, groupID string, createRequest *AdvancedCluster) (*AdvancedCluster, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -180,7 +180,7 @@ func (s *AdvancedClustersServiceOp) Create(ctx context.Context, groupID string, 
 
 // Update a cluster in the project associated to {GROUP-ID}
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-one/
+// See more: https://docs.atlas.mongodb.com/reference/api/cluster-advanced/modify-one-cluster-advanced/
 func (s *AdvancedClustersServiceOp) Update(ctx context.Context, groupID, clusterName string, updateRequest *AdvancedCluster) (*AdvancedCluster, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
