@@ -21,6 +21,8 @@ import (
 	"net/url"
 )
 
+const advancedClustersPath = "api/atlas/v1.5/groups/%s/clusters"
+
 // AdvancedClustersService is an interface for interfacing with the Clusters (Advanced)
 // endpoints of the MongoDB Atlas API.
 //
@@ -30,9 +32,10 @@ type AdvancedClustersService interface {
 	Get(ctx context.Context, groupID, clusterName string) (*AdvancedCluster, *Response, error)
 	Create(ctx context.Context, groupID string, cluster *AdvancedCluster) (*AdvancedCluster, *Response, error)
 	Update(ctx context.Context, groupID, clusterName string, cluster *AdvancedCluster) (*AdvancedCluster, *Response, error)
+	Delete(ctx context.Context, groupID, clusterName string) (*Response, error)
 }
 
-// AdvancedClustersServiceOp handles communication with the Advanced Cluster related methods
+// AdvancedClustersServiceOp handles communication with the Cluster (Advanced) related methods
 // of the MongoDB Atlas API
 type AdvancedClustersServiceOp service
 
@@ -44,11 +47,12 @@ type AdvancedCluster struct {
 	ReplicationSpecs []*AdvancedRegionSpec `json:"replicationSpecs,omitempty"`
 	CreateDate       string                `json:"createDate,omitempty"`
 	RootCertType     string                `json:"rootCertType,omitempty"`
-	StateName        string                `json:"stateName,omitempty"`
 }
 
 type AdvancedRegionSpec struct {
-	NumShards     int `json:"numShards,omitempty"`
+	NumShards     int    `json:"numShards,omitempty"`
+	ID            string `json:"id,omitempty"`
+	ZoneName      string `json:"zoneName,omitempty"`
 	RegionConfigs []*AdvancedRegionConfig
 }
 
@@ -78,7 +82,7 @@ type Specs struct {
 	NodeCount     int     `json:"nodeCount,omitempty"`
 }
 
-// AdvancedClustersResponse is the response from the ClustersService.List.
+// AdvancedClustersResponse is the response from the AdvancedClustersService.List.
 type AdvancedClustersResponse struct {
 	Links      []*Link            `json:"links,omitempty"`
 	Results    []*AdvancedCluster `json:"results,omitempty"`
@@ -92,7 +96,7 @@ func (s *AdvancedClustersServiceOp) List(ctx context.Context, groupID string, li
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
-	path := fmt.Sprintf(clustersPath, groupID)
+	path := fmt.Sprintf(advancedClustersPath, groupID)
 
 	// Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
@@ -100,7 +104,7 @@ func (s *AdvancedClustersServiceOp) List(ctx context.Context, groupID string, li
 		return nil, nil, err
 	}
 
-	req, err := s.Client.NewRequestAndSetBaseUrl(ctx, ApiV15, http.MethodGet, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -129,11 +133,11 @@ func (s *AdvancedClustersServiceOp) Get(ctx context.Context, groupID, clusterNam
 		return nil, nil, err
 	}
 
-	basePath := fmt.Sprintf(clustersPath, groupID)
+	basePath := fmt.Sprintf(advancedClustersPath, groupID)
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
 
-	req, err := s.Client.NewRequestAndSetBaseUrl(ctx, ApiV15, http.MethodGet, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -158,9 +162,9 @@ func (s *AdvancedClustersServiceOp) Create(ctx context.Context, groupID string, 
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
 
-	path := fmt.Sprintf(clustersPath, groupID)
+	path := fmt.Sprintf(advancedClustersPath, groupID)
 
-	req, err := s.Client.NewRequestAndSetBaseUrl(ctx, ApiV15, http.MethodPost, path, createRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -185,10 +189,10 @@ func (s *AdvancedClustersServiceOp) Update(ctx context.Context, groupID, cluster
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(clustersPath, groupID)
+	basePath := fmt.Sprintf(advancedClustersPath, groupID)
 	path := fmt.Sprintf("%s/%s", basePath, clusterName)
 
-	req, err := s.Client.NewRequestAndSetBaseUrl(ctx, ApiV15, http.MethodPatch, path, updateRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -200,4 +204,27 @@ func (s *AdvancedClustersServiceOp) Update(ctx context.Context, groupID, cluster
 	}
 
 	return root, resp, err
+}
+
+// Delete the cluster specified to {CLUSTER-NAME} from the project associated to {GROUP-ID}.
+func (s *AdvancedClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
+	if clusterName == "" {
+		return nil, NewArgError("clusterName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(advancedClustersPath, groupID)
+	escapedEntry := url.PathEscape(clusterName)
+	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
 }

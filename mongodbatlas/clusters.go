@@ -137,22 +137,7 @@ type ConnectionStrings struct {
 // Cluster represents MongoDB cluster.
 type Cluster struct {
 	*BaseCluster
-	AutoScaling *AutoScaling `json:"autoScaling,omitempty"`
-	//BackupEnabled            *bool                    `json:"backupEnabled,omitempty"` // Deprecated: Use ProviderBackupEnabled instead
-	//BiConnector              *BiConnector             `json:"biConnector,omitempty"`
-	//ClusterType              string                   `json:"clusterType,omitempty"`
-	//DiskSizeGB               *float64                 `json:"diskSizeGB,omitempty"`
-	//EncryptionAtRestProvider string                   `json:"encryptionAtRestProvider,omitempty"`
-	//Labels                   []Label                  `json:"labels,omitempty"`
-	//ID                       string                   `json:"id,omitempty"`
-	//GroupID                  string                   `json:"groupId,omitempty"`
-	//MongoDBVersion           string                   `json:"mongoDBVersion,omitempty"`
-	//MongoDBMajorVersion      string                   `json:"mongoDBMajorVersion,omitempty"`
-	//Name                     string                   `json:"name,omitempty"`
-	//Paused                   *bool                    `json:"paused,omitempty"`
-	//PitEnabled               *bool                    `json:"pitEnabled,omitempty"`
-	//StateName                string                   `json:"stateName,omitempty"`
-	//ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
+	AutoScaling           *AutoScaling             `json:"autoScaling,omitempty"`
 	MongoURI              string                   `json:"mongoURI,omitempty"`
 	MongoURIUpdated       string                   `json:"mongoURIUpdated,omitempty"`
 	MongoURIWithOptions   string                   `json:"mongoURIWithOptions,omitempty"`

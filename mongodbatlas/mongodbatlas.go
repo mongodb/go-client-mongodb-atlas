@@ -134,6 +134,7 @@ type Client struct {
 	CloudProviderAccess                 CloudProviderAccessService
 	DefaultMongoDBMajorVersion          DefaultMongoDBMajorVersionService
 	IPInfo                              IPInfoService
+	AdvancedClusters                    AdvancedClustersService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -284,6 +285,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CloudProviderAccess = &CloudProviderAccessServiceOp{Client: c}
 	c.DefaultMongoDBMajorVersion = &DefaultMongoDBMajorVersionServiceOp{Client: c}
 	c.IPInfo = &IPInfoServiceOp{Client: c}
+	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
 
 	return c
 }
