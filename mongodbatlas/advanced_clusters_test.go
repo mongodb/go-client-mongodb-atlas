@@ -204,6 +204,9 @@ func TestAdvancedClusters_List(t *testing.T) {
 	diskSizeGB := 10.0
 	diskSizeGBGeoSharded := 40.0
 	priority := 7
+	diskIOPS := int64(100)
+	nodeCountZero := 0
+	nodeCount := 3
 	expected := &AdvancedClustersResponse{
 
 		Links: []*Link{{
@@ -239,22 +242,22 @@ func TestAdvancedClusters_List(t *testing.T) {
 						RegionConfigs: []*AdvancedRegionConfig{
 							{
 								AnalyticsSpecs: &Specs{
-									DiskIOPS:      100,
+									DiskIOPS:      &diskIOPS,
 									EbsVolumeType: "STANDARD",
 									InstanceSize:  "M10",
-									NodeCount:     0,
+									NodeCount:     &nodeCountZero,
 								},
 								ElectableSpecs: &Specs{
-									DiskIOPS:      100,
+									DiskIOPS:      &diskIOPS,
 									EbsVolumeType: "STANDARD",
 									InstanceSize:  "M10",
-									NodeCount:     3,
+									NodeCount:     &nodeCount,
 								},
 								ReadOnlySpecs: &Specs{
-									DiskIOPS:      100,
+									DiskIOPS:      &diskIOPS,
 									EbsVolumeType: "STANDARD",
 									InstanceSize:  "M10",
-									NodeCount:     0,
+									NodeCount:     &nodeCountZero,
 								},
 								Priority:     &priority,
 								ProviderName: "AWS",
@@ -294,15 +297,15 @@ func TestAdvancedClusters_List(t *testing.T) {
 							{
 								AnalyticsSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								ElectableSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    3,
+									NodeCount:    &nodeCount,
 								},
 								ReadOnlySpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								Priority:     &priority,
 								ProviderName: "GCP",
@@ -318,15 +321,15 @@ func TestAdvancedClusters_List(t *testing.T) {
 							{
 								AnalyticsSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								ElectableSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    3,
+									NodeCount:    &nodeCount,
 								},
 								ReadOnlySpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								Priority:     &priority,
 								ProviderName: "GCP",
@@ -342,15 +345,15 @@ func TestAdvancedClusters_List(t *testing.T) {
 							{
 								AnalyticsSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								ElectableSpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    3,
+									NodeCount:    &nodeCount,
 								},
 								ReadOnlySpecs: &Specs{
 									InstanceSize: "M30",
-									NodeCount:    0,
+									NodeCount:    &nodeCountZero,
 								},
 								Priority:     &priority,
 								ProviderName: "GCP",
@@ -481,6 +484,8 @@ func TestAdvancedClusters_Get(t *testing.T) {
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
 	priority := 7
+	nodeCountZero := 0
+	nodeCount := 3
 
 	expected := &AdvancedCluster{
 		BaseCluster: &BaseCluster{
@@ -510,15 +515,15 @@ func TestAdvancedClusters_Get(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -534,15 +539,15 @@ func TestAdvancedClusters_Get(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -558,15 +563,15 @@ func TestAdvancedClusters_Get(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -691,6 +696,8 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
 	priority := 7
+	nodeCountZero := 0
+	nodeCount := 3
 
 	requestCluster := &AdvancedCluster{
 		BaseCluster: &BaseCluster{
@@ -720,15 +727,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -744,15 +751,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -768,15 +775,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -821,15 +828,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -845,15 +852,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -869,15 +876,15 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1002,6 +1009,8 @@ func TestAdvancedClusters_Update(t *testing.T) {
 	pitEnabled := true
 	diskSizeGBGeoSharded := 40.0
 	priority := 7
+	nodeCountZero := 0
+	nodeCount := 3
 
 	requestCluster := &AdvancedCluster{
 		BaseCluster: &BaseCluster{
@@ -1031,15 +1040,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1055,15 +1064,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1079,15 +1088,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1132,15 +1141,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1156,15 +1165,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",
@@ -1180,15 +1189,15 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					{
 						AnalyticsSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						ElectableSpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    3,
+							NodeCount:    &nodeCount,
 						},
 						ReadOnlySpecs: &Specs{
 							InstanceSize: "M30",
-							NodeCount:    0,
+							NodeCount:    &nodeCountZero,
 						},
 						Priority:     &priority,
 						ProviderName: "GCP",

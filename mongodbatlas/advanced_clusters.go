@@ -76,10 +76,10 @@ type DiskGB struct {
 }
 
 type Specs struct {
-	DiskIOPS      float64 `json:"diskIOPS,omitempty"`
-	EbsVolumeType string  `json:"ebsVolumeType,omitempty"`
-	InstanceSize  string  `json:"instanceSize,omitempty"`
-	NodeCount     int     `json:"nodeCount,omitempty"`
+	DiskIOPS      *int64 `json:"diskIOPS,omitempty"`
+	EbsVolumeType string `json:"ebsVolumeType,omitempty"`
+	InstanceSize  string `json:"instanceSize,omitempty"`
+	NodeCount     *int   `json:"nodeCount,omitempty"`
 }
 
 // AdvancedClustersResponse is the response from the AdvancedClustersService.List.
