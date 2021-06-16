@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	searchBasePath = "groups/%s/clusters/%s/fts"
+	searchBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/fts"
 )
 
 // SearchService provides access to the search related functions in the Atlas API.

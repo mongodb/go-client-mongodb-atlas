@@ -31,7 +31,7 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 	groupID := "5b6212af90dc76637950a2c6"
 	clusterName := "myCluster"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -151,7 +151,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	groupID := "5b6212af90dc76637950a2c6"
 	clusterName := "myCluster"
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{

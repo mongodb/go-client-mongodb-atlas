@@ -27,7 +27,7 @@ func TestProjectAPIKeys_ListAPIKeys(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/apiKeys", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -120,7 +120,7 @@ func TestProjectAPIKeys_Assign(t *testing.T) {
 	groupID := "5953c5f380eef53887615f9a"
 	keyID := "5d1d12c087d9d63e6d682438"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/apiKeys/%s", groupID, keyID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/apiKeys/%s", groupID, keyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 	})
 
@@ -137,7 +137,7 @@ func TestProjectAPIKeys_Unassign(t *testing.T) {
 	groupID := "5953c5f380eef53887615f9a"
 	keyID := "5d1d12c087d9d63e6d682438"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/apiKeys/%s", groupID, keyID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/apiKeys/%s", groupID, keyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -158,7 +158,7 @@ func TestProjectAPIKeys_Create(t *testing.T) {
 		Roles: []string{"GROUP_OWNER"},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/apiKeys", orgID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/apiKeys", orgID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"desc":  "test-apiKey",
 			"roles": []interface{}{"GROUP_OWNER"},

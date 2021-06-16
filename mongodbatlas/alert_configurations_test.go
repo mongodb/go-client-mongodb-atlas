@@ -30,7 +30,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 
 	groupID := "6d2065c687d9d64ae7acdg41"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 
 		expected := map[string]interface{}{
@@ -132,7 +132,7 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertConfigID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		expected := map[string]interface{}{
 			"enabled": true,
@@ -204,7 +204,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertConfigID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"id": "533dc40ae4b00835ff81eaee",
@@ -288,7 +288,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertConfigID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs/%s/alerts", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s/alerts", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"totalCount": 2,
@@ -374,7 +374,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 
 	groupID := "535683b3794d371327b"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"results": [
@@ -527,7 +527,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 	groupID := "6d2065c687d9d64ae7acdg41"
 	alertConfigID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 
 		expected := map[string]interface{}{
@@ -627,7 +627,7 @@ func TestAlertConfiguration_Delete(t *testing.T) {
 	groupID := "535683b3794d371327b"
 	alertConfigID := "57b76ddc96e8215c017ceafb"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

@@ -27,7 +27,7 @@ func TestProcesses_ListProcesses(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `
 			{
@@ -111,7 +111,7 @@ func TestProcesses_ListProcessesMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := processesResponse{
@@ -221,7 +221,7 @@ func TestProcesses_RetrievePageByNumber(t *testing.T) {
 		}
 	`
 
-	mux.HandleFunc("/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		expectedQuery := "pageNum=2"
 		if r.URL.RawQuery != expectedQuery {

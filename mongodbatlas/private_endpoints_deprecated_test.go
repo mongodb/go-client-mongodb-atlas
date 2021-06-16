@@ -36,7 +36,7 @@ func TestPrivateEndpointDeprecated_Create(t *testing.T) {
 		Region:       "us-east-1",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"providerName": "AWS",
 			"region":       "us-east-1",
@@ -87,7 +87,7 @@ func TestPrivateEndpointsDeprecated_Get(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"endpointServiceName": "com.amazonaws.vpce.us-east-1.vpce-svc-0aee615d3fe32c14e",
@@ -122,7 +122,7 @@ func TestPrivateEndpointsDeprecated_List(t *testing.T) {
 
 	groupID := "1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
 				{
@@ -176,7 +176,7 @@ func TestPrivateEndpointsDeprecated_Delete(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -194,7 +194,7 @@ func TestPrivateEndpointDeprecated_AddOneInterfaceEndpoint(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/interfaceEndpoints", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/interfaceEndpoints", groupID, privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"interfaceEndpointId": "vpce-0b9c5701325cb15dd",
 		}
@@ -241,7 +241,7 @@ func TestPrivateEndpointsDeprecated_GetOneInterfaceEndpoint(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/interfaceEndpoints/%s", groupID, privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/interfaceEndpoints/%s", groupID, privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"interfaceEndpointId": "vpce-08fb7e9319909ec7b",
@@ -274,7 +274,7 @@ func TestPrivateEndpointsDeprecated_DeleteOneInterfaceEndpoint(t *testing.T) {
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 	interfaceEndpointID := "vpce-0b9c5701325cb15dd"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/privateEndpoint/%s/interfaceEndpoints/%s", groupID, privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/interfaceEndpoints/%s", groupID, privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

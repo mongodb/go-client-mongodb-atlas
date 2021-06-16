@@ -32,7 +32,7 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 		ClusterName: "MyCluster",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/snapshots", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/snapshots", requestParameters.GroupID, requestParameters.ClusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -117,7 +117,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 		SnapshotID:  "5b6211ff87d9d663c59d3feg",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/snapshots/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.SnapshotID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/snapshots/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.SnapshotID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -190,7 +190,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 		RetentionInDays: 5,
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/snapshots", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/snapshots", requestParameters.GroupID, requestParameters.ClusterName)
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"description":     "SomeDescription",
@@ -272,7 +272,7 @@ func TestCloudProviderSnapshots_Delete(t *testing.T) {
 		SnapshotID:  "5b6211ff87d9d663c59d3feg",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/snapshots/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.SnapshotID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/snapshots/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.SnapshotID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)

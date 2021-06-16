@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	auditingsPath = "groups/%s/auditLog"
+	auditingsPath = "api/atlas/v1.0/groups/%s/auditLog"
 )
 
 // AuditingsService is an interface for interfacing with the Auditing

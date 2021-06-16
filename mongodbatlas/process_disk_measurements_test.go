@@ -31,7 +31,7 @@ func TestProcessDiskMeasurements_List(t *testing.T) {
 	port := 27017
 	disk := "disk"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/disks/%s/measurements", groups, host, port, disk), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/processes/%s:%d/disks/%s/measurements", groups, host, port, disk), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				  "end" : "2017-08-22T20:31:14Z",

@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	maintenanceWindowsPath = "groups/%s/maintenanceWindow"
+	maintenanceWindowsPath = "api/atlas/v1.0/groups/%s/maintenanceWindow"
 	// Sunday day of the week when you would like the maintenance window to start
 	Sunday = 1
 	// Monday day of the week when you would like the maintenance window to start

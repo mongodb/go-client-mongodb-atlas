@@ -28,7 +28,7 @@ func TestDatabaseUsers_ListDatabaseUsers(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{"results": [
 				{"groupId":"1", "username":"test-username"},
@@ -67,7 +67,7 @@ func TestDatabaseUsers_ListDatabaseUsersMultiplePages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := databaseUsers{
@@ -139,7 +139,7 @@ func TestDatabaseUsers_RetrievePageByNumber(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/databaseUsers", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, jBlob)
 	})
@@ -171,7 +171,7 @@ func TestDatabaseUsers_CreateWithX509Type(t *testing.T) {
 		Scopes: []Scope{},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"databaseName": "$external",
 			"username":     "test-username",
@@ -240,7 +240,7 @@ func TestDatabaseUsers_CreateWithAWSIAMType(t *testing.T) {
 		Scopes: []Scope{},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"databaseName": "$external",
 			"username":     "arn:aws:iam::358363220050:user/mongodb-aws-iam-auth-test-user",
@@ -310,7 +310,7 @@ func TestDatabaseUsers_Create(t *testing.T) {
 		Scopes: []Scope{},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"username":     "test-username",
 			"password":     "test-password",
@@ -392,7 +392,7 @@ func TestDatabaseUsers_CreateWithScopes(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"username":     "test-username",
 			"password":     "test-password",
@@ -462,7 +462,7 @@ func TestDatabaseUsers_GetDatabaseUser(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/databaseUsers/admin/test-username", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/databaseUsers/admin/test-username", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{"username":"test-username"}`)
 	})
@@ -497,7 +497,7 @@ func TestDatabaseUsers_Update(t *testing.T) {
 		Scopes: []Scope{},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers/admin/%s", groupID, "test-username"), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers/admin/%s", groupID, "test-username"), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"username":     "test-username",
 			"password":     "test-password",
@@ -562,7 +562,7 @@ func TestDatabaseUsers_Delete(t *testing.T) {
 	groupID := "1"
 	username := "test-username"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/databaseUsers/admin/%s", groupID, username), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers/admin/%s", groupID, username), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

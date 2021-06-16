@@ -26,8 +26,8 @@ type ChangeStatus string
 const (
 	ChangeStatusApplied          ChangeStatus = "APPLIED"
 	ChangeStatusPending          ChangeStatus = "PENDING"
-	clustersPath                              = "groups/%s/clusters"
-	sampleDatasetLoadPath                     = "groups/%s/sampleDatasetLoad"
+	clustersPath                              = "api/atlas/v1.0/groups/%s/clusters"
+	sampleDatasetLoadPath                     = "api/atlas/v1.0/groups/%s/sampleDatasetLoad"
 	cloudProviderRegionsBasePath              = clustersPath + "/provider/regions"
 )
 

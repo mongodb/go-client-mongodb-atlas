@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const alertPath = "groups/%s/alerts"
+const alertPath = "api/atlas/v1.0/groups/%s/alerts"
 
 // AlertsService is an interface for interfacing with the Alerts
 // endpoints of the MongoDB Atlas API.

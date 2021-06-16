@@ -30,7 +30,7 @@ func TestProcessMeasurements_List(t *testing.T) {
 	host := "shard-00-00.mongodb.net"
 	port := 27017
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/measurements", groups, host, port), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/processes/%s:%d/measurements", groups, host, port), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				  "end" : "2017-08-22T20:31:14Z",

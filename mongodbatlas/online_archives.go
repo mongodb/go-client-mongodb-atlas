@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	onlineArchiveBasePath = "groups/%s/clusters/%s/onlineArchives"
+	onlineArchiveBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives"
 )
 
 // OnlineArchiveService provides access to the online archive related functions in the Atlas API.

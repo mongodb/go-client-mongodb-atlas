@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const projectAPIKeysPath = "groups/%s/apiKeys"
+const projectAPIKeysPath = "api/atlas/v1.0/groups/%s/apiKeys"
 
 // ProjectAPIKeysService is an interface for interfacing with the APIKeys
 // endpoints of the MongoDB Atlas API.

@@ -27,7 +27,7 @@ func TestProjectIPAccessListServiceOp_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{"results": [{"groupId":"1", "cidrBlock":"0.0.0.0/12", "ipAddress":"0.0.0.0"},{"groupId":"1", "cidrBlock":"0.0.0.1/12", "ipAddress":"0.0.0.1"}], "totalCount":2}`)
 	})
@@ -53,7 +53,7 @@ func TestProjectIPAccessListServiceOp_List_WithPages(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		dr := ProjectIPAccessLists{
@@ -118,7 +118,7 @@ func TestProjectIPAccessListServiceOp_List_ByPages(t *testing.T) {
 		"totalCount": 3
 	}`
 
-	mux.HandleFunc("/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/accessList", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, jBlob)
 	})
@@ -145,7 +145,7 @@ func TestProjectIPAccessListServiceOp_Create(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/accessList", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/accessList", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := []map[string]interface{}{
 			{
 				"cidrBlock": "0.0.0.1/12",
@@ -199,7 +199,7 @@ func TestProjectIPAccessListServiceOp_Get_byIP(t *testing.T) {
 
 	ipAddress := "0.0.0.0"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/1/accessList/%s", ipAddress), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/accessList/%s", ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprintf(w, `{"ipAddress":"%s"}`, ipAddress)
 	})
@@ -222,7 +222,7 @@ func TestProjectIPAccessListServiceOp_Get_ByCIDR(t *testing.T) {
 
 	cidr := "0.0.0.0/32"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/1/accessList/%s", cidr), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/accessList/%s", cidr), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprintf(w, `{"cidrBlock":"%s"}`, cidr)
 	})
@@ -245,7 +245,7 @@ func TestProjectIPAccessListServiceOp_Delete(t *testing.T) {
 	groupID := "1"
 	ipAddress := "0.0.0.1"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/accessList/%s", groupID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/accessList/%s", groupID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

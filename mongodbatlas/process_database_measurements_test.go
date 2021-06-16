@@ -31,7 +31,7 @@ func TestProcessDatabaseMeasurements_List(t *testing.T) {
 	port := 27017
 	database := "database"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/processes/%s:%d/databases/%s/measurements", groups, host, port, database), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/processes/%s:%d/databases/%s/measurements", groups, host, port, database), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				  "end" : "2017-08-22T20:31:14Z",

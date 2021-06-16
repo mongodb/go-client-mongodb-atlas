@@ -21,7 +21,7 @@ import (
 	"net/url"
 )
 
-const containersPath = "groups/%s/containers"
+const containersPath = "api/atlas/v1.0/groups/%s/containers"
 
 // ContainersService provides access to the network peering containers related functions in the Atlas API.
 //

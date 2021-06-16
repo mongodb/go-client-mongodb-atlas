@@ -32,7 +32,7 @@ func TestCloudProviderSnapshotRestoreJobs_List(t *testing.T) {
 		ClusterName: "MyCluster",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -222,7 +222,7 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 		JobID:       "5b622f7087d9d6039fafe03f",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/restoreJobs/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/restoreJobs/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -317,7 +317,7 @@ func TestCloudProviderSnapshotRestoreJobs_Create(t *testing.T) {
 		TargetGroupID:     "5b6212af90dc76637950a2c6",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
@@ -422,7 +422,7 @@ func TestCloudProviderSnapshotRestoreJobs_Delete(t *testing.T) {
 		JobID:       "5b622f7087d9d6039fafe03f",
 	}
 
-	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/restoreJobs/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/restoreJobs/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)

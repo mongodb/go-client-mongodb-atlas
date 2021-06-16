@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const processesPath = "groups/%s/processes"
+const processesPath = "api/atlas/v1.0/groups/%s/processes"
 
 // ProcessesService provides access to the alert processes related functions in the Atlas API.
 //

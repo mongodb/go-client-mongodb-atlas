@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	integrationBasePath = "groups/%s/integrations"
+	integrationBasePath = "api/atlas/v1.0/groups/%s/integrations"
 )
 
 // IntegrationsService is an interface for interfacing with the Third-Party Integrations

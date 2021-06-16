@@ -27,7 +27,7 @@ func TestAtlasUsers_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/users", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/users", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [
@@ -147,7 +147,7 @@ func TestAtlasUsers_Get(t *testing.T) {
 
 	userID := "5af1c27a0a7fa48c76d3a761"
 
-	mux.HandleFunc(fmt.Sprintf("/users/%s", userID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/users/%s", userID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"emailAddress": "john.doe@example.com",
@@ -220,7 +220,7 @@ func TestAtlasUsers_GetByName(t *testing.T) {
 
 	username := "john.doe@example.com"
 
-	mux.HandleFunc(fmt.Sprintf("/users/byName/%s", username), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/users/byName/%s", username), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"emailAddress": "john.doe@example.com",

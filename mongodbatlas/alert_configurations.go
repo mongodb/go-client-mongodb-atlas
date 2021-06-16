@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const alertConfigurationPath = "groups/%s/alertConfigs"
+const alertConfigurationPath = "api/atlas/v1.0/groups/%s/alertConfigs"
 
 // AlertConfigurationsService provides access to the alert configuration related functions in the Atlas API.
 //

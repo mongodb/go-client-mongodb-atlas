@@ -28,7 +28,7 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[{"actions":[{"action":"CREATE_INDEX","resources":[{"collection":"test-collection","db":"test-db"}]}],"inheritedRoles":[{"db":"test-db","role":"read"}],"roleName":"test-role-name"}]`)
 	})
@@ -62,7 +62,7 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{"actions":[{"action":"CREATE_INDEX","resources":[{"collection":"test-collection","db":"test-db"}]}],"inheritedRoles":[{"db":"test-db","role":"read"}],"roleName":"test-role-name"}`)
 	})
@@ -110,7 +110,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 		RoleName: "test-role-name",
 	}
 
-	mux.HandleFunc("/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"actions": []interface{}{map[string]interface{}{
 				"action": "CREATE_INDEX",
@@ -191,7 +191,7 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 		RoleName: "test-role-name",
 	}
 
-	mux.HandleFunc("/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"actions": []interface{}{map[string]interface{}{
 				"action": "CREATE_INDEX",
@@ -260,7 +260,7 @@ func TestDatabaseUsers_DeleteCustomDBRole(t *testing.T) {
 	groupID := "1"
 	roleName := "test-role-name"
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s/customDBRoles/roles/%s", groupID, roleName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/customDBRoles/roles/%s", groupID, roleName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -286,7 +286,7 @@ func TestCustomDBRoles_DeleteInheritedRole(t *testing.T) {
 		RoleName:       "test-role-name",
 	}
 
-	mux.HandleFunc("/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles/test-role-name", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"actions": []interface{}{map[string]interface{}{
 				"action": "CREATE_INDEX",
