@@ -34,7 +34,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "http://cloud.mongodb.com/"
+	defaultBaseURL = "https://cloud.mongodb.com/"
 	jsonMediaType  = "application/json"
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
@@ -62,7 +62,6 @@ type RequestDoer interface {
 	Doer
 	Completer
 	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
-	NewRequestAndSetBaseUrl(context.Context, string, string, string, interface{}) (*http.Request, error)
 }
 
 // GZipRequestDoer minimum interface for any service of the client that should handle gzip downloads
@@ -135,7 +134,6 @@ type Client struct {
 	CloudProviderAccess                 CloudProviderAccessService
 	DefaultMongoDBMajorVersion          DefaultMongoDBMajorVersionService
 	IPInfo                              IPInfoService
-	AdvancedClusters                    AdvancedClustersService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -286,28 +284,9 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CloudProviderAccess = &CloudProviderAccessServiceOp{Client: c}
 	c.DefaultMongoDBMajorVersion = &DefaultMongoDBMajorVersionServiceOp{Client: c}
 	c.IPInfo = &IPInfoServiceOp{Client: c}
-	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
 
 	return c
 }
-
-//// NewClientV15 returns a new MongoDBAtlas API V1.5 Client
-//func NewClientV15(httpClient *http.Client) *ClientV15 {
-//	if httpClient == nil {
-//		httpClient = http.DefaultClient
-//	}
-//
-//	baseURL, _ := url.Parse(BaseURLV15)
-//
-//	c := &ClientV15{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
-//
-//
-//	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
-//
-//
-//	return c
-//
-//}
 
 // ClientOpt configures a Client.
 type ClientOpt func(*Client) error
@@ -410,15 +389,6 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*ht
 	req.Header.Add("Accept", gzipMediaType)
 
 	return req, nil
-}
-
-// NewRequestAndSetBaseUrl creates an API request for atlas API.
-// A relative URL can be provided in urlStr, which will be resolved to the
-// BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
-func (c *Client) NewRequestAndSetBaseUrl(ctx context.Context, apiVersion, method, urlStr string, body interface{}) (*http.Request, error) {
-	baseURL, _ := url.Parse(fmt.Sprintf(defaultBaseURL, apiVersion))
-	c.BaseURL = baseURL
-	return c.NewRequest(ctx, method, urlStr, body)
 }
 
 // NewPlainRequest creates an API request that accepts plain text.
