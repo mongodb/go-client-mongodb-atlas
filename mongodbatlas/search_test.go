@@ -365,3 +365,60 @@ func TestSearch_ListAnalyzers(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestSearch_UpdateAllAnalyzers(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+	groupID := "1"
+	clusterName := "test"
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/analyzers", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPut)
+		fmt.Fprint(w, `[
+		  {
+			"baseAnalyzer" : "lucene.standard",
+			"maxTokenLength" : 32,
+			"name" : "my_new_analyzer"
+		  },
+		  {
+			"baseAnalyzer" : "lucene.english",
+			"name" : "my_new_analyzer2",
+			"stopwords" : [ "first", "second", "third", "etc" ]
+		  }
+		]`)
+	})
+
+	request := []*SearchAnalyzer{
+		{
+			BaseAnalyzer:   "lucene.standard",
+			MaxTokenLength: pointy.Float64(32),
+			Name:           "my_new_analyzer",
+		},
+		{
+			BaseAnalyzer: "lucene.english",
+			Name:         "my_new_analyzer2",
+			Stopwords:    []string{"first", "second", "third", "etc"},
+		},
+	}
+
+	indexes, _, err := client.Search.UpdateAllAnalyzers(ctx, groupID, clusterName, request)
+	if err != nil {
+		t.Fatalf("Search.GetAllAnalyzers returned error: %v", err)
+	}
+
+	expected := []*SearchAnalyzer{
+		{
+			BaseAnalyzer:   "lucene.standard",
+			MaxTokenLength: pointy.Float64(32),
+			Name:           "my_new_analyzer",
+		},
+		{
+			BaseAnalyzer: "lucene.english",
+			Name:         "my_new_analyzer2",
+			Stopwords:    []string{"first", "second", "third", "etc"},
+		},
+	}
+
+	if diff := deep.Equal(indexes, expected); diff != nil {
+		t.Error(diff)
+	}
+}
