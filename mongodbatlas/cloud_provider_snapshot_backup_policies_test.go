@@ -296,3 +296,66 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "5b6212af90dc76637950a2c6"
+	clusterName := "myCluster"
+
+	path := fmt.Sprintf("/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+
+		fmt.Fprint(w, `{
+			"clusterId": "5e2f1bcaf38990fab9227b8",
+			"clusterName": "myCluster",
+			"links": [
+				{
+					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5dd5a6a472efab1d71a58495/clusters/myCluster/backup/schedule",
+					"rel": "self"
+				},
+				{
+					"href": "https://cloud.mongodb.com/api/public/v1.0/groups/5dd5a6a472efab1d71a58495",
+					"rel": "http://mms.mongodb.com/group"
+				}
+			],
+			"nextSnapshot": "2020-01-28T05:24:25Z",
+			"policies": [
+				{
+					"id": "5e2f1bcaf38990fab9227b8",
+					"policyItems": []
+				}
+			],
+			"referenceHourOfDay": 17,
+			"referenceMinuteOfHour": 24,
+			"restoreWindowDays": 7
+		}`)
+	})
+
+	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotBackupPolicies.Delete(ctx, groupID, clusterName)
+	if err != nil {
+		t.Fatalf("CloudProviderSnapshotBackupPolicies.Update returned error: %v", err)
+	}
+
+	expected := &CloudProviderSnapshotBackupPolicy{
+		ClusterID:    "5e2f1bcaf38990fab9227b8",
+		ClusterName:  "myCluster",
+		NextSnapshot: "2020-01-28T05:24:25Z",
+		Policies: []Policy{
+			{
+				ID:          "5e2f1bcaf38990fab9227b8",
+				PolicyItems: []PolicyItem{},
+			},
+		},
+		ReferenceHourOfDay:    pointy.Int64(17),
+		ReferenceMinuteOfHour: pointy.Int64(24),
+		RestoreWindowDays:     pointy.Int64(7),
+	}
+
+	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
+		t.Error(diff)
+	}
+}

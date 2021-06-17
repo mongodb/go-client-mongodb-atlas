@@ -31,6 +31,7 @@ const (
 type CloudProviderSnapshotBackupPoliciesService interface {
 	Get(context.Context, string, string) (*CloudProviderSnapshotBackupPolicy, *Response, error)
 	Update(context.Context, string, string, *CloudProviderSnapshotBackupPolicy) (*CloudProviderSnapshotBackupPolicy, *Response, error)
+	Delete(context.Context, string, string) (*CloudProviderSnapshotBackupPolicy, *Response, error)
 }
 
 // CloudProviderSnapshotBackupPoliciesServiceOp handles communication with the CloudProviderSnapshotBackupPoliciesService related methods of the
@@ -108,6 +109,33 @@ func (s *CloudProviderSnapshotBackupPoliciesServiceOp) Update(ctx context.Contex
 	path := fmt.Sprintf(cloudProviderSnapshotBackupPolicesBasePath, groupID, clusterName)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviderSnapshotBackupPolicy)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Delete deletes all cloud backup schedules.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/delete-all-schedules/
+func (s *CloudProviderSnapshotBackupPoliciesServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*CloudProviderSnapshotBackupPolicy, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+
+	path := fmt.Sprintf(cloudProviderSnapshotBackupPolicesBasePath, groupID, clusterName)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
