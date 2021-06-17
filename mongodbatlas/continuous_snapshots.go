@@ -114,7 +114,7 @@ func (s *ContinuousSnapshotsServiceOp) List(ctx context.Context, groupID, cluste
 	// Add query params
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
-		return  nil, nil, err
+		return nil, nil, err
 	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
