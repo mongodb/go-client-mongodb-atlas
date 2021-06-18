@@ -641,7 +641,7 @@ func TestAlertConfiguration_ListMatcherFields(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc("/alertConfigs/matchers/fieldNames", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/alertConfigs/matchers/fieldNames", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 
 		fmt.Fprint(w, `
