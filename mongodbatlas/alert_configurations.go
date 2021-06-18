@@ -20,7 +20,10 @@ import (
 	"net/http"
 )
 
-const alertConfigurationPath = "api/atlas/v1.0/groups/%s/alertConfigs"
+const (
+	alertConfigurationPath         = "api/atlas/v1.0/groups/%s/alertConfigs"
+	alertConfigurationMatchersPath = "api/atlas/v1.0/alertConfigs/matchers/fieldNames"
+)
 
 // AlertConfigurationsService provides access to the alert configuration related functions in the Atlas API.
 //
@@ -37,7 +40,7 @@ type AlertConfigurationsService interface {
 }
 
 // AlertConfigurationsServiceOp handles communication with the AlertConfiguration related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type AlertConfigurationsServiceOp service
 
 var _ AlertConfigurationsService = &AlertConfigurationsServiceOp{}
@@ -342,13 +345,12 @@ func (s *AlertConfigurationsServiceOp) Delete(ctx context.Context, groupID, aler
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-matchers-field-names/
 func (s *AlertConfigurationsServiceOp) ListMatcherFields(ctx context.Context) ([]string, *Response, error) {
-	path := "alertConfigs/matchers/fieldNames"
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, alertConfigurationMatchersPath, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	root := make([]string, 0)
+	var root []string
 	resp, err := s.Client.Do(ctx, req, &root)
 	if err != nil {
 		return nil, resp, err
