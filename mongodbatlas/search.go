@@ -34,6 +34,7 @@ type SearchService interface {
 	UpdateIndex(context.Context, string, string, string, *SearchIndex) (*SearchIndex, *Response, error)
 	DeleteIndex(context.Context, string, string, string) (*Response, error)
 	ListAnalyzers(context.Context, string, string, *ListOptions) ([]*SearchAnalyzer, *Response, error)
+	UpdateAllAnalyzers(context.Context, string, string, []*SearchAnalyzer) ([]*SearchAnalyzer, *Response, error)
 }
 
 // SearchServiceOp provides an implementation of the SearchService interface
@@ -204,6 +205,31 @@ func (s *SearchServiceOp) ListAnalyzers(ctx context.Context, groupID, clusterNam
 	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var root []*SearchAnalyzer
+	resp, err := s.Client.Do(ctx, req, &root)
+
+	return root, resp, err
+}
+
+// UpdateAllAnalyzers Update All User-Defined Analyzers for a specific Cluster.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/fts-analyzers-update-all//
+func (s *SearchServiceOp) UpdateAllAnalyzers(ctx context.Context, groupID, clusterName string, analyzers []*SearchAnalyzer) ([]*SearchAnalyzer, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+
+	path := fmt.Sprintf(searchBasePath, groupID, clusterName)
+	path = fmt.Sprintf("%s/analyzers", path)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPut, path, analyzers)
 	if err != nil {
 		return nil, nil, err
 	}
