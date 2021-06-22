@@ -34,7 +34,7 @@ import (
 )
 
 const (
-	// CloudURL is default base URL for the services
+	// CloudURL is default base URL for the services.
 	CloudURL       = "https://cloud.mongodb.com/"
 	defaultBaseURL = CloudURL
 	jsonMediaType  = "application/json"

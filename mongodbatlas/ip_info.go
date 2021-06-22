@@ -29,7 +29,7 @@ type IPInfoService interface {
 	Get(context.Context) (*IPInfo, *Response, error)
 }
 
-// IPInfoService is an implementation of IPInfoService.
+// IPInfoServiceOp is an implementation of IPInfoService.
 type IPInfoServiceOp service
 
 var _ IPInfoService = &IPInfoServiceOp{}
