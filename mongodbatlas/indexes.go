@@ -31,7 +31,7 @@ type IndexesService interface {
 }
 
 // IndexesServiceOp handles communication with the Cluster related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type IndexesServiceOp service
 
 var _ IndexesService = &IndexesServiceOp{}

@@ -34,7 +34,7 @@ type AccessListAPIKeysService interface {
 }
 
 // AccessListAPIKeysServiceOp handles communication with the AccessList API keys related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type AccessListAPIKeysServiceOp service
 
 var _ AccessListAPIKeysService = &AccessListAPIKeysServiceOp{}
@@ -57,7 +57,7 @@ type AccessListAPIKeys struct {
 	TotalCount int                 `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
-// AccessListAPIKeysReq represents the request to the mehtod create
+// AccessListAPIKeysReq represents the request to the mehtod create.
 type AccessListAPIKeysReq struct {
 	IPAddress string `json:"ipAddress,omitempty"` // IP address to be added to the access list for the API key.
 	CidrBlock string `json:"cidrBlock,omitempty"` // CIDR-notation block of IP addresses to be added to the access list for the API key.

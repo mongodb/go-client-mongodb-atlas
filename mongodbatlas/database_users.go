@@ -46,7 +46,7 @@ type DatabaseUsersService interface {
 }
 
 // DatabaseUsersServiceOp handles communication with the DatabaseUsers related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type DatabaseUsersServiceOp service
 
 var _ DatabaseUsersService = &DatabaseUsersServiceOp{}
@@ -76,7 +76,7 @@ type DatabaseUser struct {
 
 // GetAuthDB determines the authentication database based on the type of user.
 // LDAP, X509 and AWSIAM should all use $external.
-// SCRAM-SHA should use admin
+// SCRAM-SHA should use admin.
 func (user *DatabaseUser) GetAuthDB() (name string) {
 	// base documentation https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/database_user
 	name = "admin"
@@ -94,13 +94,13 @@ func (user *DatabaseUser) GetAuthDB() (name string) {
 }
 
 // Scope if presents a database user only have access to the indicated resource
-// if none is given then it has access to all
+// if none is given then it has access to all.
 type Scope struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
 }
 
-// Label containing key-value pairs that tag and categorize the database user
+// Label containing key-value pairs that tag and categorize the database user.
 type Label struct {
 	Key   string `json:"key,omitempty"`
 	Value string `json:"value,omitempty"`

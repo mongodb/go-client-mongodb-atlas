@@ -35,7 +35,7 @@ type PrivateEndpointsServiceDeprecated interface {
 }
 
 // PrivateEndpointsServiceOpDeprecated handles communication with the PrivateEndpoints related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type PrivateEndpointsServiceOpDeprecated service
 
 var _ PrivateEndpointsServiceDeprecated = &PrivateEndpointsServiceOpDeprecated{}

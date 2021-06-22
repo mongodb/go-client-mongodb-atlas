@@ -43,7 +43,7 @@ type PrivateEndpointsService interface {
 }
 
 // PrivateEndpointsServiceOp handles communication with the PrivateEndpoints related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type PrivateEndpointsServiceOp service
 
 var _ PrivateEndpointsService = &PrivateEndpointsServiceOp{}

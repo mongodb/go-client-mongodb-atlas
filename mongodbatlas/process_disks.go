@@ -31,7 +31,7 @@ type ProcessDisksService interface {
 }
 
 // ProcessDisksServiceOp handles communication with the process disks related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type ProcessDisksServiceOp service
 
 var _ ProcessDisksService = &ProcessDisksServiceOp{}
@@ -43,7 +43,7 @@ type ProcessDisksResponse struct {
 	TotalCount int            `json:"totalCount"`
 }
 
-// ProcessDisk is the partition information of a process
+// ProcessDisk is the partition information of a process.
 type ProcessDisk struct {
 	Links         []*Link `json:"links"`
 	PartitionName string  `json:"partitionName"`

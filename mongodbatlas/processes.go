@@ -58,7 +58,7 @@ type processesResponse struct {
 	TotalCount int        `json:"totalCount,omitempty"`
 }
 
-// ProcessesListOptions filter options for the processes API
+// ProcessesListOptions filter options for the processes API.
 type ProcessesListOptions struct {
 	ListOptions
 	ClusterID string `url:"clusterId,omitempty"`

@@ -22,19 +22,19 @@ import (
 
 const (
 	maintenanceWindowsPath = "api/atlas/v1.0/groups/%s/maintenanceWindow"
-	// Sunday day of the week when you would like the maintenance window to start
+	// Sunday day of the week when you would like the maintenance window to start.
 	Sunday = 1
-	// Monday day of the week when you would like the maintenance window to start
+	// Monday day of the week when you would like the maintenance window to start.
 	Monday = 2
-	// Tuesday day of the week when you would like the maintenance window to start
+	// Tuesday day of the week when you would like the maintenance window to start.
 	Tuesday = 3
-	// Wednesday day of the week when you would like the maintenance window to start
+	// Wednesday day of the week when you would like the maintenance window to start.
 	Wednesday = 4
-	// Thursday day of the week when you would like the maintenance window to start
+	// Thursday day of the week when you would like the maintenance window to start.
 	Thursday = 5
-	// Friday day of the week when you would like the maintenance window to start
+	// Friday day of the week when you would like the maintenance window to start.
 	Friday = 6
-	// Saturday day of the week when you would like the maintenance window to start
+	// Saturday day of the week when you would like the maintenance window to start.
 	Saturday = 7
 )
 
@@ -50,12 +50,12 @@ type MaintenanceWindowsService interface {
 }
 
 // MaintenanceWindowsServiceOp handles communication with the MaintenanceWindows related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type MaintenanceWindowsServiceOp service
 
 var _ MaintenanceWindowsService = &MaintenanceWindowsServiceOp{}
 
-// MaintenanceWindow represents MongoDB Maintenance Windows
+// MaintenanceWindow represents MongoDB Maintenance Windows.
 type MaintenanceWindow struct {
 	DayOfWeek         int   `json:"dayOfWeek,omitempty"`         // Day of the week when you would like the maintenance window to start as a 1-based integer.Sunday 	1, Monday 	2, Tuesday 	3, Wednesday 	4, Thursday 5, Friday 6, Saturday 7
 	HourOfDay         *int  `json:"hourOfDay,omitempty"`         // Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12.

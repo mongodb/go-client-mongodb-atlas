@@ -37,7 +37,7 @@ type SearchService interface {
 	UpdateAllAnalyzers(context.Context, string, string, []*SearchAnalyzer) ([]*SearchAnalyzer, *Response, error)
 }
 
-// SearchServiceOp provides an implementation of the SearchService interface
+// SearchServiceOp provides an implementation of the SearchService interface.
 type SearchServiceOp service
 
 var _ SearchService = &SearchServiceOp{}

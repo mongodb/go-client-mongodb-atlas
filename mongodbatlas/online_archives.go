@@ -35,7 +35,7 @@ type OnlineArchiveService interface {
 	Delete(context.Context, string, string, string) (*Response, error)
 }
 
-// OnlineArchiveServiceOp provides an implementation of the OnlineArchiveService interface
+// OnlineArchiveServiceOp provides an implementation of the OnlineArchiveService interface.
 type OnlineArchiveServiceOp service
 
 var _ OnlineArchiveService = &OnlineArchiveServiceOp{}
@@ -174,7 +174,7 @@ func (s *OnlineArchiveServiceOp) Delete(ctx context.Context, projectID, clusterN
 	return resp, err
 }
 
-// OnlineArchives is a collection of OnlineArchive
+// OnlineArchives is a collection of OnlineArchive.
 type OnlineArchives struct {
 	Links      []*Link          `json:"links,omitempty"`
 	Results    []*OnlineArchive `json:"results,omitempty"`
@@ -203,7 +203,7 @@ type OnlineArchiveCriteria struct {
 	Type            string   `json:"type,omitempty"`
 }
 
-// PartitionFields fields to use to partition data
+// PartitionFields fields to use to partition data.
 type PartitionFields struct {
 	FieldName string   `json:"fieldName,omitempty"`
 	FieldType string   `json:"fieldType,omitempty"`

@@ -36,19 +36,19 @@ type AtlasUsersService interface {
 }
 
 // AtlasUsersServiceOp handles communication with the AtlasUsers related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type AtlasUsersServiceOp service
 
 var _ AtlasUsersService = &AtlasUsersServiceOp{}
 
-// AtlasUsersResponse represents a array of users
+// AtlasUsersResponse represents a array of users.
 type AtlasUsersResponse struct {
 	Links      []*Link     `json:"links"`
 	Results    []AtlasUser `json:"results"`
 	TotalCount int         `json:"totalCount"`
 }
 
-// AtlasUser represents a user
+// AtlasUser represents a user.
 type AtlasUser struct {
 	EmailAddress string      `json:"emailAddress"`
 	FirstName    string      `json:"firstName"`
