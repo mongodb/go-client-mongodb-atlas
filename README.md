@@ -64,7 +64,7 @@ almost never be shared between different users.
 
 ## Versioning
 
-Each version of the client is tagged, and the version is updated accordingly.
+Each version of the client is tagged and the version is updated accordingly.
 
 To see the list of past versions, run `git tag`.
 
