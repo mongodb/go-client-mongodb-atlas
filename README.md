@@ -4,7 +4,7 @@
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/).
 
-Note that atlas only supports the two most recent major versions of Go.
+Note that `go-client-mongodb-atlas` only supports the two most recent major versions of Go.
 
 ## Usage
 
@@ -30,12 +30,12 @@ can be used as a starting point.
 
 ### Authentication
 
-The mongodbatlas library does not directly handle authentication. Instead, when
-creating a new client, pass an http.Client that can handle Digest Access authentication for
+The `go-client-mongodb-atlas` library does not directly handle authentication. Instead, when
+creating a new client, pass an `http.Client` that can handle Digest Access authentication for
 you. The easiest way to do this is using the [digest](https://github.com/mongodb-forks/digest)
 library, but you can always use any other library that provides an `http.Client`.
 If you have a private and public API token pair (https://docs.atlas.mongodb.com/configure-api-access),
-you can use it with the digest library using:
+you can use it with the digest library like:
 
 ```go
 import (
@@ -54,7 +54,7 @@ func main() {
     }
 
     client := mongodbatlas.NewClient(tc)
-    orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
+    projects, _, err := client.Projects.GetAllProjects(context.Background(), nil)
 }
 ```
 
