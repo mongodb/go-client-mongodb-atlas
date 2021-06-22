@@ -36,7 +36,7 @@ type ContinuousSnapshotsService interface {
 }
 
 // ContinuousSnapshotsServiceOp handles communication with the Continuous Snapshots related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type ContinuousSnapshotsServiceOp service
 
 var _ ContinuousSnapshotsService = &ContinuousSnapshotsServiceOp{}

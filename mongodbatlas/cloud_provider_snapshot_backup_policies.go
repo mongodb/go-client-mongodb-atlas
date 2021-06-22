@@ -35,7 +35,7 @@ type CloudProviderSnapshotBackupPoliciesService interface {
 }
 
 // CloudProviderSnapshotBackupPoliciesServiceOp handles communication with the CloudProviderSnapshotBackupPoliciesService related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type CloudProviderSnapshotBackupPoliciesServiceOp service
 
 var _ CloudProviderSnapshotBackupPoliciesService = &CloudProviderSnapshotBackupPoliciesServiceOp{}

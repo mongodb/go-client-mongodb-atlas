@@ -31,7 +31,7 @@ type ProcessDatabaseMeasurementsService interface {
 }
 
 // ProcessDatabaseMeasurementsServiceOp handles communication with the process database measurements related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type ProcessDatabaseMeasurementsServiceOp service
 
 // ProcessDatabaseMeasurements represents a MongoDB process database measurements.

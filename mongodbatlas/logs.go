@@ -31,7 +31,7 @@ type LogsService interface {
 }
 
 // LogsServiceOp handles communication with the Logs related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type LogsServiceOp struct {
 	Client GZipRequestDoer
 }

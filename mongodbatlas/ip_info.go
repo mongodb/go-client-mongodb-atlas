@@ -29,7 +29,7 @@ type IPInfoService interface {
 	Get(context.Context) (*IPInfo, *Response, error)
 }
 
-// IPInfoService is an implementation of IPInfoService
+// IPInfoService is an implementation of IPInfoService.
 type IPInfoServiceOp service
 
 var _ IPInfoService = &IPInfoServiceOp{}
@@ -38,7 +38,7 @@ type IPInfo struct {
 	CurrentIPv4Address string `json:"currentIpv4Address"`
 }
 
-// Get gets the public ip address of the client
+// Get gets the public ip address of the client.
 func (s *IPInfoServiceOp) Get(ctx context.Context) (*IPInfo, *Response, error) {
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, ipInfoPath, nil)
 	if err != nil {

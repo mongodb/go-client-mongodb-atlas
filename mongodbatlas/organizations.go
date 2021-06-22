@@ -35,12 +35,12 @@ type OrganizationsService interface {
 	Delete(context.Context, string) (*Response, error)
 }
 
-// OrganizationsServiceOp provides an implementation of the OrganizationsService interface
+// OrganizationsServiceOp provides an implementation of the OrganizationsService interface.
 type OrganizationsServiceOp service
 
 var _ OrganizationsService = &OrganizationsServiceOp{}
 
-// OrganizationsListOptions filtering options for organizations
+// OrganizationsListOptions filtering options for organizations.
 type OrganizationsListOptions struct {
 	Name               string `url:"name,omitempty"`
 	IncludeDeletedOrgs *bool  `url:"includeDeletedOrgs,omitempty"`
@@ -55,7 +55,7 @@ type Organization struct {
 	Name      string  `json:"name,omitempty"`
 }
 
-// Organizations represents an array of organization
+// Organizations represents an array of organization.
 type Organizations struct {
 	Links      []*Link         `json:"links"`
 	Results    []*Organization `json:"results"`

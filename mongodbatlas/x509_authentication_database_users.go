@@ -36,7 +36,7 @@ type X509AuthDBUsersService interface {
 }
 
 // X509AuthDBUsersServiceOp handles communication with the  X509AuthDBUsers related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type X509AuthDBUsersServiceOp service
 
 var _ X509AuthDBUsersService = &X509AuthDBUsersServiceOp{}
@@ -61,7 +61,7 @@ type UserCertificates struct {
 	TotalCount int               `json:"totalCount"` // Total number of unexpired certificates returned in this response.
 }
 
-// UserSecurity represents the wrapper CustomerX509 struct
+// UserSecurity represents the wrapper CustomerX509 struct.
 type UserSecurity struct {
 	CustomerX509 CustomerX509 `json:"customerX509,omitempty"` // CustomerX509 represents Customer-managed X.509 configuration for an Atlas project.
 }

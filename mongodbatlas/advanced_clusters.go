@@ -36,7 +36,7 @@ type AdvancedClustersService interface {
 }
 
 // AdvancedClustersServiceOp handles communication with the Cluster (Advanced) related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type AdvancedClustersServiceOp service
 
 var _ AdvancedClustersService = &AdvancedClustersServiceOp{}

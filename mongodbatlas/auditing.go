@@ -33,12 +33,12 @@ type AuditingsService interface {
 }
 
 // AuditingsServiceOp handles communication with the Auditings related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type AuditingsServiceOp service
 
 var _ AuditingsService = &AuditingsServiceOp{}
 
-// Auditing represents MongoDB Maintenance Windows
+// Auditing represents MongoDB Maintenance Windows.
 type Auditing struct {
 	AuditAuthorizationSuccess *bool  `json:"auditAuthorizationSuccess,omitempty"` // Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
 	AuditFilter               string `json:"auditFilter,omitempty"`               // JSON-formatted audit filter used by the project

@@ -40,7 +40,7 @@ const (
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
 	libraryName    = "go-mongodbatlas"
-	// Version the version of the current API client. Should be set to the next version planned to be released
+	// Version the version of the current API client. Should be set to the next version planned to be released.
 	Version = "0.8.0"
 )
 
@@ -48,38 +48,38 @@ var (
 	userAgent = fmt.Sprintf("%s/%s (%s;%s)", libraryName, Version, runtime.GOOS, runtime.GOARCH)
 )
 
-// Doer basic interface of a client to be able to do a request
+// Doer basic interface of a client to be able to do a request.
 type Doer interface {
 	Do(context.Context, *http.Request, interface{}) (*Response, error)
 }
 
-// Completer interface for clients with callback
+// Completer interface for clients with callback.
 type Completer interface {
 	OnRequestCompleted(RequestCompletionCallback)
 }
 
-// RequestDoer minimum interface for any service of the client
+// RequestDoer minimum interface for any service of the client.
 type RequestDoer interface {
 	Doer
 	Completer
 	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
 }
 
-// GZipRequestDoer minimum interface for any service of the client that should handle gzip downloads
+// GZipRequestDoer minimum interface for any service of the client that should handle gzip downloads.
 type GZipRequestDoer interface {
 	Doer
 	Completer
 	NewGZipRequest(context.Context, string, string) (*http.Request, error)
 }
 
-// PlainRequestDoer minimum interface for any service of the client that should handle plain text
+// PlainRequestDoer minimum interface for any service of the client that should handle plain text.
 type PlainRequestDoer interface {
 	Doer
 	Completer
 	NewPlainRequest(context.Context, string, string) (*http.Request, error)
 }
 
-// Client manages communication with MongoDBAtlas v1.0 API
+// Client manages communication with MongoDBAtlas v1.0 API.
 type Client struct {
 	client    *http.Client
 	BaseURL   *url.URL
@@ -140,7 +140,7 @@ type Client struct {
 	onRequestCompleted RequestCompletionCallback
 }
 
-// RequestCompletionCallback defines the type of the request callback function
+// RequestCompletionCallback defines the type of the request callback function.
 type RequestCompletionCallback func(*http.Request, *http.Response)
 
 type service struct {
@@ -202,7 +202,7 @@ func (resp *Response) getLinkByRef(ref string) *Link {
 	return nil
 }
 
-// IsLastPage returns true if the current page is the last page
+// IsLastPage returns true if the current page is the last page.
 func (resp *Response) IsLastPage() bool {
 	return resp.getLinkByRef("next") == nil
 }
@@ -227,7 +227,7 @@ func (resp *Response) CurrentPage() (int, error) {
 	return pageNum, nil
 }
 
-// NewClient returns a new MongoDBAtlas API Client
+// NewClient returns a new MongoDBAtlas API Client.
 func NewClient(httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
@@ -372,7 +372,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 	return req, nil
 }
 
-// newEncodedBody returns an ReadWriter object containing the body of the http request
+// newEncodedBody returns an ReadWriter object containing the body of the http request.
 func (c *Client) newEncodedBody(body interface{}) (io.Reader, error) {
 	buf := &bytes.Buffer{}
 	enc := json.NewEncoder(buf)
@@ -428,7 +428,7 @@ func (c *Client) newRequest(urlStr, method string) (*http.Request, error) {
 	return req, nil
 }
 
-// OnRequestCompleted sets the DO API request completion callback
+// OnRequestCompleted sets the DO API request completion callback.
 func (c *Client) OnRequestCompleted(rc RequestCompletionCallback) {
 	c.onRequestCompleted = rc
 }

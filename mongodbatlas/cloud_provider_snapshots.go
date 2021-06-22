@@ -36,7 +36,7 @@ type CloudProviderSnapshotsService interface {
 }
 
 // CloudProviderSnapshotsServiceOp handles communication with the CloudProviderSnapshotsService related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type CloudProviderSnapshotsServiceOp service
 
 var _ CloudProviderSnapshotsService = &CloudProviderSnapshotsServiceOp{}
@@ -64,7 +64,7 @@ type CloudProviderSnapshots struct {
 	TotalCount int                      `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
-// SnapshotReqPathParameters represents all the pissible parameters to make the request
+// SnapshotReqPathParameters represents all the pissible parameters to make the request.
 type SnapshotReqPathParameters struct {
 	GroupID     string `json:"groupId,omitempty"`     // The unique identifier of the project for the Atlas cluster.
 	SnapshotID  string `json:"snapshotId,omitempty"`  // The unique identifier of the snapshot you want to retrieve.

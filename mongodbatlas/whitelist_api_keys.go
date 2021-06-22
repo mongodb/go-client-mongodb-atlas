@@ -30,7 +30,7 @@ const whitelistAPIKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys/%s/whitelist"
 // Deprecated: AccessListAPIKeysService replaces WhitelistAPIKeysService.
 // Atlas now refers to programmatic API key whitelists as access lists.
 // Atlas has deprecated the whitelist method and will disable it in June 2021.
-// Please update any dependent work to use WhitelistAPIKeysService
+// Please update any dependent work to use WhitelistAPIKeysService.
 type WhitelistAPIKeysService interface {
 	List(context.Context, string, string, *ListOptions) (*WhitelistAPIKeys, *Response, error)
 	Get(context.Context, string, string, string) (*WhitelistAPIKey, *Response, error)
@@ -39,7 +39,7 @@ type WhitelistAPIKeysService interface {
 }
 
 // WhitelistAPIKeysServiceOp handles communication with the Whitelist API keys related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type WhitelistAPIKeysServiceOp service
 
 var _ WhitelistAPIKeysService = &WhitelistAPIKeysServiceOp{}
@@ -62,7 +62,7 @@ type WhitelistAPIKeys struct {
 	TotalCount int                `json:"totalCount,omitempty"` // Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 }
 
-// WhitelistAPIKeysReq represents the request to the mehtod create
+// WhitelistAPIKeysReq represents the request to the mehtod create.
 type WhitelistAPIKeysReq struct {
 	IPAddress string `json:"ipAddress,omitempty"` // IP address to be added to the whitelist for the API key.
 	CidrBlock string `json:"cidrBlock,omitempty"` // Whitelist entry in CIDR notation to be added for the API key.

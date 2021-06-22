@@ -34,7 +34,7 @@ type CustomDBRolesService interface {
 }
 
 // CustomDBRolesServiceOp handles communication with the CustomDBRoles related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type CustomDBRolesServiceOp service
 
 var _ CustomDBRolesService = &CustomDBRolesServiceOp{}

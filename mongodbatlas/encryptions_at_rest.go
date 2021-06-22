@@ -23,44 +23,44 @@ import (
 )
 
 const (
-	// CaCentral1 represents the CA_CENTRAL_1 America region for AWS Configuration
+	// CaCentral1 represents the CA_CENTRAL_1 America region for AWS Configuration.
 	CaCentral1 = "CA_CENTRAL_1"
-	// UsEast1 represents the US_EAST_1 America region for AWS Configuration
+	// UsEast1 represents the US_EAST_1 America region for AWS Configuration.
 	UsEast1 = "US_EAST_1"
-	// UsEast2 represents the US_EAST_2 America region for AWS Configuration
+	// UsEast2 represents the US_EAST_2 America region for AWS Configuration.
 	UsEast2 = "US_EAST_2"
-	// UsWest1 represents the US_WEST_1 America region for AWS Configuration
+	// UsWest1 represents the US_WEST_1 America region for AWS Configuration.
 	UsWest1 = "US_WEST_1"
-	// UsWest2 represents the US_WEST_2 America region for AWS Configuration
+	// UsWest2 represents the US_WEST_2 America region for AWS Configuration.
 	UsWest2 = "US_WEST_2"
-	// SaEast1 represents the SA_EAST_1 America region for AWS Configuration
+	// SaEast1 represents the SA_EAST_1 America region for AWS Configuration.
 	SaEast1 = "SA_EAST_1"
 
-	// ApNortheast1 represents the AP_NORTHEAST_1 Asia region for AWS Configuration
+	// ApNortheast1 represents the AP_NORTHEAST_1 Asia region for AWS Configuration.
 	ApNortheast1 = "AP_NORTHEAST_1"
-	// ApNortheast2 represents the AP_NORTHEAST_2 Asia region for AWS Configuration
+	// ApNortheast2 represents the AP_NORTHEAST_2 Asia region for AWS Configuration.
 	ApNortheast2 = "AP_NORTHEAST_2"
-	// ApSouth1 represents the AP_SOUTH_1 Asia region for AWS Configuration
+	// ApSouth1 represents the AP_SOUTH_1 Asia region for AWS Configuration.
 	ApSouth1 = "AP_SOUTH_1"
-	// ApSoutheast1 represents the AP_SOUTHEAST_1 Asia region for AWS Configuration
+	// ApSoutheast1 represents the AP_SOUTHEAST_1 Asia region for AWS Configuration.
 	ApSoutheast1 = "AP_SOUTHEAST_1"
-	// ApSoutheast2 represents the AP_SOUTHEAST_2 Asia region for AWS Configuration
+	// ApSoutheast2 represents the AP_SOUTHEAST_2 Asia region for AWS Configuration.
 	ApSoutheast2 = "AP_SOUTHEAST_2"
 
-	// EuCentral1 represents the EU_CENTRAL_1 Europe region for AWS Configuration
+	// EuCentral1 represents the EU_CENTRAL_1 Europe region for AWS Configuration.
 	EuCentral1 = "EU_CENTRAL_1"
-	// EuWest1 represents the EU_WEST_1 Europe region for AWS Configuration
+	// EuWest1 represents the EU_WEST_1 Europe region for AWS Configuration.
 	EuWest1 = "EU_WEST_1"
-	// EuWest2 represents the EU_WEST_2 Europe region for AWS Configuration
+	// EuWest2 represents the EU_WEST_2 Europe region for AWS Configuration.
 	EuWest2 = "EU_WEST_2"
-	// EuWest3 represents the EU_WEST_3 Europe region for AWS Configuration
+	// EuWest3 represents the EU_WEST_3 Europe region for AWS Configuration.
 	EuWest3 = "EU_WEST_3"
 
-	// Azure represents `AZURE` where the Azure account credentials reside
+	// Azure represents `AZURE` where the Azure account credentials reside.
 	Azure = "AZURE"
-	// AzureChina represents `AZURE_CHINA` AZURE where the Azure account credentials reside
+	// AzureChina represents `AZURE_CHINA` AZURE where the Azure account credentials reside.
 	AzureChina = "AZURE_CHINA"
-	// AzureGermany represents `AZURE_GERMANY` AZURE where the Azure account credentials reside
+	// AzureGermany represents `AZURE_GERMANY` AZURE where the Azure account credentials reside.
 	AzureGermany = "AZURE_GERMANY"
 
 	encryptionsAtRestBasePath = "api/atlas/v1.0/groups/%s/encryptionAtRest"
@@ -76,7 +76,7 @@ type EncryptionsAtRestService interface {
 }
 
 // EncryptionsAtRestServiceOp handles communication with the DatabaseUsers related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type EncryptionsAtRestServiceOp service
 
 var _ EncryptionsAtRestService = &EncryptionsAtRestServiceOp{}

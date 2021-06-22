@@ -31,7 +31,7 @@ type ProcessMeasurementsService interface {
 }
 
 // ProcessMeasurementsServiceOp handles communication with the Process Measurements related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type ProcessMeasurementsServiceOp service
 
 var _ ProcessMeasurementsService = &ProcessMeasurementsServiceOp{}

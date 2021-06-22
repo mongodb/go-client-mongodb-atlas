@@ -32,7 +32,7 @@ type CloudProviderAccessService interface {
 	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
 }
 
-// ProjectIPAccessListServiceOp provides an implementation of the CloudProviderAccessService interface
+// ProjectIPAccessListServiceOp provides an implementation of the CloudProviderAccessService interface.
 type CloudProviderAccessServiceOp service
 
 var _ CloudProviderAccessService = &CloudProviderAccessServiceOp{}
@@ -54,24 +54,24 @@ type AWSIAMRole struct {
 	RoleID                     string          `json:"roleId,omitempty"`                     // Unique ID of this role.
 }
 
-// FeatureUsage represents where the role sis being used
+// FeatureUsage represents where the role sis being used.
 type FeatureUsage struct {
 	FeatureType string      `json:"featureType,omitempty"`
 	FeatureID   interface{} `json:"featureId,omitempty"`
 }
 
-// CloudProviderAccessRoleRequest represent a new role creation
+// CloudProviderAccessRoleRequest represent a new role creation.
 type CloudProviderAccessRoleRequest struct {
 	ProviderName string `json:"providerName"`
 }
 
-// CloudProviderAuthorizationRequest represents an authorization request
+// CloudProviderAuthorizationRequest represents an authorization request.
 type CloudProviderAuthorizationRequest struct {
 	ProviderName      string `json:"providerName"`
 	IAMAssumedRoleARN string `json:"iamAssumedRoleArn"`
 }
 
-// CloudProviderAuthorizationRequest
+// CloudProviderAuthorizationRequest.
 type CloudProviderDeauthorizationRequest struct {
 	ProviderName string
 	GroupID      string

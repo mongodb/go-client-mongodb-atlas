@@ -37,12 +37,12 @@ type EventsService interface {
 }
 
 // EventsServiceOp handles communication with the Event related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type EventsServiceOp service
 
 var _ EventsService = &EventsServiceOp{}
 
-// Event represents an event of the MongoDB Atlas API
+// Event represents an event of the MongoDB Atlas API.
 type Event struct {
 	AlertID         string        `json:"alertId"`
 	AlertConfigID   string        `json:"alertConfigId"`
