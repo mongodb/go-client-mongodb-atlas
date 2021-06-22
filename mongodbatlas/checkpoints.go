@@ -32,12 +32,12 @@ type CheckpointsService interface {
 }
 
 // CheckpointsServiceOp handles communication with the checkpoint related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type CheckpointsServiceOp service
 
 var _ CheckpointsService = &CheckpointsServiceOp{}
 
-// Checkpoint represents MongoDB Checkpoint
+// Checkpoint represents MongoDB Checkpoint.
 type Checkpoint struct {
 	ClusterID  string  `json:"clusterId"`
 	Completed  string  `json:"completed,omitempty"`

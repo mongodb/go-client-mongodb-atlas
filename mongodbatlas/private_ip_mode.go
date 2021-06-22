@@ -32,7 +32,7 @@ type PrivateIPModeService interface {
 }
 
 // PrivateIPModeServiceOp handles communication with the Private IP Mode related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type PrivateIPModeServiceOp service
 
 var _ PrivateIPModeService = &PrivateIPModeServiceOp{}

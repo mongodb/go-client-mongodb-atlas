@@ -33,7 +33,7 @@ type ProjectIPAccessListService interface {
 	Delete(context.Context, string, string) (*Response, error)
 }
 
-// ProjectIPAccessListServiceOp provides an implementation of the ProjectIPAccessListService interface
+// ProjectIPAccessListServiceOp provides an implementation of the ProjectIPAccessListService interface.
 type ProjectIPAccessListServiceOp service
 
 var _ ProjectIPAccessListService = &ProjectIPAccessListServiceOp{}

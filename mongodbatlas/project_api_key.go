@@ -34,12 +34,12 @@ type ProjectAPIKeysService interface {
 }
 
 // ProjectAPIKeysOp handles communication with the APIKey related methods
-// of the MongoDB Atlas API
+// of the MongoDB Atlas API.
 type ProjectAPIKeysOp service
 
 var _ ProjectAPIKeysService = &ProjectAPIKeysOp{}
 
-// AssignAPIKey contains the roles to be assigned to an Organization API key into a Project
+// AssignAPIKey contains the roles to be assigned to an Organization API key into a Project.
 type AssignAPIKey struct {
 	Roles []string `json:"roles"`
 }

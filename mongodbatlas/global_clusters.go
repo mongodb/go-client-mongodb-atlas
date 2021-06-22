@@ -35,7 +35,7 @@ type GlobalClustersService interface {
 }
 
 // GlobalClustersServiceOp handles communication with the GlobalClusters related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type GlobalClustersServiceOp service
 
 var _ GlobalClustersService = &GlobalClustersServiceOp{}

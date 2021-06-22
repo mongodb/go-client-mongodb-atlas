@@ -30,7 +30,7 @@ type ProcessDiskMeasurementsService interface {
 }
 
 // ProcessDiskMeasurementsServiceOp handles communication with the Process Disk Measurements related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type ProcessDiskMeasurementsServiceOp service
 
 // ProcessDiskMeasurements represents a MongoDB Process Disk Measurements.

@@ -458,7 +458,7 @@ func TestCheckResponse(t *testing.T) {
 }
 
 // ensure that we properly handle API errors that do not contain a response
-// body
+// body.
 func TestCheckResponse_noBody(t *testing.T) {
 	res := &http.Response{
 		Request:    &http.Request{},

@@ -44,19 +44,19 @@ type TeamsService interface {
 }
 
 // TeamsServiceOp handles communication with the Teams related methods of the
-// MongoDB Atlas API
+// MongoDB Atlas API.
 type TeamsServiceOp service
 
 var _ TeamsService = &TeamsServiceOp{}
 
-// TeamsResponse represents a array of project
+// TeamsResponse represents a array of project.
 type TeamsResponse struct {
 	Links      []*Link `json:"links"`
 	Results    []Team  `json:"results"`
 	TotalCount int     `json:"totalCount"`
 }
 
-// Team defines an Atlas team structure
+// Team defines an Atlas team structure.
 type Team struct {
 	ID        string   `json:"id,omitempty"`
 	Name      string   `json:"name"`
@@ -70,19 +70,19 @@ type AtlasUserAssigned struct {
 	TotalCount int         `json:"totalCount"`
 }
 
-// TeamUpdateRoles update request body
+// TeamUpdateRoles update request body.
 type TeamUpdateRoles struct {
 	RoleNames []string `json:"roleNames"`
 }
 
-// TeamUpdateRolesResponse update roles response
+// TeamUpdateRolesResponse update roles response.
 type TeamUpdateRolesResponse struct {
 	Links      []*Link     `json:"links"`
 	Results    []TeamRoles `json:"results"`
 	TotalCount int         `json:"totalCount"`
 }
 
-// TeamRoles List of roles for a team
+// TeamRoles List of roles for a team.
 type TeamRoles struct {
 	Links     []*Link  `json:"links"`
 	RoleNames []string `json:"roleNames"`
