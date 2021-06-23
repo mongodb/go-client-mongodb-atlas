@@ -351,7 +351,7 @@ func TestSearch_ListAnalyzers(t *testing.T) {
 	expected := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Float64(32),
+			MaxTokenLength: pointy.Int(32),
 			Name:           "my_new_analyzer",
 		},
 		{
@@ -390,8 +390,9 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 	request := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Float64(32),
+			MaxTokenLength: pointy.Int(32),
 			Name:           "my_new_analyzer",
+			IgnoreCase:     pointy.Bool(true),
 		},
 		{
 			BaseAnalyzer: "lucene.english",
@@ -408,8 +409,9 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 	expected := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Float64(32),
+			MaxTokenLength: pointy.Int(32),
 			Name:           "my_new_analyzer",
+			IgnoreCase:     pointy.Bool(true),
 		},
 		{
 			BaseAnalyzer: "lucene.english",
