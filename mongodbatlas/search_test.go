@@ -377,7 +377,8 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 		  {
 			"baseAnalyzer" : "lucene.standard",
 			"maxTokenLength" : 32,
-			"name" : "my_new_analyzer"
+			"name" : "my_new_analyzer",
+			"ignoreCase": true
 		  },
 		  {
 			"baseAnalyzer" : "lucene.english",
