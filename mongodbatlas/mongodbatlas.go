@@ -34,6 +34,7 @@ import (
 )
 
 const (
+	// CloudURL is default base URL for the services.
 	CloudURL       = "https://cloud.mongodb.com/"
 	defaultBaseURL = CloudURL
 	jsonMediaType  = "application/json"
@@ -343,21 +344,7 @@ func SetUserAgent(ua string) ClientOpt {
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash. If specified, the
 // value pointed to by body is JSON encoded and included in as the request body.
 func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
-	if !strings.HasSuffix(c.BaseURL.Path, "/") {
-		return nil, fmt.Errorf("base URL must have a trailing slash, but %q does not", c.BaseURL)
-	}
-	u, err := c.BaseURL.Parse(urlStr)
-	if err != nil {
-		return nil, err
-	}
-	var buf io.Reader
-	if body != nil {
-		if buf, err = c.newEncodedBody(body); err != nil {
-			return nil, err
-		}
-	}
-
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := c.newRequest(ctx, urlStr, method, body)
 	if err != nil {
 		return nil, err
 	}
@@ -385,7 +372,7 @@ func (c *Client) newEncodedBody(body interface{}) (io.Reader, error) {
 // A relative URL can be provided in urlStr, which will be resolved to the
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
 func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*http.Request, error) {
-	req, err := c.newRequest(urlStr, method)
+	req, err := c.newRequest(ctx, urlStr, method, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -398,7 +385,7 @@ func (c *Client) NewGZipRequest(ctx context.Context, method, urlStr string) (*ht
 // A relative URL can be provided in urlStr, which will be resolved to the
 // BaseURL of the Client. Relative URLS should always be specified without a preceding slash.
 func (c *Client) NewPlainRequest(ctx context.Context, method, urlStr string) (*http.Request, error) {
-	req, err := c.newRequest(urlStr, method)
+	req, err := c.newRequest(ctx, urlStr, method, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -407,7 +394,7 @@ func (c *Client) NewPlainRequest(ctx context.Context, method, urlStr string) (*h
 	return req, nil
 }
 
-func (c *Client) newRequest(urlStr, method string) (*http.Request, error) {
+func (c *Client) newRequest(ctx context.Context, urlStr, method string, body interface{}) (*http.Request, error) {
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("base URL must have a trailing slash, but %q does not", c.BaseURL)
 	}
@@ -418,7 +405,13 @@ func (c *Client) newRequest(urlStr, method string) (*http.Request, error) {
 
 	u := c.BaseURL.ResolveReference(rel)
 
-	req, err := http.NewRequest(method, u.String(), nil)
+	var buf io.Reader
+	if body != nil {
+		if buf, err = c.newEncodedBody(body); err != nil {
+			return nil, err
+		}
+	}
+	req, err := http.NewRequestWithContext(ctx, method, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}

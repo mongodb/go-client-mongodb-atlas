@@ -24,7 +24,9 @@ import (
 type ChangeStatus string
 
 const (
-	ChangeStatusApplied          ChangeStatus = "APPLIED"
+	// ChangeStatusApplied signals when changes to the deployments have completed.
+	ChangeStatusApplied ChangeStatus = "APPLIED"
+	// ChangeStatusPending signals when changes to the deployments are still pending.
 	ChangeStatusPending          ChangeStatus = "PENDING"
 	clustersPath                              = "api/atlas/v1.0/groups/%s/clusters"
 	sampleDatasetLoadPath                     = "api/atlas/v1.0/groups/%s/sampleDatasetLoad"
