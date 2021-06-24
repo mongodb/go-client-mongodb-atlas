@@ -17,6 +17,7 @@ package mongodbatlas
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -73,49 +74,41 @@ func setup() (client *Client, mux *http.ServeMux, teardown func()) {
 }
 
 func testMethod(t *testing.T, r *http.Request, expected string) {
+	t.Helper()
 	if expected != r.Method {
 		t.Errorf("Request method = %v, expected %v", r.Method, expected)
 	}
 }
 
 func testURLParseError(t *testing.T, err error) {
+	t.Helper()
 	if err == nil {
 		t.Errorf("Expected error to be returned")
 	}
-	if err, ok := err.(*url.Error); !ok || err.Op != "parse" {
+	var target *url.Error
+	if errors.As(err, &target) && target.Op != "parse" {
 		t.Errorf("Expected URL parse error, got %+v", err)
 	}
 }
 
-func testClientServices(t *testing.T, c *Client) {
-	services := []string{}
-
-	cp := reflect.ValueOf(c)
-	cv := reflect.Indirect(cp)
-
-	for _, s := range services {
-		if cv.FieldByName(s).IsNil() {
-			t.Errorf("c.%s shouldn't be nil", s)
-		}
-	}
-}
-
 func testClientDefaultBaseURL(t *testing.T, c *Client) {
+	t.Helper()
 	if c.BaseURL == nil || c.BaseURL.String() != defaultBaseURL {
 		t.Errorf("NewClient BaseURL = %v, expected %v", c.BaseURL, defaultBaseURL)
 	}
 }
 
 func testClientDefaultUserAgent(t *testing.T, c *Client) {
+	t.Helper()
 	if c.UserAgent != userAgent {
 		t.Errorf("NewClient UserAgent = %v, expected %v", c.UserAgent, userAgent)
 	}
 }
 
 func testClientDefaults(t *testing.T, c *Client) {
+	t.Helper()
 	testClientDefaultBaseURL(t, c)
 	testClientDefaultUserAgent(t, c)
-	testClientServices(t, c)
 }
 
 func TestNewClient(t *testing.T) {
@@ -407,7 +400,8 @@ func TestDo_redirectLoop(t *testing.T) {
 	if err == nil {
 		t.Error("Expected error to be returned.")
 	}
-	if err, ok := err.(*url.Error); !ok {
+	var target *url.Error
+	if !errors.As(err, &target) {
 		t.Errorf("Expected a URL error; got %#v.", err)
 	}
 }
@@ -439,9 +433,8 @@ func TestCheckResponse(t *testing.T) {
 			),
 		),
 	}
-	err := CheckResponse(res).(*ErrorResponse)
-
-	if err == nil {
+	var target *ErrorResponse
+	if !errors.As(CheckResponse(res), &target) {
 		t.Fatalf("Expected error response.")
 	}
 
@@ -452,8 +445,8 @@ func TestCheckResponse(t *testing.T) {
 		Reason:    "Conflict",
 		Detail:    `A group with name "Test" already exists`,
 	}
-	if !reflect.DeepEqual(err, expected) {
-		t.Errorf("Error = %#v, expected %#v", err, expected)
+	if !errors.Is(target, expected) {
+		t.Errorf("Got = %#v, expected %#v", target, expected)
 	}
 }
 
@@ -465,17 +458,16 @@ func TestCheckResponse_noBody(t *testing.T) {
 		StatusCode: http.StatusBadRequest,
 		Body:       ioutil.NopCloser(strings.NewReader("")),
 	}
-	err := CheckResponse(res).(*ErrorResponse)
-
-	if err == nil {
+	var target *ErrorResponse
+	if !errors.As(CheckResponse(res), &target) {
 		t.Errorf("Expected error response.")
 	}
 
 	expected := &ErrorResponse{
 		Response: res,
 	}
-	if !reflect.DeepEqual(err, expected) {
-		t.Errorf("Error = %#v, expected %#v", err, expected)
+	if !errors.Is(target, expected) {
+		t.Errorf("Got = %#v, expected %#v", target, expected)
 	}
 }
 
@@ -563,6 +555,7 @@ func TestCustomBaseURL_badURL(t *testing.T) {
 }
 
 func checkCurrentPage(t *testing.T, resp *Response, expectedPage int) { //nolint:unparam // currently we always use expectedPage with value 2 but that may change
+	t.Helper()
 	p, err := resp.CurrentPage()
 	if err != nil {
 		t.Fatal(err)

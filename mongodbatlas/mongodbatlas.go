@@ -169,24 +169,6 @@ type ListOptions struct {
 	ItemsPerPage int `url:"itemsPerPage,omitempty"`
 }
 
-// ErrorResponse reports the error caused by an API request.
-type ErrorResponse struct {
-	// HTTP response that caused this error
-	Response *http.Response
-
-	// The error code as specified in https://docs.atlas.mongodb.com/reference/api/api-errors/
-	ErrorCode string `json:"errorCode"`
-
-	// HTTP status code.
-	HTTPCode int `json:"error"`
-
-	// A short description of the error, which is simply the HTTP status phrase.
-	Reason string `json:"reason"`
-
-	// A more detailed description of the error.
-	Detail string `json:"detail,omitempty"`
-}
-
 func (resp *Response) getCurrentPageLink() (*Link, error) {
 	if link := resp.getLinkByRef("self"); link != nil {
 		return link, nil
@@ -222,7 +204,7 @@ func (resp *Response) CurrentPage() (int, error) {
 
 	pageNum, err := strconv.Atoi(pageNumStr)
 	if err != nil {
-		return 0, fmt.Errorf("error getting current page: %s", err)
+		return 0, fmt.Errorf("error getting current page: %w", err)
 	}
 
 	return pageNum, nil
@@ -360,7 +342,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlStr string, body int
 }
 
 // newEncodedBody returns an ReadWriter object containing the body of the http request.
-func (c *Client) newEncodedBody(body interface{}) (io.Reader, error) {
+func newEncodedBody(body interface{}) (io.Reader, error) {
 	buf := &bytes.Buffer{}
 	enc := json.NewEncoder(buf)
 	enc.SetEscapeHTML(false)
@@ -407,7 +389,7 @@ func (c *Client) newRequest(ctx context.Context, urlStr, method string, body int
 
 	var buf io.Reader
 	if body != nil {
-		if buf, err = c.newEncodedBody(body); err != nil {
+		if buf, err = newEncodedBody(body); err != nil {
 			return nil, err
 		}
 	}
@@ -476,7 +458,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 			}
 		} else {
 			decErr := json.NewDecoder(resp.Body).Decode(v)
-			if decErr == io.EOF {
+			if errors.Is(decErr, io.EOF) {
 				decErr = nil // ignore EOF errors caused by empty response body
 			}
 			if decErr != nil {
@@ -488,9 +470,33 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 	return response, err
 }
 
+// ErrorResponse reports the error caused by an API request.
+type ErrorResponse struct {
+	// Response that caused this error
+	Response *http.Response
+	// ErrorCode is the code as specified in https://docs.atlas.mongodb.com/reference/api/api-errors/
+	ErrorCode string `json:"errorCode"`
+	// HTTPCode status code.
+	HTTPCode int `json:"error"`
+	// Reason is short description of the error, which is simply the HTTP status phrase.
+	Reason string `json:"reason"`
+	// Detail is more detailed description of the error.
+	Detail string `json:"detail,omitempty"`
+}
+
 func (r *ErrorResponse) Error() string {
 	return fmt.Sprintf("%v %v: %d (request %q) %v",
 		r.Response.Request.Method, r.Response.Request.URL, r.Response.StatusCode, r.ErrorCode, r.Detail)
+}
+
+func (r *ErrorResponse) Is(target error) bool {
+	var v *ErrorResponse
+
+	return errors.As(target, &v) &&
+		r.ErrorCode == v.ErrorCode &&
+		r.HTTPCode == v.HTTPCode &&
+		r.Reason == v.Reason &&
+		r.Detail == v.Detail
 }
 
 // CheckResponse checks the API response for errors, and returns them if present. A response is considered an
