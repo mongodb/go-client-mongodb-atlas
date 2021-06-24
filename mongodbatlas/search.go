@@ -290,7 +290,7 @@ type SearchAnalyzer struct {
 	Stopwords        []string `json:"stopwords,omitempty"`
 }
 
-// CustomAnalyzer custom analyzer for index
+// CustomAnalyzer custom analyzer for index.
 type CustomAnalyzer struct {
 	// Name of the custom analyzer. Names must be unique within an index, and may not start with any of the following strings: lucene, builtin, mongodb
 	Name string `json:"name"`
@@ -407,8 +407,8 @@ type AnalyzerTokenFilters struct {
 	Tokens []string `json:"tokens,omitempty"`
 
 	// IgnoreCase The flag that indicates whether or not to ignore case of stop words when filtering the tokens to remove. The value can be one of the following:
-	//true - to ignore case and remove all tokens that match the specified stop words
-	//false - to be case-sensitive and remove only tokens that exactly match the specified case
-	//If omitted, defaults to true. Apply for type: stopword
+	// true - to ignore case and remove all tokens that match the specified stop words
+	// false - to be case-sensitive and remove only tokens that exactly match the specified case
+	// If omitted, defaults to true. Apply for type: stopword
 	IgnoreCase *bool `json:"ignoreCase,omitempty"`
 }
