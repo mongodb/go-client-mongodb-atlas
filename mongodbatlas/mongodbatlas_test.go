@@ -513,7 +513,7 @@ func TestDo_completion_callback(t *testing.T) {
 	if !reflect.DeepEqual(req, completedReq) {
 		t.Errorf("Completed request = %v, expected %v", completedReq, req)
 	}
-	expected := `{"A":"a"}`
+	const expected = `{"A":"a"}`
 	if !strings.Contains(completedResp, expected) {
 		t.Errorf("expected response to contain %v, Response = %v", expected, completedResp)
 	}
@@ -534,16 +534,14 @@ func TestCustomUserAgent(t *testing.T) {
 }
 
 func TestCustomBaseURL(t *testing.T) {
-	baseURL := "http://localhost/foo"
+	const baseURL = "http://localhost/foo"
 	c, err := New(nil, SetBaseURL(baseURL))
 
 	if err != nil {
 		t.Fatalf("New() unexpected error: %v", err)
 	}
-
-	expected := baseURL
-	if got := c.BaseURL.String(); got != expected {
-		t.Errorf("New() BaseURL = %s; expected %s", got, expected)
+	if got := c.BaseURL.String(); got != baseURL {
+		t.Errorf("New() BaseURL = %s; expected %s", got, baseURL)
 	}
 }
 

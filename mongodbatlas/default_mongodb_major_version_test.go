@@ -33,7 +33,7 @@ func TestDefaultMongoDBMajorVersionServiceOp_Get(t *testing.T) {
 	if err != nil {
 		t.Fatalf("DefaultMongoDBMajorVersion.Get returned error: %v", err)
 	}
-	expected := "4.2"
+	const expected = "4.2"
 	if result != expected {
 		t.Errorf("Expected %s, Got %s", expected, result)
 	}

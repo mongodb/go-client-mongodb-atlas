@@ -170,10 +170,8 @@ func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
 		return
 	}
 
-	expected := customerX509Req
-
-	if !reflect.DeepEqual(customerX509Conf, expected) {
-		t.Errorf("X509AuthDBUsers.SaveConfiguration\n got=%#v\nwant=%#v", customerX509Conf, expected)
+	if !reflect.DeepEqual(customerX509Conf, customerX509Req) {
+		t.Errorf("X509AuthDBUsers.SaveConfiguration\n got=%#v\nwant=%#v", customerX509Conf, customerX509Req)
 	}
 }
 
