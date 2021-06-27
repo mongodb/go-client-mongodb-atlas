@@ -509,7 +509,7 @@ func TestClusters_Create(t *testing.T) {
 		t.Fatalf("Clusters.Create returned error: %v", err)
 	}
 
-	expectedName := "AppData"
+	const expectedName = "AppData"
 
 	if clusterName := cluster.Name; clusterName != expectedName {
 		t.Errorf("expected name '%s', received '%s'", expectedName, clusterName)

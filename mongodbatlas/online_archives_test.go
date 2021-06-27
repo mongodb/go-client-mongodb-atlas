@@ -333,12 +333,12 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 		t.Fatalf("OnlineArchives.Create returned error: %v", err)
 	}
 
-	expectedDBName := "people"
+	const expectedDBName = "people"
 	if archive.DBName != expectedDBName {
 		t.Errorf("expected name '%s', received '%s'", expectedDBName, archive.DBName)
 	}
 
-	expectedColName := "employees"
+	const expectedColName = "employees"
 	if archive.CollName != expectedColName {
 		t.Errorf("expected name '%s', received '%s'", expectedColName, archive.CollName)
 	}
