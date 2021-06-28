@@ -24,7 +24,7 @@ const projectInvitationBasePath = projectBasePath + "/%s/invites"
 
 // Invitations gets all unaccepted invitations to the specified Atlas project.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-get-invitations/
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-invitations/
 func (s *ProjectsServiceOp) Invitations(ctx context.Context, groupID string, opts *InvitationOptions) ([]*Invitation, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -52,7 +52,7 @@ func (s *ProjectsServiceOp) Invitations(ctx context.Context, groupID string, opt
 
 // Invitation gets details for one unaccepted invitation to the specified Atlas project.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-get-one-invitation/
+// See more: https://docs.atlas.mongodb.com/reference/api/project-get-one-invitation/
 func (s *ProjectsServiceOp) Invitation(ctx context.Context, groupID, invitationID string) (*Invitation, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -103,7 +103,7 @@ func (s *ProjectsServiceOp) InviteUser(ctx context.Context, invitation *Invitati
 
 // UpdateInvitation updates one pending invitation to the Atlas project that you specify.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/organization-update-one-invitation/
+// See more: https://docs.atlas.mongodb.com/reference/api/project-update-one-invitation/
 func (s *ProjectsServiceOp) UpdateInvitation(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
 	if invitation.GroupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -114,7 +114,7 @@ func (s *ProjectsServiceOp) UpdateInvitation(ctx context.Context, invitation *In
 
 // UpdateInvitationByID updates one invitation to the Atlas project.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/organization-update-one-invitation-by-id/
+// See more: https://docs.atlas.mongodb.com/reference/api/project-update-one-invitation-by-id/
 func (s *ProjectsServiceOp) UpdateInvitationByID(ctx context.Context, invitationID string, invitation *Invitation) (*Invitation, *Response, error) {
 	if invitation.GroupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -131,7 +131,7 @@ func (s *ProjectsServiceOp) UpdateInvitationByID(ctx context.Context, invitation
 
 // DeleteInvitation deletes one unaccepted invitation to the specified Atlas project. You can't delete an invitation that a user has accepted.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-delete-invitation/
+// See more: https://docs.atlas.mongodb.com/reference/api/project-delete-invitation/
 func (s *ProjectsServiceOp) DeleteInvitation(ctx context.Context, groupID, invitationID string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
