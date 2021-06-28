@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	orgsBasePath = "api/atlas/v1.0/orgs"
+	orgsBasePath       = "api/atlas/v1.0/orgs"
 	invitationBasePath = orgsBasePath + "/%s/invites"
 )
 
@@ -70,18 +70,18 @@ type Organizations struct {
 
 // InvitationOptions filtering options for invitations.
 type InvitationOptions struct {
-	Username        string    `url:"username,omitempty"`
+	Username string `url:"username,omitempty"`
 }
 
 // Invitation represents the structure of an Invitation.
 type Invitation struct {
-	ID              string    `json:"id,omitempty"`
-	OrgID           string    `json:"orgId,omitempty"`
-	OrgName         string    `json:"orgName,omitempty"`
-	CreatedAt       string    `json:"createdAt,omitempty"`
-	ExpiresAt       string    `json:"expiresAt,omitempty"`
-	InviterUserName string    `json:"inviterUserName,omitempty"`
-	Username        string    `json:"username,omitempty"`
+	ID              string   `json:"id,omitempty"`
+	OrgID           string   `json:"orgId,omitempty"`
+	OrgName         string   `json:"orgName,omitempty"`
+	CreatedAt       string   `json:"createdAt,omitempty"`
+	ExpiresAt       string   `json:"expiresAt,omitempty"`
+	InviterUserName string   `json:"inviterUserName,omitempty"`
+	Username        string   `json:"username,omitempty"`
 	Roles           []string `json:"roles,omitempty"`
 	TeamIDs         []string `json:"teamIds,omitempty"`
 }

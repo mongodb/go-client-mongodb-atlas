@@ -23,7 +23,7 @@ import (
 )
 
 const (
-	orgID =  "5a0a1e7e0f2912c554080adc"
+	orgID        = "5a0a1e7e0f2912c554080adc"
 	invitationID = "1"
 )
 
@@ -467,9 +467,8 @@ func TestOrganizations_ListUnacceptedInvitations(t *testing.T) {
 			InviterUserName: "admin@example.com",
 			Username:        "wyatt.smith@example.com",
 			Roles:           []string{"ORG_OWNER"},
-			TeamIDs:[]string{"2"},
+			TeamIDs:         []string{"2"},
 		},
-
 	}
 
 	if diff := deep.Equal(invitation, expected); diff != nil {
@@ -569,7 +568,6 @@ func TestOrganizations_InviteUser(t *testing.T) {
 	}
 }
 
-
 func TestOrganizations_UpdateInvitation(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
@@ -643,7 +641,7 @@ func TestOrganizations_UpdateInvitationByID(t *testing.T) {
 
 	body := &Invitation{
 		OrgID:           orgID,
-		ID: invitationID,
+		ID:              invitationID,
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
