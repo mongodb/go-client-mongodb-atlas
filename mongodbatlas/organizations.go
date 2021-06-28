@@ -20,24 +20,22 @@ import (
 	"net/http"
 )
 
-const (
-	orgsBasePath       = "api/atlas/v1.0/orgs"
-	invitationBasePath = orgsBasePath + "/%s/invites"
-)
+const orgsBasePath = "api/atlas/v1.0/orgs"
 
 // OrganizationsService provides access to the organization related functions in the Atlas API.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/organizations/
 type OrganizationsService interface {
 	List(context.Context, *OrganizationsListOptions) (*Organizations, *Response, error)
-	ListUnacceptedInvitations(context.Context, string, *InvitationOptions) (*[]Invitation, *Response, error)
+	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
 	Get(context.Context, string) (*Organization, *Response, error)
-	GetUnacceptedInvitation(context.Context, string, string) (*Invitation, *Response, error)
+	Invitation(context.Context, string, string) (*Invitation, *Response, error)
 	Projects(context.Context, string, *ListOptions) (*Projects, *Response, error)
 	Users(context.Context, string, *ListOptions) (*AtlasUsersResponse, *Response, error)
 	Delete(context.Context, string) (*Response, error)
 	InviteUser(context.Context, *Invitation) (*Invitation, *Response, error)
 	UpdateInvitation(context.Context, *Invitation) (*Invitation, *Response, error)
+	UpdateInvitationByID(context.Context, string, *Invitation) (*Invitation, *Response, error)
 	DeleteInvitation(context.Context, string, string) (*Response, error)
 }
 
@@ -66,26 +64,6 @@ type Organizations struct {
 	Links      []*Link         `json:"links"`
 	Results    []*Organization `json:"results"`
 	TotalCount int             `json:"totalCount"`
-}
-
-// InvitationOptions filtering options for invitations.
-type InvitationOptions struct {
-	Username string `url:"username,omitempty"`
-}
-
-// Invitation represents the structure of an Invitation.
-type Invitation struct {
-	ID              string   `json:"id,omitempty"`
-	GroupID           string   `json:"groupId,omitempty"`
-	GroupName         string   `json:"groupName,omitempty"`
-	OrgID           string   `json:"orgId,omitempty"`
-	OrgName         string   `json:"orgName,omitempty"`
-	CreatedAt       string   `json:"createdAt,omitempty"`
-	ExpiresAt       string   `json:"expiresAt,omitempty"`
-	InviterUserName string   `json:"inviterUserName,omitempty"`
-	Username        string   `json:"username,omitempty"`
-	Roles           []string `json:"roles,omitempty"`
-	TeamIDs         []string `json:"teamIds,omitempty"`
 }
 
 // List gets all organizations.
@@ -206,141 +184,6 @@ func (s *OrganizationsServiceOp) Delete(ctx context.Context, orgID string) (*Res
 	basePath := fmt.Sprintf("%s/%s", orgsBasePath, orgID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, basePath, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.Client.Do(ctx, req, nil)
-
-	return resp, err
-}
-
-// ListUnacceptedInvitations gets all unaccepted invitations to the specified Atlas organization.
-//
-// See more: https://docs.atlas.mongodb.com/reference/api/organization-get-invitations/
-func (s *OrganizationsServiceOp) ListUnacceptedInvitations(ctx context.Context, orgID string, opts *InvitationOptions) (*[]Invitation, *Response, error) {
-	if orgID == "" {
-		return nil, nil, NewArgError("orgID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(invitationBasePath, orgID)
-	path, err := setListOptions(basePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new([]Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// GetUnacceptedInvitation gets details for one unaccepted invitation to the specified Atlas organization.
-//
-// See more: https://docs.atlas.mongodb.com/reference/api/organization-get-one-invitation/
-func (s *OrganizationsServiceOp) GetUnacceptedInvitation(ctx context.Context, orgID, invitationID string) (*Invitation, *Response, error) {
-	if orgID == "" {
-		return nil, nil, NewArgError("orgID", "must be set")
-	}
-
-	if invitationID == "" {
-		return nil, nil, NewArgError("invitationID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(invitationBasePath, orgID)
-	path := fmt.Sprintf("%s/%s", basePath, invitationID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// InviteUser invites one user to the Atlas organization that you specify.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-create-one-invitation/
-func (s *OrganizationsServiceOp) InviteUser(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.OrgID == "" {
-		return nil, nil, NewArgError("orgID", "must be set")
-	}
-
-	path := fmt.Sprintf(invitationBasePath, invitation.OrgID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, invitation)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// UpdateInvitation updates one pending invitation to the Atlas organization that you specify.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation/
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation-by-id/
-func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.OrgID == "" {
-		return nil, nil, NewArgError("orgID", "must be set")
-	}
-
-	path := fmt.Sprintf(invitationBasePath, invitation.OrgID)
-
-	if invitation.ID != "" {
-		path = fmt.Sprintf("%s/%s", path, invitation.ID)
-	}
-
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, invitation)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// DeleteInvitation deletes one unaccepted invitation to the specified Atlas organization. You can't delete an invitation that a user has accepted.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-delete-invitation/
-func (s *OrganizationsServiceOp) DeleteInvitation(ctx context.Context, orgID, invitationID string) (*Response, error) {
-	if orgID == "" {
-		return nil, NewArgError("orgID", "must be set")
-	}
-
-	if invitationID == "" {
-		return nil, NewArgError("invitationID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(invitationBasePath, orgID)
-	path := fmt.Sprintf("%s/%s", basePath, invitationID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
 		return nil, err
 	}
