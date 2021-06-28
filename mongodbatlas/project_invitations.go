@@ -50,7 +50,7 @@ func (s *ProjectsServiceOp) Invitations(ctx context.Context, groupID string, opt
 	return root, resp, nil
 }
 
-// GetUnacceptedInvitation gets details for one unaccepted invitation to the specified Atlas project.
+// Invitation gets details for one unaccepted invitation to the specified Atlas project.
 //
 // See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-get-one-invitation/
 func (s *ProjectsServiceOp) Invitation(ctx context.Context, groupID, invitationID string) (*Invitation, *Response, error) {
