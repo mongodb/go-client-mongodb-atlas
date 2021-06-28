@@ -290,9 +290,10 @@ func (s *OrganizationsServiceOp) InviteUser(ctx context.Context, invitation *Inv
 	return root, resp, nil
 }
 
-// InviteUser invites one user to the Atlas organization that you specify.
+// UpdateInvitation updates one pending invitation to the Atlas organization that you specify.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-create-one-invitation/
+// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation/
+// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation-by-id/
 func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
 	if invitation.OrgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
