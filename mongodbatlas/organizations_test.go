@@ -22,6 +22,8 @@ import (
 	"github.com/go-test/deep"
 )
 
+const orgID = "5a0a1e7e0f2912c554080adc"
+
 func TestOrganizationsServiceOp_List(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
 		client, mux, teardown := setup()
@@ -174,9 +176,7 @@ func TestOrganizationsServiceOp_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	ID := "5a0a1e7e0f2912c554080adc"
-
-	mux.HandleFunc(fmt.Sprintf("/%s/%s", orgsBasePath, ID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/%s/%s", orgsBasePath, orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
 		"id": "5a0a1e7e0f2912c554080adc",
@@ -189,7 +189,7 @@ func TestOrganizationsServiceOp_Get(t *testing.T) {
 	  }`)
 	})
 
-	response, _, err := client.Organizations.Get(ctx, ID)
+	response, _, err := client.Organizations.Get(ctx, orgID)
 	if err != nil {
 		t.Fatalf("Organizations.Get returned error: %v", err)
 	}
@@ -214,13 +214,11 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	ID := "5980cfdf0b6d97029d82f86e"
-
-	mux.HandleFunc(fmt.Sprintf("/%s/%s/groups", orgsBasePath, ID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/%s/%s/groups", orgsBasePath, orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
 			"links": [{
-				"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/5980cfdf0b6d97029d82f86e/groups",
+				"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc/groups",
 				"rel": "self"
 			}],
 			"results": [{
@@ -230,13 +228,13 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 					"rel": "self"
 				}],
 				"name": "012i3091203jioawjioej",
-				"orgId": "5980cfdf0b6d97029d82f86e"
+				"orgId": "5a0a1e7e0f2912c554080adc"
 			}],
 			"totalCount": 1
 		}`)
 	})
 
-	projects, _, err := client.Organizations.Projects(ctx, ID, nil)
+	projects, _, err := client.Organizations.Projects(ctx, orgID, nil)
 	if err != nil {
 		t.Fatalf("Organizations.GetProjects returned error: %v", err)
 	}
@@ -244,7 +242,7 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 	expected := &Projects{
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/5980cfdf0b6d97029d82f86e/groups",
+				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc/groups",
 				Rel:  "self",
 			},
 		},
@@ -258,7 +256,7 @@ func TestOrganizationsServiceOp_Projects(t *testing.T) {
 					},
 				},
 				Name:  "012i3091203jioawjioej",
-				OrgID: "5980cfdf0b6d97029d82f86e",
+				OrgID: "5a0a1e7e0f2912c554080adc",
 			},
 		},
 		TotalCount: 1,
@@ -273,9 +271,7 @@ func TestOrganizationsServiceOp_Users(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	ID := "5980cfdf0b6d97029d82f86e"
-
-	mux.HandleFunc(fmt.Sprintf("/%s/%s/users", orgsBasePath, ID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/%s/%s/users", orgsBasePath, orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
 			"links": [
@@ -343,7 +339,7 @@ func TestOrganizationsServiceOp_Users(t *testing.T) {
 		}`)
 	})
 
-	users, _, err := client.Organizations.Users(ctx, ID, nil)
+	users, _, err := client.Organizations.Users(ctx, orgID, nil)
 	if err != nil {
 		t.Fatalf("Organizations.Users returned error: %v", err)
 	}
@@ -401,8 +397,6 @@ func TestOrganizationsServiceOp_Users(t *testing.T) {
 func TestOrganizations_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	orgID := "5a0a1e7e0f2912c554080adc"
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/orgs/%s", orgID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
