@@ -319,7 +319,7 @@ func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitatio
 	return root, resp, nil
 }
 
-// Delete deletes one unaccepted invitation to the specified Atlas organization. You can't delete an invitation that a user has accepted.
+// DeleteInvitation deletes one unaccepted invitation to the specified Atlas organization. You can't delete an invitation that a user has accepted.
 //
 // See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-delete-invitation/
 func (s *OrganizationsServiceOp) DeleteInvitation(ctx context.Context, orgID, invitationID string) (*Response, error) {
