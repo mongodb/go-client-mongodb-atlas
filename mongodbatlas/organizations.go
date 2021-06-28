@@ -249,6 +249,10 @@ func (s *OrganizationsServiceOp) GetUnacceptedInvitation(ctx context.Context, or
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
 
+	if invitationID == "" {
+		return nil, nil, NewArgError("invitationID", "must be set")
+	}
+
 	basePath := fmt.Sprintf(invitationBasePath, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, invitationID)
 
@@ -325,6 +329,10 @@ func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitatio
 func (s *OrganizationsServiceOp) DeleteInvitation(ctx context.Context, orgID, invitationID string) (*Response, error) {
 	if orgID == "" {
 		return nil, NewArgError("orgID", "must be set")
+	}
+
+	if invitationID == "" {
+		return nil, NewArgError("invitationID", "must be set")
 	}
 
 	basePath := fmt.Sprintf(invitationBasePath, orgID)
