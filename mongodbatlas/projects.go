@@ -32,7 +32,6 @@ const (
 	// GroupDataAccessReadOnly - Project Data Access Read Only.
 	GroupDataAccessReadOnly = "GROUP_DATA_ACCESS_READ_ONLY"
 	projectBasePath         = "api/atlas/v1.0/groups"
-	projectInvitationBasePath = projectBasePath + "/%s/invites"
 )
 
 // ProjectsService is an interface for interfacing with the Projects
@@ -48,10 +47,11 @@ type ProjectsService interface {
 	GetProjectTeamsAssigned(context.Context, string) (*TeamsAssigned, *Response, error)
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
 	RemoveUserFromProject(context.Context, string, string) (*Response, error)
-	ListUnacceptedInvitations(context.Context, string, *InvitationOptions) (*[]Invitation, *Response, error)
-	GetUnacceptedInvitation(context.Context, string, string) (*Invitation, *Response, error)
+	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
+	Invitation(context.Context, string, string) (*Invitation, *Response, error)
 	InviteUser(context.Context, *Invitation) (*Invitation, *Response, error)
 	UpdateInvitation(context.Context, *Invitation) (*Invitation, *Response, error)
+	UpdateInvitationByID(context.Context, string, *Invitation) (*Invitation, *Response, error)
 	DeleteInvitation(context.Context, string, string) (*Response, error)
 }
 
@@ -282,138 +282,5 @@ func (s *ProjectsServiceOp) RemoveUserFromProject(ctx context.Context, projectID
 	}
 
 	resp, err := s.Client.Do(ctx, req, nil)
-	return resp, err
-}
-
-// ListUnacceptedInvitations gets all unaccepted invitations to the specified Atlas project.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-get-invitations/
-func (s *ProjectsServiceOp) ListUnacceptedInvitations(ctx context.Context, groupID string, opts *InvitationOptions) (*[]Invitation, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(projectInvitationBasePath, groupID)
-	path, err := setListOptions(basePath, opts)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new([]Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// GetUnacceptedInvitation gets details for one unaccepted invitation to the specified Atlas project.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-get-one-invitation/
-func (s *ProjectsServiceOp) GetUnacceptedInvitation(ctx context.Context, groupID, invitationID string) (*Invitation, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	if invitationID == "" {
-		return nil, nil, NewArgError("invitationID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(projectInvitationBasePath, groupID)
-	path := fmt.Sprintf("%s/%s", basePath, invitationID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// InviteUser invites one user to the Atlas project that you specify.
-func (s *ProjectsServiceOp) InviteUser(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.GroupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	path := fmt.Sprintf(projectInvitationBasePath, invitation.GroupID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, invitation)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// UpdateInvitation updates one pending invitation to the Atlas project that you specify.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation/
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation-by-id/
-func (s *ProjectsServiceOp) UpdateInvitation(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.GroupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	path := fmt.Sprintf(projectInvitationBasePath, invitation.GroupID)
-
-	if invitation.ID != "" {
-		path = fmt.Sprintf("%s/%s", path, invitation.ID)
-	}
-
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, invitation)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(Invitation)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, nil
-}
-
-// DeleteInvitation deletes one unaccepted invitation to the specified Atlas project. You can't delete an invitation that a user has accepted.
-//
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/project-delete-invitation/
-func (s *ProjectsServiceOp) DeleteInvitation(ctx context.Context, groupID, invitationID string) (*Response, error) {
-	if groupID == "" {
-		return nil, NewArgError("groupID", "must be set")
-	}
-
-	if invitationID == "" {
-		return nil, NewArgError("invitationID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(projectInvitationBasePath, groupID)
-	path := fmt.Sprintf("%s/%s", basePath, invitationID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.Client.Do(ctx, req, nil)
-
 	return resp, err
 }

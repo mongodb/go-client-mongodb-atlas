@@ -32,6 +32,8 @@ type Invitation struct {
 	ID              string   `json:"id,omitempty"`
 	OrgID           string   `json:"orgId,omitempty"`
 	OrgName         string   `json:"orgName,omitempty"`
+	GroupID         string   `json:"groupId,omitempty"`
+	GroupName       string   `json:"groupName,omitempty"`
 	CreatedAt       string   `json:"createdAt,omitempty"`
 	ExpiresAt       string   `json:"expiresAt,omitempty"`
 	InviterUsername string   `json:"inviterUsername,omitempty"`
