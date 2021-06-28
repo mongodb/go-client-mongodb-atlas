@@ -76,6 +76,8 @@ type InvitationOptions struct {
 // Invitation represents the structure of an Invitation.
 type Invitation struct {
 	ID              string   `json:"id,omitempty"`
+	GroupID           string   `json:"groupId,omitempty"`
+	GroupName         string   `json:"groupName,omitempty"`
 	OrgID           string   `json:"orgId,omitempty"`
 	OrgName         string   `json:"orgName,omitempty"`
 	CreatedAt       string   `json:"createdAt,omitempty"`

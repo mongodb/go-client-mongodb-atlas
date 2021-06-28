@@ -401,3 +401,5 @@ func TestProject_RemoveUserFromProject(t *testing.T) {
 		t.Fatalf("Projects.RemoveUserFromProject returned error: %v", err)
 	}
 }
+
+
