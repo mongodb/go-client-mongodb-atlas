@@ -67,7 +67,7 @@ func TestOrganizations_Invitations(t *testing.T) {
 			OrgName:         "jww-12-16",
 			CreatedAt:       "2021-02-18T21:05:40Z",
 			ExpiresAt:       "2021-03-20T21:05:40Z",
-			InviterUserName: "admin@example.com",
+			InviterUsername: "admin@example.com",
 			Username:        "wyatt.smith@example.com",
 			Roles:           []string{"ORG_OWNER"},
 		},
@@ -77,7 +77,7 @@ func TestOrganizations_Invitations(t *testing.T) {
 			OrgName:         "jww-12-16",
 			CreatedAt:       "2021-02-18T21:05:40Z",
 			ExpiresAt:       "2021-03-20T21:05:40Z",
-			InviterUserName: "admin@example.com",
+			InviterUsername: "admin@example.com",
 			Username:        "wyatt.smith@example.com",
 			Roles:           []string{"ORG_OWNER"},
 			TeamIDs:         []string{"2"},
@@ -120,7 +120,7 @@ func TestOrganizations_Invitation(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -155,7 +155,7 @@ func TestOrganizations_InviteUser(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -171,7 +171,7 @@ func TestOrganizations_InviteUser(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -206,7 +206,7 @@ func TestOrganizations_UpdateInvitation(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -222,7 +222,7 @@ func TestOrganizations_UpdateInvitation(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -258,7 +258,7 @@ func TestOrganizations_UpdateInvitationByID(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}
@@ -274,7 +274,7 @@ func TestOrganizations_UpdateInvitationByID(t *testing.T) {
 		OrgName:         "jww-12-16",
 		CreatedAt:       "2021-02-18T21:05:40Z",
 		ExpiresAt:       "2021-03-20T21:05:40Z",
-		InviterUserName: "admin@example.com",
+		InviterUsername: "admin@example.com",
 		Username:        "wyatt.smith@example.com",
 		Roles:           []string{"ORG_OWNER"},
 	}

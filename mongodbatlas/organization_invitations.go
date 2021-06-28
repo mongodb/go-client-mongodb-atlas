@@ -34,7 +34,7 @@ type Invitation struct {
 	OrgName         string   `json:"orgName,omitempty"`
 	CreatedAt       string   `json:"createdAt,omitempty"`
 	ExpiresAt       string   `json:"expiresAt,omitempty"`
-	InviterUserName string   `json:"inviterUsername,omitempty"`
+	InviterUsername string   `json:"inviterUsername,omitempty"`
 	Username        string   `json:"username,omitempty"`
 	Roles           []string `json:"roles,omitempty"`
 	TeamIDs         []string `json:"teamIds,omitempty"`
@@ -123,7 +123,7 @@ func (s *OrganizationsServiceOp) InviteUser(ctx context.Context, invitation *Inv
 
 // UpdateInvitation updates one pending invitation to the Atlas organization that you specify.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation/
+// See more: https://docs.atlas.mongodb.com/reference/api/organization-update-one-invitation/
 func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
 	if invitation.OrgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
@@ -134,7 +134,7 @@ func (s *OrganizationsServiceOp) UpdateInvitation(ctx context.Context, invitatio
 
 // UpdateInvitationByID updates one invitation to the Atlas organization.
 //
-// See more: https://docs-atlas-staging.mongodb.com/cloud-docs/docsworker-xlarge/DOCSP-14695/reference/api/organization-update-one-invitation-by-id/
+// See more: https://docs.atlas.mongodb.com/reference/api/organization-update-one-invitation-by-id/
 func (s *OrganizationsServiceOp) UpdateInvitationByID(ctx context.Context, invitationID string, invitation *Invitation) (*Invitation, *Response, error) {
 	if invitation.OrgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
