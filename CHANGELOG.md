@@ -1,5 +1,43 @@
 # Changelog
 
+## [v0.9.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.9.0) (June 29, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.8.0...v0.9.0)
+
+**Breaking changes:**
+
+- INTMDB-17: Update search [\#223](https://github.com/mongodb/go-client-mongodb-atlas/pull/223) ([abner-dou](https://github.com/abner-dou))
+- CLOUDP-91945: Add support for endpoints v1.5 [\#212](https://github.com/mongodb/go-client-mongodb-atlas/pull/212) ([andreaangiolillo](https://github.com/andreaangiolillo))
+  - This only affects users setting a custom base URL which now should not include the `api/{version}}` segment 
+- feat: remove project whitelist [\#206](https://github.com/mongodb/go-client-mongodb-atlas/pull/206) ([gssbzn](https://github.com/gssbzn))
+
+**Merged pull requests:**
+
+- CLOUDP-93382: Add Programmatic Invite Management for project to the atlas go client [\#228](https://github.com/mongodb/go-client-mongodb-atlas/pull/228) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-93381: Add Programmatic Invite Management for organization to the atlas go client [\#227](https://github.com/mongodb/go-client-mongodb-atlas/pull/227) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- tests: enable ifshort [\#226](https://github.com/mongodb/go-client-mongodb-atlas/pull/226) ([gssbzn](https://github.com/gssbzn))
+- task: enable thelper and errorlint [\#225](https://github.com/mongodb/go-client-mongodb-atlas/pull/225) ([gssbzn](https://github.com/gssbzn))
+- added custom analyzer structs [\#224](https://github.com/mongodb/go-client-mongodb-atlas/pull/224) ([abner-dou](https://github.com/abner-dou))
+- lint: replace golint with revive [\#222](https://github.com/mongodb/go-client-mongodb-atlas/pull/222) ([gssbzn](https://github.com/gssbzn))
+- lint: enable godot [\#221](https://github.com/mongodb/go-client-mongodb-atlas/pull/221) ([gssbzn](https://github.com/gssbzn))
+- docs: update README [\#220](https://github.com/mongodb/go-client-mongodb-atlas/pull/220) ([gssbzn](https://github.com/gssbzn))
+- Addded autoscaling to the advance cluster [\#219](https://github.com/mongodb/go-client-mongodb-atlas/pull/219) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- task: check dependencies on Tuesday [\#218](https://github.com/mongodb/go-client-mongodb-atlas/pull/218) ([gssbzn](https://github.com/gssbzn))
+- fix: fix alert configurations path [\#217](https://github.com/mongodb/go-client-mongodb-atlas/pull/217) ([gssbzn](https://github.com/gssbzn))
+- added update-all-analyzers method to search [\#216](https://github.com/mongodb/go-client-mongodb-atlas/pull/216) ([abner-dou](https://github.com/abner-dou))
+- Fixed failing tests [\#215](https://github.com/mongodb/go-client-mongodb-atlas/pull/215) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Bug Fix: Add CloudURL [\#214](https://github.com/mongodb/go-client-mongodb-atlas/pull/214) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-92196: add advanced cluster endpoints in the atlas go client [\#213](https://github.com/mongodb/go-client-mongodb-atlas/pull/213) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-145: Support delete function for Cloud Backup Schedules [\#210](https://github.com/mongodb/go-client-mongodb-atlas/pull/210) ([coderGo93](https://github.com/coderGo93))
+- INTMDB-19: Added fields in datalake databases and stores [\#209](https://github.com/mongodb/go-client-mongodb-atlas/pull/209) ([coderGo93](https://github.com/coderGo93))
+- chore\(deps\): bump actions/cache from 2.1.5 to 2.1.6 [\#208](https://github.com/mongodb/go-client-mongodb-atlas/pull/208) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Adding missing args to do a custom online archive [\#207](https://github.com/mongodb/go-client-mongodb-atlas/pull/207) ([leofigy](https://github.com/leofigy))
+- chore\(deps\): bump actions/checkout from 2 to 2.3.4 [\#205](https://github.com/mongodb/go-client-mongodb-atlas/pull/205) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/cache from 2 to 2.1.5 [\#204](https://github.com/mongodb/go-client-mongodb-atlas/pull/204) ([dependabot[bot]](https://github.com/apps/dependabot))
+- task: add CODEOWNERS [\#203](https://github.com/mongodb/go-client-mongodb-atlas/pull/203) ([gssbzn](https://github.com/gssbzn))
+- feat: update golancgci and enable tagliatelle [\#202](https://github.com/mongodb/go-client-mongodb-atlas/pull/202) ([gssbzn](https://github.com/gssbzn))
+- ldap group is admin db [\#201](https://github.com/mongodb/go-client-mongodb-atlas/pull/201) ([leofigy](https://github.com/leofigy))
+
 ## [v0.8.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.8.0) (April 20, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.7.2...v0.8.0)
