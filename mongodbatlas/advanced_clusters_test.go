@@ -233,7 +233,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 				PitEnabled:               &pitEnabled,
 				StateName:                "CREATING",
 
-				ReplicationSpecs: []*AdvancedRegionSpec{
+				ReplicationSpecs: []*AdvancedReplicationSpec{
 					{
 						ID:        "1",
 						NumShards: 1,
@@ -285,7 +285,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 				Paused:                   &paused,
 				PitEnabled:               &pitEnabled,
 				StateName:                "CREATING",
-				ReplicationSpecs: []*AdvancedRegionSpec{
+				ReplicationSpecs: []*AdvancedReplicationSpec{
 					{
 						ID:        "2",
 						NumShards: 1,
@@ -501,7 +501,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
-		ReplicationSpecs: []*AdvancedRegionSpec{
+		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
 				NumShards: 1,
@@ -711,7 +711,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
-		ReplicationSpecs: []*AdvancedRegionSpec{
+		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
 				NumShards: 1,
@@ -810,7 +810,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
-		ReplicationSpecs: []*AdvancedRegionSpec{
+		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
 				NumShards: 1,
@@ -1020,7 +1020,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
-		ReplicationSpecs: []*AdvancedRegionSpec{
+		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
 				NumShards: 1,
@@ -1119,7 +1119,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
-		ReplicationSpecs: []*AdvancedRegionSpec{
+		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
 				NumShards: 1,
