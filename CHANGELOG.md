@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.10.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.0) (June 30, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.9.0...v0.10.0)
+
+**Breaking changes:**
+
+- Renamed AdvancedRegionSpec to AdvancedReplicationSpec [\#230](https://github.com/mongodb/go-client-mongodb-atlas/pull/230) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.9.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.9.0) (June 29, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.8.0...v0.9.0)
