@@ -64,10 +64,10 @@ type AdvancedCluster struct {
 }
 
 type AdvancedReplicationSpec struct {
-	NumShards     int    `json:"numShards,omitempty"`
-	ID            string `json:"id,omitempty"`
-	ZoneName      string `json:"zoneName,omitempty"`
-	RegionConfigs []*AdvancedRegionConfig
+	NumShards     int                     `json:"numShards,omitempty"`
+	ID            string                  `json:"id,omitempty"`
+	ZoneName      string                  `json:"zoneName,omitempty"`
+	RegionConfigs []*AdvancedRegionConfig `json:"regionConfigs,omitempty"`
 }
 
 type AdvancedRegionConfig struct {
