@@ -50,8 +50,8 @@ type ProjectsService interface {
 	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
 	Invitation(context.Context, string, string) (*Invitation, *Response, error)
 	InviteUser(context.Context, string, *Invitation) (*Invitation, *Response, error)
-	UpdateInvitation(context.Context, *Invitation) (*Invitation, *Response, error)
-	UpdateInvitationByID(context.Context, string, *Invitation) (*Invitation, *Response, error)
+	UpdateInvitation(context.Context, string, *Invitation) (*Invitation, *Response, error)
+	UpdateInvitationByID(context.Context, string, string, *Invitation) (*Invitation, *Response, error)
 	DeleteInvitation(context.Context, string, string) (*Response, error)
 }
 
