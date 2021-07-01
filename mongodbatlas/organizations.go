@@ -33,7 +33,7 @@ type OrganizationsService interface {
 	Projects(context.Context, string, *ListOptions) (*Projects, *Response, error)
 	Users(context.Context, string, *ListOptions) (*AtlasUsersResponse, *Response, error)
 	Delete(context.Context, string) (*Response, error)
-	InviteUser(context.Context, *Invitation) (*Invitation, *Response, error)
+	InviteUser(context.Context, string, *Invitation) (*Invitation, *Response, error)
 	UpdateInvitation(context.Context, *Invitation) (*Invitation, *Response, error)
 	UpdateInvitationByID(context.Context, string, *Invitation) (*Invitation, *Response, error)
 	DeleteInvitation(context.Context, string, string) (*Response, error)

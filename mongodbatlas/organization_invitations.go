@@ -102,12 +102,12 @@ func (s *OrganizationsServiceOp) Invitation(ctx context.Context, orgID, invitati
 // InviteUser invites one user to the Atlas organization that you specify.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/organization-create-one-invitation/
-func (s *OrganizationsServiceOp) InviteUser(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.OrgID == "" {
+func (s *OrganizationsServiceOp) InviteUser(ctx context.Context, orgID string, invitation *Invitation) (*Invitation, *Response, error) {
+	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
 
-	path := fmt.Sprintf(invitationBasePath, invitation.OrgID)
+	path := fmt.Sprintf(invitationBasePath, orgID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, invitation)
 	if err != nil {

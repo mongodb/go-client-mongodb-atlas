@@ -160,7 +160,7 @@ func TestOrganizations_InviteUser(t *testing.T) {
 		Roles:           []string{"ORG_OWNER"},
 	}
 
-	invitation, _, err := client.Organizations.InviteUser(ctx, body)
+	invitation, _, err := client.Organizations.InviteUser(ctx, orgID, body)
 	if err != nil {
 		t.Fatalf("Organizations.InviteUser returned error: %v", err)
 	}
