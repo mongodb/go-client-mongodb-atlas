@@ -124,8 +124,6 @@ func (s *ProjectsServiceOp) UpdateInvitationByID(ctx context.Context, groupID, i
 		return nil, nil, NewArgError("invitationID", "must be set")
 	}
 
-	invitation.ID = invitationID
-
 	return s.updateInvitation(ctx, groupID, invitationID, invitation)
 }
 
