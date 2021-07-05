@@ -80,12 +80,12 @@ func (s *ProjectsServiceOp) Invitation(ctx context.Context, groupID, invitationI
 }
 
 // InviteUser invites one user to the Atlas project that you specify.
-func (s *ProjectsServiceOp) InviteUser(ctx context.Context, invitation *Invitation) (*Invitation, *Response, error) {
-	if invitation.GroupID == "" {
+func (s *ProjectsServiceOp) InviteUser(ctx context.Context, groupID string, invitation *Invitation) (*Invitation, *Response, error) {
+	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
-	path := fmt.Sprintf(projectInvitationBasePath, invitation.GroupID)
+	path := fmt.Sprintf(projectInvitationBasePath, groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, invitation)
 	if err != nil {
