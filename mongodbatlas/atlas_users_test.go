@@ -312,7 +312,7 @@ func TestAtlasUsers_Create(t *testing.T) {
 		Country: "US",
 	}
 
-	mux.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/atlas/v1.0/users", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"username":     "john.doe@example.com",
 			"password":     "myPassword1@",
