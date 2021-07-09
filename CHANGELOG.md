@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.10.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.1) (July 09, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.0...v0.10.1)
+
+**Breaking changes:**
+
+- Renamed AdvancedRegionSpec to AdvancedReplicationSpec [\#230](https://github.com/mongodb/go-client-mongodb-atlas/pull/230) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
+**Merged pull requests:**
+
+- Bug: The atlas user create was calling the wrong endpoint [\#234](https://github.com/mongodb/go-client-mongodb-atlas/pull/234) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Fix project invitation update [\#233](https://github.com/mongodb/go-client-mongodb-atlas/pull/233) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Fixed Invite New User endpoints for organizations and projects [\#232](https://github.com/mongodb/go-client-mongodb-atlas/pull/232) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- task: release 0.10.0 prep [\#231](https://github.com/mongodb/go-client-mongodb-atlas/pull/231) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.10.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.0) (June 30, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.9.0...v0.10.0)
