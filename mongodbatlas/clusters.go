@@ -153,6 +153,7 @@ type Cluster struct {
 	MongoURIUpdated          string                   `json:"mongoURIUpdated,omitempty"`
 	MongoURIWithOptions      string                   `json:"mongoURIWithOptions,omitempty"`
 	Name                     string                   `json:"name,omitempty"`
+	CreateDate               string                   `json:"createDate,omitempty"`
 	NumShards                *int64                   `json:"numShards,omitempty"`
 	Paused                   *bool                    `json:"paused,omitempty"`
 	PitEnabled               *bool                    `json:"pitEnabled,omitempty"`
@@ -164,6 +165,7 @@ type Cluster struct {
 	SrvAddress               string                   `json:"srvAddress,omitempty"`
 	StateName                string                   `json:"stateName,omitempty"`
 	ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
+	Links                    []*Link                  `json:"links,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster.

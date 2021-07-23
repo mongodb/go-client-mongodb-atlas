@@ -137,6 +137,7 @@ type Client struct {
 	DefaultMongoDBMajorVersion          DefaultMongoDBMajorVersionService
 	IPInfo                              IPInfoService
 	AdvancedClusters                    AdvancedClustersService
+	ServerlessInstances                 ServerlessInstancesService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -167,6 +168,9 @@ type ListOptions struct {
 
 	// For paginated result sets, the number of results to include per page.
 	ItemsPerPage int `url:"itemsPerPage,omitempty"`
+
+	// Flag that indicates whether Atlas returns the totalCount parameter in the response body.
+	IncludeCount bool `url:"includeCount,omitempty"`
 }
 
 func (resp *Response) getCurrentPageLink() (*Link, error) {
@@ -270,6 +274,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.DefaultMongoDBMajorVersion = &DefaultMongoDBMajorVersionServiceOp{Client: c}
 	c.IPInfo = &IPInfoServiceOp{Client: c}
 	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
+	c.ServerlessInstances = &ServerlessInstancesServiceOp{Client: c}
 
 	return c
 }
