@@ -22,8 +22,7 @@ import (
 
 const serverlessInstancesPath = "api/atlas/v1.0/groups/%s/serverless"
 
-// ServerlessInstancesService is an interface for interfacing with the Serverless Instances
-// endpoints of the MongoDB Atlas API.
+// ServerlessInstancesService is an interface for interfacing with the Serverless Instances endpoints of the MongoDB Atlas API.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/serverless/return-one-serverless-instance/
 type ServerlessInstancesService interface {
@@ -39,8 +38,7 @@ type ClustersResponse struct {
 	TotalCount int        `json:"totalCount,omitempty"`
 }
 
-// ServerlessInstancesServiceOp handles communication with the Serverless Instances related methods of the
-// MongoDB Atlas API.
+// ServerlessInstancesServiceOp handles communication with the Serverless Instances related methods of the MongoDB Atlas API.
 type ServerlessInstancesServiceOp service
 
 var _ ServerlessInstancesService = &ServerlessInstancesServiceOp{}
