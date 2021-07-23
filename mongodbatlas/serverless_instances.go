@@ -28,20 +28,34 @@ const serverlessInstancesPath = "api/atlas/v1.0/groups/%s/serverless"
 type ServerlessInstancesService interface {
 	List(context.Context, string, *ListOptions) (*ClustersResponse, *Response, error)
 	Get(context.Context, string, string) (*Cluster, *Response, error)
-	Create(context.Context, string, *Cluster) (*Cluster, *Response, error)
+	Create(context.Context, string, *ServerlessCreateRequestParams) (*Cluster, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
-}
-
-type ClustersResponse struct {
-	Links      []*Link    `json:"links,omitempty"`
-	Results    []*Cluster `json:"results,omitempty"`
-	TotalCount int        `json:"totalCount,omitempty"`
 }
 
 // ServerlessInstancesServiceOp handles communication with the Serverless Instances related methods of the MongoDB Atlas API.
 type ServerlessInstancesServiceOp service
 
 var _ ServerlessInstancesService = &ServerlessInstancesServiceOp{}
+
+// ClustersResponse represents the response of ServerlessInstancesService.List.
+type ClustersResponse struct {
+	Links      []*Link    `json:"links,omitempty"`
+	Results    []*Cluster `json:"results,omitempty"`
+	TotalCount int        `json:"totalCount,omitempty"`
+}
+
+// ServerlessCreateRequestParams represents the Request Body Parameters of ServerlessInstancesService.Create.
+type ServerlessCreateRequestParams struct {
+	Name             string                      `json:"name,omitempty"`
+	ProviderSettings *ServerlessProviderSettings `json:"providerSettings,omitempty"`
+}
+
+// ServerlessProviderSettings represents the Provider Settings of serverless instances.
+type ServerlessProviderSettings struct {
+	BackingProviderName string `json:"backingProviderName,omitempty"`
+	ProviderName        string `json:"providerName,omitempty"`
+	RegionName          string `json:"regionName,omitempty"`
+}
 
 // List gets all serverless instances in the specified project.
 //
@@ -103,14 +117,14 @@ func (s *ServerlessInstancesServiceOp) Get(ctx context.Context, projectID, insta
 // Create creates one serverless instance in the specified project.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/serverless/create-one-serverless-instance/
-func (s *ServerlessInstancesServiceOp) Create(ctx context.Context, projectID string, cluster *Cluster) (*Cluster, *Response, error) {
+func (s *ServerlessInstancesServiceOp) Create(ctx context.Context, projectID string, bodyParams *ServerlessCreateRequestParams) (*Cluster, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 
 	path := fmt.Sprintf(serverlessInstancesPath, projectID)
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, cluster)
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, bodyParams)
 	if err != nil {
 		return nil, nil, err
 	}

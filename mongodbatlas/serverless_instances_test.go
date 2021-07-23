@@ -220,24 +220,12 @@ func TestServerlessInstances_Create(t *testing.T) {
 		}`)
 	})
 
-	cluster := &Cluster{
-		ID:                id,
-		GroupID:           projectID,
-		MongoDBVersion:    "5.0.0",
-		Name:              "test1",
-		ProviderSettings:  &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
-		StateName:         "IDLE",
-		ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
-		CreateDate:        "2021-06-25T21:32:06Z",
-		Links: []*Link{
-			{
-				Rel:  "self",
-				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
-			},
-		},
+	bodyParam := &ServerlessCreateRequestParams{
+		Name:             "test1",
+		ProviderSettings: &ServerlessProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
 	}
 
-	serverlessInstance, _, err := client.ServerlessInstances.Create(ctx, projectID, cluster)
+	serverlessInstance, _, err := client.ServerlessInstances.Create(ctx, projectID, bodyParam)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
 	}
