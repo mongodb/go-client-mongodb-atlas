@@ -98,7 +98,7 @@ func (s *AccessListAPIKeysServiceOp) List(ctx context.Context, orgID, apiKeyID s
 	return root, resp, nil
 }
 
-// Get retrieve information on a single API Key access list entry using the unique identifier for the API Key and desired permitted address.
+// Get retrieves information on a single API Key access list entry using the unique identifier for the API Key and desired permitted address.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/api-access-list/get-one-api-access-entry/
 func (s *AccessListAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, ipAddress string) (*AccessListAPIKey, *Response, error) {
@@ -128,7 +128,7 @@ func (s *AccessListAPIKeysServiceOp) Get(ctx context.Context, orgID, apiKeyID, i
 	return root, resp, err
 }
 
-// Create one or more new access list entries for the specified API Key.
+// Create creates one or more new access list entries for the specified API Key.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/api-access-list/create-api-access-entries/
 func (s *AccessListAPIKeysServiceOp) Create(ctx context.Context, orgID, apiKeyID string, createRequest []*AccessListAPIKeysReq) (*AccessListAPIKeys, *Response, error) {
