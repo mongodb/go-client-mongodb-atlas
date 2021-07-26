@@ -46,6 +46,7 @@ type MaintenanceWindowsService interface {
 	Get(context.Context, string) (*MaintenanceWindow, *Response, error)
 	Update(context.Context, string, *MaintenanceWindow) (*Response, error)
 	Defer(context.Context, string) (*Response, error)
+	AutoDefer(context.Context, string) (*Response, error)
 	Reset(context.Context, string) (*Response, error)
 }
 
@@ -121,6 +122,26 @@ func (s *MaintenanceWindowsServiceOp) Defer(ctx context.Context, groupID string)
 	}
 
 	path := fmt.Sprintf(maintenanceWindowsPath+"/defer", groupID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}
+
+// AutoDefer any scheduled maintenance for the given project for one week.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/maintenance-window-auto-defer/
+func (s *MaintenanceWindowsServiceOp) AutoDefer(ctx context.Context, groupID string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupID", "cannot be nil")
+	}
+
+	path := fmt.Sprintf(maintenanceWindowsPath+"/autoDefer", groupID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, nil)
 	if err != nil {
