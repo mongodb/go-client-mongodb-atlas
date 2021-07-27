@@ -148,6 +148,23 @@ func TestMaintenanceWindows_Defer(t *testing.T) {
 	}
 }
 
+func TestMaintenanceWindows_AutoDefer(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6d2065c687d9d64ae7acdg41"
+
+	mux.HandleFunc(fmt.Sprintf("/"+maintenanceWindowsPath+"/autoDefer", groupID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		fmt.Fprint(w, `{}`)
+	})
+
+	_, err := client.MaintenanceWindows.AutoDefer(ctx, groupID)
+	if err != nil {
+		t.Errorf("MaintenanceWindows.AutoDefer returned error: %v", err)
+	}
+}
+
 func TestMaintenanceWindows_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
