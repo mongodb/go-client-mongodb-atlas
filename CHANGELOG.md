@@ -1,30 +1,5 @@
 # Changelog
 
-## [v0.10.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.1) (August 10, 2021)
-
-[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.1...v0.10.1)
-
-**Merged pull requests:**
-
-- Adding AutoDefer method to automatically defer any maintenance [\#237](https://github.com/mongodb/go-client-mongodb-atlas/pull/237) ([vgarcia-te](https://github.com/vgarcia-te))
-- CLOUDP-96138: Add serverless to the atlas go client [\#236](https://github.com/mongodb/go-client-mongodb-atlas/pull/236) ([andreaangiolillo](https://github.com/andreaangiolillo))
-
-## [v0.10.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.1) (July 09, 2021)
-
-[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.0...v0.10.1)
-
-**Breaking changes:**
-
-- Renamed AdvancedRegionSpec to AdvancedReplicationSpec [\#230](https://github.com/mongodb/go-client-mongodb-atlas/pull/230) ([andreaangiolillo](https://github.com/andreaangiolillo))
-
-**Merged pull requests:**
-
-- task: release 0.10.1 prep [\#235](https://github.com/mongodb/go-client-mongodb-atlas/pull/235) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- Bug: The atlas user create was calling the wrong endpoint [\#234](https://github.com/mongodb/go-client-mongodb-atlas/pull/234) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- Fix project invitation update [\#233](https://github.com/mongodb/go-client-mongodb-atlas/pull/233) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- Fixed Invite New User endpoints for organizations and projects [\#232](https://github.com/mongodb/go-client-mongodb-atlas/pull/232) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- task: release 0.10.0 prep [\#231](https://github.com/mongodb/go-client-mongodb-atlas/pull/231) ([andreaangiolillo](https://github.com/andreaangiolillo))
-
 ## [v0.10.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.1) (July 09, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.0...v0.10.1)
