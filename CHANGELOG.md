@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.11.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.11.0) (August 10, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.1...v0.11.0)
+
+**Merged pull requests:**
+
+- Adding AutoDefer method to automatically defer any maintenance [\#237](https://github.com/mongodb/go-client-mongodb-atlas/pull/237) ([vgarcia-te](https://github.com/vgarcia-te))
+- CLOUDP-96138: Add serverless to the atlas go client [\#236](https://github.com/mongodb/go-client-mongodb-atlas/pull/236) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.10.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.10.1) (July 09, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.0...v0.10.1)
