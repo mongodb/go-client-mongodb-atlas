@@ -37,10 +37,10 @@ type LiveMigrationService interface {
 	Start(context.Context, string, string) (*Validation, *Response, error)
 }
 
-// LiveMigrationOp provides an implementation of AlertsService.
-type LiveMigrationOp service
+// LiveMigrationServiceOp provides an implementation of AlertsService.
+type LiveMigrationServiceOp service
 
-var _ LiveMigrationService = &LiveMigrationOp{}
+var _ LiveMigrationService = &LiveMigrationServiceOp{}
 
 // TokenCreateRequest represents the Request Body Parameters of LiveMigrationService.CreateLinkToken.
 type TokenCreateRequest struct {
@@ -89,7 +89,7 @@ type Validation struct {
 // CreateLinkToken create one new link-token.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/create-one-link-token/
-func (s *LiveMigrationOp) CreateLinkToken(ctx context.Context, orgID string, body *TokenCreateRequest) (*LinkToken, *Response, error) {
+func (s *LiveMigrationServiceOp) CreateLinkToken(ctx context.Context, orgID string, body *TokenCreateRequest) (*LinkToken, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
@@ -113,7 +113,7 @@ func (s *LiveMigrationOp) CreateLinkToken(ctx context.Context, orgID string, bod
 // DeleteLinkToken deletes one link-token.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/delete-one-link-token/
-func (s *LiveMigrationOp) DeleteLinkToken(ctx context.Context, orgID string) (*Response, error) {
+func (s *LiveMigrationServiceOp) DeleteLinkToken(ctx context.Context, orgID string) (*Response, error) {
 	if orgID == "" {
 		return nil, NewArgError("orgID", "must be set")
 	}
@@ -136,7 +136,7 @@ func (s *LiveMigrationOp) DeleteLinkToken(ctx context.Context, orgID string) (*R
 // CreateValidation creates one new validation request.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/validate-one-migration-request/
-func (s *LiveMigrationOp) CreateValidation(ctx context.Context, groupID string, body *LiveMigration) (*Validation, *Response, error) {
+func (s *LiveMigrationServiceOp) CreateValidation(ctx context.Context, groupID string, body *LiveMigration) (*Validation, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -161,7 +161,7 @@ func (s *LiveMigrationOp) CreateValidation(ctx context.Context, groupID string, 
 // GetValidationStatus returns one validation job.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/return-one-specific-validation-job/
-func (s *LiveMigrationOp) GetValidationStatus(ctx context.Context, groupID, id string) (*Validation, *Response, error) {
+func (s *LiveMigrationServiceOp) GetValidationStatus(ctx context.Context, groupID, id string) (*Validation, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -190,7 +190,7 @@ func (s *LiveMigrationOp) GetValidationStatus(ctx context.Context, groupID, id s
 // Create creates one new live migration.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/create-one-migration/
-func (s *LiveMigrationOp) Create(ctx context.Context, groupID string, body *LiveMigration) (*LiveMigration, *Response, error) {
+func (s *LiveMigrationServiceOp) Create(ctx context.Context, groupID string, body *LiveMigration) (*LiveMigration, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -214,7 +214,7 @@ func (s *LiveMigrationOp) Create(ctx context.Context, groupID string, body *Live
 // Get returns one migration job.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/return-one-specific-migration/
-func (s *LiveMigrationOp) Get(ctx context.Context, groupID, id string) (*LiveMigration, *Response, error) {
+func (s *LiveMigrationServiceOp) Get(ctx context.Context, groupID, id string) (*LiveMigration, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -242,7 +242,7 @@ func (s *LiveMigrationOp) Get(ctx context.Context, groupID, id string) (*LiveMig
 // Start starts the migration of one deployment.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/start-the-migration-cutover/
-func (s *LiveMigrationOp) Start(ctx context.Context, groupID, id string) (*Validation, *Response, error) {
+func (s *LiveMigrationServiceOp) Start(ctx context.Context, groupID, id string) (*Validation, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
