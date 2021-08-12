@@ -276,7 +276,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.IPInfo = &IPInfoServiceOp{Client: c}
 	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
 	c.ServerlessInstances = &ServerlessInstancesServiceOp{Client: c}
-	c.LiveMigration = &LiveMigrationOp{Client: c}
+	c.LiveMigration = &LiveMigrationServiceOp{Client: c}
 
 	return c
 }
