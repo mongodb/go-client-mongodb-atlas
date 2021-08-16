@@ -139,6 +139,7 @@ type Client struct {
 	AdvancedClusters                    AdvancedClustersService
 	ServerlessInstances                 ServerlessInstancesService
 	LiveMigration                       LiveMigrationService
+	AccessTracking                      AccessTrackingService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -277,6 +278,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.AdvancedClusters = &AdvancedClustersServiceOp{Client: c}
 	c.ServerlessInstances = &ServerlessInstancesServiceOp{Client: c}
 	c.LiveMigration = &LiveMigrationServiceOp{Client: c}
+	c.AccessTracking = &AccessTrackingServiceOp{Client: c}
 
 	return c
 }
