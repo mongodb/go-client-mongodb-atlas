@@ -55,13 +55,13 @@ func TestAccessTracking_ListByCluster(t *testing.T) {
 					}]
 		}`)
 	})
-
+	authResult := true
 	opts := &AccessLogOptions{
-		Start:      "Sun Jul 20 9:14:42 EDT 2019",
-		End:        "Sun Jul 26 9:14:42 EDT 2019",
+		Start:      "1564064082000",
+		End:        "1564064082000",
 		NLogs:      1,
 		IPAddress:  "123.45.2.2",
-		AuthResult: true,
+		AuthResult: &authResult,
 	}
 
 	results, _, err := client.AccessTracking.ListByCluster(ctx, groupID, clusterName, opts)
@@ -69,7 +69,6 @@ func TestAccessTracking_ListByCluster(t *testing.T) {
 		t.Fatalf("AccessTracking.ListByCluster returned error: %v", err)
 	}
 
-	authResult := true
 	expected := &AccessLogSettings{
 		AccessLogs: []*AccessLogs{
 			{
@@ -138,12 +137,13 @@ func TestAccessTracking_ListByHostname(t *testing.T) {
 		}`)
 	})
 
+	authResult := true
 	opts := &AccessLogOptions{
-		Start:      "Sun Jul 20 9:14:42 EDT 2019",
-		End:        "Sun Jul 26 9:14:42 EDT 2019",
+		Start:      "1564064082000",
+		End:        "1564064082000",
 		NLogs:      1,
 		IPAddress:  "123.45.2.2",
-		AuthResult: true,
+		AuthResult: &authResult,
 	}
 
 	results, _, err := client.AccessTracking.ListByHostname(ctx, groupID, hostname, opts)
@@ -151,7 +151,6 @@ func TestAccessTracking_ListByHostname(t *testing.T) {
 		t.Fatalf("AccessTracking.ListByHostname returned error: %v", err)
 	}
 
-	authResult := true
 	expected := &AccessLogSettings{
 		AccessLogs: []*AccessLogs{
 			{

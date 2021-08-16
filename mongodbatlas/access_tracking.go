@@ -38,30 +38,30 @@ var _ AccessTrackingService = &AccessTrackingServiceOp{}
 
 // AccessLogOptions represents the query options of AccessTrackingService.List.
 type AccessLogOptions struct {
-	Start      string `url:"start,omitempty"`      // Timestamp in the number of milliseconds that have elapsed since the UNIX epoch for the first entry that Atlas returns from the database access logs.
-	End        string `url:"end,omitempty"`        // Timestamp in the number of milliseconds that have elapsed since the UNIX epoch for the last entry that Atlas returns from the database access logs.
-	NLogs      int    `url:"nLogs,omitempty"`      // Maximum number of log entries to return. Atlas accepts values between 0 and 20000, inclusive.
-	IPAddress  string `url:"ipAddress,omitempty"`  // Single IP address that attempted to authenticate with the database. Atlas filters the returned logs to include documents with only this IP address.
-	AuthResult bool   `url:"authResult,omitempty"` // Flag that indicates whether to return either successful or failed authentication attempts. When set to true, Atlas filters the log to return only successful authentication attempts. When set to false, Atlas filters the log to return only failed authentication attempts.
+	Start      string `url:"start,omitempty"`      // Start is the timestamp in the number of milliseconds that have elapsed since the UNIX epoch for the first entry that Atlas returns from the database access logs.
+	End        string `url:"end,omitempty"`        // End is the timestamp in the number of milliseconds that have elapsed since the UNIX epoch for the last entry that Atlas returns from the database access logs.
+	NLogs      int    `url:"nLogs,omitempty"`      // NLogs is the maximum number of log entries to return. Atlas accepts values between 0 and 20000, inclusive.
+	IPAddress  string `url:"ipAddress,omitempty"`  // IPAddress is the single IP address that attempted to authenticate with the database. Atlas filters the returned logs to include documents with only this IP address.
+	AuthResult *bool  `url:"authResult,omitempty"` // AuthResult indicates whether to return either successful or failed authentication attempts. When set to true, Atlas filters the log to return only successful authentication attempts. When set to false, Atlas filters the log to return only failed authentication attempts.
 }
 
 // AccessLogs represents authentication attempts made against the cluster.
 type AccessLogs struct {
-	GroupID       string `json:"groupId,omitempty"`       // The unique identifier for the project.
-	Hostname      string `json:"hostname,omitempty"`      // The hostname of the target node that received the authentication attempt.
-	ClusterName   string `json:"clusterName,omitempty"`   // The name associated with the cluster.
-	IPAddress     string `json:"ipAddress,omitempty"`     // The IP address that the authentication attempt originated from.
-	AuthResult    *bool  `json:"authResult,omitempty"`    // The result of the authentication attempt. Returns true if the authentication request was successful. Returns false if the authentication request resulted in failure.
-	LogLine       string `json:"logLine,omitempty"`       // The text of the server log concerning the authentication attempt.
-	Timestamp     string `json:"timestamp,omitempty"`     // The UTC timestamp of the authentication attempt.
-	Username      string `json:"username,omitempty"`      // The username that attempted to authenticate.
-	FailureReason string `json:"failureReason,omitempty"` // The reason that the request failed to authenticate. Returns null if the authentication request was successful.
-	AuthSource    string `json:"authSource,omitempty"`    // The database that the request attempted to authenticate against. Returns admin if the authentication source for the user is SCRAM-SHA. Returns $external if the authentication source for the user is LDAP.
+	GroupID       string `json:"groupId,omitempty"`       // GroupID is the unique identifier for the project.
+	Hostname      string `json:"hostname,omitempty"`      // Hostname is the hostname of the target node that received the authentication attempt.
+	ClusterName   string `json:"clusterName,omitempty"`   // ClusterName is the name associated with the cluster.
+	IPAddress     string `json:"ipAddress,omitempty"`     // IPAddress is the IP address that the authentication attempt originated from.
+	AuthResult    *bool  `json:"authResult,omitempty"`    // AuthResult is the result of the authentication attempt. Returns true if the authentication request was successful. Returns false if the authentication request resulted in failure.
+	LogLine       string `json:"logLine,omitempty"`       // LogLine is the text of the server log concerning the authentication attempt.
+	Timestamp     string `json:"timestamp,omitempty"`     // Timestamp is the UTC timestamp of the authentication attempt.
+	Username      string `json:"username,omitempty"`      // Username is the username that attempted to authenticate.
+	FailureReason string `json:"failureReason,omitempty"` // FailureReason is the reason that the request failed to authenticate. Returns null if the authentication request was successful.
+	AuthSource    string `json:"authSource,omitempty"`    // AuthSource is the database that the request attempted to authenticate against. Returns admin if the authentication source for the user is SCRAM-SHA. Returns $external if the authentication source for the user is LDAP.
 }
 
 // AccessLogSettings represents database access history settings.
 type AccessLogSettings struct {
-	AccessLogs []*AccessLogs `json:"accessLogs,omitempty"`
+	AccessLogs []*AccessLogs `json:"accessLogs,omitempty"` // AccessLogs contains the authentication attempts made against the cluster.
 }
 
 // ListByCluster retrieves the access logs of a cluster by hostname.
