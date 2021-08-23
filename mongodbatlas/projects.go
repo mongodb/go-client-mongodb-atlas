@@ -63,12 +63,13 @@ var _ ProjectsService = &ProjectsServiceOp{}
 
 // Project represents the structure of a project.
 type Project struct {
-	ID           string  `json:"id,omitempty"`
-	OrgID        string  `json:"orgId,omitempty"`
-	Name         string  `json:"name,omitempty"`
-	ClusterCount int     `json:"clusterCount,omitempty"`
-	Created      string  `json:"created,omitempty"`
-	Links        []*Link `json:"links,omitempty"`
+	ID                      string  `json:"id,omitempty"`
+	OrgID                   string  `json:"orgId,omitempty"`
+	Name                    string  `json:"name,omitempty"`
+	ClusterCount            int     `json:"clusterCount,omitempty"`
+	Created                 string  `json:"created,omitempty"`
+	RegionUsageRestrictions string  `json:"regionUsageRestrictions,omitempty"` // RegionUsageRestrictions for cloud.mongodbgov.com, valid values are GOV_REGIONS_ONLY, COMMERCIAL_FEDRAMP_REGIONS_ONLY, NONE
+	Links                   []*Link `json:"links,omitempty"`
 }
 
 // Projects represents a array of project.
