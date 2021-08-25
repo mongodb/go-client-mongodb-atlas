@@ -87,14 +87,14 @@ func TestSearch_ListIndexes(t *testing.T) {
 			IndexID:        "5d1268a980eef518dac0cf41",
 			Mappings: &IndexMapping{
 				Dynamic: false,
-				Fields: &map[string]IndexField{
-					"genres": {
-						Analyzer: "lucene.standard",
-						Type:     "string",
+				Fields: &map[string]interface{}{
+					"genres": map[string]interface{}{
+						"analyzer": "lucene.standard",
+						"type":     "string",
 					},
-					"plot": {
-						Analyzer: "lucene.standard",
-						Type:     "string",
+					"plot": map[string]interface{}{
+						"analyzer": "lucene.standard",
+						"type":     "string",
 					},
 				},
 			},
@@ -149,14 +149,14 @@ func TestSearch_GetIndex(t *testing.T) {
 		IndexID:        "5d1268a980eef518dac0cf41",
 		Mappings: &IndexMapping{
 			Dynamic: false,
-			Fields: &map[string]IndexField{
-				"genres": {
-					Analyzer: "lucene.standard",
-					Type:     "string",
+			Fields: &map[string]interface{}{
+				"genres": map[string]interface{}{
+					"analyzer": "lucene.standard",
+					"type":     "string",
 				},
-				"plot": {
-					Analyzer: "lucene.standard",
-					Type:     "string",
+				"plot": map[string]interface{}{
+					"analyzer": "lucene.standard",
+					"type":     "string",
 				},
 			},
 		},
