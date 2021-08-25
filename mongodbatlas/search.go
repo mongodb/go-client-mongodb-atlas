@@ -31,7 +31,6 @@ type SearchService interface {
 	ListIndexes(ctx context.Context, groupID string, clusterName string, databaseName string, collectionName string, opts *ListOptions) ([]*SearchIndex, *Response, error)
 	GetIndex(ctx context.Context, groupID, clusterName, indexID string) (*SearchIndex, *Response, error)
 	CreateIndex(ctx context.Context, projectID, clusterName string, r *SearchIndex) (*SearchIndex, *Response, error)
-	CreateIndexWithJSON(ctx context.Context, projectID, clusterName string, body interface{}) (*SearchIndex, *Response, error)
 	UpdateIndex(ctx context.Context, projectID, clusterName, indexID string, r *SearchIndex) (*SearchIndex, *Response, error)
 	DeleteIndex(ctx context.Context, projectID, clusterName, indexID string) (*Response, error)
 	ListAnalyzers(ctx context.Context, groupID, clusterName string, listOptions *ListOptions) ([]*SearchAnalyzer, *Response, error)
@@ -111,17 +110,6 @@ func (s *SearchServiceOp) GetIndex(ctx context.Context, groupID, clusterName, in
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/fts-indexes-create-one/
 func (s *SearchServiceOp) CreateIndex(ctx context.Context, projectID, clusterName string, r *SearchIndex) (*SearchIndex, *Response, error) {
-	return s.createIndex(ctx, projectID, clusterName, r)
-}
-
-// CreateIndexWithJSON creates an Atlas Search index.
-//
-// See more: https://docs.atlas.mongodb.com/reference/api/fts-indexes-create-one/
-func (s *SearchServiceOp) CreateIndexWithJSON(ctx context.Context, projectID, clusterName string, body interface{}) (*SearchIndex, *Response, error) {
-	return s.createIndex(ctx, projectID, clusterName, body)
-}
-
-func (s *SearchServiceOp) createIndex(ctx context.Context, projectID, clusterName string, r interface{}) (*SearchIndex, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}

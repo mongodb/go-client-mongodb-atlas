@@ -232,61 +232,6 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 	}
 }
 
-func TestSearchServiceOp_CreateIndexWithJSON(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
-
-	groupID := "5a0a1e7e0f2912c554080adc"
-	clusterName := "test"
-
-	createRequest := map[string]interface{}{
-		"collectionName": "orders",
-		"database":       "fiscalYear2018",
-		"mappings": map[string]interface{}{
-			"dynamic": true,
-		},
-		"name": "default",
-	}
-
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
-		var v map[string]interface{}
-		if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
-			t.Fatalf("decode json: %v", err)
-		}
-		if diff := deep.Equal(v, createRequest); diff != nil {
-			t.Errorf("Search.CreateIndex Request Body = %v", diff)
-		}
-
-		jsonBlob := `{
-		  "collectionName" : "orders",
-		  "database" : "fiscalYear2018",
-		  "indexID" : "5d12990380eef5303341accd",
-		  "mappings" : {
-			"dynamic" : true
-		  },
-		  "name" : "default"
-		}`
-		fmt.Fprint(w, jsonBlob)
-	})
-
-	index, _, err := client.Search.CreateIndexWithJSON(ctx, groupID, clusterName, createRequest)
-	if err != nil {
-		t.Fatalf("Search.CreateIndex returned error: %v", err)
-	}
-
-	expected := &SearchIndex{
-		CollectionName: "orders",
-		Database:       "fiscalYear2018",
-		IndexID:        "5d12990380eef5303341accd",
-		Mappings:       &IndexMapping{Dynamic: true},
-		Name:           "default",
-	}
-
-	if diff := deep.Equal(index, expected); diff != nil {
-		t.Error(diff)
-	}
-}
-
 func TestSearchServiceOp_UpdateIndex(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
