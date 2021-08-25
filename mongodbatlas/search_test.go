@@ -232,7 +232,7 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 	}
 }
 
-func TestSearchServiceOp_CreateIndexWithJson(t *testing.T) {
+func TestSearchServiceOp_CreateIndexWithJSON(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -269,7 +269,7 @@ func TestSearchServiceOp_CreateIndexWithJson(t *testing.T) {
 		fmt.Fprint(w, jsonBlob)
 	})
 
-	index, _, err := client.Search.CreateIndexWithJson(ctx, groupID, clusterName, createRequest)
+	index, _, err := client.Search.CreateIndexWithJSON(ctx, groupID, clusterName, createRequest)
 	if err != nil {
 		t.Fatalf("Search.CreateIndex returned error: %v", err)
 	}
