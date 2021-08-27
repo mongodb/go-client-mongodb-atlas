@@ -35,34 +35,34 @@ func TestSearch_ListIndexes(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s/%s", groupID, clusterName, databaseName, collectionName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
-		  {
-			"collectionName": "movies",
-			"database": "sample_mflix",
-			"indexID": "5d114a3587d9d65de99e7371",
-			"mappings": {
-			  "dynamic": true
-			},
-			"name": "default"
-		  },
-		  {
-			"collectionName": "movies",
-			"database": "sample_mflix",
-			"indexID": "5d1268a980eef518dac0cf41",
-			"mappings": {
-			  "dynamic": false,
-			  "fields": {
-				"genres" : {
-				  "analyzer": "lucene.standard",
-				  "type": "string"
+			{
+				"collectionName": "movies",
+				"database": "sample_mflix",
+				"indexID": "5d114a3587d9d65de99e7371",
+				"mappings": {
+				"dynamic": true
 				},
-				"plot": {
-				  "analyzer": "lucene.standard",
-				  "type": "string"
-				}
-			  }
+				"name": "default",
 			},
-		   "name": "SearchIndex1"
-		  }
+			{
+				"collectionName": "movies",
+				"database": "sample_mflix",
+				"indexID": "5d1268a980eef518dac0cf41",
+				"mappings": {
+					"dynamic": false,
+					"fields": {
+						"genres" : {
+							"analyzer": "lucene.standard",
+							"type": "string"
+						},
+						"plot": {
+							"analyzer": "lucene.standard",
+							"type": "string"
+						}
+					}
+				},
+				"name": "SearchIndex1"
+			}
 		]`)
 	})
 
@@ -118,23 +118,23 @@ func TestSearch_GetIndex(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/indexes/%s", projectID, clusterName, indexID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
-		  "collectionName": "movies",
-		  "database": "sample_mflix",
-		  "indexID": "5d1268a980eef518dac0cf41",
-		  "mappings": {
-			"dynamic": false,
-			"fields": {
-			  "genres": {
-				"analyzer": "lucene.standard",
-				"type": "string"
-			  },
-			  "plot": {
-				"analyzer": "lucene.standard",
-				"type": "string"
-			  }
-			}
-		  },
-		 "name": "SearchIndex1"
+			"collectionName": "movies",
+			"database": "sample_mflix",
+			"indexID": "5d1268a980eef518dac0cf41",
+			"mappings": {
+				"dynamic": false,
+				"fields": {
+					"genres": {
+						"analyzer": "lucene.standard",
+						"type": "string"
+					},
+					"plot": {
+						"analyzer": "lucene.standard",
+						"type": "string"
+					}
+				}
+			},
+			"name": "SearchIndex1"
 		}`)
 	})
 
@@ -203,13 +203,13 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 		}
 
 		jsonBlob := `{
-		  "collectionName" : "orders",
-		  "database" : "fiscalYear2018",
-		  "indexID" : "5d12990380eef5303341accd",
-		  "mappings" : {
-			"dynamic" : true
-		  },
-		  "name" : "default"
+			"collectionName" : "orders",
+			"database" : "fiscalYear2018",
+			"indexID" : "5d12990380eef5303341accd",
+			"mappings" : {
+				"dynamic" : true
+			},
+			"name" : "default"
 		}`
 		fmt.Fprint(w, jsonBlob)
 	})
@@ -272,15 +272,15 @@ func TestSearchServiceOp_UpdateIndex(t *testing.T) {
 		}
 
 		jsonBlob := `{
-		  "analyzer" : "lucene.swedish",
-		  "searchAnalyzer" : "lucene.whitespace",
-		  "collectionName" : "orders",
-		  "database" : "fiscalYear2018",
-		  "indexID" : "5d129aef87d9d64f310bd79f",
-		  "mappings" : {
-			"dynamic" : true
-		  },
-		  "name" : "2018ordersIndex"
+			"analyzer" : "lucene.swedish",
+			"searchAnalyzer" : "lucene.whitespace",
+			"collectionName" : "orders",
+			"database" : "fiscalYear2018",
+			"indexID" : "5d129aef87d9d64f310bd79f",
+			"mappings" : {
+				"dynamic" : true
+			},
+			"name" : "2018ordersIndex"
 		}`
 		fmt.Fprint(w, jsonBlob)
 	})
@@ -330,16 +330,16 @@ func TestSearch_ListAnalyzers(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/analyzers", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `[
-		  {
-			"baseAnalyzer" : "lucene.standard",
-			"maxTokenLength" : 32,
-			"name" : "my_new_analyzer"
-		  },
-		  {
-			"baseAnalyzer" : "lucene.english",
-			"name" : "my_new_analyzer2",
-			"stopwords" : [ "first", "second", "third", "etc" ]
-		  }
+			{
+				"baseAnalyzer" : "lucene.standard",
+				"maxTokenLength" : 32,
+				"name" : "my_new_analyzer"
+			},
+			{
+				"baseAnalyzer" : "lucene.english",
+				"name" : "my_new_analyzer2",
+				"stopwords" : [ "first", "second", "third", "etc" ]
+			}
 		]`)
 	})
 
@@ -374,17 +374,17 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/fts/analyzers", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 		fmt.Fprint(w, `[
-		  {
-			"baseAnalyzer" : "lucene.standard",
-			"maxTokenLength" : 32,
-			"name" : "my_new_analyzer",
-			"ignoreCase": true
-		  },
-		  {
-			"baseAnalyzer" : "lucene.english",
-			"name" : "my_new_analyzer2",
-			"stopwords" : [ "first", "second", "third", "etc" ]
-		  }
+			{
+				"baseAnalyzer" : "lucene.standard",
+				"maxTokenLength" : 32,
+				"name" : "my_new_analyzer",
+				"ignoreCase": true
+			},
+			{
+				"baseAnalyzer" : "lucene.english",
+				"name" : "my_new_analyzer2",
+				"stopwords" : [ "first", "second", "third", "etc" ]
+			}
 		]`)
 	})
 
