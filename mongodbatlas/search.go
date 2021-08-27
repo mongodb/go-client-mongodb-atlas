@@ -251,6 +251,7 @@ type SearchIndex struct {
 	Name           string                   `json:"name"`
 	SearchAnalyzer string                   `json:"searchAnalyzer,omitempty"`
 	Status         string                   `json:"status,omitempty"`
+	Synonyms       []map[string]interface{} `json:"synonyms,omitempty"`
 }
 
 // IndexMapping containing index specifications for the collection fields.
