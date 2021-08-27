@@ -40,9 +40,18 @@ func TestSearch_ListIndexes(t *testing.T) {
 				"database": "sample_mflix",
 				"indexID": "5d114a3587d9d65de99e7371",
 				"mappings": {
-				"dynamic": true
+					"dynamic": true
 				},
 				"name": "default",
+				"synonyms": [
+					{
+						"analyzer": "lucene.english",
+						"name": "mySynonyms",
+						"source": {
+							"collection": "synonyms"
+						}
+					}
+				]
 			},
 			{
 				"collectionName": "movies",
@@ -61,7 +70,16 @@ func TestSearch_ListIndexes(t *testing.T) {
 						}
 					}
 				},
-				"name": "SearchIndex1"
+				"name": "SearchIndex1",
+				"synonyms": [
+					{
+						"analyzer": "lucene.english",
+						"name": "mySynonyms",
+						"source": {
+							"collection": "synonyms"
+						}
+					}
+				]
 			}
 		]`)
 	})
@@ -80,6 +98,15 @@ func TestSearch_ListIndexes(t *testing.T) {
 				Dynamic: true,
 			},
 			Name: "default",
+			Synonyms: []map[string]interface{}{
+				map[string]interface{}{
+					"analyzer": "lucene.english",
+					"name":     "mySynonyms",
+					"source": map[string]interface{}{
+						"collection": "synonyms",
+					},
+				},
+			},
 		},
 		{
 			CollectionName: "movies",
@@ -99,6 +126,15 @@ func TestSearch_ListIndexes(t *testing.T) {
 				},
 			},
 			Name: "SearchIndex1",
+			Synonyms: []map[string]interface{}{
+				map[string]interface{}{
+					"analyzer": "lucene.english",
+					"name":     "mySynonyms",
+					"source": map[string]interface{}{
+						"collection": "synonyms",
+					},
+				},
+			},
 		},
 	}
 
@@ -134,7 +170,16 @@ func TestSearch_GetIndex(t *testing.T) {
 					}
 				}
 			},
-			"name": "SearchIndex1"
+			"name": "SearchIndex1",
+			"synonyms": [
+				{
+					"analyzer": "lucene.english",
+					"name": "mySynonyms",
+					"source": {
+						"collection": "synonyms"
+					}
+				}
+			]
 		}`)
 	})
 
@@ -161,6 +206,15 @@ func TestSearch_GetIndex(t *testing.T) {
 			},
 		},
 		Name: "SearchIndex1",
+		Synonyms: []map[string]interface{}{
+			map[string]interface{}{
+				"analyzer": "lucene.english",
+				"name":     "mySynonyms",
+				"source": map[string]interface{}{
+					"collection": "synonyms",
+				},
+			},
+		},
 	}
 
 	if diff := deep.Equal(index, expected); diff != nil {
@@ -209,7 +263,16 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 			"mappings" : {
 				"dynamic" : true
 			},
-			"name" : "default"
+			"name" : "default",
+			"synonyms": [
+				{
+					"analyzer": "lucene.english",
+					"name": "mySynonyms",
+					"source": {
+						"collection": "synonyms"
+					}
+				}
+			]
 		}`
 		fmt.Fprint(w, jsonBlob)
 	})
@@ -225,6 +288,15 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 		IndexID:        "5d12990380eef5303341accd",
 		Mappings:       &IndexMapping{Dynamic: true},
 		Name:           "default",
+		Synonyms: []map[string]interface{}{
+			map[string]interface{}{
+				"analyzer": "lucene.english",
+				"name":     "mySynonyms",
+				"source": map[string]interface{}{
+					"collection": "synonyms",
+				},
+			},
+		},
 	}
 
 	if diff := deep.Equal(index, expected); diff != nil {
