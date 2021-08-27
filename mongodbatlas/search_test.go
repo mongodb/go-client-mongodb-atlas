@@ -99,7 +99,7 @@ func TestSearch_ListIndexes(t *testing.T) {
 			},
 			Name: "default",
 			Synonyms: []map[string]interface{}{
-				map[string]interface{}{
+				{
 					"analyzer": "lucene.english",
 					"name":     "mySynonyms",
 					"source": map[string]interface{}{
@@ -127,7 +127,7 @@ func TestSearch_ListIndexes(t *testing.T) {
 			},
 			Name: "SearchIndex1",
 			Synonyms: []map[string]interface{}{
-				map[string]interface{}{
+				{
 					"analyzer": "lucene.english",
 					"name":     "mySynonyms",
 					"source": map[string]interface{}{
@@ -207,7 +207,7 @@ func TestSearch_GetIndex(t *testing.T) {
 		},
 		Name: "SearchIndex1",
 		Synonyms: []map[string]interface{}{
-			map[string]interface{}{
+			{
 				"analyzer": "lucene.english",
 				"name":     "mySynonyms",
 				"source": map[string]interface{}{
@@ -289,7 +289,7 @@ func TestSearchServiceOp_CreateIndex(t *testing.T) {
 		Mappings:       &IndexMapping{Dynamic: true},
 		Name:           "default",
 		Synonyms: []map[string]interface{}{
-			map[string]interface{}{
+			{
 				"analyzer": "lucene.english",
 				"name":     "mySynonyms",
 				"source": map[string]interface{}{
