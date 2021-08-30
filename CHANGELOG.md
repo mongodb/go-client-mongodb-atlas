@@ -1,5 +1,23 @@
 # Changelog
 
+## [v0.12.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.12.0) (August 30, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.11.0...v0.12.0)
+
+**Breaking changes:**
+
+- CLOUDP-98424: Do not parse parts of the request in atlas search [\#244](https://github.com/mongodb/go-client-mongodb-atlas/pull/244) ([fmenezes](https://github.com/fmenezes))
+
+**Merged pull requests:**
+
+- CLOUDP-98424: Add unit tests for atlas search [\#246](https://github.com/mongodb/go-client-mongodb-atlas/pull/246) ([fmenezes](https://github.com/fmenezes))
+- CLOUDP-98679: Add support for synonyms [\#245](https://github.com/mongodb/go-client-mongodb-atlas/pull/245) ([fmenezes](https://github.com/fmenezes))
+- feat: add support for creation of cloudgov only projects [\#243](https://github.com/mongodb/go-client-mongodb-atlas/pull/243) ([gssbzn](https://github.com/gssbzn))
+- feat: update supported go versions [\#242](https://github.com/mongodb/go-client-mongodb-atlas/pull/242) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-97443: add access tracking to the atlas go client [\#241](https://github.com/mongodb/go-client-mongodb-atlas/pull/241) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Renamed LiveMigrationOp to LiveMigrationServiceOp [\#240](https://github.com/mongodb/go-client-mongodb-atlas/pull/240) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-97549: Add cloud migration endpoint to the atlas go client [\#239](https://github.com/mongodb/go-client-mongodb-atlas/pull/239) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.11.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.11.0) (August 10, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.10.1...v0.11.0)
