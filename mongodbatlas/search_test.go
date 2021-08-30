@@ -67,7 +67,17 @@ func TestSearch_ListIndexes(t *testing.T) {
 						"plot": {
 							"analyzer": "lucene.standard",
 							"type": "string"
-						}
+						},
+						"title": [
+							{
+								"analyzer": "lucene.keyword",
+								"searchAnalyzer": "lucene.keyword",
+								"type": "string"
+							},
+							{
+								"type": "autocomplete"
+							}
+						]
 					}
 				},
 				"name": "SearchIndex1",
@@ -122,6 +132,16 @@ func TestSearch_ListIndexes(t *testing.T) {
 					"plot": map[string]interface{}{
 						"analyzer": "lucene.standard",
 						"type":     "string",
+					},
+					"title": []interface{}{
+						map[string]interface{}{
+							"analyzer":       "lucene.keyword",
+							"searchAnalyzer": "lucene.keyword",
+							"type":           "string",
+						},
+						map[string]interface{}{
+							"type": "autocomplete",
+						},
 					},
 				},
 			},
