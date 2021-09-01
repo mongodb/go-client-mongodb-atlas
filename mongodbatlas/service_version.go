@@ -28,7 +28,7 @@ type ServiceVersionService interface {
 
 type ServiceVersionServiceOp service
 
-// Get gets the version information and parses it
+// Get gets the version information and parses it.
 func (s *ServiceVersionServiceOp) Get(ctx context.Context) (*ServiceVersion, *Response, error) {
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, versionPath, nil)
 	if err != nil {
@@ -40,5 +40,7 @@ func (s *ServiceVersionServiceOp) Get(ctx context.Context) (*ServiceVersion, *Re
 		return nil, nil, err
 	}
 
-	return resp.GetServiceVersion(), resp, nil
+	version := resp.GetServiceVersion()
+
+	return version, resp, nil
 }

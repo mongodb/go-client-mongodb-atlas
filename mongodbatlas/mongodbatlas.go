@@ -567,13 +567,13 @@ func setListOptions(s string, opt interface{}) (string, error) {
 	return origURL.String(), nil
 }
 
-// ServiceVersion represents version information
+// ServiceVersion represents version information.
 type ServiceVersion struct {
 	GitHash string
 	Version string
 }
 
-// String serializes VersionInfo into string
+// String serializes VersionInfo into string.
 func (v *ServiceVersion) String() string {
 	return fmt.Sprintf("gitHash=%s; versionString=%s", v.GitHash, v.Version)
 }
@@ -597,7 +597,7 @@ func parseVersionInfo(s string) *ServiceVersion {
 	return &result
 }
 
-// GetServiceVersion parses version information returned in the response
-func (r *Response) GetServiceVersion() *ServiceVersion {
-	return parseVersionInfo(r.Header.Get("X-MongoDB-Service-Version"))
+// GetServiceVersion parses version information returned in the response.
+func (resp *Response) GetServiceVersion() *ServiceVersion {
+	return parseVersionInfo(resp.Header.Get("X-MongoDB-Service-Version"))
 }
