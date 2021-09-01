@@ -21,14 +21,14 @@ import (
 
 const versionPath = "api/private/unauth/version"
 
-// ServiceVersionService is an interface for interfacing with the version private endpoint of the MongoDB Atlas API.
+// ServiceVersionService is an interface for the version private endpoint of the MongoDB Atlas API.
 type ServiceVersionService interface {
 	Get(context.Context) (*ServiceVersion, *Response, error)
 }
 
 type ServiceVersionServiceOp service
 
-// Get gets a compressed (.gz) log file that contains a range of log messages for a particular host.
+// Get gets the version information and parses it
 func (s *ServiceVersionServiceOp) Get(ctx context.Context) (*ServiceVersion, *Response, error) {
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, versionPath, nil)
 	if err != nil {
