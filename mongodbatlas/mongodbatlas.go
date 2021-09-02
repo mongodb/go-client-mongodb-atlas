@@ -597,7 +597,7 @@ func parseVersionInfo(s string) *ServiceVersion {
 	return &result
 }
 
-// GetServiceVersion parses version information returned in the response.
-func (resp *Response) GetServiceVersion() *ServiceVersion {
+// ServiceVersion parses version information returned in the response.
+func (resp *Response) ServiceVersion() *ServiceVersion {
 	return parseVersionInfo(resp.Header.Get("X-MongoDB-Service-Version"))
 }
