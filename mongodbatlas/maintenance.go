@@ -58,10 +58,11 @@ var _ MaintenanceWindowsService = &MaintenanceWindowsServiceOp{}
 
 // MaintenanceWindow represents MongoDB Maintenance Windows.
 type MaintenanceWindow struct {
-	DayOfWeek         int   `json:"dayOfWeek,omitempty"`         // Day of the week when you would like the maintenance window to start as a 1-based integer.Sunday 	1, Monday 	2, Tuesday 	3, Wednesday 	4, Thursday 5, Friday 6, Saturday 7
-	HourOfDay         *int  `json:"hourOfDay,omitempty"`         // Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12.
-	StartASAP         *bool `json:"startASAP,omitempty"`         // Flag indicating whether project maintenance has been directed to start immediately.
-	NumberOfDeferrals int   `json:"numberOfDeferrals,omitempty"` // Number of times the current maintenance event for this project has been deferred.
+	DayOfWeek            int   `json:"dayOfWeek,omitempty"`            // Day of the week when you would like the maintenance window to start as a 1-based integer.Sunday 	1, Monday 	2, Tuesday 	3, Wednesday 	4, Thursday 5, Friday 6, Saturday 7
+	HourOfDay            *int  `json:"hourOfDay,omitempty"`            // Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12.
+	StartASAP            *bool `json:"startASAP,omitempty"`            // Flag indicating whether project maintenance has been directed to start immediately.
+	NumberOfDeferrals    int   `json:"numberOfDeferrals,omitempty"`    // Number of times the current maintenance event for this project has been deferred.
+	AutoDeferOnceEnabled *bool `json:"autoDeferOnceEnabled,omitempty"` // Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 }
 
 // Get gets the current user-defined maintenance window for the given project.
