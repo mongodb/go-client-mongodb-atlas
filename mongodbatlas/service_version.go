@@ -29,11 +29,13 @@ type ServiceVersionService interface {
 	Get(context.Context) (*ServiceVersion, *Response, error)
 }
 
-type ServiceVersionServiceOp service
+type ServiceVersionServiceOp struct {
+	Client PlainRequestDoer
+}
 
 // Get gets the version information and parses it.
 func (s *ServiceVersionServiceOp) Get(ctx context.Context) (*ServiceVersion, *Response, error) {
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, versionPath, nil)
+	req, err := s.Client.NewPlainRequest(ctx, http.MethodGet, versionPath)
 	if err != nil {
 		return nil, nil, err
 	}
