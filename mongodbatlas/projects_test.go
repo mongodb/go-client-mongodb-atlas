@@ -219,7 +219,9 @@ func TestProject_Create(t *testing.T) {
 		}`)
 	})
 
-	project, _, err := client.Projects.Create(ctx, createRequest)
+	opts:= &ProjectOptions{ProjectOwnerId:"1"}
+
+	project, _, err := client.Projects.Create(ctx, opts, createRequest)
 	if err != nil {
 		t.Fatalf("Projects.Create returned error: %v", err)
 	}
