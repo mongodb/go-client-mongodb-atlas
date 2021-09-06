@@ -219,7 +219,7 @@ func TestProject_Create(t *testing.T) {
 		}`)
 	})
 
-	opts := &ProjectOptions{ProjectOwnerID: "1"}
+	opts := &CreateProjectOptions{ProjectOwnerID: "1"}
 
 	project, _, err := client.Projects.Create(ctx, createRequest, opts)
 	if err != nil {

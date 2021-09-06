@@ -42,7 +42,7 @@ type ProjectsService interface {
 	GetAllProjects(context.Context, *ListOptions) (*Projects, *Response, error)
 	GetOneProject(context.Context, string) (*Project, *Response, error)
 	GetOneProjectByName(context.Context, string) (*Project, *Response, error)
-	Create(context.Context, *Project, *ProjectOptions) (*Project, *Response, error)
+	Create(context.Context, *Project, *CreateProjectOptions) (*Project, *Response, error)
 	Delete(context.Context, string) (*Response, error)
 	GetProjectTeamsAssigned(context.Context, string) (*TeamsAssigned, *Response, error)
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
@@ -99,7 +99,7 @@ type TeamsAssigned struct {
 	TotalCount int       `json:"totalCount"`
 }
 
-type ProjectOptions struct {
+type CreateProjectOptions struct {
 	ProjectOwnerID string `url:"projectOwnerId,omitempty"` // Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the Project Owner role on the specified project.
 }
 
@@ -181,7 +181,7 @@ func (s *ProjectsServiceOp) GetOneProjectByName(ctx context.Context, projectName
 // Create creates a project.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/project-create-one/
-func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project, opts *ProjectOptions) (*Project, *Response, error) {
+func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project, opts *CreateProjectOptions) (*Project, *Response, error) {
 	if createRequest == nil {
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
