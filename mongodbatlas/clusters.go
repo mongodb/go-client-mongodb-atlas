@@ -170,6 +170,8 @@ type Cluster struct {
 
 // ProcessArgs represents the advanced configuration options for the cluster.
 type ProcessArgs struct {
+	DefaultReadConcern               string `json:"defaultReadConcern,omitempty"`
+	DefaultWriteConcern              string `json:"defaultWriteConcern,omitempty"`
 	FailIndexKeyTooLong              *bool  `json:"failIndexKeyTooLong,omitempty"`
 	JavascriptEnabled                *bool  `json:"javascriptEnabled,omitempty"`
 	MinimumEnabledTLSProtocol        string `json:"minimumEnabledTlsProtocol,omitempty"`

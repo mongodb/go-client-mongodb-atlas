@@ -723,8 +723,12 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 	groupID := "1"
 	clusterName := "AppData"
 	tlsProtocol := "TLS1_2"
+	defaultReadConcern := "available"
+	defaultWriteConcern := "1"
 
 	updateRequest := &ProcessArgs{
+		DefaultReadConcern:               defaultReadConcern,
+		DefaultWriteConcern:              defaultWriteConcern,
 		FailIndexKeyTooLong:              pointy.Bool(false),
 		JavascriptEnabled:                pointy.Bool(false),
 		MinimumEnabledTLSProtocol:        tlsProtocol,
@@ -736,6 +740,8 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
+			"defaultReadConcern":               defaultReadConcern,
+			"defaultWriteConcern":              defaultWriteConcern,
 			"failIndexKeyTooLong":              false,
 			"javascriptEnabled":                false,
 			"minimumEnabledTlsProtocol":        tlsProtocol,
@@ -747,6 +753,8 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 
 		jsonBlob := `
 		{
+			"defaultReadConcern": "available",
+			"defaultWriteConcern": "1",
 			"failIndexKeyTooLong": false,
 			"javascriptEnabled": false,
 			"minimumEnabledTlsProtocol": "TLS1_2",
@@ -796,6 +804,8 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
+			"defaultReadConcern": "available",
+			"defaultWriteConcern": "1",
 			"failIndexKeyTooLong": false,
 			"javascriptEnabled": false,
 			"minimumEnabledTlsProtocol": "TLS1_2",
@@ -812,6 +822,8 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 	}
 
 	expected := &ProcessArgs{
+		DefaultReadConcern:               "available",
+		DefaultWriteConcern:              "1",
 		FailIndexKeyTooLong:              pointy.Bool(false),
 		JavascriptEnabled:                pointy.Bool(false),
 		MinimumEnabledTLSProtocol:        "TLS1_2",
