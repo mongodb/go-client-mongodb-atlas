@@ -219,7 +219,56 @@ func TestProject_Create(t *testing.T) {
 		}`)
 	})
 
-	project, _, err := client.Projects.Create(ctx, createRequest)
+	opts := &CreateProjectOptions{ProjectOwnerID: "1"}
+
+	project, _, err := client.Projects.Create(ctx, createRequest, opts)
+	if err != nil {
+		t.Fatalf("Projects.Create returned error: %v", err)
+	}
+
+	expected := &Project{
+		ClusterCount: 2,
+		Created:      "2016-07-14T14:19:33Z",
+		ID:           "5a0a1e7e0f2912c554080ae6",
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a0a1e7e0f2912c554080ae6",
+				Rel:  "self",
+			},
+		},
+		Name:  "ProjectFoobar",
+		OrgID: "5a0a1e7e0f2912c554080adc",
+	}
+
+	if diff := deep.Equal(project, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestProject_Create_without_opts(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	createRequest := &Project{
+		OrgID: "5a0a1e7e0f2912c554080adc",
+		Name:  "ProjectFoobar",
+	}
+
+	mux.HandleFunc("/api/atlas/v1.0/groups", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, `{
+			"clusterCount": 2,
+			"created": "2016-07-14T14:19:33Z",
+			"id": "5a0a1e7e0f2912c554080ae6",
+			"links": [{
+				"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a0a1e7e0f2912c554080ae6",
+				"rel": "self"
+			}],
+			"name": "ProjectFoobar",
+			"orgId": "5a0a1e7e0f2912c554080adc"
+		}`)
+	})
+
+	project, _, err := client.Projects.Create(ctx, createRequest, nil)
 	if err != nil {
 		t.Fatalf("Projects.Create returned error: %v", err)
 	}
