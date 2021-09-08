@@ -241,3 +241,31 @@ func TestPerformanceAdvisor_GetSuggestedIndexes(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestPerformanceAdvisor_EnableManagedSlowOperationThreshold(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/"+performanceAdvisorManagedSlowMs+"/enable", projectID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+	})
+
+	_, err := client.PerformanceAdvisor.EnableManagedSlowOperationThreshold(ctx, projectID)
+	if err != nil {
+		t.Fatalf("PerformanceAdvisor.EnableManagedSlowOperationThreshold returned error: %v", err)
+	}
+}
+
+func TestPerformanceAdvisor_DisableManagedSlowOperationThreshold(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/"+performanceAdvisorManagedSlowMs+"/disable", projectID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
+
+	_, err := client.PerformanceAdvisor.DisableManagedSlowOperationThreshold(ctx, projectID)
+	if err != nil {
+		t.Fatalf("PerformanceAdvisor.DisableManagedSlowOperationThreshold returned error: %v", err)
+	}
+}
