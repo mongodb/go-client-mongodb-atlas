@@ -21,6 +21,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestGlobalClusters_Get(t *testing.T) {
@@ -50,7 +51,9 @@ func TestGlobalClusters_Get(t *testing.T) {
 			"managedNamespaces" : [ {
 			  "collection" : "zips",
 			  "customShardKey" : "city",
-			  "db" : "mydata"
+			  "db" : "mydata",
+			  "isCustomShardKeyHashed" : true,
+			  "isShardKeyUnique" : true
 			},{
 			  "collection" : "stores",
 			  "customShardKey" : "store_number",
@@ -81,9 +84,11 @@ func TestGlobalClusters_Get(t *testing.T) {
 		},
 		ManagedNamespaces: []ManagedNamespace{
 			{
-				Collection:     "zips",
-				CustomShardKey: "city",
-				Db:             "mydata",
+				Collection:             "zips",
+				CustomShardKey:         "city",
+				Db:                     "mydata",
+				IsCustomShardKeyHashed: pointy.Bool(true),
+				IsShardKeyUnique:       pointy.Bool(true),
 			}, {
 				Collection:     "stores",
 				CustomShardKey: "store_number",
@@ -105,16 +110,20 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 	clusterName := "appData"
 
 	createRequest := &ManagedNamespace{
-		Db:             "mydata",
-		Collection:     "publishers",
-		CustomShardKey: "city",
+		Db:                     "mydata",
+		Collection:             "publishers",
+		CustomShardKey:         "city",
+		IsCustomShardKeyHashed: pointy.Bool(true),
+		IsShardKeyUnique:       pointy.Bool(true),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expectedRequest := map[string]interface{}{
-			"db":             "mydata",
-			"collection":     "publishers",
-			"customShardKey": "city",
+			"db":                     "mydata",
+			"collection":             "publishers",
+			"customShardKey":         "city",
+			"isCustomShardKeyHashed": true,
+			"isShardKeyUnique":       true,
 		}
 
 		jsonBlob := `
@@ -136,7 +145,9 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 			"managedNamespaces" : [ {
 			  "collection" : "publishers",
 			  "customShardKey" : "city",
-			  "db" : "mydata"
+			  "db" : "mydata",
+			  "isCustomShardKeyHashed" : true,
+			  "isShardKeyUnique" : true
 			},{
 			  "collection" : "stores",
 			  "customShardKey" : "store_number",
