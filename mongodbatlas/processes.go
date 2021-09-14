@@ -61,7 +61,7 @@ type processesResponse struct {
 // ProcessesListOptions filter options for the processes API.
 type ProcessesListOptions struct {
 	ListOptions
-	ClusterID string `url:"clusterId,omitempty"`
+	ClusterID string `url:"clusterId,omitempty"` // ClusterID is only available for Ops Manager and CLoud Manager.
 }
 
 // List lists all processes in the project associated to {GROUP-ID}.
