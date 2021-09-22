@@ -185,7 +185,8 @@ func TestAdvancedClusters_List(t *testing.T) {
 							}
 						  ],
 						  "rootCertType": "DST",
-						  "stateName": "CREATING"
+						  "stateName": "CREATING",
+						  "versionReleaseSystem": "LTS"
 						}
 				  ],
 				"totalCount": 1
@@ -358,8 +359,9 @@ func TestAdvancedClusters_List(t *testing.T) {
 							},
 						},
 					}},
-				CreateDate:   "2021-03-02T22:27:46Z",
-				RootCertType: "DST",
+				CreateDate:           "2021-03-02T22:27:46Z",
+				RootCertType:         "DST",
+				VersionReleaseSystem: "LTS",
 			}},
 		TotalCount: 1}
 
@@ -465,7 +467,8 @@ func TestAdvancedClusters_Get(t *testing.T) {
 							}
 						  ],
 						  "rootCertType": "DST",
-						  "stateName": "CREATING"
+						  "stateName": "CREATING",
+						  "versionReleaseSystem": "LTS"
 						
 }`)
 	})
@@ -501,6 +504,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
+		VersionReleaseSystem:     "LTS",
 		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
@@ -680,7 +684,8 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							}
 						  ],
 						  "rootCertType": "DST",
-						  "stateName": "CREATING"
+						  "stateName": "CREATING",
+						  "versionReleaseSystem": "LTS"
 						
 }`)
 	})
@@ -784,8 +789,9 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					},
 				},
 			}},
-		CreateDate:   "2021-03-02T22:27:46Z",
-		RootCertType: "DST",
+		CreateDate:           "2021-03-02T22:27:46Z",
+		RootCertType:         "DST",
+		VersionReleaseSystem: "LTS",
 	}
 
 	cluster, _, err := client.AdvancedClusters.Create(ctx, groupID, requestCluster)
@@ -883,8 +889,9 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					},
 				},
 			}},
-		CreateDate:   "2021-03-02T22:27:46Z",
-		RootCertType: "DST",
+		CreateDate:           "2021-03-02T22:27:46Z",
+		RootCertType:         "DST",
+		VersionReleaseSystem: "LTS",
 	}
 
 	if diff := deep.Equal(cluster, expected); diff != nil {

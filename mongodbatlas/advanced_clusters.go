@@ -61,6 +61,7 @@ type AdvancedCluster struct {
 	ReplicationSpecs         []*AdvancedReplicationSpec `json:"replicationSpecs,omitempty"`
 	CreateDate               string                     `json:"createDate,omitempty"`
 	RootCertType             string                     `json:"rootCertType,omitempty"`
+	VersionReleaseSystem     string                     `json:"versionReleaseSystem,omitempty"`
 }
 
 type AdvancedReplicationSpec struct {
