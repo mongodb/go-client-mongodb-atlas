@@ -1,5 +1,29 @@
 # Changelog
 
+## [v0.13.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.13.0) (October 07, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.12.0...v0.13.0)
+
+**Breaking changes:**
+
+- Adding projectOwnerId to Projects.Create [\#251](https://github.com/mongodb/go-client-mongodb-atlas/pull/251) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
+**Closed issues:**
+
+- ClusterID attribute to Processes.List returns 400 error response  [\#254](https://github.com/mongodb/go-client-mongodb-atlas/issues/254)
+- Wrong type for cluster diskSizeGB [\#140](https://github.com/mongodb/go-client-mongodb-atlas/issues/140)
+
+**Merged pull requests:**
+
+- INTMDB-216: Added parameter version release system for advanced cluster [\#258](https://github.com/mongodb/go-client-mongodb-atlas/pull/258) ([coderGo93](https://github.com/coderGo93))
+- task: run go mod tidy [\#256](https://github.com/mongodb/go-client-mongodb-atlas/pull/256) ([gssbzn](https://github.com/gssbzn))
+- docs: clarify processes ClusterID [\#255](https://github.com/mongodb/go-client-mongodb-atlas/pull/255) ([gssbzn](https://github.com/gssbzn))
+- INTMDB-211: Added shard keys properties to Managed Namespace in global configurat… [\#253](https://github.com/mongodb/go-client-mongodb-atlas/pull/253) ([abner-dou](https://github.com/abner-dou))
+- CLOUDP-97442: update performance advisor with new endpoints -\> atlas go client [\#252](https://github.com/mongodb/go-client-mongodb-atlas/pull/252) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-252: Added two parameters for Process args [\#250](https://github.com/mongodb/go-client-mongodb-atlas/pull/250) ([coderGo93](https://github.com/coderGo93))
+- INTMDB-230: Added autoDeferOnceEnabled property to MaintenanceWindow struct [\#249](https://github.com/mongodb/go-client-mongodb-atlas/pull/249) ([abner-dou](https://github.com/abner-dou))
+- CLOUDP-82836: Parse service version [\#248](https://github.com/mongodb/go-client-mongodb-atlas/pull/248) ([fmenezes](https://github.com/fmenezes))
+
 ## [v0.12.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.12.0) (August 30, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.11.0...v0.12.0)
