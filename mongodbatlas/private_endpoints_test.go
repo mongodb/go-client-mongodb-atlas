@@ -271,7 +271,7 @@ func TestPrivateEndpointsGCP_Get(t *testing.T) {
 	groupID := "1"
 	privateLinkID := "5df264b8f10fab7d2cad2f0d"
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "AZURE", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "GCP", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"id": "5f7c8d4702d59b7fc0b4b842",
@@ -285,7 +285,7 @@ func TestPrivateEndpointsGCP_Get(t *testing.T) {
 		}`)
 	})
 
-	privateEndpointConnection, _, err := client.PrivateEndpoints.Get(ctx, groupID, "AZURE", privateLinkID)
+	privateEndpointConnection, _, err := client.PrivateEndpoints.Get(ctx, groupID, "GCP", privateLinkID)
 	if err != nil {
 		t.Errorf("PrivateEndpoints.Get returned error: %v", err)
 	}
