@@ -55,8 +55,8 @@ type CloudProviderSnapshot struct {
 	Status           string    `json:"status,omitempty"`           // Current status of the snapshot. One of the following values: queued, inProgress, completed, failed
 	StorageSizeBytes int       `json:"storageSizeBytes,omitempty"` // Specifies the size of the snapshot in bytes.
 	Type             string    `json:"type,omitempty"`             // Specifies the type of cluster: replicaSet or shardedCluster.
-	CloudProvider    string    `json:"cloudProvider,omitempty"`    // Cloud provider that stores this snapshot. Atlas returns this parameter when "type": "replicaSet.
-	Members          []*Member `json:"members,omitempty"`          // List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when "type": "shardedCluster".
+	CloudProvider    string    `json:"cloudProvider,omitempty"`    // Cloud provider that stores this snapshot. Atlas returns this parameter when "type": "replicaSet".
+	Members          []*Member `json:"members,omitempty"`          // List of ReplicaSetName and the cloud provider where the snapshots are stored. Atlas returns this parameter when "type": "shardedCluster".
 	ReplicaSetName   string    `json:"replicaSetName,omitempty"`   // Label given to the replica set from which Atlas took this snapshot. Atlas returns this parameter when "type": "replicaSet".
 	SnapshotsIds     []string  `json:"snapshotIds,omitempty"`      // Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
 }
