@@ -54,14 +54,14 @@ type PrivateEndpointConnection struct {
 	ProviderName                 string   `json:"providerName,omitempty"`                 // Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts AWS, AZURE or GCP.
 	Region                       string   `json:"region,omitempty"`                       // Cloud provider region for which you want to create the private endpoint service.
 	EndpointServiceName          string   `json:"endpointServiceName,omitempty"`          // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-	ErrorMessage                 string   `json:"errorMessage,omitempty"`                 // Error message pertaining to the AWS PrivateLink connection or Azure Private Link Service or GCP. Returns null if there are no errors.
+	ErrorMessage                 string   `json:"errorMessage,omitempty"`                 // Error message pertaining to the AWS PrivateLink connection or Azure Private Link Service or GCP Private Service Connect. Returns null if there are no errors.
 	InterfaceEndpoints           []string `json:"interfaceEndpoints,omitempty"`           // Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 	PrivateEndpoints             []string `json:"privateEndpoints,omitempty"`             // All private endpoints that you have added to this Azure Private Link Service.
 	PrivateLinkServiceName       string   `json:"privateLinkServiceName,omitempty"`       // Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceResourceID string   `json:"privateLinkServiceResourceId,omitempty"` // Resource ID of the Azure Private Link Service that Atlas manages.
 	Status                       string   `json:"status,omitempty"`                       // Status of the AWS, Azure OR GCP PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
 	EndpointGroupNames           []string `json:"endpointGroupNames,omitempty"`           // GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
-	RegionName                   string   `json:"regionName,omitempty"`                   // region for the Private Service Connect endpoint service.
+	RegionName                   string   `json:"regionName,omitempty"`                   // GCP region name for the Private Service Connect endpoint service.
 	ServiceAttachmentNames       []string `json:"serviceAttachmentNames,omitempty"`       // Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
 }
 
