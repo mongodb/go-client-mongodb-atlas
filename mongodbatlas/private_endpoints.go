@@ -77,7 +77,7 @@ type InterfaceEndpointConnection struct {
 	AWSConnectionStatus           string         `json:"connectionStatus,omitempty"`              // Status of the interface endpoint: NONE, PENDING_ACCEPTANCE, PENDING, AVAILABLE, REJECTED, DELETING.
 	Status                        string         `json:"status,omitempty"`                        // Status of the interface endpoint AZURE: INITIATING, AVAILABLE, FAILED, DELETING. GCP: INITIATING, AVAILABLE, FAILED, DELETING, VERIFIED
 	EndpointGroupName             string         `json:"endpointGroupName,omitempty"`             // Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
-	GCPProjectID                  string         `json:"gcpProjectID,omitempty"`                  // Unique identifier of the GCP project in which you created your endpoints.
+	GCPProjectID                  string         `json:"gcpProjectId,omitempty"`                  // Unique identifier of the GCP project in which you created your endpoints.
 	Endpoints                     []*GCPEndpoint `json:"endpoints,omitempty"`                     // Collection of individual private endpoints that comprise your endpoint group.
 }
 

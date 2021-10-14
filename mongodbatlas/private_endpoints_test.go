@@ -660,7 +660,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointGCP(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "GCP", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"endpointGroupName": "google-endpoint-group",
-			"gcpProjectID":      "p-dkfgoioogdksjei",
+			"gcpProjectId":      "p-dkfgoioogdksjei",
 			"endpoints": []interface{}{
 				map[string]interface{}{
 					"ipAddress":    "10.0.0.4",
