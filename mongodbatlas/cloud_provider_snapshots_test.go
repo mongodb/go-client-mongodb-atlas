@@ -45,6 +45,7 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 			],
 			"results": [
 				{
+					"cloudProvider": "AZURE",
 					"createdAt": "2018-08-01T20:02:07Z",
 					"expiresAt": "2018-08-04T20:03:11Z",
 					"id": "5b6211ff87d9d663c59d3feg",
@@ -59,6 +60,8 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 						}
 					],
 					"mongodVersion": "3.6.6",
+					"replicaSetName": "newCluster",
+					"snapshotType": "scheduled",
 					"storageSizeBytes": 1778012160,
 					"type": "replicaSet"
 				}
@@ -81,9 +84,10 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 		},
 		Results: []*CloudProviderSnapshot{
 			{
-				CreatedAt: "2018-08-01T20:02:07Z",
-				ExpiresAt: "2018-08-04T20:03:11Z",
-				ID:        "5b6211ff87d9d663c59d3feg",
+				CloudProvider: "AZURE",
+				CreatedAt:     "2018-08-01T20:02:07Z",
+				ExpiresAt:     "2018-08-04T20:03:11Z",
+				ID:            "5b6211ff87d9d663c59d3feg",
 				Links: []*Link{
 					{
 						Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/MyCluster/backup/snapshots/5b6211ff87d9d663c59d3feg",
@@ -95,6 +99,8 @@ func TestCloudProviderSnapshots_GetAllCloudProviderSnapshots(t *testing.T) {
 					},
 				},
 				MongodVersion:    "3.6.6",
+				ReplicaSetName:   "newCluster",
+				SnapshotType:     "scheduled",
 				StorageSizeBytes: 1778012160,
 				Type:             "replicaSet",
 			},
@@ -122,6 +128,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
+			"cloudProvider": "AZURE",
 			"createdAt": "2018-08-01T20:02:07Z",
 			"description": "SomeDescription",
 			"expiresAt": "2018-08-04T20:03:11Z",
@@ -137,6 +144,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 				}
 			],
 			"mongodVersion": "4.0.3",
+			"replicaSetName": "newCluster",
 			"snapshotType": "onDemand",
 			"status": "queued",
 			"storageSizeBytes": 1778012160,
@@ -150,10 +158,11 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 	}
 
 	expected := &CloudProviderSnapshot{
-		CreatedAt:   "2018-08-01T20:02:07Z",
-		Description: "SomeDescription",
-		ExpiresAt:   "2018-08-04T20:03:11Z",
-		ID:          "5b6211ff87d9d663c59d3feg",
+		CloudProvider: "AZURE",
+		CreatedAt:     "2018-08-01T20:02:07Z",
+		Description:   "SomeDescription",
+		ExpiresAt:     "2018-08-04T20:03:11Z",
+		ID:            "5b6211ff87d9d663c59d3feg",
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/MyCluster/backup/snapshots/5b6211ff87d9d663c59d3feg",
@@ -165,6 +174,7 @@ func TestCloudProviderSnapshots_GetOneCloudProviderSnapshot(t *testing.T) {
 			},
 		},
 		MongodVersion:    "4.0.3",
+		ReplicaSetName:   "newCluster",
 		SnapshotType:     "onDemand",
 		Status:           "queued",
 		StorageSizeBytes: 1778012160,
@@ -208,6 +218,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 		}
 
 		fmt.Fprint(w, `{
+			"cloudProvider": "AZURE",
 			"createdAt": "2018-12-31T20:54:03Z",
 			"description": "SomeDescription ",
 			"expiresAt": "2019-01-05T20:54:03Z",
@@ -223,6 +234,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 				}
 			],
 			"mongodVersion": "4.0.4",
+			"replicaSetName": "newCluster",
 			"snapshotType": "onDemand",
 			"status": "queued",
 			"storageSizeBytes": 0,
@@ -236,10 +248,11 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 	}
 
 	expected := &CloudProviderSnapshot{
-		CreatedAt:   "2018-12-31T20:54:03Z",
-		Description: "SomeDescription ",
-		ExpiresAt:   "2019-01-05T20:54:03Z",
-		ID:          "6d3b81eb87d9d61e37598558",
+		CloudProvider: "AZURE",
+		CreatedAt:     "2018-12-31T20:54:03Z",
+		Description:   "SomeDescription ",
+		ExpiresAt:     "2019-01-05T20:54:03Z",
+		ID:            "6d3b81eb87d9d61e37598558",
 		Links: []*Link{
 			{
 				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/6d2065c687d9d64ae7acdg41/clusters/Cluster0/backup/snapshots/6d3b81eb87d9d61e37598558",
@@ -251,6 +264,7 @@ func TestCloudProviderSnapshots_Create(t *testing.T) {
 			},
 		},
 		MongodVersion:    "4.0.4",
+		ReplicaSetName:   "newCluster",
 		SnapshotType:     "onDemand",
 		Status:           "queued",
 		StorageSizeBytes: 0,
