@@ -135,6 +135,61 @@ func TestPrivateEndpointAzure_Create(t *testing.T) {
 	}
 }
 
+func TestPrivateEndpointGCP_Create(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	createRequest := &PrivateEndpointConnection{
+		ProviderName: "GCP",
+		Region:       "us-central1",
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/endpointService", groupID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"providerName": "GCP",
+			"region":       "us-central1",
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+		}
+
+		fmt.Fprint(w, `{
+"id": "5f7cac1adf5d6c6306f4b756",
+"regionName": "CENTRAL_US",
+"endpointGroupNames": [
+	"test"
+],
+"status": "AVAILABLE"
+}`)
+	})
+
+	privateEndpointConnection, _, err := client.PrivateEndpoints.Create(ctx, groupID, createRequest)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.Create returned error: %v", err)
+		return
+	}
+
+	expected := &PrivateEndpointConnection{
+		ID:                 "5f7cac1adf5d6c6306f4b756",
+		RegionName:         "CENTRAL_US",
+		EndpointGroupNames: []string{"test"},
+		Status:             "AVAILABLE",
+	}
+
+	if !reflect.DeepEqual(privateEndpointConnection, expected) {
+		t.Errorf("PrivateEndpoints.Create\n got=%#v\nwant=%#v", privateEndpointConnection, expected)
+	}
+}
+
 func TestPrivateEndpointsAWS_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
@@ -202,6 +257,48 @@ func TestPrivateEndpointsAzure_Get(t *testing.T) {
 		PrivateEndpoints:             []string{"vpce-08fb7e9319909ec7b"},
 		PrivateLinkServiceResourceID: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_5f7b96cd8c39f93d0e5f1911_8nw06xue/providers/Microsoft.Network/privateLinkServices/pls_5f7b96cd8c39f93d0e5f1911",
 		Status:                       "AVAILABLE",
+	}
+
+	if !reflect.DeepEqual(privateEndpointConnection, expected) {
+		t.Errorf("PrivateEndpoints.Get\n got=%#v\nwant=%#v", privateEndpointConnection, expected)
+	}
+}
+
+func TestPrivateEndpointsGCP_Get(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	privateLinkID := "5df264b8f10fab7d2cad2f0d"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "GCP", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"id": "5f7c8d4702d59b7fc0b4b842",
+			"regionName": "WESTERN_US",
+			"serviceAttachmentNames": [
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-0",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-1",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-2"
+			],
+			"status": "AVAILABLE"
+		}`)
+	})
+
+	privateEndpointConnection, _, err := client.PrivateEndpoints.Get(ctx, groupID, "GCP", privateLinkID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.Get returned error: %v", err)
+	}
+
+	expected := &PrivateEndpointConnection{
+		ID:         "5f7c8d4702d59b7fc0b4b842",
+		RegionName: "WESTERN_US",
+		ServiceAttachmentNames: []string{
+			"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-0",
+			"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-1",
+			"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-2",
+		},
+		Status: "AVAILABLE",
 	}
 
 	if !reflect.DeepEqual(privateEndpointConnection, expected) {
@@ -315,6 +412,71 @@ func TestPrivateEndpointsAzure_List(t *testing.T) {
 	}
 }
 
+func TestPrivateEndpointsGCP_List(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService", groupID, "GCP"), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `[
+		  {
+			"id": "5f7c8d4702d59b7fc0b4b842", 
+			"serviceAttachmentNames": [
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-0",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-1",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-2"
+			],
+			"regionName": "WESTERN_US",
+			"status": "AVAILABLE"
+		  },
+		  {
+			"id": "5f7c8d6d02d59b7fc0b4b899",
+			"serviceAttachmentNames": [
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-0",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-1",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-2"
+			],
+			"regionName": "WESTERN_US",
+			"status": "AVAILABLE"
+		  }
+		]`)
+	})
+
+	privateEndpoints, _, err := client.PrivateEndpoints.List(ctx, groupID, "GCP", nil)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.List returned error: %v", err)
+	}
+
+	expected := []PrivateEndpointConnection{
+		{
+			ID: "5f7c8d4702d59b7fc0b4b842",
+			ServiceAttachmentNames: []string{
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-0",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-1",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-098c29384736e0398437485dc-2",
+			},
+			RegionName: "WESTERN_US",
+			Status:     "AVAILABLE",
+		},
+		{
+			ID: "5f7c8d6d02d59b7fc0b4b899",
+			ServiceAttachmentNames: []string{
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-0",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-1",
+				"https://googleapis.com/compute/alpha/projects/p-gmkqbn8mbnyfe3folsoiduej/regions/us-west1/serviceAttachments/sa-us-west1-938c55384736e0398930499c8-2",
+			},
+			RegionName: "WESTERN_US",
+			Status:     "AVAILABLE",
+		},
+	}
+
+	if !reflect.DeepEqual(privateEndpoints, expected) {
+		t.Errorf("PrivateEndpoints.List\n got=%#v\nwant=%#v", privateEndpoints, expected)
+	}
+}
+
 func TestPrivateEndpointsAWS_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
@@ -344,6 +506,23 @@ func TestPrivateEndpointsAzure_Delete(t *testing.T) {
 	})
 
 	_, err := client.PrivateEndpoints.Delete(ctx, groupID, "AZURE", privateLinkID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.Delete returned error: %v", err)
+	}
+}
+
+func TestPrivateEndpointsGCP_Delete(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	privateLinkID := "5df264b8f10fab7d2cad2f0d"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s", groupID, "GCP", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
+
+	_, err := client.PrivateEndpoints.Delete(ctx, groupID, "GCP", privateLinkID)
 	if err != nil {
 		t.Errorf("PrivateEndpoints.Delete returned error: %v", err)
 	}
@@ -398,7 +577,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointAWS(t *testing.T) {
 	}
 }
 
-func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
+func TestPrivateEndpoint_AddOneInterfaceEndpointAzure(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -445,6 +624,126 @@ func TestPrivateEndpoint_AddOneInterfaceEndpoint(t *testing.T) {
 		PrivateEndpointResourceID: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
 		AWSConnectionStatus:       "INITIATING",
 		DeleteRequested:           pointy.Bool(false),
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.AddOnePrivateEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
+
+func TestPrivateEndpoint_AddOneInterfaceEndpointGCP(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	privateLinkID := "5df264b8f10fab7d2cad2f0d"
+
+	request := &InterfaceEndpointConnection{
+		EndpointGroupName: "google-endpoint-group",
+		GCPProjectID:      "p-dkfgoioogdksjei",
+		Endpoints: []*GCPEndpoint{
+			{
+				IPAddress:    "10.0.0.4",
+				EndpointName: "google-endpoint-group-0",
+			},
+			{
+				IPAddress:    "10.0.0.5",
+				EndpointName: "google-endpoint-group-1",
+			},
+			{
+				IPAddress:    "10.0.0.6",
+				EndpointName: "google-endpoint-group-2",
+			},
+		},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint", groupID, "GCP", privateLinkID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"endpointGroupName": "google-endpoint-group",
+			"gcpProjectId":      "p-dkfgoioogdksjei",
+			"endpoints": []interface{}{
+				map[string]interface{}{
+					"ipAddress":    "10.0.0.4",
+					"endpointName": "google-endpoint-group-0",
+				},
+				map[string]interface{}{
+					"ipAddress":    "10.0.0.5",
+					"endpointName": "google-endpoint-group-1",
+				},
+				map[string]interface{}{
+					"ipAddress":    "10.0.0.6",
+					"endpointName": "google-endpoint-group-2",
+				},
+			},
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+		}
+
+		fmt.Fprint(w, `{
+			"id":  "2948cdcc04958372bc938493",
+			"status": "INITIATING",
+			"deleteRequested": false,
+			"endpoints": [
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-0",
+					"ipAddress" : "10.0.0.0",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-kjsod23150836e0053bc86dc-1"
+				},
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-1",
+					"ipAddress" : "10.0.0.1",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-bccd023150836e0053bc86dc-1"
+				},
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-2",
+					"ipAddress" : "10.0.0.2",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-3445523150836e0053bc86dc-1"
+				}
+			]
+		}`)
+	})
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.AddOnePrivateEndpoint(ctx, groupID, "GCP", privateLinkID, request)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.AddOnePrivateEndpoint returned error: %v", err)
+		return
+	}
+
+	expected := &InterfaceEndpointConnection{
+		ID:              "2948cdcc04958372bc938493",
+		Status:          "INITIATING",
+		DeleteRequested: pointy.Bool(false),
+		Endpoints: []*GCPEndpoint{
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-0",
+				IPAddress:             "10.0.0.0",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-kjsod23150836e0053bc86dc-1",
+			},
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-1",
+				IPAddress:             "10.0.0.1",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-bccd023150836e0053bc86dc-1",
+			},
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-2",
+				IPAddress:             "10.0.0.2",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-3445523150836e0053bc86dc-1",
+			},
+		},
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -513,8 +812,83 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		PrivateEndpointIPAddress:  "10.0.0.4",
 		PrivateEndpointResourceID: interfaceEndpointID,
-		AzureStatus:               "INITIATING",
+		Status:                    "INITIATING",
 		DeleteRequested:           pointy.Bool(false),
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.GetOnePrivateEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
+
+func TestPrivateEndpoints_GetOneInterfaceEndpointGCP(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	privateLinkID := "5df264b8f10fab7d2cad2f0d"
+	interfaceEndpointID := "2948cdcc04958372bc938493"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "GCP", privateLinkID, interfaceEndpointID)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"id":  "2948cdcc04958372bc938493",
+			"status": "INITIATING",
+			"deleteRequested": false,
+			"endpoints": [
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-0",
+					"ipAddress" : "10.0.0.0",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-kjsod23150836e0053bc86dc-1"
+				},
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-1",
+					"ipAddress" : "10.0.0.1",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-bccd023150836e0053bc86dc-1"
+				},
+				{
+					"status" : "AVAILABLE",
+					"endpointName" : "google-endpoint-group-2",
+					"ipAddress" : "10.0.0.2",
+					"serviceAttachmentName" : "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-3445523150836e0053bc86dc-1"
+				}
+			]
+		}`)
+	})
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.GetOnePrivateEndpoint(ctx, groupID, "GCP", privateLinkID, interfaceEndpointID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.GetOnePrivateEndpoint returned error: %v", err)
+	}
+
+	expected := &InterfaceEndpointConnection{
+		ID:              "2948cdcc04958372bc938493",
+		Status:          "INITIATING",
+		DeleteRequested: pointy.Bool(false),
+		Endpoints: []*GCPEndpoint{
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-0",
+				IPAddress:             "10.0.0.0",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-kjsod23150836e0053bc86dc-1",
+			},
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-1",
+				IPAddress:             "10.0.0.1",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-bccd023150836e0053bc86dc-1",
+			},
+			{
+				Status:                "AVAILABLE",
+				EndpointName:          "google-endpoint-group-2",
+				IPAddress:             "10.0.0.2",
+				ServiceAttachmentName: "https://googleapis.com/compute/alpha/projects/p-plkqbn8mbnyfe3alspdiiiuy/regions/us-west1/serviceAttachments/sa-us-west1-3445523150836e0053bc86dc-1",
+			},
+		},
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -553,6 +927,24 @@ func TestPrivateEndpoints_DeleteOneInterfaceEndpointAzure(t *testing.T) {
 	})
 
 	_, err := client.PrivateEndpoints.DeleteOnePrivateEndpoint(ctx, groupID, "AZURE", privateLinkID, interfaceEndpointID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.DeleteOnePrivateEndpoint returned error: %v", err)
+	}
+}
+
+func TestPrivateEndpoints_DeleteOneInterfaceEndpointGCP(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	privateLinkID := "5df264b8f10fab7d2cad2f0d"
+	interfaceEndpointID := "2948cdcc04958372bc938493"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/%s/endpointService/%s/endpoint/%s", groupID, "GCP", privateLinkID, interfaceEndpointID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
+
+	_, err := client.PrivateEndpoints.DeleteOnePrivateEndpoint(ctx, groupID, "GCP", privateLinkID, interfaceEndpointID)
 	if err != nil {
 		t.Errorf("PrivateEndpoints.DeleteOnePrivateEndpoint returned error: %v", err)
 	}

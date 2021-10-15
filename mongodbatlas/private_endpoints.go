@@ -51,33 +51,47 @@ var _ PrivateEndpointsService = &PrivateEndpointsServiceOp{}
 // PrivateEndpointConnection represents MongoDB Private Endpoint Connection.
 type PrivateEndpointConnection struct {
 	ID                           string   `json:"id,omitempty"`                           // Unique identifier of the AWS PrivateLink connection or Azure Private Link Service.
-	ProviderName                 string   `json:"providerName,omitempty"`                 // Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts AWS or AZURE.
+	ProviderName                 string   `json:"providerName,omitempty"`                 // Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts AWS, AZURE or GCP.
 	Region                       string   `json:"region,omitempty"`                       // Cloud provider region for which you want to create the private endpoint service.
 	EndpointServiceName          string   `json:"endpointServiceName,omitempty"`          // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-	ErrorMessage                 string   `json:"errorMessage,omitempty"`                 // Error message pertaining to the AWS PrivateLink connection or Azure Private Link Service. Returns null if there are no errors.
+	ErrorMessage                 string   `json:"errorMessage,omitempty"`                 // Error message pertaining to the AWS PrivateLink connection or Azure Private Link Service or GCP Private Service Connect. Returns null if there are no errors.
 	InterfaceEndpoints           []string `json:"interfaceEndpoints,omitempty"`           // Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 	PrivateEndpoints             []string `json:"privateEndpoints,omitempty"`             // All private endpoints that you have added to this Azure Private Link Service.
 	PrivateLinkServiceName       string   `json:"privateLinkServiceName,omitempty"`       // Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceResourceID string   `json:"privateLinkServiceResourceId,omitempty"` // Resource ID of the Azure Private Link Service that Atlas manages.
-	Status                       string   `json:"status,omitempty"`                       // Status of the AWS OR Azure PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
+	Status                       string   `json:"status,omitempty"`                       // Status of the AWS, Azure OR GCP PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
+	EndpointGroupNames           []string `json:"endpointGroupNames,omitempty"`           // GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+	RegionName                   string   `json:"regionName,omitempty"`                   // GCP region name for the Private Service Connect endpoint service.
+	ServiceAttachmentNames       []string `json:"serviceAttachmentNames,omitempty"`       // Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
 }
 
 // InterfaceEndpointConnection represents MongoDB Interface Endpoint Connection.
 type InterfaceEndpointConnection struct {
-	ID                            string `json:"id,omitempty"`                            // Unique identifier of the private endpoint you created in your AWS VPC or Azure VNet.
-	InterfaceEndpointID           string `json:"interfaceEndpointId,omitempty"`           // Unique identifier of the interface endpoint.
-	PrivateEndpointConnectionName string `json:"privateEndpointConnectionName,omitempty"` // Name of the connection for this private endpoint that Atlas generates.
-	PrivateEndpointIPAddress      string `json:"privateEndpointIPAddress,omitempty"`      // Private IP address of the private endpoint network interface.
-	PrivateEndpointResourceID     string `json:"privateEndpointResourceId,omitempty"`     // Unique identifier of the private endpoint.
-	DeleteRequested               *bool  `json:"deleteRequested,omitempty"`               // Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-	ErrorMessage                  string `json:"errorMessage,omitempty"`                  // Error message pertaining to the interface endpoint. Returns null if there are no errors.
-	AWSConnectionStatus           string `json:"connectionStatus,omitempty"`              // Status of the interface endpoint: NONE, PENDING_ACCEPTANCE, PENDING, AVAILABLE, REJECTED, DELETING.
-	AzureStatus                   string `json:"status,omitempty"`                        // Status of the interface endpoint AZURE: INITIATING, AVAILABLE, FAILED, DELETING.
+	ID                            string         `json:"id,omitempty"`                            // Unique identifier of the private endpoint you created in your AWS VPC or Azure VNet.
+	InterfaceEndpointID           string         `json:"interfaceEndpointId,omitempty"`           // Unique identifier of the interface endpoint.
+	PrivateEndpointConnectionName string         `json:"privateEndpointConnectionName,omitempty"` // Name of the connection for this private endpoint that Atlas generates.
+	PrivateEndpointIPAddress      string         `json:"privateEndpointIPAddress,omitempty"`      // Private IP address of the private endpoint network interface.
+	PrivateEndpointResourceID     string         `json:"privateEndpointResourceId,omitempty"`     // Unique identifier of the private endpoint.
+	DeleteRequested               *bool          `json:"deleteRequested,omitempty"`               // Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+	ErrorMessage                  string         `json:"errorMessage,omitempty"`                  // Error message pertaining to the interface endpoint. Returns null if there are no errors.
+	AWSConnectionStatus           string         `json:"connectionStatus,omitempty"`              // Status of the interface endpoint: NONE, PENDING_ACCEPTANCE, PENDING, AVAILABLE, REJECTED, DELETING.
+	Status                        string         `json:"status,omitempty"`                        // Status of the interface endpoint AZURE: INITIATING, AVAILABLE, FAILED, DELETING. GCP: INITIATING, AVAILABLE, FAILED, DELETING, VERIFIED
+	EndpointGroupName             string         `json:"endpointGroupName,omitempty"`             // Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	GCPProjectID                  string         `json:"gcpProjectId,omitempty"`                  // Unique identifier of the GCP project in which you created your endpoints.
+	Endpoints                     []*GCPEndpoint `json:"endpoints,omitempty"`                     // Collection of individual private endpoints that comprise your endpoint group.
 }
 
 // RegionalizedPrivateEndpointSetting represents MongoDB Regionalized private Endpoint Setting.
 type RegionalizedPrivateEndpointSetting struct {
 	Enabled bool `json:"enabled"` // Flag that indicates whether the regionalized private endpoint setting is enabled for one Atlas project.
+}
+
+// GCPEndpoint represents MongoDB GCP endpoint group.
+type GCPEndpoint struct {
+	IPAddress             string `json:"ipAddress,omitempty"`             // Private IP address of the endpoint you created in GCP.
+	EndpointName          string `json:"endpointName,omitempty"`          // Forwarding rule that corresponds to the endpoint you created in GCP.
+	Status                string `json:"status,omitempty"`                // Status of the endpoint. Atlas returns one of the values shown above.
+	ServiceAttachmentName string `json:"serviceAttachmentName,omitempty"` // Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
 }
 
 // Create one private endpoint service for AWS or Azure in an Atlas project.
