@@ -42,8 +42,8 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: "test-collection",
-				Db:         "test-db",
+				Collection: StrPtr("test-collection"),
+				Db:         StrPtr("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -76,8 +76,8 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: "test-collection",
-				Db:         "test-db",
+				Collection: StrPtr("test-collection"),
+				Db:         StrPtr("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -99,8 +99,8 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: "test-collection",
-				Db:         "test-db",
+				Collection: StrPtr("test-collection"),
+				Db:         StrPtr("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -180,8 +180,8 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: "test-collection",
-				Db:         "test-db",
+				Collection: StrPtr("test-collection"),
+				Db:         StrPtr("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -278,8 +278,8 @@ func TestCustomDBRoles_DeleteInheritedRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: "test-collection",
-				Db:         "test-db",
+				Collection: StrPtr("test-collection"),
+				Db:         StrPtr("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{},
