@@ -22,6 +22,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
@@ -42,8 +43,8 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: StrPtr("test-collection"),
-				Db:         StrPtr("test-db"),
+				Collection: pointy.String("test-collection"),
+				Db:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -76,8 +77,8 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: StrPtr("test-collection"),
-				Db:         StrPtr("test-db"),
+				Collection: pointy.String("test-collection"),
+				Db:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -99,8 +100,8 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: StrPtr("test-collection"),
-				Db:         StrPtr("test-db"),
+				Collection: pointy.String("test-collection"),
+				Db:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -180,8 +181,8 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: StrPtr("test-collection"),
-				Db:         StrPtr("test-db"),
+				Collection: pointy.String("test-collection"),
+				Db:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -278,8 +279,8 @@ func TestCustomDBRoles_DeleteInheritedRole(t *testing.T) {
 		Actions: []Action{{
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
-				Collection: StrPtr("test-collection"),
-				Db:         StrPtr("test-db"),
+				Collection: pointy.String("test-collection"),
+				Db:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{},
