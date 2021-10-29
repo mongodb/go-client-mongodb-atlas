@@ -93,84 +93,124 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 }
 
 func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
+	type createCase struct {
+		input    CustomDBRole
+		expected map[string]interface{}
+	}
+	createExamples := []createCase{
+		{
+			input: CustomDBRole{
+				Actions: []Action{{
+					Action: "CREATE_INDEX",
+					Resources: []Resource{{
+						Collection: pointy.String("test-collection"),
+						Db:         pointy.String("test-db"),
+					}},
+				}},
+				InheritedRoles: []InheritedRole{{
+					Db:   "test-db",
+					Role: "read",
+				}},
+				RoleName: "test-role-name",
+			},
+			expected: map[string]interface{}{
+				"actions": []interface{}{map[string]interface{}{
+					"action": "CREATE_INDEX",
+					"resources": []interface{}{map[string]interface{}{
+						"collection": "test-collection",
+						"db":         "test-db",
+					}},
+				}},
+				"inheritedRoles": []interface{}{map[string]interface{}{
+					"db":   "test-db",
+					"role": "read",
+				}},
+				"roleName": "test-role-name",
+			},
+		},
+		{
+			input: CustomDBRole{
+				Actions: []Action{
+					{
+						Action: "CREATE_INDEX",
+						Resources: []Resource{
+							{
+								Collection: pointy.String(""),
+								Db:         pointy.String("admin"),
+							},
+						},
+					},
+				},
+				InheritedRoles: []InheritedRole{
+					{
+						Db:   "test-db",
+						Role: "read",
+					},
+				},
+				RoleName: "empty-collection-test",
+			},
+			expected: map[string]interface{}{
+				"roleName": "empty-collection-test",
+				"actions": []interface{}{
+					map[string]interface{}{
+						"action": "CREATE_INDEX",
+						"resources": []interface{}{
+							map[string]interface{}{
+								"collection": "",
+								"db":         "admin",
+							},
+						},
+					},
+				},
+				"inheritedRoles": []interface{}{
+					map[string]interface{}{
+						"db":   "test-db",
+						"role": "read",
+					},
+				},
+			},
+		},
+	}
+
+	//keep the mux creation outside of the loop to avoid allocations.
 	client, mux, teardown := setup()
 	defer teardown()
 
-	createRequest := &CustomDBRole{
-		Actions: []Action{{
-			Action: "CREATE_INDEX",
-			Resources: []Resource{{
-				Collection: pointy.String("test-collection"),
-				Db:         pointy.String("test-db"),
-			}},
-		}},
-		InheritedRoles: []InheritedRole{{
-			Db:   "test-db",
-			Role: "read",
-		}},
-		RoleName: "test-role-name",
-	}
+	//allows mux to expect different values at each iteration.
+	var muxExpected map[string]interface{}
 
 	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
-		expected := map[string]interface{}{
-			"actions": []interface{}{map[string]interface{}{
-				"action": "CREATE_INDEX",
-				"resources": []interface{}{map[string]interface{}{
-					"collection": "test-collection",
-					"db":         "test-db",
-				}},
-			}},
-			"inheritedRoles": []interface{}{map[string]interface{}{
-				"db":   "test-db",
-				"role": "read",
-			}},
-			"roleName": "test-role-name",
-		}
-
-		jsonBlob := `
-		{
-			"actions": [
-				{
-					"action": "CREATE_INDEX",
-					"resources": [
-						{
-							"collection": "test-collection",
-							"db": "test-db"
-						}
-					]
-				}
-			],
-			"inheritedRoles": [
-				{
-					"db": "test-db",
-					"role": "read"
-				}
-			],
-			"roleName":"test-role-name"
-		}
-		`
-
 		var v map[string]interface{}
 		err := json.NewDecoder(r.Body).Decode(&v)
+
 		if err != nil {
 			t.Fatalf("decode json: %v", err)
 		}
 
-		if diff := deep.Equal(v, expected); diff != nil {
+		if diff := deep.Equal(v, muxExpected); diff != nil {
 			t.Error(diff)
 		}
 
-		fmt.Fprint(w, jsonBlob)
+		if err := json.NewEncoder(w).Encode(v); err != nil {
+			t.Error(err)
+		}
+
 	})
 
-	customDBRole, _, err := client.CustomDBRoles.Create(ctx, "1", createRequest)
-	if err != nil {
-		t.Fatalf("CustomDBRoles.Create returned error: %v", err)
+	for _, example := range createExamples {
+
+		muxExpected = example.expected
+
+		customDBRole, _, err := client.CustomDBRoles.Create(ctx, "1", &example.input)
+		if err != nil {
+			t.Fatalf("CustomDBRoles.Create returned error: %v", err)
+		}
+
+		if roleName := customDBRole.RoleName; roleName != example.expected["roleName"] {
+			t.Errorf("expected roleName '%s', received '%s'", example.expected["roleName"], roleName)
+		}
 	}
 
-	if roleName := customDBRole.RoleName; roleName != "test-role-name" {
-		t.Errorf("expected roleName '%s', received '%s'", "test-role-name", roleName)
-	}
 }
 
 func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
