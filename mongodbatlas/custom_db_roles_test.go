@@ -128,6 +128,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 				"roleName": "test-role-name",
 			},
 		},
+		//the following case verifies https://github.com/mongodb/go-client-mongodb-atlas/issues/263
 		{
 			input: CustomDBRole{
 				Actions: []Action{
