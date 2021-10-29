@@ -171,6 +171,36 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: CustomDBRole{
+				RoleName: "just-cluster-action",
+				Actions: []Action{
+					{
+						Action: "CONN_POOL_STATS",
+						Resources: []Resource{
+							{
+								Cluster: pointy.Bool(true),
+							},
+						},
+					},
+				},
+				InheritedRoles: []InheritedRole{},
+			},
+			expected: map[string]interface{}{
+				"roleName": "just-cluster-action",
+				"actions": []interface{}{
+					map[string]interface{}{
+						"action": "CONN_POOL_STATS",
+						"resources": []interface{}{
+							map[string]interface{}{
+								"cluster": true,
+							},
+						},
+					},
+				},
+				"inheritedRoles": []interface{}{},
+			},
+		},
 	}
 
 	//keep the mux creation outside of the loop to avoid allocations.
