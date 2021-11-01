@@ -128,7 +128,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 				"roleName": "test-role-name",
 			},
 		},
-		//the following case verifies https://github.com/mongodb/go-client-mongodb-atlas/issues/263
+		// the following case verifies https://github.com/mongodb/go-client-mongodb-atlas/issues/263
 		{
 			input: CustomDBRole{
 				Actions: []Action{
@@ -203,11 +203,11 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 		},
 	}
 
-	//keep the mux creation outside of the loop to avoid allocations.
+	// keep the mux creation outside of the loop to avoid allocations.
 	client, mux, teardown := setup()
 	defer teardown()
 
-	//allows mux to expect different values at each iteration.
+	// allows mux to expect different values at each iteration.
 	var muxExpected map[string]interface{}
 
 	mux.HandleFunc("/api/atlas/v1.0/groups/1/customDBRoles/roles", func(w http.ResponseWriter, r *http.Request) {
@@ -225,11 +225,9 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 		if err := json.NewEncoder(w).Encode(v); err != nil {
 			t.Error(err)
 		}
-
 	})
 
 	for _, example := range createExamples {
-
 		muxExpected = example.expected
 
 		customDBRole, _, err := client.CustomDBRoles.Create(ctx, "1", &example.input)
@@ -241,7 +239,6 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 			t.Errorf("expected roleName '%s', received '%s'", example.expected["roleName"], roleName)
 		}
 	}
-
 }
 
 func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
