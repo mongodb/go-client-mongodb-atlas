@@ -44,7 +44,7 @@ func TestCustomDBRoles_ListCustomDBRoles(t *testing.T) {
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
 				Collection: pointy.String("test-collection"),
-				Db:         pointy.String("test-db"),
+				DB:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -78,7 +78,7 @@ func TestCustomDBRoles_GetCustomDBRole(t *testing.T) {
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
 				Collection: pointy.String("test-collection"),
-				Db:         pointy.String("test-db"),
+				DB:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -104,7 +104,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 					Action: "CREATE_INDEX",
 					Resources: []Resource{{
 						Collection: pointy.String("test-collection"),
-						Db:         pointy.String("test-db"),
+						DB:         pointy.String("test-db"),
 					}},
 				}},
 				InheritedRoles: []InheritedRole{{
@@ -137,7 +137,7 @@ func TestCustomDBRoles_CreateCustomDBRole(t *testing.T) {
 						Resources: []Resource{
 							{
 								Collection: pointy.String(""),
-								Db:         pointy.String("admin"),
+								DB:         pointy.String("admin"),
 							},
 						},
 					},
@@ -253,7 +253,7 @@ func TestCustomDBRoles_UpdateCustomDBRole(t *testing.T) {
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
 				Collection: pointy.String("test-collection"),
-				Db:         pointy.String("test-db"),
+				DB:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{{
@@ -351,7 +351,7 @@ func TestCustomDBRoles_DeleteInheritedRole(t *testing.T) {
 			Action: "CREATE_INDEX",
 			Resources: []Resource{{
 				Collection: pointy.String("test-collection"),
-				Db:         pointy.String("test-db"),
+				DB:         pointy.String("test-db"),
 			}},
 		}},
 		InheritedRoles: []InheritedRole{},
