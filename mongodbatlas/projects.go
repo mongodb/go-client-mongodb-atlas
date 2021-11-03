@@ -63,16 +63,17 @@ var _ ProjectsService = &ProjectsServiceOp{}
 
 // Project represents the structure of a project.
 type Project struct {
-	ID                      string  `json:"id,omitempty"`
-	OrgID                   string  `json:"orgId,omitempty"`
-	Name                    string  `json:"name,omitempty"`
-	ClusterCount            int     `json:"clusterCount,omitempty"`
-	Created                 string  `json:"created,omitempty"`
-	RegionUsageRestrictions string  `json:"regionUsageRestrictions,omitempty"` // RegionUsageRestrictions for cloud.mongodbgov.com, valid values are GOV_REGIONS_ONLY, COMMERCIAL_FEDRAMP_REGIONS_ONLY, NONE
-	Links                   []*Link `json:"links,omitempty"`
+	ID                        string  `json:"id,omitempty"`
+	OrgID                     string  `json:"orgId,omitempty"`
+	Name                      string  `json:"name,omitempty"`
+	ClusterCount              int     `json:"clusterCount,omitempty"`
+	Created                   string  `json:"created,omitempty"`
+	RegionUsageRestrictions   string  `json:"regionUsageRestrictions,omitempty"` // RegionUsageRestrictions for cloud.mongodbgov.com, valid values are GOV_REGIONS_ONLY, COMMERCIAL_FEDRAMP_REGIONS_ONLY, NONE
+	Links                     []*Link `json:"links,omitempty"`
+	WithDefaultAlertsSettings *bool   `json:"withDefaultAlertsSettings,omitempty"`
 }
 
-// Projects represents a array of project.
+// Projects represents an array of project.
 type Projects struct {
 	Links      []*Link    `json:"links"`
 	Results    []*Project `json:"results"`
@@ -86,7 +87,7 @@ type Result struct {
 	TeamID    string   `json:"teamId"`
 }
 
-// ProjectTeam reperesents the kind of role that has the team.
+// ProjectTeam represents the kind of role that has the team.
 type ProjectTeam struct {
 	TeamID    string   `json:"teamId,omitempty"`
 	RoleNames []string `json:"roleNames,omitempty"`
