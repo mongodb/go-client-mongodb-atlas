@@ -41,9 +41,9 @@ var _ CustomDBRolesService = &CustomDBRolesServiceOp{}
 
 // A Resource describes a specific resource the Role will allow operating on.
 type Resource struct {
-	Collection string `json:"collection,omitempty"`
-	Db         string `json:"db,omitempty"` //nolint:stylecheck // not changing this as is a breaking change
-	Cluster    *bool  `json:"cluster,omitempty"`
+	Collection *string `json:"collection,omitempty"`
+	DB         *string `json:"db,omitempty"`
+	Cluster    *bool   `json:"cluster,omitempty"`
 }
 
 // An Action describes the operation the role will include, for a specific set of Resources.
