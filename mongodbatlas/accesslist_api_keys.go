@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const accessListAPIKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys/%s/accessList"
+const accessListAPIKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys/%s/accessList" //nolint:gosec // This is a path
 
 // AccessListAPIKeysService is an interface for interfacing with the AccessList API Keys
 // endpoints of the MongoDB Atlas API.

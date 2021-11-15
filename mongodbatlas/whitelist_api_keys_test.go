@@ -27,9 +27,6 @@ func TestWhitelistAPIKeys_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	orgID := "ORG-ID"
-	apiKeyID := "API-KEY-ID"
-
 	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath, orgID, apiKeyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
@@ -127,10 +124,6 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	orgID := "ORG-ID"
-	apiKeyID := "API-KEY-ID"
-	ipAddress := "IP-ADDRESS"
-
 	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
@@ -173,9 +166,6 @@ func TestWhitelistAPIKeys_Get(t *testing.T) {
 func TestWhitelistAPIKeys_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	orgID := "ORG-ID"
-	apiKeyID := "API-KEY-ID"
 
 	createRequest := []*WhitelistAPIKeysReq{
 		{
@@ -296,10 +286,6 @@ func TestWhitelistAPIKeys_Create(t *testing.T) {
 func TestWhitelistAPIKeys_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	orgID := "ORG-ID"
-	apiKeyID := "API-KEY-ID"
-	ipAddress := "IP-ADDRESS"
 
 	mux.HandleFunc(fmt.Sprintf("/"+whitelistAPIKeysPath+"/%s", orgID, apiKeyID, ipAddress), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
