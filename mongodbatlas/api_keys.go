@@ -21,7 +21,7 @@ import (
 	"net/url"
 )
 
-const apiKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys"
+const apiKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys" //nolint:gosec // This is a path
 
 // APIKeysService is an interface for interfacing with the APIKeys
 // endpoints of the MongoDB Atlas API.

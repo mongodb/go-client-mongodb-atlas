@@ -19,7 +19,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"net/http/httputil"
@@ -165,7 +165,7 @@ func TestNewRequest_withUserData(t *testing.T) {
 	}
 
 	// test body was JSON encoded
-	body, _ := ioutil.ReadAll(req.Body)
+	body, _ := io.ReadAll(req.Body)
 	if string(body) != outBody {
 		t.Errorf("NewRequest(%v)Body = %v, expected %v", inBody, string(body), outBody)
 	}
@@ -427,7 +427,7 @@ func TestCheckResponse(t *testing.T) {
 	res := &http.Response{
 		Request:    &http.Request{},
 		StatusCode: http.StatusBadRequest,
-		Body: ioutil.NopCloser(
+		Body: io.NopCloser(
 			strings.NewReader(
 				`{"error":409, "errorCode": "GROUP_ALREADY_EXISTS", "reason":"Conflict", "detail":"A group with name \"Test\" already exists"}`,
 			),
@@ -456,7 +456,7 @@ func TestCheckResponse_noBody(t *testing.T) {
 	res := &http.Response{
 		Request:    &http.Request{},
 		StatusCode: http.StatusBadRequest,
-		Body:       ioutil.NopCloser(strings.NewReader("")),
+		Body:       io.NopCloser(strings.NewReader("")),
 	}
 	var target *ErrorResponse
 	if !errors.As(CheckResponse(res), &target) {

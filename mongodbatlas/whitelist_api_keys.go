@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const whitelistAPIKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys/%s/whitelist"
+const whitelistAPIKeysPath = "api/atlas/v1.0/orgs/%s/apiKeys/%s/whitelist" //nolint:gosec // This is a path
 
 // WhitelistAPIKeysService is an interface for interfacing with the Whitelist API Keys
 // endpoints of the MongoDB Atlas API.
