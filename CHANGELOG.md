@@ -1,5 +1,26 @@
 # Changelog
 
+## [v0.14.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.14.0) (November 18, 2021)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.13.0...v0.14.0)
+
+**Breaking changes:**
+
+- custom\_db\_role resource use \*string [\#264](https://github.com/mongodb/go-client-mongodb-atlas/pull/264) ([Freyert](https://github.com/Freyert))
+
+**Closed issues:**
+
+- undefined: io.Discard and io.ReadAll in latest code push [\#267](https://github.com/mongodb/go-client-mongodb-atlas/issues/267)
+- Can't provide customRole.actions\[\*\].resources\[\*\].collection as empty string [\#263](https://github.com/mongodb/go-client-mongodb-atlas/issues/263)
+
+**Merged pull requests:**
+
+- CLOUDP-105826: Update golangci-lint to 1.43 [\#266](https://github.com/mongodb/go-client-mongodb-atlas/pull/266) ([gssbzn](https://github.com/gssbzn))
+- INTMDB-270: Added  'withDefaultAlertsSettings' property to Project struct [\#265](https://github.com/mongodb/go-client-mongodb-atlas/pull/265) ([abner-dou](https://github.com/abner-dou))
+- chore\(deps\): bump github.com/go-test/deep from 1.0.7 to 1.0.8 [\#262](https://github.com/mongodb/go-client-mongodb-atlas/pull/262) ([dependabot[bot]](https://github.com/apps/dependabot))
+- INTMDB-239: added fields for cloud provider snapshot [\#261](https://github.com/mongodb/go-client-mongodb-atlas/pull/261) ([coderGo93](https://github.com/coderGo93))
+- INTMDB-260: Added for gcp features in private endpoints [\#260](https://github.com/mongodb/go-client-mongodb-atlas/pull/260) ([coderGo93](https://github.com/coderGo93))
+
 ## [v0.13.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.13.0) (October 07, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.12.0...v0.13.0)
