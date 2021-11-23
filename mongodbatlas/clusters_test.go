@@ -104,7 +104,8 @@ func TestClusters_ListClusters(t *testing.T) {
 						}
 					},
 					"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-					"stateName": "IDLE"
+					"stateName": "IDLE",
+					"versionReleaseSystem": "LTS"
 				},
 				{
 					"autoScaling": {
@@ -178,7 +179,8 @@ func TestClusters_ListClusters(t *testing.T) {
 						}
 					},
 					"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-					"stateName": "IDLE"
+					"stateName": "IDLE",
+					"versionReleaseSystem": "LTS"
 				}
 			],
 			"totalCount": 2
@@ -256,8 +258,9 @@ func TestClusters_ListClusters(t *testing.T) {
 				ReadOnlyNodes:  pointy.Int64(0),
 			},
 		},
-		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		StateName:  "IDLE",
+		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:            "IDLE",
+		VersionReleaseSystem: "LTS",
 	}
 
 	expected := []Cluster{cluster1, cluster1}
@@ -384,8 +387,9 @@ func TestClusters_Create(t *testing.T) {
 				ReadOnlyNodes:  pointy.Int64(0),
 			},
 		},
-		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		StateName:  "IDLE",
+		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:            "IDLE",
+		VersionReleaseSystem: "LTS",
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
@@ -435,8 +439,9 @@ func TestClusters_Create(t *testing.T) {
 					"readOnlyNodes":  float64(0),
 				},
 			},
-			"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-			"stateName":  "IDLE",
+			"srvAddress":           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+			"stateName":            "IDLE",
+			"versionReleaseSystem": "LTS",
 		}
 
 		jsonBlob := `
@@ -488,7 +493,8 @@ func TestClusters_Create(t *testing.T) {
                 }
             },
             "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-            "stateName": "IDLE"
+            "stateName": "IDLE",
+            "versionReleaseSystem": "LTS"
 		}
 		`
 
@@ -565,8 +571,9 @@ func TestClusters_Update(t *testing.T) {
 				ReadOnlyNodes:  pointy.Int64(0),
 			},
 		},
-		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		StateName:  "IDLE",
+		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:            "IDLE",
+		VersionReleaseSystem: "LTS",
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -616,8 +623,9 @@ func TestClusters_Update(t *testing.T) {
 					"readOnlyNodes":  float64(0),
 				},
 			},
-			"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-			"stateName":  "IDLE",
+			"srvAddress":           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+			"stateName":            "IDLE",
+			"versionReleaseSystem": "LTS",
 		}
 
 		jsonBlob := `
@@ -668,7 +676,8 @@ func TestClusters_Update(t *testing.T) {
                 }
             },
             "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-            "stateName": "IDLE"
+            "stateName": "IDLE",
+            "versionReleaseSystem": "LTS"
 		}
 		`
 
@@ -917,7 +926,8 @@ func TestClusters_Get(t *testing.T) {
                 }
             },
             "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-            "stateName": "IDLE"
+            "stateName": "IDLE",
+            "versionReleaseSystem": "LTS"
 		}`)
 	})
 
@@ -981,8 +991,9 @@ func TestClusters_Get(t *testing.T) {
 				ReadOnlyNodes:  pointy.Int64(0),
 			},
 		},
-		SrvAddress: "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		StateName:  "IDLE",
+		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:            "IDLE",
+		VersionReleaseSystem: "LTS",
 	}
 
 	if diff := deep.Equal(cluster, expected); diff != nil {
