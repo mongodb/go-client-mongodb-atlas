@@ -48,7 +48,7 @@ type PrivateLinkEndpointADLResponse struct {
 	TotalCount int                       `json:"totalCount"`
 }
 
-//PrivateLinkEndpointADL represents the private link result for data lake and online archive.
+// PrivateLinkEndpointADL represents the private link result for data lake and online archive.
 type PrivateLinkEndpointADL struct {
 	Comment    string `json:"comment,omitempty"`
 	EndpointID string `json:"endpointId,omitempty"`
@@ -56,7 +56,7 @@ type PrivateLinkEndpointADL struct {
 	Type       string `json:"type,omitempty"`
 }
 
-//Create creates one private link endpoint in Data Lake and Online Archive Atlas project.
+// Create creates one private link endpoint in Data Lake and Online Archive Atlas project.
 //
 // See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-private-link-create-one/#std-label-api-pvt-link-create-one
 func (s *PrivateLinkEndpointsADLServiceOp) Create(ctx context.Context, groupID string, createRequest *PrivateLinkEndpointADL) (*PrivateLinkEndpointADLResponse, *Response, error) {
