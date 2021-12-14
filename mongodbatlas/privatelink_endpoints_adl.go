@@ -27,7 +27,7 @@ const (
 // PrivateLinkEndpointsADLService is an interface for interfacing with the Private Link Endpoints ADL
 // of the MongoDB Atlas API datalake and online archive.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints/
+// See more: https://docs.mongodb.com/datalake/reference/api/datalakes-api/
 type PrivateLinkEndpointsADLService interface {
 	Create(context.Context, string, *PrivateLinkEndpointADL) (*PrivateLinkEndpointADLResponse, *Response, error)
 	Get(context.Context, string, string) (*PrivateLinkEndpointADL, *Response, error)
