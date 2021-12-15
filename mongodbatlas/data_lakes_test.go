@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"reflect"
 	"testing"
 
 	"github.com/go-test/deep"
@@ -435,5 +436,187 @@ func TestDataLake_Delete(t *testing.T) {
 	_, err := client.DataLakes.Delete(ctx, groupID, dataLakeName)
 	if err != nil {
 		t.Fatalf("DataLakes.Delete returned error: %v", err)
+	}
+}
+
+func TestDataLake_CreatePrivateLinkEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds", groupID)
+
+	createRequest := &PrivateLinkEndpointDataLake{
+		EndpointID: "vpce-jjg5e24qp93513h03",
+		Type:       "DATA_LAKE",
+		Provider:   "AWS",
+		Comment:    "Private endpoint for Application Server A",
+	}
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"endpointId": "vpce-jjg5e24qp93513h03",
+			"type":       "DATA_LAKE",
+			"provider":   "AWS",
+			"comment":    "Private endpoint for Application Server A",
+		}
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Request body\n got=%#v\nwant=%#v \n\ndiff=%#v", v, expected, diff)
+		}
+
+		fmt.Fprint(w, `{
+  "links" : [ {
+    "href" : "https://cloud.mongodb.com/api/atlas/v1.0/groups/6c7498dg87d9e6526801572b/privateNetworkSettings/endpointIds?pretty=true&pageNum=1&itemsPerPage=100",
+    "rel" : "self"
+  } ],
+  "results" : [ {
+    "comment" : "Private endpoint for Application Server A",
+    "endpointId" : "vpce-jjg5e24qp93513h03",
+    "provider" : "AWS",
+    "type" : "DATA_LAKE"
+  } ],
+  "totalCount" : 1
+}`)
+	})
+
+	privateEndpointConnection, _, err := client.DataLakes.CreatePrivateLinkEndpoint(ctx, groupID, createRequest)
+	if err != nil {
+		t.Errorf("DataLakes.CreatePrivateLinkEndpoint returned error: %v", err)
+		return
+	}
+
+	expected := &PrivateLinkEndpointDataLakeResponse{
+		Results: []*PrivateLinkEndpointDataLake{
+			{
+				EndpointID: "vpce-jjg5e24qp93513h03",
+				Type:       "DATA_LAKE",
+				Provider:   "AWS",
+				Comment:    "Private endpoint for Application Server A",
+			},
+		},
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/6c7498dg87d9e6526801572b/privateNetworkSettings/endpointIds?pretty=true&pageNum=1&itemsPerPage=100",
+				Rel:  "self",
+			},
+		},
+		TotalCount: 1,
+	}
+
+	if !reflect.DeepEqual(privateEndpointConnection, expected) {
+		t.Errorf("DataLakes.CreatePrivateLinkEndpoint\n got=%#v\nwant=%#v", privateEndpointConnection, expected)
+	}
+}
+
+func TestDataLake_GetPrivateLinkEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds/1", groupID)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+   "comment" : "Private endpoint for Application Server A",
+   "endpointId" : "vpce-jjg5e24qp93513h03",
+   "provider" : "AWS",
+   "type" : "DATA_LAKE"
+}`)
+	})
+
+	privateLinkEndpointADL, _, err := client.DataLakes.GetPrivateLinkEndpoint(ctx, groupID, "1")
+	if err != nil {
+		t.Fatalf("DataLakes.GetPrivateLinkEndpoint returned error: %v", err)
+	}
+
+	expected := PrivateLinkEndpointDataLake{
+		Comment:    "Private endpoint for Application Server A",
+		EndpointID: "vpce-jjg5e24qp93513h03",
+		Provider:   "AWS",
+		Type:       "DATA_LAKE",
+	}
+
+	if diff := deep.Equal(privateLinkEndpointADL, &expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataLake_ListPrivateLinkEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds", groupID)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+  "links" : [ {
+    "href" : "https://cloud.mongodb.com/api/atlas/v1.0/groups/6c7498dg87d9e6526801572b/privateNetworkSettings/endpointIds?pretty=true&pageNum=1&itemsPerPage=100",
+     "rel" : "self"
+  } ],
+  "results" : [ {
+    "comment" : "Private endpoint for Application Server A",
+    "endpointId" : "vpce-jjg5e24qp93513h03",
+     "provider" : "AWS",
+     "type" : "DATA_LAKE"
+   } ],
+   "totalCount" : 1
+ }`)
+	})
+
+	privateLinkEndpoints, _, err := client.DataLakes.ListPrivateLinkEndpoint(ctx, groupID)
+	if err != nil {
+		t.Fatalf("DataLakes.ListPrivateLinkEndpoint returned error: %v", err)
+	}
+
+	expected := &PrivateLinkEndpointDataLakeResponse{
+		Results: []*PrivateLinkEndpointDataLake{
+			{
+				EndpointID: "vpce-jjg5e24qp93513h03",
+				Type:       "DATA_LAKE",
+				Provider:   "AWS",
+				Comment:    "Private endpoint for Application Server A",
+			},
+		},
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/6c7498dg87d9e6526801572b/privateNetworkSettings/endpointIds?pretty=true&pageNum=1&itemsPerPage=100",
+				Rel:  "self",
+			},
+		},
+		TotalCount: 1,
+	}
+
+	if !reflect.DeepEqual(privateLinkEndpoints, expected) {
+		t.Errorf("DataLakes.ListPrivateLinkEndpoint\n got=%#v\nwant=%#v", privateLinkEndpoints, expected)
+	}
+}
+
+func TestDataLake_DeletePrivateLinkEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds/1", groupID)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
+
+	_, err := client.DataLakes.DeletePrivateLinkEndpoint(ctx, groupID, "1")
+	if err != nil {
+		t.Errorf("DataLakes.DeletePrivateLinkEndpoint returned error: %v", err)
 	}
 }

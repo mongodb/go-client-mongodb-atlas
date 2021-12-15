@@ -110,7 +110,6 @@ type Client struct {
 	AlertConfigurations                 AlertConfigurationsService
 	PrivateEndpoints                    PrivateEndpointsService
 	PrivateEndpointsDeprecated          PrivateEndpointsServiceDeprecated
-	PrivateLinkEndpointsADL             PrivateLinkEndpointsADLService
 	X509AuthDBUsers                     X509AuthDBUsersService
 	ContinuousSnapshots                 ContinuousSnapshotsService
 	ContinuousRestoreJobs               ContinuousRestoreJobsService
@@ -252,7 +251,6 @@ func NewClient(httpClient *http.Client) *Client {
 	c.AlertConfigurations = &AlertConfigurationsServiceOp{Client: c}
 	c.PrivateEndpoints = &PrivateEndpointsServiceOp{Client: c}
 	c.PrivateEndpointsDeprecated = &PrivateEndpointsServiceOpDeprecated{Client: c}
-	c.PrivateLinkEndpointsADL = &PrivateLinkEndpointsADLServiceOp{Client: c}
 	c.X509AuthDBUsers = &X509AuthDBUsersServiceOp{Client: c}
 	c.ContinuousRestoreJobs = &ContinuousRestoreJobsServiceOp{Client: c}
 	c.Checkpoints = &CheckpointsServiceOp{Client: c}
