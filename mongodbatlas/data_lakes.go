@@ -20,7 +20,10 @@ import (
 	"net/http"
 )
 
-const dataLakesBasePath = "api/atlas/v1.0/groups"
+const (
+	dataLakesBasePath                = "api/atlas/v1.0/groups"
+	privateLinkEndpointsDataLakePath = "api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds"
+)
 
 // DataLakeService is an interface for interfacing with the Data Lake endpoints of the MongoDB Atlas API.
 //
@@ -31,11 +34,17 @@ type DataLakeService interface {
 	Create(context.Context, string, *DataLakeCreateRequest) (*DataLake, *Response, error)
 	Update(context.Context, string, string, *DataLakeUpdateRequest) (*DataLake, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
+	CreatePrivateLinkEndpoint(context.Context, string, *PrivateLinkEndpointDataLake) (*PrivateLinkEndpointDataLakeResponse, *Response, error)
+	GetPrivateLinkEndpoint(context.Context, string, string) (*PrivateLinkEndpointDataLake, *Response, error)
+	ListPrivateLinkEndpoint(context.Context, string) (*PrivateLinkEndpointDataLakeResponse, *Response, error)
+	DeletePrivateLinkEndpoint(context.Context, string, string) (*Response, error)
 }
 
 // DataLakeServiceOp handles communication with the DataLakeService related methods of the
 // MongoDB Atlas API.
 type DataLakeServiceOp service
+
+var _ DataLakeService = &DataLakeServiceOp{}
 
 // AwsCloudProviderConfig is the data lake configuration for AWS.
 type AwsCloudProviderConfig struct {
@@ -124,6 +133,21 @@ type DataLakeUpdateRequest struct {
 type DataLakeCreateRequest struct {
 	Name                string               `json:"name,omitempty"`
 	CloudProviderConfig *CloudProviderConfig `json:"cloudProviderConfig,omitempty"`
+}
+
+// PrivateLinkEndpointDataLakeResponse represents MongoDB Private Endpoint Connection to DataLake.
+type PrivateLinkEndpointDataLakeResponse struct {
+	Links      []*Link                        `json:"links,omitempty"`
+	Results    []*PrivateLinkEndpointDataLake `json:"results"`
+	TotalCount int                            `json:"totalCount"`
+}
+
+// PrivateLinkEndpointDataLake represents the private link result for data lake.
+type PrivateLinkEndpointDataLake struct {
+	Comment    string `json:"comment,omitempty"`
+	EndpointID string `json:"endpointId,omitempty"`
+	Provider   string `json:"provider,omitempty"`
+	Type       string `json:"type,omitempty"`
 }
 
 // List gets all data lakes for the specified group.
@@ -255,4 +279,105 @@ func (s *DataLakeServiceOp) Delete(ctx context.Context, groupID, name string) (*
 	resp, err := s.Client.Do(ctx, req, nil)
 
 	return resp, err
+}
+
+// CreatePrivateLinkEndpoint creates one private link endpoint in Data Lake Atlas project.
+//
+// See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-private-link-create-one/#std-label-api-pvt-link-create-one
+func (s *DataLakeServiceOp) CreatePrivateLinkEndpoint(ctx context.Context, groupID string, createRequest *PrivateLinkEndpointDataLake) (*PrivateLinkEndpointDataLakeResponse, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if createRequest == nil {
+		return nil, nil, NewArgError("createRequest", "must be set")
+	}
+
+	path := fmt.Sprintf(privateLinkEndpointsDataLakePath, groupID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(PrivateLinkEndpointDataLakeResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// DeletePrivateLinkEndpoint deletes the Data Lake private link endpoint with a given endpoint id.
+//
+// See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-private-link-delete-one/#std-label-api-pvt-link-delete-one
+func (s *DataLakeServiceOp) DeletePrivateLinkEndpoint(ctx context.Context, groupID, endpointID string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
+	if endpointID == "" {
+		return nil, NewArgError("endpointID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s", fmt.Sprintf(privateLinkEndpointsDataLakePath, groupID), endpointID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}
+
+// ListPrivateLinkEndpoint gets all private link endpoints for data lake for the specified group.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-private-link-get-all/#std-label-api-online-archive-pvt-link-get-all
+func (s *DataLakeServiceOp) ListPrivateLinkEndpoint(ctx context.Context, groupID string) (*PrivateLinkEndpointDataLakeResponse, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+
+	path := fmt.Sprintf(privateLinkEndpointsDataLakePath, groupID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var root = new(PrivateLinkEndpointDataLakeResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return root, resp, err
+	}
+
+	return root, resp, nil
+}
+
+// GetPrivateLinkEndpoint gets the data lake private link endpoint associated with a specific group and endpointID.
+//
+// See more: https://docs.mongodb.com/datalake/reference/api/dataLakes-private-link-get-one/#std-label-api-pvt-link-get-one
+func (s *DataLakeServiceOp) GetPrivateLinkEndpoint(ctx context.Context, groupID, endpointID string) (*PrivateLinkEndpointDataLake, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if endpointID == "" {
+		return nil, nil, NewArgError("endpointID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s", fmt.Sprintf(privateLinkEndpointsDataLakePath, groupID), endpointID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(PrivateLinkEndpointDataLake)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
 }

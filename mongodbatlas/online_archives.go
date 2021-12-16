@@ -21,7 +21,8 @@ import (
 )
 
 const (
-	onlineArchiveBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives"
+	onlineArchiveBasePath                 = "api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives"
+	privateLinkEndpointsOnlineArchivePath = "api/atlas/v1.0/groups/%s/privateNetworkSettings/endpointIds"
 )
 
 // OnlineArchiveService provides access to the online archive related functions in the Atlas API.
@@ -33,6 +34,10 @@ type OnlineArchiveService interface {
 	Create(context.Context, string, string, *OnlineArchive) (*OnlineArchive, *Response, error)
 	Update(context.Context, string, string, string, *OnlineArchive) (*OnlineArchive, *Response, error)
 	Delete(context.Context, string, string, string) (*Response, error)
+	CreatePrivateLinkEndpoint(context.Context, string, *PrivateLinkEndpointOnlineArchive) (*PrivateLinkEndpointOnlineArchiveResponse, *Response, error)
+	GetPrivateLinkEndpoint(context.Context, string, string) (*PrivateLinkEndpointOnlineArchive, *Response, error)
+	ListPrivateLinkEndpoint(context.Context, string) (*PrivateLinkEndpointOnlineArchiveResponse, *Response, error)
+	DeletePrivateLinkEndpoint(context.Context, string, string) (*Response, error)
 }
 
 // OnlineArchiveServiceOp provides an implementation of the OnlineArchiveService interface.
@@ -208,4 +213,120 @@ type PartitionFields struct {
 	FieldName string   `json:"fieldName,omitempty"`
 	FieldType string   `json:"fieldType,omitempty"`
 	Order     *float64 `json:"order,omitempty"`
+}
+
+// PrivateLinkEndpointOnlineArchiveResponse represents MongoDB Private Endpoint Connection to Online Archive.
+type PrivateLinkEndpointOnlineArchiveResponse struct {
+	Links      []*Link                             `json:"links,omitempty"`
+	Results    []*PrivateLinkEndpointOnlineArchive `json:"results"`
+	TotalCount int                                 `json:"totalCount"`
+}
+
+// PrivateLinkEndpointOnlineArchive represents the private link result for Online Archive.
+type PrivateLinkEndpointOnlineArchive struct {
+	Comment    string `json:"comment,omitempty"`
+	EndpointID string `json:"endpointId,omitempty"`
+	Provider   string `json:"provider,omitempty"`
+	Type       string `json:"type,omitempty"`
+}
+
+// CreatePrivateLinkEndpoint creates one private link endpoint in Online Archive project.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-private-link-create-one/#std-label-api-online-archive-pvt-link-create-one
+func (s *OnlineArchiveServiceOp) CreatePrivateLinkEndpoint(ctx context.Context, groupID string, createRequest *PrivateLinkEndpointOnlineArchive) (*PrivateLinkEndpointOnlineArchiveResponse, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if createRequest == nil {
+		return nil, nil, NewArgError("createRequest", "must be set")
+	}
+
+	path := fmt.Sprintf(privateLinkEndpointsOnlineArchivePath, groupID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(PrivateLinkEndpointOnlineArchiveResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// DeletePrivateLinkEndpoint deletes the Online Archive private link endpoint with a given endpoint id.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-private-link-delete-one/#std-label-api-online-archive-pvt-link-delete-one
+func (s *OnlineArchiveServiceOp) DeletePrivateLinkEndpoint(ctx context.Context, groupID, endpointID string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
+	if endpointID == "" {
+		return nil, NewArgError("endpointID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s", fmt.Sprintf(privateLinkEndpointsOnlineArchivePath, groupID), endpointID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}
+
+// ListPrivateLinkEndpoint gets all private link endpoints for Online Archive for the specified group.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-private-link-get-all/#std-label-api-online-archive-pvt-link-get-all
+func (s *OnlineArchiveServiceOp) ListPrivateLinkEndpoint(ctx context.Context, groupID string) (*PrivateLinkEndpointOnlineArchiveResponse, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+
+	path := fmt.Sprintf(privateLinkEndpointsOnlineArchivePath, groupID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var root = new(PrivateLinkEndpointOnlineArchiveResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return root, resp, err
+	}
+
+	return root, resp, nil
+}
+
+// GetPrivateLinkEndpoint gets the Online Archive private link endpoint associated with a specific group and endpointID.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/online-archive-private-link-get-one/#std-label-api-online-archive-pvt-link-get-one
+func (s *OnlineArchiveServiceOp) GetPrivateLinkEndpoint(ctx context.Context, groupID, endpointID string) (*PrivateLinkEndpointOnlineArchive, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if endpointID == "" {
+		return nil, nil, NewArgError("endpointID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s", fmt.Sprintf(privateLinkEndpointsOnlineArchivePath, groupID), endpointID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(PrivateLinkEndpointOnlineArchive)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
 }
