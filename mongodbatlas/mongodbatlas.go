@@ -140,6 +140,7 @@ type Client struct {
 	LiveMigration                       LiveMigrationService
 	AccessTracking                      AccessTrackingService
 	ServiceVersion                      ServiceVersionService
+	RestoreBackupJob                    RestoreBackupJobService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -280,6 +281,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.LiveMigration = &LiveMigrationServiceOp{Client: c}
 	c.AccessTracking = &AccessTrackingServiceOp{Client: c}
 	c.ServiceVersion = &ServiceVersionServiceOp{Client: c}
+	c.RestoreBackupJob = &RestoreBackupJobServiceOp{Client: c}
 
 	return c
 }
