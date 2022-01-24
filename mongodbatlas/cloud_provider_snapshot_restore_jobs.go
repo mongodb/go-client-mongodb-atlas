@@ -31,6 +31,9 @@ type CloudProviderSnapshotRestoreJobsService interface {
 	Get(context.Context, *SnapshotReqPathParameters) (*CloudProviderSnapshotRestoreJob, *Response, error)
 	Create(context.Context, *SnapshotReqPathParameters, *CloudProviderSnapshotRestoreJob) (*CloudProviderSnapshotRestoreJob, *Response, error)
 	Delete(context.Context, *SnapshotReqPathParameters) (*Response, error)
+	ServerlessList(context.Context, *SnapshotReqPathParameters, *ListOptions) (*CloudProviderSnapshotRestoreJobs, *Response, error)
+	ServerlessGet(context.Context, *SnapshotReqPathParameters) (*CloudProviderSnapshotRestoreJob, *Response, error)
+	ServerlessCreate(context.Context, *SnapshotReqPathParameters, *CloudProviderSnapshotRestoreJob) (*CloudProviderSnapshotRestoreJob, *Response, error)
 }
 
 // CloudProviderSnapshotRestoreJobsServiceOp handles communication with the CloudProviderSnapshotRestoreJobs related methods of the
@@ -58,6 +61,8 @@ type CloudProviderSnapshotRestoreJob struct {
 	OplogTs               int64        `json:"oplogTs,omitempty"`               //nolint:stylecheck // not changing this // Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
 	OplogInc              int64        `json:"oplogInc,omitempty"`              // Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
 	PointInTimeUTCSeconds int64        `json:"pointInTimeUTCSeconds,omitempty"` // Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	SourceClusterName     string       `json:"sourceClusterName,omitempty"`
+	Failed                *bool        `json:"failed,omitempty"`
 }
 
 // CloudProviderSnapshotRestoreJobs represents an array of cloudProviderSnapshotRestoreJob.
@@ -201,4 +206,109 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Delete(ctx context.Context, 
 	resp, err := s.Client.Do(ctx, req, nil)
 
 	return resp, err
+}
+
+// ServerlessList gets all cloud provider snapshot serverless restore jobs for the specified cluster.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/return-all-restore-jobs-for-one-serverless-instance/
+func (s *CloudProviderSnapshotRestoreJobsServiceOp) ServerlessList(ctx context.Context, requestParameters *SnapshotReqPathParameters, listOptions *ListOptions) (*CloudProviderSnapshotRestoreJobs, *Response, error) {
+	if requestParameters.GroupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if requestParameters.ClusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s/serverless/%s/backup/restoreJobs", cloudProviderSnapshotsBasePath, requestParameters.GroupID, requestParameters.ClusterName)
+	path, err := setListOptions(path, listOptions)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviderSnapshotRestoreJobs)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	if l := root.Links; l != nil {
+		resp.Links = l
+	}
+
+	return root, resp, nil
+}
+
+// ServerlessGet gets one cloud provider serverless snapshot restore jobs for the specified cluster.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/return-one-restore-job-for-one-serverless-instance/
+func (s *CloudProviderSnapshotRestoreJobsServiceOp) ServerlessGet(ctx context.Context, requestParameters *SnapshotReqPathParameters) (*CloudProviderSnapshotRestoreJob, *Response, error) {
+	if requestParameters.GroupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if requestParameters.ClusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+	if requestParameters.JobID == "" {
+		return nil, nil, NewArgError("jobId", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s/serverless/%s/backup/restoreJobs/%s", cloudProviderSnapshotsBasePath, requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviderSnapshotRestoreJob)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// ServerlessCreate creates a new restore job from a serverless cloud provider snapshot associated to the specified cluster.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restore-one-snapshot-of-one-serverless-instance/
+func (s *CloudProviderSnapshotRestoreJobsServiceOp) ServerlessCreate(ctx context.Context, requestParameters *SnapshotReqPathParameters, createRequest *CloudProviderSnapshotRestoreJob) (*CloudProviderSnapshotRestoreJob, *Response, error) {
+	// Verify if is download or automated
+	if requestParameters.GroupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if requestParameters.ClusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+	if createRequest == nil {
+		return nil, nil, NewArgError("createRequest", "cannot be nil")
+	}
+
+	if createRequest.DeliveryType == "download" {
+		createRequest.TargetClusterName = ""
+		createRequest.TargetGroupID = ""
+	}
+
+	path := fmt.Sprintf("%s/%s/serverless/%s/backup/restoreJobs", cloudProviderSnapshotRestoreJobBasePath, requestParameters.GroupID, requestParameters.ClusterName)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviderSnapshotRestoreJob)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	if l := root.Links; l != nil {
+		resp.Links = l
+	}
+
+	return root, resp, err
 }
