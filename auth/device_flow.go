@@ -67,15 +67,15 @@ func (c Config) GetToken(ctx context.Context, deviceCode string) (*Token, *atlas
 	if err != nil {
 		return nil, nil, err
 	}
-	var r *Token
-	resp, err2 := c.Do(ctx, req, &r)
+	var t *Token
+	resp, err2 := c.Do(ctx, req, &t)
 	if err2 != nil {
 		return nil, resp, err2
 	}
-	return r, resp, err2
+	return t, resp, err2
 }
 
-// ErrTimeout is thrown when polling the server for the granted token has timed out.
+// ErrTimeout is returned when polling the server for the granted token has timed out.
 var ErrTimeout = errors.New("authentication timed out")
 
 // PollToken polls the server until an access token is granted or denied.
@@ -94,13 +94,13 @@ func (c Config) PollToken(ctx context.Context, code *DeviceCode) (*Token, *atlas
 
 	for {
 		timeSleep(checkInterval)
-		token, resp, err2 := c.GetToken(ctx, code.DeviceCode)
+		token, resp, err := c.GetToken(ctx, code.DeviceCode)
 		var target *atlas.ErrorResponse
-		if errors.As(err2, &target) && target.ErrorCode == "DEVICE_AUTHORIZATION_PENDING" {
+		if errors.As(err, &target) && target.ErrorCode == "DEVICE_AUTHORIZATION_PENDING" {
 			continue
 		}
-		if err2 != nil {
-			return nil, resp, err2
+		if err != nil {
+			return nil, resp, err
 		}
 
 		if timeNow().After(expiresAt) {
