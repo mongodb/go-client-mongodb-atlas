@@ -31,7 +31,7 @@ type DeviceCode struct {
 	VerificationURI string `json:"verification_uri"` // VerificationURI is the URI where users will need to confirm the code
 	DeviceCode      string `json:"device_code"`      // DeviceCode is the internal code to confirm the status of the flow
 	ExpiresIn       int    `json:"expires_in"`       // ExpiresIn when the code will expire
-	Interval        int    `json:"interval"`         // Interval who often to verify the status of the code
+	Interval        int    `json:"interval"`         // Interval how often to verify the status of the code
 
 	timeNow   func() time.Time
 	timeSleep func(time.Duration)
