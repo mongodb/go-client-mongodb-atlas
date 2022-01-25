@@ -55,6 +55,45 @@ func TestConfig_RequestCode(t *testing.T) {
 	}
 }
 
+func TestConfig_GetToken(t *testing.T) {
+	config, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc("/api/private/unauth/account/device/token", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		fmt.Fprint(w, `{
+		  "access_token": "secret1",
+		  "refresh_token": "secret2",
+		  "scope": "openid",
+		  "id_token": "idtoken",
+		  "token_type": "Bearer",
+		  "expires_in": 3600
+		}`)
+	})
+	code := &DeviceCode{
+		DeviceCode: "61eef18e310968047ff5e02a",
+		ExpiresIn:  600,
+		Interval:   10,
+	}
+	results, _, err := config.GetToken(ctx, code.DeviceCode)
+	if err != nil {
+		t.Fatalf("PollToken returned error: %v", err)
+	}
+
+	expected := &Token{
+		AccessToken:  "secret1",
+		RefreshToken: "secret2",
+		Scope:        "openid",
+		IDToken:      "idtoken",
+		TokenType:    "Bearer",
+		ExpiresIn:    3600,
+	}
+
+	if diff := deep.Equal(results, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
 func TestConfig_PollToken(t *testing.T) {
 	config, mux, teardown := setup()
 	defer teardown()

@@ -37,9 +37,11 @@ type DeviceCode struct {
 	timeSleep func(time.Duration)
 }
 
+const deviceBasePath = "api/private/unauth/account/device"
+
 // RequestCode initiates the authorization flow by requesting a code.
 func (c Config) RequestCode(ctx context.Context) (*DeviceCode, *atlas.Response, error) {
-	req, err := c.NewRequest(ctx, http.MethodPost, "api/private/unauth/account/device/authorize",
+	req, err := c.NewRequest(ctx, http.MethodPost, deviceBasePath+"/authorize",
 		url.Values{
 			"client_id": {c.ClientID},
 			"scope":     {strings.Join(c.Scopes, " ")},
@@ -50,6 +52,26 @@ func (c Config) RequestCode(ctx context.Context) (*DeviceCode, *atlas.Response, 
 	}
 	var r *DeviceCode
 	resp, err2 := c.Do(ctx, req, &r)
+	return r, resp, err2
+}
+
+// GetToken gets a device token.
+func (c Config) GetToken(ctx context.Context, deviceCode string) (*Token, *atlas.Response, error) {
+	req, err := c.NewRequest(ctx, http.MethodPost, deviceBasePath+"/token",
+		url.Values{
+			"client_id":   {c.ClientID},
+			"device_code": {deviceCode},
+			"grant_type":  {"urn:ietf:params:oauth:grant-type:device_code"},
+		},
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+	var r *Token
+	resp, err2 := c.Do(ctx, req, &r)
+	if err2 != nil {
+		return nil, resp, err2
+	}
 	return r, resp, err2
 }
 
@@ -69,20 +91,10 @@ func (c Config) PollToken(ctx context.Context, code *DeviceCode) (*Token, *atlas
 
 	checkInterval := time.Duration(code.Interval) * time.Second
 	expiresAt := timeNow().Add(time.Duration(code.ExpiresIn) * time.Second)
-	req, err := c.NewRequest(ctx, http.MethodPost, "api/private/unauth/account/device/token",
-		url.Values{
-			"client_id":   {c.ClientID},
-			"device_code": {code.DeviceCode},
-			"grant_type":  {"urn:ietf:params:oauth:grant-type:device_code"},
-		},
-	)
-	if err != nil {
-		return nil, nil, err
-	}
+
 	for {
 		timeSleep(checkInterval)
-		var r *Token
-		resp, err2 := c.Do(ctx, req, &r)
+		token, resp, err2 := c.GetToken(ctx, code.DeviceCode)
 		var target *atlas.ErrorResponse
 		if errors.As(err2, &target) && target.ErrorCode == "DEVICE_AUTHORIZATION_PENDING" {
 			continue
@@ -94,6 +106,6 @@ func (c Config) PollToken(ctx context.Context, code *DeviceCode) (*Token, *atlas
 		if timeNow().After(expiresAt) {
 			return nil, nil, ErrTimeout
 		}
-		return r, resp, nil
+		return token, resp, nil
 	}
 }
