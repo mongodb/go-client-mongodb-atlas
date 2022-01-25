@@ -438,12 +438,9 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessList(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	requestParameters := &SnapshotReqPathParameters{
-		GroupID:     "5b6212af90dc76637950a2c6",
-		ClusterName: "MyCluster",
-	}
+	projectID, instanceName := "5b6212af90dc76637950a2c6", "MyCluster"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs", projectID, instanceName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -531,7 +528,7 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessList(t *testing.T) {
 		}`)
 	})
 
-	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotRestoreJobs.ServerlessList(ctx, requestParameters, nil)
+	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotRestoreJobs.ListForServerlessBackupRestore(ctx, projectID, instanceName, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotRestoreJobs.List returned error: %v", err)
 	}
@@ -627,13 +624,9 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessGet(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	requestParameters := &SnapshotReqPathParameters{
-		GroupID:     "5b6212af90dc76637950a2c6",
-		ClusterName: "MyCluster",
-		JobID:       "5b622f7087d9d6039fafe03f",
-	}
+	projectID, instanceName, jobID := "5b6212af90dc76637950a2c6", "MyCluster", "5b622f7087d9d6039fafe03f"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs/%s", requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs/%s", projectID, instanceName, jobID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -670,7 +663,7 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessGet(t *testing.T) {
 		}`)
 	})
 
-	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.ServerlessGet(ctx, requestParameters)
+	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.GetForServerlessBackupRestore(ctx, projectID, instanceName, jobID)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotRestoreJobs.Get returned error: %v", err)
 	}
@@ -716,10 +709,7 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessCreate(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	requestParameters := &SnapshotReqPathParameters{
-		GroupID:     "5b6212af90dc76637950a2c6",
-		ClusterName: "MyClusterName",
-	}
+	projectID, instanceName := "5b6212af90dc76637950a2c6", "MyClusterName"
 
 	createRequest := &CloudProviderSnapshotRestoreJob{
 		SnapshotID:        "5b6211ff87d9d663c59d3feg",
@@ -728,7 +718,7 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessCreate(t *testing.T) {
 		TargetGroupID:     "5b6212af90dc76637950a2c6",
 	}
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs", requestParameters.GroupID, requestParameters.ClusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/serverless/%s/backup/restoreJobs", projectID, instanceName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
@@ -781,7 +771,7 @@ func TestCloudProviderSnapshotRestoreJobs_ServerlessCreate(t *testing.T) {
 		}`)
 	})
 
-	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.ServerlessCreate(ctx, requestParameters, createRequest)
+	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.CreateForServerlessBackupRestore(ctx, projectID, instanceName, createRequest)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotRestoreJobs.Create returned error: %v", err)
 	}
