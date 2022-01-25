@@ -330,7 +330,7 @@ func TestNewPlainRequest(t *testing.T) {
 	// test accept content type is correct
 	accept := req.Header.Get("Accept")
 	if plainMediaType != accept {
-		t.Errorf("NewPlainRequest() Accept = %v, expected %v", accept, gzipMediaType)
+		t.Errorf("NewPlainRequest() Accept = %v, expected %v", accept, plainMediaType)
 	}
 
 	// test default user-agent is attached to the request
