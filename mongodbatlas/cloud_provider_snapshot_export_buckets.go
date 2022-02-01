@@ -26,8 +26,6 @@ const (
 
 // CloudProviderSnapshotExportBucketsService is an interface for interfacing with the Cloud Provider Snapshots Export Buckets
 // endpoints of the MongoDB Atlas API.
-//
-// See more:
 type CloudProviderSnapshotExportBucketsService interface {
 	List(context.Context, string, *ListOptions) (*CloudProviderSnapshotExportBuckets, *Response, error)
 	Get(context.Context, string, string) (*CloudProviderSnapshotExportBucket, *Response, error)
@@ -75,7 +73,7 @@ func (c CloudProviderSnapshotExportBucketsServiceOp) List(ctx context.Context, p
 // Get Allows you to retrieve one bucket specified by the bucket ID.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-one-export-bucket/
-func (c CloudProviderSnapshotExportBucketsServiceOp) Get(ctx context.Context, projectID string, bucketID string) (*CloudProviderSnapshotExportBucket, *Response, error) {
+func (c CloudProviderSnapshotExportBucketsServiceOp) Get(ctx context.Context, projectID, bucketID string) (*CloudProviderSnapshotExportBucket, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
@@ -126,7 +124,7 @@ func (c CloudProviderSnapshotExportBucketsServiceOp) Create(ctx context.Context,
 // Delete Allows you to remove one bucket specified by the bucket ID.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/delete-one-export-bucket/
-func (c CloudProviderSnapshotExportBucketsServiceOp) Delete(ctx context.Context, projectID string, bucketID string) (*Response, error) {
+func (c CloudProviderSnapshotExportBucketsServiceOp) Delete(ctx context.Context, projectID, bucketID string) (*Response, error) {
 	if projectID == "" {
 		return nil, NewArgError("projectID", "must be set")
 	}
