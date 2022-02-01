@@ -27,7 +27,7 @@ func TestConfig_RequestCode(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc("/api/private/unauth/account/device/authorize", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodPost)
+		testMethod(t, r)
 		fmt.Fprintf(w, `{
 		  "user_code": "QW3PYV7R",
 		  "verification_uri": "%s/account/connect",
@@ -60,7 +60,7 @@ func TestConfig_GetToken(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc("/api/private/unauth/account/device/token", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodPost)
+		testMethod(t, r)
 		fmt.Fprint(w, `{
 		  "access_token": "secret1",
 		  "refresh_token": "secret2",
@@ -99,7 +99,7 @@ func TestConfig_PollToken(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc("/api/private/unauth/account/device/token", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodPost)
+		testMethod(t, r)
 		fmt.Fprint(w, `{
 		  "access_token": "secret1",
 		  "refresh_token": "secret2",
@@ -138,7 +138,7 @@ func TestConfig_Revoke(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc("/api/private/unauth/account/device/revoke", func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodPost)
+		testMethod(t, r)
 	})
 
 	_, err := config.Revoke(ctx, "a", "refresh_token")
