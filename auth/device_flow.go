@@ -109,3 +109,19 @@ func (c Config) PollToken(ctx context.Context, code *DeviceCode) (*Token, *atlas
 		return token, resp, nil
 	}
 }
+
+// Revoke takes an access or refresh token and revokes it.
+func (c Config) Revoke(ctx context.Context, token, tokenTypeHint string) (*atlas.Response, error) {
+	req, err := c.NewRequest(ctx, http.MethodPost, deviceBasePath+"/revoke",
+		url.Values{
+			"client_id":       {c.ClientID},
+			"token":           {token},
+			"token_type_hint": {tokenTypeHint},
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.Do(ctx, req, nil)
+}

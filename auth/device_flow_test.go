@@ -132,3 +132,17 @@ func TestConfig_PollToken(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestConfig_Revoke(t *testing.T) {
+	config, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc("/api/private/unauth/account/device/revoke", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+	})
+
+	_, err := config.Revoke(ctx, "a", "refresh_token")
+	if err != nil {
+		t.Fatalf("RequestCode returned error: %v", err)
+	}
+}
