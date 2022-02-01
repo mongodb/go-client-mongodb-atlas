@@ -127,7 +127,6 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 		BucketName:    "example-bucket",
 		CloudProvider: "AWS",
 		IAMRoleID:     "12345678f901a234dbdb00ca",
-		ProjectID:     "{PROJECT-ID}",
 	}
 
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets", projectID)
@@ -138,7 +137,6 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 			"bucketName":    "example-bucket",
 			"cloudProvider": "AWS",
 			"iamRoleId":     "12345678f901a234dbdb00ca",
-			"projectId":     "{PROJECT-ID}",
 		}
 
 		var v map[string]interface{}
@@ -155,8 +153,7 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
   "_id": "{BUCKET-ID}",
   "bucketName": "example-bucket",
   "cloudProvider": "AWS",
-  "iamRoleId": "12345678f901a234dbdb00ca",
-  "projectId": "{PROJECT-ID}"
+  "iamRoleId": "12345678f901a234dbdb00ca"
 }`)
 	})
 
@@ -170,7 +167,6 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 		BucketName:    "example-bucket",
 		CloudProvider: "AWS",
 		IAMRoleID:     "12345678f901a234dbdb00ca",
-		ProjectID:     "{PROJECT-ID}",
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
