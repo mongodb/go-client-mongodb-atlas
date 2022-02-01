@@ -227,36 +227,34 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
-			"cancelled": false,
-			"deliveryType": "automated",
-			"expired": false,
-			"expiresAt": "2018-08-02T02:08:48Z",
-			"id": "5b622f7087d9d6039fafe03f",
-			"links": [
-				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/restoreJobs/5b622f7087d9d6039fafe03f",
-					"rel": "self"
-				},
-				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/snapshots/5b6211ff87d9d663c59d3dee",
-					"rel": "http://mms.mongodb.com/snapshot"
-				},
-				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0",
-					"rel": "http://mms.mongodb.com/cluster"
-				},
-				{
-					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6",
-					"rel": "http://mms.mongodb.com/group"
-				}
-			],
-			"snapshotId": "5b6211ff87d9d663c59d3feg",
-			"targetClusterName": "MyOtherCluster",
-			"targetGroupId": "5b6212af90dc76637950a2c6",
-			"timestamp": "2018-08-01T20:02:07Z",
-			"oplogTs":	1583753751,
-			"oplogInc":	1
-		}`)
+  "cancelled": false,
+  "deliveryType": "automated",
+  "expired": false,
+  "expiresAt": "2018-08-02T02:08:48Z",
+  "id": "{RESTORE-JOB-ID}",
+  "links": [
+    {
+      "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}/backup/restoreJobs/{RESTORE-JOB-ID}",
+      "rel": "self"
+    },
+    {
+      "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}/backup/snapshots/{SNAPSHOT-ID}",
+      "rel": "http://mms.mongodb.com/snapshot"
+    },
+    {
+      "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}",
+      "rel": "http://mms.mongodb.com/cluster"
+    },
+    {
+      "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}",
+      "rel": "http://mms.mongodb.com/group"
+    }
+  ],
+  "snapshotId": "{SNAPSHOT-ID}",
+  "targetClusterName": "MyOtherCluster",
+  "targetGroupId": "{GROUP-ID}",
+  "timestamp": "2018-08-01T20:02:07Z"
+}`)
 	})
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotRestoreJobs.Get(ctx, requestParameters)
@@ -269,31 +267,29 @@ func TestCloudProviderSnapshotRestoreJobs_Get(t *testing.T) {
 		DeliveryType: "automated",
 		Expired:      false,
 		ExpiresAt:    "2018-08-02T02:08:48Z",
-		ID:           "5b622f7087d9d6039fafe03f",
+		ID:           "{RESTORE-JOB-ID}",
 		Links: []*Link{
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/restoreJobs/5b622f7087d9d6039fafe03f",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}/backup/restoreJobs/{RESTORE-JOB-ID}",
 				Rel:  "self",
 			},
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/snapshots/5b6211ff87d9d663c59d3dee",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}/backup/snapshots/{SNAPSHOT-ID}",
 				Rel:  "http://mms.mongodb.com/snapshot",
 			},
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}/clusters/{CLUSTER-NAME}",
 				Rel:  "http://mms.mongodb.com/cluster",
 			},
 			{
-				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6",
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/{GROUP-ID}",
 				Rel:  "http://mms.mongodb.com/group",
 			},
 		},
-		SnapshotID:        "5b6211ff87d9d663c59d3feg",
+		SnapshotID:        "{SNAPSHOT-ID}",
 		TargetClusterName: "MyOtherCluster",
-		TargetGroupID:     "5b6212af90dc76637950a2c6",
+		TargetGroupID:     "{GROUP-ID}",
 		Timestamp:         "2018-08-01T20:02:07Z",
-		OplogTs:           1583753751,
-		OplogInc:          1,
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
