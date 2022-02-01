@@ -69,7 +69,7 @@ func TestCloudProviderSnapshotExportBuckets_List(t *testing.T) {
 				ID:            "{BUCKET-ID}",
 				BucketName:    "example-bucket",
 				CloudProvider: "AWS",
-				IamRoleID:     "12345678f901a234dbdb00ca",
+				IAMRoleID:     "12345678f901a234dbdb00ca",
 			},
 		},
 		TotalCount: 1,
@@ -108,7 +108,7 @@ func TestCloudProviderSnapshotExportBuckets_Get(t *testing.T) {
 		ID:            "{BUCKET-ID}",
 		BucketName:    "example-bucket",
 		CloudProvider: "AWS",
-		IamRoleID:     "12345678f901a234dbdb00ca",
+		IAMRoleID:     "12345678f901a234dbdb00ca",
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshotBucket, expected); diff != nil {
@@ -126,7 +126,7 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 		ID:            "{BUCKET-ID}",
 		BucketName:    "example-bucket",
 		CloudProvider: "AWS",
-		IamRoleID:     "12345678f901a234dbdb00ca",
+		IAMRoleID:     "12345678f901a234dbdb00ca",
 		ProjectID:     "{PROJECT-ID}",
 	}
 
@@ -169,7 +169,7 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 		ID:            "{BUCKET-ID}",
 		BucketName:    "example-bucket",
 		CloudProvider: "AWS",
-		IamRoleID:     "12345678f901a234dbdb00ca",
+		IAMRoleID:     "12345678f901a234dbdb00ca",
 		ProjectID:     "{PROJECT-ID}",
 	}
 

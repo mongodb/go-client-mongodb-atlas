@@ -159,5 +159,5 @@ type CloudProviderSnapshotExportBucket struct {
 	ProjectID     string `json:"projectId,omitempty"`     // Unique 24-hexadecimal digit string identifying the project.
 	BucketName    string `json:"bucketName,omitempty"`    // Name of the bucket that the role ID is authorized to access.
 	CloudProvider string `json:"cloudProvider,omitempty"` // Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports AWS.
-	IamRoleID     string `json:"iamRoleId,omitempty"`     // Unique identifier of the role that Atlas can use to access the bucket. If necessary, use the UI or API to retrieve the role ID. You must also specify the bucketName.
+	IAMRoleID     string `json:"iamRoleId,omitempty"`     // Unique identifier of the role that Atlas can use to access the bucket. If necessary, use the UI or API to retrieve the role ID. You must also specify the bucketName.
 }
