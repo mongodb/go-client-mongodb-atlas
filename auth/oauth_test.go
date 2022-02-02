@@ -70,10 +70,10 @@ func setup() (config *Config, mux *http.ServeMux, teardown func()) {
 	return config, mux, server.Close
 }
 
-func testMethod(t *testing.T, r *http.Request, expected string) {
+func testMethod(t *testing.T, r *http.Request) {
 	t.Helper()
-	if expected != r.Method {
-		t.Errorf("Request method = %v, expected %v", r.Method, expected)
+	if http.MethodPost != r.Method {
+		t.Errorf("Request method = %v, expected %v", r.Method, http.MethodPost)
 	}
 }
 
