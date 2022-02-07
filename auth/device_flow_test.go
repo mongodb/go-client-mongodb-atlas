@@ -77,7 +77,42 @@ func TestConfig_GetToken(t *testing.T) {
 	}
 	results, _, err := config.GetToken(ctx, code.DeviceCode)
 	if err != nil {
-		t.Fatalf("PollToken returned error: %v", err)
+		t.Fatalf("GetToken returned error: %v", err)
+	}
+
+	expected := &Token{
+		AccessToken:  "secret1",
+		RefreshToken: "secret2",
+		Scope:        "openid",
+		IDToken:      "idtoken",
+		TokenType:    "Bearer",
+		ExpiresIn:    3600,
+	}
+
+	if diff := deep.Equal(results, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestConfig_RefreshToken(t *testing.T) {
+	config, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc("/api/private/unauth/account/device/token", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r)
+		fmt.Fprint(w, `{
+		  "access_token": "secret1",
+		  "refresh_token": "secret2",
+		  "scope": "openid",
+		  "id_token": "idtoken",
+		  "token_type": "Bearer",
+		  "expires_in": 3600
+		}`)
+	})
+
+	results, _, err := config.RefreshToken(ctx, "secret2")
+	if err != nil {
+		t.Fatalf("RefreshToken returned error: %v", err)
 	}
 
 	expected := &Token{
@@ -133,7 +168,7 @@ func TestConfig_PollToken(t *testing.T) {
 	}
 }
 
-func TestConfig_Revoke(t *testing.T) {
+func TestConfig_RevokeToken(t *testing.T) {
 	config, mux, teardown := setup()
 	defer teardown()
 
@@ -141,7 +176,7 @@ func TestConfig_Revoke(t *testing.T) {
 		testMethod(t, r)
 	})
 
-	_, err := config.Revoke(ctx, "a", "refresh_token")
+	_, err := config.RevokeToken(ctx, "a", "refresh_token")
 	if err != nil {
 		t.Fatalf("RequestCode returned error: %v", err)
 	}
