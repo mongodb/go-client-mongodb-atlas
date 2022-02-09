@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.15.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.15.0) (February 09, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.14.0...v0.15.0)
+
+**Merged pull requests:**
+
+- feat: add the ability to refresh tokens [\#277](https://github.com/mongodb/go-client-mongodb-atlas/pull/277) ([gssbzn](https://github.com/gssbzn))
+- INTMDB-299: Added snapshot export bucket support [\#276](https://github.com/mongodb/go-client-mongodb-atlas/pull/276) ([abner-dou](https://github.com/abner-dou))
+- feat: add the ability to revoke tokens [\#275](https://github.com/mongodb/go-client-mongodb-atlas/pull/275) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-110641: Add device grant  flow to atlas client [\#274](https://github.com/mongodb/go-client-mongodb-atlas/pull/274) ([gssbzn](https://github.com/gssbzn))
+- INTMDB-288: Added support for restore backup job [\#273](https://github.com/mongodb/go-client-mongodb-atlas/pull/273) ([abner-dou](https://github.com/abner-dou))
+- INTMDB-5: added parameter team name for alert configurations [\#272](https://github.com/mongodb/go-client-mongodb-atlas/pull/272) ([coderGo93](https://github.com/coderGo93))
+- INTMDB-263: Added Private\_link\_endpoint\_adl resource to go-client [\#271](https://github.com/mongodb/go-client-mongodb-atlas/pull/271) ([abner-dou](https://github.com/abner-dou))
+- INTMDB-276: Added parameter versionReleaseSystem in clusters [\#270](https://github.com/mongodb/go-client-mongodb-atlas/pull/270) ([coderGo93](https://github.com/coderGo93))
+- fix: fixes release smoke tests [\#269](https://github.com/mongodb/go-client-mongodb-atlas/pull/269) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.14.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.14.0) (November 18, 2021)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.13.0...v0.14.0)
