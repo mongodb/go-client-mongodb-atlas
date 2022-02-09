@@ -123,7 +123,7 @@ func (s *CloudProviderSnapshotRestoreJobsServiceOp) Get(ctx context.Context, req
 		return nil, nil, NewArgError("clusterName", "must be set")
 	}
 	if requestParameters.JobID == "" {
-		return nil, nil, NewArgError("jobId", "must be set")
+		return nil, nil, NewArgError("JobID", "must be set")
 	}
 
 	path := fmt.Sprintf("%s/%s/clusters/%s/backup/restoreJobs/%s", cloudProviderSnapshotsBasePath, requestParameters.GroupID, requestParameters.ClusterName, requestParameters.JobID)
