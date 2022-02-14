@@ -208,7 +208,6 @@ func TestCloudProviderSnapshotExportJobs_Create(t *testing.T) {
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports", projectID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
-
 		fmt.Fprint(w, `{
   "createdAt": "2021-05-04T14:43:40Z",
   "customData": [

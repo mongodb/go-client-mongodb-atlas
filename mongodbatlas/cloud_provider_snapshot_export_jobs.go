@@ -152,7 +152,7 @@ type CloudProviderSnapshotExportJob struct {
 	CustomData     []*CloudProviderSnapshotExportJobCustomData `json:"customData,omitempty"`     // Custom data for the metadata file named .complete that Atlas uploads to the bucket when the export job finishes.
 	ErrMsg         string                                      `json:"errMsg,omitempty"`         // Error message, only if the export job failed.
 	ExportBucketID string                                      `json:"exportBucketId,omitempty"` // Unique identifier of the bucket.
-	ExportStatus   *CloudProviderSnapshotExportJobStatus     `json:"exportStatus,omitempty"`   // Returned for replica set only. Status of the export job.
+	ExportStatus   *CloudProviderSnapshotExportJobStatus       `json:"exportStatus,omitempty"`   // Returned for replica set only. Status of the export job.
 	FinishedAt     string                                      `json:"finishedAt,omitempty"`     // Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	Prefix         string                                      `json:"prefix,omitempty"`         // Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format: /exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}
 	SnapshotID     string                                      `json:"snapshotID,omitempty"`     // Unique identifier of the snapshot.
