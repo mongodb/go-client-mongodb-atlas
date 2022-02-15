@@ -44,6 +44,10 @@ func (c CloudProviderSnapshotExportJobsServiceOp) List(ctx context.Context, proj
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
+
 	path := fmt.Sprintf(cloudProviderSnapshotExportJobsPath, projectID, clusterName)
 
 	path, err := setListOptions(path, options)
@@ -76,6 +80,9 @@ func (c CloudProviderSnapshotExportJobsServiceOp) Get(ctx context.Context, proje
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
+	}
 	if bucketID == "" {
 		return nil, nil, NewArgError("bucketID", "must be set")
 	}
@@ -102,6 +109,9 @@ func (c CloudProviderSnapshotExportJobsServiceOp) Get(ctx context.Context, proje
 func (c CloudProviderSnapshotExportJobsServiceOp) Create(ctx context.Context, projectID, clusterName string, bucket *CloudProviderSnapshotExportJob) (*CloudProviderSnapshotExportJob, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
+	}
+	if clusterName == "" {
+		return nil, nil, NewArgError("clusterName", "must be set")
 	}
 
 	path := fmt.Sprintf(cloudProviderSnapshotExportJobsPath, projectID, clusterName)
@@ -130,7 +140,7 @@ type CloudProviderSnapshotExportJobs struct {
 }
 
 type CloudProviderSnapshotExportJobComponent struct {
-	ExportID       string `json:"exportID,omitempty"`       // Returned for sharded clusters only. Unique identifier of the export job for the replica set.
+	ExportID       string `json:"exportId,omitempty"`       // Returned for sharded clusters only. Unique identifier of the export job for the replica set.
 	ReplicaSetName string `json:"replicaSetName,omitempty"` // Returned for sharded clusters only. Name of the replica set.
 }
 
@@ -155,6 +165,6 @@ type CloudProviderSnapshotExportJob struct {
 	ExportStatus   *CloudProviderSnapshotExportJobStatus       `json:"exportStatus,omitempty"`   // Returned for replica set only. Status of the export job.
 	FinishedAt     string                                      `json:"finishedAt,omitempty"`     // Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	Prefix         string                                      `json:"prefix,omitempty"`         // Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format: /exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}
-	SnapshotID     string                                      `json:"snapshotID,omitempty"`     // Unique identifier of the snapshot.
+	SnapshotID     string                                      `json:"snapshotId,omitempty"`     // Unique identifier of the snapshot.
 	State          string                                      `json:"state,omitempty"`          // Status of the export job.
 }
