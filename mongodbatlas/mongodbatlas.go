@@ -141,6 +141,7 @@ type Client struct {
 	AccessTracking                      AccessTrackingService
 	ServiceVersion                      ServiceVersionService
 	CloudProviderSnapshotExportBuckets  CloudProviderSnapshotExportBucketsService
+	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -282,6 +283,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.AccessTracking = &AccessTrackingServiceOp{Client: c}
 	c.ServiceVersion = &ServiceVersionServiceOp{Client: c}
 	c.CloudProviderSnapshotExportBuckets = &CloudProviderSnapshotExportBucketsServiceOp{Client: c}
+	c.CloudProviderSnapshotExportJobs = &CloudProviderSnapshotExportJobsServiceOp{Client: c}
 
 	return c
 }
