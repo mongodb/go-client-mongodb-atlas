@@ -199,12 +199,12 @@ func TestNewRequest_withCustomUserAgent(t *testing.T) {
 	}
 }
 
-func TestNewRequest_errorForNoTrailingSlash(t *testing.T) {
+func TestNewRequest_noErrorForNoTrailingSlash(t *testing.T) {
 	tests := []struct {
 		rawurl    string
 		wantError bool
 	}{
-		{rawurl: "https://example.com/api/v1", wantError: true},
+		{rawurl: "https://example.com/api/v1", wantError: false},
 		{rawurl: "https://example.com/api/v1/", wantError: false},
 	}
 	c := NewClient(nil)
@@ -218,6 +218,32 @@ func TestNewRequest_errorForNoTrailingSlash(t *testing.T) {
 			t.Fatalf("Expected error to be returned.")
 		} else if !test.wantError && err != nil {
 			t.Fatalf("NewRequest returned unexpected error: %v.", err)
+		}
+	}
+}
+
+func TestNewRequest_correctURLWithNoTrailingSlash(t *testing.T) {
+	tests := []struct {
+		rawURL      string
+		expectedURL string
+	}{
+		{rawURL: "http://test.com", expectedURL: "http://test.com/"},
+		{rawURL: "http://home.base.com/", expectedURL: "http://home.base.com/"},
+	}
+
+	c := NewClient(nil)
+	for _, test := range tests {
+		u, err := url.Parse(test.rawURL)
+		if err != nil {
+			t.Fatalf("url.Parse returned unexpected error: %v.", err)
+		}
+		c.BaseURL = u
+		req, err := c.NewRequest(ctx, http.MethodGet, "", nil)
+		if err != nil {
+			t.Fatalf("NewRequest return unexpected error: %v.", err)
+		}
+		if req.URL.String() != test.expectedURL {
+			t.Fatalf("Incorrectly added trailing slash. Expected: %v; Got: %v.", test.expectedURL, req.URL.String())
 		}
 	}
 }

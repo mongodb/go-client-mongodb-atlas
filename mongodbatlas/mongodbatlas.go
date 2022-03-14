@@ -392,7 +392,7 @@ func (c *Client) NewPlainRequest(ctx context.Context, method, urlStr string) (*h
 
 func (c *Client) newRequest(ctx context.Context, urlStr, method string, body interface{}) (*http.Request, error) {
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
-		return nil, fmt.Errorf("base URL must have a trailing slash, but %q does not", c.BaseURL)
+		c.BaseURL.Path += "/"
 	}
 	rel, err := url.Parse(urlStr)
 	if err != nil {
