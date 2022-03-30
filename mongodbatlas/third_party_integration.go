@@ -29,22 +29,29 @@ var _ IntegrationsService = &IntegrationsServiceOp{}
 
 // ThirdPartyIntegration contains parameters for different third-party services.
 type ThirdPartyIntegration struct {
-	Type        string `json:"type,omitempty"`
-	LicenseKey  string `json:"licenseKey,omitempty"`
-	AccountID   string `json:"accountId,omitempty"`
-	WriteToken  string `json:"writeToken,omitempty"`
-	ReadToken   string `json:"readToken,omitempty"`
-	APIKey      string `json:"apiKey,omitempty"`
-	Region      string `json:"region,omitempty"`
-	ServiceKey  string `json:"serviceKey,omitempty"`
-	APIToken    string `json:"apiToken,omitempty"`
-	TeamName    string `json:"teamName,omitempty"`
-	ChannelName string `json:"channelName,omitempty"`
-	RoutingKey  string `json:"routingKey,omitempty"`
-	FlowName    string `json:"flowName,omitempty"`
-	OrgName     string `json:"orgName,omitempty"`
-	URL         string `json:"url,omitempty"`
-	Secret      string `json:"secret,omitempty"`
+	Type                     string `json:"type,omitempty"`
+	LicenseKey               string `json:"licenseKey,omitempty"`
+	AccountID                string `json:"accountId,omitempty"`
+	WriteToken               string `json:"writeToken,omitempty"`
+	ReadToken                string `json:"readToken,omitempty"`
+	APIKey                   string `json:"apiKey,omitempty"`
+	Region                   string `json:"region,omitempty"`
+	ServiceKey               string `json:"serviceKey,omitempty"`
+	APIToken                 string `json:"apiToken,omitempty"`
+	TeamName                 string `json:"teamName,omitempty"`
+	ChannelName              string `json:"channelName,omitempty"`
+	RoutingKey               string `json:"routingKey,omitempty"`
+	FlowName                 string `json:"flowName,omitempty"`
+	OrgName                  string `json:"orgName,omitempty"`
+	URL                      string `json:"url,omitempty"`
+	Secret                   string `json:"secret,omitempty"`
+	Name                     string `json:"name,omitempty"`
+	MicrosoftTeamsWebhookURL string `json:"microsoftTeamsWebhookUrl,omitempty"`
+	UserName                 string `json:"username,omitempty"`
+	Password                 string `json:"password,omitempty"`
+	ServiceDiscovery         string `json:"serviceDiscovery,omitempty"`
+	Scheme                   string `json:"scheme,omitempty"`
+	Enabled                  string `json:"enabled,omitempty"`
 }
 
 // ThirdPartyIntegrations contains the response from the endpoint.
