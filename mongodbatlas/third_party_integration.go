@@ -51,7 +51,7 @@ type ThirdPartyIntegration struct {
 	Password                 string `json:"password,omitempty"`
 	ServiceDiscovery         string `json:"serviceDiscovery,omitempty"`
 	Scheme                   string `json:"scheme,omitempty"`
-	Enabled                  string `json:"enabled,omitempty"`
+	Enabled                  bool   `json:"enabled,omitempty"`
 }
 
 // ThirdPartyIntegrations contains the response from the endpoint.
