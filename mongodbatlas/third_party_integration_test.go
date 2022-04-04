@@ -34,9 +34,22 @@ func TestThirdPartyIntegration_List(t *testing.T) {
              "channelName": "My Channel",
              "teamName": "My Team",
              "type": "SLACK"
+         },
+         {
+             "MicrosoftTeamsWebhookURL": "https://teams.microsoft.com/webhook",
+             "Name": "MyTeam",
+             "type": "MICROSOFT_TEAMS"
+         },
+         {
+			 "enabled": true,
+			 "scheme": "http",
+             "serviceDiscovery": "112233",
+             "password": "myPassword",
+             "username": "myUser",
+             "type": "PROMETHEUS"
          }
 			],
-			"totalCount": 2
+			"totalCount": 4
 		}`)
 	})
 
@@ -64,8 +77,21 @@ func TestThirdPartyIntegration_List(t *testing.T) {
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},
+			{
+				Type:                     "MICROSOFT_TEAMS",
+				Name:                     "MyTeam",
+				MicrosoftTeamsWebhookURL: "https://teams.microsoft.com/webhook",
+			},
+			{
+				Type:             "PROMETHEUS",
+				UserName:         "myUser",
+				Password:         "myPassword",
+				ServiceDiscovery: "112233",
+				Scheme:           "http",
+				Enabled:          true,
+			},
 		},
-		TotalCount: 2,
+		TotalCount: 4,
 	}
 
 	if diff := deep.Equal(integrationAPIKeys, expected); diff != nil {
@@ -151,9 +177,22 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
              "channelName": "My Channel",
              "teamName": "My Team",
              "type": "SLACK"
-         }
+         },
+		 {
+			"MicrosoftTeamsWebhookURL": "https://teams.microsoft.com/webhook",
+			"Name": "MyTeam",
+			"type": "MICROSOFT_TEAMS"
+		},
+		{
+			"enabled": true,
+			"scheme": "http",
+			"serviceDiscovery": "112233",
+			"password": "myPassword",
+			"username": "myUser",
+			"type": "PROMETHEUS"
+		}
 			],
-			"totalCount": 2
+			"totalCount": 4
 		}`)
 	})
 
@@ -187,8 +226,21 @@ func TestThirdPartyIntegration_Create(t *testing.T) {
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},
+			{
+				Type:                     "MICROSOFT_TEAMS",
+				Name:                     "MyTeam",
+				MicrosoftTeamsWebhookURL: "https://teams.microsoft.com/webhook",
+			},
+			{
+				Type:             "PROMETHEUS",
+				UserName:         "myUser",
+				Password:         "myPassword",
+				ServiceDiscovery: "112233",
+				Scheme:           "http",
+				Enabled:          true,
+			},
 		},
-		TotalCount: 2,
+		TotalCount: 4,
 	}
 
 	if diff := deep.Equal(integrationAPIKeys, expected); diff != nil {
@@ -223,9 +275,22 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
              "channelName": "My Channel",
              "teamName": "My Team",
              "type": "SLACK"
-         }
+         },
+		 {
+			"MicrosoftTeamsWebhookURL": "https://teams.microsoft.com/webhook",
+			"Name": "MyTeam",
+			"type": "MICROSOFT_TEAMS"
+		},
+		{
+			"enabled": true,
+			"scheme": "http",
+			"serviceDiscovery": "112233",
+			"password": "myPassword",
+			"username": "myUser",
+			"type": "PROMETHEUS"
+		}
 			],
-			"totalCount": 2
+			"totalCount": 4
 		}`)
 	})
 
@@ -259,8 +324,21 @@ func TestThirdPartyIntegration_Replace(t *testing.T) {
 				TeamName:    "My Team",
 				ChannelName: "My Channel",
 			},
+			{
+				Type:                     "MICROSOFT_TEAMS",
+				Name:                     "MyTeam",
+				MicrosoftTeamsWebhookURL: "https://teams.microsoft.com/webhook",
+			},
+			{
+				Type:             "PROMETHEUS",
+				UserName:         "myUser",
+				Password:         "myPassword",
+				ServiceDiscovery: "112233",
+				Scheme:           "http",
+				Enabled:          true,
+			},
 		},
-		TotalCount: 2,
+		TotalCount: 4,
 	}
 
 	if diff := deep.Equal(integrationAPIKeys, expected); diff != nil {
