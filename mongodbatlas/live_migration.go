@@ -53,12 +53,13 @@ type LinkToken struct {
 
 // LiveMigration represents a live migration.
 type LiveMigration struct {
-	Source         *Source      `json:"source,omitempty"`         // Document that describes the Cloud Manager or Ops Manager source of the migrating cluster.
-	Destination    *Destination `json:"destination,omitempty"`    // Settings that describe the Atlas destination of the migrating Cloud Manager or Ops Manager cluster.
-	MigrationHosts []string     `json:"migrationHosts,omitempty"` // List of hosts running the MongoDB Agent that can transfer your MongoDB data from the source (Cloud Manager or Ops Manager) to destination (Atlas) deployments.
-	DropEnabled    *bool        `json:"dropEnabled,omitempty"`    // Flag that indicates whether this process should drop existing collections from the destination (Atlas) cluster given in destination.clusterName before starting the migration of data from the source cluster.
-	ID             string       `json:"_id,omitempty"`            // Unique 24-hexadecimal digit string that identifies the migration.
-	Status         string       `json:"status,omitempty"`         // State of the migration when you submitted this request.
+	Source          *Source      `json:"source,omitempty"`          // Source describes the Cloud Manager or Ops Manager source of the migrating cluster.
+	Destination     *Destination `json:"destination,omitempty"`     // Destination describes the Atlas destination of the migrating Cloud Manager or Ops Manager cluster.
+	MigrationHosts  []string     `json:"migrationHosts,omitempty"`  // MigrationHosts is a list of hosts running the MongoDB Agent that can transfer your MongoDB data from the source (Cloud Manager or Ops Manager) to destination (Atlas) deployments.
+	DropEnabled     *bool        `json:"dropEnabled,omitempty"`     // DropEnabled indicates whether this process should drop existing collections from the destination (Atlas) cluster given in destination.clusterName before starting the migration of data from the source cluster.
+	ID              string       `json:"_id,omitempty"`             // ID Unique 24-hexadecimal digit string that identifies the migration.
+	Status          string       `json:"status,omitempty"`          // Status of the migration when you submitted this request.
+	ReadyForCutover *bool        `json:"readyForCutover,omitempty"` // ReadyForCutover indicates whether the live migration process is ready to start the cutover process.
 }
 
 // Source represents the Cloud Manager or Ops Manager source of the migrating cluster.
