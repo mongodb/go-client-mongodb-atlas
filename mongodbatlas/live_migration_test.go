@@ -16,6 +16,7 @@ package mongodbatlas
 
 import (
 	"fmt"
+	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
 
@@ -199,9 +200,10 @@ func TestLiveMigration_Get(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/liveMigrations/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
-			  "_id": "a659ce44c03ca1e348b1e992",
-			  "migrationHosts": [ "vm001.example.com" ],
-			  "status": "PENDING"
+			"_id": "a659ce44c03ca1e348b1e992",
+			"migrationHosts": [ "vm001.example.com" ],
+			"status": "PENDING",
+			"readyForCutover": false
 		}`)
 	})
 
@@ -211,9 +213,10 @@ func TestLiveMigration_Get(t *testing.T) {
 	}
 
 	expected := &LiveMigration{
-		ID:             "a659ce44c03ca1e348b1e992",
-		Status:         "PENDING",
-		MigrationHosts: []string{"vm001.example.com"},
+		ID:              "a659ce44c03ca1e348b1e992",
+		Status:          "PENDING",
+		MigrationHosts:  []string{"vm001.example.com"},
+		ReadyForCutover: pointy.Bool(false),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {
