@@ -16,11 +16,11 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestLiveMigration_CreateLinkToken(t *testing.T) {
@@ -80,22 +80,19 @@ func TestLiveMigration_CreateValidation(t *testing.T) {
 		}`)
 	})
 
-	ssl := true
-	dropEnabled := true
-	ManagedAuthentication := false
 	body := &LiveMigration{
 		Source: &Source{
 			ClusterName:           "exampleClusterA",
 			GroupID:               "9b43a5b329223c3a1591a678",
 			Username:              "example",
 			Password:              "string",
-			SSL:                   &ssl,
+			SSL:                   pointy.Bool(true),
 			CACertificatePath:     "/path/to/ca",
-			ManagedAuthentication: &ManagedAuthentication,
+			ManagedAuthentication: pointy.Bool(false),
 		},
 		Destination:    &Destination{ClusterName: "exampleClusterB", GroupID: "e01c9427f054fe80745f3f6c"},
 		MigrationHosts: []string{"vm001.example.com"},
-		DropEnabled:    &dropEnabled,
+		DropEnabled:    pointy.Bool(true),
 	}
 
 	response, _, err := client.LiveMigration.CreateValidation(ctx, groupID, body)
@@ -159,22 +156,19 @@ func TestLiveMigration_Create(t *testing.T) {
 		}`)
 	})
 
-	ssl := true
-	dropEnabled := true
-	ManagedAuthentication := false
 	body := &LiveMigration{
 		Source: &Source{
 			ClusterName:           "exampleClusterA",
 			GroupID:               "9b43a5b329223c3a1591a678",
 			Username:              "example",
 			Password:              "string",
-			SSL:                   &ssl,
+			SSL:                   pointy.Bool(true),
 			CACertificatePath:     "/path/to/ca",
-			ManagedAuthentication: &ManagedAuthentication,
+			ManagedAuthentication: pointy.Bool(false),
 		},
 		Destination:    &Destination{ClusterName: "exampleClusterB", GroupID: "e01c9427f054fe80745f3f6c"},
 		MigrationHosts: []string{"vm001.example.com"},
-		DropEnabled:    &dropEnabled,
+		DropEnabled:    pointy.Bool(true),
 	}
 
 	response, _, err := client.LiveMigration.Create(ctx, groupID, body)
