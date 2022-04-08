@@ -24,10 +24,10 @@ const projectSettingsBasePath = projectBasePath + "/%s/settings"
 
 type ProjectSettings struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `url:"isCollectDatabaseSpecificsStatisticsEnabled,omitempty"`
-	IsDataExplorerEnabled                       *bool `url:"IsDataExplorerEnabled,omitempty"`
-	IsPerformanceAdvisorEnabled                 *bool `url:"IsPerformanceAdvisorEnabled,omitempty"`
-	IsRealtimePerformancePanelEnabled           *bool `url:"IsRealtimePerformancePanelEnabled,omitempty"`
-	IsSchemaAdvisorEnabled                      *bool `url:"IsRealtimePerformancePanelEnabled,omitempty"`
+	IsDataExplorerEnabled                       *bool `url:"isDataExplorerEnabled,omitempty"`
+	IsPerformanceAdvisorEnabled                 *bool `url:"isPerformanceAdvisorEnabled,omitempty"`
+	IsRealtimePerformancePanelEnabled           *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
+	IsSchemaAdvisorEnabled                      *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
 }
 
 // GetProjectSettings gets details about the settings for specified project.

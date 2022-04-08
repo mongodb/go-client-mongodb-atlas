@@ -31,10 +31,10 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
                "isCollectDatabaseSpecificsStatisticsEnabled": true,
-			   "IsDataExplorerEnabled": true,
-			   "IsPerformanceAdvisorEnabled": true,
-			   "IsRealtimePerformancePanelEnabled": true,
-			   "IsSchemaAdvisorEnabled": true
+			   "isDataExplorerEnabled": true,
+			   "isPerformanceAdvisorEnabled": true,
+			   "isRealtimePerformancePanelEnabled": true,
+			   "isSchemaAdvisorEnabled": true
 }`)
 	})
 
@@ -64,10 +64,10 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 		testMethod(t, r, http.MethodPatch)
 		_, _ = fmt.Fprint(w, `{
                "isCollectDatabaseSpecificsStatisticsEnabled": true,
-			   "IsDataExplorerEnabled": true,
-			   "IsPerformanceAdvisorEnabled": true,
-			   "IsRealtimePerformancePanelEnabled": true,
-			   "IsSchemaAdvisorEnabled": true
+			   "isDataExplorerEnabled": true,
+			   "isPerformanceAdvisorEnabled": true,
+			   "isRealtimePerformancePanelEnabled": true,
+			   "isSchemaAdvisorEnabled": true
 }`)
 	})
 
