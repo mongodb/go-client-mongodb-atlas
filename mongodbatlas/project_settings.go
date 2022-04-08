@@ -27,7 +27,7 @@ type ProjectSettings struct {
 	IsDataExplorerEnabled                       *bool `url:"isDataExplorerEnabled,omitempty"`
 	IsPerformanceAdvisorEnabled                 *bool `url:"isPerformanceAdvisorEnabled,omitempty"`
 	IsRealtimePerformancePanelEnabled           *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
-	IsSchemaAdvisorEnabled                      *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
+	IsSchemaAdvisorEnabled                      *bool `url:"isSchemaAdvisorEnabled,omitempty"`
 }
 
 // GetProjectSettings gets details about the settings for specified project.
