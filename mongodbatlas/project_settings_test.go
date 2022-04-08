@@ -16,9 +16,10 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
+
+	"github.com/openlyinc/pointy"
 
 	"github.com/go-test/deep"
 )
@@ -31,10 +32,10 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
                "isCollectDatabaseSpecificsStatisticsEnabled": true,
-			   "isDataExplorerEnabled": true,
-			   "isPerformanceAdvisorEnabled": true,
-			   "isRealtimePerformancePanelEnabled": true,
-			   "isSchemaAdvisorEnabled": true
+			   "IsDataExplorerEnabled": true,
+			   "IsPerformanceAdvisorEnabled": true,
+			   "IsRealtimePerformancePanelEnabled": true,
+			   "IsSchemaAdvisorEnabled": true
 }`)
 	})
 
@@ -45,10 +46,10 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 
 	expected := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		isDataExplorerEnabled:                       pointy.Bool(true),
-		isPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		isRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		isSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsDataExplorerEnabled:                       pointy.Bool(true),
+		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
+		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
+		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
 	}
 
 	if diff := deep.Equal(projectSettings, expected); diff != nil {
@@ -64,19 +65,19 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 		testMethod(t, r, http.MethodPatch)
 		_, _ = fmt.Fprint(w, `{
                "isCollectDatabaseSpecificsStatisticsEnabled": true,
-			   "isDataExplorerEnabled": true,
-			   "isPerformanceAdvisorEnabled": true,
-			   "isRealtimePerformancePanelEnabled": true,
-			   "isSchemaAdvisorEnabled": true
+			   "IsDataExplorerEnabled": true,
+			   "IsPerformanceAdvisorEnabled": true,
+			   "IsRealtimePerformancePanelEnabled": true,
+			   "IsSchemaAdvisorEnabled": true
 }`)
 	})
 
 	body := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		isDataExplorerEnabled:                       pointy.Bool(true),
-		isPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		isRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		isSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsDataExplorerEnabled:                       pointy.Bool(true),
+		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
+		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
+		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
 	}
 
 	response, _, err := client.Projects.UpdateProjectSettings(ctx, groupID, body)
@@ -86,10 +87,10 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 
 	expected := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		isDataExplorerEnabled:                       pointy.Bool(true),
-		isPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		isRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		isSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsDataExplorerEnabled:                       pointy.Bool(true),
+		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
+		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
+		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {

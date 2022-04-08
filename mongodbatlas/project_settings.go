@@ -24,12 +24,11 @@ const projectSettingsBasePath = projectBasePath + "/%s/settings"
 
 type ProjectSettings struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `url:"isCollectDatabaseSpecificsStatisticsEnabled,omitempty"`
-	isDataExplorerEnabled *bool `url:"isDataExplorerEnabled,omitempty"`
-	isPerformanceAdvisorEnabled *bool `url:"isPerformanceAdvisorEnabled,omitempty"`
-	isRealtimePerformancePanelEnabled *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
-	isSchemaAdvisorEnabled *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
+	IsDataExplorerEnabled                       *bool `url:"IsDataExplorerEnabled,omitempty"`
+	IsPerformanceAdvisorEnabled                 *bool `url:"IsPerformanceAdvisorEnabled,omitempty"`
+	IsRealtimePerformancePanelEnabled           *bool `url:"IsRealtimePerformancePanelEnabled,omitempty"`
+	IsSchemaAdvisorEnabled                      *bool `url:"IsRealtimePerformancePanelEnabled,omitempty"`
 }
-
 
 // GetProjectSettings gets details about the settings for specified project.
 //
@@ -76,5 +75,3 @@ func (s *ProjectsServiceOp) UpdateProjectSettings(ctx context.Context, groupID s
 
 	return root, resp, nil
 }
-
-

@@ -53,7 +53,7 @@ type ProjectsService interface {
 	UpdateInvitation(context.Context, string, *Invitation) (*Invitation, *Response, error)
 	UpdateInvitationByID(context.Context, string, string, *Invitation) (*Invitation, *Response, error)
 	DeleteInvitation(context.Context, string, string) (*Response, error)
-	GetProjectSettings(context.Context, string)(*ProjectSettings, *Response, error)
+	GetProjectSettings(context.Context, string) (*ProjectSettings, *Response, error)
 	UpdateProjectSettings(context.Context, string, *ProjectSettings) (*ProjectSettings, *Response, error)
 }
 
