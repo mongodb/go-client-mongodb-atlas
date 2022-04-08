@@ -19,9 +19,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/openlyinc/pointy"
-
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestProjects_GetProjectSettings(t *testing.T) {
