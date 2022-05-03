@@ -50,6 +50,8 @@ type CloudProviderSnapshotBackupPolicy struct {
 	UpdateSnapshots       *bool    `json:"updateSnapshots,omitempty"`       // Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	NextSnapshot          string   `json:"nextSnapshot,omitempty"`          // UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
 	Policies              []Policy `json:"policies,omitempty"`              // A list of policy definitions for the cluster.
+	AutoExportEnabled     *bool    `json:"autoExportEnabled,omitempty"`     // Specify true to enable automatic export of cloud backup snapshots to the AWS bucket. You must also define the export policy using export. Specify false to disable automatic export.
+	Export                *Export  `json:"export,omitempty"`                // Export struct that represents a policy for automatically exporting cloud backup snapshots to AWS bucket.
 }
 
 // Policy represents for the snapshot and an array of backup policy items.
@@ -65,6 +67,12 @@ type PolicyItem struct {
 	FrequencyType     string `json:"frequencyType,omitempty"`     // Frequency associated with the backup policy item. One of the following values: hourly, daily, weekly or monthly.
 	RetentionUnit     string `json:"retentionUnit,omitempty"`     // Metric of duration of the backup policy item: days, weeks, or months.
 	RetentionValue    int    `json:"retentionValue,omitempty"`    // Duration for which the backup is kept. Associated with retentionUnit.
+}
+
+// Export represents a policy for automatically exporting cloud backup snapshots to AWS bucket.
+type Export struct {
+	ExportBucketID string `json:"exportBucketId,omitempty"` // Unique identifier of the AWS bucket to export the cloud backup snapshot to.
+	FrequencyType  string `json:"frequencyType,omitempty"`  // Frequency associated with the export policy.
 }
 
 // Get gets the current snapshot schedule and retention settings for the cluster with {CLUSTER-NAME}.
