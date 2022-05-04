@@ -42,16 +42,17 @@ var _ CloudProviderSnapshotBackupPoliciesService = &CloudProviderSnapshotBackupP
 
 // CloudProviderSnapshotBackupPolicy represents a cloud provider snapshot schedule.
 type CloudProviderSnapshotBackupPolicy struct {
-	ClusterID             string   `json:"clusterId,omitempty"`             //	Unique identifier of the Atlas cluster.
-	ClusterName           string   `json:"clusterName,omitempty"`           //	Name of the Atlas cluster.
-	ReferenceHourOfDay    *int64   `json:"referenceHourOfDay,omitempty"`    // UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
-	ReferenceMinuteOfHour *int64   `json:"referenceMinuteOfHour,omitempty"` // UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive. Number of days back in time you can restore to with point-in-time accuracy.
-	RestoreWindowDays     *int64   `json:"restoreWindowDays,omitempty"`     // Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-	UpdateSnapshots       *bool    `json:"updateSnapshots,omitempty"`       // Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	NextSnapshot          string   `json:"nextSnapshot,omitempty"`          // UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
-	Policies              []Policy `json:"policies,omitempty"`              // A list of policy definitions for the cluster.
-	AutoExportEnabled     *bool    `json:"autoExportEnabled,omitempty"`     // Specify true to enable automatic export of cloud backup snapshots to the AWS bucket. You must also define the export policy using export. Specify false to disable automatic export.
-	Export                *Export  `json:"export,omitempty"`                // Export struct that represents a policy for automatically exporting cloud backup snapshots to AWS bucket.
+	ClusterID                         string   `json:"clusterId,omitempty"`                         //	Unique identifier of the Atlas cluster.
+	ClusterName                       string   `json:"clusterName,omitempty"`                       //	Name of the Atlas cluster.
+	ReferenceHourOfDay                *int64   `json:"referenceHourOfDay,omitempty"`                // UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
+	ReferenceMinuteOfHour             *int64   `json:"referenceMinuteOfHour,omitempty"`             // UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive. Number of days back in time you can restore to with point-in-time accuracy.
+	RestoreWindowDays                 *int64   `json:"restoreWindowDays,omitempty"`                 // Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+	UpdateSnapshots                   *bool    `json:"updateSnapshots,omitempty"`                   // Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	NextSnapshot                      string   `json:"nextSnapshot,omitempty"`                      // UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
+	Policies                          []Policy `json:"policies,omitempty"`                          // A list of policy definitions for the cluster.
+	AutoExportEnabled                 *bool    `json:"autoExportEnabled,omitempty"`                 // Specify true to enable automatic export of cloud backup snapshots to the AWS bucket. You must also define the export policy using export. Specify false to disable automatic export.
+	Export                            *Export  `json:"export,omitempty"`                            // Export struct that represents a policy for automatically exporting cloud backup snapshots to AWS bucket.
+	UseOrgAndGroupNamesInExportPrefix *bool    `json:"useOrgAndGroupNamesInExportPrefix,omitempty"` // Specifies whether to use organization and project names instead of organization and project UUIDs in the path to the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots
 }
 
 // Policy represents for the snapshot and an array of backup policy items.

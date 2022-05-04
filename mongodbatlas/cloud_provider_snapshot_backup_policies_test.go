@@ -91,7 +91,8 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 			"export": {
 			  "frequencyType": "monthly",
 			  "exportBucketId": "604f6322dc786a5341d4f7fb"
-			}
+			},
+			"useOrgAndGroupNamesInExportPrefix": false
 		}`)
 	})
 
@@ -147,6 +148,7 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
 		},
+		UseOrgAndGroupNamesInExportPrefix: pointy.Bool(false),
 	}
 
 	if diff := deep.Equal(snapshotBackupPolicy, expected); diff != nil {
