@@ -86,7 +86,12 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 			],
 			"referenceHourOfDay": 17,
 			"referenceMinuteOfHour": 24,
-			"restoreWindowDays": 7
+			"restoreWindowDays": 7,
+			"autoExportEnabled" : true,
+			"export": {
+			  "frequencyType": "monthly",
+			  "exportBucketId": "604f6322dc786a5341d4f7fb"
+			}
 		}`)
 	})
 
@@ -137,6 +142,11 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 		ReferenceHourOfDay:    pointy.Int64(17),
 		ReferenceMinuteOfHour: pointy.Int64(24),
 		RestoreWindowDays:     pointy.Int64(7),
+		AutoExportEnabled:     pointy.Bool(true),
+		Export: &Export{
+			ExportBucketID: "604f6322dc786a5341d4f7fb",
+			FrequencyType:  "monthly",
+		},
 	}
 
 	if diff := deep.Equal(snapshotBackupPolicy, expected); diff != nil {
@@ -178,7 +188,12 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 					},
 				},
 			},
-			"updateSnapshots": true,
+			"updateSnapshots":   true,
+			"autoExportEnabled": true,
+			"export": map[string]interface{}{
+				"frequencyType":  "monthly",
+				"exportBucketId": "604f6322dc786a5341d4f7fb",
+			},
 		}
 
 		var v map[string]interface{}
@@ -227,7 +242,12 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				}
 			],
 			"referenceHourOfDay": 12,
-			"referenceMinuteOfHour": 30
+			"referenceMinuteOfHour": 30,
+			"autoExportEnabled" : true,
+			"export": {
+			  "frequencyType": "monthly",
+			  "exportBucketId": "604f6322dc786a5341d4f7fb"
+			}
 		}`)
 	})
 
@@ -255,7 +275,12 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		UpdateSnapshots: pointy.Bool(true),
+		UpdateSnapshots:   pointy.Bool(true),
+		AutoExportEnabled: pointy.Bool(true),
+		Export: &Export{
+			ExportBucketID: "604f6322dc786a5341d4f7fb",
+			FrequencyType:  "monthly",
+		},
 	}
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotBackupPolicies.Update(ctx, groupID, clusterName, updateRequest)
@@ -290,6 +315,11 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 		},
 		ReferenceHourOfDay:    pointy.Int64(12),
 		ReferenceMinuteOfHour: pointy.Int64(30),
+		AutoExportEnabled:     pointy.Bool(true),
+		Export: &Export{
+			ExportBucketID: "604f6322dc786a5341d4f7fb",
+			FrequencyType:  "monthly",
+		},
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
@@ -331,7 +361,12 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 			],
 			"referenceHourOfDay": 17,
 			"referenceMinuteOfHour": 24,
-			"restoreWindowDays": 7
+			"restoreWindowDays": 7,
+			"autoExportEnabled" : true,
+			"export": {
+			  "frequencyType": "monthly",
+			  "exportBucketId": "604f6322dc786a5341d4f7fb"
+			}
 		}`)
 	})
 
@@ -353,6 +388,11 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 		ReferenceHourOfDay:    pointy.Int64(17),
 		ReferenceMinuteOfHour: pointy.Int64(24),
 		RestoreWindowDays:     pointy.Int64(7),
+		AutoExportEnabled:     pointy.Bool(true),
+		Export: &Export{
+			ExportBucketID: "604f6322dc786a5341d4f7fb",
+			FrequencyType:  "monthly",
+		},
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
