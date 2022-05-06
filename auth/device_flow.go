@@ -25,6 +25,8 @@ import (
 	atlas "go.mongodb.org/atlas/mongodbatlas"
 )
 
+const authExpiredError = "DEVICE_AUTHORIZATION_EXPIRED"
+
 // DeviceCode holds information about the authorization-in-progress.
 type DeviceCode struct {
 	UserCode        string `json:"user_code"`        // UserCode is the code presented to users
@@ -145,4 +147,9 @@ func (c Config) RevokeToken(ctx context.Context, token, tokenTypeHint string) (*
 	}
 
 	return c.Do(ctx, req, nil)
+}
+
+func IsTimeoutErr(err error) bool {
+	var target *atlas.ErrorResponse
+	return errors.Is(err, ErrTimeout) || (errors.As(err, &target) && target.ErrorCode == authExpiredError)
 }
