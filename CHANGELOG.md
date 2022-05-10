@@ -1,5 +1,25 @@
 # Changelog
 
+## [v0.16.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.16.0) (May 10, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.15.0...v0.16.0)
+
+**Merged pull requests:**
+
+- CLOUDP-118714 add IsTimeoutErr func [\#291](https://github.com/mongodb/go-client-mongodb-atlas/pull/291) ([tibulca](https://github.com/tibulca))
+- feat: add useOrgAndGroupNamesInExportPrefix to snapshot shcedule [\#290](https://github.com/mongodb/go-client-mongodb-atlas/pull/290) ([gssbzn](https://github.com/gssbzn))
+- feat: add support to export snapshots on backup policies [\#289](https://github.com/mongodb/go-client-mongodb-atlas/pull/289) ([trunet](https://github.com/trunet))
+- chore\(deps\): bump actions/setup-go from 2 to 3 [\#288](https://github.com/mongodb/go-client-mongodb-atlas/pull/288) ([dependabot[bot]](https://github.com/apps/dependabot))
+- CLOUDP-118028: \[atlascli\] Allow to list and edit project settings [\#287](https://github.com/mongodb/go-client-mongodb-atlas/pull/287) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- feat: add ready for cutover field to live migrations [\#286](https://github.com/mongodb/go-client-mongodb-atlas/pull/286) ([gssbzn](https://github.com/gssbzn))
+- task: add go 1.18 to the test matrix [\#285](https://github.com/mongodb/go-client-mongodb-atlas/pull/285) ([gssbzn](https://github.com/gssbzn))
+- INTMDB-311: Feature Add: Prometheus and Microsoft Team to the Third Party Integration Settings [\#284](https://github.com/mongodb/go-client-mongodb-atlas/pull/284) ([martinstibbe](https://github.com/martinstibbe))
+- chore\(deps\): bump actions/cache from 2 to 3 [\#283](https://github.com/mongodb/go-client-mongodb-atlas/pull/283) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/checkout from 2 to 3 [\#282](https://github.com/mongodb/go-client-mongodb-atlas/pull/282) ([dependabot[bot]](https://github.com/apps/dependabot))
+- CLOUDP-114669: Automatically add trailing slash to the URL [\#281](https://github.com/mongodb/go-client-mongodb-atlas/pull/281) ([igor-karpukhin](https://github.com/igor-karpukhin))
+- chore\(deps\): bump golangci/golangci-lint-action from 2 to 3.1.0 [\#280](https://github.com/mongodb/go-client-mongodb-atlas/pull/280) ([dependabot[bot]](https://github.com/apps/dependabot))
+- INTMDB-299: Added snapshot export jobs support [\#279](https://github.com/mongodb/go-client-mongodb-atlas/pull/279) ([abner-dou](https://github.com/abner-dou))
+
 ## [v0.15.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.15.0) (February 09, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.14.0...v0.15.0)
