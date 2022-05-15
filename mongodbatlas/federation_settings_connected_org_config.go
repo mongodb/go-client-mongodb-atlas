@@ -1,0 +1,161 @@
+// Copyright 2021 MongoDB Inc
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package mongodbatlas
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+)
+
+const federationSettingsConnectedOrganizationBasePath = "api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs"
+
+// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Identitty Provider
+// endpoints of the MongoDB Atlas API.
+// See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
+type FederatedSettingsConnectedOrganizationService interface {
+	List(context.Context, *ListOptions) (*FederatedSettingsConnectedOrganizations, *Response, error)
+	Get(context.Context, string, string) (*FederatedSettingsConnectedOrganization, *Response, error)
+	Update(context.Context, string, string, *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error)
+	Delete(context.Context, string, string) (*Response, error)
+}
+
+// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings related methods of the
+// MongoDB Atlas API.
+type FederatedSettingsConnectedOrganizationSeviceOp service
+
+var _ FederatedSettingsConnectedOrganizationService = &FederatedSettingsConnectedOrganizationSeviceOp{}
+
+// A Resource describes a specific resource the Role will allow operating on.
+
+// FederatedSettings represents a FederatedSettings List.
+type FederatedSettingsConnectedOrganizations struct {
+	Links      []*Link                                   `json:"links,omitempty"`
+	Results    []*FederatedSettingsConnectedOrganization `json:"results,omitempty"`
+	TotalCount int                                       `json:"totalCount,omitempty"`
+}
+
+type FederatedSettingsConnectedOrganization struct {
+	DomainRestrictionEnabled bool   `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string `json:"identityProviderId,omitempty"`
+	OrgID                    string `json:"orgId,omitempty"`
+	RoleMappings             []struct {
+		ExternalGroupName string `json:"externalGroupName,omitempty"`
+		ID                string `json:"id,omitempty"`
+		RoleAssignments   []struct {
+			GroupID interface{} `json:"groupId,omitempty"`
+			OrgID   string      `json:"orgId,omitempty"`
+			Role    string      `json:"role,omitempty"`
+		} `json:"roleAssignments,omitempty"`
+	} `json:"roleMappings,omitempty"`
+}
+
+// List gets all Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/org-mappings-return-all/
+func (s *FederatedSettingsConnectedOrganizationSeviceOp) List(ctx context.Context, opts *ListOptions) (*FederatedSettingsConnectedOrganizations, *Response, error) {
+	path, err := setListOptions(federationSettingsConnectedOrganizationBasePath, opts)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsConnectedOrganizations)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	if l := root.Links; l != nil {
+		resp.Links = l
+	}
+
+	return root, resp, nil
+}
+
+// Get gets Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-return-one/
+func (s *FederatedSettingsConnectedOrganizationSeviceOp) Get(ctx context.Context, federatedSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
+	if federatedSettingsID == "" {
+		return nil, nil, NewArgError("federatedSettingsID", "must be set")
+	}
+
+	basePath := fmt.Sprintf(federationSettingsConnectedOrganizationBasePath, federatedSettingsID)
+	path := fmt.Sprintf("%s/%s", basePath, orgID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsConnectedOrganization)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update updates Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-update-one/
+func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Context, federatedSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
+	if updateRequest == nil {
+		return nil, nil, NewArgError("updateRequest", "cannot be nil")
+	}
+
+	basePath := fmt.Sprintf(federationSettingsConnectedOrganizationBasePath, federatedSettingsID)
+	path := fmt.Sprintf("%s/%s", basePath, orgID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsConnectedOrganization)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Delete deletes federation setting.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
+func (s *FederatedSettingsConnectedOrganizationSeviceOp) Delete(ctx context.Context, federationSettingsID string, orgID string) (*Response, error) {
+	if federationSettingsID == "" {
+		return nil, NewArgError("roleName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(federationSettingsConnectedOrganizationBasePath, federationSettingsID)
+	path := fmt.Sprintf("%s/%s", basePath, orgID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}

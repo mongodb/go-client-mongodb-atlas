@@ -1,0 +1,163 @@
+// Copyright 2021 MongoDB Inc
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package mongodbatlas
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"time"
+)
+
+const federationSettingsIdentityProviderBasePath = "api/atlas/v1.0/federationSettings/%s/identityProviders"
+
+// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Identitty Provider
+// endpoints of the MongoDB Atlas API.
+// See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
+type FederatedSettingsIdentityProviderService interface {
+	List(context.Context, *ListOptions) (*FederatedSettingsIdentityProviders, *Response, error)
+	Get(context.Context, string, string) (*FederatedSettingsIdentityProvider, *Response, error)
+	Update(context.Context, string, string, *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error)
+}
+
+// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings related methods of the
+// MongoDB Atlas API.
+type FederatedSettingsIdentityProviderServiceOp service
+
+var _ FederatedSettingsIdentityProviderService = &FederatedSettingsIdentityProviderServiceOp{}
+
+// A Resource describes a specific resource the Role will allow operating on.
+
+// FederatedSettings represents a FederatedSettings List.
+type FederatedSettingsIdentityProviders struct {
+	Links      []*Link                              `json:"links,omitempty"`
+	Results    []*FederatedSettingsIdentityProvider `json:"results,omitempty"`
+	TotalCount int                                  `json:"totalCount,omitempty"`
+}
+
+type FederatedSettingsIdentityProvider struct {
+	AcsURL            string   `json:"acsUrl,omitempty"`
+	AssociatedDomains []string `json:"associatedDomains,omitempty"`
+	AssociatedOrgs    []struct {
+		DomainAllowList          []interface{} `json:"domainAllowList,omitempty"`
+		DomainRestrictionEnabled bool          `json:"domainRestrictionEnabled,omitempty"`
+		IdentityProviderID       string        `json:"identityProviderId,omitempty"`
+		OrgID                    string        `json:"orgId,omitempty"`
+		PostAuthRoleGrants       []interface{} `json:"postAuthRoleGrants,omitempty"`
+		RoleMappings             []struct {
+			ExternalGroupName string `json:"externalGroupName,omitempty"`
+			ID                string `json:"id,omitempty"`
+			RoleAssignments   []struct {
+				GroupID interface{} `json:"groupId,omitempty"`
+				OrgID   string      `json:"orgId,omitempty"`
+				Role    string      `json:"role,omitempty"`
+			} `json:"roleAssignments,omitempty,omitempty"`
+		} `json:"roleMappings,omitempty"`
+		UserConflicts interface{} `json:"userConflicts,omitempty"`
+	} `json:"associatedOrgs,omitempty"`
+	AudienceURI string `json:"audienceUri,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
+	IssuerURI   string `json:"issuerUri,omitempty"`
+	OktaIdpID   string `json:"oktaIdpId,omitempty"`
+	PemFileInfo struct {
+		Certificates []struct {
+			NotAfter  time.Time `json:"notAfter,omitempty"`
+			NotBefore time.Time `json:"notBefore,omitempty"`
+		} `json:"certificates,omitempty"`
+		FileName string `json:"fileName,omitempty"`
+	} `json:"pemFileInfo,omitempty"`
+	RequestBinding             string `json:"requestBinding,omitempty"`
+	ResponseSignatureAlgorithm string `json:"responseSignatureAlgorithm,omitempty"`
+	SsoDebugEnabled            bool   `json:"ssoDebugEnabled,omitempty"`
+	SsoURL                     string `json:"ssoUrl,omitempty"`
+	Status                     string `json:"status,omitempty"`
+}
+
+// List gets all Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
+func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions) (*FederatedSettingsIdentityProviders, *Response, error) {
+	path, err := setListOptions(federationSettingsIdentityProviderBasePath, opts)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsIdentityProviders)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	if l := root.Links; l != nil {
+		resp.Links = l
+	}
+
+	return root, resp, nil
+}
+
+// Get gets Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-one/
+func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, federatedSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
+	if federatedSettingsID == "" {
+		return nil, nil, NewArgError("federatedSettingsID", "must be set")
+	}
+
+	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federatedSettingsID)
+	path := fmt.Sprintf("%s/%s", basePath, idpID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsIdentityProvider)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update updates Federated Settings Identity Providers for an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-update-one/
+func (s *FederatedSettingsIdentityProviderServiceOp) Update(ctx context.Context, federatedSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
+	if updateRequest == nil {
+		return nil, nil, NewArgError("updateRequest", "cannot be nil")
+	}
+
+	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federatedSettingsID)
+	path := fmt.Sprintf("%s/%s", basePath, idpID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsIdentityProvider)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
