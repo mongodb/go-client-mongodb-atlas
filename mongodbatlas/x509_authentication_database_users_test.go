@@ -29,7 +29,6 @@ func TestX509AuthDBUsers_CreateUserCertificate(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
 	username := "username_test"
 	monthsUntilExpiration := 4
 
@@ -72,7 +71,6 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
 	username := "username_test"
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers/%s/certs", groupID, username), func(w http.ResponseWriter, r *http.Request) {
@@ -104,7 +102,7 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 		}`)
 	})
 
-	x509AuthDBUserCertificates, _, err := client.X509AuthDBUsers.GetUserCertificates(ctx, groupID, username)
+	x509AuthDBUserCertificates, _, err := client.X509AuthDBUsers.GetUserCertificates(ctx, groupID, username, nil)
 	if err != nil {
 		t.Errorf("X509AuthDBUsers.GetUserCertificates returned error: %v", err)
 	}
@@ -135,7 +133,6 @@ func TestX509AuthDBUsers_SaveConfiguration(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
 	customerX509Req := &CustomerX509{
 		Cas: "-BEGIN CERTIFICATE--MIIFCTCCAvGgAwIBAgIIb--END CERTIFICATE---BEGIN PRIVATE KEY--MIIJQgIBADANBgkqhkiG==--END PRIVATE KEY--",
 	}
@@ -179,8 +176,6 @@ func TestX509AuthDBUsers_GetCurrentX509Conf(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
@@ -208,8 +203,6 @@ func TestX509AuthDBUsers_GetCurrentX509Conf(t *testing.T) {
 func TestX509AuthDBUsers_DisableCustomerX509(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	groupID := "1"
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/userSecurity/customerX509", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
