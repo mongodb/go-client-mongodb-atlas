@@ -27,7 +27,7 @@ const federationSettingsIdentityProviderBasePath = "api/atlas/v1.0/federationSet
 // endpoints of the MongoDB Atlas API.
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsIdentityProviderService interface {
-	List(context.Context, *ListOptions) (*FederatedSettingsIdentityProviders, *Response, error)
+	List(context.Context, *ListOptions, string) (*FederatedSettingsIdentityProviders, *Response, error)
 	Get(context.Context, string, string) (*FederatedSettingsIdentityProvider, *Response, error)
 	Update(context.Context, string, string, *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error)
 }
@@ -48,48 +48,55 @@ type FederatedSettingsIdentityProviders struct {
 }
 
 type FederatedSettingsIdentityProvider struct {
-	AcsURL            string   `json:"acsUrl,omitempty"`
-	AssociatedDomains []string `json:"associatedDomains,omitempty"`
-	AssociatedOrgs    []struct {
-		DomainAllowList          []interface{} `json:"domainAllowList,omitempty"`
-		DomainRestrictionEnabled bool          `json:"domainRestrictionEnabled,omitempty"`
-		IdentityProviderID       string        `json:"identityProviderId,omitempty"`
-		OrgID                    string        `json:"orgId,omitempty"`
-		PostAuthRoleGrants       []interface{} `json:"postAuthRoleGrants,omitempty"`
-		RoleMappings             []struct {
-			ExternalGroupName string `json:"externalGroupName,omitempty"`
-			ID                string `json:"id,omitempty"`
-			RoleAssignments   []struct {
-				GroupID interface{} `json:"groupId,omitempty"`
-				OrgID   string      `json:"orgId,omitempty"`
-				Role    string      `json:"role,omitempty"`
-			} `json:"roleAssignments,omitempty,omitempty"`
-		} `json:"roleMappings,omitempty"`
-		UserConflicts interface{} `json:"userConflicts,omitempty"`
-	} `json:"associatedOrgs,omitempty"`
-	AudienceURI string `json:"audienceUri,omitempty"`
-	DisplayName string `json:"displayName,omitempty"`
-	IssuerURI   string `json:"issuerUri,omitempty"`
-	OktaIdpID   string `json:"oktaIdpId,omitempty"`
-	PemFileInfo struct {
-		Certificates []struct {
-			NotAfter  time.Time `json:"notAfter,omitempty"`
-			NotBefore time.Time `json:"notBefore,omitempty"`
-		} `json:"certificates,omitempty"`
-		FileName string `json:"fileName,omitempty"`
-	} `json:"pemFileInfo,omitempty"`
-	RequestBinding             string `json:"requestBinding,omitempty"`
-	ResponseSignatureAlgorithm string `json:"responseSignatureAlgorithm,omitempty"`
-	SsoDebugEnabled            bool   `json:"ssoDebugEnabled,omitempty"`
-	SsoURL                     string `json:"ssoUrl,omitempty"`
-	Status                     string `json:"status,omitempty"`
+	AcsURL                     string           `json:"acsUrl,omitempty"`
+	AssociatedDomains          []string         `json:"associatedDomains,omitempty"`
+	AssociatedOrgs             []AssociatedOrgs `json:"associatedOrgs,omitempty"`
+	AudienceURI                string           `json:"audienceUri,omitempty"`
+	DisplayName                string           `json:"displayName,omitempty"`
+	IssuerURI                  string           `json:"issuerUri,omitempty"`
+	OktaIdpID                  string           `json:"oktaIdpId,omitempty"`
+	PemFileInfo                PemFileInfo      `json:"pemFileInfo,omitempty"`
+	RequestBinding             string           `json:"requestBinding,omitempty"`
+	ResponseSignatureAlgorithm string           `json:"responseSignatureAlgorithm,omitempty"`
+	SsoDebugEnabled            bool             `json:"ssoDebugEnabled,omitempty"`
+	SsoURL                     string           `json:"ssoUrl,omitempty"`
+	Status                     string           `json:"status,omitempty"`
+}
+
+type AssociatedOrgs struct {
+	DomainAllowList          []string      `json:"domainAllowList,omitempty"`
+	DomainRestrictionEnabled bool          `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string        `json:"identityProviderId,omitempty"`
+	OrgID                    string        `json:"orgId,omitempty"`
+	PostAuthRoleGrants       []interface{} `json:"postAuthRoleGrants,omitempty"`
+	RoleMappings             []struct {
+		ExternalGroupName string `json:"externalGroupName,omitempty"`
+		ID                string `json:"id,omitempty"`
+		RoleAssignments   []struct {
+			GroupID interface{} `json:"groupId,omitempty"`
+			OrgID   string      `json:"orgId,omitempty"`
+			Role    string      `json:"role,omitempty"`
+		} `json:"roleAssignments,omitempty"`
+	} `json:"roleMappings,omitempty"`
+	UserConflicts interface{} `json:"userConflicts,omitempty"`
+}
+
+type PemFileInfo struct {
+	Certificates []Certificates `json:"certificates,omitempty"`
+	FileName     string         `json:"fileName,omitempty"`
+}
+type Certificates struct {
+	NotAfter  time.Time `json:"notAfter,omitempty"`
+	NotBefore time.Time `json:"notBefore,omitempty"`
 }
 
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
-func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions) (*FederatedSettingsIdentityProviders, *Response, error) {
-	path, err := setListOptions(federationSettingsIdentityProviderBasePath, opts)
+func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsIdentityProviders, *Response, error) {
+
+	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
+	path, err := setListOptions(basePath, opts)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -115,12 +122,12 @@ func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, o
 // Get gets Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-one/
-func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, federatedSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
-	if federatedSettingsID == "" {
-		return nil, nil, NewArgError("federatedSettingsID", "must be set")
+func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, federationSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federatedSettingsID)
+	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path := fmt.Sprintf("%s/%s", basePath, idpID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
@@ -140,12 +147,12 @@ func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, fe
 // Update updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-update-one/
-func (s *FederatedSettingsIdentityProviderServiceOp) Update(ctx context.Context, federatedSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
+func (s *FederatedSettingsIdentityProviderServiceOp) Update(ctx context.Context, federationSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federatedSettingsID)
+	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path := fmt.Sprintf("%s/%s", basePath, idpID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)

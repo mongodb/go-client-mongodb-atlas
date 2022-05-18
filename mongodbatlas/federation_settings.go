@@ -21,7 +21,7 @@ import (
 )
 
 const federationSettingsBasePath = "api/atlas/v1.0/orgs/%s/federationSettings"
-const federationSettingsDeleteBasePath = "/federationSettings/%s"
+const federationSettingsDeleteBasePath = "api/atlas/v1.0/federationSettings"
 
 // FederatedSettingsService is an interface for working with the Federation Settings
 // endpoints of the MongoDB Atlas API.
@@ -52,12 +52,12 @@ type FederatedSettings struct {
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-get-federation-settings/#std-label-atlas-org-get-federation-settings/
 func (s *FederatedSettingsServiceOp) Get(ctx context.Context, orgID string) (*FederatedSettings, *Response, error) {
+
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsBasePath, orgID)
-	path := fmt.Sprintf("%s/%s", basePath, orgID)
+	path := fmt.Sprintf(federationSettingsBasePath, orgID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
@@ -81,7 +81,7 @@ func (s *FederatedSettingsServiceOp) Delete(ctx context.Context, federationSetti
 		return nil, NewArgError("roleName", "must be set")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsDeleteBasePath, federationSettingsID)
+	basePath := federationSettingsDeleteBasePath
 	path := fmt.Sprintf("%s/%s", basePath, federationSettingsID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)

@@ -26,7 +26,7 @@ const federationSettingsOrganizationConnectionBasePath = "api/atlas/v1.0/federat
 // endpoints of the MongoDB Atlas API.
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsOrganizationConnectionService interface {
-	List(context.Context, *ListOptions) (*FederatedSettingsOrganizationConnections, *Response, error)
+	List(context.Context, *ListOptions, string, string) (*FederatedSettingsOrganizationConnections, *Response, error)
 	Get(context.Context, string, string, string) (*FederatedSettingsOrganizationConnection, *Response, error)
 	Update(context.Context, string, string, string, *FederatedSettingsOrganizationConnection) (*FederatedSettingsOrganizationConnection, *Response, error)
 	Delete(context.Context, string, string, string) (*Response, error)
@@ -48,20 +48,30 @@ type FederatedSettingsOrganizationConnections struct {
 }
 
 type FederatedSettingsOrganizationConnection struct {
-	ExternalGroupName string `json:"externalGroupName,omitempty"`
-	ID                string `json:"id,omitempty"`
-	RoleAssignments   []struct {
-		GroupID interface{} `json:"groupId,omitempty"`
-		OrgID   string      `json:"orgId,omitempty"`
-		Role    string      `json:"role,omitempty"`
-	} `json:"roleAssignments,omitempty"`
+	ExternalGroupName string          `json:"externalGroupName,omitempty"`
+	ID                string          `json:"id,omitempty"`
+	RoleAssignments   RoleAssignments `json:"roleAssignments,omitempty"`
+
+	/*[]struct {
+		GroupID string `json:"groupId,omitempty"`
+		OrgID   string `json:"orgId,omitempty"`
+		Role    string `json:"role,omitempty"`
+	} `json:"roleAssignments,omitempty"`*/
+}
+
+type RoleAssignments []struct {
+	GroupID string `json:"groupId,omitempty"`
+	OrgID   string `json:"orgId,omitempty"`
+	Role    string `json:"role,omitempty"`
 }
 
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-all/
-func (s *FederatedSettingsOrganizationConnectionSeviceOp) List(ctx context.Context, opts *ListOptions) (*FederatedSettingsOrganizationConnections, *Response, error) {
-	path, err := setListOptions(federationSettingsOrganizationConnectionBasePath, opts)
+func (s *FederatedSettingsOrganizationConnectionSeviceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID, orgID string) (*FederatedSettingsOrganizationConnections, *Response, error) {
+
+	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federationSettingsID, orgID)
+	path, err := setListOptions(basePath, opts)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -87,12 +97,12 @@ func (s *FederatedSettingsOrganizationConnectionSeviceOp) List(ctx context.Conte
 // Get gets Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-one/
-func (s *FederatedSettingsOrganizationConnectionSeviceOp) Get(ctx context.Context, federatedSettingsID, orgID, roleMappingID string) (*FederatedSettingsOrganizationConnection, *Response, error) {
-	if federatedSettingsID == "" {
-		return nil, nil, NewArgError("federatedSettingsID", "must be set")
+func (s *FederatedSettingsOrganizationConnectionSeviceOp) Get(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*FederatedSettingsOrganizationConnection, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federatedSettingsID, orgID)
+	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federationSettingsID, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, roleMappingID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
@@ -112,12 +122,12 @@ func (s *FederatedSettingsOrganizationConnectionSeviceOp) Get(ctx context.Contex
 // Update updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-create-one/
-func (s *FederatedSettingsOrganizationConnectionSeviceOp) Update(ctx context.Context, federatedSettingsID, orgID, roleMappingID string, updateRequest *FederatedSettingsOrganizationConnection) (*FederatedSettingsOrganizationConnection, *Response, error) {
+func (s *FederatedSettingsOrganizationConnectionSeviceOp) Update(ctx context.Context, federationSettingsID, orgID, roleMappingID string, updateRequest *FederatedSettingsOrganizationConnection) (*FederatedSettingsOrganizationConnection, *Response, error) {
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federatedSettingsID, orgID)
+	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federationSettingsID, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, roleMappingID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
