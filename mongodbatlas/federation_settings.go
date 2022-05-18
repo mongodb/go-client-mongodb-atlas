@@ -51,8 +51,8 @@ type FederatedSettings struct {
 // Get gets Federated Settings for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-get-federation-settings/#std-label-atlas-org-get-federation-settings/
-func (s *FederatedSettingsServiceOp) Get(ctx context.Context, orgID string) (*FederatedSettings, *Response, error) {
 
+func (s *FederatedSettingsServiceOp) Get(ctx context.Context, orgID string) (*FederatedSettings, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}

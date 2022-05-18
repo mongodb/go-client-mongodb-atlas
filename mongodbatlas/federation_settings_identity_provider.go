@@ -94,7 +94,6 @@ type Certificates struct {
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
 func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsIdentityProviders, *Response, error) {
-
 	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {

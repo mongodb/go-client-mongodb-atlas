@@ -255,7 +255,6 @@ func TestFederatedSettingsConnectedOrganization_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs/%s", connectedOrgFederationSettingsID, connectedOrgID), func(w http.ResponseWriter, r *http.Request) {
-
 		testMethod(t, r, http.MethodDelete)
 	})
 

@@ -63,7 +63,6 @@ type RoleAssignments []struct {
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-all/
 func (s *FederatedSettingsOrganizationConnectionSeviceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID, orgID string) (*FederatedSettingsOrganizationConnections, *Response, error) {
-
 	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federationSettingsID, orgID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {

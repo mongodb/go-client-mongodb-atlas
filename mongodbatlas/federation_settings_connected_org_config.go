@@ -71,7 +71,6 @@ type RoleMappings []struct {
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mappings-return-all/
 func (s *FederatedSettingsConnectedOrganizationSeviceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsConnectedOrganizations, *Response, error) {
-
 	basePath := fmt.Sprintf(federationSettingsConnectedOrganizationBasePath, federationSettingsID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {
@@ -129,7 +128,6 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) Get(ctx context.Context
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-update-one/
 func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
-
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
