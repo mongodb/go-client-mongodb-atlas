@@ -90,7 +90,6 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
 			t.Error(diff)
 		}
 	})
-
 }
 
 func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {

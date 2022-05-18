@@ -141,7 +141,7 @@ func (s *FederatedSettingsOrganizationConnectionSeviceOp) Update(ctx context.Con
 // Delete deletes federation setting.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-delete-one/
-func (s *FederatedSettingsOrganizationConnectionSeviceOp) Delete(ctx context.Context, federationSettingsID string, orgID, roleMappingID string) (*Response, error) {
+func (s *FederatedSettingsOrganizationConnectionSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
 	}

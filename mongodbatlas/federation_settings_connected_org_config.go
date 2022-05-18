@@ -162,7 +162,7 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Cont
 // Delete deletes federation setting.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
-func (s *FederatedSettingsConnectedOrganizationSeviceOp) Delete(ctx context.Context, federationSettingsID string, orgID string) (*Response, error) {
+func (s *FederatedSettingsConnectedOrganizationSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
 	}

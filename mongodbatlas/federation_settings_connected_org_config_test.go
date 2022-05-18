@@ -66,7 +66,6 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 			 }],
 			 "totalCount": 1
 		   }`)
-
 		})
 
 		connectedOrganization, _, err := client.FederatedSettingsConnectedOrganization.List(ctx, nil, connectedOrgFederationSettingsID)
@@ -109,7 +108,6 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 			t.Error(diff)
 		}
 	})
-
 }
 
 func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
@@ -142,7 +140,6 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
    ],
    "userConflicts":null
 }`)
-
 	})
 
 	response, _, err := client.FederatedSettingsConnectedOrganization.Get(ctx, connectedOrgFederationSettingsID, connectedOrgID)
@@ -204,7 +201,6 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
    ],
    "userConflicts":null
 }`)
-
 	})
 
 	updated := &FederatedSettingsConnectedOrganization{
@@ -261,7 +257,6 @@ func TestFederatedSettingsConnectedOrganization_Delete(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs/%s", connectedOrgFederationSettingsID, connectedOrgID), func(w http.ResponseWriter, r *http.Request) {
 
 		testMethod(t, r, http.MethodDelete)
-
 	})
 
 	_, err := client.FederatedSettingsConnectedOrganization.Delete(ctx, connectedOrgFederationSettingsID, connectedOrgID)
