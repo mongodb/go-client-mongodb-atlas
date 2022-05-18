@@ -59,7 +59,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
 
 		orgs, _, err := client.FederatedSettingsOrganizationConnection.List(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
 		if err != nil {
-			t.Fatalf("Organizations.List returned error: %v", err)
+			t.Fatalf("FederatedSettingsOrganizationConnection.List returned error: %v", err)
 		}
 
 		expected := &FederatedSettingsOrganizationConnections{
@@ -119,7 +119,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {
 
 	response, _, err := client.FederatedSettingsOrganizationConnection.Get(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
-		t.Fatalf("Organizations.Get returned error: %v", err)
+		t.Fatalf("FederatedSettingsOrganizationConnection.Get returned error: %v", err)
 	}
 
 	expected := &FederatedSettingsOrganizationConnection{
@@ -153,6 +153,6 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Delete(t *testing.T) {
 
 	_, err := client.FederatedSettingsOrganizationConnection.Delete(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
-		t.Fatalf("Organizations.Delete returned error: %v", err)
+		t.Fatalf("FederatedSettingsOrganizationConnection.Delete returned error: %v", err)
 	}
 }

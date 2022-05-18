@@ -78,7 +78,7 @@ func (s *FederatedSettingsServiceOp) Get(ctx context.Context, orgID string) (*Fe
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-delete-one/
 func (s *FederatedSettingsServiceOp) Delete(ctx context.Context, federationSettingsID string) (*Response, error) {
 	if federationSettingsID == "" {
-		return nil, NewArgError("roleName", "must be set")
+		return nil, NewArgError("federationSettingsID", "must be set")
 	}
 
 	basePath := federationSettingsDeleteBasePath

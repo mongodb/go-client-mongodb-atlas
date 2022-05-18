@@ -143,7 +143,7 @@ func TestFederatedSettingsIdentityProviderOp_Get(t *testing.T) {
 
 	response, _, err := client.FederatedSettingsIdentityProvider.Get(ctx, identityProviderfederationSettingsID, ipOrgID)
 	if err != nil {
-		t.Fatalf("Organizations.Get returned error: %v", err)
+		t.Fatalf("FederatedSettingsIdentityProvider.Get returned error: %v", err)
 	}
 
 	expected := &FederatedSettingsIdentityProvider{

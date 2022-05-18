@@ -22,7 +22,7 @@ import (
 
 const federationSettingsConnectedOrganizationBasePath = "api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs"
 
-// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Identity Provider
+// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Connected Organization
 // endpoints of the MongoDB Atlas API.
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsConnectedOrganizationService interface {
@@ -32,7 +32,7 @@ type FederatedSettingsConnectedOrganizationService interface {
 	Delete(context.Context, string, string) (*Response, error)
 }
 
-// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings related methods of the
+// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings Connected Organization related methods of the
 // MongoDB Atlas API.
 type FederatedSettingsConnectedOrganizationSeviceOp service
 
@@ -40,7 +40,7 @@ var _ FederatedSettingsConnectedOrganizationService = &FederatedSettingsConnecte
 
 // A Resource describes a specific resource the Role will allow operating on.
 
-// FederatedSettings represents a FederatedSettings List.
+// FederatedSettings represents a FederatedSettings Connected Organization.
 type FederatedSettingsConnectedOrganizations struct {
 	Links      []*Link                                   `json:"links,omitempty"`
 	Results    []*FederatedSettingsConnectedOrganization `json:"results,omitempty"`

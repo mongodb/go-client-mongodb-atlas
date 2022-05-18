@@ -22,7 +22,7 @@ import (
 
 const federationSettingsOrganizationConnectionBasePath = "api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs/%s/roleMappings"
 
-// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Identitty Provider
+// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Role Mapping
 // endpoints of the MongoDB Atlas API.
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsOrganizationConnectionService interface {
@@ -40,7 +40,7 @@ var _ FederatedSettingsOrganizationConnectionService = &FederatedSettingsOrganiz
 
 // A Resource describes a specific resource the Role will allow operating on.
 
-// FederatedSettings represents a FederatedSettings List.
+// FederatedSettings represents a FederatedSettings Organization Connection..
 type FederatedSettingsOrganizationConnections struct {
 	Links      []*Link                                    `json:"links,omitempty"`
 	Results    []*FederatedSettingsOrganizationConnection `json:"results,omitempty"`
@@ -51,12 +51,6 @@ type FederatedSettingsOrganizationConnection struct {
 	ExternalGroupName string          `json:"externalGroupName,omitempty"`
 	ID                string          `json:"id,omitempty"`
 	RoleAssignments   RoleAssignments `json:"roleAssignments,omitempty"`
-
-	/*[]struct {
-		GroupID string `json:"groupId,omitempty"`
-		OrgID   string `json:"orgId,omitempty"`
-		Role    string `json:"role,omitempty"`
-	} `json:"roleAssignments,omitempty"`*/
 }
 
 type RoleAssignments []struct {
@@ -149,7 +143,7 @@ func (s *FederatedSettingsOrganizationConnectionSeviceOp) Update(ctx context.Con
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-delete-one/
 func (s *FederatedSettingsOrganizationConnectionSeviceOp) Delete(ctx context.Context, federationSettingsID string, orgID, roleMappingID string) (*Response, error) {
 	if federationSettingsID == "" {
-		return nil, NewArgError("roleName", "must be set")
+		return nil, NewArgError("federationSettingsID", "must be set")
 	}
 
 	basePath := fmt.Sprintf(federationSettingsOrganizationConnectionBasePath, federationSettingsID, orgID)

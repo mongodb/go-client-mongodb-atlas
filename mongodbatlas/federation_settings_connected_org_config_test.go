@@ -22,15 +22,15 @@ import (
 	"github.com/go-test/deep"
 )
 
-const connectedOrgID = "627a9683eafda674de306f14"
-const connectedOrgFederationSettingsID = "627af3988201970138fd53be"
+const connectedOrgID = "627a9683eafda674de306d14"
+const connectedOrgFederationSettingsID = "627af3988201970138fd5dbe"
 
 func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
 
-		mux.HandleFunc("/api/atlas/v1.0/federationSettings/627af3988201970138fd53be/connectedOrgConfigs", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/api/atlas/v1.0/federationSettings/627af3988201970138fd5dbe/connectedOrgConfigs", func(w http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodGet)
 			_, _ = fmt.Fprint(w, `{
 				"links": [
@@ -52,11 +52,11 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 				"roleMappings":[
 				   {
 					  "externalGroupName":"myGroup",
-					  "id":"627b1f8f244ad705fd542c81",
+					  "id":"627b1f8f244ad705fd542d81",
 					  "roleAssignments":[
 						 {
 							"groupId":null,
-							"orgId":"627a9683eafda674de306f14",
+							"orgId":"627a9683eafda674de306d14",
 							"role":"ORG_OWNER"
 						 }
 					  ]
@@ -91,10 +91,10 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 					RoleMappings: RoleMappings{
 						{
 							ExternalGroupName: "myGroup",
-							ID:                "627b1f8f244ad705fd542c81",
+							ID:                "627b1f8f244ad705fd542d81",
 							RoleAssignments: RoleAssignments{
 								{
-									OrgID: "627a9683eafda674de306f14",
+									OrgID: "627a9683eafda674de306d14",
 									Role:  "ORG_OWNER",
 								},
 							},
@@ -130,11 +130,11 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
    "roleMappings":[
       {
          "externalGroupName":"myGroup",
-         "id":"627b1f8f244ad705fd542c81",
+         "id":"627b1f8f244ad705fd542d81",
          "roleAssignments":[
             {
                "groupId":null,
-               "orgId":"627a9683eafda674de306f14",
+               "orgId":"627a9683eafda674de306d14",
                "role":"ORG_OWNER"
             }
          ]
@@ -158,10 +158,10 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 		RoleMappings: RoleMappings{
 			{
 				ExternalGroupName: "myGroup",
-				ID:                "627b1f8f244ad705fd542c81",
+				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306f14",
+						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
 					},
 				},
@@ -192,11 +192,11 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
    "roleMappings":[
       {
          "externalGroupName":"myGroup1",
-         "id":"627b1f8f244ad705fd542c81",
+         "id":"627b1f8f244ad705fd542d81",
          "roleAssignments":[
             {
                "groupId":null,
-               "orgId":"627a9683eafda674de306f14",
+               "orgId":"627a9683eafda674de306d14",
                "role":"ORG_OWNER"
             }
          ]
@@ -210,15 +210,15 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 	updated := &FederatedSettingsConnectedOrganization{
 		DomainAllowList:    []string{"reorganizeyourworld.com"},
 		IdentityProviderID: "0oad0iizxh30vuyr5297",
-		OrgID:              "627a9683eafda674de306f14",
+		OrgID:              "627a9683eafda674de306d14",
 		PostAuthRoleGrants: []string{},
 		RoleMappings: RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
-				ID:                "627b1f8f244ad705fd542c81",
+				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306f14",
+						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
 					},
 				},
@@ -239,10 +239,10 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 		RoleMappings: RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
-				ID:                "627b1f8f244ad705fd542c81",
+				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306f14",
+						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
 					},
 				},
