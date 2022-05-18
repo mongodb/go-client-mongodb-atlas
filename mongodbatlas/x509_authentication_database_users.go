@@ -29,7 +29,7 @@ const x509CustomerAuthDBUserPath = "api/atlas/v1.0/groups/%s/userSecurity"
 // See more: https://docs.atlas.mongodb.com/reference/api/x509-configuration/
 type X509AuthDBUsersService interface {
 	CreateUserCertificate(context.Context, string, string, int) (*UserCertificate, *Response, error)
-	GetUserCertificates(context.Context, string, string) ([]UserCertificate, *Response, error)
+	GetUserCertificates(context.Context, string, string, *ListOptions) ([]UserCertificate, *Response, error)
 	SaveConfiguration(context.Context, string, *CustomerX509) (*CustomerX509, *Response, error)
 	GetCurrentX509Conf(context.Context, string) (*CustomerX509, *Response, error)
 	DisableCustomerX509(context.Context, string) (*Response, error)
@@ -111,7 +111,7 @@ func (s *X509AuthDBUsersServiceOp) CreateUserCertificate(ctx context.Context, gr
 // GetUserCertificates gets a list of all Atlas-managed, unexpired certificates for a user.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/
-func (s *X509AuthDBUsersServiceOp) GetUserCertificates(ctx context.Context, groupID, username string) ([]UserCertificate, *Response, error) {
+func (s *X509AuthDBUsersServiceOp) GetUserCertificates(ctx context.Context, groupID, username string, listOptions *ListOptions) ([]UserCertificate, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -120,6 +120,10 @@ func (s *X509AuthDBUsersServiceOp) GetUserCertificates(ctx context.Context, grou
 	}
 
 	path := fmt.Sprintf(x509AuthDBUsersPath, groupID, username)
+	path, err := setListOptions(path, listOptions)
+	if err != nil {
+		return nil, nil, err
+	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
