@@ -70,7 +70,7 @@ type AssociatedOrgs struct {
 	OrgID                    string       `json:"orgId,omitempty"`
 	PostAuthRoleGrants       []string     `json:"postAuthRoleGrants,omitempty"`
 	RoleMappings             RoleMappings `json:"roleMappings,omitempty"`
-	UserConflicts            interface{}  `json:"userConflicts,omitempty"`
+	UserConflicts            []string     `json:"userConflicts,omitempty"`
 }
 type PemFileInfo struct {
 	Certificates []Certificates `json:"certificates,omitempty"`
