@@ -72,38 +72,29 @@ func TestFederatedSettingsIdentityProviderOp_List(t *testing.T) {
 			t.Fatalf("FederatedSettingsIdentityProvider.List returned error: %v", err)
 		}
 
-		expected := &FederatedSettingsIdentityProviders{
-			Links: []*Link{
-				{
-					Href: "https://cloud.mongodb.com/api/public/v1.0/federationSettings/5a0a1e7e0f2912c554080adc/identityProviders?pretty=true&pageNum=1&itemsPerPage=100",
-					Rel:  "self",
-				},
-			},
-			Results: []*FederatedSettingsIdentityProvider{
-				{
-					AcsURL:            "https://example.mongodb.com/sso/saml2/12345678901234567890",
-					AssociatedDomains: []string{},
-					AssociatedOrgs:    []AssociatedOrgs{},
-					AudienceURI:       "https://www.example.com/saml2/service-provider/abcdefghij1234567890",
-					DisplayName:       "Test",
-					IssuerURI:         "urn:123456789000.us.provider.com",
-					OktaIdpID:         "1234567890abcdefghij",
-					PemFileInfo: PemFileInfo{
-						Certificates: []Certificates{
-							{
-								NotAfter:  ta,
-								NotBefore: tb,
-							},
+		expected := []FederatedSettingsIdentityProvider{
+			{
+				AcsURL:            "https://example.mongodb.com/sso/saml2/12345678901234567890",
+				AssociatedDomains: []string{},
+				AssociatedOrgs:    []AssociatedOrgs{},
+				AudienceURI:       "https://www.example.com/saml2/service-provider/abcdefghij1234567890",
+				DisplayName:       "Test",
+				IssuerURI:         "urn:123456789000.us.provider.com",
+				OktaIdpID:         "1234567890abcdefghij",
+				PemFileInfo: PemFileInfo{
+					Certificates: []Certificates{
+						{
+							NotAfter:  ta,
+							NotBefore: tb,
 						},
-						FileName: "file.pem",
 					},
-					RequestBinding:             "HTTP-POST",
-					ResponseSignatureAlgorithm: "SHA-256",
-					SsoDebugEnabled:            true,
-					SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
-					Status:                     "INACTIVE"},
-			},
-			TotalCount: 1,
+					FileName: "file.pem",
+				},
+				RequestBinding:             "HTTP-POST",
+				ResponseSignatureAlgorithm: "SHA-256",
+				SsoDebugEnabled:            true,
+				SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
+				Status:                     "INACTIVE"},
 		}
 
 		if diff := deep.Equal(identityProviders, expected); diff != nil {

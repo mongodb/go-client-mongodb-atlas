@@ -27,7 +27,7 @@ const federationSettingsIdentityProviderBasePath = "api/atlas/v1.0/federationSet
 // endpoints of the MongoDB Atlas API.
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsIdentityProviderService interface {
-	List(context.Context, *ListOptions, string) (*FederatedSettingsIdentityProviders, *Response, error)
+	List(context.Context, *ListOptions, string) ([]FederatedSettingsIdentityProvider, *Response, error)
 	Get(context.Context, string, string) (*FederatedSettingsIdentityProvider, *Response, error)
 	Update(context.Context, string, string, *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error)
 }
@@ -42,9 +42,9 @@ var _ FederatedSettingsIdentityProviderService = &FederatedSettingsIdentityProvi
 
 // FederatedSettings represents a FederatedSettings List.
 type FederatedSettingsIdentityProviders struct {
-	Links      []*Link                              `json:"links,omitempty"`
-	Results    []*FederatedSettingsIdentityProvider `json:"results,omitempty"`
-	TotalCount int                                  `json:"totalCount,omitempty"`
+	Links      []*Link                             `json:"links,omitempty"`
+	Results    []FederatedSettingsIdentityProvider `json:"results,omitempty"`
+	TotalCount int                                 `json:"totalCount,omitempty"`
 }
 
 type FederatedSettingsIdentityProvider struct {
@@ -93,7 +93,7 @@ type Certificates struct {
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
-func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsIdentityProviders, *Response, error) {
+func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) ([]FederatedSettingsIdentityProvider, *Response, error) {
 	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {
@@ -115,7 +115,7 @@ func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, o
 		resp.Links = l
 	}
 
-	return root, resp, nil
+	return root.Results, resp, nil
 }
 
 // Get gets Federated Settings Identity Providers for an organization.
