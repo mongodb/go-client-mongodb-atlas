@@ -64,13 +64,13 @@ type FederatedSettingsIdentityProvider struct {
 }
 
 type AssociatedOrgs struct {
-	DomainAllowList          []string       `json:"domainAllowList,omitempty"`
-	DomainRestrictionEnabled *bool          `json:"domainRestrictionEnabled,omitempty"`
-	IdentityProviderID       string         `json:"identityProviderId,omitempty"`
-	OrgID                    string         `json:"orgId,omitempty"`
-	PostAuthRoleGrants       []string       `json:"postAuthRoleGrants,omitempty"`
-	RoleMappings             *RoleMappings  `json:"roleMappings,omitempty"`
-	UserConflicts            *UserConflicts `json:"userConflicts,omitempty"`
+	DomainAllowList          []string        `json:"domainAllowList,omitempty"`
+	DomainRestrictionEnabled *bool           `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string          `json:"identityProviderId,omitempty"`
+	OrgID                    string          `json:"orgId,omitempty"`
+	PostAuthRoleGrants       []string        `json:"postAuthRoleGrants,omitempty"`
+	RoleMappings             []*RoleMappings `json:"roleMappings,omitempty"`
+	UserConflicts            *UserConflicts  `json:"userConflicts,omitempty"`
 }
 type PemFileInfo struct {
 	Certificates []*Certificates `json:"certificates,omitempty"`

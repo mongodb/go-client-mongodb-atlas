@@ -48,16 +48,16 @@ type FederatedSettingsConnectedOrganizations struct {
 }
 
 type FederatedSettingsConnectedOrganization struct {
-	DomainAllowList          []string       `json:"domainAllowList,omitempty"`
-	DomainRestrictionEnabled *bool          `json:"domainRestrictionEnabled,omitempty"`
-	IdentityProviderID       string         `json:"identityProviderId,omitempty"`
-	OrgID                    string         `json:"orgId,omitempty"`
-	PostAuthRoleGrants       []string       `json:"postAuthRoleGrants,omitempty"`
-	RoleMappings             *RoleMappings  `json:"roleMappings,omitempty"`
-	UserConflicts            *UserConflicts `json:"userConflicts,omitempty"`
+	DomainAllowList          []string        `json:"domainAllowList,omitempty"`
+	DomainRestrictionEnabled *bool           `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string          `json:"identityProviderId,omitempty"`
+	OrgID                    string          `json:"orgId,omitempty"`
+	PostAuthRoleGrants       []string        `json:"postAuthRoleGrants,omitempty"`
+	RoleMappings             []*RoleMappings `json:"roleMappings,omitempty"`
+	UserConflicts            *UserConflicts  `json:"userConflicts,omitempty"`
 }
 
-type RoleMappings []struct {
+type RoleMappings struct {
 	ExternalGroupName string           `json:"externalGroupName,omitempty"`
 	ID                string           `json:"id,omitempty"`
 	RoleAssignments   *RoleAssignments `json:"roleAssignments,omitempty"`

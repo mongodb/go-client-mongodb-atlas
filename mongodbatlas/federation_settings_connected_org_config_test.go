@@ -90,7 +90,7 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 					IdentityProviderID:       "0oad0iizxh30vuyr5297",
 					OrgID:                    "627a9683eafda674de306f14",
 					PostAuthRoleGrants:       []string{},
-					RoleMappings: &RoleMappings{
+					RoleMappings: []*RoleMappings{
 						{
 							ExternalGroupName: "myGroup",
 							ID:                "627b1f8f244ad705fd542d81",
@@ -157,7 +157,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306f14",
 		PostAuthRoleGrants:       []string{},
-		RoleMappings: &RoleMappings{
+		RoleMappings: []*RoleMappings{
 			{
 				ExternalGroupName: "myGroup",
 				ID:                "627b1f8f244ad705fd542d81",
@@ -216,7 +216,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306d14",
 		PostAuthRoleGrants:       []string{},
-		RoleMappings: &RoleMappings{
+		RoleMappings: []*RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
@@ -241,7 +241,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306f14",
 		PostAuthRoleGrants:       []string{},
-		RoleMappings: &RoleMappings{
+		RoleMappings: []*RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
