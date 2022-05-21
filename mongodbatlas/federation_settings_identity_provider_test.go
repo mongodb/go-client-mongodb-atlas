@@ -1,4 +1,4 @@
-// Copyright 2019 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -72,17 +72,19 @@ func TestFederatedSettingsIdentityProviderOp_List(t *testing.T) {
 			t.Fatalf("FederatedSettingsIdentityProvider.List returned error: %v", err)
 		}
 
+		SsoDebugEnabled := true
+
 		expected := []FederatedSettingsIdentityProvider{
 			{
 				AcsURL:            "https://example.mongodb.com/sso/saml2/12345678901234567890",
 				AssociatedDomains: []string{},
-				AssociatedOrgs:    []AssociatedOrgs{},
+				AssociatedOrgs:    []*AssociatedOrgs{},
 				AudienceURI:       "https://www.example.com/saml2/service-provider/abcdefghij1234567890",
 				DisplayName:       "Test",
 				IssuerURI:         "urn:123456789000.us.provider.com",
 				OktaIdpID:         "1234567890abcdefghij",
-				PemFileInfo: PemFileInfo{
-					Certificates: []Certificates{
+				PemFileInfo: &PemFileInfo{
+					Certificates: []*Certificates{
 						{
 							NotAfter:  ta,
 							NotBefore: tb,
@@ -92,7 +94,7 @@ func TestFederatedSettingsIdentityProviderOp_List(t *testing.T) {
 				},
 				RequestBinding:             "HTTP-POST",
 				ResponseSignatureAlgorithm: "SHA-256",
-				SsoDebugEnabled:            true,
+				SsoDebugEnabled:            &SsoDebugEnabled,
 				SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
 				Status:                     "INACTIVE"},
 		}
@@ -137,12 +139,14 @@ func TestFederatedSettingsIdentityProviderOp_Get(t *testing.T) {
 		t.Fatalf("FederatedSettingsIdentityProvider.Get returned error: %v", err)
 	}
 
+	SsoDebugEnabled := true
+
 	expected := &FederatedSettingsIdentityProvider{
 		AcsURL:            "https://example.mongodb.com/sso/saml2/12345678901234567890",
 		AssociatedDomains: []string{},
-		AssociatedOrgs:    []AssociatedOrgs{},
-		PemFileInfo: PemFileInfo{
-			Certificates: []Certificates{
+		AssociatedOrgs:    []*AssociatedOrgs{},
+		PemFileInfo: &PemFileInfo{
+			Certificates: []*Certificates{
 				{
 					NotAfter:  ta,
 					NotBefore: tb,
@@ -156,7 +160,7 @@ func TestFederatedSettingsIdentityProviderOp_Get(t *testing.T) {
 		OktaIdpID:                  "1234567890abcdefghij",
 		RequestBinding:             "HTTP-POST",
 		ResponseSignatureAlgorithm: "SHA-256",
-		SsoDebugEnabled:            true,
+		SsoDebugEnabled:            &SsoDebugEnabled,
 		SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
 		Status:                     "INACTIVE",
 	}

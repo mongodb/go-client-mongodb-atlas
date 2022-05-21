@@ -1,4 +1,4 @@
-// Copyright 2019 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
 				{
 					ExternalGroupName: "example",
 					ID:                "61e89721b827b56c845ff44c",
-					RoleAssignments: RoleAssignments{
+					RoleAssignments: &RoleAssignments{
 						{
 							GroupID: "",
 							OrgID:   "5a0a1e7e0f2912c554080adc",
@@ -124,7 +124,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {
 	expected := &FederatedSettingsOrganizationConnection{
 		ExternalGroupName: "autocomplete-highlight",
 		ID:                "61d88e15e6cc044270a36fce",
-		RoleAssignments: RoleAssignments{
+		RoleAssignments: &RoleAssignments{
 			{
 				GroupID: "",
 				OrgID:   "5f86fb11e0079069c9ec3132",

@@ -1,4 +1,4 @@
-// Copyright 2021 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,37 +48,45 @@ type FederatedSettingsIdentityProviders struct {
 }
 
 type FederatedSettingsIdentityProvider struct {
-	AcsURL                     string           `json:"acsUrl,omitempty"`
-	AssociatedDomains          []string         `json:"associatedDomains,omitempty"`
-	AssociatedOrgs             []AssociatedOrgs `json:"associatedOrgs,omitempty"`
-	AudienceURI                string           `json:"audienceUri,omitempty"`
-	DisplayName                string           `json:"displayName,omitempty"`
-	IssuerURI                  string           `json:"issuerUri,omitempty"`
-	OktaIdpID                  string           `json:"oktaIdpId,omitempty"`
-	PemFileInfo                PemFileInfo      `json:"pemFileInfo,omitempty"`
-	RequestBinding             string           `json:"requestBinding,omitempty"`
-	ResponseSignatureAlgorithm string           `json:"responseSignatureAlgorithm,omitempty"`
-	SsoDebugEnabled            bool             `json:"ssoDebugEnabled,omitempty"`
-	SsoURL                     string           `json:"ssoUrl,omitempty"`
-	Status                     string           `json:"status,omitempty"`
+	AcsURL                     string            `json:"acsUrl,omitempty"`
+	AssociatedDomains          []string          `json:"associatedDomains,omitempty"`
+	AssociatedOrgs             []*AssociatedOrgs `json:"associatedOrgs,omitempty"`
+	AudienceURI                string            `json:"audienceUri,omitempty"`
+	DisplayName                string            `json:"displayName,omitempty"`
+	IssuerURI                  string            `json:"issuerUri,omitempty"`
+	OktaIdpID                  string            `json:"oktaIdpId,omitempty"`
+	PemFileInfo                *PemFileInfo      `json:"pemFileInfo,omitempty"`
+	RequestBinding             string            `json:"requestBinding,omitempty"`
+	ResponseSignatureAlgorithm string            `json:"responseSignatureAlgorithm,omitempty"`
+	SsoDebugEnabled            *bool             `json:"ssoDebugEnabled,omitempty"`
+	SsoURL                     string            `json:"ssoUrl,omitempty"`
+	Status                     string            `json:"status,omitempty"`
 }
 
 type AssociatedOrgs struct {
-	DomainAllowList          []string     `json:"domainAllowList,omitempty"`
-	DomainRestrictionEnabled bool         `json:"domainRestrictionEnabled,omitempty"`
-	IdentityProviderID       string       `json:"identityProviderId,omitempty"`
-	OrgID                    string       `json:"orgId,omitempty"`
-	PostAuthRoleGrants       []string     `json:"postAuthRoleGrants,omitempty"`
-	RoleMappings             RoleMappings `json:"roleMappings,omitempty"`
-	UserConflicts            []string     `json:"userConflicts,omitempty"`
+	DomainAllowList          []string       `json:"domainAllowList,omitempty"`
+	DomainRestrictionEnabled *bool          `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string         `json:"identityProviderId,omitempty"`
+	OrgID                    string         `json:"orgId,omitempty"`
+	PostAuthRoleGrants       []string       `json:"postAuthRoleGrants,omitempty"`
+	RoleMappings             *RoleMappings  `json:"roleMappings,omitempty"`
+	UserConflicts            *UserConflicts `json:"userConflicts,omitempty"`
 }
 type PemFileInfo struct {
-	Certificates []Certificates `json:"certificates,omitempty"`
-	FileName     string         `json:"fileName,omitempty"`
+	Certificates []*Certificates `json:"certificates,omitempty"`
+	FileName     string          `json:"fileName,omitempty"`
 }
 type Certificates struct {
 	NotAfter  time.Time `json:"notAfter,omitempty"`
 	NotBefore time.Time `json:"notBefore,omitempty"`
+}
+
+type UserConflicts []struct {
+	EmailAddress         string `json:"emailAddress,omitempty"`
+	FederationSettingsID string `json:"federationSettingsId,omitempty"`
+	FirstName            string `json:"firstName,omitempty"`
+	LastName             string `json:"lastName,omitempty"`
+	UserID               string `json:"userId,omitempty"`
 }
 
 // List gets all Federated Settings Identity Providers for an organization.

@@ -1,4 +1,4 @@
-// Copyright 2021 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ var _ FederatedSettingsService = &FederatedSettingsServiceOp{}
 // FederatedSettings represents a FederatedSettings List.
 type FederatedSettings struct {
 	FederatedDomains       []string `json:"federatedDomains,omitempty"`
-	HasRoleMappings        bool     `json:"hasRoleMappings,omitempty"`
+	HasRoleMappings        *bool    `json:"hasRoleMappings,omitempty"`
 	ID                     string   `json:"id,omitempty"`
 	IdentityProviderID     string   `json:"identityProviderId,omitempty"`
 	IdentityProviderStatus string   `json:"identityProviderStatus,omitempty"`

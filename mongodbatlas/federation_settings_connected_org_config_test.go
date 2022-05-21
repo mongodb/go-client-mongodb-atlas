@@ -1,4 +1,4 @@
-// Copyright 2019 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,6 +73,8 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 			t.Fatalf("Organizations.List returned error: %v", err)
 		}
 
+		DomainRestrictionEnabled := false
+
 		expected := &FederatedSettingsConnectedOrganizations{
 			Links: []*Link{
 				{
@@ -83,15 +85,16 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 			Results: []*FederatedSettingsConnectedOrganization{
 
 				{
-					DomainAllowList:    []string{"reorganizeyourworld.com"},
-					IdentityProviderID: "0oad0iizxh30vuyr5297",
-					OrgID:              "627a9683eafda674de306f14",
-					PostAuthRoleGrants: []string{},
-					RoleMappings: RoleMappings{
+					DomainAllowList:          []string{"reorganizeyourworld.com"},
+					DomainRestrictionEnabled: &DomainRestrictionEnabled,
+					IdentityProviderID:       "0oad0iizxh30vuyr5297",
+					OrgID:                    "627a9683eafda674de306f14",
+					PostAuthRoleGrants:       []string{},
+					RoleMappings: &RoleMappings{
 						{
 							ExternalGroupName: "myGroup",
 							ID:                "627b1f8f244ad705fd542d81",
-							RoleAssignments: RoleAssignments{
+							RoleAssignments: &RoleAssignments{
 								{
 									OrgID: "627a9683eafda674de306d14",
 									Role:  "ORG_OWNER",
@@ -146,17 +149,19 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 	if err != nil {
 		t.Fatalf("FederatedSettingsConnectedOrganization.Get returned error: %v", err)
 	}
+	DomainRestrictionEnabled := false
 
 	expected := &FederatedSettingsConnectedOrganization{
-		DomainAllowList:    []string{"reorganizeyourworld.com"},
-		IdentityProviderID: "0oad0iizxh30vuyr5297",
-		OrgID:              "627a9683eafda674de306f14",
-		PostAuthRoleGrants: []string{},
-		RoleMappings: RoleMappings{
+		DomainAllowList:          []string{"reorganizeyourworld.com"},
+		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		IdentityProviderID:       "0oad0iizxh30vuyr5297",
+		OrgID:                    "627a9683eafda674de306f14",
+		PostAuthRoleGrants:       []string{},
+		RoleMappings: &RoleMappings{
 			{
 				ExternalGroupName: "myGroup",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: RoleAssignments{
+				RoleAssignments: &RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
@@ -203,16 +208,19 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 }`)
 	})
 
+	DomainRestrictionEnabled := false
+
 	updated := &FederatedSettingsConnectedOrganization{
-		DomainAllowList:    []string{"reorganizeyourworld.com"},
-		IdentityProviderID: "0oad0iizxh30vuyr5297",
-		OrgID:              "627a9683eafda674de306d14",
-		PostAuthRoleGrants: []string{},
-		RoleMappings: RoleMappings{
+		DomainAllowList:          []string{"reorganizeyourworld.com"},
+		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		IdentityProviderID:       "0oad0iizxh30vuyr5297",
+		OrgID:                    "627a9683eafda674de306d14",
+		PostAuthRoleGrants:       []string{},
+		RoleMappings: &RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: RoleAssignments{
+				RoleAssignments: &RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
@@ -228,15 +236,16 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 	}
 
 	expected := &FederatedSettingsConnectedOrganization{
-		DomainAllowList:    []string{"reorganizeyourworld.com"},
-		IdentityProviderID: "0oad0iizxh30vuyr5297",
-		OrgID:              "627a9683eafda674de306f14",
-		PostAuthRoleGrants: []string{},
-		RoleMappings: RoleMappings{
+		DomainAllowList:          []string{"reorganizeyourworld.com"},
+		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		IdentityProviderID:       "0oad0iizxh30vuyr5297",
+		OrgID:                    "627a9683eafda674de306f14",
+		PostAuthRoleGrants:       []string{},
+		RoleMappings: &RoleMappings{
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: RoleAssignments{
+				RoleAssignments: &RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",

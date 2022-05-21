@@ -1,4 +1,4 @@
-// Copyright 2021 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,23 +48,19 @@ type FederatedSettingsConnectedOrganizations struct {
 }
 
 type FederatedSettingsConnectedOrganization struct {
-	DomainAllowList          []string     `json:"domainAllowList,omitempty"`
-	DomainRestrictionEnabled bool         `json:"domainRestrictionEnabled,omitempty"`
-	IdentityProviderID       string       `json:"identityProviderId,omitempty"`
-	OrgID                    string       `json:"orgId,omitempty"`
-	PostAuthRoleGrants       []string     `json:"postAuthRoleGrants,omitempty"`
-	RoleMappings             RoleMappings `json:"roleMappings,omitempty"`
-	UserConflicts            []string     `json:"userConflicts,omitempty"`
+	DomainAllowList          []string       `json:"domainAllowList,omitempty"`
+	DomainRestrictionEnabled *bool          `json:"domainRestrictionEnabled,omitempty"`
+	IdentityProviderID       string         `json:"identityProviderId,omitempty"`
+	OrgID                    string         `json:"orgId,omitempty"`
+	PostAuthRoleGrants       []string       `json:"postAuthRoleGrants,omitempty"`
+	RoleMappings             *RoleMappings  `json:"roleMappings,omitempty"`
+	UserConflicts            *UserConflicts `json:"userConflicts,omitempty"`
 }
 
 type RoleMappings []struct {
-	ExternalGroupName string `json:"externalGroupName,omitempty"`
-	ID                string `json:"id,omitempty"`
-	RoleAssignments   []struct {
-		GroupID string `json:"groupId,omitempty"`
-		OrgID   string `json:"orgId,omitempty"`
-		Role    string `json:"role,omitempty"`
-	} `json:"roleAssignments,omitempty"`
+	ExternalGroupName string           `json:"externalGroupName,omitempty"`
+	ID                string           `json:"id,omitempty"`
+	RoleAssignments   *RoleAssignments `json:"roleAssignments,omitempty"`
 }
 
 // List gets all Federated Settings Connected Organization (Org-Mappings).
@@ -157,7 +153,7 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Cont
 	return root, resp, err
 }
 
-// Delete deletes federation setting.
+// Delete deletes federation setting for org mapping.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
 func (s *FederatedSettingsConnectedOrganizationSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {

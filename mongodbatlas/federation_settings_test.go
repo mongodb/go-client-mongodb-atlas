@@ -1,4 +1,4 @@
-// Copyright 2019 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,10 +48,12 @@ func TestFederatedSettingsServiceOp_Get(t *testing.T) {
 		t.Fatalf("FederatedSettings.Get returned error: %v", err)
 	}
 
+	HasRoleMappings := false
+
 	expected := &FederatedSettings{
 		FederatedDomains:       []string{"example.com"},
 		ID:                     "5e8cc670a16506712e0b1e95",
-		HasRoleMappings:        false,
+		HasRoleMappings:        &HasRoleMappings,
 		IdentityProviderID:     "0oa8i0grsgbwDiIyw453",
 		IdentityProviderStatus: "INACTIVE",
 	}

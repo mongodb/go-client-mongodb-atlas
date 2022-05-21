@@ -1,4 +1,4 @@
-// Copyright 2021 MongoDB Inc
+// Copyright 2022 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,9 +48,9 @@ type FederatedSettingsOrganizationConnections struct {
 }
 
 type FederatedSettingsOrganizationConnection struct {
-	ExternalGroupName string          `json:"externalGroupName,omitempty"`
-	ID                string          `json:"id,omitempty"`
-	RoleAssignments   RoleAssignments `json:"roleAssignments,omitempty"`
+	ExternalGroupName string           `json:"externalGroupName,omitempty"`
+	ID                string           `json:"id,omitempty"`
+	RoleAssignments   *RoleAssignments `json:"roleAssignments,omitempty"`
 }
 
 type RoleAssignments []struct {
