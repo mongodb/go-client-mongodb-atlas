@@ -28,6 +28,7 @@ const federationSettingsOrganizationRoleMappingBasePath = "api/atlas/v1.0/federa
 type FederatedSettingsOrganizationRoleMappingService interface {
 	List(context.Context, *ListOptions, string, string) (*FederatedSettingsOrganizationRoleMappings, *Response, error)
 	Get(context.Context, string, string, string) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
+	Create(context.Context, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
 	Update(context.Context, string, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
 	Delete(context.Context, string, string, string) (*Response, error)
 }
@@ -95,6 +96,10 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Get(ctx context.Conte
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
 
+	if orgID == "" {
+		return nil, nil, NewArgError("orgID", "must be set")
+	}
+
 	basePath := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, roleMappingID)
 
@@ -112,10 +117,46 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Get(ctx context.Conte
 	return root, resp, err
 }
 
+// Create creates one new live migration.
+//
+// See more: https://docs.atlas.mongodb.com/reference/api/live-migration/create-one-migration/
+func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Create(ctx context.Context, federationSettingsID, orgID string, body *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
+	}
+
+	if orgID == "" {
+		return nil, nil, NewArgError("orgID", "must be set")
+	}
+
+	path := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(FederatedSettingsOrganizationRoleMapping)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
 // Update updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-create-one/
 func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Update(ctx context.Context, federationSettingsID, orgID, roleMappingID string, updateRequest *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
+	}
+
+	if orgID == "" {
+		return nil, nil, NewArgError("orgID", "must be set")
+	}
+
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
@@ -143,6 +184,10 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Update(ctx context.Co
 func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
+	}
+
+	if orgID == "" {
+		return nil, NewArgError("orgID", "must be set")
 	}
 
 	basePath := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)

@@ -155,3 +155,71 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Delete(t *testing.T) 
 		t.Fatalf("FederatedSettingsOrganizationRoleMapping.Delete returned error: %v", err)
 	}
 }
+
+func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs/%s/roleMappings", orgConnectionFederationSettingsID, orgConnectionID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		fmt.Fprint(w, `{
+			"externalGroupName": "autocomplete-highlight",
+			"id": "61d88e15e6cc044270a36fce",
+			"roleAssignments": [
+				{
+					"groupId": null,
+					"orgId": "5f86fb11e0079069c9ec3132",
+					"role": "ORG_OWNER"
+				},
+				{
+					"groupId": "5f86fb2ff9c4e56d39502559",
+					"orgId": null,
+					"role": "GROUP_OWNER"
+				}
+			]
+		   }`)
+	})
+
+	body := &FederatedSettingsOrganizationRoleMapping{
+		ExternalGroupName: "autocomplete-highlight",
+		ID:                "61d88e15e6cc044270a36fce",
+		RoleAssignments: &RoleAssignments{
+			{
+				GroupID: "",
+				OrgID:   "5f86fb11e0079069c9ec3132",
+				Role:    "ORG_OWNER",
+			},
+			{
+				GroupID: "5f86fb2ff9c4e56d39502559",
+				OrgID:   "",
+				Role:    "GROUP_OWNER",
+			},
+		},
+	}
+
+	response, _, err := client.FederatedSettingsOrganizationRoleMapping.Create(ctx, orgConnectionFederationSettingsID, orgConnectionID, body)
+	if err != nil {
+		t.Fatalf("LiveMigration.Create returned error: %v", err)
+	}
+
+	expected := &FederatedSettingsOrganizationRoleMapping{
+		ExternalGroupName: "autocomplete-highlight",
+		ID:                "61d88e15e6cc044270a36fce",
+		RoleAssignments: &RoleAssignments{
+			{
+				GroupID: "",
+				OrgID:   "5f86fb11e0079069c9ec3132",
+				Role:    "ORG_OWNER",
+			},
+			{
+				GroupID: "5f86fb2ff9c4e56d39502559",
+				OrgID:   "",
+				Role:    "GROUP_OWNER",
+			},
+		},
+	}
+
+	if diff := deep.Equal(response, expected); diff != nil {
+		t.Error(diff)
+	}
+}

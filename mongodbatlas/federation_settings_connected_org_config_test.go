@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 const connectedOrgID = "627a9683eafda674de306d14"
@@ -149,11 +150,10 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 	if err != nil {
 		t.Fatalf("FederatedSettingsConnectedOrganization.Get returned error: %v", err)
 	}
-	DomainRestrictionEnabled := false
 
 	expected := &FederatedSettingsConnectedOrganization{
 		DomainAllowList:          []string{"reorganizeyourworld.com"},
-		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		DomainRestrictionEnabled: pointy.Bool(false),
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306f14",
 		PostAuthRoleGrants:       []string{},
@@ -208,11 +208,9 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 }`)
 	})
 
-	DomainRestrictionEnabled := false
-
 	updated := &FederatedSettingsConnectedOrganization{
 		DomainAllowList:          []string{"reorganizeyourworld.com"},
-		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		DomainRestrictionEnabled: pointy.Bool(false),
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306d14",
 		PostAuthRoleGrants:       []string{},
@@ -237,7 +235,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 
 	expected := &FederatedSettingsConnectedOrganization{
 		DomainAllowList:          []string{"reorganizeyourworld.com"},
-		DomainRestrictionEnabled: &DomainRestrictionEnabled,
+		DomainRestrictionEnabled: pointy.Bool(false),
 		IdentityProviderID:       "0oad0iizxh30vuyr5297",
 		OrgID:                    "627a9683eafda674de306f14",
 		PostAuthRoleGrants:       []string{},

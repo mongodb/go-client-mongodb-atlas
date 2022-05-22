@@ -93,6 +93,10 @@ type UserConflicts []struct {
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
 func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) ([]FederatedSettingsIdentityProvider, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
+	}
+
 	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {
@@ -125,6 +129,10 @@ func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, fe
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
 
+	if idpID == "" {
+		return nil, nil, NewArgError("idpID", "must be set")
+	}
+
 	basePath := fmt.Sprintf(federationSettingsIdentityProviderBasePath, federationSettingsID)
 	path := fmt.Sprintf("%s/%s", basePath, idpID)
 
@@ -146,6 +154,14 @@ func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, fe
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-update-one/
 func (s *FederatedSettingsIdentityProviderServiceOp) Update(ctx context.Context, federationSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
+	}
+
+	if idpID == "" {
+		return nil, nil, NewArgError("idpID", "must be set")
+	}
+
 	if updateRequest == nil {
 		return nil, nil, NewArgError("updateRequest", "cannot be nil")
 	}
