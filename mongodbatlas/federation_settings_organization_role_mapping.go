@@ -164,7 +164,7 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Update(ctx context.Co
 	basePath := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)
 	path := fmt.Sprintf("%s/%s", basePath, roleMappingID)
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPut, path, updateRequest)
 	if err != nil {
 		return nil, nil, err
 	}
