@@ -26,7 +26,7 @@ const orgConnectionID = "5a0a1e7e0f2912c554080adb"
 const orgConnectionFederationSettingsID = "5a0a1e7e0f2912c554080adc"
 const roleMappingID = "5a0a1e7e0f2912c554080add"
 
-func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
+func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
 		client, mux, teardown := setup()
 		defer teardown()
@@ -57,19 +57,19 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
 			  }`)
 		})
 
-		orgs, _, err := client.FederatedSettingsOrganizationConnection.List(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
+		orgs, _, err := client.FederatedSettingsOrganizationRoleMapping.List(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
 		if err != nil {
-			t.Fatalf("FederatedSettingsOrganizationConnection.List returned error: %v", err)
+			t.Fatalf("FederatedSettingsOrganizationRoleMapping.List returned error: %v", err)
 		}
 
-		expected := &FederatedSettingsOrganizationConnections{
+		expected := &FederatedSettingsOrganizationRoleMappings{
 			Links: []*Link{
 				{
 					Href: "https://cloud.mongodb.com/api/atlas/v1.0/federationSettings/5a0a1e7e0f2912c554080adc/connectedOrgConfigs/5a0a1e7e0f2912c554080adb/roleMappings",
 					Rel:  "self",
 				},
 			},
-			Results: []*FederatedSettingsOrganizationConnection{
+			Results: []*FederatedSettingsOrganizationRoleMapping{
 				{
 					ExternalGroupName: "example",
 					ID:                "61e89721b827b56c845ff44c",
@@ -92,7 +92,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_List(t *testing.T) {
 	})
 }
 
-func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {
+func TestFederatedSettingsOrganizationRoleMappingServiceOp_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -116,12 +116,12 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {
 		   }`)
 	})
 
-	response, _, err := client.FederatedSettingsOrganizationConnection.Get(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
+	response, _, err := client.FederatedSettingsOrganizationRoleMapping.Get(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
-		t.Fatalf("FederatedSettingsOrganizationConnection.Get returned error: %v", err)
+		t.Fatalf("FederatedSettingsOrganizationRoleMapping.Get returned error: %v", err)
 	}
 
-	expected := &FederatedSettingsOrganizationConnection{
+	expected := &FederatedSettingsOrganizationRoleMapping{
 		ExternalGroupName: "autocomplete-highlight",
 		ID:                "61d88e15e6cc044270a36fce",
 		RoleAssignments: &RoleAssignments{
@@ -142,7 +142,7 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Get(t *testing.T) {
 	}
 }
 
-func TestFederatedSettingsOrganizationConnectionServiceOp_Delete(t *testing.T) {
+func TestFederatedSettingsOrganizationRoleMappingServiceOp_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -150,8 +150,8 @@ func TestFederatedSettingsOrganizationConnectionServiceOp_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.FederatedSettingsOrganizationConnection.Delete(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
+	_, err := client.FederatedSettingsOrganizationRoleMapping.Delete(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
-		t.Fatalf("FederatedSettingsOrganizationConnection.Delete returned error: %v", err)
+		t.Fatalf("FederatedSettingsOrganizationRoleMapping.Delete returned error: %v", err)
 	}
 }

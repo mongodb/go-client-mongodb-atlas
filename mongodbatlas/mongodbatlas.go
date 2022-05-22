@@ -143,10 +143,10 @@ type Client struct {
 	CloudProviderSnapshotExportBuckets  CloudProviderSnapshotExportBucketsService
 	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
 
-	FederatedSettings                       FederatedSettingsService
-	FederatedSettingsConnectedOrganization  FederatedSettingsConnectedOrganizationService
-	FederatedSettingsIdentityProvider       FederatedSettingsIdentityProviderService
-	FederatedSettingsOrganizationConnection FederatedSettingsOrganizationConnectionService
+	FederatedSettings                        FederatedSettingsService
+	FederatedSettingsConnectedOrganization   FederatedSettingsConnectedOrganizationService
+	FederatedSettingsIdentityProvider        FederatedSettingsIdentityProviderService
+	FederatedSettingsOrganizationRoleMapping FederatedSettingsOrganizationRoleMappingService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -290,7 +290,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CloudProviderSnapshotExportBuckets = &CloudProviderSnapshotExportBucketsServiceOp{Client: c}
 	c.CloudProviderSnapshotExportJobs = &CloudProviderSnapshotExportJobsServiceOp{Client: c}
 	c.FederatedSettings = &FederatedSettingsServiceOp{Client: c}
-	c.FederatedSettingsOrganizationConnection = &FederatedSettingsOrganizationConnectionSeviceOp{Client: c}
+	c.FederatedSettingsOrganizationRoleMapping = &FederatedSettingsOrganizationRoleMappingSeviceOp{Client: c}
 	c.FederatedSettingsIdentityProvider = &FederatedSettingsIdentityProviderServiceOp{Client: c}
 	c.FederatedSettingsConnectedOrganization = &FederatedSettingsConnectedOrganizationSeviceOp{Client: c}
 	return c
