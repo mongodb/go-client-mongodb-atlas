@@ -95,7 +95,7 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 						{
 							ExternalGroupName: "myGroup",
 							ID:                "627b1f8f244ad705fd542d81",
-							RoleAssignments: &RoleAssignments{
+							RoleAssignments: []*RoleAssignments{
 								{
 									OrgID: "627a9683eafda674de306d14",
 									Role:  "ORG_OWNER",
@@ -161,7 +161,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 			{
 				ExternalGroupName: "myGroup",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: &RoleAssignments{
+				RoleAssignments: []*RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
@@ -218,7 +218,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: &RoleAssignments{
+				RoleAssignments: []*RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",
@@ -243,7 +243,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 			{
 				ExternalGroupName: "myGroup1",
 				ID:                "627b1f8f244ad705fd542d81",
-				RoleAssignments: &RoleAssignments{
+				RoleAssignments: []*RoleAssignments{
 					{
 						OrgID: "627a9683eafda674de306d14",
 						Role:  "ORG_OWNER",

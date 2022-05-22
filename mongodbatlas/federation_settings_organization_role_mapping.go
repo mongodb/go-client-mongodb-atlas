@@ -49,12 +49,12 @@ type FederatedSettingsOrganizationRoleMappings struct {
 }
 
 type FederatedSettingsOrganizationRoleMapping struct {
-	ExternalGroupName string           `json:"externalGroupName,omitempty"`
-	ID                string           `json:"id,omitempty"`
-	RoleAssignments   *RoleAssignments `json:"roleAssignments,omitempty"`
+	ExternalGroupName string             `json:"externalGroupName,omitempty"`
+	ID                string             `json:"id,omitempty"`
+	RoleAssignments   []*RoleAssignments `json:"roleAssignments,omitempty"`
 }
 
-type RoleAssignments []struct {
+type RoleAssignments struct {
 	GroupID string `json:"groupId,omitempty"`
 	OrgID   string `json:"orgId,omitempty"`
 	Role    string `json:"role,omitempty"`

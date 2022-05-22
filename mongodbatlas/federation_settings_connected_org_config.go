@@ -58,9 +58,9 @@ type FederatedSettingsConnectedOrganization struct {
 }
 
 type RoleMappings struct {
-	ExternalGroupName string           `json:"externalGroupName,omitempty"`
-	ID                string           `json:"id,omitempty"`
-	RoleAssignments   *RoleAssignments `json:"roleAssignments,omitempty"`
+	ExternalGroupName string             `json:"externalGroupName,omitempty"`
+	ID                string             `json:"id,omitempty"`
+	RoleAssignments   []*RoleAssignments `json:"roleAssignments,omitempty"`
 }
 
 // List gets all Federated Settings Connected Organization (Org-Mappings).

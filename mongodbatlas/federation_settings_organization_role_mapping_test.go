@@ -73,7 +73,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 				{
 					ExternalGroupName: "example",
 					ID:                "61e89721b827b56c845ff44c",
-					RoleAssignments: &RoleAssignments{
+					RoleAssignments: []*RoleAssignments{
 						{
 							GroupID: "",
 							OrgID:   "5a0a1e7e0f2912c554080adc",
@@ -124,7 +124,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Get(t *testing.T) {
 	expected := &FederatedSettingsOrganizationRoleMapping{
 		ExternalGroupName: "autocomplete-highlight",
 		ID:                "61d88e15e6cc044270a36fce",
-		RoleAssignments: &RoleAssignments{
+		RoleAssignments: []*RoleAssignments{
 			{
 				GroupID: "",
 				OrgID:   "5f86fb11e0079069c9ec3132",
@@ -183,7 +183,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 	body := &FederatedSettingsOrganizationRoleMapping{
 		ExternalGroupName: "autocomplete-highlight",
 		ID:                "61d88e15e6cc044270a36fce",
-		RoleAssignments: &RoleAssignments{
+		RoleAssignments: []*RoleAssignments{
 			{
 				GroupID: "",
 				OrgID:   "5f86fb11e0079069c9ec3132",
@@ -205,7 +205,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 	expected := &FederatedSettingsOrganizationRoleMapping{
 		ExternalGroupName: "autocomplete-highlight",
 		ID:                "61d88e15e6cc044270a36fce",
-		RoleAssignments: &RoleAssignments{
+		RoleAssignments: []*RoleAssignments{
 			{
 				GroupID: "",
 				OrgID:   "5f86fb11e0079069c9ec3132",
