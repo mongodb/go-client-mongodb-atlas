@@ -46,7 +46,15 @@ type RoleAssignments struct {
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-all/
-func (s *FederatedSettingsServiceOp) ListRoleMapping(ctx context.Context, opts *ListOptions, federationSettingsID, orgID string) (*FederatedSettingsOrganizationRoleMappings, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListRoleMappings(ctx context.Context, federationSettingsID, orgID string, opts *ListOptions) (*FederatedSettingsOrganizationRoleMappings, *Response, error) {
+	if federationSettingsID == "" {
+		return nil, nil, NewArgError("federationSettingsID", "must be set")
+	}
+
+	if orgID == "" {
+		return nil, nil, NewArgError("orgID", "must be set")
+	}
+
 	basePath := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {

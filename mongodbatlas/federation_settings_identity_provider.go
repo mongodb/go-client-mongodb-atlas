@@ -77,7 +77,7 @@ type UserConflicts []struct {
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
-func (s *FederatedSettingsServiceOp) ListIdentityProvider(ctx context.Context, opts *ListOptions, federationSettingsID string) ([]FederatedSettingsIdentityProvider, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListIdentityProviders(ctx context.Context, federationSettingsID string, opts *ListOptions) ([]FederatedSettingsIdentityProvider, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}

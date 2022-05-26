@@ -57,7 +57,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 			  }`)
 		})
 
-		orgs, _, err := client.FederatedSettings.ListRoleMapping(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
+		orgs, _, err := client.FederatedSettings.ListRoleMappings(ctx, orgConnectionFederationSettingsID, orgConnectionID, nil)
 		if err != nil {
 			t.Fatalf("FederatedSettingsOrganizationRoleMapping.List returned error: %v", err)
 		}

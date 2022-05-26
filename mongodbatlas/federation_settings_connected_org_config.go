@@ -50,7 +50,7 @@ type RoleMappings struct {
 // List gets all Federated Settings Connected Organization (Org-Mappings).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mappings-return-all/
-func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsConnectedOrganizations, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, federationSettingsID string, opts *ListOptions) (*FederatedSettingsConnectedOrganizations, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -82,7 +82,7 @@ func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, opts
 // Get getsFederated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-return-one/
-func (s *FederatedSettingsServiceOp) GetConnectedOrgs(ctx context.Context, federationSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
+func (s *FederatedSettingsServiceOp) GetConnectedOrg(ctx context.Context, federationSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -111,7 +111,7 @@ func (s *FederatedSettingsServiceOp) GetConnectedOrgs(ctx context.Context, feder
 // Update updates Federated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-update-one/
-func (s *FederatedSettingsServiceOp) UpdateConnectedOrgs(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
+func (s *FederatedSettingsServiceOp) UpdateConnectedOrg(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -144,7 +144,7 @@ func (s *FederatedSettingsServiceOp) UpdateConnectedOrgs(ctx context.Context, fe
 // Delete deletes federation setting for org mapping.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
-func (s *FederatedSettingsServiceOp) DeleteConnectedOrgs(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
+func (s *FederatedSettingsServiceOp) DeleteConnectedOrg(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
 	}
