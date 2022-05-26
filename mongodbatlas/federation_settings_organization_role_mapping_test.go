@@ -57,7 +57,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 			  }`)
 		})
 
-		orgs, _, err := client.FederatedSettingsOrganizationRoleMapping.List(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
+		orgs, _, err := client.FederatedSettings.ListRoleMapping(ctx, nil, orgConnectionFederationSettingsID, orgConnectionID)
 		if err != nil {
 			t.Fatalf("FederatedSettingsOrganizationRoleMapping.List returned error: %v", err)
 		}
@@ -116,7 +116,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Get(t *testing.T) {
 		   }`)
 	})
 
-	response, _, err := client.FederatedSettingsOrganizationRoleMapping.Get(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
+	response, _, err := client.FederatedSettings.GetRoleMapping(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
 		t.Fatalf("FederatedSettingsOrganizationRoleMapping.Get returned error: %v", err)
 	}
@@ -150,7 +150,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Delete(t *testing.T) 
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.FederatedSettingsOrganizationRoleMapping.Delete(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
+	_, err := client.FederatedSettings.DeleteRoleMapping(ctx, orgConnectionFederationSettingsID, orgConnectionID, roleMappingID)
 	if err != nil {
 		t.Fatalf("FederatedSettingsOrganizationRoleMapping.Delete returned error: %v", err)
 	}
@@ -197,7 +197,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 		},
 	}
 
-	response, _, err := client.FederatedSettingsOrganizationRoleMapping.Create(ctx, orgConnectionFederationSettingsID, orgConnectionID, body)
+	response, _, err := client.FederatedSettings.CreateRoleMapping(ctx, orgConnectionFederationSettingsID, orgConnectionID, body)
 	if err != nil {
 		t.Fatalf("LiveMigration.Create returned error: %v", err)
 	}

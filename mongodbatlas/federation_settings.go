@@ -29,6 +29,20 @@ const federationSettingsDeleteBasePath = "api/atlas/v1.0/federationSettings"
 type FederatedSettingsService interface {
 	Get(context.Context, string) (*FederatedSettings, *Response, error)
 	Delete(context.Context, string) (*Response, error)
+	ListConnectedOrgs(context.Context, *ListOptions, string) (*FederatedSettingsConnectedOrganizations, *Response, error)
+	GetConnectedOrgs(context.Context, string, string) (*FederatedSettingsConnectedOrganization, *Response, error)
+	UpdateConnectedOrgs(context.Context, string, string, *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error)
+	DeleteConnectedOrgs(context.Context, string, string) (*Response, error)
+
+	ListRoleMapping(context.Context, *ListOptions, string, string) (*FederatedSettingsOrganizationRoleMappings, *Response, error)
+	GetRoleMapping(context.Context, string, string, string) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
+	CreateRoleMapping(context.Context, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
+	UpdateRoleMapping(context.Context, string, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
+	DeleteRoleMapping(context.Context, string, string, string) (*Response, error)
+
+	ListIdentityProvider(context.Context, *ListOptions, string) ([]FederatedSettingsIdentityProvider, *Response, error)
+	GetIdentityProvider(context.Context, string, string) (*FederatedSettingsIdentityProvider, *Response, error)
+	UpdateIdentityProvider(context.Context, string, string, *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error)
 }
 
 // FederatedSettingsServiceOp handles communication with the FederatedSettings related methods of the

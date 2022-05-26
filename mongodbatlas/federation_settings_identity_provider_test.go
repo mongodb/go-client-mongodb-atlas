@@ -68,7 +68,7 @@ func TestFederatedSettingsIdentityProviderOp_List(t *testing.T) {
 			   }`)
 		})
 
-		identityProviders, _, err := client.FederatedSettingsIdentityProvider.List(ctx, nil, identityProviderfederationSettingsID)
+		identityProviders, _, err := client.FederatedSettings.ListIdentityProvider(ctx, nil, identityProviderfederationSettingsID)
 		if err != nil {
 			t.Fatalf("FederatedSettingsIdentityProvider.List returned error: %v", err)
 		}
@@ -133,7 +133,7 @@ func TestFederatedSettingsIdentityProviderOp_Get(t *testing.T) {
 		}`)
 	})
 
-	response, _, err := client.FederatedSettingsIdentityProvider.Get(ctx, identityProviderfederationSettingsID, ipOrgID)
+	response, _, err := client.FederatedSettings.GetIdentityProvider(ctx, identityProviderfederationSettingsID, ipOrgID)
 	if err != nil {
 		t.Fatalf("FederatedSettingsIdentityProvider.Get returned error: %v", err)
 	}

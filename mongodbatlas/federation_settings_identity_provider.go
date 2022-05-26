@@ -23,21 +23,6 @@ import (
 
 const federationSettingsIdentityProviderBasePath = "api/atlas/v1.0/federationSettings/%s/identityProviders"
 
-// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Identitty Provider
-// endpoints of the MongoDB Atlas API.
-// See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
-type FederatedSettingsIdentityProviderService interface {
-	List(context.Context, *ListOptions, string) ([]FederatedSettingsIdentityProvider, *Response, error)
-	Get(context.Context, string, string) (*FederatedSettingsIdentityProvider, *Response, error)
-	Update(context.Context, string, string, *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error)
-}
-
-// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings related methods of the
-// MongoDB Atlas API.
-type FederatedSettingsIdentityProviderServiceOp service
-
-var _ FederatedSettingsIdentityProviderService = &FederatedSettingsIdentityProviderServiceOp{}
-
 // A Resource describes a specific resource the Role will allow operating on.
 
 // FederatedSettings represents a FederatedSettings List.
@@ -92,7 +77,7 @@ type UserConflicts []struct {
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
-func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) ([]FederatedSettingsIdentityProvider, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListIdentityProvider(ctx context.Context, opts *ListOptions, federationSettingsID string) ([]FederatedSettingsIdentityProvider, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -124,7 +109,7 @@ func (s *FederatedSettingsIdentityProviderServiceOp) List(ctx context.Context, o
 // Get gets Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-one/
-func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, federationSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
+func (s *FederatedSettingsServiceOp) GetIdentityProvider(ctx context.Context, federationSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -153,7 +138,7 @@ func (s *FederatedSettingsIdentityProviderServiceOp) Get(ctx context.Context, fe
 // Update updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-update-one/
-func (s *FederatedSettingsIdentityProviderServiceOp) Update(ctx context.Context, federationSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
+func (s *FederatedSettingsServiceOp) UpdateIdentityProvider(ctx context.Context, federationSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}

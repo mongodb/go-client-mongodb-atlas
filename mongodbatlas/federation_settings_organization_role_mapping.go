@@ -22,23 +22,6 @@ import (
 
 const federationSettingsOrganizationRoleMappingBasePath = "api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs/%s/roleMappings"
 
-// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Role Mapping
-// endpoints of the MongoDB Atlas API.
-// See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
-type FederatedSettingsOrganizationRoleMappingService interface {
-	List(context.Context, *ListOptions, string, string) (*FederatedSettingsOrganizationRoleMappings, *Response, error)
-	Get(context.Context, string, string, string) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
-	Create(context.Context, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
-	Update(context.Context, string, string, string, *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error)
-	Delete(context.Context, string, string, string) (*Response, error)
-}
-
-// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings related methods of the
-// MongoDB Atlas API.
-type FederatedSettingsOrganizationRoleMappingSeviceOp service
-
-var _ FederatedSettingsOrganizationRoleMappingService = &FederatedSettingsOrganizationRoleMappingSeviceOp{}
-
 // A Resource describes a specific resource the Role will allow operating on.
 
 // FederatedSettings represents a FederatedSettings Organization Connection..
@@ -63,7 +46,7 @@ type RoleAssignments struct {
 // List gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-all/
-func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID, orgID string) (*FederatedSettingsOrganizationRoleMappings, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListRoleMapping(ctx context.Context, opts *ListOptions, federationSettingsID, orgID string) (*FederatedSettingsOrganizationRoleMappings, *Response, error) {
 	basePath := fmt.Sprintf(federationSettingsOrganizationRoleMappingBasePath, federationSettingsID, orgID)
 	path, err := setListOptions(basePath, opts)
 	if err != nil {
@@ -91,7 +74,7 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) List(ctx context.Cont
 // Get gets Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-return-one/
-func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Get(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
+func (s *FederatedSettingsServiceOp) GetRoleMapping(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -120,7 +103,7 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Get(ctx context.Conte
 // Create creates one new live migration.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/live-migration/create-one-migration/
-func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Create(ctx context.Context, federationSettingsID, orgID string, body *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
+func (s *FederatedSettingsServiceOp) CreateRoleMapping(ctx context.Context, federationSettingsID, orgID string, body *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -148,7 +131,7 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Create(ctx context.Co
 // Update updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-create-one/
-func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Update(ctx context.Context, federationSettingsID, orgID, roleMappingID string, updateRequest *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
+func (s *FederatedSettingsServiceOp) UpdateRoleMapping(ctx context.Context, federationSettingsID, orgID, roleMappingID string, updateRequest *FederatedSettingsOrganizationRoleMapping) (*FederatedSettingsOrganizationRoleMapping, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -181,7 +164,7 @@ func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Update(ctx context.Co
 // Delete deletes federation setting.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/role-mapping-delete-one/
-func (s *FederatedSettingsOrganizationRoleMappingSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*Response, error) {
+func (s *FederatedSettingsServiceOp) DeleteRoleMapping(ctx context.Context, federationSettingsID, orgID, roleMappingID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
 	}

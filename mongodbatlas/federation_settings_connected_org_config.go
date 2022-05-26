@@ -22,22 +22,6 @@ import (
 
 const federationSettingsConnectedOrganizationBasePath = "api/atlas/v1.0/federationSettings/%s/connectedOrgConfigs"
 
-// FederatedSettingsIdentityProviderService is an interface for working with the Federation Settings Connected Organization
-// endpoints of the MongoDB Atlas API.
-// See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
-type FederatedSettingsConnectedOrganizationService interface {
-	List(context.Context, *ListOptions, string) (*FederatedSettingsConnectedOrganizations, *Response, error)
-	Get(context.Context, string, string) (*FederatedSettingsConnectedOrganization, *Response, error)
-	Update(context.Context, string, string, *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error)
-	Delete(context.Context, string, string) (*Response, error)
-}
-
-// FederatedSettingsIdentityProviderServiceOp handles communication with the FederatedSettings Connected Organization related methods of the
-// MongoDB Atlas API.
-type FederatedSettingsConnectedOrganizationSeviceOp service
-
-var _ FederatedSettingsConnectedOrganizationService = &FederatedSettingsConnectedOrganizationSeviceOp{}
-
 // A Resource describes a specific resource the Role will allow operating on.
 
 // FederatedSettings represents a FederatedSettings Connected Organization.
@@ -66,7 +50,7 @@ type RoleMappings struct {
 // List gets all Federated Settings Connected Organization (Org-Mappings).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mappings-return-all/
-func (s *FederatedSettingsConnectedOrganizationSeviceOp) List(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsConnectedOrganizations, *Response, error) {
+func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, opts *ListOptions, federationSettingsID string) (*FederatedSettingsConnectedOrganizations, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -98,7 +82,7 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) List(ctx context.Contex
 // Get getsFederated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-return-one/
-func (s *FederatedSettingsConnectedOrganizationSeviceOp) Get(ctx context.Context, federationSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
+func (s *FederatedSettingsServiceOp) GetConnectedOrgs(ctx context.Context, federationSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -127,7 +111,7 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) Get(ctx context.Context
 // Update updates Federated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-update-one/
-func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
+func (s *FederatedSettingsServiceOp) UpdateConnectedOrgs(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
 	if federationSettingsID == "" {
 		return nil, nil, NewArgError("federationSettingsID", "must be set")
 	}
@@ -160,7 +144,7 @@ func (s *FederatedSettingsConnectedOrganizationSeviceOp) Update(ctx context.Cont
 // Delete deletes federation setting for org mapping.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
-func (s *FederatedSettingsConnectedOrganizationSeviceOp) Delete(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
+func (s *FederatedSettingsServiceOp) DeleteConnectedOrgs(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
 	if federationSettingsID == "" {
 		return nil, NewArgError("federationSettingsID", "must be set")
 	}

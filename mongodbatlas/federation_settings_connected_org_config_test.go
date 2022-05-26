@@ -69,7 +69,7 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 		   }`)
 		})
 
-		connectedOrganization, _, err := client.FederatedSettingsConnectedOrganization.List(ctx, nil, connectedOrgFederationSettingsID)
+		connectedOrganization, _, err := client.FederatedSettings.ListConnectedOrgs(ctx, nil, connectedOrgFederationSettingsID)
 		if err != nil {
 			t.Fatalf("Organizations.List returned error: %v", err)
 		}
@@ -146,7 +146,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 }`)
 	})
 
-	response, _, err := client.FederatedSettingsConnectedOrganization.Get(ctx, connectedOrgFederationSettingsID, connectedOrgID)
+	response, _, err := client.FederatedSettings.GetConnectedOrgs(ctx, connectedOrgFederationSettingsID, connectedOrgID)
 	if err != nil {
 		t.Fatalf("FederatedSettingsConnectedOrganization.Get returned error: %v", err)
 	}
@@ -228,7 +228,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 		},
 	}
 
-	response, _, err := client.FederatedSettingsConnectedOrganization.Update(ctx, connectedOrgFederationSettingsID, connectedOrgID, updated)
+	response, _, err := client.FederatedSettings.UpdateConnectedOrgs(ctx, connectedOrgFederationSettingsID, connectedOrgID, updated)
 	if err != nil {
 		t.Fatalf("FederatedSettingsConnectedOrganization.Get returned error: %v", err)
 	}
@@ -265,7 +265,7 @@ func TestFederatedSettingsConnectedOrganization_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.FederatedSettingsConnectedOrganization.Delete(ctx, connectedOrgFederationSettingsID, connectedOrgID)
+	_, err := client.FederatedSettings.DeleteConnectedOrgs(ctx, connectedOrgFederationSettingsID, connectedOrgID)
 	if err != nil {
 		t.Fatalf("FederatedSettingsConnectedOrganization.Delete returned error: %v", err)
 	}
