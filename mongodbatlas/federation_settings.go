@@ -25,6 +25,7 @@ const federationSettingsDeleteBasePath = "api/atlas/v1.0/federationSettings"
 
 // FederatedSettingsService is an interface for working with the Federation Settings
 // endpoints of the MongoDB Atlas API.
+//
 // See more: https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/
 type FederatedSettingsService interface {
 	Get(context.Context, string) (*FederatedSettings, *Response, error)
