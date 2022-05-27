@@ -74,7 +74,7 @@ type UserConflicts []struct {
 	UserID               string `json:"userId,omitempty"`
 }
 
-// List gets all Federated Settings Identity Providers for an organization.
+// ListIdentityProviders gets all Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-all/
 func (s *FederatedSettingsServiceOp) ListIdentityProviders(ctx context.Context, federationSettingsID string, opts *ListOptions) ([]FederatedSettingsIdentityProvider, *Response, error) {
@@ -106,7 +106,7 @@ func (s *FederatedSettingsServiceOp) ListIdentityProviders(ctx context.Context, 
 	return root.Results, resp, nil
 }
 
-// Get gets Federated Settings Identity Providers for an organization.
+// GetIdentityProvider gets Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-return-one/
 func (s *FederatedSettingsServiceOp) GetIdentityProvider(ctx context.Context, federationSettingsID, idpID string) (*FederatedSettingsIdentityProvider, *Response, error) {
@@ -135,7 +135,7 @@ func (s *FederatedSettingsServiceOp) GetIdentityProvider(ctx context.Context, fe
 	return root, resp, err
 }
 
-// Update updates Federated Settings Identity Providers for an organization.
+// UpdateIdentityProvider updates Federated Settings Identity Providers for an organization.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/identity-provider-update-one/
 func (s *FederatedSettingsServiceOp) UpdateIdentityProvider(ctx context.Context, federationSettingsID, idpID string, updateRequest *FederatedSettingsIdentityProvider) (*FederatedSettingsIdentityProvider, *Response, error) {

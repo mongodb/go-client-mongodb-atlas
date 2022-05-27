@@ -79,7 +79,7 @@ func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, fede
 	return root, resp, nil
 }
 
-// Get getsFederated Settings Connected Organization (Org-Mapping).
+// GetConnectedOrg  gets Federated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-return-one/
 func (s *FederatedSettingsServiceOp) GetConnectedOrg(ctx context.Context, federationSettingsID, orgID string) (*FederatedSettingsConnectedOrganization, *Response, error) {
@@ -108,7 +108,7 @@ func (s *FederatedSettingsServiceOp) GetConnectedOrg(ctx context.Context, federa
 	return root, resp, err
 }
 
-// Update updates Federated Settings Connected Organization (Org-Mapping).
+// UpdateConnectedOrg updates Federated Settings Connected Organization (Org-Mapping).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-update-one/
 func (s *FederatedSettingsServiceOp) UpdateConnectedOrg(ctx context.Context, federationSettingsID, orgID string, updateRequest *FederatedSettingsConnectedOrganization) (*FederatedSettingsConnectedOrganization, *Response, error) {
@@ -141,7 +141,7 @@ func (s *FederatedSettingsServiceOp) UpdateConnectedOrg(ctx context.Context, fed
 	return root, resp, err
 }
 
-// Delete deletes federation setting for org mapping.
+// DeleteConnectedOrg deletes federation setting for org mapping.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mapping-remove-one/
 func (s *FederatedSettingsServiceOp) DeleteConnectedOrg(ctx context.Context, federationSettingsID, orgID string) (*Response, error) {
