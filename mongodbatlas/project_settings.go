@@ -23,11 +23,11 @@ import (
 const projectSettingsBasePath = projectBasePath + "/%s/settings"
 
 type ProjectSettings struct {
-	IsCollectDatabaseSpecificsStatisticsEnabled *bool `url:"isCollectDatabaseSpecificsStatisticsEnabled,omitempty"`
-	IsDataExplorerEnabled                       *bool `url:"isDataExplorerEnabled,omitempty"`
-	IsPerformanceAdvisorEnabled                 *bool `url:"isPerformanceAdvisorEnabled,omitempty"`
-	IsRealtimePerformancePanelEnabled           *bool `url:"isRealtimePerformancePanelEnabled,omitempty"`
-	IsSchemaAdvisorEnabled                      *bool `url:"isSchemaAdvisorEnabled,omitempty"`
+	IsCollectDatabaseSpecificsStatisticsEnabled *bool `json:"isCollectDatabaseSpecificsStatisticsEnabled,omitempty"`
+	IsDataExplorerEnabled                       *bool `json:"isDataExplorerEnabled,omitempty"`
+	IsPerformanceAdvisorEnabled                 *bool `json:"isPerformanceAdvisorEnabled,omitempty"`
+	IsRealtimePerformancePanelEnabled           *bool `json:"isRealtimePerformancePanelEnabled,omitempty"`
+	IsSchemaAdvisorEnabled                      *bool `json:"isSchemaAdvisorEnabled,omitempty"`
 }
 
 // GetProjectSettings gets details about the settings for specified project.

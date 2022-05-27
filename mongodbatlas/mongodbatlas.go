@@ -142,6 +142,7 @@ type Client struct {
 	ServiceVersion                      ServiceVersionService
 	CloudProviderSnapshotExportBuckets  CloudProviderSnapshotExportBucketsService
 	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
+	FederatedSettings                   FederatedSettingsService
 
 	onRequestCompleted RequestCompletionCallback
 }
@@ -284,7 +285,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ServiceVersion = &ServiceVersionServiceOp{Client: c}
 	c.CloudProviderSnapshotExportBuckets = &CloudProviderSnapshotExportBucketsServiceOp{Client: c}
 	c.CloudProviderSnapshotExportJobs = &CloudProviderSnapshotExportJobsServiceOp{Client: c}
-
+	c.FederatedSettings = &FederatedSettingsServiceOp{Client: c}
 	return c
 }
 
