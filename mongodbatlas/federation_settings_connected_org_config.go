@@ -47,7 +47,7 @@ type RoleMappings struct {
 	RoleAssignments   []*RoleAssignments `json:"roleAssignments,omitempty"`
 }
 
-// List gets all Federated Settings Connected Organization (Org-Mappings).
+// ListConnectedOrgs gets all Federated Settings Connected Organization (Org-Mappings).
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/org-mappings-return-all/
 func (s *FederatedSettingsServiceOp) ListConnectedOrgs(ctx context.Context, federationSettingsID string, opts *ListOptions) (*FederatedSettingsConnectedOrganizations, *Response, error) {
