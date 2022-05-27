@@ -85,6 +85,9 @@ type Client struct {
 	BaseURL   *url.URL
 	UserAgent string
 
+	// copy raw server response to the Response struct
+	withRaw bool
+
 	// Services used for communicating with the API
 	CustomDBRoles                       CustomDBRolesService
 	DatabaseUsers                       DatabaseUsersService
@@ -328,6 +331,14 @@ func SetBaseURL(bu string) ClientOpt {
 	}
 }
 
+// SetWithRaw is a client option for getting raw atlas server response within Response structure.
+func SetWithRaw() ClientOpt {
+	return func(c *Client) error {
+		c.withRaw = true
+		return nil
+	}
+}
+
 // SetUserAgent is a client option for setting the user agent.
 func SetUserAgent(ua string) ClientOpt {
 	return func(c *Client) error {
@@ -451,14 +462,27 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		return response, err
 	}
 
+	body := resp.Body
+
+	if c.withRaw {
+		raw := new(bytes.Buffer)
+		_, err = io.Copy(raw, body)
+		if err != nil {
+			return response, err
+		}
+
+		response.Raw = raw.Bytes()
+		body = io.NopCloser(raw)
+	}
+
 	if v != nil {
 		if w, ok := v.(io.Writer); ok {
-			_, err = io.Copy(w, resp.Body)
+			_, err = io.Copy(w, body)
 			if err != nil {
 				return nil, err
 			}
 		} else {
-			decErr := json.NewDecoder(resp.Body).Decode(v)
+			decErr := json.NewDecoder(body).Decode(v)
 			if errors.Is(decErr, io.EOF) {
 				decErr = nil // ignore EOF errors caused by empty response body
 			}
