@@ -60,7 +60,7 @@ type Completer interface {
 
 // AfterCompleter interface for clients with callback.
 type AfterCompleter interface {
-	OnRequestCompleted(AfterRequestCompletionCallback)
+	OnAfterRequestCompleted(AfterRequestCompletionCallback)
 }
 
 // RequestDoer minimum interface for any service of the client.
