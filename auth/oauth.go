@@ -15,6 +15,7 @@
 package auth
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -40,6 +41,9 @@ type Config struct {
 	AuthURL   *url.URL
 	UserAgent string
 	Scopes    []string
+
+	// copy raw server response to the Response struct
+	withRaw bool
 }
 
 type ConfigOpt func(*Config) error
@@ -77,6 +81,14 @@ func SetAuthURL(bu string) ConfigOpt {
 		}
 
 		c.AuthURL = u
+		return nil
+	}
+}
+
+// SetWithRaw is a client option for getting raw atlas server response within Response structure.
+func SetWithRaw() ConfigOpt {
+	return func(c *Config) error {
+		c.withRaw = true
 		return nil
 	}
 }
@@ -134,14 +146,27 @@ func (c *Config) Do(ctx context.Context, req *http.Request, v interface{}) (*atl
 		return r, err2
 	}
 
+	body := resp.Body
+
+	if c.withRaw {
+		raw := new(bytes.Buffer)
+		_, err = io.Copy(raw, body)
+		if err != nil {
+			return r, err
+		}
+
+		r.Raw = raw.Bytes()
+		body = io.NopCloser(raw)
+	}
+
 	if v != nil {
 		if w, ok := v.(io.Writer); ok {
-			_, err = io.Copy(w, resp.Body)
+			_, err = io.Copy(w, body)
 			if err != nil {
 				return nil, err
 			}
 		} else {
-			decErr := json.NewDecoder(resp.Body).Decode(v)
+			decErr := json.NewDecoder(body).Decode(v)
 			if errors.Is(decErr, io.EOF) {
 				decErr = nil // ignore EOF errors caused by empty response body
 			}
