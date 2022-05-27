@@ -450,22 +450,24 @@ func TestDo_noContent(t *testing.T) {
 }
 
 func TestCheckResponse(t *testing.T) {
-	res := &http.Response{
-		Request:    &http.Request{},
-		StatusCode: http.StatusBadRequest,
-		Body: io.NopCloser(
-			strings.NewReader(
-				`{"error":409, "errorCode": "GROUP_ALREADY_EXISTS", "reason":"Conflict", "detail":"A group with name \"Test\" already exists"}`,
+	res := &Response{
+		Response: &http.Response{
+			Request:    &http.Request{},
+			StatusCode: http.StatusBadRequest,
+			Body: io.NopCloser(
+				strings.NewReader(
+					`{"error":409, "errorCode": "GROUP_ALREADY_EXISTS", "reason":"Conflict", "detail":"A group with name \"Test\" already exists"}`,
+				),
 			),
-		),
+		},
 	}
 	var target *ErrorResponse
-	if !errors.As(CheckResponse(res), &target) {
+	if !errors.As(res.CheckResponse(res.Body), &target) {
 		t.Fatalf("Expected error response.")
 	}
 
 	expected := &ErrorResponse{
-		Response:  res,
+		Response:  res.Response,
 		HTTPCode:  409,
 		ErrorCode: "GROUP_ALREADY_EXISTS",
 		Reason:    "Conflict",
@@ -479,18 +481,20 @@ func TestCheckResponse(t *testing.T) {
 // ensure that we properly handle API errors that do not contain a response
 // body.
 func TestCheckResponse_noBody(t *testing.T) {
-	res := &http.Response{
-		Request:    &http.Request{},
-		StatusCode: http.StatusBadRequest,
-		Body:       io.NopCloser(strings.NewReader("")),
+	res := &Response{
+		Response: &http.Response{
+			Request:    &http.Request{},
+			StatusCode: http.StatusBadRequest,
+			Body:       io.NopCloser(strings.NewReader("")),
+		},
 	}
 	var target *ErrorResponse
-	if !errors.As(CheckResponse(res), &target) {
+	if !errors.As(res.CheckResponse(res.Body), &target) {
 		t.Errorf("Expected error response.")
 	}
 
 	expected := &ErrorResponse{
-		Response: res,
+		Response: res.Response,
 	}
 	if !errors.Is(target, expected) {
 		t.Errorf("Got = %#v, expected %#v", target, expected)
@@ -533,6 +537,44 @@ func TestDo_completion_callback(t *testing.T) {
 		completedResp = string(b)
 	})
 	_, err := client.Do(context.Background(), req, body)
+	if err != nil {
+		t.Fatalf("Do(): %v", err)
+	}
+	if !reflect.DeepEqual(req, completedReq) {
+		t.Errorf("Completed request = %v, expected %v", completedReq, req)
+	}
+	const expected = `{"A":"a"}`
+	if !strings.Contains(completedResp, expected) {
+		t.Errorf("expected response to contain %v, Response = %v", expected, completedResp)
+	}
+}
+
+func TestDo_after_completion_callback(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	type foo struct {
+		A string
+	}
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if m := http.MethodGet; m != r.Method {
+			t.Errorf("Request method = %v, expected %v", r.Method, m)
+		}
+		fmt.Fprint(w, `{"A":"a"}`)
+	})
+
+	client.withRaw = true
+	req, _ := client.NewRequest(ctx, http.MethodGet, ".", nil)
+	body := new(foo)
+	var completedReq *http.Request
+	var completedResp string
+	client.OnAfterRequestCompleted(func(resp *Response) {
+		completedReq = req
+		completedResp = string(resp.Raw)
+	})
+	_, err := client.Do(context.Background(), req, body)
+	client.withRaw = false
 	if err != nil {
 		t.Fatalf("Do(): %v", err)
 	}

@@ -58,6 +58,11 @@ type Completer interface {
 	OnRequestCompleted(RequestCompletionCallback)
 }
 
+// AfterCompleter interface for clients with callback.
+type AfterCompleter interface {
+	OnRequestCompleted(AfterRequestCompletionCallback)
+}
+
 // RequestDoer minimum interface for any service of the client.
 type RequestDoer interface {
 	Doer
@@ -147,11 +152,15 @@ type Client struct {
 	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
 	FederatedSettings                   FederatedSettingsService
 
-	onRequestCompleted RequestCompletionCallback
+	onRequestCompleted      RequestCompletionCallback
+	onAfterRequestCompleted AfterRequestCompletionCallback
 }
 
 // RequestCompletionCallback defines the type of the request callback function.
 type RequestCompletionCallback func(*http.Request, *http.Response)
+
+// AfterRequestCompletionCallback defines the type of the after request completion callback function.
+type AfterRequestCompletionCallback func(*Response)
 
 type service struct {
 	Client RequestDoer
@@ -434,6 +443,11 @@ func (c *Client) OnRequestCompleted(rc RequestCompletionCallback) {
 	c.onRequestCompleted = rc
 }
 
+// OnAfterRequestCompleted sets the DO API request completion callback after it has been processed.
+func (c *Client) OnAfterRequestCompleted(rc AfterRequestCompletionCallback) {
+	c.onAfterRequestCompleted = rc
+}
+
 // Do sends an API request and returns the API response. The API response is JSON decoded and stored in the value
 // pointed to by v, or returned as an error if an API error has occurred. If v implements the io.Writer interface,
 // the raw response will be written to v, without attempting to decode it.
@@ -458,10 +472,11 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 
 	response := &Response{Response: resp}
 
-	err = CheckResponse(resp)
-	if err != nil {
-		return response, err
-	}
+	defer func() {
+		if c.onAfterRequestCompleted != nil {
+			c.onAfterRequestCompleted(response)
+		}
+	}()
 
 	body := resp.Body
 
@@ -474,6 +489,11 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 
 		response.Raw = raw.Bytes()
 		body = io.NopCloser(raw)
+	}
+
+	err = response.CheckResponse(body)
+	if err != nil {
+		return response, err
 	}
 
 	if v != nil {
@@ -528,13 +548,13 @@ func (r *ErrorResponse) Is(target error) bool {
 // CheckResponse checks the API response for errors, and returns them if present. A response is considered an
 // error if it has a status code outside the 200 range. API error responses are expected to have either no response
 // body, or a JSON response body that maps to ErrorResponse. Any other response body will be silently ignored.
-func CheckResponse(r *http.Response) error {
-	if c := r.StatusCode; c >= 200 && c <= 299 {
+func (resp *Response) CheckResponse(body io.ReadCloser) error {
+	if c := resp.StatusCode; c >= 200 && c <= 299 {
 		return nil
 	}
 
-	errorResponse := &ErrorResponse{Response: r}
-	data, err := io.ReadAll(r.Body)
+	errorResponse := &ErrorResponse{Response: resp.Response}
+	data, err := io.ReadAll(body)
 	if err == nil && len(data) > 0 {
 		err := json.Unmarshal(data, errorResponse)
 		if err != nil {
