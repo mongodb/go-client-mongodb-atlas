@@ -58,9 +58,9 @@ type Completer interface {
 	OnRequestCompleted(RequestCompletionCallback)
 }
 
-// AfterCompleter interface for clients with callback.
-type AfterCompleter interface {
-	OnAfterRequestCompleted(AfterRequestCompletionCallback)
+// ResponseProcessor interface for clients with callback.
+type ResponseProcessor interface {
+	OnResponseProcessed(ResponseProcessedCallback)
 }
 
 // RequestDoer minimum interface for any service of the client.
@@ -152,15 +152,15 @@ type Client struct {
 	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
 	FederatedSettings                   FederatedSettingsService
 
-	onRequestCompleted      RequestCompletionCallback
-	onAfterRequestCompleted AfterRequestCompletionCallback
+	onRequestCompleted  RequestCompletionCallback
+	onResponseProcessed ResponseProcessedCallback
 }
 
 // RequestCompletionCallback defines the type of the request callback function.
 type RequestCompletionCallback func(*http.Request, *http.Response)
 
-// AfterRequestCompletionCallback defines the type of the after request completion callback function.
-type AfterRequestCompletionCallback func(*Response)
+// ResponseProcessedCallback defines the type of the after request completion callback function.
+type ResponseProcessedCallback func(*Response)
 
 type service struct {
 	Client RequestDoer
@@ -443,9 +443,9 @@ func (c *Client) OnRequestCompleted(rc RequestCompletionCallback) {
 	c.onRequestCompleted = rc
 }
 
-// OnAfterRequestCompleted sets the DO API request completion callback after it has been processed.
-func (c *Client) OnAfterRequestCompleted(rc AfterRequestCompletionCallback) {
-	c.onAfterRequestCompleted = rc
+// OnResponseProcessed sets the DO API request completion callback after it has been processed.
+func (c *Client) OnResponseProcessed(rc ResponseProcessedCallback) {
+	c.onResponseProcessed = rc
 }
 
 // Do sends an API request and returns the API response. The API response is JSON decoded and stored in the value
@@ -473,8 +473,8 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 	response := &Response{Response: resp}
 
 	defer func() {
-		if c.onAfterRequestCompleted != nil {
-			c.onAfterRequestCompleted(response)
+		if c.onResponseProcessed != nil {
+			c.onResponseProcessed(response)
 		}
 	}()
 

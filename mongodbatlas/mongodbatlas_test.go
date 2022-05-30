@@ -549,7 +549,7 @@ func TestDo_completion_callback(t *testing.T) {
 	}
 }
 
-func TestDo_after_completion_callback(t *testing.T) {
+func TestDo_response_processed_callback(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -569,7 +569,7 @@ func TestDo_after_completion_callback(t *testing.T) {
 	body := new(foo)
 	var completedReq *http.Request
 	var completedResp string
-	client.OnAfterRequestCompleted(func(resp *Response) {
+	client.OnResponseProcessed(func(resp *Response) {
 		completedReq = req
 		completedResp = string(resp.Raw)
 	})
