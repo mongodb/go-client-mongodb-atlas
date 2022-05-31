@@ -142,10 +142,6 @@ func (c *Config) Do(ctx context.Context, req *http.Request, v interface{}) (*atl
 	defer resp.Body.Close()
 
 	r := &atlas.Response{Response: resp}
-	if err2 := atlas.CheckResponse(resp); err2 != nil {
-		return r, err2
-	}
-
 	body := resp.Body
 
 	if c.withRaw {
@@ -157,6 +153,10 @@ func (c *Config) Do(ctx context.Context, req *http.Request, v interface{}) (*atl
 
 		r.Raw = raw.Bytes()
 		body = io.NopCloser(raw)
+	}
+
+	if err2 := r.CheckResponse(body); err2 != nil {
+		return r, err2
 	}
 
 	if v != nil {
