@@ -39,6 +39,10 @@ type DeviceCode struct {
 	timeSleep func(time.Duration)
 }
 
+type RegistrationConfig struct {
+	RegistrationURL string `json:"registrationUrl"`
+}
+
 const deviceBasePath = "api/private/unauth/account/device"
 
 // RequestCode initiates the authorization flow by requesting a code.
@@ -147,6 +151,20 @@ func (c Config) RevokeToken(ctx context.Context, token, tokenTypeHint string) (*
 	}
 
 	return c.Do(ctx, req, nil)
+}
+
+// RegistrationConfig retrieves the config used for registration.
+func (c Config) RegistrationConfig(ctx context.Context) (*RegistrationConfig, *atlas.Response, error) {
+	req, err := c.NewRequest(ctx, http.MethodGet, deviceBasePath+"/registration", url.Values{})
+	if err != nil {
+		return nil, nil, err
+	}
+	var rc *RegistrationConfig
+	resp, err := c.Do(ctx, req, &rc)
+	if err != nil {
+		return nil, resp, err
+	}
+	return rc, resp, err
 }
 
 func IsTimeoutErr(err error) bool {
