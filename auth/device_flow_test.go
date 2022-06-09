@@ -181,3 +181,31 @@ func TestConfig_RevokeToken(t *testing.T) {
 		t.Fatalf("RequestCode returned error: %v", err)
 	}
 }
+
+func TestConfig_RegistrationConfig(t *testing.T) {
+	config, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc("/api/private/unauth/account/device/registration", func(w http.ResponseWriter, r *http.Request) {
+		if http.MethodGet != r.Method {
+			t.Errorf("Request method = %v, expected %v", r.Method, http.MethodGet)
+		}
+
+		fmt.Fprint(w, `{
+		  "registrationUrl": "http://localhost:8080/account/register/cli"
+		}`)
+	})
+
+	results, _, err := config.RegistrationConfig(ctx)
+	if err != nil {
+		t.Fatalf("RegistrationConfig returned error: %v", err)
+	}
+
+	expected := &RegistrationConfig{
+		RegistrationURL: "http://localhost:8080/account/register/cli",
+	}
+
+	if diff := deep.Equal(results, expected); diff != nil {
+		t.Error(diff)
+	}
+}
