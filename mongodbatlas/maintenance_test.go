@@ -21,10 +21,9 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
-func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
+func TestMaintenanceWindows_UpdateWithScheduleTime(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
@@ -53,9 +52,9 @@ func TestMaintenanceWindows_UpdateWithSheduleTime(t *testing.T) {
 
 	maintenanceRequest := &MaintenanceWindow{
 		DayOfWeek:         2,
-		HourOfDay:         pointy.Int(3),
+		HourOfDay:         3,
 		NumberOfDeferrals: 4,
-		StartASAP:         pointy.Bool(false),
+		StartASAP:         false,
 	}
 
 	_, err := client.MaintenanceWindows.Update(ctx, groupID, maintenanceRequest)
@@ -90,7 +89,7 @@ func TestMaintenanceWindows_UpdateWithStartNow(t *testing.T) {
 	})
 
 	maintenanceRequest := &MaintenanceWindow{
-		StartASAP: pointy.Bool(true),
+		StartASAP: true,
 	}
 
 	_, err := client.MaintenanceWindows.Update(ctx, groupID, maintenanceRequest)
@@ -122,7 +121,7 @@ func TestMaintenanceWindows_Get(t *testing.T) {
 
 	expected := &MaintenanceWindow{
 		DayOfWeek:         2,
-		HourOfDay:         pointy.Int(3),
+		HourOfDay:         3,
 		NumberOfDeferrals: 4,
 	}
 
