@@ -34,7 +34,6 @@ func TestMaintenanceWindows_UpdateWithScheduleTime(t *testing.T) {
 			"dayOfWeek":         float64(2),
 			"hourOfDay":         float64(3),
 			"numberOfDeferrals": float64(4),
-			"startASAP":         false,
 		}
 
 		var v map[string]interface{}
