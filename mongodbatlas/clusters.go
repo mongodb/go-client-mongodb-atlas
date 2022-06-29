@@ -49,6 +49,7 @@ type ClustersService interface {
 	LoadSampleDataset(ctx context.Context, groupID, clusterName string) (*SampleDatasetJob, *Response, error)
 	GetSampleDatasetStatus(ctx context.Context, groupID, id string) (*SampleDatasetJob, *Response, error)
 	ListCloudProviderRegions(context.Context, string, *CloudProviderRegionsOptions) (*CloudProviders, *Response, error)
+	Upgrade(ctx context.Context, groupID string, cluster *Cluster) (*Cluster, *Response, error)
 }
 
 // ClustersServiceOp handles communication with the Cluster related methods
@@ -600,4 +601,32 @@ func checkClusterNameParam(clusterName string) error {
 		return NewArgError("name", "must be set")
 	}
 	return nil
+}
+
+// Upgrade a cluster in the project associated to {GROUP-ID}
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/upgradeOneTenantCluster
+func (s *ClustersServiceOp) Upgrade(ctx context.Context, groupID string, upgradeRequest *Cluster) (*Cluster, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if upgradeRequest == nil {
+		return nil, nil, NewArgError("upgradeRequest", "cannot be nil")
+	}
+
+	basePath := fmt.Sprintf(clustersPath, groupID)
+	path := fmt.Sprintf("%s/tenantUpgrade", basePath)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, upgradeRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Cluster)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
 }

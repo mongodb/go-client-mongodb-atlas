@@ -1301,3 +1301,181 @@ func TestCloudProviderRegions_Get(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestClusters_Upgrade(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	clusterName := "AppData"
+
+	upgradeRequest := &Cluster{
+		ID: "1",
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
+			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
+		BackupEnabled:            pointy.Bool(true),
+		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		ClusterType:              "REPLICASET",
+		DiskSizeGB:               pointy.Float64(160),
+		EncryptionAtRestProvider: "AWS",
+		GroupID:                  groupID,
+		MongoDBVersion:           "3.4.9",
+		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		MongoURIUpdated:          "2017-10-23T21:26:17Z",
+		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+		Name:                     clusterName,
+		NumShards:                pointy.Int64(1),
+		Paused:                   pointy.Bool(false),
+		ProviderSettings: &ProviderSettings{
+			ProviderName:     "AWS",
+			DiskIOPS:         pointy.Int64(1320),
+			EncryptEBSVolume: pointy.Bool(false),
+			InstanceSizeName: "M40",
+			RegionName:       "US_WEST_2",
+			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
+		},
+		ReplicationFactor: pointy.Int64(3),
+
+		ReplicationSpec: map[string]RegionsConfig{
+			"US_EAST_1": {
+				ElectableNodes: pointy.Int64(3),
+				Priority:       pointy.Int64(7),
+				ReadOnlyNodes:  pointy.Int64(0),
+			},
+		},
+		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:            "IDLE",
+		VersionReleaseSystem: "LTS",
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/tenantUpgrade", groupID), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"id": "1",
+			"autoScaling": map[string]interface{}{
+				"diskGBEnabled": true,
+				"compute": map[string]interface{}{
+					"enabled":          true,
+					"scaleDownEnabled": true,
+				},
+			},
+			"backupEnabled": true,
+			"biConnector": map[string]interface{}{
+				"enabled":        false,
+				"readPreference": "secondary",
+			},
+			"clusterType":              "REPLICASET",
+			"diskSizeGB":               float64(160),
+			"encryptionAtRestProvider": "AWS",
+			"groupId":                  groupID,
+			"mongoDBVersion":           "3.4.9",
+			"mongoURI":                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+			"mongoURIUpdated":          "2017-10-23T21:26:17Z",
+			"mongoURIWithOptions":      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+			"name":                     "AppData",
+			"numShards":                float64(1),
+			"paused":                   false,
+			"providerSettings": map[string]interface{}{
+				"providerName":     "AWS",
+				"diskIOPS":         float64(1320),
+				"encryptEBSVolume": false,
+				"instanceSizeName": "M40",
+				"regionName":       "US_WEST_2",
+				"autoScaling": map[string]interface{}{
+					"compute": map[string]interface{}{
+						"minInstanceSize": "M20",
+						"maxInstanceSize": "M80",
+					},
+				},
+			},
+			"replicationFactor": float64(3),
+			"replicationSpec": map[string]interface{}{
+				"US_EAST_1": map[string]interface{}{
+					"electableNodes": float64(3),
+					"priority":       float64(7),
+					"readOnlyNodes":  float64(0),
+				},
+			},
+			"srvAddress":           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+			"stateName":            "IDLE",
+			"versionReleaseSystem": "LTS",
+		}
+
+		jsonBlob := `
+		{
+			"autoScaling": {
+                "diskGBEnabled": true,
+				"compute": {
+				  "enabled": true,
+				  "scaleDownEnabled": true
+				}
+            },
+            "backupEnabled": true,
+            "biConnector": {
+                "enabled": false,
+                "readPreference": "secondary"
+            },
+            "clusterType": "REPLICASET",
+            "diskSizeGB": 160,
+            "encryptionAtRestProvider": "AWS",
+            "groupId": "1",
+            "mongoDBVersion": "3.4.9",
+            "mongoURI": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+            "mongoURIUpdated": "2017-10-23T21:26:17Z",
+            "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
+            "name": "AppData",
+            "numShards": 1,
+			"paused": false,
+			"pitEnabled": false,
+            "providerSettings": {
+                "providerName": "AWS",
+                "diskIOPS": 1320,
+                "encryptEBSVolume": false,
+                "instanceSizeName": "M40",
+                "regionName": "US_WEST_2",
+				"autoScaling": {
+					"compute": {
+					  "minInstanceSize": "M10",
+					  "maxInstanceSize": "M60"
+					}
+				}
+            },
+            "replicationFactor": 3,
+            "replicationSpec": {
+                "US_EAST_1": {
+                    "electableNodes": 3,
+                    "priority": 7,
+                    "readOnlyNodes": 0
+                }
+            },
+            "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+            "stateName": "IDLE",
+            "versionReleaseSystem": "LTS"
+		}
+		`
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Clusters.Update Request Body = %v", diff)
+		}
+
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	dbUser, _, err := client.Clusters.Upgrade(ctx, groupID, upgradeRequest)
+	if err != nil {
+		t.Fatalf("Clusters.Upgrade returned error: %v", err)
+	}
+
+	if name := dbUser.Name; name != clusterName {
+		t.Errorf("expected name '%s', received '%s'", clusterName, name)
+	}
+
+	if id := dbUser.GroupID; id != groupID {
+		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+}
