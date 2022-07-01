@@ -30,7 +30,7 @@ type OrganizationsService interface {
 	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
 	Get(context.Context, string) (*Organization, *Response, error)
 	Invitation(context.Context, string, string) (*Invitation, *Response, error)
-	Projects(context.Context, string, *ListOptions) (*Projects, *Response, error)
+	Projects(context.Context, string, *ProjectsListOptions) (*Projects, *Response, error)
 	Users(context.Context, string, *ListOptions) (*AtlasUsersResponse, *Response, error)
 	Delete(context.Context, string) (*Response, error)
 	InviteUser(context.Context, string, *Invitation) (*Invitation, *Response, error)
@@ -48,6 +48,12 @@ var _ OrganizationsService = &OrganizationsServiceOp{}
 type OrganizationsListOptions struct {
 	Name               string `url:"name,omitempty"`
 	IncludeDeletedOrgs *bool  `url:"includeDeletedOrgs,omitempty"`
+	ListOptions
+}
+
+// ProjectsListOptions filtering options for projects.
+type ProjectsListOptions struct {
+	Name string `url:"name,omitempty"`
 	ListOptions
 }
 
@@ -120,7 +126,7 @@ func (s *OrganizationsServiceOp) Get(ctx context.Context, orgID string) (*Organi
 // Projects gets all projects for the given organization ID.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/organization-get-all-projects/
-func (s *OrganizationsServiceOp) Projects(ctx context.Context, orgID string, opts *ListOptions) (*Projects, *Response, error) {
+func (s *OrganizationsServiceOp) Projects(ctx context.Context, orgID string, opts *ProjectsListOptions) (*Projects, *Response, error) {
 	if orgID == "" {
 		return nil, nil, NewArgError("orgID", "must be set")
 	}
