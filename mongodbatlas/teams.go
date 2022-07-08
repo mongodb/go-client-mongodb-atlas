@@ -268,9 +268,9 @@ func (s *TeamsServiceOp) Rename(ctx context.Context, orgID, teamID, teamName str
 // UpdateTeamRoles Update the roles of a team in an Atlas project.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/teams-update-roles/
-func (s *TeamsServiceOp) UpdateTeamRoles(ctx context.Context, orgID, teamID string, updateTeamRolesRequest *TeamUpdateRoles) ([]TeamRoles, *Response, error) {
-	if orgID == "" {
-		return nil, nil, NewArgError("orgID", "must be set")
+func (s *TeamsServiceOp) UpdateTeamRoles(ctx context.Context, groupID, teamID string, updateTeamRolesRequest *TeamUpdateRoles) ([]TeamRoles, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
 	if teamID == "" {
 		return nil, nil, NewArgError("teamID", "must be set")
@@ -279,7 +279,7 @@ func (s *TeamsServiceOp) UpdateTeamRoles(ctx context.Context, orgID, teamID stri
 		return nil, nil, NewArgError("updateTeamRolesRequest", "cannot be nil")
 	}
 
-	path := fmt.Sprintf(teamsProjBasePath, orgID, teamID)
+	path := fmt.Sprintf(teamsProjBasePath, groupID, teamID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateTeamRolesRequest)
 	if err != nil {
