@@ -107,7 +107,6 @@ type Client struct {
 	Peers                               PeersService
 	Containers                          ContainersService
 	EncryptionsAtRest                   EncryptionsAtRestService
-	WhitelistAPIKeys                    WhitelistAPIKeysService
 	AccessListAPIKeys                   AccessListAPIKeysService
 	PrivateIPMode                       PrivateIPModeService
 	MaintenanceWindows                  MaintenanceWindowsService
@@ -255,7 +254,6 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ProjectAPIKeys = &ProjectAPIKeysOp{Client: c}
 	c.Peers = &PeersServiceOp{Client: c}
 	c.ProjectIPAccessList = &ProjectIPAccessListServiceOp{Client: c}
-	c.WhitelistAPIKeys = &WhitelistAPIKeysServiceOp{Client: c}
 	c.AccessListAPIKeys = &AccessListAPIKeysServiceOp{Client: c}
 	c.PrivateIPMode = &PrivateIPModeServiceOp{Client: c}
 	c.MaintenanceWindows = &MaintenanceWindowsServiceOp{Client: c}
