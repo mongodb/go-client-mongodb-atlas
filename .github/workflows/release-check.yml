@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         golang:
-          - 1.17
+          - 1.18
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
