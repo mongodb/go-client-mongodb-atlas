@@ -39,6 +39,5 @@ pass cancellation signals and deadlines to various services of the client for
 handling a request. In case there is no context available, then context.Background()
 can be used as a starting point.
 
-
 */
 package auth
