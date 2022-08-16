@@ -33,7 +33,7 @@ pass cancellation signals and deadlines to various services of the client for
 handling a request. In case there is no context available, then context.Background()
 can be used as a starting point.
 
-Authentication
+Authentication.
 
 The mongodbatlas library does not directly handle authentication. Instead, when
 creating a new client, pass an http.Client that can handle Digest Access authentication for
@@ -60,7 +60,6 @@ you can use it with the digest library using:
 		client := mongodbatlas.NewClient(tc)
 		orgs, _, err := client.Projects.GetAllProjects(context.Background(), nil)
 	}
-
 
 Note that when using an authenticated Client, all calls made by the client will
 include the specified tokens. Therefore, authenticated clients should
