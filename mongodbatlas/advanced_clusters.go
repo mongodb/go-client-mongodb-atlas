@@ -43,66 +43,66 @@ var _ AdvancedClustersService = &AdvancedClustersServiceOp{}
 
 // AdvancedCluster represents MongoDB cluster.
 type AdvancedCluster struct {
-	BackupEnabled            *bool                      `json:"backupEnabled,omitempty"`
-	BiConnector              *BiConnector               `json:"biConnector,omitempty"`
-	ClusterType              string                     `json:"clusterType,omitempty"`
-	ConnectionStrings        *ConnectionStrings         `json:"connectionStrings,omitempty"`
-	DiskSizeGB               *float64                   `json:"diskSizeGB,omitempty"`
-	EncryptionAtRestProvider string                     `json:"encryptionAtRestProvider,omitempty"`
-	GroupID                  string                     `json:"groupId,omitempty"`
-	ID                       string                     `json:"id,omitempty"`
-	Labels                   []Label                    `json:"labels,omitempty"`
-	MongoDBMajorVersion      string                     `json:"mongoDBMajorVersion,omitempty"`
-	MongoDBVersion           string                     `json:"mongoDBVersion,omitempty"`
-	Name                     string                     `json:"name,omitempty"`
-	Paused                   *bool                      `json:"paused,omitempty"`
-	PitEnabled               *bool                      `json:"pitEnabled,omitempty"`
-	StateName                string                     `json:"stateName,omitempty"`
-	ReplicationSpecs         []*AdvancedReplicationSpec `json:"replicationSpecs,omitempty"`
-	CreateDate               string                     `json:"createDate,omitempty"`
-	RootCertType             string                     `json:"rootCertType,omitempty"`
-	VersionReleaseSystem     string                     `json:"versionReleaseSystem,omitempty"`
+	BackupEnabled            *bool                      `yaml:"backupEnabled,omitempty" json:"backupEnabled,omitempty"`
+	BiConnector              *BiConnector               `yaml:"biConnector,omitempty" json:"biConnector,omitempty"`
+	ClusterType              string                     `yaml:"clusterType,omitempty" json:"clusterType,omitempty"`
+	ConnectionStrings        *ConnectionStrings         `yaml:"connectionStrings,omitempty" json:"connectionStrings,omitempty"`
+	DiskSizeGB               *float64                   `yaml:"diskSizeGB,omitempty" json:"diskSizeGB,omitempty"`
+	EncryptionAtRestProvider string                     `yaml:"encryptionAtRestProvider,omitempty" json:"encryptionAtRestProvider,omitempty"`
+	GroupID                  string                     `yaml:"groupId,omitempty" json:"groupId,omitempty"`
+	ID                       string                     `yaml:"id,omitempty" json:"id,omitempty"`
+	Labels                   []Label                    `yaml:"labels,omitempty" json:"labels,omitempty"`
+	MongoDBMajorVersion      string                     `yaml:"mongoDBMajorVersion,omitempty" json:"mongoDBMajorVersion,omitempty"`
+	MongoDBVersion           string                     `yaml:"mongoDBVersion,omitempty" json:"mongoDBVersion,omitempty"`
+	Name                     string                     `yaml:"name,omitempty" json:"name,omitempty"`
+	Paused                   *bool                      `yaml:"paused,omitempty" json:"paused,omitempty"`
+	PitEnabled               *bool                      `yaml:"pitEnabled,omitempty" json:"pitEnabled,omitempty"`
+	StateName                string                     `yaml:"stateName,omitempty" json:"stateName,omitempty"`
+	ReplicationSpecs         []*AdvancedReplicationSpec `yaml:"replicationSpecs,omitempty" json:"replicationSpecs,omitempty"`
+	CreateDate               string                     `yaml:"createDate,omitempty" json:"createDate,omitempty"`
+	RootCertType             string                     `yaml:"rootCertType,omitempty" json:"rootCertType,omitempty"`
+	VersionReleaseSystem     string                     `yaml:"versionReleaseSystem,omitempty" json:"versionReleaseSystem,omitempty"`
 }
 
 type AdvancedReplicationSpec struct {
-	NumShards     int                     `json:"numShards,omitempty"`
-	ID            string                  `json:"id,omitempty"`
-	ZoneName      string                  `json:"zoneName,omitempty"`
-	RegionConfigs []*AdvancedRegionConfig `json:"regionConfigs,omitempty"`
+	NumShards     int                     `yaml:"numShards,omitempty" json:"numShards,omitempty"`
+	ID            string                  `yaml:"id,omitempty" json:"id,omitempty"`
+	ZoneName      string                  `yaml:"zoneName,omitempty" json:"zoneName,omitempty"`
+	RegionConfigs []*AdvancedRegionConfig `yaml:"regionConfigs,omitempty" json:"regionConfigs,omitempty"`
 }
 
 type AdvancedRegionConfig struct {
-	AnalyticsSpecs      *Specs               `json:"analyticsSpecs,omitempty"`
-	ElectableSpecs      *Specs               `json:"electableSpecs,omitempty"`
-	ReadOnlySpecs       *Specs               `json:"readOnlySpecs,omitempty"`
-	AutoScaling         *AdvancedAutoScaling `json:"autoScaling,omitempty"`
-	BackingProviderName string               `json:"backingProviderName,omitempty"`
-	Priority            *int                 `json:"priority,omitempty"`
-	ProviderName        string               `json:"providerName,omitempty"`
-	RegionName          string               `json:"regionName,omitempty"`
+	AnalyticsSpecs      *Specs               `yaml:"analyticsSpecs,omitempty" json:"analyticsSpecs,omitempty"`
+	ElectableSpecs      *Specs               `yaml:"electableSpecs,omitempty" json:"electableSpecs,omitempty"`
+	ReadOnlySpecs       *Specs               `yaml:"readOnlySpecs,omitempty" json:"readOnlySpecs,omitempty"`
+	AutoScaling         *AdvancedAutoScaling `yaml:"autoScaling,omitempty" json:"autoScaling,omitempty"`
+	BackingProviderName string               `yaml:"backingProviderName,omitempty" json:"backingProviderName,omitempty"`
+	Priority            *int                 `yaml:"priority,omitempty" json:"priority,omitempty"`
+	ProviderName        string               `yaml:"providerName,omitempty" json:"providerName,omitempty"`
+	RegionName          string               `yaml:"regionName,omitempty" json:"regionName,omitempty"`
 }
 
 type AdvancedAutoScaling struct {
-	DiskGB  *DiskGB  `json:"diskGB,omitempty"`
-	Compute *Compute `json:"compute,omitempty"`
+	DiskGB  *DiskGB  `yaml:"diskGB,omitempty" json:"diskGB,omitempty"`
+	Compute *Compute `yaml:"compute,omitempty" json:"compute,omitempty"`
 }
 
 type DiskGB struct {
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled *bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
 }
 
 type Specs struct {
-	DiskIOPS      *int64 `json:"diskIOPS,omitempty"`
-	EbsVolumeType string `json:"ebsVolumeType,omitempty"`
-	InstanceSize  string `json:"instanceSize,omitempty"`
-	NodeCount     *int   `json:"nodeCount,omitempty"`
+	DiskIOPS      *int64 `yaml:"diskIOPS,omitempty" json:"diskIOPS,omitempty"`
+	EbsVolumeType string `yaml:"ebsVolumeType,omitempty" json:"ebsVolumeType,omitempty"`
+	InstanceSize  string `yaml:"instanceSize,omitempty" json:"instanceSize,omitempty"`
+	NodeCount     *int   `yaml:"nodeCount,omitempty" json:"nodeCount,omitempty"`
 }
 
 // AdvancedClustersResponse is the response from the AdvancedClustersService.List.
 type AdvancedClustersResponse struct {
-	Links      []*Link            `json:"links,omitempty"`
-	Results    []*AdvancedCluster `json:"results,omitempty"`
-	TotalCount int                `json:"totalCount,omitempty"`
+	Links      []*Link            `yaml:"links,omitempty" json:"links,omitempty"`
+	Results    []*AdvancedCluster `yaml:"results,omitempty" json:"results,omitempty"`
+	TotalCount int                `yaml:"totalCount,omitempty" json:"totalCount,omitempty"`
 }
 
 // List all clusters in the project associated to {GROUP-ID}.
