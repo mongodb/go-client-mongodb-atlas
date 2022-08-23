@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -243,6 +244,83 @@ func TestServerlessInstances_Create(t *testing.T) {
 			{
 				Rel:  "self",
 				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+			},
+		},
+	}
+
+	if diff := deep.Equal(serverlessInstance, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestServerlessInstances_Update(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", projectID, "sample"), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, `{
+			"connectionStrings" : {
+			  "standardSrv" : "mongodb+srv://instanceName1.example.com"
+			},
+			"createDate" : "2021-06-25T21:31:10Z",
+			"groupId" : "PROJECT-ID",
+			"id" : "1",
+			"links" : [ {
+			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+			  "rel" : "self"
+			}, {
+			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
+			  "rel" : "http://cloud.mongodb.com/restoreJobs"
+			}, {
+			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
+			  "rel" : "http://cloud.mongodb.com/snapshots"
+			}],
+			"mongoDBVersion" : "5.0.0",
+			"name" : "sample",
+			"providerSettings" : {
+			  "providerName" : "SERVERLESS",
+			  "backingProviderName" : "AWS",
+			  "regionName" : "US_EAST_1"
+			},
+			"serverlessBackupOptions" : {
+			  "serverlessContinuousBackupEnabled" : true
+			},
+			"stateName" : "IDLE"
+		}`)
+	})
+
+	bodyParam := &ServerlessUpdateRequestParams{
+		ServerlessBackupOptions: &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+	}
+
+	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, projectID, "sample", bodyParam)
+	if err != nil {
+		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
+	}
+
+	expected := &Cluster{
+		ID:                      id,
+		GroupID:                 projectID,
+		MongoDBVersion:          "5.0.0",
+		Name:                    "sample",
+		ProviderSettings:        &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
+		StateName:               "IDLE",
+		ConnectionStrings:       &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
+		CreateDate:              "2021-06-25T21:31:10Z",
+		ServerlessBackupOptions: &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+		Links: []*Link{
+			{
+				Rel:  "self",
+				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+			},
+			{
+				Rel:  "http://cloud.mongodb.com/restoreJobs",
+				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
+			},
+			{
+				Rel:  "http://cloud.mongodb.com/snapshots",
+				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
 			},
 		},
 	}

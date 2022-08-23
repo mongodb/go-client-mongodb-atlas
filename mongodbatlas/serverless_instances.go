@@ -29,6 +29,7 @@ type ServerlessInstancesService interface {
 	List(context.Context, string, *ListOptions) (*ClustersResponse, *Response, error)
 	Get(context.Context, string, string) (*Cluster, *Response, error)
 	Create(context.Context, string, *ServerlessCreateRequestParams) (*Cluster, *Response, error)
+	Update(context.Context, string, string, *ServerlessUpdateRequestParams) (*Cluster, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
 }
 
@@ -46,8 +47,13 @@ type ClustersResponse struct {
 
 // ServerlessCreateRequestParams represents the Request Body Parameters of ServerlessInstancesService.Create.
 type ServerlessCreateRequestParams struct {
-	Name             string                      `json:"name,omitempty"`
-	ProviderSettings *ServerlessProviderSettings `json:"providerSettings,omitempty"`
+	Name                    string                      `json:"name,omitempty"`
+	ProviderSettings        *ServerlessProviderSettings `json:"providerSettings,omitempty"`
+	ServerlessBackupOptions *ServerlessBackupOptions    `json:"serverlessBackupOptions,omitempty"`
+}
+
+type ServerlessUpdateRequestParams struct {
+	ServerlessBackupOptions *ServerlessBackupOptions `json:"serverlessBackupOptions"`
 }
 
 // ServerlessProviderSettings represents the Provider Settings of serverless instances.
@@ -55,6 +61,11 @@ type ServerlessProviderSettings struct {
 	BackingProviderName string `json:"backingProviderName,omitempty"`
 	ProviderName        string `json:"providerName,omitempty"`
 	RegionName          string `json:"regionName,omitempty"`
+}
+
+// ServerlessBackupOptions Serverless Continuous Backup.
+type ServerlessBackupOptions struct {
+	ServerlessContinuousBackupEnabled *bool `json:"serverlessContinuousBackupEnabled,omitempty"`
 }
 
 // List gets all serverless instances in the specified project.
@@ -125,6 +136,34 @@ func (s *ServerlessInstancesServiceOp) Create(ctx context.Context, projectID str
 	path := fmt.Sprintf(serverlessInstancesPath, projectID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, bodyParams)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Cluster)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update one serverless instance in the specified project..
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/serverless/update-one-serverless-instance/
+func (s *ServerlessInstancesServiceOp) Update(ctx context.Context, projectID, instanceName string, bodyParams *ServerlessUpdateRequestParams) (*Cluster, *Response, error) {
+	if projectID == "" {
+		return nil, nil, NewArgError("projectID", "must be set")
+	}
+	if instanceName == "" {
+		return nil, nil, NewArgError("instanceName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(serverlessInstancesPath, projectID)
+	path := fmt.Sprintf("%s/%s", basePath, instanceName)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, bodyParams)
 	if err != nil {
 		return nil, nil, err
 	}

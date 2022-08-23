@@ -165,6 +165,7 @@ type Cluster struct {
 	ReplicationSpecs         []ReplicationSpec        `json:"replicationSpecs,omitempty"`
 	SrvAddress               string                   `json:"srvAddress,omitempty"`
 	StateName                string                   `json:"stateName,omitempty"`
+	ServerlessBackupOptions  *ServerlessBackupOptions `json:"serverlessBackupOptions,omitempty"`
 	ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
 	Links                    []*Link                  `json:"links,omitempty"`
 	VersionReleaseSystem     string                   `json:"versionReleaseSystem,omitempty"`
