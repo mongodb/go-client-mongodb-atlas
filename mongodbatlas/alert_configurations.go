@@ -123,7 +123,6 @@ type Notification struct {
 	VictorOpsAPIKey          string   `json:"victorOpsApiKey,omitempty"`          // VictorOps API key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey      string   `json:"victorOpsRoutingKey,omitempty"`      // VictorOps routing key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	Roles                    []string `json:"roles,omitempty"`                    // The following roles grant privileges within a project.
-	Name                     string   `json:"name,omitempty"`                     // Microsofty teams name
 	MicrosoftTeamsWebhookURL string   `json:"microsoftTeamsWebhookUrl,omitempty"` // Microsoft Teams Wewbhook URL
 	WebhookSecret            string   `json:"webhookSecret,omitempty"`            // Webhook Secret
 	WebhookURL               string   `json:"webhookUrl,omitempty"`               // Webhook URL
