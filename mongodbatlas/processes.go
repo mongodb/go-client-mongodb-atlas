@@ -26,6 +26,7 @@ const processesPath = "api/atlas/v1.0/groups/%s/processes"
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/monitoring-and-logs/
 type ProcessesService interface {
+	Get(context.Context, string, string, int) (*Process, *Response, error)
 	List(context.Context, string, *ProcessesListOptions) ([]*Process, *Response, error)
 }
 
@@ -62,6 +63,36 @@ type processesResponse struct {
 type ProcessesListOptions struct {
 	ListOptions
 	ClusterID string `url:"clusterId,omitempty"` // ClusterID is only available for Ops Manager and CLoud Manager.
+}
+
+// Get information for the specified Atlas MongoDB process in the specified project.
+// An Atlas MongoDB process can be either a mongod or a mongos.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api/processes-get-one/
+func (s *ProcessesServiceOp) Get(ctx context.Context, groupID, hostname string, port int) (*Process, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if hostname == "" {
+		return nil, nil, NewArgError("hostname", "must be set")
+	}
+	if port == 0 {
+		return nil, nil, NewArgError("port", "must be set")
+	}
+	path := fmt.Sprintf(processesPath, groupID)
+	path = fmt.Sprintf("%s/%s:%d", path, hostname, port)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Process)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, nil
 }
 
 // List lists all processes in the project associated to {GROUP-ID}.
