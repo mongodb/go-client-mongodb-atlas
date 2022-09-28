@@ -45,7 +45,7 @@ type PrivateEndpointsService interface {
 	AddOnePrivateServerlessEndpoint(context.Context, string, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
 	GetOnePrivateServerlessEndpoint(context.Context, string, string, string) (*PrivateServerlessEndpointConnection, *Response, error)
 	DeleteOnePrivateServerlessEndpoint(context.Context, string, string, string) (*Response, error)
-	UpdateOnePrivateServerlessEndpoint(context.Context, string, string, string) (*PrivateServerlessEndpointConnection, *Response, error)
+	UpdateOnePrivateServerlessEndpoint(context.Context, string, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
 }
 
 // PrivateEndpointsServiceOp handles communication with the PrivateEndpoints related methods
@@ -498,7 +498,7 @@ func (s *PrivateEndpointsServiceOp) GetOnePrivateServerlessEndpoint(ctx context.
 // UpdateOnePrivateServerlessEndpoint updates the private serverless endpoint setting for one Atlas project.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-update-regional-mode
-func (s *PrivateEndpointsServiceOp) UpdateOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string) (*PrivateServerlessEndpointConnection, *Response, error) {
+func (s *PrivateEndpointsServiceOp) UpdateOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string, updateRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
