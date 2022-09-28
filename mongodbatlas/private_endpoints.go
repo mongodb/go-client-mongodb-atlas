@@ -508,7 +508,7 @@ func (s *PrivateEndpointsServiceOp) UpdateOnePrivateServerlessEndpoint(ctx conte
 
 	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
 	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(privateEndpointID))
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, nil)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
 	if err != nil {
 		return nil, nil, err
 	}
