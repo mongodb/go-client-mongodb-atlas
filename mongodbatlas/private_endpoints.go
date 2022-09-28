@@ -103,12 +103,12 @@ type GCPEndpoint struct {
 // PrivateEndpointServerlessConnection represents MongoDB Private Endpoint Connection.
 
 type PrivateServerlessEndpointConnection struct {
-	ID                      string      `json:"id,omitempty"` // Unique identifier of the AWS PrivateLink connection or Azure Private Link Service.
+	ID                      string      `json:"_id,omitempty"` // Unique identifier of the Serverless PrivateLink Service.
 	CloudProviderEndpointID string      `json:"cloudProviderEndpointId,omitempty"`
 	Comment                 string      `json:"comment,omitempty"`
 	EndpointServiceName     string      `json:"endpointServiceName,omitempty"` // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-	ErrorMessage            interface{} `json:"errorMessage,omitempty"`        // Error message pertaining to the AWS PrivateLink connection or Azure Private Link Service or GCP Private Service Connect. Returns null if there are no errors.
-	Status                  string      `json:"status,omitempty"`              // Status of the AWS, Azure OR GCP PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
+	ErrorMessage            interface{} `json:"errorMessage,omitempty"`        // Error message pertaining to the AWS Service Connect. Returns null if there are no errors.
+	Status                  string      `json:"status,omitempty"`              // Status of the AWS Servxerless PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
 }
 
 // Create one private endpoint service for AWS or Azure in an Atlas project.
