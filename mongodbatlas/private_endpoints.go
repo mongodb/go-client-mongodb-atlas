@@ -42,7 +42,7 @@ type PrivateEndpointsService interface {
 	UpdateRegionalizedPrivateEndpointSetting(context.Context, string, bool) (*RegionalizedPrivateEndpointSetting, *Response, error)
 	GetRegionalizedPrivateEndpointSetting(context.Context, string) (*RegionalizedPrivateEndpointSetting, *Response, error)
 	ListPrivateServerlessEndpoint(context.Context, string, string, *ListOptions) ([]PrivateServerlessEndpointConnection, *Response, error)
-	AddOnePrivateServerlessEndpoint(context.Context, string, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
+	AddOnePrivateServerlessEndpoint(context.Context, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
 	GetOnePrivateServerlessEndpoint(context.Context, string, string, string) (*PrivateServerlessEndpointConnection, *Response, error)
 	DeleteOnePrivateServerlessEndpoint(context.Context, string, string, string) (*Response, error)
 	UpdateOnePrivateServerlessEndpoint(context.Context, string, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
@@ -432,13 +432,11 @@ func (s *PrivateEndpointsServiceOp) DeleteOnePrivateServerlessEndpoint(ctx conte
 // AddOnePrivateServerlessEndpoint Adds one serverless  private endpoint in an Atlas project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/
-func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string, createRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
+func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID string, createRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
-	if privateEndpointID == "" {
-		return nil, nil, NewArgError("PrivateEndpointID", "must be set")
-	}
+
 	if instanceID == "" {
 		return nil, nil, NewArgError("instanceID", "must be set")
 	}
@@ -447,7 +445,7 @@ func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.
 	}
 
 	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(privateEndpointID))
+	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(instanceID))
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
 	if err != nil {
