@@ -444,8 +444,7 @@ func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.
 		return nil, nil, NewArgError("createRequest", "cannot be nil")
 	}
 
-	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(instanceID))
+	path := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
 	if err != nil {
