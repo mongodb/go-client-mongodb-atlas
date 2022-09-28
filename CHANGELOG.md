@@ -1,5 +1,36 @@
 # Changelog
 
+## [v0.17.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.17.0) (September 27, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.16.0...v0.17.0)
+
+**Breaking changes:**
+
+- task: drop support for whitelist [\#306](https://github.com/mongodb/go-client-mongodb-atlas/pull/306) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-127482: Add filter by name on list all groups by org [\#302](https://github.com/mongodb/go-client-mongodb-atlas/pull/302) ([fmenezes](https://github.com/fmenezes))
+- CLOUDP-110989: Adds OnResponseProcessed [\#298](https://github.com/mongodb/go-client-mongodb-atlas/pull/298) ([fmenezes](https://github.com/fmenezes))
+- feat: add pagination to listing x509 users [\#294](https://github.com/mongodb/go-client-mongodb-atlas/pull/294) ([gssbzn](https://github.com/gssbzn))
+
+**Closed issues:**
+
+- UpdateTeamRoles should take a groupID as a parameter instead of an orgID [\#303](https://github.com/mongodb/go-client-mongodb-atlas/issues/303)
+- `X509AuthDBUsers.GetUserCertificates` does not support pagination  [\#293](https://github.com/mongodb/go-client-mongodb-atlas/issues/293)
+
+**Merged pull requests:**
+
+- feat: add GET process [\#311](https://github.com/mongodb/go-client-mongodb-atlas/pull/311) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-132512: \[Atlas CLI\] Add support for updating a serverless cluster [\#310](https://github.com/mongodb/go-client-mongodb-atlas/pull/310) ([gssbzn](https://github.com/gssbzn))
+- Revert CLOUDP-132967: add the ability to use yaml file for advance cluster  [\#309](https://github.com/mongodb/go-client-mongodb-atlas/pull/309) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- Update to Go v1.18 [\#308](https://github.com/mongodb/go-client-mongodb-atlas/pull/308) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-132967: add the ability to use yaml file for advance cluster [\#307](https://github.com/mongodb/go-client-mongodb-atlas/pull/307) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- task: add tests against 1.19 [\#305](https://github.com/mongodb/go-client-mongodb-atlas/pull/305) ([gssbzn](https://github.com/gssbzn))
+- Fix: Fixed naming of parameter in UpdateTeamRoles [\#304](https://github.com/mongodb/go-client-mongodb-atlas/pull/304) ([marcoriopel](https://github.com/marcoriopel))
+- CLOUDP-126267: Add 'Upgrade One Shared Tier Cluster' endpoint to atlas go client [\#301](https://github.com/mongodb/go-client-mongodb-atlas/pull/301) ([Razeer123](https://github.com/Razeer123))
+- CLOUDP-120670 client for registration config endpoint [\#299](https://github.com/mongodb/go-client-mongodb-atlas/pull/299) ([tibulca](https://github.com/tibulca))
+- CLOUDP-110989: Capture Raw response body [\#297](https://github.com/mongodb/go-client-mongodb-atlas/pull/297) ([fmenezes](https://github.com/fmenezes))
+- INTMDB-301: Feature add: Add support for management of federated authentication configuration [\#296](https://github.com/mongodb/go-client-mongodb-atlas/pull/296) ([martinstibbe](https://github.com/martinstibbe))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.1.0 to 3.2.0 [\#295](https://github.com/mongodb/go-client-mongodb-atlas/pull/295) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.16.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.16.0) (May 10, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.15.0...v0.16.0)
