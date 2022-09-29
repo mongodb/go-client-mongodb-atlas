@@ -108,7 +108,8 @@ type PrivateServerlessEndpointConnection struct {
 	Comment                 string      `json:"comment,omitempty"`
 	EndpointServiceName     string      `json:"endpointServiceName,omitempty"` // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
 	ErrorMessage            interface{} `json:"errorMessage,omitempty"`        // Error message pertaining to the AWS Service Connect. Returns null if there are no errors.
-	Status                  string      `json:"status,omitempty"`              // Status of the AWS Servxerless PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
+	Status                  string      `json:"status,omitempty"`              // Status of the AWS Serverless PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
+	ProviderName            string      `json:"providerName,omitempty"`        //Human-readable label that identifies the cloud provider. Values include AWS or AZURE. Atlas currently supports only AWS.
 }
 
 // Create one private endpoint service for AWS or Azure in an Atlas project.
