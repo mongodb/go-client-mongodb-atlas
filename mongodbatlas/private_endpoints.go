@@ -101,7 +101,6 @@ type GCPEndpoint struct {
 }
 
 // PrivateEndpointServerlessConnection represents MongoDB Private Endpoint Connection.
-
 type PrivateServerlessEndpointConnection struct {
 	ID                      string      `json:"_id,omitempty"` // Unique identifier of the Serverless PrivateLink Service.
 	CloudProviderEndpointID string      `json:"cloudProviderEndpointId,omitempty"`
@@ -383,9 +382,7 @@ func (s *PrivateEndpointsServiceOp) ListPrivateServerlessEndpoint(ctx context.Co
 		return nil, nil, NewArgError("instanceID", "must be set")
 	}
 
-	path := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-
-	// Add query params from listOptions
+	path := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID) // Add query params from listOptions
 	path, err := setListOptions(path, listOptions)
 	if err != nil {
 		return nil, nil, err

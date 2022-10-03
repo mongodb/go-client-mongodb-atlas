@@ -1003,3 +1003,72 @@ func TestPrivateEndpoints_GetRegionalizedPrivateEndpointSetting(t *testing.T) {
 		t.Errorf("PrivateEndpoints.UpdateRegionalizedPrivateEndpointSetting\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
 	}
 }
+
+func TestPrivateEndpoints_GetOnePrivateServerlessEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	instanceName := "serverless"
+	endpointID := "3658569708087079"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/serverless/instance/%s/endpoint/%s", groupID, instanceName, endpointID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"ID":"", "CloudProviderEndpointID":"vpce-12356", "Comment":"Test Serverless", "EndpointServiceName":"", "Status":"AVAILABLE", "ProviderName":"AWS"
+		}`)
+	})
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.GetOnePrivateServerlessEndpoint(ctx, groupID, instanceName, endpointID)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.GetOnePrivateServerlessEndpoint returned error: %v", err)
+	}
+
+	expected := &PrivateServerlessEndpointConnection{
+		Comment:                 "Test Serverless",
+		ProviderName:            "AWS",
+		Status:                  "AVAILABLE",
+		CloudProviderEndpointID: "vpce-12356",
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.GetOnePrivateServerlessEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
+
+func TestPrivateEndpoints_UpdateOnePrivateServerlessEndpoint(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "1"
+	instanceName := "serverless"
+	endpointID := "3658569708087079"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/privateEndpoint/serverless/instance/%s/endpoint/%s", groupID, instanceName, endpointID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, `{
+			"ID":"", "CloudProviderEndpointID":"vpce1234567", "Comment":"Test Serverless", "EndpointServiceName":"", "Status":"AVAILABLE", "ProviderName":"AWS"
+		}`)
+	})
+
+	update := &PrivateServerlessEndpointConnection{
+		CloudProviderEndpointID: "vpce1234567",
+		ProviderName:            "AWS",
+	}
+
+	interfaceEndpoint, _, err := client.PrivateEndpoints.UpdateOnePrivateServerlessEndpoint(ctx, groupID, instanceName, endpointID, update)
+	if err != nil {
+		t.Errorf("PrivateEndpoints.UpdateOnePrivateServerlessEndpoint returned error: %v", err)
+	}
+
+	expected := &PrivateServerlessEndpointConnection{
+		Comment:                 "Test Serverless",
+		ProviderName:            "AWS",
+		Status:                  "AVAILABLE",
+		CloudProviderEndpointID: "vpce1234567",
+	}
+
+	if !reflect.DeepEqual(interfaceEndpoint, expected) {
+		t.Errorf("PrivateEndpoints.UpdateOnePrivateServerlessEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+	}
+}
