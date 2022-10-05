@@ -373,7 +373,7 @@ func (s *PrivateEndpointsServiceOp) GetRegionalizedPrivateEndpointSetting(ctx co
 
 // List retrieve details for all private Serverless endpoint services in one Atlas project.
 //
-// See more: https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-all/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnAllPrivateEndpointsForOneServerlessInstance
 func (s *PrivateEndpointsServiceOp) ListPrivateServerlessEndpoint(ctx context.Context, groupID, instanceID string, listOptions *ListOptions) ([]PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -404,7 +404,7 @@ func (s *PrivateEndpointsServiceOp) ListPrivateServerlessEndpoint(ctx context.Co
 
 // DeleteOnePrivateServerlessEndpoint one private serverless endpoint service in an Atlas project.
 //
-// See more https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-delete-one/
+// See more https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/removeOnePrivateEndpointFromOneServerlessInstance
 func (s *PrivateEndpointsServiceOp) DeleteOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupID", "must be set")
@@ -429,7 +429,7 @@ func (s *PrivateEndpointsServiceOp) DeleteOnePrivateServerlessEndpoint(ctx conte
 
 // AddOnePrivateServerlessEndpoint Adds one serverless  private endpoint in an Atlas project.
 //
-// See more: https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/createOnePrivateEndpointForOneServerlessInstance
 func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID string, createRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -460,7 +460,7 @@ func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.
 
 // GetOnePrivateServerlessEndpoint retrieve details for one private serverless endpoint in an Atlas project.
 //
-// See more: https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOnePrivateEndpointForOneServerlessInstance
 func (s *PrivateEndpointsServiceOp) GetOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string) (*PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
@@ -492,7 +492,7 @@ func (s *PrivateEndpointsServiceOp) GetOnePrivateServerlessEndpoint(ctx context.
 
 // UpdateOnePrivateServerlessEndpoint updates the private serverless endpoint setting for one Atlas project.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/private-endpoints-update-regional-mode
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/updateOnePrivateEndpointForOneServerlessInstance
 func (s *PrivateEndpointsServiceOp) UpdateOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string, updateRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
