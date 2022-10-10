@@ -22,9 +22,8 @@ import (
 )
 
 const (
-	privateEndpointsPath           = "api/atlas/v1.0/groups/%s/privateEndpoint"
-	serverlessPrivateEndpointsPath = "api/atlas/v1.0/groups/%s/privateEndpoint/serverless/instance/%s/endpoint"
-	regionalModePath               = privateEndpointsPath + "/regionalMode"
+	privateEndpointsPath = "api/atlas/v1.0/groups/%s/privateEndpoint"
+	regionalModePath     = privateEndpointsPath + "/regionalMode"
 )
 
 // PrivateEndpointsService is an interface for interfacing with the Private Endpoints
@@ -41,11 +40,6 @@ type PrivateEndpointsService interface {
 	DeleteOnePrivateEndpoint(context.Context, string, string, string, string) (*Response, error)
 	UpdateRegionalizedPrivateEndpointSetting(context.Context, string, bool) (*RegionalizedPrivateEndpointSetting, *Response, error)
 	GetRegionalizedPrivateEndpointSetting(context.Context, string) (*RegionalizedPrivateEndpointSetting, *Response, error)
-	ListPrivateServerlessEndpoint(context.Context, string, string, *ListOptions) ([]PrivateServerlessEndpointConnection, *Response, error)
-	AddOnePrivateServerlessEndpoint(context.Context, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
-	GetOnePrivateServerlessEndpoint(context.Context, string, string, string) (*PrivateServerlessEndpointConnection, *Response, error)
-	DeleteOnePrivateServerlessEndpoint(context.Context, string, string, string) (*Response, error)
-	UpdateOnePrivateServerlessEndpoint(context.Context, string, string, string, *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error)
 }
 
 // PrivateEndpointsServiceOp handles communication with the PrivateEndpoints related methods
@@ -98,17 +92,6 @@ type GCPEndpoint struct {
 	EndpointName          string `json:"endpointName,omitempty"`          // Forwarding rule that corresponds to the endpoint you created in GCP.
 	Status                string `json:"status,omitempty"`                // Status of the endpoint. Atlas returns one of the values shown above.
 	ServiceAttachmentName string `json:"serviceAttachmentName,omitempty"` // Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-}
-
-// PrivateEndpointServerlessConnection represents MongoDB Private Endpoint Connection.
-type PrivateServerlessEndpointConnection struct {
-	ID                      string      `json:"_id,omitempty"` // Unique identifier of the Serverless PrivateLink Service.
-	CloudProviderEndpointID string      `json:"cloudProviderEndpointId,omitempty"`
-	Comment                 string      `json:"comment,omitempty"`
-	EndpointServiceName     string      `json:"endpointServiceName,omitempty"` // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-	ErrorMessage            interface{} `json:"errorMessage,omitempty"`        // Error message pertaining to the AWS Service Connect. Returns null if there are no errors.
-	Status                  string      `json:"status,omitempty"`              // Status of the AWS Serverless PrivateLink connection: INITIATING, WAITING_FOR_USER, FAILED, DELETING, AVAILABLE.
-	ProviderName            string      `json:"providerName,omitempty"`        // Human-readable label that identifies the cloud provider. Values include AWS or AZURE. Atlas currently supports only AWS.
 }
 
 // Create one private endpoint service for AWS or Azure in an Atlas project.
@@ -363,155 +346,6 @@ func (s *PrivateEndpointsServiceOp) GetRegionalizedPrivateEndpointSetting(ctx co
 	}
 
 	root := new(RegionalizedPrivateEndpointSetting)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, err
-}
-
-// List retrieve details for all private Serverless endpoint services in one Atlas project.
-//
-// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnAllPrivateEndpointsForOneServerlessInstance
-func (s *PrivateEndpointsServiceOp) ListPrivateServerlessEndpoint(ctx context.Context, groupID, instanceID string, listOptions *ListOptions) ([]PrivateServerlessEndpointConnection, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-	if instanceID == "" {
-		return nil, nil, NewArgError("instanceID", "must be set")
-	}
-
-	path := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID) // Add query params from listOptions
-	path, err := setListOptions(path, listOptions)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new([]PrivateServerlessEndpointConnection)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return *root, resp, nil
-}
-
-// DeleteOnePrivateServerlessEndpoint one private serverless endpoint service in an Atlas project.
-//
-// See more https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/removeOnePrivateEndpointFromOneServerlessInstance
-func (s *PrivateEndpointsServiceOp) DeleteOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string) (*Response, error) {
-	if groupID == "" {
-		return nil, NewArgError("groupID", "must be set")
-	}
-	if privateEndpointID == "" {
-		return nil, NewArgError("PrivateEndpointID", "must be set")
-	}
-	if instanceID == "" {
-		return nil, NewArgError("instanceID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(privateEndpointID))
-
-	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return s.Client.Do(ctx, req, nil)
-}
-
-// AddOnePrivateServerlessEndpoint Adds one serverless  private endpoint in an Atlas project.
-//
-// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/createOnePrivateEndpointForOneServerlessInstance
-func (s *PrivateEndpointsServiceOp) AddOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID string, createRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	if instanceID == "" {
-		return nil, nil, NewArgError("instanceID", "must be set")
-	}
-	if createRequest == nil {
-		return nil, nil, NewArgError("createRequest", "cannot be nil")
-	}
-
-	path := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-
-	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(PrivateServerlessEndpointConnection)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, err
-}
-
-// GetOnePrivateServerlessEndpoint retrieve details for one private serverless endpoint in an Atlas project.
-//
-// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOnePrivateEndpointForOneServerlessInstance
-func (s *PrivateEndpointsServiceOp) GetOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string) (*PrivateServerlessEndpointConnection, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-
-	if instanceID == "" {
-		return nil, nil, NewArgError("instanceID", "must be set")
-	}
-	if privateEndpointID == "" {
-		return nil, nil, NewArgError("privateEndpointID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(privateEndpointID))
-
-	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(PrivateServerlessEndpointConnection)
-	resp, err := s.Client.Do(ctx, req, root)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return root, resp, err
-}
-
-// UpdateOnePrivateServerlessEndpoint updates the private serverless endpoint setting for one Atlas project.
-//
-// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/updateOnePrivateEndpointForOneServerlessInstance
-func (s *PrivateEndpointsServiceOp) UpdateOnePrivateServerlessEndpoint(ctx context.Context, groupID, instanceID, privateEndpointID string, updateRequest *PrivateServerlessEndpointConnection) (*PrivateServerlessEndpointConnection, *Response, error) {
-	if groupID == "" {
-		return nil, nil, NewArgError("groupID", "must be set")
-	}
-	if instanceID == "" {
-		return nil, nil, NewArgError("instanceID", "must be set")
-	}
-	if privateEndpointID == "" {
-		return nil, nil, NewArgError("privateEndpointID", "must be set")
-	}
-
-	basePath := fmt.Sprintf(serverlessPrivateEndpointsPath, groupID, instanceID)
-	path := fmt.Sprintf("%s/%s", basePath, url.PathEscape(privateEndpointID))
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	root := new(PrivateServerlessEndpointConnection)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
