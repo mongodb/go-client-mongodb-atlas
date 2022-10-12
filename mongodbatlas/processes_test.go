@@ -221,7 +221,7 @@ func TestProcesses_RetrievePageByNumber(t *testing.T) {
 		}
 	`
 
-	mux.HandleFunc("/api/atlas/v1.0/groups/1/processes", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/processes", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		expectedQuery := "pageNum=2"
 		if r.URL.RawQuery != expectedQuery {
@@ -239,4 +239,49 @@ func TestProcesses_RetrievePageByNumber(t *testing.T) {
 	}
 
 	checkCurrentPage(t, resp, 2)
+}
+
+func TestProcessesServiceOp_Get(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+	const hostname = "atlas-abcdef-shard-00-00.nta8e.mongodb.net"
+	const port = 27017
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/processes/%s:%d", groupID, hostname, port)
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		_, _ = fmt.Fprint(w, `{
+		  "created" : "2020-08-25T18:44:13Z",
+		  "groupId" : "1",
+		  "hostname" : "atlas-abcdef-shard-00-00.nta8e.mongodb.net",
+		  "id" : "atlas-abcdef-shard-00-00.nta8e.mongodb.net:27017",
+		  "lastPing" : "2020-09-01T18:40:06Z",
+		  "port" : 27017,
+		  "replicaSetName" : "atlas-abcdef-shard-0",
+		  "typeName" : "REPLICA_PRIMARY",
+		  "userAlias" : "testcluster-shard-00-00.nta8e.mongodb.net",
+		  "version" : "4.4.0"
+		}`)
+	})
+
+	cluster, _, err := client.Processes.Get(ctx, groupID, hostname, port)
+	if err != nil {
+		t.Fatalf("Processes.Get returned error: %v", err)
+	}
+
+	expected := &Process{
+		ID:             "atlas-abcdef-shard-00-00.nta8e.mongodb.net:27017",
+		GroupID:        groupID,
+		Hostname:       hostname,
+		TypeName:       "REPLICA_PRIMARY",
+		Created:        "2020-08-25T18:44:13Z",
+		LastPing:       "2020-09-01T18:40:06Z",
+		Port:           port,
+		ReplicaSetName: "atlas-abcdef-shard-0",
+		UserAlias:      "testcluster-shard-00-00.nta8e.mongodb.net",
+		Version:        "4.4.0",
+	}
+
+	if diff := deep.Equal(cluster, expected); diff != nil {
+		t.Error(diff)
+	}
 }
