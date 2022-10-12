@@ -36,12 +36,12 @@ func TestPrivateEndpoints_GetOnePrivateServerlessEndpoint(t *testing.T) {
 		}`)
 	})
 
-	interfaceEndpoint, _, err := client.PrivateServerlessEndpoints.GetOnePrivateServerlessEndpoint(ctx, groupID, instanceName, endpointID)
+	interfaceEndpoint, _, err := client.ServerlessPrivateEndpoints.Get(ctx, groupID, instanceName, endpointID)
 	if err != nil {
-		t.Errorf("PrivateEndpoints.GetOnePrivateServerlessEndpoint returned error: %v", err)
+		t.Errorf("PrivateEndpoints.Get returned error: %v", err)
 	}
 
-	expected := &PrivateServerlessEndpointConnection{
+	expected := &ServerlessPrivateEndpointConnection{
 		Comment:                 "Test Serverless",
 		ProviderName:            "AWS",
 		Status:                  "AVAILABLE",
@@ -49,7 +49,7 @@ func TestPrivateEndpoints_GetOnePrivateServerlessEndpoint(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
-		t.Errorf("PrivateEndpoints.GetOnePrivateServerlessEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+		t.Errorf("PrivateEndpoints.Get \n got=%#v\nwant=%#v", interfaceEndpoint, expected)
 	}
 }
 
@@ -68,17 +68,17 @@ func TestPrivateEndpoints_UpdateOnePrivateServerlessEndpoint(t *testing.T) {
 		}`)
 	})
 
-	update := &PrivateServerlessEndpointConnection{
+	update := &ServerlessPrivateEndpointConnection{
 		CloudProviderEndpointID: "vpce1234567",
 		ProviderName:            "AWS",
 	}
 
-	interfaceEndpoint, _, err := client.PrivateServerlessEndpoints.UpdateOnePrivateServerlessEndpoint(ctx, groupID, instanceName, endpointID, update)
+	interfaceEndpoint, _, err := client.ServerlessPrivateEndpoints.Update(ctx, groupID, instanceName, endpointID, update)
 	if err != nil {
-		t.Errorf("PrivateEndpoints.UpdateOnePrivateServerlessEndpoint returned error: %v", err)
+		t.Errorf("PrivateEndpoints.Update returned error: %v", err)
 	}
 
-	expected := &PrivateServerlessEndpointConnection{
+	expected := &ServerlessPrivateEndpointConnection{
 		Comment:                 "Test Serverless",
 		ProviderName:            "AWS",
 		Status:                  "AVAILABLE",
@@ -86,6 +86,6 @@ func TestPrivateEndpoints_UpdateOnePrivateServerlessEndpoint(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
-		t.Errorf("PrivateEndpoints.UpdateOnePrivateServerlessEndpoint\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
+		t.Errorf("PrivateEndpoints.Update\n got=%#v\nwant=%#v", interfaceEndpoint, expected)
 	}
 }
