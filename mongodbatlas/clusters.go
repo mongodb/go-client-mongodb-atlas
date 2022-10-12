@@ -173,15 +173,16 @@ type Cluster struct {
 
 // ProcessArgs represents the advanced configuration options for the cluster.
 type ProcessArgs struct {
-	DefaultReadConcern               string `json:"defaultReadConcern,omitempty"`
-	DefaultWriteConcern              string `json:"defaultWriteConcern,omitempty"`
-	FailIndexKeyTooLong              *bool  `json:"failIndexKeyTooLong,omitempty"`
-	JavascriptEnabled                *bool  `json:"javascriptEnabled,omitempty"`
-	MinimumEnabledTLSProtocol        string `json:"minimumEnabledTlsProtocol,omitempty"`
-	NoTableScan                      *bool  `json:"noTableScan,omitempty"`
-	OplogSizeMB                      *int64 `json:"oplogSizeMB,omitempty"`
-	SampleSizeBIConnector            *int64 `json:"sampleSizeBIConnector,omitempty"`
-	SampleRefreshIntervalBIConnector *int64 `json:"sampleRefreshIntervalBIConnector,omitempty"`
+	DefaultReadConcern               string   `json:"defaultReadConcern,omitempty"`
+	DefaultWriteConcern              string   `json:"defaultWriteConcern,omitempty"`
+	MinimumEnabledTLSProtocol        string   `json:"minimumEnabledTlsProtocol,omitempty"`
+	FailIndexKeyTooLong              *bool    `json:"failIndexKeyTooLong,omitempty"`
+	JavascriptEnabled                *bool    `json:"javascriptEnabled,omitempty"`
+	NoTableScan                      *bool    `json:"noTableScan,omitempty"`
+	OplogSizeMB                      *int64   `json:"oplogSizeMB,omitempty"`
+	SampleSizeBIConnector            *int64   `json:"sampleSizeBIConnector,omitempty"`
+	SampleRefreshIntervalBIConnector *int64   `json:"sampleRefreshIntervalBIConnector,omitempty"`
+	OplogMinRetentionHours           *float64 `json:"oplogMinRetentionHours,omitempty"`
 }
 
 // ClusterStatus is the status of the operations on the cluster.
@@ -436,7 +437,7 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName str
 
 // UpdateProcessArgs Modifies Advanced Configuration Options for One Cluster
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-modify-advanced-configuration-options/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/updateAdvancedConfigurationOptionsForOneCluster
 func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clusterName string, updateRequest *ProcessArgs) (*ProcessArgs, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
@@ -464,7 +465,7 @@ func (s *ClustersServiceOp) UpdateProcessArgs(ctx context.Context, groupID, clus
 
 // GetProcessArgs gets the Advanced Configuration Options for One Cluster
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-get-advanced-configuration-options/#get-advanced-configuration-options-for-one-cluster
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneAdvancedConfigurationOptionsForOneCluster
 func (s *ClustersServiceOp) GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
