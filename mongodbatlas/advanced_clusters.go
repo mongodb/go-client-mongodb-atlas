@@ -65,44 +65,44 @@ type AdvancedCluster struct {
 }
 
 type AdvancedReplicationSpec struct {
-	NumShards     int                     `yaml:"numShards,omitempty" json:"numShards,omitempty"`
-	ID            string                  `yaml:"id,omitempty" json:"id,omitempty"`
-	ZoneName      string                  `yaml:"zoneName,omitempty" json:"zoneName,omitempty"`
-	RegionConfigs []*AdvancedRegionConfig `yaml:"regionConfigs,omitempty" json:"regionConfigs,omitempty"`
+	NumShards     int                     `json:"numShards,omitempty"`
+	ID            string                  `json:"id,omitempty"`
+	ZoneName      string                  `json:"zoneName,omitempty"`
+	RegionConfigs []*AdvancedRegionConfig `json:"regionConfigs,omitempty"`
 }
 
 type AdvancedRegionConfig struct {
-	AnalyticsSpecs      *Specs               `yaml:"analyticsSpecs,omitempty" json:"analyticsSpecs,omitempty"`
-	ElectableSpecs      *Specs               `yaml:"electableSpecs,omitempty" json:"electableSpecs,omitempty"`
-	ReadOnlySpecs       *Specs               `yaml:"readOnlySpecs,omitempty" json:"readOnlySpecs,omitempty"`
-	AutoScaling         *AdvancedAutoScaling `yaml:"autoScaling,omitempty" json:"autoScaling,omitempty"`
-	BackingProviderName string               `yaml:"backingProviderName,omitempty" json:"backingProviderName,omitempty"`
-	Priority            *int                 `yaml:"priority,omitempty" json:"priority,omitempty"`
-	ProviderName        string               `yaml:"providerName,omitempty" json:"providerName,omitempty"`
-	RegionName          string               `yaml:"regionName,omitempty" json:"regionName,omitempty"`
+	AnalyticsSpecs      *Specs               `json:"analyticsSpecs,omitempty"`
+	ElectableSpecs      *Specs               `json:"electableSpecs,omitempty"`
+	ReadOnlySpecs       *Specs               `json:"readOnlySpecs,omitempty"`
+	AutoScaling         *AdvancedAutoScaling `json:"autoScaling,omitempty"`
+	BackingProviderName string               `json:"backingProviderName,omitempty"`
+	Priority            *int                 `json:"priority,omitempty"`
+	ProviderName        string               `json:"providerName,omitempty"`
+	RegionName          string               `json:"regionName,omitempty"`
 }
 
 type AdvancedAutoScaling struct {
-	DiskGB  *DiskGB  `yaml:"diskGB,omitempty" json:"diskGB,omitempty"`
-	Compute *Compute `yaml:"compute,omitempty" json:"compute,omitempty"`
+	DiskGB  *DiskGB  `json:"diskGB,omitempty"`
+	Compute *Compute `json:"compute,omitempty"`
 }
 
 type DiskGB struct {
-	Enabled *bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 type Specs struct {
-	DiskIOPS      *int64 `yaml:"diskIOPS,omitempty" json:"diskIOPS,omitempty"`
-	EbsVolumeType string `yaml:"ebsVolumeType,omitempty" json:"ebsVolumeType,omitempty"`
-	InstanceSize  string `yaml:"instanceSize,omitempty" json:"instanceSize,omitempty"`
-	NodeCount     *int   `yaml:"nodeCount,omitempty" json:"nodeCount,omitempty"`
+	DiskIOPS      *int64 `json:"diskIOPS,omitempty"`
+	EbsVolumeType string `json:"ebsVolumeType,omitempty"`
+	InstanceSize  string `json:"instanceSize,omitempty"`
+	NodeCount     *int   `json:"nodeCount,omitempty"`
 }
 
 // AdvancedClustersResponse is the response from the AdvancedClustersService.List.
 type AdvancedClustersResponse struct {
-	Links      []*Link            `yaml:"links,omitempty" json:"links,omitempty"`
-	Results    []*AdvancedCluster `yaml:"results,omitempty" json:"results,omitempty"`
-	TotalCount int                `yaml:"totalCount,omitempty" json:"totalCount,omitempty"`
+	Links      []*Link            `json:"links,omitempty"`
+	Results    []*AdvancedCluster `json:"results,omitempty"`
+	TotalCount int                `json:"totalCount,omitempty"`
 }
 
 // List all clusters in the project associated to {GROUP-ID}.
