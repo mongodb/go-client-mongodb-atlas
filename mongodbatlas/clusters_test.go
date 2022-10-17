@@ -743,6 +743,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		MinimumEnabledTLSProtocol:        tlsProtocol,
 		NoTableScan:                      pointy.Bool(true),
 		OplogSizeMB:                      pointy.Int64(2000),
+		OplogMinRetentionHours:           pointy.Float64(100),
 		SampleSizeBIConnector:            pointy.Int64(5000),
 		SampleRefreshIntervalBIConnector: pointy.Int64(300),
 	}
@@ -756,6 +757,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 			"minimumEnabledTlsProtocol":        tlsProtocol,
 			"noTableScan":                      true,
 			"oplogSizeMB":                      float64(2000),
+			"oplogMinRetentionHours":           float64(100),
 			"sampleSizeBIConnector":            float64(5000),
 			"sampleRefreshIntervalBIConnector": float64(300),
 		}
@@ -769,6 +771,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 			"minimumEnabledTlsProtocol": "TLS1_2",
 			"noTableScan": true,
 			"oplogSizeMB": 2000,
+            "oplogMinRetentionHours": 100,
 			"sampleSizeBIConnector": 5000,
 			"sampleRefreshIntervalBIConnector": 300
 		}
