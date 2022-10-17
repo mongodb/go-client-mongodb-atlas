@@ -43,25 +43,25 @@ var _ AdvancedClustersService = &AdvancedClustersServiceOp{}
 
 // AdvancedCluster represents MongoDB cluster.
 type AdvancedCluster struct {
-	BackupEnabled            *bool                      `yaml:"backupEnabled,omitempty" json:"backupEnabled,omitempty"`
-	BiConnector              *BiConnector               `yaml:"biConnector,omitempty" json:"biConnector,omitempty"`
-	ClusterType              string                     `yaml:"clusterType,omitempty" json:"clusterType,omitempty"`
-	ConnectionStrings        *ConnectionStrings         `yaml:"connectionStrings,omitempty" json:"connectionStrings,omitempty"`
-	DiskSizeGB               *float64                   `yaml:"diskSizeGB,omitempty" json:"diskSizeGB,omitempty"`
-	EncryptionAtRestProvider string                     `yaml:"encryptionAtRestProvider,omitempty" json:"encryptionAtRestProvider,omitempty"`
-	GroupID                  string                     `yaml:"groupId,omitempty" json:"groupId,omitempty"`
-	ID                       string                     `yaml:"id,omitempty" json:"id,omitempty"`
-	Labels                   []Label                    `yaml:"labels,omitempty" json:"labels,omitempty"`
-	MongoDBMajorVersion      string                     `yaml:"mongoDBMajorVersion,omitempty" json:"mongoDBMajorVersion,omitempty"`
-	MongoDBVersion           string                     `yaml:"mongoDBVersion,omitempty" json:"mongoDBVersion,omitempty"`
-	Name                     string                     `yaml:"name,omitempty" json:"name,omitempty"`
-	Paused                   *bool                      `yaml:"paused,omitempty" json:"paused,omitempty"`
-	PitEnabled               *bool                      `yaml:"pitEnabled,omitempty" json:"pitEnabled,omitempty"`
-	StateName                string                     `yaml:"stateName,omitempty" json:"stateName,omitempty"`
-	ReplicationSpecs         []*AdvancedReplicationSpec `yaml:"replicationSpecs,omitempty" json:"replicationSpecs,omitempty"`
-	CreateDate               string                     `yaml:"createDate,omitempty" json:"createDate,omitempty"`
-	RootCertType             string                     `yaml:"rootCertType,omitempty" json:"rootCertType,omitempty"`
-	VersionReleaseSystem     string                     `yaml:"versionReleaseSystem,omitempty" json:"versionReleaseSystem,omitempty"`
+	BackupEnabled            *bool                      `json:"backupEnabled,omitempty"`
+	BiConnector              *BiConnector               `json:"biConnector,omitempty"`
+	ClusterType              string                     `json:"clusterType,omitempty"`
+	ConnectionStrings        *ConnectionStrings         `json:"connectionStrings,omitempty"`
+	DiskSizeGB               *float64                   `json:"diskSizeGB,omitempty"`
+	EncryptionAtRestProvider string                     `json:"encryptionAtRestProvider,omitempty"`
+	GroupID                  string                     `json:"groupId,omitempty"`
+	ID                       string                     `json:"id,omitempty"`
+	Labels                   []Label                    `json:"labels,omitempty"`
+	MongoDBMajorVersion      string                     `json:"mongoDBMajorVersion,omitempty"`
+	MongoDBVersion           string                     `json:"mongoDBVersion,omitempty"`
+	Name                     string                     `json:"name,omitempty"`
+	Paused                   *bool                      `json:"paused,omitempty"`
+	PitEnabled               *bool                      `json:"pitEnabled,omitempty"`
+	StateName                string                     `json:"stateName,omitempty"`
+	ReplicationSpecs         []*AdvancedReplicationSpec `json:"replicationSpecs,omitempty"`
+	CreateDate               string                     `json:"createDate,omitempty"`
+	RootCertType             string                     `json:"rootCertType,omitempty"`
+	VersionReleaseSystem     string                     `json:"versionReleaseSystem,omitempty"`
 }
 
 type AdvancedReplicationSpec struct {
