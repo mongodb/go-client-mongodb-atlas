@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.18.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.18.0) (October 17, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.17.0...v0.18.0)
+
+**Closed issues:**
+
+- "CloudProviderSnapshots.GetOneCloudProviderSnapshot\(\)" method returns already deleted snapshot [\#315](https://github.com/mongodb/go-client-mongodb-atlas/issues/315)
+
+**Merged pull requests:**
+
+- CLOUDP-139997: added OplogMinRetentionHours to ProcessArgs [\#316](https://github.com/mongodb/go-client-mongodb-atlas/pull/316) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-364: \[Terraform\] Add support for serverless private endpoints [\#314](https://github.com/mongodb/go-client-mongodb-atlas/pull/314) ([martinstibbe](https://github.com/martinstibbe))
+
 ## [v0.17.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.17.0) (September 27, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.16.0...v0.17.0)
