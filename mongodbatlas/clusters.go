@@ -169,6 +169,7 @@ type Cluster struct {
 	ConnectionStrings        *ConnectionStrings       `json:"connectionStrings,omitempty"`
 	Links                    []*Link                  `json:"links,omitempty"`
 	VersionReleaseSystem     string                   `json:"versionReleaseSystem,omitempty"`
+	RootCertType             string                   `json:"rootCertType,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster.
