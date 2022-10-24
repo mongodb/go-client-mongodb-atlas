@@ -390,6 +390,7 @@ func TestClusters_Create(t *testing.T) {
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 		StateName:            "IDLE",
 		VersionReleaseSystem: "LTS",
+		RootCertType:         "ISRGROOTX1",
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
@@ -442,6 +443,7 @@ func TestClusters_Create(t *testing.T) {
 			"srvAddress":           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 			"stateName":            "IDLE",
 			"versionReleaseSystem": "LTS",
+			"rootCertType":         "ISRGROOTX1",
 		}
 
 		jsonBlob := `
