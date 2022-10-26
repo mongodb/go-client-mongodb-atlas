@@ -676,3 +676,173 @@ func TestAlertConfiguration_ListMatcherFields(t *testing.T) {
 		t.Error(diff)
 	}
 }
+
+func TestAlertConfiguration_GetAnAlertConfigTeams(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "535683b3794d371327b"
+	alertConfigID := "57b76ddc96e8215c017ceafb"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"id": "533dc40ae4b00835ff81eaee",
+			"groupId": "535683b3794d371327b",
+			"eventTypeName": "OUTSIDE_METRIC_THRESHOLD",
+			"created": "2016-08-23T20:26:50Z",
+			"updated": "2016-08-23T20:26:50Z",
+			"enabled": true,
+			"matchers": [
+				{
+					"fieldName": "HOSTNAME_AND_PORT",
+					"operator": "EQUALS",
+					"value": "mongo.example.com:27017"
+				}
+			],
+			"notifications": [
+				{
+					"typeName": "MICROSOFT_TEAMS",
+					"intervalMin": 5,
+					"delayMin": 0,
+					"microsoftTeamsWebhookUrl": "http://941a-47-225-212-178.ngrok.io",
+					"roles" : ["GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"]
+				}
+			],
+			"metricThreshold": {
+				"metricName": "ASSERT_REGULAR",
+				"operator": "LESS_THAN",
+				"threshold": 99.0,
+				"units": "RAW",
+				"mode": "AVERAGE"
+			}
+		}`)
+	})
+
+	alertConfiguration, _, err := client.AlertConfigurations.GetAnAlertConfig(ctx, groupID, alertConfigID)
+	if err != nil {
+		t.Fatalf("AlertConfigurations.GetAnAlertConfigTeams returned error: %v", err)
+	}
+
+	expected := &AlertConfiguration{
+		ID:            "533dc40ae4b00835ff81eaee",
+		GroupID:       "535683b3794d371327b",
+		EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
+		Created:       "2016-08-23T20:26:50Z",
+		Updated:       "2016-08-23T20:26:50Z",
+		Enabled:       pointy.Bool(true),
+		Matchers: []Matcher{
+			{
+				FieldName: "HOSTNAME_AND_PORT",
+				Operator:  "EQUALS",
+				Value:     "mongo.example.com:27017",
+			},
+		},
+		Notifications: []Notification{
+			{
+				TypeName:                 "MICROSOFT_TEAMS",
+				IntervalMin:              5,
+				DelayMin:                 pointy.Int(0),
+				MicrosoftTeamsWebhookURL: "http://941a-47-225-212-178.ngrok.io",
+				Roles:                    []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
+			},
+		},
+		MetricThreshold: &MetricThreshold{
+			MetricName: "ASSERT_REGULAR",
+			Operator:   "LESS_THAN",
+			Threshold:  99.0,
+			Units:      "RAW",
+			Mode:       "AVERAGE",
+		},
+	}
+
+	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestAlertConfiguration_GetAnAlertConfigWebhook(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "535683b3794d371327b"
+	alertConfigID := "57b76ddc96e8215c017ceafb"
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs/%s", groupID, alertConfigID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"id": "533dc40ae4b00835ff81eaee",
+			"groupId": "535683b3794d371327b",
+			"eventTypeName": "OUTSIDE_METRIC_THRESHOLD",
+			"created": "2016-08-23T20:26:50Z",
+			"updated": "2016-08-23T20:26:50Z",
+			"enabled": true,
+			"matchers": [
+				{
+					"fieldName": "HOSTNAME_AND_PORT",
+					"operator": "EQUALS",
+					"value": "mongo.example.com:27017"
+				}
+			],
+			"notifications": [
+				{
+					"typeName": "WEBHOOK",
+					"intervalMin": 5,
+					"delayMin": 0,
+					"webhookSecret": "SECRET",
+					"webhookUrl": "http://941a-47-225-212-178.ngrok.io",
+					"roles" : ["GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"]
+				}
+			],
+			"metricThreshold": {
+				"metricName": "ASSERT_REGULAR",
+				"operator": "LESS_THAN",
+				"threshold": 99.0,
+				"units": "RAW",
+				"mode": "AVERAGE"
+			}
+		}`)
+	})
+
+	alertConfiguration, _, err := client.AlertConfigurations.GetAnAlertConfig(ctx, groupID, alertConfigID)
+	if err != nil {
+		t.Fatalf("AlertConfigurations.GetAnAlertConfig returned error: %v", err)
+	}
+
+	expected := &AlertConfiguration{
+		ID:            "533dc40ae4b00835ff81eaee",
+		GroupID:       "535683b3794d371327b",
+		EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
+		Created:       "2016-08-23T20:26:50Z",
+		Updated:       "2016-08-23T20:26:50Z",
+		Enabled:       pointy.Bool(true),
+		Matchers: []Matcher{
+			{
+				FieldName: "HOSTNAME_AND_PORT",
+				Operator:  "EQUALS",
+				Value:     "mongo.example.com:27017",
+			},
+		},
+		Notifications: []Notification{
+			{
+				TypeName:      "WEBHOOK",
+				IntervalMin:   5,
+				DelayMin:      pointy.Int(0),
+				WebhookSecret: "SECRET",
+				WebhookURL:    "http://941a-47-225-212-178.ngrok.io",
+				Roles:         []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
+			},
+		},
+		MetricThreshold: &MetricThreshold{
+			MetricName: "ASSERT_REGULAR",
+			Operator:   "LESS_THAN",
+			Threshold:  99.0,
+			Units:      "RAW",
+			Mode:       "AVERAGE",
+		},
+	}
+
+	if diff := deep.Equal(alertConfiguration, expected); diff != nil {
+		t.Error(diff)
+	}
+}
