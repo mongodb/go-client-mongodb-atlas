@@ -100,30 +100,32 @@ type Threshold struct {
 
 // Notification sends when an alert condition is detected.
 type Notification struct {
-	APIToken            string   `json:"apiToken,omitempty"`            // Slack API token or Bot token. Populated for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	ChannelName         string   `json:"channelName,omitempty"`         // Slack channel name. Populated for the SLACK notifications type.
-	DatadogAPIKey       string   `json:"datadogApiKey,omitempty"`       // Datadog API Key. Found in the Datadog dashboard. Populated for the DATADOG notifications type.
-	DatadogRegion       string   `json:"datadogRegion,omitempty"`       // Region that indicates which API URL to use
-	DelayMin            *int     `json:"delayMin,omitempty"`            // Number of minutes to wait after an alert condition is detected before sending out the first notification.
-	EmailAddress        string   `json:"emailAddress,omitempty"`        // Email address to which alert notifications are sent. Populated for the EMAIL notifications type.
-	EmailEnabled        *bool    `json:"emailEnabled,omitempty"`        // Flag indicating if email notifications should be sent. Populated for ORG, GROUP, and USER notifications types.
-	FlowdockAPIToken    string   `json:"flowdockApiToken,omitempty"`    // The Flowdock personal API token. Populated for the FLOWDOCK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	FlowName            string   `json:"flowName,omitempty"`            // Flowdock flow namse in lower-case letters.
-	IntervalMin         int      `json:"intervalMin,omitempty"`         // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved.
-	MobileNumber        string   `json:"mobileNumber,omitempty"`        // Mobile number to which alert notifications are sent. Populated for the SMS notifications type.
-	OpsGenieAPIKey      string   `json:"opsGenieApiKey,omitempty"`      // Opsgenie API Key. Populated for the OPS_GENIE notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	OpsGenieRegion      string   `json:"opsGenieRegion,omitempty"`      // Region that indicates which API URL to use.
-	OrgName             string   `json:"orgName,omitempty"`             // Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Populated for the FLOWDOCK notifications type.
-	ServiceKey          string   `json:"serviceKey,omitempty"`          // PagerDuty service key. Populated for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	SMSEnabled          *bool    `json:"smsEnabled,omitempty"`          // Flag indicating if text message notifications should be sent. Populated for ORG, GROUP, and USER notifications types.
-	TeamID              string   `json:"teamId,omitempty"`              // Unique identifier of a team.
-	TeamName            string   `json:"teamName,omitempty"`            // Label for the team that receives this notification.
-	TypeName            string   `json:"typeName,omitempty"`            // Type of alert notification.
-	Username            string   `json:"username,omitempty"`            // Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Populated for the USER notifications type.
-	VictorOpsAPIKey     string   `json:"victorOpsApiKey,omitempty"`     // VictorOps API key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	VictorOpsRoutingKey string   `json:"victorOpsRoutingKey,omitempty"` // VictorOps routing key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	Roles               []string `json:"roles,omitempty"`               // The following roles grant privileges within a project.
-
+	APIToken                 string   `json:"apiToken,omitempty"`                 // Slack API token or Bot token. Populated for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+	ChannelName              string   `json:"channelName,omitempty"`              // Slack channel name. Populated for the SLACK notifications type.
+	DatadogAPIKey            string   `json:"datadogApiKey,omitempty"`            // Datadog API Key. Found in the Datadog dashboard. Populated for the DATADOG notifications type.
+	DatadogRegion            string   `json:"datadogRegion,omitempty"`            // Region that indicates which API URL to use
+	DelayMin                 *int     `json:"delayMin,omitempty"`                 // Number of minutes to wait after an alert condition is detected before sending out the first notification.
+	EmailAddress             string   `json:"emailAddress,omitempty"`             // Email address to which alert notifications are sent. Populated for the EMAIL notifications type.
+	EmailEnabled             *bool    `json:"emailEnabled,omitempty"`             // Flag indicating if email notifications should be sent. Populated for ORG, GROUP, and USER notifications types.
+	FlowdockAPIToken         string   `json:"flowdockApiToken,omitempty"`         // The Flowdock personal API token. Populated for the FLOWDOCK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+	FlowName                 string   `json:"flowName,omitempty"`                 // Flowdock flow namse in lower-case letters.
+	IntervalMin              int      `json:"intervalMin,omitempty"`              // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved.
+	MobileNumber             string   `json:"mobileNumber,omitempty"`             // Mobile number to which alert notifications are sent. Populated for the SMS notifications type.
+	OpsGenieAPIKey           string   `json:"opsGenieApiKey,omitempty"`           // Opsgenie API Key. Populated for the OPS_GENIE notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+	OpsGenieRegion           string   `json:"opsGenieRegion,omitempty"`           // Region that indicates which API URL to use.
+	OrgName                  string   `json:"orgName,omitempty"`                  // Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Populated for the FLOWDOCK notifications type.
+	ServiceKey               string   `json:"serviceKey,omitempty"`               // PagerDuty service key. Populated for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+	SMSEnabled               *bool    `json:"smsEnabled,omitempty"`               // Flag indicating if text message notifications should be sent. Populated for ORG, GROUP, and USER notifications types.
+	TeamID                   string   `json:"teamId,omitempty"`                   // Unique identifier of a team.
+	TeamName                 string   `json:"teamName,omitempty"`                 // Label for the team that receives this notification.
+	TypeName                 string   `json:"typeName,omitempty"`                 // Type of alert notification.
+	Username                 string   `json:"username,omitempty"`                 // Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Populated for the USER notifications type.
+	VictorOpsAPIKey          string   `json:"victorOpsApiKey,omitempty"`          // VictorOps API key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+	VictorOpsRoutingKey      string   `json:"victorOpsRoutingKey,omitempty"`      // VictorOps routing key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+	Roles                    []string `json:"roles,omitempty"`                    // The following roles grant privileges within a project.
+	MicrosoftTeamsWebhookURL string   `json:"microsoftTeamsWebhookUrl,omitempty"` // Microsoft Teams Wewbhook URL
+	WebhookSecret            string   `json:"webhookSecret,omitempty"`            // Webhook Secret
+	WebhookURL               string   `json:"webhookUrl,omitempty"`               // Webhook URL
 }
 
 // AlertConfigurationsResponse is the response from the AlertConfigurationsService.List.
