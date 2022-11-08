@@ -162,6 +162,7 @@ func TestServerlessInstances_Get(t *testing.T) {
 				  "backingProviderName": "AWS",
 				  "regionName": "US_EAST_1"
 				},
+				"terminationProtectionEnabled": false,
 				"stateName": "IDLE"
 		}`)
 	})
@@ -172,14 +173,15 @@ func TestServerlessInstances_Get(t *testing.T) {
 	}
 
 	expected := &Cluster{
-		ID:                id,
-		GroupID:           projectID,
-		MongoDBVersion:    "5.0.0",
-		Name:              "test1",
-		ProviderSettings:  &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
-		StateName:         "IDLE",
-		ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
-		CreateDate:        "2021-06-25T21:32:06Z",
+		ID:                           id,
+		GroupID:                      projectID,
+		MongoDBVersion:               "5.0.0",
+		Name:                         "test1",
+		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
+		StateName:                    "IDLE",
+		TerminationProtectionEnabled: pointy.Bool(false),
+		ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
+		CreateDate:                   "2021-06-25T21:32:06Z",
 		Links: []*Link{
 			{
 				Rel:  "self",

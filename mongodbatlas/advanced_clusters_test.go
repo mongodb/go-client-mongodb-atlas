@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -468,6 +469,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 						  ],
 						  "rootCertType": "DST",
 						  "stateName": "CREATING",
+						  "terminationProtectionEnabled": false,
 						  "versionReleaseSystem": "LTS"
 						
 }`)
@@ -493,18 +495,19 @@ func TestAdvancedClusters_Get(t *testing.T) {
 			Enabled:        &enabled,
 			ReadPreference: "secondary",
 		},
-		ClusterType:              "GEOSHARDED",
-		DiskSizeGB:               &diskSizeGBGeoSharded,
-		EncryptionAtRestProvider: "NONE",
-		GroupID:                  "2",
-		ID:                       "2",
-		MongoDBMajorVersion:      "4.4",
-		MongoDBVersion:           "4.4.4",
-		Name:                     clusterName,
-		Paused:                   &paused,
-		PitEnabled:               &pitEnabled,
-		StateName:                "CREATING",
-		VersionReleaseSystem:     "LTS",
+		ClusterType:                  "GEOSHARDED",
+		DiskSizeGB:                   &diskSizeGBGeoSharded,
+		EncryptionAtRestProvider:     "NONE",
+		GroupID:                      "2",
+		ID:                           "2",
+		MongoDBMajorVersion:          "4.4",
+		MongoDBVersion:               "4.4.4",
+		Name:                         clusterName,
+		Paused:                       &paused,
+		PitEnabled:                   &pitEnabled,
+		StateName:                    "CREATING",
+		TerminationProtectionEnabled: pointy.Bool(false),
+		VersionReleaseSystem:         "LTS",
 		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
