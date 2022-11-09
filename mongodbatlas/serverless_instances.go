@@ -47,13 +47,15 @@ type ClustersResponse struct {
 
 // ServerlessCreateRequestParams represents the Request Body Parameters of ServerlessInstancesService.Create.
 type ServerlessCreateRequestParams struct {
-	Name                    string                      `json:"name,omitempty"`
-	ProviderSettings        *ServerlessProviderSettings `json:"providerSettings,omitempty"`
-	ServerlessBackupOptions *ServerlessBackupOptions    `json:"serverlessBackupOptions,omitempty"`
+	Name                         string                      `json:"name,omitempty"`
+	ProviderSettings             *ServerlessProviderSettings `json:"providerSettings,omitempty"`
+	ServerlessBackupOptions      *ServerlessBackupOptions    `json:"serverlessBackupOptions,omitempty"`
+	TerminationProtectionEnabled *bool                       `json:"terminationProtectionEnabled,omitempty"`
 }
 
 type ServerlessUpdateRequestParams struct {
-	ServerlessBackupOptions *ServerlessBackupOptions `json:"serverlessBackupOptions"`
+	ServerlessBackupOptions      *ServerlessBackupOptions `json:"serverlessBackupOptions"`
+	TerminationProtectionEnabled *bool                    `json:"terminationProtectionEnabled,omitempty"`
 }
 
 // ServerlessProviderSettings represents the Provider Settings of serverless instances.

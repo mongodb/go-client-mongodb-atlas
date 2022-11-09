@@ -932,6 +932,7 @@ func TestClusters_Get(t *testing.T) {
             },
             "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
             "stateName": "IDLE",
+			"terminationProtectionEnabled": false,
             "versionReleaseSystem": "LTS"
 		}`)
 	})
@@ -996,9 +997,10 @@ func TestClusters_Get(t *testing.T) {
 				ReadOnlyNodes:  pointy.Int64(0),
 			},
 		},
-		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
-		StateName:            "IDLE",
-		VersionReleaseSystem: "LTS",
+		SrvAddress:                   "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
+		StateName:                    "IDLE",
+		TerminationProtectionEnabled: pointy.Bool(false),
+		VersionReleaseSystem:         "LTS",
 	}
 
 	if diff := deep.Equal(cluster, expected); diff != nil {
