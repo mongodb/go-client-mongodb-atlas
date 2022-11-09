@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -64,6 +65,17 @@ func TestAdvancedClusters_List(t *testing.T) {
 						  "numShards": 1,
 						  "regionConfigs": [
 							{
+                              "analyticsAutoScaling": {
+								"compute": {
+									"enabled": true,
+									"maxInstanceSize": "M20",
+									"minInstanceSize": "M10",
+									"scaleDownEnabled": false
+								}, 
+								"diskGB": {
+									"enabled": true
+								}
+							  },
 							  "analyticsSpecs": {
 								"instanceSize": "M10",
 								"diskIOPS": 100,
@@ -241,6 +253,17 @@ func TestAdvancedClusters_List(t *testing.T) {
 						ZoneName:  "Zone 1",
 						RegionConfigs: []*AdvancedRegionConfig{
 							{
+								AnalyticsAutoScaling: &AdvancedAutoScaling{
+									DiskGB: &DiskGB{
+										Enabled: pointy.Bool(true),
+									},
+									Compute: &Compute{
+										Enabled:          pointy.Bool(true),
+										ScaleDownEnabled: pointy.Bool(false),
+										MinInstanceSize:  "M10",
+										MaxInstanceSize:  "M20",
+									},
+								},
 								AnalyticsSpecs: &Specs{
 									DiskIOPS:      &diskIOPS,
 									EbsVolumeType: "STANDARD",
