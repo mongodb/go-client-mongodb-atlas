@@ -16,11 +16,11 @@ package mongodbatlas
 
 import (
 	"fmt"
-	"github.com/openlyinc/pointy"
 	"net/http"
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 const (
