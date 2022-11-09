@@ -72,14 +72,15 @@ type AdvancedReplicationSpec struct {
 }
 
 type AdvancedRegionConfig struct {
-	AnalyticsSpecs      *Specs               `json:"analyticsSpecs,omitempty"`
-	ElectableSpecs      *Specs               `json:"electableSpecs,omitempty"`
-	ReadOnlySpecs       *Specs               `json:"readOnlySpecs,omitempty"`
-	AutoScaling         *AdvancedAutoScaling `json:"autoScaling,omitempty"`
-	BackingProviderName string               `json:"backingProviderName,omitempty"`
-	Priority            *int                 `json:"priority,omitempty"`
-	ProviderName        string               `json:"providerName,omitempty"`
-	RegionName          string               `json:"regionName,omitempty"`
+	AnalyticsAutoScaling *AdvancedAutoScaling `json:"analyticsAutoScaling,omitempty"`
+	AnalyticsSpecs       *Specs               `json:"analyticsSpecs,omitempty"`
+	ElectableSpecs       *Specs               `json:"electableSpecs,omitempty"`
+	ReadOnlySpecs        *Specs               `json:"readOnlySpecs,omitempty"`
+	AutoScaling          *AdvancedAutoScaling `json:"autoScaling,omitempty"`
+	BackingProviderName  string               `json:"backingProviderName,omitempty"`
+	Priority             *int                 `json:"priority,omitempty"`
+	ProviderName         string               `json:"providerName,omitempty"`
+	RegionName           string               `json:"regionName,omitempty"`
 }
 
 type AdvancedAutoScaling struct {
