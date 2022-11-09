@@ -288,12 +288,14 @@ func TestServerlessInstances_Update(t *testing.T) {
 			"serverlessBackupOptions" : {
 			  "serverlessContinuousBackupEnabled" : true
 			},
-			"stateName" : "IDLE"
+			"stateName" : "IDLE",
+			"terminationProtectionEnabled": true
 		}`)
 	})
 
 	bodyParam := &ServerlessUpdateRequestParams{
-		ServerlessBackupOptions: &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+		TerminationProtectionEnabled: pointy.Bool(true),
 	}
 
 	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, projectID, "sample", bodyParam)
@@ -302,15 +304,16 @@ func TestServerlessInstances_Update(t *testing.T) {
 	}
 
 	expected := &Cluster{
-		ID:                      id,
-		GroupID:                 projectID,
-		MongoDBVersion:          "5.0.0",
-		Name:                    "sample",
-		ProviderSettings:        &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
-		StateName:               "IDLE",
-		ConnectionStrings:       &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
-		CreateDate:              "2021-06-25T21:31:10Z",
-		ServerlessBackupOptions: &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+		ID:                           id,
+		GroupID:                      projectID,
+		MongoDBVersion:               "5.0.0",
+		Name:                         "sample",
+		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
+		StateName:                    "IDLE",
+		ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
+		CreateDate:                   "2021-06-25T21:31:10Z",
+		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
+		TerminationProtectionEnabled: pointy.Bool(true),
 		Links: []*Link{
 			{
 				Rel:  "self",
