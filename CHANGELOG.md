@@ -1,5 +1,23 @@
 # Changelog
 
+## [v0.19.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.19.0) (November 11, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.18.0...v0.19.0)
+
+**Breaking changes:**
+
+- task: drop support for 1.17 [\#323](https://github.com/mongodb/go-client-mongodb-atlas/pull/323) ([gssbzn](https://github.com/gssbzn))
+
+**Merged pull requests:**
+
+- INTMDB-444 Add support for terminationProtectionEnabled flag [\#325](https://github.com/mongodb/go-client-mongodb-atlas/pull/325) ([martinstibbe](https://github.com/martinstibbe))
+- CLOUDP-143634: Add analyticsAutoScaling to advanced cluster atlas go client [\#324](https://github.com/mongodb/go-client-mongodb-atlas/pull/324) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.2.0 to 3.3.0 [\#322](https://github.com/mongodb/go-client-mongodb-atlas/pull/322) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump github.com/openlyinc/pointy from 1.1.2 to 1.2.0 [\#321](https://github.com/mongodb/go-client-mongodb-atlas/pull/321) ([dependabot[bot]](https://github.com/apps/dependabot))
+- INTMDB-373: Add support for Webhook and MicrosoftTeamsWebhookURL Notifications [\#320](https://github.com/mongodb/go-client-mongodb-atlas/pull/320) ([martinstibbe](https://github.com/martinstibbe))
+- CLOUDP-141434: Add RootCertType to the atlas go client [\#319](https://github.com/mongodb/go-client-mongodb-atlas/pull/319) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-79100: Autoclose stale issues and PRs [\#318](https://github.com/mongodb/go-client-mongodb-atlas/pull/318) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.18.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.18.0) (October 17, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.17.0...v0.18.0)
