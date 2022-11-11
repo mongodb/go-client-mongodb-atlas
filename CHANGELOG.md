@@ -1,8 +1,8 @@
 # Changelog
 
-## [v0.18.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.18.0) (November 11, 2022)
+## [v0.19.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.19.0) (November 11, 2022)
 
-[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.18.0...v0.18.0)
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.18.0...v0.19.0)
 
 **Breaking changes:**
 
@@ -17,20 +17,6 @@
 - INTMDB-373: Add support for Webhook and MicrosoftTeamsWebhookURL Notifications [\#320](https://github.com/mongodb/go-client-mongodb-atlas/pull/320) ([martinstibbe](https://github.com/martinstibbe))
 - CLOUDP-141434: Add RootCertType to the atlas go client [\#319](https://github.com/mongodb/go-client-mongodb-atlas/pull/319) ([andreaangiolillo](https://github.com/andreaangiolillo))
 - CLOUDP-79100: Autoclose stale issues and PRs [\#318](https://github.com/mongodb/go-client-mongodb-atlas/pull/318) ([andreaangiolillo](https://github.com/andreaangiolillo))
-
-## [v0.18.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.18.0) (October 17, 2022)
-
-[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.17.0...v0.18.0)
-
-**Closed issues:**
-
-- "CloudProviderSnapshots.GetOneCloudProviderSnapshot\(\)" method returns already deleted snapshot [\#315](https://github.com/mongodb/go-client-mongodb-atlas/issues/315)
-
-**Merged pull requests:**
-
-- task: Release 0.18.0 prep [\#317](https://github.com/mongodb/go-client-mongodb-atlas/pull/317) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- CLOUDP-139997: added OplogMinRetentionHours to ProcessArgs [\#316](https://github.com/mongodb/go-client-mongodb-atlas/pull/316) ([andreaangiolillo](https://github.com/andreaangiolillo))
-- INTMDB-364: \[Terraform\] Add support for serverless private endpoints [\#314](https://github.com/mongodb/go-client-mongodb-atlas/pull/314) ([martinstibbe](https://github.com/martinstibbe))
 
 ## [v0.18.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.18.0) (October 17, 2022)
 
