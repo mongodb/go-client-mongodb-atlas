@@ -696,16 +696,16 @@ func TestClusters_Update(t *testing.T) {
 		fmt.Fprint(w, jsonBlob)
 	})
 
-	dbUser, _, err := client.Clusters.Update(ctx, groupID, clusterName, updateRequest)
+	cluster, _, err := client.Clusters.Update(ctx, groupID, clusterName, updateRequest)
 	if err != nil {
 		t.Fatalf("Clusters.Update returned error: %v", err)
 	}
 
-	if name := dbUser.Name; name != clusterName {
+	if name := cluster.Name; name != clusterName {
 		t.Errorf("expected name '%s', received '%s'", clusterName, name)
 	}
 
-	if id := dbUser.GroupID; id != groupID {
+	if id := cluster.GroupID; id != groupID {
 		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
 	}
 }
