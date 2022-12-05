@@ -41,6 +41,8 @@ type TeamsService interface {
 	RemoveUserToTeam(context.Context, string, string, string) (*Response, error)
 	RemoveTeamFromOrganization(context.Context, string, string) (*Response, error)
 	RemoveTeamFromProject(context.Context, string, string) (*Response, error)
+	AddTeamsToProject(context.Context, string, []TeamProject) ([]TeamProject, *Response, error)
+	ListTeamsFromProject(context.Context, string, *ListOptions) ([]TeamProject, *Response, error)
 }
 
 // TeamsServiceOp handles communication with the Teams related methods of the
@@ -61,6 +63,19 @@ type Team struct {
 	ID        string   `json:"id,omitempty"`
 	Name      string   `json:"name"`
 	Usernames []string `json:"usernames,omitempty"`
+}
+
+// TeamProject defines  project specific Atlas team structure.
+type TeamProject struct {
+	TeamID    string   `json:"teamId"`
+	RoleNames []string `json:"roleNames,omitempty"`
+}
+
+// TeamsProjectResponse represents a array of teams in the project.
+type TeamsProjectResponse struct {
+	Links      []*Link       `json:"links"`
+	Results    []TeamProject `json:"results"`
+	TotalCount int           `json:"totalCount"`
 }
 
 // AtlasUserAssigned represents the user assigned to the project.
@@ -87,6 +102,61 @@ type TeamRoles struct {
 	Links     []*Link  `json:"links"`
 	RoleNames []string `json:"roleNames"`
 	TeamID    string   `json:"teamId"`
+}
+
+// ListTeamsFromProject - List  all the teams from one project.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Teams/operation/returnAllTeams
+func (s *TeamsServiceOp) ListTeamsFromProject(ctx context.Context, groupID string, listOptions *ListOptions) ([]TeamProject, *Response, error) {
+	path := fmt.Sprintf(teamsProjBasePath, groupID, "")
+
+	// Add query params from listOptions
+	path, err := setListOptions(path, listOptions)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(TeamsProjectResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	if l := root.Links; l != nil {
+		resp.Links = l
+	}
+
+	return root.Results, resp, nil
+}
+
+// AddTeamToProject - Adds one or more teams to a project.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Teams/operation/addOneOrMoreTeamsToOneProject
+func (s *TeamsServiceOp) AddTeamsToProject(ctx context.Context, groupID string, createRequest []TeamProject) ([]TeamProject, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if createRequest == nil {
+		return nil, nil, NewArgError("createRequest", "cannot be nil")
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, fmt.Sprintf(teamsProjBasePath, groupID, ""), createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(TeamsProjectResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root.Results, resp, nil
 }
 
 // List gets all teams.

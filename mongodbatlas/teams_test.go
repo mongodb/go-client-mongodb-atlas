@@ -73,6 +73,52 @@ func TestTeams_List(t *testing.T) {
 		t.Error(diff)
 	}
 }
+func TestTeams_List_From_Project(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/teams/", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"links": [{
+				   "href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/1/teams?pageNum=1&itemsPerPage=100",
+				   "rel": "self"
+			}],
+		    "results": [{
+					"teamId": "b5cfec387d9d63926b9189g",
+					"roleNames":[ "GROUP-OWNER"]
+			},{
+					"teamId": "2",
+					"roleNames":[ "GROUP-MEMBER"]
+			}],
+			"totalCount": 2
+		}`)
+	})
+
+	teams, _, err := client.Teams.ListTeamsFromProject(ctx, "1", nil)
+
+	if err != nil {
+		t.Fatalf("Teams.List returned error: %v", err)
+	}
+
+	expected := []TeamProject{
+		{
+			TeamID: "b5cfec387d9d63926b9189g",
+			RoleNames: []string{
+				"GROUP-OWNER",
+			},
+		},
+		{
+			TeamID: "2",
+			RoleNames: []string{
+				"GROUP-MEMBER",
+			},
+		},
+	}
+
+	if diff := deep.Equal(teams, expected); diff != nil {
+		t.Error(diff)
+	}
+}
 
 func TestTeams_Get(t *testing.T) {
 	client, mux, teardown := setup()
@@ -552,7 +598,36 @@ func TestTeams_RemoveTeamFromOrganization(t *testing.T) {
 		t.Fatalf("Teams.RemoveTeamFromOrganization returned error: %v", err)
 	}
 }
+func TestTeams_AddTeamToProject(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
 
+	groupID := "1"
+	addTeamRequest := []TeamProject{
+		{
+			TeamID: "b5cfec387d9d63926b9189g",
+			RoleNames: []string{
+				"GROUP-OWNER",
+			},
+		},
+		{
+			TeamID: "2",
+			RoleNames: []string{
+				"GROUP-MEMBER",
+			},
+		},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/teams/", groupID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+	})
+
+	_, _, err := client.Teams.AddTeamsToProject(ctx, groupID, addTeamRequest)
+
+	if err != nil {
+		t.Fatalf("Teams.AddTeamToProject returned error: %v", err)
+	}
+}
 func TestTeams_RemoveTeamFromProject(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
