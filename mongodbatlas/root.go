@@ -33,6 +33,25 @@ type RootService interface {
 // of the MongoDB Atlas API.
 type RootServiceOp service
 
+type Root struct {
+	Links []struct {
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+	Results []struct {
+		Desc  string `json:"desc"`
+		ID    string `json:"id"`
+		Links []struct {
+			Href string `json:"href"`
+			Rel  string `json:"rel"`
+		} `json:"links"`
+		PrivateKey string      `json:"privateKey"`
+		PublicKey  string      `json:"publicKey"`
+		Roles      []AtlasRole `json:"roles,omitempty"`
+	} `json:"results"`
+	TotalCount int `json:"totalCount"`
+}
+
 var _ RootService = &RootServiceOp{}
 
 // List all API-KEY related data
