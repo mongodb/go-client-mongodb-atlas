@@ -26,7 +26,7 @@ const rootPath = "api/atlas/v1.0" //nolint:gosec // This is a path
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/root
 type RootService interface {
-	List(context.Context, *ListOptions) ([]APIKey, *Response, error)
+	List(context.Context, *ListOptions) (*Root, *Response, error)
 }
 
 // RootServiceOp handles communication with the APIKey related methods
@@ -34,22 +34,9 @@ type RootService interface {
 type RootServiceOp service
 
 type Root struct {
-	Links []struct {
-		Href string `json:"href"`
-		Rel  string `json:"rel"`
-	} `json:"links"`
-	Results []struct {
-		Desc  string `json:"desc"`
-		ID    string `json:"id"`
-		Links []struct {
-			Href string `json:"href"`
-			Rel  string `json:"rel"`
-		} `json:"links"`
-		PrivateKey string      `json:"privateKey"`
-		PublicKey  string      `json:"publicKey"`
-		Roles      []AtlasRole `json:"roles,omitempty"`
-	} `json:"results"`
-	TotalCount int `json:"totalCount"`
+	Links      []*Link  `json:"links"`
+	Results    []APIKey `json:"results,omitempty"`
+	TotalCount int      `json:"totalCount"`
 }
 
 var _ RootService = &RootServiceOp{}
@@ -57,7 +44,7 @@ var _ RootService = &RootServiceOp{}
 // List all API-KEY related data
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api/root/
-func (s *RootServiceOp) List(ctx context.Context, listOptions *ListOptions) ([]APIKey, *Response, error) {
+func (s *RootServiceOp) List(ctx context.Context, listOptions *ListOptions) (*Root, *Response, error) {
 	path := rootPath
 
 	// Add query params from listOptions
@@ -71,15 +58,11 @@ func (s *RootServiceOp) List(ctx context.Context, listOptions *ListOptions) ([]A
 		return nil, nil, err
 	}
 
-	root := new(apiKeysResponse)
+	root := new(Root)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
 	}
 
-	if l := root.Links; l != nil {
-		resp.Links = l
-	}
-
-	return root.Results, resp, nil
+	return root, resp, nil
 }

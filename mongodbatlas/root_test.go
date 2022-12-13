@@ -29,6 +29,10 @@ func TestRoot_ListRoot(t *testing.T) {
 	mux.HandleFunc("/api/atlas/v1.0", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
+			"links" : [ {
+				"href" : "https://cloud.mongodb.com/api/atlas/v1.0",
+				"rel" : "self"
+			} ],
 			"results": [
 				{
 					"desc": "test-apikey",
@@ -73,39 +77,48 @@ func TestRoot_ListRoot(t *testing.T) {
 		t.Fatalf("APIKeys.List returned error: %v", err)
 	}
 
-	expected := []APIKey{
-		{
-			ID:         "5c47503320eef5699e1cce8d",
-			Desc:       "test-apikey",
-			PrivateKey: "********-****-****-db2c132ca78d",
-			PublicKey:  "ewmaqvdo",
-			Roles: []AtlasRole{
-				{
-					GroupID:  "1",
-					RoleName: "GROUP_OWNER",
+	expected := &Root{
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0",
+				Rel:  "self",
+			},
+		},
+		Results: []APIKey{
+			{
+				ID:         "5c47503320eef5699e1cce8d",
+				Desc:       "test-apikey",
+				PrivateKey: "********-****-****-db2c132ca78d",
+				PublicKey:  "ewmaqvdo",
+				Roles: []AtlasRole{
+					{
+						GroupID:  "1",
+						RoleName: "GROUP_OWNER",
+					},
+					{
+						OrgID:    "1",
+						RoleName: "ORG_MEMBER",
+					},
 				},
-				{
-					OrgID:    "1",
-					RoleName: "ORG_MEMBER",
+			},
+			{
+				ID:         "5c47503320eef5699e1cce8f",
+				Desc:       "test-apikey-2",
+				PrivateKey: "********-****-****-db2c132ca78f",
+				PublicKey:  "ewmaqvde",
+				Roles: []AtlasRole{
+					{
+						GroupID:  "1",
+						RoleName: "GROUP_OWNER",
+					},
+					{
+						OrgID:    "1",
+						RoleName: "ORG_MEMBER",
+					},
 				},
 			},
 		},
-		{
-			ID:         "5c47503320eef5699e1cce8f",
-			Desc:       "test-apikey-2",
-			PrivateKey: "********-****-****-db2c132ca78f",
-			PublicKey:  "ewmaqvde",
-			Roles: []AtlasRole{
-				{
-					GroupID:  "1",
-					RoleName: "GROUP_OWNER",
-				},
-				{
-					OrgID:    "1",
-					RoleName: "ORG_MEMBER",
-				},
-			},
-		},
+		TotalCount: 2,
 	}
 	if diff := deep.Equal(apiKeys, expected); diff != nil {
 		t.Error(diff)
