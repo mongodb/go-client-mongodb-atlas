@@ -73,21 +73,21 @@ func (c CloudProviderSnapshotExportJobsServiceOp) List(ctx context.Context, proj
 	return root, resp, nil
 }
 
-// Get Allows you to retrieve one export job specified by the bucket ID.
+// Get Allows you to retrieve one export job specified by the export job ID.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-one-export-job/
-func (c CloudProviderSnapshotExportJobsServiceOp) Get(ctx context.Context, projectID, clusterName, bucketID string) (*CloudProviderSnapshotExportJob, *Response, error) {
+func (c CloudProviderSnapshotExportJobsServiceOp) Get(ctx context.Context, projectID, clusterName, exportJobID string) (*CloudProviderSnapshotExportJob, *Response, error) {
 	if projectID == "" {
 		return nil, nil, NewArgError("projectID", "must be set")
 	}
 	if clusterName == "" {
 		return nil, nil, NewArgError("clusterName", "must be set")
 	}
-	if bucketID == "" {
-		return nil, nil, NewArgError("bucketID", "must be set")
+	if exportJobID == "" {
+		return nil, nil, NewArgError("exportJobID", "must be set")
 	}
 
-	path := fmt.Sprintf("api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", projectID, clusterName, bucketID)
+	path := fmt.Sprintf("api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", projectID, clusterName, exportJobID)
 
 	req, err := c.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
