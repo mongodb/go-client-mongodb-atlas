@@ -257,20 +257,20 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 			},
 			"copySettings": []interface{}{
 				map[string]interface{}{
-					"CloudProvider": "AWS",
-					"Frequencies": []interface{}{
+					"cloudProvider": "AWS",
+					"frequencies": []interface{}{
 						"HOURLY",
 					},
-					"RegionName":        "testRegion",
-					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
-					"ShouldCopyOplogs":  true,
+					"regionName":        "testRegion",
+					"replicationSpecId": "5e2f1bcaf38990fab9227c9",
+					"shouldCopyOplogs":  true,
 				},
 			},
 			"deleteCopiedBackups": []interface{}{
 				map[string]interface{}{
-					"CloudProvider":     "AWS",
-					"RegionName":        "testRegion",
-					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
+					"cloudProvider":     "AWS",
+					"regionName":        "testRegion",
+					"replicationSpecId": "5e2f1bcaf38990fab9227c9",
 				},
 			},
 		}
