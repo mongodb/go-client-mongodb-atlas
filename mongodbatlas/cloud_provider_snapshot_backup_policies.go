@@ -83,7 +83,7 @@ type Export struct {
 type CopySetting struct {
 	CloudProvider     *string  `json:",omitempty"`
 	RegionName        *string  `json:",omitempty"`
-	ReplicationSpecId *string  `json:",omitempty"`
+	ReplicationSpecID *string  `json:",omitempty"`
 	ShouldCopyOplogs  *bool    `json:",omitempty"`
 	Frequencies       []string `json:",omitempty"`
 }
@@ -92,7 +92,7 @@ type CopySetting struct {
 type DeleteCopiedBackup struct {
 	CloudProvider     *string `json:",omitempty"`
 	RegionName        *string `json:",omitempty"`
-	ReplicationSpecId *string `json:",omitempty"`
+	ReplicationSpecID *string `json:",omitempty"`
 }
 
 // Get gets the current snapshot schedule and retention settings for the cluster with {CLUSTER-NAME}.

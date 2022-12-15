@@ -33,7 +33,7 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 
 	var aws = "AWS"
 	var regionName = "testRegion"
-	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var replicationSpecID = "5e2f1bcaf38990fab9227c9"
 	var shouldCopyOplogs = true
 	var frequencies = []string{
 		"HOURLY",
@@ -41,7 +41,7 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 	var copySettings = CopySetting{
 		CloudProvider:     &aws,
 		RegionName:        &regionName,
-		ReplicationSpecId: &replicationSpecId,
+		ReplicationSpecID: &replicationSpecID,
 		ShouldCopyOplogs:  &shouldCopyOplogs,
 		Frequencies:       frequencies,
 	}
@@ -204,7 +204,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 
 	var aws = "AWS"
 	var regionName = "testRegion"
-	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var replicationSpecID = "5e2f1bcaf38990fab9227c9"
 	var shouldCopyOplogs = true
 	var frequencies = []string{
 		"HOURLY",
@@ -212,14 +212,14 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	var copySettings = CopySetting{
 		CloudProvider:     &aws,
 		RegionName:        &regionName,
-		ReplicationSpecId: &replicationSpecId,
+		ReplicationSpecID: &replicationSpecID,
 		ShouldCopyOplogs:  &shouldCopyOplogs,
 		Frequencies:       frequencies,
 	}
 	var deleteCopiedBackup = DeleteCopiedBackup{
 		CloudProvider:     &aws,
 		RegionName:        &regionName,
-		ReplicationSpecId: &replicationSpecId,
+		ReplicationSpecID: &replicationSpecID,
 	}
 
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
@@ -262,7 +262,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 						"HOURLY",
 					},
 					"RegionName":        "testRegion",
-					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
+					"ReplicationSpecID": "5e2f1bcaf38990fab9227c9",
 					"ShouldCopyOplogs":  true,
 				},
 			},
@@ -270,7 +270,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				map[string]interface{}{
 					"CloudProvider":     "AWS",
 					"RegionName":        "testRegion",
-					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
+					"ReplicationSpecID": "5e2f1bcaf38990fab9227c9",
 				},
 			},
 		}
@@ -295,7 +295,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
                        "HOURLY" 
                     ],
                     "regionName": "testRegion",
-                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
+                    "replicationSpecID": "5e2f1bcaf38990fab9227c9",
                     "shouldCopyOplogs": true
                 }
              ],
@@ -303,7 +303,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
                 {
                     "cloudProvider": "AWS",
                     "regionName": "testRegion",
-                    "replicationSpecId": "5e2f1bcaf38990fab9227c9"
+                    "replicationSpecID": "5e2f1bcaf38990fab9227c9"
                 }
              ],
 			"links": [
@@ -455,7 +455,7 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 
 	var aws = "AWS"
 	var regionName = "testRegion"
-	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var replicationSpecID = "5e2f1bcaf38990fab9227c9"
 	var shouldCopyOplogs = true
 	var frequencies = []string{
 		"HOURLY",
@@ -463,7 +463,7 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 	var copySettings = CopySetting{
 		CloudProvider:     &aws,
 		RegionName:        &regionName,
-		ReplicationSpecId: &replicationSpecId,
+		ReplicationSpecID: &replicationSpecID,
 		ShouldCopyOplogs:  &shouldCopyOplogs,
 		Frequencies:       frequencies,
 	}
@@ -483,7 +483,7 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
                        "HOURLY" 
                     ],
                     "regionName": "testRegion",
-                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
+                    "replicationSpecID": "5e2f1bcaf38990fab9227c9",
                     "shouldCopyOplogs": true
                 }
              ],
