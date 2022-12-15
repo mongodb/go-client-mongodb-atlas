@@ -31,6 +31,21 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 	groupID := "5b6212af90dc76637950a2c6"
 	clusterName := "myCluster"
 
+	var aws = "AWS"
+	var regionName = "testRegion"
+	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var shouldCopyOplogs = true
+	var frequencies = []string{
+		"HOURLY",
+	}
+	var copySettings = CopySetting{
+		CloudProvider:     &aws,
+		RegionName:        &regionName,
+		ReplicationSpecId: &replicationSpecId,
+		ShouldCopyOplogs:  &shouldCopyOplogs,
+		Frequencies:       frequencies,
+	}
+
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +53,17 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 		fmt.Fprint(w, `{
 			"clusterId": "5e2f1bcaf38990fab9227b8",
 			"clusterName": "myCluster",
+            "copySettings": [
+                {
+                    "cloudProvider": "AWS",
+                    "frequencies": [
+                       "HOURLY" 
+                    ],
+                    "regionName": "testRegion",
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
+                    "shouldCopyOplogs": true
+                }
+             ],
 			"links": [
 				{
 					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5dd5a6a472efab1d71a58495/clusters/myCluster/backup/schedule",
@@ -102,8 +128,21 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 	}
 
 	expected := &CloudProviderSnapshotBackupPolicy{
-		ClusterID:    "5e2f1bcaf38990fab9227b8",
-		ClusterName:  "myCluster",
+		ClusterID:   "5e2f1bcaf38990fab9227b8",
+		ClusterName: "myCluster",
+		CopySettings: []CopySetting{
+			copySettings,
+		},
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5dd5a6a472efab1d71a58495/clusters/myCluster/backup/schedule",
+				Rel:  "self",
+			},
+			{
+				Href: "https://cloud.mongodb.com/api/public/v1.0/groups/5dd5a6a472efab1d71a58495",
+				Rel:  "http://mms.mongodb.com/group",
+			},
+		},
 		NextSnapshot: "2020-01-28T05:24:25Z",
 		Policies: []Policy{
 			{
@@ -163,6 +202,26 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	groupID := "5b6212af90dc76637950a2c6"
 	clusterName := "myCluster"
 
+	var aws = "AWS"
+	var regionName = "testRegion"
+	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var shouldCopyOplogs = true
+	var frequencies = []string{
+		"HOURLY",
+	}
+	var copySettings = CopySetting{
+		CloudProvider:     &aws,
+		RegionName:        &regionName,
+		ReplicationSpecId: &replicationSpecId,
+		ShouldCopyOplogs:  &shouldCopyOplogs,
+		Frequencies:       frequencies,
+	}
+	var deleteCopiedBackup = DeleteCopiedBackup{
+		CloudProvider:     &aws,
+		RegionName:        &regionName,
+		ReplicationSpecId: &replicationSpecId,
+	}
+
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
@@ -196,6 +255,24 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				"frequencyType":  "monthly",
 				"exportBucketId": "604f6322dc786a5341d4f7fb",
 			},
+			"copySettings": []interface{}{
+				map[string]interface{}{
+					"CloudProvider": "AWS",
+					"Frequencies": []interface{}{
+						"HOURLY",
+					},
+					"RegionName":        "testRegion",
+					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
+					"ShouldCopyOplogs":  true,
+				},
+			},
+			"deleteCopiedBackups": []interface{}{
+				map[string]interface{}{
+					"CloudProvider":     "AWS",
+					"RegionName":        "testRegion",
+					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
+				},
+			},
 		}
 
 		var v map[string]interface{}
@@ -211,6 +288,24 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 		fmt.Fprint(w, `{
 			"clusterId": "5c94f6ea80eef5617167224d",
 			"clusterName": "Cluster0",
+            "copySettings": [
+                {
+                    "cloudProvider": "AWS",
+                    "frequencies": [
+                       "HOURLY" 
+                    ],
+                    "regionName": "testRegion",
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
+                    "shouldCopyOplogs": true
+                }
+             ],
+             "deleteCopiedBackups": [
+                {
+                    "cloudProvider": "AWS",
+                    "regionName": "testRegion",
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9"
+                }
+             ],
 			"links": [
 				{
 					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/schedule",
@@ -283,6 +378,12 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
 		},
+		CopySettings: []CopySetting{
+			copySettings,
+		},
+		DeleteCopiedBackups: []DeleteCopiedBackup{
+			deleteCopiedBackup,
+		},
 	}
 
 	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotBackupPolicies.Update(ctx, groupID, clusterName, updateRequest)
@@ -291,8 +392,18 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	}
 
 	expected := &CloudProviderSnapshotBackupPolicy{
-		ClusterID:    "5c94f6ea80eef5617167224d",
-		ClusterName:  "Cluster0",
+		ClusterID:   "5c94f6ea80eef5617167224d",
+		ClusterName: "Cluster0",
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6/clusters/Cluster0/backup/schedule",
+				Rel:  "self",
+			},
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5b6212af90dc76637950a2c6",
+				Rel:  "http://mms.mongodb.com/group",
+			},
+		},
 		NextSnapshot: "2019-04-03T18:30:08Z",
 		Policies: []Policy{
 			{
@@ -322,6 +433,12 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
 		},
+		CopySettings: []CopySetting{
+			copySettings,
+		},
+		DeleteCopiedBackups: []DeleteCopiedBackup{
+			deleteCopiedBackup,
+		},
 	}
 
 	if diff := deep.Equal(cloudProviderSnapshot, expected); diff != nil {
@@ -336,6 +453,21 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 	groupID := "5b6212af90dc76637950a2c6"
 	clusterName := "myCluster"
 
+	var aws = "AWS"
+	var regionName = "testRegion"
+	var replicationSpecId = "5e2f1bcaf38990fab9227c9"
+	var shouldCopyOplogs = true
+	var frequencies = []string{
+		"HOURLY",
+	}
+	var copySettings = CopySetting{
+		CloudProvider:     &aws,
+		RegionName:        &regionName,
+		ReplicationSpecId: &replicationSpecId,
+		ShouldCopyOplogs:  &shouldCopyOplogs,
+		Frequencies:       frequencies,
+	}
+
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/schedule", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
@@ -344,6 +476,17 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 		fmt.Fprint(w, `{
 			"clusterId": "5e2f1bcaf38990fab9227b8",
 			"clusterName": "myCluster",
+            "copySettings": [
+                {
+                    "cloudProvider": "AWS",
+                    "frequencies": [
+                       "HOURLY" 
+                    ],
+                    "regionName": "testRegion",
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
+                    "shouldCopyOplogs": true
+                }
+             ],
 			"links": [
 				{
 					"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5dd5a6a472efab1d71a58495/clusters/myCluster/backup/schedule",
@@ -378,8 +521,18 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 	}
 
 	expected := &CloudProviderSnapshotBackupPolicy{
-		ClusterID:    "5e2f1bcaf38990fab9227b8",
-		ClusterName:  "myCluster",
+		ClusterID:   "5e2f1bcaf38990fab9227b8",
+		ClusterName: "myCluster",
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5dd5a6a472efab1d71a58495/clusters/myCluster/backup/schedule",
+				Rel:  "self",
+			},
+			{
+				Href: "https://cloud.mongodb.com/api/public/v1.0/groups/5dd5a6a472efab1d71a58495",
+				Rel:  "http://mms.mongodb.com/group",
+			},
+		},
 		NextSnapshot: "2020-01-28T05:24:25Z",
 		Policies: []Policy{
 			{
@@ -394,6 +547,9 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
+		},
+		CopySettings: []CopySetting{
+			copySettings,
 		},
 	}
 
