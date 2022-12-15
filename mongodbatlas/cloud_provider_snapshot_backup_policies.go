@@ -92,7 +92,7 @@ type CopySetting struct {
 type DeleteCopiedBackup struct {
 	CloudProvider     *string `json:"cloudProvider,omitempty"`     // Identifies the cloud provider that stores the snapshot copy.
 	RegionName        *string `json:"regionName,omitempty"`        // Target region to copy snapshots belonging to replicationSpecId to.
-	ReplicationSpecID *string `json:"replicationSpecID,omitempty"` // Unique identifier that identifies the replication object for a zone in a cluster.
+	ReplicationSpecID *string `json:"replicationSpecId,omitempty"` // Unique identifier that identifies the replication object for a zone in a cluster.
 }
 
 // Get gets the current snapshot schedule and retention settings for the cluster with {CLUSTER-NAME}.
