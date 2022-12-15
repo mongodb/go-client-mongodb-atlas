@@ -83,7 +83,7 @@ type Export struct {
 type CopySetting struct {
 	CloudProvider     *string  `json:"cloudProvider,omitempty"`     // Identifies the cloud provider that stores the snapshot copy.
 	RegionName        *string  `json:"regionName,omitempty"`        // Target region to copy snapshots belonging to replicationSpecId to.
-	ReplicationSpecID *string  `json:"replicationSpecID,omitempty"` // Unique identifier that identifies the replication object for a zone in a cluster.
+	ReplicationSpecID *string  `json:"replicationSpecId,omitempty"` // Unique identifier that identifies the replication object for a zone in a cluster.
 	ShouldCopyOplogs  *bool    `json:"shouldCopyOplogs,omitempty"`  // Flag that indicates whether to copy the oplogs to the target region.
 	Frequencies       []string `json:"frequencies,omitempty"`       // List that describes which types of snapshots to copy.
 }
