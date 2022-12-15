@@ -262,7 +262,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 						"HOURLY",
 					},
 					"RegionName":        "testRegion",
-					"ReplicationSpecID": "5e2f1bcaf38990fab9227c9",
+					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
 					"ShouldCopyOplogs":  true,
 				},
 			},
@@ -270,7 +270,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				map[string]interface{}{
 					"CloudProvider":     "AWS",
 					"RegionName":        "testRegion",
-					"ReplicationSpecID": "5e2f1bcaf38990fab9227c9",
+					"ReplicationSpecId": "5e2f1bcaf38990fab9227c9",
 				},
 			},
 		}
@@ -295,7 +295,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
                        "HOURLY" 
                     ],
                     "regionName": "testRegion",
-                    "replicationSpecID": "5e2f1bcaf38990fab9227c9",
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9",
                     "shouldCopyOplogs": true
                 }
              ],
@@ -303,7 +303,7 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
                 {
                     "cloudProvider": "AWS",
                     "regionName": "testRegion",
-                    "replicationSpecID": "5e2f1bcaf38990fab9227c9"
+                    "replicationSpecId": "5e2f1bcaf38990fab9227c9"
                 }
              ],
 			"links": [
