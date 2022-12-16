@@ -32,13 +32,6 @@ type RootService interface {
 // RootServiceOp handles communication with the APIKey related methods
 // of the MongoDB Atlas API.
 type RootServiceOp service
-
-/*type Root struct {
-	Links      []*Link  `json:"links"`
-	Results    []APIKey `json:"results,omitempty"`
-	TotalCount int      `json:"totalCount"`
-}*/
-
 type Root struct {
 	APIKey struct {
 		AccessList []struct {
