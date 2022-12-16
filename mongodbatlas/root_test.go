@@ -86,19 +86,20 @@ func TestRoot_ListRoot(t *testing.T) {
 	if err != nil {
 		t.Fatalf("APIKeys.List returned error: %v", err)
 	}
+
 	expected := &Root{
 		APIKey: struct {
 			AccessList []struct {
-				CIDRBlock string "json:\"cidrBlock\""
-				IPAddress string "json:\"ipAddress\""
-			} "json:\"accessList\""
-			ID        string      "json:\"id\""
-			PublicKey string      "json:\"publicKey\""
-			Roles     []AtlasRole "json:\"roles,omitempty\""
+				CIDRBlock string `json:"cidrBlock"`
+				IPAddress string `json:"ipAddress"`
+			} `json:"accessList"`
+			ID        string      `json:"id"`
+			PublicKey string      `json:"publicKey"`
+			Roles     []AtlasRole `json:"roles,omitempty"`
 		}{
 			AccessList: []struct {
-				CIDRBlock string "json:\"cidrBlock\""
-				IPAddress string "json:\"ipAddress\""
+				CIDRBlock string `json:"cidrBlock"`
+				IPAddress string `json:"ipAddress"`
 			}{
 				{IPAddress: "", CIDRBlock: "0.0.0.0/1"},
 				{IPAddress: "", CIDRBlock: "128.0.0.0/1"},

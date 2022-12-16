@@ -19,7 +19,7 @@ import (
 	"net/http"
 )
 
-const rootPath = "api/atlas/v1.0" //nolint:gosec // This is a path
+const rootPath = "api/atlas/v1.0"
 
 // RootService is an interface for interfacing with the Root
 // endpoints of the MongoDB Atlas API.
