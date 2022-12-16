@@ -150,9 +150,9 @@ func TestCloudProviderSnapshotExportJobs_Get(t *testing.T) {
 
 	projectID := "test-project-id"
 	clusterName := "test-cluster-name"
-	exportJobID := "job-id-test"
+	exportID := "job-id-test"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", projectID, clusterName, exportJobID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", projectID, clusterName, exportID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -167,7 +167,7 @@ func TestCloudProviderSnapshotExportJobs_Get(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportJobs.Get(ctx, projectID, clusterName, exportJobID)
+	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportJobs.Get(ctx, projectID, clusterName, exportID)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportJobs.Get returned error: %v", err)
 	}
