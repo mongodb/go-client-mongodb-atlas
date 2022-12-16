@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.20.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.20.0) (December 16, 2022)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.19.0...v0.20.0)
+
+**Merged pull requests:**
+
+- Added missing fields 'Links', 'CopySettings' and 'DeleteCopiedBackups… [\#332](https://github.com/mongodb/go-client-mongodb-atlas/pull/332) ([sangramPeerI](https://github.com/sangramPeerI))
+- CLOUDP-149874: export jobs should use exportJobID [\#331](https://github.com/mongodb/go-client-mongodb-atlas/pull/331) ([matt-condon](https://github.com/matt-condon))
+- chore\(deps\): bump github.com/go-test/deep from 1.0.8 to 1.1.0 [\#330](https://github.com/mongodb/go-client-mongodb-atlas/pull/330) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: change wrong variable name on cluster update test to avoid  misu… [\#328](https://github.com/mongodb/go-client-mongodb-atlas/pull/328) ([atileren](https://github.com/atileren))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.3.0 to 3.3.1 [\#327](https://github.com/mongodb/go-client-mongodb-atlas/pull/327) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.19.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.19.0) (November 11, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.18.0...v0.19.0)
