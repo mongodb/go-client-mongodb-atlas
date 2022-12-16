@@ -24,7 +24,7 @@ const rootPath = "api/atlas/v1.0"
 // RootService is an interface for interfacing with the Root
 // endpoints of the MongoDB Atlas API.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/root
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Root/operation/getSystemStatus
 type RootService interface {
 	List(context.Context, *ListOptions) (*Root, *Response, error)
 }
@@ -52,7 +52,7 @@ var _ RootService = &RootServiceOp{}
 
 // List all API-KEY related data
 //
-// See more: https://www.mongodb.com/docs/atlas/reference/api/root/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Root/operation/getSystemStatus
 func (s *RootServiceOp) List(ctx context.Context, listOptions *ListOptions) (*Root, *Response, error) {
 	path := rootPath
 
