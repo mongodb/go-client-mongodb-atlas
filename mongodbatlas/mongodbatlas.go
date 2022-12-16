@@ -102,6 +102,7 @@ type Client struct {
 	Clusters                            ClustersService
 	CloudProviderSnapshots              CloudProviderSnapshotsService
 	APIKeys                             APIKeysService
+	Root                                RootService
 	ProjectAPIKeys                      ProjectAPIKeysService
 	CloudProviderSnapshotRestoreJobs    CloudProviderSnapshotRestoreJobsService
 	Peers                               PeersService
@@ -242,6 +243,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
 	c.APIKeys = &APIKeysServiceOp{Client: c}
+	c.Root = &RootServiceOp{Client: c}
 	c.CloudProviderSnapshots = &CloudProviderSnapshotsServiceOp{Client: c}
 	c.ContinuousSnapshots = &ContinuousSnapshotsServiceOp{Client: c}
 	c.CloudProviderSnapshotRestoreJobs = &CloudProviderSnapshotRestoreJobsServiceOp{Client: c}
