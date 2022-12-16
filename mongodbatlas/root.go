@@ -33,10 +33,26 @@ type RootService interface {
 // of the MongoDB Atlas API.
 type RootServiceOp service
 
-type Root struct {
+/*type Root struct {
 	Links      []*Link  `json:"links"`
 	Results    []APIKey `json:"results,omitempty"`
 	TotalCount int      `json:"totalCount"`
+}*/
+
+type Root struct {
+	APIKey struct {
+		AccessList []struct {
+			CIDRBlock string `json:"cidrBlock"`
+			IPAddress string `json:"ipAddress"`
+		} `json:"accessList"`
+		ID        string      `json:"id"`
+		PublicKey string      `json:"publicKey"`
+		Roles     []AtlasRole `json:"roles,omitempty"`
+	} `json:"apiKey"`
+	AppName    string  `json:"appName"`
+	Build      string  `json:"build"`
+	Links      []*Link `json:"links"`
+	Throttling bool    `json:"throttling"`
 }
 
 var _ RootService = &RootServiceOp{}
