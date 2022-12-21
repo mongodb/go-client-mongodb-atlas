@@ -54,7 +54,7 @@ type CloudProviderSnapshotBackupPolicy struct {
 	Export                            *Export              `json:"export,omitempty"`                            // Export struct that represents a policy for automatically exporting cloud backup snapshots to AWS bucket.
 	UseOrgAndGroupNamesInExportPrefix *bool                `json:"useOrgAndGroupNamesInExportPrefix,omitempty"` // Specifies whether to use organization and project names instead of organization and project UUIDs in the path to the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots
 	Links                             []*Link              `json:"links,omitempty"`                             // One or more links to sub-resources and/or related resources.
-	CopySettings                      []CopySetting        `json:"copySettings,omitempty"`                      // List that contains a document for each copy setting item in the desired backup policy.
+	CopySettings                      []CopySetting        `json:"copySettings"`                                // List that contains a document for each copy setting item in the desired backup policy.
 	DeleteCopiedBackups               []DeleteCopiedBackup `json:"deleteCopiedBackups,omitempty"`               // List that contains a document for each deleted copy setting whose backup copies you want to delete.
 }
 
