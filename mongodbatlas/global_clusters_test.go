@@ -31,7 +31,7 @@ func TestGlobalClusters_Get(t *testing.T) {
 	groupID := "1"
 	clusterName := "appData"
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, ` {
 			"customZoneMapping" : {
@@ -53,7 +53,9 @@ func TestGlobalClusters_Get(t *testing.T) {
 			  "customShardKey" : "city",
 			  "db" : "mydata",
 			  "isCustomShardKeyHashed" : true,
-			  "isShardKeyUnique" : true
+			  "isShardKeyUnique" : true,
+			  "numInitialChunks" : 4,
+			  "presplitHashedZones" : true
 			},{
 			  "collection" : "stores",
 			  "customShardKey" : "store_number",
@@ -89,6 +91,8 @@ func TestGlobalClusters_Get(t *testing.T) {
 				Db:                     "mydata",
 				IsCustomShardKeyHashed: pointy.Bool(true),
 				IsShardKeyUnique:       pointy.Bool(true),
+				NumInitialChunks:       4,
+				PresplitHashedZones:    pointy.Bool(true),
 			}, {
 				Collection:     "stores",
 				CustomShardKey: "store_number",
@@ -115,15 +119,19 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 		CustomShardKey:         "city",
 		IsCustomShardKeyHashed: pointy.Bool(true),
 		IsShardKeyUnique:       pointy.Bool(true),
+		NumInitialChunks:       4,
+		PresplitHashedZones:    pointy.Bool(true),
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expectedRequest := map[string]interface{}{
 			"db":                     "mydata",
 			"collection":             "publishers",
 			"customShardKey":         "city",
 			"isCustomShardKeyHashed": true,
 			"isShardKeyUnique":       true,
+			"numInitialChunks":       float64(4),
+			"presplitHashedZones":    true,
 		}
 
 		jsonBlob := `
@@ -209,7 +217,7 @@ func TestGlobalClusters_DeleteManagedNamespace(t *testing.T) {
 		Collection: "distributors",
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, name), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, name), func(w http.ResponseWriter, r *http.Request) {
 		if collection := r.URL.Query().Get("collection"); collection != mn.Collection {
 			t.Errorf("expected query param collection = '%s', received '%s'", mn.Collection, collection)
 		}
@@ -305,7 +313,7 @@ func TestGlobalClusters_AddCustomZoneMappings(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/customZoneMapping", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/customZoneMapping", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expectedRequest := map[string]interface{}{
 			"customZoneMappings": []interface{}{
 				map[string]interface{}{"location": "CA", "zone": "Zone 1"},
@@ -358,7 +366,7 @@ func TestGlobalClusters_DeleteCustomZoneMappings(t *testing.T) {
 	groupID := "1"
 	name := "appData"
 
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/customZoneMapping", groupID, name), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/customZoneMapping", groupID, name), func(w http.ResponseWriter, r *http.Request) {
 		jsonBlob := `
 		{
 			"customZoneMapping" : { },

@@ -20,7 +20,7 @@ import (
 	"net/http"
 )
 
-const globalClustersBasePath = "api/atlas/v1.0/groups/%s/clusters/%s/globalWrites/%s"
+const globalClustersBasePath = "api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/%s"
 
 // GlobalClustersService is an interface for interfacing with the Global Clusters
 // endpoints of the MongoDB Atlas API.
@@ -53,6 +53,8 @@ type ManagedNamespace struct {
 	CustomShardKey         string `json:"customShardKey,omitempty"`
 	IsCustomShardKeyHashed *bool  `json:"isCustomShardKeyHashed,omitempty"` // Flag that specifies whether the custom shard key for the collection is hashed.
 	IsShardKeyUnique       *bool  `json:"isShardKeyUnique,omitempty"`       // Flag that specifies whether the underlying index enforces a unique constraint.
+	NumInitialChunks       int    `json:"numInitialChunks,omitempty"`
+	PresplitHashedZones    *bool  `json:"presplitHashedZones,omitempty"`
 }
 
 // CustomZoneMappingsRequest represents the request related to add custom zone mappings to a global cluster.
@@ -71,10 +73,14 @@ type CustomZoneMapping struct {
 // See more: https://docs.atlas.mongodb.com/reference/api/global-clusters-retrieve-namespaces/
 func (s *GlobalClustersServiceOp) Get(ctx context.Context, groupID, clusterName string) (*GlobalCluster, *Response, error) {
 	if clusterName == "" {
-		return nil, nil, NewArgError("username", "must be set")
+		return nil, nil, NewArgError("clusterName", "must be set")
 	}
 
-	path := fmt.Sprintf("api/atlas/v1.0/groups/%s/clusters/%s/globalWrites", groupID, clusterName)
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+
+	path := fmt.Sprintf(globalClustersBasePath, groupID, clusterName, "")
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {
