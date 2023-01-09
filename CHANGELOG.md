@@ -1,5 +1,25 @@
 # Changelog
 
+## [v0.21.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.21.0) (January 09, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.20.0...v0.21.0)
+
+**Breaking changes:**
+
+- fix: fixes ldap config to allow PATCH [\#340](https://github.com/mongodb/go-client-mongodb-atlas/pull/340) ([gssbzn](https://github.com/gssbzn))
+
+**Closed issues:**
+
+- Unable to set the "authenticationEnabled" = false using the client.LDAPConfigurations.Save\(\) [\#339](https://github.com/mongodb/go-client-mongodb-atlas/issues/339)
+
+**Merged pull requests:**
+
+- chore\(deps\): bump actions/stale from 6 to 7 [\#338](https://github.com/mongodb/go-client-mongodb-atlas/pull/338) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add global cluster support for advanced cluster [\#337](https://github.com/mongodb/go-client-mongodb-atlas/pull/337) ([Sugar-pack](https://github.com/Sugar-pack))
+- INTMDB-400: Empty struct to delete backup distribution configuration [\#336](https://github.com/mongodb/go-client-mongodb-atlas/pull/336) ([martinstibbe](https://github.com/martinstibbe))
+- CLOUDP-149874: export jobs should use exportID as per docs [\#335](https://github.com/mongodb/go-client-mongodb-atlas/pull/335) ([matt-condon](https://github.com/matt-condon))
+- INTMDB-454: Add support for root query to get org\_id from API Key used in Terraform [\#333](https://github.com/mongodb/go-client-mongodb-atlas/pull/333) ([martinstibbe](https://github.com/martinstibbe))
+
 ## [v0.20.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.20.0) (December 16, 2022)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.19.0...v0.20.0)
