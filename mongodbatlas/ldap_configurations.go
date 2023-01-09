@@ -56,15 +56,15 @@ type LDAPConfiguration struct {
 
 // LDAP specifies an LDAP configuration for a Atlas project.
 type LDAP struct {
-	AuthenticationEnabled bool               `json:"authenticationEnabled,omitempty"` // Specifies whether user authentication with LDAP is enabled.
-	AuthorizationEnabled  bool               `json:"authorizationEnabled,omitempty"`  // The current status of the LDAP over TLS/SSL configuration.
-	Hostname              string             `json:"hostname,omitempty"`              // The hostname or IP address of the LDAP server
-	Port                  int                `json:"port,omitempty"`                  // The port to which the LDAP server listens for client connections.
-	BindUsername          string             `json:"bindUsername,omitempty"`          // The user DN that Atlas uses to connect to the LDAP server.
+	AuthenticationEnabled *bool              `json:"authenticationEnabled,omitempty"` // Specifies whether user authentication with LDAP is enabled.
+	AuthorizationEnabled  *bool              `json:"authorizationEnabled,omitempty"`  // The current status of the LDAP over TLS/SSL configuration.
+	Hostname              *string            `json:"hostname,omitempty"`              // The hostname or IP address of the LDAP server
+	Port                  *int               `json:"port,omitempty"`                  // The port to which the LDAP server listens for client connections.
+	BindUsername          *string            `json:"bindUsername,omitempty"`          // The user DN that Atlas uses to connect to the LDAP server.
 	UserToDNMapping       []*UserToDNMapping `json:"userToDNMapping,omitempty"`       // Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-	BindPassword          string             `json:"bindPassword,omitempty"`          // The password used to authenticate the bindUsername.
-	CaCertificate         string             `json:"caCertificate,omitempty"`         // CA certificate used to verify the identify of the LDAP server.
-	AuthzQueryTemplate    string             `json:"authzQueryTemplate,omitempty"`    // An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs.
+	BindPassword          *string            `json:"bindPassword,omitempty"`          // The password used to authenticate the bindUsername.
+	CaCertificate         *string            `json:"caCertificate,omitempty"`         // CA certificate used to verify the identity of the LDAP server.
+	AuthzQueryTemplate    *string            `json:"authzQueryTemplate,omitempty"`    // An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs.
 }
 
 // UserToDNMapping maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a match regular expression and either a substitution or ldapQuery template used to transform the LDAP username extracted from the regular expression.
