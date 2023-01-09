@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	"github.com/openlyinc/pointy"
 )
 
 func TestLDAPConfigurations_Verify(t *testing.T) {
@@ -43,10 +44,10 @@ func TestLDAPConfigurations_Verify(t *testing.T) {
 	})
 
 	request := &LDAP{
-		Hostname:     "atlas-ldaps-01.ldap.myteam.com",
-		Port:         636,
-		BindUsername: "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-		BindPassword: "admin",
+		Hostname:     pointy.String("atlas-ldaps-01.ldap.myteam.com"),
+		Port:         pointy.Int(636),
+		BindUsername: pointy.String("CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"),
+		BindPassword: pointy.String("admin"),
 	}
 	ldap, _, err := client.LDAPConfigurations.Verify(ctx, groupID, request)
 	if err != nil {
@@ -154,12 +155,12 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 
 	request := &LDAPConfiguration{
 		LDAP: &LDAP{
-			AuthenticationEnabled: true,
-			AuthorizationEnabled:  true,
-			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
-			Port:                  636,
-			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-			BindPassword:          "admin",
+			AuthenticationEnabled: pointy.Bool(true),
+			AuthorizationEnabled:  pointy.Bool(true),
+			Hostname:              pointy.String("atlas-ldaps-01.ldap.myteam.com"),
+			Port:                  pointy.Int(636),
+			BindUsername:          pointy.String("CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"),
+			BindPassword:          pointy.String("admin"),
 		},
 	}
 	ldap, _, err := client.LDAPConfigurations.Save(ctx, groupID, request)
@@ -169,18 +170,18 @@ func TestLDAPConfigurations_Save(t *testing.T) {
 
 	expected := &LDAPConfiguration{
 		LDAP: &LDAP{
-			AuthenticationEnabled: true,
-			AuthorizationEnabled:  true,
-			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
-			Port:                  636,
-			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+			AuthenticationEnabled: pointy.Bool(true),
+			AuthorizationEnabled:  pointy.Bool(true),
+			Hostname:              pointy.String("atlas-ldaps-01.ldap.myteam.com"),
+			Port:                  pointy.Int(636),
+			BindUsername:          pointy.String("CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"),
 			UserToDNMapping: []*UserToDNMapping{
 				{
 					Match:        "(.*)",
 					Substitution: "CN={0},CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
 				},
 			},
-			AuthzQueryTemplate: "{USER}?memberOf?base",
+			AuthzQueryTemplate: pointy.String("{USER}?memberOf?base"),
 		},
 	}
 
@@ -220,18 +221,18 @@ func TestLDAPConfigurations_Get(t *testing.T) {
 
 	expected := &LDAPConfiguration{
 		LDAP: &LDAP{
-			AuthenticationEnabled: true,
-			AuthorizationEnabled:  true,
-			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
-			Port:                  636,
-			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
+			AuthenticationEnabled: pointy.Bool(true),
+			AuthorizationEnabled:  pointy.Bool(true),
+			Hostname:              pointy.String("atlas-ldaps-01.ldap.myteam.com"),
+			Port:                  pointy.Int(636),
+			BindUsername:          pointy.String("CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"),
 			UserToDNMapping: []*UserToDNMapping{
 				{
 					Match:        "(.*)",
 					Substitution: "CN={0},CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
 				},
 			},
-			AuthzQueryTemplate: "{USER}?memberOf?base",
+			AuthzQueryTemplate: pointy.String("{USER}?memberOf?base"),
 		},
 	}
 
@@ -267,12 +268,12 @@ func TestLDAPConfigurations_Delete(t *testing.T) {
 
 	expected := &LDAPConfiguration{
 		LDAP: &LDAP{
-			AuthenticationEnabled: true,
-			AuthorizationEnabled:  true,
-			Hostname:              "atlas-ldaps-01.ldap.myteam.com",
-			Port:                  636,
-			BindUsername:          "CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com",
-			AuthzQueryTemplate:    "{USER}?memberOf?base",
+			AuthenticationEnabled: pointy.Bool(true),
+			AuthorizationEnabled:  pointy.Bool(true),
+			Hostname:              pointy.String("atlas-ldaps-01.ldap.myteam.com"),
+			Port:                  pointy.Int(636),
+			BindUsername:          pointy.String("CN=Administrator,CN=Users,DC=atlas-ldaps-01,DC=myteam,DC=com"),
+			AuthzQueryTemplate:    pointy.String("{USER}?memberOf?base"),
 		},
 	}
 
