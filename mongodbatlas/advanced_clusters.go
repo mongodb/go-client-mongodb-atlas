@@ -33,6 +33,7 @@ type AdvancedClustersService interface {
 	Create(ctx context.Context, groupID string, cluster *AdvancedCluster) (*AdvancedCluster, *Response, error)
 	Update(ctx context.Context, groupID, clusterName string, cluster *AdvancedCluster) (*AdvancedCluster, *Response, error)
 	Delete(ctx context.Context, groupID, clusterName string) (*Response, error)
+	TestFailover(ctx context.Context, groupID, clusterName string) (*Response, error)
 }
 
 // AdvancedClustersServiceOp handles communication with the Cluster (Advanced) related methods
@@ -238,6 +239,28 @@ func (s *AdvancedClustersServiceOp) Delete(ctx context.Context, groupID, cluster
 	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}
+
+func (s *AdvancedClustersServiceOp) TestFailover(ctx context.Context, groupID, clusterName string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
+	if clusterName == "" {
+		return nil, NewArgError("clusterName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(advancedClustersPath, groupID)
+	escapedEntry := url.PathEscape(clusterName)
+	path := fmt.Sprintf("%s/%s/restartPrimaries", basePath, escapedEntry)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, nil)
 	if err != nil {
 		return nil, err
 	}
