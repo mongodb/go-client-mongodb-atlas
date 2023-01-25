@@ -248,6 +248,9 @@ func (s *AdvancedClustersServiceOp) Delete(ctx context.Context, groupID, cluster
 	return resp, err
 }
 
+// TestFailover starts a failover test for the specified cluster in the specified project
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Multi-Cloud-Clusters/operation/testFailover
 func (s *AdvancedClustersServiceOp) TestFailover(ctx context.Context, groupID, clusterName string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupId", "must be set")
