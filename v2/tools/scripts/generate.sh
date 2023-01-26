@@ -11,7 +11,6 @@ SDK_ROOT=${SDK_ROOT:-"./"}
 
 echo "Running generation pipeline"
 
-## TODO should be supported by transformer itself
 echo "Creating new $TRANSFORMED_FILE OpenAPI file from $OPENAPI_FILE"
 cp $OPENAPI_FILE $TRANSFORMED_FILE
 
