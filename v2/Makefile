@@ -19,8 +19,4 @@ generate:
 	OPENAPI_FOLDER="../openapi" SDK_ROOT="../" \
 	./scripts/generate.sh)
 
-.PHONY: validate
-validate:
-	echo "TODO"
-
 
