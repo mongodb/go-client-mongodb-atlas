@@ -2,7 +2,6 @@ package v2 // import "go.mongodb.org/atlas/mongodbatlas/v2"
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"runtime"
 
@@ -12,17 +11,15 @@ import (
 
 const (
 	// CloudURL is default base URL for the services.
-	CloudURL = "https://cloud.mongodb.com/"
+	DefaultCloudURL = "https://cloud.mongodb.com/"
 	// Version the version of the current API client. Should be set to the next version planned to be released.
-	// TODO use common version across entire SDK
-	Version = "0.21.0"
-
-	ClientName = "go-mongodbatlas"
+	Version    = "0.1.0"
+	ClientName = "go-mongodbatlas-versioned"
 )
 
 // NewClient returns a new MongoDBAtlas API Client.
 func NewClient(httpClient *http.Client) *apiv2latest.APIClient {
-	return NewClientWithUrl(httpClient, CloudURL)
+	return NewClientWithUrl(httpClient, DefaultCloudURL)
 }
 
 // NewClientWithUrl returns a new MongoDBAtlas API Client using custom base url
@@ -46,11 +43,11 @@ func NewClientWithUrl(httpClient *http.Client, baseURL string) *apiv2latest.APIC
 /**
 *  NewSDKClientWithCredentials Helper method used to create an SDK object for provided API keys
  */
-func NewSDKClientWithCredentials(apiKey string, apiSecret string) *apiv2latest.APIClient {
+func NewSDKClientWithCredentials(apiKey string, apiSecret string) (*apiv2latest.APIClient, error) {
 	transport := digest.NewTransport(apiKey, apiSecret)
 	httpClient, err := transport.Client()
 	if err != nil {
-		log.Fatalf(err.Error())
+		return nil, err
 	}
-	return NewClient(httpClient)
+	return NewClient(httpClient), nil
 }

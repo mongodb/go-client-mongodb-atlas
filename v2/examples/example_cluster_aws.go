@@ -12,7 +12,7 @@ import (
 	client "go.mongodb.org/atlas/mongodbatlas/v2"
 	apiv2latest "go.mongodb.org/atlas/mongodbatlas/v2/api"
 
-	utils "go.mongodb.org/atlas/mongodbatlas/v2/test/utils"
+	utils "go.mongodb.org/atlas/mongodbatlas/v2/test/generators"
 )
 
 /*

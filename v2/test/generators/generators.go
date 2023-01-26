@@ -1,9 +1,7 @@
-package utils
+package generators
 
 import (
 	"crypto/rand"
-	"encoding/json"
-	"fmt"
 	"log"
 	"math/big"
 	"net"
@@ -65,13 +63,4 @@ func GenerateUniqueName(prefix string) (string, error) {
 		}
 	}
 	return prefix, nil
-}
-
-// pretty print as json
-func PrettyPrint(obj interface{}) {
-	u, err := json.MarshalIndent(obj, "", "  ")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(u))
 }
