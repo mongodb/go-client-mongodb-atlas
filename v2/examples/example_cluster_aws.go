@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 
@@ -67,7 +68,7 @@ func main() {
 	}
 
 	// -- 4. Enable IP access
-	ipAddress := utils.GetIpAddress()
+	ipAddress := getIpAddress()
 	_, resp, err = sdk.ProjectIPAccessListApi.
 		CreateProjectIpAccessList(context.Background(), projectId).
 		NetworkPermissionEntry([]apiv2latest.NetworkPermissionEntry{{IpAddress: &ipAddress}}).
@@ -91,7 +92,7 @@ func createDatabaseUserRequest(sdk *apiv2latest.APIClient, groupId string) *apiv
 	}
 
 	collectionName := "sdk-test"
-	password, err := utils.GenerateRandomASCIIString(10)
+	password, err := utils.RandomASCIIString(10)
 	if err != nil {
 		panic(err)
 	}
@@ -112,7 +113,7 @@ func createDatabaseUserRequest(sdk *apiv2latest.APIClient, groupId string) *apiv
 
 func createClusterRequest(projectId string) *apiv2latest.ClusterDescriptionV15 {
 	// Input arguments used for creation of the cluster
-	clusterName, _ := utils.GenerateUniqueName("example-aws-cluster")
+	clusterName, _ := utils.UniqueName("example-aws-cluster")
 
 	// Location
 	providerName := "AWS"
@@ -160,4 +161,16 @@ func handleErr(err error, resp *http.Response) {
 	}
 	log.Fatalf("Error when performing SDK request: %v", err.Error())
 
+}
+
+func getIpAddress() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+
+	return localAddr.IP.String()
 }
