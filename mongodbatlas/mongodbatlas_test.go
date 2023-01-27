@@ -76,7 +76,7 @@ func setup() (client *Client, mux *http.ServeMux, teardown func()) {
 func testMethod(t *testing.T, r *http.Request, expected string) {
 	t.Helper()
 	if expected != r.Method {
-		t.Errorf("Request method = %v, expected %v", r.Method, expected)
+		t.Fatalf("Request method = %q, expected %q", r.Method, expected)
 	}
 }
 
