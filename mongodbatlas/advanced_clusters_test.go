@@ -31,7 +31,6 @@ const (
 func TestAdvancedClusters_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{

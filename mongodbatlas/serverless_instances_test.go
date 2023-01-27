@@ -24,15 +24,14 @@ import (
 )
 
 const (
-	projectID = "PROJECT-ID"
-	id        = "1"
+	id = "1"
 )
 
 func TestServerlessInstances_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath, projectID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath, groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"links": [
@@ -46,7 +45,7 @@ func TestServerlessInstances_List(t *testing.T) {
 				  "standardSrv": "mongodb+srv://instance1.example.com"
 				},
 				"createDate": "2021-06-25T21:32:06Z",
-				"groupId" : "PROJECT-ID",
+				"groupId" : "1",
 				"id": "1",
 				"links": [ {
 				  "href": "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
@@ -65,7 +64,7 @@ func TestServerlessInstances_List(t *testing.T) {
 				  "standardSrv" : "mongodb+srv://instance1.example.com"
 				},
 				"createDate": "2021-06-25T21:32:06Z",
-				"groupId": "PROJECT-ID",
+				"groupId": "1",
 				"id": "2",
 				"links": [{
 				  "href": "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
@@ -84,7 +83,7 @@ func TestServerlessInstances_List(t *testing.T) {
 		}`)
 	})
 
-	serverlessInstances, _, err := client.ServerlessInstances.List(ctx, projectID, nil)
+	serverlessInstances, _, err := client.ServerlessInstances.List(ctx, groupID, nil)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.List returned error: %v", err)
 	}
@@ -99,7 +98,7 @@ func TestServerlessInstances_List(t *testing.T) {
 		Results: []*Cluster{
 			{
 				ID:                id,
-				GroupID:           projectID,
+				GroupID:           groupID,
 				MongoDBVersion:    "5.0.0",
 				Name:              "test1",
 				ProviderSettings:  &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
@@ -115,7 +114,7 @@ func TestServerlessInstances_List(t *testing.T) {
 			},
 			{
 				ID:                "2",
-				GroupID:           projectID,
+				GroupID:           groupID,
 				MongoDBVersion:    "5.0.0",
 				Name:              "test2",
 				ProviderSettings:  &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
@@ -142,14 +141,14 @@ func TestServerlessInstances_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", projectID, id), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 				"connectionStrings": {
 				  "standardSrv": "mongodb+srv://instance1.example.com"
 				},
 				"createDate": "2021-06-25T21:32:06Z",
-				"groupId" : "PROJECT-ID",
+				"groupId" : "1",
 				"id": "1",
 				"links": [ {
 				  "href": "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
@@ -167,14 +166,14 @@ func TestServerlessInstances_Get(t *testing.T) {
 		}`)
 	})
 
-	serverlessInstance, _, err := client.ServerlessInstances.Get(ctx, projectID, id)
+	serverlessInstance, _, err := client.ServerlessInstances.Get(ctx, groupID, id)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
 	}
 
 	expected := &Cluster{
 		ID:                           id,
-		GroupID:                      projectID,
+		GroupID:                      groupID,
 		MongoDBVersion:               "5.0.0",
 		Name:                         "test1",
 		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
@@ -199,14 +198,14 @@ func TestServerlessInstances_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath, projectID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath, groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{
 				"connectionStrings": {
 				  "standardSrv": "mongodb+srv://instance1.example.com"
 				},
 				"createDate": "2021-06-25T21:32:06Z",
-				"groupId" : "PROJECT-ID",
+				"groupId" : "1",
 				"id": "1",
 				"links": [ {
 				  "href": "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
@@ -228,14 +227,14 @@ func TestServerlessInstances_Create(t *testing.T) {
 		ProviderSettings: &ServerlessProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
 	}
 
-	serverlessInstance, _, err := client.ServerlessInstances.Create(ctx, projectID, bodyParam)
+	serverlessInstance, _, err := client.ServerlessInstances.Create(ctx, groupID, bodyParam)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
 	}
 
 	expected := &Cluster{
 		ID:                id,
-		GroupID:           projectID,
+		GroupID:           groupID,
 		MongoDBVersion:    "5.0.0",
 		Name:              "test1",
 		ProviderSettings:  &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
@@ -259,14 +258,14 @@ func TestServerlessInstances_Update(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", projectID, "sample"), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, "sample"), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		fmt.Fprint(w, `{
 			"connectionStrings" : {
 			  "standardSrv" : "mongodb+srv://instanceName1.example.com"
 			},
 			"createDate" : "2021-06-25T21:31:10Z",
-			"groupId" : "PROJECT-ID",
+			"groupId" : "1",
 			"id" : "1",
 			"links" : [ {
 			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
@@ -298,14 +297,14 @@ func TestServerlessInstances_Update(t *testing.T) {
 		TerminationProtectionEnabled: pointy.Bool(true),
 	}
 
-	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, projectID, "sample", bodyParam)
+	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
 	}
 
 	expected := &Cluster{
 		ID:                           id,
-		GroupID:                      projectID,
+		GroupID:                      groupID,
 		MongoDBVersion:               "5.0.0",
 		Name:                         "sample",
 		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
@@ -339,11 +338,11 @@ func TestServerlessInstances_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", projectID, id), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, id), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.ServerlessInstances.Delete(ctx, projectID, id)
+	_, err := client.ServerlessInstances.Delete(ctx, groupID, id)
 	if err != nil {
 		t.Fatalf("ServerlessInstances.Delete returned error: %v", err)
 	}

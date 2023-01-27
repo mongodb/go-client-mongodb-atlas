@@ -26,10 +26,7 @@ func TestCloudProviderSnapshotExportJobs_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
-	clusterName := "test-cluster-name"
-
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports", projectID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -84,7 +81,7 @@ func TestCloudProviderSnapshotExportJobs_List(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotExportJobs.List(ctx, projectID, clusterName, nil)
+	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotExportJobs.List(ctx, groupID, clusterName, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportJobs.List returned error: %v", err)
 	}
@@ -148,11 +145,9 @@ func TestCloudProviderSnapshotExportJobs_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
-	clusterName := "test-cluster-name"
 	exportID := "job-id-test"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", projectID, clusterName, exportID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports/%s", groupID, clusterName, exportID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -167,7 +162,7 @@ func TestCloudProviderSnapshotExportJobs_Get(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportJobs.Get(ctx, projectID, clusterName, exportID)
+	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportJobs.Get(ctx, groupID, clusterName, exportID)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportJobs.Get returned error: %v", err)
 	}
@@ -191,9 +186,6 @@ func TestCloudProviderSnapshotExportJobs_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
-	clusterName := "test-cluster-name"
-
 	createRequest := &CloudProviderSnapshotExportJob{
 		SnapshotID:     "{SNAPSHOT-ID}",
 		ExportBucketID: "{BUCKET-ID}",
@@ -205,7 +197,7 @@ func TestCloudProviderSnapshotExportJobs_Create(t *testing.T) {
 		},
 	}
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports", projectID, clusterName)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/backup/exports", groupID, clusterName)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, `{
@@ -228,7 +220,7 @@ func TestCloudProviderSnapshotExportJobs_Create(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotExportJobs.Create(ctx, projectID, clusterName, createRequest)
+	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotExportJobs.Create(ctx, groupID, clusterName, createRequest)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportBuckets.Create returned error: %v", err)
 	}

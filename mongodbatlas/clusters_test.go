@@ -351,8 +351,6 @@ func TestClusters_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-
 	createRequest := &Cluster{
 		ID: "1",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
@@ -536,9 +534,6 @@ func TestClusters_Update(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "AppData"
-
 	updateRequest := &Cluster{
 		ID: "1",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
@@ -601,7 +596,7 @@ func TestClusters_Update(t *testing.T) {
 			"mongoURI":                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 			"mongoURIUpdated":          "2017-10-23T21:26:17Z",
 			"mongoURIWithOptions":      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-			"name":                     "AppData",
+			"name":                     clusterName,
 			"numShards":                float64(1),
 			"paused":                   false,
 			"providerSettings": map[string]interface{}{
@@ -652,7 +647,7 @@ func TestClusters_Update(t *testing.T) {
             "mongoURI": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
             "mongoURIUpdated": "2017-10-23T21:26:17Z",
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-            "name": "AppData",
+            "name": "globalCluster",
             "numShards": 1,
 			"paused": false,
 			"pitEnabled": false,
@@ -731,8 +726,6 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "AppData"
 	tlsProtocol := "TLS1_2"
 	defaultReadConcern := "available"
 	defaultWriteConcern := "1"
@@ -812,9 +805,6 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "test-cluster"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
@@ -862,9 +852,6 @@ func TestClusters_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "appData"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{	
@@ -911,7 +898,7 @@ func TestClusters_Get(t *testing.T) {
             "mongoURI": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
             "mongoURIUpdated": "2017-10-23T21:26:17Z",
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-            "name": "AppData",
+            "name": "globalCluster",
             "numShards": 1,
 			"paused": false,
 			"pitEnabled": false,
@@ -977,7 +964,7 @@ func TestClusters_Get(t *testing.T) {
 		MongoURI:                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-		Name:                     "AppData",
+		Name:                     clusterName,
 		NumShards:                pointy.Int64(1),
 		Paused:                   pointy.Bool(false),
 		PitEnabled:               pointy.Bool(false),
@@ -1012,9 +999,6 @@ func TestClusters_Status(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "appData"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/status", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{ "changeStatus": "PENDING" }`)
@@ -1036,14 +1020,11 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "appData"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/sampleDatasetLoad/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{ 
 							 "_id": "1",
-							  "clusterName": "appData",
+							  "clusterName": "globalCluster",
 							  "completeDate": null,
 							  "createDate": "2021-03-26T16:30:47Z",
 							  "errorMessage": null,
@@ -1071,7 +1052,6 @@ func TestClusters_GetSampleDatasetStatus(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
 	jobID := "1"
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/sampleDatasetLoad/%s", groupID, jobID), func(w http.ResponseWriter, r *http.Request) {
@@ -1105,8 +1085,6 @@ func TestClusters_GetSampleDatasetStatus(t *testing.T) {
 func TestCloudProviderRegions_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	groupID := "5b6212af90dc76637950a2c6"
 
 	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/provider/regions", groupID)
 
@@ -1313,9 +1291,6 @@ func TestClusters_Upgrade(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "1"
-	clusterName := "AppData"
-
 	upgradeRequest := &Cluster{
 		ID: "1",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
@@ -1378,7 +1353,7 @@ func TestClusters_Upgrade(t *testing.T) {
 			"mongoURI":                 "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 			"mongoURIUpdated":          "2017-10-23T21:26:17Z",
 			"mongoURIWithOptions":      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-			"name":                     "AppData",
+			"name":                     clusterName,
 			"numShards":                float64(1),
 			"paused":                   false,
 			"providerSettings": map[string]interface{}{
@@ -1429,7 +1404,7 @@ func TestClusters_Upgrade(t *testing.T) {
             "mongoURI": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
             "mongoURIUpdated": "2017-10-23T21:26:17Z",
             "mongoURIWithOptions": "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
-            "name": "AppData",
+            "name": "globalCluster",
             "numShards": 1,
 			"paused": false,
 			"pitEnabled": false,

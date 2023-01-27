@@ -27,7 +27,6 @@ func TestAlert_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "535683b3794d371327b"
 	alertID := "57b76ddc96e8215c017ceafb"
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alerts/%s", groupID, alertID), func(w http.ResponseWriter, r *http.Request) {
@@ -261,7 +260,6 @@ func TestAlert_Acknowledge(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "535683b3794d371327b"
 	alertID := "533dc40ae4b00835ff81eaee"
 	acknowledgedUntil := "2026-10-01T00:00:00-0400"
 

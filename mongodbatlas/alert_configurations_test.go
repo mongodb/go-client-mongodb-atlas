@@ -28,8 +28,6 @@ func TestAlertConfiguration_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "6d2065c687d9d64ae7acdg41"
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/alertConfigs", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 
