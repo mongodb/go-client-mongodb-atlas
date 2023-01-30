@@ -1,0 +1,524 @@
+{
+  "openapi": "3.0.1",
+  "paths": {
+    "/api/atlas/v1.5/groups/{groupId}/clusters": {
+      "post": {
+        "operationId": "createCluster",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiAtlasClusterDescriptionV15View"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiAtlasClusterDescriptionV15View"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create One Multi-Cloud Cluster from One Project",
+        "tags": ["Multi-Cloud Clusters"]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiAtlasClusterDescriptionV15View": {
+        "type": "object",
+        "properties": {
+          "backupEnabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "clusterType": {
+            "type": "string",
+            "enum": ["REPLICASET", "SHARDED", "GEOSHARDED"]
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "diskSizeGB": {
+            "type": "number",
+            "format": "double",
+            "maximum": 4096,
+            "minimum": 10
+          },
+          "encryptionAtRestProvider": {
+            "type": "string",
+            "enum": ["NONE", "AWS", "AZURE", "GCP"],
+            "externalDocs": {
+              "url": "https://www.mongodb.com/docs/atlas/security-kms-encryption/"
+            }
+          },
+          "groupId": {
+            "type": "string",
+            "example": "32b6e34b3d91647abb20e7b8",
+            "maxLength": 24,
+            "minLength": 24,
+            "pattern": "^([a-f0-9]{24})$",
+            "readOnly": true
+          },
+          "id": {
+            "type": "string",
+            "example": "6492cb3770e674ece4e89b41",
+            "maxLength": 24,
+            "minLength": 24,
+            "pattern": "^([a-f0-9]{24})$",
+            "readOnly": true
+          },
+          "mongoDBMajorVersion": {
+            "type": "string",
+            "default": "5.0",
+            "enum": ["4.0", "4.2", "4.4", "5.0"]
+          },
+          "mongoDBVersion": {
+            "type": "string",
+            "pattern": "([\\d]+\\.[\\d]+\\.[\\d]+)",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^([a-zA-Z0-9]([a-zA-Z0-9-]){0,21}(?<!-)([\\w]{0,42}))$"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "pitEnabled": {
+            "type": "boolean",
+            "externalDocs": {
+              "url": "https://docs.atlas.mongodb.com/backup/cloud-backup/overview/"
+            }
+          },
+          "replicationSpecs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiAtlasReplicationSpecView"
+            }
+          },
+          "rootCertType": {
+            "type": "string",
+            "default": "ISRGROOTX1",
+            "enum": ["ISRGROOTX1"]
+          },
+          "stateName": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminationProtectionEnabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "versionReleaseSystem": {
+            "type": "string",
+            "default": "LTS",
+            "enum": ["LTS", "CONTINUOUS"]
+          }
+        }
+      },
+      "ApiAtlasReplicationSpecView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6492cb3770e674ece4e89b41",
+            "maxLength": 24,
+            "minLength": 24,
+            "pattern": "^([a-f0-9]{24})$",
+            "readOnly": true
+          },
+          "numShards": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "regionConfigs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiAtlasRegionConfigView"
+            }
+          },
+          "zoneName": {
+            "type": "string"
+          }
+        },
+        "title": "Replication Specifications"
+      },
+      "ApiAtlasClusterDescriptionConnectionStringsPrivateEndpointView": {
+        "type": "object",
+        "externalDocs": {
+          "url": "https://docs.atlas.mongodb.com/security-private-endpoint/"
+        },
+        "properties": {
+          "connectionString": {
+            "type": "string",
+            "readOnly": true
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiAtlasClusterDescriptionConnectionStringsPrivateEndpointEndpointView"
+            },
+            "readOnly": true
+          },
+          "srvConnectionString": {
+            "type": "string",
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "enum": ["MONGOD", "MONGOS"],
+            "readOnly": true
+          }
+        },
+        "title": "Cluster Private Endpoint Connection String"
+      },
+      "ApiAtlasRegionConfigView": {
+        "type": "object",
+        "discriminator": {
+          "mapping": {
+            "AWS": "#/components/schemas/ApiAtlasAWSRegionConfigView",
+            "AZURE": "#/components/schemas/ApiAtlasAzureRegionConfigView",
+            "GCP": "#/components/schemas/ApiAtlasGCPRegionConfigView",
+            "TENANT": "#/components/schemas/ApiAtlasTenantRegionConfigView"
+          },
+          "propertyName": "providerName"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasAWSRegionConfigView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasAzureRegionConfigView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasGCPRegionConfigView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasTenantRegionConfigView"
+          }
+        ],
+        "properties": {
+          "electableSpecs": {
+            "$ref": "#/components/schemas/ApiAtlasHardwareSpecView"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 7,
+            "minimum": 0
+          },
+          "providerName": {
+            "type": "string",
+            "enum": ["AWS", "AZURE", "GCP", "TENANT"]
+          },
+          "regionName": {
+            "type": "object",
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": ["US_GOV_WEST_1", "US_GOV_EAST_1", "US_EAST_1", "US_EAST_2", "US_WEST_1", "US_WEST_2"],
+                "title": "AWS Regions"
+              },
+              {
+                "type": "string",
+                "enum": ["US_CENTRAL", "US_EAST", "US_EAST_2"],
+                "title": "Azure Regions"
+              },
+              {
+                "type": "string",
+                "enum": ["EASTERN_US", "US_EAST_4", "US_WEST_2", "US_WEST_3", "US_WEST_4"],
+                "title": "GCP Regions"
+              }
+            ]
+          }
+        },
+        "title": "Cloud Service Provider Settings for Multi-Cloud Clusters"
+      },
+      "ApiAtlasClusterDescriptionConnectionStringsPrivateEndpointEndpointView": {
+        "type": "object",
+        "properties": {
+          "endpointId": {
+            "type": "string",
+            "readOnly": true
+          },
+          "providerName": {
+            "type": "string",
+            "enum": ["AWS", "AZURE", "GCP"],
+            "readOnly": true
+          },
+          "region": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "title": "Cluster Private Endpoint Connection Strings Endpoint"
+      },
+      "ApiAtlasAWSRegionConfigView": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasRegionConfigView"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "analyticsAutoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "analyticsSpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              },
+              "autoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "readOnlySpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              }
+            }
+          }
+        ],
+        "title": "AWS Regional Replication Specifications"
+      },
+      "ApiAtlasAzureRegionConfigView": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasRegionConfigView"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "analyticsAutoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "analyticsSpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              },
+              "autoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "readOnlySpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              }
+            }
+          }
+        ],
+        "title": "Azure Regional Replication Specifications"
+      },
+      "ApiAtlasGCPRegionConfigView": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasRegionConfigView"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "analyticsAutoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "analyticsSpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              },
+              "autoScaling": {
+                "$ref": "#/components/schemas/ApiAtlasAutoScalingV15View"
+              },
+              "readOnlySpecs": {
+                "$ref": "#/components/schemas/ApiAtlasDedicatedHardwareSpecView"
+              }
+            }
+          }
+        ],
+        "title": "GCP Regional Replication Specifications"
+      },
+      "ApiAtlasTenantRegionConfigView": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasRegionConfigView"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "backingProviderName": {
+                "type": "string",
+                "enum": ["AWS", "GCP", "AZURE"]
+              }
+            }
+          }
+        ],
+        "title": "Tenant Regional Replication Specifications"
+      },
+      "ApiAtlasHardwareSpecView": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasAWSHardwareSpecView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasAzureHardwareSpecView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasGCPHardwareSpecView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasTenantHardwareSpecView"
+          }
+        ]
+      },
+      "ApiAtlasAutoScalingV15View": {
+        "type": "object",
+        "properties": {
+          "compute": {
+            "$ref": "#/components/schemas/ApiAtlasComputeAutoScalingV15View"
+          },
+          "diskGB": {
+            "$ref": "#/components/schemas/ApiAtlasDiskGBAutoScalingView"
+          }
+        },
+        "title": "Automatic Scaling Settings"
+      },
+      "ApiAtlasDedicatedHardwareSpecView": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApiAtlasAWSHardwareSpecView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasAzureHardwareSpecView"
+          },
+          {
+            "$ref": "#/components/schemas/ApiAtlasGCPHardwareSpecView"
+          }
+        ],
+        "properties": {
+          "nodeCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ApiAtlasAWSHardwareSpecView": {
+        "type": "object",
+        "properties": {
+          "diskIOPS": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ebsVolumeType": {
+            "type": "string",
+            "default": "STANDARD",
+            "enum": ["STANDARD", "PROVISIONED"]
+          },
+          "instanceSize": {
+            "type": "string",
+            "enum": ["M10", "M20", "M30"],
+            "title": "AWS Instance Sizes"
+          },
+          "nodeCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "AWS Cluster Hardware Settings"
+      },
+      "ApiAtlasAzureHardwareSpecView": {
+        "type": "object",
+        "properties": {
+          "instanceSize": {
+            "type": "string",
+            "enum": ["M10", "M20", "M30", "M40"],
+            "title": "Azure Instance Sizes"
+          },
+          "nodeCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ApiAtlasGCPHardwareSpecView": {
+        "type": "object",
+        "properties": {
+          "instanceSize": {
+            "type": "string",
+            "enum": ["M10", "M20", "M30", "M40"],
+            "title": "GCP Instance Sizes"
+          },
+          "nodeCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ApiAtlasTenantHardwareSpecView": {
+        "type": "object",
+        "properties": {
+          "instanceSize": {
+            "type": "string",
+            "enum": ["M0", "M2", "M5"],
+            "title": "Tenant Instance Sizes"
+          }
+        }
+      },
+      "ApiAtlasComputeAutoScalingV15View": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "maxInstanceSize": {
+            "$ref": "#/components/schemas/ApiAtlasInstanceSizeView"
+          },
+          "minInstanceSize": {
+            "$ref": "#/components/schemas/ApiAtlasInstanceSizeView"
+          },
+          "scaleDownEnabled": {
+            "type": "boolean"
+          }
+        },
+        "title": "Automatic Compute Scaling Settings"
+      },
+      "ApiAtlasDiskGBAutoScalingView": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApiAtlasInstanceSizeView": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string",
+            "enum": ["M10", "M20", "M30", "M40"],
+            "title": "AWS Instance Sizes"
+          },
+          {
+            "type": "string",
+            "enum": ["M10", "M20", "M30", "M40"],
+            "title": "Azure Instance Sizes"
+          },
+          {
+            "type": "string",
+            "enum": ["M10", "M20", "M30", "M40"],
+            "title": "GCP Instance Sizes"
+          }
+        ]
+      }
+    }
+  }
+}

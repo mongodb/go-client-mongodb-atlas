@@ -1,0 +1,11 @@
+{
+  "generatorName": "go",
+  "gitRepoId": "go-client-mongodb-atlas",
+  "gitUserId": "mongodb",
+  "vanityURL": "go.mongodb.org/atlas",
+  "templateDir": "./config/go-templates",
+  "generateInterfaces": true,
+  "enumClassPrefix": true,
+  "structPrefix": true,
+  "useOneOfDiscriminatorLookup": true
+}
