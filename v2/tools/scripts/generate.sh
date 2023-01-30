@@ -12,10 +12,10 @@ SDK_ROOT=${SDK_ROOT:-"./"}
 echo "Running generation pipeline"
 
 echo "Creating new $TRANSFORMED_FILE OpenAPI file from $OPENAPI_FILE"
-cp $OPENAPI_FILE $TRANSFORMED_FILE
+cp "$OPENAPI_FILE" "$TRANSFORMED_FILE"
 
 npm install
-npm run sdk:transform -- $TRANSFORMED_FILE
+npm run sdk:transform -- "$TRANSFORMED_FILE"
 
 npm exec openapi-generator-cli -- generate \
     -c "./config/go.json" -i "$TRANSFORMED_FILE" -o "$SDK_ROOT$LATEST_PACKAGE" \
