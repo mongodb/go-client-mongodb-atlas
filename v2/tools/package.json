@@ -1,0 +1,16 @@
+{
+  "name": "openapi-generation-tools",
+  "description": "Atlas GO SDK generator tools",
+  "version": "0.1.0",
+  "private": "true",
+  "main": "transformer/src/index.js",
+  "dependencies": {
+    "yaml": "2.2.1"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "2.5.2"
+  },
+  "scripts": {
+    "sdk:transform": "node ./transformer/src/transform"
+  }
+}
