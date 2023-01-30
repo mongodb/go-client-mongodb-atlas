@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.22.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.22.0) (January 30, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.21.0...v0.22.0)
+
+**Closed issues:**
+
+- Issue calling CloudProviderSnapshotBackupPolicies Service [\#349](https://github.com/mongodb/go-client-mongodb-atlas/issues/349)
+
+**Merged pull requests:**
+
+- test: clean up shadow variables for constants [\#351](https://github.com/mongodb/go-client-mongodb-atlas/pull/351) ([gssbzn](https://github.com/gssbzn))
+- feat: add outage simulation [\#350](https://github.com/mongodb/go-client-mongodb-atlas/pull/350) ([gssbzn](https://github.com/gssbzn))
+- feat: add test failover method [\#343](https://github.com/mongodb/go-client-mongodb-atlas/pull/343) ([gssbzn](https://github.com/gssbzn))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.3.1 to 3.4.0 [\#342](https://github.com/mongodb/go-client-mongodb-atlas/pull/342) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.21.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.21.0) (January 09, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.20.0...v0.21.0)
