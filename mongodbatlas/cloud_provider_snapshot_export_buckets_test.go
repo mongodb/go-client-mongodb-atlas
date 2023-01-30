@@ -27,9 +27,7 @@ func TestCloudProviderSnapshotExportBuckets_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
-
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets", projectID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets", groupID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -52,7 +50,7 @@ func TestCloudProviderSnapshotExportBuckets_List(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotExportBuckets.List(ctx, projectID, nil)
+	cloudProviderSnapshots, _, err := client.CloudProviderSnapshotExportBuckets.List(ctx, groupID, nil)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportBuckets.List returned error: %v", err)
 	}
@@ -84,10 +82,9 @@ func TestCloudProviderSnapshotExportBuckets_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
 	bucketID := "bucket-id-test"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets/%s", projectID, bucketID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets/%s", groupID, bucketID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
@@ -99,7 +96,7 @@ func TestCloudProviderSnapshotExportBuckets_Get(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportBuckets.Get(ctx, projectID, bucketID)
+	cloudProviderSnapshotBucket, _, err := client.CloudProviderSnapshotExportBuckets.Get(ctx, groupID, bucketID)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportBuckets.Get returned error: %v", err)
 	}
@@ -120,8 +117,6 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "test-project-id"
-
 	createRequest := &CloudProviderSnapshotExportBucket{
 		ID:            "{BUCKET-ID}",
 		BucketName:    "example-bucket",
@@ -129,7 +124,7 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 		IAMRoleID:     "12345678f901a234dbdb00ca",
 	}
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets", projectID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets", groupID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
@@ -157,7 +152,7 @@ func TestCloudProviderSnapshotExportBuckets_Create(t *testing.T) {
 }`)
 	})
 
-	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotExportBuckets.Create(ctx, projectID, createRequest)
+	cloudProviderSnapshot, _, err := client.CloudProviderSnapshotExportBuckets.Create(ctx, groupID, createRequest)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportBuckets.Create returned error: %v", err)
 	}
@@ -178,16 +173,15 @@ func TestCloudProviderSnapshotExportBuckets_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	projectID := "project-id"
 	bucketID := "bucket-id"
 
-	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets/%s", projectID, bucketID)
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/backup/exportBuckets/%s", groupID, bucketID)
 
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.CloudProviderSnapshotExportBuckets.Delete(ctx, projectID, bucketID)
+	_, err := client.CloudProviderSnapshotExportBuckets.Delete(ctx, groupID, bucketID)
 	if err != nil {
 		t.Fatalf("CloudProviderSnapshotExportBuckets.Delete returned error: %v", err)
 	}
