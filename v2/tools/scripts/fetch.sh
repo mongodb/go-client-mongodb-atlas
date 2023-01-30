@@ -18,7 +18,7 @@ OUTPUT_PATH=${OUTPUT_PATH:-"./openapi"}
 openapi_url="$API_BASE_URL/spec/2.0?version=$CURRENT_REVISION"
 versions_url="$API_BASE_URL/versions"
 
-pushd $OUTPUT_PATH
+pushd "$OUTPUT_PATH"
 
 echo "Fetching versions from $versions_url"
 
