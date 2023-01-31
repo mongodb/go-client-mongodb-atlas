@@ -24,16 +24,19 @@ type TestApi interface {
 	/*
 	VersionedExample Example resource info for versioning of the Atlas API
 
-	Returns some text dummy data for test purposes. Deprecated versions: v2-{2021-09-09}
+	Returns some text dummy data for test purposes. Deprecated versions: v2-{2023-01-01}
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return TestApiVersionedExampleRequest
+
+	Deprecated
 	*/
 	VersionedExample(ctx context.Context) TestApiVersionedExampleRequest
 
 	// VersionedExampleExecute executes the request
-	//  @return ExampleResourceResponseView20221018
-	VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20221018, *http.Response, error)
+	//  @return ExampleResourceResponseView20230201
+	// Deprecated
+	VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20230201, *http.Response, error)
 }
 
 // TestApiService TestApi service
@@ -43,6 +46,7 @@ type TestApiVersionedExampleRequest struct {
 	ctx context.Context
 	ApiService TestApi
 	envelope *bool
+	additionalInfo *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
@@ -51,17 +55,24 @@ func (r TestApiVersionedExampleRequest) Envelope(envelope bool) TestApiVersioned
 	return r
 }
 
-func (r TestApiVersionedExampleRequest) Execute() (*ExampleResourceResponseView20221018, *http.Response, error) {
+func (r TestApiVersionedExampleRequest) AdditionalInfo(additionalInfo bool) TestApiVersionedExampleRequest {
+	r.additionalInfo = &additionalInfo
+	return r
+}
+
+func (r TestApiVersionedExampleRequest) Execute() (*ExampleResourceResponseView20230201, *http.Response, error) {
 	return r.ApiService.VersionedExampleExecute(r)
 }
 
 /*
 VersionedExample Example resource info for versioning of the Atlas API
 
-Returns some text dummy data for test purposes. Deprecated versions: v2-{2021-09-09}
+Returns some text dummy data for test purposes. Deprecated versions: v2-{2023-01-01}
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return TestApiVersionedExampleRequest
+
+Deprecated
 */
 func (a *TestApiService) VersionedExample(ctx context.Context) TestApiVersionedExampleRequest {
 	return TestApiVersionedExampleRequest{
@@ -71,13 +82,14 @@ func (a *TestApiService) VersionedExample(ctx context.Context) TestApiVersionedE
 }
 
 // Execute executes the request
-//  @return ExampleResourceResponseView20221018
-func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20221018, *http.Response, error) {
+//  @return ExampleResourceResponseView20230201
+// Deprecated
+func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20230201, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ExampleResourceResponseView20221018
+		localVarReturnValue  *ExampleResourceResponseView20230201
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestApiService.VersionedExample")
@@ -94,6 +106,9 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 	if r.envelope != nil {
 		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
 	}
+	if r.additionalInfo != nil {
+		localVarQueryParams.Add("additionalInfo", parameterToString(*r.additionalInfo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -104,7 +119,7 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2022-10-18+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
