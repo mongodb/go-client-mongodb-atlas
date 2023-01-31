@@ -19,15 +19,15 @@ type ApiFTSMetricsView struct {
 	// Unique 24-hexadecimal digit string that identifies the project.
 	GroupId string `json:"groupId"`
 	// List that contains all host compute, memory, and storage utilization dedicated to Atlas Search when MongoDB Atlas received this request.
-	HardwareMetrics []ApiFTSMetricView `json:"hardwareMetrics"`
+	HardwareMetrics []ApiFTSMetricView `json:"hardwareMetrics,omitempty"`
 	// List that contains all performance and utilization measurements that Atlas Search index performed by the time MongoDB Atlas received this request.
-	IndexMetrics []ApiFTSMetricView `json:"indexMetrics"`
+	IndexMetrics []ApiFTSMetricView `json:"indexMetrics,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Hostname and port that identifies the process.
 	ProcessId string `json:"processId"`
 	// List that contains all available Atlas Search status metrics when MongoDB Atlas received this request.
-	StatusMetrics []ApiFTSMetricView `json:"statusMetrics"`
+	StatusMetrics []ApiFTSMetricView `json:"statusMetrics,omitempty"`
 }
 
 // NewApiFTSMetricsView instantiates a new ApiFTSMetricsView object
@@ -71,50 +71,66 @@ func (o *ApiFTSMetricsView) SetGroupId(v string) {
 	o.GroupId = v
 }
 
-// GetHardwareMetrics returns the HardwareMetrics field value
+// GetHardwareMetrics returns the HardwareMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetHardwareMetrics() []ApiFTSMetricView {
-	if o == nil {
+	if o == nil || o.HardwareMetrics == nil {
 		var ret []ApiFTSMetricView
 		return ret
 	}
-
 	return o.HardwareMetrics
 }
 
-// GetHardwareMetricsOk returns a tuple with the HardwareMetrics field value
+// GetHardwareMetricsOk returns a tuple with the HardwareMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetHardwareMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil {
+	if o == nil || o.HardwareMetrics == nil {
 		return nil, false
 	}
 	return o.HardwareMetrics, true
 }
 
-// SetHardwareMetrics sets field value
+// HasHardwareMetrics returns a boolean if a field has been set.
+func (o *ApiFTSMetricsView) HasHardwareMetrics() bool {
+	if o != nil && o.HardwareMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHardwareMetrics gets a reference to the given []ApiFTSMetricView and assigns it to the HardwareMetrics field.
 func (o *ApiFTSMetricsView) SetHardwareMetrics(v []ApiFTSMetricView) {
 	o.HardwareMetrics = v
 }
 
-// GetIndexMetrics returns the IndexMetrics field value
+// GetIndexMetrics returns the IndexMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetIndexMetrics() []ApiFTSMetricView {
-	if o == nil {
+	if o == nil || o.IndexMetrics == nil {
 		var ret []ApiFTSMetricView
 		return ret
 	}
-
 	return o.IndexMetrics
 }
 
-// GetIndexMetricsOk returns a tuple with the IndexMetrics field value
+// GetIndexMetricsOk returns a tuple with the IndexMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetIndexMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil {
+	if o == nil || o.IndexMetrics == nil {
 		return nil, false
 	}
 	return o.IndexMetrics, true
 }
 
-// SetIndexMetrics sets field value
+// HasIndexMetrics returns a boolean if a field has been set.
+func (o *ApiFTSMetricsView) HasIndexMetrics() bool {
+	if o != nil && o.IndexMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndexMetrics gets a reference to the given []ApiFTSMetricView and assigns it to the IndexMetrics field.
 func (o *ApiFTSMetricsView) SetIndexMetrics(v []ApiFTSMetricView) {
 	o.IndexMetrics = v
 }
@@ -175,26 +191,34 @@ func (o *ApiFTSMetricsView) SetProcessId(v string) {
 	o.ProcessId = v
 }
 
-// GetStatusMetrics returns the StatusMetrics field value
+// GetStatusMetrics returns the StatusMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetStatusMetrics() []ApiFTSMetricView {
-	if o == nil {
+	if o == nil || o.StatusMetrics == nil {
 		var ret []ApiFTSMetricView
 		return ret
 	}
-
 	return o.StatusMetrics
 }
 
-// GetStatusMetricsOk returns a tuple with the StatusMetrics field value
+// GetStatusMetricsOk returns a tuple with the StatusMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetStatusMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil {
+	if o == nil || o.StatusMetrics == nil {
 		return nil, false
 	}
 	return o.StatusMetrics, true
 }
 
-// SetStatusMetrics sets field value
+// HasStatusMetrics returns a boolean if a field has been set.
+func (o *ApiFTSMetricsView) HasStatusMetrics() bool {
+	if o != nil && o.StatusMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusMetrics gets a reference to the given []ApiFTSMetricView and assigns it to the StatusMetrics field.
 func (o *ApiFTSMetricsView) SetStatusMetrics(v []ApiFTSMetricView) {
 	o.StatusMetrics = v
 }
@@ -204,10 +228,10 @@ func (o ApiFTSMetricsView) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["groupId"] = o.GroupId
 	}
-	if true {
+	if o.HardwareMetrics != nil {
 		toSerialize["hardwareMetrics"] = o.HardwareMetrics
 	}
-	if true {
+	if o.IndexMetrics != nil {
 		toSerialize["indexMetrics"] = o.IndexMetrics
 	}
 	if o.Links != nil {
@@ -216,7 +240,7 @@ func (o ApiFTSMetricsView) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["processId"] = o.ProcessId
 	}
-	if true {
+	if o.StatusMetrics != nil {
 		toSerialize["statusMetrics"] = o.StatusMetrics
 	}
 	return json.Marshal(toSerialize)

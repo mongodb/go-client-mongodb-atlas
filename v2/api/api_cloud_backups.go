@@ -278,6 +278,21 @@ type CloudBackupsApi interface {
 	ReturnAllSnapshotsOfOneServerlessInstanceExecute(r CloudBackupsApiReturnAllSnapshotsOfOneServerlessInstanceRequest) (*PaginatedServerlessBackupSnapshotViewManual, *http.Response, error)
 
 	/*
+	ReturnDataProtectionSettings Return date protection settings
+
+	Returns date protection settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return CloudBackupsApiReturnDataProtectionSettingsRequest
+	*/
+	ReturnDataProtectionSettings(ctx context.Context, groupId string) CloudBackupsApiReturnDataProtectionSettingsRequest
+
+	// ReturnDataProtectionSettingsExecute executes the request
+	//  @return DataProtectionSettings
+	ReturnDataProtectionSettingsExecute(r CloudBackupsApiReturnDataProtectionSettingsRequest) (*DataProtectionSettings, *http.Response, error)
+
+	/*
 	ReturnOneAwsS3BucketUsedForCloudBackupSnapshotExports Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
 
 	Returns one AWS S3 bucket associated with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
@@ -410,6 +425,21 @@ type CloudBackupsApi interface {
 	// ReturnOneSnapshotOfOneServerlessInstanceExecute executes the request
 	//  @return ApiAtlasServerlessBackupSnapshotViewManual
 	ReturnOneSnapshotOfOneServerlessInstanceExecute(r CloudBackupsApiReturnOneSnapshotOfOneServerlessInstanceRequest) (*ApiAtlasServerlessBackupSnapshotViewManual, *http.Response, error)
+
+	/*
+	RevokeAccessToAwsS3BucketForCloudBackupSnapshotExports Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
+
+	Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param exportBucketId Unique string that identifies the AWS S3 bucket to which you export your snapshots.
+	@return CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest
+	*/
+	RevokeAccessToAwsS3BucketForCloudBackupSnapshotExports(ctx context.Context, groupId string, exportBucketId string) CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest
+
+	// RevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsExecute executes the request
+	RevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsExecute(r CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest) (*http.Response, error)
 
 	/*
 	TakeOneOnDemandSnapshot Take One On-Demand Snapshot
@@ -550,7 +580,7 @@ func (a *CloudBackupsApiService) CancelOneRestoreJobOfOneClusterExecute(r CloudB
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -732,7 +762,7 @@ func (a *CloudBackupsApiService) ChangeExpirationDateForOneCloudBackupExecute(r 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -901,7 +931,7 @@ func (a *CloudBackupsApiService) CreateOneCloudBackupSnapshotExportJobExecute(r 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1096,7 +1126,7 @@ func (a *CloudBackupsApiService) GrantAccessToAwsS3BucketForCloudBackupSnapshotE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1270,7 +1300,7 @@ func (a *CloudBackupsApiService) RemoveAllCloudBackupSchedulesExecute(r CloudBac
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1449,7 +1479,7 @@ func (a *CloudBackupsApiService) RemoveOneReplicaSetCloudBackupExecute(r CloudBa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1619,7 +1649,7 @@ func (a *CloudBackupsApiService) RemoveOneShardedClusterCloudBackupExecute(r Clo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1780,7 +1810,7 @@ func (a *CloudBackupsApiService) RestoreOneSnapshotOfOneClusterExecute(r CloudBa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1985,7 +2015,7 @@ func (a *CloudBackupsApiService) RestoreOneSnapshotOfOneCluster1Execute(r CloudB
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2170,7 +2200,7 @@ func (a *CloudBackupsApiService) ReturnAllAwsS3BucketsUsedForCloudBackupSnapshot
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2360,7 +2390,7 @@ func (a *CloudBackupsApiService) ReturnAllCloudBackupSnapshotExportJobsExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2550,7 +2580,7 @@ func (a *CloudBackupsApiService) ReturnAllReplicaSetCloudBackupsExecute(r CloudB
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2751,7 +2781,7 @@ func (a *CloudBackupsApiService) ReturnAllRestoreJobsForOneClusterExecute(r Clou
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2911,7 +2941,7 @@ func (a *CloudBackupsApiService) ReturnAllRestoreJobsForOneServerlessInstanceExe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3082,7 +3112,7 @@ func (a *CloudBackupsApiService) ReturnAllShardedClusterCloudBackupsExecute(r Cl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3283,7 +3313,7 @@ func (a *CloudBackupsApiService) ReturnAllSnapshotsOfOneServerlessInstanceExecut
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3313,6 +3343,167 @@ func (a *CloudBackupsApiService) ReturnAllSnapshotsOfOneServerlessInstanceExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CloudBackupsApiReturnDataProtectionSettingsRequest struct {
+	ctx context.Context
+	ApiService CloudBackupsApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r CloudBackupsApiReturnDataProtectionSettingsRequest) Envelope(envelope bool) CloudBackupsApiReturnDataProtectionSettingsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CloudBackupsApiReturnDataProtectionSettingsRequest) Pretty(pretty bool) CloudBackupsApiReturnDataProtectionSettingsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r CloudBackupsApiReturnDataProtectionSettingsRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
+	return r.ApiService.ReturnDataProtectionSettingsExecute(r)
+}
+
+/*
+ReturnDataProtectionSettings Return date protection settings
+
+Returns date protection settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return CloudBackupsApiReturnDataProtectionSettingsRequest
+*/
+func (a *CloudBackupsApiService) ReturnDataProtectionSettings(ctx context.Context, groupId string) CloudBackupsApiReturnDataProtectionSettingsRequest {
+	return CloudBackupsApiReturnDataProtectionSettingsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return DataProtectionSettings
+func (a *CloudBackupsApiService) ReturnDataProtectionSettingsExecute(r CloudBackupsApiReturnDataProtectionSettingsRequest) (*DataProtectionSettings, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DataProtectionSettings
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ReturnDataProtectionSettings")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataProtection"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3444,7 +3635,7 @@ func (a *CloudBackupsApiService) ReturnOneAwsS3BucketUsedForCloudBackupSnapshotE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3615,7 +3806,7 @@ func (a *CloudBackupsApiService) ReturnOneCloudBackupScheduleExecute(r CloudBack
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3769,7 +3960,7 @@ func (a *CloudBackupsApiService) ReturnOneCloudBackupSnapshotExportJobExecute(r 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3939,7 +4130,7 @@ func (a *CloudBackupsApiService) ReturnOneReplicaSetCloudBackupExecute(r CloudBa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4120,7 +4311,7 @@ func (a *CloudBackupsApiService) ReturnOneRestoreJobForOneServerlessInstanceExec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4301,7 +4492,7 @@ func (a *CloudBackupsApiService) ReturnOneRestoreJobOfOneClusterExecute(r CloudB
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4471,7 +4662,7 @@ func (a *CloudBackupsApiService) ReturnOneShardedClusterCloudBackupExecute(r Clo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4642,7 +4833,7 @@ func (a *CloudBackupsApiService) ReturnOneSnapshotOfOneServerlessInstanceExecute
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4716,6 +4907,167 @@ func (a *CloudBackupsApiService) ReturnOneSnapshotOfOneServerlessInstanceExecute
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest struct {
+	ctx context.Context
+	ApiService CloudBackupsApi
+	groupId string
+	exportBucketId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest) Envelope(envelope bool) CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsExecute(r)
+}
+
+/*
+RevokeAccessToAwsS3BucketForCloudBackupSnapshotExports Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
+
+Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param exportBucketId Unique string that identifies the AWS S3 bucket to which you export your snapshots.
+ @return CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest
+*/
+func (a *CloudBackupsApiService) RevokeAccessToAwsS3BucketForCloudBackupSnapshotExports(ctx context.Context, groupId string, exportBucketId string) CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest {
+	return CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		exportBucketId: exportBucketId,
+	}
+}
+
+// Execute executes the request
+func (a *CloudBackupsApiService) RevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsExecute(r CloudBackupsApiRevokeAccessToAwsS3BucketForCloudBackupSnapshotExportsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.RevokeAccessToAwsS3BucketForCloudBackupSnapshotExports")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/backup/exportBuckets/{exportBucketId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"exportBucketId"+"}", url.PathEscape(parameterToString(r.exportBucketId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.exportBucketId) < 3 {
+		return nil, reportError("exportBucketId must have at least 3 elements")
+	}
+	if strlen(r.exportBucketId) > 63 {
+		return nil, reportError("exportBucketId must have less than 63 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type CloudBackupsApiTakeOneOnDemandSnapshotRequest struct {
@@ -4823,7 +5175,7 @@ func (a *CloudBackupsApiService) TakeOneOnDemandSnapshotExecute(r CloudBackupsAp
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5006,7 +5358,7 @@ func (a *CloudBackupsApiService) UpdateCloudBackupBackupPolicyForOneClusterExecu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

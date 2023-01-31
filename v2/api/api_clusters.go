@@ -150,6 +150,21 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	// UpgradeOneTenantClusterExecute executes the request
 	//  @return LegacyClusterDescription
 	UpgradeOneTenantClusterExecute(r ClustersApiUpgradeOneTenantClusterRequest) (*LegacyClusterDescription, *http.Response, error)
+
+	/*
+	UpgradeOneTenantClusterToServerlessInstance Upgrades One Shared-Tier Cluster to the Serverless Instance
+
+	Upgrades a shared-tier cluster to a serverless instance in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role. This resource doesn't require the API key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest
+	*/
+	UpgradeOneTenantClusterToServerlessInstance(ctx context.Context, groupId string) ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest
+
+	// UpgradeOneTenantClusterToServerlessInstanceExecute executes the request
+	//  @return ServerlessInstanceDescription
+	UpgradeOneTenantClusterToServerlessInstanceExecute(r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error)
 }
 
 // ClustersApiService ClustersApi service
@@ -240,7 +255,7 @@ func (a *ClustersApiService) CheckStatusOfClusterSampleDatasetRequestExecute(r C
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -400,7 +415,7 @@ func (a *ClustersApiService) LoadSampleDatasetRequestIntoClusterExecute(r Cluste
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -594,7 +609,7 @@ func (a *ClustersApiService) ReturnAllAuthorizedClustersInAllProjectsExecute(r C
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -802,7 +817,7 @@ func (a *ClustersApiService) ReturnAllCloudProviderRegionsExecute(r ClustersApiR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -966,7 +981,7 @@ func (a *ClustersApiService) ReturnOneAdvancedConfigurationOptionsForOneClusterE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1137,7 +1152,7 @@ func (a *ClustersApiService) ReturnOneStatusOfAllClusterOperationsExecute(r Clus
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1307,7 +1322,7 @@ func (a *ClustersApiService) UpdateAdvancedConfigurationOptionsForOneClusterExec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1491,7 +1506,7 @@ func (a *ClustersApiService) UpgradeOneTenantClusterExecute(r ClustersApiUpgrade
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1500,6 +1515,212 @@ func (a *ClustersApiService) UpgradeOneTenantClusterExecute(r ClustersApiUpgrade
 	}
 	// body params
 	localVarPostBody = r.legacyClusterDescription
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest struct {
+	ctx context.Context
+	ApiService ClustersApi
+	groupId string
+	serverlessInstanceDescription *ServerlessInstanceDescription
+	envelope *bool
+	pretty *bool
+}
+
+// Details of the shared-tier cluster upgrade in the specified project.
+func (r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) ServerlessInstanceDescription(serverlessInstanceDescription ServerlessInstanceDescription) ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest {
+	r.serverlessInstanceDescription = &serverlessInstanceDescription
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) Envelope(envelope bool) ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) Pretty(pretty bool) ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
+	return r.ApiService.UpgradeOneTenantClusterToServerlessInstanceExecute(r)
+}
+
+/*
+UpgradeOneTenantClusterToServerlessInstance Upgrades One Shared-Tier Cluster to the Serverless Instance
+
+Upgrades a shared-tier cluster to a serverless instance in the specified project. To use this resource, the requesting API key must have the Project Cluster Manager role. This resource doesn't require the API key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest
+*/
+func (a *ClustersApiService) UpgradeOneTenantClusterToServerlessInstance(ctx context.Context, groupId string) ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest {
+	return ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerlessInstanceDescription
+func (a *ClustersApiService) UpgradeOneTenantClusterToServerlessInstanceExecute(r ClustersApiUpgradeOneTenantClusterToServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerlessInstanceDescription
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClustersApiService.UpgradeOneTenantClusterToServerlessInstance")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/tenantUpgradeToServerless"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if r.serverlessInstanceDescription == nil {
+		return localVarReturnValue, nil, reportError("serverlessInstanceDescription is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.serverlessInstanceDescription
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

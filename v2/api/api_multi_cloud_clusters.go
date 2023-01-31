@@ -84,6 +84,21 @@ type MultiCloudClustersApi interface {
 	ListClustersExecute(r MultiCloudClustersApiListClustersRequest) (*PaginatedClusterDescriptionV15View, *http.Response, error)
 
 	/*
+	TestFailover Test Failover for One Multi-Cloud Cluster
+
+	Starts a failover test for the specified cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. A failover test checks how MongoDB Cloud handles the failure of the cluster's primary node. During the test, MongoDB Cloud shuts down the primary node and elects a new primary. To use this resource, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster.
+	@return MultiCloudClustersApiTestFailoverRequest
+	*/
+	TestFailover(ctx context.Context, groupId string, clusterName string) MultiCloudClustersApiTestFailoverRequest
+
+	// TestFailoverExecute executes the request
+	TestFailoverExecute(r MultiCloudClustersApiTestFailoverRequest) (*http.Response, error)
+
+	/*
 	UpdateCluster Modify One Multi-Cloud Cluster from One Project
 
 	Updates the details for one cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. This resource can update multi-cloud clusters. To update a cluster's termination protection, the requesting API Key must have the Project Owner role. For all other updates, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
@@ -198,7 +213,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -315,11 +330,18 @@ type MultiCloudClustersApiDeleteClusterRequest struct {
 	groupId string
 	clusterName string
 	envelope *bool
+	retainBackups *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
 func (r MultiCloudClustersApiDeleteClusterRequest) Envelope(envelope bool) MultiCloudClustersApiDeleteClusterRequest {
 	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether backup snapshots should be retained for the deleted cluster.
+func (r MultiCloudClustersApiDeleteClusterRequest) RetainBackups(retainBackups bool) MultiCloudClustersApiDeleteClusterRequest {
+	r.retainBackups = &retainBackups
 	return r
 }
 
@@ -382,6 +404,9 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 	if r.envelope != nil {
 		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
 	}
+	if r.retainBackups != nil {
+		localVarQueryParams.Add("retainBackups", parameterToString(*r.retainBackups, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -392,7 +417,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -576,7 +601,7 @@ func (a *MultiCloudClustersApiService) GetClusterExecute(r MultiCloudClustersApi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -756,7 +781,7 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -819,6 +844,155 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type MultiCloudClustersApiTestFailoverRequest struct {
+	ctx context.Context
+	ApiService MultiCloudClustersApi
+	groupId string
+	clusterName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r MultiCloudClustersApiTestFailoverRequest) Envelope(envelope bool) MultiCloudClustersApiTestFailoverRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r MultiCloudClustersApiTestFailoverRequest) Pretty(pretty bool) MultiCloudClustersApiTestFailoverRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r MultiCloudClustersApiTestFailoverRequest) Execute() (*http.Response, error) {
+	return r.ApiService.TestFailoverExecute(r)
+}
+
+/*
+TestFailover Test Failover for One Multi-Cloud Cluster
+
+Starts a failover test for the specified cluster in the specified project. Clusters contain a group of hosts that maintain the same data set. A failover test checks how MongoDB Cloud handles the failure of the cluster's primary node. During the test, MongoDB Cloud shuts down the primary node and elects a new primary. To use this resource, the requesting API Key must have the Project Cluster Manager role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies the cluster.
+ @return MultiCloudClustersApiTestFailoverRequest
+*/
+func (a *MultiCloudClustersApiService) TestFailover(ctx context.Context, groupId string, clusterName string) MultiCloudClustersApiTestFailoverRequest {
+	return MultiCloudClustersApiTestFailoverRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+func (a *MultiCloudClustersApiService) TestFailoverExecute(r MultiCloudClustersApiTestFailoverRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MultiCloudClustersApiService.TestFailover")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restartPrimaries"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.unversioned+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type MultiCloudClustersApiUpdateClusterRequest struct {
@@ -926,7 +1100,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

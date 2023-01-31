@@ -69,6 +69,22 @@ type TeamsApi interface {
 	CreateOneTeamInOneOrganizationExecute(r TeamsApiCreateOneTeamInOneOrganizationRequest) (*ApiTeamView, *http.Response, error)
 
 	/*
+	RemoveOneMongoDBCloudUserFromOneTeam Remove One MongoDB Cloud User from One Team
+
+	Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
+	@param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
+	@return TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest
+	*/
+	RemoveOneMongoDBCloudUserFromOneTeam(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest
+
+	// RemoveOneMongoDBCloudUserFromOneTeamExecute executes the request
+	RemoveOneMongoDBCloudUserFromOneTeamExecute(r TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest) (*http.Response, error)
+
+	/*
 	RemoveOneTeamFromOneOrganization Remove One Team from One Organization
 
 	Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
@@ -307,7 +323,7 @@ func (a *TeamsApiService) AddOneOrMoreTeamsToOneProjectExecute(r TeamsApiAddOneO
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -512,7 +528,7 @@ func (a *TeamsApiService) AssignOneOrganizationUserToOneTeamExecute(r TeamsApiAs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -707,7 +723,7 @@ func (a *TeamsApiService) CreateOneTeamInOneOrganizationExecute(r TeamsApiCreate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -807,6 +823,187 @@ func (a *TeamsApiService) CreateOneTeamInOneOrganizationExecute(r TeamsApiCreate
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest struct {
+	ctx context.Context
+	ApiService TeamsApi
+	orgId string
+	teamId string
+	userId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest) Envelope(envelope bool) TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest) Pretty(pretty bool) TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOneMongoDBCloudUserFromOneTeamExecute(r)
+}
+
+/*
+RemoveOneMongoDBCloudUserFromOneTeam Remove One MongoDB Cloud User from One Team
+
+Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
+ @param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
+ @return TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest
+*/
+func (a *TeamsApiService) RemoveOneMongoDBCloudUserFromOneTeam(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest {
+	return TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		teamId: teamId,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+func (a *TeamsApiService) RemoveOneMongoDBCloudUserFromOneTeamExecute(r TeamsApiRemoveOneMongoDBCloudUserFromOneTeamRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RemoveOneMongoDBCloudUserFromOneTeam")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/{teamId}/users/{userId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return nil, reportError("orgId must have less than 24 elements")
+	}
+	if strlen(r.teamId) < 24 {
+		return nil, reportError("teamId must have at least 24 elements")
+	}
+	if strlen(r.teamId) > 24 {
+		return nil, reportError("teamId must have less than 24 elements")
+	}
+	if strlen(r.userId) < 24 {
+		return nil, reportError("userId must have at least 24 elements")
+	}
+	if strlen(r.userId) > 24 {
+		return nil, reportError("userId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type TeamsApiRemoveOneTeamFromOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
@@ -900,7 +1097,7 @@ func (a *TeamsApiService) RemoveOneTeamFromOneOrganizationExecute(r TeamsApiRemo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1061,7 +1258,7 @@ func (a *TeamsApiService) RemoveOneTeamFromOneProjectExecute(r TeamsApiRemoveOne
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1255,7 +1452,7 @@ func (a *TeamsApiService) RenameOneTeamExecute(r TeamsApiRenameOneTeamRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1470,7 +1667,7 @@ func (a *TeamsApiService) ReturnAllMongoDBCloudUsersAssignedToOneTeamExecute(r T
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1683,7 +1880,7 @@ func (a *TeamsApiService) ReturnAllTeamsExecute(r TeamsApiReturnAllTeamsRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1896,7 +2093,7 @@ func (a *TeamsApiService) ReturnAllTeamsInOneOrganizationExecute(r TeamsApiRetur
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2078,7 +2275,7 @@ func (a *TeamsApiService) ReturnOneTeamUsingItsIdExecute(r TeamsApiReturnOneTeam
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2254,7 +2451,7 @@ func (a *TeamsApiService) ReturnOneTeamUsingItsNameExecute(r TeamsApiReturnOneTe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2446,7 +2643,7 @@ func (a *TeamsApiService) UpdateTeamRolesInOneProjectExecute(r TeamsApiUpdateTea
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/vnd.atlas.unversioned+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
