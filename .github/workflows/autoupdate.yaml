@@ -5,9 +5,8 @@ on:
    branches:
      - v2
  workflow_dispatch:
- # To not trigger builds before it is merged
- #schedule:
- # - cron: "0 8 * * MON-FRI"
+ schedule:
+   - cron: "0 8 * * MON-FRI"
  
 jobs:
   generate-client:
@@ -39,5 +38,5 @@ jobs:
           branch: client
           branch-suffix: timestamp
           body: |
-            # Automatic update for MongoDBAtlas Go Client
+            Automatic update for MongoDBAtlas Go Client
             
