@@ -10,8 +10,7 @@ import (
 	"context"
 
 	"github.com/mongodb-forks/digest"
-	client "go.mongodb.org/atlas/mongodbatlas/v2"
-	apiv2latest "go.mongodb.org/atlas/mongodbatlas/v2/api"
+	apilatest "go.mongodb.org/atlas/mongodbatlas/v2/api"
 
 	utils "go.mongodb.org/atlas/mongodbatlas/v2/test/generators"
 )
@@ -37,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	sdk := client.NewClientWithUrl(httpClient, "https://cloud-dev.mongodb.com")
+	sdk := apilatest.NewClientWithUrl(httpClient, "https://cloud-dev.mongodb.com")
 	sdk.GetConfig().Debug = true
 	// -- 1. Get first project
 	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
@@ -71,7 +70,7 @@ func main() {
 	ipAddress := getIpAddress()
 	_, resp, err = sdk.ProjectIPAccessListApi.
 		CreateProjectIpAccessList(context.Background(), projectId).
-		NetworkPermissionEntry([]apiv2latest.NetworkPermissionEntry{{IpAddress: &ipAddress}}).
+		NetworkPermissionEntry([]apilatest.NetworkPermissionEntry{{IpAddress: &ipAddress}}).
 		Execute()
 	handleErr(err, resp)
 
@@ -80,7 +79,7 @@ func main() {
 	fmt.Println("Please wait up to 10 minutes for cluster to provision.")
 }
 
-func createDatabaseUserRequest(sdk *apiv2latest.APIClient, groupId string) *apiv2latest.DatabaseUser {
+func createDatabaseUserRequest(sdk *apilatest.APIClient, groupId string) *apilatest.DatabaseUser {
 	username := "sdk-example"
 	databaseName := "admin"
 
@@ -97,11 +96,11 @@ func createDatabaseUserRequest(sdk *apiv2latest.APIClient, groupId string) *apiv
 		panic(err)
 	}
 
-	return &apiv2latest.DatabaseUser{
+	return &apilatest.DatabaseUser{
 		Username:     username,
 		Password:     &password,
 		DatabaseName: databaseName,
-		Roles: []apiv2latest.Role{
+		Roles: []apilatest.Role{
 			{
 				DatabaseName:   databaseName,
 				CollectionName: collectionName,
@@ -111,7 +110,7 @@ func createDatabaseUserRequest(sdk *apiv2latest.APIClient, groupId string) *apiv
 	}
 }
 
-func createClusterRequest(projectId string) *apiv2latest.ClusterDescriptionV15 {
+func createClusterRequest(projectId string) *apilatest.ClusterDescriptionV15 {
 	// Input arguments used for creation of the cluster
 	clusterName, _ := utils.UniqueName("example-aws-cluster")
 
@@ -126,19 +125,19 @@ func createClusterRequest(projectId string) *apiv2latest.ClusterDescriptionV15 {
 	nodeCount := int32(3)
 	instanceSize := "M10"
 
-	return &apiv2latest.ClusterDescriptionV15{
+	return &apilatest.ClusterDescriptionV15{
 		Name:        &clusterName,
 		ClusterType: &clusterType,
-		ReplicationSpecs: []apiv2latest.ReplicationSpec{
+		ReplicationSpecs: []apilatest.ReplicationSpec{
 			{
 				NumShards: &numShards,
-				RegionConfigs: []apiv2latest.RegionConfig{
+				RegionConfigs: []apilatest.RegionConfig{
 					{
-						AWSRegionConfig: &apiv2latest.AWSRegionConfig{
+						AWSRegionConfig: &apilatest.AWSRegionConfig{
 							ProviderName: &providerName,
 							Priority:     &priority,
 							RegionName:   &regionName,
-							ElectableSpecs: &apiv2latest.HardwareSpec{
+							ElectableSpecs: &apilatest.HardwareSpec{
 								InstanceSize: &instanceSize,
 								NodeCount:    &nodeCount,
 							},
