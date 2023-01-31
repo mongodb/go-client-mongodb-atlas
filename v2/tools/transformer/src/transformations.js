@@ -164,25 +164,8 @@ function transformOneOf(parentObject, api) {
   delete parentObject.oneOf;
 }
 
-// Temporary transformation for versioned api
-function applyResponseTransformation(doc){
-  const hasResponses = doc.components && doc.components.responses 
-  if (hasResponses) {
-    for (const responseKey of Object.keys(doc.components.responses)) {
-      response = doc.components.responses[responseKey];
-      if (response.content && response.content["application/json"]) {
-        response.content["application/vnd.atlas.2023-01-01+json"] =
-        response.content["application/json"]
-        delete response.content["application/json"];
-      }
-    }
-  }
-  return doc;
-}
-
 module.exports = {
   applyAllOfTransformations,
   applyOneOfTransformations,
-  applyModelNameTransformations,
-  applyResponseTransformation
+  applyModelNameTransformations
 };

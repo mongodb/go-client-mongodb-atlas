@@ -61,8 +61,6 @@ type APIClient struct {
 
 	AuditingApi AuditingApi
 
-	CloudBackupApi CloudBackupApi
-
 	CloudBackupsApi CloudBackupsApi
 
 	CloudMigrationServiceApi CloudMigrationServiceApi
@@ -121,6 +119,8 @@ type APIClient struct {
 
 	ProjectsApi ProjectsApi
 
+	RollingIndexApi RollingIndexApi
+
 	RootApi RootApi
 
 	ServerlessInstancesApi ServerlessInstancesApi
@@ -162,7 +162,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AlertsApi = (*AlertsApiService)(&c.common)
 	c.AtlasSearchApi = (*AtlasSearchApiService)(&c.common)
 	c.AuditingApi = (*AuditingApiService)(&c.common)
-	c.CloudBackupApi = (*CloudBackupApiService)(&c.common)
 	c.CloudBackupsApi = (*CloudBackupsApiService)(&c.common)
 	c.CloudMigrationServiceApi = (*CloudMigrationServiceApiService)(&c.common)
 	c.CloudProviderAccessApi = (*CloudProviderAccessApiService)(&c.common)
@@ -192,6 +191,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProgrammaticAPIKeysApi = (*ProgrammaticAPIKeysApiService)(&c.common)
 	c.ProjectIPAccessListApi = (*ProjectIPAccessListApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
+	c.RollingIndexApi = (*RollingIndexApiService)(&c.common)
 	c.RootApi = (*RootApiService)(&c.common)
 	c.ServerlessInstancesApi = (*ServerlessInstancesApiService)(&c.common)
 	c.ServerlessPrivateEndpointsApi = (*ServerlessPrivateEndpointsApiService)(&c.common)
@@ -225,12 +225,7 @@ func selectHeaderAccept(accepts []string) string {
 	if len(accepts) == 0 {
 		return ""
 	}
-
-	if contains(accepts, "application/json") {
-		return "application/json"
-	}
-
-	return strings.Join(accepts, ",")
+	return accepts[0]
 }
 
 // contains is a case insensitive match, finding needle in a haystack
