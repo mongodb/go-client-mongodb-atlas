@@ -171,7 +171,7 @@ function applyResponseTransformation(doc){
     for (const responseKey of Object.keys(doc.components.responses)) {
       response = doc.components.responses[responseKey];
       if (response.content && response.content["application/json"]) {
-        response.content["application/vnd.atlas.2023-01-01+json"] =
+        response.content["application/vnd.atlas.unversioned+json"] =
         response.content["application/json"]
         delete response.content["application/json"];
       }
