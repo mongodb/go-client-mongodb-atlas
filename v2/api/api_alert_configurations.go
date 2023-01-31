@@ -88,6 +88,24 @@ type AlertConfigurationsApi interface {
 	ReturnAllAlertConfigurationsForOneProjectExecute(r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) (*PaginatedAlertConfigView, *http.Response, error)
 
 	/*
+	ReturnAllAlertConfigurationsSetForOneAlert Return All Alert Configurations Set for One Alert
+
+	Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+	@return AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest
+	*/
+	ReturnAllAlertConfigurationsSetForOneAlert(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest
+
+	// ReturnAllAlertConfigurationsSetForOneAlertExecute executes the request
+	//  @return PaginatedAlertConfigView
+	ReturnAllAlertConfigurationsSetForOneAlertExecute(r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) (*PaginatedAlertConfigView, *http.Response, error)
+
+	/*
 	ReturnOneAlertConfigurationFromOneProject Return One Alert Configuration from One Project
 
 	Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
@@ -246,7 +264,7 @@ func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProjectE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -419,7 +437,7 @@ func (a *AlertConfigurationsApiService) RemoveOneAlertConfigurationFromOneProjec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -561,7 +579,7 @@ func (a *AlertConfigurationsApiService) ReturnAlertConfigMatchersFieldNamesExecu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -743,7 +761,7 @@ func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -773,6 +791,209 @@ func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest struct {
+	ctx context.Context
+	ApiService AlertConfigurationsApi
+	groupId string
+	alertId string
+	envelope *bool
+	pretty *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) Envelope(envelope bool) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) Pretty(pretty bool) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) IncludeCount(includeCount bool) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) PageNum(pageNum int32) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+func (r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
+	return r.ApiService.ReturnAllAlertConfigurationsSetForOneAlertExecute(r)
+}
+
+/*
+ReturnAllAlertConfigurationsSetForOneAlert Return All Alert Configurations Set for One Alert
+
+Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+ @return AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest
+*/
+func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsSetForOneAlert(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest {
+	return AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		alertId: alertId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedAlertConfigView
+func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsSetForOneAlertExecute(r AlertConfigurationsApiReturnAllAlertConfigurationsSetForOneAlertRequest) (*PaginatedAlertConfigView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedAlertConfigView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ReturnAllAlertConfigurationsSetForOneAlert")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertId}/alertConfigs"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertId"+"}", url.PathEscape(parameterToString(r.alertId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.alertId) < 24 {
+		return localVarReturnValue, nil, reportError("alertId must have at least 24 elements")
+	}
+	if strlen(r.alertId) > 24 {
+		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -905,7 +1126,7 @@ func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProjec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1090,7 +1311,7 @@ func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInO
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1277,7 +1498,7 @@ func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProject
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

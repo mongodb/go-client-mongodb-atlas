@@ -23,6 +23,38 @@ import (
 type GlobalClustersApi interface {
 
 	/*
+	AddOneCustomZoneMappingToOneGlobalCluster Add Custom Zone Mappings to One Global Cluster
+
+	Add one or more custom zone mappings to the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies this global cluster.
+	@return GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest
+	*/
+	AddOneCustomZoneMappingToOneGlobalCluster(ctx context.Context, groupId string, clusterName string) GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest
+
+	// AddOneCustomZoneMappingToOneGlobalClusterExecute executes the request
+	//  @return GeoSharding
+	AddOneCustomZoneMappingToOneGlobalClusterExecute(r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) (*GeoSharding, *http.Response, error)
+
+	/*
+	CreateOneManagedNamespaceInOneGlobalCluster Create One Managed Namespace in One Global Cluster
+
+	Creates one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies this global cluster.
+	@return GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest
+	*/
+	CreateOneManagedNamespaceInOneGlobalCluster(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest
+
+	// CreateOneManagedNamespaceInOneGlobalClusterExecute executes the request
+	//  @return GeoSharding
+	CreateOneManagedNamespaceInOneGlobalClusterExecute(r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) (*GeoSharding, *http.Response, error)
+
+	/*
 	DeleteAllCustomZoneMappings Remove All Custom Zone Mappings from One Global Multi-Cloud Cluster
 
 	Removes all custom zone mappings for the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. Removing the custom zone mappings restores the default mapping. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List. Deprecated versions: v2-{2023-01-01}
@@ -53,10 +85,403 @@ type GlobalClustersApi interface {
 	// DeleteManagedNamespaceExecute executes the request
 	//  @return GeoShardingView
 	DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoShardingView, *http.Response, error)
+
+	/*
+	ReturnAllGlobalClustersData Return All Global Clusters Data
+
+	Returns all managed namespaces and custom zone mappings for the specified global cluster. Managed namespaces identify collections using the database name, the dot separator, and the collection name. Custom zone mappings matches ISO 3166-2 location codes to zones in your global cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies this global cluster.
+	@return GlobalClustersApiReturnAllGlobalClustersDataRequest
+	*/
+	ReturnAllGlobalClustersData(ctx context.Context, groupId string, clusterName string) GlobalClustersApiReturnAllGlobalClustersDataRequest
+
+	// ReturnAllGlobalClustersDataExecute executes the request
+	//  @return GeoSharding
+	ReturnAllGlobalClustersDataExecute(r GlobalClustersApiReturnAllGlobalClustersDataRequest) (*GeoSharding, *http.Response, error)
 }
 
 // GlobalClustersApiService GlobalClustersApi service
 type GlobalClustersApiService service
+
+type GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest struct {
+	ctx context.Context
+	ApiService GlobalClustersApi
+	groupId string
+	clusterName string
+	customZoneMappings *CustomZoneMappings
+	envelope *bool
+	pretty *bool
+}
+
+// Custom zone mapping to add to the specified global cluster.
+func (r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) CustomZoneMappings(customZoneMappings CustomZoneMappings) GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest {
+	r.customZoneMappings = &customZoneMappings
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) Envelope(envelope bool) GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) Pretty(pretty bool) GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) Execute() (*GeoSharding, *http.Response, error) {
+	return r.ApiService.AddOneCustomZoneMappingToOneGlobalClusterExecute(r)
+}
+
+/*
+AddOneCustomZoneMappingToOneGlobalCluster Add Custom Zone Mappings to One Global Cluster
+
+Add one or more custom zone mappings to the specified global cluster. A custom zone mapping matches one ISO 3166-2 location code to a zone in your global cluster. By default, MongoDB Cloud maps each location code to the closest geographical zone. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies this global cluster.
+ @return GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest
+*/
+func (a *GlobalClustersApiService) AddOneCustomZoneMappingToOneGlobalCluster(ctx context.Context, groupId string, clusterName string) GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest {
+	return GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return GeoSharding
+func (a *GlobalClustersApiService) AddOneCustomZoneMappingToOneGlobalClusterExecute(r GlobalClustersApiAddOneCustomZoneMappingToOneGlobalClusterRequest) (*GeoSharding, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GeoSharding
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GlobalClustersApiService.AddOneCustomZoneMappingToOneGlobalCluster")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/globalWrites/customZoneMapping"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+	if r.customZoneMappings == nil {
+		return localVarReturnValue, nil, reportError("customZoneMappings is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.customZoneMappings
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest struct {
+	ctx context.Context
+	ApiService GlobalClustersApi
+	groupId string
+	clusterName string
+	managedNamespaces *ManagedNamespaces
+	envelope *bool
+	pretty *bool
+}
+
+// Managed namespace to create within the specified global cluster.
+func (r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) ManagedNamespaces(managedNamespaces ManagedNamespaces) GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest {
+	r.managedNamespaces = &managedNamespaces
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) Envelope(envelope bool) GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) Pretty(pretty bool) GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) Execute() (*GeoSharding, *http.Response, error) {
+	return r.ApiService.CreateOneManagedNamespaceInOneGlobalClusterExecute(r)
+}
+
+/*
+CreateOneManagedNamespaceInOneGlobalCluster Create One Managed Namespace in One Global Cluster
+
+Creates one managed namespace within the specified global cluster. A managed namespace identifies a collection using the database name, the dot separator, and the collection name. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies this global cluster.
+ @return GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest
+*/
+func (a *GlobalClustersApiService) CreateOneManagedNamespaceInOneGlobalCluster(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest {
+	return GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return GeoSharding
+func (a *GlobalClustersApiService) CreateOneManagedNamespaceInOneGlobalClusterExecute(r GlobalClustersApiCreateOneManagedNamespaceInOneGlobalClusterRequest) (*GeoSharding, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GeoSharding
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GlobalClustersApiService.CreateOneManagedNamespaceInOneGlobalCluster")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/globalWrites/managedNamespaces"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+	if r.managedNamespaces == nil {
+		return localVarReturnValue, nil, reportError("managedNamespaces is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.managedNamespaces
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
 	ctx context.Context
@@ -143,7 +568,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalCl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -323,7 +748,7 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/vnd.atlas.2023-01-01+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-02-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -353,6 +778,166 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type GlobalClustersApiReturnAllGlobalClustersDataRequest struct {
+	ctx context.Context
+	ApiService GlobalClustersApi
+	groupId string
+	clusterName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r GlobalClustersApiReturnAllGlobalClustersDataRequest) Envelope(envelope bool) GlobalClustersApiReturnAllGlobalClustersDataRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r GlobalClustersApiReturnAllGlobalClustersDataRequest) Pretty(pretty bool) GlobalClustersApiReturnAllGlobalClustersDataRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r GlobalClustersApiReturnAllGlobalClustersDataRequest) Execute() (*GeoSharding, *http.Response, error) {
+	return r.ApiService.ReturnAllGlobalClustersDataExecute(r)
+}
+
+/*
+ReturnAllGlobalClustersData Return All Global Clusters Data
+
+Returns all managed namespaces and custom zone mappings for the specified global cluster. Managed namespaces identify collections using the database name, the dot separator, and the collection name. Custom zone mappings matches ISO 3166-2 location codes to zones in your global cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies this global cluster.
+ @return GlobalClustersApiReturnAllGlobalClustersDataRequest
+*/
+func (a *GlobalClustersApiService) ReturnAllGlobalClustersData(ctx context.Context, groupId string, clusterName string) GlobalClustersApiReturnAllGlobalClustersDataRequest {
+	return GlobalClustersApiReturnAllGlobalClustersDataRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return GeoSharding
+func (a *GlobalClustersApiService) ReturnAllGlobalClustersDataExecute(r GlobalClustersApiReturnAllGlobalClustersDataRequest) (*GeoSharding, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GeoSharding
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GlobalClustersApiService.ReturnAllGlobalClustersData")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/globalWrites"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

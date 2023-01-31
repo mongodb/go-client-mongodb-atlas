@@ -47,9 +47,5 @@ doc = applyAllOfTransformations(doc, allOfTransformations);
 
 doc = applyModelNameTransformations(doc, 'ApiAtlas', 'View');
 
-// TODO temporary transformation to return latest version for api error responses
-// We should change those in the source schema
-doc = applyResponseTransformation(doc);
-
 writeFileSync(apiFileLocation, stringify(doc));
 
