@@ -18,8 +18,6 @@ npm install
 npm run sdk:transform -- "$TRANSFORMED_FILE"
 
 npm exec openapi-generator-cli -- generate \
-    -c "./config/go.json" -i "$TRANSFORMED_FILE" -o "$SDK_ROOT$LATEST_PACKAGE" \
+    -c "./config/go.yaml" -i "$TRANSFORMED_FILE" -o "$SDK_ROOT$LATEST_PACKAGE" \
     --package-name="$LATEST_PACKAGE" \
     --ignore-file-override=config/.go-ignore 
-    # TODO use generator latest snapshot
-    # --custom-generator=
