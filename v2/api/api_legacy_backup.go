@@ -28,7 +28,7 @@ type LegacyBackupApi interface {
 	Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest
@@ -43,12 +43,31 @@ type LegacyBackupApi interface {
 	ChangeOneLegacyBackupSnapshotExpirationExecute(r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) (*ApiSnapshotView, *http.Response, error)
 
 	/*
+	CreateOneLegacyBackupRestoreJob Create One Legacy Backup Restore Job
+
+	Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
+	@return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
+
+	Deprecated
+	*/
+	CreateOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
+
+	// CreateOneLegacyBackupRestoreJobExecute executes the request
+	//  @return PaginatedRestoreJobView
+	// Deprecated
+	CreateOneLegacyBackupRestoreJobExecute(r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error)
+
+	/*
 	RemoveOneLegacyBackupSnapshot Remove One Legacy Backup Snapshot
 
 	Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest
@@ -67,7 +86,7 @@ type LegacyBackupApi interface {
 	Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest
 
@@ -86,7 +105,7 @@ type LegacyBackupApi interface {
 	Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest
 
@@ -105,7 +124,7 @@ type LegacyBackupApi interface {
 	Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster.
 	@return LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest
 
@@ -124,7 +143,7 @@ type LegacyBackupApi interface {
 	Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return LegacyBackupApiReturnOneLegacyBackupCheckpointRequest
@@ -144,7 +163,7 @@ type LegacyBackupApi interface {
 	Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@param jobId Unique 24-hexadecimal digit string that identifies the restore job.
 	@return LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest
@@ -164,7 +183,7 @@ type LegacyBackupApi interface {
 	Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return LegacyBackupApiReturnOneLegacyBackupSnapshotRequest
@@ -184,7 +203,7 @@ type LegacyBackupApi interface {
 	Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return LegacyBackupApiReturnOneSnapshotScheduleRequest
 
@@ -203,7 +222,7 @@ type LegacyBackupApi interface {
 	Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest
 
@@ -243,7 +262,7 @@ func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) Envelope(
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) Pretty(pretty bool) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest {
 	r.pretty = &pretty
 	return r
@@ -259,7 +278,7 @@ ChangeOneLegacyBackupSnapshotExpiration Change One Legacy Backup Snapshot Expira
 Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
  @return LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest
@@ -405,6 +424,192 @@ func (a *LegacyBackupApiService) ChangeOneLegacyBackupSnapshotExpirationExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest struct {
+	ctx context.Context
+	ApiService LegacyBackupApi
+	groupId string
+	clusterName string
+	apiRestoreJobView *ApiRestoreJobView
+	envelope *bool
+	pretty *bool
+}
+
+// Legacy backup to restore to one cluster in the specified project.
+func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) ApiRestoreJobView(apiRestoreJobView ApiRestoreJobView) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
+	r.apiRestoreJobView = &apiRestoreJobView
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Envelope(envelope bool) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
+	return r.ApiService.CreateOneLegacyBackupRestoreJobExecute(r)
+}
+
+/*
+CreateOneLegacyBackupRestoreJob Create One Legacy Backup Restore Job
+
+Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
+ @return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
+
+Deprecated
+*/
+func (a *LegacyBackupApiService) CreateOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
+	return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedRestoreJobView
+// Deprecated
+func (a *LegacyBackupApiService) CreateOneLegacyBackupRestoreJobExecute(r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedRestoreJobView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.CreateOneLegacyBackupRestoreJob")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+	if r.apiRestoreJobView == nil {
+		return localVarReturnValue, nil, reportError("apiRestoreJobView is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.apiRestoreJobView
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
@@ -421,7 +626,7 @@ func (r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) Envelope(envelope b
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) Pretty(pretty bool) LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest {
 	r.pretty = &pretty
 	return r
@@ -437,7 +642,7 @@ RemoveOneLegacyBackupSnapshot Remove One Legacy Backup Snapshot
 Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
  @return LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest
@@ -614,7 +819,7 @@ func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) PageNum(pageNum 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
 	r.pretty = &pretty
 	return r
@@ -630,7 +835,7 @@ ReturnAllLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
 Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
  @return LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest
 
@@ -808,7 +1013,7 @@ func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) PageNum(pageNum 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
 	r.pretty = &pretty
 	return r
@@ -830,7 +1035,7 @@ ReturnAllLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
 Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @return LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest
 
@@ -1021,7 +1226,7 @@ func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) PageNum(pageNum in
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
 	r.pretty = &pretty
 	return r
@@ -1037,7 +1242,7 @@ ReturnAllLegacyBackupSnapshots Return All Legacy Backup Snapshots
 Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster.
  @return LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest
 
@@ -1194,7 +1399,7 @@ func (r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) Envelope(envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupCheckpointRequest {
 	r.pretty = &pretty
 	return r
@@ -1210,7 +1415,7 @@ ReturnOneLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
 Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
  @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
  @return LegacyBackupApiReturnOneLegacyBackupCheckpointRequest
@@ -1389,7 +1594,7 @@ func (r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) Envelope(envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest {
 	r.pretty = &pretty
 	return r
@@ -1405,7 +1610,7 @@ ReturnOneLegacyBackupRestoreJob Return One Legacy Backup Restore Job
 Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @param jobId Unique 24-hexadecimal digit string that identifies the restore job.
  @return LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest
@@ -1573,7 +1778,7 @@ func (r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) Envelope(envelope b
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupSnapshotRequest {
 	r.pretty = &pretty
 	return r
@@ -1589,7 +1794,7 @@ ReturnOneLegacyBackupSnapshot Return One Legacy Backup Snapshot
 Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
  @return LegacyBackupApiReturnOneLegacyBackupSnapshotRequest
@@ -1745,7 +1950,7 @@ func (r LegacyBackupApiReturnOneSnapshotScheduleRequest) Envelope(envelope bool)
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiReturnOneSnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiReturnOneSnapshotScheduleRequest {
 	r.pretty = &pretty
 	return r
@@ -1761,7 +1966,7 @@ ReturnOneSnapshotSchedule Return One Snapshot Schedule
 Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @return LegacyBackupApiReturnOneSnapshotScheduleRequest
 
@@ -1915,7 +2120,7 @@ func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) Envelope(enve
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) Pretty(pretty bool) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -1931,7 +2136,7 @@ UpdateSnapshotScheduleForOneCluster Update Snapshot Schedule for One Cluster
 Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @return LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest
 

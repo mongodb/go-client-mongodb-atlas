@@ -29,7 +29,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
 	*/
 	CreateOneRestoreJobFromOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
@@ -45,7 +45,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
 	*/
 	ReturnAllRestoreJobsForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
@@ -61,7 +61,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param restoreId Unique 24-hexadecimal digit string that identifies the restore job to return.
 	@return SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest
 	*/
@@ -97,7 +97,7 @@ func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -114,7 +114,7 @@ Restores the specified cluster. MongoDB Cloud limits which clusters can be the t
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
 */
 func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
@@ -295,7 +295,7 @@ func (r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -312,7 +312,7 @@ Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restor
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
 */
 func (a *SharedTierRestoreJobsApiService) ReturnAllRestoreJobsForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest {
@@ -467,7 +467,7 @@ func (r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) E
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -484,7 +484,7 @@ Returns the specified restore job. To use this resource, the requesting API Key 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param restoreId Unique 24-hexadecimal digit string that identifies the restore job to return.
  @return SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest
 */

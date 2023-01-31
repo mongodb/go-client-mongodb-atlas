@@ -93,8 +93,6 @@ type APIClient struct {
 
 	LegacyBackupApi LegacyBackupApi
 
-	LegacyBackupRestoreJobsApi LegacyBackupRestoreJobsApi
-
 	MaintenanceWindowsApi MaintenanceWindowsApi
 
 	MongoDBCloudUsersApi MongoDBCloudUsersApi
@@ -118,8 +116,6 @@ type APIClient struct {
 	ProjectIPAccessListApi ProjectIPAccessListApi
 
 	ProjectsApi ProjectsApi
-
-	RollingIndexApi RollingIndexApi
 
 	RootApi RootApi
 
@@ -178,7 +174,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.InvoicesApi = (*InvoicesApiService)(&c.common)
 	c.LDAPConfigurationApi = (*LDAPConfigurationApiService)(&c.common)
 	c.LegacyBackupApi = (*LegacyBackupApiService)(&c.common)
-	c.LegacyBackupRestoreJobsApi = (*LegacyBackupRestoreJobsApiService)(&c.common)
 	c.MaintenanceWindowsApi = (*MaintenanceWindowsApiService)(&c.common)
 	c.MongoDBCloudUsersApi = (*MongoDBCloudUsersApiService)(&c.common)
 	c.MonitoringAndLogsApi = (*MonitoringAndLogsApiService)(&c.common)
@@ -191,7 +186,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProgrammaticAPIKeysApi = (*ProgrammaticAPIKeysApiService)(&c.common)
 	c.ProjectIPAccessListApi = (*ProjectIPAccessListApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
-	c.RollingIndexApi = (*RollingIndexApiService)(&c.common)
 	c.RootApi = (*RootApiService)(&c.common)
 	c.ServerlessInstancesApi = (*ServerlessInstancesApiService)(&c.common)
 	c.ServerlessPrivateEndpointsApi = (*ServerlessPrivateEndpointsApiService)(&c.common)

@@ -28,7 +28,7 @@ type AuditingApi interface {
 	Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
 	*/
 	ReturnOneAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
@@ -43,7 +43,7 @@ type AuditingApi interface {
 	Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return AuditingApiUpdateAuditingConfigurationForOneProjectRequest
 	*/
 	UpdateAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationForOneProjectRequest
@@ -70,7 +70,7 @@ func (r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) Envelope(
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) Pretty(pretty bool) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -86,7 +86,7 @@ ReturnOneAuditingConfigurationForOneProject Return the Auditing Configuration fo
 Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
 */
 func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest {
@@ -227,7 +227,7 @@ func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) Envelope(env
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) Pretty(pretty bool) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -243,7 +243,7 @@ UpdateAuditingConfigurationForOneProject Update Auditing Configuration for One P
 Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return AuditingApiUpdateAuditingConfigurationForOneProjectRequest
 */
 func (a *AuditingApiService) UpdateAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {

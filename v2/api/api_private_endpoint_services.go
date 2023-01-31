@@ -28,7 +28,7 @@ type PrivateEndpointServicesApi interface {
 	Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
 	@return PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest
@@ -45,7 +45,7 @@ type PrivateEndpointServicesApi interface {
 	Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
 	*/
 	CreateOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
@@ -60,7 +60,7 @@ type PrivateEndpointServicesApi interface {
 	Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
@@ -77,7 +77,7 @@ type PrivateEndpointServicesApi interface {
 	Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
 	@return PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest
@@ -93,7 +93,7 @@ type PrivateEndpointServicesApi interface {
 	Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@return PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest
 	*/
@@ -109,7 +109,7 @@ type PrivateEndpointServicesApi interface {
 	Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
@@ -127,7 +127,7 @@ type PrivateEndpointServicesApi interface {
 	Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
 	@return PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest
@@ -144,7 +144,7 @@ type PrivateEndpointServicesApi interface {
 	Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
 	*/
 	ReturnRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
@@ -159,7 +159,7 @@ type PrivateEndpointServicesApi interface {
 	Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
 	*/
 	ToggleRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
@@ -195,7 +195,7 @@ func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest)
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -211,7 +211,7 @@ CreateOnePrivateEndpointForOneProvider Create One Private Endpoint for One Provi
 Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
  @return PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest
@@ -402,7 +402,7 @@ func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderR
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -418,7 +418,7 @@ CreateOnePrivateEndpointServiceForOneProvider Create One Private Endpoint Servic
 Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
 */
 func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
@@ -560,7 +560,7 @@ func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest)
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -576,7 +576,7 @@ RemoveOnePrivateEndpointForOneProvider Remove One Private Endpoint for One Provi
 Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
@@ -716,7 +716,7 @@ func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderR
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -732,7 +732,7 @@ RemoveOnePrivateEndpointServiceForOneProvider Remove One Private Endpoint Servic
 Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
  @return PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest
@@ -868,7 +868,7 @@ func (r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProvider
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -884,7 +884,7 @@ ReturnAllPrivateEndpointServicesForOneProvider Return All Private Endpoint Servi
 Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @return PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest
 */
@@ -1024,7 +1024,7 @@ func (r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest)
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -1040,7 +1040,7 @@ ReturnOnePrivateEndpointForOneProvider Return One Private Endpoint for One Provi
 Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
@@ -1202,7 +1202,7 @@ func (r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderR
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest {
 	r.pretty = &pretty
 	return r
@@ -1218,7 +1218,7 @@ ReturnOnePrivateEndpointServiceForOneProvider Return One Private Endpoint Servic
 Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
  @return PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest
@@ -1375,7 +1375,7 @@ func (r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest {
 	r.pretty = &pretty
 	return r
@@ -1391,7 +1391,7 @@ ReturnRegionalizedPrivateEndpointStatus Return Regionalized Private Endpoint Sta
 Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
 */
 func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest {
@@ -1543,7 +1543,7 @@ func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) Pretty(pretty bool) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {
 	r.pretty = &pretty
 	return r
@@ -1559,7 +1559,7 @@ ToggleRegionalizedPrivateEndpointStatus Toggle Regionalized Private Endpoint Sta
 Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
 */
 func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {

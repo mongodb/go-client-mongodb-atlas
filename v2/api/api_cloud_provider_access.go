@@ -28,7 +28,7 @@ type CloudProviderAccessApi interface {
 	Grants access to the specified project for the specified Amazon Web Services (AWS) Identity and Access Management (IAM) role. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param roleId Unique 24-hexadecimal digit string that identifies the role.
 	@return CloudProviderAccessApiAuthorizeOneCloudProviderAccessRoleRequest
 	*/
@@ -46,7 +46,7 @@ type CloudProviderAccessApi interface {
 After a successful request to this API endpoint, you can add the **atlasAWSAccountArn** and **atlasAssumedRoleExternalId** values to the trust policy in your AWS console to create an IAM Assumed Amazon Resource Name (ARN).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest
 	*/
 	CreateOneCloudProviderAccessRole(ctx context.Context, groupId string) CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest
@@ -61,7 +61,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 	Revokes access to the specified project for the specified AWS IAM role. To use this resource,the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param cloudProvider Human-readable label that identifies the cloud provider of the role to deauthorize.
 	@param roleId Unique 24-hexadecimal digit string that identifies the role.
 	@return CloudProviderAccessApiDeauthorizeOneCloudProviderAccessRoleRequest
@@ -77,7 +77,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 	Returns all Amazon Web Services (AWS) Identity and Access Management (IAM) roles with access to the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest
 	*/
 	ReturnAllCloudProviderAccessRoles(ctx context.Context, groupId string) CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest
@@ -92,7 +92,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 	Returns the Amazon Web Services (AWS) Identity and Access Management (IAM) role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param roleId Unique 24-hexadecimal digit string that identifies the role.
 	@return CloudProviderAccessApiReturnCloudProviderAccessRoleRequest
 	*/
@@ -128,7 +128,7 @@ func (r CloudProviderAccessApiAuthorizeOneCloudProviderAccessRoleRequest) Envelo
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudProviderAccessApiAuthorizeOneCloudProviderAccessRoleRequest) Pretty(pretty bool) CloudProviderAccessApiAuthorizeOneCloudProviderAccessRoleRequest {
 	r.pretty = &pretty
 	return r
@@ -144,7 +144,7 @@ AuthorizeOneCloudProviderAccessRole Authorize One Cloud Provider Access Role
 Grants access to the specified project for the specified Amazon Web Services (AWS) Identity and Access Management (IAM) role. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param roleId Unique 24-hexadecimal digit string that identifies the role.
  @return CloudProviderAccessApiAuthorizeOneCloudProviderAccessRoleRequest
 */
@@ -321,7 +321,7 @@ func (r CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest) Envelope(
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest) Pretty(pretty bool) CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest {
 	r.pretty = &pretty
 	return r
@@ -339,7 +339,7 @@ Creates one Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 After a successful request to this API endpoint, you can add the **atlasAWSAccountArn** and **atlasAssumedRoleExternalId** values to the trust policy in your AWS console to create an IAM Assumed Amazon Resource Name (ARN).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest
 */
 func (a *CloudProviderAccessApiService) CreateOneCloudProviderAccessRole(ctx context.Context, groupId string) CloudProviderAccessApiCreateOneCloudProviderAccessRoleRequest {
@@ -480,7 +480,7 @@ func (r CloudProviderAccessApiDeauthorizeOneCloudProviderAccessRoleRequest) Enve
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudProviderAccessApiDeauthorizeOneCloudProviderAccessRoleRequest) Pretty(pretty bool) CloudProviderAccessApiDeauthorizeOneCloudProviderAccessRoleRequest {
 	r.pretty = &pretty
 	return r
@@ -496,7 +496,7 @@ DeauthorizeOneCloudProviderAccessRole Deauthorize One Cloud Provider Access Role
 Revokes access to the specified project for the specified AWS IAM role. To use this resource,the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param cloudProvider Human-readable label that identifies the cloud provider of the role to deauthorize.
  @param roleId Unique 24-hexadecimal digit string that identifies the role.
  @return CloudProviderAccessApiDeauthorizeOneCloudProviderAccessRoleRequest
@@ -642,7 +642,7 @@ func (r CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest) Envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest) Pretty(pretty bool) CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest {
 	r.pretty = &pretty
 	return r
@@ -658,7 +658,7 @@ ReturnAllCloudProviderAccessRoles Return All Cloud Provider Access Roles
 Returns all Amazon Web Services (AWS) Identity and Access Management (IAM) roles with access to the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest
 */
 func (a *CloudProviderAccessApiService) ReturnAllCloudProviderAccessRoles(ctx context.Context, groupId string) CloudProviderAccessApiReturnAllCloudProviderAccessRolesRequest {
@@ -793,7 +793,7 @@ func (r CloudProviderAccessApiReturnCloudProviderAccessRoleRequest) Envelope(env
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudProviderAccessApiReturnCloudProviderAccessRoleRequest) Pretty(pretty bool) CloudProviderAccessApiReturnCloudProviderAccessRoleRequest {
 	r.pretty = &pretty
 	return r
@@ -809,7 +809,7 @@ ReturnCloudProviderAccessRole Return specified Cloud Provider Access Role
 Returns the Amazon Web Services (AWS) Identity and Access Management (IAM) role with the specified id and with access to the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param roleId Unique 24-hexadecimal digit string that identifies the role.
  @return CloudProviderAccessApiReturnCloudProviderAccessRoleRequest
 */

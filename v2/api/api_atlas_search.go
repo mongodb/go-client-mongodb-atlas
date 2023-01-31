@@ -28,7 +28,7 @@ type AtlasSearchApi interface {
 	Creates one Atlas Search index on the specified collection. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. Only clusters running MongoDB v4.2 or later can use Atlas Search. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection on which to create an Atlas Search index.
 	@return AtlasSearchApiCreateOneAtlasSearchIndexRequest
 	*/
@@ -44,7 +44,7 @@ type AtlasSearchApi interface {
 	Removes one Atlas Search index that you identified with its unique ID. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the database and collection with one or more Application Search indexes.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search index. Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
 	@return AtlasSearchApiRemoveOneAtlasSearchIndexRequest
@@ -60,7 +60,7 @@ type AtlasSearchApi interface {
 	Returns all Atlas Search indexes on the specified collection. Atlas Search indexes contain the indexed fields and the analyzers used to create the indexes. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@param collectionName Name of the collection that contains one or more Atlas Search indexes.
 	@param databaseName Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
@@ -78,7 +78,7 @@ type AtlasSearchApi interface {
 	Returns all Atlas Search custom analyzers that the specified cluster uses in the specified project. Custom analyzers define the operations to perform to index a field. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@return AtlasSearchApiReturnAllUserDefinedAnalyzersForOneClusterRequest
 	*/
@@ -94,7 +94,7 @@ type AtlasSearchApi interface {
 	Returns one Atlas Search index in the specified project. You identify this index using its unique ID. Atlas Search index contains the indexed fields and the analyzers used to create the index. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Application Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Application Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Application Search indexes.
 	@return AtlasSearchApiReturnOneAtlasSearchIndexRequest
@@ -111,7 +111,7 @@ type AtlasSearchApi interface {
 	Updates one or more Atlas Search custom analyzers on the specified cluster. Custom analyzers define the operations to perform to index a field. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@return AtlasSearchApiUpdateAllUserDefinedAnalyzersForOneClusterRequest
 	*/
@@ -127,7 +127,7 @@ type AtlasSearchApi interface {
 	Updates one Atlas Search index that you identified with its unique ID. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Name of the cluster that contains the collection whose Atlas Search index to update.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
 	@return AtlasSearchApiUpdateOneAtlasSearchIndexRequest
@@ -164,7 +164,7 @@ func (r AtlasSearchApiCreateOneAtlasSearchIndexRequest) Envelope(envelope bool) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiCreateOneAtlasSearchIndexRequest) Pretty(pretty bool) AtlasSearchApiCreateOneAtlasSearchIndexRequest {
 	r.pretty = &pretty
 	return r
@@ -180,7 +180,7 @@ CreateOneAtlasSearchIndex Create One Atlas Search Index
 Creates one Atlas Search index on the specified collection. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. Only clusters running MongoDB v4.2 or later can use Atlas Search. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection on which to create an Atlas Search index.
  @return AtlasSearchApiCreateOneAtlasSearchIndexRequest
 */
@@ -341,7 +341,7 @@ func (r AtlasSearchApiRemoveOneAtlasSearchIndexRequest) Envelope(envelope bool) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiRemoveOneAtlasSearchIndexRequest) Pretty(pretty bool) AtlasSearchApiRemoveOneAtlasSearchIndexRequest {
 	r.pretty = &pretty
 	return r
@@ -357,7 +357,7 @@ RemoveOneAtlasSearchIndex Remove One Atlas Search Index
 Removes one Atlas Search index that you identified with its unique ID. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the database and collection with one or more Application Search indexes.
  @param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search index. Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
  @return AtlasSearchApiRemoveOneAtlasSearchIndexRequest
@@ -512,7 +512,7 @@ func (r AtlasSearchApiReturnAllAtlasSearchIndexesForOneCollectionRequest) Envelo
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiReturnAllAtlasSearchIndexesForOneCollectionRequest) Pretty(pretty bool) AtlasSearchApiReturnAllAtlasSearchIndexesForOneCollectionRequest {
 	r.pretty = &pretty
 	return r
@@ -528,7 +528,7 @@ ReturnAllAtlasSearchIndexesForOneCollection Return All Atlas Search Indexes for 
 Returns all Atlas Search indexes on the specified collection. Atlas Search indexes contain the indexed fields and the analyzers used to create the indexes. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @param collectionName Name of the collection that contains one or more Atlas Search indexes.
  @param databaseName Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
@@ -678,7 +678,7 @@ func (r AtlasSearchApiReturnAllUserDefinedAnalyzersForOneClusterRequest) Envelop
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiReturnAllUserDefinedAnalyzersForOneClusterRequest) Pretty(pretty bool) AtlasSearchApiReturnAllUserDefinedAnalyzersForOneClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -694,7 +694,7 @@ ReturnAllUserDefinedAnalyzersForOneCluster Return All User-Defined Analyzers for
 Returns all Atlas Search custom analyzers that the specified cluster uses in the specified project. Custom analyzers define the operations to perform to index a field. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @return AtlasSearchApiReturnAllUserDefinedAnalyzersForOneClusterRequest
 */
@@ -839,7 +839,7 @@ func (r AtlasSearchApiReturnOneAtlasSearchIndexRequest) Envelope(envelope bool) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiReturnOneAtlasSearchIndexRequest) Pretty(pretty bool) AtlasSearchApiReturnOneAtlasSearchIndexRequest {
 	r.pretty = &pretty
 	return r
@@ -855,7 +855,7 @@ ReturnOneAtlasSearchIndex Return One Atlas Search Index
 Returns one Atlas Search index in the specified project. You identify this index using its unique ID. Atlas Search index contains the indexed fields and the analyzers used to create the index. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @param indexId Unique 24-hexadecimal digit string that identifies the Application Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Application Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Application Search indexes.
  @return AtlasSearchApiReturnOneAtlasSearchIndexRequest
@@ -1015,7 +1015,7 @@ func (r AtlasSearchApiUpdateAllUserDefinedAnalyzersForOneClusterRequest) Envelop
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiUpdateAllUserDefinedAnalyzersForOneClusterRequest) Pretty(pretty bool) AtlasSearchApiUpdateAllUserDefinedAnalyzersForOneClusterRequest {
 	r.pretty = &pretty
 	return r
@@ -1031,7 +1031,7 @@ UpdateAllUserDefinedAnalyzersForOneCluster Update All User-Defined Analyzers for
 Updates one or more Atlas Search custom analyzers on the specified cluster. Custom analyzers define the operations to perform to index a field. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @return AtlasSearchApiUpdateAllUserDefinedAnalyzersForOneClusterRequest
 */
@@ -1199,7 +1199,7 @@ func (r AtlasSearchApiUpdateOneAtlasSearchIndexRequest) Envelope(envelope bool) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AtlasSearchApiUpdateOneAtlasSearchIndexRequest) Pretty(pretty bool) AtlasSearchApiUpdateOneAtlasSearchIndexRequest {
 	r.pretty = &pretty
 	return r
@@ -1215,7 +1215,7 @@ UpdateOneAtlasSearchIndex Update One Atlas Search Index
 Updates one Atlas Search index that you identified with its unique ID. Atlas Search indexes define the fields on which to create the index and the analyzers to use when creating the index. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Name of the cluster that contains the collection whose Atlas Search index to update.
  @param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
  @return AtlasSearchApiUpdateOneAtlasSearchIndexRequest

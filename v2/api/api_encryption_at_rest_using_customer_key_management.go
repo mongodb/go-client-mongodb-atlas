@@ -30,7 +30,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 	*/
 	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
@@ -47,7 +47,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 	*/
 	UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
@@ -74,7 +74,7 @@ func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEn
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -92,7 +92,7 @@ Returns the configuration for encryption at rest using the keys you manage throu
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 */
 func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
@@ -233,7 +233,7 @@ func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncry
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -251,7 +251,7 @@ Updates the configuration for encryption at rest using the keys you manage throu
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 */
 func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
