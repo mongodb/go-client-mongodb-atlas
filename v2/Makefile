@@ -19,10 +19,6 @@ generate_client:
 	OPENAPI_FOLDER="../openapi" SDK_ROOT="../" \
 	./scripts/generate.sh)
 
-.PHONY: compile_client
-compile_client:
-	go build ./examples/example_cluster_aws.go
-
 .PHONY: verify_client
 verify_client: clean_client generate_client
 
