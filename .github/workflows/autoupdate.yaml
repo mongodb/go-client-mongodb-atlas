@@ -1,0 +1,43 @@
+name: Generate Client
+on:
+ ## For verification only
+ push:
+   branches:
+     - CLOUDP-155908
+ workflow_dispatch:
+ # To not trigger builds before it is merged
+ #schedule:
+ # - cron: "0 8 * * MON-FRI"
+ 
+jobs:
+  generate-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Fetch changes
+        working-directory: ./v2
+        run: make fetch_openapi
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v13
+        id: verify-changed-files
+        with:
+          files: |
+             **/atlas-api.yaml
+      - name: Run generation
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        working-directory: ./v2
+        run: make verify_client
+      - uses: peter-evans/create-pull-request@v4
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        with:
+          title: "OpenAPI Client Update"
+          commit-message: "OpenAPI Client Update"
+          branch: client
+          branch-suffix: timestamp
+          body: |
+            # Automatic update for MongoDBAtlas Go Client
+            
