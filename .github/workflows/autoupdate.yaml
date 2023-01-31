@@ -3,7 +3,7 @@ on:
  ## For verification only
  push:
    branches:
-     - CLOUDP-155908
+     - v2
  workflow_dispatch:
  # To not trigger builds before it is merged
  #schedule:
