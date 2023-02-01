@@ -25,20 +25,20 @@ type AlertsApi interface {
 	/*
 	AcknowledgeOneAlertFromOneProject Acknowledge One Alert from One Project
 
-	Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-acknowledge-alert/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
 	@return AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 	*/
 	AcknowledgeOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 
 	// AcknowledgeOneAlertFromOneProjectExecute executes the request
-	//  @return AlertViewForNdsGroup
-	AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForNdsGroup, *http.Response, error)
+	//  @return AlertViewForGroup
+	AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error)
 
 	/*
 	ReturnAllAlertsFromOneProject Return All Alerts from One Project
@@ -48,7 +48,7 @@ type AlertsApi interface {
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-all-alerts/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return AlertsApiReturnAllAlertsFromOneProjectRequest
 	*/
 	ReturnAllAlertsFromOneProject(ctx context.Context, groupId string) AlertsApiReturnAllAlertsFromOneProjectRequest
@@ -65,7 +65,7 @@ type AlertsApi interface {
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-open-alerts/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
 	@return AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest
 	*/
@@ -83,15 +83,15 @@ type AlertsApi interface {
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
 	@return AlertsApiReturnOneAlertFromOneProjectRequest
 	*/
 	ReturnOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiReturnOneAlertFromOneProjectRequest
 
 	// ReturnOneAlertFromOneProjectExecute executes the request
-	//  @return AlertViewForNdsGroup
-	ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForNdsGroup, *http.Response, error)
+	//  @return AlertViewForGroup
+	ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error)
 }
 
 // AlertsApiService AlertsApi service
@@ -102,14 +102,14 @@ type AlertsApiAcknowledgeOneAlertFromOneProjectRequest struct {
 	ApiService AlertsApi
 	groupId string
 	alertId string
-	alertViewForNdsGroup *AlertViewForNdsGroup
+	alertViewForGroup *AlertViewForGroup
 	envelope *bool
 	pretty *bool
 }
 
 // Confirm one alert.
-func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) AlertViewForNdsGroup(alertViewForNdsGroup AlertViewForNdsGroup) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
-	r.alertViewForNdsGroup = &alertViewForNdsGroup
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) AlertViewForGroup(alertViewForGroup AlertViewForGroup) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
+	r.alertViewForGroup = &alertViewForGroup
 	return r
 }
 
@@ -119,25 +119,25 @@ func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Envelope(envelope boo
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Pretty(pretty bool) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Execute() (*AlertViewForGroup, *http.Response, error) {
 	return r.ApiService.AcknowledgeOneAlertFromOneProjectExecute(r)
 }
 
 /*
 AcknowledgeOneAlertFromOneProject Acknowledge One Alert from One Project
 
-Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-acknowledge-alert/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
  @return AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 */
@@ -151,13 +151,13 @@ func (a *AlertsApiService) AcknowledgeOneAlertFromOneProject(ctx context.Context
 }
 
 // Execute executes the request
-//  @return AlertViewForNdsGroup
-func (a *AlertsApiService) AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForNdsGroup, *http.Response, error) {
+//  @return AlertViewForGroup
+func (a *AlertsApiService) AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AlertViewForNdsGroup
+		localVarReturnValue  *AlertViewForGroup
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.AcknowledgeOneAlertFromOneProject")
@@ -184,8 +184,8 @@ func (a *AlertsApiService) AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiA
 	if strlen(r.alertId) > 24 {
 		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
 	}
-	if r.alertViewForNdsGroup == nil {
-		return localVarReturnValue, nil, reportError("alertViewForNdsGroup is required and must be specified")
+	if r.alertViewForGroup == nil {
+		return localVarReturnValue, nil, reportError("alertViewForGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -212,7 +212,7 @@ func (a *AlertsApiService) AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.alertViewForNdsGroup
+	localVarPostBody = r.alertViewForGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -328,7 +328,7 @@ func (r AlertsApiReturnAllAlertsFromOneProjectRequest) PageNum(pageNum int32) Al
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AlertsApiReturnAllAlertsFromOneProjectRequest) Pretty(pretty bool) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -346,7 +346,7 @@ Returns all alerts. These alerts apply to all components in one project. You rec
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-all-alerts/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return AlertsApiReturnAllAlertsFromOneProjectRequest
 */
 func (a *AlertsApiService) ReturnAllAlertsFromOneProject(ctx context.Context, groupId string) AlertsApiReturnAllAlertsFromOneProjectRequest {
@@ -522,7 +522,7 @@ func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) PageNum(pageNu
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) Pretty(pretty bool) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
@@ -540,7 +540,7 @@ Returns all open alerts that the specified alert configuration triggers. These a
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-open-alerts/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
  @return AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest
 */
@@ -568,7 +568,7 @@ func (a *AlertsApiService) ReturnAllOpenAlertsForAlertConfigurationExecute(r Ale
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alertConfigs/{alertConfigId}/alerts"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertConfigId}/alerts"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
 
@@ -704,13 +704,13 @@ func (r AlertsApiReturnOneAlertFromOneProjectRequest) Envelope(envelope bool) Al
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AlertsApiReturnOneAlertFromOneProjectRequest) Pretty(pretty bool) AlertsApiReturnOneAlertFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertsApiReturnOneAlertFromOneProjectRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
+func (r AlertsApiReturnOneAlertFromOneProjectRequest) Execute() (*AlertViewForGroup, *http.Response, error) {
 	return r.ApiService.ReturnOneAlertFromOneProjectExecute(r)
 }
 
@@ -722,7 +722,7 @@ Returns one alert. This alert applies to any component in one project. You recei
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
  @return AlertsApiReturnOneAlertFromOneProjectRequest
 */
@@ -736,13 +736,13 @@ func (a *AlertsApiService) ReturnOneAlertFromOneProject(ctx context.Context, gro
 }
 
 // Execute executes the request
-//  @return AlertViewForNdsGroup
-func (a *AlertsApiService) ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForNdsGroup, *http.Response, error) {
+//  @return AlertViewForGroup
+func (a *AlertsApiService) ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AlertViewForNdsGroup
+		localVarReturnValue  *AlertViewForGroup
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ReturnOneAlertFromOneProject")

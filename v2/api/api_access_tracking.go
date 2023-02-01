@@ -29,7 +29,7 @@ type AccessTrackingApi interface {
 	Returns the access logs of one cluster identified by the cluster's name. Access logs contain a list of authentication requests made against your cluster. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster.
 	@return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest
 	*/
@@ -45,7 +45,7 @@ type AccessTrackingApi interface {
 	Returns the access logs of one cluster identified by the cluster's hostname. Access logs contain a list of authentication requests made against your clusters. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
 	@return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest
 	*/
@@ -79,7 +79,7 @@ func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsCluster
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) Pretty(pretty bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
 	r.pretty = &pretty
 	return r
@@ -125,7 +125,7 @@ ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName Return Database Acce
 Returns the access logs of one cluster identified by the cluster's name. Access logs contain a list of authentication requests made against your cluster. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster.
  @return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest
 */
@@ -300,7 +300,7 @@ func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnam
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) Pretty(pretty bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
 	r.pretty = &pretty
 	return r
@@ -346,7 +346,7 @@ ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname Return Database Access 
 Returns the access logs of one cluster identified by the cluster's hostname. Access logs contain a list of authentication requests made against your clusters. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
  @return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest
 */

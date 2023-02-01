@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// AppServiceEventType Unique identifier of event type.
+// AppServiceEventType Incident that triggered this alert.
 type AppServiceEventType string
 
 // List of AppServiceEventType

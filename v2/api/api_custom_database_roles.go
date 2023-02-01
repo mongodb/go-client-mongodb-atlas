@@ -28,7 +28,7 @@ type CustomDatabaseRolesApi interface {
 	Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return CustomDatabaseRolesApiCreateOneCustomRoleRequest
 	*/
 	CreateOneCustomRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateOneCustomRoleRequest
@@ -43,7 +43,7 @@ type CustomDatabaseRolesApi interface {
 	Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
 	@return CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest
 	*/
@@ -58,7 +58,7 @@ type CustomDatabaseRolesApi interface {
 	Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
 	*/
 	ReturnAllCustomRolesInOneProject(ctx context.Context, groupId string) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
@@ -73,7 +73,7 @@ type CustomDatabaseRolesApi interface {
 	Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
 	@return CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest
 	*/
@@ -89,7 +89,7 @@ type CustomDatabaseRolesApi interface {
 	Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param roleName Human-readable label that identifies the role for the request. This name must beunique for this custom role in this project.
 	@return CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest
 	*/
@@ -124,7 +124,7 @@ func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) Envelope(envelope bool
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
 	r.pretty = &pretty
 	return r
@@ -140,7 +140,7 @@ CreateOneCustomRole Create One Custom Role
 Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return CustomDatabaseRolesApiCreateOneCustomRoleRequest
 */
 func (a *CustomDatabaseRolesApiService) CreateOneCustomRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
@@ -324,7 +324,7 @@ func (r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) Envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -340,7 +340,7 @@ RemoveOneCustomRoleFromOneProject Remove One Custom Role from One Project
 Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
  @return CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest
 */
@@ -499,7 +499,7 @@ func (r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) Envelope(
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -515,7 +515,7 @@ ReturnAllCustomRolesInOneProject Return All Custom Roles in One Project
 Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
 */
 func (a *CustomDatabaseRolesApiService) ReturnAllCustomRolesInOneProject(ctx context.Context, groupId string) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest {
@@ -650,7 +650,7 @@ func (r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) Envelope(e
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -666,7 +666,7 @@ ReturnOneCustomRoleInOneProject Return One Custom Role in One Project
 Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
  @return CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest
 */
@@ -822,7 +822,7 @@ func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) Envelope(e
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -838,7 +838,7 @@ UpdateOneCustomRoleInOneProject Update One Custom Role in One Project
 Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param roleName Human-readable label that identifies the role for the request. This name must beunique for this custom role in this project.
  @return CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest
 */
