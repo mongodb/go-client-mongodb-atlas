@@ -1,9 +1,5 @@
 name: Generate Client
 on:
- ## For verification only
- push:
-   branches:
-     - v2
  workflow_dispatch:
  schedule:
    - cron: "0 8 * * MON-FRI"
@@ -33,8 +29,10 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         with:
-          title: "OpenAPI Client Update"
-          commit-message: "OpenAPI Client Update"
+          title: "OpenAPI client update"
+          commit-message: "automatic client update"
+          delete-branch: true
+          base: v2
           branch: client
           body: |
             Automatic update for MongoDB Atlas Go Client.
@@ -43,7 +41,9 @@ jobs:
             
             ## Review procedure
             
-            1. Compare changes in the OpenAPI file
-            2. Review if there was a new platform version introduced 
-            3. Review client changes. 
+            1. Review changes in the OpenAPI file
+            2. Check for new versions in versions.yaml file
+            3. Review go client changes 
+            
+
             
