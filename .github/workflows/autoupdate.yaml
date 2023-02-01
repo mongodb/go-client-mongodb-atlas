@@ -36,7 +36,6 @@ jobs:
           title: "OpenAPI Client Update"
           commit-message: "OpenAPI Client Update"
           branch: client
-          branch-suffix: timestamp
           body: |
             Automatic update for MongoDBAtlas Go Client
             
