@@ -1,25 +1,25 @@
 package regression
 
 import (
+	"github.com/openlyinc/pointy"
 	mongodbatlas "go.mongodb.org/atlas/mongodbatlas/v2/api"
 )
 
 // Backwards compatibility, regression tests for the multi cloud clusters
 func TestMultiCloudClusters_ModelRegression() {
 	_true := true
-	_string := ""
-	_int := int32(0)
+	_string := pointy.String("")
+	_int := pointy.Int32(0)
 	labelView := mongodbatlas.NDSLabel{
-		Key:   &_string,
-		Value: &_string,
+		Key:   _string,
+		Value: _string,
 	}
 
 	instanceSize := mongodbatlas.INSTANCESIZE_M10
 
 	autoScale := &mongodbatlas.AutoScalingV15{
 		Compute: &mongodbatlas.ComputeAutoScalingV15{
-			Enabled: &_true,
-			// TODO missing oneOf transformation
+			Enabled:          &_true,
 			MaxInstanceSize:  &instanceSize,
 			MinInstanceSize:  &instanceSize,
 			ScaleDownEnabled: &_true,
@@ -33,16 +33,16 @@ func TestMultiCloudClusters_ModelRegression() {
 		NodeCount:     new(int32),
 		DiskIOPS:      new(int32),
 		EbsVolumeType: new(string),
-		InstanceSize:  &_string,
+		InstanceSize:  _string,
 	}
 
 	regionAWS := mongodbatlas.RegionConfig{
 		AWSRegionConfig: &mongodbatlas.AWSRegionConfig{
 			ElectableSpecs: &mongodbatlas.HardwareSpec{
-				DiskIOPS:      &_int,
-				EbsVolumeType: &_string,
-				InstanceSize:  &_string,
-				NodeCount:     &_int,
+				DiskIOPS:      _int,
+				EbsVolumeType: _string,
+				InstanceSize:  _string,
+				NodeCount:     _int,
 			},
 			Priority:             new(int32),
 			ProviderName:         new(string),
@@ -52,7 +52,7 @@ func TestMultiCloudClusters_ModelRegression() {
 				NodeCount:     new(int32),
 				DiskIOPS:      new(int32),
 				EbsVolumeType: new(string),
-				InstanceSize:  &_string,
+				InstanceSize:  _string,
 			},
 			AutoScaling:   autoScale,
 			ReadOnlySpecs: hardwareSpec,
@@ -62,10 +62,10 @@ func TestMultiCloudClusters_ModelRegression() {
 	regionGcp := mongodbatlas.RegionConfig{
 		GCPRegionConfig: &mongodbatlas.GCPRegionConfig{
 			ElectableSpecs: &mongodbatlas.HardwareSpec{
-				DiskIOPS:      &_int,
-				EbsVolumeType: &_string,
-				InstanceSize:  &_string,
-				NodeCount:     &_int,
+				DiskIOPS:      _int,
+				EbsVolumeType: _string,
+				InstanceSize:  _string,
+				NodeCount:     _int,
 			},
 			Priority:     new(int32),
 			ProviderName: new(string),
@@ -76,10 +76,10 @@ func TestMultiCloudClusters_ModelRegression() {
 	regionAzure := mongodbatlas.RegionConfig{
 		AzureRegionConfig: &mongodbatlas.AzureRegionConfig{
 			ElectableSpecs: &mongodbatlas.HardwareSpec{
-				DiskIOPS:      &_int,
-				EbsVolumeType: &_string,
-				InstanceSize:  &_string,
-				NodeCount:     &_int,
+				DiskIOPS:      _int,
+				EbsVolumeType: _string,
+				InstanceSize:  _string,
+				NodeCount:     _int,
 			},
 			Priority:     new(int32),
 			ProviderName: new(string),
@@ -90,10 +90,10 @@ func TestMultiCloudClusters_ModelRegression() {
 	regionDedicated := mongodbatlas.RegionConfig{
 		TenantRegionConfig: &mongodbatlas.TenantRegionConfig{
 			ElectableSpecs: &mongodbatlas.HardwareSpec{
-				DiskIOPS:      &_int,
-				EbsVolumeType: &_string,
-				InstanceSize:  &_string,
-				NodeCount:     &_int,
+				DiskIOPS:      _int,
+				EbsVolumeType: _string,
+				InstanceSize:  _string,
+				NodeCount:     _int,
 			},
 			Priority:            new(int32),
 			ProviderName:        new(string),
@@ -103,17 +103,17 @@ func TestMultiCloudClusters_ModelRegression() {
 	}
 
 	replicationSpec := mongodbatlas.ReplicationSpec{
-		Id:            &_string,
-		NumShards:     &_int,
+		Id:            _string,
+		NumShards:     _int,
 		RegionConfigs: []mongodbatlas.RegionConfig{regionAWS, regionGcp, regionAzure, regionDedicated},
-		ZoneName:      &_string,
+		ZoneName:      _string,
 	}
 
 	replicationSpec2 := mongodbatlas.ReplicationSpec{
-		Id:            &_string,
-		NumShards:     &_int,
+		Id:            _string,
+		NumShards:     _int,
 		RegionConfigs: []mongodbatlas.RegionConfig{regionGcp},
-		ZoneName:      &_string,
+		ZoneName:      _string,
 	}
 
 	_ = mongodbatlas.ClusterDescriptionV15{
@@ -123,11 +123,11 @@ func TestMultiCloudClusters_ModelRegression() {
 		ConnectionStrings: &mongodbatlas.ClusterDescriptionConnectionStrings{
 			AwsPrivateLink:    &map[string]string{},
 			AwsPrivateLinkSrv: &map[string]string{},
-			Private:           &_string,
+			Private:           _string,
 			PrivateEndpoint:   []mongodbatlas.ClusterDescriptionConnectionStringsPrivateEndpoint{},
-			PrivateSrv:        &_string,
-			Standard:          &_string,
-			StandardSrv:       &_string,
+			PrivateSrv:        _string,
+			Standard:          _string,
+			StandardSrv:       _string,
 		},
 		// TODO this should be removed as they are part of the response body.
 		// See: https://jira.mongodb.org/browse/CLOUDP-151153
@@ -135,14 +135,14 @@ func TestMultiCloudClusters_ModelRegression() {
 		Paused:     nil,
 		Links:      nil,
 		Id:         nil,
-		StateName:  &_string,
+		StateName:  _string,
 
 		DiskSizeGB:                   nil,
 		EncryptionAtRestProvider:     nil,
 		Labels:                       []mongodbatlas.NDSLabel{labelView},
 		MongoDBMajorVersion:          nil,
 		MongoDBVersion:               nil,
-		Name:                         &_string,
+		Name:                         _string,
 		ReplicationSpecs:             []mongodbatlas.ReplicationSpec{replicationSpec, replicationSpec2},
 		RootCertType:                 nil,
 		TerminationProtectionEnabled: &_true,
