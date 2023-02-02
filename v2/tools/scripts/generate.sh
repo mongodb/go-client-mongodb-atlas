@@ -4,6 +4,8 @@ set -e
 OPENAPI_FOLDER=${OPENAPI_FOLDER:-"./openapi"}
 OPENAPI_FILE="$OPENAPI_FOLDER/atlas-api.yaml"
 TRANSFORMED_FILE="$OPENAPI_FOLDER/atlas-api-transformed.yaml"
+## Version of the versioned API
+CURRENT_REVISION=${CURRENT_REVISION:-"230201"}
 
 ## go package containing rolling updates for all recent versions 
 LATEST_PACKAGE=${LATEST_PACKAGE:-"api"}
@@ -20,4 +22,6 @@ npm run sdk:transform -- "$TRANSFORMED_FILE"
 npm exec openapi-generator-cli -- generate \
     -c "./config/go.yaml" -i "$TRANSFORMED_FILE" -o "$SDK_ROOT$LATEST_PACKAGE" \
     --package-name="$LATEST_PACKAGE" \
-    --ignore-file-override=config/.go-ignore 
+    --ignore-file-override=config/.go-ignore \
+    --additional-properties=xgenResourceVersion="$CURRENT_REVISION"
+
