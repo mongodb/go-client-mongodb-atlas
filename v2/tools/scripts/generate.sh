@@ -5,7 +5,7 @@ OPENAPI_FOLDER=${OPENAPI_FOLDER:-"./openapi"}
 OPENAPI_FILE="$OPENAPI_FOLDER/atlas-api.yaml"
 TRANSFORMED_FILE="$OPENAPI_FOLDER/atlas-api-transformed.yaml"
 ## Version of the versioned API
-CLIENT_VERSION=${CLIENT_VERSION:-"1.230201.0-dev1"}
+CLIENT_VERSION=${CLIENT_VERSION:-"1.20230201.0-dev1"}
 
 ## go package containing rolling updates for all recent versions 
 LATEST_PACKAGE=${LATEST_PACKAGE:-"api"}
