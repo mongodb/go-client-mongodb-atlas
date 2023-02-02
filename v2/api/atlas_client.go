@@ -12,7 +12,7 @@ const (
 	// CloudURL is default base URL for the services.
 	DefaultCloudURL = "https://cloud.mongodb.com/"
 	// Version the version of the current API client. Should be set to the next version planned to be released.
-	Version    = "2.0.0-dev1"
+	Version    = "1.20230201.0-dev1"
 	ClientName = "go-mongodbatlas-versioned"
 )
 
