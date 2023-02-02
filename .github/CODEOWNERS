@@ -1,2 +1,3 @@
 # Maintained by the API experience team
-*       @mongodb/apix
+mongodbatlas/*       @mongodb/apix
+auth/*               @mongodb/apix
