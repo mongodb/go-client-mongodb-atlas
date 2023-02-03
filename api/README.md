@@ -1,6 +1,9 @@
-# MongoDB Atlas Versioned SDK
+# MongoDB Atlas Versioned Client
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/)
+
+> NOTE: Client is under development. 
+> Please consider using `go.mongodb.org/atlas/mongodbatlas` for production usage.
 
 ## Usage
 
