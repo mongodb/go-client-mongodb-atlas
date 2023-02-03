@@ -10,9 +10,9 @@ import (
 	"context"
 
 	"github.com/mongodb-forks/digest"
-	apilatest "go.mongodb.org/atlas/mongodbatlas/v2/api"
+	apilatest "go.mongodb.org/atlas/api/v1"
 
-	utils "go.mongodb.org/atlas/mongodbatlas/v2/test/generators"
+	utils "go.mongodb.org/atlas/api/test/generators"
 )
 
 /*

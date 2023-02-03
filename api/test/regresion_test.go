@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"go.mongodb.org/atlas/mongodbatlas/v2/test/regression"
+	"go.mongodb.org/atlas/api/test/regression"
 )
 
 func TestIntegrationSDK(t *testing.T) {
