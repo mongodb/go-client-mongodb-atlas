@@ -1,10 +1,10 @@
 package regression
 
 import (
-	mongodbatlas "go.mongodb.org/atlas/mongodbatlas/v2/api"
+	mongodbatlas "go.mongodb.org/atlas/api/v1"
 )
 
-func TestDatabaseUsers_ModelRegression() {
+func TestDatabaseUsersModelRegression() {
 	_ = mongodbatlas.PaginatedApiAtlasDatabaseUserView{
 		TotalCount: nil,
 		Results:    []mongodbatlas.DatabaseUser{},
