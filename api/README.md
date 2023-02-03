@@ -4,7 +4,7 @@ A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/
 
 ## Usage
 
-### Adding Dependency 
+### Adding Dependency
 
 ```
 go install go.mongodb.org/atlas
@@ -27,10 +27,10 @@ access different parts of the Atlas API. For example:
 
 	// SDK client with authentication
 	sdk := mongodbatlas.NewSDKClientWithCredentials(apiKey, apiSecret)
-    projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
 ```
 
-For documentation about obtaining private and public API token go to 
+For documentation about obtaining private and public API token go to
 https://docs.atlas.mongodb.com/configure-api-access.
 The services of a client divide the API into logical chunks and correspond to
 the structure of the Atlas API documentation at
