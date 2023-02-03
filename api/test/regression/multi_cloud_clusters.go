@@ -2,11 +2,10 @@ package regression
 
 import (
 	"github.com/openlyinc/pointy"
-	mongodbatlas "go.mongodb.org/atlas/mongodbatlas/v2/api"
+	mongodbatlas "go.mongodb.org/atlas/api/v1"
 )
 
-// Backwards compatibility, regression tests for the multi cloud clusters
-func TestMultiCloudClusters_ModelRegression() {
+func TestMultiCloudClustersModelRegression() {
 	_true := true
 	_string := pointy.String("")
 	_int := pointy.Int32(0)

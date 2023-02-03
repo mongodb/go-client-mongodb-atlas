@@ -1,10 +1,10 @@
 package regression
 
 import (
-	mongodbatlas "go.mongodb.org/atlas/mongodbatlas/v2/api"
+	mongodbatlas "go.mongodb.org/atlas/api/v1"
 )
 
-func TestProjectIPAcessList_ModelRegression() {
+func TestProjectIPAcessListModelRegression() {
 	_ = mongodbatlas.PaginatedNetworkAccessView{
 		TotalCount: nil,
 		Results:    []mongodbatlas.NetworkPermissionEntry{},
