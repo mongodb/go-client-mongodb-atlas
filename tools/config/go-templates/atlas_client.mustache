@@ -18,11 +18,11 @@ const (
 
 // NewClient returns a new MongoDBAtlas API Client.
 func NewClient(httpClient *http.Client) *APIClient {
-	return NewClientWithUrl(httpClient, DefaultCloudURL)
+	return NewClientWithURL(httpClient, DefaultCloudURL)
 }
 
-// NewClientWithUrl returns a new MongoDBAtlas API Client using custom base url
-func NewClientWithUrl(httpClient *http.Client, baseURL string) *APIClient {
+// NewClientWithURL returns a new MongoDBAtlas API Client using custom base url
+func NewClientWithURL(httpClient *http.Client, baseURL string) *APIClient {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
