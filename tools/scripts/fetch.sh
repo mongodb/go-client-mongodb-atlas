@@ -13,12 +13,12 @@ OPENAPI_FILE_NAME=${LOCAL_OPENAPI_FILE:-"atlas-api.yaml"}
 API_BASE_URL=${API_BASE_URL:-"https://cloud.mongodb.com/api/openapi"}
 
 ## Folder used for fetching files
-OUTPUT_PATH=${OUTPUT_PATH:-"./openapi"}
+OPENAPI_FOLDER=${OPENAPI_FOLDER:-"../openapi"}
 
 openapi_url="$API_BASE_URL/spec/2.0?version=$CURRENT_REVISION"
 versions_url="$API_BASE_URL/versions"
 
-pushd "$OUTPUT_PATH"
+pushd "$OPENAPI_FOLDER"
 
 echo "Fetching versions from $versions_url"
 

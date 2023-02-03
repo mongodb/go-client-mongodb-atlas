@@ -5,7 +5,7 @@ import (
 	"math/big"
 )
 
-func RandomInteger(min int, max int) (int, error) {
+func RandomInteger(min, max int) (int, error) {
 	offset, err := rand.Int(rand.Reader, big.NewInt(int64(max-min)))
 	if err != nil {
 		return 0, err

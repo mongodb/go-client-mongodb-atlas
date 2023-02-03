@@ -7,7 +7,8 @@ import (
 )
 
 func TestIntegrationSDK(t *testing.T) {
-	regression.TestProjectIPAcessList_ModelRegression()
-	regression.TestMultiCloudClusters_ModelRegression()
-	regression.TestDatabaseUsers_ModelRegression()
+	regression.TestProjectIPAcessListModelRegression()
+	regression.TestMultiCloudClustersModelRegression()
+	regression.TestDatabaseUsersModelRegression()
+	t.Log("Compilation only")
 }

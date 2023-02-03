@@ -18,11 +18,11 @@ const (
 
 // NewClient returns a new MongoDBAtlas API Client.
 func NewClient(httpClient *http.Client) *APIClient {
-	return NewClientWithUrl(httpClient, DefaultCloudURL)
+	return NewClientWithURL(httpClient, DefaultCloudURL)
 }
 
-// NewClientWithUrl returns a new MongoDBAtlas API Client using custom base url
-func NewClientWithUrl(httpClient *http.Client, baseURL string) *APIClient {
+// NewClientWithURL returns a new MongoDBAtlas API Client using custom base url.
+func NewClientWithURL(httpClient *http.Client, baseURL string) *APIClient {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
@@ -41,9 +41,9 @@ func NewClientWithUrl(httpClient *http.Client, baseURL string) *APIClient {
 }
 
 /**
-*  NewSDKClientWithCredentials Helper method used to create an SDK object for provided API keys
+*  NewSDKClientWithCredentials Helper method used to create an SDK object for provided API keys.
  */
-func NewSDKClientWithCredentials(apiKey string, apiSecret string) (*APIClient, error) {
+func NewSDKClientWithCredentials(apiKey, apiSecret string) (*APIClient, error) {
 	transport := digest.NewTransport(apiKey, apiSecret)
 	httpClient, err := transport.Client()
 	if err != nil {

@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	sdk := apilatest.NewClientWithUrl(httpClient, "https://cloud-dev.mongodb.com")
+	sdk := apilatest.NewClientWithURL(httpClient, "https://cloud.mongodb.com")
 	sdk.GetConfig().Debug = true
 	// -- 1. Get first project
 	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
