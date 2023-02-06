@@ -1,9 +1,10 @@
-# MongoDB Atlas Versioned Client
+# MongoDB Atlas v2 API client
 
 A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/)
 
-> NOTE: Client is under development. 
-> Please consider using `go.mongodb.org/atlas/mongodbatlas` for production usage.
+> NOTE: Atlas API v2 client is still under development. 
+> Please consider using v1 client located in `go.mongodb.org/atlas/mongodbatlas` for production usage.
+
 
 ## Usage
 
@@ -16,20 +17,19 @@ go install go.mongodb.org/atlas
 ### Using in the code
 
 ```go
-mongodbatlas import "go.mongodb.org/atlas/mongodbatlas/api/v1"
+mongodbatlas import "go.mongodb.org/atlas/mongodbatlas/api/v2"
 ```
 
 Construct a new Atlas client, then use the various services on the client to
 access different parts of the Atlas API. For example:
 
 ```go
-	mongodbatlas import "go.mongodb.org/atlas/mongodbatlas/api/v1"
+	mongodbatlas import "go.mongodb.org/atlas/mongodbatlas/api/v2"
 
    	apiKey := os.Getenv("MDB_API_KEY")
 	apiSecret := os.Getenv("MDB_API_SECRET")
 
-	// SDK client with authentication
-	sdk := mongodbatlas.NewSDKClientWithCredentials(apiKey, apiSecret)
+	sdk := mongodbatlas.NewClient(mongodbatlas.UseDigestAuth(apiKey, apiSecret))
 	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
 ```
 
@@ -67,7 +67,7 @@ func main() {
         log.Fatalf(err.Error())
     }
 
-    client := mongodbatlas.NewClient(tc)
+    client := mongodbatlas.NewClient(mongodbatlas.UseHTTPClient(tc))
     projects, _, err := client.Projects.GetAllProjects(context.Background(), nil)
 }
 ```

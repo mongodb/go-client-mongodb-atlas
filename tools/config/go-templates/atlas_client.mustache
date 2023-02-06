@@ -6,48 +6,75 @@ import (
 	"runtime"
 
 	"github.com/mongodb-forks/digest"
+	"go.mongodb.org/atlas/mongodbatlas"
 )
 
 const (
 	// CloudURL is default base URL for the services.
 	DefaultCloudURL = "https://cloud.mongodb.com/"
-	// Version the version of the current API client. Should be set to the next version planned to be released.
-	Version    = "{{xgenClientVersion}}"
-	ClientName = "go-mongodbatlas-versioned"
+	// Version the version of the current API client inherited from.
+	Version = mongodbatlas.Version
+	// Name of the v2 API client.
+	ClientName = "go-mongodbatlas-v2"
 )
 
 // NewClient returns a new MongoDBAtlas API Client.
-func NewClient(httpClient *http.Client) *APIClient {
-	return NewClientWithURL(httpClient, DefaultCloudURL)
-}
-
-// NewClientWithURL returns a new MongoDBAtlas API Client using custom base url
-func NewClientWithURL(httpClient *http.Client, baseURL string) *APIClient {
-	if httpClient == nil {
-		httpClient = http.DefaultClient
-	}
-
+func NewClient(modifiers ...ClientModifier) *APIClient {
 	userAgent := fmt.Sprintf("%s/%s (%s;%s)", ClientName, Version, runtime.GOOS, runtime.GOARCH)
-	cfg := &Configuration{
-		HTTPClient: httpClient,
+	defaultConfig := &Configuration{
+		HTTPClient: http.DefaultClient,
 		Servers: ServerConfigurations{ServerConfiguration{
-			URL: baseURL,
+			URL: DefaultCloudURL,
 		},
 		},
 		UserAgent: userAgent,
 	}
-	client := NewAPIClient(cfg)
-	return client
+	for _, modifierFunction := range modifiers {
+		modifierFunction(defaultConfig)
+	}
+
+	return NewAPIClient(defaultConfig)
 }
 
-/**
-*  NewSDKClientWithCredentials Helper method used to create an SDK object for provided API keys
- */
-func NewSDKClientWithCredentials(apiKey string, apiSecret string) (*APIClient, error) {
-	transport := digest.NewTransport(apiKey, apiSecret)
-	httpClient, err := transport.Client()
-	if err != nil {
-		return nil, err
+// ClientModifiers lets you create function that controls configuration before creating client.
+type ClientModifier func(*Configuration) error
+
+func UseDigestAuth(apiKey, apiSecret string) ClientModifier {
+	return func(c *Configuration) error {
+		transport := digest.NewTransport(apiKey, apiSecret)
+		httpClient, err := transport.Client()
+		if err != nil {
+			return err
+		}
+		c.HTTPClient = httpClient
+		return nil
 	}
-	return NewClient(httpClient), nil
+}
+
+// Advanced modifiers.
+
+// UseHttpClient set custom http client implementation.
+func UseHTTPClient(client *http.Client) ClientModifier {
+	return func(c *Configuration) error {
+		c.HTTPClient = client
+		return nil
+	}
+}
+
+// UseDebug enable debug level logging.
+func UseDebug(debug bool) ClientModifier {
+	return func(c *Configuration) error {
+		c.Debug = debug
+		return nil
+	}
+}
+
+// UseBaseURL set custom base url.
+func UseBaseURL(baseURL string) ClientModifier {
+	return func(c *Configuration) error {
+		c.Servers = ServerConfigurations{ServerConfiguration{
+			URL: baseURL,
+		}}
+		return nil
+	}
 }
