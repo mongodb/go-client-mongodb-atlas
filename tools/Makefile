@@ -1,11 +1,11 @@
 # Tools 
 
 export OPENAPI_FOLDER=../openapi
-export SDK_ROOT=../api/v1
+export SDK_ROOT=../api/v2
 
 .PHONY: clean_client
 clean_client:
-	rm -Rf ../api/v1
+	rm -Rf ../api/v2
 
 .PHONY: fetch_openapi
 fetch_openapi:
