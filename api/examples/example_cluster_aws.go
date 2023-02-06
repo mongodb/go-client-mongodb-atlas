@@ -9,8 +9,7 @@ import (
 
 	"context"
 
-	"github.com/mongodb-forks/digest"
-	apilatest "go.mongodb.org/atlas/api/v1"
+	mongodbatlas "go.mongodb.org/atlas/api/v2"
 
 	utils "go.mongodb.org/atlas/api/test/generators"
 )
@@ -31,21 +30,18 @@ func main() {
 	apiKey := os.Getenv("MDB_API_KEY")
 	apiSecret := os.Getenv("MDB_API_SECRET")
 
-	transport := digest.NewTransport(apiKey, apiSecret)
-	httpClient, err := transport.Client()
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-	sdk := apilatest.NewClientWithURL(httpClient, "https://cloud.mongodb.com")
-	sdk.GetConfig().Debug = true
+	sdk, err := mongodbatlas.NewClient(
+		mongodbatlas.UseDigestAuth(apiKey, apiSecret),
+		mongodbatlas.UseBaseURL("https://cloud-dev.mongodb.com"),
+		mongodbatlas.UseDebug(false))
+	handleErr(err, nil)
+
 	// -- 1. Get first project
-	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
+	projects, response, err := sdk.ProjectsApi.ReturnAllProjects(ctx).Execute()
 	handleErr(err, response)
 
-	fmt.Println(projects)
-
 	if projects.GetTotalCount() == 0 {
-		panic("account should have at least single project")
+		log.Fatal("account should have at least single project")
 	}
 
 	projectId := projects.GetResults()[0].GetId()
@@ -70,7 +66,7 @@ func main() {
 	ipAddress := getIpAddress()
 	_, resp, err = sdk.ProjectIPAccessListApi.
 		CreateProjectIpAccessList(context.Background(), projectId).
-		NetworkPermissionEntry([]apilatest.NetworkPermissionEntry{{IpAddress: &ipAddress}}).
+		NetworkPermissionEntry([]mongodbatlas.NetworkPermissionEntry{{IpAddress: &ipAddress}}).
 		Execute()
 	handleErr(err, resp)
 
@@ -79,7 +75,7 @@ func main() {
 	fmt.Println("Please wait up to 10 minutes for cluster to provision.")
 }
 
-func createDatabaseUserRequest(sdk *apilatest.APIClient, groupId string) *apilatest.DatabaseUser {
+func createDatabaseUserRequest(sdk *mongodbatlas.APIClient, groupId string) *mongodbatlas.DatabaseUser {
 	username := "sdk-example"
 	databaseName := "admin"
 
@@ -93,14 +89,14 @@ func createDatabaseUserRequest(sdk *apilatest.APIClient, groupId string) *apilat
 	collectionName := "sdk-test"
 	password, err := utils.RandomASCIIString(10)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	return &apilatest.DatabaseUser{
+	return &mongodbatlas.DatabaseUser{
 		Username:     username,
 		Password:     &password,
 		DatabaseName: databaseName,
-		Roles: []apilatest.Role{
+		Roles: []mongodbatlas.Role{
 			{
 				DatabaseName:   databaseName,
 				CollectionName: collectionName,
@@ -110,7 +106,7 @@ func createDatabaseUserRequest(sdk *apilatest.APIClient, groupId string) *apilat
 	}
 }
 
-func createClusterRequest(projectId string) *apilatest.ClusterDescriptionV15 {
+func createClusterRequest(projectId string) *mongodbatlas.ClusterDescriptionV15 {
 	// Input arguments used for creation of the cluster
 	clusterName, _ := utils.UniqueName("example-aws-cluster")
 
@@ -125,19 +121,19 @@ func createClusterRequest(projectId string) *apilatest.ClusterDescriptionV15 {
 	nodeCount := int32(3)
 	instanceSize := "M10"
 
-	return &apilatest.ClusterDescriptionV15{
+	return &mongodbatlas.ClusterDescriptionV15{
 		Name:        &clusterName,
 		ClusterType: &clusterType,
-		ReplicationSpecs: []apilatest.ReplicationSpec{
+		ReplicationSpecs: []mongodbatlas.ReplicationSpec{
 			{
 				NumShards: &numShards,
-				RegionConfigs: []apilatest.RegionConfig{
+				RegionConfigs: []mongodbatlas.RegionConfig{
 					{
-						AWSRegionConfig: &apilatest.AWSRegionConfig{
+						AWSRegionConfig: &mongodbatlas.AWSRegionConfig{
 							ProviderName: &providerName,
 							Priority:     &priority,
 							RegionName:   &regionName,
-							ElectableSpecs: &apilatest.HardwareSpec{
+							ElectableSpecs: &mongodbatlas.HardwareSpec{
 								InstanceSize: &instanceSize,
 								NodeCount:    &nodeCount,
 							},
