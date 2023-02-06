@@ -19,7 +19,7 @@ const (
 )
 
 // NewClient returns a new MongoDBAtlas API Client.
-func NewClient(modifiers ...ClientModifier) *APIClient {
+func NewClient(modifiers ...ClientModifier) (*APIClient, error) {
 	userAgent := fmt.Sprintf("%s/%s (%s;%s)", ClientName, Version, runtime.GOOS, runtime.GOARCH)
 	defaultConfig := &Configuration{
 		HTTPClient: http.DefaultClient,
@@ -30,10 +30,13 @@ func NewClient(modifiers ...ClientModifier) *APIClient {
 		UserAgent: userAgent,
 	}
 	for _, modifierFunction := range modifiers {
-		modifierFunction(defaultConfig)
+		err := modifierFunction(defaultConfig)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	return NewAPIClient(defaultConfig)
+	return NewAPIClient(defaultConfig), nil
 }
 
 // ClientModifiers lets you create function that controls configuration before creating client.

@@ -30,10 +30,11 @@ func main() {
 	apiKey := os.Getenv("MDB_API_KEY")
 	apiSecret := os.Getenv("MDB_API_SECRET")
 
-	sdk := mongodbatlas.NewClient(
+	sdk, err := mongodbatlas.NewClient(
 		mongodbatlas.UseDigestAuth(apiKey, apiSecret),
 		mongodbatlas.UseBaseURL("https://cloud-dev.mongodb.com"),
 		mongodbatlas.UseDebug(false))
+	handleErr(err, nil)
 
 	// -- 1. Get first project
 	projects, response, err := sdk.ProjectsApi.ReturnAllProjects(ctx).Execute()
