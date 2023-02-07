@@ -28,9 +28,6 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
-	groupID := "5b6212af90dc76637950a2c6"
-	clusterName := "myCluster"
-
 	var aws = "AWS"
 	var regionName = "testRegion"
 	var replicationSpecID = "5e2f1bcaf38990fab9227c9"
@@ -449,9 +446,6 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
-	groupID := "5b6212af90dc76637950a2c6"
-	clusterName := "myCluster"
 
 	var aws = "AWS"
 	var regionName = "testRegion"

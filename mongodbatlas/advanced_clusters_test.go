@@ -31,7 +31,6 @@ const (
 func TestAdvancedClusters_List(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
-
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
@@ -1244,5 +1243,19 @@ func TestAdvancedClusters_Delete(t *testing.T) {
 	_, err := client.AdvancedClusters.Delete(ctx, groupID, clusterName)
 	if err != nil {
 		t.Fatalf("Cluster.Delete returned error: %v", err)
+	}
+}
+
+func TestFailover(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/restartPrimaries", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+	})
+
+	_, err := client.AdvancedClusters.TestFailover(ctx, groupID, clusterName)
+	if err != nil {
+		t.Fatalf("Cluster.TestFailover returned error: %v", err)
 	}
 }
