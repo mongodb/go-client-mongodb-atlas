@@ -32,7 +32,7 @@ func main() {
 
 	sdk, err := mongodbatlas.NewClient(
 		mongodbatlas.UseDigestAuth(apiKey, apiSecret),
-		mongodbatlas.UseBaseURL("https://cloud-dev.mongodb.com"),
+		mongodbatlas.UseBaseURL("https://cloud.mongodb.com"),
 		mongodbatlas.UseDebug(false))
 	handleErr(err, nil)
 

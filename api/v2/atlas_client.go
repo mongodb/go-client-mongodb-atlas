@@ -11,7 +11,7 @@ import (
 
 const (
 	// CloudURL is default base URL for the services.
-	DefaultCloudURL = "https://cloud.mongodb.com/"
+	DefaultCloudURL = "https://cloud.mongodb.com"
 	// Version the version of the current API client inherited from.
 	Version = mongodbatlas.Version
 	// Name of the v2 API client.
@@ -78,6 +78,14 @@ func UseBaseURL(baseURL string) ClientModifier {
 		c.Servers = ServerConfigurations{ServerConfiguration{
 			URL: baseURL,
 		}}
+		return nil
+	}
+}
+
+// UseUserAgent set custom UserAgent header.
+func UseUserAgent(userAgent string) ClientModifier {
+	return func(c *Configuration) error {
+		c.UserAgent = userAgent
 		return nil
 	}
 }
