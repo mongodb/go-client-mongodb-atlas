@@ -1,23 +1,28 @@
 #!/usr/bin/env bash
 set -e
 
-OPENAPI_FOLDER=${OPENAPI_FOLDER:-"./openapi"}
-OPENAPI_FILE="$OPENAPI_FOLDER/atlas-api.yaml"
-TRANSFORMED_FILE="$OPENAPI_FOLDER/atlas-api-transformed.yaml"
-PACKAGE="v2"
+OPENAPI_FOLDER=${OPENAPI_FOLDER:-./openapi}
+OPENAPI_FILE_NAME=${OPENAPI_FILE_NAME:-atlas-api.yaml}
+SDK_FOLDER=${SDK_FOLDER:-./}
 
-SDK_ROOT=${SDK_ROOT:-"./"}
+echo "# Running generation pipeline"
 
-echo "Running generation pipeline"
+transformed_file="atlas-api-transformed.yaml"
+client_package="v2"
+openapiFileLocation="$OPENAPI_FOLDER/$transformed_file"
 
-echo "Creating new $TRANSFORMED_FILE OpenAPI file from $OPENAPI_FILE"
-cp "$OPENAPI_FILE" "$TRANSFORMED_FILE"
+echo "# Creating new $transformed_file OpenAPI from $OPENAPI_FILE_NAME"
+cp "$OPENAPI_FOLDER/$OPENAPI_FILE_NAME" "$openapiFileLocation"
 
 npm install
-npm run sdk:transform -- "$TRANSFORMED_FILE"
+npm run sdk:transform -- "$openapiFileLocation"
+
+npm exec openapi-generator-cli -- validate -i "$openapiFileLocation"
+
+echo "# Running Client Generation"
 
 npm exec openapi-generator-cli -- generate \
-    -c "./config/go.yaml" -i "$TRANSFORMED_FILE" -o "$SDK_ROOT" \
-    --package-name="$PACKAGE" \
+    -c "./config/go.yaml" -i "$openapiFileLocation" -o "$SDK_FOLDER" \
+    --package-name="$client_package" \
     --ignore-file-override=config/.go-ignore
 
