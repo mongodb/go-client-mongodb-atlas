@@ -1,7 +1,8 @@
-# Tools 
-
 export OPENAPI_FOLDER=../openapi
-export SDK_ROOT=../api/v2
+export OPENAPI_FILE_NAME=atlas-api.yaml
+export SDK_FOLDER=../api/v2
+
+.DEFAULT_GOAL := generate_client
 
 .PHONY: clean_client
 clean_client:

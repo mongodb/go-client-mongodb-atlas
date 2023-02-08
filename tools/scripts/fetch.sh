@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
-set -e
+set -o errexit
+set -o nounset
+
+#######################################
+# Fetch openapi from remote file
+# Environment variables:
+#   CURRENT_REVISION - current revision of the versioned API
+#   OPENAPI_FILE_NAME - openapi file name to use
+#   OPENAPI_FOLDER - folder for saving openapi file
+#######################################
 
 ## Input variables with defaults
 
@@ -7,7 +16,7 @@ set -e
 CURRENT_REVISION=${CURRENT_REVISION:-"2023-02-01"}
 
 ## OpenAPI file (latest)
-OPENAPI_FILE_NAME=${LOCAL_OPENAPI_FILE:-"atlas-api.yaml"}
+OPENAPI_FILE_NAME=${OPENAPI_FILE_NAME:-"atlas-api.yaml"}
 
 ## Base URL
 API_BASE_URL=${API_BASE_URL:-"https://cloud.mongodb.com/api/openapi"}
