@@ -19,5 +19,9 @@
     "format:check": "prettier --check .",
     "test": "jest **/__tests__/**.test.js",
     "ci": "npm run test && npm run format:check"
+  },
+  "engines": {
+    "node": ">= 14",
+    "npm": ">= 5"
   }
 }
