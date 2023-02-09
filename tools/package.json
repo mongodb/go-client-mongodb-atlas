@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "private": "true",
   "main": "transformer/src/index.js",
-  
   "dependencies": {
     "yaml": "2.2.1"
   },
