@@ -15,4 +15,4 @@ jobs:
       - working-directory: ./tools
         run: |
           npm install
-          npm ci
+          npm run ci
