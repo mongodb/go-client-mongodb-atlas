@@ -9,7 +9,7 @@ import (
 
 	"context"
 
-	mongodbatlas "go.mongodb.org/atlas/api/v2"
+	mongodbatlas "go.mongodb.org/atlas/api/v1alpha"
 
 	utils "go.mongodb.org/atlas/api/test/generators"
 )
