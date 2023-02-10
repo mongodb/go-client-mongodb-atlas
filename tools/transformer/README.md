@@ -26,13 +26,15 @@ OPENAPI_FILE=openapi.yaml node ./index.js
 > "x-xgen-go-transform": "oneOfMerge"
 
 For parent model containing multiple children:
-- Moves all child enum or property fields into parent properties. 
+
+- Moves all child enum or property fields into parent properties.
 - Removes redundant oneOf fields on parent
 
-2. allOf transformation. 
+2. allOf transformation.
 
 > "x-xgen-go-transform": "allOfMerge"
 
 For parent model containing multiple children:
-- Moves all parent property fields into children. 
+
+- Moves all parent property fields into children.
 - Removes redundant allOf fields on children

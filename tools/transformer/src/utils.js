@@ -5,11 +5,15 @@
  * @param {(key, value) => boolean} [predicate] - validation function for the property
  * @returns {{ path: String, obj: Object }[]}
  */
-function getAllObjectsWitProperty(apiObject, key, predicate = (_k, _v) => true) {
+function getAllObjectsWitProperty(
+  apiObject,
+  key,
+  predicate = (_k, _v) => true
+) {
   const objs = [];
 
   // Add root object at the top of the recursion stack
-  const recursionStack = [{ path: '', obj: apiObject }];
+  const recursionStack = [{ path: "", obj: apiObject }];
 
   while (recursionStack.length > 0) {
     const { path, obj: currentObj } = recursionStack.pop();
@@ -25,7 +29,7 @@ function getAllObjectsWitProperty(apiObject, key, predicate = (_k, _v) => true) 
     // If current object is an array, add all its elements to the recursion stack
     if (Array.isArray(currentObj)) {
       for (let i = 0; i < currentObj.length; i++) {
-        if (typeof currentObj[i] === 'object' && currentObj[i]) {
+        if (typeof currentObj[i] === "object" && currentObj[i]) {
           recursionStack.push({
             path: `${path}.${i}`,
             obj: currentObj[i],
@@ -36,7 +40,7 @@ function getAllObjectsWitProperty(apiObject, key, predicate = (_k, _v) => true) 
     // Add all properties of the object to the recurssion stack
     else {
       for (let key of Object.keys(currentObj)) {
-        if (typeof currentObj[key] === 'object' && currentObj[key]) {
+        if (typeof currentObj[key] === "object" && currentObj[key]) {
           recursionStack.push({
             path: `${path}.${key}`,
             obj: currentObj[key],
@@ -55,15 +59,15 @@ function getObjectFromReference(obj, api) {
     return obj;
   }
 
-  if (obj && obj['$ref']) {
+  if (obj && obj["$ref"]) {
     const referenceName = getObjectNameFromReference(obj);
     return api.components.schemas[referenceName];
   }
 }
 
 function getObjectNameFromReference(obj) {
-  if (obj && obj['$ref']) {
-    return obj['$ref'].replace('#/components/schemas/', '');
+  if (obj && obj["$ref"]) {
+    return obj["$ref"].replace("#/components/schemas/", "");
   }
 }
 
@@ -86,8 +90,10 @@ function detectDuplicates(objArray) {
 
 function removeParentFromAllOf(child, parentName) {
   child.allOf = child.allOf.filter((childAllOfItem) => {
-    if (childAllOfItem['$ref']) {
-      if (childAllOfItem['$ref'].endsWith('#/components/schemas/' + parentName)) {
+    if (childAllOfItem["$ref"]) {
+      if (
+        childAllOfItem["$ref"].endsWith("#/components/schemas/" + parentName)
+      ) {
         return false;
       }
     }
@@ -96,7 +102,7 @@ function removeParentFromAllOf(child, parentName) {
 }
 
 function getNameFromYamlPath(path) {
-  return path.split('.').pop();
+  return path.split(".").pop();
 }
 
 module.exports = {

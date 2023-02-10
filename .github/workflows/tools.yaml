@@ -1,0 +1,20 @@
+name: OpenAPI Tools build
+on:
+  pull_request:
+    paths:
+      - "tools/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: ./tools/package-lock.json
+      - working-directory: ./tools
+        run: |
+          npm install
+          npm run ci
