@@ -23,40 +23,40 @@ import (
 type AuditingApi interface {
 
 	/*
-	ReturnOneAuditingConfigurationForOneProject Return the Auditing Configuration for One Project
+	GetAuditingConfiguration Return the Auditing Configuration for One Project
 
 	Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return AuditingApiGetAuditingConfigurationRequest
 	*/
-	ReturnOneAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
+	GetAuditingConfiguration(ctx context.Context, groupId string) AuditingApiGetAuditingConfigurationRequest
 
-	// ReturnOneAuditingConfigurationForOneProjectExecute executes the request
+	// GetAuditingConfigurationExecute executes the request
 	//  @return AuditLog
-	ReturnOneAuditingConfigurationForOneProjectExecute(r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) (*AuditLog, *http.Response, error)
+	GetAuditingConfigurationExecute(r AuditingApiGetAuditingConfigurationRequest) (*AuditLog, *http.Response, error)
 
 	/*
-	UpdateAuditingConfigurationForOneProject Update Auditing Configuration for One Project
+	UpdateAuditingConfiguration Update Auditing Configuration for One Project
 
 	Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return AuditingApiUpdateAuditingConfigurationForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return AuditingApiUpdateAuditingConfigurationRequest
 	*/
-	UpdateAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationForOneProjectRequest
+	UpdateAuditingConfiguration(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationRequest
 
-	// UpdateAuditingConfigurationForOneProjectExecute executes the request
+	// UpdateAuditingConfigurationExecute executes the request
 	//  @return AuditLog
-	UpdateAuditingConfigurationForOneProjectExecute(r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) (*AuditLog, *http.Response, error)
+	UpdateAuditingConfigurationExecute(r AuditingApiUpdateAuditingConfigurationRequest) (*AuditLog, *http.Response, error)
 }
 
 // AuditingApiService AuditingApi service
 type AuditingApiService service
 
-type AuditingApiReturnOneAuditingConfigurationForOneProjectRequest struct {
+type AuditingApiGetAuditingConfigurationRequest struct {
 	ctx context.Context
 	ApiService AuditingApi
 	groupId string
@@ -65,32 +65,32 @@ type AuditingApiReturnOneAuditingConfigurationForOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) Envelope(envelope bool) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest {
+func (r AuditingApiGetAuditingConfigurationRequest) Envelope(envelope bool) AuditingApiGetAuditingConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) Pretty(pretty bool) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AuditingApiGetAuditingConfigurationRequest) Pretty(pretty bool) AuditingApiGetAuditingConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) Execute() (*AuditLog, *http.Response, error) {
-	return r.ApiService.ReturnOneAuditingConfigurationForOneProjectExecute(r)
+func (r AuditingApiGetAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
+	return r.ApiService.GetAuditingConfigurationExecute(r)
 }
 
 /*
-ReturnOneAuditingConfigurationForOneProject Return the Auditing Configuration for One Project
+GetAuditingConfiguration Return the Auditing Configuration for One Project
 
 Returns the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return AuditingApiReturnOneAuditingConfigurationForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return AuditingApiGetAuditingConfigurationRequest
 */
-func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiReturnOneAuditingConfigurationForOneProjectRequest {
-	return AuditingApiReturnOneAuditingConfigurationForOneProjectRequest{
+func (a *AuditingApiService) GetAuditingConfiguration(ctx context.Context, groupId string) AuditingApiGetAuditingConfigurationRequest {
+	return AuditingApiGetAuditingConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -99,7 +99,7 @@ func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProject(ctx con
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProjectExecute(r AuditingApiReturnOneAuditingConfigurationForOneProjectRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) GetAuditingConfigurationExecute(r AuditingApiGetAuditingConfigurationRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -107,7 +107,7 @@ func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProjectExecute(
 		localVarReturnValue  *AuditLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditingApiService.ReturnOneAuditingConfigurationForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditingApiService.GetAuditingConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -206,7 +206,7 @@ func (a *AuditingApiService) ReturnOneAuditingConfigurationForOneProjectExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AuditingApiUpdateAuditingConfigurationForOneProjectRequest struct {
+type AuditingApiUpdateAuditingConfigurationRequest struct {
 	ctx context.Context
 	ApiService AuditingApi
 	groupId string
@@ -216,38 +216,38 @@ type AuditingApiUpdateAuditingConfigurationForOneProjectRequest struct {
 }
 
 // Updated auditing configuration for the specified project.
-func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) AuditLog(auditLog AuditLog) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {
+func (r AuditingApiUpdateAuditingConfigurationRequest) AuditLog(auditLog AuditLog) AuditingApiUpdateAuditingConfigurationRequest {
 	r.auditLog = &auditLog
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) Envelope(envelope bool) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {
+func (r AuditingApiUpdateAuditingConfigurationRequest) Envelope(envelope bool) AuditingApiUpdateAuditingConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) Pretty(pretty bool) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AuditingApiUpdateAuditingConfigurationRequest) Pretty(pretty bool) AuditingApiUpdateAuditingConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) Execute() (*AuditLog, *http.Response, error) {
-	return r.ApiService.UpdateAuditingConfigurationForOneProjectExecute(r)
+func (r AuditingApiUpdateAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
+	return r.ApiService.UpdateAuditingConfigurationExecute(r)
 }
 
 /*
-UpdateAuditingConfigurationForOneProject Update Auditing Configuration for One Project
+UpdateAuditingConfiguration Update Auditing Configuration for One Project
 
 Updates the auditing configuration for the specified project. The auditing configuration defines the events that MongoDB Cloud records in the audit log. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return AuditingApiUpdateAuditingConfigurationForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return AuditingApiUpdateAuditingConfigurationRequest
 */
-func (a *AuditingApiService) UpdateAuditingConfigurationForOneProject(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationForOneProjectRequest {
-	return AuditingApiUpdateAuditingConfigurationForOneProjectRequest{
+func (a *AuditingApiService) UpdateAuditingConfiguration(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationRequest {
+	return AuditingApiUpdateAuditingConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -256,7 +256,7 @@ func (a *AuditingApiService) UpdateAuditingConfigurationForOneProject(ctx contex
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) UpdateAuditingConfigurationForOneProjectExecute(r AuditingApiUpdateAuditingConfigurationForOneProjectRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) UpdateAuditingConfigurationExecute(r AuditingApiUpdateAuditingConfigurationRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -264,7 +264,7 @@ func (a *AuditingApiService) UpdateAuditingConfigurationForOneProjectExecute(r A
 		localVarReturnValue  *AuditLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditingApiService.UpdateAuditingConfigurationForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditingApiService.UpdateAuditingConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

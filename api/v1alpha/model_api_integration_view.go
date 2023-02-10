@@ -16,7 +16,6 @@ import (
 
 // ApiIntegrationView Collection of settings that describe third-party integrations.
 type ApiIntegrationView struct {
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
 	Type *string `json:"type,omitempty"`
 }
 

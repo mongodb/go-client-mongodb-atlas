@@ -24,42 +24,42 @@ import (
 type AccessTrackingApi interface {
 
 	/*
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName Return Database Access History for One Cluster using Its Cluster Name
+	ListAccessLogsByClusterName Return Database Access History for One Cluster using Its Cluster Name
 
 	Returns the access logs of one cluster identified by the cluster's name. Access logs contain a list of authentication requests made against your cluster. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
-	@return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest
+	@return AccessTrackingApiListAccessLogsByClusterNameRequest
 	*/
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest
+	ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiListAccessLogsByClusterNameRequest
 
-	// ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameExecute executes the request
+	// ListAccessLogsByClusterNameExecute executes the request
 	//  @return ApiMongoDBAccessLogsListView
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameExecute(r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
+	ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
 
 	/*
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname Return Database Access History for One Cluster using Its Hostname
+	ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
 
 	Returns the access logs of one cluster identified by the cluster's hostname. Access logs contain a list of authentication requests made against your clusters. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
-	@return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest
+	@return AccessTrackingApiListAccessLogsByHostnameRequest
 	*/
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest
+	ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiListAccessLogsByHostnameRequest
 
-	// ReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameExecute executes the request
+	// ListAccessLogsByHostnameExecute executes the request
 	//  @return ApiMongoDBAccessLogsListView
-	ReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameExecute(r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
+	ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
 }
 
 // AccessTrackingApiService AccessTrackingApi service
 type AccessTrackingApiService service
 
-type AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest struct {
+type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
 	ctx context.Context
 	ApiService AccessTrackingApi
 	groupId string
@@ -74,63 +74,63 @@ type AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNam
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) Envelope(envelope bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Envelope(envelope bool) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) Pretty(pretty bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Pretty(pretty bool) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) AuthResult(authResult bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) AuthResult(authResult bool) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.authResult = &authResult
 	return r
 }
 
 // Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) End(end string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) End(end string) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.end = &end
 	return r
 }
 
 // One Internet Protocol address that attempted to authenticate with the database.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) IpAddress(ipAddress string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) IpAddress(ipAddress string) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.ipAddress = &ipAddress
 	return r
 }
 
 // Maximum number of lines from the log to return.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) NLogs(nLogs int64) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) NLogs(nLogs int64) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.nLogs = &nLogs
 	return r
 }
 
 // Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) Start(start time.Time) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Start(start time.Time) AccessTrackingApiListAccessLogsByClusterNameRequest {
 	r.start = &start
 	return r
 }
 
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
-	return r.ApiService.ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameExecute(r)
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+	return r.ApiService.ListAccessLogsByClusterNameExecute(r)
 }
 
 /*
-ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName Return Database Access History for One Cluster using Its Cluster Name
+ListAccessLogsByClusterName Return Database Access History for One Cluster using Its Cluster Name
 
 Returns the access logs of one cluster identified by the cluster's name. Access logs contain a list of authentication requests made against your cluster. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
- @return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest
+ @return AccessTrackingApiListAccessLogsByClusterNameRequest
 */
-func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest {
-	return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest{
+func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiListAccessLogsByClusterNameRequest {
+	return AccessTrackingApiListAccessLogsByClusterNameRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -140,7 +140,7 @@ func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsing
 
 // Execute executes the request
 //  @return ApiMongoDBAccessLogsListView
-func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameExecute(r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -148,7 +148,7 @@ func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsing
 		localVarReturnValue  *ApiMongoDBAccessLogsListView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ReturnDatabaseAccessHistoryForOneClusterUsingItsClusterName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ListAccessLogsByClusterName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -280,7 +280,7 @@ func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsing
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest struct {
+type AccessTrackingApiListAccessLogsByHostnameRequest struct {
 	ctx context.Context
 	ApiService AccessTrackingApi
 	groupId string
@@ -295,63 +295,63 @@ type AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRe
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) Envelope(envelope bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) Envelope(envelope bool) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) Pretty(pretty bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) Pretty(pretty bool) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) AuthResult(authResult bool) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) AuthResult(authResult bool) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.authResult = &authResult
 	return r
 }
 
 // Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) End(end time.Time) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) End(end time.Time) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.end = &end
 	return r
 }
 
 // One Internet Protocol address that attempted to authenticate with the database.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) IpAddress(ipAddress string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) IpAddress(ipAddress string) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.ipAddress = &ipAddress
 	return r
 }
 
 // Maximum number of lines from the log to return.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) NLogs(nLogs int32) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) NLogs(nLogs int32) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.nLogs = &nLogs
 	return r
 }
 
 // Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) Start(start time.Time) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) Start(start time.Time) AccessTrackingApiListAccessLogsByHostnameRequest {
 	r.start = &start
 	return r
 }
 
-func (r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
-	return r.ApiService.ReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameExecute(r)
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+	return r.ApiService.ListAccessLogsByHostnameExecute(r)
 }
 
 /*
-ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname Return Database Access History for One Cluster using Its Hostname
+ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
 
 Returns the access logs of one cluster identified by the cluster's hostname. Access logs contain a list of authentication requests made against your clusters. You can't use this feature on tenant-tier clusters (M0, M2, M5). To use this resource, the requesting API Key must have the Project Monitoring Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
- @return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest
+ @return AccessTrackingApiListAccessLogsByHostnameRequest
 */
-func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest {
-	return AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest{
+func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiListAccessLogsByHostnameRequest {
+	return AccessTrackingApiListAccessLogsByHostnameRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -361,7 +361,7 @@ func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsing
 
 // Execute executes the request
 //  @return ApiMongoDBAccessLogsListView
-func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameExecute(r AccessTrackingApiReturnDatabaseAccessHistoryForOneClusterUsingItsHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -369,7 +369,7 @@ func (a *AccessTrackingApiService) ReturnDatabaseAccessHistoryForOneClusterUsing
 		localVarReturnValue  *ApiMongoDBAccessLogsListView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ReturnDatabaseAccessHistoryForOneClusterUsingItsHostname")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ListAccessLogsByHostname")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
