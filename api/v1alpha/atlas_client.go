@@ -1,4 +1,4 @@
-package v2 // import "go.mongodb.org/atlas/mongodbatlas/v2"
+package v1alpha // import "go.mongodb.org/atlas/mongodbatlas/v2"
 
 import (
 	"fmt"
@@ -89,3 +89,4 @@ func UseUserAgent(userAgent string) ClientModifier {
 		return nil
 	}
 }
+
