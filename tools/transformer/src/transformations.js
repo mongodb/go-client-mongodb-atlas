@@ -4,7 +4,7 @@ const {
   getNameFromYamlPath,
   getObjectNameFromReference,
   detectDuplicates,
-} = require('./utils');
+} = require("./utils");
 
 /**
  * Transforms provided API JSON file using allOf transformation
@@ -16,7 +16,7 @@ const {
 function applyAllOfTransformations(api, allOfTransformations) {
   for (let { path, obj } of allOfTransformations) {
     if (!obj || !path) {
-      throw new Error('Invalid transformation object');
+      throw new Error("Invalid transformation object");
     }
     const name = getNameFromYamlPath(path);
     transformAllOf(name, obj, api);
@@ -34,7 +34,7 @@ function applyAllOfTransformations(api, allOfTransformations) {
 function applyOneOfTransformations(api, oneOfTransformations) {
   for (let { obj } of oneOfTransformations) {
     if (!obj) {
-      throw new Error('Invalid transformation object');
+      throw new Error("Invalid transformation object");
     }
     transformOneOf(obj, api);
   }
@@ -57,16 +57,22 @@ function applyModelNameTransformations(api, prefix, suffix) {
 
   for (const schemaKey of Object.keys(api.components.schemas)) {
     if (schemaKey.startsWith(prefix) && schemaKey.endsWith(suffix)) {
-      const schemaTransformedName = schemaKey.replace(prefix, '').replace(suffix, '');
+      const schemaTransformedName = schemaKey
+        .replace(prefix, "")
+        .replace(suffix, "");
       if (api.components.schemas[schemaTransformedName]) {
-        throw new Error('components.schemas already contain key', schemaTransformedName);
+        throw new Error(
+          "components.schemas already contain key",
+          schemaTransformedName
+        );
       }
-      api.components.schemas[schemaTransformedName] = api.components.schemas[schemaKey];
+      api.components.schemas[schemaTransformedName] =
+        api.components.schemas[schemaKey];
       delete api.components.schemas[schemaKey];
     }
   }
 
-  let regexp = new RegExp(`"#/components/schemas/${prefix}(.*)${suffix}"`, 'g');
+  let regexp = new RegExp(`"#/components/schemas/${prefix}(.*)${suffix}"`, "g");
   let apiString = JSON.stringify(api, undefined, 2);
   let apiToReplace = apiString.replace(regexp, '"#/components/schemas/$1"');
   api = JSON.parse(apiToReplace);
@@ -80,7 +86,9 @@ function transformAllOf(objectName, parentObject, api) {
   }
 
   if (!parentObject.properties) {
-    return console.error(`Transformation cannot be performed. ${objectName}.properties is empty`);
+    return console.error(
+      `Transformation cannot be performed. ${objectName}.properties is empty`
+    );
   }
 
   const parentProperties = parentObject.properties;
@@ -103,15 +111,27 @@ function transformAllOf(objectName, parentObject, api) {
     }
     const childName = getObjectNameFromReference(obj);
     if (child.allOf[0].properties) {
-      console.debug(`${objectName}: moving parent properties into ${childName} properties`);
+      console.debug(
+        `${objectName}: moving parent properties into ${childName} properties`
+      );
       var propertiesParent = JSON.parse(JSON.stringify(parentProperties));
       var childProperties = child.properties;
       var propertiesAllOfChild = child.allOf[0].properties;
-      var duplicates = detectDuplicates([propertiesParent, childProperties, propertiesAllOfChild]);
+      var duplicates = detectDuplicates([
+        propertiesParent,
+        childProperties,
+        propertiesAllOfChild,
+      ]);
       if (duplicates.length > 0) {
-        console.warn(`${childName}: detected properties that would be overriden: ${duplicates}`);
+        console.warn(
+          `${childName}: detected properties that would be overriden: ${duplicates}`
+        );
       }
-      child.properties = { ...propertiesParent, ...childProperties, ...propertiesAllOfChild };
+      child.properties = {
+        ...propertiesParent,
+        ...childProperties,
+        ...propertiesAllOfChild,
+      };
     }
     delete child.allOf;
   }
@@ -132,23 +152,39 @@ function transformOneOf(parentObject, api) {
 
     if (oneOfObject.properties && oneOfObject.enum) {
       const errorData = JSON.stringify(oneOfObject);
-      throw new Error(`Object cannot contain both enum and properties: ${errorData}`);
+      throw new Error(
+        `Object cannot contain both enum and properties: ${errorData}`
+      );
     }
 
     // Handle properties
     if (oneOfObject.properties) {
-      const propertiesOneOf = JSON.parse(JSON.stringify(oneOfObject.properties));
-      console.debug(`${oneOfObject.title}: moving child properties into parent`);
-      const duplicates = detectDuplicates([parentObject.properties, propertiesOneOf]);
+      const propertiesOneOf = JSON.parse(
+        JSON.stringify(oneOfObject.properties)
+      );
+      console.debug(
+        `${oneOfObject.title}: moving child properties into parent`
+      );
+      const duplicates = detectDuplicates([
+        parentObject.properties,
+        propertiesOneOf,
+      ]);
       if (duplicates.length > 0) {
-        const duplicatesSource = oneOfObject.title || '';
-        console.warn(`## ${duplicatesSource} - Detected properties that would be overriden: ${duplicates}\n`);
+        const duplicatesSource = oneOfObject.title || "";
+        console.warn(
+          `## ${duplicatesSource} - Detected properties that would be overriden: ${duplicates}\n`
+        );
       }
-      parentObject.properties = { ...parentObject.properties, ...propertiesOneOf };
+      parentObject.properties = {
+        ...parentObject.properties,
+        ...propertiesOneOf,
+      };
     }
 
     if (oneOfObject.enum) {
-      console.debug(`${oneOfObject.title}: moving child enum values into parent`);
+      console.debug(
+        `${oneOfObject.title}: moving child enum values into parent`
+      );
       if (!parentObject.enum) {
         parentObject.enum = [];
       }
@@ -167,5 +203,5 @@ function transformOneOf(parentObject, api) {
 module.exports = {
   applyAllOfTransformations,
   applyOneOfTransformations,
-  applyModelNameTransformations
+  applyModelNameTransformations,
 };

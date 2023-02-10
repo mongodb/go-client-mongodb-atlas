@@ -229,7 +229,14 @@
             "oneOf": [
               {
                 "type": "string",
-                "enum": ["US_GOV_WEST_1", "US_GOV_EAST_1", "US_EAST_1", "US_EAST_2", "US_WEST_1", "US_WEST_2"],
+                "enum": [
+                  "US_GOV_WEST_1",
+                  "US_GOV_EAST_1",
+                  "US_EAST_1",
+                  "US_EAST_2",
+                  "US_WEST_1",
+                  "US_WEST_2"
+                ],
                 "title": "AWS Regions"
               },
               {
@@ -239,7 +246,13 @@
               },
               {
                 "type": "string",
-                "enum": ["EASTERN_US", "US_EAST_4", "US_WEST_2", "US_WEST_3", "US_WEST_4"],
+                "enum": [
+                  "EASTERN_US",
+                  "US_EAST_4",
+                  "US_WEST_2",
+                  "US_WEST_3",
+                  "US_WEST_4"
+                ],
                 "title": "GCP Regions"
               }
             ]

@@ -8,9 +8,19 @@
     "yaml": "2.2.1"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "2.5.2"
+    "@openapitools/openapi-generator-cli": "2.5.2",
+    "jest": "29.4.2",
+    "prettier": "2.8.4"
   },
   "scripts": {
-    "sdk:transform": "node ./transformer/src/transform"
+    "sdk:transform": "node ./transformer/src/transform",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "jest **/__tests__/**.test.js",
+    "ci": "npm run test && npm run format:check"
+  },
+  "engines": {
+    "node": ">= 14",
+    "npm": ">= 5"
   }
 }
