@@ -1,2 +1,2 @@
-/v2/api
-/v2/.openapi-generator
+./v1alpha/api
+./v1alpha/.openapi-generator

@@ -89,4 +89,3 @@ func UseUserAgent(userAgent string) ClientModifier {
 		return nil
 	}
 }
-
