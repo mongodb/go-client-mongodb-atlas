@@ -19,7 +19,7 @@ type GroupPaginatedEventView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []EventViewForGroup `json:"results,omitempty"`
+	Results []EventViewForNdsGroup `json:"results,omitempty"`
 	// Number of documents returned in this response if **includeCount** query param is true.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -66,9 +66,9 @@ func (o *GroupPaginatedEventView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *GroupPaginatedEventView) GetResults() []EventViewForGroup {
+func (o *GroupPaginatedEventView) GetResults() []EventViewForNdsGroup {
 	if o == nil || o.Results == nil {
-		var ret []EventViewForGroup
+		var ret []EventViewForNdsGroup
 		return ret
 	}
 	return o.Results
@@ -76,7 +76,7 @@ func (o *GroupPaginatedEventView) GetResults() []EventViewForGroup {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedEventView) GetResultsOk() ([]EventViewForGroup, bool) {
+func (o *GroupPaginatedEventView) GetResultsOk() ([]EventViewForNdsGroup, bool) {
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *GroupPaginatedEventView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []EventViewForGroup and assigns it to the Results field.
-func (o *GroupPaginatedEventView) SetResults(v []EventViewForGroup) {
+// SetResults gets a reference to the given []EventViewForNdsGroup and assigns it to the Results field.
+func (o *GroupPaginatedEventView) SetResults(v []EventViewForNdsGroup) {
 	o.Results = v
 }
 

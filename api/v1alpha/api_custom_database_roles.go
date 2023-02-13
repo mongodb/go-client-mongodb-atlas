@@ -23,87 +23,87 @@ import (
 type CustomDatabaseRolesApi interface {
 
 	/*
-	CreateOneCustomRole Create One Custom Role
+	CreateCustomDatabaseRole Create One Custom Role
 
 	Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return CustomDatabaseRolesApiCreateOneCustomRoleRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest
 	*/
-	CreateOneCustomRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateOneCustomRoleRequest
+	CreateCustomDatabaseRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest
 
-	// CreateOneCustomRoleExecute executes the request
+	// CreateCustomDatabaseRoleExecute executes the request
 	//  @return CustomDBRole
-	CreateOneCustomRoleExecute(r CustomDatabaseRolesApiCreateOneCustomRoleRequest) (*CustomDBRole, *http.Response, error)
+	CreateCustomDatabaseRoleExecute(r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error)
 
 	/*
-	RemoveOneCustomRoleFromOneProject Remove One Custom Role from One Project
+	DeleteCustomDatabaseRole Remove One Custom Role from One Project
 
 	Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
-	@return CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest
+	@return CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest
 	*/
-	RemoveOneCustomRoleFromOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest
+	DeleteCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest
 
-	// RemoveOneCustomRoleFromOneProjectExecute executes the request
-	RemoveOneCustomRoleFromOneProjectExecute(r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) (*http.Response, error)
+	// DeleteCustomDatabaseRoleExecute executes the request
+	DeleteCustomDatabaseRoleExecute(r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) (*http.Response, error)
 
 	/*
-	ReturnAllCustomRolesInOneProject Return All Custom Roles in One Project
-
-	Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
-	*/
-	ReturnAllCustomRolesInOneProject(ctx context.Context, groupId string) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
-
-	// ReturnAllCustomRolesInOneProjectExecute executes the request
-	//  @return []CustomDBRole
-	ReturnAllCustomRolesInOneProjectExecute(r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) ([]CustomDBRole, *http.Response, error)
-
-	/*
-	ReturnOneCustomRoleInOneProject Return One Custom Role in One Project
+	GetCustomDatabaseRole Return One Custom Role in One Project
 
 	Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
-	@return CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest
+	@return CustomDatabaseRolesApiGetCustomDatabaseRoleRequest
 	*/
-	ReturnOneCustomRoleInOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest
+	GetCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest
 
-	// ReturnOneCustomRoleInOneProjectExecute executes the request
+	// GetCustomDatabaseRoleExecute executes the request
 	//  @return CustomDBRole
-	ReturnOneCustomRoleInOneProjectExecute(r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) (*CustomDBRole, *http.Response, error)
+	GetCustomDatabaseRoleExecute(r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error)
 
 	/*
-	UpdateOneCustomRoleInOneProject Update One Custom Role in One Project
+	ListCustomDatabaseRoles Return All Custom Roles in One Project
+
+	Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return CustomDatabaseRolesApiListCustomDatabaseRolesRequest
+	*/
+	ListCustomDatabaseRoles(ctx context.Context, groupId string) CustomDatabaseRolesApiListCustomDatabaseRolesRequest
+
+	// ListCustomDatabaseRolesExecute executes the request
+	//  @return []CustomDBRole
+	ListCustomDatabaseRolesExecute(r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) ([]CustomDBRole, *http.Response, error)
+
+	/*
+	UpdateCustomDatabaseRole Update One Custom Role in One Project
 
 	Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param roleName Human-readable label that identifies the role for the request. This name must beunique for this custom role in this project.
-	@return CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest
+	@return CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest
 	*/
-	UpdateOneCustomRoleInOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest
+	UpdateCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest
 
-	// UpdateOneCustomRoleInOneProjectExecute executes the request
+	// UpdateCustomDatabaseRoleExecute executes the request
 	//  @return CustomDBRole
-	UpdateOneCustomRoleInOneProjectExecute(r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) (*CustomDBRole, *http.Response, error)
+	UpdateCustomDatabaseRoleExecute(r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error)
 }
 
 // CustomDatabaseRolesApiService CustomDatabaseRolesApi service
 type CustomDatabaseRolesApiService service
 
-type CustomDatabaseRolesApiCreateOneCustomRoleRequest struct {
+type CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest struct {
 	ctx context.Context
 	ApiService CustomDatabaseRolesApi
 	groupId string
@@ -113,38 +113,38 @@ type CustomDatabaseRolesApiCreateOneCustomRoleRequest struct {
 }
 
 // Creates one custom role in the specified project.
-func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) CustomDBRole(customDBRole CustomDBRole) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
+func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) CustomDBRole(customDBRole CustomDBRole) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
 	r.customDBRole = &customDBRole
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
+func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CustomDatabaseRolesApiCreateOneCustomRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.CreateOneCustomRoleExecute(r)
+func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
+	return r.ApiService.CreateCustomDatabaseRoleExecute(r)
 }
 
 /*
-CreateOneCustomRole Create One Custom Role
+CreateCustomDatabaseRole Create One Custom Role
 
 Creates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return CustomDatabaseRolesApiCreateOneCustomRoleRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest
 */
-func (a *CustomDatabaseRolesApiService) CreateOneCustomRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateOneCustomRoleRequest {
-	return CustomDatabaseRolesApiCreateOneCustomRoleRequest{
+func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRole(ctx context.Context, groupId string) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
+	return CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -153,7 +153,7 @@ func (a *CustomDatabaseRolesApiService) CreateOneCustomRole(ctx context.Context,
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) CreateOneCustomRoleExecute(r CustomDatabaseRolesApiCreateOneCustomRoleRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRoleExecute(r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -161,7 +161,7 @@ func (a *CustomDatabaseRolesApiService) CreateOneCustomRoleExecute(r CustomDatab
 		localVarReturnValue  *CustomDBRole
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.CreateOneCustomRole")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.CreateCustomDatabaseRole")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -309,7 +309,7 @@ func (a *CustomDatabaseRolesApiService) CreateOneCustomRoleExecute(r CustomDatab
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest struct {
+type CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest struct {
 	ctx context.Context
 	ApiService CustomDatabaseRolesApi
 	groupId string
@@ -319,33 +319,33 @@ type CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) Envelope(envelope bool) CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest {
+func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneCustomRoleFromOneProjectExecute(r)
+func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteCustomDatabaseRoleExecute(r)
 }
 
 /*
-RemoveOneCustomRoleFromOneProject Remove One Custom Role from One Project
+DeleteCustomDatabaseRole Remove One Custom Role from One Project
 
 Removes one custom role from the specified project. You can't remove a custom role that would leave one or more child roles with no parent roles or actions. You also can't remove a custom role that would leave one or more database users without roles. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
- @return CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest
+ @return CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest
 */
-func (a *CustomDatabaseRolesApiService) RemoveOneCustomRoleFromOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest {
-	return CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest{
+func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
+	return CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -354,14 +354,14 @@ func (a *CustomDatabaseRolesApiService) RemoveOneCustomRoleFromOneProject(ctx co
 }
 
 // Execute executes the request
-func (a *CustomDatabaseRolesApiService) RemoveOneCustomRoleFromOneProjectExecute(r CustomDatabaseRolesApiRemoveOneCustomRoleFromOneProjectRequest) (*http.Response, error) {
+func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRoleExecute(r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.RemoveOneCustomRoleFromOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.DeleteCustomDatabaseRole")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -485,157 +485,7 @@ func (a *CustomDatabaseRolesApiService) RemoveOneCustomRoleFromOneProjectExecute
 	return localVarHTTPResponse, nil
 }
 
-type CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest struct {
-	ctx context.Context
-	ApiService CustomDatabaseRolesApi
-	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) Envelope(envelope bool) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) Execute() ([]CustomDBRole, *http.Response, error) {
-	return r.ApiService.ReturnAllCustomRolesInOneProjectExecute(r)
-}
-
-/*
-ReturnAllCustomRolesInOneProject Return All Custom Roles in One Project
-
-Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest
-*/
-func (a *CustomDatabaseRolesApiService) ReturnAllCustomRolesInOneProject(ctx context.Context, groupId string) CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest {
-	return CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return []CustomDBRole
-func (a *CustomDatabaseRolesApiService) ReturnAllCustomRolesInOneProjectExecute(r CustomDatabaseRolesApiReturnAllCustomRolesInOneProjectRequest) ([]CustomDBRole, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []CustomDBRole
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.ReturnAllCustomRolesInOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/customDBRoles/roles"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest struct {
+type CustomDatabaseRolesApiGetCustomDatabaseRoleRequest struct {
 	ctx context.Context
 	ApiService CustomDatabaseRolesApi
 	groupId string
@@ -645,33 +495,33 @@ type CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) Envelope(envelope bool) CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest {
+func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.ReturnOneCustomRoleInOneProjectExecute(r)
+func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
+	return r.ApiService.GetCustomDatabaseRoleExecute(r)
 }
 
 /*
-ReturnOneCustomRoleInOneProject Return One Custom Role in One Project
+GetCustomDatabaseRole Return One Custom Role in One Project
 
 Returns one custom role for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param roleName Human-readable label that identifies the role for the request. This name must be unique for this custom role in this project.
- @return CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest
+ @return CustomDatabaseRolesApiGetCustomDatabaseRoleRequest
 */
-func (a *CustomDatabaseRolesApiService) ReturnOneCustomRoleInOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest {
-	return CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest{
+func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
+	return CustomDatabaseRolesApiGetCustomDatabaseRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -681,7 +531,7 @@ func (a *CustomDatabaseRolesApiService) ReturnOneCustomRoleInOneProject(ctx cont
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) ReturnOneCustomRoleInOneProjectExecute(r CustomDatabaseRolesApiReturnOneCustomRoleInOneProjectRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRoleExecute(r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -689,7 +539,7 @@ func (a *CustomDatabaseRolesApiService) ReturnOneCustomRoleInOneProjectExecute(r
 		localVarReturnValue  *CustomDBRole
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.ReturnOneCustomRoleInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.GetCustomDatabaseRole")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -800,7 +650,157 @@ func (a *CustomDatabaseRolesApiService) ReturnOneCustomRoleInOneProjectExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest struct {
+type CustomDatabaseRolesApiListCustomDatabaseRolesRequest struct {
+	ctx context.Context
+	ApiService CustomDatabaseRolesApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Envelope(envelope bool) CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Pretty(pretty bool) CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Execute() ([]CustomDBRole, *http.Response, error) {
+	return r.ApiService.ListCustomDatabaseRolesExecute(r)
+}
+
+/*
+ListCustomDatabaseRoles Return All Custom Roles in One Project
+
+Returns all custom roles for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return CustomDatabaseRolesApiListCustomDatabaseRolesRequest
+*/
+func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRoles(ctx context.Context, groupId string) CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
+	return CustomDatabaseRolesApiListCustomDatabaseRolesRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return []CustomDBRole
+func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRolesExecute(r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) ([]CustomDBRole, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []CustomDBRole
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.ListCustomDatabaseRoles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/customDBRoles/roles"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest struct {
 	ctx context.Context
 	ApiService CustomDatabaseRolesApi
 	groupId string
@@ -811,39 +811,39 @@ type CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest struct {
 }
 
 // Updates one custom role in the specified project.
-func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) UpdateCustomDBRole(updateCustomDBRole UpdateCustomDBRole) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest {
+func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) UpdateCustomDBRole(updateCustomDBRole UpdateCustomDBRole) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
 	r.updateCustomDBRole = &updateCustomDBRole
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) Envelope(envelope bool) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest {
+func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) Pretty(pretty bool) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.UpdateOneCustomRoleInOneProjectExecute(r)
+func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
+	return r.ApiService.UpdateCustomDatabaseRoleExecute(r)
 }
 
 /*
-UpdateOneCustomRoleInOneProject Update One Custom Role in One Project
+UpdateCustomDatabaseRole Update One Custom Role in One Project
 
 Updates one custom role in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param roleName Human-readable label that identifies the role for the request. This name must beunique for this custom role in this project.
- @return CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest
+ @return CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest
 */
-func (a *CustomDatabaseRolesApiService) UpdateOneCustomRoleInOneProject(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest {
-	return CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest{
+func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRole(ctx context.Context, groupId string, roleName string) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
+	return CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -853,7 +853,7 @@ func (a *CustomDatabaseRolesApiService) UpdateOneCustomRoleInOneProject(ctx cont
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) UpdateOneCustomRoleInOneProjectExecute(r CustomDatabaseRolesApiUpdateOneCustomRoleInOneProjectRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRoleExecute(r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -861,7 +861,7 @@ func (a *CustomDatabaseRolesApiService) UpdateOneCustomRoleInOneProjectExecute(r
 		localVarReturnValue  *CustomDBRole
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.UpdateOneCustomRoleInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomDatabaseRolesApiService.UpdateCustomDatabaseRole")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

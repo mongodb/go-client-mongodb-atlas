@@ -23,59 +23,59 @@ import (
 type SharedTierRestoreJobsApi interface {
 
 	/*
-	CreateOneRestoreJobFromOneM2OrM5Cluster Create One Restore Job from One M2 or M5 Cluster
+	CreateSharedClusterBackupRestoreJob Create One Restore Job from One M2 or M5 Cluster
 
 	Restores the specified cluster. MongoDB Cloud limits which clusters can be the target clusters of a restore. The target cluster can't use encryption at rest, run a major release MongoDB version different than the snapshot, or receive client requests during restores. MongoDB Cloud deletes all existing data on the target cluster prior to the restore operation. To use this resource, the requesting API Key must have the Atlas Project Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest
 	*/
-	CreateOneRestoreJobFromOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
+	CreateSharedClusterBackupRestoreJob(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest
 
-	// CreateOneRestoreJobFromOneM2OrM5ClusterExecute executes the request
+	// CreateSharedClusterBackupRestoreJobExecute executes the request
 	//  @return TenantRestore
-	CreateOneRestoreJobFromOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) (*TenantRestore, *http.Response, error)
+	CreateSharedClusterBackupRestoreJobExecute(r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) (*TenantRestore, *http.Response, error)
 
 	/*
-	ReturnAllRestoreJobsForOneM2OrM5Cluster Return All Restore Jobs for One M2 or M5 Cluster
-
-	Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
-	*/
-	ReturnAllRestoreJobsForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
-
-	// ReturnAllRestoreJobsForOneM2OrM5ClusterExecute executes the request
-	//  @return PaginatedTenantRestoreView
-	ReturnAllRestoreJobsForOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) (*PaginatedTenantRestoreView, *http.Response, error)
-
-	/*
-	ReturnOneRestoreJobForOneM2OrM5Cluster Return One Restore Job for One M2 or M5 Cluster
+	GetSharedClusterBackupRestoreJob Return One Restore Job for One M2 or M5 Cluster
 
 	Returns the specified restore job. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param restoreId Unique 24-hexadecimal digit string that identifies the restore job to return.
-	@return SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest
+	@return SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest
 	*/
-	ReturnOneRestoreJobForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string, restoreId string) SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest
+	GetSharedClusterBackupRestoreJob(ctx context.Context, clusterName string, groupId string, restoreId string) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest
 
-	// ReturnOneRestoreJobForOneM2OrM5ClusterExecute executes the request
+	// GetSharedClusterBackupRestoreJobExecute executes the request
 	//  @return TenantRestore
-	ReturnOneRestoreJobForOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) (*TenantRestore, *http.Response, error)
+	GetSharedClusterBackupRestoreJobExecute(r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) (*TenantRestore, *http.Response, error)
+
+	/*
+	ListSharedClusterBackupRestoreJobs Return All Restore Jobs for One M2 or M5 Cluster
+
+	Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clusterName Human-readable label that identifies the cluster.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest
+	*/
+	ListSharedClusterBackupRestoreJobs(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest
+
+	// ListSharedClusterBackupRestoreJobsExecute executes the request
+	//  @return PaginatedTenantRestoreView
+	ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestoreView, *http.Response, error)
 }
 
 // SharedTierRestoreJobsApiService SharedTierRestoreJobsApi service
 type SharedTierRestoreJobsApiService service
 
-type SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest struct {
+type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest struct {
 	ctx context.Context
 	ApiService SharedTierRestoreJobsApi
 	clusterName string
@@ -86,39 +86,39 @@ type SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest stru
 }
 
 // The restore job details.
-func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) TenantRestore(tenantRestore TenantRestore) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
+func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) TenantRestore(tenantRestore TenantRestore) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
 	r.tenantRestore = &tenantRestore
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) Envelope(envelope bool) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
+func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) Envelope(envelope bool) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) Pretty(pretty bool) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) Execute() (*TenantRestore, *http.Response, error) {
-	return r.ApiService.CreateOneRestoreJobFromOneM2OrM5ClusterExecute(r)
+func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) Execute() (*TenantRestore, *http.Response, error) {
+	return r.ApiService.CreateSharedClusterBackupRestoreJobExecute(r)
 }
 
 /*
-CreateOneRestoreJobFromOneM2OrM5Cluster Create One Restore Job from One M2 or M5 Cluster
+CreateSharedClusterBackupRestoreJob Create One Restore Job from One M2 or M5 Cluster
 
 Restores the specified cluster. MongoDB Cloud limits which clusters can be the target clusters of a restore. The target cluster can't use encryption at rest, run a major release MongoDB version different than the snapshot, or receive client requests during restores. MongoDB Cloud deletes all existing data on the target cluster prior to the restore operation. To use this resource, the requesting API Key must have the Atlas Project Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest
 */
-func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest {
-	return SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest{
+func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJob(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
+	return SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		clusterName: clusterName,
@@ -128,7 +128,7 @@ func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5Cluste
 
 // Execute executes the request
 //  @return TenantRestore
-func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiCreateOneRestoreJobFromOneM2OrM5ClusterRequest) (*TenantRestore, *http.Response, error) {
+func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExecute(r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) (*TenantRestore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -136,7 +136,7 @@ func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5Cluste
 		localVarReturnValue  *TenantRestore
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.CreateOneRestoreJobFromOneM2OrM5Cluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.CreateSharedClusterBackupRestoreJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -280,68 +280,72 @@ func (a *SharedTierRestoreJobsApiService) CreateOneRestoreJobFromOneM2OrM5Cluste
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest struct {
+type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest struct {
 	ctx context.Context
 	ApiService SharedTierRestoreJobsApi
 	clusterName string
 	groupId string
+	restoreId string
 	envelope *bool
 	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) Envelope(envelope bool) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest {
+func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Envelope(envelope bool) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Pretty(pretty bool) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) Execute() (*PaginatedTenantRestoreView, *http.Response, error) {
-	return r.ApiService.ReturnAllRestoreJobsForOneM2OrM5ClusterExecute(r)
+func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Execute() (*TenantRestore, *http.Response, error) {
+	return r.ApiService.GetSharedClusterBackupRestoreJobExecute(r)
 }
 
 /*
-ReturnAllRestoreJobsForOneM2OrM5Cluster Return All Restore Jobs for One M2 or M5 Cluster
+GetSharedClusterBackupRestoreJob Return One Restore Job for One M2 or M5 Cluster
 
-Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns the specified restore job. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param restoreId Unique 24-hexadecimal digit string that identifies the restore job to return.
+ @return SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest
 */
-func (a *SharedTierRestoreJobsApiService) ReturnAllRestoreJobsForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest {
-	return SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest{
+func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJob(ctx context.Context, clusterName string, groupId string, restoreId string) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
+	return SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		clusterName: clusterName,
 		groupId: groupId,
+		restoreId: restoreId,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedTenantRestoreView
-func (a *SharedTierRestoreJobsApiService) ReturnAllRestoreJobsForOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiReturnAllRestoreJobsForOneM2OrM5ClusterRequest) (*PaginatedTenantRestoreView, *http.Response, error) {
+//  @return TenantRestore
+func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJobExecute(r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) (*TenantRestore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTenantRestoreView
+		localVarReturnValue  *TenantRestore
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.ReturnAllRestoreJobsForOneM2OrM5Cluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.GetSharedClusterBackupRestoreJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/restores"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/restores/{restoreId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restoreId"+"}", url.PathEscape(parameterToString(r.restoreId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -357,6 +361,12 @@ func (a *SharedTierRestoreJobsApiService) ReturnAllRestoreJobsForOneM2OrM5Cluste
 	}
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.restoreId) < 24 {
+		return localVarReturnValue, nil, reportError("restoreId must have at least 24 elements")
+	}
+	if strlen(r.restoreId) > 24 {
+		return localVarReturnValue, nil, reportError("restoreId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -451,72 +461,68 @@ func (a *SharedTierRestoreJobsApiService) ReturnAllRestoreJobsForOneM2OrM5Cluste
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest struct {
+type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest struct {
 	ctx context.Context
 	ApiService SharedTierRestoreJobsApi
 	clusterName string
 	groupId string
-	restoreId string
 	envelope *bool
 	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) Envelope(envelope bool) SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest {
+func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Envelope(envelope bool) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Pretty(pretty bool) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) Execute() (*TenantRestore, *http.Response, error) {
-	return r.ApiService.ReturnOneRestoreJobForOneM2OrM5ClusterExecute(r)
+func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Execute() (*PaginatedTenantRestoreView, *http.Response, error) {
+	return r.ApiService.ListSharedClusterBackupRestoreJobsExecute(r)
 }
 
 /*
-ReturnOneRestoreJobForOneM2OrM5Cluster Return One Restore Job for One M2 or M5 Cluster
+ListSharedClusterBackupRestoreJobs Return All Restore Jobs for One M2 or M5 Cluster
 
-Returns the specified restore job. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all restore jobs for the specified M2 or M5 cluster. Restore jobs restore a cluster using a snapshot. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param restoreId Unique 24-hexadecimal digit string that identifies the restore job to return.
- @return SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest
 */
-func (a *SharedTierRestoreJobsApiService) ReturnOneRestoreJobForOneM2OrM5Cluster(ctx context.Context, clusterName string, groupId string, restoreId string) SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest {
-	return SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest{
+func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobs(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
+	return SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest{
 		ApiService: a,
 		ctx: ctx,
 		clusterName: clusterName,
 		groupId: groupId,
-		restoreId: restoreId,
 	}
 }
 
 // Execute executes the request
-//  @return TenantRestore
-func (a *SharedTierRestoreJobsApiService) ReturnOneRestoreJobForOneM2OrM5ClusterExecute(r SharedTierRestoreJobsApiReturnOneRestoreJobForOneM2OrM5ClusterRequest) (*TenantRestore, *http.Response, error) {
+//  @return PaginatedTenantRestoreView
+func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestoreView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TenantRestore
+		localVarReturnValue  *PaginatedTenantRestoreView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.ReturnOneRestoreJobForOneM2OrM5Cluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.ListSharedClusterBackupRestoreJobs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/restores/{restoreId}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/restores"
 	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"restoreId"+"}", url.PathEscape(parameterToString(r.restoreId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -532,12 +538,6 @@ func (a *SharedTierRestoreJobsApiService) ReturnOneRestoreJobForOneM2OrM5Cluster
 	}
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.restoreId) < 24 {
-		return localVarReturnValue, nil, reportError("restoreId must have at least 24 elements")
-	}
-	if strlen(r.restoreId) > 24 {
-		return localVarReturnValue, nil, reportError("restoreId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {

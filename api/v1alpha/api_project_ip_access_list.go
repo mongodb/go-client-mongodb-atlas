@@ -25,10 +25,10 @@ type ProjectIPAccessListApi interface {
 	/*
 	CreateProjectIpAccessList Add Entries to Project IP Access List
 
-	Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+	Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations. This endpoint doesn't support concurrent `POST` requests. You must submit multiple `POST` requests synchronously.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@return ProjectIPAccessListApiCreateProjectIpAccessListRequest
 	*/
 	CreateProjectIpAccessList(ctx context.Context, groupId string) ProjectIPAccessListApiCreateProjectIpAccessListRequest
@@ -40,10 +40,10 @@ type ProjectIPAccessListApi interface {
 	/*
 	DeleteProjectIpAccessList Remove One Entry from One Project IP Access List
 
-	Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+	Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param entryValue Access list entry that you want to remove from the project's IP access list. This value can use one of the following: one AWS security group ID, one IP address, or one CIDR block of addresses. For CIDR blocks that use a subnet mask, replace the forward slash (`/`) with its URL-encoded value (`%2F`). When you remove an entry from the IP access list, existing connections from the removed address or addresses may remain open for a variable amount of time. The amount of time it takes MongoDB Cloud to close the connection depends upon several factors, including:  - how your application established the connection, - how MongoDB Cloud or the driver using the address behaves, and - which protocol (like TCP or UDP) the connection uses.
 	@return ProjectIPAccessListApiDeleteProjectIpAccessListRequest
 	*/
@@ -58,7 +58,7 @@ type ProjectIPAccessListApi interface {
 	Returns the status of one project IP access list entry. This resource checks if the provided project IP access list entry applies to all cloud providers serving clusters from the specified project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param entryValue Network address or cloud provider security construct that identifies which project access list entry to be verified.
 	@return ProjectIPAccessListApiGetProjectIpAccessListStatusRequest
 	*/
@@ -71,10 +71,10 @@ type ProjectIPAccessListApi interface {
 	/*
 	GetProjectIpList Return One Project IP Access List Entry
 
-	Returns one access list entry from the specified project's IP access list. The project's IP access list entry contains either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+	Returns one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. This endpoint (`/groups/{GROUP-ID}/accessList`) manages the Project IP Access List. It doesn't manage the access list for MongoDB Cloud organizations. TheProgrammatic API Keys endpoint (`/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist`) manages those access lists.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param entryValue Access list entry that you want to return from the project's IP access list. This value can use one of the following: one AWS security group ID, one IP address, or one CIDR block of addresses. For CIDR blocks that use a subnet mask, replace the forward slash (`/`) with its URL-encoded value (`%2F`).
 	@return ProjectIPAccessListApiGetProjectIpListRequest
 	*/
@@ -87,10 +87,10 @@ type ProjectIPAccessListApi interface {
 	/*
 	ListProjectIpAccessLists Return Project IP Access List
 
-	Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+	Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@return ProjectIPAccessListApiListProjectIpAccessListsRequest
 	*/
 	ListProjectIpAccessLists(ctx context.Context, groupId string) ProjectIPAccessListApiListProjectIpAccessListsRequest
@@ -145,7 +145,7 @@ func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) PageNum(pageNum 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) Pretty(pretty bool) ProjectIPAccessListApiCreateProjectIpAccessListRequest {
 	r.pretty = &pretty
 	return r
@@ -158,10 +158,10 @@ func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) Execute() (*Pagi
 /*
 CreateProjectIpAccessList Add Entries to Project IP Access List
 
-Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+Adds one or more access list entries to the specified project. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. Write each entry as either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations. This endpoint doesn't support concurrent `POST` requests. You must submit multiple `POST` requests synchronously.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @return ProjectIPAccessListApiCreateProjectIpAccessListRequest
 */
 func (a *ProjectIPAccessListApiService) CreateProjectIpAccessList(ctx context.Context, groupId string) ProjectIPAccessListApiCreateProjectIpAccessListRequest {
@@ -332,7 +332,7 @@ func (r ProjectIPAccessListApiDeleteProjectIpAccessListRequest) Envelope(envelop
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProjectIPAccessListApiDeleteProjectIpAccessListRequest) Pretty(pretty bool) ProjectIPAccessListApiDeleteProjectIpAccessListRequest {
 	r.pretty = &pretty
 	return r
@@ -345,10 +345,10 @@ func (r ProjectIPAccessListApiDeleteProjectIpAccessListRequest) Execute() (*http
 /*
 DeleteProjectIpAccessList Remove One Entry from One Project IP Access List
 
-Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+Removes one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains one IP address, one CIDR-notated block of IP addresses, or one AWS Security Group ID. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param entryValue Access list entry that you want to remove from the project's IP access list. This value can use one of the following: one AWS security group ID, one IP address, or one CIDR block of addresses. For CIDR blocks that use a subnet mask, replace the forward slash (`/`) with its URL-encoded value (`%2F`). When you remove an entry from the IP access list, existing connections from the removed address or addresses may remain open for a variable amount of time. The amount of time it takes MongoDB Cloud to close the connection depends upon several factors, including:  - how your application established the connection, - how MongoDB Cloud or the driver using the address behaves, and - which protocol (like TCP or UDP) the connection uses.
  @return ProjectIPAccessListApiDeleteProjectIpAccessListRequest
 */
@@ -486,7 +486,7 @@ func (r ProjectIPAccessListApiGetProjectIpAccessListStatusRequest) Envelope(enve
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProjectIPAccessListApiGetProjectIpAccessListStatusRequest) Pretty(pretty bool) ProjectIPAccessListApiGetProjectIpAccessListStatusRequest {
 	r.pretty = &pretty
 	return r
@@ -502,7 +502,7 @@ GetProjectIpAccessListStatus Return Status of One Project IP Access List Entry
 Returns the status of one project IP access list entry. This resource checks if the provided project IP access list entry applies to all cloud providers serving clusters from the specified project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param entryValue Network address or cloud provider security construct that identifies which project access list entry to be verified.
  @return ProjectIPAccessListApiGetProjectIpAccessListStatusRequest
 */
@@ -673,7 +673,7 @@ func (r ProjectIPAccessListApiGetProjectIpListRequest) Envelope(envelope bool) P
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProjectIPAccessListApiGetProjectIpListRequest) Pretty(pretty bool) ProjectIPAccessListApiGetProjectIpListRequest {
 	r.pretty = &pretty
 	return r
@@ -686,10 +686,10 @@ func (r ProjectIPAccessListApiGetProjectIpListRequest) Execute() (*NetworkPermis
 /*
 GetProjectIpList Return One Project IP Access List Entry
 
-Returns one access list entry from the specified project's IP access list. The project's IP access list entry contains either one IP address or one CIDR-notated block of IP addresses. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns one access list entry from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. This endpoint (`/groups/{GROUP-ID}/accessList`) manages the Project IP Access List. It doesn't manage the access list for MongoDB Cloud organizations. TheProgrammatic API Keys endpoint (`/orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist`) manages those access lists.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param entryValue Access list entry that you want to return from the project's IP access list. This value can use one of the following: one AWS security group ID, one IP address, or one CIDR block of addresses. For CIDR blocks that use a subnet mask, replace the forward slash (`/`) with its URL-encoded value (`%2F`).
  @return ProjectIPAccessListApiGetProjectIpListRequest
 */
@@ -869,7 +869,7 @@ func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) PageNum(pageNum i
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) Pretty(pretty bool) ProjectIPAccessListApiListProjectIpAccessListsRequest {
 	r.pretty = &pretty
 	return r
@@ -882,10 +882,10 @@ func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) Execute() (*Pagin
 /*
 ListProjectIpAccessLists Return Project IP Access List
 
-Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+Returns all access list entries from the specified project's IP access list. Each entry in the project's IP access list contains either one IP address or one CIDR-notated block of IP addresses. MongoDB Cloud only allows client connections to the cluster from entries in the project's IP access list. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List. This resource replaces the whitelist resource. MongoDB Cloud removed whitelists in July 2021. Update your applications to use this new resource. The `/groups/{GROUP-ID}/accessList` endpoint manages the database IP access list. This endpoint is distinct from the `orgs/{ORG-ID}/apiKeys/{API-KEY-ID}/accesslist` endpoint, which manages the access list for MongoDB Cloud organizations.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @return ProjectIPAccessListApiListProjectIpAccessListsRequest
 */
 func (a *ProjectIPAccessListApiService) ListProjectIpAccessLists(ctx context.Context, groupId string) ProjectIPAccessListApiListProjectIpAccessListsRequest {

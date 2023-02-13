@@ -23,594 +23,204 @@ import (
 type LegacyBackupApi interface {
 
 	/*
-	ChangeOneLegacyBackupSnapshotExpiration Change One Legacy Backup Snapshot Expiration
-
-	Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster.
-	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest
-
-	Deprecated
-	*/
-	ChangeOneLegacyBackupSnapshotExpiration(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest
-
-	// ChangeOneLegacyBackupSnapshotExpirationExecute executes the request
-	//  @return ApiSnapshotView
-	// Deprecated
-	ChangeOneLegacyBackupSnapshotExpirationExecute(r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) (*ApiSnapshotView, *http.Response, error)
-
-	/*
-	CreateOneLegacyBackupRestoreJob Create One Legacy Backup Restore Job
-
-	Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
-
-	Deprecated
-	*/
-	CreateOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
-
-	// CreateOneLegacyBackupRestoreJobExecute executes the request
-	//  @return PaginatedRestoreJobView
-	// Deprecated
-	CreateOneLegacyBackupRestoreJobExecute(r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error)
-
-	/*
-	RemoveOneLegacyBackupSnapshot Remove One Legacy Backup Snapshot
+	DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
 	Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest
+	@return LegacyBackupApiDeleteLegacySnapshotRequest
 
 	Deprecated
 	*/
-	RemoveOneLegacyBackupSnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest
+	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiDeleteLegacySnapshotRequest
 
-	// RemoveOneLegacyBackupSnapshotExecute executes the request
+	// DeleteLegacySnapshotExecute executes the request
 	// Deprecated
-	RemoveOneLegacyBackupSnapshotExecute(r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) (*http.Response, error)
+	DeleteLegacySnapshotExecute(r LegacyBackupApiDeleteLegacySnapshotRequest) (*http.Response, error)
 
 	/*
-	ReturnAllLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
-
-	Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-	@return LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest
-
-	Deprecated
-	*/
-	ReturnAllLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest
-
-	// ReturnAllLegacyBackupCheckpointsExecute executes the request
-	//  @return PaginatedApiAtlasCheckpointView
-	// Deprecated
-	ReturnAllLegacyBackupCheckpointsExecute(r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error)
-
-	/*
-	ReturnAllLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
-
-	Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest
-
-	Deprecated
-	*/
-	ReturnAllLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest
-
-	// ReturnAllLegacyBackupRestoreJobsExecute executes the request
-	//  @return PaginatedRestoreJobView
-	// Deprecated
-	ReturnAllLegacyBackupRestoreJobsExecute(r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error)
-
-	/*
-	ReturnAllLegacyBackupSnapshots Return All Legacy Backup Snapshots
-
-	Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster.
-	@return LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest
-
-	Deprecated
-	*/
-	ReturnAllLegacyBackupSnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest
-
-	// ReturnAllLegacyBackupSnapshotsExecute executes the request
-	//  @return PaginatedSnapshotView
-	// Deprecated
-	ReturnAllLegacyBackupSnapshotsExecute(r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error)
-
-	/*
-	ReturnOneLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
+	GetLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
 
 	Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-	@return LegacyBackupApiReturnOneLegacyBackupCheckpointRequest
+	@return LegacyBackupApiGetLegacyBackupCheckpointRequest
 
 	Deprecated
 	*/
-	ReturnOneLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiReturnOneLegacyBackupCheckpointRequest
+	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiGetLegacyBackupCheckpointRequest
 
-	// ReturnOneLegacyBackupCheckpointExecute executes the request
+	// GetLegacyBackupCheckpointExecute executes the request
 	//  @return Checkpoint
 	// Deprecated
-	ReturnOneLegacyBackupCheckpointExecute(r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error)
+	GetLegacyBackupCheckpointExecute(r LegacyBackupApiGetLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error)
 
 	/*
-	ReturnOneLegacyBackupRestoreJob Return One Legacy Backup Restore Job
+	GetLegacyBackupRestoreJob Return One Legacy Backup Restore Job
 
 	Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@param jobId Unique 24-hexadecimal digit string that identifies the restore job.
-	@return LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest
+	@return LegacyBackupApiGetLegacyBackupRestoreJobRequest
 
 	Deprecated
 	*/
-	ReturnOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest
+	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiGetLegacyBackupRestoreJobRequest
 
-	// ReturnOneLegacyBackupRestoreJobExecute executes the request
+	// GetLegacyBackupRestoreJobExecute executes the request
 	//  @return ApiRestoreJobView
 	// Deprecated
-	ReturnOneLegacyBackupRestoreJobExecute(r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error)
+	GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error)
 
 	/*
-	ReturnOneLegacyBackupSnapshot Return One Legacy Backup Snapshot
+	GetLegacySnapshot Return One Legacy Backup Snapshot
 
 	Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiReturnOneLegacyBackupSnapshotRequest
+	@return LegacyBackupApiGetLegacySnapshotRequest
 
 	Deprecated
 	*/
-	ReturnOneLegacyBackupSnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiReturnOneLegacyBackupSnapshotRequest
+	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiGetLegacySnapshotRequest
 
-	// ReturnOneLegacyBackupSnapshotExecute executes the request
+	// GetLegacySnapshotExecute executes the request
 	//  @return ApiSnapshotView
 	// Deprecated
-	ReturnOneLegacyBackupSnapshotExecute(r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) (*ApiSnapshotView, *http.Response, error)
+	GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*ApiSnapshotView, *http.Response, error)
 
 	/*
-	ReturnOneSnapshotSchedule Return One Snapshot Schedule
+	GetLegacySnapshotSchedule Return One Snapshot Schedule
 
 	Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiReturnOneSnapshotScheduleRequest
+	@return LegacyBackupApiGetLegacySnapshotScheduleRequest
 
 	Deprecated
 	*/
-	ReturnOneSnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnOneSnapshotScheduleRequest
+	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiGetLegacySnapshotScheduleRequest
 
-	// ReturnOneSnapshotScheduleExecute executes the request
+	// GetLegacySnapshotScheduleExecute executes the request
 	//  @return SnapshotSchedule
 	// Deprecated
-	ReturnOneSnapshotScheduleExecute(r LegacyBackupApiReturnOneSnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error)
+	GetLegacySnapshotScheduleExecute(r LegacyBackupApiGetLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error)
 
 	/*
-	UpdateSnapshotScheduleForOneCluster Update Snapshot Schedule for One Cluster
+	ListLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
+
+	Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
+	@return LegacyBackupApiListLegacyBackupCheckpointsRequest
+
+	Deprecated
+	*/
+	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupCheckpointsRequest
+
+	// ListLegacyBackupCheckpointsExecute executes the request
+	//  @return PaginatedApiAtlasCheckpointView
+	// Deprecated
+	ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error)
+
+	/*
+	ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
+
+	Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
+	@return LegacyBackupApiListLegacyBackupRestoreJobsRequest
+
+	Deprecated
+	*/
+	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupRestoreJobsRequest
+
+	// ListLegacyBackupRestoreJobsExecute executes the request
+	//  @return PaginatedRestoreJobView
+	// Deprecated
+	ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error)
+
+	/*
+	ListLegacySnapshots Return All Legacy Backup Snapshots
+
+	Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster.
+	@return LegacyBackupApiListLegacySnapshotsRequest
+
+	Deprecated
+	*/
+	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacySnapshotsRequest
+
+	// ListLegacySnapshotsExecute executes the request
+	//  @return PaginatedSnapshotView
+	// Deprecated
+	ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error)
+
+	/*
+	UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
+
+	Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster.
+	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
+	@return LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+
+	Deprecated
+	*/
+	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+
+	// UpdateLegacySnapshotRetentionExecute executes the request
+	//  @return ApiSnapshotView
+	// Deprecated
+	UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*ApiSnapshotView, *http.Response, error)
+
+	/*
+	UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
 
 	Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest
+	@return LegacyBackupApiUpdateLegacySnapshotScheduleRequest
 
 	Deprecated
 	*/
-	UpdateSnapshotScheduleForOneCluster(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest
+	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateLegacySnapshotScheduleRequest
 
-	// UpdateSnapshotScheduleForOneClusterExecute executes the request
+	// UpdateLegacySnapshotScheduleExecute executes the request
 	//  @return SnapshotSchedule
 	// Deprecated
-	UpdateSnapshotScheduleForOneClusterExecute(r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) (*SnapshotSchedule, *http.Response, error)
+	UpdateLegacySnapshotScheduleExecute(r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error)
 }
 
 // LegacyBackupApiService LegacyBackupApi service
 type LegacyBackupApiService service
 
-type LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest struct {
-	ctx context.Context
-	ApiService LegacyBackupApi
-	groupId string
-	clusterName string
-	snapshotId string
-	apiSnapshotView *ApiSnapshotView
-	envelope *bool
-	pretty *bool
-}
-
-// Changes One Legacy Backup Snapshot Expiration.
-func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) ApiSnapshotView(apiSnapshotView ApiSnapshotView) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest {
-	r.apiSnapshotView = &apiSnapshotView
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) Envelope(envelope bool) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) Pretty(pretty bool) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
-	return r.ApiService.ChangeOneLegacyBackupSnapshotExpirationExecute(r)
-}
-
-/*
-ChangeOneLegacyBackupSnapshotExpiration Change One Legacy Backup Snapshot Expiration
-
-Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param clusterName Human-readable label that identifies the cluster.
- @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest
-
-Deprecated
-*/
-func (a *LegacyBackupApiService) ChangeOneLegacyBackupSnapshotExpiration(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest {
-	return LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-		snapshotId: snapshotId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiSnapshotView
-// Deprecated
-func (a *LegacyBackupApiService) ChangeOneLegacyBackupSnapshotExpirationExecute(r LegacyBackupApiChangeOneLegacyBackupSnapshotExpirationRequest) (*ApiSnapshotView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiSnapshotView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ChangeOneLegacyBackupSnapshotExpiration")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots/{snapshotId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"snapshotId"+"}", url.PathEscape(parameterToString(r.snapshotId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-	if strlen(r.snapshotId) < 24 {
-		return localVarReturnValue, nil, reportError("snapshotId must have at least 24 elements")
-	}
-	if strlen(r.snapshotId) > 24 {
-		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
-	}
-	if r.apiSnapshotView == nil {
-		return localVarReturnValue, nil, reportError("apiSnapshotView is required and must be specified")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.apiSnapshotView
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest struct {
-	ctx context.Context
-	ApiService LegacyBackupApi
-	groupId string
-	clusterName string
-	apiRestoreJobView *ApiRestoreJobView
-	envelope *bool
-	pretty *bool
-}
-
-// Legacy backup to restore to one cluster in the specified project.
-func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) ApiRestoreJobView(apiRestoreJobView ApiRestoreJobView) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
-	r.apiRestoreJobView = &apiRestoreJobView
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Envelope(envelope bool) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
-	return r.ApiService.CreateOneLegacyBackupRestoreJobExecute(r)
-}
-
-/*
-CreateOneLegacyBackupRestoreJob Create One Legacy Backup Restore Job
-
-Restores one legacy backup for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest
-
-Deprecated
-*/
-func (a *LegacyBackupApiService) CreateOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest {
-	return LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedRestoreJobView
-// Deprecated
-func (a *LegacyBackupApiService) CreateOneLegacyBackupRestoreJobExecute(r LegacyBackupApiCreateOneLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedRestoreJobView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.CreateOneLegacyBackupRestoreJob")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-	if r.apiRestoreJobView == nil {
-		return localVarReturnValue, nil, reportError("apiRestoreJobView is required and must be specified")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.apiRestoreJobView
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest struct {
+type LegacyBackupApiDeleteLegacySnapshotRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -621,36 +231,36 @@ type LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) Envelope(envelope bool) LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest {
+func (r LegacyBackupApiDeleteLegacySnapshotRequest) Envelope(envelope bool) LegacyBackupApiDeleteLegacySnapshotRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) Pretty(pretty bool) LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiDeleteLegacySnapshotRequest) Pretty(pretty bool) LegacyBackupApiDeleteLegacySnapshotRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneLegacyBackupSnapshotExecute(r)
+func (r LegacyBackupApiDeleteLegacySnapshotRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteLegacySnapshotExecute(r)
 }
 
 /*
-RemoveOneLegacyBackupSnapshot Remove One Legacy Backup Snapshot
+DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
 Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest
+ @return LegacyBackupApiDeleteLegacySnapshotRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) RemoveOneLegacyBackupSnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest {
-	return LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest{
+func (a *LegacyBackupApiService) DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiDeleteLegacySnapshotRequest {
+	return LegacyBackupApiDeleteLegacySnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -661,14 +271,14 @@ func (a *LegacyBackupApiService) RemoveOneLegacyBackupSnapshot(ctx context.Conte
 
 // Execute executes the request
 // Deprecated
-func (a *LegacyBackupApiService) RemoveOneLegacyBackupSnapshotExecute(r LegacyBackupApiRemoveOneLegacyBackupSnapshotRequest) (*http.Response, error) {
+func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDeleteLegacySnapshotRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.RemoveOneLegacyBackupSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.DeleteLegacySnapshot")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -783,607 +393,7 @@ func (a *LegacyBackupApiService) RemoveOneLegacyBackupSnapshotExecute(r LegacyBa
 	return localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest struct {
-	ctx context.Context
-	ApiService LegacyBackupApi
-	groupId string
-	clusterName string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) Envelope(envelope bool) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) IncludeCount(includeCount bool) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) PageNum(pageNum int32) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) Execute() (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
-	return r.ApiService.ReturnAllLegacyBackupCheckpointsExecute(r)
-}
-
-/*
-ReturnAllLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
-
-Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
- @return LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest
-
-Deprecated
-*/
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest {
-	return LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedApiAtlasCheckpointView
-// Deprecated
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupCheckpointsExecute(r LegacyBackupApiReturnAllLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasCheckpointView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnAllLegacyBackupCheckpoints")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backupCheckpoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest struct {
-	ctx context.Context
-	ApiService LegacyBackupApi
-	groupId string
-	clusterName string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-	batchId *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) Envelope(envelope bool) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) IncludeCount(includeCount bool) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) PageNum(pageNum int32) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch.
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) BatchId(batchId string) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	r.batchId = &batchId
-	return r
-}
-
-func (r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
-	return r.ApiService.ReturnAllLegacyBackupRestoreJobsExecute(r)
-}
-
-/*
-ReturnAllLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
-
-Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest
-
-Deprecated
-*/
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest {
-	return LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedRestoreJobView
-// Deprecated
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupRestoreJobsExecute(r LegacyBackupApiReturnAllLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedRestoreJobView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnAllLegacyBackupRestoreJobs")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.batchId != nil {
-		localVarQueryParams.Add("batchId", parameterToString(*r.batchId, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest struct {
-	ctx context.Context
-	ApiService LegacyBackupApi
-	groupId string
-	clusterName string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) Envelope(envelope bool) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) IncludeCount(includeCount bool) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) PageNum(pageNum int32) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) Pretty(pretty bool) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) Execute() (*PaginatedSnapshotView, *http.Response, error) {
-	return r.ApiService.ReturnAllLegacyBackupSnapshotsExecute(r)
-}
-
-/*
-ReturnAllLegacyBackupSnapshots Return All Legacy Backup Snapshots
-
-Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param clusterName Human-readable label that identifies the cluster.
- @return LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest
-
-Deprecated
-*/
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupSnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest {
-	return LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedSnapshotView
-// Deprecated
-func (a *LegacyBackupApiService) ReturnAllLegacyBackupSnapshotsExecute(r LegacyBackupApiReturnAllLegacyBackupSnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedSnapshotView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnAllLegacyBackupSnapshots")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LegacyBackupApiReturnOneLegacyBackupCheckpointRequest struct {
+type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1394,36 +404,36 @@ type LegacyBackupApiReturnOneLegacyBackupCheckpointRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) Envelope(envelope bool) LegacyBackupApiReturnOneLegacyBackupCheckpointRequest {
+func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Envelope(envelope bool) LegacyBackupApiGetLegacyBackupCheckpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupCheckpointRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Pretty(pretty bool) LegacyBackupApiGetLegacyBackupCheckpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) Execute() (*Checkpoint, *http.Response, error) {
-	return r.ApiService.ReturnOneLegacyBackupCheckpointExecute(r)
+func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Execute() (*Checkpoint, *http.Response, error) {
+	return r.ApiService.GetLegacyBackupCheckpointExecute(r)
 }
 
 /*
-ReturnOneLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
+GetLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
 
 Returns one legacy backup checkpoint for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
  @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
- @return LegacyBackupApiReturnOneLegacyBackupCheckpointRequest
+ @return LegacyBackupApiGetLegacyBackupCheckpointRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiReturnOneLegacyBackupCheckpointRequest {
-	return LegacyBackupApiReturnOneLegacyBackupCheckpointRequest{
+func (a *LegacyBackupApiService) GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiGetLegacyBackupCheckpointRequest {
+	return LegacyBackupApiGetLegacyBackupCheckpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1435,7 +445,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupCheckpoint(ctx context.Con
 // Execute executes the request
 //  @return Checkpoint
 // Deprecated
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupCheckpointExecute(r LegacyBackupApiReturnOneLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackupApiGetLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1443,7 +453,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupCheckpointExecute(r Legacy
 		localVarReturnValue  *Checkpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnOneLegacyBackupCheckpoint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacyBackupCheckpoint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1578,7 +588,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupCheckpointExecute(r Legacy
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest struct {
+type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1589,36 +599,36 @@ type LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) Envelope(envelope bool) LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest {
+func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Envelope(envelope bool) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) Execute() (*ApiRestoreJobView, *http.Response, error) {
-	return r.ApiService.ReturnOneLegacyBackupRestoreJobExecute(r)
+func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*ApiRestoreJobView, *http.Response, error) {
+	return r.ApiService.GetLegacyBackupRestoreJobExecute(r)
 }
 
 /*
-ReturnOneLegacyBackupRestoreJob Return One Legacy Backup Restore Job
+GetLegacyBackupRestoreJob Return One Legacy Backup Restore Job
 
 Returns one legacy backup restore job for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @param jobId Unique 24-hexadecimal digit string that identifies the restore job.
- @return LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest
+ @return LegacyBackupApiGetLegacyBackupRestoreJobRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest {
-	return LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest{
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
+	return LegacyBackupApiGetLegacyBackupRestoreJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1630,7 +640,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupRestoreJob(ctx context.Con
 // Execute executes the request
 //  @return ApiRestoreJobView
 // Deprecated
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupRestoreJobExecute(r LegacyBackupApiReturnOneLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1638,7 +648,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupRestoreJobExecute(r Legacy
 		localVarReturnValue  *ApiRestoreJobView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnOneLegacyBackupRestoreJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacyBackupRestoreJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1762,7 +772,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupRestoreJobExecute(r Legacy
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiReturnOneLegacyBackupSnapshotRequest struct {
+type LegacyBackupApiGetLegacySnapshotRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1773,36 +783,36 @@ type LegacyBackupApiReturnOneLegacyBackupSnapshotRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) Envelope(envelope bool) LegacyBackupApiReturnOneLegacyBackupSnapshotRequest {
+func (r LegacyBackupApiGetLegacySnapshotRequest) Envelope(envelope bool) LegacyBackupApiGetLegacySnapshotRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) Pretty(pretty bool) LegacyBackupApiReturnOneLegacyBackupSnapshotRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiGetLegacySnapshotRequest) Pretty(pretty bool) LegacyBackupApiGetLegacySnapshotRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
-	return r.ApiService.ReturnOneLegacyBackupSnapshotExecute(r)
+func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
+	return r.ApiService.GetLegacySnapshotExecute(r)
 }
 
 /*
-ReturnOneLegacyBackupSnapshot Return One Legacy Backup Snapshot
+GetLegacySnapshot Return One Legacy Backup Snapshot
 
 Returns one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiReturnOneLegacyBackupSnapshotRequest
+ @return LegacyBackupApiGetLegacySnapshotRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupSnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiReturnOneLegacyBackupSnapshotRequest {
-	return LegacyBackupApiReturnOneLegacyBackupSnapshotRequest{
+func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiGetLegacySnapshotRequest {
+	return LegacyBackupApiGetLegacySnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1814,7 +824,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupSnapshot(ctx context.Conte
 // Execute executes the request
 //  @return ApiSnapshotView
 // Deprecated
-func (a *LegacyBackupApiService) ReturnOneLegacyBackupSnapshotExecute(r LegacyBackupApiReturnOneLegacyBackupSnapshotRequest) (*ApiSnapshotView, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*ApiSnapshotView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1822,7 +832,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupSnapshotExecute(r LegacyBa
 		localVarReturnValue  *ApiSnapshotView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnOneLegacyBackupSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacySnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1935,7 +945,7 @@ func (a *LegacyBackupApiService) ReturnOneLegacyBackupSnapshotExecute(r LegacyBa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiReturnOneSnapshotScheduleRequest struct {
+type LegacyBackupApiGetLegacySnapshotScheduleRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1945,35 +955,35 @@ type LegacyBackupApiReturnOneSnapshotScheduleRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiReturnOneSnapshotScheduleRequest) Envelope(envelope bool) LegacyBackupApiReturnOneSnapshotScheduleRequest {
+func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Envelope(envelope bool) LegacyBackupApiGetLegacySnapshotScheduleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiReturnOneSnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiReturnOneSnapshotScheduleRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiGetLegacySnapshotScheduleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiReturnOneSnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
-	return r.ApiService.ReturnOneSnapshotScheduleExecute(r)
+func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
+	return r.ApiService.GetLegacySnapshotScheduleExecute(r)
 }
 
 /*
-ReturnOneSnapshotSchedule Return One Snapshot Schedule
+GetLegacySnapshotSchedule Return One Snapshot Schedule
 
 Returns the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiReturnOneSnapshotScheduleRequest
+ @return LegacyBackupApiGetLegacySnapshotScheduleRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ReturnOneSnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiReturnOneSnapshotScheduleRequest {
-	return LegacyBackupApiReturnOneSnapshotScheduleRequest{
+func (a *LegacyBackupApiService) GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiGetLegacySnapshotScheduleRequest {
+	return LegacyBackupApiGetLegacySnapshotScheduleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1984,7 +994,7 @@ func (a *LegacyBackupApiService) ReturnOneSnapshotSchedule(ctx context.Context, 
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) ReturnOneSnapshotScheduleExecute(r LegacyBackupApiReturnOneSnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackupApiGetLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1992,7 +1002,7 @@ func (a *LegacyBackupApiService) ReturnOneSnapshotScheduleExecute(r LegacyBackup
 		localVarReturnValue  *SnapshotSchedule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ReturnOneSnapshotSchedule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacySnapshotSchedule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2098,7 +1108,792 @@ func (a *LegacyBackupApiService) ReturnOneSnapshotScheduleExecute(r LegacyBackup
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest struct {
+type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
+	ctx context.Context
+	ApiService LegacyBackupApi
+	groupId string
+	clusterName string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Envelope(envelope bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Pretty(pretty bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Execute() (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
+	return r.ApiService.ListLegacyBackupCheckpointsExecute(r)
+}
+
+/*
+ListLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
+
+Returns all legacy backup checkpoints for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
+ @return LegacyBackupApiListLegacyBackupCheckpointsRequest
+
+Deprecated
+*/
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+	return LegacyBackupApiListLegacyBackupCheckpointsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedApiAtlasCheckpointView
+// Deprecated
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedApiAtlasCheckpointView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacyBackupCheckpoints")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backupCheckpoints"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
+	ctx context.Context
+	ApiService LegacyBackupApi
+	groupId string
+	clusterName string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+	batchId *string
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Envelope(envelope bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Pretty(pretty bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch.
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) BatchId(batchId string) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	r.batchId = &batchId
+	return r
+}
+
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
+	return r.ApiService.ListLegacyBackupRestoreJobsExecute(r)
+}
+
+/*
+ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
+
+Returns all legacy backup restore jobs for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
+ @return LegacyBackupApiListLegacyBackupRestoreJobsRequest
+
+Deprecated
+*/
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+	return LegacyBackupApiListLegacyBackupRestoreJobsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedRestoreJobView
+// Deprecated
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedRestoreJobView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacyBackupRestoreJobs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/restoreJobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.batchId != nil {
+		localVarQueryParams.Add("batchId", parameterToString(*r.batchId, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LegacyBackupApiListLegacySnapshotsRequest struct {
+	ctx context.Context
+	ApiService LegacyBackupApi
+	groupId string
+	clusterName string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LegacyBackupApiListLegacySnapshotsRequest) Envelope(envelope bool) LegacyBackupApiListLegacySnapshotsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r LegacyBackupApiListLegacySnapshotsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacySnapshotsRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r LegacyBackupApiListLegacySnapshotsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacySnapshotsRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r LegacyBackupApiListLegacySnapshotsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacySnapshotsRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiListLegacySnapshotsRequest) Pretty(pretty bool) LegacyBackupApiListLegacySnapshotsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r LegacyBackupApiListLegacySnapshotsRequest) Execute() (*PaginatedSnapshotView, *http.Response, error) {
+	return r.ApiService.ListLegacySnapshotsExecute(r)
+}
+
+/*
+ListLegacySnapshots Return All Legacy Backup Snapshots
+
+Returns all legacy backup snapshots for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies the cluster.
+ @return LegacyBackupApiListLegacySnapshotsRequest
+
+Deprecated
+*/
+func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacySnapshotsRequest {
+	return LegacyBackupApiListLegacySnapshotsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedSnapshotView
+// Deprecated
+func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedSnapshotView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacySnapshots")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
+	ctx context.Context
+	ApiService LegacyBackupApi
+	groupId string
+	clusterName string
+	snapshotId string
+	apiSnapshotView *ApiSnapshotView
+	envelope *bool
+	pretty *bool
+}
+
+// Changes One Legacy Backup Snapshot Expiration.
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) ApiSnapshotView(apiSnapshotView ApiSnapshotView) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+	r.apiSnapshotView = &apiSnapshotView
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Envelope(envelope bool) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Pretty(pretty bool) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
+	return r.ApiService.UpdateLegacySnapshotRetentionExecute(r)
+}
+
+/*
+UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
+
+Changes the expiration date for one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param clusterName Human-readable label that identifies the cluster.
+ @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
+ @return LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+
+Deprecated
+*/
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+	return LegacyBackupApiUpdateLegacySnapshotRetentionRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+		snapshotId: snapshotId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiSnapshotView
+// Deprecated
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*ApiSnapshotView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiSnapshotView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.UpdateLegacySnapshotRetention")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/snapshots/{snapshotId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshotId"+"}", url.PathEscape(parameterToString(r.snapshotId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+	if strlen(r.snapshotId) < 24 {
+		return localVarReturnValue, nil, reportError("snapshotId must have at least 24 elements")
+	}
+	if strlen(r.snapshotId) > 24 {
+		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
+	}
+	if r.apiSnapshotView == nil {
+		return localVarReturnValue, nil, reportError("apiSnapshotView is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.apiSnapshotView
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -2109,41 +1904,41 @@ type LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest struct {
 }
 
 // Update the snapshot schedule for one cluster in the specified project.
-func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest {
+func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
 	r.snapshotSchedule = &snapshotSchedule
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) Envelope(envelope bool) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest {
+func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Envelope(envelope bool) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) Pretty(pretty bool) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
-	return r.ApiService.UpdateSnapshotScheduleForOneClusterExecute(r)
+func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
+	return r.ApiService.UpdateLegacySnapshotScheduleExecute(r)
 }
 
 /*
-UpdateSnapshotScheduleForOneCluster Update Snapshot Schedule for One Cluster
+UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
 
 Update the snapshot schedule for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest
+ @return LegacyBackupApiUpdateLegacySnapshotScheduleRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) UpdateSnapshotScheduleForOneCluster(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest {
-	return LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest{
+func (a *LegacyBackupApiService) UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
+	return LegacyBackupApiUpdateLegacySnapshotScheduleRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2154,7 +1949,7 @@ func (a *LegacyBackupApiService) UpdateSnapshotScheduleForOneCluster(ctx context
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) UpdateSnapshotScheduleForOneClusterExecute(r LegacyBackupApiUpdateSnapshotScheduleForOneClusterRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2162,7 +1957,7 @@ func (a *LegacyBackupApiService) UpdateSnapshotScheduleForOneClusterExecute(r Le
 		localVarReturnValue  *SnapshotSchedule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.UpdateSnapshotScheduleForOneCluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.UpdateLegacySnapshotSchedule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
