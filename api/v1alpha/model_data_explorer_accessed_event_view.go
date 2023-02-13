@@ -25,7 +25,7 @@ type DataExplorerAccessedEventView struct {
 	Created time.Time `json:"created"`
 	// (**For audit only**), Human-readable label of the database on which this incident occurred. The resource returns this parameter when `\"eventTypeName\" : \"DATA_EXPLORER\"` or `\"eventTypeName\" : \"DATA_EXPLORER_CRUD\"`.
 	Database *string `json:"database,omitempty"`
-	EventTypeName DataExplorerAccessedEventTypeView `json:"eventTypeName"`
+	EventTypeName DataExplorerAccessedEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -187,9 +187,9 @@ func (o *DataExplorerAccessedEventView) SetDatabase(v string) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *DataExplorerAccessedEventView) GetEventTypeName() DataExplorerAccessedEventTypeView {
+func (o *DataExplorerAccessedEventView) GetEventTypeName() DataExplorerAccessedEventType {
 	if o == nil {
-		var ret DataExplorerAccessedEventTypeView
+		var ret DataExplorerAccessedEventType
 		return ret
 	}
 
@@ -198,7 +198,7 @@ func (o *DataExplorerAccessedEventView) GetEventTypeName() DataExplorerAccessedE
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *DataExplorerAccessedEventView) GetEventTypeNameOk() (*DataExplorerAccessedEventTypeView, bool) {
+func (o *DataExplorerAccessedEventView) GetEventTypeNameOk() (*DataExplorerAccessedEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,7 +206,7 @@ func (o *DataExplorerAccessedEventView) GetEventTypeNameOk() (*DataExplorerAcces
 }
 
 // SetEventTypeName sets field value
-func (o *DataExplorerAccessedEventView) SetEventTypeName(v DataExplorerAccessedEventTypeView) {
+func (o *DataExplorerAccessedEventView) SetEventTypeName(v DataExplorerAccessedEventType) {
 	o.EventTypeName = v
 }
 

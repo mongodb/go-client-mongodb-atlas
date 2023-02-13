@@ -30,7 +30,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 	*/
 	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
@@ -40,21 +40,21 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) (*EncryptionAtRest, *http.Response, error)
 
 	/*
-	UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
+	UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
 	Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.
 
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 	*/
-	UpdateEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+	UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 
-	// UpdateEncryptionAtRestExecute executes the request
+	// UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute executes the request
 	//  @return EncryptionAtRest
-	UpdateEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error)
+	UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) (*EncryptionAtRest, *http.Response, error)
 }
 
 // EncryptionAtRestUsingCustomerKeyManagementApiService EncryptionAtRestUsingCustomerKeyManagementApi service
@@ -74,7 +74,7 @@ func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEn
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.pretty = &pretty
 	return r
@@ -92,7 +92,7 @@ Returns the configuration for encryption at rest using the keys you manage throu
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 */
 func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
@@ -212,7 +212,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest struct {
+type EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest struct {
 	ctx context.Context
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
@@ -222,40 +222,40 @@ type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest 
 }
 
 // Required parameters depend on whether someone has enabled Encryption at Rest using Customer Key Management:  If you have enabled Encryption at Rest using Customer Key Management (CMK), Atlas requires all of the parameters for the desired encryption provider.  - To use AWS Key Management Service (KMS), MongoDB Cloud requires all the fields in the **awsKms** object. - To use Azure Key Vault, MongoDB Cloud requires all the fields in the **azureKeyVault** object. - To use Google Cloud Key Management Service (KMS), MongoDB Cloud requires all the fields in the **googleCloudKms** object.  If you enabled Encryption at Rest using Customer Key  Management, administrators can pass only the changed fields for the **awsKms**, **azureKeyVault**, or **googleCloudKms** object to update the configuration to this endpoint.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
+func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.encryptionAtRest = &encryptionAtRest
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Envelope(envelope bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
+func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Envelope(envelope bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
-	return r.ApiService.UpdateEncryptionAtRestExecute(r)
+func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
+	return r.ApiService.UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r)
 }
 
 /*
-UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
+UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
 Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.
 
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 */
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
-	return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest{
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
+	return EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -264,7 +264,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -272,7 +272,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 		localVarReturnValue  *EncryptionAtRest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EncryptionAtRestUsingCustomerKeyManagementApiService.UpdateEncryptionAtRest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EncryptionAtRestUsingCustomerKeyManagementApiService.UpdateConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -23,87 +23,87 @@ import (
 type ServerlessInstancesApi interface {
 
 	/*
-	CreateServerlessInstance Create One Serverless Instance in One Project
+	CreateOneServerlessInstanceInOneProject Create One Serverless Instance in One Project
 
 	Creates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ServerlessInstancesApiCreateServerlessInstanceRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest
 	*/
-	CreateServerlessInstance(ctx context.Context, groupId string) ServerlessInstancesApiCreateServerlessInstanceRequest
+	CreateOneServerlessInstanceInOneProject(ctx context.Context, groupId string) ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest
 
-	// CreateServerlessInstanceExecute executes the request
+	// CreateOneServerlessInstanceInOneProjectExecute executes the request
 	//  @return ServerlessInstanceDescription
-	CreateServerlessInstanceExecute(r ServerlessInstancesApiCreateServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error)
+	CreateOneServerlessInstanceInOneProjectExecute(r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error)
 
 	/*
-	DeleteServerlessInstance Remove One Serverless Instance from One Project
+	RemoveOneServerlessInstanceFromOneProject Remove One Serverless Instance from One Project
 
 	Removes one serverless instance from the specified project. The serverless instance must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param name Human-readable label that identifies the serverless instance.
-	@return ServerlessInstancesApiDeleteServerlessInstanceRequest
+	@return ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest
 	*/
-	DeleteServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiDeleteServerlessInstanceRequest
+	RemoveOneServerlessInstanceFromOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest
 
-	// DeleteServerlessInstanceExecute executes the request
-	DeleteServerlessInstanceExecute(r ServerlessInstancesApiDeleteServerlessInstanceRequest) (*http.Response, error)
+	// RemoveOneServerlessInstanceFromOneProjectExecute executes the request
+	RemoveOneServerlessInstanceFromOneProjectExecute(r ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest) (*http.Response, error)
 
 	/*
-	GetServerlessInstance Return One Serverless Instance from One Project
-
-	Returns details for one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param name Human-readable label that identifies the serverless instance.
-	@return ServerlessInstancesApiGetServerlessInstanceRequest
-	*/
-	GetServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiGetServerlessInstanceRequest
-
-	// GetServerlessInstanceExecute executes the request
-	//  @return ServerlessInstanceDescription
-	GetServerlessInstanceExecute(r ServerlessInstancesApiGetServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error)
-
-	/*
-	ListServerlessInstances Return All Serverless Instances from One Project
+	ReturnAllServerlessInstancesFromOneProject Return All Serverless Instances from One Project
 
 	Returns details for all serverless instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ServerlessInstancesApiListServerlessInstancesRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest
 	*/
-	ListServerlessInstances(ctx context.Context, groupId string) ServerlessInstancesApiListServerlessInstancesRequest
+	ReturnAllServerlessInstancesFromOneProject(ctx context.Context, groupId string) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest
 
-	// ListServerlessInstancesExecute executes the request
+	// ReturnAllServerlessInstancesFromOneProjectExecute executes the request
 	//  @return PaginatedServerlessInstanceDescriptionView
-	ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error)
+	ReturnAllServerlessInstancesFromOneProjectExecute(r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error)
 
 	/*
-	UpdateServerlessInstance Update One Serverless Instance in One Project
+	ReturnOneServerlessInstanceFromOneProject Return One Serverless Instance from One Project
+
+	Returns details for one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param name Human-readable label that identifies the serverless instance.
+	@return ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest
+	*/
+	ReturnOneServerlessInstanceFromOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest
+
+	// ReturnOneServerlessInstanceFromOneProjectExecute executes the request
+	//  @return ServerlessInstanceDescription
+	ReturnOneServerlessInstanceFromOneProjectExecute(r ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error)
+
+	/*
+	UpdateOneServerlessInstanceInOneProject Update One Serverless Instance in One Project
 
 	Updates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param name Human-readable label that identifies the serverless instance.
-	@return ServerlessInstancesApiUpdateServerlessInstanceRequest
+	@return ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest
 	*/
-	UpdateServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiUpdateServerlessInstanceRequest
+	UpdateOneServerlessInstanceInOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest
 
-	// UpdateServerlessInstanceExecute executes the request
+	// UpdateOneServerlessInstanceInOneProjectExecute executes the request
 	//  @return ServerlessInstanceDescription
-	UpdateServerlessInstanceExecute(r ServerlessInstancesApiUpdateServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error)
+	UpdateOneServerlessInstanceInOneProjectExecute(r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error)
 }
 
 // ServerlessInstancesApiService ServerlessInstancesApi service
 type ServerlessInstancesApiService service
 
-type ServerlessInstancesApiCreateServerlessInstanceRequest struct {
+type ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest struct {
 	ctx context.Context
 	ApiService ServerlessInstancesApi
 	groupId string
@@ -113,38 +113,38 @@ type ServerlessInstancesApiCreateServerlessInstanceRequest struct {
 }
 
 // Create One Serverless Instance in One Project.
-func (r ServerlessInstancesApiCreateServerlessInstanceRequest) ServerlessInstanceDescriptionCreate(serverlessInstanceDescriptionCreate ServerlessInstanceDescriptionCreate) ServerlessInstancesApiCreateServerlessInstanceRequest {
+func (r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) ServerlessInstanceDescriptionCreate(serverlessInstanceDescriptionCreate ServerlessInstanceDescriptionCreate) ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest {
 	r.serverlessInstanceDescriptionCreate = &serverlessInstanceDescriptionCreate
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessInstancesApiCreateServerlessInstanceRequest) Envelope(envelope bool) ServerlessInstancesApiCreateServerlessInstanceRequest {
+func (r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) Envelope(envelope bool) ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ServerlessInstancesApiCreateServerlessInstanceRequest) Pretty(pretty bool) ServerlessInstancesApiCreateServerlessInstanceRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) Pretty(pretty bool) ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ServerlessInstancesApiCreateServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
-	return r.ApiService.CreateServerlessInstanceExecute(r)
+func (r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
+	return r.ApiService.CreateOneServerlessInstanceInOneProjectExecute(r)
 }
 
 /*
-CreateServerlessInstance Create One Serverless Instance in One Project
+CreateOneServerlessInstanceInOneProject Create One Serverless Instance in One Project
 
 Creates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ServerlessInstancesApiCreateServerlessInstanceRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest
 */
-func (a *ServerlessInstancesApiService) CreateServerlessInstance(ctx context.Context, groupId string) ServerlessInstancesApiCreateServerlessInstanceRequest {
-	return ServerlessInstancesApiCreateServerlessInstanceRequest{
+func (a *ServerlessInstancesApiService) CreateOneServerlessInstanceInOneProject(ctx context.Context, groupId string) ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest {
+	return ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -153,7 +153,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstance(ctx context.Con
 
 // Execute executes the request
 //  @return ServerlessInstanceDescription
-func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r ServerlessInstancesApiCreateServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error) {
+func (a *ServerlessInstancesApiService) CreateOneServerlessInstanceInOneProjectExecute(r ServerlessInstancesApiCreateOneServerlessInstanceInOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -161,7 +161,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 		localVarReturnValue  *ServerlessInstanceDescription
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.CreateServerlessInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.CreateOneServerlessInstanceInOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -287,7 +287,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerlessInstancesApiDeleteServerlessInstanceRequest struct {
+type ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService ServerlessInstancesApi
 	groupId string
@@ -297,33 +297,33 @@ type ServerlessInstancesApiDeleteServerlessInstanceRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessInstancesApiDeleteServerlessInstanceRequest) Envelope(envelope bool) ServerlessInstancesApiDeleteServerlessInstanceRequest {
+func (r ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest) Envelope(envelope bool) ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ServerlessInstancesApiDeleteServerlessInstanceRequest) Pretty(pretty bool) ServerlessInstancesApiDeleteServerlessInstanceRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest) Pretty(pretty bool) ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ServerlessInstancesApiDeleteServerlessInstanceRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteServerlessInstanceExecute(r)
+func (r ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOneServerlessInstanceFromOneProjectExecute(r)
 }
 
 /*
-DeleteServerlessInstance Remove One Serverless Instance from One Project
+RemoveOneServerlessInstanceFromOneProject Remove One Serverless Instance from One Project
 
 Removes one serverless instance from the specified project. The serverless instance must have termination protection disabled in order to be deleted. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param name Human-readable label that identifies the serverless instance.
- @return ServerlessInstancesApiDeleteServerlessInstanceRequest
+ @return ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest
 */
-func (a *ServerlessInstancesApiService) DeleteServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiDeleteServerlessInstanceRequest {
-	return ServerlessInstancesApiDeleteServerlessInstanceRequest{
+func (a *ServerlessInstancesApiService) RemoveOneServerlessInstanceFromOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest {
+	return ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -332,14 +332,14 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstance(ctx context.Con
 }
 
 // Execute executes the request
-func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r ServerlessInstancesApiDeleteServerlessInstanceRequest) (*http.Response, error) {
+func (a *ServerlessInstancesApiService) RemoveOneServerlessInstanceFromOneProjectExecute(r ServerlessInstancesApiRemoveOneServerlessInstanceFromOneProjectRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.DeleteServerlessInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.RemoveOneServerlessInstanceFromOneProject")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -458,7 +458,187 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r Server
 	return localVarHTTPResponse, nil
 }
 
-type ServerlessInstancesApiGetServerlessInstanceRequest struct {
+type ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest struct {
+	ctx context.Context
+	ApiService ServerlessInstancesApi
+	groupId string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) Envelope(envelope bool) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) IncludeCount(includeCount bool) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) ItemsPerPage(itemsPerPage int32) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) PageNum(pageNum int32) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) Pretty(pretty bool) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) Execute() (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
+	return r.ApiService.ReturnAllServerlessInstancesFromOneProjectExecute(r)
+}
+
+/*
+ReturnAllServerlessInstancesFromOneProject Return All Serverless Instances from One Project
+
+Returns details for all serverless instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest
+*/
+func (a *ServerlessInstancesApiService) ReturnAllServerlessInstancesFromOneProject(ctx context.Context, groupId string) ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest {
+	return ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedServerlessInstanceDescriptionView
+func (a *ServerlessInstancesApiService) ReturnAllServerlessInstancesFromOneProjectExecute(r ServerlessInstancesApiReturnAllServerlessInstancesFromOneProjectRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedServerlessInstanceDescriptionView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.ReturnAllServerlessInstancesFromOneProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/serverless"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService ServerlessInstancesApi
 	groupId string
@@ -468,33 +648,33 @@ type ServerlessInstancesApiGetServerlessInstanceRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessInstancesApiGetServerlessInstanceRequest) Envelope(envelope bool) ServerlessInstancesApiGetServerlessInstanceRequest {
+func (r ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest) Envelope(envelope bool) ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ServerlessInstancesApiGetServerlessInstanceRequest) Pretty(pretty bool) ServerlessInstancesApiGetServerlessInstanceRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest) Pretty(pretty bool) ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ServerlessInstancesApiGetServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
-	return r.ApiService.GetServerlessInstanceExecute(r)
+func (r ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
+	return r.ApiService.ReturnOneServerlessInstanceFromOneProjectExecute(r)
 }
 
 /*
-GetServerlessInstance Return One Serverless Instance from One Project
+ReturnOneServerlessInstanceFromOneProject Return One Serverless Instance from One Project
 
 Returns details for one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param name Human-readable label that identifies the serverless instance.
- @return ServerlessInstancesApiGetServerlessInstanceRequest
+ @return ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest
 */
-func (a *ServerlessInstancesApiService) GetServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiGetServerlessInstanceRequest {
-	return ServerlessInstancesApiGetServerlessInstanceRequest{
+func (a *ServerlessInstancesApiService) ReturnOneServerlessInstanceFromOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest {
+	return ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -504,7 +684,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstance(ctx context.Contex
 
 // Execute executes the request
 //  @return ServerlessInstanceDescription
-func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r ServerlessInstancesApiGetServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error) {
+func (a *ServerlessInstancesApiService) ReturnOneServerlessInstanceFromOneProjectExecute(r ServerlessInstancesApiReturnOneServerlessInstanceFromOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -512,7 +692,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 		localVarReturnValue  *ServerlessInstanceDescription
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.GetServerlessInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.ReturnOneServerlessInstanceFromOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -640,187 +820,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerlessInstancesApiListServerlessInstancesRequest struct {
-	ctx context.Context
-	ApiService ServerlessInstancesApi
-	groupId string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessInstancesApiListServerlessInstancesRequest) Envelope(envelope bool) ServerlessInstancesApiListServerlessInstancesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ServerlessInstancesApiListServerlessInstancesRequest) IncludeCount(includeCount bool) ServerlessInstancesApiListServerlessInstancesRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r ServerlessInstancesApiListServerlessInstancesRequest) ItemsPerPage(itemsPerPage int32) ServerlessInstancesApiListServerlessInstancesRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r ServerlessInstancesApiListServerlessInstancesRequest) PageNum(pageNum int32) ServerlessInstancesApiListServerlessInstancesRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ServerlessInstancesApiListServerlessInstancesRequest) Pretty(pretty bool) ServerlessInstancesApiListServerlessInstancesRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ServerlessInstancesApiListServerlessInstancesRequest) Execute() (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
-	return r.ApiService.ListServerlessInstancesExecute(r)
-}
-
-/*
-ListServerlessInstances Return All Serverless Instances from One Project
-
-Returns details for all serverless instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ServerlessInstancesApiListServerlessInstancesRequest
-*/
-func (a *ServerlessInstancesApiService) ListServerlessInstances(ctx context.Context, groupId string) ServerlessInstancesApiListServerlessInstancesRequest {
-	return ServerlessInstancesApiListServerlessInstancesRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedServerlessInstanceDescriptionView
-func (a *ServerlessInstancesApiService) ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedServerlessInstanceDescriptionView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.ListServerlessInstances")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/serverless"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ServerlessInstancesApiUpdateServerlessInstanceRequest struct {
+type ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest struct {
 	ctx context.Context
 	ApiService ServerlessInstancesApi
 	groupId string
@@ -831,39 +831,39 @@ type ServerlessInstancesApiUpdateServerlessInstanceRequest struct {
 }
 
 // Update One Serverless Instance in One Project.
-func (r ServerlessInstancesApiUpdateServerlessInstanceRequest) ServerlessInstanceDescriptionUpdate(serverlessInstanceDescriptionUpdate ServerlessInstanceDescriptionUpdate) ServerlessInstancesApiUpdateServerlessInstanceRequest {
+func (r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) ServerlessInstanceDescriptionUpdate(serverlessInstanceDescriptionUpdate ServerlessInstanceDescriptionUpdate) ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest {
 	r.serverlessInstanceDescriptionUpdate = &serverlessInstanceDescriptionUpdate
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessInstancesApiUpdateServerlessInstanceRequest) Envelope(envelope bool) ServerlessInstancesApiUpdateServerlessInstanceRequest {
+func (r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) Envelope(envelope bool) ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ServerlessInstancesApiUpdateServerlessInstanceRequest) Pretty(pretty bool) ServerlessInstancesApiUpdateServerlessInstanceRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) Pretty(pretty bool) ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ServerlessInstancesApiUpdateServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
-	return r.ApiService.UpdateServerlessInstanceExecute(r)
+func (r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
+	return r.ApiService.UpdateOneServerlessInstanceInOneProjectExecute(r)
 }
 
 /*
-UpdateServerlessInstance Update One Serverless Instance in One Project
+UpdateOneServerlessInstanceInOneProject Update One Serverless Instance in One Project
 
 Updates one serverless instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param name Human-readable label that identifies the serverless instance.
- @return ServerlessInstancesApiUpdateServerlessInstanceRequest
+ @return ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest
 */
-func (a *ServerlessInstancesApiService) UpdateServerlessInstance(ctx context.Context, groupId string, name string) ServerlessInstancesApiUpdateServerlessInstanceRequest {
-	return ServerlessInstancesApiUpdateServerlessInstanceRequest{
+func (a *ServerlessInstancesApiService) UpdateOneServerlessInstanceInOneProject(ctx context.Context, groupId string, name string) ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest {
+	return ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -873,7 +873,7 @@ func (a *ServerlessInstancesApiService) UpdateServerlessInstance(ctx context.Con
 
 // Execute executes the request
 //  @return ServerlessInstanceDescription
-func (a *ServerlessInstancesApiService) UpdateServerlessInstanceExecute(r ServerlessInstancesApiUpdateServerlessInstanceRequest) (*ServerlessInstanceDescription, *http.Response, error) {
+func (a *ServerlessInstancesApiService) UpdateOneServerlessInstanceInOneProjectExecute(r ServerlessInstancesApiUpdateOneServerlessInstanceInOneProjectRequest) (*ServerlessInstanceDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -881,7 +881,7 @@ func (a *ServerlessInstancesApiService) UpdateServerlessInstanceExecute(r Server
 		localVarReturnValue  *ServerlessInstanceDescription
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.UpdateServerlessInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.UpdateOneServerlessInstanceInOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

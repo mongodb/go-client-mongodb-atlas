@@ -27,7 +27,7 @@ type AppServiceAlertView struct {
 	AlertConfigId string `json:"alertConfigId"`
 	// Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName AppServiceEventTypeViewAlertable `json:"eventTypeName"`
+	EventTypeName AppServiceEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project that owns this alert.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this alert.
@@ -200,9 +200,9 @@ func (o *AppServiceAlertView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *AppServiceAlertView) GetEventTypeName() AppServiceEventTypeViewAlertable {
+func (o *AppServiceAlertView) GetEventTypeName() AppServiceEventType {
 	if o == nil {
-		var ret AppServiceEventTypeViewAlertable
+		var ret AppServiceEventType
 		return ret
 	}
 
@@ -211,7 +211,7 @@ func (o *AppServiceAlertView) GetEventTypeName() AppServiceEventTypeViewAlertabl
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *AppServiceAlertView) GetEventTypeNameOk() (*AppServiceEventTypeViewAlertable, bool) {
+func (o *AppServiceAlertView) GetEventTypeNameOk() (*AppServiceEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -219,7 +219,7 @@ func (o *AppServiceAlertView) GetEventTypeNameOk() (*AppServiceEventTypeViewAler
 }
 
 // SetEventTypeName sets field value
-func (o *AppServiceAlertView) SetEventTypeName(v AppServiceEventTypeViewAlertable) {
+func (o *AppServiceAlertView) SetEventTypeName(v AppServiceEventType) {
 	o.EventTypeName = v
 }
 

@@ -23,126 +23,126 @@ import (
 type AlertsApi interface {
 
 	/*
-	AcknowledgeAlert Acknowledge One Alert from One Project
+	AcknowledgeOneAlertFromOneProject Acknowledge One Alert from One Project
 
-	Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-acknowledge-alert/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
-	@return AlertsApiAcknowledgeAlertRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+	@return AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 	*/
-	AcknowledgeAlert(ctx context.Context, groupId string, alertId string) AlertsApiAcknowledgeAlertRequest
+	AcknowledgeOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 
-	// AcknowledgeAlertExecute executes the request
-	//  @return AlertViewForNdsGroup
-	AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRequest) (*AlertViewForNdsGroup, *http.Response, error)
+	// AcknowledgeOneAlertFromOneProjectExecute executes the request
+	//  @return AlertViewForGroup
+	AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error)
 
 	/*
-	GetAlert Return One Alert from One Project
-
-	Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
-	@return AlertsApiGetAlertRequest
-	*/
-	GetAlert(ctx context.Context, groupId string, alertId string) AlertsApiGetAlertRequest
-
-	// GetAlertExecute executes the request
-	//  @return AlertViewForNdsGroup
-	GetAlertExecute(r AlertsApiGetAlertRequest) (*AlertViewForNdsGroup, *http.Response, error)
-
-	/*
-	ListAlerts Return All Alerts from One Project
+	ReturnAllAlertsFromOneProject Return All Alerts from One Project
 
 	Returns all alerts. These alerts apply to all components in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-all-alerts/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AlertsApiListAlertsRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return AlertsApiReturnAllAlertsFromOneProjectRequest
 	*/
-	ListAlerts(ctx context.Context, groupId string) AlertsApiListAlertsRequest
+	ReturnAllAlertsFromOneProject(ctx context.Context, groupId string) AlertsApiReturnAllAlertsFromOneProjectRequest
 
-	// ListAlertsExecute executes the request
+	// ReturnAllAlertsFromOneProjectExecute executes the request
 	//  @return PaginatedAlertView
-	ListAlertsExecute(r AlertsApiListAlertsRequest) (*PaginatedAlertView, *http.Response, error)
+	ReturnAllAlertsFromOneProjectExecute(r AlertsApiReturnAllAlertsFromOneProjectRequest) (*PaginatedAlertView, *http.Response, error)
 
 	/*
-	ListAlertsByAlertConfigurationId Return All Open Alerts for Alert Configuration
+	ReturnAllOpenAlertsForAlertConfiguration Return All Open Alerts for Alert Configuration
 
 	Returns all open alerts that the specified alert configuration triggers. These alert configurations apply to the specified project only. Alert configurations define the triggers and notification methods for alerts. Open alerts have been triggered but remain unacknowledged. To use this resource, the requesting API Key must have the Project Read Only role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-open-alerts/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertsApiListAlertsByAlertConfigurationIdRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
+	@return AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest
 	*/
-	ListAlertsByAlertConfigurationId(ctx context.Context, groupId string, alertConfigId string) AlertsApiListAlertsByAlertConfigurationIdRequest
+	ReturnAllOpenAlertsForAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest
 
-	// ListAlertsByAlertConfigurationIdExecute executes the request
+	// ReturnAllOpenAlertsForAlertConfigurationExecute executes the request
 	//  @return PaginatedAlertView
-	ListAlertsByAlertConfigurationIdExecute(r AlertsApiListAlertsByAlertConfigurationIdRequest) (*PaginatedAlertView, *http.Response, error)
+	ReturnAllOpenAlertsForAlertConfigurationExecute(r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) (*PaginatedAlertView, *http.Response, error)
+
+	/*
+	ReturnOneAlertFromOneProject Return One Alert from One Project
+
+	Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+	@return AlertsApiReturnOneAlertFromOneProjectRequest
+	*/
+	ReturnOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiReturnOneAlertFromOneProjectRequest
+
+	// ReturnOneAlertFromOneProjectExecute executes the request
+	//  @return AlertViewForGroup
+	ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error)
 }
 
 // AlertsApiService AlertsApi service
 type AlertsApiService service
 
-type AlertsApiAcknowledgeAlertRequest struct {
+type AlertsApiAcknowledgeOneAlertFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService AlertsApi
 	groupId string
 	alertId string
-	alertViewForNdsGroup *AlertViewForNdsGroup
+	alertViewForGroup *AlertViewForGroup
 	envelope *bool
 	pretty *bool
 }
 
 // Confirm one alert.
-func (r AlertsApiAcknowledgeAlertRequest) AlertViewForNdsGroup(alertViewForNdsGroup AlertViewForNdsGroup) AlertsApiAcknowledgeAlertRequest {
-	r.alertViewForNdsGroup = &alertViewForNdsGroup
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) AlertViewForGroup(alertViewForGroup AlertViewForGroup) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
+	r.alertViewForGroup = &alertViewForGroup
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertsApiAcknowledgeAlertRequest) Envelope(envelope bool) AlertsApiAcknowledgeAlertRequest {
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Envelope(envelope bool) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AlertsApiAcknowledgeAlertRequest) Pretty(pretty bool) AlertsApiAcknowledgeAlertRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Pretty(pretty bool) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertsApiAcknowledgeAlertRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.AcknowledgeAlertExecute(r)
+func (r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) Execute() (*AlertViewForGroup, *http.Response, error) {
+	return r.ApiService.AcknowledgeOneAlertFromOneProjectExecute(r)
 }
 
 /*
-AcknowledgeAlert Acknowledge One Alert from One Project
+AcknowledgeOneAlertFromOneProject Acknowledge One Alert from One Project
 
-Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+Confirms receipt of one existing alert. This alert applies to any component in one project. Acknowledging an alert prevents successive notifications. You receive an alert when a monitored component meets or exceeds a value you set until you acknowledge the alert. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-acknowledge-alert/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
- @return AlertsApiAcknowledgeAlertRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+ @return AlertsApiAcknowledgeOneAlertFromOneProjectRequest
 */
-func (a *AlertsApiService) AcknowledgeAlert(ctx context.Context, groupId string, alertId string) AlertsApiAcknowledgeAlertRequest {
-	return AlertsApiAcknowledgeAlertRequest{
+func (a *AlertsApiService) AcknowledgeOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiAcknowledgeOneAlertFromOneProjectRequest {
+	return AlertsApiAcknowledgeOneAlertFromOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -151,16 +151,16 @@ func (a *AlertsApiService) AcknowledgeAlert(ctx context.Context, groupId string,
 }
 
 // Execute executes the request
-//  @return AlertViewForNdsGroup
-func (a *AlertsApiService) AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRequest) (*AlertViewForNdsGroup, *http.Response, error) {
+//  @return AlertViewForGroup
+func (a *AlertsApiService) AcknowledgeOneAlertFromOneProjectExecute(r AlertsApiAcknowledgeOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AlertViewForNdsGroup
+		localVarReturnValue  *AlertViewForGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.AcknowledgeAlert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.AcknowledgeOneAlertFromOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -184,8 +184,8 @@ func (a *AlertsApiService) AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRe
 	if strlen(r.alertId) > 24 {
 		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
 	}
-	if r.alertViewForNdsGroup == nil {
-		return localVarReturnValue, nil, reportError("alertViewForNdsGroup is required and must be specified")
+	if r.alertViewForGroup == nil {
+		return localVarReturnValue, nil, reportError("alertViewForGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -212,7 +212,7 @@ func (a *AlertsApiService) AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.alertViewForNdsGroup
+	localVarPostBody = r.alertViewForGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -293,180 +293,7 @@ func (a *AlertsApiService) AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertsApiGetAlertRequest struct {
-	ctx context.Context
-	ApiService AlertsApi
-	groupId string
-	alertId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertsApiGetAlertRequest) Envelope(envelope bool) AlertsApiGetAlertRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AlertsApiGetAlertRequest) Pretty(pretty bool) AlertsApiGetAlertRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r AlertsApiGetAlertRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.GetAlertExecute(r)
-}
-
-/*
-GetAlert Return One Alert from One Project
-
-Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
- @return AlertsApiGetAlertRequest
-*/
-func (a *AlertsApiService) GetAlert(ctx context.Context, groupId string, alertId string) AlertsApiGetAlertRequest {
-	return AlertsApiGetAlertRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		alertId: alertId,
-	}
-}
-
-// Execute executes the request
-//  @return AlertViewForNdsGroup
-func (a *AlertsApiService) GetAlertExecute(r AlertsApiGetAlertRequest) (*AlertViewForNdsGroup, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AlertViewForNdsGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetAlert")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"alertId"+"}", url.PathEscape(parameterToString(r.alertId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.alertId) < 24 {
-		return localVarReturnValue, nil, reportError("alertId must have at least 24 elements")
-	}
-	if strlen(r.alertId) > 24 {
-		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type AlertsApiListAlertsRequest struct {
+type AlertsApiReturnAllAlertsFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService AlertsApi
 	groupId string
@@ -478,52 +305,52 @@ type AlertsApiListAlertsRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertsApiListAlertsRequest) Envelope(envelope bool) AlertsApiListAlertsRequest {
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) Envelope(envelope bool) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r AlertsApiListAlertsRequest) IncludeCount(includeCount bool) AlertsApiListAlertsRequest {
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) IncludeCount(includeCount bool) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r AlertsApiListAlertsRequest) ItemsPerPage(itemsPerPage int32) AlertsApiListAlertsRequest {
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) ItemsPerPage(itemsPerPage int32) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r AlertsApiListAlertsRequest) PageNum(pageNum int32) AlertsApiListAlertsRequest {
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) PageNum(pageNum int32) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AlertsApiListAlertsRequest) Pretty(pretty bool) AlertsApiListAlertsRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) Pretty(pretty bool) AlertsApiReturnAllAlertsFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertsApiListAlertsRequest) Execute() (*PaginatedAlertView, *http.Response, error) {
-	return r.ApiService.ListAlertsExecute(r)
+func (r AlertsApiReturnAllAlertsFromOneProjectRequest) Execute() (*PaginatedAlertView, *http.Response, error) {
+	return r.ApiService.ReturnAllAlertsFromOneProjectExecute(r)
 }
 
 /*
-ListAlerts Return All Alerts from One Project
+ReturnAllAlertsFromOneProject Return All Alerts from One Project
 
 Returns all alerts. These alerts apply to all components in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-all-alerts/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AlertsApiListAlertsRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return AlertsApiReturnAllAlertsFromOneProjectRequest
 */
-func (a *AlertsApiService) ListAlerts(ctx context.Context, groupId string) AlertsApiListAlertsRequest {
-	return AlertsApiListAlertsRequest{
+func (a *AlertsApiService) ReturnAllAlertsFromOneProject(ctx context.Context, groupId string) AlertsApiReturnAllAlertsFromOneProjectRequest {
+	return AlertsApiReturnAllAlertsFromOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -532,7 +359,7 @@ func (a *AlertsApiService) ListAlerts(ctx context.Context, groupId string) Alert
 
 // Execute executes the request
 //  @return PaginatedAlertView
-func (a *AlertsApiService) ListAlertsExecute(r AlertsApiListAlertsRequest) (*PaginatedAlertView, *http.Response, error) {
+func (a *AlertsApiService) ReturnAllAlertsFromOneProjectExecute(r AlertsApiReturnAllAlertsFromOneProjectRequest) (*PaginatedAlertView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -540,7 +367,7 @@ func (a *AlertsApiService) ListAlertsExecute(r AlertsApiListAlertsRequest) (*Pag
 		localVarReturnValue  *PaginatedAlertView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ListAlerts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ReturnAllAlertsFromOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -659,7 +486,7 @@ func (a *AlertsApiService) ListAlertsExecute(r AlertsApiListAlertsRequest) (*Pag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertsApiListAlertsByAlertConfigurationIdRequest struct {
+type AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest struct {
 	ctx context.Context
 	ApiService AlertsApi
 	groupId string
@@ -672,53 +499,53 @@ type AlertsApiListAlertsByAlertConfigurationIdRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) Envelope(envelope bool) AlertsApiListAlertsByAlertConfigurationIdRequest {
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) Envelope(envelope bool) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) IncludeCount(includeCount bool) AlertsApiListAlertsByAlertConfigurationIdRequest {
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) IncludeCount(includeCount bool) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) ItemsPerPage(itemsPerPage int32) AlertsApiListAlertsByAlertConfigurationIdRequest {
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) ItemsPerPage(itemsPerPage int32) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) PageNum(pageNum int32) AlertsApiListAlertsByAlertConfigurationIdRequest {
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) PageNum(pageNum int32) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) Pretty(pretty bool) AlertsApiListAlertsByAlertConfigurationIdRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) Pretty(pretty bool) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertsApiListAlertsByAlertConfigurationIdRequest) Execute() (*PaginatedAlertView, *http.Response, error) {
-	return r.ApiService.ListAlertsByAlertConfigurationIdExecute(r)
+func (r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) Execute() (*PaginatedAlertView, *http.Response, error) {
+	return r.ApiService.ReturnAllOpenAlertsForAlertConfigurationExecute(r)
 }
 
 /*
-ListAlertsByAlertConfigurationId Return All Open Alerts for Alert Configuration
+ReturnAllOpenAlertsForAlertConfiguration Return All Open Alerts for Alert Configuration
 
 Returns all open alerts that the specified alert configuration triggers. These alert configurations apply to the specified project only. Alert configurations define the triggers and notification methods for alerts. Open alerts have been triggered but remain unacknowledged. To use this resource, the requesting API Key must have the Project Read Only role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-open-alerts/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertsApiListAlertsByAlertConfigurationIdRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
+ @return AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest
 */
-func (a *AlertsApiService) ListAlertsByAlertConfigurationId(ctx context.Context, groupId string, alertConfigId string) AlertsApiListAlertsByAlertConfigurationIdRequest {
-	return AlertsApiListAlertsByAlertConfigurationIdRequest{
+func (a *AlertsApiService) ReturnAllOpenAlertsForAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest {
+	return AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -728,7 +555,7 @@ func (a *AlertsApiService) ListAlertsByAlertConfigurationId(ctx context.Context,
 
 // Execute executes the request
 //  @return PaginatedAlertView
-func (a *AlertsApiService) ListAlertsByAlertConfigurationIdExecute(r AlertsApiListAlertsByAlertConfigurationIdRequest) (*PaginatedAlertView, *http.Response, error) {
+func (a *AlertsApiService) ReturnAllOpenAlertsForAlertConfigurationExecute(r AlertsApiReturnAllOpenAlertsForAlertConfigurationRequest) (*PaginatedAlertView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -736,12 +563,12 @@ func (a *AlertsApiService) ListAlertsByAlertConfigurationIdExecute(r AlertsApiLi
 		localVarReturnValue  *PaginatedAlertView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ListAlertsByAlertConfigurationId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ReturnAllOpenAlertsForAlertConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alertConfigs/{alertConfigId}/alerts"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertConfigId}/alerts"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
 
@@ -772,6 +599,179 @@ func (a *AlertsApiService) ListAlertsByAlertConfigurationIdExecute(r AlertsApiLi
 	}
 	if r.pageNum != nil {
 		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AlertsApiReturnOneAlertFromOneProjectRequest struct {
+	ctx context.Context
+	ApiService AlertsApi
+	groupId string
+	alertId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r AlertsApiReturnOneAlertFromOneProjectRequest) Envelope(envelope bool) AlertsApiReturnOneAlertFromOneProjectRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AlertsApiReturnOneAlertFromOneProjectRequest) Pretty(pretty bool) AlertsApiReturnOneAlertFromOneProjectRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r AlertsApiReturnOneAlertFromOneProjectRequest) Execute() (*AlertViewForGroup, *http.Response, error) {
+	return r.ApiService.ReturnOneAlertFromOneProjectExecute(r)
+}
+
+/*
+ReturnOneAlertFromOneProject Return One Alert from One Project
+
+Returns one alert. This alert applies to any component in one project. You receive an alert when a monitored component meets or exceeds a value you set. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alerts-get-alert/).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/returnAllAlertsFromOneProject) endpoint to retrieve all alerts to which the authenticated user has access.
+ @return AlertsApiReturnOneAlertFromOneProjectRequest
+*/
+func (a *AlertsApiService) ReturnOneAlertFromOneProject(ctx context.Context, groupId string, alertId string) AlertsApiReturnOneAlertFromOneProjectRequest {
+	return AlertsApiReturnOneAlertFromOneProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		alertId: alertId,
+	}
+}
+
+// Execute executes the request
+//  @return AlertViewForGroup
+func (a *AlertsApiService) ReturnOneAlertFromOneProjectExecute(r AlertsApiReturnOneAlertFromOneProjectRequest) (*AlertViewForGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AlertViewForGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.ReturnOneAlertFromOneProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertId"+"}", url.PathEscape(parameterToString(r.alertId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.alertId) < 24 {
+		return localVarReturnValue, nil, reportError("alertId must have at least 24 elements")
+	}
+	if strlen(r.alertId) > 24 {
+		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
 	}
 	if r.pretty != nil {
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))

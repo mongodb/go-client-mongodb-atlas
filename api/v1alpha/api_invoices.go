@@ -23,385 +23,71 @@ import (
 type InvoicesApi interface {
 
 	/*
-	DownloadInvoiceCSV Return One Organization Invoice as CSV
-
-	Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
-	@return InvoicesApiDownloadInvoiceCSVRequest
-	*/
-	DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) InvoicesApiDownloadInvoiceCSVRequest
-
-	// DownloadInvoiceCSVExecute executes the request
-	DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvoiceCSVRequest) (*http.Response, error)
-
-	/*
-	GetInvoice Return One Organization Invoice
-
-	Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
-	@return InvoicesApiGetInvoiceRequest
-	*/
-	GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest
-
-	// GetInvoiceExecute executes the request
-	//  @return string
-	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (string, *http.Response, error)
-
-	/*
-	ListInvoices Return All Invoices for One Organization
+	ReturnAllInvoicesForOneOrganization Return All Invoices for One Organization
 
 	Returns all invoices that MongoDB issued to the specified organization. This list includes all invoices regardless of invoice status. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return InvoicesApiListInvoicesRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return InvoicesApiReturnAllInvoicesForOneOrganizationRequest
 	*/
-	ListInvoices(ctx context.Context, orgId string) InvoicesApiListInvoicesRequest
+	ReturnAllInvoicesForOneOrganization(ctx context.Context, orgId string) InvoicesApiReturnAllInvoicesForOneOrganizationRequest
 
-	// ListInvoicesExecute executes the request
+	// ReturnAllInvoicesForOneOrganizationExecute executes the request
 	//  @return PaginatedApiInvoiceView
-	ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error)
+	ReturnAllInvoicesForOneOrganizationExecute(r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) (*PaginatedApiInvoiceView, *http.Response, error)
 
 	/*
-	ListPendingInvoices Return All Pending Invoices for One Organization
+	ReturnAllPendingInvoicesForOneOrganization Return All Pending Invoices for One Organization
 
 	Returns all invoices accruing charges for the current billing cycle for the specified organization. To use this resource, the requesting API Key must have the Organization Member role.  If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return InvoicesApiListPendingInvoicesRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest
 	*/
-	ListPendingInvoices(ctx context.Context, orgId string) InvoicesApiListPendingInvoicesRequest
+	ReturnAllPendingInvoicesForOneOrganization(ctx context.Context, orgId string) InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest
 
-	// ListPendingInvoicesExecute executes the request
+	// ReturnAllPendingInvoicesForOneOrganizationExecute executes the request
 	//  @return PaginatedApiInvoiceView
-	ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error)
+	ReturnAllPendingInvoicesForOneOrganizationExecute(r InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest) (*PaginatedApiInvoiceView, *http.Response, error)
+
+	/*
+	ReturnOneOrganizationInvoice Return One Organization Invoice
+
+	Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
+	@return InvoicesApiReturnOneOrganizationInvoiceRequest
+	*/
+	ReturnOneOrganizationInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiReturnOneOrganizationInvoiceRequest
+
+	// ReturnOneOrganizationInvoiceExecute executes the request
+	//  @return string
+	ReturnOneOrganizationInvoiceExecute(r InvoicesApiReturnOneOrganizationInvoiceRequest) (string, *http.Response, error)
+
+	/*
+	ReturnOneOrganizationInvoiceAsCsv Return One Organization Invoice as CSV
+
+	Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
+	@return InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest
+	*/
+	ReturnOneOrganizationInvoiceAsCsv(ctx context.Context, orgId string, invoiceId string) InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest
+
+	// ReturnOneOrganizationInvoiceAsCsvExecute executes the request
+	ReturnOneOrganizationInvoiceAsCsvExecute(r InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest) (*http.Response, error)
 }
 
 // InvoicesApiService InvoicesApi service
 type InvoicesApiService service
 
-type InvoicesApiDownloadInvoiceCSVRequest struct {
-	ctx context.Context
-	ApiService InvoicesApi
-	orgId string
-	invoiceId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiDownloadInvoiceCSVRequest) Envelope(envelope bool) InvoicesApiDownloadInvoiceCSVRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiDownloadInvoiceCSVRequest) Pretty(pretty bool) InvoicesApiDownloadInvoiceCSVRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r InvoicesApiDownloadInvoiceCSVRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DownloadInvoiceCSVExecute(r)
-}
-
-/*
-DownloadInvoiceCSV Return One Organization Invoice as CSV
-
-Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
- @return InvoicesApiDownloadInvoiceCSVRequest
-*/
-func (a *InvoicesApiService) DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) InvoicesApiDownloadInvoiceCSVRequest {
-	return InvoicesApiDownloadInvoiceCSVRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		invoiceId: invoiceId,
-	}
-}
-
-// Execute executes the request
-func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvoiceCSVRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.DownloadInvoiceCSV")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/invoices/{invoiceId}/csv"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", url.PathEscape(parameterToString(r.invoiceId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return nil, reportError("orgId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+csv", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type InvoicesApiGetInvoiceRequest struct {
-	ctx context.Context
-	ApiService InvoicesApi
-	orgId string
-	invoiceId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiGetInvoiceRequest) Envelope(envelope bool) InvoicesApiGetInvoiceRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiGetInvoiceRequest) Pretty(pretty bool) InvoicesApiGetInvoiceRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r InvoicesApiGetInvoiceRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.GetInvoiceExecute(r)
-}
-
-/*
-GetInvoice Return One Organization Invoice
-
-Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
- @return InvoicesApiGetInvoiceRequest
-*/
-func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest {
-	return InvoicesApiGetInvoiceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		invoiceId: invoiceId,
-	}
-}
-
-// Execute executes the request
-//  @return string
-func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (string, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  string
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/invoices/{invoiceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", url.PathEscape(parameterToString(r.invoiceId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-	if strlen(r.invoiceId) < 24 {
-		return localVarReturnValue, nil, reportError("invoiceId must have at least 24 elements")
-	}
-	if strlen(r.invoiceId) > 24 {
-		return localVarReturnValue, nil, reportError("invoiceId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+csv", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type InvoicesApiListInvoicesRequest struct {
+type InvoicesApiReturnAllInvoicesForOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -413,50 +99,50 @@ type InvoicesApiListInvoicesRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiListInvoicesRequest) Envelope(envelope bool) InvoicesApiListInvoicesRequest {
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) Envelope(envelope bool) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r InvoicesApiListInvoicesRequest) IncludeCount(includeCount bool) InvoicesApiListInvoicesRequest {
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) IncludeCount(includeCount bool) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r InvoicesApiListInvoicesRequest) ItemsPerPage(itemsPerPage int32) InvoicesApiListInvoicesRequest {
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) ItemsPerPage(itemsPerPage int32) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r InvoicesApiListInvoicesRequest) PageNum(pageNum int32) InvoicesApiListInvoicesRequest {
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) PageNum(pageNum int32) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiListInvoicesRequest) Pretty(pretty bool) InvoicesApiListInvoicesRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) Pretty(pretty bool) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r InvoicesApiListInvoicesRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
-	return r.ApiService.ListInvoicesExecute(r)
+func (r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
+	return r.ApiService.ReturnAllInvoicesForOneOrganizationExecute(r)
 }
 
 /*
-ListInvoices Return All Invoices for One Organization
+ReturnAllInvoicesForOneOrganization Return All Invoices for One Organization
 
 Returns all invoices that MongoDB issued to the specified organization. This list includes all invoices regardless of invoice status. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return InvoicesApiListInvoicesRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return InvoicesApiReturnAllInvoicesForOneOrganizationRequest
 */
-func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) InvoicesApiListInvoicesRequest {
-	return InvoicesApiListInvoicesRequest{
+func (a *InvoicesApiService) ReturnAllInvoicesForOneOrganization(ctx context.Context, orgId string) InvoicesApiReturnAllInvoicesForOneOrganizationRequest {
+	return InvoicesApiReturnAllInvoicesForOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -465,7 +151,7 @@ func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) Inv
 
 // Execute executes the request
 //  @return PaginatedApiInvoiceView
-func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
+func (a *InvoicesApiService) ReturnAllInvoicesForOneOrganizationExecute(r InvoicesApiReturnAllInvoicesForOneOrganizationRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -473,7 +159,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 		localVarReturnValue  *PaginatedApiInvoiceView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ListInvoices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ReturnAllInvoicesForOneOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -592,7 +278,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type InvoicesApiListPendingInvoicesRequest struct {
+type InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -601,32 +287,32 @@ type InvoicesApiListPendingInvoicesRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiListPendingInvoicesRequest) Envelope(envelope bool) InvoicesApiListPendingInvoicesRequest {
+func (r InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest) Envelope(envelope bool) InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiListPendingInvoicesRequest) Pretty(pretty bool) InvoicesApiListPendingInvoicesRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest) Pretty(pretty bool) InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
-	return r.ApiService.ListPendingInvoicesExecute(r)
+func (r InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
+	return r.ApiService.ReturnAllPendingInvoicesForOneOrganizationExecute(r)
 }
 
 /*
-ListPendingInvoices Return All Pending Invoices for One Organization
+ReturnAllPendingInvoicesForOneOrganization Return All Pending Invoices for One Organization
 
 Returns all invoices accruing charges for the current billing cycle for the specified organization. To use this resource, the requesting API Key must have the Organization Member role.  If you have a cross-organization setup, to view linked invoices, you must have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return InvoicesApiListPendingInvoicesRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest
 */
-func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId string) InvoicesApiListPendingInvoicesRequest {
-	return InvoicesApiListPendingInvoicesRequest{
+func (a *InvoicesApiService) ReturnAllPendingInvoicesForOneOrganization(ctx context.Context, orgId string) InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest {
+	return InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -635,7 +321,7 @@ func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId stri
 
 // Execute executes the request
 //  @return PaginatedApiInvoiceView
-func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
+func (a *InvoicesApiService) ReturnAllPendingInvoicesForOneOrganizationExecute(r InvoicesApiReturnAllPendingInvoicesForOneOrganizationRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -643,7 +329,7 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 		localVarReturnValue  *PaginatedApiInvoiceView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ListPendingInvoices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ReturnAllPendingInvoicesForOneOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -751,4 +437,318 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type InvoicesApiReturnOneOrganizationInvoiceRequest struct {
+	ctx context.Context
+	ApiService InvoicesApi
+	orgId string
+	invoiceId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r InvoicesApiReturnOneOrganizationInvoiceRequest) Envelope(envelope bool) InvoicesApiReturnOneOrganizationInvoiceRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r InvoicesApiReturnOneOrganizationInvoiceRequest) Pretty(pretty bool) InvoicesApiReturnOneOrganizationInvoiceRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r InvoicesApiReturnOneOrganizationInvoiceRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.ReturnOneOrganizationInvoiceExecute(r)
+}
+
+/*
+ReturnOneOrganizationInvoice Return One Organization Invoice
+
+Returns one invoice that MongoDB issued to the specified organization. A unique 24-hexadecimal digit string identifies the invoice. You can choose to receive this invoice in JSON or CSV format. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
+ @return InvoicesApiReturnOneOrganizationInvoiceRequest
+*/
+func (a *InvoicesApiService) ReturnOneOrganizationInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiReturnOneOrganizationInvoiceRequest {
+	return InvoicesApiReturnOneOrganizationInvoiceRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		invoiceId: invoiceId,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *InvoicesApiService) ReturnOneOrganizationInvoiceExecute(r InvoicesApiReturnOneOrganizationInvoiceRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ReturnOneOrganizationInvoice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/invoices/{invoiceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", url.PathEscape(parameterToString(r.invoiceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if strlen(r.invoiceId) < 24 {
+		return localVarReturnValue, nil, reportError("invoiceId must have at least 24 elements")
+	}
+	if strlen(r.invoiceId) > 24 {
+		return localVarReturnValue, nil, reportError("invoiceId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+csv", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest struct {
+	ctx context.Context
+	ApiService InvoicesApi
+	orgId string
+	invoiceId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest) Envelope(envelope bool) InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest) Pretty(pretty bool) InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ReturnOneOrganizationInvoiceAsCsvExecute(r)
+}
+
+/*
+ReturnOneOrganizationInvoiceAsCsv Return One Organization Invoice as CSV
+
+Returns one invoice that MongoDB issued to the specified organization in CSV format. A unique 24-hexadecimal digit string identifies the invoice. To use this resource, the requesting API Key must have the Organization Member role. If you have a cross-organization setup, you can query for a linked invoice if you have an Organization Billing Admin or Organization Owner Role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
+ @return InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest
+*/
+func (a *InvoicesApiService) ReturnOneOrganizationInvoiceAsCsv(ctx context.Context, orgId string, invoiceId string) InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest {
+	return InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		invoiceId: invoiceId,
+	}
+}
+
+// Execute executes the request
+func (a *InvoicesApiService) ReturnOneOrganizationInvoiceAsCsvExecute(r InvoicesApiReturnOneOrganizationInvoiceAsCsvRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ReturnOneOrganizationInvoiceAsCsv")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/invoices/{invoiceId}/csv"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", url.PathEscape(parameterToString(r.invoiceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return nil, reportError("orgId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+csv", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

@@ -30,7 +30,7 @@ type HostMetricAlertView struct {
 	// Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
 	CurrentValue *HostMetricValueView `json:"currentValue,omitempty"`
-	EventTypeName HostMetricEventTypeViewAlertable `json:"eventTypeName"`
+	EventTypeName HostMetricEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project that owns this alert.
 	GroupId *string `json:"groupId,omitempty"`
 	// Hostname and port of the host to which this alert applies. The resource returns this parameter for alerts of events impacting hosts or replica sets.
@@ -273,9 +273,9 @@ func (o *HostMetricAlertView) SetCurrentValue(v HostMetricValueView) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *HostMetricAlertView) GetEventTypeName() HostMetricEventTypeViewAlertable {
+func (o *HostMetricAlertView) GetEventTypeName() HostMetricEventType {
 	if o == nil {
-		var ret HostMetricEventTypeViewAlertable
+		var ret HostMetricEventType
 		return ret
 	}
 
@@ -284,7 +284,7 @@ func (o *HostMetricAlertView) GetEventTypeName() HostMetricEventTypeViewAlertabl
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *HostMetricAlertView) GetEventTypeNameOk() (*HostMetricEventTypeViewAlertable, bool) {
+func (o *HostMetricAlertView) GetEventTypeNameOk() (*HostMetricEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -292,7 +292,7 @@ func (o *HostMetricAlertView) GetEventTypeNameOk() (*HostMetricEventTypeViewAler
 }
 
 // SetEventTypeName sets field value
-func (o *HostMetricAlertView) SetEventTypeName(v HostMetricEventTypeViewAlertable) {
+func (o *HostMetricAlertView) SetEventTypeName(v HostMetricEventType) {
 	o.EventTypeName = v
 }
 

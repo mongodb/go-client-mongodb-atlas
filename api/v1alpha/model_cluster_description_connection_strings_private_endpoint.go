@@ -22,8 +22,6 @@ type ClusterDescriptionConnectionStringsPrivateEndpoint struct {
 	Endpoints []ClusterDescriptionConnectionStringsPrivateEndpointEndpoint `json:"endpoints,omitempty"`
 	// Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
 	SrvConnectionString *string `json:"srvConnectionString,omitempty"`
-	// Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
-	SrvShardOptimizedConnectionString *string `json:"srvShardOptimizedConnectionString,omitempty"`
 	// MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
 	Type *string `json:"type,omitempty"`
 }
@@ -141,38 +139,6 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetSrvConnectionStr
 	o.SrvConnectionString = &v
 }
 
-// GetSrvShardOptimizedConnectionString returns the SrvShardOptimizedConnectionString field value if set, zero value otherwise.
-func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimizedConnectionString() string {
-	if o == nil || o.SrvShardOptimizedConnectionString == nil {
-		var ret string
-		return ret
-	}
-	return *o.SrvShardOptimizedConnectionString
-}
-
-// GetSrvShardOptimizedConnectionStringOk returns a tuple with the SrvShardOptimizedConnectionString field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimizedConnectionStringOk() (*string, bool) {
-	if o == nil || o.SrvShardOptimizedConnectionString == nil {
-		return nil, false
-	}
-	return o.SrvShardOptimizedConnectionString, true
-}
-
-// HasSrvShardOptimizedConnectionString returns a boolean if a field has been set.
-func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasSrvShardOptimizedConnectionString() bool {
-	if o != nil && o.SrvShardOptimizedConnectionString != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSrvShardOptimizedConnectionString gets a reference to the given string and assigns it to the SrvShardOptimizedConnectionString field.
-func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetSrvShardOptimizedConnectionString(v string) {
-	o.SrvShardOptimizedConnectionString = &v
-}
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetType() string {
 	if o == nil || o.Type == nil {
@@ -215,9 +181,6 @@ func (o ClusterDescriptionConnectionStringsPrivateEndpoint) MarshalJSON() ([]byt
 	}
 	if o.SrvConnectionString != nil {
 		toSerialize["srvConnectionString"] = o.SrvConnectionString
-	}
-	if o.SrvShardOptimizedConnectionString != nil {
-		toSerialize["srvShardOptimizedConnectionString"] = o.SrvShardOptimizedConnectionString
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

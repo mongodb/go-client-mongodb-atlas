@@ -18,8 +18,6 @@ import (
 type ApiMicrosoftTeamsView struct {
 	// Endpoint web address of the Microsoft Teams webhook to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a Microsoft Teams notification, the URL appears partially redacted.
 	MicrosoftTeamsWebhookUrl string `json:"microsoftTeamsWebhookUrl"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
-	Type *string `json:"type,omitempty"`
 }
 
 // NewApiMicrosoftTeamsView instantiates a new ApiMicrosoftTeamsView object
@@ -63,45 +61,10 @@ func (o *ApiMicrosoftTeamsView) SetMicrosoftTeamsWebhookUrl(v string) {
 	o.MicrosoftTeamsWebhookUrl = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ApiMicrosoftTeamsView) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiMicrosoftTeamsView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *ApiMicrosoftTeamsView) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ApiMicrosoftTeamsView) SetType(v string) {
-	o.Type = &v
-}
-
 func (o ApiMicrosoftTeamsView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["microsoftTeamsWebhookUrl"] = o.MicrosoftTeamsWebhookUrl
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

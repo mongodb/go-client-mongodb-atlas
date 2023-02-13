@@ -28,7 +28,7 @@ type CloudMigrationServiceApi interface {
 	Create one link-token that contains all the information required to complete the link.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	@return CloudMigrationServiceApiCreateLinkTokenRequest
 	*/
 	CreateLinkToken(ctx context.Context, orgId string) CloudMigrationServiceApiCreateLinkTokenRequest
@@ -42,10 +42,10 @@ type CloudMigrationServiceApi interface {
 
 	Migrate one cluster that Cloud or Ops Manager manages to MongoDB Atlas.
 
- Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateMigration) your migration before initiating it.
+ Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateOneMigration) your migration before initiating it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@return CloudMigrationServiceApiCreatePushMigrationRequest
 	*/
 	CreatePushMigration(ctx context.Context, groupId string) CloudMigrationServiceApiCreatePushMigrationRequest
@@ -55,20 +55,20 @@ type CloudMigrationServiceApi interface {
 	CreatePushMigrationExecute(r CloudMigrationServiceApiCreatePushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error)
 
 	/*
-	CutoverMigration Cut Over the Migrated Cluster
+	CutoverOneMigration Cut Over the Migrated Cluster
 
 	Cut over the migrated cluster to MongoDB Cloud. Confirm when the cut over completes. When the cut over completes, MongoDB Cloud completes the live migration process and stops synchronizing with the source cluster.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param liveMigrationId Unique 24-hexadecimal digit string that identifies the migration.
-	@return CloudMigrationServiceApiCutoverMigrationRequest
+	@return CloudMigrationServiceApiCutoverOneMigrationRequest
 	*/
-	CutoverMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiCutoverMigrationRequest
+	CutoverOneMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiCutoverOneMigrationRequest
 
-	// CutoverMigrationExecute executes the request
+	// CutoverOneMigrationExecute executes the request
 	//  @return ValidationView
-	CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*ValidationView, *http.Response, error)
+	CutoverOneMigrationExecute(r CloudMigrationServiceApiCutoverOneMigrationRequest) (*ValidationView, *http.Response, error)
 
 	/*
 	DeleteLinkToken Remove One Link-Token
@@ -76,7 +76,7 @@ type CloudMigrationServiceApi interface {
 	Remove one organization link and its associated public API key.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	@return CloudMigrationServiceApiDeleteLinkTokenRequest
 	*/
 	DeleteLinkToken(ctx context.Context, orgId string) CloudMigrationServiceApiDeleteLinkTokenRequest
@@ -85,66 +85,66 @@ type CloudMigrationServiceApi interface {
 	DeleteLinkTokenExecute(r CloudMigrationServiceApiDeleteLinkTokenRequest) (*http.Response, error)
 
 	/*
-	GetPushMigration Return One Migration Job
-
-	Return details of one cluster migration job.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param liveMigrationId Unique 24-hexadecimal digit string that identifies the migration.
-	@return CloudMigrationServiceApiGetPushMigrationRequest
-	*/
-	GetPushMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiGetPushMigrationRequest
-
-	// GetPushMigrationExecute executes the request
-	//  @return LiveMigrationResponseView
-	GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error)
-
-	/*
-	GetValidationStatus Return One Migration Validation Job
-
-	Return the status of one migration validation job.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param validationId Unique 24-hexadecimal digit string that identifies the validation job.
-	@return CloudMigrationServiceApiGetValidationStatusRequest
-	*/
-	GetValidationStatus(ctx context.Context, groupId string, validationId string) CloudMigrationServiceApiGetValidationStatusRequest
-
-	// GetValidationStatusExecute executes the request
-	//  @return ValidationView
-	GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*ValidationView, *http.Response, error)
-
-	/*
-	ListSourceProjects Return All Projects Available for Migration
+	ListProjects Return All Projects Available for Migration
 
 	Return all projects that you can migrate to the specified organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return CloudMigrationServiceApiListSourceProjectsRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return CloudMigrationServiceApiListProjectsRequest
 	*/
-	ListSourceProjects(ctx context.Context, orgId string) CloudMigrationServiceApiListSourceProjectsRequest
+	ListProjects(ctx context.Context, orgId string) CloudMigrationServiceApiListProjectsRequest
 
-	// ListSourceProjectsExecute executes the request
+	// ListProjectsExecute executes the request
 	//  @return []AvailableProjectView
-	ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProjectView, *http.Response, error)
+	ListProjectsExecute(r CloudMigrationServiceApiListProjectsRequest) ([]AvailableProjectView, *http.Response, error)
 
 	/*
-	ValidateMigration Validate One Migration Request
+	ReturnOnePushMigration Return One Migration Job
+
+	Return details of one cluster migration job.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param liveMigrationId Unique 24-hexadecimal digit string that identifies the migration.
+	@return CloudMigrationServiceApiReturnOnePushMigrationRequest
+	*/
+	ReturnOnePushMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiReturnOnePushMigrationRequest
+
+	// ReturnOnePushMigrationExecute executes the request
+	//  @return LiveMigrationResponseView
+	ReturnOnePushMigrationExecute(r CloudMigrationServiceApiReturnOnePushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error)
+
+	/*
+	ReturnOneValidationJob Return One Migration Validation Job
+
+	Return the status of one migration validation job.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param validationId Unique 24-hexadecimal digit string that identifies the validation job.
+	@return CloudMigrationServiceApiReturnOneValidationJobRequest
+	*/
+	ReturnOneValidationJob(ctx context.Context, groupId string, validationId string) CloudMigrationServiceApiReturnOneValidationJobRequest
+
+	// ReturnOneValidationJobExecute executes the request
+	//  @return ValidationView
+	ReturnOneValidationJobExecute(r CloudMigrationServiceApiReturnOneValidationJobRequest) (*ValidationView, *http.Response, error)
+
+	/*
+	ValidateOneMigration Validate One Migration Request
 
 	Check whether the provided credentials, available disk space, MongoDB versions, and so on meet the requirements of the migration request. If the check passes, the migration can proceed.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return CloudMigrationServiceApiValidateMigrationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return CloudMigrationServiceApiValidateOneMigrationRequest
 	*/
-	ValidateMigration(ctx context.Context, groupId string) CloudMigrationServiceApiValidateMigrationRequest
+	ValidateOneMigration(ctx context.Context, groupId string) CloudMigrationServiceApiValidateOneMigrationRequest
 
-	// ValidateMigrationExecute executes the request
+	// ValidateOneMigrationExecute executes the request
 	//  @return ValidationView
-	ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*ValidationView, *http.Response, error)
+	ValidateOneMigrationExecute(r CloudMigrationServiceApiValidateOneMigrationRequest) (*ValidationView, *http.Response, error)
 }
 
 // CloudMigrationServiceApiService CloudMigrationServiceApi service
@@ -165,7 +165,7 @@ func (r CloudMigrationServiceApiCreateLinkTokenRequest) Envelope(envelope bool) 
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudMigrationServiceApiCreateLinkTokenRequest) Pretty(pretty bool) CloudMigrationServiceApiCreateLinkTokenRequest {
 	r.pretty = &pretty
 	return r
@@ -186,7 +186,7 @@ CreateLinkToken Create One Link-Token
 Create one link-token that contains all the information required to complete the link.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
  @return CloudMigrationServiceApiCreateLinkTokenRequest
 */
 func (a *CloudMigrationServiceApiService) CreateLinkToken(ctx context.Context, orgId string) CloudMigrationServiceApiCreateLinkTokenRequest {
@@ -340,7 +340,7 @@ func (r CloudMigrationServiceApiCreatePushMigrationRequest) Envelope(envelope bo
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+// Flag that indicates whether the response body should be in the prettyprint format.
 func (r CloudMigrationServiceApiCreatePushMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiCreatePushMigrationRequest {
 	r.pretty = &pretty
 	return r
@@ -355,10 +355,10 @@ CreatePushMigration Migrate One Local Managed Cluster to MongoDB Atlas
 
 Migrate one cluster that Cloud or Ops Manager manages to MongoDB Atlas.
 
- Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateMigration) your migration before initiating it.
+ Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateOneMigration) your migration before initiating it.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @return CloudMigrationServiceApiCreatePushMigrationRequest
 */
 func (a *CloudMigrationServiceApiService) CreatePushMigration(ctx context.Context, groupId string) CloudMigrationServiceApiCreatePushMigrationRequest {
@@ -516,7 +516,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CloudMigrationServiceApiCutoverMigrationRequest struct {
+type CloudMigrationServiceApiCutoverOneMigrationRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
@@ -526,33 +526,33 @@ type CloudMigrationServiceApiCutoverMigrationRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudMigrationServiceApiCutoverMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiCutoverMigrationRequest {
+func (r CloudMigrationServiceApiCutoverOneMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiCutoverOneMigrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudMigrationServiceApiCutoverMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiCutoverMigrationRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r CloudMigrationServiceApiCutoverOneMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiCutoverOneMigrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CloudMigrationServiceApiCutoverMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
-	return r.ApiService.CutoverMigrationExecute(r)
+func (r CloudMigrationServiceApiCutoverOneMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
+	return r.ApiService.CutoverOneMigrationExecute(r)
 }
 
 /*
-CutoverMigration Cut Over the Migrated Cluster
+CutoverOneMigration Cut Over the Migrated Cluster
 
 Cut over the migrated cluster to MongoDB Cloud. Confirm when the cut over completes. When the cut over completes, MongoDB Cloud completes the live migration process and stops synchronizing with the source cluster.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param liveMigrationId Unique 24-hexadecimal digit string that identifies the migration.
- @return CloudMigrationServiceApiCutoverMigrationRequest
+ @return CloudMigrationServiceApiCutoverOneMigrationRequest
 */
-func (a *CloudMigrationServiceApiService) CutoverMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiCutoverMigrationRequest {
-	return CloudMigrationServiceApiCutoverMigrationRequest{
+func (a *CloudMigrationServiceApiService) CutoverOneMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiCutoverOneMigrationRequest {
+	return CloudMigrationServiceApiCutoverOneMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -562,7 +562,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigration(ctx context.Context, 
 
 // Execute executes the request
 //  @return ValidationView
-func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*ValidationView, *http.Response, error) {
+func (a *CloudMigrationServiceApiService) CutoverOneMigrationExecute(r CloudMigrationServiceApiCutoverOneMigrationRequest) (*ValidationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -570,7 +570,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 		localVarReturnValue  *ValidationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.CutoverMigration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.CutoverOneMigration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -732,7 +732,7 @@ DeleteLinkToken Remove One Link-Token
 Remove one organization link and its associated public API key.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
  @return CloudMigrationServiceApiDeleteLinkTokenRequest
 */
 func (a *CloudMigrationServiceApiService) DeleteLinkToken(ctx context.Context, orgId string) CloudMigrationServiceApiDeleteLinkTokenRequest {
@@ -849,7 +849,168 @@ func (a *CloudMigrationServiceApiService) DeleteLinkTokenExecute(r CloudMigratio
 	return localVarHTTPResponse, nil
 }
 
-type CloudMigrationServiceApiGetPushMigrationRequest struct {
+type CloudMigrationServiceApiListProjectsRequest struct {
+	ctx context.Context
+	ApiService CloudMigrationServiceApi
+	orgId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r CloudMigrationServiceApiListProjectsRequest) Envelope(envelope bool) CloudMigrationServiceApiListProjectsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r CloudMigrationServiceApiListProjectsRequest) Pretty(pretty bool) CloudMigrationServiceApiListProjectsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r CloudMigrationServiceApiListProjectsRequest) Execute() ([]AvailableProjectView, *http.Response, error) {
+	return r.ApiService.ListProjectsExecute(r)
+}
+
+/*
+ListProjects Return All Projects Available for Migration
+
+Return all projects that you can migrate to the specified organization.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return CloudMigrationServiceApiListProjectsRequest
+*/
+func (a *CloudMigrationServiceApiService) ListProjects(ctx context.Context, orgId string) CloudMigrationServiceApiListProjectsRequest {
+	return CloudMigrationServiceApiListProjectsRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+	}
+}
+
+// Execute executes the request
+//  @return []AvailableProjectView
+func (a *CloudMigrationServiceApiService) ListProjectsExecute(r CloudMigrationServiceApiListProjectsRequest) ([]AvailableProjectView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []AvailableProjectView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ListProjects")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/liveMigrations/availableProjects"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CloudMigrationServiceApiReturnOnePushMigrationRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
@@ -859,33 +1020,33 @@ type CloudMigrationServiceApiGetPushMigrationRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudMigrationServiceApiGetPushMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiGetPushMigrationRequest {
+func (r CloudMigrationServiceApiReturnOnePushMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiReturnOnePushMigrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudMigrationServiceApiGetPushMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiGetPushMigrationRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r CloudMigrationServiceApiReturnOnePushMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiReturnOnePushMigrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CloudMigrationServiceApiGetPushMigrationRequest) Execute() (*LiveMigrationResponseView, *http.Response, error) {
-	return r.ApiService.GetPushMigrationExecute(r)
+func (r CloudMigrationServiceApiReturnOnePushMigrationRequest) Execute() (*LiveMigrationResponseView, *http.Response, error) {
+	return r.ApiService.ReturnOnePushMigrationExecute(r)
 }
 
 /*
-GetPushMigration Return One Migration Job
+ReturnOnePushMigration Return One Migration Job
 
 Return details of one cluster migration job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param liveMigrationId Unique 24-hexadecimal digit string that identifies the migration.
- @return CloudMigrationServiceApiGetPushMigrationRequest
+ @return CloudMigrationServiceApiReturnOnePushMigrationRequest
 */
-func (a *CloudMigrationServiceApiService) GetPushMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiGetPushMigrationRequest {
-	return CloudMigrationServiceApiGetPushMigrationRequest{
+func (a *CloudMigrationServiceApiService) ReturnOnePushMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiReturnOnePushMigrationRequest {
+	return CloudMigrationServiceApiReturnOnePushMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -895,7 +1056,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigration(ctx context.Context, 
 
 // Execute executes the request
 //  @return LiveMigrationResponseView
-func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error) {
+func (a *CloudMigrationServiceApiService) ReturnOnePushMigrationExecute(r CloudMigrationServiceApiReturnOnePushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -903,7 +1064,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 		localVarReturnValue  *LiveMigrationResponseView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.GetPushMigration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ReturnOnePushMigration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1031,7 +1192,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CloudMigrationServiceApiGetValidationStatusRequest struct {
+type CloudMigrationServiceApiReturnOneValidationJobRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
@@ -1040,27 +1201,27 @@ type CloudMigrationServiceApiGetValidationStatusRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudMigrationServiceApiGetValidationStatusRequest) Envelope(envelope bool) CloudMigrationServiceApiGetValidationStatusRequest {
+func (r CloudMigrationServiceApiReturnOneValidationJobRequest) Envelope(envelope bool) CloudMigrationServiceApiReturnOneValidationJobRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r CloudMigrationServiceApiGetValidationStatusRequest) Execute() (*ValidationView, *http.Response, error) {
-	return r.ApiService.GetValidationStatusExecute(r)
+func (r CloudMigrationServiceApiReturnOneValidationJobRequest) Execute() (*ValidationView, *http.Response, error) {
+	return r.ApiService.ReturnOneValidationJobExecute(r)
 }
 
 /*
-GetValidationStatus Return One Migration Validation Job
+ReturnOneValidationJob Return One Migration Validation Job
 
 Return the status of one migration validation job.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param validationId Unique 24-hexadecimal digit string that identifies the validation job.
- @return CloudMigrationServiceApiGetValidationStatusRequest
+ @return CloudMigrationServiceApiReturnOneValidationJobRequest
 */
-func (a *CloudMigrationServiceApiService) GetValidationStatus(ctx context.Context, groupId string, validationId string) CloudMigrationServiceApiGetValidationStatusRequest {
-	return CloudMigrationServiceApiGetValidationStatusRequest{
+func (a *CloudMigrationServiceApiService) ReturnOneValidationJob(ctx context.Context, groupId string, validationId string) CloudMigrationServiceApiReturnOneValidationJobRequest {
+	return CloudMigrationServiceApiReturnOneValidationJobRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1070,7 +1231,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatus(ctx context.Contex
 
 // Execute executes the request
 //  @return ValidationView
-func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*ValidationView, *http.Response, error) {
+func (a *CloudMigrationServiceApiService) ReturnOneValidationJobExecute(r CloudMigrationServiceApiReturnOneValidationJobRequest) (*ValidationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1078,7 +1239,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 		localVarReturnValue  *ValidationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.GetValidationStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ReturnOneValidationJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1214,168 +1375,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CloudMigrationServiceApiListSourceProjectsRequest struct {
-	ctx context.Context
-	ApiService CloudMigrationServiceApi
-	orgId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudMigrationServiceApiListSourceProjectsRequest) Envelope(envelope bool) CloudMigrationServiceApiListSourceProjectsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudMigrationServiceApiListSourceProjectsRequest) Pretty(pretty bool) CloudMigrationServiceApiListSourceProjectsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r CloudMigrationServiceApiListSourceProjectsRequest) Execute() ([]AvailableProjectView, *http.Response, error) {
-	return r.ApiService.ListSourceProjectsExecute(r)
-}
-
-/*
-ListSourceProjects Return All Projects Available for Migration
-
-Return all projects that you can migrate to the specified organization.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return CloudMigrationServiceApiListSourceProjectsRequest
-*/
-func (a *CloudMigrationServiceApiService) ListSourceProjects(ctx context.Context, orgId string) CloudMigrationServiceApiListSourceProjectsRequest {
-	return CloudMigrationServiceApiListSourceProjectsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-	}
-}
-
-// Execute executes the request
-//  @return []AvailableProjectView
-func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProjectView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []AvailableProjectView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ListSourceProjects")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/liveMigrations/availableProjects"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type CloudMigrationServiceApiValidateMigrationRequest struct {
+type CloudMigrationServiceApiValidateOneMigrationRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
@@ -1385,38 +1385,38 @@ type CloudMigrationServiceApiValidateMigrationRequest struct {
 }
 
 // One migration to be validated.
-func (r CloudMigrationServiceApiValidateMigrationRequest) LiveMigrationRequestView(liveMigrationRequestView LiveMigrationRequestView) CloudMigrationServiceApiValidateMigrationRequest {
+func (r CloudMigrationServiceApiValidateOneMigrationRequest) LiveMigrationRequestView(liveMigrationRequestView LiveMigrationRequestView) CloudMigrationServiceApiValidateOneMigrationRequest {
 	r.liveMigrationRequestView = &liveMigrationRequestView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudMigrationServiceApiValidateMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiValidateMigrationRequest {
+func (r CloudMigrationServiceApiValidateOneMigrationRequest) Envelope(envelope bool) CloudMigrationServiceApiValidateOneMigrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudMigrationServiceApiValidateMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiValidateMigrationRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r CloudMigrationServiceApiValidateOneMigrationRequest) Pretty(pretty bool) CloudMigrationServiceApiValidateOneMigrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r CloudMigrationServiceApiValidateMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
-	return r.ApiService.ValidateMigrationExecute(r)
+func (r CloudMigrationServiceApiValidateOneMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
+	return r.ApiService.ValidateOneMigrationExecute(r)
 }
 
 /*
-ValidateMigration Validate One Migration Request
+ValidateOneMigration Validate One Migration Request
 
 Check whether the provided credentials, available disk space, MongoDB versions, and so on meet the requirements of the migration request. If the check passes, the migration can proceed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return CloudMigrationServiceApiValidateMigrationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return CloudMigrationServiceApiValidateOneMigrationRequest
 */
-func (a *CloudMigrationServiceApiService) ValidateMigration(ctx context.Context, groupId string) CloudMigrationServiceApiValidateMigrationRequest {
-	return CloudMigrationServiceApiValidateMigrationRequest{
+func (a *CloudMigrationServiceApiService) ValidateOneMigration(ctx context.Context, groupId string) CloudMigrationServiceApiValidateOneMigrationRequest {
+	return CloudMigrationServiceApiValidateOneMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1425,7 +1425,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigration(ctx context.Context,
 
 // Execute executes the request
 //  @return ValidationView
-func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*ValidationView, *http.Response, error) {
+func (a *CloudMigrationServiceApiService) ValidateOneMigrationExecute(r CloudMigrationServiceApiValidateOneMigrationRequest) (*ValidationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1433,7 +1433,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 		localVarReturnValue  *ValidationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ValidateMigration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ValidateOneMigration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

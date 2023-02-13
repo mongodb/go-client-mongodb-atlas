@@ -16,12 +16,8 @@ import (
 
 // ApiPagerDutyView Details to integrate one PagerDuty account with one MongoDB Cloud project.
 type ApiPagerDutyView struct {
-	// PagerDuty region that indicates the API Uniform Resource Locator (URL) to use.
-	Region *string `json:"region,omitempty"`
 	// Service key associated with your PagerDuty account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
 	ServiceKey string `json:"serviceKey"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
-	Type *string `json:"type,omitempty"`
 }
 
 // NewApiPagerDutyView instantiates a new ApiPagerDutyView object
@@ -39,38 +35,6 @@ func NewApiPagerDutyView() *ApiPagerDutyView {
 func NewApiPagerDutyViewWithDefaults() *ApiPagerDutyView {
 	this := ApiPagerDutyView{}
 	return &this
-}
-
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *ApiPagerDutyView) GetRegion() string {
-	if o == nil || o.Region == nil {
-		var ret string
-		return ret
-	}
-	return *o.Region
-}
-
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiPagerDutyView) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
-		return nil, false
-	}
-	return o.Region, true
-}
-
-// HasRegion returns a boolean if a field has been set.
-func (o *ApiPagerDutyView) HasRegion() bool {
-	if o != nil && o.Region != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *ApiPagerDutyView) SetRegion(v string) {
-	o.Region = &v
 }
 
 // GetServiceKey returns the ServiceKey field value
@@ -97,48 +61,10 @@ func (o *ApiPagerDutyView) SetServiceKey(v string) {
 	o.ServiceKey = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ApiPagerDutyView) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiPagerDutyView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *ApiPagerDutyView) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ApiPagerDutyView) SetType(v string) {
-	o.Type = &v
-}
-
 func (o ApiPagerDutyView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
 	if true {
 		toSerialize["serviceKey"] = o.ServiceKey
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

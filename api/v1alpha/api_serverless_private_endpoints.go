@@ -23,94 +23,94 @@ import (
 type ServerlessPrivateEndpointsApi interface {
 
 	/*
-	CreateServerlessPrivateEndpoint Create One Private Endpoint for One Serverless Instance
+	CreateOnePrivateEndpointForOneServerlessInstance Create One Private Endpoint for One Serverless Instance
 
 	Creates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  A new endpoint won't be immediately available after creation.  Read the steps in the linked tutorial for detailed guidance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param instanceName Human-readable label that identifies the serverless instance for which the tenant endpoint will be created.
-	@return ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest
+	@return ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest
 	*/
-	CreateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest
+	CreateOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest
 
-	// CreateServerlessPrivateEndpointExecute executes the request
+	// CreateOnePrivateEndpointForOneServerlessInstanceExecute executes the request
 	//  @return ServerlessTenantEndpoint
-	CreateServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+	CreateOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error)
 
 	/*
-	DeleteServerlessPrivateEndpoint Remove One Private Endpoint for One Serverless Instance
+	RemoveOnePrivateEndpointFromOneServerlessInstance Remove One Private Endpoint for One Serverless Instance
 
 	Remove one private endpoint from one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param instanceName Human-readable label that identifies the serverless instance from which the tenant endpoint will be removed.
 	@param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint which will be removed.
-	@return ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest
+	@return ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest
 	*/
-	DeleteServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest
+	RemoveOnePrivateEndpointFromOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest
 
-	// DeleteServerlessPrivateEndpointExecute executes the request
-	DeleteServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest) (*http.Response, error)
+	// RemoveOnePrivateEndpointFromOneServerlessInstanceExecute executes the request
+	RemoveOnePrivateEndpointFromOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest) (*http.Response, error)
 
 	/*
-	GetServerlessPrivateEndpoint Return One Private Endpoint for One Serverless Instance
-
-	Return one private endpoint for one serverless instance. Identify this endpoint using its unique ID. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
-	@param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint.
-	@return ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest
-	*/
-	GetServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest
-
-	// GetServerlessPrivateEndpointExecute executes the request
-	//  @return ServerlessTenantEndpoint
-	GetServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error)
-
-	/*
-	ListServerlessPrivateEndpoints Return All Private Endpoints for One Serverless Instance
+	ReturnAllPrivateEndpointsForOneServerlessInstance Return All Private Endpoints for One Serverless Instance
 
 	Returns all private endpoints for one serverless instance. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
-	@return ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest
+	@return ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest
 	*/
-	ListServerlessPrivateEndpoints(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest
+	ReturnAllPrivateEndpointsForOneServerlessInstance(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest
 
-	// ListServerlessPrivateEndpointsExecute executes the request
+	// ReturnAllPrivateEndpointsForOneServerlessInstanceExecute executes the request
 	//  @return []ServerlessTenantEndpoint
-	ListServerlessPrivateEndpointsExecute(r ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest) ([]ServerlessTenantEndpoint, *http.Response, error)
+	ReturnAllPrivateEndpointsForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest) ([]ServerlessTenantEndpoint, *http.Response, error)
 
 	/*
-	UpdateServerlessPrivateEndpoint Update One Private Endpoint for One Serverless Instance
+	ReturnOnePrivateEndpointForOneServerlessInstance Return One Private Endpoint for One Serverless Instance
+
+	Return one private endpoint for one serverless instance. Identify this endpoint using its unique ID. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
+	@param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint.
+	@return ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest
+	*/
+	ReturnOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest
+
+	// ReturnOnePrivateEndpointForOneServerlessInstanceExecute executes the request
+	//  @return ServerlessTenantEndpoint
+	ReturnOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+
+	/*
+	UpdateOnePrivateEndpointForOneServerlessInstance Update One Private Endpoint for One Serverless Instance
 
 	Updates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint that will be updated.
 	@param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint which will be updated.
-	@return ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest
+	@return ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest
 	*/
-	UpdateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest
+	UpdateOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest
 
-	// UpdateServerlessPrivateEndpointExecute executes the request
+	// UpdateOnePrivateEndpointForOneServerlessInstanceExecute executes the request
 	//  @return ServerlessTenantEndpoint
-	UpdateServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+	UpdateOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error)
 }
 
 // ServerlessPrivateEndpointsApiService ServerlessPrivateEndpointsApi service
 type ServerlessPrivateEndpointsApiService service
 
-type ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest struct {
+type ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest struct {
 	ctx context.Context
 	ApiService ServerlessPrivateEndpointsApi
 	groupId string
@@ -120,34 +120,34 @@ type ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest struct 
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) ServerlessTenantEndpointCreate(serverlessTenantEndpointCreate ServerlessTenantEndpointCreate) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest) ServerlessTenantEndpointCreate(serverlessTenantEndpointCreate ServerlessTenantEndpointCreate) ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest {
 	r.serverlessTenantEndpointCreate = &serverlessTenantEndpointCreate
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.CreateServerlessPrivateEndpointExecute(r)
+func (r ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
+	return r.ApiService.CreateOnePrivateEndpointForOneServerlessInstanceExecute(r)
 }
 
 /*
-CreateServerlessPrivateEndpoint Create One Private Endpoint for One Serverless Instance
+CreateOnePrivateEndpointForOneServerlessInstance Create One Private Endpoint for One Serverless Instance
 
 Creates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  A new endpoint won't be immediately available after creation.  Read the steps in the linked tutorial for detailed guidance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param instanceName Human-readable label that identifies the serverless instance for which the tenant endpoint will be created.
- @return ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest
+ @return ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest
 */
-func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
-	return ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest{
+func (a *ServerlessPrivateEndpointsApiService) CreateOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest {
+	return ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -157,7 +157,7 @@ func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpoint(c
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) CreateOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiCreateOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -165,7 +165,7 @@ func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointEx
 		localVarReturnValue  *ServerlessTenantEndpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.CreateServerlessPrivateEndpoint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.CreateOnePrivateEndpointForOneServerlessInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -278,7 +278,7 @@ func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest struct {
+type ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest struct {
 	ctx context.Context
 	ApiService ServerlessPrivateEndpointsApi
 	groupId string
@@ -288,28 +288,28 @@ type ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest struct 
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteServerlessPrivateEndpointExecute(r)
+func (r ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOnePrivateEndpointFromOneServerlessInstanceExecute(r)
 }
 
 /*
-DeleteServerlessPrivateEndpoint Remove One Private Endpoint for One Serverless Instance
+RemoveOnePrivateEndpointFromOneServerlessInstance Remove One Private Endpoint for One Serverless Instance
 
 Remove one private endpoint from one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param instanceName Human-readable label that identifies the serverless instance from which the tenant endpoint will be removed.
  @param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint which will be removed.
- @return ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest
+ @return ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest
 */
-func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest {
-	return ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest{
+func (a *ServerlessPrivateEndpointsApiService) RemoveOnePrivateEndpointFromOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest {
+	return ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -319,14 +319,14 @@ func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpoint(c
 }
 
 // Execute executes the request
-func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest) (*http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) RemoveOnePrivateEndpointFromOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiRemoveOnePrivateEndpointFromOneServerlessInstanceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.DeleteServerlessPrivateEndpoint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.RemoveOnePrivateEndpointFromOneServerlessInstance")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -435,7 +435,165 @@ func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpointEx
 	return localVarHTTPResponse, nil
 }
 
-type ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest struct {
+type ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest struct {
+	ctx context.Context
+	ApiService ServerlessPrivateEndpointsApi
+	groupId string
+	instanceName string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest) Execute() ([]ServerlessTenantEndpoint, *http.Response, error) {
+	return r.ApiService.ReturnAllPrivateEndpointsForOneServerlessInstanceExecute(r)
+}
+
+/*
+ReturnAllPrivateEndpointsForOneServerlessInstance Return All Private Endpoints for One Serverless Instance
+
+Returns all private endpoints for one serverless instance. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
+ @return ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest
+*/
+func (a *ServerlessPrivateEndpointsApiService) ReturnAllPrivateEndpointsForOneServerlessInstance(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest {
+	return ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		instanceName: instanceName,
+	}
+}
+
+// Execute executes the request
+//  @return []ServerlessTenantEndpoint
+func (a *ServerlessPrivateEndpointsApiService) ReturnAllPrivateEndpointsForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiReturnAllPrivateEndpointsForOneServerlessInstanceRequest) ([]ServerlessTenantEndpoint, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ServerlessTenantEndpoint
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.ReturnAllPrivateEndpointsForOneServerlessInstance")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateEndpoint/serverless/instance/{instanceName}/endpoint"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.instanceName) > 64 {
+		return localVarReturnValue, nil, reportError("instanceName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest struct {
 	ctx context.Context
 	ApiService ServerlessPrivateEndpointsApi
 	groupId string
@@ -445,28 +603,28 @@ type ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.GetServerlessPrivateEndpointExecute(r)
+func (r ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
+	return r.ApiService.ReturnOnePrivateEndpointForOneServerlessInstanceExecute(r)
 }
 
 /*
-GetServerlessPrivateEndpoint Return One Private Endpoint for One Serverless Instance
+ReturnOnePrivateEndpointForOneServerlessInstance Return One Private Endpoint for One Serverless Instance
 
 Return one private endpoint for one serverless instance. Identify this endpoint using its unique ID. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
  @param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint.
- @return ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest
+ @return ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest
 */
-func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest {
-	return ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest{
+func (a *ServerlessPrivateEndpointsApiService) ReturnOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest {
+	return ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -477,7 +635,7 @@ func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpoint(ctx 
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) ReturnOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiReturnOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -485,7 +643,7 @@ func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpointExecu
 		localVarReturnValue  *ServerlessTenantEndpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.GetServerlessPrivateEndpoint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.ReturnOnePrivateEndpointForOneServerlessInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -603,165 +761,7 @@ func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpointExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest struct {
-	ctx context.Context
-	ApiService ServerlessPrivateEndpointsApi
-	groupId string
-	instanceName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest) Execute() ([]ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.ListServerlessPrivateEndpointsExecute(r)
-}
-
-/*
-ListServerlessPrivateEndpoints Return All Private Endpoints for One Serverless Instance
-
-Returns all private endpoints for one serverless instance. You must have at least the Project Read Only role for the project to successfully call this resource. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint.
- @return ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest
-*/
-func (a *ServerlessPrivateEndpointsApiService) ListServerlessPrivateEndpoints(ctx context.Context, groupId string, instanceName string) ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest {
-	return ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		instanceName: instanceName,
-	}
-}
-
-// Execute executes the request
-//  @return []ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) ListServerlessPrivateEndpointsExecute(r ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest) ([]ServerlessTenantEndpoint, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ServerlessTenantEndpoint
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.ListServerlessPrivateEndpoints")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateEndpoint/serverless/instance/{instanceName}/endpoint"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceName"+"}", url.PathEscape(parameterToString(r.instanceName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.instanceName) > 64 {
-		return localVarReturnValue, nil, reportError("instanceName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest struct {
+type ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest struct {
 	ctx context.Context
 	ApiService ServerlessPrivateEndpointsApi
 	groupId string
@@ -772,33 +772,33 @@ type ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest struct 
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) ServerlessTenantEndpointUpdate(serverlessTenantEndpointUpdate ServerlessTenantEndpointUpdate) ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest {
+func (r ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest) ServerlessTenantEndpointUpdate(serverlessTenantEndpointUpdate ServerlessTenantEndpointUpdate) ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest {
 	r.serverlessTenantEndpointUpdate = &serverlessTenantEndpointUpdate
 	return r
 }
 
-func (r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.UpdateServerlessPrivateEndpointExecute(r)
+func (r ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
+	return r.ApiService.UpdateOnePrivateEndpointForOneServerlessInstanceExecute(r)
 }
 
 /*
-UpdateServerlessPrivateEndpoint Update One Private Endpoint for One Serverless Instance
+UpdateOnePrivateEndpointForOneServerlessInstance Update One Private Endpoint for One Serverless Instance
 
 Updates one private endpoint for one serverless instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param instanceName Human-readable label that identifies the serverless instance associated with the tenant endpoint that will be updated.
  @param endpointId Unique 24-hexadecimal digit string that identifies the tenant endpoint which will be updated.
- @return ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest
+ @return ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest
 */
-func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest {
-	return ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest{
+func (a *ServerlessPrivateEndpointsApiService) UpdateOnePrivateEndpointForOneServerlessInstance(ctx context.Context, groupId string, instanceName string, endpointId string) ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest {
+	return ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -809,7 +809,7 @@ func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpoint(c
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpointExecute(r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) UpdateOnePrivateEndpointForOneServerlessInstanceExecute(r ServerlessPrivateEndpointsApiUpdateOnePrivateEndpointForOneServerlessInstanceRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -817,7 +817,7 @@ func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpointEx
 		localVarReturnValue  *ServerlessTenantEndpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.UpdateServerlessPrivateEndpoint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessPrivateEndpointsApiService.UpdateOnePrivateEndpointForOneServerlessInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

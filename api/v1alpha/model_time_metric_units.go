@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// TimeMetricUnits Element used to express the quantity. This can be an element of time, storage capacity, and the like.
+// TimeMetricUnits Element used to express the quantity in **currentValue.number**. This can be an element of time, storage capacity, and the like. This metric triggered the alert.
 type TimeMetricUnits string
 
 // List of TimeMetricUnits

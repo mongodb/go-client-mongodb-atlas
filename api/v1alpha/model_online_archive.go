@@ -16,8 +16,6 @@ import (
 
 // OnlineArchive struct for OnlineArchive
 type OnlineArchive struct {
-	// Unique 24-hexadecimal digit string that identifies the online archive.
-	Id *string `json:"_id,omitempty"`
 	// Human-readable label that identifies the cluster that contains the collection for which you want to create an online archive.
 	ClusterName *string `json:"clusterName,omitempty"`
 	// Human-readable label that identifies the collection for which you created the online archive.
@@ -29,6 +27,8 @@ type OnlineArchive struct {
 	DbName *string `json:"dbName,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project that contains the specified cluster. The specified cluster contains the collection for which to create the online archive.
 	GroupId *string `json:"groupId,omitempty"`
+	// Unique 24-hexadecimal digit string that identifies the online archive.
+	Id *string `json:"id,omitempty"`
 	// List that contains document parameters to use to logically divide data within a collection. Partitions provide a coarse level of filtering of the underlying collection data. To divide your data, specify up to two parameters that you frequently query. Any queries that don't use these parameters result in a full collection scan of all archived documents. This takes more time and increase your costs.
 	PartitionFields []PartitionFieldView `json:"partitionFields,omitempty"`
 	Schedule *OnlineArchiveSchedule `json:"schedule,omitempty"`
@@ -55,38 +55,6 @@ func NewOnlineArchiveWithDefaults() *OnlineArchive {
 	var collectionType string = "STANDARD"
 	this.CollectionType = &collectionType
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *OnlineArchive) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OnlineArchive) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *OnlineArchive) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *OnlineArchive) SetId(v string) {
-	o.Id = &v
 }
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
@@ -273,6 +241,38 @@ func (o *OnlineArchive) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *OnlineArchive) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OnlineArchive) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *OnlineArchive) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *OnlineArchive) SetId(v string) {
+	o.Id = &v
+}
+
 // GetPartitionFields returns the PartitionFields field value if set, zero value otherwise.
 func (o *OnlineArchive) GetPartitionFields() []PartitionFieldView {
 	if o == nil || o.PartitionFields == nil {
@@ -371,9 +371,6 @@ func (o *OnlineArchive) SetState(v string) {
 
 func (o OnlineArchive) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
 	if o.ClusterName != nil {
 		toSerialize["clusterName"] = o.ClusterName
 	}
@@ -391,6 +388,9 @@ func (o OnlineArchive) MarshalJSON() ([]byte, error) {
 	}
 	if o.GroupId != nil {
 		toSerialize["groupId"] = o.GroupId
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.PartitionFields != nil {
 		toSerialize["partitionFields"] = o.PartitionFields

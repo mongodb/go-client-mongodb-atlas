@@ -23,40 +23,40 @@ import (
 type AWSClustersDNSApi interface {
 
 	/*
-	GetAWSCustomDNS Return One Custom DNS Configuration for Atlas Clusters on AWS
+	ReturnOneCustomDnsConfigurationForAtlasClustersOnAws Return One Custom DNS Configuration for Atlas Clusters on AWS
 
 	Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AWSClustersDNSApiGetAWSCustomDNSRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 	*/
-	GetAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiGetAWSCustomDNSRequest
+	ReturnOneCustomDnsConfigurationForAtlasClustersOnAws(ctx context.Context, groupId string) AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 
-	// GetAWSCustomDNSExecute executes the request
+	// ReturnOneCustomDnsConfigurationForAtlasClustersOnAwsExecute executes the request
 	//  @return AWSCustomDNSEnabledView
-	GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
+	ReturnOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
 
 	/*
-	ToggleAWSCustomDNS Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
+	ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAws Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
 
 	Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AWSClustersDNSApiToggleAWSCustomDNSRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 	*/
-	ToggleAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiToggleAWSCustomDNSRequest
+	ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAws(ctx context.Context, groupId string) AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 
-	// ToggleAWSCustomDNSExecute executes the request
+	// ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsExecute executes the request
 	//  @return AWSCustomDNSEnabledView
-	ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
+	ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
 }
 
 // AWSClustersDNSApiService AWSClustersDNSApi service
 type AWSClustersDNSApiService service
 
-type AWSClustersDNSApiGetAWSCustomDNSRequest struct {
+type AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest struct {
 	ctx context.Context
 	ApiService AWSClustersDNSApi
 	groupId string
@@ -65,32 +65,32 @@ type AWSClustersDNSApiGetAWSCustomDNSRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Envelope(envelope bool) AWSClustersDNSApiGetAWSCustomDNSRequest {
+func (r AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Envelope(envelope bool) AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Pretty(pretty bool) AWSClustersDNSApiGetAWSCustomDNSRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Pretty(pretty bool) AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
-	return r.ApiService.GetAWSCustomDNSExecute(r)
+func (r AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
+	return r.ApiService.ReturnOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r)
 }
 
 /*
-GetAWSCustomDNS Return One Custom DNS Configuration for Atlas Clusters on AWS
+ReturnOneCustomDnsConfigurationForAtlasClustersOnAws Return One Custom DNS Configuration for Atlas Clusters on AWS
 
 Returns the custom DNS configuration for AWS clusters in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AWSClustersDNSApiGetAWSCustomDNSRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 */
-func (a *AWSClustersDNSApiService) GetAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiGetAWSCustomDNSRequest {
-	return AWSClustersDNSApiGetAWSCustomDNSRequest{
+func (a *AWSClustersDNSApiService) ReturnOneCustomDnsConfigurationForAtlasClustersOnAws(ctx context.Context, groupId string) AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
+	return AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -99,7 +99,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNS(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return AWSCustomDNSEnabledView
-func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
+func (a *AWSClustersDNSApiService) ReturnOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r AWSClustersDNSApiReturnOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -107,7 +107,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGet
 		localVarReturnValue  *AWSCustomDNSEnabledView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.GetAWSCustomDNS")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.ReturnOneCustomDnsConfigurationForAtlasClustersOnAws")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -206,7 +206,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AWSClustersDNSApiToggleAWSCustomDNSRequest struct {
+type AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest struct {
 	ctx context.Context
 	ApiService AWSClustersDNSApi
 	groupId string
@@ -216,38 +216,38 @@ type AWSClustersDNSApiToggleAWSCustomDNSRequest struct {
 }
 
 // Enables or disables the custom DNS configuration for AWS clusters in the specified project.
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) AWSCustomDNSEnabledView(aWSCustomDNSEnabledView AWSCustomDNSEnabledView) AWSClustersDNSApiToggleAWSCustomDNSRequest {
+func (r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) AWSCustomDNSEnabledView(aWSCustomDNSEnabledView AWSCustomDNSEnabledView) AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
 	r.aWSCustomDNSEnabledView = &aWSCustomDNSEnabledView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Envelope(envelope bool) AWSClustersDNSApiToggleAWSCustomDNSRequest {
+func (r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Envelope(envelope bool) AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Pretty(pretty bool) AWSClustersDNSApiToggleAWSCustomDNSRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Pretty(pretty bool) AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
-	return r.ApiService.ToggleAWSCustomDNSExecute(r)
+func (r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
+	return r.ApiService.ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r)
 }
 
 /*
-ToggleAWSCustomDNS Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
+ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAws Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
 
 Enables or disables the custom DNS configuration for AWS clusters in the specified project. Enable custom DNS if you use AWS VPC peering and use your own DNS servers. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AWSClustersDNSApiToggleAWSCustomDNSRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest
 */
-func (a *AWSClustersDNSApiService) ToggleAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiToggleAWSCustomDNSRequest {
-	return AWSClustersDNSApiToggleAWSCustomDNSRequest{
+func (a *AWSClustersDNSApiService) ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAws(ctx context.Context, groupId string) AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest {
+	return AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -256,7 +256,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNS(ctx context.Context, group
 
 // Execute executes the request
 //  @return AWSCustomDNSEnabledView
-func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
+func (a *AWSClustersDNSApiService) ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsExecute(r AWSClustersDNSApiToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAwsRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -264,7 +264,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApi
 		localVarReturnValue  *AWSCustomDNSEnabledView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.ToggleAWSCustomDNS")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.ToggleOneStateOfOneCustomDnsConfigurationForAtlasClustersOnAws")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
