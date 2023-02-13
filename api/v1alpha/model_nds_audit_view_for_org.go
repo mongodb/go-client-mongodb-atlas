@@ -21,7 +21,7 @@ type NDSAuditViewForOrg struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName NDSAuditTypeForOrg `json:"eventTypeName"`
+	EventTypeName NDSAuditTypeViewForOrg `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -119,9 +119,9 @@ func (o *NDSAuditViewForOrg) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *NDSAuditViewForOrg) GetEventTypeName() NDSAuditTypeForOrg {
+func (o *NDSAuditViewForOrg) GetEventTypeName() NDSAuditTypeViewForOrg {
 	if o == nil {
-		var ret NDSAuditTypeForOrg
+		var ret NDSAuditTypeViewForOrg
 		return ret
 	}
 
@@ -130,7 +130,7 @@ func (o *NDSAuditViewForOrg) GetEventTypeName() NDSAuditTypeForOrg {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *NDSAuditViewForOrg) GetEventTypeNameOk() (*NDSAuditTypeForOrg, bool) {
+func (o *NDSAuditViewForOrg) GetEventTypeNameOk() (*NDSAuditTypeViewForOrg, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *NDSAuditViewForOrg) GetEventTypeNameOk() (*NDSAuditTypeForOrg, bool) {
 }
 
 // SetEventTypeName sets field value
-func (o *NDSAuditViewForOrg) SetEventTypeName(v NDSAuditTypeForOrg) {
+func (o *NDSAuditViewForOrg) SetEventTypeName(v NDSAuditTypeViewForOrg) {
 	o.EventTypeName = v
 }
 

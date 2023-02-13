@@ -23,53 +23,81 @@ import (
 type MaintenanceWindowsApi interface {
 
 	/*
-	ResetOneMaintenanceWindowForOneProject Reset One Maintenance Window for One Project
+	DeferMaintenanceWindow Defer One Maintenance Window for One Project
 
-	Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+	Defers the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return MaintenanceWindowsApiDeferMaintenanceWindowRequest
 	*/
-	ResetOneMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest
+	DeferMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiDeferMaintenanceWindowRequest
 
-	// ResetOneMaintenanceWindowForOneProjectExecute executes the request
-	ResetOneMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest) (*http.Response, error)
+	// DeferMaintenanceWindowExecute executes the request
+	DeferMaintenanceWindowExecute(r MaintenanceWindowsApiDeferMaintenanceWindowRequest) (*http.Response, error)
 
 	/*
-	ReturnOneMaintenanceWindowForOneProject Return One Maintenance Window for One Project
+	GetMaintenanceWindow Return One Maintenance Window for One Project
 
 	Returns the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return MaintenanceWindowsApiGetMaintenanceWindowRequest
 	*/
-	ReturnOneMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest
+	GetMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiGetMaintenanceWindowRequest
 
-	// ReturnOneMaintenanceWindowForOneProjectExecute executes the request
+	// GetMaintenanceWindowExecute executes the request
 	//  @return GroupMaintenanceWindow
-	ReturnOneMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest) (*GroupMaintenanceWindow, *http.Response, error)
+	GetMaintenanceWindowExecute(r MaintenanceWindowsApiGetMaintenanceWindowRequest) (*GroupMaintenanceWindow, *http.Response, error)
 
 	/*
-	UpdateMaintenanceWindowForOneProject Update Maintenance Window for One Project
+	ResetMaintenanceWindow Reset One Maintenance Window for One Project
+
+	Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return MaintenanceWindowsApiResetMaintenanceWindowRequest
+	*/
+	ResetMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiResetMaintenanceWindowRequest
+
+	// ResetMaintenanceWindowExecute executes the request
+	ResetMaintenanceWindowExecute(r MaintenanceWindowsApiResetMaintenanceWindowRequest) (*http.Response, error)
+
+	/*
+	ToggleMaintenanceAutoDefer Toggle Automatic Deferral of Maintenance for One Project
+
+	Toggles automatic deferral of the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest
+	*/
+	ToggleMaintenanceAutoDefer(ctx context.Context, groupId string) MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest
+
+	// ToggleMaintenanceAutoDeferExecute executes the request
+	ToggleMaintenanceAutoDeferExecute(r MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest) (*http.Response, error)
+
+	/*
+	UpdateMaintenanceWindow Update Maintenance Window for One Project
 
 	Updates the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return MaintenanceWindowsApiUpdateMaintenanceWindowRequest
 	*/
-	UpdateMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest
+	UpdateMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiUpdateMaintenanceWindowRequest
 
-	// UpdateMaintenanceWindowForOneProjectExecute executes the request
-	UpdateMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest) (*http.Response, error)
+	// UpdateMaintenanceWindowExecute executes the request
+	UpdateMaintenanceWindowExecute(r MaintenanceWindowsApiUpdateMaintenanceWindowRequest) (*http.Response, error)
 }
 
 // MaintenanceWindowsApiService MaintenanceWindowsApi service
 type MaintenanceWindowsApiService service
 
-type MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest struct {
+type MaintenanceWindowsApiDeferMaintenanceWindowRequest struct {
 	ctx context.Context
 	ApiService MaintenanceWindowsApi
 	groupId string
@@ -77,26 +105,26 @@ type MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest) Envelope(envelope bool) MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest {
+func (r MaintenanceWindowsApiDeferMaintenanceWindowRequest) Envelope(envelope bool) MaintenanceWindowsApiDeferMaintenanceWindowRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ResetOneMaintenanceWindowForOneProjectExecute(r)
+func (r MaintenanceWindowsApiDeferMaintenanceWindowRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeferMaintenanceWindowExecute(r)
 }
 
 /*
-ResetOneMaintenanceWindowForOneProject Reset One Maintenance Window for One Project
+DeferMaintenanceWindow Defer One Maintenance Window for One Project
 
-Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+Defers the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return MaintenanceWindowsApiDeferMaintenanceWindowRequest
 */
-func (a *MaintenanceWindowsApiService) ResetOneMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest {
-	return MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest{
+func (a *MaintenanceWindowsApiService) DeferMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiDeferMaintenanceWindowRequest {
+	return MaintenanceWindowsApiDeferMaintenanceWindowRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -104,19 +132,19 @@ func (a *MaintenanceWindowsApiService) ResetOneMaintenanceWindowForOneProject(ct
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) ResetOneMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiResetOneMaintenanceWindowForOneProjectRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) DeferMaintenanceWindowExecute(r MaintenanceWindowsApiDeferMaintenanceWindowRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.ResetOneMaintenanceWindowForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.DeferMaintenanceWindow")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/maintenanceWindow"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/maintenanceWindow/defer"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -142,7 +170,7 @@ func (a *MaintenanceWindowsApiService) ResetOneMaintenanceWindowForOneProjectExe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -209,7 +237,7 @@ func (a *MaintenanceWindowsApiService) ResetOneMaintenanceWindowForOneProjectExe
 	return localVarHTTPResponse, nil
 }
 
-type MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest struct {
+type MaintenanceWindowsApiGetMaintenanceWindowRequest struct {
 	ctx context.Context
 	ApiService MaintenanceWindowsApi
 	groupId string
@@ -218,32 +246,32 @@ type MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest struct 
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest) Envelope(envelope bool) MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest {
+func (r MaintenanceWindowsApiGetMaintenanceWindowRequest) Envelope(envelope bool) MaintenanceWindowsApiGetMaintenanceWindowRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest) Pretty(pretty bool) MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r MaintenanceWindowsApiGetMaintenanceWindowRequest) Pretty(pretty bool) MaintenanceWindowsApiGetMaintenanceWindowRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest) Execute() (*GroupMaintenanceWindow, *http.Response, error) {
-	return r.ApiService.ReturnOneMaintenanceWindowForOneProjectExecute(r)
+func (r MaintenanceWindowsApiGetMaintenanceWindowRequest) Execute() (*GroupMaintenanceWindow, *http.Response, error) {
+	return r.ApiService.GetMaintenanceWindowExecute(r)
 }
 
 /*
-ReturnOneMaintenanceWindowForOneProject Return One Maintenance Window for One Project
+GetMaintenanceWindow Return One Maintenance Window for One Project
 
 Returns the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Read Only role.This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return MaintenanceWindowsApiGetMaintenanceWindowRequest
 */
-func (a *MaintenanceWindowsApiService) ReturnOneMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest {
-	return MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest{
+func (a *MaintenanceWindowsApiService) GetMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiGetMaintenanceWindowRequest {
+	return MaintenanceWindowsApiGetMaintenanceWindowRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -252,7 +280,7 @@ func (a *MaintenanceWindowsApiService) ReturnOneMaintenanceWindowForOneProject(c
 
 // Execute executes the request
 //  @return GroupMaintenanceWindow
-func (a *MaintenanceWindowsApiService) ReturnOneMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiReturnOneMaintenanceWindowForOneProjectRequest) (*GroupMaintenanceWindow, *http.Response, error) {
+func (a *MaintenanceWindowsApiService) GetMaintenanceWindowExecute(r MaintenanceWindowsApiGetMaintenanceWindowRequest) (*GroupMaintenanceWindow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -260,7 +288,7 @@ func (a *MaintenanceWindowsApiService) ReturnOneMaintenanceWindowForOneProjectEx
 		localVarReturnValue  *GroupMaintenanceWindow
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.ReturnOneMaintenanceWindowForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.GetMaintenanceWindow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -359,7 +387,287 @@ func (a *MaintenanceWindowsApiService) ReturnOneMaintenanceWindowForOneProjectEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest struct {
+type MaintenanceWindowsApiResetMaintenanceWindowRequest struct {
+	ctx context.Context
+	ApiService MaintenanceWindowsApi
+	groupId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r MaintenanceWindowsApiResetMaintenanceWindowRequest) Envelope(envelope bool) MaintenanceWindowsApiResetMaintenanceWindowRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r MaintenanceWindowsApiResetMaintenanceWindowRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ResetMaintenanceWindowExecute(r)
+}
+
+/*
+ResetMaintenanceWindow Reset One Maintenance Window for One Project
+
+Resets the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return MaintenanceWindowsApiResetMaintenanceWindowRequest
+*/
+func (a *MaintenanceWindowsApiService) ResetMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiResetMaintenanceWindowRequest {
+	return MaintenanceWindowsApiResetMaintenanceWindowRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+func (a *MaintenanceWindowsApiService) ResetMaintenanceWindowExecute(r MaintenanceWindowsApiResetMaintenanceWindowRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.ResetMaintenanceWindow")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/maintenanceWindow"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest struct {
+	ctx context.Context
+	ApiService MaintenanceWindowsApi
+	groupId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest) Envelope(envelope bool) MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ToggleMaintenanceAutoDeferExecute(r)
+}
+
+/*
+ToggleMaintenanceAutoDefer Toggle Automatic Deferral of Maintenance for One Project
+
+Toggles automatic deferral of the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest
+*/
+func (a *MaintenanceWindowsApiService) ToggleMaintenanceAutoDefer(ctx context.Context, groupId string) MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest {
+	return MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+func (a *MaintenanceWindowsApiService) ToggleMaintenanceAutoDeferExecute(r MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.ToggleMaintenanceAutoDefer")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/maintenanceWindow/autoDefer"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type MaintenanceWindowsApiUpdateMaintenanceWindowRequest struct {
 	ctx context.Context
 	ApiService MaintenanceWindowsApi
 	groupId string
@@ -368,32 +676,32 @@ type MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest struct {
 }
 
 // Updates the maintenance window for the specified project.
-func (r MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest) GroupMaintenanceWindow(groupMaintenanceWindow GroupMaintenanceWindow) MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest {
+func (r MaintenanceWindowsApiUpdateMaintenanceWindowRequest) GroupMaintenanceWindow(groupMaintenanceWindow GroupMaintenanceWindow) MaintenanceWindowsApiUpdateMaintenanceWindowRequest {
 	r.groupMaintenanceWindow = &groupMaintenanceWindow
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest) Envelope(envelope bool) MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest {
+func (r MaintenanceWindowsApiUpdateMaintenanceWindowRequest) Envelope(envelope bool) MaintenanceWindowsApiUpdateMaintenanceWindowRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateMaintenanceWindowForOneProjectExecute(r)
+func (r MaintenanceWindowsApiUpdateMaintenanceWindowRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UpdateMaintenanceWindowExecute(r)
 }
 
 /*
-UpdateMaintenanceWindowForOneProject Update Maintenance Window for One Project
+UpdateMaintenanceWindow Update Maintenance Window for One Project
 
 Updates the maintenance window for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role.This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return MaintenanceWindowsApiUpdateMaintenanceWindowRequest
 */
-func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowForOneProject(ctx context.Context, groupId string) MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest {
-	return MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest{
+func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindow(ctx context.Context, groupId string) MaintenanceWindowsApiUpdateMaintenanceWindowRequest {
+	return MaintenanceWindowsApiUpdateMaintenanceWindowRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -401,14 +709,14 @@ func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowForOneProject(ctx 
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowForOneProjectExecute(r MaintenanceWindowsApiUpdateMaintenanceWindowForOneProjectRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowExecute(r MaintenanceWindowsApiUpdateMaintenanceWindowRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.UpdateMaintenanceWindowForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MaintenanceWindowsApiService.UpdateMaintenanceWindow")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
