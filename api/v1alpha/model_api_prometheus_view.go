@@ -28,6 +28,8 @@ type ApiPrometheusView struct {
 	ServiceDiscovery string `json:"serviceDiscovery"`
 	// Root-relative path to the Transport Layer Security (TLS) Privacy Enhanced Mail (PEM) key and certificate file on the host.
 	TlsPemPath *string `json:"tlsPemPath,omitempty"`
+	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
+	Type *string `json:"type,omitempty"`
 	// Human-readable label that identifies your Prometheus incoming webhook.
 	Username string `json:"username"`
 }
@@ -253,6 +255,38 @@ func (o *ApiPrometheusView) SetTlsPemPath(v string) {
 	o.TlsPemPath = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ApiPrometheusView) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiPrometheusView) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ApiPrometheusView) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ApiPrometheusView) SetType(v string) {
+	o.Type = &v
+}
+
 // GetUsername returns the Username field value
 func (o *ApiPrometheusView) GetUsername() string {
 	if o == nil {
@@ -299,6 +333,9 @@ func (o ApiPrometheusView) MarshalJSON() ([]byte, error) {
 	}
 	if o.TlsPemPath != nil {
 		toSerialize["tlsPemPath"] = o.TlsPemPath
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if true {
 		toSerialize["username"] = o.Username

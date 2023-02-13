@@ -24,142 +24,150 @@ import (
 type PerformanceAdvisorApi interface {
 
 	/*
-	ReturnAllNamespacesForOneHost Return All Namespaces for One Host
+	DisableSlowOperationThresholding Disable Managed Slow Operation Threshold
 
-	Returns up to 20 namespaces for collections experiencing slow queries on the specified host. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+	Disables the slow operation threshold that MongoDB Cloud calculated for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
-	@return PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return PerformanceAdvisorApiDisableSlowOperationThresholdingRequest
 	*/
-	ReturnAllNamespacesForOneHost(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest
+	DisableSlowOperationThresholding(ctx context.Context, groupId string) PerformanceAdvisorApiDisableSlowOperationThresholdingRequest
 
-	// ReturnAllNamespacesForOneHostExecute executes the request
-	//  @return ApiNamespacesView
-	ReturnAllNamespacesForOneHostExecute(r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) (*ApiNamespacesView, *http.Response, error)
+	// DisableSlowOperationThresholdingExecute executes the request
+	DisableSlowOperationThresholdingExecute(r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) (*http.Response, error)
 
 	/*
-	ReturnSlowQueries Return Slow Queries
+	EnableSlowOperationThresholding Enable Managed Slow Operation Threshold
+
+	Enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return PerformanceAdvisorApiEnableSlowOperationThresholdingRequest
+	*/
+	EnableSlowOperationThresholding(ctx context.Context, groupId string) PerformanceAdvisorApiEnableSlowOperationThresholdingRequest
+
+	// EnableSlowOperationThresholdingExecute executes the request
+	EnableSlowOperationThresholdingExecute(r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) (*http.Response, error)
+
+	/*
+	ListSlowQueries Return Slow Queries
 
 	Returns log lines for slow queries that the Performance Advisor and Query Profiler identified. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. MongoDB Cloud bases the threshold for slow queries on the average time of operations on your cluster. This enables workload-relevant recommendations. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
-	@return PerformanceAdvisorApiReturnSlowQueriesRequest
+	@return PerformanceAdvisorApiListSlowQueriesRequest
 	*/
-	ReturnSlowQueries(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnSlowQueriesRequest
+	ListSlowQueries(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueriesRequest
 
-	// ReturnSlowQueriesExecute executes the request
+	// ListSlowQueriesExecute executes the request
 	//  @return ApiPerformanceAdvisorSlowQueryListView
-	ReturnSlowQueriesExecute(r PerformanceAdvisorApiReturnSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error)
+	ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error)
 
 	/*
-	ReturnSuggestedIndexes Return Suggested Indexes
+	ListSlowQueryNamespaces Return All Namespaces for One Host
+
+	Returns up to 20 namespaces for collections experiencing slow queries on the specified host. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
+	@return PerformanceAdvisorApiListSlowQueryNamespacesRequest
+	*/
+	ListSlowQueryNamespaces(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueryNamespacesRequest
+
+	// ListSlowQueryNamespacesExecute executes the request
+	//  @return ApiNamespacesView
+	ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*ApiNamespacesView, *http.Response, error)
+
+	/*
+	ListSuggestedIndexes Return Suggested Indexes
 
 	Returns the indexes that the Performance Advisor suggests. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
-	@return PerformanceAdvisorApiReturnSuggestedIndexesRequest
+	@return PerformanceAdvisorApiListSuggestedIndexesRequest
 	*/
-	ReturnSuggestedIndexes(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnSuggestedIndexesRequest
+	ListSuggestedIndexes(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSuggestedIndexesRequest
 
-	// ReturnSuggestedIndexesExecute executes the request
+	// ListSuggestedIndexesExecute executes the request
 	//  @return ApiPerformanceAdvisorResponseView
-	ReturnSuggestedIndexesExecute(r PerformanceAdvisorApiReturnSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error)
+	ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error)
 }
 
 // PerformanceAdvisorApiService PerformanceAdvisorApi service
 type PerformanceAdvisorApiService service
 
-type PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest struct {
+type PerformanceAdvisorApiDisableSlowOperationThresholdingRequest struct {
 	ctx context.Context
 	ApiService PerformanceAdvisorApi
 	groupId string
-	processId string
 	envelope *bool
 	pretty *bool
-	duration *int64
-	since *int64
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) Envelope(envelope bool) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest {
+func (r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) Envelope(envelope bool) PerformanceAdvisorApiDisableSlowOperationThresholdingRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) Pretty(pretty bool) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) Pretty(pretty bool) PerformanceAdvisorApiDisableSlowOperationThresholdingRequest {
 	r.pretty = &pretty
 	return r
 }
 
-// Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) Duration(duration int64) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest {
-	r.duration = &duration
-	return r
-}
-
-// Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) Since(since int64) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest {
-	r.since = &since
-	return r
-}
-
-func (r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) Execute() (*ApiNamespacesView, *http.Response, error) {
-	return r.ApiService.ReturnAllNamespacesForOneHostExecute(r)
+func (r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DisableSlowOperationThresholdingExecute(r)
 }
 
 /*
-ReturnAllNamespacesForOneHost Return All Namespaces for One Host
+DisableSlowOperationThresholding Disable Managed Slow Operation Threshold
 
-Returns up to 20 namespaces for collections experiencing slow queries on the specified host. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Disables the slow operation threshold that MongoDB Cloud calculated for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
- @return PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return PerformanceAdvisorApiDisableSlowOperationThresholdingRequest
 */
-func (a *PerformanceAdvisorApiService) ReturnAllNamespacesForOneHost(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest {
-	return PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest{
+func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholding(ctx context.Context, groupId string) PerformanceAdvisorApiDisableSlowOperationThresholdingRequest {
+	return PerformanceAdvisorApiDisableSlowOperationThresholdingRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
-		processId: processId,
 	}
 }
 
 // Execute executes the request
-//  @return ApiNamespacesView
-func (a *PerformanceAdvisorApiService) ReturnAllNamespacesForOneHostExecute(r PerformanceAdvisorApiReturnAllNamespacesForOneHostRequest) (*ApiNamespacesView, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiNamespacesView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ReturnAllNamespacesForOneHost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.DisableSlowOperationThresholding")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/processes/{processId}/performanceAdvisor/namespaces"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/managedSlowMs/disable"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"processId"+"}", url.PathEscape(parameterToString(r.processId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+		return nil, reportError("groupId must have at least 24 elements")
 	}
 	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+		return nil, reportError("groupId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -167,12 +175,6 @@ func (a *PerformanceAdvisorApiService) ReturnAllNamespacesForOneHostExecute(r Pe
 	}
 	if r.pretty != nil {
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.duration != nil {
-		localVarQueryParams.Add("duration", parameterToString(*r.duration, ""))
-	}
-	if r.since != nil {
-		localVarQueryParams.Add("since", parameterToString(*r.since, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -193,19 +195,19 @@ func (a *PerformanceAdvisorApiService) ReturnAllNamespacesForOneHostExecute(r Pe
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -218,38 +220,190 @@ func (a *PerformanceAdvisorApiService) ReturnAllNamespacesForOneHostExecute(r Pe
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
-type PerformanceAdvisorApiReturnSlowQueriesRequest struct {
+type PerformanceAdvisorApiEnableSlowOperationThresholdingRequest struct {
+	ctx context.Context
+	ApiService PerformanceAdvisorApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) Envelope(envelope bool) PerformanceAdvisorApiEnableSlowOperationThresholdingRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) Pretty(pretty bool) PerformanceAdvisorApiEnableSlowOperationThresholdingRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) Execute() (*http.Response, error) {
+	return r.ApiService.EnableSlowOperationThresholdingExecute(r)
+}
+
+/*
+EnableSlowOperationThresholding Enable Managed Slow Operation Threshold
+
+Enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return PerformanceAdvisorApiEnableSlowOperationThresholdingRequest
+*/
+func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholding(ctx context.Context, groupId string) PerformanceAdvisorApiEnableSlowOperationThresholdingRequest {
+	return PerformanceAdvisorApiEnableSlowOperationThresholdingRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.EnableSlowOperationThresholding")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/managedSlowMs/enable"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type PerformanceAdvisorApiListSlowQueriesRequest struct {
 	ctx context.Context
 	ApiService PerformanceAdvisorApi
 	groupId string
@@ -263,57 +417,57 @@ type PerformanceAdvisorApiReturnSlowQueriesRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Envelope(envelope bool) PerformanceAdvisorApiReturnSlowQueriesRequest {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Envelope(envelope bool) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Pretty(pretty bool) PerformanceAdvisorApiReturnSlowQueriesRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Pretty(pretty bool) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Duration(duration int64) PerformanceAdvisorApiReturnSlowQueriesRequest {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Duration(duration int64) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.duration = &duration
 	return r
 }
 
 // Namespaces from which to retrieve suggested indexes. A namespace consists of one database and one collection resource written as &#x60;.&#x60;: &#x60;&lt;database&gt;.&lt;collection&gt;&#x60;. To include multiple namespaces, pass the parameter multiple times delimited with an ampersand (&#x60;&amp;&#x60;) between each namespace. Omit this parameter to return results for all namespaces.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Namespaces(namespaces []string) PerformanceAdvisorApiReturnSlowQueriesRequest {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Namespaces(namespaces []string) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.namespaces = &namespaces
 	return r
 }
 
 // Maximum number of lines from the log to return.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) NLogs(nLogs int64) PerformanceAdvisorApiReturnSlowQueriesRequest {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) NLogs(nLogs int64) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.nLogs = &nLogs
 	return r
 }
 
 // Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Since(since int64) PerformanceAdvisorApiReturnSlowQueriesRequest {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Since(since int64) PerformanceAdvisorApiListSlowQueriesRequest {
 	r.since = &since
 	return r
 }
 
-func (r PerformanceAdvisorApiReturnSlowQueriesRequest) Execute() (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
-	return r.ApiService.ReturnSlowQueriesExecute(r)
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Execute() (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
+	return r.ApiService.ListSlowQueriesExecute(r)
 }
 
 /*
-ReturnSlowQueries Return Slow Queries
+ListSlowQueries Return Slow Queries
 
 Returns log lines for slow queries that the Performance Advisor and Query Profiler identified. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. MongoDB Cloud bases the threshold for slow queries on the average time of operations on your cluster. This enables workload-relevant recommendations. To use this resource, the requesting API Key must have the Project Data Access Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
- @return PerformanceAdvisorApiReturnSlowQueriesRequest
+ @return PerformanceAdvisorApiListSlowQueriesRequest
 */
-func (a *PerformanceAdvisorApiService) ReturnSlowQueries(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnSlowQueriesRequest {
-	return PerformanceAdvisorApiReturnSlowQueriesRequest{
+func (a *PerformanceAdvisorApiService) ListSlowQueries(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueriesRequest {
+	return PerformanceAdvisorApiListSlowQueriesRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -323,7 +477,7 @@ func (a *PerformanceAdvisorApiService) ReturnSlowQueries(ctx context.Context, gr
 
 // Execute executes the request
 //  @return ApiPerformanceAdvisorSlowQueryListView
-func (a *PerformanceAdvisorApiService) ReturnSlowQueriesExecute(r PerformanceAdvisorApiReturnSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -331,7 +485,7 @@ func (a *PerformanceAdvisorApiService) ReturnSlowQueriesExecute(r PerformanceAdv
 		localVarReturnValue  *ApiPerformanceAdvisorSlowQueryListView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ReturnSlowQueries")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSlowQueries")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -451,7 +605,181 @@ func (a *PerformanceAdvisorApiService) ReturnSlowQueriesExecute(r PerformanceAdv
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PerformanceAdvisorApiReturnSuggestedIndexesRequest struct {
+type PerformanceAdvisorApiListSlowQueryNamespacesRequest struct {
+	ctx context.Context
+	ApiService PerformanceAdvisorApi
+	groupId string
+	processId string
+	envelope *bool
+	pretty *bool
+	duration *int64
+	since *int64
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Envelope(envelope bool) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Pretty(pretty bool) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Duration(duration int64) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
+	r.duration = &duration
+	return r
+}
+
+// Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Since(since int64) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
+	r.since = &since
+	return r
+}
+
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Execute() (*ApiNamespacesView, *http.Response, error) {
+	return r.ApiService.ListSlowQueryNamespacesExecute(r)
+}
+
+/*
+ListSlowQueryNamespaces Return All Namespaces for One Host
+
+Returns up to 20 namespaces for collections experiencing slow queries on the specified host. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
+ @return PerformanceAdvisorApiListSlowQueryNamespacesRequest
+*/
+func (a *PerformanceAdvisorApiService) ListSlowQueryNamespaces(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
+	return PerformanceAdvisorApiListSlowQueryNamespacesRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		processId: processId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiNamespacesView
+func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*ApiNamespacesView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiNamespacesView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSlowQueryNamespaces")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/processes/{processId}/performanceAdvisor/namespaces"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"processId"+"}", url.PathEscape(parameterToString(r.processId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.duration != nil {
+		localVarQueryParams.Add("duration", parameterToString(*r.duration, ""))
+	}
+	if r.since != nil {
+		localVarQueryParams.Add("since", parameterToString(*r.since, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type PerformanceAdvisorApiListSuggestedIndexesRequest struct {
 	ctx context.Context
 	ApiService PerformanceAdvisorApi
 	groupId string
@@ -469,81 +797,81 @@ type PerformanceAdvisorApiReturnSuggestedIndexesRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Envelope(envelope bool) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Envelope(envelope bool) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) IncludeCount(includeCount bool) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) IncludeCount(includeCount bool) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) ItemsPerPage(itemsPerPage int32) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) ItemsPerPage(itemsPerPage int32) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) PageNum(pageNum int32) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) PageNum(pageNum int32) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Pretty(pretty bool) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Pretty(pretty bool) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Duration(duration float32) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Duration(duration float32) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.duration = &duration
 	return r
 }
 
 // Namespaces from which to retrieve suggested indexes. A namespace consists of one database and one collection resource written as &#x60;.&#x60;: &#x60;&lt;database&gt;.&lt;collection&gt;&#x60;. To include multiple namespaces, pass the parameter multiple times delimited with an ampersand (&#x60;&amp;&#x60;) between each namespace. Omit this parameter to return results for all namespaces.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Namespaces(namespaces []string) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Namespaces(namespaces []string) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.namespaces = &namespaces
 	return r
 }
 
 // Maximum number of example queries that benefit from the suggested index.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) NExamples(nExamples int64) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) NExamples(nExamples int64) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.nExamples = &nExamples
 	return r
 }
 
 // Number that indicates the maximum indexes to suggest.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) NIndexes(nIndexes int64) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) NIndexes(nIndexes int64) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.nIndexes = &nIndexes
 	return r
 }
 
 // Date and time from which the query retrieves the suggested indexes. This parameter expresses its value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).  - If you don&#39;t specify the **duration** parameter, the endpoint returns data covering from the **since** value and the current time. - If you specify neither the **duration** nor the **since** parameters, the endpoint returns data from the previous 24 hours.
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Since(since float32) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Since(since float32) PerformanceAdvisorApiListSuggestedIndexesRequest {
 	r.since = &since
 	return r
 }
 
-func (r PerformanceAdvisorApiReturnSuggestedIndexesRequest) Execute() (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
-	return r.ApiService.ReturnSuggestedIndexesExecute(r)
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Execute() (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
+	return r.ApiService.ListSuggestedIndexesExecute(r)
 }
 
 /*
-ReturnSuggestedIndexes Return Suggested Indexes
+ListSuggestedIndexes Return Suggested Indexes
 
 Returns the indexes that the Performance Advisor suggests. The Performance Advisor monitors queries that MongoDB considers slow and suggests new indexes to improve query performance. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param processId Combination of host and port that serves the MongoDB process. The host must be the hostname, FQDN, IPv4 address, or IPv6 address of the host that runs the MongoDB process (`mongod` or `mongos`). The port must be the IANA port on which the MongoDB process listens for requests.
- @return PerformanceAdvisorApiReturnSuggestedIndexesRequest
+ @return PerformanceAdvisorApiListSuggestedIndexesRequest
 */
-func (a *PerformanceAdvisorApiService) ReturnSuggestedIndexes(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiReturnSuggestedIndexesRequest {
-	return PerformanceAdvisorApiReturnSuggestedIndexesRequest{
+func (a *PerformanceAdvisorApiService) ListSuggestedIndexes(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSuggestedIndexesRequest {
+	return PerformanceAdvisorApiListSuggestedIndexesRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -553,7 +881,7 @@ func (a *PerformanceAdvisorApiService) ReturnSuggestedIndexes(ctx context.Contex
 
 // Execute executes the request
 //  @return ApiPerformanceAdvisorResponseView
-func (a *PerformanceAdvisorApiService) ReturnSuggestedIndexesExecute(r PerformanceAdvisorApiReturnSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -561,7 +889,7 @@ func (a *PerformanceAdvisorApiService) ReturnSuggestedIndexesExecute(r Performan
 		localVarReturnValue  *ApiPerformanceAdvisorResponseView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ReturnSuggestedIndexes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSuggestedIndexes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

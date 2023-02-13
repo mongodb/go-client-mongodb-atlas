@@ -23,7 +23,7 @@ type NDSTenantEndpointAuditView struct {
 	Created time.Time `json:"created"`
 	// Unique 24-hexadecimal digit string that identifies the endpoint associated with this event.
 	EndpointId *string `json:"endpointId,omitempty"`
-	EventTypeName NDSTenantEndpointAuditType `json:"eventTypeName"`
+	EventTypeName NDSTenantEndpointAuditTypeView `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -153,9 +153,9 @@ func (o *NDSTenantEndpointAuditView) SetEndpointId(v string) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *NDSTenantEndpointAuditView) GetEventTypeName() NDSTenantEndpointAuditType {
+func (o *NDSTenantEndpointAuditView) GetEventTypeName() NDSTenantEndpointAuditTypeView {
 	if o == nil {
-		var ret NDSTenantEndpointAuditType
+		var ret NDSTenantEndpointAuditTypeView
 		return ret
 	}
 
@@ -164,7 +164,7 @@ func (o *NDSTenantEndpointAuditView) GetEventTypeName() NDSTenantEndpointAuditTy
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *NDSTenantEndpointAuditView) GetEventTypeNameOk() (*NDSTenantEndpointAuditType, bool) {
+func (o *NDSTenantEndpointAuditView) GetEventTypeNameOk() (*NDSTenantEndpointAuditTypeView, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -172,7 +172,7 @@ func (o *NDSTenantEndpointAuditView) GetEventTypeNameOk() (*NDSTenantEndpointAud
 }
 
 // SetEventTypeName sets field value
-func (o *NDSTenantEndpointAuditView) SetEventTypeName(v NDSTenantEndpointAuditType) {
+func (o *NDSTenantEndpointAuditView) SetEventTypeName(v NDSTenantEndpointAuditTypeView) {
 	o.EventTypeName = v
 }
 

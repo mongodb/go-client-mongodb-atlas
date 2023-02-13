@@ -23,73 +23,87 @@ import (
 type LDAPConfigurationApi interface {
 
 	/*
-	ReturnOneCurrentLdapConfiguration Return the Current LDAP or X.509 Configuration
+	DeleteLDAPConfiguration Remove the Current LDAP User to DN Mapping
+
+	Removes the current LDAP Distinguished Name mapping captured in the ``userToDNMapping`` document from the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return LDAPConfigurationApiDeleteLDAPConfigurationRequest
+	*/
+	DeleteLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiDeleteLDAPConfigurationRequest
+
+	// DeleteLDAPConfigurationExecute executes the request
+	DeleteLDAPConfigurationExecute(r LDAPConfigurationApiDeleteLDAPConfigurationRequest) (*http.Response, error)
+
+	/*
+	GetLDAPConfiguration Return the Current LDAP or X.509 Configuration
 
 	Returns the current LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return LDAPConfigurationApiGetLDAPConfigurationRequest
 	*/
-	ReturnOneCurrentLdapConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest
+	GetLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiGetLDAPConfigurationRequest
 
-	// ReturnOneCurrentLdapConfigurationExecute executes the request
+	// GetLDAPConfigurationExecute executes the request
 	//  @return UserSecurity
-	ReturnOneCurrentLdapConfigurationExecute(r LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest) (*UserSecurity, *http.Response, error)
+	GetLDAPConfigurationExecute(r LDAPConfigurationApiGetLDAPConfigurationRequest) (*UserSecurity, *http.Response, error)
 
 	/*
-	ReturnOneStatusOfOneVerifyLdapConfigurationRequest Return the Status of One Verify LDAP Configuration Request
+	GetLDAPConfigurationStatus Return the Status of One Verify LDAP Configuration Request
 
 	Returns the status of one request to verify one LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param requestId Unique string that identifies the request to verify an <abbr title=\"Lightweight Directory Access Protocol\">LDAP</abbr> configuration.
-	@return LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest
+	@return LDAPConfigurationApiGetLDAPConfigurationStatusRequest
 	*/
-	ReturnOneStatusOfOneVerifyLdapConfigurationRequest(ctx context.Context, groupId string, requestId string) LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest
+	GetLDAPConfigurationStatus(ctx context.Context, groupId string, requestId string) LDAPConfigurationApiGetLDAPConfigurationStatusRequest
 
-	// ReturnOneStatusOfOneVerifyLdapConfigurationRequestExecute executes the request
+	// GetLDAPConfigurationStatusExecute executes the request
 	//  @return NDSLDAPVerifyConnectivityJobRequest
-	ReturnOneStatusOfOneVerifyLdapConfigurationRequestExecute(r LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error)
+	GetLDAPConfigurationStatusExecute(r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error)
 
 	/*
-	SaveOneLdapConfiguration Edit the LDAP or X.509 Configuration
+	SaveLDAPConfiguration Edit the LDAP or X.509 Configuration
 
 	Edits the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 Updating this configuration triggers a rolling restart of the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return LDAPConfigurationApiSaveOneLdapConfigurationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return LDAPConfigurationApiSaveLDAPConfigurationRequest
 	*/
-	SaveOneLdapConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiSaveOneLdapConfigurationRequest
+	SaveLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiSaveLDAPConfigurationRequest
 
-	// SaveOneLdapConfigurationExecute executes the request
+	// SaveLDAPConfigurationExecute executes the request
 	//  @return UserSecurity
-	SaveOneLdapConfigurationExecute(r LDAPConfigurationApiSaveOneLdapConfigurationRequest) (*UserSecurity, *http.Response, error)
+	SaveLDAPConfigurationExecute(r LDAPConfigurationApiSaveLDAPConfigurationRequest) (*UserSecurity, *http.Response, error)
 
 	/*
-	VerifyOneLdapConfigurationInOneProject Verify the LDAP Configuration in One Project
+	VerifyLDAPConfiguration Verify the LDAP Configuration in One Project
 
 	Verifies the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return LDAPConfigurationApiVerifyLDAPConfigurationRequest
 	*/
-	VerifyOneLdapConfigurationInOneProject(ctx context.Context, groupId string) LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest
+	VerifyLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiVerifyLDAPConfigurationRequest
 
-	// VerifyOneLdapConfigurationInOneProjectExecute executes the request
+	// VerifyLDAPConfigurationExecute executes the request
 	//  @return NDSLDAPVerifyConnectivityJobRequest
-	VerifyOneLdapConfigurationInOneProjectExecute(r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error)
+	VerifyLDAPConfigurationExecute(r LDAPConfigurationApiVerifyLDAPConfigurationRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error)
 }
 
 // LDAPConfigurationApiService LDAPConfigurationApi service
 type LDAPConfigurationApiService service
 
-type LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest struct {
+type LDAPConfigurationApiDeleteLDAPConfigurationRequest struct {
 	ctx context.Context
 	ApiService LDAPConfigurationApi
 	groupId string
@@ -98,32 +112,171 @@ type LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest {
+func (r LDAPConfigurationApiDeleteLDAPConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiDeleteLDAPConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LDAPConfigurationApiDeleteLDAPConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiDeleteLDAPConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
-	return r.ApiService.ReturnOneCurrentLdapConfigurationExecute(r)
+func (r LDAPConfigurationApiDeleteLDAPConfigurationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteLDAPConfigurationExecute(r)
 }
 
 /*
-ReturnOneCurrentLdapConfiguration Return the Current LDAP or X.509 Configuration
+DeleteLDAPConfiguration Remove the Current LDAP User to DN Mapping
+
+Removes the current LDAP Distinguished Name mapping captured in the ``userToDNMapping`` document from the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return LDAPConfigurationApiDeleteLDAPConfigurationRequest
+*/
+func (a *LDAPConfigurationApiService) DeleteLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiDeleteLDAPConfigurationRequest {
+	return LDAPConfigurationApiDeleteLDAPConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+func (a *LDAPConfigurationApiService) DeleteLDAPConfigurationExecute(r LDAPConfigurationApiDeleteLDAPConfigurationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.DeleteLDAPConfiguration")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/userSecurity/ldap/userToDNMapping"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type LDAPConfigurationApiGetLDAPConfigurationRequest struct {
+	ctx context.Context
+	ApiService LDAPConfigurationApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r LDAPConfigurationApiGetLDAPConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiGetLDAPConfigurationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LDAPConfigurationApiGetLDAPConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiGetLDAPConfigurationRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r LDAPConfigurationApiGetLDAPConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
+	return r.ApiService.GetLDAPConfigurationExecute(r)
+}
+
+/*
+GetLDAPConfiguration Return the Current LDAP or X.509 Configuration
 
 Returns the current LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return LDAPConfigurationApiGetLDAPConfigurationRequest
 */
-func (a *LDAPConfigurationApiService) ReturnOneCurrentLdapConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest {
-	return LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest{
+func (a *LDAPConfigurationApiService) GetLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiGetLDAPConfigurationRequest {
+	return LDAPConfigurationApiGetLDAPConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -132,7 +285,7 @@ func (a *LDAPConfigurationApiService) ReturnOneCurrentLdapConfiguration(ctx cont
 
 // Execute executes the request
 //  @return UserSecurity
-func (a *LDAPConfigurationApiService) ReturnOneCurrentLdapConfigurationExecute(r LDAPConfigurationApiReturnOneCurrentLdapConfigurationRequest) (*UserSecurity, *http.Response, error) {
+func (a *LDAPConfigurationApiService) GetLDAPConfigurationExecute(r LDAPConfigurationApiGetLDAPConfigurationRequest) (*UserSecurity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -140,7 +293,7 @@ func (a *LDAPConfigurationApiService) ReturnOneCurrentLdapConfigurationExecute(r
 		localVarReturnValue  *UserSecurity
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.ReturnOneCurrentLdapConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.GetLDAPConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -239,7 +392,7 @@ func (a *LDAPConfigurationApiService) ReturnOneCurrentLdapConfigurationExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest struct {
+type LDAPConfigurationApiGetLDAPConfigurationStatusRequest struct {
 	ctx context.Context
 	ApiService LDAPConfigurationApi
 	groupId string
@@ -249,33 +402,33 @@ type LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestReque
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest) Envelope(envelope bool) LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest {
+func (r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) Envelope(envelope bool) LDAPConfigurationApiGetLDAPConfigurationStatusRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest) Pretty(pretty bool) LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) Pretty(pretty bool) LDAPConfigurationApiGetLDAPConfigurationStatusRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
-	return r.ApiService.ReturnOneStatusOfOneVerifyLdapConfigurationRequestExecute(r)
+func (r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+	return r.ApiService.GetLDAPConfigurationStatusExecute(r)
 }
 
 /*
-ReturnOneStatusOfOneVerifyLdapConfigurationRequest Return the Status of One Verify LDAP Configuration Request
+GetLDAPConfigurationStatus Return the Status of One Verify LDAP Configuration Request
 
 Returns the status of one request to verify one LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param requestId Unique string that identifies the request to verify an <abbr title=\"Lightweight Directory Access Protocol\">LDAP</abbr> configuration.
- @return LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest
+ @return LDAPConfigurationApiGetLDAPConfigurationStatusRequest
 */
-func (a *LDAPConfigurationApiService) ReturnOneStatusOfOneVerifyLdapConfigurationRequest(ctx context.Context, groupId string, requestId string) LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest {
-	return LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest{
+func (a *LDAPConfigurationApiService) GetLDAPConfigurationStatus(ctx context.Context, groupId string, requestId string) LDAPConfigurationApiGetLDAPConfigurationStatusRequest {
+	return LDAPConfigurationApiGetLDAPConfigurationStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -285,7 +438,7 @@ func (a *LDAPConfigurationApiService) ReturnOneStatusOfOneVerifyLdapConfiguratio
 
 // Execute executes the request
 //  @return NDSLDAPVerifyConnectivityJobRequest
-func (a *LDAPConfigurationApiService) ReturnOneStatusOfOneVerifyLdapConfigurationRequestExecute(r LDAPConfigurationApiReturnOneStatusOfOneVerifyLdapConfigurationRequestRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+func (a *LDAPConfigurationApiService) GetLDAPConfigurationStatusExecute(r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -293,7 +446,7 @@ func (a *LDAPConfigurationApiService) ReturnOneStatusOfOneVerifyLdapConfiguratio
 		localVarReturnValue  *NDSLDAPVerifyConnectivityJobRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.ReturnOneStatusOfOneVerifyLdapConfigurationRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.GetLDAPConfigurationStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -399,7 +552,7 @@ func (a *LDAPConfigurationApiService) ReturnOneStatusOfOneVerifyLdapConfiguratio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LDAPConfigurationApiSaveOneLdapConfigurationRequest struct {
+type LDAPConfigurationApiSaveLDAPConfigurationRequest struct {
 	ctx context.Context
 	ApiService LDAPConfigurationApi
 	groupId string
@@ -409,40 +562,40 @@ type LDAPConfigurationApiSaveOneLdapConfigurationRequest struct {
 }
 
 // Updates the LDAP configuration for the specified project.
-func (r LDAPConfigurationApiSaveOneLdapConfigurationRequest) UserSecurity(userSecurity UserSecurity) LDAPConfigurationApiSaveOneLdapConfigurationRequest {
+func (r LDAPConfigurationApiSaveLDAPConfigurationRequest) UserSecurity(userSecurity UserSecurity) LDAPConfigurationApiSaveLDAPConfigurationRequest {
 	r.userSecurity = &userSecurity
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LDAPConfigurationApiSaveOneLdapConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiSaveOneLdapConfigurationRequest {
+func (r LDAPConfigurationApiSaveLDAPConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiSaveLDAPConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LDAPConfigurationApiSaveOneLdapConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiSaveOneLdapConfigurationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LDAPConfigurationApiSaveLDAPConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiSaveLDAPConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LDAPConfigurationApiSaveOneLdapConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
-	return r.ApiService.SaveOneLdapConfigurationExecute(r)
+func (r LDAPConfigurationApiSaveLDAPConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
+	return r.ApiService.SaveLDAPConfigurationExecute(r)
 }
 
 /*
-SaveOneLdapConfiguration Edit the LDAP or X.509 Configuration
+SaveLDAPConfiguration Edit the LDAP or X.509 Configuration
 
 Edits the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 Updating this configuration triggers a rolling restart of the database.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return LDAPConfigurationApiSaveOneLdapConfigurationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return LDAPConfigurationApiSaveLDAPConfigurationRequest
 */
-func (a *LDAPConfigurationApiService) SaveOneLdapConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiSaveOneLdapConfigurationRequest {
-	return LDAPConfigurationApiSaveOneLdapConfigurationRequest{
+func (a *LDAPConfigurationApiService) SaveLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiSaveLDAPConfigurationRequest {
+	return LDAPConfigurationApiSaveLDAPConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -451,7 +604,7 @@ func (a *LDAPConfigurationApiService) SaveOneLdapConfiguration(ctx context.Conte
 
 // Execute executes the request
 //  @return UserSecurity
-func (a *LDAPConfigurationApiService) SaveOneLdapConfigurationExecute(r LDAPConfigurationApiSaveOneLdapConfigurationRequest) (*UserSecurity, *http.Response, error) {
+func (a *LDAPConfigurationApiService) SaveLDAPConfigurationExecute(r LDAPConfigurationApiSaveLDAPConfigurationRequest) (*UserSecurity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -459,7 +612,7 @@ func (a *LDAPConfigurationApiService) SaveOneLdapConfigurationExecute(r LDAPConf
 		localVarReturnValue  *UserSecurity
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.SaveOneLdapConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.SaveLDAPConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -574,7 +727,7 @@ func (a *LDAPConfigurationApiService) SaveOneLdapConfigurationExecute(r LDAPConf
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest struct {
+type LDAPConfigurationApiVerifyLDAPConfigurationRequest struct {
 	ctx context.Context
 	ApiService LDAPConfigurationApi
 	groupId string
@@ -584,38 +737,38 @@ type LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest struct {
 }
 
 // The LDAP configuration for the specified project that you want to verify.
-func (r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) NDSLDAPVerifyConnectivityJobRequestParams(nDSLDAPVerifyConnectivityJobRequestParams NDSLDAPVerifyConnectivityJobRequestParams) LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest {
+func (r LDAPConfigurationApiVerifyLDAPConfigurationRequest) NDSLDAPVerifyConnectivityJobRequestParams(nDSLDAPVerifyConnectivityJobRequestParams NDSLDAPVerifyConnectivityJobRequestParams) LDAPConfigurationApiVerifyLDAPConfigurationRequest {
 	r.nDSLDAPVerifyConnectivityJobRequestParams = &nDSLDAPVerifyConnectivityJobRequestParams
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) Envelope(envelope bool) LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest {
+func (r LDAPConfigurationApiVerifyLDAPConfigurationRequest) Envelope(envelope bool) LDAPConfigurationApiVerifyLDAPConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) Pretty(pretty bool) LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r LDAPConfigurationApiVerifyLDAPConfigurationRequest) Pretty(pretty bool) LDAPConfigurationApiVerifyLDAPConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
-	return r.ApiService.VerifyOneLdapConfigurationInOneProjectExecute(r)
+func (r LDAPConfigurationApiVerifyLDAPConfigurationRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+	return r.ApiService.VerifyLDAPConfigurationExecute(r)
 }
 
 /*
-VerifyOneLdapConfigurationInOneProject Verify the LDAP Configuration in One Project
+VerifyLDAPConfiguration Verify the LDAP Configuration in One Project
 
 Verifies the LDAP configuration for the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return LDAPConfigurationApiVerifyLDAPConfigurationRequest
 */
-func (a *LDAPConfigurationApiService) VerifyOneLdapConfigurationInOneProject(ctx context.Context, groupId string) LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest {
-	return LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest{
+func (a *LDAPConfigurationApiService) VerifyLDAPConfiguration(ctx context.Context, groupId string) LDAPConfigurationApiVerifyLDAPConfigurationRequest {
+	return LDAPConfigurationApiVerifyLDAPConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -624,7 +777,7 @@ func (a *LDAPConfigurationApiService) VerifyOneLdapConfigurationInOneProject(ctx
 
 // Execute executes the request
 //  @return NDSLDAPVerifyConnectivityJobRequest
-func (a *LDAPConfigurationApiService) VerifyOneLdapConfigurationInOneProjectExecute(r LDAPConfigurationApiVerifyOneLdapConfigurationInOneProjectRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+func (a *LDAPConfigurationApiService) VerifyLDAPConfigurationExecute(r LDAPConfigurationApiVerifyLDAPConfigurationRequest) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -632,7 +785,7 @@ func (a *LDAPConfigurationApiService) VerifyOneLdapConfigurationInOneProjectExec
 		localVarReturnValue  *NDSLDAPVerifyConnectivityJobRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.VerifyOneLdapConfigurationInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LDAPConfigurationApiService.VerifyLDAPConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

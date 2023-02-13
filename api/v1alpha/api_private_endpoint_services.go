@@ -23,201 +23,201 @@ import (
 type PrivateEndpointServicesApi interface {
 
 	/*
-	CreateOnePrivateEndpointForOneProvider Create One Private Endpoint for One Provider
+	CreatePrivateEndpoint Create One Private Endpoint for One Provider
 
 	Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
-	@return PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest
+	@return PrivateEndpointServicesApiCreatePrivateEndpointRequest
 	*/
-	CreateOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest
+	CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreatePrivateEndpointRequest
 
-	// CreateOnePrivateEndpointForOneProviderExecute executes the request
+	// CreatePrivateEndpointExecute executes the request
 	//  @return Endpoint
-	CreateOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) (*Endpoint, *http.Response, error)
+	CreatePrivateEndpointExecute(r PrivateEndpointServicesApiCreatePrivateEndpointRequest) (*Endpoint, *http.Response, error)
 
 	/*
-	CreateOnePrivateEndpointServiceForOneProvider Create One Private Endpoint Service for One Provider
+	CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
 
 	Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
 	*/
-	CreateOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
+	CreatePrivateEndpointService(ctx context.Context, groupId string) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
 
-	// CreateOnePrivateEndpointServiceForOneProviderExecute executes the request
+	// CreatePrivateEndpointServiceExecute executes the request
 	//  @return EndpointService
-	CreateOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) (*EndpointService, *http.Response, error)
+	CreatePrivateEndpointServiceExecute(r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) (*EndpointService, *http.Response, error)
 
 	/*
-	RemoveOnePrivateEndpointForOneProvider Remove One Private Endpoint for One Provider
+	DeletePrivateEndpoint Remove One Private Endpoint for One Provider
 
 	Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
-	@return PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest
+	@return PrivateEndpointServicesApiDeletePrivateEndpointRequest
 	*/
-	RemoveOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest
+	DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointRequest
 
-	// RemoveOnePrivateEndpointForOneProviderExecute executes the request
-	RemoveOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) (*http.Response, error)
+	// DeletePrivateEndpointExecute executes the request
+	DeletePrivateEndpointExecute(r PrivateEndpointServicesApiDeletePrivateEndpointRequest) (*http.Response, error)
 
 	/*
-	RemoveOnePrivateEndpointServiceForOneProvider Remove One Private Endpoint Service for One Provider
+	DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
 
 	Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
-	@return PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest
+	@return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
 	*/
-	RemoveOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest
+	DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
 
-	// RemoveOnePrivateEndpointServiceForOneProviderExecute executes the request
-	RemoveOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) (*http.Response, error)
+	// DeletePrivateEndpointServiceExecute executes the request
+	DeletePrivateEndpointServiceExecute(r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) (*http.Response, error)
 
 	/*
-	ReturnAllPrivateEndpointServicesForOneProvider Return All Private Endpoint Services for One Provider
-
-	Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param cloudProvider Cloud service provider that manages this private endpoint service.
-	@return PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest
-	*/
-	ReturnAllPrivateEndpointServicesForOneProvider(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest
-
-	// ReturnAllPrivateEndpointServicesForOneProviderExecute executes the request
-	//  @return PaginatedPrivateLinkConnectionView
-	ReturnAllPrivateEndpointServicesForOneProviderExecute(r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error)
-
-	/*
-	ReturnOnePrivateEndpointForOneProvider Return One Private Endpoint for One Provider
+	GetPrivateEndpoint Return One Private Endpoint for One Provider
 
 	Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
-	@return PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest
+	@return PrivateEndpointServicesApiGetPrivateEndpointRequest
 	*/
-	ReturnOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest
+	GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointRequest
 
-	// ReturnOnePrivateEndpointForOneProviderExecute executes the request
+	// GetPrivateEndpointExecute executes the request
 	//  @return Endpoint
-	ReturnOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) (*Endpoint, *http.Response, error)
+	GetPrivateEndpointExecute(r PrivateEndpointServicesApiGetPrivateEndpointRequest) (*Endpoint, *http.Response, error)
 
 	/*
-	ReturnOnePrivateEndpointServiceForOneProvider Return One Private Endpoint Service for One Provider
+	GetPrivateEndpointService Return One Private Endpoint Service for One Provider
 
 	Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
-	@return PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest
+	@return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
 	*/
-	ReturnOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest
+	GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
 
-	// ReturnOnePrivateEndpointServiceForOneProviderExecute executes the request
+	// GetPrivateEndpointServiceExecute executes the request
 	//  @return EndpointService
-	ReturnOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) (*EndpointService, *http.Response, error)
+	GetPrivateEndpointServiceExecute(r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) (*EndpointService, *http.Response, error)
 
 	/*
-	ReturnRegionalizedPrivateEndpointStatus Return Regionalized Private Endpoint Status
+	GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
 
 	Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
 	*/
-	ReturnRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
+	GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
 
-	// ReturnRegionalizedPrivateEndpointStatusExecute executes the request
+	// GetRegionalizedPrivateEndpointSettingExecute executes the request
 	//  @return ProjectSettingItemView
-	ReturnRegionalizedPrivateEndpointStatusExecute(r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) (*ProjectSettingItemView, *http.Response, error)
+	GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error)
 
 	/*
-	ToggleRegionalizedPrivateEndpointStatus Toggle Regionalized Private Endpoint Status
+	ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
+
+	Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param cloudProvider Cloud service provider that manages this private endpoint service.
+	@return PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+	*/
+	ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+
+	// ListPrivateEndpointServicesExecute executes the request
+	//  @return PaginatedPrivateLinkConnectionView
+	ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error)
+
+	/*
+	ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
 
 	Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
 	*/
-	ToggleRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
+	ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
 
-	// ToggleRegionalizedPrivateEndpointStatusExecute executes the request
+	// ToggleRegionalizedPrivateEndpointSettingExecute executes the request
 	//  @return ProjectSettingItemView
-	ToggleRegionalizedPrivateEndpointStatusExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) (*ProjectSettingItemView, *http.Response, error)
+	ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error)
 }
 
 // PrivateEndpointServicesApiService PrivateEndpointServicesApi service
 type PrivateEndpointServicesApiService service
 
-type PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest struct {
+type PrivateEndpointServicesApiCreatePrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
 	cloudProvider string
 	endpointServiceId string
-	createOnePrivateEndpointForOneProviderRequest *CreateOnePrivateEndpointForOneProviderRequest
+	createPrivateEndpointRequest *CreatePrivateEndpointRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Creates one private resource endpoint for the specified cloud service provider.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) CreateOnePrivateEndpointForOneProviderRequest(createOnePrivateEndpointForOneProviderRequest CreateOnePrivateEndpointForOneProviderRequest) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest {
-	r.createOnePrivateEndpointForOneProviderRequest = &createOnePrivateEndpointForOneProviderRequest
+func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) CreatePrivateEndpointRequest(createPrivateEndpointRequest CreatePrivateEndpointRequest) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
+	r.createPrivateEndpointRequest = &createPrivateEndpointRequest
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest {
+func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) Envelope(envelope bool) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) Execute() (*Endpoint, *http.Response, error) {
-	return r.ApiService.CreateOnePrivateEndpointForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) Execute() (*Endpoint, *http.Response, error) {
+	return r.ApiService.CreatePrivateEndpointExecute(r)
 }
 
 /*
-CreateOnePrivateEndpointForOneProvider Create One Private Endpoint for One Provider
+CreatePrivateEndpoint Create One Private Endpoint for One Provider
 
 Creates one private resource in the specified private resource service hosted from one cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
- @return PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest
+ @return PrivateEndpointServicesApiCreatePrivateEndpointRequest
 */
-func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest {
-	return PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
+	return PrivateEndpointServicesApiCreatePrivateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -228,7 +228,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvid
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiCreateOnePrivateEndpointForOneProviderRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r PrivateEndpointServicesApiCreatePrivateEndpointRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -236,7 +236,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvid
 		localVarReturnValue  *Endpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.CreateOnePrivateEndpointForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.CreatePrivateEndpoint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -261,8 +261,8 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvid
 	if strlen(r.endpointServiceId) > 24 {
 		return localVarReturnValue, nil, reportError("endpointServiceId must have less than 24 elements")
 	}
-	if r.createOnePrivateEndpointForOneProviderRequest == nil {
-		return localVarReturnValue, nil, reportError("createOnePrivateEndpointForOneProviderRequest is required and must be specified")
+	if r.createPrivateEndpointRequest == nil {
+		return localVarReturnValue, nil, reportError("createPrivateEndpointRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -289,7 +289,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvid
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOnePrivateEndpointForOneProviderRequest
+	localVarPostBody = r.createPrivateEndpointRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -381,7 +381,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointForOneProvid
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest struct {
+type PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -391,38 +391,38 @@ type PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequ
 }
 
 // Creates one private resource service for the specified cloud service provider.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) CreateEndpointServiceRequest(createEndpointServiceRequest CreateEndpointServiceRequest) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
+func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) CreateEndpointServiceRequest(createEndpointServiceRequest CreateEndpointServiceRequest) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
 	r.createEndpointServiceRequest = &createEndpointServiceRequest
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
+func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) Envelope(envelope bool) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) Pretty(pretty bool) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) Execute() (*EndpointService, *http.Response, error) {
-	return r.ApiService.CreateOnePrivateEndpointServiceForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) Execute() (*EndpointService, *http.Response, error) {
+	return r.ApiService.CreatePrivateEndpointServiceExecute(r)
 }
 
 /*
-CreateOnePrivateEndpointServiceForOneProvider Create One Private Endpoint Service for One Provider
+CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
 
 Creates one private resource service for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
 */
-func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string) PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest {
-	return PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointService(ctx context.Context, groupId string) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
+	return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -431,7 +431,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOn
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiCreateOnePrivateEndpointServiceForOneProviderRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -439,7 +439,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOn
 		localVarReturnValue  *EndpointService
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.CreateOnePrivateEndpointServiceForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.CreatePrivateEndpointService")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -543,7 +543,7 @@ func (a *PrivateEndpointServicesApiService) CreateOnePrivateEndpointServiceForOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest struct {
+type PrivateEndpointServicesApiDeletePrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -555,35 +555,35 @@ type PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest str
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest {
+func (r PrivateEndpointServicesApiDeletePrivateEndpointRequest) Envelope(envelope bool) PrivateEndpointServicesApiDeletePrivateEndpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiDeletePrivateEndpointRequest) Pretty(pretty bool) PrivateEndpointServicesApiDeletePrivateEndpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOnePrivateEndpointForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiDeletePrivateEndpointRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeletePrivateEndpointExecute(r)
 }
 
 /*
-RemoveOnePrivateEndpointForOneProvider Remove One Private Endpoint for One Provider
+DeletePrivateEndpoint Remove One Private Endpoint for One Provider
 
 Removes one private resource from the specified project. This cloud service provider manages the private resource service that manages the private resource that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
- @return PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest
+ @return PrivateEndpointServicesApiDeletePrivateEndpointRequest
 */
-func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest {
-	return PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointRequest {
+	return PrivateEndpointServicesApiDeletePrivateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -594,14 +594,14 @@ func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointForOneProvid
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiRemoveOnePrivateEndpointForOneProviderRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r PrivateEndpointServicesApiDeletePrivateEndpointRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.RemoveOnePrivateEndpointForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.DeletePrivateEndpoint")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -700,7 +700,7 @@ func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointForOneProvid
 	return localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest struct {
+type PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -711,34 +711,34 @@ type PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequ
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest {
+func (r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) Envelope(envelope bool) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) Pretty(pretty bool) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOnePrivateEndpointServiceForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeletePrivateEndpointServiceExecute(r)
 }
 
 /*
-RemoveOnePrivateEndpointServiceForOneProvider Remove One Private Endpoint Service for One Provider
+DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
 
 Removes one private resource service from the specified project. This cloud service provider manages the private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
- @return PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest
+ @return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
 */
-func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest {
-	return PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
+	return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -748,14 +748,14 @@ func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointServiceForOn
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiRemoveOnePrivateEndpointServiceForOneProviderRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.RemoveOnePrivateEndpointServiceForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.DeletePrivateEndpointService")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -853,161 +853,7 @@ func (a *PrivateEndpointServicesApiService) RemoveOnePrivateEndpointServiceForOn
 	return localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest struct {
-	ctx context.Context
-	ApiService PrivateEndpointServicesApi
-	groupId string
-	cloudProvider string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) Execute() (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
-	return r.ApiService.ReturnAllPrivateEndpointServicesForOneProviderExecute(r)
-}
-
-/*
-ReturnAllPrivateEndpointServicesForOneProvider Return All Private Endpoint Services for One Provider
-
-Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param cloudProvider Cloud service provider that manages this private endpoint service.
- @return PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest
-*/
-func (a *PrivateEndpointServicesApiService) ReturnAllPrivateEndpointServicesForOneProvider(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest {
-	return PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		cloudProvider: cloudProvider,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedPrivateLinkConnectionView
-func (a *PrivateEndpointServicesApiService) ReturnAllPrivateEndpointServicesForOneProviderExecute(r PrivateEndpointServicesApiReturnAllPrivateEndpointServicesForOneProviderRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedPrivateLinkConnectionView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ReturnAllPrivateEndpointServicesForOneProvider")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"cloudProvider"+"}", url.PathEscape(parameterToString(r.cloudProvider, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest struct {
+type PrivateEndpointServicesApiGetPrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -1019,35 +865,35 @@ type PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest str
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest {
+func (r PrivateEndpointServicesApiGetPrivateEndpointRequest) Envelope(envelope bool) PrivateEndpointServicesApiGetPrivateEndpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiGetPrivateEndpointRequest) Pretty(pretty bool) PrivateEndpointServicesApiGetPrivateEndpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) Execute() (*Endpoint, *http.Response, error) {
-	return r.ApiService.ReturnOnePrivateEndpointForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiGetPrivateEndpointRequest) Execute() (*Endpoint, *http.Response, error) {
+	return r.ApiService.GetPrivateEndpointExecute(r)
 }
 
 /*
-ReturnOnePrivateEndpointForOneProvider Return One Private Endpoint for One Provider
+GetPrivateEndpoint Return One Private Endpoint for One Provider
 
 Returns the connection state of the specified private resource. The private resource service manages this private resource which belongs to one project hosted from one cloud service provider. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
- @return PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest
+ @return PrivateEndpointServicesApiGetPrivateEndpointRequest
 */
-func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest {
-	return PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointRequest {
+	return PrivateEndpointServicesApiGetPrivateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1059,7 +905,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointForOneProvid
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointForOneProviderExecute(r PrivateEndpointServicesApiReturnOnePrivateEndpointForOneProviderRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateEndpointServicesApiGetPrivateEndpointRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1067,7 +913,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointForOneProvid
 		localVarReturnValue  *Endpoint
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ReturnOnePrivateEndpointForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.GetPrivateEndpoint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1186,7 +1032,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointForOneProvid
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest struct {
+type PrivateEndpointServicesApiGetPrivateEndpointServiceRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -1197,34 +1043,34 @@ type PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequ
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) Envelope(envelope bool) PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest {
+func (r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) Envelope(envelope bool) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) Pretty(pretty bool) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) Execute() (*EndpointService, *http.Response, error) {
-	return r.ApiService.ReturnOnePrivateEndpointServiceForOneProviderExecute(r)
+func (r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) Execute() (*EndpointService, *http.Response, error) {
+	return r.ApiService.GetPrivateEndpointServiceExecute(r)
 }
 
 /*
-ReturnOnePrivateEndpointServiceForOneProvider Return One Private Endpoint Service for One Provider
+GetPrivateEndpointService Return One Private Endpoint Service for One Provider
 
 Returns the name, interfaces, and state of the specified private resource service from one project. The cloud service provider hosted this private resource service that belongs to the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
- @return PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest
+ @return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
 */
-func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointServiceForOneProvider(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest {
-	return PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest{
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
+	return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1235,7 +1081,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointServiceForOn
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointServiceForOneProviderExecute(r PrivateEndpointServicesApiReturnOnePrivateEndpointServiceForOneProviderRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1243,7 +1089,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointServiceForOn
 		localVarReturnValue  *EndpointService
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ReturnOnePrivateEndpointServiceForOneProvider")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.GetPrivateEndpointService")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1361,7 +1207,7 @@ func (a *PrivateEndpointServicesApiService) ReturnOnePrivateEndpointServiceForOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest struct {
+type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -1370,32 +1216,32 @@ type PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest st
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) Envelope(envelope bool) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest {
+func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Envelope(envelope bool) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) Pretty(pretty bool) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Pretty(pretty bool) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
-	return r.ApiService.ReturnRegionalizedPrivateEndpointStatusExecute(r)
+func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
+	return r.ApiService.GetRegionalizedPrivateEndpointSettingExecute(r)
 }
 
 /*
-ReturnRegionalizedPrivateEndpointStatus Return Regionalized Private Endpoint Status
+GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
 
 Checks whether each region in the specified cloud service provider can create multiple private resources per region. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
 */
-func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest {
-	return PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest{
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest {
+	return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1404,7 +1250,7 @@ func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointSta
 
 // Execute executes the request
 //  @return ProjectSettingItemView
-func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointStatusExecute(r PrivateEndpointServicesApiReturnRegionalizedPrivateEndpointStatusRequest) (*ProjectSettingItemView, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1412,7 +1258,7 @@ func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointSta
 		localVarReturnValue  *ProjectSettingItemView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ReturnRegionalizedPrivateEndpointStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.GetRegionalizedPrivateEndpointSetting")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1522,7 +1368,161 @@ func (a *PrivateEndpointServicesApiService) ReturnRegionalizedPrivateEndpointSta
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest struct {
+type PrivateEndpointServicesApiListPrivateEndpointServicesRequest struct {
+	ctx context.Context
+	ApiService PrivateEndpointServicesApi
+	groupId string
+	cloudProvider string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Envelope(envelope bool) PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Pretty(pretty bool) PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Execute() (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
+	return r.ApiService.ListPrivateEndpointServicesExecute(r)
+}
+
+/*
+ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
+
+Returns the name, interfaces, and state of all private resource services for the specified cloud service provider. This cloud service provider manages the private resource service for the project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param cloudProvider Cloud service provider that manages this private endpoint service.
+ @return PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+*/
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
+	return PrivateEndpointServicesApiListPrivateEndpointServicesRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		cloudProvider: cloudProvider,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedPrivateLinkConnectionView
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedPrivateLinkConnectionView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ListPrivateEndpointServices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateEndpoint/{cloudProvider}/endpointService"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"cloudProvider"+"}", url.PathEscape(parameterToString(r.cloudProvider, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -1532,38 +1532,38 @@ type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest st
 }
 
 // Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project.
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) ProjectSettingItemView(projectSettingItemView ProjectSettingItemView) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) ProjectSettingItemView(projectSettingItemView ProjectSettingItemView) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
 	r.projectSettingItemView = &projectSettingItemView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) Envelope(envelope bool) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Envelope(envelope bool) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) Pretty(pretty bool) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Pretty(pretty bool) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
-	return r.ApiService.ToggleRegionalizedPrivateEndpointStatusExecute(r)
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
+	return r.ApiService.ToggleRegionalizedPrivateEndpointSettingExecute(r)
 }
 
 /*
-ToggleRegionalizedPrivateEndpointStatus Toggle Regionalized Private Endpoint Status
+ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
 
 Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project. The cloud service provider manages the private resource for the project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
 */
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointStatus(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest {
-	return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest{
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
+	return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1572,7 +1572,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSta
 
 // Execute executes the request
 //  @return ProjectSettingItemView
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointStatusExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointStatusRequest) (*ProjectSettingItemView, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1580,7 +1580,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSta
 		localVarReturnValue  *ProjectSettingItemView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ToggleRegionalizedPrivateEndpointStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ToggleRegionalizedPrivateEndpointSetting")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
