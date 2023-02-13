@@ -15,7 +15,7 @@ OPENAPI_FILE_NAME=${OPENAPI_FILE_NAME:-atlas-api.yaml}
 SDK_FOLDER=${SDK_FOLDER:-./}
 
 transformed_file="atlas-api-transformed.yaml"
-client_package="v2"
+client_package="v1alpha"
 openapiFileLocation="$OPENAPI_FOLDER/$transformed_file"
 
 echo "# Running generation pipeline"
