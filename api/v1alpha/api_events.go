@@ -25,446 +25,80 @@ import (
 type EventsApi interface {
 
 	/*
-	GetOrganizationEvent Return One Event from One Organization
-
-	Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listOrganizationEvents) endpoint to retrieve all events to which the authenticated user has access.
-	@return EventsApiGetOrganizationEventRequest
-	*/
-	GetOrganizationEvent(ctx context.Context, orgId string, eventId string) EventsApiGetOrganizationEventRequest
-
-	// GetOrganizationEventExecute executes the request
-	//  @return EventViewForOrg
-	GetOrganizationEventExecute(r EventsApiGetOrganizationEventRequest) (*EventViewForOrg, *http.Response, error)
-
-	/*
-	GetProjectEvent Return One Event from One Project
-
-	Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listProjectEvents) endpoint to retrieve all events to which the authenticated user has access.
-	@return EventsApiGetProjectEventRequest
-	*/
-	GetProjectEvent(ctx context.Context, groupId string, eventId string) EventsApiGetProjectEventRequest
-
-	// GetProjectEventExecute executes the request
-	//  @return EventViewForNdsGroup
-	GetProjectEventExecute(r EventsApiGetProjectEventRequest) (*EventViewForNdsGroup, *http.Response, error)
-
-	/*
-	ListOrganizationEvents Return All Events from One Organization
+	ReturnAllEventsFromOneOrganization Return All Events from One Organization
 
 	Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-all/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return EventsApiListOrganizationEventsRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return EventsApiReturnAllEventsFromOneOrganizationRequest
 	*/
-	ListOrganizationEvents(ctx context.Context, orgId string) EventsApiListOrganizationEventsRequest
+	ReturnAllEventsFromOneOrganization(ctx context.Context, orgId string) EventsApiReturnAllEventsFromOneOrganizationRequest
 
-	// ListOrganizationEventsExecute executes the request
+	// ReturnAllEventsFromOneOrganizationExecute executes the request
 	//  @return OrgPaginatedEventView
-	ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEventView, *http.Response, error)
+	ReturnAllEventsFromOneOrganizationExecute(r EventsApiReturnAllEventsFromOneOrganizationRequest) (*OrgPaginatedEventView, *http.Response, error)
 
 	/*
-	ListProjectEvents Return All Events from One Project
+	ReturnAllEventsFromOneProject Return All Events from One Project
 
 	Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-all/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EventsApiListProjectEventsRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return EventsApiReturnAllEventsFromOneProjectRequest
 	*/
-	ListProjectEvents(ctx context.Context, groupId string) EventsApiListProjectEventsRequest
+	ReturnAllEventsFromOneProject(ctx context.Context, groupId string) EventsApiReturnAllEventsFromOneProjectRequest
 
-	// ListProjectEventsExecute executes the request
+	// ReturnAllEventsFromOneProjectExecute executes the request
 	//  @return GroupPaginatedEventView
-	ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEventView, *http.Response, error)
+	ReturnAllEventsFromOneProjectExecute(r EventsApiReturnAllEventsFromOneProjectRequest) (*GroupPaginatedEventView, *http.Response, error)
+
+	/*
+	ReturnOneEventFromOneOrganization Return One Event from One Organization
+
+	Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/returnAllEventsFromOneOrganization) endpoint to retrieve all events to which the authenticated user has access.
+	@return EventsApiReturnOneEventFromOneOrganizationRequest
+	*/
+	ReturnOneEventFromOneOrganization(ctx context.Context, orgId string, eventId string) EventsApiReturnOneEventFromOneOrganizationRequest
+
+	// ReturnOneEventFromOneOrganizationExecute executes the request
+	//  @return EventViewForOrg
+	ReturnOneEventFromOneOrganizationExecute(r EventsApiReturnOneEventFromOneOrganizationRequest) (*EventViewForOrg, *http.Response, error)
+
+	/*
+	ReturnOneEventFromOneProject Return One Event from One Project
+
+	Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/returnAllEventsFromOneProject) endpoint to retrieve all events to which the authenticated user has access.
+	@return EventsApiReturnOneEventFromOneProjectRequest
+	*/
+	ReturnOneEventFromOneProject(ctx context.Context, groupId string, eventId string) EventsApiReturnOneEventFromOneProjectRequest
+
+	// ReturnOneEventFromOneProjectExecute executes the request
+	//  @return EventViewForGroup
+	ReturnOneEventFromOneProjectExecute(r EventsApiReturnOneEventFromOneProjectRequest) (*EventViewForGroup, *http.Response, error)
 }
 
 // EventsApiService EventsApi service
 type EventsApiService service
 
-type EventsApiGetOrganizationEventRequest struct {
-	ctx context.Context
-	ApiService EventsApi
-	orgId string
-	eventId string
-	envelope *bool
-	pretty *bool
-	includeRaw *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EventsApiGetOrganizationEventRequest) Envelope(envelope bool) EventsApiGetOrganizationEventRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EventsApiGetOrganizationEventRequest) Pretty(pretty bool) EventsApiGetOrganizationEventRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiGetOrganizationEventRequest) IncludeRaw(includeRaw bool) EventsApiGetOrganizationEventRequest {
-	r.includeRaw = &includeRaw
-	return r
-}
-
-func (r EventsApiGetOrganizationEventRequest) Execute() (*EventViewForOrg, *http.Response, error) {
-	return r.ApiService.GetOrganizationEventExecute(r)
-}
-
-/*
-GetOrganizationEvent Return One Event from One Organization
-
-Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listOrganizationEvents) endpoint to retrieve all events to which the authenticated user has access.
- @return EventsApiGetOrganizationEventRequest
-*/
-func (a *EventsApiService) GetOrganizationEvent(ctx context.Context, orgId string, eventId string) EventsApiGetOrganizationEventRequest {
-	return EventsApiGetOrganizationEventRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		eventId: eventId,
-	}
-}
-
-// Execute executes the request
-//  @return EventViewForOrg
-func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizationEventRequest) (*EventViewForOrg, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *EventViewForOrg
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetOrganizationEvent")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/events/{eventId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterToString(r.eventId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-	if strlen(r.eventId) < 24 {
-		return localVarReturnValue, nil, reportError("eventId must have at least 24 elements")
-	}
-	if strlen(r.eventId) > 24 {
-		return localVarReturnValue, nil, reportError("eventId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.includeRaw != nil {
-		localVarQueryParams.Add("includeRaw", parameterToString(*r.includeRaw, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type EventsApiGetProjectEventRequest struct {
-	ctx context.Context
-	ApiService EventsApi
-	groupId string
-	eventId string
-	envelope *bool
-	pretty *bool
-	includeRaw *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EventsApiGetProjectEventRequest) Envelope(envelope bool) EventsApiGetProjectEventRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EventsApiGetProjectEventRequest) Pretty(pretty bool) EventsApiGetProjectEventRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiGetProjectEventRequest) IncludeRaw(includeRaw bool) EventsApiGetProjectEventRequest {
-	r.includeRaw = &includeRaw
-	return r
-}
-
-func (r EventsApiGetProjectEventRequest) Execute() (*EventViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.GetProjectEventExecute(r)
-}
-
-/*
-GetProjectEvent Return One Event from One Project
-
-Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listProjectEvents) endpoint to retrieve all events to which the authenticated user has access.
- @return EventsApiGetProjectEventRequest
-*/
-func (a *EventsApiService) GetProjectEvent(ctx context.Context, groupId string, eventId string) EventsApiGetProjectEventRequest {
-	return EventsApiGetProjectEventRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		eventId: eventId,
-	}
-}
-
-// Execute executes the request
-//  @return EventViewForNdsGroup
-func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequest) (*EventViewForNdsGroup, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *EventViewForNdsGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetProjectEvent")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/events/{eventId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterToString(r.eventId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.eventId) < 24 {
-		return localVarReturnValue, nil, reportError("eventId must have at least 24 elements")
-	}
-	if strlen(r.eventId) > 24 {
-		return localVarReturnValue, nil, reportError("eventId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.includeRaw != nil {
-		localVarQueryParams.Add("includeRaw", parameterToString(*r.includeRaw, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type EventsApiListOrganizationEventsRequest struct {
+type EventsApiReturnAllEventsFromOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	orgId string
@@ -480,76 +114,76 @@ type EventsApiListOrganizationEventsRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EventsApiListOrganizationEventsRequest) Envelope(envelope bool) EventsApiListOrganizationEventsRequest {
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) Envelope(envelope bool) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r EventsApiListOrganizationEventsRequest) IncludeCount(includeCount bool) EventsApiListOrganizationEventsRequest {
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) IncludeCount(includeCount bool) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r EventsApiListOrganizationEventsRequest) ItemsPerPage(itemsPerPage int32) EventsApiListOrganizationEventsRequest {
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) ItemsPerPage(itemsPerPage int32) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r EventsApiListOrganizationEventsRequest) PageNum(pageNum int32) EventsApiListOrganizationEventsRequest {
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) PageNum(pageNum int32) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EventsApiListOrganizationEventsRequest) Pretty(pretty bool) EventsApiListOrganizationEventsRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) Pretty(pretty bool) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-// Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-func (r EventsApiListOrganizationEventsRequest) EventType(eventType EventTypeForOrg) EventsApiListOrganizationEventsRequest {
+// Category of incident recorded at this moment in time.
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) EventType(eventType EventTypeForOrg) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.eventType = &eventType
 	return r
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiListOrganizationEventsRequest) IncludeRaw(includeRaw bool) EventsApiListOrganizationEventsRequest {
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) IncludeRaw(includeRaw bool) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
-// Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListOrganizationEventsRequest) MaxDate(maxDate time.Time) EventsApiListOrganizationEventsRequest {
+// Date and time from when MongoDB Cloud stops returning events. This parameter uses the ISO 8601 timestamp format in UTC.
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) MaxDate(maxDate time.Time) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.maxDate = &maxDate
 	return r
 }
 
-// Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListOrganizationEventsRequest) MinDate(minDate time.Time) EventsApiListOrganizationEventsRequest {
+// Date and time from when MongoDB Cloud starts returning events. This parameter uses the ISO 8601 timestamp format in UTC.
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) MinDate(minDate time.Time) EventsApiReturnAllEventsFromOneOrganizationRequest {
 	r.minDate = &minDate
 	return r
 }
 
-func (r EventsApiListOrganizationEventsRequest) Execute() (*OrgPaginatedEventView, *http.Response, error) {
-	return r.ApiService.ListOrganizationEventsExecute(r)
+func (r EventsApiReturnAllEventsFromOneOrganizationRequest) Execute() (*OrgPaginatedEventView, *http.Response, error) {
+	return r.ApiService.ReturnAllEventsFromOneOrganizationExecute(r)
 }
 
 /*
-ListOrganizationEvents Return All Events from One Organization
+ReturnAllEventsFromOneOrganization Return All Events from One Organization
 
 Returns all events for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-all/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return EventsApiListOrganizationEventsRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return EventsApiReturnAllEventsFromOneOrganizationRequest
 */
-func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId string) EventsApiListOrganizationEventsRequest {
-	return EventsApiListOrganizationEventsRequest{
+func (a *EventsApiService) ReturnAllEventsFromOneOrganization(ctx context.Context, orgId string) EventsApiReturnAllEventsFromOneOrganizationRequest {
+	return EventsApiReturnAllEventsFromOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -558,7 +192,7 @@ func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId str
 
 // Execute executes the request
 //  @return OrgPaginatedEventView
-func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEventView, *http.Response, error) {
+func (a *EventsApiService) ReturnAllEventsFromOneOrganizationExecute(r EventsApiReturnAllEventsFromOneOrganizationRequest) (*OrgPaginatedEventView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -566,7 +200,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 		localVarReturnValue  *OrgPaginatedEventView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListOrganizationEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ReturnAllEventsFromOneOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -686,7 +320,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EventsApiListProjectEventsRequest struct {
+type EventsApiReturnAllEventsFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	groupId string
@@ -696,89 +330,89 @@ type EventsApiListProjectEventsRequest struct {
 	pageNum *int32
 	pretty *bool
 	clusterNames *[]string
-	eventType *EventTypeForNdsGroup
+	eventType *EventTypeForGroup
 	includeRaw *bool
 	maxDate *time.Time
 	minDate *time.Time
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EventsApiListProjectEventsRequest) Envelope(envelope bool) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) Envelope(envelope bool) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r EventsApiListProjectEventsRequest) IncludeCount(includeCount bool) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) IncludeCount(includeCount bool) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r EventsApiListProjectEventsRequest) ItemsPerPage(itemsPerPage int32) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) ItemsPerPage(itemsPerPage int32) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r EventsApiListProjectEventsRequest) PageNum(pageNum int32) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) PageNum(pageNum int32) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EventsApiListProjectEventsRequest) Pretty(pretty bool) EventsApiListProjectEventsRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r EventsApiReturnAllEventsFromOneProjectRequest) Pretty(pretty bool) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Human-readable label that identifies the cluster.
-func (r EventsApiListProjectEventsRequest) ClusterNames(clusterNames []string) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) ClusterNames(clusterNames []string) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.clusterNames = &clusterNames
 	return r
 }
 
-// Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-func (r EventsApiListProjectEventsRequest) EventType(eventType EventTypeForNdsGroup) EventsApiListProjectEventsRequest {
+// Category of incident recorded at this moment in time.
+func (r EventsApiReturnAllEventsFromOneProjectRequest) EventType(eventType EventTypeForGroup) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.eventType = &eventType
 	return r
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiListProjectEventsRequest) IncludeRaw(includeRaw bool) EventsApiListProjectEventsRequest {
+func (r EventsApiReturnAllEventsFromOneProjectRequest) IncludeRaw(includeRaw bool) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
-// Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListProjectEventsRequest) MaxDate(maxDate time.Time) EventsApiListProjectEventsRequest {
+// Date and time from when MongoDB Cloud stops returning events. This parameter uses the ISO 8601 timestamp format in UTC.
+func (r EventsApiReturnAllEventsFromOneProjectRequest) MaxDate(maxDate time.Time) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.maxDate = &maxDate
 	return r
 }
 
-// Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListProjectEventsRequest) MinDate(minDate time.Time) EventsApiListProjectEventsRequest {
+// Date and time from when MongoDB Cloud starts returning events. This parameter uses the ISO 8601 timestamp format in UTC.
+func (r EventsApiReturnAllEventsFromOneProjectRequest) MinDate(minDate time.Time) EventsApiReturnAllEventsFromOneProjectRequest {
 	r.minDate = &minDate
 	return r
 }
 
-func (r EventsApiListProjectEventsRequest) Execute() (*GroupPaginatedEventView, *http.Response, error) {
-	return r.ApiService.ListProjectEventsExecute(r)
+func (r EventsApiReturnAllEventsFromOneProjectRequest) Execute() (*GroupPaginatedEventView, *http.Response, error) {
+	return r.ApiService.ReturnAllEventsFromOneProjectExecute(r)
 }
 
 /*
-ListProjectEvents Return All Events from One Project
+ReturnAllEventsFromOneProject Return All Events from One Project
 
 Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-all/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EventsApiListProjectEventsRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return EventsApiReturnAllEventsFromOneProjectRequest
 */
-func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string) EventsApiListProjectEventsRequest {
-	return EventsApiListProjectEventsRequest{
+func (a *EventsApiService) ReturnAllEventsFromOneProject(ctx context.Context, groupId string) EventsApiReturnAllEventsFromOneProjectRequest {
+	return EventsApiReturnAllEventsFromOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -787,7 +421,7 @@ func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string
 
 // Execute executes the request
 //  @return GroupPaginatedEventView
-func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEventView, *http.Response, error) {
+func (a *EventsApiService) ReturnAllEventsFromOneProjectExecute(r EventsApiReturnAllEventsFromOneProjectRequest) (*GroupPaginatedEventView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -795,7 +429,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 		localVarReturnValue  *GroupPaginatedEventView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListProjectEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ReturnAllEventsFromOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -902,6 +536,372 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type EventsApiReturnOneEventFromOneOrganizationRequest struct {
+	ctx context.Context
+	ApiService EventsApi
+	orgId string
+	eventId string
+	envelope *bool
+	pretty *bool
+	includeRaw *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r EventsApiReturnOneEventFromOneOrganizationRequest) Envelope(envelope bool) EventsApiReturnOneEventFromOneOrganizationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r EventsApiReturnOneEventFromOneOrganizationRequest) Pretty(pretty bool) EventsApiReturnOneEventFromOneOrganizationRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
+func (r EventsApiReturnOneEventFromOneOrganizationRequest) IncludeRaw(includeRaw bool) EventsApiReturnOneEventFromOneOrganizationRequest {
+	r.includeRaw = &includeRaw
+	return r
+}
+
+func (r EventsApiReturnOneEventFromOneOrganizationRequest) Execute() (*EventViewForOrg, *http.Response, error) {
+	return r.ApiService.ReturnOneEventFromOneOrganizationExecute(r)
+}
+
+/*
+ReturnOneEventFromOneOrganization Return One Event from One Organization
+
+Returns one event for the specified organization. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-orgs-get-one/).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/returnAllEventsFromOneOrganization) endpoint to retrieve all events to which the authenticated user has access.
+ @return EventsApiReturnOneEventFromOneOrganizationRequest
+*/
+func (a *EventsApiService) ReturnOneEventFromOneOrganization(ctx context.Context, orgId string, eventId string) EventsApiReturnOneEventFromOneOrganizationRequest {
+	return EventsApiReturnOneEventFromOneOrganizationRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		eventId: eventId,
+	}
+}
+
+// Execute executes the request
+//  @return EventViewForOrg
+func (a *EventsApiService) ReturnOneEventFromOneOrganizationExecute(r EventsApiReturnOneEventFromOneOrganizationRequest) (*EventViewForOrg, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EventViewForOrg
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ReturnOneEventFromOneOrganization")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/events/{eventId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterToString(r.eventId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if strlen(r.eventId) < 24 {
+		return localVarReturnValue, nil, reportError("eventId must have at least 24 elements")
+	}
+	if strlen(r.eventId) > 24 {
+		return localVarReturnValue, nil, reportError("eventId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.includeRaw != nil {
+		localVarQueryParams.Add("includeRaw", parameterToString(*r.includeRaw, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type EventsApiReturnOneEventFromOneProjectRequest struct {
+	ctx context.Context
+	ApiService EventsApi
+	groupId string
+	eventId string
+	envelope *bool
+	pretty *bool
+	includeRaw *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r EventsApiReturnOneEventFromOneProjectRequest) Envelope(envelope bool) EventsApiReturnOneEventFromOneProjectRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r EventsApiReturnOneEventFromOneProjectRequest) Pretty(pretty bool) EventsApiReturnOneEventFromOneProjectRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
+func (r EventsApiReturnOneEventFromOneProjectRequest) IncludeRaw(includeRaw bool) EventsApiReturnOneEventFromOneProjectRequest {
+	r.includeRaw = &includeRaw
+	return r
+}
+
+func (r EventsApiReturnOneEventFromOneProjectRequest) Execute() (*EventViewForGroup, *http.Response, error) {
+	return r.ApiService.ReturnOneEventFromOneProjectExecute(r)
+}
+
+/*
+ReturnOneEventFromOneProject Return One Event from One Project
+
+Returns one event for the specified project. Events identify significant database, billing, or security activities or status changes. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/events-projects-get-one/).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/returnAllEventsFromOneProject) endpoint to retrieve all events to which the authenticated user has access.
+ @return EventsApiReturnOneEventFromOneProjectRequest
+*/
+func (a *EventsApiService) ReturnOneEventFromOneProject(ctx context.Context, groupId string, eventId string) EventsApiReturnOneEventFromOneProjectRequest {
+	return EventsApiReturnOneEventFromOneProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		eventId: eventId,
+	}
+}
+
+// Execute executes the request
+//  @return EventViewForGroup
+func (a *EventsApiService) ReturnOneEventFromOneProjectExecute(r EventsApiReturnOneEventFromOneProjectRequest) (*EventViewForGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EventViewForGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ReturnOneEventFromOneProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/events/{eventId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterToString(r.eventId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.eventId) < 24 {
+		return localVarReturnValue, nil, reportError("eventId must have at least 24 elements")
+	}
+	if strlen(r.eventId) > 24 {
+		return localVarReturnValue, nil, reportError("eventId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.includeRaw != nil {
+		localVarQueryParams.Add("includeRaw", parameterToString(*r.includeRaw, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

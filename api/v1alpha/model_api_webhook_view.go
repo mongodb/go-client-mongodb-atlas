@@ -18,8 +18,6 @@ import (
 type ApiWebhookView struct {
 	// An optional field returned if your webhook is configured with a secret.  **NOTE**: When you view or edit the alert for a webhook notification, the secret appears completely redacted.
 	Secret *string `json:"secret,omitempty"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
-	Type *string `json:"type,omitempty"`
 	// Endpoint web address to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a webhook notification, the URL appears partially redacted.
 	Url string `json:"url"`
 }
@@ -73,38 +71,6 @@ func (o *ApiWebhookView) SetSecret(v string) {
 	o.Secret = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ApiWebhookView) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiWebhookView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *ApiWebhookView) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ApiWebhookView) SetType(v string) {
-	o.Type = &v
-}
-
 // GetUrl returns the Url field value
 func (o *ApiWebhookView) GetUrl() string {
 	if o == nil {
@@ -133,9 +99,6 @@ func (o ApiWebhookView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Secret != nil {
 		toSerialize["secret"] = o.Secret
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	if true {
 		toSerialize["url"] = o.Url

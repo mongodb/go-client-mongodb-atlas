@@ -20,8 +20,6 @@ type ApiOpsGenieView struct {
 	ApiKey string `json:"apiKey"`
 	// Two-letter code that indicates which regional URL MongoDB uses to access the Opsgenie API.
 	Region *string `json:"region,omitempty"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
-	Type *string `json:"type,omitempty"`
 }
 
 // NewApiOpsGenieView instantiates a new ApiOpsGenieView object
@@ -101,38 +99,6 @@ func (o *ApiOpsGenieView) SetRegion(v string) {
 	o.Region = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ApiOpsGenieView) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiOpsGenieView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *ApiOpsGenieView) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ApiOpsGenieView) SetType(v string) {
-	o.Type = &v
-}
-
 func (o ApiOpsGenieView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -140,9 +106,6 @@ func (o ApiOpsGenieView) MarshalJSON() ([]byte, error) {
 	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

@@ -27,8 +27,6 @@ type TimeMetricValueView struct {
 // will change when the set of required properties is changed
 func NewTimeMetricValueView() *TimeMetricValueView {
 	this := TimeMetricValueView{}
-	var units TimeMetricUnits = TIMEMETRICUNITS_HOURS
-	this.Units = &units
 	return &this
 }
 
@@ -37,8 +35,6 @@ func NewTimeMetricValueView() *TimeMetricValueView {
 // but it doesn't guarantee that properties required by API are set
 func NewTimeMetricValueViewWithDefaults() *TimeMetricValueView {
 	this := TimeMetricValueView{}
-	var units TimeMetricUnits = TIMEMETRICUNITS_HOURS
-	this.Units = &units
 	return &this
 }
 

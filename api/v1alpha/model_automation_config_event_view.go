@@ -21,7 +21,7 @@ type AutomationConfigEventView struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName AutomationConfigEventTypeView `json:"eventTypeName"`
+	EventTypeName AutomationConfigEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -117,9 +117,9 @@ func (o *AutomationConfigEventView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *AutomationConfigEventView) GetEventTypeName() AutomationConfigEventTypeView {
+func (o *AutomationConfigEventView) GetEventTypeName() AutomationConfigEventType {
 	if o == nil {
-		var ret AutomationConfigEventTypeView
+		var ret AutomationConfigEventType
 		return ret
 	}
 
@@ -128,7 +128,7 @@ func (o *AutomationConfigEventView) GetEventTypeName() AutomationConfigEventType
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *AutomationConfigEventView) GetEventTypeNameOk() (*AutomationConfigEventTypeView, bool) {
+func (o *AutomationConfigEventView) GetEventTypeNameOk() (*AutomationConfigEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,7 +136,7 @@ func (o *AutomationConfigEventView) GetEventTypeNameOk() (*AutomationConfigEvent
 }
 
 // SetEventTypeName sets field value
-func (o *AutomationConfigEventView) SetEventTypeName(v AutomationConfigEventTypeView) {
+func (o *AutomationConfigEventView) SetEventTypeName(v AutomationConfigEventType) {
 	o.EventTypeName = v
 }
 

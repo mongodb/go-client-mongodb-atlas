@@ -24,36 +24,20 @@ import (
 type OnlineArchiveApi interface {
 
 	/*
-	CreateOnlineArchive Create One Online Archive
+	CreateOneOnlineArchive Create One Online Archive
 
 	Creates one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to create one online archive.
-	@return OnlineArchiveApiCreateOnlineArchiveRequest
+	@return OnlineArchiveApiCreateOneOnlineArchiveRequest
 	*/
-	CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOnlineArchiveRequest
+	CreateOneOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOneOnlineArchiveRequest
 
-	// CreateOnlineArchiveExecute executes the request
+	// CreateOneOnlineArchiveExecute executes the request
 	//  @return OnlineArchive
-	CreateOnlineArchiveExecute(r OnlineArchiveApiCreateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
-
-	/*
-	DeleteOnlineArchive Remove One Online Archive
-
-	Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
-	@param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
-	@return OnlineArchiveApiDeleteOnlineArchiveRequest
-	*/
-	DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiDeleteOnlineArchiveRequest
-
-	// DeleteOnlineArchiveExecute executes the request
-	DeleteOnlineArchiveExecute(r OnlineArchiveApiDeleteOnlineArchiveRequest) (*http.Response, error)
+	CreateOneOnlineArchiveExecute(r OnlineArchiveApiCreateOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
 
 	/*
 	DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
@@ -61,7 +45,7 @@ type OnlineArchiveApi interface {
 	Downloads query logs for the specified online archive. To use this resource, the requesting API Key must have the Project Data Access Read Only or higher role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the query logs from one online archive.
 	@return OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest
 	*/
@@ -72,60 +56,76 @@ type OnlineArchiveApi interface {
 	DownloadOnlineArchiveQueryLogsExecute(r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) (**os.File, *http.Response, error)
 
 	/*
-	GetOnlineArchive Return One Online Archive
+	RemoveOneOnlineArchive Remove One Online Archive
 
-	Returns one online archive for one cluster. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+	Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to return.
-	@param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
-	@return OnlineArchiveApiGetOnlineArchiveRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
+	@param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
+	@return OnlineArchiveApiRemoveOneOnlineArchiveRequest
 	*/
-	GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiGetOnlineArchiveRequest
+	RemoveOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiRemoveOneOnlineArchiveRequest
 
-	// GetOnlineArchiveExecute executes the request
-	//  @return OnlineArchive
-	GetOnlineArchiveExecute(r OnlineArchiveApiGetOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+	// RemoveOneOnlineArchiveExecute executes the request
+	RemoveOneOnlineArchiveExecute(r OnlineArchiveApiRemoveOneOnlineArchiveRequest) (*http.Response, error)
 
 	/*
-	ListOnlineArchives Return All Online Archives for One Cluster
+	ReturnAllOnlineArchivesForOneCluster Return All Online Archives for One Cluster
 
 	Returns details of all online archives. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the online archives.
-	@return OnlineArchiveApiListOnlineArchivesRequest
+	@return OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest
 	*/
-	ListOnlineArchives(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiListOnlineArchivesRequest
+	ReturnAllOnlineArchivesForOneCluster(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest
 
-	// ListOnlineArchivesExecute executes the request
+	// ReturnAllOnlineArchivesForOneClusterExecute executes the request
 	//  @return PaginatedOnlineArchiveView
-	ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchiveView, *http.Response, error)
+	ReturnAllOnlineArchivesForOneClusterExecute(r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) (*PaginatedOnlineArchiveView, *http.Response, error)
 
 	/*
-	UpdateOnlineArchive Update One Online Archive
+	ReturnOneOnlineArchive Return One Online Archive
+
+	Returns one online archive for one cluster. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to return.
+	@param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
+	@return OnlineArchiveApiReturnOneOnlineArchiveRequest
+	*/
+	ReturnOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiReturnOneOnlineArchiveRequest
+
+	// ReturnOneOnlineArchiveExecute executes the request
+	//  @return OnlineArchive
+	ReturnOneOnlineArchiveExecute(r OnlineArchiveApiReturnOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+
+	/*
+	UpdateOneOnlineArchive Update One Online Archive
 
 	Updates, pauses, or resumes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to update.
 	@param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
-	@return OnlineArchiveApiUpdateOnlineArchiveRequest
+	@return OnlineArchiveApiUpdateOneOnlineArchiveRequest
 	*/
-	UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOnlineArchiveRequest
+	UpdateOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOneOnlineArchiveRequest
 
-	// UpdateOnlineArchiveExecute executes the request
+	// UpdateOneOnlineArchiveExecute executes the request
 	//  @return OnlineArchive
-	UpdateOnlineArchiveExecute(r OnlineArchiveApiUpdateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+	UpdateOneOnlineArchiveExecute(r OnlineArchiveApiUpdateOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
 }
 
 // OnlineArchiveApiService OnlineArchiveApi service
 type OnlineArchiveApiService service
 
-type OnlineArchiveApiCreateOnlineArchiveRequest struct {
+type OnlineArchiveApiCreateOneOnlineArchiveRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -136,39 +136,39 @@ type OnlineArchiveApiCreateOnlineArchiveRequest struct {
 }
 
 // Creates one online archive.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiCreateOnlineArchiveRequest {
+func (r OnlineArchiveApiCreateOneOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiCreateOneOnlineArchiveRequest {
 	r.onlineArchive = &onlineArchive
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiCreateOnlineArchiveRequest {
+func (r OnlineArchiveApiCreateOneOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiCreateOneOnlineArchiveRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiCreateOnlineArchiveRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r OnlineArchiveApiCreateOneOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiCreateOneOnlineArchiveRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.CreateOnlineArchiveExecute(r)
+func (r OnlineArchiveApiCreateOneOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+	return r.ApiService.CreateOneOnlineArchiveExecute(r)
 }
 
 /*
-CreateOnlineArchive Create One Online Archive
+CreateOneOnlineArchive Create One Online Archive
 
 Creates one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to create one online archive.
- @return OnlineArchiveApiCreateOnlineArchiveRequest
+ @return OnlineArchiveApiCreateOneOnlineArchiveRequest
 */
-func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOnlineArchiveRequest {
-	return OnlineArchiveApiCreateOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) CreateOneOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOneOnlineArchiveRequest {
+	return OnlineArchiveApiCreateOneOnlineArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -178,7 +178,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiCreateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) CreateOneOnlineArchiveExecute(r OnlineArchiveApiCreateOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -186,7 +186,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 		localVarReturnValue  *OnlineArchive
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.CreateOnlineArchive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.CreateOneOnlineArchive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -330,176 +330,6 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
-	ctx context.Context
-	ApiService OnlineArchiveApi
-	groupId string
-	archiveId string
-	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteOnlineArchiveExecute(r)
-}
-
-/*
-DeleteOnlineArchive Remove One Online Archive
-
-Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
- @param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
- @return OnlineArchiveApiDeleteOnlineArchiveRequest
-*/
-func (a *OnlineArchiveApiService) DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	return OnlineArchiveApiDeleteOnlineArchiveRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		archiveId: archiveId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiDeleteOnlineArchiveRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.DeleteOnlineArchive")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/onlineArchives/{archiveId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"archiveId"+"}", url.PathEscape(parameterToString(r.archiveId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.archiveId) < 24 {
-		return nil, reportError("archiveId must have at least 24 elements")
-	}
-	if strlen(r.archiveId) > 24 {
-		return nil, reportError("archiveId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return nil, reportError("clusterName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
@@ -538,7 +368,7 @@ DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
 Downloads query logs for the specified online archive. To use this resource, the requesting API Key must have the Project Data Access Read Only or higher role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the query logs from one online archive.
  @return OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest
 */
@@ -692,7 +522,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiGetOnlineArchiveRequest struct {
+type OnlineArchiveApiRemoveOneOnlineArchiveRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -703,34 +533,394 @@ type OnlineArchiveApiGetOnlineArchiveRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiGetOnlineArchiveRequest {
+func (r OnlineArchiveApiRemoveOneOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiRemoveOneOnlineArchiveRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiGetOnlineArchiveRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r OnlineArchiveApiRemoveOneOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiRemoveOneOnlineArchiveRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.GetOnlineArchiveExecute(r)
+func (r OnlineArchiveApiRemoveOneOnlineArchiveRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOneOnlineArchiveExecute(r)
 }
 
 /*
-GetOnlineArchive Return One Online Archive
+RemoveOneOnlineArchive Remove One Online Archive
+
+Removes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
+ @param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
+ @return OnlineArchiveApiRemoveOneOnlineArchiveRequest
+*/
+func (a *OnlineArchiveApiService) RemoveOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiRemoveOneOnlineArchiveRequest {
+	return OnlineArchiveApiRemoveOneOnlineArchiveRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		archiveId: archiveId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+func (a *OnlineArchiveApiService) RemoveOneOnlineArchiveExecute(r OnlineArchiveApiRemoveOneOnlineArchiveRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.RemoveOneOnlineArchive")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/onlineArchives/{archiveId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"archiveId"+"}", url.PathEscape(parameterToString(r.archiveId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.archiveId) < 24 {
+		return nil, reportError("archiveId must have at least 24 elements")
+	}
+	if strlen(r.archiveId) > 24 {
+		return nil, reportError("archiveId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest struct {
+	ctx context.Context
+	ApiService OnlineArchiveApi
+	groupId string
+	clusterName string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) Envelope(envelope bool) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) IncludeCount(includeCount bool) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) ItemsPerPage(itemsPerPage int32) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) PageNum(pageNum int32) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) Pretty(pretty bool) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) Execute() (*PaginatedOnlineArchiveView, *http.Response, error) {
+	return r.ApiService.ReturnAllOnlineArchivesForOneClusterExecute(r)
+}
+
+/*
+ReturnAllOnlineArchivesForOneCluster Return All Online Archives for One Cluster
+
+Returns details of all online archives. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the online archives.
+ @return OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest
+*/
+func (a *OnlineArchiveApiService) ReturnAllOnlineArchivesForOneCluster(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest {
+	return OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		clusterName: clusterName,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedOnlineArchiveView
+func (a *OnlineArchiveApiService) ReturnAllOnlineArchivesForOneClusterExecute(r OnlineArchiveApiReturnAllOnlineArchivesForOneClusterRequest) (*PaginatedOnlineArchiveView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedOnlineArchiveView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.ReturnAllOnlineArchivesForOneCluster")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/onlineArchives"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.clusterName) < 1 {
+		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
+	}
+	if strlen(r.clusterName) > 64 {
+		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OnlineArchiveApiReturnOneOnlineArchiveRequest struct {
+	ctx context.Context
+	ApiService OnlineArchiveApi
+	groupId string
+	archiveId string
+	clusterName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r OnlineArchiveApiReturnOneOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiReturnOneOnlineArchiveRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r OnlineArchiveApiReturnOneOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiReturnOneOnlineArchiveRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r OnlineArchiveApiReturnOneOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+	return r.ApiService.ReturnOneOnlineArchiveExecute(r)
+}
+
+/*
+ReturnOneOnlineArchive Return One Online Archive
 
 Returns one online archive for one cluster. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to return.
  @param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
- @return OnlineArchiveApiGetOnlineArchiveRequest
+ @return OnlineArchiveApiReturnOneOnlineArchiveRequest
 */
-func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiGetOnlineArchiveRequest {
-	return OnlineArchiveApiGetOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) ReturnOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiReturnOneOnlineArchiveRequest {
+	return OnlineArchiveApiReturnOneOnlineArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -741,7 +931,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) ReturnOneOnlineArchiveExecute(r OnlineArchiveApiReturnOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -749,7 +939,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 		localVarReturnValue  *OnlineArchive
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.GetOnlineArchive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.ReturnOneOnlineArchive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -884,197 +1074,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiListOnlineArchivesRequest struct {
-	ctx context.Context
-	ApiService OnlineArchiveApi
-	groupId string
-	clusterName string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiListOnlineArchivesRequest) Envelope(envelope bool) OnlineArchiveApiListOnlineArchivesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r OnlineArchiveApiListOnlineArchivesRequest) IncludeCount(includeCount bool) OnlineArchiveApiListOnlineArchivesRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r OnlineArchiveApiListOnlineArchivesRequest) ItemsPerPage(itemsPerPage int32) OnlineArchiveApiListOnlineArchivesRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r OnlineArchiveApiListOnlineArchivesRequest) PageNum(pageNum int32) OnlineArchiveApiListOnlineArchivesRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiListOnlineArchivesRequest) Pretty(pretty bool) OnlineArchiveApiListOnlineArchivesRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r OnlineArchiveApiListOnlineArchivesRequest) Execute() (*PaginatedOnlineArchiveView, *http.Response, error) {
-	return r.ApiService.ListOnlineArchivesExecute(r)
-}
-
-/*
-ListOnlineArchives Return All Online Archives for One Cluster
-
-Returns details of all online archives. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the online archives.
- @return OnlineArchiveApiListOnlineArchivesRequest
-*/
-func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiListOnlineArchivesRequest {
-	return OnlineArchiveApiListOnlineArchivesRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		clusterName: clusterName,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedOnlineArchiveView
-func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchiveView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedOnlineArchiveView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.ListOnlineArchives")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/onlineArchives"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.clusterName) < 1 {
-		return localVarReturnValue, nil, reportError("clusterName must have at least 1 elements")
-	}
-	if strlen(r.clusterName) > 64 {
-		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
+type OnlineArchiveApiUpdateOneOnlineArchiveRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -1086,40 +1086,40 @@ type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
 }
 
 // Updates, pauses, or resumes one online archive.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiUpdateOnlineArchiveRequest {
+func (r OnlineArchiveApiUpdateOneOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiUpdateOneOnlineArchiveRequest {
 	r.onlineArchive = &onlineArchive
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiUpdateOnlineArchiveRequest {
+func (r OnlineArchiveApiUpdateOneOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiUpdateOneOnlineArchiveRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiUpdateOnlineArchiveRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r OnlineArchiveApiUpdateOneOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiUpdateOneOnlineArchiveRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.UpdateOnlineArchiveExecute(r)
+func (r OnlineArchiveApiUpdateOneOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+	return r.ApiService.UpdateOneOnlineArchiveExecute(r)
 }
 
 /*
-UpdateOnlineArchive Update One Online Archive
+UpdateOneOnlineArchive Update One Online Archive
 
 Updates, pauses, or resumes one online archive. This archive stores data from one cluster within one project. To use this resource, the requesting API Key must have the Project Data Access Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to update.
  @param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
- @return OnlineArchiveApiUpdateOnlineArchiveRequest
+ @return OnlineArchiveApiUpdateOneOnlineArchiveRequest
 */
-func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOnlineArchiveRequest {
-	return OnlineArchiveApiUpdateOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) UpdateOneOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOneOnlineArchiveRequest {
+	return OnlineArchiveApiUpdateOneOnlineArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1130,7 +1130,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiUpdateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) UpdateOneOnlineArchiveExecute(r OnlineArchiveApiUpdateOneOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1138,7 +1138,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 		localVarReturnValue  *OnlineArchive
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.UpdateOnlineArchive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.UpdateOneOnlineArchive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

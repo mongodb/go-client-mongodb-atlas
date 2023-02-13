@@ -23,253 +23,237 @@ import (
 type TeamsApi interface {
 
 	/*
-	AddAllTeamsToProject Add One or More Teams to One Project
+	AddOneOrMoreTeamsToOneProject Add One or More Teams to One Project
 
-	Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Adds one team to the specified project. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return TeamsApiAddAllTeamsToProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return TeamsApiAddOneOrMoreTeamsToOneProjectRequest
 	*/
-	AddAllTeamsToProject(ctx context.Context, groupId string) TeamsApiAddAllTeamsToProjectRequest
+	AddOneOrMoreTeamsToOneProject(ctx context.Context, groupId string) TeamsApiAddOneOrMoreTeamsToOneProjectRequest
 
-	// AddAllTeamsToProjectExecute executes the request
+	// AddOneOrMoreTeamsToOneProjectExecute executes the request
 	//  @return PaginatedTeamRoleView
-	AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRoleView, *http.Response, error)
+	AddOneOrMoreTeamsToOneProjectExecute(r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) (*PaginatedTeamRoleView, *http.Response, error)
 
 	/*
-	AddTeamUser Assign MongoDB Cloud Users from One Organization to One Team
+	AssignOneOrganizationUserToOneTeam Assign MongoDB Cloud Users from One Organization to One Team
 
 	Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	@param teamId Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users.
-	@return TeamsApiAddTeamUserRequest
+	@return TeamsApiAssignOneOrganizationUserToOneTeamRequest
 	*/
-	AddTeamUser(ctx context.Context, orgId string, teamId string) TeamsApiAddTeamUserRequest
+	AssignOneOrganizationUserToOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiAssignOneOrganizationUserToOneTeamRequest
 
-	// AddTeamUserExecute executes the request
+	// AssignOneOrganizationUserToOneTeamExecute executes the request
 	//  @return PaginatedApiAppUserView
-	AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUserView, *http.Response, error)
+	AssignOneOrganizationUserToOneTeamExecute(r TeamsApiAssignOneOrganizationUserToOneTeamRequest) (*PaginatedApiAppUserView, *http.Response, error)
 
 	/*
-	CreateTeam Create One Team in One Organization
+	CreateOneTeamInOneOrganization Create One Team in One Organization
 
-	Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+	Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return TeamsApiCreateTeamRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return TeamsApiCreateOneTeamInOneOrganizationRequest
 	*/
-	CreateTeam(ctx context.Context, orgId string) TeamsApiCreateTeamRequest
+	CreateOneTeamInOneOrganization(ctx context.Context, orgId string) TeamsApiCreateOneTeamInOneOrganizationRequest
 
-	// CreateTeamExecute executes the request
+	// CreateOneTeamInOneOrganizationExecute executes the request
 	//  @return ApiTeamView
-	CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTeamView, *http.Response, error)
+	CreateOneTeamInOneOrganizationExecute(r TeamsApiCreateOneTeamInOneOrganizationRequest) (*ApiTeamView, *http.Response, error)
 
 	/*
-	DeleteTeam Remove One Team from One Organization
+	RemoveOneTeamFromOneOrganization Remove One Team from One Organization
 
 	Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to delete.
-	@return TeamsApiDeleteTeamRequest
+	@return TeamsApiRemoveOneTeamFromOneOrganizationRequest
 	*/
-	DeleteTeam(ctx context.Context, orgId string, teamId string) TeamsApiDeleteTeamRequest
+	RemoveOneTeamFromOneOrganization(ctx context.Context, orgId string, teamId string) TeamsApiRemoveOneTeamFromOneOrganizationRequest
 
-	// DeleteTeamExecute executes the request
-	DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.Response, error)
+	// RemoveOneTeamFromOneOrganizationExecute executes the request
+	RemoveOneTeamFromOneOrganizationExecute(r TeamsApiRemoveOneTeamFromOneOrganizationRequest) (*http.Response, error)
 
 	/*
-	GetTeamById Return One Team using its ID
-
-	Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
-	@return TeamsApiGetTeamByIdRequest
-	*/
-	GetTeamById(ctx context.Context, orgId string, teamId string) TeamsApiGetTeamByIdRequest
-
-	// GetTeamByIdExecute executes the request
-	//  @return ApiTeamResponseView
-	GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*ApiTeamResponseView, *http.Response, error)
-
-	/*
-	GetTeamByName Return One Team using its Name
-
-	Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param teamName Name of the team whose information you want to return.
-	@return TeamsApiGetTeamByNameRequest
-	*/
-	GetTeamByName(ctx context.Context, orgId string, teamName string) TeamsApiGetTeamByNameRequest
-
-	// GetTeamByNameExecute executes the request
-	//  @return ApiTeamResponseView
-	GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*ApiTeamResponseView, *http.Response, error)
-
-	/*
-	ListOrganizationTeams Return All Teams in One Organization
-
-	Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return TeamsApiListOrganizationTeamsRequest
-	*/
-	ListOrganizationTeams(ctx context.Context, orgId string) TeamsApiListOrganizationTeamsRequest
-
-	// ListOrganizationTeamsExecute executes the request
-	//  @return PaginatedTeamView
-	ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeamView, *http.Response, error)
-
-	/*
-	ListProjectTeams Return All Teams in One Project
-
-	Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return TeamsApiListProjectTeamsRequest
-	*/
-	ListProjectTeams(ctx context.Context, groupId string) TeamsApiListProjectTeamsRequest
-
-	// ListProjectTeamsExecute executes the request
-	//  @return PaginatedTeamRoleView
-	ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error)
-
-	/*
-	ListTeamUsers Return All MongoDB Cloud Users Assigned to One Team
-
-	Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param teamId Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
-	@return TeamsApiListTeamUsersRequest
-	*/
-	ListTeamUsers(ctx context.Context, orgId string, teamId string) TeamsApiListTeamUsersRequest
-
-	// ListTeamUsersExecute executes the request
-	//  @return PaginatedApiAppUserView
-	ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUserView, *http.Response, error)
-
-	/*
-	RemoveProjectTeam Remove One Team from One Project
+	RemoveOneTeamFromOneProject Remove One Team from One Project
 
 	Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project User Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
-	@return TeamsApiRemoveProjectTeamRequest
+	@return TeamsApiRemoveOneTeamFromOneProjectRequest
 	*/
-	RemoveProjectTeam(ctx context.Context, groupId string, teamId string) TeamsApiRemoveProjectTeamRequest
+	RemoveOneTeamFromOneProject(ctx context.Context, groupId string, teamId string) TeamsApiRemoveOneTeamFromOneProjectRequest
 
-	// RemoveProjectTeamExecute executes the request
-	RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRequest) (*http.Response, error)
+	// RemoveOneTeamFromOneProjectExecute executes the request
+	RemoveOneTeamFromOneProjectExecute(r TeamsApiRemoveOneTeamFromOneProjectRequest) (*http.Response, error)
 
 	/*
-	RemoveTeamUser Remove One MongoDB Cloud User from One Team
-
-	Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
-	@param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
-	@return TeamsApiRemoveTeamUserRequest
-	*/
-	RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveTeamUserRequest
-
-	// RemoveTeamUserExecute executes the request
-	RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest) (*http.Response, error)
-
-	/*
-	RenameTeam Rename One Team
+	RenameOneTeam Rename One Team
 
 	Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to rename.
-	@return TeamsApiRenameTeamRequest
+	@return TeamsApiRenameOneTeamRequest
 	*/
-	RenameTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameTeamRequest
+	RenameOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameOneTeamRequest
 
-	// RenameTeamExecute executes the request
+	// RenameOneTeamExecute executes the request
 	//  @return ApiTeamResponseView
-	RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTeamResponseView, *http.Response, error)
+	RenameOneTeamExecute(r TeamsApiRenameOneTeamRequest) (*ApiTeamResponseView, *http.Response, error)
 
 	/*
-	UpdateTeamRoles Update Team Roles in One Project
+	ReturnAllMongoDBCloudUsersAssignedToOneTeam Return All MongoDB Cloud Users Assigned to One Team
+
+	Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param teamId Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
+	@return TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest
+	*/
+	ReturnAllMongoDBCloudUsersAssignedToOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest
+
+	// ReturnAllMongoDBCloudUsersAssignedToOneTeamExecute executes the request
+	//  @return PaginatedApiAppUserView
+	ReturnAllMongoDBCloudUsersAssignedToOneTeamExecute(r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) (*PaginatedApiAppUserView, *http.Response, error)
+
+	/*
+	ReturnAllTeams Return All Teams in One Project
+
+	Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@return TeamsApiReturnAllTeamsRequest
+	*/
+	ReturnAllTeams(ctx context.Context, groupId string) TeamsApiReturnAllTeamsRequest
+
+	// ReturnAllTeamsExecute executes the request
+	//  @return PaginatedTeamRoleView
+	ReturnAllTeamsExecute(r TeamsApiReturnAllTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error)
+
+	/*
+	ReturnAllTeamsInOneOrganization Return All Teams in One Organization
+
+	Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@return TeamsApiReturnAllTeamsInOneOrganizationRequest
+	*/
+	ReturnAllTeamsInOneOrganization(ctx context.Context, orgId string) TeamsApiReturnAllTeamsInOneOrganizationRequest
+
+	// ReturnAllTeamsInOneOrganizationExecute executes the request
+	//  @return PaginatedTeamView
+	ReturnAllTeamsInOneOrganizationExecute(r TeamsApiReturnAllTeamsInOneOrganizationRequest) (*PaginatedTeamView, *http.Response, error)
+
+	/*
+	ReturnOneTeamUsingItsId Return One Team using its ID
+
+	Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
+	@return TeamsApiReturnOneTeamUsingItsIdRequest
+	*/
+	ReturnOneTeamUsingItsId(ctx context.Context, orgId string, teamId string) TeamsApiReturnOneTeamUsingItsIdRequest
+
+	// ReturnOneTeamUsingItsIdExecute executes the request
+	//  @return ApiTeamResponseView
+	ReturnOneTeamUsingItsIdExecute(r TeamsApiReturnOneTeamUsingItsIdRequest) (*ApiTeamResponseView, *http.Response, error)
+
+	/*
+	ReturnOneTeamUsingItsName Return One Team using its Name
+
+	Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param teamName Name of the team whose information you want to return.
+	@return TeamsApiReturnOneTeamUsingItsNameRequest
+	*/
+	ReturnOneTeamUsingItsName(ctx context.Context, orgId string, teamName string) TeamsApiReturnOneTeamUsingItsNameRequest
+
+	// ReturnOneTeamUsingItsNameExecute executes the request
+	//  @return ApiTeamResponseView
+	ReturnOneTeamUsingItsNameExecute(r TeamsApiReturnOneTeamUsingItsNameRequest) (*ApiTeamResponseView, *http.Response, error)
+
+	/*
+	UpdateTeamRolesInOneProject Update Team Roles in One Project
 
 	Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team for which you want to update roles.
-	@return TeamsApiUpdateTeamRolesRequest
+	@return TeamsApiUpdateTeamRolesInOneProjectRequest
 	*/
-	UpdateTeamRoles(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesRequest
+	UpdateTeamRolesInOneProject(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesInOneProjectRequest
 
-	// UpdateTeamRolesExecute executes the request
+	// UpdateTeamRolesInOneProjectExecute executes the request
 	//  @return PaginatedTeamRoleView
-	UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRoleView, *http.Response, error)
+	UpdateTeamRolesInOneProjectExecute(r TeamsApiUpdateTeamRolesInOneProjectRequest) (*PaginatedTeamRoleView, *http.Response, error)
 }
 
 // TeamsApiService TeamsApi service
 type TeamsApiService service
 
-type TeamsApiAddAllTeamsToProjectRequest struct {
+type TeamsApiAddOneOrMoreTeamsToOneProjectRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
-	apiTeamRoleView *[]ApiTeamRoleView
+	apiTeamRoleView *ApiTeamRoleView
 	envelope *bool
 	pretty *bool
 }
 
 // Team to add to the specified project.
-func (r TeamsApiAddAllTeamsToProjectRequest) ApiTeamRoleView(apiTeamRoleView []ApiTeamRoleView) TeamsApiAddAllTeamsToProjectRequest {
+func (r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) ApiTeamRoleView(apiTeamRoleView ApiTeamRoleView) TeamsApiAddOneOrMoreTeamsToOneProjectRequest {
 	r.apiTeamRoleView = &apiTeamRoleView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiAddAllTeamsToProjectRequest) Envelope(envelope bool) TeamsApiAddAllTeamsToProjectRequest {
+func (r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) Envelope(envelope bool) TeamsApiAddOneOrMoreTeamsToOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiAddAllTeamsToProjectRequest) Pretty(pretty bool) TeamsApiAddAllTeamsToProjectRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) Pretty(pretty bool) TeamsApiAddOneOrMoreTeamsToOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiAddAllTeamsToProjectRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
-	return r.ApiService.AddAllTeamsToProjectExecute(r)
+func (r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+	return r.ApiService.AddOneOrMoreTeamsToOneProjectExecute(r)
 }
 
 /*
-AddAllTeamsToProject Add One or More Teams to One Project
+AddOneOrMoreTeamsToOneProject Add One or More Teams to One Project
 
-Adds one team to the specified project. All members of the team share the same project access. MongoDB Cloud limits the number of users to a maximum of 100 teams per project and a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+Adds one team to the specified project. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return TeamsApiAddAllTeamsToProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return TeamsApiAddOneOrMoreTeamsToOneProjectRequest
 */
-func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId string) TeamsApiAddAllTeamsToProjectRequest {
-	return TeamsApiAddAllTeamsToProjectRequest{
+func (a *TeamsApiService) AddOneOrMoreTeamsToOneProject(ctx context.Context, groupId string) TeamsApiAddOneOrMoreTeamsToOneProjectRequest {
+	return TeamsApiAddOneOrMoreTeamsToOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -278,7 +262,7 @@ func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId stri
 
 // Execute executes the request
 //  @return PaginatedTeamRoleView
-func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRoleView, *http.Response, error) {
+func (a *TeamsApiService) AddOneOrMoreTeamsToOneProjectExecute(r TeamsApiAddOneOrMoreTeamsToOneProjectRequest) (*PaginatedTeamRoleView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -286,7 +270,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 		localVarReturnValue  *PaginatedTeamRoleView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AddAllTeamsToProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AddOneOrMoreTeamsToOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -423,7 +407,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiAddTeamUserRequest struct {
+type TeamsApiAssignOneOrganizationUserToOneTeamRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -434,39 +418,39 @@ type TeamsApiAddTeamUserRequest struct {
 }
 
 // One or more MongoDB Cloud users that you want to add to the specified team.
-func (r TeamsApiAddTeamUserRequest) ApiAddUserToTeamView(apiAddUserToTeamView []ApiAddUserToTeamView) TeamsApiAddTeamUserRequest {
+func (r TeamsApiAssignOneOrganizationUserToOneTeamRequest) ApiAddUserToTeamView(apiAddUserToTeamView []ApiAddUserToTeamView) TeamsApiAssignOneOrganizationUserToOneTeamRequest {
 	r.apiAddUserToTeamView = &apiAddUserToTeamView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiAddTeamUserRequest) Envelope(envelope bool) TeamsApiAddTeamUserRequest {
+func (r TeamsApiAssignOneOrganizationUserToOneTeamRequest) Envelope(envelope bool) TeamsApiAssignOneOrganizationUserToOneTeamRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiAddTeamUserRequest) Pretty(pretty bool) TeamsApiAddTeamUserRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiAssignOneOrganizationUserToOneTeamRequest) Pretty(pretty bool) TeamsApiAssignOneOrganizationUserToOneTeamRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiAddTeamUserRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
-	return r.ApiService.AddTeamUserExecute(r)
+func (r TeamsApiAssignOneOrganizationUserToOneTeamRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+	return r.ApiService.AssignOneOrganizationUserToOneTeamExecute(r)
 }
 
 /*
-AddTeamUser Assign MongoDB Cloud Users from One Organization to One Team
+AssignOneOrganizationUserToOneTeam Assign MongoDB Cloud Users from One Organization to One Team
 
 Adds one or more MongoDB Cloud users from the specified organization to the specified team. Teams enable you to grant project access roles to MongoDB Cloud users. You can assign up to 250 MongoDB Cloud users from one organization to one team. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
  @param teamId Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users.
- @return TeamsApiAddTeamUserRequest
+ @return TeamsApiAssignOneOrganizationUserToOneTeamRequest
 */
-func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId string) TeamsApiAddTeamUserRequest {
-	return TeamsApiAddTeamUserRequest{
+func (a *TeamsApiService) AssignOneOrganizationUserToOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiAssignOneOrganizationUserToOneTeamRequest {
+	return TeamsApiAssignOneOrganizationUserToOneTeamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -476,7 +460,7 @@ func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId 
 
 // Execute executes the request
 //  @return PaginatedApiAppUserView
-func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+func (a *TeamsApiService) AssignOneOrganizationUserToOneTeamExecute(r TeamsApiAssignOneOrganizationUserToOneTeamRequest) (*PaginatedApiAppUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -484,7 +468,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 		localVarReturnValue  *PaginatedApiAppUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AddTeamUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AssignOneOrganizationUserToOneTeam")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -628,7 +612,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiCreateTeamRequest struct {
+type TeamsApiCreateOneTeamInOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -638,38 +622,38 @@ type TeamsApiCreateTeamRequest struct {
 }
 
 // Team that you want to create in the specified organization.
-func (r TeamsApiCreateTeamRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiCreateTeamRequest {
+func (r TeamsApiCreateOneTeamInOneOrganizationRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiCreateOneTeamInOneOrganizationRequest {
 	r.apiTeamView = &apiTeamView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiCreateTeamRequest) Envelope(envelope bool) TeamsApiCreateTeamRequest {
+func (r TeamsApiCreateOneTeamInOneOrganizationRequest) Envelope(envelope bool) TeamsApiCreateOneTeamInOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiCreateTeamRequest) Pretty(pretty bool) TeamsApiCreateTeamRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiCreateOneTeamInOneOrganizationRequest) Pretty(pretty bool) TeamsApiCreateOneTeamInOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiCreateTeamRequest) Execute() (*ApiTeamView, *http.Response, error) {
-	return r.ApiService.CreateTeamExecute(r)
+func (r TeamsApiCreateOneTeamInOneOrganizationRequest) Execute() (*ApiTeamView, *http.Response, error) {
+	return r.ApiService.CreateOneTeamInOneOrganizationExecute(r)
 }
 
 /*
-CreateTeam Create One Team in One Organization
+CreateOneTeamInOneOrganization Create One Team in One Organization
 
-Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud limits the number of teams to a maximum of 250 teams per organization. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
+Creates one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return TeamsApiCreateTeamRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return TeamsApiCreateOneTeamInOneOrganizationRequest
 */
-func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) TeamsApiCreateTeamRequest {
-	return TeamsApiCreateTeamRequest{
+func (a *TeamsApiService) CreateOneTeamInOneOrganization(ctx context.Context, orgId string) TeamsApiCreateOneTeamInOneOrganizationRequest {
+	return TeamsApiCreateOneTeamInOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -678,7 +662,7 @@ func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) TeamsApi
 
 // Execute executes the request
 //  @return ApiTeamView
-func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTeamView, *http.Response, error) {
+func (a *TeamsApiService) CreateOneTeamInOneOrganizationExecute(r TeamsApiCreateOneTeamInOneOrganizationRequest) (*ApiTeamView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -686,7 +670,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 		localVarReturnValue  *ApiTeamView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.CreateTeam")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.CreateOneTeamInOneOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -823,7 +807,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiDeleteTeamRequest struct {
+type TeamsApiRemoveOneTeamFromOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -833,33 +817,33 @@ type TeamsApiDeleteTeamRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiDeleteTeamRequest) Envelope(envelope bool) TeamsApiDeleteTeamRequest {
+func (r TeamsApiRemoveOneTeamFromOneOrganizationRequest) Envelope(envelope bool) TeamsApiRemoveOneTeamFromOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiDeleteTeamRequest) Pretty(pretty bool) TeamsApiDeleteTeamRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiRemoveOneTeamFromOneOrganizationRequest) Pretty(pretty bool) TeamsApiRemoveOneTeamFromOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiDeleteTeamRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteTeamExecute(r)
+func (r TeamsApiRemoveOneTeamFromOneOrganizationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOneTeamFromOneOrganizationExecute(r)
 }
 
 /*
-DeleteTeam Remove One Team from One Organization
+RemoveOneTeamFromOneOrganization Remove One Team from One Organization
 
 Removes one team specified using its unique 24-hexadecimal digit identifier from the organization specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
  @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to delete.
- @return TeamsApiDeleteTeamRequest
+ @return TeamsApiRemoveOneTeamFromOneOrganizationRequest
 */
-func (a *TeamsApiService) DeleteTeam(ctx context.Context, orgId string, teamId string) TeamsApiDeleteTeamRequest {
-	return TeamsApiDeleteTeamRequest{
+func (a *TeamsApiService) RemoveOneTeamFromOneOrganization(ctx context.Context, orgId string, teamId string) TeamsApiRemoveOneTeamFromOneOrganizationRequest {
+	return TeamsApiRemoveOneTeamFromOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -868,14 +852,14 @@ func (a *TeamsApiService) DeleteTeam(ctx context.Context, orgId string, teamId s
 }
 
 // Execute executes the request
-func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.Response, error) {
+func (a *TeamsApiService) RemoveOneTeamFromOneOrganizationExecute(r TeamsApiRemoveOneTeamFromOneOrganizationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.DeleteTeam")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RemoveOneTeamFromOneOrganization")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -994,43 +978,222 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 	return localVarHTTPResponse, nil
 }
 
-type TeamsApiGetTeamByIdRequest struct {
+type TeamsApiRemoveOneTeamFromOneProjectRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
-	orgId string
+	groupId string
 	teamId string
 	envelope *bool
-	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiGetTeamByIdRequest) Envelope(envelope bool) TeamsApiGetTeamByIdRequest {
+func (r TeamsApiRemoveOneTeamFromOneProjectRequest) Envelope(envelope bool) TeamsApiRemoveOneTeamFromOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiGetTeamByIdRequest) Pretty(pretty bool) TeamsApiGetTeamByIdRequest {
+func (r TeamsApiRemoveOneTeamFromOneProjectRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveOneTeamFromOneProjectExecute(r)
+}
+
+/*
+RemoveOneTeamFromOneProject Remove One Team from One Project
+
+Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project User Admin role.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
+ @return TeamsApiRemoveOneTeamFromOneProjectRequest
+*/
+func (a *TeamsApiService) RemoveOneTeamFromOneProject(ctx context.Context, groupId string, teamId string) TeamsApiRemoveOneTeamFromOneProjectRequest {
+	return TeamsApiRemoveOneTeamFromOneProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		teamId: teamId,
+	}
+}
+
+// Execute executes the request
+func (a *TeamsApiService) RemoveOneTeamFromOneProjectExecute(r TeamsApiRemoveOneTeamFromOneProjectRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RemoveOneTeamFromOneProject")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/teams/{teamId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.teamId) < 24 {
+		return nil, reportError("teamId must have at least 24 elements")
+	}
+	if strlen(r.teamId) > 24 {
+		return nil, reportError("teamId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type TeamsApiRenameOneTeamRequest struct {
+	ctx context.Context
+	ApiService TeamsApi
+	orgId string
+	teamId string
+	apiTeamView *ApiTeamView
+	envelope *bool
+	pretty *bool
+}
+
+// Details to update on the specified team.
+func (r TeamsApiRenameOneTeamRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiRenameOneTeamRequest {
+	r.apiTeamView = &apiTeamView
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r TeamsApiRenameOneTeamRequest) Envelope(envelope bool) TeamsApiRenameOneTeamRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiRenameOneTeamRequest) Pretty(pretty bool) TeamsApiRenameOneTeamRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiGetTeamByIdRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
-	return r.ApiService.GetTeamByIdExecute(r)
+func (r TeamsApiRenameOneTeamRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+	return r.ApiService.RenameOneTeamExecute(r)
 }
 
 /*
-GetTeamById Return One Team using its ID
+RenameOneTeam Rename One Team
 
-Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
+Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
- @return TeamsApiGetTeamByIdRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to rename.
+ @return TeamsApiRenameOneTeamRequest
 */
-func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId string) TeamsApiGetTeamByIdRequest {
-	return TeamsApiGetTeamByIdRequest{
+func (a *TeamsApiService) RenameOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameOneTeamRequest {
+	return TeamsApiRenameOneTeamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1040,15 +1203,15 @@ func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId 
 
 // Execute executes the request
 //  @return ApiTeamResponseView
-func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*ApiTeamResponseView, *http.Response, error) {
+func (a *TeamsApiService) RenameOneTeamExecute(r TeamsApiRenameOneTeamRequest) (*ApiTeamResponseView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *ApiTeamResponseView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.GetTeamById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RenameOneTeam")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1072,6 +1235,9 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 	if strlen(r.teamId) > 24 {
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
+	if r.apiTeamView == nil {
+		return localVarReturnValue, nil, reportError("apiTeamView is required and must be specified")
+	}
 
 	if r.envelope != nil {
 		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
@@ -1080,7 +1246,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1096,6 +1262,8 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.apiTeamView
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1151,172 +1319,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
             		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type TeamsApiGetTeamByNameRequest struct {
-	ctx context.Context
-	ApiService TeamsApi
-	orgId string
-	teamName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiGetTeamByNameRequest) Envelope(envelope bool) TeamsApiGetTeamByNameRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiGetTeamByNameRequest) Pretty(pretty bool) TeamsApiGetTeamByNameRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r TeamsApiGetTeamByNameRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
-	return r.ApiService.GetTeamByNameExecute(r)
-}
-
-/*
-GetTeamByName Return One Team using its Name
-
-Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param teamName Name of the team whose information you want to return.
- @return TeamsApiGetTeamByNameRequest
-*/
-func (a *TeamsApiService) GetTeamByName(ctx context.Context, orgId string, teamName string) TeamsApiGetTeamByNameRequest {
-	return TeamsApiGetTeamByNameRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		teamName: teamName,
-	}
-}
-
-// Execute executes the request
-//  @return ApiTeamResponseView
-func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*ApiTeamResponseView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiTeamResponseView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.GetTeamByName")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/byName/{teamName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"teamName"+"}", url.PathEscape(parameterToString(r.teamName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1352,422 +1355,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiListOrganizationTeamsRequest struct {
-	ctx context.Context
-	ApiService TeamsApi
-	orgId string
-	envelope *bool
-	itemsPerPage *int32
-	includeCount *bool
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListOrganizationTeamsRequest) Envelope(envelope bool) TeamsApiListOrganizationTeamsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r TeamsApiListOrganizationTeamsRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListOrganizationTeamsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r TeamsApiListOrganizationTeamsRequest) IncludeCount(includeCount bool) TeamsApiListOrganizationTeamsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListOrganizationTeamsRequest) PageNum(pageNum int32) TeamsApiListOrganizationTeamsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListOrganizationTeamsRequest) Pretty(pretty bool) TeamsApiListOrganizationTeamsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r TeamsApiListOrganizationTeamsRequest) Execute() (*PaginatedTeamView, *http.Response, error) {
-	return r.ApiService.ListOrganizationTeamsExecute(r)
-}
-
-/*
-ListOrganizationTeams Return All Teams in One Organization
-
-Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return TeamsApiListOrganizationTeamsRequest
-*/
-func (a *TeamsApiService) ListOrganizationTeams(ctx context.Context, orgId string) TeamsApiListOrganizationTeamsRequest {
-	return TeamsApiListOrganizationTeamsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedTeamView
-func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeamView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListOrganizationTeams")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type TeamsApiListProjectTeamsRequest struct {
-	ctx context.Context
-	ApiService TeamsApi
-	groupId string
-	envelope *bool
-	pretty *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListProjectTeamsRequest) Envelope(envelope bool) TeamsApiListProjectTeamsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListProjectTeamsRequest) Pretty(pretty bool) TeamsApiListProjectTeamsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r TeamsApiListProjectTeamsRequest) IncludeCount(includeCount bool) TeamsApiListProjectTeamsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r TeamsApiListProjectTeamsRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListProjectTeamsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListProjectTeamsRequest) PageNum(pageNum int32) TeamsApiListProjectTeamsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-func (r TeamsApiListProjectTeamsRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
-	return r.ApiService.ListProjectTeamsExecute(r)
-}
-
-/*
-ListProjectTeams Return All Teams in One Project
-
-Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return TeamsApiListProjectTeamsRequest
-*/
-func (a *TeamsApiService) ListProjectTeams(ctx context.Context, groupId string) TeamsApiListProjectTeamsRequest {
-	return TeamsApiListProjectTeamsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedTeamRoleView
-func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamRoleView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListProjectTeams")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/teams"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type TeamsApiListTeamUsersRequest struct {
+type TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -1779,45 +1367,45 @@ type TeamsApiListTeamUsersRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListTeamUsersRequest) Envelope(envelope bool) TeamsApiListTeamUsersRequest {
+func (r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) Envelope(envelope bool) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r TeamsApiListTeamUsersRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListTeamUsersRequest {
+func (r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) ItemsPerPage(itemsPerPage int32) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListTeamUsersRequest) PageNum(pageNum int32) TeamsApiListTeamUsersRequest {
+func (r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) PageNum(pageNum int32) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListTeamUsersRequest) Pretty(pretty bool) TeamsApiListTeamUsersRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) Pretty(pretty bool) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiListTeamUsersRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
-	return r.ApiService.ListTeamUsersExecute(r)
+func (r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+	return r.ApiService.ReturnAllMongoDBCloudUsersAssignedToOneTeamExecute(r)
 }
 
 /*
-ListTeamUsers Return All MongoDB Cloud Users Assigned to One Team
+ReturnAllMongoDBCloudUsersAssignedToOneTeam Return All MongoDB Cloud Users Assigned to One Team
 
 Returns all MongoDB Cloud users assigned to the team specified using its unique 24-hexadecimal digit identifier. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
  @param teamId Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
- @return TeamsApiListTeamUsersRequest
+ @return TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest
 */
-func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamId string) TeamsApiListTeamUsersRequest {
-	return TeamsApiListTeamUsersRequest{
+func (a *TeamsApiService) ReturnAllMongoDBCloudUsersAssignedToOneTeam(ctx context.Context, orgId string, teamId string) TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest {
+	return TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1827,7 +1415,7 @@ func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamI
 
 // Execute executes the request
 //  @return PaginatedApiAppUserView
-func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+func (a *TeamsApiService) ReturnAllMongoDBCloudUsersAssignedToOneTeamExecute(r TeamsApiReturnAllMongoDBCloudUsersAssignedToOneTeamRequest) (*PaginatedApiAppUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1835,7 +1423,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 		localVarReturnValue  *PaginatedApiAppUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListTeamUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ReturnAllMongoDBCloudUsersAssignedToOneTeam")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1980,263 +1568,94 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiRemoveProjectTeamRequest struct {
+type TeamsApiReturnAllTeamsRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
-	teamId string
 	envelope *bool
+	pretty *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRemoveProjectTeamRequest) Envelope(envelope bool) TeamsApiRemoveProjectTeamRequest {
+func (r TeamsApiReturnAllTeamsRequest) Envelope(envelope bool) TeamsApiReturnAllTeamsRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r TeamsApiRemoveProjectTeamRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveProjectTeamExecute(r)
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiReturnAllTeamsRequest) Pretty(pretty bool) TeamsApiReturnAllTeamsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r TeamsApiReturnAllTeamsRequest) IncludeCount(includeCount bool) TeamsApiReturnAllTeamsRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r TeamsApiReturnAllTeamsRequest) ItemsPerPage(itemsPerPage int32) TeamsApiReturnAllTeamsRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r TeamsApiReturnAllTeamsRequest) PageNum(pageNum int32) TeamsApiReturnAllTeamsRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+func (r TeamsApiReturnAllTeamsRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+	return r.ApiService.ReturnAllTeamsExecute(r)
 }
 
 /*
-RemoveProjectTeam Remove One Team from One Project
+ReturnAllTeams Return All Teams in One Project
 
-Removes one team specified using its unique 24-hexadecimal digit identifier from the project specified using its unique 24-hexadecimal digit identifier. To use this resource, the requesting API Key must have the Project User Admin role.
+Returns all teams to which the authenticated user has access in the project specified using its unique 24-hexadecimal digit identifier. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
- @return TeamsApiRemoveProjectTeamRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @return TeamsApiReturnAllTeamsRequest
 */
-func (a *TeamsApiService) RemoveProjectTeam(ctx context.Context, groupId string, teamId string) TeamsApiRemoveProjectTeamRequest {
-	return TeamsApiRemoveProjectTeamRequest{
+func (a *TeamsApiService) ReturnAllTeams(ctx context.Context, groupId string) TeamsApiReturnAllTeamsRequest {
+	return TeamsApiReturnAllTeamsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
-		teamId: teamId,
 	}
 }
 
 // Execute executes the request
-func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRequest) (*http.Response, error) {
+//  @return PaginatedTeamRoleView
+func (a *TeamsApiService) ReturnAllTeamsExecute(r TeamsApiReturnAllTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *PaginatedTeamRoleView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RemoveProjectTeam")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ReturnAllTeams")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/teams/{teamId}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/teams"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
 	}
 	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.teamId) < 24 {
-		return nil, reportError("teamId must have at least 24 elements")
-	}
-	if strlen(r.teamId) > 24 {
-		return nil, reportError("teamId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type TeamsApiRemoveTeamUserRequest struct {
-	ctx context.Context
-	ApiService TeamsApi
-	orgId string
-	teamId string
-	userId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRemoveTeamUserRequest) Envelope(envelope bool) TeamsApiRemoveTeamUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiRemoveTeamUserRequest) Pretty(pretty bool) TeamsApiRemoveTeamUserRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r TeamsApiRemoveTeamUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveTeamUserExecute(r)
-}
-
-/*
-RemoveTeamUser Remove One MongoDB Cloud User from One Team
-
-Removes one MongoDB Cloud user from the specified team. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
- @param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
- @return TeamsApiRemoveTeamUserRequest
-*/
-func (a *TeamsApiService) RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveTeamUserRequest {
-	return TeamsApiRemoveTeamUserRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		teamId: teamId,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RemoveTeamUser")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/{teamId}/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return nil, reportError("orgId must have less than 24 elements")
-	}
-	if strlen(r.teamId) < 24 {
-		return nil, reportError("teamId must have at least 24 elements")
-	}
-	if strlen(r.teamId) > 24 {
-		return nil, reportError("teamId must have less than 24 elements")
-	}
-	if strlen(r.userId) < 24 {
-		return nil, reportError("userId must have at least 24 elements")
-	}
-	if strlen(r.userId) > 24 {
-		return nil, reportError("userId must have less than 24 elements")
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -2244,6 +1663,15 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 	}
 	if r.pretty != nil {
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2264,19 +1692,19 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2289,119 +1717,149 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiRenameTeamRequest struct {
+type TeamsApiReturnAllTeamsInOneOrganizationRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
-	teamId string
-	apiTeamView *ApiTeamView
 	envelope *bool
+	itemsPerPage *int32
+	includeCount *bool
+	pageNum *int32
 	pretty *bool
 }
 
-// Details to update on the specified team.
-func (r TeamsApiRenameTeamRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiRenameTeamRequest {
-	r.apiTeamView = &apiTeamView
-	return r
-}
-
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRenameTeamRequest) Envelope(envelope bool) TeamsApiRenameTeamRequest {
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) Envelope(envelope bool) TeamsApiReturnAllTeamsInOneOrganizationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiRenameTeamRequest) Pretty(pretty bool) TeamsApiRenameTeamRequest {
+// Number of items that the response returns per page.
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) ItemsPerPage(itemsPerPage int32) TeamsApiReturnAllTeamsInOneOrganizationRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) IncludeCount(includeCount bool) TeamsApiReturnAllTeamsInOneOrganizationRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) PageNum(pageNum int32) TeamsApiReturnAllTeamsInOneOrganizationRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) Pretty(pretty bool) TeamsApiReturnAllTeamsInOneOrganizationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiRenameTeamRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
-	return r.ApiService.RenameTeamExecute(r)
+func (r TeamsApiReturnAllTeamsInOneOrganizationRequest) Execute() (*PaginatedTeamView, *http.Response, error) {
+	return r.ApiService.ReturnAllTeamsInOneOrganizationExecute(r)
 }
 
 /*
-RenameTeam Rename One Team
+ReturnAllTeamsInOneOrganization Return All Teams in One Organization
 
-Renames one team in the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Returns all teams that belong to the specified organization. Teams enable you to grant project access roles to MongoDB Cloud users. MongoDB Cloud only returns teams for which you have access. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to rename.
- @return TeamsApiRenameTeamRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @return TeamsApiReturnAllTeamsInOneOrganizationRequest
 */
-func (a *TeamsApiService) RenameTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameTeamRequest {
-	return TeamsApiRenameTeamRequest{
+func (a *TeamsApiService) ReturnAllTeamsInOneOrganization(ctx context.Context, orgId string) TeamsApiReturnAllTeamsInOneOrganizationRequest {
+	return TeamsApiReturnAllTeamsInOneOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
-		teamId: teamId,
 	}
 }
 
 // Execute executes the request
-//  @return ApiTeamResponseView
-func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTeamResponseView, *http.Response, error) {
+//  @return PaginatedTeamView
+func (a *TeamsApiService) ReturnAllTeamsInOneOrganizationExecute(r TeamsApiReturnAllTeamsInOneOrganizationRequest) (*PaginatedTeamView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTeamResponseView
+		localVarReturnValue  *PaginatedTeamView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RenameTeam")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ReturnAllTeamsInOneOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/{teamId}"
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2412,24 +1870,24 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if strlen(r.teamId) < 24 {
-		return localVarReturnValue, nil, reportError("teamId must have at least 24 elements")
-	}
-	if strlen(r.teamId) > 24 {
-		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
-	}
-	if r.apiTeamView == nil {
-		return localVarReturnValue, nil, reportError("apiTeamView is required and must be specified")
-	}
 
 	if r.envelope != nil {
 		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
 	}
 	if r.pretty != nil {
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2445,8 +1903,6 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.apiTeamView
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2502,7 +1958,178 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
             		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type TeamsApiReturnOneTeamUsingItsIdRequest struct {
+	ctx context.Context
+	ApiService TeamsApi
+	orgId string
+	teamId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r TeamsApiReturnOneTeamUsingItsIdRequest) Envelope(envelope bool) TeamsApiReturnOneTeamUsingItsIdRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiReturnOneTeamUsingItsIdRequest) Pretty(pretty bool) TeamsApiReturnOneTeamUsingItsIdRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r TeamsApiReturnOneTeamUsingItsIdRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+	return r.ApiService.ReturnOneTeamUsingItsIdExecute(r)
+}
+
+/*
+ReturnOneTeamUsingItsId Return One Team using its ID
+
+Returns one team that you identified using its unique 24-hexadecimal digit ID. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an  Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
+ @return TeamsApiReturnOneTeamUsingItsIdRequest
+*/
+func (a *TeamsApiService) ReturnOneTeamUsingItsId(ctx context.Context, orgId string, teamId string) TeamsApiReturnOneTeamUsingItsIdRequest {
+	return TeamsApiReturnOneTeamUsingItsIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		teamId: teamId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiTeamResponseView
+func (a *TeamsApiService) ReturnOneTeamUsingItsIdExecute(r TeamsApiReturnOneTeamUsingItsIdRequest) (*ApiTeamResponseView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiTeamResponseView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ReturnOneTeamUsingItsId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/{teamId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"teamId"+"}", url.PathEscape(parameterToString(r.teamId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if strlen(r.teamId) < 24 {
+		return localVarReturnValue, nil, reportError("teamId must have at least 24 elements")
+	}
+	if strlen(r.teamId) > 24 {
+		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2538,7 +2165,183 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiUpdateTeamRolesRequest struct {
+type TeamsApiReturnOneTeamUsingItsNameRequest struct {
+	ctx context.Context
+	ApiService TeamsApi
+	orgId string
+	teamName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r TeamsApiReturnOneTeamUsingItsNameRequest) Envelope(envelope bool) TeamsApiReturnOneTeamUsingItsNameRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiReturnOneTeamUsingItsNameRequest) Pretty(pretty bool) TeamsApiReturnOneTeamUsingItsNameRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r TeamsApiReturnOneTeamUsingItsNameRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+	return r.ApiService.ReturnOneTeamUsingItsNameExecute(r)
+}
+
+/*
+ReturnOneTeamUsingItsName Return One Team using its Name
+
+Returns one team that you identified using its human-readable name. This team belongs to one organization. Teams enable you to grant project access roles to MongoDB Cloud users. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param teamName Name of the team whose information you want to return.
+ @return TeamsApiReturnOneTeamUsingItsNameRequest
+*/
+func (a *TeamsApiService) ReturnOneTeamUsingItsName(ctx context.Context, orgId string, teamName string) TeamsApiReturnOneTeamUsingItsNameRequest {
+	return TeamsApiReturnOneTeamUsingItsNameRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		teamName: teamName,
+	}
+}
+
+// Execute executes the request
+//  @return ApiTeamResponseView
+func (a *TeamsApiService) ReturnOneTeamUsingItsNameExecute(r TeamsApiReturnOneTeamUsingItsNameRequest) (*ApiTeamResponseView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiTeamResponseView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ReturnOneTeamUsingItsName")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/teams/byName/{teamName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"teamName"+"}", url.PathEscape(parameterToString(r.teamName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type TeamsApiUpdateTeamRolesInOneProjectRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
@@ -2549,39 +2352,39 @@ type TeamsApiUpdateTeamRolesRequest struct {
 }
 
 // The project roles assigned to the specified team.
-func (r TeamsApiUpdateTeamRolesRequest) ApiTeamRoleView(apiTeamRoleView ApiTeamRoleView) TeamsApiUpdateTeamRolesRequest {
+func (r TeamsApiUpdateTeamRolesInOneProjectRequest) ApiTeamRoleView(apiTeamRoleView ApiTeamRoleView) TeamsApiUpdateTeamRolesInOneProjectRequest {
 	r.apiTeamRoleView = &apiTeamRoleView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiUpdateTeamRolesRequest) Envelope(envelope bool) TeamsApiUpdateTeamRolesRequest {
+func (r TeamsApiUpdateTeamRolesInOneProjectRequest) Envelope(envelope bool) TeamsApiUpdateTeamRolesInOneProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiUpdateTeamRolesRequest) Pretty(pretty bool) TeamsApiUpdateTeamRolesRequest {
+// Flag that indicates whether the response body should be in the prettyprint format.
+func (r TeamsApiUpdateTeamRolesInOneProjectRequest) Pretty(pretty bool) TeamsApiUpdateTeamRolesInOneProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r TeamsApiUpdateTeamRolesRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
-	return r.ApiService.UpdateTeamRolesExecute(r)
+func (r TeamsApiUpdateTeamRolesInOneProjectRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+	return r.ApiService.UpdateTeamRolesInOneProjectExecute(r)
 }
 
 /*
-UpdateTeamRoles Update Team Roles in One Project
+UpdateTeamRolesInOneProject Update Team Roles in One Project
 
 Updates the project roles assigned to the specified team. You can grant team roles for specific projects and grant project access roles to users in the team. All members of the team share the same project access. To use this resource, the requesting API Key must have the Project User Admin role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project.
  @param teamId Unique 24-hexadecimal digit string that identifies the team for which you want to update roles.
- @return TeamsApiUpdateTeamRolesRequest
+ @return TeamsApiUpdateTeamRolesInOneProjectRequest
 */
-func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesRequest {
-	return TeamsApiUpdateTeamRolesRequest{
+func (a *TeamsApiService) UpdateTeamRolesInOneProject(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesInOneProjectRequest {
+	return TeamsApiUpdateTeamRolesInOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2591,7 +2394,7 @@ func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, t
 
 // Execute executes the request
 //  @return PaginatedTeamRoleView
-func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRoleView, *http.Response, error) {
+func (a *TeamsApiService) UpdateTeamRolesInOneProjectExecute(r TeamsApiUpdateTeamRolesInOneProjectRequest) (*PaginatedTeamRoleView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2599,7 +2402,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 		localVarReturnValue  *PaginatedTeamRoleView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.UpdateTeamRoles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.UpdateTeamRolesInOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
