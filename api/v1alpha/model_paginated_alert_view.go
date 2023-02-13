@@ -19,7 +19,7 @@ type PaginatedAlertView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []AlertViewForNdsGroup `json:"results,omitempty"`
+	Results []AlertViewForGroup `json:"results,omitempty"`
 	// Number of documents returned in this response if **includeCount** query param is true.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -66,9 +66,9 @@ func (o *PaginatedAlertView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedAlertView) GetResults() []AlertViewForNdsGroup {
+func (o *PaginatedAlertView) GetResults() []AlertViewForGroup {
 	if o == nil || o.Results == nil {
-		var ret []AlertViewForNdsGroup
+		var ret []AlertViewForGroup
 		return ret
 	}
 	return o.Results
@@ -76,7 +76,7 @@ func (o *PaginatedAlertView) GetResults() []AlertViewForNdsGroup {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedAlertView) GetResultsOk() ([]AlertViewForNdsGroup, bool) {
+func (o *PaginatedAlertView) GetResultsOk() ([]AlertViewForGroup, bool) {
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *PaginatedAlertView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []AlertViewForNdsGroup and assigns it to the Results field.
-func (o *PaginatedAlertView) SetResults(v []AlertViewForNdsGroup) {
+// SetResults gets a reference to the given []AlertViewForGroup and assigns it to the Results field.
+func (o *PaginatedAlertView) SetResults(v []AlertViewForGroup) {
 	o.Results = v
 }
 

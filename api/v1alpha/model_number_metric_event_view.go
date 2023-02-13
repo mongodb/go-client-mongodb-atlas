@@ -22,7 +22,7 @@ type NumberMetricEventView struct {
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
 	CurrentValue *NumberMetricValueView `json:"currentValue,omitempty"`
-	EventTypeName HostMetricEventTypeView `json:"eventTypeName"`
+	EventTypeName HostMetricEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -158,9 +158,9 @@ func (o *NumberMetricEventView) SetCurrentValue(v NumberMetricValueView) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *NumberMetricEventView) GetEventTypeName() HostMetricEventTypeView {
+func (o *NumberMetricEventView) GetEventTypeName() HostMetricEventType {
 	if o == nil {
-		var ret HostMetricEventTypeView
+		var ret HostMetricEventType
 		return ret
 	}
 
@@ -169,7 +169,7 @@ func (o *NumberMetricEventView) GetEventTypeName() HostMetricEventTypeView {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *NumberMetricEventView) GetEventTypeNameOk() (*HostMetricEventTypeView, bool) {
+func (o *NumberMetricEventView) GetEventTypeNameOk() (*HostMetricEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -177,7 +177,7 @@ func (o *NumberMetricEventView) GetEventTypeNameOk() (*HostMetricEventTypeView, 
 }
 
 // SetEventTypeName sets field value
-func (o *NumberMetricEventView) SetEventTypeName(v HostMetricEventTypeView) {
+func (o *NumberMetricEventView) SetEventTypeName(v HostMetricEventType) {
 	o.EventTypeName = v
 }
 

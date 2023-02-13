@@ -21,7 +21,7 @@ type TeamEventView struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName TeamEventTypeView `json:"eventTypeName"`
+	EventTypeName TeamEventType `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -119,9 +119,9 @@ func (o *TeamEventView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *TeamEventView) GetEventTypeName() TeamEventTypeView {
+func (o *TeamEventView) GetEventTypeName() TeamEventType {
 	if o == nil {
-		var ret TeamEventTypeView
+		var ret TeamEventType
 		return ret
 	}
 
@@ -130,7 +130,7 @@ func (o *TeamEventView) GetEventTypeName() TeamEventTypeView {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *TeamEventView) GetEventTypeNameOk() (*TeamEventTypeView, bool) {
+func (o *TeamEventView) GetEventTypeNameOk() (*TeamEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *TeamEventView) GetEventTypeNameOk() (*TeamEventTypeView, bool) {
 }
 
 // SetEventTypeName sets field value
-func (o *TeamEventView) SetEventTypeName(v TeamEventTypeView) {
+func (o *TeamEventView) SetEventTypeName(v TeamEventType) {
 	o.EventTypeName = v
 }
 
