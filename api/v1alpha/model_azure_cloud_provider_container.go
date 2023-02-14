@@ -24,6 +24,12 @@ type AzureCloudProviderContainer struct {
 	Region string `json:"region"`
 	// Unique string that identifies the Azure VNet in which MongoDB Cloud clusters in this network peering container exist. The response returns **null** if no clusters exist in this network peering container.
 	VnetName *string `json:"vnetName,omitempty"`
+	// Unique 24-hexadecimal digit string that identifies the network peering container.
+	Id *string `json:"id,omitempty"`
+	// Cloud service provider that serves the requested network peering containers.
+	ProviderName *string `json:"providerName,omitempty"`
+	// Flag that indicates whether MongoDB Cloud clusters exist in the specified network peering container.
+	Provisioned *bool `json:"provisioned,omitempty"`
 }
 
 // NewAzureCloudProviderContainer instantiates a new AzureCloudProviderContainer object
@@ -155,6 +161,102 @@ func (o *AzureCloudProviderContainer) SetVnetName(v string) {
 	o.VnetName = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *AzureCloudProviderContainer) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureCloudProviderContainer) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *AzureCloudProviderContainer) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *AzureCloudProviderContainer) SetId(v string) {
+	o.Id = &v
+}
+
+// GetProviderName returns the ProviderName field value if set, zero value otherwise.
+func (o *AzureCloudProviderContainer) GetProviderName() string {
+	if o == nil || o.ProviderName == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureCloudProviderContainer) GetProviderNameOk() (*string, bool) {
+	if o == nil || o.ProviderName == nil {
+		return nil, false
+	}
+	return o.ProviderName, true
+}
+
+// HasProviderName returns a boolean if a field has been set.
+func (o *AzureCloudProviderContainer) HasProviderName() bool {
+	if o != nil && o.ProviderName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
+func (o *AzureCloudProviderContainer) SetProviderName(v string) {
+	o.ProviderName = &v
+}
+
+// GetProvisioned returns the Provisioned field value if set, zero value otherwise.
+func (o *AzureCloudProviderContainer) GetProvisioned() bool {
+	if o == nil || o.Provisioned == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Provisioned
+}
+
+// GetProvisionedOk returns a tuple with the Provisioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
+	if o == nil || o.Provisioned == nil {
+		return nil, false
+	}
+	return o.Provisioned, true
+}
+
+// HasProvisioned returns a boolean if a field has been set.
+func (o *AzureCloudProviderContainer) HasProvisioned() bool {
+	if o != nil && o.Provisioned != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisioned gets a reference to the given bool and assigns it to the Provisioned field.
+func (o *AzureCloudProviderContainer) SetProvisioned(v bool) {
+	o.Provisioned = &v
+}
+
 func (o AzureCloudProviderContainer) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -168,6 +270,15 @@ func (o AzureCloudProviderContainer) MarshalJSON() ([]byte, error) {
 	}
 	if o.VnetName != nil {
 		toSerialize["vnetName"] = o.VnetName
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.ProviderName != nil {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	if o.Provisioned != nil {
+		toSerialize["provisioned"] = o.Provisioned
 	}
 	return json.Marshal(toSerialize)
 }

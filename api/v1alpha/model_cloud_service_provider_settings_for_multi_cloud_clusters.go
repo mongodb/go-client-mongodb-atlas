@@ -14,10 +14,8 @@ import (
 	"encoding/json"
 )
 
-// TenantRegionConfig Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
-type TenantRegionConfig struct {
-	// Cloud service provider on which MongoDB Cloud provisioned the multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
-	BackingProviderName *string `json:"backingProviderName,omitempty"`
+// CloudServiceProviderSettingsForMultiCloudClusters Cloud service provider on which MongoDB Cloud provisions the hosts.
+type CloudServiceProviderSettingsForMultiCloudClusters struct {
 	ElectableSpecs *HardwareSpec `json:"electableSpecs,omitempty"`
 	// Precedence is given to this region when a primary election occurs. If your **regionConfigs** has only **readOnlySpecs**, **analyticsSpecs**, or both, set this value to `0`. If you have multiple **regionConfigs** objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is `7`.  **Example:** If you have three regions, their priorities would be `7`, `6`, and `5` respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be `4` and `3` respectively.
 	Priority *int32 `json:"priority,omitempty"`
@@ -27,57 +25,25 @@ type TenantRegionConfig struct {
 	RegionName *string `json:"regionName,omitempty"`
 }
 
-// NewTenantRegionConfig instantiates a new TenantRegionConfig object
+// NewCloudServiceProviderSettingsForMultiCloudClusters instantiates a new CloudServiceProviderSettingsForMultiCloudClusters object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTenantRegionConfig() *TenantRegionConfig {
-	this := TenantRegionConfig{}
+func NewCloudServiceProviderSettingsForMultiCloudClusters() *CloudServiceProviderSettingsForMultiCloudClusters {
+	this := CloudServiceProviderSettingsForMultiCloudClusters{}
 	return &this
 }
 
-// NewTenantRegionConfigWithDefaults instantiates a new TenantRegionConfig object
+// NewCloudServiceProviderSettingsForMultiCloudClustersWithDefaults instantiates a new CloudServiceProviderSettingsForMultiCloudClusters object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTenantRegionConfigWithDefaults() *TenantRegionConfig {
-	this := TenantRegionConfig{}
+func NewCloudServiceProviderSettingsForMultiCloudClustersWithDefaults() *CloudServiceProviderSettingsForMultiCloudClusters {
+	this := CloudServiceProviderSettingsForMultiCloudClusters{}
 	return &this
-}
-
-// GetBackingProviderName returns the BackingProviderName field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetBackingProviderName() string {
-	if o == nil || o.BackingProviderName == nil {
-		var ret string
-		return ret
-	}
-	return *o.BackingProviderName
-}
-
-// GetBackingProviderNameOk returns a tuple with the BackingProviderName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetBackingProviderNameOk() (*string, bool) {
-	if o == nil || o.BackingProviderName == nil {
-		return nil, false
-	}
-	return o.BackingProviderName, true
-}
-
-// HasBackingProviderName returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasBackingProviderName() bool {
-	if o != nil && o.BackingProviderName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBackingProviderName gets a reference to the given string and assigns it to the BackingProviderName field.
-func (o *TenantRegionConfig) SetBackingProviderName(v string) {
-	o.BackingProviderName = &v
 }
 
 // GetElectableSpecs returns the ElectableSpecs field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetElectableSpecs() HardwareSpec {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetElectableSpecs() HardwareSpec {
 	if o == nil || o.ElectableSpecs == nil {
 		var ret HardwareSpec
 		return ret
@@ -87,7 +53,7 @@ func (o *TenantRegionConfig) GetElectableSpecs() HardwareSpec {
 
 // GetElectableSpecsOk returns a tuple with the ElectableSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetElectableSpecsOk() (*HardwareSpec, bool) {
 	if o == nil || o.ElectableSpecs == nil {
 		return nil, false
 	}
@@ -95,7 +61,7 @@ func (o *TenantRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
 }
 
 // HasElectableSpecs returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasElectableSpecs() bool {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) HasElectableSpecs() bool {
 	if o != nil && o.ElectableSpecs != nil {
 		return true
 	}
@@ -104,12 +70,12 @@ func (o *TenantRegionConfig) HasElectableSpecs() bool {
 }
 
 // SetElectableSpecs gets a reference to the given HardwareSpec and assigns it to the ElectableSpecs field.
-func (o *TenantRegionConfig) SetElectableSpecs(v HardwareSpec) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) SetElectableSpecs(v HardwareSpec) {
 	o.ElectableSpecs = &v
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetPriority() int32 {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetPriority() int32 {
 	if o == nil || o.Priority == nil {
 		var ret int32
 		return ret
@@ -119,7 +85,7 @@ func (o *TenantRegionConfig) GetPriority() int32 {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetPriorityOk() (*int32, bool) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetPriorityOk() (*int32, bool) {
 	if o == nil || o.Priority == nil {
 		return nil, false
 	}
@@ -127,7 +93,7 @@ func (o *TenantRegionConfig) GetPriorityOk() (*int32, bool) {
 }
 
 // HasPriority returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasPriority() bool {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) HasPriority() bool {
 	if o != nil && o.Priority != nil {
 		return true
 	}
@@ -136,12 +102,12 @@ func (o *TenantRegionConfig) HasPriority() bool {
 }
 
 // SetPriority gets a reference to the given int32 and assigns it to the Priority field.
-func (o *TenantRegionConfig) SetPriority(v int32) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) SetPriority(v int32) {
 	o.Priority = &v
 }
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetProviderName() string {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetProviderName() string {
 	if o == nil || o.ProviderName == nil {
 		var ret string
 		return ret
@@ -151,7 +117,7 @@ func (o *TenantRegionConfig) GetProviderName() string {
 
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetProviderNameOk() (*string, bool) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetProviderNameOk() (*string, bool) {
 	if o == nil || o.ProviderName == nil {
 		return nil, false
 	}
@@ -159,7 +125,7 @@ func (o *TenantRegionConfig) GetProviderNameOk() (*string, bool) {
 }
 
 // HasProviderName returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasProviderName() bool {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) HasProviderName() bool {
 	if o != nil && o.ProviderName != nil {
 		return true
 	}
@@ -168,12 +134,12 @@ func (o *TenantRegionConfig) HasProviderName() bool {
 }
 
 // SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
-func (o *TenantRegionConfig) SetProviderName(v string) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetRegionName() string {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetRegionName() string {
 	if o == nil || o.RegionName == nil {
 		var ret string
 		return ret
@@ -183,7 +149,7 @@ func (o *TenantRegionConfig) GetRegionName() string {
 
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetRegionNameOk() (*string, bool) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) GetRegionNameOk() (*string, bool) {
 	if o == nil || o.RegionName == nil {
 		return nil, false
 	}
@@ -191,7 +157,7 @@ func (o *TenantRegionConfig) GetRegionNameOk() (*string, bool) {
 }
 
 // HasRegionName returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasRegionName() bool {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) HasRegionName() bool {
 	if o != nil && o.RegionName != nil {
 		return true
 	}
@@ -200,15 +166,12 @@ func (o *TenantRegionConfig) HasRegionName() bool {
 }
 
 // SetRegionName gets a reference to the given string and assigns it to the RegionName field.
-func (o *TenantRegionConfig) SetRegionName(v string) {
+func (o *CloudServiceProviderSettingsForMultiCloudClusters) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
+func (o CloudServiceProviderSettingsForMultiCloudClusters) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BackingProviderName != nil {
-		toSerialize["backingProviderName"] = o.BackingProviderName
-	}
 	if o.ElectableSpecs != nil {
 		toSerialize["electableSpecs"] = o.ElectableSpecs
 	}
@@ -224,38 +187,38 @@ func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableTenantRegionConfig struct {
-	value *TenantRegionConfig
+type NullableCloudServiceProviderSettingsForMultiCloudClusters struct {
+	value *CloudServiceProviderSettingsForMultiCloudClusters
 	isSet bool
 }
 
-func (v NullableTenantRegionConfig) Get() *TenantRegionConfig {
+func (v NullableCloudServiceProviderSettingsForMultiCloudClusters) Get() *CloudServiceProviderSettingsForMultiCloudClusters {
 	return v.value
 }
 
-func (v *NullableTenantRegionConfig) Set(val *TenantRegionConfig) {
+func (v *NullableCloudServiceProviderSettingsForMultiCloudClusters) Set(val *CloudServiceProviderSettingsForMultiCloudClusters) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTenantRegionConfig) IsSet() bool {
+func (v NullableCloudServiceProviderSettingsForMultiCloudClusters) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTenantRegionConfig) Unset() {
+func (v *NullableCloudServiceProviderSettingsForMultiCloudClusters) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTenantRegionConfig(val *TenantRegionConfig) *NullableTenantRegionConfig {
-	return &NullableTenantRegionConfig{value: val, isSet: true}
+func NewNullableCloudServiceProviderSettingsForMultiCloudClusters(val *CloudServiceProviderSettingsForMultiCloudClusters) *NullableCloudServiceProviderSettingsForMultiCloudClusters {
+	return &NullableCloudServiceProviderSettingsForMultiCloudClusters{value: val, isSet: true}
 }
 
-func (v NullableTenantRegionConfig) MarshalJSON() ([]byte, error) {
+func (v NullableCloudServiceProviderSettingsForMultiCloudClusters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTenantRegionConfig) UnmarshalJSON(src []byte) error {
+func (v *NullableCloudServiceProviderSettingsForMultiCloudClusters) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

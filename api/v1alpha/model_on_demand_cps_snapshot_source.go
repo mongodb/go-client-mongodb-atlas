@@ -24,6 +24,8 @@ type OnDemandCpsSnapshotSource struct {
 	DatabaseName *string `json:"databaseName,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the project.
 	GroupId *string `json:"groupId,omitempty"`
+	// Type of ingestion source of this Data Lake Pipeline.
+	Type *string `json:"type,omitempty"`
 }
 
 // NewOnDemandCpsSnapshotSource instantiates a new OnDemandCpsSnapshotSource object
@@ -171,6 +173,38 @@ func (o *OnDemandCpsSnapshotSource) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *OnDemandCpsSnapshotSource) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OnDemandCpsSnapshotSource) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *OnDemandCpsSnapshotSource) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *OnDemandCpsSnapshotSource) SetType(v string) {
+	o.Type = &v
+}
+
 func (o OnDemandCpsSnapshotSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ClusterName != nil {
@@ -184,6 +218,9 @@ func (o OnDemandCpsSnapshotSource) MarshalJSON() ([]byte, error) {
 	}
 	if o.GroupId != nil {
 		toSerialize["groupId"] = o.GroupId
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

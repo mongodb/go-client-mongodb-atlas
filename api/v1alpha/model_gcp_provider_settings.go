@@ -21,6 +21,7 @@ type GCPProviderSettings struct {
 	InstanceSizeName *string `json:"instanceSizeName,omitempty"`
 	// Google Compute Regions.
 	RegionName *string `json:"regionName,omitempty"`
+	ProviderName string `json:"providerName"`
 }
 
 // NewGCPProviderSettings instantiates a new GCPProviderSettings object
@@ -136,6 +137,30 @@ func (o *GCPProviderSettings) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
+// GetProviderName returns the ProviderName field value
+func (o *GCPProviderSettings) GetProviderName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value
+// and a boolean to check if the value has been set.
+func (o *GCPProviderSettings) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderName, true
+}
+
+// SetProviderName sets field value
+func (o *GCPProviderSettings) SetProviderName(v string) {
+	o.ProviderName = v
+}
+
 func (o GCPProviderSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AutoScaling != nil {
@@ -146,6 +171,9 @@ func (o GCPProviderSettings) MarshalJSON() ([]byte, error) {
 	}
 	if o.RegionName != nil {
 		toSerialize["regionName"] = o.RegionName
+	}
+	if true {
+		toSerialize["providerName"] = o.ProviderName
 	}
 	return json.Marshal(toSerialize)
 }

@@ -116,12 +116,8 @@ function transformAllOf(objectName, parentObject, api) {
   }
 
   const expandedParent = filterObjectProperties(parentObject, (key, _v) => {
-    !(key === 'oneOf' || key === 'discriminator');
+    return !(key === 'oneOf' || key === 'discriminator');
   });
-
-  // Remove invalid fields
-  delete parentObject.properties;
-  delete parentObject.required;
 
   for (let obj of parentObject.oneOf) {
     const child = getObjectFromReference(obj, api);
@@ -133,13 +129,18 @@ function transformAllOf(objectName, parentObject, api) {
       if (!child.allOf) {
         child.allOf = {};
       }
-      
       // Expand parent in child allOf
       child.allOf.push(expandedParent);
       // Flatten child allOf
-      flattenAllOfObject(child, api);
     }
   }
+
+  // Remove invalid fields
+  parentObject.properties = null;
+  delete parentObject.properties;
+
+  parentObject.required = null;
+  delete parentObject.required;
 }
 
 function transformOneOf(parentObject, api) {

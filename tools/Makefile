@@ -12,6 +12,10 @@ clean_client:
 fetch_openapi:
 	./scripts/fetch.sh
 
+.PHONY: transform_openapi
+transform_openapi:
+	./scripts/transform.sh
+
 .PHONY: generate_client
 generate_client:
 	./scripts/generate.sh
