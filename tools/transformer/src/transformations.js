@@ -119,6 +119,10 @@ function transformAllOf(objectName, parentObject, api) {
     return !(key === 'oneOf' || key === 'discriminator');
   });
 
+  // Remove invalid fields
+  delete parentObject.properties;
+  delete parentObject.required;
+
   for (let obj of parentObject.oneOf) {
     const child = getObjectFromReference(obj, api);
 
@@ -132,15 +136,9 @@ function transformAllOf(objectName, parentObject, api) {
       // Expand parent in child allOf
       child.allOf.push(expandedParent);
       // Flatten child allOf
+      flattenAllOfObject(child);
     }
   }
-
-  // Remove invalid fields
-  parentObject.properties = null;
-  delete parentObject.properties;
-
-  parentObject.required = null;
-  delete parentObject.required;
 }
 
 function transformOneOf(parentObject, api) {

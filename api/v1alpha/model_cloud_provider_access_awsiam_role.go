@@ -12,6 +12,7 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // CloudProviderAccessAWSIAMRole Details that describe the features linked to the Amazon Web Services (AWS) Identity and Access Management (IAM) role.
