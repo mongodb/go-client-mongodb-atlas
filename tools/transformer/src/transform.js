@@ -4,7 +4,6 @@ const {
   applyOneOfTransformations,
   applyModelNameTransformations,
 } = require("./transformations");
-const { getAllObjectsWitProperty } = require("./utils");
 const { parse, stringify } = require("yaml");
 
 let apiFileLocation = process.argv.slice(2);
