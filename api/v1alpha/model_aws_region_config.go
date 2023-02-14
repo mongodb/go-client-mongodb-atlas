@@ -16,13 +16,6 @@ import (
 
 // AWSRegionConfig Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
 type AWSRegionConfig struct {
-	ElectableSpecs *HardwareSpec `json:"electableSpecs,omitempty"`
-	// Precedence is given to this region when a primary election occurs. If your **regionConfigs** has only **readOnlySpecs**, **analyticsSpecs**, or both, set this value to `0`. If you have multiple **regionConfigs** objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is `7`.  **Example:** If you have three regions, their priorities would be `7`, `6`, and `5` respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be `4` and `3` respectively.
-	Priority *int32 `json:"priority,omitempty"`
-	// Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`.
-	ProviderName *string `json:"providerName,omitempty"`
-	// Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC.
-	RegionName *string `json:"regionName,omitempty"`
 	AnalyticsAutoScaling *AutoScalingV15 `json:"analyticsAutoScaling,omitempty"`
 	AnalyticsSpecs *DedicatedHardwareSpec `json:"analyticsSpecs,omitempty"`
 	AutoScaling *AutoScalingV15 `json:"autoScaling,omitempty"`
@@ -44,134 +37,6 @@ func NewAWSRegionConfig() *AWSRegionConfig {
 func NewAWSRegionConfigWithDefaults() *AWSRegionConfig {
 	this := AWSRegionConfig{}
 	return &this
-}
-
-// GetElectableSpecs returns the ElectableSpecs field value if set, zero value otherwise.
-func (o *AWSRegionConfig) GetElectableSpecs() HardwareSpec {
-	if o == nil || o.ElectableSpecs == nil {
-		var ret HardwareSpec
-		return ret
-	}
-	return *o.ElectableSpecs
-}
-
-// GetElectableSpecsOk returns a tuple with the ElectableSpecs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AWSRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
-	if o == nil || o.ElectableSpecs == nil {
-		return nil, false
-	}
-	return o.ElectableSpecs, true
-}
-
-// HasElectableSpecs returns a boolean if a field has been set.
-func (o *AWSRegionConfig) HasElectableSpecs() bool {
-	if o != nil && o.ElectableSpecs != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetElectableSpecs gets a reference to the given HardwareSpec and assigns it to the ElectableSpecs field.
-func (o *AWSRegionConfig) SetElectableSpecs(v HardwareSpec) {
-	o.ElectableSpecs = &v
-}
-
-// GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *AWSRegionConfig) GetPriority() int32 {
-	if o == nil || o.Priority == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Priority
-}
-
-// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AWSRegionConfig) GetPriorityOk() (*int32, bool) {
-	if o == nil || o.Priority == nil {
-		return nil, false
-	}
-	return o.Priority, true
-}
-
-// HasPriority returns a boolean if a field has been set.
-func (o *AWSRegionConfig) HasPriority() bool {
-	if o != nil && o.Priority != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPriority gets a reference to the given int32 and assigns it to the Priority field.
-func (o *AWSRegionConfig) SetPriority(v int32) {
-	o.Priority = &v
-}
-
-// GetProviderName returns the ProviderName field value if set, zero value otherwise.
-func (o *AWSRegionConfig) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
-		var ret string
-		return ret
-	}
-	return *o.ProviderName
-}
-
-// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AWSRegionConfig) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
-		return nil, false
-	}
-	return o.ProviderName, true
-}
-
-// HasProviderName returns a boolean if a field has been set.
-func (o *AWSRegionConfig) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
-func (o *AWSRegionConfig) SetProviderName(v string) {
-	o.ProviderName = &v
-}
-
-// GetRegionName returns the RegionName field value if set, zero value otherwise.
-func (o *AWSRegionConfig) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
-		var ret string
-		return ret
-	}
-	return *o.RegionName
-}
-
-// GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AWSRegionConfig) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
-		return nil, false
-	}
-	return o.RegionName, true
-}
-
-// HasRegionName returns a boolean if a field has been set.
-func (o *AWSRegionConfig) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRegionName gets a reference to the given string and assigns it to the RegionName field.
-func (o *AWSRegionConfig) SetRegionName(v string) {
-	o.RegionName = &v
 }
 
 // GetAnalyticsAutoScaling returns the AnalyticsAutoScaling field value if set, zero value otherwise.
@@ -304,18 +169,6 @@ func (o *AWSRegionConfig) SetReadOnlySpecs(v DedicatedHardwareSpec) {
 
 func (o AWSRegionConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ElectableSpecs != nil {
-		toSerialize["electableSpecs"] = o.ElectableSpecs
-	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
 	if o.AnalyticsAutoScaling != nil {
 		toSerialize["analyticsAutoScaling"] = o.AnalyticsAutoScaling
 	}

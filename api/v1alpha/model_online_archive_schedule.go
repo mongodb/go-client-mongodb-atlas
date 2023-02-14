@@ -18,22 +18,15 @@ import (
 // OnlineArchiveSchedule - Regular frequency and duration when archiving process occurs.
 type OnlineArchiveSchedule struct {
 	DailyScheduleView *DailyScheduleView
-	DefaultScheduleView *DefaultScheduleView
 	MonthlyScheduleView *MonthlyScheduleView
 	WeeklyScheduleView *WeeklyScheduleView
+	MapmapOfStringinterface{} *map[string]interface{}
 }
 
 // DailyScheduleViewAsOnlineArchiveSchedule is a convenience function that returns DailyScheduleView wrapped in OnlineArchiveSchedule
 func DailyScheduleViewAsOnlineArchiveSchedule(v *DailyScheduleView) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
 		DailyScheduleView: v,
-	}
-}
-
-// DefaultScheduleViewAsOnlineArchiveSchedule is a convenience function that returns DefaultScheduleView wrapped in OnlineArchiveSchedule
-func DefaultScheduleViewAsOnlineArchiveSchedule(v *DefaultScheduleView) OnlineArchiveSchedule {
-	return OnlineArchiveSchedule{
-		DefaultScheduleView: v,
 	}
 }
 
@@ -48,6 +41,13 @@ func MonthlyScheduleViewAsOnlineArchiveSchedule(v *MonthlyScheduleView) OnlineAr
 func WeeklyScheduleViewAsOnlineArchiveSchedule(v *WeeklyScheduleView) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
 		WeeklyScheduleView: v,
+	}
+}
+
+// map[string]interface{}AsOnlineArchiveSchedule is a convenience function that returns map[string]interface{} wrapped in OnlineArchiveSchedule
+func MapmapOfStringinterface{}AsOnlineArchiveSchedule(v *map[string]interface{}) OnlineArchiveSchedule {
+	return OnlineArchiveSchedule{
+		MapmapOfStringinterface{}: v,
 	}
 }
 
@@ -167,16 +167,16 @@ func (src OnlineArchiveSchedule) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.DailyScheduleView)
 	}
 
-	if src.DefaultScheduleView != nil {
-		return json.Marshal(&src.DefaultScheduleView)
-	}
-
 	if src.MonthlyScheduleView != nil {
 		return json.Marshal(&src.MonthlyScheduleView)
 	}
 
 	if src.WeeklyScheduleView != nil {
 		return json.Marshal(&src.WeeklyScheduleView)
+	}
+
+	if src.MapmapOfStringinterface{} != nil {
+		return json.Marshal(&src.MapmapOfStringinterface{})
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -191,16 +191,16 @@ func (obj *OnlineArchiveSchedule) GetActualInstance() (interface{}) {
 		return obj.DailyScheduleView
 	}
 
-	if obj.DefaultScheduleView != nil {
-		return obj.DefaultScheduleView
-	}
-
 	if obj.MonthlyScheduleView != nil {
 		return obj.MonthlyScheduleView
 	}
 
 	if obj.WeeklyScheduleView != nil {
 		return obj.WeeklyScheduleView
+	}
+
+	if obj.MapmapOfStringinterface{} != nil {
+		return obj.MapmapOfStringinterface{}
 	}
 
 	// all schemas are nil
