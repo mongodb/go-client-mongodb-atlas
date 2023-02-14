@@ -23,420 +23,296 @@ import (
 type ProjectsApi interface {
 
 	/*
-	CancelOneProjectInvitation Cancel One Project Invitation
-
-	Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiCancelOneProjectInvitationRequest
-	*/
-	CancelOneProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiCancelOneProjectInvitationRequest
-
-	// CancelOneProjectInvitationExecute executes the request
-	CancelOneProjectInvitationExecute(r ProjectsApiCancelOneProjectInvitationRequest) (*http.Response, error)
-
-	/*
-	CreateOneProject Create One Project
+	CreateProject Create One Project
 
 	Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectsApiCreateOneProjectRequest
+	@return ProjectsApiCreateProjectRequest
 	*/
-	CreateOneProject(ctx context.Context) ProjectsApiCreateOneProjectRequest
+	CreateProject(ctx context.Context) ProjectsApiCreateProjectRequest
 
-	// CreateOneProjectExecute executes the request
+	// CreateProjectExecute executes the request
 	//  @return Group
-	CreateOneProjectExecute(r ProjectsApiCreateOneProjectRequest) (*Group, *http.Response, error)
+	CreateProjectExecute(r ProjectsApiCreateProjectRequest) (*Group, *http.Response, error)
 
 	/*
-	GetAllProjectLimits Return All Limits for One Project
-
-	Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiGetAllProjectLimitsRequest
-	*/
-	GetAllProjectLimits(ctx context.Context, groupId string) ProjectsApiGetAllProjectLimitsRequest
-
-	// GetAllProjectLimitsExecute executes the request
-	//  @return ApiLimitView
-	GetAllProjectLimitsExecute(r ProjectsApiGetAllProjectLimitsRequest) (*ApiLimitView, *http.Response, error)
-
-	/*
-	GetGroupSettings Return One Project Settings
-
-	Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource does not require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiGetGroupSettingsRequest
-	*/
-	GetGroupSettings(ctx context.Context, groupId string) ProjectsApiGetGroupSettingsRequest
-
-	// GetGroupSettingsExecute executes the request
-	//  @return GroupSettings
-	GetGroupSettingsExecute(r ProjectsApiGetGroupSettingsRequest) (*GroupSettings, *http.Response, error)
-
-	/*
-	GetOneProjectLimit Return One Limit for One Project
-
-	Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiGetOneProjectLimitRequest
-	*/
-	GetOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetOneProjectLimitRequest
-
-	// GetOneProjectLimitExecute executes the request
-	//  @return ApiLimitView
-	GetOneProjectLimitExecute(r ProjectsApiGetOneProjectLimitRequest) (*ApiLimitView, *http.Response, error)
-
-	/*
-	InviteOneMongoDBCloudUserToJoinOneProject Invite One MongoDB Cloud User to Join One Project
+	CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
 
 	Invites one MongoDB Cloud user to join the specified project. The MongoDB Cloud user must accept the invitation to access information within the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiCreateProjectInvitationRequest
 	*/
-	InviteOneMongoDBCloudUserToJoinOneProject(ctx context.Context, groupId string) ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest
+	CreateProjectInvitation(ctx context.Context, groupId string) ProjectsApiCreateProjectInvitationRequest
 
-	// InviteOneMongoDBCloudUserToJoinOneProjectExecute executes the request
+	// CreateProjectInvitationExecute executes the request
 	//  @return ApiGroupInvitationView
-	InviteOneMongoDBCloudUserToJoinOneProjectExecute(r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) (*ApiGroupInvitationView, *http.Response, error)
+	CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
 
 	/*
-	PatchGroupSettings Update One Project Settings
+	DeleteProject Remove One Project
 
-	Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
+	Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. You can delete a project only if there are no Online Archives for the clusters in the project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiPatchGroupSettingsRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiDeleteProjectRequest
 	*/
-	PatchGroupSettings(ctx context.Context, groupId string) ProjectsApiPatchGroupSettingsRequest
+	DeleteProject(ctx context.Context, groupId string) ProjectsApiDeleteProjectRequest
 
-	// PatchGroupSettingsExecute executes the request
-	//  @return GroupSettings
-	PatchGroupSettingsExecute(r ProjectsApiPatchGroupSettingsRequest) (*GroupSettings, *http.Response, error)
+	// DeleteProjectExecute executes the request
+	DeleteProjectExecute(r ProjectsApiDeleteProjectRequest) (*http.Response, error)
 
 	/*
-	RemoveOneProject Remove One Project
+	DeleteProjectInvitation Cancel One Project Invitation
 
-	Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiRemoveOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
+	@return ProjectsApiDeleteProjectInvitationRequest
 	*/
-	RemoveOneProject(ctx context.Context, groupId string) ProjectsApiRemoveOneProjectRequest
+	DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiDeleteProjectInvitationRequest
 
-	// RemoveOneProjectExecute executes the request
-	RemoveOneProjectExecute(r ProjectsApiRemoveOneProjectRequest) (*http.Response, error)
+	// DeleteProjectInvitationExecute executes the request
+	DeleteProjectInvitationExecute(r ProjectsApiDeleteProjectInvitationRequest) (*http.Response, error)
 
 	/*
-	RemoveOneProjectLimit Remove One Project Limit
+	DeleteProjectLimit Remove One Project Limit
 
 	Removes the specified project limit. Depending on the limit, Atlas either resets the limit to its default value or removes the limit entirely. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiRemoveOneProjectLimitRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiDeleteProjectLimitRequest
 	*/
-	RemoveOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiRemoveOneProjectLimitRequest
+	DeleteProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiDeleteProjectLimitRequest
 
-	// RemoveOneProjectLimitExecute executes the request
-	RemoveOneProjectLimitExecute(r ProjectsApiRemoveOneProjectLimitRequest) (*http.Response, error)
+	// DeleteProjectLimitExecute executes the request
+	DeleteProjectLimitExecute(r ProjectsApiDeleteProjectLimitRequest) (*http.Response, error)
 
 	/*
-	ReturnAllProjectInvitations Return All Project Invitations
-
-	Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiReturnAllProjectInvitationsRequest
-	*/
-	ReturnAllProjectInvitations(ctx context.Context, groupId string) ProjectsApiReturnAllProjectInvitationsRequest
-
-	// ReturnAllProjectInvitationsExecute executes the request
-	//  @return []ApiGroupInvitationView
-	ReturnAllProjectInvitationsExecute(r ProjectsApiReturnAllProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error)
-
-	/*
-	ReturnAllProjects Return All Projects
-
-	Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectsApiReturnAllProjectsRequest
-	*/
-	ReturnAllProjects(ctx context.Context) ProjectsApiReturnAllProjectsRequest
-
-	// ReturnAllProjectsExecute executes the request
-	//  @return PaginatedAtlasGroupView
-	ReturnAllProjectsExecute(r ProjectsApiReturnAllProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error)
-
-	/*
-	ReturnAllUsersInOneProject Return All Users in One Project
-
-	Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiReturnAllUsersInOneProjectRequest
-	*/
-	ReturnAllUsersInOneProject(ctx context.Context, groupId string) ProjectsApiReturnAllUsersInOneProjectRequest
-
-	// ReturnAllUsersInOneProjectExecute executes the request
-	//  @return PaginatedApiAppUserView
-	ReturnAllUsersInOneProjectExecute(r ProjectsApiReturnAllUsersInOneProjectRequest) (*PaginatedApiAppUserView, *http.Response, error)
-
-	/*
-	ReturnOneProject Return One Project
+	GetProject Return One Project
 
 	Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiReturnOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiGetProjectRequest
 	*/
-	ReturnOneProject(ctx context.Context, groupId string) ProjectsApiReturnOneProjectRequest
+	GetProject(ctx context.Context, groupId string) ProjectsApiGetProjectRequest
 
-	// ReturnOneProjectExecute executes the request
+	// GetProjectExecute executes the request
 	//  @return Group
-	ReturnOneProjectExecute(r ProjectsApiReturnOneProjectRequest) (*Group, *http.Response, error)
+	GetProjectExecute(r ProjectsApiGetProjectRequest) (*Group, *http.Response, error)
 
 	/*
-	ReturnOneProjectInvitation Return One Project Invitation
-
-	Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiReturnOneProjectInvitationRequest
-	*/
-	ReturnOneProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiReturnOneProjectInvitationRequest
-
-	// ReturnOneProjectInvitationExecute executes the request
-	//  @return ApiGroupInvitationView
-	ReturnOneProjectInvitationExecute(r ProjectsApiReturnOneProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
-
-	/*
-	ReturnOneProjectUsingItsName Return One Project using Its Name
+	GetProjectByName Return One Project using Its Name
 
 	Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupName Human-readable label that identifies this project.
-	@return ProjectsApiReturnOneProjectUsingItsNameRequest
+	@return ProjectsApiGetProjectByNameRequest
 	*/
-	ReturnOneProjectUsingItsName(ctx context.Context, groupName string) ProjectsApiReturnOneProjectUsingItsNameRequest
+	GetProjectByName(ctx context.Context, groupName string) ProjectsApiGetProjectByNameRequest
 
-	// ReturnOneProjectUsingItsNameExecute executes the request
+	// GetProjectByNameExecute executes the request
 	//  @return Group
-	ReturnOneProjectUsingItsNameExecute(r ProjectsApiReturnOneProjectUsingItsNameRequest) (*Group, *http.Response, error)
+	GetProjectByNameExecute(r ProjectsApiGetProjectByNameRequest) (*Group, *http.Response, error)
 
 	/*
-	SetOneProjectLimit Set One Project Limit
+	GetProjectInvitation Return One Project Invitation
+
+	Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
+	@return ProjectsApiGetProjectInvitationRequest
+	*/
+	GetProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiGetProjectInvitationRequest
+
+	// GetProjectInvitationExecute executes the request
+	//  @return ApiGroupInvitationView
+	GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
+
+	/*
+	GetProjectLimit Return One Limit for One Project
+
+	Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiGetProjectLimitRequest
+	*/
+	GetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetProjectLimitRequest
+
+	// GetProjectLimitExecute executes the request
+	//  @return ApiLimitView
+	GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*ApiLimitView, *http.Response, error)
+
+	/*
+	GetProjectSettings Return One Project Settings
+
+	Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource does not require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiGetProjectSettingsRequest
+	*/
+	GetProjectSettings(ctx context.Context, groupId string) ProjectsApiGetProjectSettingsRequest
+
+	// GetProjectSettingsExecute executes the request
+	//  @return GroupSettings
+	GetProjectSettingsExecute(r ProjectsApiGetProjectSettingsRequest) (*GroupSettings, *http.Response, error)
+
+	/*
+	ListProjectInvitations Return All Project Invitations
+
+	Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiListProjectInvitationsRequest
+	*/
+	ListProjectInvitations(ctx context.Context, groupId string) ProjectsApiListProjectInvitationsRequest
+
+	// ListProjectInvitationsExecute executes the request
+	//  @return []ApiGroupInvitationView
+	ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error)
+
+	/*
+	ListProjectLimits Return All Limits for One Project
+
+	Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiListProjectLimitsRequest
+	*/
+	ListProjectLimits(ctx context.Context, groupId string) ProjectsApiListProjectLimitsRequest
+
+	// ListProjectLimitsExecute executes the request
+	//  @return ApiLimitView
+	ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*ApiLimitView, *http.Response, error)
+
+	/*
+	ListProjectUsers Return All Users in One Project
+
+	Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiListProjectUsersRequest
+	*/
+	ListProjectUsers(ctx context.Context, groupId string) ProjectsApiListProjectUsersRequest
+
+	// ListProjectUsersExecute executes the request
+	//  @return PaginatedApiAppUserView
+	ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUserView, *http.Response, error)
+
+	/*
+	ListProjects Return All Projects
+
+	Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ProjectsApiListProjectsRequest
+	*/
+	ListProjects(ctx context.Context) ProjectsApiListProjectsRequest
+
+	// ListProjectsExecute executes the request
+	//  @return PaginatedAtlasGroupView
+	ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error)
+
+	/*
+	RemoveProjectUser Remove One User from One Project
+
+	Removes the specified user from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param userId Unique 24-hexadecimal string that identifies MongoDB Cloud user you want to remove from the specified project. To return a application user's ID using their application username, use the Get All application users in One Project endpoint.
+	@return ProjectsApiRemoveProjectUserRequest
+	*/
+	RemoveProjectUser(ctx context.Context, groupId string, userId string) ProjectsApiRemoveProjectUserRequest
+
+	// RemoveProjectUserExecute executes the request
+	RemoveProjectUserExecute(r ProjectsApiRemoveProjectUserRequest) (*http.Response, error)
+
+	/*
+	SetProjectLimit Set One Project Limit
 
 	Sets the specified project limit. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiSetOneProjectLimitRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiSetProjectLimitRequest
 	*/
-	SetOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetOneProjectLimitRequest
+	SetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetProjectLimitRequest
 
-	// SetOneProjectLimitExecute executes the request
+	// SetProjectLimitExecute executes the request
 	//  @return ApiLimitView
-	SetOneProjectLimitExecute(r ProjectsApiSetOneProjectLimitRequest) (*ApiLimitView, *http.Response, error)
+	SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*ApiLimitView, *http.Response, error)
 
 	/*
-	UpdateOneProjectInvitation Update One Project Invitation
+	UpdateProjectInvitation Update One Project Invitation
 
 	Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the username of the invited user. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProjectsApiUpdateOneProjectInvitationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiUpdateProjectInvitationRequest
 	*/
-	UpdateOneProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateOneProjectInvitationRequest
+	UpdateProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateProjectInvitationRequest
 
-	// UpdateOneProjectInvitationExecute executes the request
+	// UpdateProjectInvitationExecute executes the request
 	//  @return ApiGroupInvitationView
-	UpdateOneProjectInvitationExecute(r ProjectsApiUpdateOneProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
+	UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
 
 	/*
-	UpdateOneProjectInvitationByInvitationId Update One Project Invitation by Invitation ID
+	UpdateProjectInvitationById Update One Project Invitation by Invitation ID
 
-	Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+	Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. Use the Return All Project Invitations endpoint to retrieve IDs for all pending project invitations. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest
+	@return ProjectsApiUpdateProjectInvitationByIdRequest
 	*/
-	UpdateOneProjectInvitationByInvitationId(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest
+	UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateProjectInvitationByIdRequest
 
-	// UpdateOneProjectInvitationByInvitationIdExecute executes the request
+	// UpdateProjectInvitationByIdExecute executes the request
 	//  @return ApiGroupInvitationView
-	UpdateOneProjectInvitationByInvitationIdExecute(r ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest) (*ApiGroupInvitationView, *http.Response, error)
+	UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*ApiGroupInvitationView, *http.Response, error)
+
+	/*
+	UpdateProjectSettings Update One Project Settings
+
+	Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProjectsApiUpdateProjectSettingsRequest
+	*/
+	UpdateProjectSettings(ctx context.Context, groupId string) ProjectsApiUpdateProjectSettingsRequest
+
+	// UpdateProjectSettingsExecute executes the request
+	//  @return GroupSettings
+	UpdateProjectSettingsExecute(r ProjectsApiUpdateProjectSettingsRequest) (*GroupSettings, *http.Response, error)
 }
 
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
-type ProjectsApiCancelOneProjectInvitationRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	invitationId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiCancelOneProjectInvitationRequest) Envelope(envelope bool) ProjectsApiCancelOneProjectInvitationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r ProjectsApiCancelOneProjectInvitationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CancelOneProjectInvitationExecute(r)
-}
-
-/*
-CancelOneProjectInvitation Cancel One Project Invitation
-
-Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiCancelOneProjectInvitationRequest
-*/
-func (a *ProjectsApiService) CancelOneProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiCancelOneProjectInvitationRequest {
-	return ProjectsApiCancelOneProjectInvitationRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		invitationId: invitationId,
-	}
-}
-
-// Execute executes the request
-func (a *ProjectsApiService) CancelOneProjectInvitationExecute(r ProjectsApiCancelOneProjectInvitationRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CancelOneProjectInvitation")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites/{invitationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invitationId"+"}", url.PathEscape(parameterToString(r.invitationId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.invitationId) < 24 {
-		return nil, reportError("invitationId must have at least 24 elements")
-	}
-	if strlen(r.invitationId) > 24 {
-		return nil, reportError("invitationId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ProjectsApiCreateOneProjectRequest struct {
+type ProjectsApiCreateProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	group *Group
@@ -446,43 +322,43 @@ type ProjectsApiCreateOneProjectRequest struct {
 }
 
 // Creates one project.
-func (r ProjectsApiCreateOneProjectRequest) Group(group Group) ProjectsApiCreateOneProjectRequest {
+func (r ProjectsApiCreateProjectRequest) Group(group Group) ProjectsApiCreateProjectRequest {
 	r.group = &group
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiCreateOneProjectRequest) Envelope(envelope bool) ProjectsApiCreateOneProjectRequest {
+func (r ProjectsApiCreateProjectRequest) Envelope(envelope bool) ProjectsApiCreateProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiCreateOneProjectRequest) Pretty(pretty bool) ProjectsApiCreateOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiCreateProjectRequest) Pretty(pretty bool) ProjectsApiCreateProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user to whom to grant the Project Owner role on the specified project. If you set this parameter, it overrides the default value of the oldest Organization Owner. 
-func (r ProjectsApiCreateOneProjectRequest) ProjectOwnerId(projectOwnerId string) ProjectsApiCreateOneProjectRequest {
+func (r ProjectsApiCreateProjectRequest) ProjectOwnerId(projectOwnerId string) ProjectsApiCreateProjectRequest {
 	r.projectOwnerId = &projectOwnerId
 	return r
 }
 
-func (r ProjectsApiCreateOneProjectRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.CreateOneProjectExecute(r)
+func (r ProjectsApiCreateProjectRequest) Execute() (*Group, *http.Response, error) {
+	return r.ApiService.CreateProjectExecute(r)
 }
 
 /*
-CreateOneProject Create One Project
+CreateProject Create One Project
 
 Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectsApiCreateOneProjectRequest
+ @return ProjectsApiCreateProjectRequest
 */
-func (a *ProjectsApiService) CreateOneProject(ctx context.Context) ProjectsApiCreateOneProjectRequest {
-	return ProjectsApiCreateOneProjectRequest{
+func (a *ProjectsApiService) CreateProject(ctx context.Context) ProjectsApiCreateProjectRequest {
+	return ProjectsApiCreateProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -490,7 +366,7 @@ func (a *ProjectsApiService) CreateOneProject(ctx context.Context) ProjectsApiCr
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) CreateOneProjectExecute(r ProjectsApiCreateOneProjectRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -498,7 +374,7 @@ func (a *ProjectsApiService) CreateOneProjectExecute(r ProjectsApiCreateOneProje
 		localVarReturnValue  *Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -642,549 +518,7 @@ func (a *ProjectsApiService) CreateOneProjectExecute(r ProjectsApiCreateOneProje
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetAllProjectLimitsRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetAllProjectLimitsRequest) Envelope(envelope bool) ProjectsApiGetAllProjectLimitsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiGetAllProjectLimitsRequest) Pretty(pretty bool) ProjectsApiGetAllProjectLimitsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiGetAllProjectLimitsRequest) Execute() (*ApiLimitView, *http.Response, error) {
-	return r.ApiService.GetAllProjectLimitsExecute(r)
-}
-
-/*
-GetAllProjectLimits Return All Limits for One Project
-
-Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiGetAllProjectLimitsRequest
-*/
-func (a *ProjectsApiService) GetAllProjectLimits(ctx context.Context, groupId string) ProjectsApiGetAllProjectLimitsRequest {
-	return ProjectsApiGetAllProjectLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiLimitView
-func (a *ProjectsApiService) GetAllProjectLimitsExecute(r ProjectsApiGetAllProjectLimitsRequest) (*ApiLimitView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiLimitView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetAllProjectLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiGetGroupSettingsRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetGroupSettingsRequest) Envelope(envelope bool) ProjectsApiGetGroupSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiGetGroupSettingsRequest) Pretty(pretty bool) ProjectsApiGetGroupSettingsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiGetGroupSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
-	return r.ApiService.GetGroupSettingsExecute(r)
-}
-
-/*
-GetGroupSettings Return One Project Settings
-
-Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource does not require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiGetGroupSettingsRequest
-*/
-func (a *ProjectsApiService) GetGroupSettings(ctx context.Context, groupId string) ProjectsApiGetGroupSettingsRequest {
-	return ProjectsApiGetGroupSettingsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return GroupSettings
-func (a *ProjectsApiService) GetGroupSettingsExecute(r ProjectsApiGetGroupSettingsRequest) (*GroupSettings, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GroupSettings
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetGroupSettings")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiGetOneProjectLimitRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	limitName string
-	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetOneProjectLimitRequest) Envelope(envelope bool) ProjectsApiGetOneProjectLimitRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiGetOneProjectLimitRequest) Pretty(pretty bool) ProjectsApiGetOneProjectLimitRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiGetOneProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
-	return r.ApiService.GetOneProjectLimitExecute(r)
-}
-
-/*
-GetOneProjectLimit Return One Limit for One Project
-
-Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiGetOneProjectLimitRequest
-*/
-func (a *ProjectsApiService) GetOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetOneProjectLimitRequest {
-	return ProjectsApiGetOneProjectLimitRequest{
-		ApiService: a,
-		ctx: ctx,
-		limitName: limitName,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiLimitView
-func (a *ProjectsApiService) GetOneProjectLimitExecute(r ProjectsApiGetOneProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiLimitView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetOneProjectLimit")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/limits/{limitName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"limitName"+"}", url.PathEscape(parameterToString(r.limitName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest struct {
+type ProjectsApiCreateProjectInvitationRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1194,38 +528,38 @@ type ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest struct {
 }
 
 // Invites one MongoDB Cloud user to join the specified project.
-func (r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest {
+func (r ProjectsApiCreateProjectInvitationRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiCreateProjectInvitationRequest {
 	r.apiGroupInvitationRequestView = &apiGroupInvitationRequestView
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) Pretty(pretty bool) ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiCreateProjectInvitationRequest) Pretty(pretty bool) ProjectsApiCreateProjectInvitationRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) Envelope(envelope bool) ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest {
+func (r ProjectsApiCreateProjectInvitationRequest) Envelope(envelope bool) ProjectsApiCreateProjectInvitationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
-	return r.ApiService.InviteOneMongoDBCloudUserToJoinOneProjectExecute(r)
+func (r ProjectsApiCreateProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
 /*
-InviteOneMongoDBCloudUserToJoinOneProject Invite One MongoDB Cloud User to Join One Project
+CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
 
 Invites one MongoDB Cloud user to join the specified project. The MongoDB Cloud user must accept the invitation to access information within the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiCreateProjectInvitationRequest
 */
-func (a *ProjectsApiService) InviteOneMongoDBCloudUserToJoinOneProject(ctx context.Context, groupId string) ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest {
-	return ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest{
+func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupId string) ProjectsApiCreateProjectInvitationRequest {
+	return ProjectsApiCreateProjectInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1234,7 +568,7 @@ func (a *ProjectsApiService) InviteOneMongoDBCloudUserToJoinOneProject(ctx conte
 
 // Execute executes the request
 //  @return ApiGroupInvitationView
-func (a *ProjectsApiService) InviteOneMongoDBCloudUserToJoinOneProjectExecute(r ProjectsApiInviteOneMongoDBCloudUserToJoinOneProjectRequest) (*ApiGroupInvitationView, *http.Response, error) {
+func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1242,7 +576,7 @@ func (a *ProjectsApiService) InviteOneMongoDBCloudUserToJoinOneProjectExecute(r 
 		localVarReturnValue  *ApiGroupInvitationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.InviteOneMongoDBCloudUserToJoinOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectInvitation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1346,187 +680,7 @@ func (a *ProjectsApiService) InviteOneMongoDBCloudUserToJoinOneProjectExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiPatchGroupSettingsRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	envelope *bool
-	pretty *bool
-	groupSettings *GroupSettings
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiPatchGroupSettingsRequest) Envelope(envelope bool) ProjectsApiPatchGroupSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiPatchGroupSettingsRequest) Pretty(pretty bool) ProjectsApiPatchGroupSettingsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiPatchGroupSettingsRequest) GroupSettings(groupSettings GroupSettings) ProjectsApiPatchGroupSettingsRequest {
-	r.groupSettings = &groupSettings
-	return r
-}
-
-func (r ProjectsApiPatchGroupSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
-	return r.ApiService.PatchGroupSettingsExecute(r)
-}
-
-/*
-PatchGroupSettings Update One Project Settings
-
-Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiPatchGroupSettingsRequest
-*/
-func (a *ProjectsApiService) PatchGroupSettings(ctx context.Context, groupId string) ProjectsApiPatchGroupSettingsRequest {
-	return ProjectsApiPatchGroupSettingsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return GroupSettings
-func (a *ProjectsApiService) PatchGroupSettingsExecute(r ProjectsApiPatchGroupSettingsRequest) (*GroupSettings, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GroupSettings
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.PatchGroupSettings")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.groupSettings
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiRemoveOneProjectRequest struct {
+type ProjectsApiDeleteProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1535,32 +689,32 @@ type ProjectsApiRemoveOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiRemoveOneProjectRequest) Envelope(envelope bool) ProjectsApiRemoveOneProjectRequest {
+func (r ProjectsApiDeleteProjectRequest) Envelope(envelope bool) ProjectsApiDeleteProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiRemoveOneProjectRequest) Pretty(pretty bool) ProjectsApiRemoveOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiDeleteProjectRequest) Pretty(pretty bool) ProjectsApiDeleteProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiRemoveOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneProjectExecute(r)
+func (r ProjectsApiDeleteProjectRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteProjectExecute(r)
 }
 
 /*
-RemoveOneProject Remove One Project
+DeleteProject Remove One Project
 
-Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+Removes the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. You can delete a project only if there are no Online Archives for the clusters in the project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiRemoveOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiDeleteProjectRequest
 */
-func (a *ProjectsApiService) RemoveOneProject(ctx context.Context, groupId string) ProjectsApiRemoveOneProjectRequest {
-	return ProjectsApiRemoveOneProjectRequest{
+func (a *ProjectsApiService) DeleteProject(ctx context.Context, groupId string) ProjectsApiDeleteProjectRequest {
+	return ProjectsApiDeleteProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1568,14 +722,14 @@ func (a *ProjectsApiService) RemoveOneProject(ctx context.Context, groupId strin
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) RemoveOneProjectExecute(r ProjectsApiRemoveOneProjectRequest) (*http.Response, error) {
+func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RemoveOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.DeleteProject")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1676,7 +830,146 @@ func (a *ProjectsApiService) RemoveOneProjectExecute(r ProjectsApiRemoveOneProje
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiRemoveOneProjectLimitRequest struct {
+type ProjectsApiDeleteProjectInvitationRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	invitationId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiDeleteProjectInvitationRequest) Envelope(envelope bool) ProjectsApiDeleteProjectInvitationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r ProjectsApiDeleteProjectInvitationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteProjectInvitationExecute(r)
+}
+
+/*
+DeleteProjectInvitation Cancel One Project Invitation
+
+Cancels one pending invitation sent to the specified MongoDB Cloud user to join a project. You can't cancel an invitation that the user accepted. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
+ @return ProjectsApiDeleteProjectInvitationRequest
+*/
+func (a *ProjectsApiService) DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiDeleteProjectInvitationRequest {
+	return ProjectsApiDeleteProjectInvitationRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		invitationId: invitationId,
+	}
+}
+
+// Execute executes the request
+func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteProjectInvitationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.DeleteProjectInvitation")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites/{invitationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"invitationId"+"}", url.PathEscape(parameterToString(r.invitationId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.invitationId) < 24 {
+		return nil, reportError("invitationId must have at least 24 elements")
+	}
+	if strlen(r.invitationId) > 24 {
+		return nil, reportError("invitationId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ProjectsApiDeleteProjectLimitRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	limitName string
@@ -1686,33 +979,33 @@ type ProjectsApiRemoveOneProjectLimitRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiRemoveOneProjectLimitRequest) Envelope(envelope bool) ProjectsApiRemoveOneProjectLimitRequest {
+func (r ProjectsApiDeleteProjectLimitRequest) Envelope(envelope bool) ProjectsApiDeleteProjectLimitRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiRemoveOneProjectLimitRequest) Pretty(pretty bool) ProjectsApiRemoveOneProjectLimitRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiDeleteProjectLimitRequest) Pretty(pretty bool) ProjectsApiDeleteProjectLimitRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiRemoveOneProjectLimitRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneProjectLimitExecute(r)
+func (r ProjectsApiDeleteProjectLimitRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteProjectLimitExecute(r)
 }
 
 /*
-RemoveOneProjectLimit Remove One Project Limit
+DeleteProjectLimit Remove One Project Limit
 
 Removes the specified project limit. Depending on the limit, Atlas either resets the limit to its default value or removes the limit entirely. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiRemoveOneProjectLimitRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiDeleteProjectLimitRequest
 */
-func (a *ProjectsApiService) RemoveOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiRemoveOneProjectLimitRequest {
-	return ProjectsApiRemoveOneProjectLimitRequest{
+func (a *ProjectsApiService) DeleteProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiDeleteProjectLimitRequest {
+	return ProjectsApiDeleteProjectLimitRequest{
 		ApiService: a,
 		ctx: ctx,
 		limitName: limitName,
@@ -1721,14 +1014,14 @@ func (a *ProjectsApiService) RemoveOneProjectLimit(ctx context.Context, limitNam
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) RemoveOneProjectLimitExecute(r ProjectsApiRemoveOneProjectLimitRequest) (*http.Response, error) {
+func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjectLimitRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RemoveOneProjectLimit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.DeleteProjectLimit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1841,548 +1134,7 @@ func (a *ProjectsApiService) RemoveOneProjectLimitExecute(r ProjectsApiRemoveOne
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiReturnAllProjectInvitationsRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	envelope *bool
-	pretty *bool
-	username *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnAllProjectInvitationsRequest) Envelope(envelope bool) ProjectsApiReturnAllProjectInvitationsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnAllProjectInvitationsRequest) Pretty(pretty bool) ProjectsApiReturnAllProjectInvitationsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Email address of the user account invited to this project.
-func (r ProjectsApiReturnAllProjectInvitationsRequest) Username(username string) ProjectsApiReturnAllProjectInvitationsRequest {
-	r.username = &username
-	return r
-}
-
-func (r ProjectsApiReturnAllProjectInvitationsRequest) Execute() ([]ApiGroupInvitationView, *http.Response, error) {
-	return r.ApiService.ReturnAllProjectInvitationsExecute(r)
-}
-
-/*
-ReturnAllProjectInvitations Return All Project Invitations
-
-Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiReturnAllProjectInvitationsRequest
-*/
-func (a *ProjectsApiService) ReturnAllProjectInvitations(ctx context.Context, groupId string) ProjectsApiReturnAllProjectInvitationsRequest {
-	return ProjectsApiReturnAllProjectInvitationsRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return []ApiGroupInvitationView
-func (a *ProjectsApiService) ReturnAllProjectInvitationsExecute(r ProjectsApiReturnAllProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ApiGroupInvitationView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnAllProjectInvitations")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.username != nil {
-		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiReturnAllProjectsRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnAllProjectsRequest) Envelope(envelope bool) ProjectsApiReturnAllProjectsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProjectsApiReturnAllProjectsRequest) IncludeCount(includeCount bool) ProjectsApiReturnAllProjectsRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r ProjectsApiReturnAllProjectsRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiReturnAllProjectsRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r ProjectsApiReturnAllProjectsRequest) PageNum(pageNum int32) ProjectsApiReturnAllProjectsRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnAllProjectsRequest) Pretty(pretty bool) ProjectsApiReturnAllProjectsRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiReturnAllProjectsRequest) Execute() (*PaginatedAtlasGroupView, *http.Response, error) {
-	return r.ApiService.ReturnAllProjectsExecute(r)
-}
-
-/*
-ReturnAllProjects Return All Projects
-
-Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectsApiReturnAllProjectsRequest
-*/
-func (a *ProjectsApiService) ReturnAllProjects(ctx context.Context) ProjectsApiReturnAllProjectsRequest {
-	return ProjectsApiReturnAllProjectsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedAtlasGroupView
-func (a *ProjectsApiService) ReturnAllProjectsExecute(r ProjectsApiReturnAllProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedAtlasGroupView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnAllProjects")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiReturnAllUsersInOneProjectRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	envelope *bool
-	includeCount *bool
-	itemsPerPage *int32
-	pageNum *int32
-	pretty *bool
-	flattenTeams *bool
-	includeOrgUsers *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) Envelope(envelope bool) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) IncludeCount(includeCount bool) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.includeCount = &includeCount
-	return r
-}
-
-// Number of items that the response returns per page.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.itemsPerPage = &itemsPerPage
-	return r
-}
-
-// Number of the page that displays the current set of the total objects that the response returns.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) PageNum(pageNum int32) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) Pretty(pretty bool) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether the returned list should include users who belong to a team with a role in this project. You might not have assigned the individual users a role in this project. If &#x60;\&quot;flattenTeams\&quot; : false&#x60;, this resource returns only users with a role in the project.  If &#x60;\&quot;flattenTeams\&quot; : true&#x60;, this resource returns both users with roles in the project and users who belong to teams with roles in the project.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) FlattenTeams(flattenTeams bool) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.flattenTeams = &flattenTeams
-	return r
-}
-
-// Flag that indicates whether the returned list should include users with implicit access to the project, the Organization Owner or Organization Read Only role. You might not have assigned the individual users a role in this project. If &#x60;\&quot;includeOrgUsers\&quot;: false&#x60;, this resource returns only users with a role in the project. If &#x60;\&quot;includeOrgUsers\&quot;: true&#x60;, this resource returns both users with roles in the project and users who have implicit access to the project through their organization role.
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) IncludeOrgUsers(includeOrgUsers bool) ProjectsApiReturnAllUsersInOneProjectRequest {
-	r.includeOrgUsers = &includeOrgUsers
-	return r
-}
-
-func (r ProjectsApiReturnAllUsersInOneProjectRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
-	return r.ApiService.ReturnAllUsersInOneProjectExecute(r)
-}
-
-/*
-ReturnAllUsersInOneProject Return All Users in One Project
-
-Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiReturnAllUsersInOneProjectRequest
-*/
-func (a *ProjectsApiService) ReturnAllUsersInOneProject(ctx context.Context, groupId string) ProjectsApiReturnAllUsersInOneProjectRequest {
-	return ProjectsApiReturnAllUsersInOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedApiAppUserView
-func (a *ProjectsApiService) ReturnAllUsersInOneProjectExecute(r ProjectsApiReturnAllUsersInOneProjectRequest) (*PaginatedApiAppUserView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAppUserView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnAllUsersInOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/users"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.includeCount != nil {
-		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
-	}
-	if r.itemsPerPage != nil {
-		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
-	}
-	if r.pageNum != nil {
-		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.flattenTeams != nil {
-		localVarQueryParams.Add("flattenTeams", parameterToString(*r.flattenTeams, ""))
-	}
-	if r.includeOrgUsers != nil {
-		localVarQueryParams.Add("includeOrgUsers", parameterToString(*r.includeOrgUsers, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiReturnOneProjectRequest struct {
+type ProjectsApiGetProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2391,32 +1143,32 @@ type ProjectsApiReturnOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnOneProjectRequest) Envelope(envelope bool) ProjectsApiReturnOneProjectRequest {
+func (r ProjectsApiGetProjectRequest) Envelope(envelope bool) ProjectsApiGetProjectRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnOneProjectRequest) Pretty(pretty bool) ProjectsApiReturnOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiGetProjectRequest) Pretty(pretty bool) ProjectsApiGetProjectRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiReturnOneProjectRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.ReturnOneProjectExecute(r)
+func (r ProjectsApiGetProjectRequest) Execute() (*Group, *http.Response, error) {
+	return r.ApiService.GetProjectExecute(r)
 }
 
 /*
-ReturnOneProject Return One Project
+GetProject Return One Project
 
 Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiReturnOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiGetProjectRequest
 */
-func (a *ProjectsApiService) ReturnOneProject(ctx context.Context, groupId string) ProjectsApiReturnOneProjectRequest {
-	return ProjectsApiReturnOneProjectRequest{
+func (a *ProjectsApiService) GetProject(ctx context.Context, groupId string) ProjectsApiGetProjectRequest {
+	return ProjectsApiGetProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2425,7 +1177,7 @@ func (a *ProjectsApiService) ReturnOneProject(ctx context.Context, groupId strin
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) ReturnOneProjectExecute(r ProjectsApiReturnOneProjectRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2433,7 +1185,7 @@ func (a *ProjectsApiService) ReturnOneProjectExecute(r ProjectsApiReturnOneProje
 		localVarReturnValue  *Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2543,178 +1295,7 @@ func (a *ProjectsApiService) ReturnOneProjectExecute(r ProjectsApiReturnOneProje
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiReturnOneProjectInvitationRequest struct {
-	ctx context.Context
-	ApiService ProjectsApi
-	groupId string
-	invitationId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnOneProjectInvitationRequest) Envelope(envelope bool) ProjectsApiReturnOneProjectInvitationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnOneProjectInvitationRequest) Pretty(pretty bool) ProjectsApiReturnOneProjectInvitationRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProjectsApiReturnOneProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
-	return r.ApiService.ReturnOneProjectInvitationExecute(r)
-}
-
-/*
-ReturnOneProjectInvitation Return One Project Invitation
-
-Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiReturnOneProjectInvitationRequest
-*/
-func (a *ProjectsApiService) ReturnOneProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiReturnOneProjectInvitationRequest {
-	return ProjectsApiReturnOneProjectInvitationRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		invitationId: invitationId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiGroupInvitationView
-func (a *ProjectsApiService) ReturnOneProjectInvitationExecute(r ProjectsApiReturnOneProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiGroupInvitationView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnOneProjectInvitation")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites/{invitationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invitationId"+"}", url.PathEscape(parameterToString(r.invitationId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.invitationId) < 24 {
-		return localVarReturnValue, nil, reportError("invitationId must have at least 24 elements")
-	}
-	if strlen(r.invitationId) > 24 {
-		return localVarReturnValue, nil, reportError("invitationId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProjectsApiReturnOneProjectUsingItsNameRequest struct {
+type ProjectsApiGetProjectByNameRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupName string
@@ -2723,32 +1304,32 @@ type ProjectsApiReturnOneProjectUsingItsNameRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiReturnOneProjectUsingItsNameRequest) Envelope(envelope bool) ProjectsApiReturnOneProjectUsingItsNameRequest {
+func (r ProjectsApiGetProjectByNameRequest) Envelope(envelope bool) ProjectsApiGetProjectByNameRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiReturnOneProjectUsingItsNameRequest) Pretty(pretty bool) ProjectsApiReturnOneProjectUsingItsNameRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiGetProjectByNameRequest) Pretty(pretty bool) ProjectsApiGetProjectByNameRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiReturnOneProjectUsingItsNameRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.ReturnOneProjectUsingItsNameExecute(r)
+func (r ProjectsApiGetProjectByNameRequest) Execute() (*Group, *http.Response, error) {
+	return r.ApiService.GetProjectByNameExecute(r)
 }
 
 /*
-ReturnOneProjectUsingItsName Return One Project using Its Name
+GetProjectByName Return One Project using Its Name
 
 Returns details about the specified project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupName Human-readable label that identifies this project.
- @return ProjectsApiReturnOneProjectUsingItsNameRequest
+ @return ProjectsApiGetProjectByNameRequest
 */
-func (a *ProjectsApiService) ReturnOneProjectUsingItsName(ctx context.Context, groupName string) ProjectsApiReturnOneProjectUsingItsNameRequest {
-	return ProjectsApiReturnOneProjectUsingItsNameRequest{
+func (a *ProjectsApiService) GetProjectByName(ctx context.Context, groupName string) ProjectsApiGetProjectByNameRequest {
+	return ProjectsApiGetProjectByNameRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupName: groupName,
@@ -2757,7 +1338,7 @@ func (a *ProjectsApiService) ReturnOneProjectUsingItsName(ctx context.Context, g
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) ReturnOneProjectUsingItsNameExecute(r ProjectsApiReturnOneProjectUsingItsNameRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNameRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2765,7 +1346,7 @@ func (a *ProjectsApiService) ReturnOneProjectUsingItsNameExecute(r ProjectsApiRe
 		localVarReturnValue  *Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ReturnOneProjectUsingItsName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2897,7 +1478,1432 @@ func (a *ProjectsApiService) ReturnOneProjectUsingItsNameExecute(r ProjectsApiRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiSetOneProjectLimitRequest struct {
+type ProjectsApiGetProjectInvitationRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	invitationId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiGetProjectInvitationRequest) Envelope(envelope bool) ProjectsApiGetProjectInvitationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiGetProjectInvitationRequest) Pretty(pretty bool) ProjectsApiGetProjectInvitationRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiGetProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+	return r.ApiService.GetProjectInvitationExecute(r)
+}
+
+/*
+GetProjectInvitation Return One Project Invitation
+
+Returns the details of one pending invitation to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
+ @return ProjectsApiGetProjectInvitationRequest
+*/
+func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiGetProjectInvitationRequest {
+	return ProjectsApiGetProjectInvitationRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		invitationId: invitationId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiGroupInvitationView
+func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiGroupInvitationView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectInvitation")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites/{invitationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"invitationId"+"}", url.PathEscape(parameterToString(r.invitationId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.invitationId) < 24 {
+		return localVarReturnValue, nil, reportError("invitationId must have at least 24 elements")
+	}
+	if strlen(r.invitationId) > 24 {
+		return localVarReturnValue, nil, reportError("invitationId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiGetProjectLimitRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	limitName string
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiGetProjectLimitRequest) Envelope(envelope bool) ProjectsApiGetProjectLimitRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiGetProjectLimitRequest) Pretty(pretty bool) ProjectsApiGetProjectLimitRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiGetProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
+	return r.ApiService.GetProjectLimitExecute(r)
+}
+
+/*
+GetProjectLimit Return One Limit for One Project
+
+Returns the specified limit for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiGetProjectLimitRequest
+*/
+func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetProjectLimitRequest {
+	return ProjectsApiGetProjectLimitRequest{
+		ApiService: a,
+		ctx: ctx,
+		limitName: limitName,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiLimitView
+func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiLimitView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectLimit")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/limits/{limitName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"limitName"+"}", url.PathEscape(parameterToString(r.limitName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiGetProjectSettingsRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiGetProjectSettingsRequest) Envelope(envelope bool) ProjectsApiGetProjectSettingsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiGetProjectSettingsRequest) Pretty(pretty bool) ProjectsApiGetProjectSettingsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiGetProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
+	return r.ApiService.GetProjectSettingsExecute(r)
+}
+
+/*
+GetProjectSettings Return One Project Settings
+
+Returns details about the specified project's settings. To use this resource, the requesting API Key must have the Project Read Only role. This resource does not require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiGetProjectSettingsRequest
+*/
+func (a *ProjectsApiService) GetProjectSettings(ctx context.Context, groupId string) ProjectsApiGetProjectSettingsRequest {
+	return ProjectsApiGetProjectSettingsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return GroupSettings
+func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSettingsRequest) (*GroupSettings, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupSettings
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectSettings")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/settings"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiListProjectInvitationsRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	envelope *bool
+	pretty *bool
+	username *string
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiListProjectInvitationsRequest) Envelope(envelope bool) ProjectsApiListProjectInvitationsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiListProjectInvitationsRequest) Pretty(pretty bool) ProjectsApiListProjectInvitationsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Email address of the user account invited to this project.
+func (r ProjectsApiListProjectInvitationsRequest) Username(username string) ProjectsApiListProjectInvitationsRequest {
+	r.username = &username
+	return r
+}
+
+func (r ProjectsApiListProjectInvitationsRequest) Execute() ([]ApiGroupInvitationView, *http.Response, error) {
+	return r.ApiService.ListProjectInvitationsExecute(r)
+}
+
+/*
+ListProjectInvitations Return All Project Invitations
+
+Returns all pending invitations to the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiListProjectInvitationsRequest
+*/
+func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId string) ProjectsApiListProjectInvitationsRequest {
+	return ProjectsApiListProjectInvitationsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return []ApiGroupInvitationView
+func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ApiGroupInvitationView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectInvitations")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/invites"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.username != nil {
+		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiListProjectLimitsRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiListProjectLimitsRequest) Envelope(envelope bool) ProjectsApiListProjectLimitsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiListProjectLimitsRequest) Pretty(pretty bool) ProjectsApiListProjectLimitsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiListProjectLimitsRequest) Execute() (*ApiLimitView, *http.Response, error) {
+	return r.ApiService.ListProjectLimitsExecute(r)
+}
+
+/*
+ListProjectLimits Return All Limits for One Project
+
+Returns all the limits for the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiListProjectLimitsRequest
+*/
+func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId string) ProjectsApiListProjectLimitsRequest {
+	return ProjectsApiListProjectLimitsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiLimitView
+func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*ApiLimitView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiLimitView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectLimits")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/limits"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiListProjectUsersRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+	flattenTeams *bool
+	includeOrgUsers *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiListProjectUsersRequest) Envelope(envelope bool) ProjectsApiListProjectUsersRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r ProjectsApiListProjectUsersRequest) IncludeCount(includeCount bool) ProjectsApiListProjectUsersRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r ProjectsApiListProjectUsersRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiListProjectUsersRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r ProjectsApiListProjectUsersRequest) PageNum(pageNum int32) ProjectsApiListProjectUsersRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiListProjectUsersRequest) Pretty(pretty bool) ProjectsApiListProjectUsersRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether the returned list should include users who belong to a team with a role in this project. You might not have assigned the individual users a role in this project. If &#x60;\&quot;flattenTeams\&quot; : false&#x60;, this resource returns only users with a role in the project.  If &#x60;\&quot;flattenTeams\&quot; : true&#x60;, this resource returns both users with roles in the project and users who belong to teams with roles in the project.
+func (r ProjectsApiListProjectUsersRequest) FlattenTeams(flattenTeams bool) ProjectsApiListProjectUsersRequest {
+	r.flattenTeams = &flattenTeams
+	return r
+}
+
+// Flag that indicates whether the returned list should include users with implicit access to the project, the Organization Owner or Organization Read Only role. You might not have assigned the individual users a role in this project. If &#x60;\&quot;includeOrgUsers\&quot;: false&#x60;, this resource returns only users with a role in the project. If &#x60;\&quot;includeOrgUsers\&quot;: true&#x60;, this resource returns both users with roles in the project and users who have implicit access to the project through their organization role.
+func (r ProjectsApiListProjectUsersRequest) IncludeOrgUsers(includeOrgUsers bool) ProjectsApiListProjectUsersRequest {
+	r.includeOrgUsers = &includeOrgUsers
+	return r
+}
+
+func (r ProjectsApiListProjectUsersRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+	return r.ApiService.ListProjectUsersExecute(r)
+}
+
+/*
+ListProjectUsers Return All Users in One Project
+
+Returns details about all users in the specified project. Users belong to an organization. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiListProjectUsersRequest
+*/
+func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId string) ProjectsApiListProjectUsersRequest {
+	return ProjectsApiListProjectUsersRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedApiAppUserView
+func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedApiAppUserView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectUsers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.flattenTeams != nil {
+		localVarQueryParams.Add("flattenTeams", parameterToString(*r.flattenTeams, ""))
+	}
+	if r.includeOrgUsers != nil {
+		localVarQueryParams.Add("includeOrgUsers", parameterToString(*r.includeOrgUsers, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiListProjectsRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	envelope *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiListProjectsRequest) Envelope(envelope bool) ProjectsApiListProjectsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r ProjectsApiListProjectsRequest) IncludeCount(includeCount bool) ProjectsApiListProjectsRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r ProjectsApiListProjectsRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiListProjectsRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r ProjectsApiListProjectsRequest) PageNum(pageNum int32) ProjectsApiListProjectsRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiListProjectsRequest) Pretty(pretty bool) ProjectsApiListProjectsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiListProjectsRequest) Execute() (*PaginatedAtlasGroupView, *http.Response, error) {
+	return r.ApiService.ListProjectsExecute(r)
+}
+
+/*
+ListProjects Return All Projects
+
+Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ProjectsApiListProjectsRequest
+*/
+func (a *ProjectsApiService) ListProjects(ctx context.Context) ProjectsApiListProjectsRequest {
+	return ProjectsApiListProjectsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedAtlasGroupView
+func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedAtlasGroupView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjects")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiRemoveProjectUserRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	userId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiRemoveProjectUserRequest) Envelope(envelope bool) ProjectsApiRemoveProjectUserRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiRemoveProjectUserRequest) Pretty(pretty bool) ProjectsApiRemoveProjectUserRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiRemoveProjectUserRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveProjectUserExecute(r)
+}
+
+/*
+RemoveProjectUser Remove One User from One Project
+
+Removes the specified user from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param userId Unique 24-hexadecimal string that identifies MongoDB Cloud user you want to remove from the specified project. To return a application user's ID using their application username, use the Get All application users in One Project endpoint.
+ @return ProjectsApiRemoveProjectUserRequest
+*/
+func (a *ProjectsApiService) RemoveProjectUser(ctx context.Context, groupId string, userId string) ProjectsApiRemoveProjectUserRequest {
+	return ProjectsApiRemoveProjectUserRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProjectUserRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RemoveProjectUser")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/users/{userId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.userId) < 24 {
+		return nil, reportError("userId must have at least 24 elements")
+	}
+	if strlen(r.userId) > 24 {
+		return nil, reportError("userId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ProjectsApiSetProjectLimitRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	limitName string
@@ -2908,38 +2914,38 @@ type ProjectsApiSetOneProjectLimitRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiSetOneProjectLimitRequest) Envelope(envelope bool) ProjectsApiSetOneProjectLimitRequest {
+func (r ProjectsApiSetProjectLimitRequest) Envelope(envelope bool) ProjectsApiSetProjectLimitRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiSetOneProjectLimitRequest) Pretty(pretty bool) ProjectsApiSetOneProjectLimitRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiSetProjectLimitRequest) Pretty(pretty bool) ProjectsApiSetProjectLimitRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiSetOneProjectLimitRequest) ApiLimitView(apiLimitView ApiLimitView) ProjectsApiSetOneProjectLimitRequest {
+func (r ProjectsApiSetProjectLimitRequest) ApiLimitView(apiLimitView ApiLimitView) ProjectsApiSetProjectLimitRequest {
 	r.apiLimitView = &apiLimitView
 	return r
 }
 
-func (r ProjectsApiSetOneProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
-	return r.ApiService.SetOneProjectLimitExecute(r)
+func (r ProjectsApiSetProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
+	return r.ApiService.SetProjectLimitExecute(r)
 }
 
 /*
-SetOneProjectLimit Set One Project Limit
+SetProjectLimit Set One Project Limit
 
 Sets the specified project limit. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | 
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiSetOneProjectLimitRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiSetProjectLimitRequest
 */
-func (a *ProjectsApiService) SetOneProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetOneProjectLimitRequest {
-	return ProjectsApiSetOneProjectLimitRequest{
+func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetProjectLimitRequest {
+	return ProjectsApiSetProjectLimitRequest{
 		ApiService: a,
 		ctx: ctx,
 		limitName: limitName,
@@ -2949,7 +2955,7 @@ func (a *ProjectsApiService) SetOneProjectLimit(ctx context.Context, limitName s
 
 // Execute executes the request
 //  @return ApiLimitView
-func (a *ProjectsApiService) SetOneProjectLimitExecute(r ProjectsApiSetOneProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
+func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2957,7 +2963,7 @@ func (a *ProjectsApiService) SetOneProjectLimitExecute(r ProjectsApiSetOneProjec
 		localVarReturnValue  *ApiLimitView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.SetOneProjectLimit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.SetProjectLimit")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3092,7 +3098,7 @@ func (a *ProjectsApiService) SetOneProjectLimitExecute(r ProjectsApiSetOneProjec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateOneProjectInvitationRequest struct {
+type ProjectsApiUpdateProjectInvitationRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -3102,38 +3108,38 @@ type ProjectsApiUpdateOneProjectInvitationRequest struct {
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateOneProjectInvitationRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiUpdateOneProjectInvitationRequest {
+func (r ProjectsApiUpdateProjectInvitationRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiUpdateProjectInvitationRequest {
 	r.apiGroupInvitationRequestView = &apiGroupInvitationRequestView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateOneProjectInvitationRequest) Envelope(envelope bool) ProjectsApiUpdateOneProjectInvitationRequest {
+func (r ProjectsApiUpdateProjectInvitationRequest) Envelope(envelope bool) ProjectsApiUpdateProjectInvitationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProjectsApiUpdateOneProjectInvitationRequest) Pretty(pretty bool) ProjectsApiUpdateOneProjectInvitationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiUpdateProjectInvitationRequest) Pretty(pretty bool) ProjectsApiUpdateProjectInvitationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProjectsApiUpdateOneProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
-	return r.ApiService.UpdateOneProjectInvitationExecute(r)
+func (r ProjectsApiUpdateProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+	return r.ApiService.UpdateProjectInvitationExecute(r)
 }
 
 /*
-UpdateOneProjectInvitation Update One Project Invitation
+UpdateProjectInvitation Update One Project Invitation
 
 Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the username of the invited user. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProjectsApiUpdateOneProjectInvitationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiUpdateProjectInvitationRequest
 */
-func (a *ProjectsApiService) UpdateOneProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateOneProjectInvitationRequest {
-	return ProjectsApiUpdateOneProjectInvitationRequest{
+func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateProjectInvitationRequest {
+	return ProjectsApiUpdateProjectInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -3142,7 +3148,7 @@ func (a *ProjectsApiService) UpdateOneProjectInvitation(ctx context.Context, gro
 
 // Execute executes the request
 //  @return ApiGroupInvitationView
-func (a *ProjectsApiService) UpdateOneProjectInvitationExecute(r ProjectsApiUpdateOneProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -3150,7 +3156,7 @@ func (a *ProjectsApiService) UpdateOneProjectInvitationExecute(r ProjectsApiUpda
 		localVarReturnValue  *ApiGroupInvitationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateOneProjectInvitation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProjectInvitation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3276,7 +3282,7 @@ func (a *ProjectsApiService) UpdateOneProjectInvitationExecute(r ProjectsApiUpda
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest struct {
+type ProjectsApiUpdateProjectInvitationByIdRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -3286,33 +3292,33 @@ type ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest struct {
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest) ApiGroupInvitationUpdateRequestView(apiGroupInvitationUpdateRequestView ApiGroupInvitationUpdateRequestView) ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest {
+func (r ProjectsApiUpdateProjectInvitationByIdRequest) ApiGroupInvitationUpdateRequestView(apiGroupInvitationUpdateRequestView ApiGroupInvitationUpdateRequestView) ProjectsApiUpdateProjectInvitationByIdRequest {
 	r.apiGroupInvitationUpdateRequestView = &apiGroupInvitationUpdateRequestView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest) Envelope(envelope bool) ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest {
+func (r ProjectsApiUpdateProjectInvitationByIdRequest) Envelope(envelope bool) ProjectsApiUpdateProjectInvitationByIdRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
-	return r.ApiService.UpdateOneProjectInvitationByInvitationIdExecute(r)
+func (r ProjectsApiUpdateProjectInvitationByIdRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+	return r.ApiService.UpdateProjectInvitationByIdExecute(r)
 }
 
 /*
-UpdateOneProjectInvitationByInvitationId Update One Project Invitation by Invitation ID
+UpdateProjectInvitationById Update One Project Invitation by Invitation ID
 
-Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+Updates the details of one pending invitation to the specified project. To specify which invitation to update, provide the unique identification string for that invitation. Use the Return All Project Invitations endpoint to retrieve IDs for all pending project invitations. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest
+ @return ProjectsApiUpdateProjectInvitationByIdRequest
 */
-func (a *ProjectsApiService) UpdateOneProjectInvitationByInvitationId(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest {
-	return ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest{
+func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateProjectInvitationByIdRequest {
+	return ProjectsApiUpdateProjectInvitationByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -3322,7 +3328,7 @@ func (a *ProjectsApiService) UpdateOneProjectInvitationByInvitationId(ctx contex
 
 // Execute executes the request
 //  @return ApiGroupInvitationView
-func (a *ProjectsApiService) UpdateOneProjectInvitationByInvitationIdExecute(r ProjectsApiUpdateOneProjectInvitationByInvitationIdRequest) (*ApiGroupInvitationView, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*ApiGroupInvitationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -3330,7 +3336,7 @@ func (a *ProjectsApiService) UpdateOneProjectInvitationByInvitationIdExecute(r P
 		localVarReturnValue  *ApiGroupInvitationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateOneProjectInvitationByInvitationId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProjectInvitationById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3414,6 +3420,186 @@ func (a *ProjectsApiService) UpdateOneProjectInvitationByInvitationIdExecute(r P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectsApiUpdateProjectSettingsRequest struct {
+	ctx context.Context
+	ApiService ProjectsApi
+	groupId string
+	envelope *bool
+	pretty *bool
+	groupSettings *GroupSettings
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProjectsApiUpdateProjectSettingsRequest) Envelope(envelope bool) ProjectsApiUpdateProjectSettingsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProjectsApiUpdateProjectSettingsRequest) Pretty(pretty bool) ProjectsApiUpdateProjectSettingsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProjectsApiUpdateProjectSettingsRequest) GroupSettings(groupSettings GroupSettings) ProjectsApiUpdateProjectSettingsRequest {
+	r.groupSettings = &groupSettings
+	return r
+}
+
+func (r ProjectsApiUpdateProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
+	return r.ApiService.UpdateProjectSettingsExecute(r)
+}
+
+/*
+UpdateProjectSettings Update One Project Settings
+
+Updates the settings of the specified project. You can update any of the options available. MongoDB cloud only updates the options provided in the request. To use this resource, the requesting API Key must have the Project Owner role. This resource does not require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProjectsApiUpdateProjectSettingsRequest
+*/
+func (a *ProjectsApiService) UpdateProjectSettings(ctx context.Context, groupId string) ProjectsApiUpdateProjectSettingsRequest {
+	return ProjectsApiUpdateProjectSettingsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return GroupSettings
+func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdateProjectSettingsRequest) (*GroupSettings, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupSettings
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProjectSettings")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/settings"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.groupSettings
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

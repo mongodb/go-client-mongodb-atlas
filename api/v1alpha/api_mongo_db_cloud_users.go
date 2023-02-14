@@ -23,54 +23,54 @@ import (
 type MongoDBCloudUsersApi interface {
 
 	/*
-	CreateOneCloudUser Create One MongoDB Cloud User
+	CreateUser Create One MongoDB Cloud User
 
 	Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MongoDBCloudUsersApiCreateOneCloudUserRequest
+	@return MongoDBCloudUsersApiCreateUserRequest
 	*/
-	CreateOneCloudUser(ctx context.Context) MongoDBCloudUsersApiCreateOneCloudUserRequest
+	CreateUser(ctx context.Context) MongoDBCloudUsersApiCreateUserRequest
 
-	// CreateOneCloudUserExecute executes the request
+	// CreateUserExecute executes the request
 	//  @return ApiAppUserView
-	CreateOneCloudUserExecute(r MongoDBCloudUsersApiCreateOneCloudUserRequest) (*ApiAppUserView, *http.Response, error)
+	CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*ApiAppUserView, *http.Response, error)
 
 	/*
-	ReturnOneCloudUserUsingItsId Return One MongoDB Cloud User using Its ID
+	GetUser Return One MongoDB Cloud User using Its ID
 
 	Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userId Unique 24-hexadecimal digit string that identifies this user.
-	@return MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest
+	@return MongoDBCloudUsersApiGetUserRequest
 	*/
-	ReturnOneCloudUserUsingItsId(ctx context.Context, userId string) MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest
+	GetUser(ctx context.Context, userId string) MongoDBCloudUsersApiGetUserRequest
 
-	// ReturnOneCloudUserUsingItsIdExecute executes the request
+	// GetUserExecute executes the request
 	//  @return ApiAppUserView
-	ReturnOneCloudUserUsingItsIdExecute(r MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest) (*ApiAppUserView, *http.Response, error)
+	GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*ApiAppUserView, *http.Response, error)
 
 	/*
-	ReturnOneCloudUserUsingItsUsername Return One MongoDB Cloud User using Their Username
+	GetUserByUsername Return One MongoDB Cloud User using Their Username
 
 	Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
-	@return MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest
+	@return MongoDBCloudUsersApiGetUserByUsernameRequest
 	*/
-	ReturnOneCloudUserUsingItsUsername(ctx context.Context, userName string) MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest
+	GetUserByUsername(ctx context.Context, userName string) MongoDBCloudUsersApiGetUserByUsernameRequest
 
-	// ReturnOneCloudUserUsingItsUsernameExecute executes the request
+	// GetUserByUsernameExecute executes the request
 	//  @return ApiAppUserView
-	ReturnOneCloudUserUsingItsUsernameExecute(r MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest) (*ApiAppUserView, *http.Response, error)
+	GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*ApiAppUserView, *http.Response, error)
 }
 
 // MongoDBCloudUsersApiService MongoDBCloudUsersApi service
 type MongoDBCloudUsersApiService service
 
-type MongoDBCloudUsersApiCreateOneCloudUserRequest struct {
+type MongoDBCloudUsersApiCreateUserRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	apiAppUserView *ApiAppUserView
@@ -79,37 +79,37 @@ type MongoDBCloudUsersApiCreateOneCloudUserRequest struct {
 }
 
 // MongoDB Cloud user account to create.
-func (r MongoDBCloudUsersApiCreateOneCloudUserRequest) ApiAppUserView(apiAppUserView ApiAppUserView) MongoDBCloudUsersApiCreateOneCloudUserRequest {
+func (r MongoDBCloudUsersApiCreateUserRequest) ApiAppUserView(apiAppUserView ApiAppUserView) MongoDBCloudUsersApiCreateUserRequest {
 	r.apiAppUserView = &apiAppUserView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MongoDBCloudUsersApiCreateOneCloudUserRequest) Envelope(envelope bool) MongoDBCloudUsersApiCreateOneCloudUserRequest {
+func (r MongoDBCloudUsersApiCreateUserRequest) Envelope(envelope bool) MongoDBCloudUsersApiCreateUserRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r MongoDBCloudUsersApiCreateOneCloudUserRequest) Pretty(pretty bool) MongoDBCloudUsersApiCreateOneCloudUserRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r MongoDBCloudUsersApiCreateUserRequest) Pretty(pretty bool) MongoDBCloudUsersApiCreateUserRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r MongoDBCloudUsersApiCreateOneCloudUserRequest) Execute() (*ApiAppUserView, *http.Response, error) {
-	return r.ApiService.CreateOneCloudUserExecute(r)
+func (r MongoDBCloudUsersApiCreateUserRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+	return r.ApiService.CreateUserExecute(r)
 }
 
 /*
-CreateOneCloudUser Create One MongoDB Cloud User
+CreateUser Create One MongoDB Cloud User
 
 Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MongoDBCloudUsersApiCreateOneCloudUserRequest
+ @return MongoDBCloudUsersApiCreateUserRequest
 */
-func (a *MongoDBCloudUsersApiService) CreateOneCloudUser(ctx context.Context) MongoDBCloudUsersApiCreateOneCloudUserRequest {
-	return MongoDBCloudUsersApiCreateOneCloudUserRequest{
+func (a *MongoDBCloudUsersApiService) CreateUser(ctx context.Context) MongoDBCloudUsersApiCreateUserRequest {
+	return MongoDBCloudUsersApiCreateUserRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -117,7 +117,7 @@ func (a *MongoDBCloudUsersApiService) CreateOneCloudUser(ctx context.Context) Mo
 
 // Execute executes the request
 //  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) CreateOneCloudUserExecute(r MongoDBCloudUsersApiCreateOneCloudUserRequest) (*ApiAppUserView, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*ApiAppUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -125,7 +125,7 @@ func (a *MongoDBCloudUsersApiService) CreateOneCloudUserExecute(r MongoDBCloudUs
 		localVarReturnValue  *ApiAppUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.CreateOneCloudUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.CreateUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -233,7 +233,7 @@ func (a *MongoDBCloudUsersApiService) CreateOneCloudUserExecute(r MongoDBCloudUs
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest struct {
+type MongoDBCloudUsersApiGetUserRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	userId string
@@ -242,32 +242,32 @@ type MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest) Envelope(envelope bool) MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest {
+func (r MongoDBCloudUsersApiGetUserRequest) Envelope(envelope bool) MongoDBCloudUsersApiGetUserRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest) Pretty(pretty bool) MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r MongoDBCloudUsersApiGetUserRequest) Pretty(pretty bool) MongoDBCloudUsersApiGetUserRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest) Execute() (*ApiAppUserView, *http.Response, error) {
-	return r.ApiService.ReturnOneCloudUserUsingItsIdExecute(r)
+func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+	return r.ApiService.GetUserExecute(r)
 }
 
 /*
-ReturnOneCloudUserUsingItsId Return One MongoDB Cloud User using Its ID
+GetUser Return One MongoDB Cloud User using Its ID
 
 Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId Unique 24-hexadecimal digit string that identifies this user.
- @return MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest
+ @return MongoDBCloudUsersApiGetUserRequest
 */
-func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsId(ctx context.Context, userId string) MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest {
-	return MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest{
+func (a *MongoDBCloudUsersApiService) GetUser(ctx context.Context, userId string) MongoDBCloudUsersApiGetUserRequest {
+	return MongoDBCloudUsersApiGetUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		userId: userId,
@@ -276,7 +276,7 @@ func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsId(ctx context.C
 
 // Execute executes the request
 //  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsIdExecute(r MongoDBCloudUsersApiReturnOneCloudUserUsingItsIdRequest) (*ApiAppUserView, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*ApiAppUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -284,7 +284,7 @@ func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsIdExecute(r Mong
 		localVarReturnValue  *ApiAppUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.ReturnOneCloudUserUsingItsId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.GetUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -394,7 +394,7 @@ func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsIdExecute(r Mong
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest struct {
+type MongoDBCloudUsersApiGetUserByUsernameRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	userName string
@@ -403,32 +403,32 @@ type MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest) Envelope(envelope bool) MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest {
+func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Envelope(envelope bool) MongoDBCloudUsersApiGetUserByUsernameRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest) Pretty(pretty bool) MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Pretty(pretty bool) MongoDBCloudUsersApiGetUserByUsernameRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest) Execute() (*ApiAppUserView, *http.Response, error) {
-	return r.ApiService.ReturnOneCloudUserUsingItsUsernameExecute(r)
+func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+	return r.ApiService.GetUserByUsernameExecute(r)
 }
 
 /*
-ReturnOneCloudUserUsingItsUsername Return One MongoDB Cloud User using Their Username
+GetUserByUsername Return One MongoDB Cloud User using Their Username
 
 Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
- @return MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest
+ @return MongoDBCloudUsersApiGetUserByUsernameRequest
 */
-func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsUsername(ctx context.Context, userName string) MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest {
-	return MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest{
+func (a *MongoDBCloudUsersApiService) GetUserByUsername(ctx context.Context, userName string) MongoDBCloudUsersApiGetUserByUsernameRequest {
+	return MongoDBCloudUsersApiGetUserByUsernameRequest{
 		ApiService: a,
 		ctx: ctx,
 		userName: userName,
@@ -437,7 +437,7 @@ func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsUsername(ctx con
 
 // Execute executes the request
 //  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsUsernameExecute(r MongoDBCloudUsersApiReturnOneCloudUserUsingItsUsernameRequest) (*ApiAppUserView, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*ApiAppUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -445,7 +445,7 @@ func (a *MongoDBCloudUsersApiService) ReturnOneCloudUserUsingItsUsernameExecute(
 		localVarReturnValue  *ApiAppUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.ReturnOneCloudUserUsingItsUsername")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.GetUserByUsername")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

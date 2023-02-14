@@ -29,7 +29,7 @@ type ClusterAlertView struct {
 	ClusterName *string `json:"clusterName,omitempty"`
 	// Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName ClusterEventType `json:"eventTypeName"`
+	EventTypeName ClusterEventTypeViewAlertable `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project that owns this alert.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this alert.
@@ -234,9 +234,9 @@ func (o *ClusterAlertView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *ClusterAlertView) GetEventTypeName() ClusterEventType {
+func (o *ClusterAlertView) GetEventTypeName() ClusterEventTypeViewAlertable {
 	if o == nil {
-		var ret ClusterEventType
+		var ret ClusterEventTypeViewAlertable
 		return ret
 	}
 
@@ -245,7 +245,7 @@ func (o *ClusterAlertView) GetEventTypeName() ClusterEventType {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *ClusterAlertView) GetEventTypeNameOk() (*ClusterEventType, bool) {
+func (o *ClusterAlertView) GetEventTypeNameOk() (*ClusterEventTypeViewAlertable, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -253,7 +253,7 @@ func (o *ClusterAlertView) GetEventTypeNameOk() (*ClusterEventType, bool) {
 }
 
 // SetEventTypeName sets field value
-func (o *ClusterAlertView) SetEventTypeName(v ClusterEventType) {
+func (o *ClusterAlertView) SetEventTypeName(v ClusterEventTypeViewAlertable) {
 	o.EventTypeName = v
 }
 

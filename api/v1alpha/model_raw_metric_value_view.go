@@ -27,6 +27,8 @@ type RawMetricValueView struct {
 // will change when the set of required properties is changed
 func NewRawMetricValueView() *RawMetricValueView {
 	this := RawMetricValueView{}
+	var units RawMetricUnits = RAWMETRICUNITS_RAW
+	this.Units = &units
 	return &this
 }
 
@@ -35,6 +37,8 @@ func NewRawMetricValueView() *RawMetricValueView {
 // but it doesn't guarantee that properties required by API are set
 func NewRawMetricValueViewWithDefaults() *RawMetricValueView {
 	this := RawMetricValueView{}
+	var units RawMetricUnits = RAWMETRICUNITS_RAW
+	this.Units = &units
 	return &this
 }
 
