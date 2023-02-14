@@ -23,93 +23,93 @@ import (
 type ThirdPartyIntegrationsApi interface {
 
 	/*
-	ConfigureOneThirdPartyServiceIntegration Configure One Third-Party Service Integration
+	CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
-	Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest
-	*/
-	ConfigureOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest
-
-	// ConfigureOneThirdPartyServiceIntegrationExecute executes the request
-	//  @return PaginatedIntegrationView
-	ConfigureOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) (*PaginatedIntegrationView, *http.Response, error)
-
-	/*
-	RemoveOneThirdPartyServiceIntegration Remove One Third-Party Service Integration
-
-	Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+	Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest
 	*/
-	RemoveOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest
+	CreateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest
 
-	// RemoveOneThirdPartyServiceIntegrationExecute executes the request
-	RemoveOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest) (*http.Response, error)
+	// CreateThirdPartyIntegrationExecute executes the request
+	//  @return GroupPaginatedIntegrationView
+	CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
 
 	/*
-	ReturnAllActiveThirdPartyServiceIntegrations Return All Active Third-Party Service Integrations
+	DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
-	Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest
-	*/
-	ReturnAllActiveThirdPartyServiceIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest
-
-	// ReturnAllActiveThirdPartyServiceIntegrationsExecute executes the request
-	//  @return PaginatedIntegrationView
-	ReturnAllActiveThirdPartyServiceIntegrationsExecute(r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) (*PaginatedIntegrationView, *http.Response, error)
-
-	/*
-	ReturnOneThirdPartyServiceIntegration Return One Third-Party Service Integration
-
-	Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-	@return ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest
-	*/
-	ReturnOneThirdPartyServiceIntegration(ctx context.Context, groupId string, integrationType string) ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest
-
-	// ReturnOneThirdPartyServiceIntegrationExecute executes the request
-	//  @return ApiIntegrationViewManual
-	ReturnOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest) (*ApiIntegrationViewManual, *http.Response, error)
-
-	/*
-	UpdateOneThirdPartyServiceIntegration Update One Third-Party Service Integration
-
-	Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+	Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest
 	*/
-	UpdateOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest
+	DeleteThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest
 
-	// UpdateOneThirdPartyServiceIntegrationExecute executes the request
-	//  @return PaginatedIntegrationView
-	UpdateOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) (*PaginatedIntegrationView, *http.Response, error)
+	// DeleteThirdPartyIntegrationExecute executes the request
+	DeleteThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) (*http.Response, error)
+
+	/*
+	GetThirdPartyIntegration Return One Third-Party Service Integration
+
+	Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
+	@return ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest
+	*/
+	GetThirdPartyIntegration(ctx context.Context, groupId string, integrationType string) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest
+
+	// GetThirdPartyIntegrationExecute executes the request
+	//  @return IntegrationViewForNdsGroup
+	GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*IntegrationViewForNdsGroup, *http.Response, error)
+
+	/*
+	ListThirdPartyIntegrations Return All Active Third-Party Service Integrations
+
+	Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest
+	*/
+	ListThirdPartyIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest
+
+	// ListThirdPartyIntegrationsExecute executes the request
+	//  @return GroupPaginatedIntegrationView
+	ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
+
+	/*
+	UpdateThirdPartyIntegration Update One Third-Party Service Integration
+
+	Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest
+	*/
+	UpdateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest
+
+	// UpdateThirdPartyIntegrationExecute executes the request
+	//  @return GroupPaginatedIntegrationView
+	UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
 }
 
 // ThirdPartyIntegrationsApiService ThirdPartyIntegrationsApi service
 type ThirdPartyIntegrationsApiService service
 
-type ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest struct {
+type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	ctx context.Context
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
 	groupId string
-	apiIntegrationViewManual *ApiIntegrationViewManual
+	integrationViewForNdsGroup *IntegrationViewForNdsGroup
 	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
@@ -118,57 +118,57 @@ type ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest st
 }
 
 // Third-party integration configuration that you want to configure for your project.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) ApiIntegrationViewManual(apiIntegrationViewManual ApiIntegrationViewManual) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
-	r.apiIntegrationViewManual = &apiIntegrationViewManual
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
+	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) Execute() (*PaginatedIntegrationView, *http.Response, error) {
-	return r.ApiService.ConfigureOneThirdPartyServiceIntegrationExecute(r)
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+	return r.ApiService.CreateThirdPartyIntegrationExecute(r)
 }
 
 /*
-ConfigureOneThirdPartyServiceIntegration Configure One Third-Party Service Integration
+CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
-Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest
 */
-func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest {
-	return ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest{
+func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
+	return ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		integrationType: integrationType,
@@ -177,16 +177,16 @@ func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegrat
 }
 
 // Execute executes the request
-//  @return PaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiConfigureOneThirdPartyServiceIntegrationRequest) (*PaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegrationView
+func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegrationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ConfigureOneThirdPartyServiceIntegration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.CreateThirdPartyIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -204,8 +204,8 @@ func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegrat
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiIntegrationViewManual == nil {
-		return localVarReturnValue, nil, reportError("apiIntegrationViewManual is required and must be specified")
+	if r.integrationViewForNdsGroup == nil {
+		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -241,7 +241,7 @@ func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegrat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiIntegrationViewManual
+	localVarPostBody = r.integrationViewForNdsGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -333,7 +333,7 @@ func (a *ThirdPartyIntegrationsApiService) ConfigureOneThirdPartyServiceIntegrat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest struct {
+type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest struct {
 	ctx context.Context
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
@@ -343,33 +343,33 @@ type ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest struc
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneThirdPartyServiceIntegrationExecute(r)
+func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteThirdPartyIntegrationExecute(r)
 }
 
 /*
-RemoveOneThirdPartyServiceIntegration Remove One Third-Party Service Integration
+DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
-Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest
 */
-func (a *ThirdPartyIntegrationsApiService) RemoveOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest {
-	return ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest{
+func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
+	return ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		integrationType: integrationType,
@@ -378,14 +378,14 @@ func (a *ThirdPartyIntegrationsApiService) RemoveOneThirdPartyServiceIntegration
 }
 
 // Execute executes the request
-func (a *ThirdPartyIntegrationsApiService) RemoveOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiRemoveOneThirdPartyServiceIntegrationRequest) (*http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.RemoveOneThirdPartyServiceIntegration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.DeleteThirdPartyIntegration")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -498,7 +498,183 @@ func (a *ThirdPartyIntegrationsApiService) RemoveOneThirdPartyServiceIntegration
 	return localVarHTTPResponse, nil
 }
 
-type ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest struct {
+type ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest struct {
+	ctx context.Context
+	ApiService ThirdPartyIntegrationsApi
+	groupId string
+	integrationType string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Execute() (*IntegrationViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.GetThirdPartyIntegrationExecute(r)
+}
+
+/*
+GetThirdPartyIntegration Return One Third-Party Service Integration
+
+Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
+ @return ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest
+*/
+func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegration(ctx context.Context, groupId string, integrationType string) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
+	return ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		integrationType: integrationType,
+	}
+}
+
+// Execute executes the request
+//  @return IntegrationViewForNdsGroup
+func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*IntegrationViewForNdsGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IntegrationViewForNdsGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.GetThirdPartyIntegration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/integrations/{integrationType}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationType"+"}", url.PathEscape(parameterToString(r.integrationType, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest struct {
 	ctx context.Context
 	ApiService ThirdPartyIntegrationsApi
 	groupId string
@@ -510,50 +686,50 @@ type ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsReques
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) Execute() (*PaginatedIntegrationView, *http.Response, error) {
-	return r.ApiService.ReturnAllActiveThirdPartyServiceIntegrationsExecute(r)
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+	return r.ApiService.ListThirdPartyIntegrationsExecute(r)
 }
 
 /*
-ReturnAllActiveThirdPartyServiceIntegrations Return All Active Third-Party Service Integrations
+ListThirdPartyIntegrations Return All Active Third-Party Service Integrations
 
-Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+Returns the settings that permit integrations with all configured third-party services. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest
 */
-func (a *ThirdPartyIntegrationsApiService) ReturnAllActiveThirdPartyServiceIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest {
-	return ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest{
+func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
+	return ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -561,16 +737,16 @@ func (a *ThirdPartyIntegrationsApiService) ReturnAllActiveThirdPartyServiceInteg
 }
 
 // Execute executes the request
-//  @return PaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) ReturnAllActiveThirdPartyServiceIntegrationsExecute(r ThirdPartyIntegrationsApiReturnAllActiveThirdPartyServiceIntegrationsRequest) (*PaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegrationView
+func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegrationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ReturnAllActiveThirdPartyServiceIntegrations")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ListThirdPartyIntegrations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -700,188 +876,12 @@ func (a *ThirdPartyIntegrationsApiService) ReturnAllActiveThirdPartyServiceInteg
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest struct {
-	ctx context.Context
-	ApiService ThirdPartyIntegrationsApi
-	groupId string
-	integrationType string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest) Execute() (*ApiIntegrationViewManual, *http.Response, error) {
-	return r.ApiService.ReturnOneThirdPartyServiceIntegrationExecute(r)
-}
-
-/*
-ReturnOneThirdPartyServiceIntegration Return One Third-Party Service Integration
-
-Returns the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
- @return ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest
-*/
-func (a *ThirdPartyIntegrationsApiService) ReturnOneThirdPartyServiceIntegration(ctx context.Context, groupId string, integrationType string) ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest {
-	return ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		integrationType: integrationType,
-	}
-}
-
-// Execute executes the request
-//  @return ApiIntegrationViewManual
-func (a *ThirdPartyIntegrationsApiService) ReturnOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiReturnOneThirdPartyServiceIntegrationRequest) (*ApiIntegrationViewManual, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiIntegrationViewManual
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ReturnOneThirdPartyServiceIntegration")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/integrations/{integrationType}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"integrationType"+"}", url.PathEscape(parameterToString(r.integrationType, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest struct {
+type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	ctx context.Context
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
 	groupId string
-	apiIntegrationViewManual *ApiIntegrationViewManual
+	integrationViewForNdsGroup *IntegrationViewForNdsGroup
 	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
@@ -890,57 +890,57 @@ type ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest struc
 }
 
 // Third-party integration configuration that you want to configure for your project.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) ApiIntegrationViewManual(apiIntegrationViewManual ApiIntegrationViewManual) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
-	r.apiIntegrationViewManual = &apiIntegrationViewManual
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
+	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) IncludeCount(includeCount bool) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) ItemsPerPage(itemsPerPage int32) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) Execute() (*PaginatedIntegrationView, *http.Response, error) {
-	return r.ApiService.UpdateOneThirdPartyServiceIntegrationExecute(r)
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+	return r.ApiService.UpdateThirdPartyIntegrationExecute(r)
 }
 
 /*
-UpdateOneThirdPartyServiceIntegration Update One Third-Party Service Integration
+UpdateThirdPartyIntegration Update One Third-Party Service Integration
 
-Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Project Monitoring Admin role. This resource doesn't require the API Key to have an Access List.
+Updates the settings for configuring integration with one third-party service. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest
 */
-func (a *ThirdPartyIntegrationsApiService) UpdateOneThirdPartyServiceIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest {
-	return ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest{
+func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
+	return ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		integrationType: integrationType,
@@ -949,16 +949,16 @@ func (a *ThirdPartyIntegrationsApiService) UpdateOneThirdPartyServiceIntegration
 }
 
 // Execute executes the request
-//  @return PaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) UpdateOneThirdPartyServiceIntegrationExecute(r ThirdPartyIntegrationsApiUpdateOneThirdPartyServiceIntegrationRequest) (*PaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegrationView
+func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegrationView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.UpdateOneThirdPartyServiceIntegration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.UpdateThirdPartyIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -976,8 +976,8 @@ func (a *ThirdPartyIntegrationsApiService) UpdateOneThirdPartyServiceIntegration
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiIntegrationViewManual == nil {
-		return localVarReturnValue, nil, reportError("apiIntegrationViewManual is required and must be specified")
+	if r.integrationViewForNdsGroup == nil {
+		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1013,7 +1013,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateOneThirdPartyServiceIntegration
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiIntegrationViewManual
+	localVarPostBody = r.integrationViewForNdsGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

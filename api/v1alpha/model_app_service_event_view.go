@@ -19,7 +19,7 @@ import (
 type AppServiceEventView struct {
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName AppServiceEventType `json:"eventTypeName"`
+	EventTypeName AppServiceEventTypeView `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -73,9 +73,9 @@ func (o *AppServiceEventView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *AppServiceEventView) GetEventTypeName() AppServiceEventType {
+func (o *AppServiceEventView) GetEventTypeName() AppServiceEventTypeView {
 	if o == nil {
-		var ret AppServiceEventType
+		var ret AppServiceEventTypeView
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *AppServiceEventView) GetEventTypeName() AppServiceEventType {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *AppServiceEventView) GetEventTypeNameOk() (*AppServiceEventType, bool) {
+func (o *AppServiceEventView) GetEventTypeNameOk() (*AppServiceEventTypeView, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *AppServiceEventView) GetEventTypeNameOk() (*AppServiceEventType, bool) 
 }
 
 // SetEventTypeName sets field value
-func (o *AppServiceEventView) SetEventTypeName(v AppServiceEventType) {
+func (o *AppServiceEventView) SetEventTypeName(v AppServiceEventTypeView) {
 	o.EventTypeName = v
 }
 

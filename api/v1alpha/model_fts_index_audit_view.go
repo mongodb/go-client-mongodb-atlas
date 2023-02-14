@@ -21,7 +21,7 @@ type FTSIndexAuditView struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName FTSIndexAuditType `json:"eventTypeName"`
+	EventTypeName FTSIndexAuditTypeView `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -117,9 +117,9 @@ func (o *FTSIndexAuditView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *FTSIndexAuditView) GetEventTypeName() FTSIndexAuditType {
+func (o *FTSIndexAuditView) GetEventTypeName() FTSIndexAuditTypeView {
 	if o == nil {
-		var ret FTSIndexAuditType
+		var ret FTSIndexAuditTypeView
 		return ret
 	}
 
@@ -128,7 +128,7 @@ func (o *FTSIndexAuditView) GetEventTypeName() FTSIndexAuditType {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *FTSIndexAuditView) GetEventTypeNameOk() (*FTSIndexAuditType, bool) {
+func (o *FTSIndexAuditView) GetEventTypeNameOk() (*FTSIndexAuditTypeView, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,7 +136,7 @@ func (o *FTSIndexAuditView) GetEventTypeNameOk() (*FTSIndexAuditType, bool) {
 }
 
 // SetEventTypeName sets field value
-func (o *FTSIndexAuditView) SetEventTypeName(v FTSIndexAuditType) {
+func (o *FTSIndexAuditView) SetEventTypeName(v FTSIndexAuditTypeView) {
 	o.EventTypeName = v
 }
 

@@ -23,7 +23,7 @@ type AlertConfigAuditView struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName AlertConfigAuditType `json:"eventTypeName"`
+	EventTypeName AlertConfigAuditTypeView `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -151,9 +151,9 @@ func (o *AlertConfigAuditView) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *AlertConfigAuditView) GetEventTypeName() AlertConfigAuditType {
+func (o *AlertConfigAuditView) GetEventTypeName() AlertConfigAuditTypeView {
 	if o == nil {
-		var ret AlertConfigAuditType
+		var ret AlertConfigAuditTypeView
 		return ret
 	}
 
@@ -162,7 +162,7 @@ func (o *AlertConfigAuditView) GetEventTypeName() AlertConfigAuditType {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *AlertConfigAuditView) GetEventTypeNameOk() (*AlertConfigAuditType, bool) {
+func (o *AlertConfigAuditView) GetEventTypeNameOk() (*AlertConfigAuditTypeView, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *AlertConfigAuditView) GetEventTypeNameOk() (*AlertConfigAuditType, bool
 }
 
 // SetEventTypeName sets field value
-func (o *AlertConfigAuditView) SetEventTypeName(v AlertConfigAuditType) {
+func (o *AlertConfigAuditView) SetEventTypeName(v AlertConfigAuditTypeView) {
 	o.EventTypeName = v
 }
 

@@ -22,6 +22,8 @@ type ApiNewRelicView struct {
 	LicenseKey string `json:"licenseKey"`
 	// Query key used to access your New Relic account.
 	ReadToken string `json:"readToken"`
+	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
+	Type *string `json:"type,omitempty"`
 	// Insert key associated with your New Relic account.
 	WriteToken string `json:"writeToken"`
 }
@@ -115,6 +117,38 @@ func (o *ApiNewRelicView) SetReadToken(v string) {
 	o.ReadToken = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ApiNewRelicView) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiNewRelicView) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ApiNewRelicView) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ApiNewRelicView) SetType(v string) {
+	o.Type = &v
+}
+
 // GetWriteToken returns the WriteToken field value
 func (o *ApiNewRelicView) GetWriteToken() string {
 	if o == nil {
@@ -149,6 +183,9 @@ func (o ApiNewRelicView) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["readToken"] = o.ReadToken
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if true {
 		toSerialize["writeToken"] = o.WriteToken

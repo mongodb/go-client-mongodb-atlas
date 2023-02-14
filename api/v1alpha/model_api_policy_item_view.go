@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// ApiPolicyItemView struct for ApiPolicyItemView
+// ApiPolicyItemView Specifications for one policy.
 type ApiPolicyItemView struct {
 	// Number that indicates the frequency interval for a set of snapshots. A value of `1` specifies the first instance of the corresponding `frequencyType`.  - In a monthly policy item, `1` indicates that the monthly snapshot occurs on the first day of the month and `40` indicates the last day of the month.  - In a weekly policy item, `1` indicates that the weekly snapshot occurs on Monday and `7` indicates Sunday.  - In an hourly policy item, you can set the frequency interval to `1`, `2`, `4`, `6`, `8`, or `12`. For hourly policy items for NVMe clusters, MongoDB Cloud only accepts `12` as the frequency interval value.
 	FrequencyInterval int32 `json:"frequencyInterval"`

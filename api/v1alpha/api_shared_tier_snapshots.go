@@ -23,59 +23,59 @@ import (
 type SharedTierSnapshotsApi interface {
 
 	/*
-	DownloadOneM2OrM5ClusterSnapshot Download One M2 or M5 Cluster Snapshot
+	DownloadSharedClusterBackup Download One M2 or M5 Cluster Snapshot
 
 	Requests one snapshot for the specified shared cluster. This resource returns a `snapshotURL` that you can use to download the snapshot. This `snapshotURL` remains active for four hours after you make the request. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies the cluster.
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return SharedTierSnapshotsApiDownloadSharedClusterBackupRequest
 	*/
-	DownloadOneM2OrM5ClusterSnapshot(ctx context.Context, clusterName string, groupId string) SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest
+	DownloadSharedClusterBackup(ctx context.Context, clusterName string, groupId string) SharedTierSnapshotsApiDownloadSharedClusterBackupRequest
 
-	// DownloadOneM2OrM5ClusterSnapshotExecute executes the request
+	// DownloadSharedClusterBackupExecute executes the request
 	//  @return TenantRestore
-	DownloadOneM2OrM5ClusterSnapshotExecute(r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) (*TenantRestore, *http.Response, error)
+	DownloadSharedClusterBackupExecute(r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) (*TenantRestore, *http.Response, error)
 
 	/*
-	ReturnAllSnapshotsForOneM2OrM5Cluster Return All Snapshots for One M2 or M5 Cluster
-
-	Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param clusterName Human-readable label that identifies the cluster.
-	@return SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest
-	*/
-	ReturnAllSnapshotsForOneM2OrM5Cluster(ctx context.Context, groupId string, clusterName string) SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest
-
-	// ReturnAllSnapshotsForOneM2OrM5ClusterExecute executes the request
-	//  @return PaginatedTenantSnapshotView
-	ReturnAllSnapshotsForOneM2OrM5ClusterExecute(r SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest) (*PaginatedTenantSnapshotView, *http.Response, error)
-
-	/*
-	ReturnOneSnapshotForOneM2OrM5Cluster Return One Snapshot for One M2 or M5 Cluster
+	GetSharedClusterBackup Return One Snapshot for One M2 or M5 Cluster
 
 	Returns details for one snapshot for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest
+	@return SharedTierSnapshotsApiGetSharedClusterBackupRequest
 	*/
-	ReturnOneSnapshotForOneM2OrM5Cluster(ctx context.Context, groupId string, clusterName string, snapshotId string) SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest
+	GetSharedClusterBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) SharedTierSnapshotsApiGetSharedClusterBackupRequest
 
-	// ReturnOneSnapshotForOneM2OrM5ClusterExecute executes the request
+	// GetSharedClusterBackupExecute executes the request
 	//  @return TenantSnapshot
-	ReturnOneSnapshotForOneM2OrM5ClusterExecute(r SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest) (*TenantSnapshot, *http.Response, error)
+	GetSharedClusterBackupExecute(r SharedTierSnapshotsApiGetSharedClusterBackupRequest) (*TenantSnapshot, *http.Response, error)
+
+	/*
+	ListSharedClusterBackups Return All Snapshots for One M2 or M5 Cluster
+
+	Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param clusterName Human-readable label that identifies the cluster.
+	@return SharedTierSnapshotsApiListSharedClusterBackupsRequest
+	*/
+	ListSharedClusterBackups(ctx context.Context, groupId string, clusterName string) SharedTierSnapshotsApiListSharedClusterBackupsRequest
+
+	// ListSharedClusterBackupsExecute executes the request
+	//  @return PaginatedTenantSnapshotView
+	ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshotView, *http.Response, error)
 }
 
 // SharedTierSnapshotsApiService SharedTierSnapshotsApi service
 type SharedTierSnapshotsApiService service
 
-type SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest struct {
+type SharedTierSnapshotsApiDownloadSharedClusterBackupRequest struct {
 	ctx context.Context
 	ApiService SharedTierSnapshotsApi
 	clusterName string
@@ -86,39 +86,39 @@ type SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest struct {
 }
 
 // Snapshot to be downloaded.
-func (r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) TenantRestore(tenantRestore TenantRestore) SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest {
+func (r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) TenantRestore(tenantRestore TenantRestore) SharedTierSnapshotsApiDownloadSharedClusterBackupRequest {
 	r.tenantRestore = &tenantRestore
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) Envelope(envelope bool) SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest {
+func (r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) Envelope(envelope bool) SharedTierSnapshotsApiDownloadSharedClusterBackupRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) Pretty(pretty bool) SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) Pretty(pretty bool) SharedTierSnapshotsApiDownloadSharedClusterBackupRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) Execute() (*TenantRestore, *http.Response, error) {
-	return r.ApiService.DownloadOneM2OrM5ClusterSnapshotExecute(r)
+func (r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) Execute() (*TenantRestore, *http.Response, error) {
+	return r.ApiService.DownloadSharedClusterBackupExecute(r)
 }
 
 /*
-DownloadOneM2OrM5ClusterSnapshot Download One M2 or M5 Cluster Snapshot
+DownloadSharedClusterBackup Download One M2 or M5 Cluster Snapshot
 
 Requests one snapshot for the specified shared cluster. This resource returns a `snapshotURL` that you can use to download the snapshot. This `snapshotURL` remains active for four hours after you make the request. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies the cluster.
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return SharedTierSnapshotsApiDownloadSharedClusterBackupRequest
 */
-func (a *SharedTierSnapshotsApiService) DownloadOneM2OrM5ClusterSnapshot(ctx context.Context, clusterName string, groupId string) SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest {
-	return SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest{
+func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackup(ctx context.Context, clusterName string, groupId string) SharedTierSnapshotsApiDownloadSharedClusterBackupRequest {
+	return SharedTierSnapshotsApiDownloadSharedClusterBackupRequest{
 		ApiService: a,
 		ctx: ctx,
 		clusterName: clusterName,
@@ -128,7 +128,7 @@ func (a *SharedTierSnapshotsApiService) DownloadOneM2OrM5ClusterSnapshot(ctx con
 
 // Execute executes the request
 //  @return TenantRestore
-func (a *SharedTierSnapshotsApiService) DownloadOneM2OrM5ClusterSnapshotExecute(r SharedTierSnapshotsApiDownloadOneM2OrM5ClusterSnapshotRequest) (*TenantRestore, *http.Response, error) {
+func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r SharedTierSnapshotsApiDownloadSharedClusterBackupRequest) (*TenantRestore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -136,7 +136,7 @@ func (a *SharedTierSnapshotsApiService) DownloadOneM2OrM5ClusterSnapshotExecute(
 		localVarReturnValue  *TenantRestore
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.DownloadOneM2OrM5ClusterSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.DownloadSharedClusterBackup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -291,68 +291,72 @@ func (a *SharedTierSnapshotsApiService) DownloadOneM2OrM5ClusterSnapshotExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest struct {
+type SharedTierSnapshotsApiGetSharedClusterBackupRequest struct {
 	ctx context.Context
 	ApiService SharedTierSnapshotsApi
 	groupId string
 	clusterName string
+	snapshotId string
 	envelope *bool
 	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest) Envelope(envelope bool) SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest {
+func (r SharedTierSnapshotsApiGetSharedClusterBackupRequest) Envelope(envelope bool) SharedTierSnapshotsApiGetSharedClusterBackupRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierSnapshotsApiGetSharedClusterBackupRequest) Pretty(pretty bool) SharedTierSnapshotsApiGetSharedClusterBackupRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest) Execute() (*PaginatedTenantSnapshotView, *http.Response, error) {
-	return r.ApiService.ReturnAllSnapshotsForOneM2OrM5ClusterExecute(r)
+func (r SharedTierSnapshotsApiGetSharedClusterBackupRequest) Execute() (*TenantSnapshot, *http.Response, error) {
+	return r.ApiService.GetSharedClusterBackupExecute(r)
 }
 
 /*
-ReturnAllSnapshotsForOneM2OrM5Cluster Return All Snapshots for One M2 or M5 Cluster
+GetSharedClusterBackup Return One Snapshot for One M2 or M5 Cluster
 
-Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns details for one snapshot for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
- @return SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest
+ @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
+ @return SharedTierSnapshotsApiGetSharedClusterBackupRequest
 */
-func (a *SharedTierSnapshotsApiService) ReturnAllSnapshotsForOneM2OrM5Cluster(ctx context.Context, groupId string, clusterName string) SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest {
-	return SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest{
+func (a *SharedTierSnapshotsApiService) GetSharedClusterBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) SharedTierSnapshotsApiGetSharedClusterBackupRequest {
+	return SharedTierSnapshotsApiGetSharedClusterBackupRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
 		clusterName: clusterName,
+		snapshotId: snapshotId,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedTenantSnapshotView
-func (a *SharedTierSnapshotsApiService) ReturnAllSnapshotsForOneM2OrM5ClusterExecute(r SharedTierSnapshotsApiReturnAllSnapshotsForOneM2OrM5ClusterRequest) (*PaginatedTenantSnapshotView, *http.Response, error) {
+//  @return TenantSnapshot
+func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupExecute(r SharedTierSnapshotsApiGetSharedClusterBackupRequest) (*TenantSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTenantSnapshotView
+		localVarReturnValue  *TenantSnapshot
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.ReturnAllSnapshotsForOneM2OrM5Cluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.GetSharedClusterBackup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/snapshots"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/snapshots/{snapshotId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshotId"+"}", url.PathEscape(parameterToString(r.snapshotId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -368,6 +372,12 @@ func (a *SharedTierSnapshotsApiService) ReturnAllSnapshotsForOneM2OrM5ClusterExe
 	}
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
+	}
+	if strlen(r.snapshotId) < 24 {
+		return localVarReturnValue, nil, reportError("snapshotId must have at least 24 elements")
+	}
+	if strlen(r.snapshotId) > 24 {
+		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -462,72 +472,68 @@ func (a *SharedTierSnapshotsApiService) ReturnAllSnapshotsForOneM2OrM5ClusterExe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest struct {
+type SharedTierSnapshotsApiListSharedClusterBackupsRequest struct {
 	ctx context.Context
 	ApiService SharedTierSnapshotsApi
 	groupId string
 	clusterName string
-	snapshotId string
 	envelope *bool
 	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest) Envelope(envelope bool) SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest {
+func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Envelope(envelope bool) SharedTierSnapshotsApiListSharedClusterBackupsRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest) Pretty(pretty bool) SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Pretty(pretty bool) SharedTierSnapshotsApiListSharedClusterBackupsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest) Execute() (*TenantSnapshot, *http.Response, error) {
-	return r.ApiService.ReturnOneSnapshotForOneM2OrM5ClusterExecute(r)
+func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Execute() (*PaginatedTenantSnapshotView, *http.Response, error) {
+	return r.ApiService.ListSharedClusterBackupsExecute(r)
 }
 
 /*
-ReturnOneSnapshotForOneM2OrM5Cluster Return One Snapshot for One M2 or M5 Cluster
+ListSharedClusterBackups Return All Snapshots for One M2 or M5 Cluster
 
-Returns details for one snapshot for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns details for all snapshots for the specified shared cluster. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
- @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest
+ @return SharedTierSnapshotsApiListSharedClusterBackupsRequest
 */
-func (a *SharedTierSnapshotsApiService) ReturnOneSnapshotForOneM2OrM5Cluster(ctx context.Context, groupId string, clusterName string, snapshotId string) SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest {
-	return SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest{
+func (a *SharedTierSnapshotsApiService) ListSharedClusterBackups(ctx context.Context, groupId string, clusterName string) SharedTierSnapshotsApiListSharedClusterBackupsRequest {
+	return SharedTierSnapshotsApiListSharedClusterBackupsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
 		clusterName: clusterName,
-		snapshotId: snapshotId,
 	}
 }
 
 // Execute executes the request
-//  @return TenantSnapshot
-func (a *SharedTierSnapshotsApiService) ReturnOneSnapshotForOneM2OrM5ClusterExecute(r SharedTierSnapshotsApiReturnOneSnapshotForOneM2OrM5ClusterRequest) (*TenantSnapshot, *http.Response, error) {
+//  @return PaginatedTenantSnapshotView
+func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshotView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TenantSnapshot
+		localVarReturnValue  *PaginatedTenantSnapshotView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.ReturnOneSnapshotForOneM2OrM5Cluster")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.ListSharedClusterBackups")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/snapshots/{snapshotId}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/tenant/snapshots"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"snapshotId"+"}", url.PathEscape(parameterToString(r.snapshotId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -543,12 +549,6 @@ func (a *SharedTierSnapshotsApiService) ReturnOneSnapshotForOneM2OrM5ClusterExec
 	}
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
-	}
-	if strlen(r.snapshotId) < 24 {
-		return localVarReturnValue, nil, reportError("snapshotId must have at least 24 elements")
-	}
-	if strlen(r.snapshotId) > 24 {
-		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {

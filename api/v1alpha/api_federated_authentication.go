@@ -29,7 +29,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiCreateRoleMappingRequest
 	*/
 	CreateRoleMapping(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiCreateRoleMappingRequest
@@ -60,7 +60,7 @@ type FederatedAuthenticationApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
 	@param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to remove.
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiDeleteRoleMappingRequest
 	*/
 	DeleteRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiDeleteRoleMappingRequest
@@ -69,34 +69,20 @@ type FederatedAuthenticationApi interface {
 	DeleteRoleMappingExecute(r FederatedAuthenticationApiDeleteRoleMappingRequest) (*http.Response, error)
 
 	/*
-	GetAllConnectedOrgConfigs Return All Connected Org Configs from the Federation
+	GetConnectedOrgConfig Return One Org Config Connected to One Federation
 
-	Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@return FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest
-	*/
-	GetAllConnectedOrgConfigs(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest
-
-	// GetAllConnectedOrgConfigsExecute executes the request
-	//  @return []ConnectedOrgConfigView
-	GetAllConnectedOrgConfigsExecute(r FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error)
-
-	/*
-	GetAllIdentityProviders Return all identity providers from the specified federation.
-
-	Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+	Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@return FederatedAuthenticationApiGetAllIdentityProvidersRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to return.
+	@return FederatedAuthenticationApiGetConnectedOrgConfigRequest
 	*/
-	GetAllIdentityProviders(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiGetAllIdentityProvidersRequest
+	GetConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiGetConnectedOrgConfigRequest
 
-	// GetAllIdentityProvidersExecute executes the request
-	//  @return []IdentityProviderView
-	GetAllIdentityProvidersExecute(r FederatedAuthenticationApiGetAllIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error)
+	// GetConnectedOrgConfigExecute executes the request
+	//  @return ConnectedOrgConfigView
+	GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
 
 	/*
 	GetFederationSettings Return Federation Settings for One Organization
@@ -104,7 +90,7 @@ type FederatedAuthenticationApi interface {
 	Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiGetFederationSettingsRequest
 	*/
 	GetFederationSettings(ctx context.Context, orgId string) FederatedAuthenticationApiGetFederationSettingsRequest
@@ -146,22 +132,6 @@ type FederatedAuthenticationApi interface {
 	GetIdentityProviderMetadataExecute(r FederatedAuthenticationApiGetIdentityProviderMetadataRequest) (string, *http.Response, error)
 
 	/*
-	GetOrganizationConfig Return One Org Config Connected to One Federation
-
-	Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to return.
-	@return FederatedAuthenticationApiGetOrganizationConfigRequest
-	*/
-	GetOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiGetOrganizationConfigRequest
-
-	// GetOrganizationConfigExecute executes the request
-	//  @return ConnectedOrgConfigView
-	GetOrganizationConfigExecute(r FederatedAuthenticationApiGetOrganizationConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
-
-	/*
 	GetRoleMapping Return One Role Mapping from One Organization
 
 	Returns one role mapping from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
@@ -169,7 +139,7 @@ type FederatedAuthenticationApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
 	@param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to return.
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiGetRoleMappingRequest
 	*/
 	GetRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiGetRoleMappingRequest
@@ -179,13 +149,43 @@ type FederatedAuthenticationApi interface {
 	GetRoleMappingExecute(r FederatedAuthenticationApiGetRoleMappingRequest) (*RoleMappingView, *http.Response, error)
 
 	/*
+	ListConnectedOrgConfigs Return All Connected Org Configs from the Federation
+
+	Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+	@return FederatedAuthenticationApiListConnectedOrgConfigsRequest
+	*/
+	ListConnectedOrgConfigs(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListConnectedOrgConfigsRequest
+
+	// ListConnectedOrgConfigsExecute executes the request
+	//  @return []ConnectedOrgConfigView
+	ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error)
+
+	/*
+	ListIdentityProviders Return all identity providers from the specified federation.
+
+	Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+	@return FederatedAuthenticationApiListIdentityProvidersRequest
+	*/
+	ListIdentityProviders(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListIdentityProvidersRequest
+
+	// ListIdentityProvidersExecute executes the request
+	//  @return []IdentityProviderView
+	ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error)
+
+	/*
 	ListRoleMappings Return All Role Mappings from One Organization
 
 	Returns all role mappings from the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiListRoleMappingsRequest
 	*/
 	ListRoleMappings(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiListRoleMappingsRequest
@@ -195,19 +195,41 @@ type FederatedAuthenticationApi interface {
 	ListRoleMappingsExecute(r FederatedAuthenticationApiListRoleMappingsRequest) ([]RoleMappingView, *http.Response, error)
 
 	/*
-	RemoveOrganizationConfig Remove One Org Config Connected to One Federation
+	RemoveConnectedOrgConfig Remove One Org Config Connected to One Federation
 
 	Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. Note: This request fails if only one connected organization exists in the federation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
 	@param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to remove.
-	@return FederatedAuthenticationApiRemoveOrganizationConfigRequest
+	@return FederatedAuthenticationApiRemoveConnectedOrgConfigRequest
 	*/
-	RemoveOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiRemoveOrganizationConfigRequest
+	RemoveConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiRemoveConnectedOrgConfigRequest
 
-	// RemoveOrganizationConfigExecute executes the request
-	RemoveOrganizationConfigExecute(r FederatedAuthenticationApiRemoveOrganizationConfigRequest) (*http.Response, error)
+	// RemoveConnectedOrgConfigExecute executes the request
+	RemoveConnectedOrgConfigExecute(r FederatedAuthenticationApiRemoveConnectedOrgConfigRequest) (*http.Response, error)
+
+	/*
+	UpdateConnectedOrgConfig Update One Org Config Connected to One Federation
+
+	Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. 
+
+**Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.  
+
+**Note**: The domainRestrictionEnabled field defaults to false if not provided in the request. 
+
+**Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+	@param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to update.
+	@return FederatedAuthenticationApiUpdateConnectedOrgConfigRequest
+	*/
+	UpdateConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest
+
+	// UpdateConnectedOrgConfigExecute executes the request
+	//  @return ConnectedOrgConfigView
+	UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
 
 	/*
 	UpdateIdentityProvider Update the identity provider.
@@ -226,28 +248,6 @@ type FederatedAuthenticationApi interface {
 	UpdateIdentityProviderExecute(r FederatedAuthenticationApiUpdateIdentityProviderRequest) (*IdentityProviderView, *http.Response, error)
 
 	/*
-	UpdateOrganizationConfig Update One Org Config Connected to One Federation
-
-	Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. 
-
-**Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.  
-
-**Note**: The domainRestrictionEnabled field defaults to false if not provided in the request. 
-
-**Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
-	@param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to update.
-	@return FederatedAuthenticationApiUpdateOrganizationConfigRequest
-	*/
-	UpdateOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiUpdateOrganizationConfigRequest
-
-	// UpdateOrganizationConfigExecute executes the request
-	//  @return ConnectedOrgConfigView
-	UpdateOrganizationConfigExecute(r FederatedAuthenticationApiUpdateOrganizationConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
-
-	/*
 	UpdateRoleMapping Update One Role Mapping in One Organization
 
 	Updates one role mapping in the specified organization in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
@@ -255,7 +255,7 @@ type FederatedAuthenticationApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
 	@param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to update.
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@return FederatedAuthenticationApiUpdateRoleMappingRequest
 	*/
 	UpdateRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiUpdateRoleMappingRequest
@@ -300,7 +300,7 @@ Adds one role mapping to the specified organization in the specified federation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiCreateRoleMappingRequest
 */
 func (a *FederatedAuthenticationApiService) CreateRoleMapping(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiCreateRoleMappingRequest {
@@ -620,7 +620,7 @@ Removes one role mapping in the specified organization from the specified federa
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
  @param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to remove.
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiDeleteRoleMappingRequest
 */
 func (a *FederatedAuthenticationApiService) DeleteRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiDeleteRoleMappingRequest {
@@ -764,57 +764,61 @@ func (a *FederatedAuthenticationApiService) DeleteRoleMappingExecute(r Federated
 	return localVarHTTPResponse, nil
 }
 
-type FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest struct {
+type FederatedAuthenticationApiGetConnectedOrgConfigRequest struct {
 	ctx context.Context
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
+	orgId string
 	envelope *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest) Envelope(envelope bool) FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest {
+func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiGetConnectedOrgConfigRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest) Execute() ([]ConnectedOrgConfigView, *http.Response, error) {
-	return r.ApiService.GetAllConnectedOrgConfigsExecute(r)
+func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
+	return r.ApiService.GetConnectedOrgConfigExecute(r)
 }
 
 /*
-GetAllConnectedOrgConfigs Return All Connected Org Configs from the Federation
+GetConnectedOrgConfig Return One Org Config Connected to One Federation
 
-Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
+Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @return FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to return.
+ @return FederatedAuthenticationApiGetConnectedOrgConfigRequest
 */
-func (a *FederatedAuthenticationApiService) GetAllConnectedOrgConfigs(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest {
-	return FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest{
+func (a *FederatedAuthenticationApiService) GetConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiGetConnectedOrgConfigRequest {
+	return FederatedAuthenticationApiGetConnectedOrgConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		federationSettingsId: federationSettingsId,
+		orgId: orgId,
 	}
 }
 
 // Execute executes the request
-//  @return []ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) GetAllConnectedOrgConfigsExecute(r FederatedAuthenticationApiGetAllConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error) {
+//  @return ConnectedOrgConfigView
+func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ConnectedOrgConfigView
+		localVarReturnValue  *ConnectedOrgConfigView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetAllConnectedOrgConfigs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetConnectedOrgConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs"
+	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -825,167 +829,11 @@ func (a *FederatedAuthenticationApiService) GetAllConnectedOrgConfigsExecute(r F
 	if strlen(r.federationSettingsId) > 24 {
 		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
 	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type FederatedAuthenticationApiGetAllIdentityProvidersRequest struct {
-	ctx context.Context
-	ApiService FederatedAuthenticationApi
-	federationSettingsId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r FederatedAuthenticationApiGetAllIdentityProvidersRequest) Envelope(envelope bool) FederatedAuthenticationApiGetAllIdentityProvidersRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r FederatedAuthenticationApiGetAllIdentityProvidersRequest) Execute() ([]IdentityProviderView, *http.Response, error) {
-	return r.ApiService.GetAllIdentityProvidersExecute(r)
-}
-
-/*
-GetAllIdentityProviders Return all identity providers from the specified federation.
-
-Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @return FederatedAuthenticationApiGetAllIdentityProvidersRequest
-*/
-func (a *FederatedAuthenticationApiService) GetAllIdentityProviders(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiGetAllIdentityProvidersRequest {
-	return FederatedAuthenticationApiGetAllIdentityProvidersRequest{
-		ApiService: a,
-		ctx: ctx,
-		federationSettingsId: federationSettingsId,
-	}
-}
-
-// Execute executes the request
-//  @return []IdentityProviderView
-func (a *FederatedAuthenticationApiService) GetAllIdentityProvidersExecute(r FederatedAuthenticationApiGetAllIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []IdentityProviderView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetAllIdentityProviders")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/identityProviders"
-	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.federationSettingsId) < 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
-	}
-	if strlen(r.federationSettingsId) > 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -1102,7 +950,7 @@ func (r FederatedAuthenticationApiGetFederationSettingsRequest) Envelope(envelop
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r FederatedAuthenticationApiGetFederationSettingsRequest) Pretty(pretty bool) FederatedAuthenticationApiGetFederationSettingsRequest {
 	r.pretty = &pretty
 	return r
@@ -1118,7 +966,7 @@ GetFederationSettings Return Federation Settings for One Organization
 Returns information about the federation settings for the specified organization. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiGetFederationSettingsRequest
 */
 func (a *FederatedAuthenticationApiService) GetFederationSettings(ctx context.Context, orgId string) FederatedAuthenticationApiGetFederationSettingsRequest {
@@ -1594,178 +1442,6 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderMetadataExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type FederatedAuthenticationApiGetOrganizationConfigRequest struct {
-	ctx context.Context
-	ApiService FederatedAuthenticationApi
-	federationSettingsId string
-	orgId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r FederatedAuthenticationApiGetOrganizationConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiGetOrganizationConfigRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r FederatedAuthenticationApiGetOrganizationConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
-	return r.ApiService.GetOrganizationConfigExecute(r)
-}
-
-/*
-GetOrganizationConfig Return One Org Config Connected to One Federation
-
-Returns the specified connected org config from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in the connected org. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to return.
- @return FederatedAuthenticationApiGetOrganizationConfigRequest
-*/
-func (a *FederatedAuthenticationApiService) GetOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiGetOrganizationConfigRequest {
-	return FederatedAuthenticationApiGetOrganizationConfigRequest{
-		ApiService: a,
-		ctx: ctx,
-		federationSettingsId: federationSettingsId,
-		orgId: orgId,
-	}
-}
-
-// Execute executes the request
-//  @return ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) GetOrganizationConfigExecute(r FederatedAuthenticationApiGetOrganizationConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConnectedOrgConfigView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetOrganizationConfig")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.federationSettingsId) < 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
-	}
-	if strlen(r.federationSettingsId) > 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
-	}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type FederatedAuthenticationApiGetRoleMappingRequest struct {
 	ctx context.Context
 	ApiService FederatedAuthenticationApi
@@ -1793,7 +1469,7 @@ Returns one role mapping from the specified organization in the specified federa
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
  @param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to return.
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiGetRoleMappingRequest
 */
 func (a *FederatedAuthenticationApiService) GetRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiGetRoleMappingRequest {
@@ -1948,6 +1624,330 @@ func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type FederatedAuthenticationApiListConnectedOrgConfigsRequest struct {
+	ctx context.Context
+	ApiService FederatedAuthenticationApi
+	federationSettingsId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Envelope(envelope bool) FederatedAuthenticationApiListConnectedOrgConfigsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Execute() ([]ConnectedOrgConfigView, *http.Response, error) {
+	return r.ApiService.ListConnectedOrgConfigsExecute(r)
+}
+
+/*
+ListConnectedOrgConfigs Return All Connected Org Configs from the Federation
+
+Returns all connected org configs in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected orgs. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+ @return FederatedAuthenticationApiListConnectedOrgConfigsRequest
+*/
+func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigs(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListConnectedOrgConfigsRequest {
+	return FederatedAuthenticationApiListConnectedOrgConfigsRequest{
+		ApiService: a,
+		ctx: ctx,
+		federationSettingsId: federationSettingsId,
+	}
+}
+
+// Execute executes the request
+//  @return []ConnectedOrgConfigView
+func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ConnectedOrgConfigView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.ListConnectedOrgConfigs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs"
+	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.federationSettingsId) < 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
+	}
+	if strlen(r.federationSettingsId) > 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FederatedAuthenticationApiListIdentityProvidersRequest struct {
+	ctx context.Context
+	ApiService FederatedAuthenticationApi
+	federationSettingsId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r FederatedAuthenticationApiListIdentityProvidersRequest) Envelope(envelope bool) FederatedAuthenticationApiListIdentityProvidersRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r FederatedAuthenticationApiListIdentityProvidersRequest) Execute() ([]IdentityProviderView, *http.Response, error) {
+	return r.ApiService.ListIdentityProvidersExecute(r)
+}
+
+/*
+ListIdentityProviders Return all identity providers from the specified federation.
+
+Returns all identity providers in the specified federation. To use this resource, the requesting API Key must have the Organization Owner role in one of the connected organizations. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+ @return FederatedAuthenticationApiListIdentityProvidersRequest
+*/
+func (a *FederatedAuthenticationApiService) ListIdentityProviders(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListIdentityProvidersRequest {
+	return FederatedAuthenticationApiListIdentityProvidersRequest{
+		ApiService: a,
+		ctx: ctx,
+		federationSettingsId: federationSettingsId,
+	}
+}
+
+// Execute executes the request
+//  @return []IdentityProviderView
+func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []IdentityProviderView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.ListIdentityProviders")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/identityProviders"
+	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.federationSettingsId) < 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
+	}
+	if strlen(r.federationSettingsId) > 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type FederatedAuthenticationApiListRoleMappingsRequest struct {
 	ctx context.Context
 	ApiService FederatedAuthenticationApi
@@ -1973,7 +1973,7 @@ Returns all role mappings from the specified organization in the specified feder
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiListRoleMappingsRequest
 */
 func (a *FederatedAuthenticationApiService) ListRoleMappings(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiListRoleMappingsRequest {
@@ -2120,7 +2120,7 @@ func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type FederatedAuthenticationApiRemoveOrganizationConfigRequest struct {
+type FederatedAuthenticationApiRemoveConnectedOrgConfigRequest struct {
 	ctx context.Context
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
@@ -2129,27 +2129,27 @@ type FederatedAuthenticationApiRemoveOrganizationConfigRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r FederatedAuthenticationApiRemoveOrganizationConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiRemoveOrganizationConfigRequest {
+func (r FederatedAuthenticationApiRemoveConnectedOrgConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiRemoveConnectedOrgConfigRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r FederatedAuthenticationApiRemoveOrganizationConfigRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOrganizationConfigExecute(r)
+func (r FederatedAuthenticationApiRemoveConnectedOrgConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveConnectedOrgConfigExecute(r)
 }
 
 /*
-RemoveOrganizationConfig Remove One Org Config Connected to One Federation
+RemoveConnectedOrgConfig Remove One Org Config Connected to One Federation
 
 Removes one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. Note: This request fails if only one connected organization exists in the federation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
  @param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to remove.
- @return FederatedAuthenticationApiRemoveOrganizationConfigRequest
+ @return FederatedAuthenticationApiRemoveConnectedOrgConfigRequest
 */
-func (a *FederatedAuthenticationApiService) RemoveOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiRemoveOrganizationConfigRequest {
-	return FederatedAuthenticationApiRemoveOrganizationConfigRequest{
+func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiRemoveConnectedOrgConfigRequest {
+	return FederatedAuthenticationApiRemoveConnectedOrgConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		federationSettingsId: federationSettingsId,
@@ -2158,14 +2158,14 @@ func (a *FederatedAuthenticationApiService) RemoveOrganizationConfig(ctx context
 }
 
 // Execute executes the request
-func (a *FederatedAuthenticationApiService) RemoveOrganizationConfigExecute(r FederatedAuthenticationApiRemoveOrganizationConfigRequest) (*http.Response, error) {
+func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfigExecute(r FederatedAuthenticationApiRemoveConnectedOrgConfigRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.RemoveOrganizationConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.RemoveConnectedOrgConfig")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2279,6 +2279,196 @@ func (a *FederatedAuthenticationApiService) RemoveOrganizationConfigExecute(r Fe
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type FederatedAuthenticationApiUpdateConnectedOrgConfigRequest struct {
+	ctx context.Context
+	ApiService FederatedAuthenticationApi
+	federationSettingsId string
+	orgId string
+	connectedOrgConfigView *ConnectedOrgConfigView
+	envelope *bool
+}
+
+// The connected organization configuration that you want to update.
+func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) ConnectedOrgConfigView(connectedOrgConfigView ConnectedOrgConfigView) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
+	r.connectedOrgConfigView = &connectedOrgConfigView
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
+	return r.ApiService.UpdateConnectedOrgConfigExecute(r)
+}
+
+/*
+UpdateConnectedOrgConfig Update One Org Config Connected to One Federation
+
+Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. 
+
+**Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.  
+
+**Note**: The domainRestrictionEnabled field defaults to false if not provided in the request. 
+
+**Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
+ @param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to update.
+ @return FederatedAuthenticationApiUpdateConnectedOrgConfigRequest
+*/
+func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
+	return FederatedAuthenticationApiUpdateConnectedOrgConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		federationSettingsId: federationSettingsId,
+		orgId: orgId,
+	}
+}
+
+// Execute executes the request
+//  @return ConnectedOrgConfigView
+func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConnectedOrgConfigView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.UpdateConnectedOrgConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.federationSettingsId) < 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
+	}
+	if strlen(r.federationSettingsId) > 24 {
+		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
+	}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if r.connectedOrgConfigView == nil {
+		return localVarReturnValue, nil, reportError("connectedOrgConfigView is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.connectedOrgConfigView
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type FederatedAuthenticationApiUpdateIdentityProviderRequest struct {
@@ -2465,196 +2655,6 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type FederatedAuthenticationApiUpdateOrganizationConfigRequest struct {
-	ctx context.Context
-	ApiService FederatedAuthenticationApi
-	federationSettingsId string
-	orgId string
-	connectedOrgConfigView *ConnectedOrgConfigView
-	envelope *bool
-}
-
-// The connected organization configuration that you want to update.
-func (r FederatedAuthenticationApiUpdateOrganizationConfigRequest) ConnectedOrgConfigView(connectedOrgConfigView ConnectedOrgConfigView) FederatedAuthenticationApiUpdateOrganizationConfigRequest {
-	r.connectedOrgConfigView = &connectedOrgConfigView
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r FederatedAuthenticationApiUpdateOrganizationConfigRequest) Envelope(envelope bool) FederatedAuthenticationApiUpdateOrganizationConfigRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r FederatedAuthenticationApiUpdateOrganizationConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
-	return r.ApiService.UpdateOrganizationConfigExecute(r)
-}
-
-/*
-UpdateOrganizationConfig Update One Org Config Connected to One Federation
-
-Updates one connected organization configuration from the specified federation. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List. 
-
-**Note** If the organization configuration has no associated identity provider, you can't use this resource to update role mappings or post authorization role grants.  
-
-**Note**: The domainRestrictionEnabled field defaults to false if not provided in the request. 
-
-**Note**: If the identityProviderId field is not provided, you will disconnect the organization and the identity provider.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
- @param orgId Unique 24-hexadecimal digit string that identifies the connected organization configuration to update.
- @return FederatedAuthenticationApiUpdateOrganizationConfigRequest
-*/
-func (a *FederatedAuthenticationApiService) UpdateOrganizationConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiUpdateOrganizationConfigRequest {
-	return FederatedAuthenticationApiUpdateOrganizationConfigRequest{
-		ApiService: a,
-		ctx: ctx,
-		federationSettingsId: federationSettingsId,
-		orgId: orgId,
-	}
-}
-
-// Execute executes the request
-//  @return ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) UpdateOrganizationConfigExecute(r FederatedAuthenticationApiUpdateOrganizationConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConnectedOrgConfigView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.UpdateOrganizationConfig")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/federationSettings/{federationSettingsId}/connectedOrgConfigs/{orgId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"federationSettingsId"+"}", url.PathEscape(parameterToString(r.federationSettingsId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.federationSettingsId) < 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have at least 24 elements")
-	}
-	if strlen(r.federationSettingsId) > 24 {
-		return localVarReturnValue, nil, reportError("federationSettingsId must have less than 24 elements")
-	}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-	if r.connectedOrgConfigView == nil {
-		return localVarReturnValue, nil, reportError("connectedOrgConfigView is required and must be specified")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.connectedOrgConfigView
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type FederatedAuthenticationApiUpdateRoleMappingRequest struct {
 	ctx context.Context
 	ApiService FederatedAuthenticationApi
@@ -2689,7 +2689,7 @@ Updates one role mapping in the specified organization in the specified federati
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param federationSettingsId Unique 24-hexadecimal digit string that identifies your federation.
  @param id Unique 24-hexadecimal digit string that identifies the role mapping that you want to update.
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @return FederatedAuthenticationApiUpdateRoleMappingRequest
 */
 func (a *FederatedAuthenticationApiService) UpdateRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiUpdateRoleMappingRequest {
