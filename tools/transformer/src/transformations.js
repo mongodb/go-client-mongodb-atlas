@@ -35,7 +35,6 @@ function applyAllOfTransformations(api) {
       throw new Error("Invalid transformation object");
     }
     const name = getNameFromYamlPath(path);
-    console.log(name);
     transformAllOf(name, obj, api);
   }
   return api;
