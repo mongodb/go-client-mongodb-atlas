@@ -21,9 +21,9 @@ if (apiFileLocation) {
   throw new Error("Missing location. Please set OPENAPI_FILE env variable");
 }
 
-doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
-
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
+
+doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
 
 writeFileSync(apiFileLocation, stringify(doc));
