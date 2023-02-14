@@ -17,8 +17,8 @@ import (
 // AvailableProjectView struct for AvailableProjectView
 type AvailableProjectView struct {
 	// List of clusters that can be migrated to MongoDB Cloud.
-	Deployments []AvailableDeploymentView `json:"deployments"`
-	MigrationHosts []string `json:"migrationHosts"`
+	Deployments []AvailableDeploymentView `json:"deployments,omitempty"`
+	MigrationHosts []string `json:"migrationHosts,omitempty"`
 	// Human-readable label that identifies this project.
 	Name string `json:"name"`
 	// Unique 24-hexadecimal digit string that identifies the project to be migrated.
@@ -42,50 +42,66 @@ func NewAvailableProjectViewWithDefaults() *AvailableProjectView {
 	return &this
 }
 
-// GetDeployments returns the Deployments field value
+// GetDeployments returns the Deployments field value if set, zero value otherwise.
 func (o *AvailableProjectView) GetDeployments() []AvailableDeploymentView {
-	if o == nil {
+	if o == nil || o.Deployments == nil {
 		var ret []AvailableDeploymentView
 		return ret
 	}
-
 	return o.Deployments
 }
 
-// GetDeploymentsOk returns a tuple with the Deployments field value
+// GetDeploymentsOk returns a tuple with the Deployments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableProjectView) GetDeploymentsOk() ([]AvailableDeploymentView, bool) {
-	if o == nil {
+	if o == nil || o.Deployments == nil {
 		return nil, false
 	}
 	return o.Deployments, true
 }
 
-// SetDeployments sets field value
+// HasDeployments returns a boolean if a field has been set.
+func (o *AvailableProjectView) HasDeployments() bool {
+	if o != nil && o.Deployments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeployments gets a reference to the given []AvailableDeploymentView and assigns it to the Deployments field.
 func (o *AvailableProjectView) SetDeployments(v []AvailableDeploymentView) {
 	o.Deployments = v
 }
 
-// GetMigrationHosts returns the MigrationHosts field value
+// GetMigrationHosts returns the MigrationHosts field value if set, zero value otherwise.
 func (o *AvailableProjectView) GetMigrationHosts() []string {
-	if o == nil {
+	if o == nil || o.MigrationHosts == nil {
 		var ret []string
 		return ret
 	}
-
 	return o.MigrationHosts
 }
 
-// GetMigrationHostsOk returns a tuple with the MigrationHosts field value
+// GetMigrationHostsOk returns a tuple with the MigrationHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableProjectView) GetMigrationHostsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || o.MigrationHosts == nil {
 		return nil, false
 	}
 	return o.MigrationHosts, true
 }
 
-// SetMigrationHosts sets field value
+// HasMigrationHosts returns a boolean if a field has been set.
+func (o *AvailableProjectView) HasMigrationHosts() bool {
+	if o != nil && o.MigrationHosts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMigrationHosts gets a reference to the given []string and assigns it to the MigrationHosts field.
 func (o *AvailableProjectView) SetMigrationHosts(v []string) {
 	o.MigrationHosts = v
 }
@@ -140,10 +156,10 @@ func (o *AvailableProjectView) SetProjectId(v string) {
 
 func (o AvailableProjectView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Deployments != nil {
 		toSerialize["deployments"] = o.Deployments
 	}
-	if true {
+	if o.MigrationHosts != nil {
 		toSerialize["migrationHosts"] = o.MigrationHosts
 	}
 	if true {

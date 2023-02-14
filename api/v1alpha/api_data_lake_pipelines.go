@@ -24,19 +24,34 @@ import (
 type DataLakePipelinesApi interface {
 
 	/*
-	CreateOneDataLakePipeline Create One Data Lake Pipeline
+	CreatePipeline Create One Data Lake Pipeline
 
 	Creates one Data Lake Pipeline.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataLakePipelinesApiCreateOneDataLakePipelineRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataLakePipelinesApiCreatePipelineRequest
 	*/
-	CreateOneDataLakePipeline(ctx context.Context, groupId string) DataLakePipelinesApiCreateOneDataLakePipelineRequest
+	CreatePipeline(ctx context.Context, groupId string) DataLakePipelinesApiCreatePipelineRequest
 
-	// CreateOneDataLakePipelineExecute executes the request
+	// CreatePipelineExecute executes the request
 	//  @return IngestionPipeline
-	CreateOneDataLakePipelineExecute(r DataLakePipelinesApiCreateOneDataLakePipelineRequest) (*IngestionPipeline, *http.Response, error)
+	CreatePipelineExecute(r DataLakePipelinesApiCreatePipelineRequest) (*IngestionPipeline, *http.Response, error)
+
+	/*
+	DeletePipeline Remove One Data Lake Pipeline
+
+	Removes one Data Lake Pipeline.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiDeletePipelineRequest
+	*/
+	DeletePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiDeletePipelineRequest
+
+	// DeletePipelineExecute executes the request
+	DeletePipelineExecute(r DataLakePipelinesApiDeletePipelineRequest) (*http.Response, error)
 
 	/*
 	DeletePipelineRunDataset Delete Pipeline Run Dataset
@@ -44,7 +59,7 @@ type DataLakePipelinesApi interface {
 	Deletes dataset that Atlas generated during the specified pipeline run.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
 	@param pipelineRunId Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
 	@return DataLakePipelinesApiDeletePipelineRunDatasetRequest
@@ -55,185 +70,170 @@ type DataLakePipelinesApi interface {
 	DeletePipelineRunDatasetExecute(r DataLakePipelinesApiDeletePipelineRunDatasetRequest) (*http.Response, error)
 
 	/*
-	PauseOnePipelineInOneProject Pause One Data Lake Pipeline
-
-	Pauses ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiPauseOnePipelineInOneProjectRequest
-	*/
-	PauseOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiPauseOnePipelineInOneProjectRequest
-
-	// PauseOnePipelineInOneProjectExecute executes the request
-	//  @return IngestionPipeline
-	PauseOnePipelineInOneProjectExecute(r DataLakePipelinesApiPauseOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error)
-
-	/*
-	RemoveOneDataLakePipeline Remove One Data Lake Pipeline
-
-	Removes one Data Lake Pipeline.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiRemoveOneDataLakePipelineRequest
-	*/
-	RemoveOneDataLakePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiRemoveOneDataLakePipelineRequest
-
-	// RemoveOneDataLakePipelineExecute executes the request
-	RemoveOneDataLakePipelineExecute(r DataLakePipelinesApiRemoveOneDataLakePipelineRequest) (*http.Response, error)
-
-	/*
-	ResumeOnePipelineInOneProject Resume One Data Lake Pipeline
-
-	Resumes ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiResumeOnePipelineInOneProjectRequest
-	*/
-	ResumeOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiResumeOnePipelineInOneProjectRequest
-
-	// ResumeOnePipelineInOneProjectExecute executes the request
-	//  @return IngestionPipeline
-	ResumeOnePipelineInOneProjectExecute(r DataLakePipelinesApiResumeOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error)
-
-	/*
-	ReturnAllDataLakePipelineRunsFromOneProject Return All Data Lake Pipeline Runs from One Project
-
-	Returns a list of past Data Lake Pipeline runs. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest
-	*/
-	ReturnAllDataLakePipelineRunsFromOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest
-
-	// ReturnAllDataLakePipelineRunsFromOneProjectExecute executes the request
-	//  @return PaginatedPipelineRunView
-	ReturnAllDataLakePipelineRunsFromOneProjectExecute(r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) (*PaginatedPipelineRunView, *http.Response, error)
-
-	/*
-	ReturnAllDataLakePipelinesFromOneProject Return All Data Lake Pipelines from One Project
-
-	Returns a list of Data Lake Pipelines. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest
-	*/
-	ReturnAllDataLakePipelinesFromOneProject(ctx context.Context, groupId string) DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest
-
-	// ReturnAllDataLakePipelinesFromOneProjectExecute executes the request
-	//  @return []IngestionPipeline
-	ReturnAllDataLakePipelinesFromOneProjectExecute(r DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest) ([]IngestionPipeline, *http.Response, error)
-
-	/*
-	ReturnAvailableSchedulesForPipeline Return Available Ingestion Schedules for One Data Lake Pipeline
-
-	Returns a list of backup schedule policy items that you can use as a Data Lake Pipeline source. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest
-	*/
-	ReturnAvailableSchedulesForPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest
-
-	// ReturnAvailableSchedulesForPipelineExecute executes the request
-	//  @return []ApiPolicyItemView
-	ReturnAvailableSchedulesForPipelineExecute(r DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest) ([]ApiPolicyItemView, *http.Response, error)
-
-	/*
-	ReturnAvailableSnapshotsForPipeline Return Available Backup Snapshots for One Data Lake Pipeline
-
-	Returns a list of backup snapshots that you can use to trigger an on demand pipeline run. To use this resource, the requesting API Key must have the Project Read Only role.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest
-	*/
-	ReturnAvailableSnapshotsForPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest
-
-	// ReturnAvailableSnapshotsForPipelineExecute executes the request
-	//  @return PaginatedBackupSnapshotView
-	ReturnAvailableSnapshotsForPipelineExecute(r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) (*PaginatedBackupSnapshotView, *http.Response, error)
-
-	/*
-	ReturnOnePipelineInOneProject Return One Data Lake Pipeline
+	GetPipeline Return One Data Lake Pipeline
 
 	Returns the details of one Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiReturnOnePipelineInOneProjectRequest
+	@return DataLakePipelinesApiGetPipelineRequest
 	*/
-	ReturnOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnOnePipelineInOneProjectRequest
+	GetPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiGetPipelineRequest
 
-	// ReturnOnePipelineInOneProjectExecute executes the request
+	// GetPipelineExecute executes the request
 	//  @return IngestionPipeline
-	ReturnOnePipelineInOneProjectExecute(r DataLakePipelinesApiReturnOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error)
+	GetPipelineExecute(r DataLakePipelinesApiGetPipelineRequest) (*IngestionPipeline, *http.Response, error)
 
 	/*
-	ReturnOnePipelineRunInOneProject Return One Data Lake Pipeline Run
+	GetPipelineRun Return One Data Lake Pipeline Run
 
 	Returns the details of one Data Lake Pipeline run within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
 	@param pipelineRunId Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-	@return DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest
+	@return DataLakePipelinesApiGetPipelineRunRequest
 	*/
-	ReturnOnePipelineRunInOneProject(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest
+	GetPipelineRun(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) DataLakePipelinesApiGetPipelineRunRequest
 
-	// ReturnOnePipelineRunInOneProjectExecute executes the request
+	// GetPipelineRunExecute executes the request
 	//  @return IngestionPipelineRun
-	ReturnOnePipelineRunInOneProjectExecute(r DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest) (*IngestionPipelineRun, *http.Response, error)
+	GetPipelineRunExecute(r DataLakePipelinesApiGetPipelineRunRequest) (*IngestionPipelineRun, *http.Response, error)
 
 	/*
-	TriggerOneOnDemandSnapshotIngestion Trigger on demand snapshot ingestion
+	ListPipelineRuns Return All Data Lake Pipeline Runs from One Project
+
+	Returns a list of past Data Lake Pipeline runs. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiListPipelineRunsRequest
+	*/
+	ListPipelineRuns(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineRunsRequest
+
+	// ListPipelineRunsExecute executes the request
+	//  @return PaginatedPipelineRunView
+	ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRunView, *http.Response, error)
+
+	/*
+	ListPipelineSchedules Return Available Ingestion Schedules for One Data Lake Pipeline
+
+	Returns a list of backup schedule policy items that you can use as a Data Lake Pipeline source. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiListPipelineSchedulesRequest
+	*/
+	ListPipelineSchedules(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSchedulesRequest
+
+	// ListPipelineSchedulesExecute executes the request
+	//  @return []ApiPolicyItemView
+	ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]ApiPolicyItemView, *http.Response, error)
+
+	/*
+	ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
+
+	Returns a list of backup snapshots that you can use to trigger an on demand pipeline run. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiListPipelineSnapshotsRequest
+	*/
+	ListPipelineSnapshots(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSnapshotsRequest
+
+	// ListPipelineSnapshotsExecute executes the request
+	//  @return PaginatedBackupSnapshotView
+	ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshotView, *http.Response, error)
+
+	/*
+	ListPipelines Return All Data Lake Pipelines from One Project
+
+	Returns a list of Data Lake Pipelines. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataLakePipelinesApiListPipelinesRequest
+	*/
+	ListPipelines(ctx context.Context, groupId string) DataLakePipelinesApiListPipelinesRequest
+
+	// ListPipelinesExecute executes the request
+	//  @return []IngestionPipeline
+	ListPipelinesExecute(r DataLakePipelinesApiListPipelinesRequest) ([]IngestionPipeline, *http.Response, error)
+
+	/*
+	PausePipeline Pause One Data Lake Pipeline
+
+	Pauses ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiPausePipelineRequest
+	*/
+	PausePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiPausePipelineRequest
+
+	// PausePipelineExecute executes the request
+	//  @return IngestionPipeline
+	PausePipelineExecute(r DataLakePipelinesApiPausePipelineRequest) (*IngestionPipeline, *http.Response, error)
+
+	/*
+	ResumePipeline Resume One Data Lake Pipeline
+
+	Resumes ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+	@return DataLakePipelinesApiResumePipelineRequest
+	*/
+	ResumePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiResumePipelineRequest
+
+	// ResumePipelineExecute executes the request
+	//  @return IngestionPipeline
+	ResumePipelineExecute(r DataLakePipelinesApiResumePipelineRequest) (*IngestionPipeline, *http.Response, error)
+
+	/*
+	TriggerSnapshotIngestion Trigger on demand snapshot ingestion
 
 	Triggers a Data Lake Pipeline ingestion of a specified snapshot.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest
+	@return DataLakePipelinesApiTriggerSnapshotIngestionRequest
 	*/
-	TriggerOneOnDemandSnapshotIngestion(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest
+	TriggerSnapshotIngestion(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiTriggerSnapshotIngestionRequest
 
-	// TriggerOneOnDemandSnapshotIngestionExecute executes the request
+	// TriggerSnapshotIngestionExecute executes the request
 	//  @return IngestionPipelineRun
-	TriggerOneOnDemandSnapshotIngestionExecute(r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) (*IngestionPipelineRun, *http.Response, error)
+	TriggerSnapshotIngestionExecute(r DataLakePipelinesApiTriggerSnapshotIngestionRequest) (*IngestionPipelineRun, *http.Response, error)
 
 	/*
-	UpdateOneDataLakePipeline Update One Data Lake Pipeline
+	UpdatePipeline Update One Data Lake Pipeline
 
 	Updates one Data Lake Pipeline.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param pipelineName Human-readable label that identifies the Data Lake Pipeline.
-	@return DataLakePipelinesApiUpdateOneDataLakePipelineRequest
+	@return DataLakePipelinesApiUpdatePipelineRequest
 	*/
-	UpdateOneDataLakePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiUpdateOneDataLakePipelineRequest
+	UpdatePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiUpdatePipelineRequest
 
-	// UpdateOneDataLakePipelineExecute executes the request
+	// UpdatePipelineExecute executes the request
 	//  @return IngestionPipeline
-	UpdateOneDataLakePipelineExecute(r DataLakePipelinesApiUpdateOneDataLakePipelineRequest) (*IngestionPipeline, *http.Response, error)
+	UpdatePipelineExecute(r DataLakePipelinesApiUpdatePipelineRequest) (*IngestionPipeline, *http.Response, error)
 }
 
 // DataLakePipelinesApiService DataLakePipelinesApi service
 type DataLakePipelinesApiService service
 
-type DataLakePipelinesApiCreateOneDataLakePipelineRequest struct {
+type DataLakePipelinesApiCreatePipelineRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -242,32 +242,32 @@ type DataLakePipelinesApiCreateOneDataLakePipelineRequest struct {
 }
 
 // Creates one Data Lake Pipeline.
-func (r DataLakePipelinesApiCreateOneDataLakePipelineRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) DataLakePipelinesApiCreateOneDataLakePipelineRequest {
+func (r DataLakePipelinesApiCreatePipelineRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) DataLakePipelinesApiCreatePipelineRequest {
 	r.ingestionPipeline = &ingestionPipeline
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiCreateOneDataLakePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiCreateOneDataLakePipelineRequest {
+func (r DataLakePipelinesApiCreatePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiCreatePipelineRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r DataLakePipelinesApiCreateOneDataLakePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.CreateOneDataLakePipelineExecute(r)
+func (r DataLakePipelinesApiCreatePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
+	return r.ApiService.CreatePipelineExecute(r)
 }
 
 /*
-CreateOneDataLakePipeline Create One Data Lake Pipeline
+CreatePipeline Create One Data Lake Pipeline
 
 Creates one Data Lake Pipeline.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataLakePipelinesApiCreateOneDataLakePipelineRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataLakePipelinesApiCreatePipelineRequest
 */
-func (a *DataLakePipelinesApiService) CreateOneDataLakePipeline(ctx context.Context, groupId string) DataLakePipelinesApiCreateOneDataLakePipelineRequest {
-	return DataLakePipelinesApiCreateOneDataLakePipelineRequest{
+func (a *DataLakePipelinesApiService) CreatePipeline(ctx context.Context, groupId string) DataLakePipelinesApiCreatePipelineRequest {
+	return DataLakePipelinesApiCreatePipelineRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -276,7 +276,7 @@ func (a *DataLakePipelinesApiService) CreateOneDataLakePipeline(ctx context.Cont
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) CreateOneDataLakePipelineExecute(r DataLakePipelinesApiCreateOneDataLakePipelineRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) CreatePipelineExecute(r DataLakePipelinesApiCreatePipelineRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -284,7 +284,7 @@ func (a *DataLakePipelinesApiService) CreateOneDataLakePipelineExecute(r DataLak
 		localVarReturnValue  *IngestionPipeline
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.CreateOneDataLakePipeline")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.CreatePipeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -407,6 +407,156 @@ func (a *DataLakePipelinesApiService) CreateOneDataLakePipelineExecute(r DataLak
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DataLakePipelinesApiDeletePipelineRequest struct {
+	ctx context.Context
+	ApiService DataLakePipelinesApi
+	groupId string
+	pipelineName string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataLakePipelinesApiDeletePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiDeletePipelineRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r DataLakePipelinesApiDeletePipelineRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeletePipelineExecute(r)
+}
+
+/*
+DeletePipeline Remove One Data Lake Pipeline
+
+Removes one Data Lake Pipeline.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+ @return DataLakePipelinesApiDeletePipelineRequest
+*/
+func (a *DataLakePipelinesApiService) DeletePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiDeletePipelineRequest {
+	return DataLakePipelinesApiDeletePipelineRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		pipelineName: pipelineName,
+	}
+}
+
+// Execute executes the request
+func (a *DataLakePipelinesApiService) DeletePipelineExecute(r DataLakePipelinesApiDeletePipelineRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.DeletePipeline")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.pipelineName) < 1 {
+		return nil, reportError("pipelineName must have at least 1 elements")
+	}
+	if strlen(r.pipelineName) > 64 {
+		return nil, reportError("pipelineName must have less than 64 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type DataLakePipelinesApiDeletePipelineRunDatasetRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
@@ -423,7 +573,7 @@ func (r DataLakePipelinesApiDeletePipelineRunDatasetRequest) Envelope(envelope b
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r DataLakePipelinesApiDeletePipelineRunDatasetRequest) Pretty(pretty bool) DataLakePipelinesApiDeletePipelineRunDatasetRequest {
 	r.pretty = &pretty
 	return r
@@ -439,7 +589,7 @@ DeletePipelineRunDataset Delete Pipeline Run Dataset
 Deletes dataset that Atlas generated during the specified pipeline run.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
  @param pipelineRunId Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
  @return DataLakePipelinesApiDeletePipelineRunDatasetRequest
@@ -577,7 +727,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetExecute(r DataLake
 	return localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiPauseOnePipelineInOneProjectRequest struct {
+type DataLakePipelinesApiGetPipelineRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -587,33 +737,33 @@ type DataLakePipelinesApiPauseOnePipelineInOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiPauseOnePipelineInOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiPauseOnePipelineInOneProjectRequest {
+func (r DataLakePipelinesApiGetPipelineRequest) Envelope(envelope bool) DataLakePipelinesApiGetPipelineRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiPauseOnePipelineInOneProjectRequest) Pretty(pretty bool) DataLakePipelinesApiPauseOnePipelineInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiGetPipelineRequest) Pretty(pretty bool) DataLakePipelinesApiGetPipelineRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataLakePipelinesApiPauseOnePipelineInOneProjectRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.PauseOnePipelineInOneProjectExecute(r)
+func (r DataLakePipelinesApiGetPipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
+	return r.ApiService.GetPipelineExecute(r)
 }
 
 /*
-PauseOnePipelineInOneProject Pause One Data Lake Pipeline
+GetPipeline Return One Data Lake Pipeline
 
-Pauses ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+Returns the details of one Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiPauseOnePipelineInOneProjectRequest
+ @return DataLakePipelinesApiGetPipelineRequest
 */
-func (a *DataLakePipelinesApiService) PauseOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiPauseOnePipelineInOneProjectRequest {
-	return DataLakePipelinesApiPauseOnePipelineInOneProjectRequest{
+func (a *DataLakePipelinesApiService) GetPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiGetPipelineRequest {
+	return DataLakePipelinesApiGetPipelineRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -623,179 +773,17 @@ func (a *DataLakePipelinesApiService) PauseOnePipelineInOneProject(ctx context.C
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) PauseOnePipelineInOneProjectExecute(r DataLakePipelinesApiPauseOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) GetPipelineExecute(r DataLakePipelinesApiGetPipelineRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *IngestionPipeline
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.PauseOnePipelineInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.GetPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/pause"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.pipelineName) < 1 {
-		return localVarReturnValue, nil, reportError("pipelineName must have at least 1 elements")
-	}
-	if strlen(r.pipelineName) > 64 {
-		return localVarReturnValue, nil, reportError("pipelineName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DataLakePipelinesApiRemoveOneDataLakePipelineRequest struct {
-	ctx context.Context
-	ApiService DataLakePipelinesApi
-	groupId string
-	pipelineName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiRemoveOneDataLakePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiRemoveOneDataLakePipelineRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r DataLakePipelinesApiRemoveOneDataLakePipelineRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneDataLakePipelineExecute(r)
-}
-
-/*
-RemoveOneDataLakePipeline Remove One Data Lake Pipeline
-
-Removes one Data Lake Pipeline.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiRemoveOneDataLakePipelineRequest
-*/
-func (a *DataLakePipelinesApiService) RemoveOneDataLakePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiRemoveOneDataLakePipelineRequest {
-	return DataLakePipelinesApiRemoveOneDataLakePipelineRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		pipelineName: pipelineName,
-	}
-}
-
-// Execute executes the request
-func (a *DataLakePipelinesApiService) RemoveOneDataLakePipelineExecute(r DataLakePipelinesApiRemoveOneDataLakePipelineRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.RemoveOneDataLakePipeline")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}"
@@ -806,165 +794,6 @@ func (a *DataLakePipelinesApiService) RemoveOneDataLakePipelineExecute(r DataLak
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.pipelineName) < 1 {
-		return nil, reportError("pipelineName must have at least 1 elements")
-	}
-	if strlen(r.pipelineName) > 64 {
-		return nil, reportError("pipelineName must have less than 64 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type DataLakePipelinesApiResumeOnePipelineInOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataLakePipelinesApi
-	groupId string
-	pipelineName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiResumeOnePipelineInOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiResumeOnePipelineInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiResumeOnePipelineInOneProjectRequest) Pretty(pretty bool) DataLakePipelinesApiResumeOnePipelineInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r DataLakePipelinesApiResumeOnePipelineInOneProjectRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.ResumeOnePipelineInOneProjectExecute(r)
-}
-
-/*
-ResumeOnePipelineInOneProject Resume One Data Lake Pipeline
-
-Resumes ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiResumeOnePipelineInOneProjectRequest
-*/
-func (a *DataLakePipelinesApiService) ResumeOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiResumeOnePipelineInOneProjectRequest {
-	return DataLakePipelinesApiResumeOnePipelineInOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		pipelineName: pipelineName,
-	}
-}
-
-// Execute executes the request
-//  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) ResumeOnePipelineInOneProjectExecute(r DataLakePipelinesApiResumeOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *IngestionPipeline
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ResumeOnePipelineInOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/resume"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
 		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
 	}
 	if strlen(r.groupId) > 24 {
@@ -1069,7 +898,188 @@ func (a *DataLakePipelinesApiService) ResumeOnePipelineInOneProjectExecute(r Dat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest struct {
+type DataLakePipelinesApiGetPipelineRunRequest struct {
+	ctx context.Context
+	ApiService DataLakePipelinesApi
+	groupId string
+	pipelineName string
+	pipelineRunId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataLakePipelinesApiGetPipelineRunRequest) Envelope(envelope bool) DataLakePipelinesApiGetPipelineRunRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiGetPipelineRunRequest) Pretty(pretty bool) DataLakePipelinesApiGetPipelineRunRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataLakePipelinesApiGetPipelineRunRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
+	return r.ApiService.GetPipelineRunExecute(r)
+}
+
+/*
+GetPipelineRun Return One Data Lake Pipeline Run
+
+Returns the details of one Data Lake Pipeline run within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
+ @param pipelineRunId Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
+ @return DataLakePipelinesApiGetPipelineRunRequest
+*/
+func (a *DataLakePipelinesApiService) GetPipelineRun(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) DataLakePipelinesApiGetPipelineRunRequest {
+	return DataLakePipelinesApiGetPipelineRunRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		pipelineName: pipelineName,
+		pipelineRunId: pipelineRunId,
+	}
+}
+
+// Execute executes the request
+//  @return IngestionPipelineRun
+func (a *DataLakePipelinesApiService) GetPipelineRunExecute(r DataLakePipelinesApiGetPipelineRunRequest) (*IngestionPipelineRun, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IngestionPipelineRun
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.GetPipelineRun")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/runs/{pipelineRunId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipelineRunId"+"}", url.PathEscape(parameterToString(r.pipelineRunId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.pipelineName) < 1 {
+		return localVarReturnValue, nil, reportError("pipelineName must have at least 1 elements")
+	}
+	if strlen(r.pipelineName) > 64 {
+		return localVarReturnValue, nil, reportError("pipelineName must have less than 64 elements")
+	}
+	if strlen(r.pipelineRunId) < 24 {
+		return localVarReturnValue, nil, reportError("pipelineRunId must have at least 24 elements")
+	}
+	if strlen(r.pipelineRunId) > 24 {
+		return localVarReturnValue, nil, reportError("pipelineRunId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataLakePipelinesApiListPipelineRunsRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -1083,57 +1093,57 @@ type DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest stru
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+func (r DataLakePipelinesApiListPipelineRunsRequest) Envelope(envelope bool) DataLakePipelinesApiListPipelineRunsRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) IncludeCount(includeCount bool) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+func (r DataLakePipelinesApiListPipelineRunsRequest) IncludeCount(includeCount bool) DataLakePipelinesApiListPipelineRunsRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) ItemsPerPage(itemsPerPage int32) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+func (r DataLakePipelinesApiListPipelineRunsRequest) ItemsPerPage(itemsPerPage int32) DataLakePipelinesApiListPipelineRunsRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) PageNum(pageNum int32) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+func (r DataLakePipelinesApiListPipelineRunsRequest) PageNum(pageNum int32) DataLakePipelinesApiListPipelineRunsRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) Pretty(pretty bool) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiListPipelineRunsRequest) Pretty(pretty bool) DataLakePipelinesApiListPipelineRunsRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // If specified, Atlas returns only Data Lake Pipeline runs initiated before this time and date.
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) CreatedBefore(createdBefore time.Time) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
+func (r DataLakePipelinesApiListPipelineRunsRequest) CreatedBefore(createdBefore time.Time) DataLakePipelinesApiListPipelineRunsRequest {
 	r.createdBefore = &createdBefore
 	return r
 }
 
-func (r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) Execute() (*PaginatedPipelineRunView, *http.Response, error) {
-	return r.ApiService.ReturnAllDataLakePipelineRunsFromOneProjectExecute(r)
+func (r DataLakePipelinesApiListPipelineRunsRequest) Execute() (*PaginatedPipelineRunView, *http.Response, error) {
+	return r.ApiService.ListPipelineRunsExecute(r)
 }
 
 /*
-ReturnAllDataLakePipelineRunsFromOneProject Return All Data Lake Pipeline Runs from One Project
+ListPipelineRuns Return All Data Lake Pipeline Runs from One Project
 
 Returns a list of past Data Lake Pipeline runs. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest
+ @return DataLakePipelinesApiListPipelineRunsRequest
 */
-func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelineRunsFromOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest {
-	return DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest{
+func (a *DataLakePipelinesApiService) ListPipelineRuns(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineRunsRequest {
+	return DataLakePipelinesApiListPipelineRunsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1143,7 +1153,7 @@ func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelineRunsFromOneProjec
 
 // Execute executes the request
 //  @return PaginatedPipelineRunView
-func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelineRunsFromOneProjectExecute(r DataLakePipelinesApiReturnAllDataLakePipelineRunsFromOneProjectRequest) (*PaginatedPipelineRunView, *http.Response, error) {
+func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRunView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1151,7 +1161,7 @@ func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelineRunsFromOneProjec
 		localVarReturnValue  *PaginatedPipelineRunView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnAllDataLakePipelineRunsFromOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineRuns")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1280,158 +1290,7 @@ func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelineRunsFromOneProjec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataLakePipelinesApi
-	groupId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-func (r DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest) Execute() ([]IngestionPipeline, *http.Response, error) {
-	return r.ApiService.ReturnAllDataLakePipelinesFromOneProjectExecute(r)
-}
-
-/*
-ReturnAllDataLakePipelinesFromOneProject Return All Data Lake Pipelines from One Project
-
-Returns a list of Data Lake Pipelines. To use this resource, the requesting API Key must have the Project Read Only role.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest
-*/
-func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelinesFromOneProject(ctx context.Context, groupId string) DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest {
-	return DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return []IngestionPipeline
-func (a *DataLakePipelinesApiService) ReturnAllDataLakePipelinesFromOneProjectExecute(r DataLakePipelinesApiReturnAllDataLakePipelinesFromOneProjectRequest) ([]IngestionPipeline, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []IngestionPipeline
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnAllDataLakePipelinesFromOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest struct {
+type DataLakePipelinesApiListPipelineSchedulesRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -1441,33 +1300,33 @@ type DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest) Envelope(envelope bool) DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSchedulesRequest) Envelope(envelope bool) DataLakePipelinesApiListPipelineSchedulesRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest) Pretty(pretty bool) DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiListPipelineSchedulesRequest) Pretty(pretty bool) DataLakePipelinesApiListPipelineSchedulesRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest) Execute() ([]ApiPolicyItemView, *http.Response, error) {
-	return r.ApiService.ReturnAvailableSchedulesForPipelineExecute(r)
+func (r DataLakePipelinesApiListPipelineSchedulesRequest) Execute() ([]ApiPolicyItemView, *http.Response, error) {
+	return r.ApiService.ListPipelineSchedulesExecute(r)
 }
 
 /*
-ReturnAvailableSchedulesForPipeline Return Available Ingestion Schedules for One Data Lake Pipeline
+ListPipelineSchedules Return Available Ingestion Schedules for One Data Lake Pipeline
 
 Returns a list of backup schedule policy items that you can use as a Data Lake Pipeline source. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest
+ @return DataLakePipelinesApiListPipelineSchedulesRequest
 */
-func (a *DataLakePipelinesApiService) ReturnAvailableSchedulesForPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest {
-	return DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest{
+func (a *DataLakePipelinesApiService) ListPipelineSchedules(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSchedulesRequest {
+	return DataLakePipelinesApiListPipelineSchedulesRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1477,7 +1336,7 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSchedulesForPipeline(ctx co
 
 // Execute executes the request
 //  @return []ApiPolicyItemView
-func (a *DataLakePipelinesApiService) ReturnAvailableSchedulesForPipelineExecute(r DataLakePipelinesApiReturnAvailableSchedulesForPipelineRequest) ([]ApiPolicyItemView, *http.Response, error) {
+func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]ApiPolicyItemView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1485,7 +1344,7 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSchedulesForPipelineExecute
 		localVarReturnValue  []ApiPolicyItemView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnAvailableSchedulesForPipeline")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineSchedules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1602,7 +1461,7 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSchedulesForPipelineExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest struct {
+type DataLakePipelinesApiListPipelineSnapshotsRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -1616,57 +1475,57 @@ type DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) Envelope(envelope bool) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) Envelope(envelope bool) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) IncludeCount(includeCount bool) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) IncludeCount(includeCount bool) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) ItemsPerPage(itemsPerPage int32) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) ItemsPerPage(itemsPerPage int32) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) PageNum(pageNum int32) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) PageNum(pageNum int32) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) Pretty(pretty bool) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) Pretty(pretty bool) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.pretty = &pretty
 	return r
 }
 
 // Date and time after which MongoDB Cloud created the snapshot. If specified, MongoDB Cloud returns available backup snapshots created after this time and date only. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) CompletedAfter(completedAfter time.Time) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) CompletedAfter(completedAfter time.Time) DataLakePipelinesApiListPipelineSnapshotsRequest {
 	r.completedAfter = &completedAfter
 	return r
 }
 
-func (r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) Execute() (*PaginatedBackupSnapshotView, *http.Response, error) {
-	return r.ApiService.ReturnAvailableSnapshotsForPipelineExecute(r)
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) Execute() (*PaginatedBackupSnapshotView, *http.Response, error) {
+	return r.ApiService.ListPipelineSnapshotsExecute(r)
 }
 
 /*
-ReturnAvailableSnapshotsForPipeline Return Available Backup Snapshots for One Data Lake Pipeline
+ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
 
 Returns a list of backup snapshots that you can use to trigger an on demand pipeline run. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest
+ @return DataLakePipelinesApiListPipelineSnapshotsRequest
 */
-func (a *DataLakePipelinesApiService) ReturnAvailableSnapshotsForPipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest {
-	return DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest{
+func (a *DataLakePipelinesApiService) ListPipelineSnapshots(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSnapshotsRequest {
+	return DataLakePipelinesApiListPipelineSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1676,7 +1535,7 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSnapshotsForPipeline(ctx co
 
 // Execute executes the request
 //  @return PaginatedBackupSnapshotView
-func (a *DataLakePipelinesApiService) ReturnAvailableSnapshotsForPipelineExecute(r DataLakePipelinesApiReturnAvailableSnapshotsForPipelineRequest) (*PaginatedBackupSnapshotView, *http.Response, error) {
+func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshotView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1684,7 +1543,7 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSnapshotsForPipelineExecute
 		localVarReturnValue  *PaginatedBackupSnapshotView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnAvailableSnapshotsForPipeline")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1813,7 +1672,158 @@ func (a *DataLakePipelinesApiService) ReturnAvailableSnapshotsForPipelineExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiReturnOnePipelineInOneProjectRequest struct {
+type DataLakePipelinesApiListPipelinesRequest struct {
+	ctx context.Context
+	ApiService DataLakePipelinesApi
+	groupId string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataLakePipelinesApiListPipelinesRequest) Envelope(envelope bool) DataLakePipelinesApiListPipelinesRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r DataLakePipelinesApiListPipelinesRequest) Execute() ([]IngestionPipeline, *http.Response, error) {
+	return r.ApiService.ListPipelinesExecute(r)
+}
+
+/*
+ListPipelines Return All Data Lake Pipelines from One Project
+
+Returns a list of Data Lake Pipelines. To use this resource, the requesting API Key must have the Project Read Only role.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataLakePipelinesApiListPipelinesRequest
+*/
+func (a *DataLakePipelinesApiService) ListPipelines(ctx context.Context, groupId string) DataLakePipelinesApiListPipelinesRequest {
+	return DataLakePipelinesApiListPipelinesRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return []IngestionPipeline
+func (a *DataLakePipelinesApiService) ListPipelinesExecute(r DataLakePipelinesApiListPipelinesRequest) ([]IngestionPipeline, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []IngestionPipeline
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelines")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataLakePipelinesApiPausePipelineRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -1823,33 +1833,33 @@ type DataLakePipelinesApiReturnOnePipelineInOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnOnePipelineInOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiReturnOnePipelineInOneProjectRequest {
+func (r DataLakePipelinesApiPausePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiPausePipelineRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiReturnOnePipelineInOneProjectRequest) Pretty(pretty bool) DataLakePipelinesApiReturnOnePipelineInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiPausePipelineRequest) Pretty(pretty bool) DataLakePipelinesApiPausePipelineRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataLakePipelinesApiReturnOnePipelineInOneProjectRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.ReturnOnePipelineInOneProjectExecute(r)
+func (r DataLakePipelinesApiPausePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
+	return r.ApiService.PausePipelineExecute(r)
 }
 
 /*
-ReturnOnePipelineInOneProject Return One Data Lake Pipeline
+PausePipeline Pause One Data Lake Pipeline
 
-Returns the details of one Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+Pauses ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiReturnOnePipelineInOneProjectRequest
+ @return DataLakePipelinesApiPausePipelineRequest
 */
-func (a *DataLakePipelinesApiService) ReturnOnePipelineInOneProject(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiReturnOnePipelineInOneProjectRequest {
-	return DataLakePipelinesApiReturnOnePipelineInOneProjectRequest{
+func (a *DataLakePipelinesApiService) PausePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiPausePipelineRequest {
+	return DataLakePipelinesApiPausePipelineRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1859,20 +1869,20 @@ func (a *DataLakePipelinesApiService) ReturnOnePipelineInOneProject(ctx context.
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) ReturnOnePipelineInOneProjectExecute(r DataLakePipelinesApiReturnOnePipelineInOneProjectRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) PausePipelineExecute(r DataLakePipelinesApiPausePipelineRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *IngestionPipeline
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnOnePipelineInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.PausePipeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/pause"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
 
@@ -1984,72 +1994,68 @@ func (a *DataLakePipelinesApiService) ReturnOnePipelineInOneProjectExecute(r Dat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest struct {
+type DataLakePipelinesApiResumePipelineRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
 	pipelineName string
-	pipelineRunId string
 	envelope *bool
 	pretty *bool
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest) Envelope(envelope bool) DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest {
+func (r DataLakePipelinesApiResumePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiResumePipelineRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest) Pretty(pretty bool) DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiResumePipelineRequest) Pretty(pretty bool) DataLakePipelinesApiResumePipelineRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
-	return r.ApiService.ReturnOnePipelineRunInOneProjectExecute(r)
+func (r DataLakePipelinesApiResumePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
+	return r.ApiService.ResumePipelineExecute(r)
 }
 
 /*
-ReturnOnePipelineRunInOneProject Return One Data Lake Pipeline Run
+ResumePipeline Resume One Data Lake Pipeline
 
-Returns the details of one Data Lake Pipeline run within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
+Resumes ingestion for a Data Lake Pipeline within the specified project. To use this resource, the requesting API Key must have the Project Read Only role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @param pipelineRunId Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
- @return DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest
+ @return DataLakePipelinesApiResumePipelineRequest
 */
-func (a *DataLakePipelinesApiService) ReturnOnePipelineRunInOneProject(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest {
-	return DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest{
+func (a *DataLakePipelinesApiService) ResumePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiResumePipelineRequest {
+	return DataLakePipelinesApiResumePipelineRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
 		pipelineName: pipelineName,
-		pipelineRunId: pipelineRunId,
 	}
 }
 
 // Execute executes the request
-//  @return IngestionPipelineRun
-func (a *DataLakePipelinesApiService) ReturnOnePipelineRunInOneProjectExecute(r DataLakePipelinesApiReturnOnePipelineRunInOneProjectRequest) (*IngestionPipelineRun, *http.Response, error) {
+//  @return IngestionPipeline
+func (a *DataLakePipelinesApiService) ResumePipelineExecute(r DataLakePipelinesApiResumePipelineRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IngestionPipelineRun
+		localVarReturnValue  *IngestionPipeline
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ReturnOnePipelineRunInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ResumePipeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/runs/{pipelineRunId}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/pipelines/{pipelineName}/resume"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pipelineName"+"}", url.PathEscape(parameterToString(r.pipelineName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pipelineRunId"+"}", url.PathEscape(parameterToString(r.pipelineRunId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2065,12 +2071,6 @@ func (a *DataLakePipelinesApiService) ReturnOnePipelineRunInOneProjectExecute(r 
 	}
 	if strlen(r.pipelineName) > 64 {
 		return localVarReturnValue, nil, reportError("pipelineName must have less than 64 elements")
-	}
-	if strlen(r.pipelineRunId) < 24 {
-		return localVarReturnValue, nil, reportError("pipelineRunId must have at least 24 elements")
-	}
-	if strlen(r.pipelineRunId) > 24 {
-		return localVarReturnValue, nil, reportError("pipelineRunId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -2165,7 +2165,7 @@ func (a *DataLakePipelinesApiService) ReturnOnePipelineRunInOneProjectExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest struct {
+type DataLakePipelinesApiTriggerSnapshotIngestionRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -2176,39 +2176,39 @@ type DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest struct {
 }
 
 // Triggers a single ingestion run of a snapshot.
-func (r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) TriggerIngestionRequest(triggerIngestionRequest TriggerIngestionRequest) DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest {
+func (r DataLakePipelinesApiTriggerSnapshotIngestionRequest) TriggerIngestionRequest(triggerIngestionRequest TriggerIngestionRequest) DataLakePipelinesApiTriggerSnapshotIngestionRequest {
 	r.triggerIngestionRequest = &triggerIngestionRequest
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) Envelope(envelope bool) DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest {
+func (r DataLakePipelinesApiTriggerSnapshotIngestionRequest) Envelope(envelope bool) DataLakePipelinesApiTriggerSnapshotIngestionRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) Pretty(pretty bool) DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataLakePipelinesApiTriggerSnapshotIngestionRequest) Pretty(pretty bool) DataLakePipelinesApiTriggerSnapshotIngestionRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
-	return r.ApiService.TriggerOneOnDemandSnapshotIngestionExecute(r)
+func (r DataLakePipelinesApiTriggerSnapshotIngestionRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
+	return r.ApiService.TriggerSnapshotIngestionExecute(r)
 }
 
 /*
-TriggerOneOnDemandSnapshotIngestion Trigger on demand snapshot ingestion
+TriggerSnapshotIngestion Trigger on demand snapshot ingestion
 
 Triggers a Data Lake Pipeline ingestion of a specified snapshot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest
+ @return DataLakePipelinesApiTriggerSnapshotIngestionRequest
 */
-func (a *DataLakePipelinesApiService) TriggerOneOnDemandSnapshotIngestion(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest {
-	return DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest{
+func (a *DataLakePipelinesApiService) TriggerSnapshotIngestion(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiTriggerSnapshotIngestionRequest {
+	return DataLakePipelinesApiTriggerSnapshotIngestionRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2218,7 +2218,7 @@ func (a *DataLakePipelinesApiService) TriggerOneOnDemandSnapshotIngestion(ctx co
 
 // Execute executes the request
 //  @return IngestionPipelineRun
-func (a *DataLakePipelinesApiService) TriggerOneOnDemandSnapshotIngestionExecute(r DataLakePipelinesApiTriggerOneOnDemandSnapshotIngestionRequest) (*IngestionPipelineRun, *http.Response, error) {
+func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionExecute(r DataLakePipelinesApiTriggerSnapshotIngestionRequest) (*IngestionPipelineRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2226,7 +2226,7 @@ func (a *DataLakePipelinesApiService) TriggerOneOnDemandSnapshotIngestionExecute
 		localVarReturnValue  *IngestionPipelineRun
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.TriggerOneOnDemandSnapshotIngestion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.TriggerSnapshotIngestion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2348,7 +2348,7 @@ func (a *DataLakePipelinesApiService) TriggerOneOnDemandSnapshotIngestionExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataLakePipelinesApiUpdateOneDataLakePipelineRequest struct {
+type DataLakePipelinesApiUpdatePipelineRequest struct {
 	ctx context.Context
 	ApiService DataLakePipelinesApi
 	groupId string
@@ -2358,33 +2358,33 @@ type DataLakePipelinesApiUpdateOneDataLakePipelineRequest struct {
 }
 
 // Updates one Data Lake Pipeline.
-func (r DataLakePipelinesApiUpdateOneDataLakePipelineRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) DataLakePipelinesApiUpdateOneDataLakePipelineRequest {
+func (r DataLakePipelinesApiUpdatePipelineRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) DataLakePipelinesApiUpdatePipelineRequest {
 	r.ingestionPipeline = &ingestionPipeline
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataLakePipelinesApiUpdateOneDataLakePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiUpdateOneDataLakePipelineRequest {
+func (r DataLakePipelinesApiUpdatePipelineRequest) Envelope(envelope bool) DataLakePipelinesApiUpdatePipelineRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r DataLakePipelinesApiUpdateOneDataLakePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.UpdateOneDataLakePipelineExecute(r)
+func (r DataLakePipelinesApiUpdatePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
+	return r.ApiService.UpdatePipelineExecute(r)
 }
 
 /*
-UpdateOneDataLakePipeline Update One Data Lake Pipeline
+UpdatePipeline Update One Data Lake Pipeline
 
 Updates one Data Lake Pipeline.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param pipelineName Human-readable label that identifies the Data Lake Pipeline.
- @return DataLakePipelinesApiUpdateOneDataLakePipelineRequest
+ @return DataLakePipelinesApiUpdatePipelineRequest
 */
-func (a *DataLakePipelinesApiService) UpdateOneDataLakePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiUpdateOneDataLakePipelineRequest {
-	return DataLakePipelinesApiUpdateOneDataLakePipelineRequest{
+func (a *DataLakePipelinesApiService) UpdatePipeline(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiUpdatePipelineRequest {
+	return DataLakePipelinesApiUpdatePipelineRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2394,7 +2394,7 @@ func (a *DataLakePipelinesApiService) UpdateOneDataLakePipeline(ctx context.Cont
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) UpdateOneDataLakePipelineExecute(r DataLakePipelinesApiUpdateOneDataLakePipelineRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesApiUpdatePipelineRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2402,7 +2402,7 @@ func (a *DataLakePipelinesApiService) UpdateOneDataLakePipelineExecute(r DataLak
 		localVarReturnValue  *IngestionPipeline
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.UpdateOneDataLakePipeline")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.UpdatePipeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

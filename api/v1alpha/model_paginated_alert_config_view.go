@@ -17,10 +17,10 @@ import (
 // PaginatedAlertConfigView struct for PaginatedAlertConfigView
 type PaginatedAlertConfigView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links,omitempty"`
+	Links []Link `json:"links"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []ApiAlertConfigView `json:"results,omitempty"`
-	// Number of documents returned in this response.
+	Results []AlertConfigViewForNdsGroup `json:"results,omitempty"`
+	// Number of documents returned in this response if **includeCount** query param is true.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
@@ -41,42 +41,34 @@ func NewPaginatedAlertConfigViewWithDefaults() *PaginatedAlertConfigView {
 	return &this
 }
 
-// GetLinks returns the Links field value if set, zero value otherwise.
+// GetLinks returns the Links field value
 func (o *PaginatedAlertConfigView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil {
 		var ret []Link
 		return ret
 	}
+
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 func (o *PaginatedAlertConfigView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// HasLinks returns a boolean if a field has been set.
-func (o *PaginatedAlertConfigView) HasLinks() bool {
-	if o != nil && o.Links != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+// SetLinks sets field value
 func (o *PaginatedAlertConfigView) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedAlertConfigView) GetResults() []ApiAlertConfigView {
+func (o *PaginatedAlertConfigView) GetResults() []AlertConfigViewForNdsGroup {
 	if o == nil || o.Results == nil {
-		var ret []ApiAlertConfigView
+		var ret []AlertConfigViewForNdsGroup
 		return ret
 	}
 	return o.Results
@@ -84,7 +76,7 @@ func (o *PaginatedAlertConfigView) GetResults() []ApiAlertConfigView {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedAlertConfigView) GetResultsOk() ([]ApiAlertConfigView, bool) {
+func (o *PaginatedAlertConfigView) GetResultsOk() ([]AlertConfigViewForNdsGroup, bool) {
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
@@ -100,8 +92,8 @@ func (o *PaginatedAlertConfigView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []ApiAlertConfigView and assigns it to the Results field.
-func (o *PaginatedAlertConfigView) SetResults(v []ApiAlertConfigView) {
+// SetResults gets a reference to the given []AlertConfigViewForNdsGroup and assigns it to the Results field.
+func (o *PaginatedAlertConfigView) SetResults(v []AlertConfigViewForNdsGroup) {
 	o.Results = v
 }
 
@@ -139,7 +131,7 @@ func (o *PaginatedAlertConfigView) SetTotalCount(v int32) {
 
 func (o PaginatedAlertConfigView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Links != nil {
+	if true {
 		toSerialize["links"] = o.Links
 	}
 	if o.Results != nil {

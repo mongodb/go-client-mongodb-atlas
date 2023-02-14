@@ -23,229 +23,229 @@ import (
 type ProgrammaticAPIKeysApi interface {
 
 	/*
-	AssignOneOrganizationApiKeyToOneProject Assign One Organization API Key to One Project
+	AddProjectApiKey Assign One Organization API Key to One Project
 
 	Assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can then use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
-	@return ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest
+	@return ProgrammaticAPIKeysApiAddProjectApiKeyRequest
 	*/
-	AssignOneOrganizationApiKeyToOneProject(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest
+	AddProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAddProjectApiKeyRequest
 
-	// AssignOneOrganizationApiKeyToOneProjectExecute executes the request
+	// AddProjectApiKeyExecute executes the request
 	//  @return ApiApiUserView
-	AssignOneOrganizationApiKeyToOneProjectExecute(r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) (*ApiApiUserView, *http.Response, error)
+	AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error)
 
 	/*
-	CreateAccessListEntriesForOneOrganizationApiKey Create Access List Entries for One Organization API Key
-
-	Creates the access list entries for the specified organization API key. Resources require all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to create a new access list entry.
-	@return ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest
-	*/
-	CreateAccessListEntriesForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest
-
-	// CreateAccessListEntriesForOneOrganizationApiKeyExecute executes the request
-	//  @return ApiUserAccessListView
-	CreateAccessListEntriesForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) (*ApiUserAccessListView, *http.Response, error)
-
-	/*
-	CreateAndAssignOneOrganizationApiKeyToOneProject Create and Assign One Organization API Key to One Project
-
-	Creates and assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest
-	*/
-	CreateAndAssignOneOrganizationApiKeyToOneProject(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest
-
-	// CreateAndAssignOneOrganizationApiKeyToOneProjectExecute executes the request
-	//  @return ApiApiUserView
-	CreateAndAssignOneOrganizationApiKeyToOneProjectExecute(r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) (*ApiApiUserView, *http.Response, error)
-
-	/*
-	CreateOneOrganizationApiKey Create One Organization API Key
+	CreateApiKey Create One Organization API Key
 
 	Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@return ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@return ProgrammaticAPIKeysApiCreateApiKeyRequest
 	*/
-	CreateOneOrganizationApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest
+	CreateApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateApiKeyRequest
 
-	// CreateOneOrganizationApiKeyExecute executes the request
+	// CreateApiKeyExecute executes the request
 	//  @return ApiApiUserView
-	CreateOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiApiUserView, *http.Response, error)
 
 	/*
-	RemoveOneAccessListEntryForOneOrganizationApiKey Remove One Access List Entry for One Organization API Key
+	CreateApiKeyAccessList Create Access List Entries for One Organization API Key
 
-	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
+	Creates the access list entries for the specified organization API key. Resources require all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
-	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
-	@return ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to create a new access list entry.
+	@return ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest
 	*/
-	RemoveOneAccessListEntryForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest
+	CreateApiKeyAccessList(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest
 
-	// RemoveOneAccessListEntryForOneOrganizationApiKeyExecute executes the request
-	RemoveOneAccessListEntryForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest) (*http.Response, error)
+	// CreateApiKeyAccessListExecute executes the request
+	//  @return ApiUserAccessListView
+	CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error)
 
 	/*
-	RemoveOneOrganizationApiKey Remove One Organization API Key
+	CreateProjectApiKey Create and Assign One Organization API Key to One Project
+
+	Creates and assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProgrammaticAPIKeysApiCreateProjectApiKeyRequest
+	*/
+	CreateProjectApiKey(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest
+
+	// CreateProjectApiKeyExecute executes the request
+	//  @return ApiApiUserView
+	CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+
+	/*
+	DeleteApiKey Remove One Organization API Key
 
 	Removes one organization API key from the specified organization. When you remove an API key from an organization, MongoDB Cloud also removes that key from any projects that use that key. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key.
-	@return ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest
+	@return ProgrammaticAPIKeysApiDeleteApiKeyRequest
 	*/
-	RemoveOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest
+	DeleteApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiDeleteApiKeyRequest
 
-	// RemoveOneOrganizationApiKeyExecute executes the request
-	RemoveOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest) (*http.Response, error)
+	// DeleteApiKeyExecute executes the request
+	DeleteApiKeyExecute(r ProgrammaticAPIKeysApiDeleteApiKeyRequest) (*http.Response, error)
 
 	/*
-	ReturnAllAccessListEntriesForOneOrganizationApiKey Return All Access List Entries for One Organization API Key
+	DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
 
-	Returns all access list entries that you configured for the specified organization API key. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to return access list entries.
-	@return ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
+	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
+	@return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 	*/
-	ReturnAllAccessListEntriesForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest
+	DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 
-	// ReturnAllAccessListEntriesForOneOrganizationApiKeyExecute executes the request
-	//  @return PaginatedApiUserAccessListView
-	ReturnAllAccessListEntriesForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) (*PaginatedApiUserAccessListView, *http.Response, error)
+	// DeleteApiKeyAcessListExecute executes the request
+	DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error)
 
 	/*
-	ReturnAllOrganizationApiKeys Return All Organization API Keys
-
-	Returns all organization API keys for the specified organization. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the console. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest
-	*/
-	ReturnAllOrganizationApiKeys(ctx context.Context, orgId string) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest
-
-	// ReturnAllOrganizationApiKeysExecute executes the request
-	//  @return PaginatedApiApiUserView
-	ReturnAllOrganizationApiKeysExecute(r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error)
-
-	/*
-	ReturnAllOrganizationApiKeysAssignedToOneProject Return All Organization API Keys Assigned to One Project
-
-	Returns all organization API keys that you assigned to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest
-	*/
-	ReturnAllOrganizationApiKeysAssignedToOneProject(ctx context.Context, groupId string) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest
-
-	// ReturnAllOrganizationApiKeysAssignedToOneProjectExecute executes the request
-	//  @return PaginatedApiApiUserView
-	ReturnAllOrganizationApiKeysAssignedToOneProjectExecute(r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) (*PaginatedApiApiUserView, *http.Response, error)
-
-	/*
-	ReturnOneAccessListEntryForOneOrganizationApiKey Return One Access List Entry for One Organization API Key
-
-	Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource,  the requesting API Key must have the Organization Member role. This resource  doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit  requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as  192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
-	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for  which you want to return access list entries.
-	@return ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest
-	*/
-	ReturnOneAccessListEntryForOneOrganizationApiKey(ctx context.Context, orgId string, ipAddress string, apiUserId string) ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest
-
-	// ReturnOneAccessListEntryForOneOrganizationApiKeyExecute executes the request
-	//  @return ApiUserAccessListView
-	ReturnOneAccessListEntryForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest) (*ApiUserAccessListView, *http.Response, error)
-
-	/*
-	ReturnOneOrganizationApiKey Return One Organization API Key
+	GetApiKey Return One Organization API Key
 
 	Returns one organization API key. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the user interface. To use this resource, the requesting API Key must have the  Organization Member role. This resource doesn't require the API Key to have an  Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that  you want to update.
-	@return ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest
+	@return ProgrammaticAPIKeysApiGetApiKeyRequest
 	*/
-	ReturnOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest
+	GetApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyRequest
 
-	// ReturnOneOrganizationApiKeyExecute executes the request
+	// GetApiKeyExecute executes the request
 	//  @return ApiApiUserView
-	ReturnOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiApiUserView, *http.Response, error)
 
 	/*
-	UnassignOneOrganizationApiKeyFromOneProject Unassign One Organization API Key from One Project
+	GetApiKeyAccessList Return One Access List Entry for One Organization API Key
+
+	Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource,  the requesting API Key must have the Organization Member role. This resource  doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit  requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as  192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
+	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for  which you want to return access list entries.
+	@return ProgrammaticAPIKeysApiGetApiKeyAccessListRequest
+	*/
+	GetApiKeyAccessList(ctx context.Context, orgId string, ipAddress string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest
+
+	// GetApiKeyAccessListExecute executes the request
+	//  @return ApiUserAccessListView
+	GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error)
+
+	/*
+	ListApiKeyAccessListsEntries Return All Access List Entries for One Organization API Key
+
+	Returns all access list entries that you configured for the specified organization API key. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to return access list entries.
+	@return ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest
+	*/
+	ListApiKeyAccessListsEntries(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest
+
+	// ListApiKeyAccessListsEntriesExecute executes the request
+	//  @return PaginatedApiUserAccessListView
+	ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessListView, *http.Response, error)
+
+	/*
+	ListApiKeys Return All Organization API Keys
+
+	Returns all organization API keys for the specified organization. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the console. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+	@return ProgrammaticAPIKeysApiListApiKeysRequest
+	*/
+	ListApiKeys(ctx context.Context, orgId string) ProgrammaticAPIKeysApiListApiKeysRequest
+
+	// ListApiKeysExecute executes the request
+	//  @return PaginatedApiApiUserView
+	ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error)
+
+	/*
+	ListProjectApiKeys Return All Organization API Keys Assigned to One Project
+
+	Returns all organization API keys that you assigned to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return ProgrammaticAPIKeysApiListProjectApiKeysRequest
+	*/
+	ListProjectApiKeys(ctx context.Context, groupId string) ProgrammaticAPIKeysApiListProjectApiKeysRequest
+
+	// ListProjectApiKeysExecute executes the request
+	//  @return PaginatedApiApiUserView
+	ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error)
+
+	/*
+	RemoveProjectApiKey Unassign One Organization API Key from One Project
 
 	Removes one organization API key from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to unassign from one project.
-	@return ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest
+	@return ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest
 	*/
-	UnassignOneOrganizationApiKeyFromOneProject(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest
+	RemoveProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest
 
-	// UnassignOneOrganizationApiKeyFromOneProjectExecute executes the request
-	UnassignOneOrganizationApiKeyFromOneProjectExecute(r ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest) (*http.Response, error)
+	// RemoveProjectApiKeyExecute executes the request
+	RemoveProjectApiKeyExecute(r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) (*http.Response, error)
 
 	/*
-	UpdateOneOrganizationApiKey Update One Organization API Key
+	UpdateApiKey Update One Organization API Key
 
 	Updates one organization API key in the specified organization. The organization API keys  grant programmatic access to an organization. To use this resource, the requesting  API Key must have the Organization User Admin role. This resource doesn't require  the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key you  want to update.
-	@return ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest
+	@return ProgrammaticAPIKeysApiUpdateApiKeyRequest
 	*/
-	UpdateOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest
+	UpdateApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRequest
 
-	// UpdateOneOrganizationApiKeyExecute executes the request
+	// UpdateApiKeyExecute executes the request
 	//  @return ApiApiUserView
-	UpdateOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiApiUserView, *http.Response, error)
 
 	/*
-	UpdateRoles Update Roles of One Organization API Key to One Project
+	UpdateApiKeyRoles Update Roles of One Organization API Key to One Project
 
 	Updates the roles of the organization API key that you specify for the project that you specify. You must specify at least one valid role for the project. The application removes any roles that you do not include in this request if they were previously set in the organization API key that you specify for the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to unassign from one project.
-	@return ProgrammaticAPIKeysApiUpdateRolesRequest
+	@return ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest
 	*/
-	UpdateRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateRolesRequest
+	UpdateApiKeyRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest
 
-	// UpdateRolesExecute executes the request
+	// UpdateApiKeyRolesExecute executes the request
 	//  @return ApiApiUserView
-	UpdateRolesExecute(r ProgrammaticAPIKeysApiUpdateRolesRequest) (*ApiApiUserView, *http.Response, error)
+	UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiApiUserView, *http.Response, error)
 }
 
 // ProgrammaticAPIKeysApiService ProgrammaticAPIKeysApi service
 type ProgrammaticAPIKeysApiService service
 
-type ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest struct {
+type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
@@ -256,39 +256,39 @@ type ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest struct
 }
 
 // Organization API key to be assigned to the specified project.
-func (r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) ApiUserRoleAssignment(apiUserRoleAssignment []ApiUserRoleAssignment) ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) ApiUserRoleAssignment(apiUserRoleAssignment []ApiUserRoleAssignment) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
 	r.apiUserRoleAssignment = &apiUserRoleAssignment
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.AssignOneOrganizationApiKeyToOneProjectExecute(r)
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.AddProjectApiKeyExecute(r)
 }
 
 /*
-AssignOneOrganizationApiKeyToOneProject Assign One Organization API Key to One Project
+AddProjectApiKey Assign One Organization API Key to One Project
 
 Assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can then use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
- @return ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest
+ @return ProgrammaticAPIKeysApiAddProjectApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) AssignOneOrganizationApiKeyToOneProject(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest {
-	return ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest{
+func (a *ProgrammaticAPIKeysApiService) AddProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
+	return ProgrammaticAPIKeysApiAddProjectApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -298,7 +298,7 @@ func (a *ProgrammaticAPIKeysApiService) AssignOneOrganizationApiKeyToOneProject(
 
 // Execute executes the request
 //  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) AssignOneOrganizationApiKeyToOneProjectExecute(r ProgrammaticAPIKeysApiAssignOneOrganizationApiKeyToOneProjectRequest) (*ApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -306,7 +306,7 @@ func (a *ProgrammaticAPIKeysApiService) AssignOneOrganizationApiKeyToOneProjectE
 		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.AssignOneOrganizationApiKeyToOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.AddProjectApiKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -417,7 +417,169 @@ func (a *ProgrammaticAPIKeysApiService) AssignOneOrganizationApiKeyToOneProjectE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
+	ctx context.Context
+	ApiService ProgrammaticAPIKeysApi
+	orgId string
+	apiCreateApiKeyView *ApiCreateApiKeyView
+	envelope *bool
+	pretty *bool
+}
+
+// Organization API Key to be created. This request requires a minimum of one of the two body parameters.
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateApiKeyRequest {
+	r.apiCreateApiKeyView = &apiCreateApiKeyView
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateApiKeyRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateApiKeyRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.CreateApiKeyExecute(r)
+}
+
+/*
+CreateApiKey Create One Organization API Key
+
+Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @return ProgrammaticAPIKeysApiCreateApiKeyRequest
+*/
+func (a *ProgrammaticAPIKeysApiService) CreateApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateApiKeyRequest {
+	return ProgrammaticAPIKeysApiCreateApiKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiApiUserView
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiApiUserView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateApiKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if r.apiCreateApiKeyView == nil {
+		return localVarReturnValue, nil, reportError("apiCreateApiKeyView is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.apiCreateApiKeyView
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -431,57 +593,57 @@ type ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyReques
 }
 
 // Access list entries to be created for the specified organization API key.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) ApiUserAccessListView(apiUserAccessListView []ApiUserAccessListView) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) ApiUserAccessListView(apiUserAccessListView []ApiUserAccessListView) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.apiUserAccessListView = &apiUserAccessListView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
-	return r.ApiService.CreateAccessListEntriesForOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
+	return r.ApiService.CreateApiKeyAccessListExecute(r)
 }
 
 /*
-CreateAccessListEntriesForOneOrganizationApiKey Create Access List Entries for One Organization API Key
+CreateApiKeyAccessList Create Access List Entries for One Organization API Key
 
 Creates the access list entries for the specified organization API key. Resources require all API requests originate from IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to create a new access list entry.
- @return ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest
+ @return ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest
 */
-func (a *ProgrammaticAPIKeysApiService) CreateAccessListEntriesForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessList(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
+	return ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -491,7 +653,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateAccessListEntriesForOneOrganizatio
 
 // Execute executes the request
 //  @return ApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) CreateAccessListEntriesForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiCreateAccessListEntriesForOneOrganizationApiKeyRequest) (*ApiUserAccessListView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -499,7 +661,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateAccessListEntriesForOneOrganizatio
 		localVarReturnValue  *ApiUserAccessListView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateAccessListEntriesForOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateApiKeyAccessList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -641,7 +803,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateAccessListEntriesForOneOrganizatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest struct {
+type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
@@ -651,38 +813,38 @@ type ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectReque
 }
 
 // Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
 	r.apiCreateApiKeyView = &apiCreateApiKeyView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.CreateAndAssignOneOrganizationApiKeyToOneProjectExecute(r)
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.CreateProjectApiKeyExecute(r)
 }
 
 /*
-CreateAndAssignOneOrganizationApiKeyToOneProject Create and Assign One Organization API Key to One Project
+CreateProjectApiKey Create and Assign One Organization API Key to One Project
 
 Creates and assigns the specified organization API key to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProgrammaticAPIKeysApiCreateProjectApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) CreateAndAssignOneOrganizationApiKeyToOneProject(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest {
-	return ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest{
+func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKey(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
+	return ProgrammaticAPIKeysApiCreateProjectApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -691,7 +853,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateAndAssignOneOrganizationApiKeyToOn
 
 // Execute executes the request
 //  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) CreateAndAssignOneOrganizationApiKeyToOneProjectExecute(r ProgrammaticAPIKeysApiCreateAndAssignOneOrganizationApiKeyToOneProjectRequest) (*ApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -699,7 +861,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateAndAssignOneOrganizationApiKeyToOn
 		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateAndAssignOneOrganizationApiKeyToOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateProjectApiKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -803,83 +965,81 @@ func (a *ProgrammaticAPIKeysApiService) CreateAndAssignOneOrganizationApiKeyToOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
-	apiCreateApiKeyView *ApiCreateApiKeyView
+	apiUserId string
 	envelope *bool
 	pretty *bool
 }
 
-// Organization API Key to be created. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest {
-	r.apiCreateApiKeyView = &apiCreateApiKeyView
-	return r
-}
-
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiDeleteApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiDeleteApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.CreateOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteApiKeyExecute(r)
 }
 
 /*
-CreateOneOrganizationApiKey Create One Organization API Key
+DeleteApiKey Remove One Organization API Key
 
-Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Removes one organization API key from the specified organization. When you remove an API key from an organization, MongoDB Cloud also removes that key from any projects that use that key. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
- @return ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key.
+ @return ProgrammaticAPIKeysApiDeleteApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) CreateOneOrganizationApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiDeleteApiKeyRequest {
+	return ProgrammaticAPIKeysApiDeleteApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
+		apiUserId: apiUserId,
 	}
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) CreateOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiCreateOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKeysApiDeleteApiKeyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKey")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys"
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"apiUserId"+"}", url.PathEscape(parameterToString(r.apiUserId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+		return nil, reportError("orgId must have at least 24 elements")
 	}
 	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+		return nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.apiCreateApiKeyView == nil {
-		return localVarReturnValue, nil, reportError("apiCreateApiKeyView is required and must be specified")
+	if strlen(r.apiUserId) < 24 {
+		return nil, reportError("apiUserId must have at least 24 elements")
+	}
+	if strlen(r.apiUserId) > 24 {
+		return nil, reportError("apiUserId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -889,7 +1049,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateOneOrganizationApiKeyExecute(r Pro
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -898,30 +1058,28 @@ func (a *ProgrammaticAPIKeysApiService) CreateOneOrganizationApiKeyExecute(r Pro
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.apiCreateApiKeyView
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -934,38 +1092,29 @@ func (a *ProgrammaticAPIKeysApiService) CreateOneOrganizationApiKeyExecute(r Pro
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -976,34 +1125,34 @@ type ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyReque
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneAccessListEntryForOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteApiKeyAcessListExecute(r)
 }
 
 /*
-RemoveOneAccessListEntryForOneOrganizationApiKey Remove One Access List Entry for One Organization API Key
+DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
 
 Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
  @param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
- @return ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest
+ @return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 */
-func (a *ProgrammaticAPIKeysApiService) RemoveOneAccessListEntryForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
+	return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1013,14 +1162,14 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneAccessListEntryForOneOrganizati
 }
 
 // Execute executes the request
-func (a *ProgrammaticAPIKeysApiService) RemoveOneAccessListEntryForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiRemoveOneAccessListEntryForOneOrganizationApiKeyRequest) (*http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.RemoveOneAccessListEntryForOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKeyAcessList")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1140,7 +1289,7 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneAccessListEntryForOneOrganizati
 	return localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -1150,33 +1299,33 @@ type ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiGetApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiGetApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.GetApiKeyExecute(r)
 }
 
 /*
-RemoveOneOrganizationApiKey Remove One Organization API Key
+GetApiKey Return One Organization API Key
 
-Removes one organization API key from the specified organization. When you remove an API key from an organization, MongoDB Cloud also removes that key from any projects that use that key. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Returns one organization API key. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the user interface. To use this resource, the requesting API Key must have the  Organization Member role. This resource doesn't require the API Key to have an  Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
- @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key.
- @return ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that  you want to update.
+ @return ProgrammaticAPIKeysApiGetApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) GetApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyRequest {
+	return ProgrammaticAPIKeysApiGetApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1185,16 +1334,18 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKey(ctx context.
 }
 
 // Execute executes the request
-func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiRemoveOneOrganizationApiKeyRequest) (*http.Response, error) {
+//  @return ApiApiUserView
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.RemoveOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.GetApiKey")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}"
@@ -1205,16 +1356,16 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKeyExecute(r Pro
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.orgId) < 24 {
-		return nil, reportError("orgId must have at least 24 elements")
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
 	}
 	if strlen(r.orgId) > 24 {
-		return nil, reportError("orgId must have less than 24 elements")
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 	if strlen(r.apiUserId) < 24 {
-		return nil, reportError("apiUserId must have at least 24 elements")
+		return localVarReturnValue, nil, reportError("apiUserId must have at least 24 elements")
 	}
 	if strlen(r.apiUserId) > 24 {
-		return nil, reportError("apiUserId must have less than 24 elements")
+		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -1233,7 +1384,7 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKeyExecute(r Pro
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1242,19 +1393,19 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKeyExecute(r Pro
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1267,29 +1418,213 @@ func (a *ProgrammaticAPIKeysApiService) RemoveOneOrganizationApiKeyExecute(r Pro
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
             		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
             		newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
+	ctx context.Context
+	ApiService ProgrammaticAPIKeysApi
+	orgId string
+	ipAddress string
+	apiUserId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
+	return r.ApiService.GetApiKeyAccessListExecute(r)
+}
+
+/*
+GetApiKeyAccessList Return One Access List Entry for One Organization API Key
+
+Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource,  the requesting API Key must have the Organization Member role. This resource  doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit  requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as  192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
+ @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for  which you want to return access list entries.
+ @return ProgrammaticAPIKeysApiGetApiKeyAccessListRequest
+*/
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessList(ctx context.Context, orgId string, ipAddress string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
+	return ProgrammaticAPIKeysApiGetApiKeyAccessListRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		ipAddress: ipAddress,
+		apiUserId: apiUserId,
+	}
+}
+
+// Execute executes the request
+//  @return ApiUserAccessListView
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiUserAccessListView
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.GetApiKeyAccessList")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ipAddress"+"}", url.PathEscape(parameterToString(r.ipAddress, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"apiUserId"+"}", url.PathEscape(parameterToString(r.apiUserId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.orgId) < 24 {
+		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
+	}
+	if strlen(r.orgId) > 24 {
+		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
+	}
+	if strlen(r.apiUserId) < 24 {
+		return localVarReturnValue, nil, reportError("apiUserId must have at least 24 elements")
+	}
+	if strlen(r.apiUserId) > 24 {
+		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -1302,51 +1637,51 @@ type ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyReq
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) Execute() (*PaginatedApiUserAccessListView, *http.Response, error) {
-	return r.ApiService.ReturnAllAccessListEntriesForOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Execute() (*PaginatedApiUserAccessListView, *http.Response, error) {
+	return r.ApiService.ListApiKeyAccessListsEntriesExecute(r)
 }
 
 /*
-ReturnAllAccessListEntriesForOneOrganizationApiKey Return All Access List Entries for One Organization API Key
+ListApiKeyAccessListsEntries Return All Access List Entries for One Organization API Key
 
 Returns all access list entries that you configured for the specified organization API key. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to return access list entries.
- @return ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest
+ @return ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest
 */
-func (a *ProgrammaticAPIKeysApiService) ReturnAllAccessListEntriesForOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntries(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
+	return ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1356,7 +1691,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllAccessListEntriesForOneOrganiza
 
 // Execute executes the request
 //  @return PaginatedApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) ReturnAllAccessListEntriesForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnAllAccessListEntriesForOneOrganizationApiKeyRequest) (*PaginatedApiUserAccessListView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessListView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1364,7 +1699,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllAccessListEntriesForOneOrganiza
 		localVarReturnValue  *PaginatedApiUserAccessListView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ReturnAllAccessListEntriesForOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListApiKeyAccessListsEntries")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1479,7 +1814,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllAccessListEntriesForOneOrganiza
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest struct {
+type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -1491,50 +1826,50 @@ type ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
-	return r.ApiService.ReturnAllOrganizationApiKeysExecute(r)
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
+	return r.ApiService.ListApiKeysExecute(r)
 }
 
 /*
-ReturnAllOrganizationApiKeys Return All Organization API Keys
+ListApiKeys Return All Organization API Keys
 
 Returns all organization API keys for the specified organization. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the console. To use this resource, the requesting API Key must have the Organization Member role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
- @return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
+ @return ProgrammaticAPIKeysApiListApiKeysRequest
 */
-func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeys(ctx context.Context, orgId string) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest {
-	return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest{
+func (a *ProgrammaticAPIKeysApiService) ListApiKeys(ctx context.Context, orgId string) ProgrammaticAPIKeysApiListApiKeysRequest {
+	return ProgrammaticAPIKeysApiListApiKeysRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1543,7 +1878,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeys(ctx context
 
 // Execute executes the request
 //  @return PaginatedApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysExecute(r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1551,7 +1886,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysExecute(r Pr
 		localVarReturnValue  *PaginatedApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ReturnAllOrganizationApiKeys")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListApiKeys")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1659,7 +1994,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysExecute(r Pr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest struct {
+type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
@@ -1671,50 +2006,50 @@ type ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectReque
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
-	return r.ApiService.ReturnAllOrganizationApiKeysAssignedToOneProjectExecute(r)
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
+	return r.ApiService.ListProjectApiKeysExecute(r)
 }
 
 /*
-ReturnAllOrganizationApiKeysAssignedToOneProject Return All Organization API Keys Assigned to One Project
+ListProjectApiKeys Return All Organization API Keys Assigned to One Project
 
 Returns all organization API keys that you assigned to the specified project. Users with the Project Owner role in the project associated with the API key can use the organization API key to access the resources. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return ProgrammaticAPIKeysApiListProjectApiKeysRequest
 */
-func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysAssignedToOneProject(ctx context.Context, groupId string) ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest {
-	return ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest{
+func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeys(ctx context.Context, groupId string) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
+	return ProgrammaticAPIKeysApiListProjectApiKeysRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1723,7 +2058,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysAssignedToOn
 
 // Execute executes the request
 //  @return PaginatedApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysAssignedToOneProjectExecute(r ProgrammaticAPIKeysApiReturnAllOrganizationApiKeysAssignedToOneProjectRequest) (*PaginatedApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1731,7 +2066,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysAssignedToOn
 		localVarReturnValue  *PaginatedApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ReturnAllOrganizationApiKeysAssignedToOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListProjectApiKeys")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1839,342 +2174,7 @@ func (a *ProgrammaticAPIKeysApiService) ReturnAllOrganizationApiKeysAssignedToOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest struct {
-	ctx context.Context
-	ApiService ProgrammaticAPIKeysApi
-	orgId string
-	ipAddress string
-	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
-	return r.ApiService.ReturnOneAccessListEntryForOneOrganizationApiKeyExecute(r)
-}
-
-/*
-ReturnOneAccessListEntryForOneOrganizationApiKey Return One Access List Entry for One Organization API Key
-
-Returns one access list entry for the specified organization API key. Resources require  all API requests originate from IP addresses on the API access list. To use this resource,  the requesting API Key must have the Organization Member role. This resource  doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
- @param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit  requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as  192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
- @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for  which you want to return access list entries.
- @return ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest
-*/
-func (a *ProgrammaticAPIKeysApiService) ReturnOneAccessListEntryForOneOrganizationApiKey(ctx context.Context, orgId string, ipAddress string, apiUserId string) ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		ipAddress: ipAddress,
-		apiUserId: apiUserId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) ReturnOneAccessListEntryForOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnOneAccessListEntryForOneOrganizationApiKeyRequest) (*ApiUserAccessListView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiUserAccessListView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ReturnOneAccessListEntryForOneOrganizationApiKey")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"ipAddress"+"}", url.PathEscape(parameterToString(r.ipAddress, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiUserId"+"}", url.PathEscape(parameterToString(r.apiUserId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-	if strlen(r.apiUserId) < 24 {
-		return localVarReturnValue, nil, reportError("apiUserId must have at least 24 elements")
-	}
-	if strlen(r.apiUserId) > 24 {
-		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest struct {
-	ctx context.Context
-	ApiService ProgrammaticAPIKeysApi
-	orgId string
-	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.ReturnOneOrganizationApiKeyExecute(r)
-}
-
-/*
-ReturnOneOrganizationApiKey Return One Organization API Key
-
-Returns one organization API key. The organization API keys grant programmatic access to an organization. You can't use the API key to log into MongoDB Cloud through the user interface. To use this resource, the requesting API Key must have the  Organization Member role. This resource doesn't require the API Key to have an  Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
- @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that  you want to update.
- @return ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest
-*/
-func (a *ProgrammaticAPIKeysApiService) ReturnOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		apiUserId: apiUserId,
-	}
-}
-
-// Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) ReturnOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiReturnOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ReturnOneOrganizationApiKey")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiUserId"+"}", url.PathEscape(parameterToString(r.apiUserId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.orgId) < 24 {
-		return localVarReturnValue, nil, reportError("orgId must have at least 24 elements")
-	}
-	if strlen(r.orgId) > 24 {
-		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
-	}
-	if strlen(r.apiUserId) < 24 {
-		return localVarReturnValue, nil, reportError("apiUserId must have at least 24 elements")
-	}
-	if strlen(r.apiUserId) > 24 {
-		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest struct {
+type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
@@ -2184,33 +2184,33 @@ type ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest st
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest {
+func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UnassignOneOrganizationApiKeyFromOneProjectExecute(r)
+func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveProjectApiKeyExecute(r)
 }
 
 /*
-UnassignOneOrganizationApiKeyFromOneProject Unassign One Organization API Key from One Project
+RemoveProjectApiKey Unassign One Organization API Key from One Project
 
 Removes one organization API key from the specified project. To use this resource, the requesting API Key must have the Project User Admin role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to unassign from one project.
- @return ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest
+ @return ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) UnassignOneOrganizationApiKeyFromOneProject(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest {
-	return ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest{
+func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
+	return ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2219,14 +2219,14 @@ func (a *ProgrammaticAPIKeysApiService) UnassignOneOrganizationApiKeyFromOneProj
 }
 
 // Execute executes the request
-func (a *ProgrammaticAPIKeysApiService) UnassignOneOrganizationApiKeyFromOneProjectExecute(r ProgrammaticAPIKeysApiUnassignOneOrganizationApiKeyFromOneProjectRequest) (*http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKeyExecute(r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UnassignOneOrganizationApiKeyFromOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.RemoveProjectApiKey")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2334,7 +2334,7 @@ func (a *ProgrammaticAPIKeysApiService) UnassignOneOrganizationApiKeyFromOneProj
 	return localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest struct {
+type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -2345,39 +2345,39 @@ type ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest struct {
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) ApiApiUserView(apiApiUserView ApiApiUserView) ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) ApiApiUserView(apiApiUserView ApiApiUserView) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
 	r.apiApiUserView = &apiApiUserView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.UpdateOneOrganizationApiKeyExecute(r)
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.UpdateApiKeyExecute(r)
 }
 
 /*
-UpdateOneOrganizationApiKey Update One Organization API Key
+UpdateApiKey Update One Organization API Key
 
 Updates one organization API key in the specified organization. The organization API keys  grant programmatic access to an organization. To use this resource, the requesting  API Key must have the Organization User Admin role. This resource doesn't require  the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+ @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key you  want to update.
- @return ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest
+ @return ProgrammaticAPIKeysApiUpdateApiKeyRequest
 */
-func (a *ProgrammaticAPIKeysApiService) UpdateOneOrganizationApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest {
-	return ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest{
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
+	return ProgrammaticAPIKeysApiUpdateApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -2387,7 +2387,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateOneOrganizationApiKey(ctx context.
 
 // Execute executes the request
 //  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) UpdateOneOrganizationApiKeyExecute(r ProgrammaticAPIKeysApiUpdateOneOrganizationApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2395,7 +2395,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateOneOrganizationApiKeyExecute(r Pro
 		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateOneOrganizationApiKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2517,7 +2517,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateOneOrganizationApiKeyExecute(r Pro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiUpdateRolesRequest struct {
+type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
@@ -2530,51 +2530,51 @@ type ProgrammaticAPIKeysApiUpdateRolesRequest struct {
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiUpdateRolesRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.apiCreateApiKeyView = &apiCreateApiKeyView
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiUpdateRolesRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiUpdateRolesRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) ItemsPerPage(itemsPerPage int32) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiUpdateRolesRequest {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateRolesRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateRolesRequest) Execute() (*ApiApiUserView, *http.Response, error) {
-	return r.ApiService.UpdateRolesExecute(r)
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+	return r.ApiService.UpdateApiKeyRolesExecute(r)
 }
 
 /*
-UpdateRoles Update Roles of One Organization API Key to One Project
+UpdateApiKeyRoles Update Roles of One Organization API Key to One Project
 
 Updates the roles of the organization API key that you specify for the project that you specify. You must specify at least one valid role for the project. The application removes any roles that you do not include in this request if they were previously set in the organization API key that you specify for the project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key that you want to unassign from one project.
- @return ProgrammaticAPIKeysApiUpdateRolesRequest
+ @return ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest
 */
-func (a *ProgrammaticAPIKeysApiService) UpdateRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateRolesRequest {
-	return ProgrammaticAPIKeysApiUpdateRolesRequest{
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
+	return ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2584,7 +2584,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateRoles(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) UpdateRolesExecute(r ProgrammaticAPIKeysApiUpdateRolesRequest) (*ApiApiUserView, *http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiApiUserView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2592,7 +2592,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateRolesExecute(r ProgrammaticAPIKeys
 		localVarReturnValue  *ApiApiUserView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateRoles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKeyRoles")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

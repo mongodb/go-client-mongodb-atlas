@@ -23,174 +23,194 @@ import (
 type AlertConfigurationsApi interface {
 
 	/*
-	CreateOneAlertConfigurationInOneProject Create One Alert Configuration in One Project
+	CreateAlertConfiguration Create One Alert Configuration in One Project
 
-	Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
+	Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return AlertConfigurationsApiCreateAlertConfigurationRequest
 	*/
-	CreateOneAlertConfigurationInOneProject(ctx context.Context, groupId string) AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest
+	CreateAlertConfiguration(ctx context.Context, groupId string) AlertConfigurationsApiCreateAlertConfigurationRequest
 
-	// CreateOneAlertConfigurationInOneProjectExecute executes the request
-	//  @return ApiAlertConfigView
-	CreateOneAlertConfigurationInOneProjectExecute(r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) (*ApiAlertConfigView, *http.Response, error)
+	// CreateAlertConfigurationExecute executes the request
+	//  @return AlertConfigViewForNdsGroup
+	CreateAlertConfigurationExecute(r AlertConfigurationsApiCreateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
-	RemoveOneAlertConfigurationFromOneProject Remove One Alert Configuration from One Project
+	DeleteAlertConfiguration Remove One Alert Configuration from One Project
 
-	Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
+	Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-delete-config/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+	@return AlertConfigurationsApiDeleteAlertConfigurationRequest
 	*/
-	RemoveOneAlertConfigurationFromOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest
+	DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiDeleteAlertConfigurationRequest
 
-	// RemoveOneAlertConfigurationFromOneProjectExecute executes the request
-	RemoveOneAlertConfigurationFromOneProjectExecute(r AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest) (*http.Response, error)
+	// DeleteAlertConfigurationExecute executes the request
+	DeleteAlertConfigurationExecute(r AlertConfigurationsApiDeleteAlertConfigurationRequest) (*http.Response, error)
 
 	/*
-	ReturnAlertConfigMatchersFieldNames Get All Alert Configuration Matchers Field Names
-
-	Get all field names that the matchers.fieldName parameter accepts when you create or update an Alert Configuration.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest
-	*/
-	ReturnAlertConfigMatchersFieldNames(ctx context.Context) AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest
-
-	// ReturnAlertConfigMatchersFieldNamesExecute executes the request
-	//  @return []string
-	ReturnAlertConfigMatchersFieldNamesExecute(r AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest) ([]string, *http.Response, error)
-
-	/*
-	ReturnAllAlertConfigurationsForOneProject Return All Alert Configurations for One Project
-
-	Returns all alert configurations for one project. These alert configurations apply to any component in the project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-all-configs/).
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest
-	*/
-	ReturnAllAlertConfigurationsForOneProject(ctx context.Context, groupId string) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest
-
-	// ReturnAllAlertConfigurationsForOneProjectExecute executes the request
-	//  @return PaginatedAlertConfigView
-	ReturnAllAlertConfigurationsForOneProjectExecute(r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) (*PaginatedAlertConfigView, *http.Response, error)
-
-	/*
-	ReturnOneAlertConfigurationFromOneProject Return One Alert Configuration from One Project
+	GetAlertConfiguration Return One Alert Configuration from One Project
 
 	Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+	@return AlertConfigurationsApiGetAlertConfigurationRequest
 	*/
-	ReturnOneAlertConfigurationFromOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest
+	GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiGetAlertConfigurationRequest
 
-	// ReturnOneAlertConfigurationFromOneProjectExecute executes the request
-	//  @return ApiAlertConfigView
-	ReturnOneAlertConfigurationFromOneProjectExecute(r AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest) (*ApiAlertConfigView, *http.Response, error)
+	// GetAlertConfigurationExecute executes the request
+	//  @return AlertConfigViewForNdsGroup
+	GetAlertConfigurationExecute(r AlertConfigurationsApiGetAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
-	ToggleOneStateOfOneAlertConfigurationInOneProject Toggle One State of One Alert Configuration in One Project
+	ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
 
-	Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
-
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-enable-disable-config/).
+	Get all field names that the matchers.fieldName parameter accepts when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration) or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration) an Alert Configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest
+	@return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
 	*/
-	ToggleOneStateOfOneAlertConfigurationInOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest
+	ListAlertConfigurationMatchersFieldNames(ctx context.Context) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
 
-	// ToggleOneStateOfOneAlertConfigurationInOneProjectExecute executes the request
-	//  @return ApiAlertConfigView
-	ToggleOneStateOfOneAlertConfigurationInOneProjectExecute(r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) (*ApiAlertConfigView, *http.Response, error)
+	// ListAlertConfigurationMatchersFieldNamesExecute executes the request
+	//  @return []MatcherFieldView
+	ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherFieldView, *http.Response, error)
 
 	/*
-	UpdateOneAlertConfigurationForOneProject Update One Alert Configuration for One Project
+	ListAlertConfigurations Return All Alert Configurations for One Project
+
+	Returns all alert configurations for one project. These alert configurations apply to any component in the project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-all-configs/).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return AlertConfigurationsApiListAlertConfigurationsRequest
+	*/
+	ListAlertConfigurations(ctx context.Context, groupId string) AlertConfigurationsApiListAlertConfigurationsRequest
+
+	// ListAlertConfigurationsExecute executes the request
+	//  @return PaginatedAlertConfigView
+	ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfigView, *http.Response, error)
+
+	/*
+	ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
+
+	Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
+	@return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
+	*/
+	ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
+
+	// ListAlertConfigurationsByAlertIdExecute executes the request
+	//  @return PaginatedAlertConfigView
+	ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfigView, *http.Response, error)
+
+	/*
+	ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
+
+	Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
+
+**NOTE**: This endpoint updates only the enabled/disabled state for the alert configuration. To update more than just this configuration, see [Update One Alert Configuration](#tag/Alert-Configurations/operation/updateAlertConfiguration).
+
+This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-enable-disable-config/).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration that triggered this alert. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+	@return AlertConfigurationsApiToggleAlertConfigurationRequest
+	*/
+	ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleAlertConfigurationRequest
+
+	// ToggleAlertConfigurationExecute executes the request
+	//  @return AlertConfigViewForNdsGroup
+	ToggleAlertConfigurationExecute(r AlertConfigurationsApiToggleAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+
+	/*
+	UpdateAlertConfiguration Update One Alert Configuration for One Project
 
 	Updates one alert configuration in the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
-**NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleOneStateOfOneAlertConfigurationInOneProject).
+**NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleAlertConfiguration).
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-update-config/).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+	@return AlertConfigurationsApiUpdateAlertConfigurationRequest
 	*/
-	UpdateOneAlertConfigurationForOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest
+	UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateAlertConfigurationRequest
 
-	// UpdateOneAlertConfigurationForOneProjectExecute executes the request
-	//  @return ApiAlertConfigView
-	UpdateOneAlertConfigurationForOneProjectExecute(r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) (*ApiAlertConfigView, *http.Response, error)
+	// UpdateAlertConfigurationExecute executes the request
+	//  @return AlertConfigViewForNdsGroup
+	UpdateAlertConfigurationExecute(r AlertConfigurationsApiUpdateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 }
 
 // AlertConfigurationsApiService AlertConfigurationsApi service
 type AlertConfigurationsApiService service
 
-type AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest struct {
+type AlertConfigurationsApiCreateAlertConfigurationRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
-	apiAlertConfigView *ApiAlertConfigView
+	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 	envelope *bool
 	pretty *bool
 }
 
 // Creates one alert configuration for the specified project.
-func (r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) ApiAlertConfigView(apiAlertConfigView ApiAlertConfigView) AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest {
-	r.apiAlertConfigView = &apiAlertConfigView
+func (r AlertConfigurationsApiCreateAlertConfigurationRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) AlertConfigurationsApiCreateAlertConfigurationRequest {
+	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest {
+func (r AlertConfigurationsApiCreateAlertConfigurationRequest) Envelope(envelope bool) AlertConfigurationsApiCreateAlertConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiCreateAlertConfigurationRequest) Pretty(pretty bool) AlertConfigurationsApiCreateAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) Execute() (*ApiAlertConfigView, *http.Response, error) {
-	return r.ApiService.CreateOneAlertConfigurationInOneProjectExecute(r)
+func (r AlertConfigurationsApiCreateAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.CreateAlertConfigurationExecute(r)
 }
 
 /*
-CreateOneAlertConfigurationInOneProject Create One Alert Configuration in One Project
+CreateAlertConfiguration Create One Alert Configuration in One Project
 
-Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
+Creates one alert configuration for the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return AlertConfigurationsApiCreateAlertConfigurationRequest
 */
-func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProject(ctx context.Context, groupId string) AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest {
-	return AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest{
+func (a *AlertConfigurationsApiService) CreateAlertConfiguration(ctx context.Context, groupId string) AlertConfigurationsApiCreateAlertConfigurationRequest {
+	return AlertConfigurationsApiCreateAlertConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -198,16 +218,16 @@ func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProject(
 }
 
 // Execute executes the request
-//  @return ApiAlertConfigView
-func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProjectExecute(r AlertConfigurationsApiCreateOneAlertConfigurationInOneProjectRequest) (*ApiAlertConfigView, *http.Response, error) {
+//  @return AlertConfigViewForNdsGroup
+func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertConfigurationsApiCreateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAlertConfigView
+		localVarReturnValue  *AlertConfigViewForNdsGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.CreateOneAlertConfigurationInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.CreateAlertConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -224,8 +244,8 @@ func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProjectE
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiAlertConfigView == nil {
-		return localVarReturnValue, nil, reportError("apiAlertConfigView is required and must be specified")
+	if r.alertConfigViewForNdsGroup == nil {
+		return localVarReturnValue, nil, reportError("alertConfigViewForNdsGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -252,7 +272,7 @@ func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProjectE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAlertConfigView
+	localVarPostBody = r.alertConfigViewForNdsGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -322,7 +342,7 @@ func (a *AlertConfigurationsApiService) CreateOneAlertConfigurationInOneProjectE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest struct {
+type AlertConfigurationsApiDeleteAlertConfigurationRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -332,35 +352,35 @@ type AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest stru
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest {
+func (r AlertConfigurationsApiDeleteAlertConfigurationRequest) Envelope(envelope bool) AlertConfigurationsApiDeleteAlertConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiDeleteAlertConfigurationRequest) Pretty(pretty bool) AlertConfigurationsApiDeleteAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneAlertConfigurationFromOneProjectExecute(r)
+func (r AlertConfigurationsApiDeleteAlertConfigurationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAlertConfigurationExecute(r)
 }
 
 /*
-RemoveOneAlertConfigurationFromOneProject Remove One Alert Configuration from One Project
+DeleteAlertConfiguration Remove One Alert Configuration from One Project
 
-Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
+Removes one alert configuration from the specified project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-delete-config/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+ @return AlertConfigurationsApiDeleteAlertConfigurationRequest
 */
-func (a *AlertConfigurationsApiService) RemoveOneAlertConfigurationFromOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest {
-	return AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest{
+func (a *AlertConfigurationsApiService) DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiDeleteAlertConfigurationRequest {
+	return AlertConfigurationsApiDeleteAlertConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -369,14 +389,14 @@ func (a *AlertConfigurationsApiService) RemoveOneAlertConfigurationFromOneProjec
 }
 
 // Execute executes the request
-func (a *AlertConfigurationsApiService) RemoveOneAlertConfigurationFromOneProjectExecute(r AlertConfigurationsApiRemoveOneAlertConfigurationFromOneProjectRequest) (*http.Response, error) {
+func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertConfigurationsApiDeleteAlertConfigurationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.RemoveOneAlertConfigurationFromOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.DeleteAlertConfiguration")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -484,7 +504,180 @@ func (a *AlertConfigurationsApiService) RemoveOneAlertConfigurationFromOneProjec
 	return localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest struct {
+type AlertConfigurationsApiGetAlertConfigurationRequest struct {
+	ctx context.Context
+	ApiService AlertConfigurationsApi
+	groupId string
+	alertConfigId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r AlertConfigurationsApiGetAlertConfigurationRequest) Envelope(envelope bool) AlertConfigurationsApiGetAlertConfigurationRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiGetAlertConfigurationRequest) Pretty(pretty bool) AlertConfigurationsApiGetAlertConfigurationRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r AlertConfigurationsApiGetAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.GetAlertConfigurationExecute(r)
+}
+
+/*
+GetAlertConfiguration Return One Alert Configuration from One Project
+
+Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+ @return AlertConfigurationsApiGetAlertConfigurationRequest
+*/
+func (a *AlertConfigurationsApiService) GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiGetAlertConfigurationRequest {
+	return AlertConfigurationsApiGetAlertConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		alertConfigId: alertConfigId,
+	}
+}
+
+// Execute executes the request
+//  @return AlertConfigViewForNdsGroup
+func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConfigurationsApiGetAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AlertConfigViewForNdsGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.GetAlertConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alertConfigs/{alertConfigId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.alertConfigId) < 24 {
+		return localVarReturnValue, nil, reportError("alertConfigId must have at least 24 elements")
+	}
+	if strlen(r.alertConfigId) > 24 {
+		return localVarReturnValue, nil, reportError("alertConfigId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	envelope *bool
@@ -492,47 +685,47 @@ type AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest) Envelope(envelope bool) AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest {
+func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Envelope(envelope bool) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest) Pretty(pretty bool) AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Pretty(pretty bool) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.ReturnAlertConfigMatchersFieldNamesExecute(r)
+func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherFieldView, *http.Response, error) {
+	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
 }
 
 /*
-ReturnAlertConfigMatchersFieldNames Get All Alert Configuration Matchers Field Names
+ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
 
-Get all field names that the matchers.fieldName parameter accepts when you create or update an Alert Configuration.
+Get all field names that the matchers.fieldName parameter accepts when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration) or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration) an Alert Configuration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest
+ @return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
 */
-func (a *AlertConfigurationsApiService) ReturnAlertConfigMatchersFieldNames(ctx context.Context) AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest {
-	return AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames(ctx context.Context) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest {
+	return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
-func (a *AlertConfigurationsApiService) ReturnAlertConfigMatchersFieldNamesExecute(r AlertConfigurationsApiReturnAlertConfigMatchersFieldNamesRequest) ([]string, *http.Response, error) {
+//  @return []MatcherFieldView
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherFieldView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []string
+		localVarReturnValue  []MatcherFieldView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ReturnAlertConfigMatchersFieldNames")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurationMatchersFieldNames")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -624,7 +817,7 @@ func (a *AlertConfigurationsApiService) ReturnAlertConfigMatchersFieldNamesExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest struct {
+type AlertConfigurationsApiListAlertConfigurationsRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -636,52 +829,52 @@ type AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest stru
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) Envelope(envelope bool) AlertConfigurationsApiListAlertConfigurationsRequest {
 	r.envelope = &envelope
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) IncludeCount(includeCount bool) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) IncludeCount(includeCount bool) AlertConfigurationsApiListAlertConfigurationsRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiListAlertConfigurationsRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) PageNum(pageNum int32) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) PageNum(pageNum int32) AlertConfigurationsApiListAlertConfigurationsRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) Pretty(pretty bool) AlertConfigurationsApiListAlertConfigurationsRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
-	return r.ApiService.ReturnAllAlertConfigurationsForOneProjectExecute(r)
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
+	return r.ApiService.ListAlertConfigurationsExecute(r)
 }
 
 /*
-ReturnAllAlertConfigurationsForOneProject Return All Alert Configurations for One Project
+ListAlertConfigurations Return All Alert Configurations for One Project
 
 Returns all alert configurations for one project. These alert configurations apply to any component in the project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-all-configs/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return AlertConfigurationsApiListAlertConfigurationsRequest
 */
-func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProject(ctx context.Context, groupId string) AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest {
-	return AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Context, groupId string) AlertConfigurationsApiListAlertConfigurationsRequest {
+	return AlertConfigurationsApiListAlertConfigurationsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -690,7 +883,7 @@ func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjec
 
 // Execute executes the request
 //  @return PaginatedAlertConfigView
-func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjectExecute(r AlertConfigurationsApiReturnAllAlertConfigurationsForOneProjectRequest) (*PaginatedAlertConfigView, *http.Response, error) {
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfigView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -698,7 +891,7 @@ func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjec
 		localVarReturnValue  *PaginatedAlertConfigView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ReturnAllAlertConfigurationsForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -806,70 +999,91 @@ func (a *AlertConfigurationsApiService) ReturnAllAlertConfigurationsForOneProjec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest struct {
+type AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
-	alertConfigId string
+	alertId string
 	envelope *bool
 	pretty *bool
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest {
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Envelope(envelope bool) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Pretty(pretty bool) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest) Execute() (*ApiAlertConfigView, *http.Response, error) {
-	return r.ApiService.ReturnOneAlertConfigurationFromOneProjectExecute(r)
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) IncludeCount(includeCount bool) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) PageNum(pageNum int32) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+	r.pageNum = &pageNum
+	return r
+}
+
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
+	return r.ApiService.ListAlertConfigurationsByAlertIdExecute(r)
 }
 
 /*
-ReturnOneAlertConfigurationFromOneProject Return One Alert Configuration from One Project
+ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
 
-Returns the specified alert configuration from the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns all alert configurations set for the specified alert. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/).
+ This resource remains under revision and may change.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
+ @return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
 */
-func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest {
-	return AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+	return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
-		alertConfigId: alertConfigId,
+		alertId: alertId,
 	}
 }
 
 // Execute executes the request
-//  @return ApiAlertConfigView
-func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProjectExecute(r AlertConfigurationsApiReturnOneAlertConfigurationFromOneProjectRequest) (*ApiAlertConfigView, *http.Response, error) {
+//  @return PaginatedAlertConfigView
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfigView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAlertConfigView
+		localVarReturnValue  *PaginatedAlertConfigView
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ReturnOneAlertConfigurationFromOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurationsByAlertId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alertConfigs/{alertConfigId}"
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/alerts/{alertId}/alertConfigs"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertId"+"}", url.PathEscape(parameterToString(r.alertId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -880,11 +1094,11 @@ func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProjec
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if strlen(r.alertConfigId) < 24 {
-		return localVarReturnValue, nil, reportError("alertConfigId must have at least 24 elements")
+	if strlen(r.alertId) < 24 {
+		return localVarReturnValue, nil, reportError("alertId must have at least 24 elements")
 	}
-	if strlen(r.alertConfigId) > 24 {
-		return localVarReturnValue, nil, reportError("alertConfigId must have less than 24 elements")
+	if strlen(r.alertId) > 24 {
+		return localVarReturnValue, nil, reportError("alertId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -892,6 +1106,15 @@ func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProjec
 	}
 	if r.pretty != nil {
 		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.includeCount != nil {
+		localVarQueryParams.Add("includeCount", parameterToString(*r.includeCount, ""))
+	}
+	if r.itemsPerPage != nil {
+		localVarQueryParams.Add("itemsPerPage", parameterToString(*r.itemsPerPage, ""))
+	}
+	if r.pageNum != nil {
+		localVarQueryParams.Add("pageNum", parameterToString(*r.pageNum, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -979,52 +1202,54 @@ func (a *AlertConfigurationsApiService) ReturnOneAlertConfigurationFromOneProjec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest struct {
+type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
-	body *bool
+	toggleView *ToggleView
 	envelope *bool
 	pretty *bool
 }
 
 // Enables or disables the specified alert configuration in the specified project.
-func (r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) Body(body bool) AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest {
-	r.body = &body
+func (r AlertConfigurationsApiToggleAlertConfigurationRequest) ToggleView(toggleView ToggleView) AlertConfigurationsApiToggleAlertConfigurationRequest {
+	r.toggleView = &toggleView
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest {
+func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Envelope(envelope bool) AlertConfigurationsApiToggleAlertConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Pretty(pretty bool) AlertConfigurationsApiToggleAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) Execute() (*ApiAlertConfigView, *http.Response, error) {
-	return r.ApiService.ToggleOneStateOfOneAlertConfigurationInOneProjectExecute(r)
+func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.ToggleAlertConfigurationExecute(r)
 }
 
 /*
-ToggleOneStateOfOneAlertConfigurationInOneProject Toggle One State of One Alert Configuration in One Project
+ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
 
-Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Project Monitoring Admin role.
+Enables or disables the specified alert configuration in the specified project. The resource enables the specified alert configuration if currently enabled. The resource disables the specified alert configuration if currently disabled. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
- This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-enable-disable-config/).
+**NOTE**: This endpoint updates only the enabled/disabled state for the alert configuration. To update more than just this configuration, see [Update One Alert Configuration](#tag/Alert-Configurations/operation/updateAlertConfiguration).
+
+This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-enable-disable-config/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration that triggered this alert. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+ @return AlertConfigurationsApiToggleAlertConfigurationRequest
 */
-func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest {
-	return AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest{
+func (a *AlertConfigurationsApiService) ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleAlertConfigurationRequest {
+	return AlertConfigurationsApiToggleAlertConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1033,16 +1258,16 @@ func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInO
 }
 
 // Execute executes the request
-//  @return ApiAlertConfigView
-func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInOneProjectExecute(r AlertConfigurationsApiToggleOneStateOfOneAlertConfigurationInOneProjectRequest) (*ApiAlertConfigView, *http.Response, error) {
+//  @return AlertConfigViewForNdsGroup
+func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertConfigurationsApiToggleAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAlertConfigView
+		localVarReturnValue  *AlertConfigViewForNdsGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ToggleOneStateOfOneAlertConfigurationInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ToggleAlertConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1066,8 +1291,8 @@ func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInO
 	if strlen(r.alertConfigId) > 24 {
 		return localVarReturnValue, nil, reportError("alertConfigId must have less than 24 elements")
 	}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.toggleView == nil {
+		return localVarReturnValue, nil, reportError("toggleView is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1094,7 +1319,7 @@ func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInO
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.toggleView
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1164,54 +1389,54 @@ func (a *AlertConfigurationsApiService) ToggleOneStateOfOneAlertConfigurationInO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest struct {
+type AlertConfigurationsApiUpdateAlertConfigurationRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
-	apiAlertConfigView *ApiAlertConfigView
+	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 	envelope *bool
 	pretty *bool
 }
 
 // Updates one alert configuration in the specified project.
-func (r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) ApiAlertConfigView(apiAlertConfigView ApiAlertConfigView) AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest {
-	r.apiAlertConfigView = &apiAlertConfigView
+func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) AlertConfigurationsApiUpdateAlertConfigurationRequest {
+	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) Envelope(envelope bool) AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest {
+func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) Envelope(envelope bool) AlertConfigurationsApiUpdateAlertConfigurationRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) Pretty(pretty bool) AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) Pretty(pretty bool) AlertConfigurationsApiUpdateAlertConfigurationRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) Execute() (*ApiAlertConfigView, *http.Response, error) {
-	return r.ApiService.UpdateOneAlertConfigurationForOneProjectExecute(r)
+func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.UpdateAlertConfigurationExecute(r)
 }
 
 /*
-UpdateOneAlertConfigurationForOneProject Update One Alert Configuration for One Project
+UpdateAlertConfiguration Update One Alert Configuration for One Project
 
 Updates one alert configuration in the specified project. Alert configurations define the triggers and notification methods for alerts. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role.
 
-**NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleOneStateOfOneAlertConfigurationInOneProject).
+**NOTE**: To enable or disable the alert configuration, see [Toggle One State of One Alert Configuration in One Project](#tag/Alert-Configurations/operation/toggleAlertConfiguration).
 
  This resource remains under revision and may change. Refer to the [legacy documentation for this resource](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-update-config/).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/returnAllAlertConfigurationsForOneProject) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
+ @return AlertConfigurationsApiUpdateAlertConfigurationRequest
 */
-func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProject(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest {
-	return AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest{
+func (a *AlertConfigurationsApiService) UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateAlertConfigurationRequest {
+	return AlertConfigurationsApiUpdateAlertConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1220,16 +1445,16 @@ func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProject
 }
 
 // Execute executes the request
-//  @return ApiAlertConfigView
-func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProjectExecute(r AlertConfigurationsApiUpdateOneAlertConfigurationForOneProjectRequest) (*ApiAlertConfigView, *http.Response, error) {
+//  @return AlertConfigViewForNdsGroup
+func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertConfigurationsApiUpdateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAlertConfigView
+		localVarReturnValue  *AlertConfigViewForNdsGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.UpdateOneAlertConfigurationForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.UpdateAlertConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1253,8 +1478,8 @@ func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProject
 	if strlen(r.alertConfigId) > 24 {
 		return localVarReturnValue, nil, reportError("alertConfigId must have less than 24 elements")
 	}
-	if r.apiAlertConfigView == nil {
-		return localVarReturnValue, nil, reportError("apiAlertConfigView is required and must be specified")
+	if r.alertConfigViewForNdsGroup == nil {
+		return localVarReturnValue, nil, reportError("alertConfigViewForNdsGroup is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1281,7 +1506,7 @@ func (a *AlertConfigurationsApiService) UpdateOneAlertConfigurationForOneProject
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAlertConfigView
+	localVarPostBody = r.alertConfigViewForNdsGroup
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

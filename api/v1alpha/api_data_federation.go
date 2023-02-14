@@ -24,164 +24,164 @@ import (
 type DataFederationApi interface {
 
 	/*
-	CreateOneDataFederationPrivateEndpointForOneProject Create One Federated Database Instance and Online Archive Private Endpoint for One Project
+	CreateDataFederationPrivateEndpoint Create One Federated Database Instance and Online Archive Private Endpoint for One Project
 
 	Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataFederationApiCreateDataFederationPrivateEndpointRequest
 	*/
-	CreateOneDataFederationPrivateEndpointForOneProject(ctx context.Context, groupId string) DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest
+	CreateDataFederationPrivateEndpoint(ctx context.Context, groupId string) DataFederationApiCreateDataFederationPrivateEndpointRequest
 
-	// CreateOneDataFederationPrivateEndpointForOneProjectExecute executes the request
+	// CreateDataFederationPrivateEndpointExecute executes the request
 	//  @return []PrivateNetworkEndpointIdEntry
-	CreateOneDataFederationPrivateEndpointForOneProjectExecute(r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error)
+	CreateDataFederationPrivateEndpointExecute(r DataFederationApiCreateDataFederationPrivateEndpointRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error)
 
 	/*
-	CreateOneFederatedDatabaseInOneProject Create One Federated Database Instance in One Project
+	CreateFederatedDatabase Create One Federated Database Instance in One Project
 
 	Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataFederationApiCreateFederatedDatabaseRequest
 	*/
-	CreateOneFederatedDatabaseInOneProject(ctx context.Context, groupId string) DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest
+	CreateFederatedDatabase(ctx context.Context, groupId string) DataFederationApiCreateFederatedDatabaseRequest
 
-	// CreateOneFederatedDatabaseInOneProjectExecute executes the request
+	// CreateFederatedDatabaseExecute executes the request
 	//  @return DataLakeTenant
-	CreateOneFederatedDatabaseInOneProjectExecute(r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error)
+	CreateFederatedDatabaseExecute(r DataFederationApiCreateFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error)
 
 	/*
-	DownloadQueryLogsForOneFederatedDatabase Download Query Logs for One Federated Database Instance
-
-	Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@param tenantName Human-readable label that identifies the federated database instance for which you want to download query logs.
-	@return DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest
-	*/
-	DownloadQueryLogsForOneFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest
-
-	// DownloadQueryLogsForOneFederatedDatabaseExecute executes the request
-	//  @return *os.File
-	DownloadQueryLogsForOneFederatedDatabaseExecute(r DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest) (**os.File, *http.Response, error)
-
-	/*
-	RemoveOneDataFederationPrivateEndpointFromOneProject Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
+	DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 
 	Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to remove. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
-	@return DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest
+	@return DataFederationApiDeleteDataFederationPrivateEndpointRequest
 	*/
-	RemoveOneDataFederationPrivateEndpointFromOneProject(ctx context.Context, groupId string, endpointId string) DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest
+	DeleteDataFederationPrivateEndpoint(ctx context.Context, groupId string, endpointId string) DataFederationApiDeleteDataFederationPrivateEndpointRequest
 
-	// RemoveOneDataFederationPrivateEndpointFromOneProjectExecute executes the request
-	RemoveOneDataFederationPrivateEndpointFromOneProjectExecute(r DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest) (*http.Response, error)
+	// DeleteDataFederationPrivateEndpointExecute executes the request
+	DeleteDataFederationPrivateEndpointExecute(r DataFederationApiDeleteDataFederationPrivateEndpointRequest) (*http.Response, error)
 
 	/*
-	RemoveOneFederatedDatabaseFromOneProject Remove One Federated Database Instance from One Project
+	DeleteFederatedDatabase Remove One Federated Database Instance from One Project
 
 	Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param tenantName Human-readable label that identifies the federated database instance to remove.
-	@return DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest
+	@return DataFederationApiDeleteFederatedDatabaseRequest
 	*/
-	RemoveOneFederatedDatabaseFromOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest
+	DeleteFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiDeleteFederatedDatabaseRequest
 
-	// RemoveOneFederatedDatabaseFromOneProjectExecute executes the request
-	RemoveOneFederatedDatabaseFromOneProjectExecute(r DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest) (*http.Response, error)
+	// DeleteFederatedDatabaseExecute executes the request
+	DeleteFederatedDatabaseExecute(r DataFederationApiDeleteFederatedDatabaseRequest) (*http.Response, error)
 
 	/*
-	ReturnAllDataFederationPrivateEndpointsInOneProject Return All Federated Database Instance and Online Archive Private Endpoints in One Project
+	DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
 
-	Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+	Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param tenantName Human-readable label that identifies the federated database instance for which you want to download query logs.
+	@return DataFederationApiDownloadFederatedDatabaseQueryLogsRequest
 	*/
-	ReturnAllDataFederationPrivateEndpointsInOneProject(ctx context.Context, groupId string) DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest
+	DownloadFederatedDatabaseQueryLogs(ctx context.Context, groupId string, tenantName string) DataFederationApiDownloadFederatedDatabaseQueryLogsRequest
 
-	// ReturnAllDataFederationPrivateEndpointsInOneProjectExecute executes the request
-	//  @return []PrivateNetworkEndpointIdEntry
-	ReturnAllDataFederationPrivateEndpointsInOneProjectExecute(r DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error)
+	// DownloadFederatedDatabaseQueryLogsExecute executes the request
+	//  @return *os.File
+	DownloadFederatedDatabaseQueryLogsExecute(r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) (**os.File, *http.Response, error)
 
 	/*
-	ReturnAllFederatedDatabasesInOneProject Return All Federated Database Instances in One Project
-
-	Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
-	@return DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest
-	*/
-	ReturnAllFederatedDatabasesInOneProject(ctx context.Context, groupId string) DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest
-
-	// ReturnAllFederatedDatabasesInOneProjectExecute executes the request
-	//  @return []DataLakeTenant
-	ReturnAllFederatedDatabasesInOneProjectExecute(r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) ([]DataLakeTenant, *http.Response, error)
-
-	/*
-	ReturnOneDataFederationPrivateEndpointInOneProject Return One Federated Database Instance and Online Archive Private Endpoint in One Project
+	GetDataFederationPrivateEndpoint Return One Federated Database Instance and Online Archive Private Endpoint in One Project
 
 	Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to return. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
-	@return DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest
+	@return DataFederationApiGetDataFederationPrivateEndpointRequest
 	*/
-	ReturnOneDataFederationPrivateEndpointInOneProject(ctx context.Context, groupId string, endpointId string) DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest
+	GetDataFederationPrivateEndpoint(ctx context.Context, groupId string, endpointId string) DataFederationApiGetDataFederationPrivateEndpointRequest
 
-	// ReturnOneDataFederationPrivateEndpointInOneProjectExecute executes the request
+	// GetDataFederationPrivateEndpointExecute executes the request
 	//  @return PrivateNetworkEndpointIdEntry
-	ReturnOneDataFederationPrivateEndpointInOneProjectExecute(r DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest) (*PrivateNetworkEndpointIdEntry, *http.Response, error)
+	GetDataFederationPrivateEndpointExecute(r DataFederationApiGetDataFederationPrivateEndpointRequest) (*PrivateNetworkEndpointIdEntry, *http.Response, error)
 
 	/*
-	ReturnOneFederatedDatabaseInOneProject Return One Federated Database Instance in One Project
+	GetFederatedDatabase Return One Federated Database Instance in One Project
 
 	Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param tenantName Human-readable label that identifies the Federated Database to return.
-	@return DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest
+	@return DataFederationApiGetFederatedDatabaseRequest
 	*/
-	ReturnOneFederatedDatabaseInOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest
+	GetFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiGetFederatedDatabaseRequest
 
-	// ReturnOneFederatedDatabaseInOneProjectExecute executes the request
+	// GetFederatedDatabaseExecute executes the request
 	//  @return DataLakeTenant
-	ReturnOneFederatedDatabaseInOneProjectExecute(r DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error)
+	GetFederatedDatabaseExecute(r DataFederationApiGetFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error)
 
 	/*
-	UpdateOneFederatedDatabaseInOneProject Update One Federated Database Instance in One Project
+	ListDataFederationPrivateEndpoints Return All Federated Database Instance and Online Archive Private Endpoints in One Project
+
+	Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataFederationApiListDataFederationPrivateEndpointsRequest
+	*/
+	ListDataFederationPrivateEndpoints(ctx context.Context, groupId string) DataFederationApiListDataFederationPrivateEndpointsRequest
+
+	// ListDataFederationPrivateEndpointsExecute executes the request
+	//  @return []PrivateNetworkEndpointIdEntry
+	ListDataFederationPrivateEndpointsExecute(r DataFederationApiListDataFederationPrivateEndpointsRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error)
+
+	/*
+	ListFederatedDatabases Return All Federated Database Instances in One Project
+
+	Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return DataFederationApiListFederatedDatabasesRequest
+	*/
+	ListFederatedDatabases(ctx context.Context, groupId string) DataFederationApiListFederatedDatabasesRequest
+
+	// ListFederatedDatabasesExecute executes the request
+	//  @return []DataLakeTenant
+	ListFederatedDatabasesExecute(r DataFederationApiListFederatedDatabasesRequest) ([]DataLakeTenant, *http.Response, error)
+
+	/*
+	UpdateFederatedDatabase Update One Federated Database Instance in One Project
 
 	Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or higher role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId Unique 24-hexadecimal digit string that identifies your project.
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param tenantName Human-readable label that identifies the federated database instance to update.
-	@return DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest
+	@return DataFederationApiUpdateFederatedDatabaseRequest
 	*/
-	UpdateOneFederatedDatabaseInOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest
+	UpdateFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiUpdateFederatedDatabaseRequest
 
-	// UpdateOneFederatedDatabaseInOneProjectExecute executes the request
+	// UpdateFederatedDatabaseExecute executes the request
 	//  @return DataLakeTenant
-	UpdateOneFederatedDatabaseInOneProjectExecute(r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error)
+	UpdateFederatedDatabaseExecute(r DataFederationApiUpdateFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error)
 }
 
 // DataFederationApiService DataFederationApi service
 type DataFederationApiService service
 
-type DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest struct {
+type DataFederationApiCreateDataFederationPrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -191,38 +191,38 @@ type DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest
 }
 
 // Private endpoint for Federated Database Instances and Online Archives to add to the specified project.
-func (r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) PrivateNetworkEndpointIdEntry(privateNetworkEndpointIdEntry PrivateNetworkEndpointIdEntry) DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest {
+func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) PrivateNetworkEndpointIdEntry(privateNetworkEndpointIdEntry PrivateNetworkEndpointIdEntry) DataFederationApiCreateDataFederationPrivateEndpointRequest {
 	r.privateNetworkEndpointIdEntry = &privateNetworkEndpointIdEntry
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) Envelope(envelope bool) DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest {
+func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiCreateDataFederationPrivateEndpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) Pretty(pretty bool) DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiCreateDataFederationPrivateEndpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
-	return r.ApiService.CreateOneDataFederationPrivateEndpointForOneProjectExecute(r)
+func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	return r.ApiService.CreateDataFederationPrivateEndpointExecute(r)
 }
 
 /*
-CreateOneDataFederationPrivateEndpointForOneProject Create One Federated Database Instance and Online Archive Private Endpoint for One Project
+CreateDataFederationPrivateEndpoint Create One Federated Database Instance and Online Archive Private Endpoint for One Project
 
 Adds one private endpoint for Federated Database Instances and Online Archives to the specified projects. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataFederationApiCreateDataFederationPrivateEndpointRequest
 */
-func (a *DataFederationApiService) CreateOneDataFederationPrivateEndpointForOneProject(ctx context.Context, groupId string) DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest {
-	return DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest{
+func (a *DataFederationApiService) CreateDataFederationPrivateEndpoint(ctx context.Context, groupId string) DataFederationApiCreateDataFederationPrivateEndpointRequest {
+	return DataFederationApiCreateDataFederationPrivateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -231,7 +231,7 @@ func (a *DataFederationApiService) CreateOneDataFederationPrivateEndpointForOneP
 
 // Execute executes the request
 //  @return []PrivateNetworkEndpointIdEntry
-func (a *DataFederationApiService) CreateOneDataFederationPrivateEndpointForOneProjectExecute(r DataFederationApiCreateOneDataFederationPrivateEndpointForOneProjectRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+func (a *DataFederationApiService) CreateDataFederationPrivateEndpointExecute(r DataFederationApiCreateDataFederationPrivateEndpointRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -239,7 +239,7 @@ func (a *DataFederationApiService) CreateOneDataFederationPrivateEndpointForOneP
 		localVarReturnValue  []PrivateNetworkEndpointIdEntry
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.CreateOneDataFederationPrivateEndpointForOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.CreateDataFederationPrivateEndpoint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -354,7 +354,7 @@ func (a *DataFederationApiService) CreateOneDataFederationPrivateEndpointForOneP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest struct {
+type DataFederationApiCreateFederatedDatabaseRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -364,38 +364,38 @@ type DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest struct {
 }
 
 // Details to create one federated database instance in the specified project.
-func (r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiCreateFederatedDatabaseRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiCreateFederatedDatabaseRequest {
 	r.dataLakeTenant = &dataLakeTenant
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) Envelope(envelope bool) DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiCreateFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiCreateFederatedDatabaseRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) Pretty(pretty bool) DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiCreateFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiCreateFederatedDatabaseRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) Execute() (*DataLakeTenant, *http.Response, error) {
-	return r.ApiService.CreateOneFederatedDatabaseInOneProjectExecute(r)
+func (r DataFederationApiCreateFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
+	return r.ApiService.CreateFederatedDatabaseExecute(r)
 }
 
 /*
-CreateOneFederatedDatabaseInOneProject Create One Federated Database Instance in One Project
+CreateFederatedDatabase Create One Federated Database Instance in One Project
 
 Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataFederationApiCreateFederatedDatabaseRequest
 */
-func (a *DataFederationApiService) CreateOneFederatedDatabaseInOneProject(ctx context.Context, groupId string) DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest {
-	return DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest{
+func (a *DataFederationApiService) CreateFederatedDatabase(ctx context.Context, groupId string) DataFederationApiCreateFederatedDatabaseRequest {
+	return DataFederationApiCreateFederatedDatabaseRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -404,7 +404,7 @@ func (a *DataFederationApiService) CreateOneFederatedDatabaseInOneProject(ctx co
 
 // Execute executes the request
 //  @return DataLakeTenant
-func (a *DataFederationApiService) CreateOneFederatedDatabaseInOneProjectExecute(r DataFederationApiCreateOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error) {
+func (a *DataFederationApiService) CreateFederatedDatabaseExecute(r DataFederationApiCreateFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -412,7 +412,7 @@ func (a *DataFederationApiService) CreateOneFederatedDatabaseInOneProjectExecute
 		localVarReturnValue  *DataLakeTenant
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.CreateOneFederatedDatabaseInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.CreateFederatedDatabase")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -516,7 +516,310 @@ func (a *DataFederationApiService) CreateOneFederatedDatabaseInOneProjectExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest struct {
+type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	endpointId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiDeleteDataFederationPrivateEndpointRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiDeleteDataFederationPrivateEndpointRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteDataFederationPrivateEndpointExecute(r)
+}
+
+/*
+DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
+
+Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to remove. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
+ @return DataFederationApiDeleteDataFederationPrivateEndpointRequest
+*/
+func (a *DataFederationApiService) DeleteDataFederationPrivateEndpoint(ctx context.Context, groupId string, endpointId string) DataFederationApiDeleteDataFederationPrivateEndpointRequest {
+	return DataFederationApiDeleteDataFederationPrivateEndpointRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		endpointId: endpointId,
+	}
+}
+
+// Execute executes the request
+func (a *DataFederationApiService) DeleteDataFederationPrivateEndpointExecute(r DataFederationApiDeleteDataFederationPrivateEndpointRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.DeleteDataFederationPrivateEndpoint")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", url.PathEscape(parameterToString(r.endpointId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+	if strlen(r.endpointId) < 22 {
+		return nil, reportError("endpointId must have at least 22 elements")
+	}
+	if strlen(r.endpointId) > 22 {
+		return nil, reportError("endpointId must have less than 22 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DataFederationApiDeleteFederatedDatabaseRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	tenantName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiDeleteFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiDeleteFederatedDatabaseRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiDeleteFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiDeleteFederatedDatabaseRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataFederationApiDeleteFederatedDatabaseRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteFederatedDatabaseExecute(r)
+}
+
+/*
+DeleteFederatedDatabase Remove One Federated Database Instance from One Project
+
+Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param tenantName Human-readable label that identifies the federated database instance to remove.
+ @return DataFederationApiDeleteFederatedDatabaseRequest
+*/
+func (a *DataFederationApiService) DeleteFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiDeleteFederatedDatabaseRequest {
+	return DataFederationApiDeleteFederatedDatabaseRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		tenantName: tenantName,
+	}
+}
+
+// Execute executes the request
+func (a *DataFederationApiService) DeleteFederatedDatabaseExecute(r DataFederationApiDeleteFederatedDatabaseRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.DeleteFederatedDatabase")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DataFederationApiDownloadFederatedDatabaseQueryLogsRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -526,33 +829,33 @@ type DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest struct {
 }
 
 // Timestamp that specifies the end point for the range of log messages to download.  MongoDB Cloud expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch.
-func (r DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest) EndDate(endDate int64) DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest {
+func (r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) EndDate(endDate int64) DataFederationApiDownloadFederatedDatabaseQueryLogsRequest {
 	r.endDate = &endDate
 	return r
 }
 
 // Timestamp that specifies the starting point for the range of log messages to download. MongoDB Cloud expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch.
-func (r DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest) StartDate(startDate int64) DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest {
+func (r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) StartDate(startDate int64) DataFederationApiDownloadFederatedDatabaseQueryLogsRequest {
 	r.startDate = &startDate
 	return r
 }
 
-func (r DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest) Execute() (**os.File, *http.Response, error) {
-	return r.ApiService.DownloadQueryLogsForOneFederatedDatabaseExecute(r)
+func (r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) Execute() (**os.File, *http.Response, error) {
+	return r.ApiService.DownloadFederatedDatabaseQueryLogsExecute(r)
 }
 
 /*
-DownloadQueryLogsForOneFederatedDatabase Download Query Logs for One Federated Database Instance
+DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
 
 Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param tenantName Human-readable label that identifies the federated database instance for which you want to download query logs.
- @return DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest
+ @return DataFederationApiDownloadFederatedDatabaseQueryLogsRequest
 */
-func (a *DataFederationApiService) DownloadQueryLogsForOneFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest {
-	return DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest{
+func (a *DataFederationApiService) DownloadFederatedDatabaseQueryLogs(ctx context.Context, groupId string, tenantName string) DataFederationApiDownloadFederatedDatabaseQueryLogsRequest {
+	return DataFederationApiDownloadFederatedDatabaseQueryLogsRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -562,7 +865,7 @@ func (a *DataFederationApiService) DownloadQueryLogsForOneFederatedDatabase(ctx 
 
 // Execute executes the request
 //  @return *os.File
-func (a *DataFederationApiService) DownloadQueryLogsForOneFederatedDatabaseExecute(r DataFederationApiDownloadQueryLogsForOneFederatedDatabaseRequest) (**os.File, *http.Response, error) {
+func (a *DataFederationApiService) DownloadFederatedDatabaseQueryLogsExecute(r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) (**os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -570,7 +873,7 @@ func (a *DataFederationApiService) DownloadQueryLogsForOneFederatedDatabaseExecu
 		localVarReturnValue  **os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.DownloadQueryLogsForOneFederatedDatabase")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.DownloadFederatedDatabaseQueryLogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -714,7 +1017,7 @@ func (a *DataFederationApiService) DownloadQueryLogsForOneFederatedDatabaseExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest struct {
+type DataFederationApiGetDataFederationPrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -724,668 +1027,33 @@ type DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectReques
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest) Envelope(envelope bool) DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest {
+func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiGetDataFederationPrivateEndpointRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest) Pretty(pretty bool) DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiGetDataFederationPrivateEndpointRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneDataFederationPrivateEndpointFromOneProjectExecute(r)
+func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Execute() (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	return r.ApiService.GetDataFederationPrivateEndpointExecute(r)
 }
 
 /*
-RemoveOneDataFederationPrivateEndpointFromOneProject Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
-
-Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to remove. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
- @return DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest
-*/
-func (a *DataFederationApiService) RemoveOneDataFederationPrivateEndpointFromOneProject(ctx context.Context, groupId string, endpointId string) DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest {
-	return DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		endpointId: endpointId,
-	}
-}
-
-// Execute executes the request
-func (a *DataFederationApiService) RemoveOneDataFederationPrivateEndpointFromOneProjectExecute(r DataFederationApiRemoveOneDataFederationPrivateEndpointFromOneProjectRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.RemoveOneDataFederationPrivateEndpointFromOneProject")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", url.PathEscape(parameterToString(r.endpointId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-	if strlen(r.endpointId) < 22 {
-		return nil, reportError("endpointId must have at least 22 elements")
-	}
-	if strlen(r.endpointId) > 22 {
-		return nil, reportError("endpointId must have less than 22 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataFederationApi
-	groupId string
-	tenantName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest) Envelope(envelope bool) DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest) Pretty(pretty bool) DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveOneFederatedDatabaseFromOneProjectExecute(r)
-}
-
-/*
-RemoveOneFederatedDatabaseFromOneProject Remove One Federated Database Instance from One Project
-
-Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @param tenantName Human-readable label that identifies the federated database instance to remove.
- @return DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest
-*/
-func (a *DataFederationApiService) RemoveOneFederatedDatabaseFromOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest {
-	return DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-		tenantName: tenantName,
-	}
-}
-
-// Execute executes the request
-func (a *DataFederationApiService) RemoveOneFederatedDatabaseFromOneProjectExecute(r DataFederationApiRemoveOneFederatedDatabaseFromOneProjectRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.RemoveOneFederatedDatabaseFromOneProject")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataFederationApi
-	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest) Envelope(envelope bool) DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest) Pretty(pretty bool) DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
-	return r.ApiService.ReturnAllDataFederationPrivateEndpointsInOneProjectExecute(r)
-}
-
-/*
-ReturnAllDataFederationPrivateEndpointsInOneProject Return All Federated Database Instance and Online Archive Private Endpoints in One Project
-
-Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest
-*/
-func (a *DataFederationApiService) ReturnAllDataFederationPrivateEndpointsInOneProject(ctx context.Context, groupId string) DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest {
-	return DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return []PrivateNetworkEndpointIdEntry
-func (a *DataFederationApiService) ReturnAllDataFederationPrivateEndpointsInOneProjectExecute(r DataFederationApiReturnAllDataFederationPrivateEndpointsInOneProjectRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []PrivateNetworkEndpointIdEntry
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnAllDataFederationPrivateEndpointsInOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataFederationApi
-	groupId string
-	envelope *bool
-	pretty *bool
-	type_ *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) Envelope(envelope bool) DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) Pretty(pretty bool) DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Type of Federated Database Instances to return.
-func (r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) Type_(type_ string) DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest {
-	r.type_ = &type_
-	return r
-}
-
-func (r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) Execute() ([]DataLakeTenant, *http.Response, error) {
-	return r.ApiService.ReturnAllFederatedDatabasesInOneProjectExecute(r)
-}
-
-/*
-ReturnAllFederatedDatabasesInOneProject Return All Federated Database Instances in One Project
-
-Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
- @return DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest
-*/
-func (a *DataFederationApiService) ReturnAllFederatedDatabasesInOneProject(ctx context.Context, groupId string) DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest {
-	return DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		groupId: groupId,
-	}
-}
-
-// Execute executes the request
-//  @return []DataLakeTenant
-func (a *DataFederationApiService) ReturnAllFederatedDatabasesInOneProjectExecute(r DataFederationApiReturnAllFederatedDatabasesInOneProjectRequest) ([]DataLakeTenant, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []DataLakeTenant
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnAllFederatedDatabasesInOneProject")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
-	}
-	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
-	}
-
-	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
-	}
-	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
-	}
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest struct {
-	ctx context.Context
-	ApiService DataFederationApi
-	groupId string
-	endpointId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest) Envelope(envelope bool) DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest) Pretty(pretty bool) DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest {
-	r.pretty = &pretty
-	return r
-}
-
-func (r DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest) Execute() (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
-	return r.ApiService.ReturnOneDataFederationPrivateEndpointInOneProjectExecute(r)
-}
-
-/*
-ReturnOneDataFederationPrivateEndpointInOneProject Return One Federated Database Instance and Online Archive Private Endpoint in One Project
+GetDataFederationPrivateEndpoint Return One Federated Database Instance and Online Archive Private Endpoint in One Project
 
 Returns the specified private endpoint for Federated Database Instances or Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param endpointId Unique 22-character alphanumeric string that identifies the private endpoint to return. Atlas Data Federation supports AWS private endpoints using the AWS PrivateLink feature.
- @return DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest
+ @return DataFederationApiGetDataFederationPrivateEndpointRequest
 */
-func (a *DataFederationApiService) ReturnOneDataFederationPrivateEndpointInOneProject(ctx context.Context, groupId string, endpointId string) DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest {
-	return DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest{
+func (a *DataFederationApiService) GetDataFederationPrivateEndpoint(ctx context.Context, groupId string, endpointId string) DataFederationApiGetDataFederationPrivateEndpointRequest {
+	return DataFederationApiGetDataFederationPrivateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1395,7 +1063,7 @@ func (a *DataFederationApiService) ReturnOneDataFederationPrivateEndpointInOnePr
 
 // Execute executes the request
 //  @return PrivateNetworkEndpointIdEntry
-func (a *DataFederationApiService) ReturnOneDataFederationPrivateEndpointInOneProjectExecute(r DataFederationApiReturnOneDataFederationPrivateEndpointInOneProjectRequest) (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
+func (a *DataFederationApiService) GetDataFederationPrivateEndpointExecute(r DataFederationApiGetDataFederationPrivateEndpointRequest) (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1403,7 +1071,7 @@ func (a *DataFederationApiService) ReturnOneDataFederationPrivateEndpointInOnePr
 		localVarReturnValue  *PrivateNetworkEndpointIdEntry
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnOneDataFederationPrivateEndpointInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.GetDataFederationPrivateEndpoint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1531,7 +1199,7 @@ func (a *DataFederationApiService) ReturnOneDataFederationPrivateEndpointInOnePr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest struct {
+type DataFederationApiGetFederatedDatabaseRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -1540,27 +1208,27 @@ type DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest struct {
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest) Envelope(envelope bool) DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiGetFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiGetFederatedDatabaseRequest {
 	r.envelope = &envelope
 	return r
 }
 
-func (r DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest) Execute() (*DataLakeTenant, *http.Response, error) {
-	return r.ApiService.ReturnOneFederatedDatabaseInOneProjectExecute(r)
+func (r DataFederationApiGetFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
+	return r.ApiService.GetFederatedDatabaseExecute(r)
 }
 
 /*
-ReturnOneFederatedDatabaseInOneProject Return One Federated Database Instance in One Project
+GetFederatedDatabase Return One Federated Database Instance in One Project
 
 Returns the details of one federated database instance within the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param tenantName Human-readable label that identifies the Federated Database to return.
- @return DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest
+ @return DataFederationApiGetFederatedDatabaseRequest
 */
-func (a *DataFederationApiService) ReturnOneFederatedDatabaseInOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest {
-	return DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest{
+func (a *DataFederationApiService) GetFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiGetFederatedDatabaseRequest {
+	return DataFederationApiGetFederatedDatabaseRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1570,7 +1238,7 @@ func (a *DataFederationApiService) ReturnOneFederatedDatabaseInOneProject(ctx co
 
 // Execute executes the request
 //  @return DataLakeTenant
-func (a *DataFederationApiService) ReturnOneFederatedDatabaseInOneProjectExecute(r DataFederationApiReturnOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error) {
+func (a *DataFederationApiService) GetFederatedDatabaseExecute(r DataFederationApiGetFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1578,7 +1246,7 @@ func (a *DataFederationApiService) ReturnOneFederatedDatabaseInOneProjectExecute
 		localVarReturnValue  *DataLakeTenant
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnOneFederatedDatabaseInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.GetFederatedDatabase")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1697,7 +1365,339 @@ func (a *DataFederationApiService) ReturnOneFederatedDatabaseInOneProjectExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest struct {
+type DataFederationApiListDataFederationPrivateEndpointsRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Envelope(envelope bool) DataFederationApiListDataFederationPrivateEndpointsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Pretty(pretty bool) DataFederationApiListDataFederationPrivateEndpointsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	return r.ApiService.ListDataFederationPrivateEndpointsExecute(r)
+}
+
+/*
+ListDataFederationPrivateEndpoints Return All Federated Database Instance and Online Archive Private Endpoints in One Project
+
+Returns all private endpoints for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Read Only or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataFederationApiListDataFederationPrivateEndpointsRequest
+*/
+func (a *DataFederationApiService) ListDataFederationPrivateEndpoints(ctx context.Context, groupId string) DataFederationApiListDataFederationPrivateEndpointsRequest {
+	return DataFederationApiListDataFederationPrivateEndpointsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return []PrivateNetworkEndpointIdEntry
+func (a *DataFederationApiService) ListDataFederationPrivateEndpointsExecute(r DataFederationApiListDataFederationPrivateEndpointsRequest) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []PrivateNetworkEndpointIdEntry
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ListDataFederationPrivateEndpoints")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataFederationApiListFederatedDatabasesRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	envelope *bool
+	pretty *bool
+	type_ *string
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiListFederatedDatabasesRequest) Envelope(envelope bool) DataFederationApiListFederatedDatabasesRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiListFederatedDatabasesRequest) Pretty(pretty bool) DataFederationApiListFederatedDatabasesRequest {
+	r.pretty = &pretty
+	return r
+}
+
+// Type of Federated Database Instances to return.
+func (r DataFederationApiListFederatedDatabasesRequest) Type_(type_ string) DataFederationApiListFederatedDatabasesRequest {
+	r.type_ = &type_
+	return r
+}
+
+func (r DataFederationApiListFederatedDatabasesRequest) Execute() ([]DataLakeTenant, *http.Response, error) {
+	return r.ApiService.ListFederatedDatabasesExecute(r)
+}
+
+/*
+ListFederatedDatabases Return All Federated Database Instances in One Project
+
+Returns the details of all federated database instances in the specified project. To use this resource, the requesting API Key must have the Project Read Only or higher role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return DataFederationApiListFederatedDatabasesRequest
+*/
+func (a *DataFederationApiService) ListFederatedDatabases(ctx context.Context, groupId string) DataFederationApiListFederatedDatabasesRequest {
+	return DataFederationApiListFederatedDatabasesRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return []DataLakeTenant
+func (a *DataFederationApiService) ListFederatedDatabasesExecute(r DataFederationApiListFederatedDatabasesRequest) ([]DataLakeTenant, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []DataLakeTenant
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ListFederatedDatabases")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	if r.type_ != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataFederationApiUpdateFederatedDatabaseRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
@@ -1709,45 +1709,45 @@ type DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest struct {
 }
 
 // Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
-func (r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) SkipRoleValidation(skipRoleValidation bool) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiUpdateFederatedDatabaseRequest) SkipRoleValidation(skipRoleValidation bool) DataFederationApiUpdateFederatedDatabaseRequest {
 	r.skipRoleValidation = &skipRoleValidation
 	return r
 }
 
 // Details of one Federated Database to update in the specified project.
-func (r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiUpdateFederatedDatabaseRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiUpdateFederatedDatabaseRequest {
 	r.dataLakeTenant = &dataLakeTenant
 	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) Envelope(envelope bool) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest {
+func (r DataFederationApiUpdateFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiUpdateFederatedDatabaseRequest {
 	r.envelope = &envelope
 	return r
 }
 
-// Flag that indicates whether the response body should be in the prettyprint format.
-func (r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) Pretty(pretty bool) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest {
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiUpdateFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiUpdateFederatedDatabaseRequest {
 	r.pretty = &pretty
 	return r
 }
 
-func (r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) Execute() (*DataLakeTenant, *http.Response, error) {
-	return r.ApiService.UpdateOneFederatedDatabaseInOneProjectExecute(r)
+func (r DataFederationApiUpdateFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
+	return r.ApiService.UpdateFederatedDatabaseExecute(r)
 }
 
 /*
-UpdateOneFederatedDatabaseInOneProject Update One Federated Database Instance in One Project
+UpdateFederatedDatabase Update One Federated Database Instance in One Project
 
 Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or higher role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param groupId Unique 24-hexadecimal digit string that identifies your project.
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param tenantName Human-readable label that identifies the federated database instance to update.
- @return DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest
+ @return DataFederationApiUpdateFederatedDatabaseRequest
 */
-func (a *DataFederationApiService) UpdateOneFederatedDatabaseInOneProject(ctx context.Context, groupId string, tenantName string) DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest {
-	return DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest{
+func (a *DataFederationApiService) UpdateFederatedDatabase(ctx context.Context, groupId string, tenantName string) DataFederationApiUpdateFederatedDatabaseRequest {
+	return DataFederationApiUpdateFederatedDatabaseRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1757,7 +1757,7 @@ func (a *DataFederationApiService) UpdateOneFederatedDatabaseInOneProject(ctx co
 
 // Execute executes the request
 //  @return DataLakeTenant
-func (a *DataFederationApiService) UpdateOneFederatedDatabaseInOneProjectExecute(r DataFederationApiUpdateOneFederatedDatabaseInOneProjectRequest) (*DataLakeTenant, *http.Response, error) {
+func (a *DataFederationApiService) UpdateFederatedDatabaseExecute(r DataFederationApiUpdateFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1765,7 +1765,7 @@ func (a *DataFederationApiService) UpdateOneFederatedDatabaseInOneProjectExecute
 		localVarReturnValue  *DataLakeTenant
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.UpdateOneFederatedDatabaseInOneProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.UpdateFederatedDatabase")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
