@@ -52,17 +52,16 @@ TAG=$(patsubst v%,%,$(shell git describe --tags --dirty --always))
 check-version:
 	scripts/check-version.sh "$(TAG)"
 
-.PHONY: v2-verify
-v2-verify: tools
-	echo "Running client cleanup"
+.PHONY: openapi-pipeline
+openapi-pipeline: tools
+	echo "Running OpenAPI Generation and Validation process"
 	$(MAKE) -C tools clean_client
 	echo "Running client generation"
 	$(MAKE) -C tools generate_client
-	echo "Checking end user examples"
-	$(MAKE) -C tools generate_client
+	echo "Validating generated SDK"
+	$(MAKE) v2-examples-build
 	$(MAKE) v2-lint
 	$(MAKE) v2-test
-	$(MAKE) v2-examples-build
 
 .PHONY: v2-lint
 v2-lint:
