@@ -2,6 +2,7 @@ SOURCE_FILES?=./...
 PKG_NAME=mongodbatlas
 GOLANGCI_VERSION=v1.48.0
 COVERAGE=coverage.out
+APIV2_FOLDER=./api
 
 export GO111MODULE := on
 export PATH := ./bin:$(PATH)
@@ -50,3 +51,27 @@ TAG=$(patsubst v%,%,$(shell git describe --tags --dirty --always))
 .PHONY: check-version
 check-version:
 	scripts/check-version.sh "$(TAG)"
+
+.PHONY: v2-verify
+v2-verify: tools
+	echo "Running client cleanup"
+	$(MAKE) -C tools clean_client
+	echo "Running client generation"
+	$(MAKE) -C tools generate_client
+	echo "Checking end user examples"
+	$(MAKE) -C tools generate_client
+	$(MAKE) v2-lint
+	$(MAKE) v2-test
+	$(MAKE) v2-examples-build
+
+.PHONY: v2-lint
+v2-lint:
+	golangci-lint run "$(APIV2_FOLDER)/$(SOURCE_FILES)"
+
+.PHONY: v2-examples-build
+v2-examples-build:
+	go build "$(APIV2_FOLDER)/examples/example_cluster_aws.go"
+
+.PHONY: v2-test
+v2-test:
+	go test "$(APIV2_FOLDER)/$(SOURCE_FILES)" -coverprofile $(COVERAGE) -timeout=30s -parallel=4 -cover -race
