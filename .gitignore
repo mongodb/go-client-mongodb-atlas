@@ -37,3 +37,4 @@ node_modules
 # Output of the go coverage tool
 *.out
 openapi/atlas-api-transformed.yaml
+example_cluster_aws
