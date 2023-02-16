@@ -16,7 +16,5 @@ fetch_openapi:
 generate_client:
 	./scripts/generate.sh
 
-.PHONY: verify_client
-verify_client: clean_client generate_client
 
 
