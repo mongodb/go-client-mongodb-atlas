@@ -59,9 +59,9 @@ openapi-pipeline: tools
 	echo "Running client generation"
 	$(MAKE) -C tools generate_client
 	echo "Validating generated SDK"
-	$(MAKE) v2-examples-build
 	$(MAKE) v2-lint
 	$(MAKE) v2-test
+	$(MAKE) v2-examples-build
 
 .PHONY: v2-lint
 v2-lint:
