@@ -5,15 +5,22 @@
  * @param {(key, value) => boolean} [predicate] - validation function for the property
  * @returns {{ path: String, obj: Object }[]}
  */
-function getAllObjectsWithProperty(apiObject, key, predicate = (_k, _v) => true) {
-  return getAllObjects(apiObject, (obj) => key in obj && predicate(key, obj[key]));
+function getAllObjectsWithProperty(
+  apiObject,
+  key,
+  predicate = (_k, _v) => true
+) {
+  return getAllObjects(
+    apiObject,
+    (obj) => key in obj && predicate(key, obj[key])
+  );
 }
 
 function getAllObjects(object, filter = (_obj) => true) {
   const objs = [];
 
   // Add root object at the top of the recursion stack
-  const recursionStack = [{ path: '', obj: object }];
+  const recursionStack = [{ path: "", obj: object }];
 
   while (recursionStack.length > 0) {
     const { path, obj: currentObj } = recursionStack.pop();
@@ -100,12 +107,12 @@ function detectDuplicates(objArray) {
 }
 
 function expandReference(obj, apiObject) {
-  if (!obj || !obj['$ref']) {
+  if (!obj || !obj["$ref"]) {
     return obj;
   }
 
   const dereferencedObj = getObjectFromReference(obj, apiObject);
-  delete obj['$ref'];
+  delete obj["$ref"];
 
   Object.keys(dereferencedObj).forEach((key) => {
     obj[key] = dereferencedObj[key];
@@ -178,21 +185,21 @@ function getNameFromYamlPath(path) {
 }
 
 function getObjectFromYamlPath(path, obj) {
-  const propertiesStack = path.split('.').reverse();
+  const propertiesStack = path.split(".").reverse();
   let currObj = obj;
 
-  propertiesStack.pop()
-  while(propertiesStack.length > 0) {
+  propertiesStack.pop();
+  while (propertiesStack.length > 0) {
     const property = propertiesStack.pop();
 
-    if(Array.isArray(currObj)) {
+    if (Array.isArray(currObj)) {
       const index = parseInt(property);
-      if(index < 0 || index >= currObj.length) {
+      if (index < 0 || index >= currObj.length) {
         throw new Error(`Invalid path: ${path}`);
       }
 
       currObj = currObj[parseInt(property)];
-    } else if(property in currObj) {
+    } else if (property in currObj) {
       currObj = currObj[property];
     } else {
       throw new Error(`Invalid path: ${path}`);

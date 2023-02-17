@@ -3,7 +3,7 @@ const { test, beforeEach, expect, jest: jestGlobal } = require("@jest/globals");
 const {
   applyModelNameTransformations,
   transformOneOf,
-  transformAllOf
+  transformAllOf,
 } = require("../src/transformations");
 const cases = require("./transformations-snapshots");
 
@@ -13,7 +13,10 @@ beforeEach(() => {
 });
 
 test("Transform oneOf enum", () => {
-  transformOneOf(".components.schemas.ApiAtlasRegionConfigView.properties.regionName", api);
+  transformOneOf(
+    ".components.schemas.ApiAtlasRegionConfigView.properties.regionName",
+    api
+  );
   expect(
     api.components.schemas.ApiAtlasRegionConfigView.properties.regionName
   ).toMatchInlineSnapshot(cases.EnumOneOf);

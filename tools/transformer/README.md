@@ -33,6 +33,7 @@ For parent model containing multiple children:
 2. allOf transformation.
 
 Applied to all objects that meet the following criteria:
+
 > Have "properties" filed
 > Have "oneOf" field
 

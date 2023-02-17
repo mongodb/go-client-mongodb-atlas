@@ -9,12 +9,12 @@ const {
   getAllObjects,
   filterObjectProperties,
   flattenAllOfObject,
-} = require('./utils');
+} = require("./utils");
 
 // Name of the key (OpenAPI extension) to trigger transformation
-const extensionKey = 'x-xgen-go-transform';
-const extensionAllOfValue = 'merge-allOf';
-const extensionOneOfValue = 'merge-oneOf';
+const extensionKey = "x-xgen-go-transform";
+const extensionAllOfValue = "merge-allOf";
+const extensionOneOfValue = "merge-oneOf";
 
 /**
  * Transforms provided API JSON file using allOf transformation
@@ -27,7 +27,7 @@ function applyAllOfTransformations(api) {
   const allOfTransformations = getAllObjects(api, isAllOfTransformable);
 
   console.info(
-    '# AllOf transformations: ',
+    "# AllOf transformations: ",
     allOfTransformations.map((e) => e.path)
   );
 
@@ -48,10 +48,14 @@ function applyAllOfTransformations(api) {
  * @returns OpenAPI JSON File
  */
 function applyOneOfTransformations(api) {
-  const oneOfTransformations = getAllObjectsWithProperty(api, extensionKey, (_k, v) => v === extensionOneOfValue);
+  const oneOfTransformations = getAllObjectsWithProperty(
+    api,
+    extensionKey,
+    (_k, v) => v === extensionOneOfValue
+  );
 
   console.info(
-    '# OneOf transformations: ',
+    "# OneOf transformations: ",
     oneOfTransformations.map((e) => e.path)
   );
 
@@ -128,7 +132,9 @@ function transformAllOf(objectPath, api) {
     const childName = getObjectNameFromReference(obj);
 
     if (removeParentFromAllOf(childObject, parentObject, api)) {
-      console.debug(`AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`);
+      console.debug(
+        `AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`
+      );
       if (!childObject.allOf) {
         childObject.allOf = {};
       }
@@ -209,7 +215,7 @@ function isAllOfTransformable(obj) {
 }
 
 function getObjectProperties(obj) {
-  const exclusionList = ['oneOf', 'discriminator'];
+  const exclusionList = ["oneOf", "discriminator"];
 
   return filterObjectProperties(obj, (key, _v) => {
     return !(key in exclusionList);
@@ -221,5 +227,5 @@ module.exports = {
   applyOneOfTransformations,
   applyModelNameTransformations,
   transformOneOf,
-  transformAllOf
+  transformAllOf,
 };
