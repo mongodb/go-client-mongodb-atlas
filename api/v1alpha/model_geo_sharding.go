@@ -17,7 +17,7 @@ import (
 // GeoSharding struct for GeoSharding
 type GeoSharding struct {
 	// List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to a unique 24-hexadecimal string that identifies the custom zone.  This parameter returns an empty object if no custom zones exist.
-	CustomZoneMapping *map[string]map[string]interface{} `json:"customZoneMapping,omitempty"`
+	CustomZoneMapping *map[string]string `json:"customZoneMapping,omitempty"`
 	// List that contains a namespace for a Global Cluster. MongoDB Cloud manages this cluster.
 	ManagedNamespaces []ManagedNamespaces `json:"managedNamespaces,omitempty"`
 }
@@ -40,9 +40,9 @@ func NewGeoShardingWithDefaults() *GeoSharding {
 }
 
 // GetCustomZoneMapping returns the CustomZoneMapping field value if set, zero value otherwise.
-func (o *GeoSharding) GetCustomZoneMapping() map[string]map[string]interface{} {
+func (o *GeoSharding) GetCustomZoneMapping() map[string]string {
 	if o == nil || o.CustomZoneMapping == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
 	return *o.CustomZoneMapping
@@ -50,7 +50,7 @@ func (o *GeoSharding) GetCustomZoneMapping() map[string]map[string]interface{} {
 
 // GetCustomZoneMappingOk returns a tuple with the CustomZoneMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GeoSharding) GetCustomZoneMappingOk() (*map[string]map[string]interface{}, bool) {
+func (o *GeoSharding) GetCustomZoneMappingOk() (*map[string]string, bool) {
 	if o == nil || o.CustomZoneMapping == nil {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *GeoSharding) HasCustomZoneMapping() bool {
 	return false
 }
 
-// SetCustomZoneMapping gets a reference to the given map[string]map[string]interface{} and assigns it to the CustomZoneMapping field.
-func (o *GeoSharding) SetCustomZoneMapping(v map[string]map[string]interface{}) {
+// SetCustomZoneMapping gets a reference to the given map[string]string and assigns it to the CustomZoneMapping field.
+func (o *GeoSharding) SetCustomZoneMapping(v map[string]string) {
 	o.CustomZoneMapping = &v
 }
 
