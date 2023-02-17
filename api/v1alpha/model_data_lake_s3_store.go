@@ -30,6 +30,9 @@ type DataLakeS3Store struct {
 	Public *bool `json:"public,omitempty"`
 	//  Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region *string `json:"region,omitempty"`
+	// Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName** field references this values as part of the mapping configuration. To use MongoDB Cloud as a data store, the data lake requires a serverless instance or an `M10` or higher cluster.
+	Name *string `json:"name,omitempty"`
+	Provider string `json:"provider"`
 }
 
 // NewDataLakeS3Store instantiates a new DataLakeS3Store object
@@ -281,6 +284,62 @@ func (o *DataLakeS3Store) SetRegion(v string) {
 	o.Region = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *DataLakeS3Store) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataLakeS3Store) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *DataLakeS3Store) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *DataLakeS3Store) SetName(v string) {
+	o.Name = &v
+}
+
+// GetProvider returns the Provider field value
+func (o *DataLakeS3Store) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *DataLakeS3Store) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *DataLakeS3Store) SetProvider(v string) {
+	o.Provider = v
+}
+
 func (o DataLakeS3Store) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AdditionalStorageClasses != nil {
@@ -303,6 +362,12 @@ func (o DataLakeS3Store) MarshalJSON() ([]byte, error) {
 	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["provider"] = o.Provider
 	}
 	return json.Marshal(toSerialize)
 }

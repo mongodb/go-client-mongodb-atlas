@@ -23,6 +23,7 @@ type FreeProviderSettings struct {
 	InstanceSizeName *string `json:"instanceSizeName,omitempty"`
 	// Human-readable label that identifies the geographic location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). For multi-region clusters, see **replicationSpec.{region}**.
 	RegionName *string `json:"regionName,omitempty"`
+	ProviderName string `json:"providerName"`
 }
 
 // NewFreeProviderSettings instantiates a new FreeProviderSettings object
@@ -170,6 +171,30 @@ func (o *FreeProviderSettings) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
+// GetProviderName returns the ProviderName field value
+func (o *FreeProviderSettings) GetProviderName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value
+// and a boolean to check if the value has been set.
+func (o *FreeProviderSettings) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderName, true
+}
+
+// SetProviderName sets field value
+func (o *FreeProviderSettings) SetProviderName(v string) {
+	o.ProviderName = v
+}
+
 func (o FreeProviderSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AutoScaling != nil {
@@ -183,6 +208,9 @@ func (o FreeProviderSettings) MarshalJSON() ([]byte, error) {
 	}
 	if o.RegionName != nil {
 		toSerialize["regionName"] = o.RegionName
+	}
+	if true {
+		toSerialize["providerName"] = o.ProviderName
 	}
 	return json.Marshal(toSerialize)
 }

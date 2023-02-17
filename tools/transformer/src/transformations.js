@@ -2,9 +2,19 @@ const {
   getObjectFromReference,
   removeParentFromAllOf,
   getNameFromYamlPath,
+  getObjectFromYamlPath,
   getObjectNameFromReference,
   detectDuplicates,
+  getAllObjectsWithProperty,
+  getAllObjects,
+  filterObjectProperties,
+  flattenAllOfObject,
 } = require("./utils");
+
+// Name of the key (OpenAPI extension) to trigger transformation
+const extensionKey = "x-xgen-go-transform";
+const extensionAllOfValue = "merge-allOf";
+const extensionOneOfValue = "merge-oneOf";
 
 /**
  * Transforms provided API JSON file using allOf transformation
@@ -13,13 +23,19 @@ const {
  * @param {*} allOfTransformations array of transformations to apply
  * @returns OpenAPI JSON File
  */
-function applyAllOfTransformations(api, allOfTransformations) {
+function applyAllOfTransformations(api) {
+  const allOfTransformations = getAllObjects(api, isAllOfTransformable);
+
+  console.info(
+    "# AllOf transformations: ",
+    allOfTransformations.map((e) => e.path)
+  );
+
   for (let { path, obj } of allOfTransformations) {
     if (!obj || !path) {
       throw new Error("Invalid transformation object");
     }
-    const name = getNameFromYamlPath(path);
-    transformAllOf(name, obj, api);
+    transformAllOf(path, api);
   }
   return api;
 }
@@ -31,15 +47,27 @@ function applyAllOfTransformations(api, allOfTransformations) {
  * @param {*} oneOfTransformations array of transformations to apply
  * @returns OpenAPI JSON File
  */
-function applyOneOfTransformations(api, oneOfTransformations) {
-  for (let { obj } of oneOfTransformations) {
+function applyOneOfTransformations(api) {
+  const oneOfTransformations = getAllObjectsWithProperty(
+    api,
+    extensionKey,
+    (_k, v) => v === extensionOneOfValue
+  );
+
+  console.info(
+    "# OneOf transformations: ",
+    oneOfTransformations.map((e) => e.path)
+  );
+
+  for (let { path, obj } of oneOfTransformations) {
     if (!obj) {
       throw new Error("Invalid transformation object");
     }
-    transformOneOf(obj, api);
+    transformOneOf(path, api);
   }
   return api;
 }
+
 /**
  *  Transforms provided API JSON file by removing prefix and suffix from the
  *  API models
@@ -79,68 +107,50 @@ function applyModelNameTransformations(api, prefix, suffix) {
   return api;
 }
 
-function transformAllOf(objectName, parentObject, api) {
-  if (!(parentObject && parentObject.oneOf)) {
-    const errorData = JSON.stringify(parentObject);
-    throw new Error(`Invalid object for AllOf Transformation: ${errorData}`);
+function transformAllOf(objectPath, api) {
+  const parentObject = getObjectFromYamlPath(objectPath, api);
+  const parentName = getNameFromYamlPath(objectPath);
+
+  if (!isAllOfTransformable(parentObject)) {
+    throw new Error(`Invalid object for AllOf Transformation: ${parentName}`);
   }
 
   if (!parentObject.properties) {
     return console.error(
-      `Transformation cannot be performed. ${objectName}.properties is empty`
+      `AllOf: Transformation cannot be performed. ${parentName}.properties is empty`
     );
   }
 
-  const parentProperties = parentObject.properties;
+  const expandedParent = getObjectProperties(parentObject);
+
+  // Remove invalid fields
   delete parentObject.properties;
+  delete parentObject.required;
 
   for (let obj of parentObject.oneOf) {
-    const child = getObjectFromReference(obj, api);
-    if (!child.allOf) {
-      const errorData = JSON.stringify(child);
-      throw new Error(`Invalid child for AllOf Transformation: ${errorData}`);
-    }
-
-    removeParentFromAllOf(child, objectName);
-    if (child.allOf.length !== 1) {
-      const errorData = JSON.stringify(child);
-      throw new Error(`Child contains more than single parent: ${errorData}`);
-    }
-    if (!child.properties) {
-      child.properties = {};
-    }
+    const childObject = getObjectFromReference(obj, api);
     const childName = getObjectNameFromReference(obj);
-    if (child.allOf[0].properties) {
+
+    if (removeParentFromAllOf(childObject, parentObject, api)) {
       console.debug(
-        `${objectName}: moving parent properties into ${childName} properties`
+        `AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`
       );
-      var propertiesParent = JSON.parse(JSON.stringify(parentProperties));
-      var childProperties = child.properties;
-      var propertiesAllOfChild = child.allOf[0].properties;
-      var duplicates = detectDuplicates([
-        propertiesParent,
-        childProperties,
-        propertiesAllOfChild,
-      ]);
-      if (duplicates.length > 0) {
-        console.warn(
-          `${childName}: detected properties that would be overriden: ${duplicates}`
-        );
+      if (!childObject.allOf) {
+        childObject.allOf = {};
       }
-      child.properties = {
-        ...propertiesParent,
-        ...childProperties,
-        ...propertiesAllOfChild,
-      };
+      // Expand parent in child allOf
+      childObject.allOf.push(expandedParent);
+      // Flatten child allOf
+      flattenAllOfObject(childObject);
     }
-    delete child.allOf;
   }
 }
 
-function transformOneOf(parentObject, api) {
+function transformOneOf(objectPath, api) {
+  const parentObject = getObjectFromYamlPath(objectPath, api);
+
   if (!(parentObject && parentObject.oneOf)) {
-    const errorObj = JSON.stringify(parentObject);
-    throw new Error(`Invalid object for OneOf Transformation ${errorObj}`);
+    throw new Error(`Invalid object for OneOf Transformation: ${objectPath}`);
   }
 
   for (const objRef of parentObject.oneOf) {
@@ -200,8 +210,22 @@ function transformOneOf(parentObject, api) {
   delete parentObject.oneOf;
 }
 
+function isAllOfTransformable(obj) {
+  return obj.properties && obj.oneOf;
+}
+
+function getObjectProperties(obj) {
+  const exclusionList = ["oneOf", "discriminator"];
+
+  return filterObjectProperties(obj, (key, _v) => {
+    return !(key in exclusionList);
+  });
+}
+
 module.exports = {
   applyAllOfTransformations,
   applyOneOfTransformations,
   applyModelNameTransformations,
+  transformOneOf,
+  transformAllOf,
 };
