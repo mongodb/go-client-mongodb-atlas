@@ -155,21 +155,15 @@ function mergeObjects(...objs) {
   return mergedObj;
 }
 
-function removeParentFromAllOf(child, parentName) {
+function removeParentFromAllOf(child, parent, api) {
   if (!child.allOf) {
     return false;
   }
 
   const initialLength = child.allOf.length;
   child.allOf = child.allOf.filter((childAllOfItem) => {
-    if (childAllOfItem["$ref"]) {
-      if (
-        childAllOfItem["$ref"].endsWith("#/components/schemas/" + parentName)
-      ) {
-        return false;
-      }
-    }
-    return true;
+    const obj = getObjectFromReference(childAllOfItem, api);
+    return obj !== parent;
   });
 
   if (initialLength === child.allOf.length) {
@@ -183,8 +177,34 @@ function getNameFromYamlPath(path) {
   return path.split(".").pop();
 }
 
+function getObjectFromYamlPath(path, obj) {
+  const propertiesStack = path.split('.').reverse();
+  let currObj = obj;
+
+  propertiesStack.pop()
+  while(propertiesStack.length > 0) {
+    const property = propertiesStack.pop();
+
+    if(Array.isArray(currObj)) {
+      const index = parseInt(property);
+      if(index < 0 || index >= currObj.length) {
+        throw new Error(`Invalid path: ${path}`);
+      }
+
+      currObj = currObj[parseInt(property)];
+    } else if(property in currObj) {
+      currObj = currObj[property];
+    } else {
+      throw new Error(`Invalid path: ${path}`);
+    }
+  }
+
+  return currObj;
+}
+
 module.exports = {
   getNameFromYamlPath,
+  getObjectFromYamlPath,
   getObjectFromReference,
   getAllObjectsWithProperty,
   getAllObjects,

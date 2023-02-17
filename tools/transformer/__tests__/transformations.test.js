@@ -4,6 +4,8 @@ const {
   applyAllOfTransformations,
   applyOneOfTransformations,
   applyModelNameTransformations,
+  transformOneOf,
+  transformAllOf
 } = require("../src/transformations");
 const cases = require("./transformations-snapshots");
 
@@ -12,43 +14,22 @@ beforeEach(() => {
   api = JSON.parse(fs.readFileSync(__dirname + "/input.json", "utf8"));
 });
 
-test("Empty doc. No transformations", () => {
-  applyOneOfTransformations({}, []);
-  applyAllOfTransformations({}, []);
-});
-
-test("Invalid Path", () => {
-  expect(() => applyOneOfTransformations({}, [{ obj: undefined }])).toThrow(
-    /Invalid transformation object/
-  );
-  expect(() => applyAllOfTransformations({}, [{ obj: undefined }])).toThrow(
-    /Invalid transformation object/
-  );
-});
-
-test("applyOneOfTransformations happy path", () => {
-  applyOneOfTransformations(api, [
-    {
-      obj: api.components.schemas.ApiAtlasRegionConfigView.properties
-        .regionName,
-    },
-    { obj: api.components.schemas.ApiAtlasHardwareSpecView },
-  ]);
+test("Transform oneOf enum", () => {
+  transformOneOf(".components.schemas.ApiAtlasRegionConfigView.properties.regionName", api);
   expect(
     api.components.schemas.ApiAtlasRegionConfigView.properties.regionName
   ).toMatchInlineSnapshot(cases.EnumOneOf);
+});
+
+test("Transform oneOf model", () => {
+  transformOneOf(".components.schemas.ApiAtlasHardwareSpecView", api);
   expect(
     api.components.schemas.ApiAtlasHardwareSpecView.properties
   ).toMatchInlineSnapshot(cases.PropertiesOneOf);
 });
 
-test("applyAllOfTransformations happy path", () => {
-  applyAllOfTransformations(api, [
-    {
-      obj: api.components.schemas.ApiAtlasRegionConfigView,
-      path: "components.schemas.ApiAtlasRegionConfigView",
-    },
-  ]);
+test("Transform AllOf model", () => {
+  applyAllOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
   expect(api.components.schemas.ApiAtlasRegionConfigView).toMatchInlineSnapshot(
     cases.ParentAllOf
   );
@@ -57,35 +38,21 @@ test("applyAllOfTransformations happy path", () => {
   ).toMatchInlineSnapshot(cases.ChildAllOf);
 });
 
-test("applyAllOfTransformations duplicates", () => {
+test("Fail Transform AllOf with duplicates", () => {
   api.components.schemas.ApiAtlasAWSRegionConfigView.properties = {
     ...api.components.schemas.ApiAtlasAWSRegionConfigView.properties,
     ...api.components.schemas.ApiAtlasRegionConfigView.propertries,
   };
   global.console.warn = jestGlobal.fn();
-  applyAllOfTransformations(api, [
-    {
-      obj: api.components.schemas.ApiAtlasRegionConfigView,
-      path: "components.schemas.ApiAtlasRegionConfigView",
-    },
-  ]);
-  applyOneOfTransformations(api, [
-    { obj: api.components.schemas.ApiAtlasRegionConfigView },
-  ]);
+  applyAllOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
+  applyOneOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
   expect(console.warn).toBeCalled();
 });
 
-test("applyAllOfTransformations wrong structure", () => {
-  applyOneOfTransformations(api, [
-    { obj: api.components.schemas.ApiAtlasRegionConfigView },
-  ]);
+test("Fail Transform AllOf with wrong object structure", () => {
+  transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
   expect(() =>
-    applyAllOfTransformations(api, [
-      {
-        obj: api.components.schemas.ApiAtlasRegionConfigView,
-        path: "components.schemas.ApiAtlasRegionConfigView",
-      },
-    ])
+    transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api)
   ).toThrow(/Invalid object for AllOf Transformation/);
 });
 
