@@ -16,7 +16,7 @@ import (
 
 // ValidationView struct for ValidationView
 type ValidationView struct {
-	Id map[string]interface{} `json:"_id,omitempty"`
+	Id *string `json:"_id,omitempty"`
 	// Reason why the validation job failed.
 	ErrorMessage NullableString `json:"errorMessage,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project to validate.
@@ -45,17 +45,17 @@ func NewValidationViewWithDefaults() *ValidationView {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ValidationView) GetId() map[string]interface{} {
+func (o *ValidationView) GetId() string {
 	if o == nil || o.Id == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ValidationView) GetIdOk() (map[string]interface{}, bool) {
+func (o *ValidationView) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -71,9 +71,9 @@ func (o *ValidationView) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given map[string]interface{} and assigns it to the Id field.
-func (o *ValidationView) SetId(v map[string]interface{}) {
-	o.Id = v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ValidationView) SetId(v string) {
+	o.Id = &v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise (both if not set or set to explicit null).

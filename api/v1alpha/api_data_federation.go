@@ -54,6 +54,23 @@ type DataFederationApi interface {
 	CreateFederatedDatabaseExecute(r DataFederationApiCreateFederatedDatabaseRequest) (*DataLakeTenant, *http.Response, error)
 
 	/*
+	CreateOneDataFederationQueryLimit Configure One Query Limit for One Federated Database Instance
+
+	Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+	@param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+	@return DataFederationApiCreateOneDataFederationQueryLimitRequest
+	*/
+	CreateOneDataFederationQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiCreateOneDataFederationQueryLimitRequest
+
+	// CreateOneDataFederationQueryLimitExecute executes the request
+	//  @return []DataFederationTenantQueryLimit
+	CreateOneDataFederationQueryLimitExecute(r DataFederationApiCreateOneDataFederationQueryLimitRequest) ([]DataFederationTenantQueryLimit, *http.Response, error)
+
+	/*
 	DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 
 	Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
@@ -82,6 +99,22 @@ type DataFederationApi interface {
 
 	// DeleteFederatedDatabaseExecute executes the request
 	DeleteFederatedDatabaseExecute(r DataFederationApiDeleteFederatedDatabaseRequest) (*http.Response, error)
+
+	/*
+	DeleteOneDataFederationInstanceQueryLimit Delete One Query Limit For One Federated Database Instance
+
+	Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+	@param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+	@return DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest
+	*/
+	DeleteOneDataFederationInstanceQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest
+
+	// DeleteOneDataFederationInstanceQueryLimitExecute executes the request
+	DeleteOneDataFederationInstanceQueryLimitExecute(r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) (*http.Response, error)
 
 	/*
 	DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
@@ -160,6 +193,39 @@ type DataFederationApi interface {
 	// ListFederatedDatabasesExecute executes the request
 	//  @return []DataLakeTenant
 	ListFederatedDatabasesExecute(r DataFederationApiListFederatedDatabasesRequest) ([]DataLakeTenant, *http.Response, error)
+
+	/*
+	ReturnFederatedDatabaseQueryLimit Return One Federated Database Instance Query Limit for One Project
+
+	Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+	@param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+	@return DataFederationApiReturnFederatedDatabaseQueryLimitRequest
+	*/
+	ReturnFederatedDatabaseQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiReturnFederatedDatabaseQueryLimitRequest
+
+	// ReturnFederatedDatabaseQueryLimitExecute executes the request
+	//  @return []DataFederationTenantQueryLimit
+	ReturnFederatedDatabaseQueryLimitExecute(r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) ([]DataFederationTenantQueryLimit, *http.Response, error)
+
+	/*
+	ReturnFederatedDatabaseQueryLimits Return All Query Limits for One Federated Database Instance
+
+	Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@param tenantName Human-readable label that identifies the federated database instance for which you want to retrieve query limits.
+	@return DataFederationApiReturnFederatedDatabaseQueryLimitsRequest
+	*/
+	ReturnFederatedDatabaseQueryLimits(ctx context.Context, groupId string, tenantName string) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest
+
+	// ReturnFederatedDatabaseQueryLimitsExecute executes the request
+	//  @return []DataFederationTenantQueryLimit
+	ReturnFederatedDatabaseQueryLimitsExecute(r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) ([]DataFederationTenantQueryLimit, *http.Response, error)
 
 	/*
 	UpdateFederatedDatabase Update One Federated Database Instance in One Project
@@ -516,6 +582,188 @@ func (a *DataFederationApiService) CreateFederatedDatabaseExecute(r DataFederati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DataFederationApiCreateOneDataFederationQueryLimitRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	tenantName string
+	limitName string
+	dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
+	envelope *bool
+}
+
+// Creates or updates one query limit for one federated database instance.
+func (r DataFederationApiCreateOneDataFederationQueryLimitRequest) DataFederationTenantQueryLimit(dataFederationTenantQueryLimit DataFederationTenantQueryLimit) DataFederationApiCreateOneDataFederationQueryLimitRequest {
+	r.dataFederationTenantQueryLimit = &dataFederationTenantQueryLimit
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiCreateOneDataFederationQueryLimitRequest) Envelope(envelope bool) DataFederationApiCreateOneDataFederationQueryLimitRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r DataFederationApiCreateOneDataFederationQueryLimitRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	return r.ApiService.CreateOneDataFederationQueryLimitExecute(r)
+}
+
+/*
+CreateOneDataFederationQueryLimit Configure One Query Limit for One Federated Database Instance
+
+Creates or updates one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+ @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+ @return DataFederationApiCreateOneDataFederationQueryLimitRequest
+*/
+func (a *DataFederationApiService) CreateOneDataFederationQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiCreateOneDataFederationQueryLimitRequest {
+	return DataFederationApiCreateOneDataFederationQueryLimitRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		tenantName: tenantName,
+		limitName: limitName,
+	}
+}
+
+// Execute executes the request
+//  @return []DataFederationTenantQueryLimit
+func (a *DataFederationApiService) CreateOneDataFederationQueryLimitExecute(r DataFederationApiCreateOneDataFederationQueryLimitRequest) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []DataFederationTenantQueryLimit
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.CreateOneDataFederationQueryLimit")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"limitName"+"}", url.PathEscape(parameterToString(r.limitName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if r.dataFederationTenantQueryLimit == nil {
+		return localVarReturnValue, nil, reportError("dataFederationTenantQueryLimit is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.dataFederationTenantQueryLimit
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
@@ -793,6 +1041,143 @@ func (a *DataFederationApiService) DeleteFederatedDatabaseExecute(r DataFederati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	tenantName string
+	limitName string
+	envelope *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) Envelope(envelope bool) DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest {
+	r.envelope = &envelope
+	return r
+}
+
+func (r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteOneDataFederationInstanceQueryLimitExecute(r)
+}
+
+/*
+DeleteOneDataFederationInstanceQueryLimit Delete One Query Limit For One Federated Database Instance
+
+Deletes one query limit for one federated database instance. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+ @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+ @return DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest
+*/
+func (a *DataFederationApiService) DeleteOneDataFederationInstanceQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest {
+	return DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		tenantName: tenantName,
+		limitName: limitName,
+	}
+}
+
+// Execute executes the request
+func (a *DataFederationApiService) DeleteOneDataFederationInstanceQueryLimitExecute(r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.DeleteOneDataFederationInstanceQueryLimit")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"limitName"+"}", url.PathEscape(parameterToString(r.limitName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1662,6 +2047,329 @@ func (a *DataFederationApiService) ListFederatedDatabasesExecute(r DataFederatio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataFederationApiReturnFederatedDatabaseQueryLimitRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	tenantName string
+	limitName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Envelope(envelope bool) DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Pretty(pretty bool) DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	return r.ApiService.ReturnFederatedDatabaseQueryLimitExecute(r)
+}
+
+/*
+ReturnFederatedDatabaseQueryLimit Return One Federated Database Instance Query Limit for One Project
+
+Returns the details of one query limit for the specified federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param tenantName Human-readable label that identifies the federated database instance to which the query limit applies.
+ @param limitName Human-readable label that identifies this data federation instance limit.  | Limit Name | Description | Default | | --- | --- | --- | | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A | | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A | | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A | | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A | 
+ @return DataFederationApiReturnFederatedDatabaseQueryLimitRequest
+*/
+func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimit(ctx context.Context, groupId string, tenantName string, limitName string) DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
+	return DataFederationApiReturnFederatedDatabaseQueryLimitRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		tenantName: tenantName,
+		limitName: limitName,
+	}
+}
+
+// Execute executes the request
+//  @return []DataFederationTenantQueryLimit
+func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimitExecute(r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []DataFederationTenantQueryLimit
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnFederatedDatabaseQueryLimit")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"limitName"+"}", url.PathEscape(parameterToString(r.limitName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DataFederationApiReturnFederatedDatabaseQueryLimitsRequest struct {
+	ctx context.Context
+	ApiService DataFederationApi
+	groupId string
+	tenantName string
+	envelope *bool
+	pretty *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Envelope(envelope bool) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Pretty(pretty bool) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	return r.ApiService.ReturnFederatedDatabaseQueryLimitsExecute(r)
+}
+
+/*
+ReturnFederatedDatabaseQueryLimits Return All Query Limits for One Federated Database Instance
+
+Returns query limits for a federated databases instance in the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @param tenantName Human-readable label that identifies the federated database instance for which you want to retrieve query limits.
+ @return DataFederationApiReturnFederatedDatabaseQueryLimitsRequest
+*/
+func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimits(ctx context.Context, groupId string, tenantName string) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
+	return DataFederationApiReturnFederatedDatabaseQueryLimitsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+		tenantName: tenantName,
+	}
+}
+
+// Execute executes the request
+//  @return []DataFederationTenantQueryLimit
+func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimitsExecute(r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []DataFederationTenantQueryLimit
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataFederationApiService.ReturnFederatedDatabaseQueryLimits")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tenantName"+"}", url.PathEscape(parameterToString(r.tenantName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+
+	if r.envelope != nil {
+		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+	}
+	if r.pretty != nil {
+		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

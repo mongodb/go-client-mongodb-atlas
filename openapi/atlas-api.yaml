@@ -4443,7 +4443,7 @@ paths:
           content:
             application/vnd.atlas.2023-02-01+json:
               schema:
-                $ref: '#/components/schemas/GeoShardingView'
+                $ref: '#/components/schemas/ApiAtlasGeoShardingView'
               x-xgen-version: 2023-02-01
           description: OK
         "400":
@@ -6335,6 +6335,213 @@ paths:
       security:
       - DigestAuth: []
       summary: Update One Federated Database Instance in One Project
+      tags:
+      - Data Federation
+  /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits:
+    get:
+      description: "Returns query limits for a federated databases instance in the\
+        \ specified project. To use this resource, the requesting API Key must have\
+        \ the Project Read Only role. This resource doesn't require the API Key to\
+        \ have an Access List."
+      operationId: returnFederatedDatabaseQueryLimits
+      parameters:
+      - $ref: '#/components/parameters/envelope'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/groupId'
+      - description: Human-readable label that identifies the federated database instance
+          for which you want to retrieve query limits.
+        in: path
+        name: tenantName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.atlas.2023-01-01+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiAtlasDataFederationTenantQueryLimitView'
+              x-xgen-version: 2023-01-01
+          description: OK
+        "401":
+          $ref: '#/components/responses/unauthorized'
+        "404":
+          $ref: '#/components/responses/notFound'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Return All Query Limits for One Federated Database Instance
+      tags:
+      - Data Federation
+  /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName}:
+    delete:
+      description: "Deletes one query limit for one federated database instance. To\
+        \ use this resource, the requesting API Key must have the Project Owner role.\
+        \ This resource doesn't require the API Key to have an Access List."
+      operationId: deleteOneDataFederationInstanceQueryLimit
+      parameters:
+      - $ref: '#/components/parameters/envelope'
+      - $ref: '#/components/parameters/groupId'
+      - description: Human-readable label that identifies the federated database instance
+          to which the query limit applies.
+        in: path
+        name: tenantName
+        required: true
+        schema:
+          type: string
+      - description: |
+          Human-readable label that identifies this data federation instance limit.
+
+          | Limit Name | Description | Default |
+          | --- | --- | --- |
+          | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A |
+          | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A |
+          | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A |
+          | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A |
+        in: path
+        name: limitName
+        required: true
+        schema:
+          type: string
+          enum:
+          - bytesProcessed.query
+          - bytesProcessed.daily
+          - bytesProcessed.weekly
+          - bytesProcessed.monthly
+      responses:
+        "204":
+          $ref: '#/components/responses/noBody'
+        "400":
+          $ref: '#/components/responses/badRequest'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Delete One Query Limit For One Federated Database Instance
+      tags:
+      - Data Federation
+    get:
+      description: "Returns the details of one query limit for the specified federated\
+        \ database instance in the specified project. To use this resource, the requesting\
+        \ API Key must have the Project Read Only role. This resource doesn't require\
+        \ the API Key to have an Access List."
+      operationId: returnFederatedDatabaseQueryLimit
+      parameters:
+      - $ref: '#/components/parameters/envelope'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/groupId'
+      - description: Human-readable label that identifies the federated database instance
+          to which the query limit applies.
+        in: path
+        name: tenantName
+        required: true
+        schema:
+          type: string
+      - description: |
+          Human-readable label that identifies this data federation instance limit.
+
+          | Limit Name | Description | Default |
+          | --- | --- | --- |
+          | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A |
+          | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A |
+          | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A |
+          | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A |
+        in: path
+        name: limitName
+        required: true
+        schema:
+          type: string
+          enum:
+          - bytesProcessed.query
+          - bytesProcessed.daily
+          - bytesProcessed.weekly
+          - bytesProcessed.monthly
+      responses:
+        "200":
+          content:
+            application/vnd.atlas.2023-01-01+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiAtlasDataFederationTenantQueryLimitView'
+              x-xgen-version: 2023-01-01
+          description: OK
+        "401":
+          $ref: '#/components/responses/unauthorized'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Return One Federated Database Instance Query Limit for One Project
+      tags:
+      - Data Federation
+    patch:
+      description: "Creates or updates one query limit for one federated database\
+        \ instance. To use this resource, the requesting API Key must have the Project\
+        \ Owner role. This resource doesn't require the API Key to have an Access\
+        \ List."
+      operationId: createOneDataFederationQueryLimit
+      parameters:
+      - $ref: '#/components/parameters/envelope'
+      - $ref: '#/components/parameters/groupId'
+      - description: Human-readable label that identifies the federated database instance
+          to which the query limit applies.
+        in: path
+        name: tenantName
+        required: true
+        schema:
+          type: string
+      - description: |
+          Human-readable label that identifies this data federation instance limit.
+
+          | Limit Name | Description | Default |
+          | --- | --- | --- |
+          | bytesProcessed.query | Limit on the number of bytes processed during a single data federation query | N/A |
+          | bytesProcessed.daily | Limit on the number of bytes processed for the data federation instance for the current day | N/A |
+          | bytesProcessed.weekly | Limit on the number of bytes processed for the data federation instance for the current week | N/A |
+          | bytesProcessed.monthly | Limit on the number of bytes processed for the data federation instance for the current month | N/A |
+        in: path
+        name: limitName
+        required: true
+        schema:
+          type: string
+          enum:
+          - bytesProcessed.query
+          - bytesProcessed.daily
+          - bytesProcessed.weekly
+          - bytesProcessed.monthly
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiAtlasDataFederationTenantQueryLimitView'
+        description: Creates or updates one query limit for one federated database
+          instance.
+        required: true
+      responses:
+        "200":
+          content:
+            application/vnd.atlas.2023-01-01+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiAtlasDataFederationTenantQueryLimitView'
+              x-xgen-version: 2023-01-01
+          description: OK
+        "400":
+          $ref: '#/components/responses/badRequest'
+        "401":
+          $ref: '#/components/responses/unauthorized'
+        "404":
+          $ref: '#/components/responses/notFound'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Configure One Query Limit for One Federated Database Instance
       tags:
       - Data Federation
   /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/queryLogs.gz:
@@ -17557,6 +17764,62 @@ components:
       - name
       - value
       title: Data Federation Query Limit
+    ApiAtlasDataFederationTenantQueryLimitView:
+      type: object
+      description: Details of a tenant-level query limit for Data Federation. Query
+        limit is the limit on the amount of usage during a time period based on cost.
+      properties:
+        currentUsage:
+          type: integer
+          format: int64
+          description: Amount that indicates the current usage of the limit.
+          readOnly: true
+        defaultLimit:
+          type: integer
+          format: int64
+          description: Default value of the limit.
+          readOnly: true
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: Only used for Data Federation limits. Timestamp that indicates
+            when this usage limit was last modified. This field uses the ISO 8601
+            timestamp format in UTC.
+          readOnly: true
+        maximumLimit:
+          type: integer
+          format: int64
+          description: Maximum value of the limit.
+          readOnly: true
+        name:
+          type: string
+          description: Human-readable label that identifies the user-managed limit
+            to modify.
+          readOnly: true
+        overrunPolicy:
+          type: string
+          description: "Only used for Data Federation limits. Action to take when\
+            \ the usage limit is exceeded. If limit span is set to QUERY, this is\
+            \ ignored because MongoDB Cloud stops the query when it exceeds the usage\
+            \ limit."
+          enum:
+          - BLOCK
+          - BLOCK_AND_KILL
+        tenantName:
+          type: string
+          description: "Human-readable label that identifies the Federated Database\
+            \ Instance. If specified, the usage limit is for the specified federated\
+            \ database instance only. If omitted, the usage limit is for all federated\
+            \ database instances in the project."
+          readOnly: true
+        value:
+          type: integer
+          format: int64
+          description: Amount to set the limit to.
+      required:
+      - name
+      - value
+      title: Data Federation Tenant-Level Query Limit
     ApiAtlasDataLakeAWSCloudProviderConfigView:
       type: object
       description: Name of the cloud service that hosts the data lake's data stores.
@@ -20077,7 +20340,12 @@ components:
         customZoneMapping:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/ObjectId'
+            type: string
+            description: |-
+              List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to a unique 24-hexadecimal string that identifies the custom zone.
+
+              This parameter returns an empty object if no custom zones exist.
+            readOnly: true
           description: |-
             List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to a unique 24-hexadecimal string that identifies the custom zone.
 
@@ -30730,6 +30998,7 @@ components:
         - CLUSTER_FORCE_PLANNED
         - DATA_PROCESSING_REGION_UPDATED
         - CLUSTER_REGIONAL_OUTAGE_SIMULATION_STARTED
+        - CLUSTER_REGIONAL_OUTAGE_SIMULATION_FAILED_TO_START
         - CLUSTER_REGIONAL_OUTAGE_SIMULATION_END_REQUESTED
         - CLUSTER_REGIONAL_OUTAGE_SIMULATION_COMPLETED
         - UIS_PANICKED
@@ -31441,27 +31710,6 @@ components:
       - id
       - links
       title: ReplicaSet Events
-    GeoShardingView:
-      type: object
-      properties:
-        customZoneMapping:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ObjectId'
-          description: "List that contains comma-separated key value pairs to map\
-            \ zones to geographic regions. These pairs map an ISO 3166-1a2 location\
-            \ code, and ISO 3166-2 subdivision code when possible, to a unique 24-hexadecimal\
-            \ string that identifies the custom zone. MongoDB Cloud maps the ISO 3166-1a2\
-            \ code to the nearest geographical zone by default. This parameter returns\
-            \ an empty object if no custom zones exist."
-          readOnly: true
-        managedNamespaces:
-          type: array
-          description: List that contains a namespace for a Global Cluster. MongoDB
-            Cloud manages this cluster.
-          items:
-            $ref: '#/components/schemas/ManagedNamespaceView'
-          readOnly: true
     GreaterThanDaysThresholdView:
       type: object
       description: Threshold value that triggers an alert.
@@ -33673,7 +33921,6 @@ components:
             distribute initial chunks for an empty or non-existing collection. MongoDB
             Cloud distributes data based on the defined zones and zone ranges for
             the collection.
-      readOnly: true
     MatcherFieldView:
       type: object
       oneOf:
@@ -33955,6 +34202,7 @@ components:
       - CLUSTER_FORCE_PLANNED
       - DATA_PROCESSING_REGION_UPDATED
       - CLUSTER_REGIONAL_OUTAGE_SIMULATION_STARTED
+      - CLUSTER_REGIONAL_OUTAGE_SIMULATION_FAILED_TO_START
       - CLUSTER_REGIONAL_OUTAGE_SIMULATION_END_REQUESTED
       - CLUSTER_REGIONAL_OUTAGE_SIMULATION_COMPLETED
       - UIS_PANICKED
@@ -35073,8 +35321,6 @@ components:
           $ref: '#/components/schemas/NumberMetricUnits'
       readOnly: true
       title: Number Metric Value
-    ObjectId:
-      type: object
     Operator:
       type: string
       description: Comparison operator to apply when checking the current metric value.
@@ -37586,58 +37832,58 @@ components:
       type: object
       properties:
         groupId:
-          $ref: '#/components/schemas/ObjectId'
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project
+            to which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
         orgId:
-          $ref: '#/components/schemas/ObjectId'
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter or
+            **groupId** but not both in the same request
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
         role:
           type: string
+          description: |+
+            Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include organization- and project-level roles.
+
+            Organization Roles
+
+            * ORG_OWNER
+            * ORG_MEMBER
+            * ORG_GROUP_CREATOR
+            * ORG_BILLING_ADMIN
+            * ORG_READ_ONLY
+
+            Project Roles
+
+            * GROUP_CLUSTER_MANAGER
+            * GROUP_DATA_ACCESS_ADMIN
+            * GROUP_DATA_ACCESS_READ_ONLY
+            * GROUP_DATA_ACCESS_READ_WRITE
+            * GROUP_OWNER
+            * GROUP_READ_ONLY
+            * GROUP_SEARCH_INDEX_EDITOR
+
           enum:
-          - GLOBAL_AUTOMATION_ADMIN
-          - GLOBAL_BACKUP_ADMIN
-          - GLOBAL_METERING_USER
-          - GLOBAL_METRICS_INTERNAL_USER
-          - GLOBAL_MONITORING_ADMIN
-          - GLOBAL_OWNER
-          - GLOBAL_READ_ONLY
-          - GLOBAL_USER_ADMIN
-          - GLOBAL_USER_READ_ONLY
-          - GLOBAL_ACCOUNT_SUSPENSION_ADMIN
-          - GLOBAL_BILLING_ADMIN
-          - GLOBAL_LEGAL_ADMIN
-          - GLOBAL_FEATURE_FLAG_ADMIN
-          - GLOBAL_ATLAS_TSE
-          - GLOBAL_ATLAS_OPERATOR
-          - GLOBAL_ATLAS_ADMIN
-          - GLOBAL_STITCH_ADMIN
-          - GLOBAL_CHARTS_ADMIN
-          - GLOBAL_EXPERIMENT_ASSIGNMENT_USER
-          - GLOBAL_STITCH_INTERNAL_ADMIN
-          - GLOBAL_BAAS_FEATURE_ADMIN
-          - GLOBAL_SECURITY_ADMIN
-          - GLOBAL_QUERY_ENGINE_INTERNAL_ADMIN
-          - GLOBAL_PROACTIVE_SUPPORT_ADMIN
-          - GLOBAL_INFRASTRUCTURE_INTERNAL_ADMIN
-          - GLOBAL_SALESFORCE_ADMIN
-          - GLOBAL_SALESFORCE_READ_ONLY
-          - GLOBAL_APP_SERVICES_CLUSTER_DEBUG_DATA_ACCESS
-          - ORG_MEMBER
-          - ORG_READ_ONLY
-          - ORG_BILLING_ADMIN
-          - ORG_GROUP_CREATOR
           - ORG_OWNER
-          - ORG_TEAM_MEMBERS_ADMIN
-          - GROUP_AUTOMATION_ADMIN
-          - GROUP_BACKUP_ADMIN
-          - GROUP_MONITORING_ADMIN
-          - GROUP_OWNER
-          - GROUP_READ_ONLY
-          - GROUP_USER_ADMIN
-          - GROUP_BILLING_ADMIN
+          - ORG_MEMBER
+          - ORG_GROUP_CREATOR
+          - ORG_BILLING_ADMIN
+          - ORG_READ_ONLY
+          - GROUP_CLUSTER_MANAGER
           - GROUP_DATA_ACCESS_ADMIN
           - GROUP_DATA_ACCESS_READ_ONLY
           - GROUP_DATA_ACCESS_READ_WRITE
-          - GROUP_CHARTS_ADMIN
-          - GROUP_CLUSTER_MANAGER
+          - GROUP_OWNER
+          - GROUP_READ_ONLY
           - GROUP_SEARCH_INDEX_EDITOR
     RoleMappingView:
       type: object
@@ -39069,7 +39315,9 @@ components:
       type: object
       properties:
         _id:
-          $ref: '#/components/schemas/ObjectId'
+          type: string
+          example: 32b6e34b3d91647abb20e7b8
+          pattern: "^([a-f0-9]{24})$"
         errorMessage:
           type: string
           description: Reason why the validation job failed.

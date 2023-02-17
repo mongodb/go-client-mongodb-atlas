@@ -88,13 +88,17 @@ Class | Method | HTTP request | Description
 *CustomDatabaseRolesApi* | [**UpdateCustomDatabaseRole**](docs/CustomDatabaseRolesApi.md#updatecustomdatabaserole) | **Patch** /api/atlas/v2/groups/{groupId}/customDBRoles/roles/{roleName} | Update One Custom Role in One Project
 *DataFederationApi* | [**CreateDataFederationPrivateEndpoint**](docs/DataFederationApi.md#createdatafederationprivateendpoint) | **Post** /api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds | Create One Federated Database Instance and Online Archive Private Endpoint for One Project
 *DataFederationApi* | [**CreateFederatedDatabase**](docs/DataFederationApi.md#createfederateddatabase) | **Post** /api/atlas/v2/groups/{groupId}/dataFederation | Create One Federated Database Instance in One Project
+*DataFederationApi* | [**CreateOneDataFederationQueryLimit**](docs/DataFederationApi.md#createonedatafederationquerylimit) | **Patch** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName} | Configure One Query Limit for One Federated Database Instance
 *DataFederationApi* | [**DeleteDataFederationPrivateEndpoint**](docs/DataFederationApi.md#deletedatafederationprivateendpoint) | **Delete** /api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId} | Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 *DataFederationApi* | [**DeleteFederatedDatabase**](docs/DataFederationApi.md#deletefederateddatabase) | **Delete** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName} | Remove One Federated Database Instance from One Project
+*DataFederationApi* | [**DeleteOneDataFederationInstanceQueryLimit**](docs/DataFederationApi.md#deleteonedatafederationinstancequerylimit) | **Delete** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName} | Delete One Query Limit For One Federated Database Instance
 *DataFederationApi* | [**DownloadFederatedDatabaseQueryLogs**](docs/DataFederationApi.md#downloadfederateddatabasequerylogs) | **Get** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/queryLogs.gz | Download Query Logs for One Federated Database Instance
 *DataFederationApi* | [**GetDataFederationPrivateEndpoint**](docs/DataFederationApi.md#getdatafederationprivateendpoint) | **Get** /api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds/{endpointId} | Return One Federated Database Instance and Online Archive Private Endpoint in One Project
 *DataFederationApi* | [**GetFederatedDatabase**](docs/DataFederationApi.md#getfederateddatabase) | **Get** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName} | Return One Federated Database Instance in One Project
 *DataFederationApi* | [**ListDataFederationPrivateEndpoints**](docs/DataFederationApi.md#listdatafederationprivateendpoints) | **Get** /api/atlas/v2/groups/{groupId}/privateNetworkSettings/endpointIds | Return All Federated Database Instance and Online Archive Private Endpoints in One Project
 *DataFederationApi* | [**ListFederatedDatabases**](docs/DataFederationApi.md#listfederateddatabases) | **Get** /api/atlas/v2/groups/{groupId}/dataFederation | Return All Federated Database Instances in One Project
+*DataFederationApi* | [**ReturnFederatedDatabaseQueryLimit**](docs/DataFederationApi.md#returnfederateddatabasequerylimit) | **Get** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits/{limitName} | Return One Federated Database Instance Query Limit for One Project
+*DataFederationApi* | [**ReturnFederatedDatabaseQueryLimits**](docs/DataFederationApi.md#returnfederateddatabasequerylimits) | **Get** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName}/limits | Return All Query Limits for One Federated Database Instance
 *DataFederationApi* | [**UpdateFederatedDatabase**](docs/DataFederationApi.md#updatefederateddatabase) | **Patch** /api/atlas/v2/groups/{groupId}/dataFederation/{tenantName} | Update One Federated Database Instance in One Project
 *DataLakePipelinesApi* | [**CreatePipeline**](docs/DataLakePipelinesApi.md#createpipeline) | **Post** /api/atlas/v2/groups/{groupId}/pipelines | Create One Data Lake Pipeline
 *DataLakePipelinesApi* | [**DeletePipeline**](docs/DataLakePipelinesApi.md#deletepipeline) | **Delete** /api/atlas/v2/groups/{groupId}/pipelines/{pipelineName} | Remove One Data Lake Pipeline
@@ -528,6 +532,7 @@ Class | Method | HTTP request | Description
  - [DataExplorerAccessedEventTypeView](docs/DataExplorerAccessedEventTypeView.md)
  - [DataExplorerAccessedEventView](docs/DataExplorerAccessedEventView.md)
  - [DataFederationQueryLimit](docs/DataFederationQueryLimit.md)
+ - [DataFederationTenantQueryLimit](docs/DataFederationTenantQueryLimit.md)
  - [DataLakeAWSCloudProviderConfig](docs/DataLakeAWSCloudProviderConfig.md)
  - [DataLakeAtlasStore](docs/DataLakeAtlasStore.md)
  - [DataLakeAtlasStoreReadPreference](docs/DataLakeAtlasStoreReadPreference.md)
@@ -612,7 +617,6 @@ Class | Method | HTTP request | Description
  - [GCPProviderSettings](docs/GCPProviderSettings.md)
  - [GCPRegionConfig](docs/GCPRegionConfig.md)
  - [GeoSharding](docs/GeoSharding.md)
- - [GeoShardingView](docs/GeoShardingView.md)
  - [GetPeeringConnection200Response](docs/GetPeeringConnection200Response.md)
  - [GoogleCloudKMS](docs/GoogleCloudKMS.md)
  - [GreaterThanDaysThresholdView](docs/GreaterThanDaysThresholdView.md)

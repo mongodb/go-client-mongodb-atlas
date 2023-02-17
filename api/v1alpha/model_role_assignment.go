@@ -16,8 +16,11 @@ import (
 
 // RoleAssignment struct for RoleAssignment
 type RoleAssignment struct {
-	GroupId map[string]interface{} `json:"groupId,omitempty"`
-	OrgId map[string]interface{} `json:"orgId,omitempty"`
+	// Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or **orgId** but not both in the same request.
+	GroupId *string `json:"groupId,omitempty"`
+	// Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or **groupId** but not both in the same request
+	OrgId *string `json:"orgId,omitempty"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include organization- and project-level roles.  Organization Roles  * ORG_OWNER * ORG_MEMBER * ORG_GROUP_CREATOR * ORG_BILLING_ADMIN * ORG_READ_ONLY  Project Roles  * GROUP_CLUSTER_MANAGER * GROUP_DATA_ACCESS_ADMIN * GROUP_DATA_ACCESS_READ_ONLY * GROUP_DATA_ACCESS_READ_WRITE * GROUP_OWNER * GROUP_READ_ONLY * GROUP_SEARCH_INDEX_EDITOR  
 	Role *string `json:"role,omitempty"`
 }
 
@@ -39,17 +42,17 @@ func NewRoleAssignmentWithDefaults() *RoleAssignment {
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *RoleAssignment) GetGroupId() map[string]interface{} {
+func (o *RoleAssignment) GetGroupId() string {
 	if o == nil || o.GroupId == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.GroupId
+	return *o.GroupId
 }
 
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleAssignment) GetGroupIdOk() (map[string]interface{}, bool) {
+func (o *RoleAssignment) GetGroupIdOk() (*string, bool) {
 	if o == nil || o.GroupId == nil {
 		return nil, false
 	}
@@ -65,23 +68,23 @@ func (o *RoleAssignment) HasGroupId() bool {
 	return false
 }
 
-// SetGroupId gets a reference to the given map[string]interface{} and assigns it to the GroupId field.
-func (o *RoleAssignment) SetGroupId(v map[string]interface{}) {
-	o.GroupId = v
+// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
+func (o *RoleAssignment) SetGroupId(v string) {
+	o.GroupId = &v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *RoleAssignment) GetOrgId() map[string]interface{} {
+func (o *RoleAssignment) GetOrgId() string {
 	if o == nil || o.OrgId == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.OrgId
+	return *o.OrgId
 }
 
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleAssignment) GetOrgIdOk() (map[string]interface{}, bool) {
+func (o *RoleAssignment) GetOrgIdOk() (*string, bool) {
 	if o == nil || o.OrgId == nil {
 		return nil, false
 	}
@@ -97,9 +100,9 @@ func (o *RoleAssignment) HasOrgId() bool {
 	return false
 }
 
-// SetOrgId gets a reference to the given map[string]interface{} and assigns it to the OrgId field.
-func (o *RoleAssignment) SetOrgId(v map[string]interface{}) {
-	o.OrgId = v
+// SetOrgId gets a reference to the given string and assigns it to the OrgId field.
+func (o *RoleAssignment) SetOrgId(v string) {
+	o.OrgId = &v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
