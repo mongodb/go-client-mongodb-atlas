@@ -24,6 +24,12 @@ type GCPCloudProviderContainer struct {
 	NetworkName *string `json:"networkName,omitempty"`
 	// List of GCP regions to which you want to deploy this MongoDB Cloud network peering container.  In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects.
 	Regions []string `json:"regions"`
+	// Unique 24-hexadecimal digit string that identifies the network peering container.
+	Id *string `json:"id,omitempty"`
+	// Cloud service provider that serves the requested network peering containers.
+	ProviderName *string `json:"providerName,omitempty"`
+	// Flag that indicates whether MongoDB Cloud clusters exist in the specified network peering container.
+	Provisioned *bool `json:"provisioned,omitempty"`
 }
 
 // NewGCPCloudProviderContainer instantiates a new GCPCloudProviderContainer object
@@ -155,6 +161,102 @@ func (o *GCPCloudProviderContainer) SetRegions(v []string) {
 	o.Regions = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GCPCloudProviderContainer) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPCloudProviderContainer) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *GCPCloudProviderContainer) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *GCPCloudProviderContainer) SetId(v string) {
+	o.Id = &v
+}
+
+// GetProviderName returns the ProviderName field value if set, zero value otherwise.
+func (o *GCPCloudProviderContainer) GetProviderName() string {
+	if o == nil || o.ProviderName == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPCloudProviderContainer) GetProviderNameOk() (*string, bool) {
+	if o == nil || o.ProviderName == nil {
+		return nil, false
+	}
+	return o.ProviderName, true
+}
+
+// HasProviderName returns a boolean if a field has been set.
+func (o *GCPCloudProviderContainer) HasProviderName() bool {
+	if o != nil && o.ProviderName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
+func (o *GCPCloudProviderContainer) SetProviderName(v string) {
+	o.ProviderName = &v
+}
+
+// GetProvisioned returns the Provisioned field value if set, zero value otherwise.
+func (o *GCPCloudProviderContainer) GetProvisioned() bool {
+	if o == nil || o.Provisioned == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Provisioned
+}
+
+// GetProvisionedOk returns a tuple with the Provisioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
+	if o == nil || o.Provisioned == nil {
+		return nil, false
+	}
+	return o.Provisioned, true
+}
+
+// HasProvisioned returns a boolean if a field has been set.
+func (o *GCPCloudProviderContainer) HasProvisioned() bool {
+	if o != nil && o.Provisioned != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisioned gets a reference to the given bool and assigns it to the Provisioned field.
+func (o *GCPCloudProviderContainer) SetProvisioned(v bool) {
+	o.Provisioned = &v
+}
+
 func (o GCPCloudProviderContainer) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -168,6 +270,15 @@ func (o GCPCloudProviderContainer) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["regions"] = o.Regions
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.ProviderName != nil {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	if o.Provisioned != nil {
+		toSerialize["provisioned"] = o.Provisioned
 	}
 	return json.Marshal(toSerialize)
 }

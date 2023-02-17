@@ -21,6 +21,9 @@ type DataLakeAtlasStore struct {
 	// Unique 24-hexadecimal digit string that identifies the project.
 	ProjectId *string `json:"projectId,omitempty"`
 	ReadPreference *DataLakeAtlasStoreReadPreference `json:"readPreference,omitempty"`
+	// Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName** field references this values as part of the mapping configuration. To use MongoDB Cloud as a data store, the data lake requires a serverless instance or an `M10` or higher cluster.
+	Name *string `json:"name,omitempty"`
+	Provider string `json:"provider"`
 }
 
 // NewDataLakeAtlasStore instantiates a new DataLakeAtlasStore object
@@ -136,6 +139,62 @@ func (o *DataLakeAtlasStore) SetReadPreference(v DataLakeAtlasStoreReadPreferenc
 	o.ReadPreference = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *DataLakeAtlasStore) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataLakeAtlasStore) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *DataLakeAtlasStore) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *DataLakeAtlasStore) SetName(v string) {
+	o.Name = &v
+}
+
+// GetProvider returns the Provider field value
+func (o *DataLakeAtlasStore) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *DataLakeAtlasStore) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *DataLakeAtlasStore) SetProvider(v string) {
+	o.Provider = v
+}
+
 func (o DataLakeAtlasStore) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ClusterName != nil {
@@ -146,6 +205,12 @@ func (o DataLakeAtlasStore) MarshalJSON() ([]byte, error) {
 	}
 	if o.ReadPreference != nil {
 		toSerialize["readPreference"] = o.ReadPreference
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["provider"] = o.Provider
 	}
 	return json.Marshal(toSerialize)
 }

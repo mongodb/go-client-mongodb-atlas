@@ -16,6 +16,8 @@ import (
 
 // TenantRegionConfig Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
 type TenantRegionConfig struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
+	BackingProviderName *string `json:"backingProviderName,omitempty"`
 	ElectableSpecs *HardwareSpec `json:"electableSpecs,omitempty"`
 	// Precedence is given to this region when a primary election occurs. If your **regionConfigs** has only **readOnlySpecs**, **analyticsSpecs**, or both, set this value to `0`. If you have multiple **regionConfigs** objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is `7`.  **Example:** If you have three regions, their priorities would be `7`, `6`, and `5` respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be `4` and `3` respectively.
 	Priority *int32 `json:"priority,omitempty"`
@@ -23,8 +25,6 @@ type TenantRegionConfig struct {
 	ProviderName *string `json:"providerName,omitempty"`
 	// Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC.
 	RegionName *string `json:"regionName,omitempty"`
-	// Cloud service provider on which MongoDB Cloud provisioned the multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
-	BackingProviderName *string `json:"backingProviderName,omitempty"`
 }
 
 // NewTenantRegionConfig instantiates a new TenantRegionConfig object
@@ -42,6 +42,38 @@ func NewTenantRegionConfig() *TenantRegionConfig {
 func NewTenantRegionConfigWithDefaults() *TenantRegionConfig {
 	this := TenantRegionConfig{}
 	return &this
+}
+
+// GetBackingProviderName returns the BackingProviderName field value if set, zero value otherwise.
+func (o *TenantRegionConfig) GetBackingProviderName() string {
+	if o == nil || o.BackingProviderName == nil {
+		var ret string
+		return ret
+	}
+	return *o.BackingProviderName
+}
+
+// GetBackingProviderNameOk returns a tuple with the BackingProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TenantRegionConfig) GetBackingProviderNameOk() (*string, bool) {
+	if o == nil || o.BackingProviderName == nil {
+		return nil, false
+	}
+	return o.BackingProviderName, true
+}
+
+// HasBackingProviderName returns a boolean if a field has been set.
+func (o *TenantRegionConfig) HasBackingProviderName() bool {
+	if o != nil && o.BackingProviderName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBackingProviderName gets a reference to the given string and assigns it to the BackingProviderName field.
+func (o *TenantRegionConfig) SetBackingProviderName(v string) {
+	o.BackingProviderName = &v
 }
 
 // GetElectableSpecs returns the ElectableSpecs field value if set, zero value otherwise.
@@ -172,40 +204,11 @@ func (o *TenantRegionConfig) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-// GetBackingProviderName returns the BackingProviderName field value if set, zero value otherwise.
-func (o *TenantRegionConfig) GetBackingProviderName() string {
-	if o == nil || o.BackingProviderName == nil {
-		var ret string
-		return ret
-	}
-	return *o.BackingProviderName
-}
-
-// GetBackingProviderNameOk returns a tuple with the BackingProviderName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TenantRegionConfig) GetBackingProviderNameOk() (*string, bool) {
-	if o == nil || o.BackingProviderName == nil {
-		return nil, false
-	}
-	return o.BackingProviderName, true
-}
-
-// HasBackingProviderName returns a boolean if a field has been set.
-func (o *TenantRegionConfig) HasBackingProviderName() bool {
-	if o != nil && o.BackingProviderName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBackingProviderName gets a reference to the given string and assigns it to the BackingProviderName field.
-func (o *TenantRegionConfig) SetBackingProviderName(v string) {
-	o.BackingProviderName = &v
-}
-
 func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BackingProviderName != nil {
+		toSerialize["backingProviderName"] = o.BackingProviderName
+	}
 	if o.ElectableSpecs != nil {
 		toSerialize["electableSpecs"] = o.ElectableSpecs
 	}
@@ -217,9 +220,6 @@ func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.RegionName != nil {
 		toSerialize["regionName"] = o.RegionName
-	}
-	if o.BackingProviderName != nil {
-		toSerialize["backingProviderName"] = o.BackingProviderName
 	}
 	return json.Marshal(toSerialize)
 }

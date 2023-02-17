@@ -26,6 +26,7 @@ type WeeklyScheduleView struct {
 	StartHour *int32 `json:"startHour,omitempty"`
 	// Minute of the hour when the scheduled window to run one online archive starts.
 	StartMinute *int32 `json:"startMinute,omitempty"`
+	Type string `json:"type"`
 }
 
 // NewWeeklyScheduleView instantiates a new WeeklyScheduleView object
@@ -205,6 +206,30 @@ func (o *WeeklyScheduleView) SetStartMinute(v int32) {
 	o.StartMinute = &v
 }
 
+// GetType returns the Type field value
+func (o *WeeklyScheduleView) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *WeeklyScheduleView) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *WeeklyScheduleView) SetType(v string) {
+	o.Type = v
+}
+
 func (o WeeklyScheduleView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DayOfWeek != nil {
@@ -221,6 +246,9 @@ func (o WeeklyScheduleView) MarshalJSON() ([]byte, error) {
 	}
 	if o.StartMinute != nil {
 		toSerialize["startMinute"] = o.StartMinute
+	}
+	if true {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

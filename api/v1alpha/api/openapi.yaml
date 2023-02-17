@@ -47833,9 +47833,39 @@ components:
       title: Archival Criteria
       type: object
     DailyScheduleView:
-      allOf:
-      - $ref: '#/components/schemas/OnlineArchiveSchedule'
-      - $ref: '#/components/schemas/DailyScheduleView_allOf'
+      properties:
+        endHour:
+          description: Hour of the day when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        endMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        startHour:
+          description: Hour of the day when the when the scheduled window to run one
+            online archive starts.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive starts.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        type:
+          type: string
+      required:
+      - type
       type: object
     DataExplorerAccessedEventTypeView:
       description: Unique identifier of event type.
@@ -48795,8 +48825,11 @@ components:
       title: Any Other Events
       type: object
     DefaultScheduleView:
-      allOf:
-      - $ref: '#/components/schemas/OnlineArchiveSchedule'
+      properties:
+        type:
+          type: string
+      required:
+      - type
       type: object
     Destination:
       description: Document that describes the destination of the migration.
@@ -52994,9 +53027,45 @@ components:
       title: Microsoft Teams Notification
       type: object
     MonthlyScheduleView:
-      allOf:
-      - $ref: '#/components/schemas/OnlineArchiveSchedule'
-      - $ref: '#/components/schemas/MonthlyScheduleView_allOf'
+      properties:
+        dayOfMonth:
+          description: Day of the month when the scheduled archive starts.
+          format: int32
+          maximum: 31
+          minimum: 1
+          type: integer
+        endHour:
+          description: Hour of the day when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        endMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        startHour:
+          description: Hour of the day when the when the scheduled window to run one
+            online archive starts.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive starts.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        type:
+          type: string
+      required:
+      - type
       type: object
     NDSAuditTypeViewForNdsGroup:
       description: Unique identifier of event type.
@@ -56375,12 +56444,8 @@ components:
           href: https://cloud.mongodb.com/api/atlas
         totalCount: 0
         results:
-        - provisioned: true
-          id: 32b6e34b3d91647abb20e7b8
-          providerName: AWS
-        - provisioned: true
-          id: 32b6e34b3d91647abb20e7b8
-          providerName: AWS
+        - null
+        - null
       properties:
         links:
           description: "List of one or more Uniform Resource Locators (URLs) that\
@@ -56873,8 +56938,7 @@ components:
         totalCount: 0
         results:
         - collectionType: STANDARD
-          schedule:
-            type: type
+          schedule: null
           partitionFields:
           - fieldName: fieldName
             fieldType: date
@@ -56891,8 +56955,7 @@ components:
           state: PENDING
           collName: collName
         - collectionType: STANDARD
-          schedule:
-            type: type
+          schedule: null
           partitionFields:
           - fieldName: fieldName
             fieldType: date
@@ -57160,14 +57223,8 @@ components:
           href: https://cloud.mongodb.com/api/atlas
         totalCount: 0
         results:
-        - regionName: regionName
-          errorMessage: errorMessage
-          id: 32b6e34b3d91647abb20e7b8
-          status: INITIATING
-        - regionName: regionName
-          errorMessage: errorMessage
-          id: 32b6e34b3d91647abb20e7b8
-          status: INITIATING
+        - null
+        - null
       properties:
         links:
           description: "List of one or more Uniform Resource Locators (URLs) that\
@@ -60575,9 +60632,46 @@ components:
       title: Webhook Notification
       type: object
     WeeklyScheduleView:
-      allOf:
-      - $ref: '#/components/schemas/OnlineArchiveSchedule'
-      - $ref: '#/components/schemas/WeeklyScheduleView_allOf'
+      properties:
+        dayOfWeek:
+          description: Day of the week when the scheduled archive starts. The week
+            starts with Monday (`1`) and ends with Sunday (`7`).
+          format: int32
+          maximum: 7
+          minimum: 1
+          type: integer
+        endHour:
+          description: Hour of the day when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        endMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive ends.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        startHour:
+          description: Hour of the day when the when the scheduled window to run one
+            online archive starts.
+          format: int32
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          description: Minute of the hour when the scheduled window to run one online
+            archive starts.
+          format: int32
+          maximum: 59
+          minimum: 0
+          type: integer
+        type:
+          type: string
+      required:
+      - type
       type: object
     Weights:
       description: "Relative importance to place upon provided index parameters. This\
@@ -61295,11 +61389,89 @@ components:
           $ref: '#/components/schemas/AWSComputeAutoScaling'
       type: object
     AWSCloudProviderContainer:
-      allOf:
-      - $ref: '#/components/schemas/CloudProviderContainer'
-      - $ref: '#/components/schemas/AWSCloudProviderContainer_allOf'
       description: Collection of settings that configures the network container for
         a virtual private connection on Amazon Web Services.
+      properties:
+        atlasCidrBlock:
+          description: |-
+            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
+
+            These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.
+
+            To modify the CIDR block, the target project cannot have:
+
+            - Any M10 or greater clusters
+            - Any other VPC peering connections
+
+             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
+
+             **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
+          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
+            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
+          type: string
+        regionName:
+          description: Geographic area that Amazon Web Services (AWS) defines to which
+            MongoDB Cloud deployed this network peering container.
+          enum:
+          - US_EAST_1
+          - US_EAST_2
+          - US_WEST_1
+          - US_WEST_2
+          - CA_CENTRAL_1
+          - EU_NORTH_1
+          - EU_WEST_1
+          - EU_WEST_2
+          - EU_WEST_3
+          - EU_CENTRAL_1
+          - SA_EAST_1
+          - AP_EAST_1
+          - AP_SOUTHEAST_2
+          - AP_SOUTHEAST_3
+          - AP_NORTHEAST_1
+          - AP_NORTHEAST_2
+          - AP_NORTHEAST_3
+          - AP_SOUTHEAST_1
+          - AP_SOUTH_1
+          - CN_NORTH_1
+          - CN_NORTHWEST_1
+          - ME_SOUTH_1
+          - AF_SOUTH_1
+          - EU_SOUTH_1
+          - GLOBAL
+          - US_GOV_WEST_1
+          - US_GOV_EAST_1
+          type: string
+        vpcId:
+          description: Unique string that identifies the MongoDB Cloud VPC on AWS.
+          example: vpc-b555d3b0d9cb783b0
+          minLength: 5
+          pattern: "^vpc-[0-9a-f]{17}$"
+          readOnly: true
+          type: string
+        id:
+          description: Unique 24-hexadecimal digit string that identifies the network
+            peering container.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        providerName:
+          description: Cloud service provider that serves the requested network peering
+            containers.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          - TENANT
+          - SERVERLESS
+          type: string
+        provisioned:
+          description: Flag that indicates whether MongoDB Cloud clusters exist in
+            the specified network peering container.
+          readOnly: true
+          type: boolean
       required:
       - regionName
       title: AWS
@@ -61719,14 +61891,124 @@ components:
       title: AWS
       type: object
     AWSProviderSettings:
-      allOf:
-      - $ref: '#/components/schemas/ClusterProviderSettings'
-      - $ref: '#/components/schemas/AWSProviderSettings_allOf'
+      properties:
+        autoScaling:
+          $ref: '#/components/schemas/AWSAutoScaling'
+        diskIOPS:
+          description: Maximum Disk Input/Output Operations per Second (IOPS) that
+            the database host can perform.
+          format: int32
+          type: integer
+        encryptEBSVolume:
+          default: true
+          deprecated: true
+          description: Flag that indicates whether the Amazon Elastic Block Store
+            (EBS) encryption feature encrypts the host's root volume for both data
+            at rest within the volume and for data moving between the volume and the
+            cluster. Clusters always have this setting enabled.
+          type: boolean
+        instanceSizeName:
+          description: "Cluster tier, with a default storage and memory capacity,\
+            \ that applies to all the data-bearing hosts in your cluster."
+          enum:
+          - M10
+          - M20
+          - M30
+          - M40
+          - M50
+          - M60
+          - M80
+          - M100
+          - M140
+          - M200
+          - M300
+          - R40
+          - R50
+          - R60
+          - R80
+          - R200
+          - R300
+          - R400
+          - R700
+          - M40_NVME
+          - M50_NVME
+          - M60_NVME
+          - M80_NVME
+          - M200_NVME
+          - M400_NVME
+          title: AWS Instance Sizes
+          type: string
+        regionName:
+          description: " Physical location where MongoDB Cloud deploys your AWS-hosted\
+            \ MongoDB cluster nodes. The region you choose can affect network latency\
+            \ for clients accessing your databases. When MongoDB Cloud deploys a dedicated\
+            \ cluster, it checks if a VPC or VPC connection exists for that provider\
+            \ and region. If not, MongoDB Cloud creates them as part of the deployment.\
+            \ MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering\
+            \ connection to one CIDR block and region, create the connection first.\
+            \ Deploy the cluster after the connection starts."
+          enum:
+          - US_GOV_WEST_1
+          - US_GOV_EAST_1
+          - US_EAST_1
+          - US_EAST_2
+          - US_WEST_1
+          - US_WEST_2
+          - CA_CENTRAL_1
+          - EU_NORTH_1
+          - EU_WEST_1
+          - EU_WEST_2
+          - EU_WEST_3
+          - EU_CENTRAL_1
+          - AP_EAST_1
+          - AP_NORTHEAST_1
+          - AP_NORTHEAST_2
+          - AP_NORTHEAST_3
+          - AP_SOUTHEAST_1
+          - AP_SOUTHEAST_2
+          - AP_SOUTHEAST_3
+          - AP_SOUTH_1
+          - SA_EAST_1
+          - CN_NORTH_1
+          - CN_NORTHWEST_1
+          - ME_SOUTH_1
+          - AF_SOUTH_1
+          - EU_SOUTH_1
+          - GLOBAL
+          externalDocs:
+            description: AWS
+            url: https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws
+          title: AWS Regions
+          type: string
+        volumeType:
+          description: "Disk Input/Output Operations per Second (IOPS) setting for\
+            \ Amazon Web Services (AWS) storage that you configure only for abbr title=\"\
+            Amazon Web Services\">AWS</abbr>. Specify whether Disk Input/Output Operations\
+            \ per Second (IOPS) must not exceed the default Input/Output Operations\
+            \ per Second (IOPS) rate for the selected volume size (`STANDARD`), or\
+            \ must fall within the allowable Input/Output Operations per Second (IOPS)\
+            \ range for the selected volume size (`PROVISIONED`)."
+          enum:
+          - STANDARD
+          - PROVISIONED
+          type: string
+        providerName:
+          type: string
+      required:
+      - providerName
       type: object
     AWSRegionConfig:
       description: Details that explain how MongoDB Cloud replicates data in one region
         on the specified MongoDB database.
       properties:
+        analyticsAutoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        analyticsSpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
+        autoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        readOnlySpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
         electableSpecs:
           $ref: '#/components/schemas/HardwareSpec'
         priority:
@@ -61866,14 +62148,6 @@ components:
           - ASIA_SOUTHEAST_2
           type: string
           x-xgen-go-transform: merge-oneOf
-        analyticsAutoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        analyticsSpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
-        autoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        readOnlySpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
       title: AWS Regional Replication Specifications
       type: object
     AuditLog:
@@ -61955,11 +62229,119 @@ components:
           $ref: '#/components/schemas/AzureComputeAutoScaling'
       type: object
     AzureCloudProviderContainer:
-      allOf:
-      - $ref: '#/components/schemas/CloudProviderContainer'
-      - $ref: '#/components/schemas/AzureCloudProviderContainer_allOf'
       description: Collection of settings that configures the network container for
         a virtual private connection on Amazon Web Services.
+      properties:
+        atlasCidrBlock:
+          description: |-
+            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
+
+            These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.
+
+            To modify the CIDR block, the target project cannot have:
+
+            - Any M10 or greater clusters
+            - Any other VPC peering connections
+
+             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
+
+             **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
+          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
+            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
+          type: string
+        azureSubscriptionId:
+          description: Unique string that identifies the Azure subscription in which
+            the MongoDB Cloud VNet resides.
+          example: 32b6e34b3d91647abb20e7b8
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        region:
+          description: Azure region to which MongoDB Cloud deployed this network peering
+            container.
+          enum:
+          - US_CENTRAL
+          - US_EAST
+          - US_EAST_2
+          - US_NORTH_CENTRAL
+          - US_WEST
+          - US_SOUTH_CENTRAL
+          - EUROPE_NORTH
+          - EUROPE_WEST
+          - US_WEST_CENTRAL
+          - US_WEST_2
+          - US_WEST_3
+          - CANADA_EAST
+          - CANADA_CENTRAL
+          - BRAZIL_SOUTH
+          - BRAZIL_SOUTHEAST
+          - AUSTRALIA_EAST
+          - AUSTRALIA_SOUTH_EAST
+          - AUSTRALIA_CENTRAL
+          - AUSTRALIA_CENTRAL_2
+          - UAE_NORTH
+          - GERMANY_CENTRAL
+          - GERMANY_NORTH_EAST
+          - GERMANY_WEST_CENTRAL
+          - GERMANY_NORTH
+          - SWITZERLAND_NORTH
+          - SWITZERLAND_WEST
+          - SWEDEN_CENTRAL
+          - SWEDEN_SOUTH
+          - UK_SOUTH
+          - UK_WEST
+          - INDIA_CENTRAL
+          - INDIA_WEST
+          - INDIA_SOUTH
+          - CHINA_EAST
+          - CHINA_NORTH
+          - ASIA_EAST
+          - JAPAN_EAST
+          - JAPAN_WEST
+          - ASIA_SOUTH_EAST
+          - KOREA_CENTRAL
+          - KOREA_SOUTH
+          - FRANCE_CENTRAL
+          - FRANCE_SOUTH
+          - SOUTH_AFRICA_NORTH
+          - SOUTH_AFRICA_WEST
+          - NORWAY_EAST
+          - NORWAY_WEST
+          - UAE_CENTRAL
+          type: string
+        vnetName:
+          description: Unique string that identifies the Azure VNet in which MongoDB
+            Cloud clusters in this network peering container exist. The response returns
+            **null** if no clusters exist in this network peering container.
+          maxLength: 38
+          minLength: 38
+          pattern: "^([-\\w._()])+$"
+          readOnly: true
+          type: string
+        id:
+          description: Unique 24-hexadecimal digit string that identifies the network
+            peering container.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        providerName:
+          description: Cloud service provider that serves the requested network peering
+            containers.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          - TENANT
+          - SERVERLESS
+          type: string
+        provisioned:
+          description: Flag that indicates whether MongoDB Cloud clusters exist in
+            the specified network peering container.
+          readOnly: true
+          type: boolean
       required:
       - atlasCidrBlock
       - region
@@ -62326,14 +62708,129 @@ components:
       title: AZURE
       type: object
     AzureProviderSettings:
-      allOf:
-      - $ref: '#/components/schemas/ClusterProviderSettings'
-      - $ref: '#/components/schemas/AzureProviderSettings_allOf'
+      properties:
+        autoScaling:
+          $ref: '#/components/schemas/AzureAutoScaling'
+        diskTypeName:
+          description: "Disk type that corresponds to the host's root volume for Azure\
+            \ instances. If omitted, the default disk type for the selected **providerSettings.instanceSizeName**\
+            \ applies."
+          enum:
+          - P2
+          - P3
+          - P4
+          - P6
+          - P10
+          - P15
+          - P20
+          - P30
+          - P40
+          - P50
+          externalDocs:
+            description: Disk type
+            url: https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance#premium-storage-disk-sizes
+          type: string
+        instanceSizeName:
+          description: "Cluster tier, with a default storage and memory capacity,\
+            \ that applies to all the data-bearing hosts in your cluster."
+          enum:
+          - M10
+          - M20
+          - M30
+          - M40
+          - M50
+          - M60
+          - M80
+          - M90
+          - M200
+          - R40
+          - R50
+          - R60
+          - R80
+          - R200
+          - R300
+          - R400
+          - M60_NVME
+          - M80_NVME
+          - M200_NVME
+          - M300_NVME
+          - M400_NVME
+          - M600_NVME
+          title: Azure Instance Sizes
+          type: string
+        regionName:
+          description: Microsoft Azure Regions.
+          enum:
+          - US_CENTRAL
+          - US_EAST
+          - US_EAST_2
+          - US_NORTH_CENTRAL
+          - US_WEST
+          - US_SOUTH_CENTRAL
+          - EUROPE_NORTH
+          - EUROPE_WEST
+          - US_WEST_CENTRAL
+          - US_WEST_2
+          - US_WEST_3
+          - CANADA_EAST
+          - CANADA_CENTRAL
+          - BRAZIL_SOUTH
+          - BRAZIL_SOUTHEAST
+          - AUSTRALIA_CENTRAL
+          - AUSTRALIA_CENTRAL_2
+          - AUSTRALIA_EAST
+          - AUSTRALIA_SOUTH_EAST
+          - GERMANY_CENTRAL
+          - GERMANY_NORTH_EAST
+          - GERMANY_WEST_CENTRAL
+          - GERMANY_NORTH
+          - SWEDEN_CENTRAL
+          - SWEDEN_SOUTH
+          - SWITZERLAND_NORTH
+          - SWITZERLAND_WEST
+          - UK_SOUTH
+          - UK_WEST
+          - NORWAY_EAST
+          - NORWAY_WEST
+          - INDIA_CENTRAL
+          - INDIA_SOUTH
+          - INDIA_WEST
+          - CHINA_EAST
+          - CHINA_NORTH
+          - ASIA_EAST
+          - JAPAN_EAST
+          - JAPAN_WEST
+          - ASIA_SOUTH_EAST
+          - KOREA_CENTRAL
+          - KOREA_SOUTH
+          - FRANCE_CENTRAL
+          - FRANCE_SOUTH
+          - SOUTH_AFRICA_NORTH
+          - SOUTH_AFRICA_WEST
+          - UAE_CENTRAL
+          - UAE_NORTH
+          externalDocs:
+            description: Azure
+            url: https://docs.atlas.mongodb.com/reference/microsoft-azure/
+          title: Azure Regions
+          type: string
+        providerName:
+          type: string
+      required:
+      - providerName
       type: object
     AzureRegionConfig:
       description: Details that explain how MongoDB Cloud replicates data in one region
         on the specified MongoDB database.
       properties:
+        analyticsAutoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        analyticsSpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
+        autoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        readOnlySpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
         electableSpecs:
           $ref: '#/components/schemas/HardwareSpec'
         priority:
@@ -62473,14 +62970,6 @@ components:
           - ASIA_SOUTHEAST_2
           type: string
           x-xgen-go-transform: merge-oneOf
-        analyticsAutoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        analyticsSpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
-        autoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        readOnlySpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
       title: Azure Regional Replication Specifications
       type: object
     BiConnector:
@@ -62631,12 +63120,6 @@ components:
         authorizedDate: 2000-01-23T04:56:07.000+00:00
         providerName: AWS
       properties:
-        providerName:
-          description: Human-readable label that identifies the cloud provider of
-            the role.
-          enum:
-          - AWS
-          type: string
         atlasAWSAccountArn:
           description: Amazon Resource Name that identifies the Amazon Web Services
             (AWS) user account that MongoDB Cloud uses when it assumes the Identity
@@ -62688,6 +63171,12 @@ components:
           minLength: 24
           pattern: "^([a-f0-9]{24})$"
           readOnly: true
+          type: string
+        providerName:
+          description: Human-readable label that identifies the cloud provider of
+            the role.
+          enum:
+          - AWS
           type: string
       required:
       - providerName
@@ -62790,8 +63279,6 @@ components:
         propertyName: providerName
       oneOf:
       - $ref: '#/components/schemas/CloudProviderAccessAWSIAMRole'
-      required:
-      - providerName
       type: object
       x-xgen-go-transform: merge-allOf
     CloudProviderAccess:
@@ -62834,39 +63321,10 @@ components:
           AZURE: '#/components/schemas/AzureCloudProviderContainer'
           GCP: '#/components/schemas/GCPCloudProviderContainer'
         propertyName: providerName
-      example:
-        provisioned: true
-        id: 32b6e34b3d91647abb20e7b8
-        providerName: AWS
       oneOf:
       - $ref: '#/components/schemas/AzureCloudProviderContainer'
       - $ref: '#/components/schemas/GCPCloudProviderContainer'
       - $ref: '#/components/schemas/AWSCloudProviderContainer'
-      properties:
-        id:
-          description: Unique 24-hexadecimal digit string that identifies the network
-            peering container.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        providerName:
-          description: Cloud service provider that serves the requested network peering
-            containers.
-          enum:
-          - AWS
-          - GCP
-          - AZURE
-          - TENANT
-          - SERVERLESS
-          type: string
-        provisioned:
-          description: Flag that indicates whether MongoDB Cloud clusters exist in
-            the specified network peering container.
-          readOnly: true
-          type: boolean
       type: object
     ClusterDescriptionConnectionStringsPrivateEndpointEndpoint:
       description: Details of a private endpoint deployed for this cluster.
@@ -63586,18 +64044,11 @@ components:
           GCP: '#/components/schemas/GCPProviderSettings'
           TENANT: '#/components/schemas/FreeProviderSettings'
         propertyName: providerName
-      example:
-        providerName: providerName
       oneOf:
       - $ref: '#/components/schemas/AWSProviderSettings'
       - $ref: '#/components/schemas/AzureProviderSettings'
       - $ref: '#/components/schemas/GCPProviderSettings'
       - $ref: '#/components/schemas/FreeProviderSettings'
-      properties:
-        providerName:
-          type: string
-      required:
-      - providerName
       title: Cloud Service Provider Settings for a Cluster
       type: object
     ClusterStatus:
@@ -64172,9 +64623,30 @@ components:
           type: array
       type: object
     DataLakeAtlasStore:
-      allOf:
-      - $ref: '#/components/schemas/DataLakeStore'
-      - $ref: '#/components/schemas/DataLakeAtlasStore_allOf'
+      properties:
+        clusterName:
+          description: Human-readable label of the MongoDB Cloud cluster on which
+            the store is based.
+          type: string
+        projectId:
+          description: Unique 24-hexadecimal digit string that identifies the project.
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        readPreference:
+          $ref: '#/components/schemas/DataLakeAtlasStoreReadPreference'
+        name:
+          description: "Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName**\
+            \ field references this values as part of the mapping configuration. To\
+            \ use MongoDB Cloud as a data store, the data lake requires a serverless\
+            \ instance or an `M10` or higher cluster."
+          type: string
+        provider:
+          type: string
+      required:
+      - provider
       type: object
     DataLakeCloudProviderConfig:
       description: Cloud provider linked to this data lake.
@@ -64435,18 +64907,64 @@ components:
           type: array
       type: object
     DataLakeHTTPStore:
-      allOf:
-      - $ref: '#/components/schemas/DataLakeStore'
-      - $ref: '#/components/schemas/DataLakeHTTPStore_allOf'
+      properties:
+        allowInsecure:
+          default: false
+          description: "Flag that validates the scheme in the specified URLs. If `true`,\
+            \ allows insecure `HTTP` scheme, doesn't verify the server's certificate\
+            \ chain and hostname, and accepts any certificate with any hostname presented\
+            \ by the server. If `false`, allows secure `HTTPS` scheme only."
+          type: boolean
+        defaultFormat:
+          description: "Default format that Data Lake assumes if it encounters a file\
+            \ without an extension while searching the `storeName`. If omitted, Data\
+            \ Lake attempts to detect the file type by processing a few bytes of the\
+            \ file. The specified format only applies to the URLs specified in the\
+            \ **databases.[n].collections.[n].dataSources** object."
+          type: string
+        urls:
+          description: Comma-separated list of publicly accessible HTTP URLs where
+            data is stored. You can't specify URLs that require authentication.
+          items:
+            description: Comma-separated list of publicly accessible HTTP URLs where
+              data is stored. You can't specify URLs that require authentication.
+            type: string
+          type: array
+        name:
+          description: "Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName**\
+            \ field references this values as part of the mapping configuration. To\
+            \ use MongoDB Cloud as a data store, the data lake requires a serverless\
+            \ instance or an `M10` or higher cluster."
+          type: string
+        provider:
+          type: string
+      required:
+      - provider
       type: object
     DataLakeOnlineArchiveStore:
-      allOf:
-      - $ref: '#/components/schemas/DataLakeStore'
-      - $ref: '#/components/schemas/DataLakeOnlineArchiveStore_allOf'
+      properties:
+        clusterId:
+          description: ID of the Cluster the Online Archive belongs to.
+          type: string
+        clusterName:
+          description: Name of the Cluster the Online Archive belongs to.
+          type: string
+        projectId:
+          description: ID of the Project the Online Archive belongs to.
+          type: string
+        name:
+          description: "Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName**\
+            \ field references this values as part of the mapping configuration. To\
+            \ use MongoDB Cloud as a data store, the data lake requires a serverless\
+            \ instance or an `M10` or higher cluster."
+          type: string
+        provider:
+          type: string
       required:
       - clusterId
       - clusterName
       - projectId
+      - provider
       type: object
     DataLakeRegion:
       description: Atlas Data Lake Regions.
@@ -64462,9 +64980,104 @@ components:
       - SINGAPORE_SGP
       type: string
     DataLakeS3Store:
-      allOf:
-      - $ref: '#/components/schemas/DataLakeStore'
-      - $ref: '#/components/schemas/DataLakeS3Store_allOf'
+      properties:
+        additionalStorageClasses:
+          description: "Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/).\
+            \ Atlas Data Lake includes the files in these storage classes in the query\
+            \ results."
+          items:
+            description: "AWS S3 [storage class](https://aws.amazon.com/s3/storage-classes/)\
+              \ where the files to include in the results are stored."
+            enum:
+            - STANDARD
+            - INTELLIGENT_TIERING
+            - STANDARD_IA
+            type: string
+          type: array
+        bucket:
+          description: Human-readable label that identifies the AWS S3 bucket. This
+            label must exactly match the name of an S3 bucket that the data lake can
+            access with the configured AWS Identity and Access Management (IAM) credentials.
+          type: string
+        delimiter:
+          description: "The delimiter that separates **databases.[n].collections.[n].dataSources.[n].path**\
+            \ segments in the data store. MongoDB Cloud uses the delimiter to efficiently\
+            \ traverse S3 buckets with a hierarchical directory structure. You can\
+            \ specify any character supported by the S3 object keys as the delimiter.\
+            \ For example, you can specify an underscore (_) or a plus sign (+) or\
+            \ multiple characters, such as double underscores (__) as the delimiter.\
+            \ If omitted, defaults to `/`."
+          type: string
+        includeTags:
+          default: false
+          description: "Flag that indicates whether to use S3 tags on the files in\
+            \ the given path as additional partition attributes. If set to `true`,\
+            \ data lake adds the S3 tags as additional partition attributes and adds\
+            \ new top-level BSON elements associating each tag to each document."
+          type: boolean
+        prefix:
+          description: "Prefix that MongoDB Cloud applies when searching for files\
+            \ in the S3 bucket. The data store prepends the value of prefix to the\
+            \ **databases.[n].collections.[n].dataSources.[n].path** to create the\
+            \ full path for files to ingest. If omitted, MongoDB Cloud searches all\
+            \ files from the root of the S3 bucket."
+          type: string
+        public:
+          default: false
+          description: "Flag that indicates whether the bucket is public. If set to\
+            \ `true`, MongoDB Cloud doesn't use the configured AWS Identity and Access\
+            \ Management (IAM) role to access the S3 bucket. If set to `false`, the\
+            \ configured AWS IAM role must include permissions to access the S3 bucket."
+          type: boolean
+        region:
+          description: " Physical location where MongoDB Cloud deploys your AWS-hosted\
+            \ MongoDB cluster nodes. The region you choose can affect network latency\
+            \ for clients accessing your databases. When MongoDB Cloud deploys a dedicated\
+            \ cluster, it checks if a VPC or VPC connection exists for that provider\
+            \ and region. If not, MongoDB Cloud creates them as part of the deployment.\
+            \ MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering\
+            \ connection to one CIDR block and region, create the connection first.\
+            \ Deploy the cluster after the connection starts."
+          enum:
+          - US_GOV_WEST_1
+          - US_GOV_EAST_1
+          - US_EAST_1
+          - US_EAST_2
+          - US_WEST_1
+          - US_WEST_2
+          - CA_CENTRAL_1
+          - EU_NORTH_1
+          - EU_WEST_1
+          - EU_WEST_2
+          - EU_WEST_3
+          - EU_CENTRAL_1
+          - AP_EAST_1
+          - AP_NORTHEAST_1
+          - AP_NORTHEAST_2
+          - AP_NORTHEAST_3
+          - AP_SOUTHEAST_1
+          - AP_SOUTHEAST_2
+          - AP_SOUTHEAST_3
+          - AP_SOUTH_1
+          - SA_EAST_1
+          - CN_NORTH_1
+          - CN_NORTHWEST_1
+          - ME_SOUTH_1
+          - AF_SOUTH_1
+          - EU_SOUTH_1
+          - GLOBAL
+          title: AWS Regions
+          type: string
+        name:
+          description: "Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName**\
+            \ field references this values as part of the mapping configuration. To\
+            \ use MongoDB Cloud as a data store, the data lake requires a serverless\
+            \ instance or an `M10` or higher cluster."
+          type: string
+        provider:
+          type: string
+      required:
+      - provider
       type: object
     DataLakeStorage:
       description: Configuration information for each data store and its mapping to
@@ -64596,10 +65209,8 @@ components:
             name: name
             source: source
         stores:
-        - provider: provider
-          name: name
-        - provider: provider
-          name: name
+        - null
+        - null
       properties:
         databases:
           description: Array that contains the queryable databases and collections
@@ -64622,25 +65233,11 @@ components:
           online_archive: '#/components/schemas/DataLakeOnlineArchiveStore'
           s3: '#/components/schemas/DataLakeS3Store'
         propertyName: provider
-      example:
-        provider: provider
-        name: name
       oneOf:
       - $ref: '#/components/schemas/DataLakeS3Store'
       - $ref: '#/components/schemas/DataLakeOnlineArchiveStore'
       - $ref: '#/components/schemas/DataLakeAtlasStore'
       - $ref: '#/components/schemas/DataLakeHTTPStore'
-      properties:
-        name:
-          description: "Human-readable label that identifies the data store. The **databases.[n].collections.[n].dataSources.[n].storeName**\
-            \ field references this values as part of the mapping configuration. To\
-            \ use MongoDB Cloud as a data store, the data lake requires a serverless\
-            \ instance or an `M10` or higher cluster."
-          type: string
-        provider:
-          type: string
-      required:
-      - provider
       type: object
     DataLakeTenant:
       example:
@@ -64782,10 +65379,8 @@ components:
               name: name
               source: source
           stores:
-          - provider: provider
-            name: name
-          - provider: provider
-            name: name
+          - null
+          - null
       properties:
         cloudProviderConfig:
           $ref: '#/components/schemas/DataLakeCloudProviderConfig'
@@ -66295,65 +66890,16 @@ components:
           $ref: '#/components/schemas/GoogleCloudKMS'
       type: object
     EndpointService:
-      example:
-        regionName: regionName
-        errorMessage: errorMessage
-        id: 32b6e34b3d91647abb20e7b8
-        status: INITIATING
       oneOf:
       - $ref: '#/components/schemas/AWSPrivateLinkConnection'
       - $ref: '#/components/schemas/AzurePrivateLinkConnection'
       - $ref: '#/components/schemas/GCPEndpointService'
-      properties:
-        errorMessage:
-          description: Error message returned when requesting private connection resource.
-            The resource returns `null` if the request succeeded.
-          readOnly: true
-          type: string
-        id:
-          description: Unique 24-hexadecimal digit string that identifies the Private
-            Endpoint Service.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        regionName:
-          description: Cloud provider region that manages this Private Endpoint Service.
-          readOnly: true
-          type: string
-        status:
-          description: State of the Private Endpoint Service connection when MongoDB
-            Cloud received this request.
-          enum:
-          - INITIATING
-          - AVAILABLE
-          - WAITING_FOR_USER
-          - FAILED
-          - DELETING
-          readOnly: true
-          type: string
       type: object
     Endpoint:
-      example:
-        errorMessage: errorMessage
-        deleteRequested: true
       oneOf:
       - $ref: '#/components/schemas/AWSInterfaceEndpoint'
       - $ref: '#/components/schemas/AzurePrivateEndpoint'
       - $ref: '#/components/schemas/GCPEndpointGroup'
-      properties:
-        deleteRequested:
-          description: Flag that indicates whether MongoDB Cloud received a request
-            to remove the specified private endpoint from the private endpoint service.
-          readOnly: true
-          type: boolean
-        errorMessage:
-          description: Error message returned when requesting private connection resource.
-            The resource returns `null` if the request succeeded.
-          readOnly: true
-          type: string
       type: object
     FTSIndex:
       example:
@@ -66674,9 +67220,43 @@ components:
           type: string
       type: object
     FreeProviderSettings:
-      allOf:
-      - $ref: '#/components/schemas/ClusterProviderSettings'
-      - $ref: '#/components/schemas/FreeProviderSettings_allOf'
+      properties:
+        autoScaling:
+          $ref: '#/components/schemas/FreeAutoScaling'
+        backingProviderName:
+          description: Cloud service provider on which MongoDB Cloud provisioned the
+            multi-tenant host. The resource returns this parameter when **providerSettings.providerName**
+            is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          - TENANT
+          - SERVERLESS
+          type: string
+        instanceSizeName:
+          description: "Cluster tier, with a default storage and memory capacity,\
+            \ that applies to all the data-bearing hosts in your cluster. You must\
+            \ set **providerSettings.providerName** to `TENANT` and specify the cloud\
+            \ service provider in **providerSettings.backingProviderName**."
+          enum:
+          - M0
+          - M2
+          - M5
+          title: Tenant Instance Sizes
+          type: string
+        regionName:
+          description: "Human-readable label that identifies the geographic location\
+            \ of your MongoDB cluster. The region you choose can affect network latency\
+            \ for clients accessing your databases. For a complete list of region\
+            \ names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws),\
+            \ [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).\
+            \ For multi-region clusters, see **replicationSpec.{region}**."
+          type: string
+        providerName:
+          type: string
+      required:
+      - providerName
       type: object
     GCPAutoScaling:
       description: Range of instance sizes to which your cluster can scale.
@@ -66685,11 +67265,110 @@ components:
           $ref: '#/components/schemas/GCPComputeAutoScaling'
       type: object
     GCPCloudProviderContainer:
-      allOf:
-      - $ref: '#/components/schemas/CloudProviderContainer'
-      - $ref: '#/components/schemas/GCPCloudProviderContainer_allOf'
       description: Collection of settings that configures the network container for
         a virtual private connection on Amazon Web Services.
+      properties:
+        atlasCidrBlock:
+          description: |-
+            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
+
+            These CIDR blocks must fall within the ranges reserved per RFC 1918. GCP further limits the block to a lower bound of the `/18` range.
+
+            To modify the CIDR block, the target project cannot have:
+
+            - Any M10 or greater clusters
+            - Any other VPC peering connections
+
+             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
+
+             **Example:** A project in an Google Cloud (GCP) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
+          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
+            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
+          type: string
+        gcpProjectId:
+          description: Unique string that identifies the GCP project in which MongoDB
+            Cloud clusters in this network peering container exist. The response returns
+            **null** if no clusters exist in this network peering container.
+          maxLength: 26
+          minLength: 26
+          pattern: "^p-[0-9a-z]{24}$"
+          readOnly: true
+          type: string
+        networkName:
+          description: Human-readable label that identifies the network in which MongoDB
+            Cloud clusters in this network peering container exist. MongoDB Cloud
+            returns **null** if no clusters exist in this network peering container.
+          maxLength: 36
+          minLength: 36
+          pattern: "^nt-[0-9a-f]{24}-[0-9a-z]{8}$"
+          readOnly: true
+          type: string
+        regions:
+          description: "List of GCP regions to which you want to deploy this MongoDB\
+            \ Cloud network peering container.  In this MongoDB Cloud project, you\
+            \ can deploy clusters only to the GCP regions in this list. To deploy\
+            \ MongoDB Cloud clusters to other GCP regions, create additional projects."
+          items:
+            description: "List of GCP regions to which you want to deploy this MongoDB\
+              \ Cloud network peering container.  In this MongoDB Cloud project, you\
+              \ can deploy clusters only to the GCP regions in this list. To deploy\
+              \ MongoDB Cloud clusters to other GCP regions, create additional projects."
+            enum:
+            - ASIA_EAST_2
+            - ASIA_NORTHEAST_2
+            - ASIA_NORTHEAST_3
+            - ASIA_SOUTH_1
+            - ASIA_SOUTH_2
+            - ASIA_SOUTHEAST_2
+            - AUSTRALIA_SOUTHEAST_1
+            - AUSTRALIA_SOUTHEAST_2
+            - CENTRAL_US
+            - EASTERN_ASIA_PACIFIC
+            - EASTERN_US
+            - EUROPE_CENTRAL_2
+            - EUROPE_NORTH_1
+            - EUROPE_WEST_2
+            - EUROPE_WEST_3
+            - EUROPE_WEST_4
+            - EUROPE_WEST_6
+            - NORTH_AMERICA_NORTHEAST_1
+            - NORTH_AMERICA_NORTHEAST_2
+            - NORTHEASTERN_ASIA_PACIFIC
+            - SOUTH_AMERICA_EAST_1
+            - SOUTH_AMERICA_WEST_1
+            - SOUTHEASTERN_ASIA_PACIFIC
+            - US_EAST_4
+            - US_WEST_2
+            - US_WEST_3
+            - US_WEST_4
+            - WESTERN_EUROPE
+            - WESTERN_US
+            type: string
+          type: array
+        id:
+          description: Unique 24-hexadecimal digit string that identifies the network
+            peering container.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        providerName:
+          description: Cloud service provider that serves the requested network peering
+            containers.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          - TENANT
+          - SERVERLESS
+          type: string
+        provisioned:
+          description: Flag that indicates whether MongoDB Cloud clusters exist in
+            the specified network peering container.
+          readOnly: true
+          type: boolean
       required:
       - atlasCidrBlock
       - regions
@@ -66985,14 +67664,92 @@ components:
       title: GCP
       type: object
     GCPProviderSettings:
-      allOf:
-      - $ref: '#/components/schemas/ClusterProviderSettings'
-      - $ref: '#/components/schemas/GCPProviderSettings_allOf'
+      properties:
+        autoScaling:
+          $ref: '#/components/schemas/GCPAutoScaling'
+        instanceSizeName:
+          description: "Cluster tier, with a default storage and memory capacity,\
+            \ that applies to all the data-bearing hosts in your cluster."
+          enum:
+          - M10
+          - M20
+          - M30
+          - M40
+          - M50
+          - M60
+          - M80
+          - M140
+          - M200
+          - M250
+          - M300
+          - M400
+          - R40
+          - R50
+          - R60
+          - R80
+          - R200
+          - R300
+          - R400
+          - R600
+          title: GCP Instance Sizes
+          type: string
+        regionName:
+          description: Google Compute Regions.
+          enum:
+          - EASTERN_US
+          - US_EAST_4
+          - US_WEST_2
+          - US_WEST_3
+          - US_WEST_4
+          - CENTRAL_US
+          - WESTERN_US
+          - NORTH_AMERICA_NORTHEAST_1
+          - NORTH_AMERICA_NORTHEAST_2
+          - SOUTH_AMERICA_EAST_1
+          - SOUTH_AMERICA_WEST_1
+          - WESTERN_EUROPE
+          - EUROPE_NORTH_1
+          - EUROPE_WEST_2
+          - EUROPE_WEST_3
+          - EUROPE_WEST_4
+          - EUROPE_WEST_6
+          - EUROPE_WEST_8
+          - EUROPE_WEST_9
+          - EUROPE_SOUTHWEST_1
+          - EUROPE_CENTRAL_2
+          - AUSTRALIA_SOUTHEAST_1
+          - AUSTRALIA_SOUTHEAST_2
+          - EASTERN_ASIA_PACIFIC
+          - NORTHEASTERN_ASIA_PACIFIC
+          - SOUTHEASTERN_ASIA_PACIFIC
+          - ASIA_EAST_2
+          - ASIA_NORTHEAST_2
+          - ASIA_NORTHEAST_3
+          - ASIA_SOUTH_1
+          - ASIA_SOUTH_2
+          - ASIA_SOUTHEAST_2
+          externalDocs:
+            description: GCP
+            url: https://docs.atlas.mongodb.com/reference/google-gcp/
+          title: GCP Regions
+          type: string
+        providerName:
+          type: string
+      required:
+      - providerName
       type: object
     GCPRegionConfig:
       description: Details that explain how MongoDB Cloud replicates data in one region
         on the specified MongoDB database.
       properties:
+        analyticsAutoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        analyticsSpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
+        autoScaling:
+          $ref: '#/components/schemas/AutoScalingV15'
+        readOnlySpecs:
+          $ref: '#/components/schemas/DedicatedHardwareSpec'
         electableSpecs:
           $ref: '#/components/schemas/HardwareSpec'
         priority:
@@ -67132,14 +67889,6 @@ components:
           - ASIA_SOUTHEAST_2
           type: string
           x-xgen-go-transform: merge-oneOf
-        analyticsAutoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        analyticsSpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
-        autoScaling:
-          $ref: '#/components/schemas/AutoScalingV15'
-        readOnlySpecs:
-          $ref: '#/components/schemas/DedicatedHardwareSpec'
       title: GCP Regional Replication Specifications
       type: object
     GeoSharding:
@@ -67540,8 +68289,7 @@ components:
           type: EXCLUDE
         name: name
         _id: 32b6e34b3d91647abb20e7b8
-        source:
-          type: PERIODIC_CPS
+        source: null
         state: ACTIVE
       properties:
         _id:
@@ -67616,18 +68364,9 @@ components:
           ON_DEMAND_CPS: '#/components/schemas/OnDemandCpsSnapshotSource'
           PERIODIC_CPS: '#/components/schemas/PeriodicCpsSnapshotSource'
         propertyName: type
-      example:
-        type: PERIODIC_CPS
       oneOf:
       - $ref: '#/components/schemas/OnDemandCpsSnapshotSource'
       - $ref: '#/components/schemas/PeriodicCpsSnapshotSource'
-      properties:
-        type:
-          description: Type of ingestion source of this Data Lake Pipeline.
-          enum:
-          - PERIODIC_CPS
-          - ON_DEMAND_CPS
-          type: string
       title: Ingestion Source
       type: object
     InheritedRole:
@@ -67800,8 +68539,7 @@ components:
             enabled: true
           diskGBEnabled: true
         pitEnabled: true
-        providerSettings:
-          providerName: providerName
+        providerSettings: null
         labels:
         - value: value
           key: key
@@ -68613,10 +69351,32 @@ components:
           type: array
       type: object
     OnDemandCpsSnapshotSource:
-      allOf:
-      - $ref: '#/components/schemas/IngestionSource'
-      - $ref: '#/components/schemas/OnDemandCpsSnapshotSource_allOf'
       description: On-Demand Cloud Provider Snapshots as Source for a Data Lake Pipeline.
+      properties:
+        clusterName:
+          description: Human-readable name that identifies the cluster.
+          type: string
+        collectionName:
+          description: Human-readable name that identifies the collection.
+          type: string
+        databaseName:
+          description: Human-readable name that identifies the database.
+          type: string
+        groupId:
+          description: Unique 24-hexadecimal character string that identifies the
+            project.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        type:
+          description: Type of ingestion source of this Data Lake Pipeline.
+          enum:
+          - PERIODIC_CPS
+          - ON_DEMAND_CPS
+          type: string
       title: On-Demand Cloud Provider Snapshot Source
       type: object
     OnlineArchiveSchedule:
@@ -68628,25 +69388,17 @@ components:
           MONTHLY: '#/components/schemas/MonthlyScheduleView'
           WEEKLY: '#/components/schemas/WeeklyScheduleView'
         propertyName: type
-      example:
-        type: type
       oneOf:
       - $ref: '#/components/schemas/DefaultScheduleView'
       - $ref: '#/components/schemas/DailyScheduleView'
       - $ref: '#/components/schemas/WeeklyScheduleView'
       - $ref: '#/components/schemas/MonthlyScheduleView'
-      properties:
-        type:
-          type: string
-      required:
-      - type
       title: Online Archive Schedule
       type: object
     OnlineArchive:
       example:
         collectionType: STANDARD
-        schedule:
-          type: type
+        schedule: null
         partitionFields:
         - fieldName: fieldName
           fieldType: date
@@ -68794,10 +69546,40 @@ components:
       title: Partition Field
       type: object
     PeriodicCpsSnapshotSource:
-      allOf:
-      - $ref: '#/components/schemas/IngestionSource'
-      - $ref: '#/components/schemas/PeriodicCpsSnapshotSource_allOf'
       description: Scheduled Cloud Provider Snapshot as Source for a Data Lake Pipeline.
+      properties:
+        clusterName:
+          description: Human-readable name that identifies the cluster.
+          type: string
+        collectionName:
+          description: Human-readable name that identifies the collection.
+          type: string
+        databaseName:
+          description: Human-readable name that identifies the database.
+          type: string
+        groupId:
+          description: Unique 24-hexadecimal character string that identifies the
+            project.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+          type: string
+        policyItemId:
+          description: Unique 24-hexadecimal character string that identifies a policy
+            item.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          type: string
+        type:
+          description: Type of ingestion source of this Data Lake Pipeline.
+          enum:
+          - PERIODIC_CPS
+          - ON_DEMAND_CPS
+          type: string
       title: Periodic Cloud Provider Snapshot Source
       type: object
     PipelineRunStats:
@@ -69615,59 +70397,9 @@ components:
       - providerName
       type: object
     ServerlessTenantEndpoint:
-      example:
-        endpointServiceName: endpointServiceName
-        errorMessage: errorMessage
-        comment: comment
-        _id: 32b6e34b3d91647abb20e7b8
-        cloudProviderEndpointId: cloudProviderEndpointId
-        status: RESERVATION_REQUESTED
       oneOf:
       - $ref: '#/components/schemas/ServerlessAWSTenantEndpoint'
       - $ref: '#/components/schemas/ServerlessAzureTenantEndpoint'
-      properties:
-        _id:
-          description: Unique 24-hexadecimal digit string that identifies the private
-            endpoint.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        cloudProviderEndpointId:
-          description: Unique string that identifies the private endpoint's network
-            interface.
-          readOnly: true
-          type: string
-        comment:
-          description: Human-readable comment associated with the private endpoint.
-          maxLength: 80
-          readOnly: true
-          type: string
-        endpointServiceName:
-          description: Unique string that identifies the PrivateLink endpoint service.
-            MongoDB Cloud returns null while it creates the endpoint service.
-          pattern: "^com\\.amazonaws\\.vpce\\.[a-z-0-9]+\\.vpce-svc-[0-9a-f]{17}|pls_[0-9a-f]{24}$"
-          readOnly: true
-          type: string
-        errorMessage:
-          description: Human-readable error message that indicates error condition
-            associated with establishing the private endpoint connection.
-          readOnly: true
-          type: string
-        status:
-          description: Human-readable label that indicates the current operating status
-            of the private endpoint.
-          enum:
-          - RESERVATION_REQUESTED
-          - RESERVED
-          - INITIATING
-          - AVAILABLE
-          - FAILED
-          - DELETING
-          readOnly: true
-          type: string
       type: object
     SnapshotRetention:
       example:
@@ -69880,6 +70612,15 @@ components:
       description: Details that explain how MongoDB Cloud replicates data in one region
         on the specified MongoDB database.
       properties:
+        backingProviderName:
+          description: Cloud service provider on which MongoDB Cloud provisioned the
+            multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName**
+            is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          type: string
         electableSpecs:
           $ref: '#/components/schemas/HardwareSpec'
         priority:
@@ -70019,15 +70760,6 @@ components:
           - ASIA_SOUTHEAST_2
           type: string
           x-xgen-go-transform: merge-oneOf
-        backingProviderName:
-          description: Cloud service provider on which MongoDB Cloud provisioned the
-            multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName**
-            is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
-          enum:
-          - AWS
-          - GCP
-          - AZURE
-          type: string
       title: Tenant Regional Replication Specifications
       type: object
     TenantRestore:
@@ -70529,38 +71261,6 @@ components:
           type: string
       type: object
       example: null
-    DailyScheduleView_allOf:
-      properties:
-        endHour:
-          description: Hour of the day when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        endMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-        startHour:
-          description: Hour of the day when the when the scheduled window to run one
-            online archive starts.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        startMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive starts.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-      type: object
-      example: null
     DateCriteriaView_allOf:
       properties:
         dateField:
@@ -71026,83 +71726,6 @@ components:
         title: Support Event Types
         type: string
       type: object
-    MonthlyScheduleView_allOf:
-      properties:
-        dayOfMonth:
-          description: Day of the month when the scheduled archive starts.
-          format: int32
-          maximum: 31
-          minimum: 1
-          type: integer
-        endHour:
-          description: Hour of the day when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        endMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-        startHour:
-          description: Hour of the day when the when the scheduled window to run one
-            online archive starts.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        startMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive starts.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-      type: object
-      example: null
-    WeeklyScheduleView_allOf:
-      properties:
-        dayOfWeek:
-          description: Day of the week when the scheduled archive starts. The week
-            starts with Monday (`1`) and ends with Sunday (`7`).
-          format: int32
-          maximum: 7
-          minimum: 1
-          type: integer
-        endHour:
-          description: Hour of the day when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        endMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive ends.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-        startHour:
-          description: Hour of the day when the when the scheduled window to run one
-            online archive starts.
-          format: int32
-          maximum: 23
-          minimum: 0
-          type: integer
-        startMinute:
-          description: Minute of the hour when the scheduled window to run one online
-            archive starts.
-          format: int32
-          maximum: 59
-          minimum: 0
-          type: integer
-      type: object
-      example: null
     charFiltermapping_mappings:
       description: |-
         Comma-separated list of mappings. A mapping indicates that one character or group of characters should be substituted for another, using the following format:
@@ -71112,369 +71735,6 @@ components:
         additionalProperties:
           type: string
       type: object
-    AWSCloudProviderContainer_allOf:
-      properties:
-        atlasCidrBlock:
-          description: |-
-            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
-
-            These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.
-
-            To modify the CIDR block, the target project cannot have:
-
-            - Any M10 or greater clusters
-            - Any other VPC peering connections
-
-             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
-
-             **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
-          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
-            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
-          type: string
-        regionName:
-          description: Geographic area that Amazon Web Services (AWS) defines to which
-            MongoDB Cloud deployed this network peering container.
-          enum:
-          - US_EAST_1
-          - US_EAST_2
-          - US_WEST_1
-          - US_WEST_2
-          - CA_CENTRAL_1
-          - EU_NORTH_1
-          - EU_WEST_1
-          - EU_WEST_2
-          - EU_WEST_3
-          - EU_CENTRAL_1
-          - SA_EAST_1
-          - AP_EAST_1
-          - AP_SOUTHEAST_2
-          - AP_SOUTHEAST_3
-          - AP_NORTHEAST_1
-          - AP_NORTHEAST_2
-          - AP_NORTHEAST_3
-          - AP_SOUTHEAST_1
-          - AP_SOUTH_1
-          - CN_NORTH_1
-          - CN_NORTHWEST_1
-          - ME_SOUTH_1
-          - AF_SOUTH_1
-          - EU_SOUTH_1
-          - GLOBAL
-          - US_GOV_WEST_1
-          - US_GOV_EAST_1
-          type: string
-        vpcId:
-          description: Unique string that identifies the MongoDB Cloud VPC on AWS.
-          example: vpc-b555d3b0d9cb783b0
-          minLength: 5
-          pattern: "^vpc-[0-9a-f]{17}$"
-          readOnly: true
-          type: string
-      type: object
-      example: null
-    AWSProviderSettings_allOf:
-      properties:
-        autoScaling:
-          $ref: '#/components/schemas/AWSAutoScaling'
-        diskIOPS:
-          description: Maximum Disk Input/Output Operations per Second (IOPS) that
-            the database host can perform.
-          format: int32
-          type: integer
-        encryptEBSVolume:
-          default: true
-          deprecated: true
-          description: Flag that indicates whether the Amazon Elastic Block Store
-            (EBS) encryption feature encrypts the host's root volume for both data
-            at rest within the volume and for data moving between the volume and the
-            cluster. Clusters always have this setting enabled.
-          type: boolean
-        instanceSizeName:
-          description: "Cluster tier, with a default storage and memory capacity,\
-            \ that applies to all the data-bearing hosts in your cluster."
-          enum:
-          - M10
-          - M20
-          - M30
-          - M40
-          - M50
-          - M60
-          - M80
-          - M100
-          - M140
-          - M200
-          - M300
-          - R40
-          - R50
-          - R60
-          - R80
-          - R200
-          - R300
-          - R400
-          - R700
-          - M40_NVME
-          - M50_NVME
-          - M60_NVME
-          - M80_NVME
-          - M200_NVME
-          - M400_NVME
-          title: AWS Instance Sizes
-          type: string
-        regionName:
-          description: " Physical location where MongoDB Cloud deploys your AWS-hosted\
-            \ MongoDB cluster nodes. The region you choose can affect network latency\
-            \ for clients accessing your databases. When MongoDB Cloud deploys a dedicated\
-            \ cluster, it checks if a VPC or VPC connection exists for that provider\
-            \ and region. If not, MongoDB Cloud creates them as part of the deployment.\
-            \ MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering\
-            \ connection to one CIDR block and region, create the connection first.\
-            \ Deploy the cluster after the connection starts."
-          enum:
-          - US_GOV_WEST_1
-          - US_GOV_EAST_1
-          - US_EAST_1
-          - US_EAST_2
-          - US_WEST_1
-          - US_WEST_2
-          - CA_CENTRAL_1
-          - EU_NORTH_1
-          - EU_WEST_1
-          - EU_WEST_2
-          - EU_WEST_3
-          - EU_CENTRAL_1
-          - AP_EAST_1
-          - AP_NORTHEAST_1
-          - AP_NORTHEAST_2
-          - AP_NORTHEAST_3
-          - AP_SOUTHEAST_1
-          - AP_SOUTHEAST_2
-          - AP_SOUTHEAST_3
-          - AP_SOUTH_1
-          - SA_EAST_1
-          - CN_NORTH_1
-          - CN_NORTHWEST_1
-          - ME_SOUTH_1
-          - AF_SOUTH_1
-          - EU_SOUTH_1
-          - GLOBAL
-          externalDocs:
-            description: AWS
-            url: https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws
-          title: AWS Regions
-          type: string
-        volumeType:
-          description: "Disk Input/Output Operations per Second (IOPS) setting for\
-            \ Amazon Web Services (AWS) storage that you configure only for abbr title=\"\
-            Amazon Web Services\">AWS</abbr>. Specify whether Disk Input/Output Operations\
-            \ per Second (IOPS) must not exceed the default Input/Output Operations\
-            \ per Second (IOPS) rate for the selected volume size (`STANDARD`), or\
-            \ must fall within the allowable Input/Output Operations per Second (IOPS)\
-            \ range for the selected volume size (`PROVISIONED`)."
-          enum:
-          - STANDARD
-          - PROVISIONED
-          type: string
-      type: object
-      example: null
-    AzureCloudProviderContainer_allOf:
-      properties:
-        atlasCidrBlock:
-          description: |-
-            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
-
-            These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.
-
-            To modify the CIDR block, the target project cannot have:
-
-            - Any M10 or greater clusters
-            - Any other VPC peering connections
-
-             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
-
-             **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
-          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
-            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
-          type: string
-        azureSubscriptionId:
-          description: Unique string that identifies the Azure subscription in which
-            the MongoDB Cloud VNet resides.
-          example: 32b6e34b3d91647abb20e7b8
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        region:
-          description: Azure region to which MongoDB Cloud deployed this network peering
-            container.
-          enum:
-          - US_CENTRAL
-          - US_EAST
-          - US_EAST_2
-          - US_NORTH_CENTRAL
-          - US_WEST
-          - US_SOUTH_CENTRAL
-          - EUROPE_NORTH
-          - EUROPE_WEST
-          - US_WEST_CENTRAL
-          - US_WEST_2
-          - US_WEST_3
-          - CANADA_EAST
-          - CANADA_CENTRAL
-          - BRAZIL_SOUTH
-          - BRAZIL_SOUTHEAST
-          - AUSTRALIA_EAST
-          - AUSTRALIA_SOUTH_EAST
-          - AUSTRALIA_CENTRAL
-          - AUSTRALIA_CENTRAL_2
-          - UAE_NORTH
-          - GERMANY_CENTRAL
-          - GERMANY_NORTH_EAST
-          - GERMANY_WEST_CENTRAL
-          - GERMANY_NORTH
-          - SWITZERLAND_NORTH
-          - SWITZERLAND_WEST
-          - SWEDEN_CENTRAL
-          - SWEDEN_SOUTH
-          - UK_SOUTH
-          - UK_WEST
-          - INDIA_CENTRAL
-          - INDIA_WEST
-          - INDIA_SOUTH
-          - CHINA_EAST
-          - CHINA_NORTH
-          - ASIA_EAST
-          - JAPAN_EAST
-          - JAPAN_WEST
-          - ASIA_SOUTH_EAST
-          - KOREA_CENTRAL
-          - KOREA_SOUTH
-          - FRANCE_CENTRAL
-          - FRANCE_SOUTH
-          - SOUTH_AFRICA_NORTH
-          - SOUTH_AFRICA_WEST
-          - NORWAY_EAST
-          - NORWAY_WEST
-          - UAE_CENTRAL
-          type: string
-        vnetName:
-          description: Unique string that identifies the Azure VNet in which MongoDB
-            Cloud clusters in this network peering container exist. The response returns
-            **null** if no clusters exist in this network peering container.
-          maxLength: 38
-          minLength: 38
-          pattern: "^([-\\w._()])+$"
-          readOnly: true
-          type: string
-      type: object
-      example: null
-    AzureProviderSettings_allOf:
-      properties:
-        autoScaling:
-          $ref: '#/components/schemas/AzureAutoScaling'
-        diskTypeName:
-          description: "Disk type that corresponds to the host's root volume for Azure\
-            \ instances. If omitted, the default disk type for the selected **providerSettings.instanceSizeName**\
-            \ applies."
-          enum:
-          - P2
-          - P3
-          - P4
-          - P6
-          - P10
-          - P15
-          - P20
-          - P30
-          - P40
-          - P50
-          externalDocs:
-            description: Disk type
-            url: https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance#premium-storage-disk-sizes
-          type: string
-        instanceSizeName:
-          description: "Cluster tier, with a default storage and memory capacity,\
-            \ that applies to all the data-bearing hosts in your cluster."
-          enum:
-          - M10
-          - M20
-          - M30
-          - M40
-          - M50
-          - M60
-          - M80
-          - M90
-          - M200
-          - R40
-          - R50
-          - R60
-          - R80
-          - R200
-          - R300
-          - R400
-          - M60_NVME
-          - M80_NVME
-          - M200_NVME
-          - M300_NVME
-          - M400_NVME
-          - M600_NVME
-          title: Azure Instance Sizes
-          type: string
-        regionName:
-          description: Microsoft Azure Regions.
-          enum:
-          - US_CENTRAL
-          - US_EAST
-          - US_EAST_2
-          - US_NORTH_CENTRAL
-          - US_WEST
-          - US_SOUTH_CENTRAL
-          - EUROPE_NORTH
-          - EUROPE_WEST
-          - US_WEST_CENTRAL
-          - US_WEST_2
-          - US_WEST_3
-          - CANADA_EAST
-          - CANADA_CENTRAL
-          - BRAZIL_SOUTH
-          - BRAZIL_SOUTHEAST
-          - AUSTRALIA_CENTRAL
-          - AUSTRALIA_CENTRAL_2
-          - AUSTRALIA_EAST
-          - AUSTRALIA_SOUTH_EAST
-          - GERMANY_CENTRAL
-          - GERMANY_NORTH_EAST
-          - GERMANY_WEST_CENTRAL
-          - GERMANY_NORTH
-          - SWEDEN_CENTRAL
-          - SWEDEN_SOUTH
-          - SWITZERLAND_NORTH
-          - SWITZERLAND_WEST
-          - UK_SOUTH
-          - UK_WEST
-          - NORWAY_EAST
-          - NORWAY_WEST
-          - INDIA_CENTRAL
-          - INDIA_SOUTH
-          - INDIA_WEST
-          - CHINA_EAST
-          - CHINA_NORTH
-          - ASIA_EAST
-          - JAPAN_EAST
-          - JAPAN_WEST
-          - ASIA_SOUTH_EAST
-          - KOREA_CENTRAL
-          - KOREA_SOUTH
-          - FRANCE_CENTRAL
-          - FRANCE_SOUTH
-          - SOUTH_AFRICA_NORTH
-          - SOUTH_AFRICA_WEST
-          - UAE_CENTRAL
-          - UAE_NORTH
-          externalDocs:
-            description: Azure
-            url: https://docs.atlas.mongodb.com/reference/microsoft-azure/
-          title: Azure Regions
-          type: string
-      type: object
-      example: null
     CloudProviderAccessDataLakeFeatureUsage_allOf:
       properties:
         featureId:
@@ -71569,394 +71829,6 @@ components:
           items:
             $ref: '#/components/schemas/PartitionField'
           type: array
-      type: object
-      example: null
-    DataLakeAtlasStore_allOf:
-      properties:
-        clusterName:
-          description: Human-readable label of the MongoDB Cloud cluster on which
-            the store is based.
-          type: string
-        projectId:
-          description: Unique 24-hexadecimal digit string that identifies the project.
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        readPreference:
-          $ref: '#/components/schemas/DataLakeAtlasStoreReadPreference'
-      type: object
-      example: null
-    DataLakeHTTPStore_allOf:
-      properties:
-        allowInsecure:
-          default: false
-          description: "Flag that validates the scheme in the specified URLs. If `true`,\
-            \ allows insecure `HTTP` scheme, doesn't verify the server's certificate\
-            \ chain and hostname, and accepts any certificate with any hostname presented\
-            \ by the server. If `false`, allows secure `HTTPS` scheme only."
-          type: boolean
-        defaultFormat:
-          description: "Default format that Data Lake assumes if it encounters a file\
-            \ without an extension while searching the `storeName`. If omitted, Data\
-            \ Lake attempts to detect the file type by processing a few bytes of the\
-            \ file. The specified format only applies to the URLs specified in the\
-            \ **databases.[n].collections.[n].dataSources** object."
-          type: string
-        urls:
-          description: Comma-separated list of publicly accessible HTTP URLs where
-            data is stored. You can't specify URLs that require authentication.
-          items:
-            description: Comma-separated list of publicly accessible HTTP URLs where
-              data is stored. You can't specify URLs that require authentication.
-            type: string
-          type: array
-      type: object
-      example: null
-    DataLakeOnlineArchiveStore_allOf:
-      properties:
-        clusterId:
-          description: ID of the Cluster the Online Archive belongs to.
-          type: string
-        clusterName:
-          description: Name of the Cluster the Online Archive belongs to.
-          type: string
-        projectId:
-          description: ID of the Project the Online Archive belongs to.
-          type: string
-      type: object
-      example: null
-    DataLakeS3Store_allOf:
-      properties:
-        additionalStorageClasses:
-          description: "Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/).\
-            \ Atlas Data Lake includes the files in these storage classes in the query\
-            \ results."
-          items:
-            description: "AWS S3 [storage class](https://aws.amazon.com/s3/storage-classes/)\
-              \ where the files to include in the results are stored."
-            enum:
-            - STANDARD
-            - INTELLIGENT_TIERING
-            - STANDARD_IA
-            type: string
-          type: array
-        bucket:
-          description: Human-readable label that identifies the AWS S3 bucket. This
-            label must exactly match the name of an S3 bucket that the data lake can
-            access with the configured AWS Identity and Access Management (IAM) credentials.
-          type: string
-        delimiter:
-          description: "The delimiter that separates **databases.[n].collections.[n].dataSources.[n].path**\
-            \ segments in the data store. MongoDB Cloud uses the delimiter to efficiently\
-            \ traverse S3 buckets with a hierarchical directory structure. You can\
-            \ specify any character supported by the S3 object keys as the delimiter.\
-            \ For example, you can specify an underscore (_) or a plus sign (+) or\
-            \ multiple characters, such as double underscores (__) as the delimiter.\
-            \ If omitted, defaults to `/`."
-          type: string
-        includeTags:
-          default: false
-          description: "Flag that indicates whether to use S3 tags on the files in\
-            \ the given path as additional partition attributes. If set to `true`,\
-            \ data lake adds the S3 tags as additional partition attributes and adds\
-            \ new top-level BSON elements associating each tag to each document."
-          type: boolean
-        prefix:
-          description: "Prefix that MongoDB Cloud applies when searching for files\
-            \ in the S3 bucket. The data store prepends the value of prefix to the\
-            \ **databases.[n].collections.[n].dataSources.[n].path** to create the\
-            \ full path for files to ingest. If omitted, MongoDB Cloud searches all\
-            \ files from the root of the S3 bucket."
-          type: string
-        public:
-          default: false
-          description: "Flag that indicates whether the bucket is public. If set to\
-            \ `true`, MongoDB Cloud doesn't use the configured AWS Identity and Access\
-            \ Management (IAM) role to access the S3 bucket. If set to `false`, the\
-            \ configured AWS IAM role must include permissions to access the S3 bucket."
-          type: boolean
-        region:
-          description: " Physical location where MongoDB Cloud deploys your AWS-hosted\
-            \ MongoDB cluster nodes. The region you choose can affect network latency\
-            \ for clients accessing your databases. When MongoDB Cloud deploys a dedicated\
-            \ cluster, it checks if a VPC or VPC connection exists for that provider\
-            \ and region. If not, MongoDB Cloud creates them as part of the deployment.\
-            \ MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering\
-            \ connection to one CIDR block and region, create the connection first.\
-            \ Deploy the cluster after the connection starts."
-          enum:
-          - US_GOV_WEST_1
-          - US_GOV_EAST_1
-          - US_EAST_1
-          - US_EAST_2
-          - US_WEST_1
-          - US_WEST_2
-          - CA_CENTRAL_1
-          - EU_NORTH_1
-          - EU_WEST_1
-          - EU_WEST_2
-          - EU_WEST_3
-          - EU_CENTRAL_1
-          - AP_EAST_1
-          - AP_NORTHEAST_1
-          - AP_NORTHEAST_2
-          - AP_NORTHEAST_3
-          - AP_SOUTHEAST_1
-          - AP_SOUTHEAST_2
-          - AP_SOUTHEAST_3
-          - AP_SOUTH_1
-          - SA_EAST_1
-          - CN_NORTH_1
-          - CN_NORTHWEST_1
-          - ME_SOUTH_1
-          - AF_SOUTH_1
-          - EU_SOUTH_1
-          - GLOBAL
-          title: AWS Regions
-          type: string
-      type: object
-      example: null
-    FreeProviderSettings_allOf:
-      properties:
-        autoScaling:
-          $ref: '#/components/schemas/FreeAutoScaling'
-        backingProviderName:
-          description: Cloud service provider on which MongoDB Cloud provisioned the
-            multi-tenant host. The resource returns this parameter when **providerSettings.providerName**
-            is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
-          enum:
-          - AWS
-          - GCP
-          - AZURE
-          - TENANT
-          - SERVERLESS
-          type: string
-        instanceSizeName:
-          description: "Cluster tier, with a default storage and memory capacity,\
-            \ that applies to all the data-bearing hosts in your cluster. You must\
-            \ set **providerSettings.providerName** to `TENANT` and specify the cloud\
-            \ service provider in **providerSettings.backingProviderName**."
-          enum:
-          - M0
-          - M2
-          - M5
-          title: Tenant Instance Sizes
-          type: string
-        regionName:
-          description: "Human-readable label that identifies the geographic location\
-            \ of your MongoDB cluster. The region you choose can affect network latency\
-            \ for clients accessing your databases. For a complete list of region\
-            \ names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws),\
-            \ [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).\
-            \ For multi-region clusters, see **replicationSpec.{region}**."
-          type: string
-      type: object
-      example: null
-    GCPCloudProviderContainer_allOf:
-      properties:
-        atlasCidrBlock:
-          description: |-
-            IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.
-
-            These CIDR blocks must fall within the ranges reserved per RFC 1918. GCP further limits the block to a lower bound of the `/18` range.
-
-            To modify the CIDR block, the target project cannot have:
-
-            - Any M10 or greater clusters
-            - Any other VPC peering connections
-
-             You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.
-
-             **Example:** A project in an Google Cloud (GCP) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
-          pattern: "^((([0-9]{1,3}\\.){3}[0-9]{1,3})|([\\:]{0,2}([0-9a-f]{1,4}\\:){0,7}[0-9a-f]{1,4}[\\\
-            :]{0,2}))((%2[fF]|\\/)[0-9]{1,3})+$"
-          type: string
-        gcpProjectId:
-          description: Unique string that identifies the GCP project in which MongoDB
-            Cloud clusters in this network peering container exist. The response returns
-            **null** if no clusters exist in this network peering container.
-          maxLength: 26
-          minLength: 26
-          pattern: "^p-[0-9a-z]{24}$"
-          readOnly: true
-          type: string
-        networkName:
-          description: Human-readable label that identifies the network in which MongoDB
-            Cloud clusters in this network peering container exist. MongoDB Cloud
-            returns **null** if no clusters exist in this network peering container.
-          maxLength: 36
-          minLength: 36
-          pattern: "^nt-[0-9a-f]{24}-[0-9a-z]{8}$"
-          readOnly: true
-          type: string
-        regions:
-          description: "List of GCP regions to which you want to deploy this MongoDB\
-            \ Cloud network peering container.  In this MongoDB Cloud project, you\
-            \ can deploy clusters only to the GCP regions in this list. To deploy\
-            \ MongoDB Cloud clusters to other GCP regions, create additional projects."
-          items:
-            description: "List of GCP regions to which you want to deploy this MongoDB\
-              \ Cloud network peering container.  In this MongoDB Cloud project, you\
-              \ can deploy clusters only to the GCP regions in this list. To deploy\
-              \ MongoDB Cloud clusters to other GCP regions, create additional projects."
-            enum:
-            - ASIA_EAST_2
-            - ASIA_NORTHEAST_2
-            - ASIA_NORTHEAST_3
-            - ASIA_SOUTH_1
-            - ASIA_SOUTH_2
-            - ASIA_SOUTHEAST_2
-            - AUSTRALIA_SOUTHEAST_1
-            - AUSTRALIA_SOUTHEAST_2
-            - CENTRAL_US
-            - EASTERN_ASIA_PACIFIC
-            - EASTERN_US
-            - EUROPE_CENTRAL_2
-            - EUROPE_NORTH_1
-            - EUROPE_WEST_2
-            - EUROPE_WEST_3
-            - EUROPE_WEST_4
-            - EUROPE_WEST_6
-            - NORTH_AMERICA_NORTHEAST_1
-            - NORTH_AMERICA_NORTHEAST_2
-            - NORTHEASTERN_ASIA_PACIFIC
-            - SOUTH_AMERICA_EAST_1
-            - SOUTH_AMERICA_WEST_1
-            - SOUTHEASTERN_ASIA_PACIFIC
-            - US_EAST_4
-            - US_WEST_2
-            - US_WEST_3
-            - US_WEST_4
-            - WESTERN_EUROPE
-            - WESTERN_US
-            type: string
-          type: array
-      type: object
-      example: null
-    GCPProviderSettings_allOf:
-      properties:
-        autoScaling:
-          $ref: '#/components/schemas/GCPAutoScaling'
-        instanceSizeName:
-          description: "Cluster tier, with a default storage and memory capacity,\
-            \ that applies to all the data-bearing hosts in your cluster."
-          enum:
-          - M10
-          - M20
-          - M30
-          - M40
-          - M50
-          - M60
-          - M80
-          - M140
-          - M200
-          - M250
-          - M300
-          - M400
-          - R40
-          - R50
-          - R60
-          - R80
-          - R200
-          - R300
-          - R400
-          - R600
-          title: GCP Instance Sizes
-          type: string
-        regionName:
-          description: Google Compute Regions.
-          enum:
-          - EASTERN_US
-          - US_EAST_4
-          - US_WEST_2
-          - US_WEST_3
-          - US_WEST_4
-          - CENTRAL_US
-          - WESTERN_US
-          - NORTH_AMERICA_NORTHEAST_1
-          - NORTH_AMERICA_NORTHEAST_2
-          - SOUTH_AMERICA_EAST_1
-          - SOUTH_AMERICA_WEST_1
-          - WESTERN_EUROPE
-          - EUROPE_NORTH_1
-          - EUROPE_WEST_2
-          - EUROPE_WEST_3
-          - EUROPE_WEST_4
-          - EUROPE_WEST_6
-          - EUROPE_WEST_8
-          - EUROPE_WEST_9
-          - EUROPE_SOUTHWEST_1
-          - EUROPE_CENTRAL_2
-          - AUSTRALIA_SOUTHEAST_1
-          - AUSTRALIA_SOUTHEAST_2
-          - EASTERN_ASIA_PACIFIC
-          - NORTHEASTERN_ASIA_PACIFIC
-          - SOUTHEASTERN_ASIA_PACIFIC
-          - ASIA_EAST_2
-          - ASIA_NORTHEAST_2
-          - ASIA_NORTHEAST_3
-          - ASIA_SOUTH_1
-          - ASIA_SOUTH_2
-          - ASIA_SOUTHEAST_2
-          externalDocs:
-            description: GCP
-            url: https://docs.atlas.mongodb.com/reference/google-gcp/
-          title: GCP Regions
-          type: string
-      type: object
-      example: null
-    OnDemandCpsSnapshotSource_allOf:
-      properties:
-        clusterName:
-          description: Human-readable name that identifies the cluster.
-          type: string
-        collectionName:
-          description: Human-readable name that identifies the collection.
-          type: string
-        databaseName:
-          description: Human-readable name that identifies the database.
-          type: string
-        groupId:
-          description: Unique 24-hexadecimal character string that identifies the
-            project.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-      type: object
-      example: null
-    PeriodicCpsSnapshotSource_allOf:
-      properties:
-        clusterName:
-          description: Human-readable name that identifies the cluster.
-          type: string
-        collectionName:
-          description: Human-readable name that identifies the collection.
-          type: string
-        databaseName:
-          description: Human-readable name that identifies the database.
-          type: string
-        groupId:
-          description: Unique 24-hexadecimal character string that identifies the
-            project.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          readOnly: true
-          type: string
-        policyItemId:
-          description: Unique 24-hexadecimal character string that identifies a policy
-            item.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: "^([a-f0-9]{24})$"
-          type: string
       type: object
       example: null
     ServerlessAWSTenantEndpointUpdate_allOf:

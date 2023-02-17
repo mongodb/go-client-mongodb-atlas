@@ -13,7 +13,7 @@ x-xgen-go-transform: oneOfMerge
 3. Run transformation engine
 
 ```
-OPENAPI_FILE=openapi.yaml node ./index.js
+OPENAPI_FILE=openapi.yaml node ./transform.js
 ```
 
 > NOTE: provided file file will be overwritten
@@ -32,7 +32,10 @@ For parent model containing multiple children:
 
 2. allOf transformation.
 
-> "x-xgen-go-transform": "allOfMerge"
+Applied to all objects that meet the following criteria:
+
+> Have "properties" filed
+> Have "oneOf" field
 
 For parent model containing multiple children:
 

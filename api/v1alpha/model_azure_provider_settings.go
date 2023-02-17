@@ -23,6 +23,7 @@ type AzureProviderSettings struct {
 	InstanceSizeName *string `json:"instanceSizeName,omitempty"`
 	// Microsoft Azure Regions.
 	RegionName *string `json:"regionName,omitempty"`
+	ProviderName string `json:"providerName"`
 }
 
 // NewAzureProviderSettings instantiates a new AzureProviderSettings object
@@ -170,6 +171,30 @@ func (o *AzureProviderSettings) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
+// GetProviderName returns the ProviderName field value
+func (o *AzureProviderSettings) GetProviderName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value
+// and a boolean to check if the value has been set.
+func (o *AzureProviderSettings) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderName, true
+}
+
+// SetProviderName sets field value
+func (o *AzureProviderSettings) SetProviderName(v string) {
+	o.ProviderName = v
+}
+
 func (o AzureProviderSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AutoScaling != nil {
@@ -183,6 +208,9 @@ func (o AzureProviderSettings) MarshalJSON() ([]byte, error) {
 	}
 	if o.RegionName != nil {
 		toSerialize["regionName"] = o.RegionName
+	}
+	if true {
+		toSerialize["providerName"] = o.ProviderName
 	}
 	return json.Marshal(toSerialize)
 }

@@ -28,6 +28,7 @@ type AWSProviderSettings struct {
 	RegionName *string `json:"regionName,omitempty"`
 	// Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for abbr title=\"Amazon Web Services\">AWS</abbr>. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED`).
 	VolumeType *string `json:"volumeType,omitempty"`
+	ProviderName string `json:"providerName"`
 }
 
 // NewAWSProviderSettings instantiates a new AWSProviderSettings object
@@ -246,6 +247,30 @@ func (o *AWSProviderSettings) SetVolumeType(v string) {
 	o.VolumeType = &v
 }
 
+// GetProviderName returns the ProviderName field value
+func (o *AWSProviderSettings) GetProviderName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value
+// and a boolean to check if the value has been set.
+func (o *AWSProviderSettings) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderName, true
+}
+
+// SetProviderName sets field value
+func (o *AWSProviderSettings) SetProviderName(v string) {
+	o.ProviderName = v
+}
+
 func (o AWSProviderSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AutoScaling != nil {
@@ -265,6 +290,9 @@ func (o AWSProviderSettings) MarshalJSON() ([]byte, error) {
 	}
 	if o.VolumeType != nil {
 		toSerialize["volumeType"] = o.VolumeType
+	}
+	if true {
+		toSerialize["providerName"] = o.ProviderName
 	}
 	return json.Marshal(toSerialize)
 }
