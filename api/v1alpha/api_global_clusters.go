@@ -83,8 +83,8 @@ type GlobalClustersApi interface {
 	DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) GlobalClustersApiDeleteManagedNamespaceRequest
 
 	// DeleteManagedNamespaceExecute executes the request
-	//  @return GeoShardingView
-	DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoShardingView, *http.Response, error)
+	//  @return GeoSharding
+	DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	GetManagedNamespace Return One Managed Namespace in One Global Multi-Cloud Cluster
@@ -626,7 +626,7 @@ func (r GlobalClustersApiDeleteManagedNamespaceRequest) Collection(collection st
 	return r
 }
 
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Execute() (*GeoShardingView, *http.Response, error) {
+func (r GlobalClustersApiDeleteManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.DeleteManagedNamespaceExecute(r)
 }
 
@@ -650,13 +650,13 @@ func (a *GlobalClustersApiService) DeleteManagedNamespace(ctx context.Context, c
 }
 
 // Execute executes the request
-//  @return GeoShardingView
-func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoShardingView, *http.Response, error) {
+//  @return GeoSharding
+func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GeoShardingView
+		localVarReturnValue  *GeoSharding
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GlobalClustersApiService.DeleteManagedNamespace")
