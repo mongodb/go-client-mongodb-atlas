@@ -1,8 +1,6 @@
 const fs = require("fs");
 const { test, beforeEach, expect, jest: jestGlobal } = require("@jest/globals");
 const {
-  applyAllOfTransformations,
-  applyOneOfTransformations,
   applyModelNameTransformations,
   transformOneOf,
   transformAllOf
@@ -29,7 +27,7 @@ test("Transform oneOf model", () => {
 });
 
 test("Transform AllOf model", () => {
-  applyAllOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
+  transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
   expect(api.components.schemas.ApiAtlasRegionConfigView).toMatchInlineSnapshot(
     cases.ParentAllOf
   );
@@ -44,13 +42,14 @@ test("Fail Transform AllOf with duplicates", () => {
     ...api.components.schemas.ApiAtlasRegionConfigView.propertries,
   };
   global.console.warn = jestGlobal.fn();
-  applyAllOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
-  applyOneOfTransformations(".components.schemas.ApiAtlasRegionConfigView", api);
+  transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
+  transformOneOf(".components.schemas.ApiAtlasRegionConfigView", api);
   expect(console.warn).toBeCalled();
 });
 
 test("Fail Transform AllOf with wrong object structure", () => {
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
+  console.log(api.components.schemas.ApiAtlasRegionConfigView);
   expect(() =>
     transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api)
   ).toThrow(/Invalid object for AllOf Transformation/);

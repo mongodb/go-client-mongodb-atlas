@@ -107,7 +107,7 @@ function transformAllOf(objectPath, api) {
   const parentObject = getObjectFromYamlPath(objectPath, api);
   const parentName = getNameFromYamlPath(objectPath);
 
-  if (!(parentObject && parentObject.oneOf)) {
+  if (!isAllOfTransformable(parentObject)) {
     throw new Error(`Invalid object for AllOf Transformation: ${parentName}`);
   }
 

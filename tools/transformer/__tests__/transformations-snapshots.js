@@ -71,6 +71,7 @@ module.exports = {
       "type": "object",
     },
   },
+  "required": [],
   "title": "AWS Regional Replication Specifications",
   "type": "object",
 }
