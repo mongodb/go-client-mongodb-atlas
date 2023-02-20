@@ -21,7 +21,8 @@ type DefaultAlertConfigViewForNdsGroup struct {
 	Created *time.Time `json:"created,omitempty"`
 	// Flag that indicates whether someone enabled this alert configuration for the specified project.
 	Enabled *bool `json:"enabled,omitempty"`
-	EventTypeName DefaultAlertConfigViewForNdsGroupEventTypeName `json:"eventTypeName"`
+	// Incident that triggered this alert.
+	EventTypeName string `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project that owns this alert configuration.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this alert configuration.
@@ -121,9 +122,9 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeName() DefaultAlertConfigViewForNdsGroupEventTypeName {
+func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeName() string {
 	if o == nil {
-		var ret DefaultAlertConfigViewForNdsGroupEventTypeName
+		var ret string
 		return ret
 	}
 
@@ -132,7 +133,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeName() DefaultAlertConfi
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeNameOk() (*DefaultAlertConfigViewForNdsGroupEventTypeName, bool) {
+func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,7 +141,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeNameOk() (*DefaultAlertC
 }
 
 // SetEventTypeName sets field value
-func (o *DefaultAlertConfigViewForNdsGroup) SetEventTypeName(v DefaultAlertConfigViewForNdsGroupEventTypeName) {
+func (o *DefaultAlertConfigViewForNdsGroup) SetEventTypeName(v string) {
 	o.EventTypeName = v
 }
 
