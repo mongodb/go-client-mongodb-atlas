@@ -21,7 +21,8 @@ type DefaultEventViewForNdsGroup struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName DefaultEventViewForNdsGroupEventTypeName `json:"eventTypeName"`
+	// Unique identifier of event type.
+	EventTypeName string `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -117,9 +118,9 @@ func (o *DefaultEventViewForNdsGroup) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *DefaultEventViewForNdsGroup) GetEventTypeName() DefaultEventViewForNdsGroupEventTypeName {
+func (o *DefaultEventViewForNdsGroup) GetEventTypeName() string {
 	if o == nil {
-		var ret DefaultEventViewForNdsGroupEventTypeName
+		var ret string
 		return ret
 	}
 
@@ -128,7 +129,7 @@ func (o *DefaultEventViewForNdsGroup) GetEventTypeName() DefaultEventViewForNdsG
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *DefaultEventViewForNdsGroup) GetEventTypeNameOk() (*DefaultEventViewForNdsGroupEventTypeName, bool) {
+func (o *DefaultEventViewForNdsGroup) GetEventTypeNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,7 +137,7 @@ func (o *DefaultEventViewForNdsGroup) GetEventTypeNameOk() (*DefaultEventViewFor
 }
 
 // SetEventTypeName sets field value
-func (o *DefaultEventViewForNdsGroup) SetEventTypeName(v DefaultEventViewForNdsGroupEventTypeName) {
+func (o *DefaultEventViewForNdsGroup) SetEventTypeName(v string) {
 	o.EventTypeName = v
 }
 

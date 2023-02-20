@@ -48909,7 +48909,38 @@ components:
             for the specified project.
           type: boolean
         eventTypeName:
-          $ref: '#/components/schemas/DefaultAlertConfigViewForNdsGroup_eventTypeName'
+          description: Incident that triggered this alert.
+          enum:
+          - CREDIT_CARD_ABOUT_TO_EXPIRE
+          - CPS_SNAPSHOT_SUCCESSFUL
+          - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
+          - CPS_SNAPSHOT_FALLBACK_FAILED
+          - CPS_RESTORE_SUCCESSFUL
+          - CPS_EXPORT_SUCCESSFUL
+          - CPS_RESTORE_FAILED
+          - CPS_EXPORT_FAILED
+          - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
+          - FTS_INDEX_DELETION_FAILED
+          - FTS_INDEX_BUILD_COMPLETE
+          - FTS_INDEX_BUILD_FAILED
+          - USERS_WITHOUT_MULTI_FACTOR_AUTH
+          - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
+          - CLUSTER_INSTANCE_STOP_START
+          - CLUSTER_INSTANCE_RESYNC_REQUESTED
+          - CLUSTER_INSTANCE_UPDATE_REQUESTED
+          - SAMPLE_DATASET_LOAD_REQUESTED
+          - TENANT_UPGRADE_TO_SERVERLESS_SUCCESSFUL
+          - TENANT_UPGRADE_TO_SERVERLESS_FAILED
+          - MAINTENANCE_IN_ADVANCED
+          - MAINTENANCE_AUTO_DEFERRED
+          - MAINTENANCE_STARTED
+          - MAINTENANCE_NO_LONGER_NEEDED
+          - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
+          - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
+          - JOINED_GROUP
+          - REMOVED_FROM_GROUP
+          - USER_ROLES_CHANGED_AUDIT
+          type: string
         groupId:
           description: Unique 24-hexadecimal digit string that identifies the project
             that owns this alert configuration.
@@ -49004,7 +49035,49 @@ components:
           readOnly: true
           type: string
         eventTypeName:
-          $ref: '#/components/schemas/DefaultAlertViewForNdsGroup_eventTypeName'
+          description: Incident that triggered this alert.
+          enum:
+          - CREDIT_CARD_ABOUT_TO_EXPIRE
+          - PENDING_INVOICE_OVER_THRESHOLD
+          - DAILY_BILL_OVER_THRESHOLD
+          - CPS_SNAPSHOT_SUCCESSFUL
+          - CPS_SNAPSHOT_BEHIND
+          - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
+          - CPS_SNAPSHOT_FALLBACK_FAILED
+          - CPS_RESTORE_SUCCESSFUL
+          - CPS_EXPORT_SUCCESSFUL
+          - CPS_RESTORE_FAILED
+          - CPS_EXPORT_FAILED
+          - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
+          - AWS_ENCRYPTION_KEY_NEEDS_ROTATION
+          - AZURE_ENCRYPTION_KEY_NEEDS_ROTATION
+          - GCP_ENCRYPTION_KEY_NEEDS_ROTATION
+          - FTS_INDEX_DELETION_FAILED
+          - FTS_INDEX_BUILD_COMPLETE
+          - FTS_INDEX_BUILD_FAILED
+          - USERS_WITHOUT_MULTI_FACTOR_AUTH
+          - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
+          - CLUSTER_INSTANCE_STOP_START
+          - CLUSTER_INSTANCE_RESYNC_REQUESTED
+          - CLUSTER_INSTANCE_UPDATE_REQUESTED
+          - SAMPLE_DATASET_LOAD_REQUESTED
+          - TENANT_UPGRADE_TO_SERVERLESS_SUCCESSFUL
+          - TENANT_UPGRADE_TO_SERVERLESS_FAILED
+          - MAINTENANCE_IN_ADVANCED
+          - MAINTENANCE_AUTO_DEFERRED
+          - MAINTENANCE_STARTED
+          - MAINTENANCE_NO_LONGER_NEEDED
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK
+          - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK
+          - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
+          - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
+          - OUTSIDE_SERVERLESS_METRIC_THRESHOLD
+          - JOINED_GROUP
+          - REMOVED_FROM_GROUP
+          - USER_ROLES_CHANGED_AUDIT
+          readOnly: true
+          type: string
         groupId:
           description: Unique 24-hexadecimal digit string that identifies the project
             that owns this alert.
@@ -49111,7 +49184,148 @@ components:
           readOnly: true
           type: string
         eventTypeName:
-          $ref: '#/components/schemas/DefaultEventViewForNdsGroup_eventTypeName'
+          description: Unique identifier of event type.
+          enum:
+          - AUTO_INDEXING_ENABLED
+          - AUTO_INDEXING_DISABLED
+          - AUTO_INDEXING_INDEX_BUILD_SUBMITTED
+          - AUTO_INDEXING_SLOW_INDEX_BUILD
+          - AUTO_INDEXING_STALLED_INDEX_BUILD
+          - AUTO_INDEXING_FAILED_INDEX_BUILD
+          - AUTO_INDEXING_COMPLETED_INDEX_BUILD
+          - PEER_CREATED
+          - PEER_DELETED
+          - PEER_UPDATED
+          - AZURE_PEER_CREATED
+          - AZURE_PEER_UPDATED
+          - AZURE_PEER_ACTIVE
+          - AZURE_PEER_DELETED
+          - CLUSTER_CONNECTION_GET_DATABASES
+          - CLUSTER_CONNECTION_GET_DATABASE_COLLECTIONS
+          - CLUSTER_CONNECTION_GET_DATABASE_NAMESPACES
+          - CLUSTER_CONNECTION_AGGREGATE
+          - CLUSTER_CONNECTION_CREATE_COLLECTION
+          - CLUSTER_CONNECTION_SAMPLE_COLLECTION_FIELD_NAMES
+          - CPS_SNAPSHOT_SUCCESSFUL
+          - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
+          - CPS_SNAPSHOT_BEHIND
+          - CPS_SNAPSHOT_FALLBACK_FAILED
+          - CPS_RESTORE_SUCCESSFUL
+          - CPS_EXPORT_SUCCESSFUL
+          - CPS_RESTORE_FAILED
+          - CPS_EXPORT_FAILED
+          - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
+          - CPS_DATA_PROTECTION_ENABLE_REQUESTED
+          - CPS_DATA_PROTECTION_ENABLED
+          - CPS_DATA_PROTECTION_UPDATE_REQUESTED
+          - CPS_DATA_PROTECTION_UPDATED
+          - CPS_DATA_PROTECTION_DISABLE_REQUESTED
+          - CPS_DATA_PROTECTION_DISABLED
+          - CPS_RESTORE_REQUESTED_AUDIT
+          - CPS_SNAPSHOT_SCHEDULE_UPDATED_AUDIT
+          - CPS_SNAPSHOT_DELETED_AUDIT
+          - CPS_SNAPSHOT_RETENTION_MODIFIED_AUDIT
+          - CPS_SNAPSHOT_IN_PROGRESS_AUDIT
+          - CPS_SNAPSHOT_COMPLETED_AUDIT
+          - CPS_ON_DEMAND_SNAPSHOT_REQUESTED
+          - AWS_ENCRYPTION_KEY_ROTATED
+          - AWS_ENCRYPTION_KEY_NEEDS_ROTATION
+          - AZURE_ENCRYPTION_KEY_ROTATED
+          - AZURE_ENCRYPTION_KEY_NEEDS_ROTATION
+          - GCP_ENCRYPTION_KEY_ROTATED
+          - GCP_ENCRYPTION_KEY_NEEDS_ROTATION
+          - BUCKET_CREATED_AUDIT
+          - BUCKET_DELETED_AUDIT
+          - GCP_PEER_CREATED
+          - GCP_PEER_DELETED
+          - GCP_PEER_UPDATED
+          - GCP_PEER_ACTIVE
+          - GCP_PEER_INACTIVE
+          - DATA_EXPLORER_ENABLED
+          - DATA_EXPLORER_DISABLED
+          - CREDIT_CARD_ADDED
+          - CREDIT_CARD_UPDATED
+          - GROUP_DELETED
+          - GROUP_CREATED
+          - GROUP_MOVED
+          - GROUP_TEMPORARILY_ACTIVATED
+          - GROUP_ACTIVATED
+          - GROUP_LOCKED
+          - GROUP_SUSPENDED
+          - GROUP_FLUSHED
+          - GROUP_NAME_CHANGED
+          - GROUP_CHARTS_ACTIVATION_REQUESTED
+          - GROUP_CHARTS_ACTIVATED
+          - GROUP_CHARTS_UPGRADED
+          - GROUP_CHARTS_RESET
+          - PAID_IN_FULL
+          - DELINQUENT
+          - ALL_USERS_HAVE_MULTI_FACTOR_AUTH
+          - USERS_WITHOUT_MULTI_FACTOR_AUTH
+          - M0_CLUSTERS_PER_GROUP_WITHIN_LIMIT
+          - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
+          - INTEGRATION_CONFIGURED
+          - INTEGRATION_REMOVED
+          - ROLLING_INDEX_FAILED_INDEX_BUILD
+          - ROLLING_INDEX_SUCCESS_INDEX_BUILD
+          - INDEX_FAILED_INDEX_BUILD
+          - INDEX_SUCCESS_INDEX_BUILD
+          - MAINTENANCE_IN_ADVANCED
+          - MAINTENANCE_AUTO_DEFERRED
+          - MAINTENANCE_STARTED
+          - MAINTENANCE_NO_LONGER_NEEDED
+          - SERVERLESS_AUTO_SCALING_INITIATED
+          - SERVERLESS_VERTICAL_SCALING_INITIATED
+          - SERVERLESS_HORIZONTAL_SCALING_INITIATED
+          - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_CREATED
+          - TENANT_ENDPOINT_SERVICE_CREATED
+          - TENANT_ENDPOINT_SERVICE_AVAILABLE
+          - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETE_REQUESTED
+          - TENANT_ENDPOINT_SERVICE_DELETED
+          - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETED
+          - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_NUM_DESIRED_ENDPOINT_SERVICES_INCREASED
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_RESOLVED
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_RESOLVED
+          - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK
+          - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_RESOLVED
+          - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK
+          - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
+          - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_RESOLVED
+          - ONLINE_ARCHIVE_UP_TO_DATE
+          - ONLINE_ARCHIVE_DATA_EXPIRATION_RESOLVED
+          - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
+          - ENDPOINT_SERVICE_CREATED
+          - ENDPOINT_SERVICE_DELETED
+          - INTERFACE_ENDPOINT_CREATED
+          - INTERFACE_ENDPOINT_DELETED
+          - INTERFACE_ENDPOINT_PATCHED
+          - SERVERLESS_DEPLOYMENT_CREATED
+          - SERVERLESS_DEPLOYMENT_DELETED
+          - SERVERLESS_DEPLOYMENT_UPDATED
+          - SERVERLESS_DEPLOYMENT_INSTANCE_REPLACED
+          - SERVERLESS_DEPLOYMENT_INSTANCE_REBOOTED
+          - SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_LINKED
+          - SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_UNLINKED
+          - INSIDE_SERVERLESS_METRIC_THRESHOLD
+          - OUTSIDE_SERVERLESS_METRIC_THRESHOLD
+          - SETUP_SERVERLESS_INITIATED
+          - CASE_CREATED
+          - SUPPORT_EMAILS_SENT_SUCCESSFULLY
+          - SUPPORT_EMAILS_SENT_FAILURE
+          - TENANT_SNAPSHOT_STARTED_AUDIT
+          - TENANT_SNAPSHOT_COMPLETED_AUDIT
+          - TENANT_SNAPSHOT_DELETED_AUDIT
+          - TENANT_RESTORE_REQUESTED_AUDIT
+          - TENANT_RESTORE_COMPLETED_AUDIT
+          - TENANT_SNAPSHOT_DOWNLOAD_REQUESTED_AUDIT
+          - CLUSTER_VERSION_FIXED
+          - CLUSTER_VERSION_UNFIXED
+          - CLUSTER_FCV_FIXED
+          - CLUSTER_FCV_UNFIXED
+          - AGENT_VERSION_FIXED
+          - AGENT_VERSION_UNFIXED
+          type: string
         groupId:
           description: Unique 24-hexadecimal digit string that identifies the project
             in which the event occurred. The **eventId** identifies the specific event.
@@ -49220,7 +49434,66 @@ components:
           readOnly: true
           type: string
         eventTypeName:
-          $ref: '#/components/schemas/DefaultEventViewForOrg_eventTypeName'
+          description: Unique identifier of event type.
+          enum:
+          - FEDERATION_SETTINGS_CREATED
+          - FEDERATION_SETTINGS_DELETED
+          - FEDERATION_SETTINGS_UPDATED
+          - IDENTITY_PROVIDER_CREATED
+          - IDENTITY_PROVIDER_UPDATED
+          - IDENTITY_PROVIDER_DELETED
+          - IDENTITY_PROVIDER_ACTIVATED
+          - IDENTITY_PROVIDER_DEACTIVATED
+          - DOMAINS_ASSOCIATED
+          - DOMAIN_CREATED
+          - DOMAIN_DELETED
+          - DOMAIN_VERIFIED
+          - ORG_SETTINGS_CONFIGURED
+          - ORG_SETTINGS_UPDATED
+          - ORG_SETTINGS_DELETED
+          - RESTRICT_ORG_MEMBERSHIP_ENABLED
+          - RESTRICT_ORG_MEMBERSHIP_DISABLED
+          - ROLE_MAPPING_CREATED
+          - ROLE_MAPPING_UPDATED
+          - ROLE_MAPPING_DELETED
+          - GROUP_DELETED
+          - GROUP_CREATED
+          - GROUP_MOVED
+          - MLAB_MIGRATION_COMPLETED
+          - MLAB_MIGRATION_TARGET_CLUSTER_CREATED
+          - MLAB_MIGRATION_DATABASE_USERS_IMPORTED
+          - MLAB_MIGRATION_IP_WHITELIST_IMPORTED
+          - MLAB_MIGRATION_TARGET_CLUSTER_SET
+          - MLAB_MIGRATION_DATABASE_RENAMED
+          - MLAB_MIGRATION_LIVE_IMPORT_STARTED
+          - MLAB_MIGRATION_LIVE_IMPORT_READY_FOR_CUTOVER
+          - MLAB_MIGRATION_LIVE_IMPORT_CUTOVER_COMPLETE
+          - MLAB_MIGRATION_LIVE_IMPORT_ERROR
+          - MLAB_MIGRATION_LIVE_IMPORT_CANCELLED
+          - MLAB_MIGRATION_DUMP_AND_RESTORE_TEST_STARTED
+          - MLAB_MIGRATION_DUMP_AND_RESTORE_TEST_SKIPPED
+          - MLAB_MIGRATION_DUMP_AND_RESTORE_STARTED
+          - MLAB_MIGRATION_SUPPORT_PLAN_SELECTED
+          - MLAB_MIGRATION_SUPPORT_PLAN_OPTED_OUT
+          - AWS_SELF_SERVE_ACCOUNT_LINKED
+          - AWS_SELF_SERVE_ACCOUNT_LINK_PENDING
+          - AWS_SELF_SERVE_ACCOUNT_CANCELLED
+          - AWS_SELF_SERVE_ACCOUNT_LINK_FAILED
+          - GCP_SELF_SERVE_ACCOUNT_LINK_PENDING
+          - GCP_SELF_SERVE_ACCOUNT_LINK_FAILED
+          - AZURE_SELF_SERVE_ACCOUNT_LINKED
+          - AZURE_SELF_SERVE_ACCOUNT_LINK_PENDING
+          - AZURE_SELF_SERVE_ACCOUNT_CANCELLED
+          - AZURE_SELF_SERVE_ACCOUNT_LINK_FAILED
+          - GCP_SELF_SERVE_ACCOUNT_LINKED
+          - GCP_SELF_SERVE_ACCOUNT_CANCELLED
+          - ORG_POLICY_CREATED
+          - ORG_POLICY_DELETED
+          - ORG_POLICY_EDITED
+          - ORG_POLICY_CLONED
+          - SUPPORT_EMAILS_SENT_SUCCESSFULLY
+          - SUPPORT_EMAILS_SENT_FAILURE
+          type: string
         groupId:
           description: Unique 24-hexadecimal digit string that identifies the project
             in which the event occurred. The **eventId** identifies the specific event.
@@ -71804,443 +72077,6 @@ components:
           type: integer
       type: object
       example: null
-    DefaultAlertConfigViewForNdsGroup_eventTypeName:
-      description: Incident that triggered this alert.
-      oneOf:
-      - enum:
-        - CREDIT_CARD_ABOUT_TO_EXPIRE
-        title: Billing Event Types
-        type: string
-      - enum:
-        - CPS_SNAPSHOT_SUCCESSFUL
-        - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
-        - CPS_SNAPSHOT_FALLBACK_FAILED
-        - CPS_RESTORE_SUCCESSFUL
-        - CPS_EXPORT_SUCCESSFUL
-        - CPS_RESTORE_FAILED
-        - CPS_EXPORT_FAILED
-        - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
-        title: Cps Backup Event Types
-        type: string
-      - enum:
-        - FTS_INDEX_DELETION_FAILED
-        - FTS_INDEX_BUILD_COMPLETE
-        - FTS_INDEX_BUILD_FAILED
-        title: FTS Index Audit Types
-        type: string
-      - enum:
-        - USERS_WITHOUT_MULTI_FACTOR_AUTH
-        - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
-        title: Group Event Types
-        type: string
-      - enum:
-        - CLUSTER_INSTANCE_STOP_START
-        - CLUSTER_INSTANCE_RESYNC_REQUESTED
-        - CLUSTER_INSTANCE_UPDATE_REQUESTED
-        - SAMPLE_DATASET_LOAD_REQUESTED
-        - TENANT_UPGRADE_TO_SERVERLESS_SUCCESSFUL
-        - TENANT_UPGRADE_TO_SERVERLESS_FAILED
-        title: NDS Audit Types
-        type: string
-      - enum:
-        - MAINTENANCE_IN_ADVANCED
-        - MAINTENANCE_AUTO_DEFERRED
-        - MAINTENANCE_STARTED
-        - MAINTENANCE_NO_LONGER_NEEDED
-        title: NDS Maintenance Window Audit Types
-        type: string
-      - enum:
-        - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
-        - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
-        title: Online Archive Event Types
-        type: string
-      - enum:
-        - JOINED_GROUP
-        - REMOVED_FROM_GROUP
-        - USER_ROLES_CHANGED_AUDIT
-        title: User Event Types
-        type: string
-      type: object
-    DefaultAlertViewForNdsGroup_eventTypeName:
-      description: Incident that triggered this alert.
-      oneOf:
-      - enum:
-        - CREDIT_CARD_ABOUT_TO_EXPIRE
-        - PENDING_INVOICE_OVER_THRESHOLD
-        - DAILY_BILL_OVER_THRESHOLD
-        title: Billing Event Types
-        type: string
-      - enum:
-        - CPS_SNAPSHOT_SUCCESSFUL
-        - CPS_SNAPSHOT_BEHIND
-        - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
-        - CPS_SNAPSHOT_FALLBACK_FAILED
-        - CPS_RESTORE_SUCCESSFUL
-        - CPS_EXPORT_SUCCESSFUL
-        - CPS_RESTORE_FAILED
-        - CPS_EXPORT_FAILED
-        - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
-        title: Cps Backup Event Types
-        type: string
-      - enum:
-        - AWS_ENCRYPTION_KEY_NEEDS_ROTATION
-        - AZURE_ENCRYPTION_KEY_NEEDS_ROTATION
-        - GCP_ENCRYPTION_KEY_NEEDS_ROTATION
-        title: Encryption Event Types
-        type: string
-      - enum:
-        - FTS_INDEX_DELETION_FAILED
-        - FTS_INDEX_BUILD_COMPLETE
-        - FTS_INDEX_BUILD_FAILED
-        title: FTS Index Audit Types
-        type: string
-      - enum:
-        - USERS_WITHOUT_MULTI_FACTOR_AUTH
-        - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
-        title: Group Event Types
-        type: string
-      - enum:
-        - CLUSTER_INSTANCE_STOP_START
-        - CLUSTER_INSTANCE_RESYNC_REQUESTED
-        - CLUSTER_INSTANCE_UPDATE_REQUESTED
-        - SAMPLE_DATASET_LOAD_REQUESTED
-        - TENANT_UPGRADE_TO_SERVERLESS_SUCCESSFUL
-        - TENANT_UPGRADE_TO_SERVERLESS_FAILED
-        title: NDS Audit Types
-        type: string
-      - enum:
-        - MAINTENANCE_IN_ADVANCED
-        - MAINTENANCE_AUTO_DEFERRED
-        - MAINTENANCE_STARTED
-        - MAINTENANCE_NO_LONGER_NEEDED
-        title: NDS Maintenance Window Audit Types
-        type: string
-      - enum:
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK
-        - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK
-        title: NDS x509 User Auth Event Types
-        type: string
-      - enum:
-        - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
-        - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
-        title: Online Archive Event Types
-        type: string
-      - enum:
-        - OUTSIDE_SERVERLESS_METRIC_THRESHOLD
-        title: Serverless Event Types
-        type: string
-      - enum:
-        - JOINED_GROUP
-        - REMOVED_FROM_GROUP
-        - USER_ROLES_CHANGED_AUDIT
-        title: User Event Types
-        type: string
-      readOnly: true
-      type: object
-    DefaultEventViewForNdsGroup_eventTypeName:
-      description: Unique identifier of event type.
-      oneOf:
-      - enum:
-        - AUTO_INDEXING_ENABLED
-        - AUTO_INDEXING_DISABLED
-        - AUTO_INDEXING_INDEX_BUILD_SUBMITTED
-        - AUTO_INDEXING_SLOW_INDEX_BUILD
-        - AUTO_INDEXING_STALLED_INDEX_BUILD
-        - AUTO_INDEXING_FAILED_INDEX_BUILD
-        - AUTO_INDEXING_COMPLETED_INDEX_BUILD
-        title: Auto Indexing Event Types
-        type: string
-      - enum:
-        - PEER_CREATED
-        - PEER_DELETED
-        - PEER_UPDATED
-        title: AWS Peer Vpc Audit Types
-        type: string
-      - enum:
-        - AZURE_PEER_CREATED
-        - AZURE_PEER_UPDATED
-        - AZURE_PEER_ACTIVE
-        - AZURE_PEER_DELETED
-        title: Azure Peer Network Audit Types
-        type: string
-      - enum:
-        - CLUSTER_CONNECTION_GET_DATABASES
-        - CLUSTER_CONNECTION_GET_DATABASE_COLLECTIONS
-        - CLUSTER_CONNECTION_GET_DATABASE_NAMESPACES
-        - CLUSTER_CONNECTION_AGGREGATE
-        - CLUSTER_CONNECTION_CREATE_COLLECTION
-        - CLUSTER_CONNECTION_SAMPLE_COLLECTION_FIELD_NAMES
-        title: Cluster Connection Audit Types
-        type: string
-      - enum:
-        - CPS_SNAPSHOT_SUCCESSFUL
-        - CPS_SNAPSHOT_FALLBACK_SUCCESSFUL
-        - CPS_SNAPSHOT_BEHIND
-        - CPS_SNAPSHOT_FALLBACK_FAILED
-        - CPS_RESTORE_SUCCESSFUL
-        - CPS_EXPORT_SUCCESSFUL
-        - CPS_RESTORE_FAILED
-        - CPS_EXPORT_FAILED
-        - CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED
-        title: Cps Backup Event Types
-        type: string
-      - enum:
-        - CPS_DATA_PROTECTION_ENABLE_REQUESTED
-        - CPS_DATA_PROTECTION_ENABLED
-        - CPS_DATA_PROTECTION_UPDATE_REQUESTED
-        - CPS_DATA_PROTECTION_UPDATED
-        - CPS_DATA_PROTECTION_DISABLE_REQUESTED
-        - CPS_DATA_PROTECTION_DISABLED
-        title: Cps Backup Event Types
-        type: string
-      - enum:
-        - CPS_RESTORE_REQUESTED_AUDIT
-        - CPS_SNAPSHOT_SCHEDULE_UPDATED_AUDIT
-        - CPS_SNAPSHOT_DELETED_AUDIT
-        - CPS_SNAPSHOT_RETENTION_MODIFIED_AUDIT
-        - CPS_SNAPSHOT_IN_PROGRESS_AUDIT
-        - CPS_SNAPSHOT_COMPLETED_AUDIT
-        - CPS_ON_DEMAND_SNAPSHOT_REQUESTED
-        title: Disk Backup Event Types
-        type: string
-      - enum:
-        - AWS_ENCRYPTION_KEY_ROTATED
-        - AWS_ENCRYPTION_KEY_NEEDS_ROTATION
-        - AZURE_ENCRYPTION_KEY_ROTATED
-        - AZURE_ENCRYPTION_KEY_NEEDS_ROTATION
-        - GCP_ENCRYPTION_KEY_ROTATED
-        - GCP_ENCRYPTION_KEY_NEEDS_ROTATION
-        title: Encryption Event Types
-        type: string
-      - enum:
-        - BUCKET_CREATED_AUDIT
-        - BUCKET_DELETED_AUDIT
-        title: Export Bucket Audit Types
-        type: string
-      - enum:
-        - GCP_PEER_CREATED
-        - GCP_PEER_DELETED
-        - GCP_PEER_UPDATED
-        - GCP_PEER_ACTIVE
-        - GCP_PEER_INACTIVE
-        title: GCP Peer Vpc Audit Types
-        type: string
-      - enum:
-        - DATA_EXPLORER_ENABLED
-        - DATA_EXPLORER_DISABLED
-        - CREDIT_CARD_ADDED
-        - CREDIT_CARD_UPDATED
-        - GROUP_DELETED
-        - GROUP_CREATED
-        - GROUP_MOVED
-        - GROUP_TEMPORARILY_ACTIVATED
-        - GROUP_ACTIVATED
-        - GROUP_LOCKED
-        - GROUP_SUSPENDED
-        - GROUP_FLUSHED
-        - GROUP_NAME_CHANGED
-        - GROUP_CHARTS_ACTIVATION_REQUESTED
-        - GROUP_CHARTS_ACTIVATED
-        - GROUP_CHARTS_UPGRADED
-        - GROUP_CHARTS_RESET
-        title: Group Audit Types
-        type: string
-      - enum:
-        - PAID_IN_FULL
-        - DELINQUENT
-        - ALL_USERS_HAVE_MULTI_FACTOR_AUTH
-        - USERS_WITHOUT_MULTI_FACTOR_AUTH
-        - M0_CLUSTERS_PER_GROUP_WITHIN_LIMIT
-        - MAX_M0_CLUSTERS_PER_GROUP_EXCEEDED
-        title: Group Event Types
-        type: string
-      - enum:
-        - INTEGRATION_CONFIGURED
-        - INTEGRATION_REMOVED
-        title: Group Integration Event Types
-        type: string
-      - enum:
-        - ROLLING_INDEX_FAILED_INDEX_BUILD
-        - ROLLING_INDEX_SUCCESS_INDEX_BUILD
-        - INDEX_FAILED_INDEX_BUILD
-        - INDEX_SUCCESS_INDEX_BUILD
-        title: Index Build Audit Types
-        type: string
-      - enum:
-        - MAINTENANCE_IN_ADVANCED
-        - MAINTENANCE_AUTO_DEFERRED
-        - MAINTENANCE_STARTED
-        - MAINTENANCE_NO_LONGER_NEEDED
-        title: NDS Maintenance Window Audit Types
-        type: string
-      - enum:
-        - SERVERLESS_AUTO_SCALING_INITIATED
-        - SERVERLESS_VERTICAL_SCALING_INITIATED
-        - SERVERLESS_HORIZONTAL_SCALING_INITIATED
-        title: NDS Serverless Auto Scaling Audit Types
-        type: string
-      - enum:
-        - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_CREATED
-        - TENANT_ENDPOINT_SERVICE_CREATED
-        - TENANT_ENDPOINT_SERVICE_AVAILABLE
-        - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETE_REQUESTED
-        - TENANT_ENDPOINT_SERVICE_DELETED
-        - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETED
-        - TENANT_ENDPOINT_SERVICE_DEPLOYMENT_NUM_DESIRED_ENDPOINT_SERVICES_INCREASED
-        title: NDS Tenant Endpoint Service Deployment Audit Types
-        type: string
-      - enum:
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_RESOLVED
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_RESOLVED
-        - NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK
-        - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_RESOLVED
-        - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK
-        title: NDS x509 User Auth Event Types
-        type: string
-      - enum:
-        - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK
-        - ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_RESOLVED
-        - ONLINE_ARCHIVE_UP_TO_DATE
-        - ONLINE_ARCHIVE_DATA_EXPIRATION_RESOLVED
-        - ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK
-        title: Online Archive Event Types
-        type: string
-      - enum:
-        - ENDPOINT_SERVICE_CREATED
-        - ENDPOINT_SERVICE_DELETED
-        - INTERFACE_ENDPOINT_CREATED
-        - INTERFACE_ENDPOINT_DELETED
-        - INTERFACE_ENDPOINT_PATCHED
-        title: Private Link Audit Types
-        type: string
-      - enum:
-        - SERVERLESS_DEPLOYMENT_CREATED
-        - SERVERLESS_DEPLOYMENT_DELETED
-        - SERVERLESS_DEPLOYMENT_UPDATED
-        - SERVERLESS_DEPLOYMENT_INSTANCE_REPLACED
-        - SERVERLESS_DEPLOYMENT_INSTANCE_REBOOTED
-        - SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_LINKED
-        - SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_UNLINKED
-        title: Serverless Deployment Audit Types
-        type: string
-      - enum:
-        - INSIDE_SERVERLESS_METRIC_THRESHOLD
-        - OUTSIDE_SERVERLESS_METRIC_THRESHOLD
-        title: Serverless Event Types
-        type: string
-      - enum:
-        - SETUP_SERVERLESS_INITIATED
-        title: Setup Serverless Audit Types
-        type: string
-      - enum:
-        - CASE_CREATED
-        title: Support Case Event Types
-        type: string
-      - enum:
-        - SUPPORT_EMAILS_SENT_SUCCESSFULLY
-        - SUPPORT_EMAILS_SENT_FAILURE
-        title: Support Event Types
-        type: string
-      - enum:
-        - TENANT_SNAPSHOT_STARTED_AUDIT
-        - TENANT_SNAPSHOT_COMPLETED_AUDIT
-        - TENANT_SNAPSHOT_DELETED_AUDIT
-        - TENANT_RESTORE_REQUESTED_AUDIT
-        - TENANT_RESTORE_COMPLETED_AUDIT
-        - TENANT_SNAPSHOT_DOWNLOAD_REQUESTED_AUDIT
-        title: Tenant Backup Event Types
-        type: string
-      - enum:
-        - CLUSTER_VERSION_FIXED
-        - CLUSTER_VERSION_UNFIXED
-        - CLUSTER_FCV_FIXED
-        - CLUSTER_FCV_UNFIXED
-        - AGENT_VERSION_FIXED
-        - AGENT_VERSION_UNFIXED
-        title: Version Audit Types
-        type: string
-      type: object
-    DefaultEventViewForOrg_eventTypeName:
-      description: Unique identifier of event type.
-      oneOf:
-      - enum:
-        - FEDERATION_SETTINGS_CREATED
-        - FEDERATION_SETTINGS_DELETED
-        - FEDERATION_SETTINGS_UPDATED
-        - IDENTITY_PROVIDER_CREATED
-        - IDENTITY_PROVIDER_UPDATED
-        - IDENTITY_PROVIDER_DELETED
-        - IDENTITY_PROVIDER_ACTIVATED
-        - IDENTITY_PROVIDER_DEACTIVATED
-        - DOMAINS_ASSOCIATED
-        - DOMAIN_CREATED
-        - DOMAIN_DELETED
-        - DOMAIN_VERIFIED
-        - ORG_SETTINGS_CONFIGURED
-        - ORG_SETTINGS_UPDATED
-        - ORG_SETTINGS_DELETED
-        - RESTRICT_ORG_MEMBERSHIP_ENABLED
-        - RESTRICT_ORG_MEMBERSHIP_DISABLED
-        - ROLE_MAPPING_CREATED
-        - ROLE_MAPPING_UPDATED
-        - ROLE_MAPPING_DELETED
-        title: Federation Settings Event Types
-        type: string
-      - enum:
-        - GROUP_DELETED
-        - GROUP_CREATED
-        - GROUP_MOVED
-        title: Group Audit Types
-        type: string
-      - enum:
-        - MLAB_MIGRATION_COMPLETED
-        - MLAB_MIGRATION_TARGET_CLUSTER_CREATED
-        - MLAB_MIGRATION_DATABASE_USERS_IMPORTED
-        - MLAB_MIGRATION_IP_WHITELIST_IMPORTED
-        - MLAB_MIGRATION_TARGET_CLUSTER_SET
-        - MLAB_MIGRATION_DATABASE_RENAMED
-        - MLAB_MIGRATION_LIVE_IMPORT_STARTED
-        - MLAB_MIGRATION_LIVE_IMPORT_READY_FOR_CUTOVER
-        - MLAB_MIGRATION_LIVE_IMPORT_CUTOVER_COMPLETE
-        - MLAB_MIGRATION_LIVE_IMPORT_ERROR
-        - MLAB_MIGRATION_LIVE_IMPORT_CANCELLED
-        - MLAB_MIGRATION_DUMP_AND_RESTORE_TEST_STARTED
-        - MLAB_MIGRATION_DUMP_AND_RESTORE_TEST_SKIPPED
-        - MLAB_MIGRATION_DUMP_AND_RESTORE_STARTED
-        - MLAB_MIGRATION_SUPPORT_PLAN_SELECTED
-        - MLAB_MIGRATION_SUPPORT_PLAN_OPTED_OUT
-        title: Mlab Migration Audit Types
-        type: string
-      - enum:
-        - AWS_SELF_SERVE_ACCOUNT_LINKED
-        - AWS_SELF_SERVE_ACCOUNT_LINK_PENDING
-        - AWS_SELF_SERVE_ACCOUNT_CANCELLED
-        - AWS_SELF_SERVE_ACCOUNT_LINK_FAILED
-        - GCP_SELF_SERVE_ACCOUNT_LINK_PENDING
-        - GCP_SELF_SERVE_ACCOUNT_LINK_FAILED
-        - AZURE_SELF_SERVE_ACCOUNT_LINKED
-        - AZURE_SELF_SERVE_ACCOUNT_LINK_PENDING
-        - AZURE_SELF_SERVE_ACCOUNT_CANCELLED
-        - AZURE_SELF_SERVE_ACCOUNT_LINK_FAILED
-        - GCP_SELF_SERVE_ACCOUNT_LINKED
-        - GCP_SELF_SERVE_ACCOUNT_CANCELLED
-        title: Partner Event Types
-        type: string
-      - enum:
-        - ORG_POLICY_CREATED
-        - ORG_POLICY_DELETED
-        - ORG_POLICY_EDITED
-        - ORG_POLICY_CLONED
-        title: Policy Event Types
-        type: string
-      - enum:
-        - SUPPORT_EMAILS_SENT_SUCCESSFULLY
-        - SUPPORT_EMAILS_SENT_FAILURE
-        title: Support Event Types
-        type: string
-      type: object
     charFiltermapping_mappings:
       description: |-
         Comma-separated list of mappings. A mapping indicates that one character or group of characters should be substituted for another, using the following format:
