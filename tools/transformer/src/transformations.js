@@ -146,10 +146,15 @@ function transformOneOf(objectPath, api) {
   }
 
   // Expand references
-  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
-  const isEnum = childObjects.reduce((isEnum, childObject) => isEnum && childObject.enum, true);
+  const childObjects = parentObject.oneOf.map((childRef) =>
+    getObjectFromReference(childRef, api)
+  );
+  const isEnum = childObjects.reduce(
+    (isEnum, childObject) => isEnum && childObject.enum,
+    true
+  );
 
-  if(isEnum) {
+  if (isEnum) {
     transformOneOfEnum(parentObject, api);
   } else {
     transformOneOfObject(parentObject, api);
@@ -157,17 +162,17 @@ function transformOneOf(objectPath, api) {
 }
 
 function transformOneOfEnum(parentObject, api) {
-  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+  const childObjects = parentObject.oneOf.map((childRef) =>
+    getObjectFromReference(childRef, api)
+  );
 
-  if(!parentObject.enum) {
+  if (!parentObject.enum) {
     parentObject.enum = [];
   }
   parentObject.enum = new Set(parentObject.enum);
 
   for (let childObject of childObjects) {
-    console.debug(
-      `${childObject.title}: moving child enum values into parent`
-    );
+    console.debug(`${childObject.title}: moving child enum values into parent`);
     childObject.enum.forEach((enumValue) => parentObject.enum.add(enumValue));
     // Requires all enums to be same type
     parentObject.type = childObject.type;
@@ -181,15 +186,13 @@ function transformOneOfEnum(parentObject, api) {
 }
 
 function transformOneOfObject(parentObject, api) {
-  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+  const childObjects = parentObject.oneOf.map((childRef) =>
+    getObjectFromReference(childRef, api)
+  );
 
-  for(let childObject of childObjects) {
-    const childProperties = JSON.parse(
-      JSON.stringify(childObject.properties)
-    );
-    console.debug(
-      `${childObject.title}: moving child properties into parent`
-    );
+  for (let childObject of childObjects) {
+    const childProperties = JSON.parse(JSON.stringify(childObject.properties));
+    console.debug(`${childObject.title}: moving child properties into parent`);
     const duplicates = detectDuplicates([
       parentObject.properties,
       childProperties,
@@ -203,7 +206,7 @@ function transformOneOfObject(parentObject, api) {
     parentObject.properties = {
       ...parentObject.properties,
       ...childProperties,
-    }; 
+    };
   }
 
   // Remove invalid fields
@@ -216,15 +219,17 @@ function isAllOfTransformable(obj) {
 }
 
 function isOneOfTransformable(obj, api) {
-  if(!obj.oneOf) {
+  if (!obj.oneOf) {
     return false;
   }
 
-  if(obj[extensionKey] === extensionOneOfValue) {
+  if (obj[extensionKey] === extensionOneOfValue) {
     return true;
   }
 
-  const children = obj.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+  const children = obj.oneOf.map((childRef) =>
+    getObjectFromReference(childRef, api)
+  );
   const isEnum = children.reduce((isEnum, child) => isEnum && child.enum, true);
 
   return isEnum;
