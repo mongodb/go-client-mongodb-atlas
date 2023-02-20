@@ -27,7 +27,8 @@ type DefaultAlertViewForNdsGroup struct {
 	AlertConfigId string `json:"alertConfigId"`
 	// Date and time when MongoDB Cloud created this alert. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName DefaultAlertViewForNdsGroupEventTypeName `json:"eventTypeName"`
+	// Incident that triggered this alert.
+	EventTypeName string `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project that owns this alert.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this alert.
@@ -200,9 +201,9 @@ func (o *DefaultAlertViewForNdsGroup) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *DefaultAlertViewForNdsGroup) GetEventTypeName() DefaultAlertViewForNdsGroupEventTypeName {
+func (o *DefaultAlertViewForNdsGroup) GetEventTypeName() string {
 	if o == nil {
-		var ret DefaultAlertViewForNdsGroupEventTypeName
+		var ret string
 		return ret
 	}
 
@@ -211,7 +212,7 @@ func (o *DefaultAlertViewForNdsGroup) GetEventTypeName() DefaultAlertViewForNdsG
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *DefaultAlertViewForNdsGroup) GetEventTypeNameOk() (*DefaultAlertViewForNdsGroupEventTypeName, bool) {
+func (o *DefaultAlertViewForNdsGroup) GetEventTypeNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -219,7 +220,7 @@ func (o *DefaultAlertViewForNdsGroup) GetEventTypeNameOk() (*DefaultAlertViewFor
 }
 
 // SetEventTypeName sets field value
-func (o *DefaultAlertViewForNdsGroup) SetEventTypeName(v DefaultAlertViewForNdsGroupEventTypeName) {
+func (o *DefaultAlertViewForNdsGroup) SetEventTypeName(v string) {
 	o.EventTypeName = v
 }
 

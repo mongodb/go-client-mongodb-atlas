@@ -79,6 +79,9 @@ function getObjectFromReference(obj, api) {
 
   if (obj && obj["$ref"]) {
     const referenceName = getObjectNameFromReference(obj);
+    if(!api.components.schemas[referenceName]) {
+      throw new Error(`Invalid or missing reference: ${referenceName}`);
+    }
     return api.components.schemas[referenceName];
   }
 }

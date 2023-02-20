@@ -5,7 +5,6 @@ const {
   getObjectFromYamlPath,
   getObjectNameFromReference,
   detectDuplicates,
-  getAllObjectsWithProperty,
   getAllObjects,
   filterObjectProperties,
   flattenAllOfObject,
@@ -32,9 +31,6 @@ function applyAllOfTransformations(api) {
   );
 
   for (let { path, obj } of allOfTransformations) {
-    if (!obj || !path) {
-      throw new Error("Invalid transformation object");
-    }
     transformAllOf(path, api);
   }
   return api;
@@ -48,11 +44,9 @@ function applyAllOfTransformations(api) {
  * @returns OpenAPI JSON File
  */
 function applyOneOfTransformations(api) {
-  const oneOfTransformations = getAllObjectsWithProperty(
-    api,
-    extensionKey,
-    (_k, v) => v === extensionOneOfValue
-  );
+  const oneOfTransformations = getAllObjects(api, (obj) => {
+    return isOneOfTransformable(obj, api);
+  });
 
   console.info(
     "# OneOf transformations: ",
@@ -60,9 +54,6 @@ function applyOneOfTransformations(api) {
   );
 
   for (let { path, obj } of oneOfTransformations) {
-    if (!obj) {
-      throw new Error("Invalid transformation object");
-    }
     transformOneOf(path, api);
   }
   return api;
@@ -127,9 +118,9 @@ function transformAllOf(objectPath, api) {
   delete parentObject.properties;
   delete parentObject.required;
 
-  for (let obj of parentObject.oneOf) {
-    const childObject = getObjectFromReference(obj, api);
-    const childName = getObjectNameFromReference(obj);
+  for (let childRef of parentObject.oneOf) {
+    const childObject = getObjectFromReference(childRef, api);
+    const childName = getObjectNameFromReference(childRef);
 
     if (removeParentFromAllOf(childObject, parentObject, api)) {
       console.debug(
@@ -148,61 +139,71 @@ function transformAllOf(objectPath, api) {
 
 function transformOneOf(objectPath, api) {
   const parentObject = getObjectFromYamlPath(objectPath, api);
+  const parentName = getNameFromYamlPath(objectPath);
 
-  if (!(parentObject && parentObject.oneOf)) {
-    throw new Error(`Invalid object for OneOf Transformation: ${objectPath}`);
+  if (!parentObject.oneOf) {
+    throw new Error(`Invalid object for OneOf Transformation: ${parentName}`);
   }
 
-  for (const objRef of parentObject.oneOf) {
-    const oneOfObject = getObjectFromReference(objRef, api);
-    if (!oneOfObject) {
-      const errorData = JSON.stringify(oneOfObject);
-      throw new Error(`Invalid or missing reference: ${errorData}`);
-    }
+  // Expand references
+  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+  const isEnum = childObjects.reduce((isEnum, childObject) => isEnum && childObject.enum, true);
 
-    if (oneOfObject.properties && oneOfObject.enum) {
-      const errorData = JSON.stringify(oneOfObject);
-      throw new Error(
-        `Object cannot contain both enum and properties: ${errorData}`
-      );
-    }
+  if(isEnum) {
+    transformOneOfEnum(parentObject, api);
+  } else {
+    transformOneOfObject(parentObject, api);
+  }
+}
 
-    // Handle properties
-    if (oneOfObject.properties) {
-      const propertiesOneOf = JSON.parse(
-        JSON.stringify(oneOfObject.properties)
-      );
-      console.debug(
-        `${oneOfObject.title}: moving child properties into parent`
-      );
-      const duplicates = detectDuplicates([
-        parentObject.properties,
-        propertiesOneOf,
-      ]);
-      if (duplicates.length > 0) {
-        const duplicatesSource = oneOfObject.title || "";
-        console.warn(
-          `## ${duplicatesSource} - Detected properties that would be overriden: ${duplicates}\n`
-        );
-      }
-      parentObject.properties = {
-        ...parentObject.properties,
-        ...propertiesOneOf,
-      };
-    }
+function transformOneOfEnum(parentObject, api) {
+  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
 
-    if (oneOfObject.enum) {
-      console.debug(
-        `${oneOfObject.title}: moving child enum values into parent`
+  if(!parentObject.enum) {
+    parentObject.enum = [];
+  }
+  parentObject.enum = new Set(parentObject.enum);
+
+  for (let childObject of childObjects) {
+    console.debug(
+      `${childObject.title}: moving child enum values into parent`
+    );
+    childObject.enum.forEach((enumValue) => parentObject.enum.add(enumValue));
+    // Requires all enums to be same type
+    parentObject.type = childObject.type;
+  }
+
+  parentObject.enum = [...parentObject.enum];
+
+  // Remove invalid fields
+  delete parentObject.discriminator;
+  delete parentObject.oneOf;
+}
+
+function transformOneOfObject(parentObject, api) {
+  const childObjects = parentObject.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+
+  for(let childObject of childObjects) {
+    const childProperties = JSON.parse(
+      JSON.stringify(childObject.properties)
+    );
+    console.debug(
+      `${childObject.title}: moving child properties into parent`
+    );
+    const duplicates = detectDuplicates([
+      parentObject.properties,
+      childProperties,
+    ]);
+    if (duplicates.length > 0) {
+      const duplicatesSource = childObject.title || "";
+      console.warn(
+        `## ${duplicatesSource} - Detected properties that would be overriden: ${duplicates}\n`
       );
-      if (!parentObject.enum) {
-        parentObject.enum = [];
-      }
-      parentObject.enum = parentObject.enum.concat(oneOfObject.enum);
-      parentObject.enum = [...new Set(parentObject.enum)];
-      // Requires all enums to be same type
-      parentObject.type = oneOfObject.type;
     }
+    parentObject.properties = {
+      ...parentObject.properties,
+      ...childProperties,
+    }; 
   }
 
   // Remove invalid fields
@@ -212,6 +213,21 @@ function transformOneOf(objectPath, api) {
 
 function isAllOfTransformable(obj) {
   return obj.properties && obj.oneOf;
+}
+
+function isOneOfTransformable(obj, api) {
+  if(!obj.oneOf) {
+    return false;
+  }
+
+  if(obj[extensionKey] === extensionOneOfValue) {
+    return true;
+  }
+
+  const children = obj.oneOf.map((childRef) => getObjectFromReference(childRef, api));
+  const isEnum = children.reduce((isEnum, child) => isEnum && child.enum, true);
+
+  return isEnum;
 }
 
 function getObjectProperties(obj) {
