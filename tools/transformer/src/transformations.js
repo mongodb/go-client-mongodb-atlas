@@ -45,7 +45,7 @@ function applyAllOfTransformations(api) {
  */
 function applyOneOfTransformations(api) {
   const oneOfTransformations = getAllObjects(api, (obj) => {
-    return isOneOfTransformable(obj, api);
+    return canApplyOneOfTransformation(obj, api);
   });
 
   console.info(
@@ -98,6 +98,7 @@ function applyModelNameTransformations(api, prefix, suffix) {
   return api;
 }
 
+// Moves all the properties of the parent into the children
 function transformAllOf(objectPath, api) {
   const parentObject = getObjectFromYamlPath(objectPath, api);
   const parentName = getNameFromYamlPath(objectPath);
@@ -137,6 +138,7 @@ function transformAllOf(objectPath, api) {
   }
 }
 
+// Moves all the properties/enum values of the children into the parent
 function transformOneOf(objectPath, api) {
   const parentObject = getObjectFromYamlPath(objectPath, api);
   const parentName = getNameFromYamlPath(objectPath);
@@ -157,10 +159,11 @@ function transformOneOf(objectPath, api) {
   if (isEnum) {
     transformOneOfEnum(parentObject, api);
   } else {
-    transformOneOfObject(parentObject, api);
+    transformOneOfProperties(parentObject, api);
   }
 }
 
+// Moves all the enum values of the children into the parent
 function transformOneOfEnum(parentObject, api) {
   const childObjects = parentObject.oneOf.map((childRef) =>
     getObjectFromReference(childRef, api)
@@ -185,7 +188,8 @@ function transformOneOfEnum(parentObject, api) {
   delete parentObject.oneOf;
 }
 
-function transformOneOfObject(parentObject, api) {
+// Moves all the propertis of the children into the parent
+function transformOneOfProperties(parentObject, api) {
   const childObjects = parentObject.oneOf.map((childRef) =>
     getObjectFromReference(childRef, api)
   );
@@ -218,7 +222,7 @@ function isAllOfTransformable(obj) {
   return obj.properties && obj.oneOf;
 }
 
-function isOneOfTransformable(obj, api) {
+function canApplyOneOfTransformation(obj, api) {
   if (!obj.oneOf) {
     return false;
   }

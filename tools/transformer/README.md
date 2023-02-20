@@ -22,7 +22,7 @@ OPENAPI_FILE=openapi.yaml node ./transform.js
 ## Implemented transformations
 
 1. oneOf transformation
-Appliet to all objects that meet either of the following criteria:
+   Applied to all objects that meet either of the following criteria:
 
 > Have extension "x-xgen-go-transform": "oneOfMerge"
 > Have "oneOf" field and all the objects referenced are enums
