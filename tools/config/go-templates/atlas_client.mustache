@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"runtime"
+	"strings"
 
 	"github.com/mongodb-forks/digest"
 	"go.mongodb.org/atlas/mongodbatlas"
@@ -75,8 +76,9 @@ func UseDebug(debug bool) ClientModifier {
 // UseBaseURL set custom base url.
 func UseBaseURL(baseURL string) ClientModifier {
 	return func(c *Configuration) error {
+		urlWithoutSuffix := strings.TrimSuffix(baseURL, "/")
 		c.Servers = ServerConfigurations{ServerConfiguration{
-			URL: baseURL,
+			URL: urlWithoutSuffix,
 		}}
 		return nil
 	}
