@@ -24,11 +24,12 @@ const orgsBasePath = "api/atlas/v1.0/orgs"
 
 // OrganizationsService provides access to the organization related functions in the Atlas API.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/organizations/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations
 type OrganizationsService interface {
 	List(context.Context, *OrganizationsListOptions) (*Organizations, *Response, error)
 	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
 	Get(context.Context, string) (*Organization, *Response, error)
+	Create(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, *Response, error)
 	Invitation(context.Context, string, string) (*Invitation, *Response, error)
 	Projects(context.Context, string, *ProjectsListOptions) (*Projects, *Response, error)
 	Users(context.Context, string, *ListOptions) (*AtlasUsersResponse, *Response, error)
@@ -70,6 +71,20 @@ type Organizations struct {
 	Links      []*Link         `json:"links"`
 	Results    []*Organization `json:"results"`
 	TotalCount int             `json:"totalCount"`
+}
+
+// CreateOrganizationRequest struct for CreateOrganizationRequest.
+type CreateOrganizationRequest struct {
+	APIKey     *APIKeyInput `json:"apiKey,omitempty"`
+	Name       string       `json:"name"`
+	OrgOwnerID string       `json:"orgOwnerId"`
+}
+
+// CreateOrganizationResponse struct for CreateOrganizationResponse.
+type CreateOrganizationResponse struct {
+	APIKey       *APIKey       `json:"apiKey,omitempty"`
+	OrgOwnerID   *string       `json:"orgOwnerId,omitempty"`
+	Organization *Organization `json:"organization,omitempty"`
 }
 
 // List gets all organizations.
@@ -197,4 +212,26 @@ func (s *OrganizationsServiceOp) Delete(ctx context.Context, orgID string) (*Res
 	resp, err := s.Client.Do(ctx, req, nil)
 
 	return resp, err
+}
+
+// Create creates an organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/createOrganization
+func (s *OrganizationsServiceOp) Create(ctx context.Context, request *CreateOrganizationRequest) (*CreateOrganizationResponse, *Response, error) {
+	if request == nil {
+		return nil, nil, NewArgError("request", "must be set")
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPost, orgsBasePath, request)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CreateOrganizationResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, nil
 }
