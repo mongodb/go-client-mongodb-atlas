@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AppServiceMetricThresholdView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AppServiceMetricThresholdView{}
+
 // AppServiceMetricThresholdView Threshold for the metric that, when exceeded, triggers an alert. The metric threshold pertains to event types which reflects changes of measurements and metrics in the app services.
 type AppServiceMetricThresholdView struct {
 	// Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
@@ -46,7 +49,7 @@ func NewAppServiceMetricThresholdViewWithDefaults() *AppServiceMetricThresholdVi
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *AppServiceMetricThresholdView) GetMetricName() string {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		var ret string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *AppServiceMetricThresholdView) GetMetricName() string {
 // GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricThresholdView) GetMetricNameOk() (*string, bool) {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		return nil, false
 	}
 	return o.MetricName, true
@@ -64,7 +67,7 @@ func (o *AppServiceMetricThresholdView) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *AppServiceMetricThresholdView) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
+	if o != nil && !IsNil(o.MetricName) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *AppServiceMetricThresholdView) SetMetricName(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *AppServiceMetricThresholdView) GetMode() string {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *AppServiceMetricThresholdView) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricThresholdView) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -96,7 +99,7 @@ func (o *AppServiceMetricThresholdView) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *AppServiceMetricThresholdView) HasMode() bool {
-	if o != nil && o.Mode != nil {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *AppServiceMetricThresholdView) SetMode(v string) {
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *AppServiceMetricThresholdView) GetOperator() Operator {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		var ret Operator
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *AppServiceMetricThresholdView) GetOperator() Operator {
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricThresholdView) GetOperatorOk() (*Operator, bool) {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
 	return o.Operator, true
@@ -128,7 +131,7 @@ func (o *AppServiceMetricThresholdView) GetOperatorOk() (*Operator, bool) {
 
 // HasOperator returns a boolean if a field has been set.
 func (o *AppServiceMetricThresholdView) HasOperator() bool {
-	if o != nil && o.Operator != nil {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *AppServiceMetricThresholdView) SetOperator(v Operator) {
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
 func (o *AppServiceMetricThresholdView) GetThreshold() float64 {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		var ret float64
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *AppServiceMetricThresholdView) GetThreshold() float64 {
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricThresholdView) GetThresholdOk() (*float64, bool) {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
 	return o.Threshold, true
@@ -160,7 +163,7 @@ func (o *AppServiceMetricThresholdView) GetThresholdOk() (*float64, bool) {
 
 // HasThreshold returns a boolean if a field has been set.
 func (o *AppServiceMetricThresholdView) HasThreshold() bool {
-	if o != nil && o.Threshold != nil {
+	if o != nil && !IsNil(o.Threshold) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *AppServiceMetricThresholdView) SetThreshold(v float64) {
 
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *AppServiceMetricThresholdView) GetUnits() string {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret string
 		return ret
 	}
@@ -184,7 +187,7 @@ func (o *AppServiceMetricThresholdView) GetUnits() string {
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricThresholdView) GetUnitsOk() (*string, bool) {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
 	return o.Units, true
@@ -192,7 +195,7 @@ func (o *AppServiceMetricThresholdView) GetUnitsOk() (*string, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *AppServiceMetricThresholdView) HasUnits() bool {
-	if o != nil && o.Units != nil {
+	if o != nil && !IsNil(o.Units) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *AppServiceMetricThresholdView) SetUnits(v string) {
 }
 
 func (o AppServiceMetricThresholdView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MetricName != nil {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if o.Mode != nil {
-		toSerialize["mode"] = o.Mode
-	}
-	if o.Operator != nil {
-		toSerialize["operator"] = o.Operator
-	}
-	if o.Threshold != nil {
-		toSerialize["threshold"] = o.Threshold
-	}
-	if o.Units != nil {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AppServiceMetricThresholdView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MetricName) {
+		toSerialize["metricName"] = o.MetricName
+	}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
+	}
+	if !IsNil(o.Threshold) {
+		toSerialize["threshold"] = o.Threshold
+	}
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	return toSerialize, nil
 }
 
 type NullableAppServiceMetricThresholdView struct {

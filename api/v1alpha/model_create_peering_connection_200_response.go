@@ -47,58 +47,58 @@ func GCPPeerVpcAsCreatePeeringConnection200Response(v *GCPPeerVpc) CreatePeering
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreatePeeringConnection200Response) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into AWSPeerVpc
-        err = json.Unmarshal(data, &dst.AWSPeerVpc)
-        if err == nil {
-                jsonAWSPeerVpc, _ := json.Marshal(dst.AWSPeerVpc)
-                if string(jsonAWSPeerVpc) == "{}" { // empty struct
-                        dst.AWSPeerVpc = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AWSPeerVpc = nil
-        }
+	match := 0
+	// try to unmarshal data into AWSPeerVpc
+	err = json.Unmarshal(data, &dst.AWSPeerVpc)
+	if err == nil {
+		jsonAWSPeerVpc, _ := json.Marshal(dst.AWSPeerVpc)
+		if string(jsonAWSPeerVpc) == "{}" { // empty struct
+			dst.AWSPeerVpc = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AWSPeerVpc = nil
+	}
 
-        // try to unmarshal data into AzurePeerNetwork
-        err = json.Unmarshal(data, &dst.AzurePeerNetwork)
-        if err == nil {
-                jsonAzurePeerNetwork, _ := json.Marshal(dst.AzurePeerNetwork)
-                if string(jsonAzurePeerNetwork) == "{}" { // empty struct
-                        dst.AzurePeerNetwork = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AzurePeerNetwork = nil
-        }
+	// try to unmarshal data into AzurePeerNetwork
+	err = json.Unmarshal(data, &dst.AzurePeerNetwork)
+	if err == nil {
+		jsonAzurePeerNetwork, _ := json.Marshal(dst.AzurePeerNetwork)
+		if string(jsonAzurePeerNetwork) == "{}" { // empty struct
+			dst.AzurePeerNetwork = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AzurePeerNetwork = nil
+	}
 
-        // try to unmarshal data into GCPPeerVpc
-        err = json.Unmarshal(data, &dst.GCPPeerVpc)
-        if err == nil {
-                jsonGCPPeerVpc, _ := json.Marshal(dst.GCPPeerVpc)
-                if string(jsonGCPPeerVpc) == "{}" { // empty struct
-                        dst.GCPPeerVpc = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.GCPPeerVpc = nil
-        }
+	// try to unmarshal data into GCPPeerVpc
+	err = json.Unmarshal(data, &dst.GCPPeerVpc)
+	if err == nil {
+		jsonGCPPeerVpc, _ := json.Marshal(dst.GCPPeerVpc)
+		if string(jsonGCPPeerVpc) == "{}" { // empty struct
+			dst.GCPPeerVpc = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GCPPeerVpc = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.AWSPeerVpc = nil
-                dst.AzurePeerNetwork = nil
-                dst.GCPPeerVpc = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AWSPeerVpc = nil
+		dst.AzurePeerNetwork = nil
+		dst.GCPPeerVpc = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(CreatePeeringConnection200Response)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(CreatePeeringConnection200Response)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(CreatePeeringConnection200Response)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(CreatePeeringConnection200Response)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

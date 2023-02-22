@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiNamespaceObjView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiNamespaceObjView{}
+
 // ApiNamespaceObjView Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
 type ApiNamespaceObjView struct {
 	// Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.
@@ -41,7 +44,7 @@ func NewApiNamespaceObjViewWithDefaults() *ApiNamespaceObjView {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ApiNamespaceObjView) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiNamespaceObjView) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiNamespaceObjView) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -59,7 +62,7 @@ func (o *ApiNamespaceObjView) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ApiNamespaceObjView) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiNamespaceObjView) SetNamespace(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiNamespaceObjView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiNamespaceObjView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiNamespaceObjView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -91,7 +94,7 @@ func (o *ApiNamespaceObjView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiNamespaceObjView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiNamespaceObjView) SetType(v string) {
 }
 
 func (o ApiNamespaceObjView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Namespace != nil {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiNamespaceObjView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: namespace is readOnly
+	// skip: type is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiNamespaceObjView struct {

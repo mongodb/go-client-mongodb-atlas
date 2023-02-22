@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DiskBackupSnapshot type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupSnapshot{}
+
 // DiskBackupSnapshot struct for DiskBackupSnapshot
 type DiskBackupSnapshot struct {
 	// Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -64,7 +67,7 @@ func NewDiskBackupSnapshotWithDefaults() *DiskBackupSnapshot {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -74,7 +77,7 @@ func (o *DiskBackupSnapshot) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -82,7 +85,7 @@ func (o *DiskBackupSnapshot) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *DiskBackupSnapshot) SetCreatedAt(v time.Time) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -106,7 +109,7 @@ func (o *DiskBackupSnapshot) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -114,7 +117,7 @@ func (o *DiskBackupSnapshot) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -128,7 +131,7 @@ func (o *DiskBackupSnapshot) SetDescription(v string) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -138,7 +141,7 @@ func (o *DiskBackupSnapshot) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -146,7 +149,7 @@ func (o *DiskBackupSnapshot) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *DiskBackupSnapshot) SetExpiresAt(v time.Time) {
 
 // GetFrequencyType returns the FrequencyType field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetFrequencyType() string {
-	if o == nil || o.FrequencyType == nil {
+	if o == nil || IsNil(o.FrequencyType) {
 		var ret string
 		return ret
 	}
@@ -170,7 +173,7 @@ func (o *DiskBackupSnapshot) GetFrequencyType() string {
 // GetFrequencyTypeOk returns a tuple with the FrequencyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetFrequencyTypeOk() (*string, bool) {
-	if o == nil || o.FrequencyType == nil {
+	if o == nil || IsNil(o.FrequencyType) {
 		return nil, false
 	}
 	return o.FrequencyType, true
@@ -178,7 +181,7 @@ func (o *DiskBackupSnapshot) GetFrequencyTypeOk() (*string, bool) {
 
 // HasFrequencyType returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasFrequencyType() bool {
-	if o != nil && o.FrequencyType != nil {
+	if o != nil && !IsNil(o.FrequencyType) {
 		return true
 	}
 
@@ -192,7 +195,7 @@ func (o *DiskBackupSnapshot) SetFrequencyType(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -202,7 +205,7 @@ func (o *DiskBackupSnapshot) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -210,7 +213,7 @@ func (o *DiskBackupSnapshot) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -224,7 +227,7 @@ func (o *DiskBackupSnapshot) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -234,7 +237,7 @@ func (o *DiskBackupSnapshot) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -242,7 +245,7 @@ func (o *DiskBackupSnapshot) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *DiskBackupSnapshot) SetLinks(v []Link) {
 
 // GetMasterKeyUUID returns the MasterKeyUUID field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetMasterKeyUUID() string {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		var ret string
 		return ret
 	}
@@ -266,7 +269,7 @@ func (o *DiskBackupSnapshot) GetMasterKeyUUID() string {
 // GetMasterKeyUUIDOk returns a tuple with the MasterKeyUUID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetMasterKeyUUIDOk() (*string, bool) {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		return nil, false
 	}
 	return o.MasterKeyUUID, true
@@ -274,7 +277,7 @@ func (o *DiskBackupSnapshot) GetMasterKeyUUIDOk() (*string, bool) {
 
 // HasMasterKeyUUID returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasMasterKeyUUID() bool {
-	if o != nil && o.MasterKeyUUID != nil {
+	if o != nil && !IsNil(o.MasterKeyUUID) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *DiskBackupSnapshot) SetMasterKeyUUID(v string) {
 
 // GetMongodVersion returns the MongodVersion field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetMongodVersion() string {
-	if o == nil || o.MongodVersion == nil {
+	if o == nil || IsNil(o.MongodVersion) {
 		var ret string
 		return ret
 	}
@@ -298,7 +301,7 @@ func (o *DiskBackupSnapshot) GetMongodVersion() string {
 // GetMongodVersionOk returns a tuple with the MongodVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetMongodVersionOk() (*string, bool) {
-	if o == nil || o.MongodVersion == nil {
+	if o == nil || IsNil(o.MongodVersion) {
 		return nil, false
 	}
 	return o.MongodVersion, true
@@ -306,7 +309,7 @@ func (o *DiskBackupSnapshot) GetMongodVersionOk() (*string, bool) {
 
 // HasMongodVersion returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasMongodVersion() bool {
-	if o != nil && o.MongodVersion != nil {
+	if o != nil && !IsNil(o.MongodVersion) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *DiskBackupSnapshot) SetMongodVersion(v string) {
 
 // GetPolicyItems returns the PolicyItems field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetPolicyItems() []string {
-	if o == nil || o.PolicyItems == nil {
+	if o == nil || IsNil(o.PolicyItems) {
 		var ret []string
 		return ret
 	}
@@ -330,7 +333,7 @@ func (o *DiskBackupSnapshot) GetPolicyItems() []string {
 // GetPolicyItemsOk returns a tuple with the PolicyItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetPolicyItemsOk() ([]string, bool) {
-	if o == nil || o.PolicyItems == nil {
+	if o == nil || IsNil(o.PolicyItems) {
 		return nil, false
 	}
 	return o.PolicyItems, true
@@ -338,7 +341,7 @@ func (o *DiskBackupSnapshot) GetPolicyItemsOk() ([]string, bool) {
 
 // HasPolicyItems returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasPolicyItems() bool {
-	if o != nil && o.PolicyItems != nil {
+	if o != nil && !IsNil(o.PolicyItems) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *DiskBackupSnapshot) SetPolicyItems(v []string) {
 
 // GetSnapshotType returns the SnapshotType field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetSnapshotType() string {
-	if o == nil || o.SnapshotType == nil {
+	if o == nil || IsNil(o.SnapshotType) {
 		var ret string
 		return ret
 	}
@@ -362,7 +365,7 @@ func (o *DiskBackupSnapshot) GetSnapshotType() string {
 // GetSnapshotTypeOk returns a tuple with the SnapshotType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetSnapshotTypeOk() (*string, bool) {
-	if o == nil || o.SnapshotType == nil {
+	if o == nil || IsNil(o.SnapshotType) {
 		return nil, false
 	}
 	return o.SnapshotType, true
@@ -370,7 +373,7 @@ func (o *DiskBackupSnapshot) GetSnapshotTypeOk() (*string, bool) {
 
 // HasSnapshotType returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasSnapshotType() bool {
-	if o != nil && o.SnapshotType != nil {
+	if o != nil && !IsNil(o.SnapshotType) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *DiskBackupSnapshot) SetSnapshotType(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -394,7 +397,7 @@ func (o *DiskBackupSnapshot) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -402,7 +405,7 @@ func (o *DiskBackupSnapshot) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *DiskBackupSnapshot) SetStatus(v string) {
 
 // GetStorageSizeBytes returns the StorageSizeBytes field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetStorageSizeBytes() int64 {
-	if o == nil || o.StorageSizeBytes == nil {
+	if o == nil || IsNil(o.StorageSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -426,7 +429,7 @@ func (o *DiskBackupSnapshot) GetStorageSizeBytes() int64 {
 // GetStorageSizeBytesOk returns a tuple with the StorageSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetStorageSizeBytesOk() (*int64, bool) {
-	if o == nil || o.StorageSizeBytes == nil {
+	if o == nil || IsNil(o.StorageSizeBytes) {
 		return nil, false
 	}
 	return o.StorageSizeBytes, true
@@ -434,7 +437,7 @@ func (o *DiskBackupSnapshot) GetStorageSizeBytesOk() (*int64, bool) {
 
 // HasStorageSizeBytes returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasStorageSizeBytes() bool {
-	if o != nil && o.StorageSizeBytes != nil {
+	if o != nil && !IsNil(o.StorageSizeBytes) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *DiskBackupSnapshot) SetStorageSizeBytes(v int64) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DiskBackupSnapshot) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -458,7 +461,7 @@ func (o *DiskBackupSnapshot) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshot) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -466,7 +469,7 @@ func (o *DiskBackupSnapshot) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *DiskBackupSnapshot) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -479,47 +482,29 @@ func (o *DiskBackupSnapshot) SetType(v string) {
 }
 
 func (o DiskBackupSnapshot) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.ExpiresAt != nil {
-		toSerialize["expiresAt"] = o.ExpiresAt
-	}
-	if o.FrequencyType != nil {
-		toSerialize["frequencyType"] = o.FrequencyType
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MasterKeyUUID != nil {
-		toSerialize["masterKeyUUID"] = o.MasterKeyUUID
-	}
-	if o.MongodVersion != nil {
-		toSerialize["mongodVersion"] = o.MongodVersion
-	}
-	if o.PolicyItems != nil {
-		toSerialize["policyItems"] = o.PolicyItems
-	}
-	if o.SnapshotType != nil {
-		toSerialize["snapshotType"] = o.SnapshotType
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.StorageSizeBytes != nil {
-		toSerialize["storageSizeBytes"] = o.StorageSizeBytes
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupSnapshot) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: createdAt is readOnly
+	// skip: description is readOnly
+	// skip: expiresAt is readOnly
+	// skip: frequencyType is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: masterKeyUUID is readOnly
+	// skip: mongodVersion is readOnly
+	// skip: policyItems is readOnly
+	// skip: snapshotType is readOnly
+	// skip: status is readOnly
+	// skip: storageSizeBytes is readOnly
+	// skip: type is readOnly
+	return toSerialize, nil
 }
 
 type NullableDiskBackupSnapshot struct {

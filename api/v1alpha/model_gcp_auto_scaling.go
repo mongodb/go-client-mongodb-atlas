@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPAutoScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPAutoScaling{}
+
 // GCPAutoScaling Range of instance sizes to which your cluster can scale.
 type GCPAutoScaling struct {
 	Compute *GCPComputeAutoScaling `json:"compute,omitempty"`
@@ -38,7 +41,7 @@ func NewGCPAutoScalingWithDefaults() *GCPAutoScaling {
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *GCPAutoScaling) GetCompute() GCPComputeAutoScaling {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		var ret GCPComputeAutoScaling
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *GCPAutoScaling) GetCompute() GCPComputeAutoScaling {
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPAutoScaling) GetComputeOk() (*GCPComputeAutoScaling, bool) {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		return nil, false
 	}
 	return o.Compute, true
@@ -56,7 +59,7 @@ func (o *GCPAutoScaling) GetComputeOk() (*GCPComputeAutoScaling, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *GCPAutoScaling) HasCompute() bool {
-	if o != nil && o.Compute != nil {
+	if o != nil && !IsNil(o.Compute) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GCPAutoScaling) SetCompute(v GCPComputeAutoScaling) {
 }
 
 func (o GCPAutoScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Compute != nil {
-		toSerialize["compute"] = o.Compute
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPAutoScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Compute) {
+		toSerialize["compute"] = o.Compute
+	}
+	return toSerialize, nil
 }
 
 type NullableGCPAutoScaling struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiSlackView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiSlackView{}
+
 // ApiSlackView Details to integrate one Slack account with one MongoDB Cloud project.
 type ApiSlackView struct {
 	// Key that allows MongoDB Cloud to access your Slack account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.  **IMPORTANT**: Slack integrations now use the OAuth2 verification method and must  be initially configured, or updated from a legacy integration, through the Atlas  third-party service integrations page. Legacy tokens will soon no longer be  supported.  
@@ -95,7 +98,7 @@ func (o *ApiSlackView) SetChannelName(v string) {
 
 // GetTeamName returns the TeamName field value if set, zero value otherwise.
 func (o *ApiSlackView) GetTeamName() string {
-	if o == nil || o.TeamName == nil {
+	if o == nil || IsNil(o.TeamName) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *ApiSlackView) GetTeamName() string {
 // GetTeamNameOk returns a tuple with the TeamName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSlackView) GetTeamNameOk() (*string, bool) {
-	if o == nil || o.TeamName == nil {
+	if o == nil || IsNil(o.TeamName) {
 		return nil, false
 	}
 	return o.TeamName, true
@@ -113,7 +116,7 @@ func (o *ApiSlackView) GetTeamNameOk() (*string, bool) {
 
 // HasTeamName returns a boolean if a field has been set.
 func (o *ApiSlackView) HasTeamName() bool {
-	if o != nil && o.TeamName != nil {
+	if o != nil && !IsNil(o.TeamName) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *ApiSlackView) SetTeamName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiSlackView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *ApiSlackView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSlackView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -145,7 +148,7 @@ func (o *ApiSlackView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiSlackView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *ApiSlackView) SetType(v string) {
 }
 
 func (o ApiSlackView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["apiToken"] = o.ApiToken
-	}
-	if true {
-		toSerialize["channelName"] = o.ChannelName.Get()
-	}
-	if o.TeamName != nil {
-		toSerialize["teamName"] = o.TeamName
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiSlackView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["apiToken"] = o.ApiToken
+	toSerialize["channelName"] = o.ChannelName.Get()
+	if !IsNil(o.TeamName) {
+		toSerialize["teamName"] = o.TeamName
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiSlackView struct {

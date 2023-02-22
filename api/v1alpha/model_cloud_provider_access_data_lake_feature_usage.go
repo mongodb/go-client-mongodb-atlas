@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessDataLakeFeatureUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessDataLakeFeatureUsage{}
+
 // CloudProviderAccessDataLakeFeatureUsage Details that describe the Atlas Data Lakes linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessDataLakeFeatureUsage struct {
 	FeatureId *CloudProviderAccessFeatureUsageDataLakeFeatureId `json:"featureId,omitempty"`
@@ -38,7 +41,7 @@ func NewCloudProviderAccessDataLakeFeatureUsageWithDefaults() *CloudProviderAcce
 
 // GetFeatureId returns the FeatureId field value if set, zero value otherwise.
 func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureId() CloudProviderAccessFeatureUsageDataLakeFeatureId {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		var ret CloudProviderAccessFeatureUsageDataLakeFeatureId
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureId() CloudProviderAc
 // GetFeatureIdOk returns a tuple with the FeatureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureIdOk() (*CloudProviderAccessFeatureUsageDataLakeFeatureId, bool) {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		return nil, false
 	}
 	return o.FeatureId, true
@@ -56,7 +59,7 @@ func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureIdOk() (*CloudProvid
 
 // HasFeatureId returns a boolean if a field has been set.
 func (o *CloudProviderAccessDataLakeFeatureUsage) HasFeatureId() bool {
-	if o != nil && o.FeatureId != nil {
+	if o != nil && !IsNil(o.FeatureId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CloudProviderAccessDataLakeFeatureUsage) SetFeatureId(v CloudProviderAc
 }
 
 func (o CloudProviderAccessDataLakeFeatureUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FeatureId != nil {
-		toSerialize["featureId"] = o.FeatureId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessDataLakeFeatureUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FeatureId) {
+		toSerialize["featureId"] = o.FeatureId
+	}
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessDataLakeFeatureUsage struct {

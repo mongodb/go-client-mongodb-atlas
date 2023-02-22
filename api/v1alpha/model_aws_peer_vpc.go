@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSPeerVpc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSPeerVpc{}
+
 // AWSPeerVpc Group of Network Peering connection settings.
 type AWSPeerVpc struct {
 	// Amazon Web Services (AWS) region where the Virtual Peering Connection (VPC) that you peered with the MongoDB Cloud VPC resides. The resource returns `null` if your VPC and the MongoDB Cloud VPC reside in the same region.
@@ -103,7 +106,7 @@ func (o *AWSPeerVpc) SetAwsAccountId(v string) {
 
 // GetConnectionId returns the ConnectionId field value if set, zero value otherwise.
 func (o *AWSPeerVpc) GetConnectionId() string {
-	if o == nil || o.ConnectionId == nil {
+	if o == nil || IsNil(o.ConnectionId) {
 		var ret string
 		return ret
 	}
@@ -113,7 +116,7 @@ func (o *AWSPeerVpc) GetConnectionId() string {
 // GetConnectionIdOk returns a tuple with the ConnectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPeerVpc) GetConnectionIdOk() (*string, bool) {
-	if o == nil || o.ConnectionId == nil {
+	if o == nil || IsNil(o.ConnectionId) {
 		return nil, false
 	}
 	return o.ConnectionId, true
@@ -121,7 +124,7 @@ func (o *AWSPeerVpc) GetConnectionIdOk() (*string, bool) {
 
 // HasConnectionId returns a boolean if a field has been set.
 func (o *AWSPeerVpc) HasConnectionId() bool {
-	if o != nil && o.ConnectionId != nil {
+	if o != nil && !IsNil(o.ConnectionId) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *AWSPeerVpc) SetContainerId(v string) {
 
 // GetErrorStateName returns the ErrorStateName field value if set, zero value otherwise.
 func (o *AWSPeerVpc) GetErrorStateName() string {
-	if o == nil || o.ErrorStateName == nil {
+	if o == nil || IsNil(o.ErrorStateName) {
 		var ret string
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *AWSPeerVpc) GetErrorStateName() string {
 // GetErrorStateNameOk returns a tuple with the ErrorStateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPeerVpc) GetErrorStateNameOk() (*string, bool) {
-	if o == nil || o.ErrorStateName == nil {
+	if o == nil || IsNil(o.ErrorStateName) {
 		return nil, false
 	}
 	return o.ErrorStateName, true
@@ -177,7 +180,7 @@ func (o *AWSPeerVpc) GetErrorStateNameOk() (*string, bool) {
 
 // HasErrorStateName returns a boolean if a field has been set.
 func (o *AWSPeerVpc) HasErrorStateName() bool {
-	if o != nil && o.ErrorStateName != nil {
+	if o != nil && !IsNil(o.ErrorStateName) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *AWSPeerVpc) SetErrorStateName(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSPeerVpc) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -201,7 +204,7 @@ func (o *AWSPeerVpc) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPeerVpc) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -209,7 +212,7 @@ func (o *AWSPeerVpc) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AWSPeerVpc) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *AWSPeerVpc) SetRouteTableCidrBlock(v string) {
 
 // GetStatusName returns the StatusName field value if set, zero value otherwise.
 func (o *AWSPeerVpc) GetStatusName() string {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *AWSPeerVpc) GetStatusName() string {
 // GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPeerVpc) GetStatusNameOk() (*string, bool) {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		return nil, false
 	}
 	return o.StatusName, true
@@ -265,7 +268,7 @@ func (o *AWSPeerVpc) GetStatusNameOk() (*string, bool) {
 
 // HasStatusName returns a boolean if a field has been set.
 func (o *AWSPeerVpc) HasStatusName() bool {
-	if o != nil && o.StatusName != nil {
+	if o != nil && !IsNil(o.StatusName) {
 		return true
 	}
 
@@ -302,35 +305,25 @@ func (o *AWSPeerVpc) SetVpcId(v string) {
 }
 
 func (o AWSPeerVpc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["accepterRegionName"] = o.AccepterRegionName
-	}
-	if true {
-		toSerialize["awsAccountId"] = o.AwsAccountId
-	}
-	if o.ConnectionId != nil {
-		toSerialize["connectionId"] = o.ConnectionId
-	}
-	if true {
-		toSerialize["containerId"] = o.ContainerId
-	}
-	if o.ErrorStateName != nil {
-		toSerialize["errorStateName"] = o.ErrorStateName
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["routeTableCidrBlock"] = o.RouteTableCidrBlock
-	}
-	if o.StatusName != nil {
-		toSerialize["statusName"] = o.StatusName
-	}
-	if true {
-		toSerialize["vpcId"] = o.VpcId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSPeerVpc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["accepterRegionName"] = o.AccepterRegionName
+	toSerialize["awsAccountId"] = o.AwsAccountId
+	// skip: connectionId is readOnly
+	toSerialize["containerId"] = o.ContainerId
+	// skip: errorStateName is readOnly
+	// skip: id is readOnly
+	toSerialize["routeTableCidrBlock"] = o.RouteTableCidrBlock
+	// skip: statusName is readOnly
+	toSerialize["vpcId"] = o.VpcId
+	return toSerialize, nil
 }
 
 type NullableAWSPeerVpc struct {

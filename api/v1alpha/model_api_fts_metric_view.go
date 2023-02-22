@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiFTSMetricView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiFTSMetricView{}
+
 // ApiFTSMetricView Measurement of one Atlas Search status when MongoDB Atlas received this request.
 type ApiFTSMetricView struct {
 	// Human-readable label that identifies this Atlas Search hardware, status, or index measurement.
@@ -88,14 +91,18 @@ func (o *ApiFTSMetricView) SetUnits(v string) {
 }
 
 func (o ApiFTSMetricView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if true {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiFTSMetricView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: metricName is readOnly
+	// skip: units is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiFTSMetricView struct {

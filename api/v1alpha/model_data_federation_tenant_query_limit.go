@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DataFederationTenantQueryLimit type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataFederationTenantQueryLimit{}
+
 // DataFederationTenantQueryLimit Details of a tenant-level query limit for Data Federation. Query limit is the limit on the amount of usage during a time period based on cost.
 type DataFederationTenantQueryLimit struct {
 	// Amount that indicates the current usage of the limit.
@@ -54,7 +57,7 @@ func NewDataFederationTenantQueryLimitWithDefaults() *DataFederationTenantQueryL
 
 // GetCurrentUsage returns the CurrentUsage field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetCurrentUsage() int64 {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		var ret int64
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *DataFederationTenantQueryLimit) GetCurrentUsage() int64 {
 // GetCurrentUsageOk returns a tuple with the CurrentUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetCurrentUsageOk() (*int64, bool) {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		return nil, false
 	}
 	return o.CurrentUsage, true
@@ -72,7 +75,7 @@ func (o *DataFederationTenantQueryLimit) GetCurrentUsageOk() (*int64, bool) {
 
 // HasCurrentUsage returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasCurrentUsage() bool {
-	if o != nil && o.CurrentUsage != nil {
+	if o != nil && !IsNil(o.CurrentUsage) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *DataFederationTenantQueryLimit) SetCurrentUsage(v int64) {
 
 // GetDefaultLimit returns the DefaultLimit field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetDefaultLimit() int64 {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		var ret int64
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *DataFederationTenantQueryLimit) GetDefaultLimit() int64 {
 // GetDefaultLimitOk returns a tuple with the DefaultLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetDefaultLimitOk() (*int64, bool) {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		return nil, false
 	}
 	return o.DefaultLimit, true
@@ -104,7 +107,7 @@ func (o *DataFederationTenantQueryLimit) GetDefaultLimitOk() (*int64, bool) {
 
 // HasDefaultLimit returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasDefaultLimit() bool {
-	if o != nil && o.DefaultLimit != nil {
+	if o != nil && !IsNil(o.DefaultLimit) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *DataFederationTenantQueryLimit) SetDefaultLimit(v int64) {
 
 // GetLastModifiedDate returns the LastModifiedDate field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetLastModifiedDate() time.Time {
-	if o == nil || o.LastModifiedDate == nil {
+	if o == nil || IsNil(o.LastModifiedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *DataFederationTenantQueryLimit) GetLastModifiedDate() time.Time {
 // GetLastModifiedDateOk returns a tuple with the LastModifiedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetLastModifiedDateOk() (*time.Time, bool) {
-	if o == nil || o.LastModifiedDate == nil {
+	if o == nil || IsNil(o.LastModifiedDate) {
 		return nil, false
 	}
 	return o.LastModifiedDate, true
@@ -136,7 +139,7 @@ func (o *DataFederationTenantQueryLimit) GetLastModifiedDateOk() (*time.Time, bo
 
 // HasLastModifiedDate returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasLastModifiedDate() bool {
-	if o != nil && o.LastModifiedDate != nil {
+	if o != nil && !IsNil(o.LastModifiedDate) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *DataFederationTenantQueryLimit) SetLastModifiedDate(v time.Time) {
 
 // GetMaximumLimit returns the MaximumLimit field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetMaximumLimit() int64 {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		var ret int64
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *DataFederationTenantQueryLimit) GetMaximumLimit() int64 {
 // GetMaximumLimitOk returns a tuple with the MaximumLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetMaximumLimitOk() (*int64, bool) {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		return nil, false
 	}
 	return o.MaximumLimit, true
@@ -168,7 +171,7 @@ func (o *DataFederationTenantQueryLimit) GetMaximumLimitOk() (*int64, bool) {
 
 // HasMaximumLimit returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasMaximumLimit() bool {
-	if o != nil && o.MaximumLimit != nil {
+	if o != nil && !IsNil(o.MaximumLimit) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *DataFederationTenantQueryLimit) SetName(v string) {
 
 // GetOverrunPolicy returns the OverrunPolicy field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetOverrunPolicy() string {
-	if o == nil || o.OverrunPolicy == nil {
+	if o == nil || IsNil(o.OverrunPolicy) {
 		var ret string
 		return ret
 	}
@@ -216,7 +219,7 @@ func (o *DataFederationTenantQueryLimit) GetOverrunPolicy() string {
 // GetOverrunPolicyOk returns a tuple with the OverrunPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetOverrunPolicyOk() (*string, bool) {
-	if o == nil || o.OverrunPolicy == nil {
+	if o == nil || IsNil(o.OverrunPolicy) {
 		return nil, false
 	}
 	return o.OverrunPolicy, true
@@ -224,7 +227,7 @@ func (o *DataFederationTenantQueryLimit) GetOverrunPolicyOk() (*string, bool) {
 
 // HasOverrunPolicy returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasOverrunPolicy() bool {
-	if o != nil && o.OverrunPolicy != nil {
+	if o != nil && !IsNil(o.OverrunPolicy) {
 		return true
 	}
 
@@ -238,7 +241,7 @@ func (o *DataFederationTenantQueryLimit) SetOverrunPolicy(v string) {
 
 // GetTenantName returns the TenantName field value if set, zero value otherwise.
 func (o *DataFederationTenantQueryLimit) GetTenantName() string {
-	if o == nil || o.TenantName == nil {
+	if o == nil || IsNil(o.TenantName) {
 		var ret string
 		return ret
 	}
@@ -248,7 +251,7 @@ func (o *DataFederationTenantQueryLimit) GetTenantName() string {
 // GetTenantNameOk returns a tuple with the TenantName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationTenantQueryLimit) GetTenantNameOk() (*string, bool) {
-	if o == nil || o.TenantName == nil {
+	if o == nil || IsNil(o.TenantName) {
 		return nil, false
 	}
 	return o.TenantName, true
@@ -256,7 +259,7 @@ func (o *DataFederationTenantQueryLimit) GetTenantNameOk() (*string, bool) {
 
 // HasTenantName returns a boolean if a field has been set.
 func (o *DataFederationTenantQueryLimit) HasTenantName() bool {
-	if o != nil && o.TenantName != nil {
+	if o != nil && !IsNil(o.TenantName) {
 		return true
 	}
 
@@ -293,32 +296,26 @@ func (o *DataFederationTenantQueryLimit) SetValue(v int64) {
 }
 
 func (o DataFederationTenantQueryLimit) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CurrentUsage != nil {
-		toSerialize["currentUsage"] = o.CurrentUsage
-	}
-	if o.DefaultLimit != nil {
-		toSerialize["defaultLimit"] = o.DefaultLimit
-	}
-	if o.LastModifiedDate != nil {
-		toSerialize["lastModifiedDate"] = o.LastModifiedDate
-	}
-	if o.MaximumLimit != nil {
-		toSerialize["maximumLimit"] = o.MaximumLimit
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.OverrunPolicy != nil {
-		toSerialize["overrunPolicy"] = o.OverrunPolicy
-	}
-	if o.TenantName != nil {
-		toSerialize["tenantName"] = o.TenantName
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataFederationTenantQueryLimit) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: currentUsage is readOnly
+	// skip: defaultLimit is readOnly
+	// skip: lastModifiedDate is readOnly
+	// skip: maximumLimit is readOnly
+	// skip: name is readOnly
+	if !IsNil(o.OverrunPolicy) {
+		toSerialize["overrunPolicy"] = o.OverrunPolicy
+	}
+	// skip: tenantName is readOnly
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableDataFederationTenantQueryLimit struct {

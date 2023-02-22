@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiExportStatusView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiExportStatusView{}
+
 // ApiExportStatusView State of the export job for the collections on the replica set only.
 type ApiExportStatusView struct {
 	// Number of collections on the replica set that MongoDB Cloud exported.
@@ -41,7 +44,7 @@ func NewApiExportStatusViewWithDefaults() *ApiExportStatusView {
 
 // GetExportedCollections returns the ExportedCollections field value if set, zero value otherwise.
 func (o *ApiExportStatusView) GetExportedCollections() int32 {
-	if o == nil || o.ExportedCollections == nil {
+	if o == nil || IsNil(o.ExportedCollections) {
 		var ret int32
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiExportStatusView) GetExportedCollections() int32 {
 // GetExportedCollectionsOk returns a tuple with the ExportedCollections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiExportStatusView) GetExportedCollectionsOk() (*int32, bool) {
-	if o == nil || o.ExportedCollections == nil {
+	if o == nil || IsNil(o.ExportedCollections) {
 		return nil, false
 	}
 	return o.ExportedCollections, true
@@ -59,7 +62,7 @@ func (o *ApiExportStatusView) GetExportedCollectionsOk() (*int32, bool) {
 
 // HasExportedCollections returns a boolean if a field has been set.
 func (o *ApiExportStatusView) HasExportedCollections() bool {
-	if o != nil && o.ExportedCollections != nil {
+	if o != nil && !IsNil(o.ExportedCollections) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiExportStatusView) SetExportedCollections(v int32) {
 
 // GetTotalCollections returns the TotalCollections field value if set, zero value otherwise.
 func (o *ApiExportStatusView) GetTotalCollections() int32 {
-	if o == nil || o.TotalCollections == nil {
+	if o == nil || IsNil(o.TotalCollections) {
 		var ret int32
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiExportStatusView) GetTotalCollections() int32 {
 // GetTotalCollectionsOk returns a tuple with the TotalCollections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiExportStatusView) GetTotalCollectionsOk() (*int32, bool) {
-	if o == nil || o.TotalCollections == nil {
+	if o == nil || IsNil(o.TotalCollections) {
 		return nil, false
 	}
 	return o.TotalCollections, true
@@ -91,7 +94,7 @@ func (o *ApiExportStatusView) GetTotalCollectionsOk() (*int32, bool) {
 
 // HasTotalCollections returns a boolean if a field has been set.
 func (o *ApiExportStatusView) HasTotalCollections() bool {
-	if o != nil && o.TotalCollections != nil {
+	if o != nil && !IsNil(o.TotalCollections) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiExportStatusView) SetTotalCollections(v int32) {
 }
 
 func (o ApiExportStatusView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExportedCollections != nil {
-		toSerialize["exportedCollections"] = o.ExportedCollections
-	}
-	if o.TotalCollections != nil {
-		toSerialize["totalCollections"] = o.TotalCollections
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiExportStatusView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: exportedCollections is readOnly
+	// skip: totalCollections is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiExportStatusView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessInstanceDescriptionCreate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessInstanceDescriptionCreate{}
+
 // ServerlessInstanceDescriptionCreate Settings that you can specify when you create a serverless instance.
 type ServerlessInstanceDescriptionCreate struct {
 	// Human-readable label that identifies the serverless instance.
@@ -97,7 +100,7 @@ func (o *ServerlessInstanceDescriptionCreate) SetProviderSettings(v ServerlessPr
 
 // GetServerlessBackupOptions returns the ServerlessBackupOptions field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionCreate) GetServerlessBackupOptions() ServerlessBackupOptions {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		var ret ServerlessBackupOptions
 		return ret
 	}
@@ -107,7 +110,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetServerlessBackupOptions() Serve
 // GetServerlessBackupOptionsOk returns a tuple with the ServerlessBackupOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionCreate) GetServerlessBackupOptionsOk() (*ServerlessBackupOptions, bool) {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		return nil, false
 	}
 	return o.ServerlessBackupOptions, true
@@ -115,7 +118,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetServerlessBackupOptionsOk() (*S
 
 // HasServerlessBackupOptions returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionCreate) HasServerlessBackupOptions() bool {
-	if o != nil && o.ServerlessBackupOptions != nil {
+	if o != nil && !IsNil(o.ServerlessBackupOptions) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *ServerlessInstanceDescriptionCreate) SetServerlessBackupOptions(v Serve
 
 // GetStateName returns the StateName field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionCreate) GetStateName() string {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		var ret string
 		return ret
 	}
@@ -139,7 +142,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetStateName() string {
 // GetStateNameOk returns a tuple with the StateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionCreate) GetStateNameOk() (*string, bool) {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		return nil, false
 	}
 	return o.StateName, true
@@ -147,7 +150,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetStateNameOk() (*string, bool) {
 
 // HasStateName returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionCreate) HasStateName() bool {
-	if o != nil && o.StateName != nil {
+	if o != nil && !IsNil(o.StateName) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *ServerlessInstanceDescriptionCreate) SetStateName(v string) {
 
 // GetTerminationProtectionEnabled returns the TerminationProtectionEnabled field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionCreate) GetTerminationProtectionEnabled() bool {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -171,7 +174,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetTerminationProtectionEnabled() 
 // GetTerminationProtectionEnabledOk returns a tuple with the TerminationProtectionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionCreate) GetTerminationProtectionEnabledOk() (*bool, bool) {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		return nil, false
 	}
 	return o.TerminationProtectionEnabled, true
@@ -179,7 +182,7 @@ func (o *ServerlessInstanceDescriptionCreate) GetTerminationProtectionEnabledOk(
 
 // HasTerminationProtectionEnabled returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionCreate) HasTerminationProtectionEnabled() bool {
-	if o != nil && o.TerminationProtectionEnabled != nil {
+	if o != nil && !IsNil(o.TerminationProtectionEnabled) {
 		return true
 	}
 
@@ -192,23 +195,25 @@ func (o *ServerlessInstanceDescriptionCreate) SetTerminationProtectionEnabled(v 
 }
 
 func (o ServerlessInstanceDescriptionCreate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["providerSettings"] = o.ProviderSettings
-	}
-	if o.ServerlessBackupOptions != nil {
-		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
-	}
-	if o.StateName != nil {
-		toSerialize["stateName"] = o.StateName
-	}
-	if o.TerminationProtectionEnabled != nil {
-		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessInstanceDescriptionCreate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["providerSettings"] = o.ProviderSettings
+	if !IsNil(o.ServerlessBackupOptions) {
+		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
+	}
+	// skip: stateName is readOnly
+	if !IsNil(o.TerminationProtectionEnabled) {
+		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessInstanceDescriptionCreate struct {

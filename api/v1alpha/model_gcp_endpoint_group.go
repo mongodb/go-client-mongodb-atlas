@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPEndpointGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPEndpointGroup{}
+
 // GCPEndpointGroup Group of Private Endpoint settings.
 type GCPEndpointGroup struct {
 	// Flag that indicates whether MongoDB Cloud received a request to remove the specified private endpoint from the private endpoint service.
@@ -47,7 +50,7 @@ func NewGCPEndpointGroupWithDefaults() *GCPEndpointGroup {
 
 // GetDeleteRequested returns the DeleteRequested field value if set, zero value otherwise.
 func (o *GCPEndpointGroup) GetDeleteRequested() bool {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		var ret bool
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *GCPEndpointGroup) GetDeleteRequested() bool {
 // GetDeleteRequestedOk returns a tuple with the DeleteRequested field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointGroup) GetDeleteRequestedOk() (*bool, bool) {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		return nil, false
 	}
 	return o.DeleteRequested, true
@@ -65,7 +68,7 @@ func (o *GCPEndpointGroup) GetDeleteRequestedOk() (*bool, bool) {
 
 // HasDeleteRequested returns a boolean if a field has been set.
 func (o *GCPEndpointGroup) HasDeleteRequested() bool {
-	if o != nil && o.DeleteRequested != nil {
+	if o != nil && !IsNil(o.DeleteRequested) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GCPEndpointGroup) SetDeleteRequested(v bool) {
 
 // GetEndpointGroupName returns the EndpointGroupName field value if set, zero value otherwise.
 func (o *GCPEndpointGroup) GetEndpointGroupName() string {
-	if o == nil || o.EndpointGroupName == nil {
+	if o == nil || IsNil(o.EndpointGroupName) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *GCPEndpointGroup) GetEndpointGroupName() string {
 // GetEndpointGroupNameOk returns a tuple with the EndpointGroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointGroup) GetEndpointGroupNameOk() (*string, bool) {
-	if o == nil || o.EndpointGroupName == nil {
+	if o == nil || IsNil(o.EndpointGroupName) {
 		return nil, false
 	}
 	return o.EndpointGroupName, true
@@ -97,7 +100,7 @@ func (o *GCPEndpointGroup) GetEndpointGroupNameOk() (*string, bool) {
 
 // HasEndpointGroupName returns a boolean if a field has been set.
 func (o *GCPEndpointGroup) HasEndpointGroupName() bool {
-	if o != nil && o.EndpointGroupName != nil {
+	if o != nil && !IsNil(o.EndpointGroupName) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GCPEndpointGroup) SetEndpointGroupName(v string) {
 
 // GetEndpoints returns the Endpoints field value if set, zero value otherwise.
 func (o *GCPEndpointGroup) GetEndpoints() []GCPConsumerForwardingRule {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		var ret []GCPConsumerForwardingRule
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *GCPEndpointGroup) GetEndpoints() []GCPConsumerForwardingRule {
 // GetEndpointsOk returns a tuple with the Endpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointGroup) GetEndpointsOk() ([]GCPConsumerForwardingRule, bool) {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		return nil, false
 	}
 	return o.Endpoints, true
@@ -129,7 +132,7 @@ func (o *GCPEndpointGroup) GetEndpointsOk() ([]GCPConsumerForwardingRule, bool) 
 
 // HasEndpoints returns a boolean if a field has been set.
 func (o *GCPEndpointGroup) HasEndpoints() bool {
-	if o != nil && o.Endpoints != nil {
+	if o != nil && !IsNil(o.Endpoints) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GCPEndpointGroup) SetEndpoints(v []GCPConsumerForwardingRule) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *GCPEndpointGroup) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *GCPEndpointGroup) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointGroup) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -161,7 +164,7 @@ func (o *GCPEndpointGroup) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *GCPEndpointGroup) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GCPEndpointGroup) SetErrorMessage(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GCPEndpointGroup) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *GCPEndpointGroup) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointGroup) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -193,7 +196,7 @@ func (o *GCPEndpointGroup) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GCPEndpointGroup) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -206,23 +209,21 @@ func (o *GCPEndpointGroup) SetStatus(v string) {
 }
 
 func (o GCPEndpointGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DeleteRequested != nil {
-		toSerialize["deleteRequested"] = o.DeleteRequested
-	}
-	if o.EndpointGroupName != nil {
-		toSerialize["endpointGroupName"] = o.EndpointGroupName
-	}
-	if o.Endpoints != nil {
-		toSerialize["endpoints"] = o.Endpoints
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPEndpointGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: deleteRequested is readOnly
+	// skip: endpointGroupName is readOnly
+	// skip: endpoints is readOnly
+	// skip: errorMessage is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableGCPEndpointGroup struct {

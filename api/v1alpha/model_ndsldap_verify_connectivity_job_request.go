@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NDSLDAPVerifyConnectivityJobRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSLDAPVerifyConnectivityJobRequest{}
+
 // NDSLDAPVerifyConnectivityJobRequest struct for NDSLDAPVerifyConnectivityJobRequest
 type NDSLDAPVerifyConnectivityJobRequest struct {
 	// Unique 24-hexadecimal digit string that identifies the project associated with this Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration.
@@ -48,7 +51,7 @@ func NewNDSLDAPVerifyConnectivityJobRequestWithDefaults() *NDSLDAPVerifyConnecti
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -66,7 +69,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetGroupId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -98,7 +101,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetLinks(v []Link) {
 
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequest() NDSLDAPVerifyConnectivityJobRequestParams {
-	if o == nil || o.Request == nil {
+	if o == nil || IsNil(o.Request) {
 		var ret NDSLDAPVerifyConnectivityJobRequestParams
 		return ret
 	}
@@ -122,7 +125,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequest() NDSLDAPVerifyConnecti
 // GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestOk() (*NDSLDAPVerifyConnectivityJobRequestParams, bool) {
-	if o == nil || o.Request == nil {
+	if o == nil || IsNil(o.Request) {
 		return nil, false
 	}
 	return o.Request, true
@@ -130,7 +133,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestOk() (*NDSLDAPVerifyConn
 
 // HasRequest returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasRequest() bool {
-	if o != nil && o.Request != nil {
+	if o != nil && !IsNil(o.Request) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetRequest(v NDSLDAPVerifyConnecti
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestId() string {
-	if o == nil || o.RequestId == nil {
+	if o == nil || IsNil(o.RequestId) {
 		var ret string
 		return ret
 	}
@@ -154,7 +157,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestId() string {
 // GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestIdOk() (*string, bool) {
-	if o == nil || o.RequestId == nil {
+	if o == nil || IsNil(o.RequestId) {
 		return nil, false
 	}
 	return o.RequestId, true
@@ -162,7 +165,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetRequestIdOk() (*string, bool) {
 
 // HasRequestId returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasRequestId() bool {
-	if o != nil && o.RequestId != nil {
+	if o != nil && !IsNil(o.RequestId) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetRequestId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -194,7 +197,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetStatus(v string) {
 
 // GetValidations returns the Validations field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetValidations() []NDSLDAPVerifyConnectivityJobRequestValidation {
-	if o == nil || o.Validations == nil {
+	if o == nil || IsNil(o.Validations) {
 		var ret []NDSLDAPVerifyConnectivityJobRequestValidation
 		return ret
 	}
@@ -218,7 +221,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetValidations() []NDSLDAPVerifyCo
 // GetValidationsOk returns a tuple with the Validations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) GetValidationsOk() ([]NDSLDAPVerifyConnectivityJobRequestValidation, bool) {
-	if o == nil || o.Validations == nil {
+	if o == nil || IsNil(o.Validations) {
 		return nil, false
 	}
 	return o.Validations, true
@@ -226,7 +229,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) GetValidationsOk() ([]NDSLDAPVerif
 
 // HasValidations returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequest) HasValidations() bool {
-	if o != nil && o.Validations != nil {
+	if o != nil && !IsNil(o.Validations) {
 		return true
 	}
 
@@ -239,26 +242,24 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetValidations(v []NDSLDAPVerifyCo
 }
 
 func (o NDSLDAPVerifyConnectivityJobRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Request != nil {
-		toSerialize["request"] = o.Request
-	}
-	if o.RequestId != nil {
-		toSerialize["requestId"] = o.RequestId
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Validations != nil {
-		toSerialize["validations"] = o.Validations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSLDAPVerifyConnectivityJobRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: groupId is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.Request) {
+		toSerialize["request"] = o.Request
+	}
+	// skip: requestId is readOnly
+	// skip: status is readOnly
+	// skip: validations is readOnly
+	return toSerialize, nil
 }
 
 type NullableNDSLDAPVerifyConnectivityJobRequest struct {

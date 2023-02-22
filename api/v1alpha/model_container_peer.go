@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ContainerPeer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContainerPeer{}
+
 // ContainerPeer struct for ContainerPeer
 type ContainerPeer struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
@@ -65,7 +68,7 @@ func (o *ContainerPeer) SetContainerId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ContainerPeer) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *ContainerPeer) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContainerPeer) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -83,7 +86,7 @@ func (o *ContainerPeer) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ContainerPeer) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -96,14 +99,18 @@ func (o *ContainerPeer) SetId(v string) {
 }
 
 func (o ContainerPeer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["containerId"] = o.ContainerId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ContainerPeer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	// skip: id is readOnly
+	return toSerialize, nil
 }
 
 type NullableContainerPeer struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPrometheusView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPrometheusView{}
+
 // ApiPrometheusView Details to integrate one Prometheus account with one MongoDB Cloud project.
 type ApiPrometheusView struct {
 	// Flag that indicates whether someone has activated the Prometheus integration.
@@ -81,7 +84,7 @@ func (o *ApiPrometheusView) SetEnabled(v bool) {
 
 // GetListenAddress returns the ListenAddress field value if set, zero value otherwise.
 func (o *ApiPrometheusView) GetListenAddress() string {
-	if o == nil || o.ListenAddress == nil {
+	if o == nil || IsNil(o.ListenAddress) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *ApiPrometheusView) GetListenAddress() string {
 // GetListenAddressOk returns a tuple with the ListenAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPrometheusView) GetListenAddressOk() (*string, bool) {
-	if o == nil || o.ListenAddress == nil {
+	if o == nil || IsNil(o.ListenAddress) {
 		return nil, false
 	}
 	return o.ListenAddress, true
@@ -99,7 +102,7 @@ func (o *ApiPrometheusView) GetListenAddressOk() (*string, bool) {
 
 // HasListenAddress returns a boolean if a field has been set.
 func (o *ApiPrometheusView) HasListenAddress() bool {
-	if o != nil && o.ListenAddress != nil {
+	if o != nil && !IsNil(o.ListenAddress) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *ApiPrometheusView) SetListenAddress(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *ApiPrometheusView) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *ApiPrometheusView) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPrometheusView) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -131,7 +134,7 @@ func (o *ApiPrometheusView) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *ApiPrometheusView) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *ApiPrometheusView) SetPassword(v string) {
 
 // GetRateLimitInterval returns the RateLimitInterval field value if set, zero value otherwise.
 func (o *ApiPrometheusView) GetRateLimitInterval() int32 {
-	if o == nil || o.RateLimitInterval == nil {
+	if o == nil || IsNil(o.RateLimitInterval) {
 		var ret int32
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *ApiPrometheusView) GetRateLimitInterval() int32 {
 // GetRateLimitIntervalOk returns a tuple with the RateLimitInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPrometheusView) GetRateLimitIntervalOk() (*int32, bool) {
-	if o == nil || o.RateLimitInterval == nil {
+	if o == nil || IsNil(o.RateLimitInterval) {
 		return nil, false
 	}
 	return o.RateLimitInterval, true
@@ -163,7 +166,7 @@ func (o *ApiPrometheusView) GetRateLimitIntervalOk() (*int32, bool) {
 
 // HasRateLimitInterval returns a boolean if a field has been set.
 func (o *ApiPrometheusView) HasRateLimitInterval() bool {
-	if o != nil && o.RateLimitInterval != nil {
+	if o != nil && !IsNil(o.RateLimitInterval) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *ApiPrometheusView) SetServiceDiscovery(v string) {
 
 // GetTlsPemPath returns the TlsPemPath field value if set, zero value otherwise.
 func (o *ApiPrometheusView) GetTlsPemPath() string {
-	if o == nil || o.TlsPemPath == nil {
+	if o == nil || IsNil(o.TlsPemPath) {
 		var ret string
 		return ret
 	}
@@ -235,7 +238,7 @@ func (o *ApiPrometheusView) GetTlsPemPath() string {
 // GetTlsPemPathOk returns a tuple with the TlsPemPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPrometheusView) GetTlsPemPathOk() (*string, bool) {
-	if o == nil || o.TlsPemPath == nil {
+	if o == nil || IsNil(o.TlsPemPath) {
 		return nil, false
 	}
 	return o.TlsPemPath, true
@@ -243,7 +246,7 @@ func (o *ApiPrometheusView) GetTlsPemPathOk() (*string, bool) {
 
 // HasTlsPemPath returns a boolean if a field has been set.
 func (o *ApiPrometheusView) HasTlsPemPath() bool {
-	if o != nil && o.TlsPemPath != nil {
+	if o != nil && !IsNil(o.TlsPemPath) {
 		return true
 	}
 
@@ -257,7 +260,7 @@ func (o *ApiPrometheusView) SetTlsPemPath(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiPrometheusView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -267,7 +270,7 @@ func (o *ApiPrometheusView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPrometheusView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -275,7 +278,7 @@ func (o *ApiPrometheusView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiPrometheusView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -312,35 +315,35 @@ func (o *ApiPrometheusView) SetUsername(v string) {
 }
 
 func (o ApiPrometheusView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.ListenAddress != nil {
-		toSerialize["listenAddress"] = o.ListenAddress
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.RateLimitInterval != nil {
-		toSerialize["rateLimitInterval"] = o.RateLimitInterval
-	}
-	if true {
-		toSerialize["scheme"] = o.Scheme
-	}
-	if true {
-		toSerialize["serviceDiscovery"] = o.ServiceDiscovery
-	}
-	if o.TlsPemPath != nil {
-		toSerialize["tlsPemPath"] = o.TlsPemPath
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPrometheusView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.ListenAddress) {
+		toSerialize["listenAddress"] = o.ListenAddress
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.RateLimitInterval) {
+		toSerialize["rateLimitInterval"] = o.RateLimitInterval
+	}
+	toSerialize["scheme"] = o.Scheme
+	toSerialize["serviceDiscovery"] = o.ServiceDiscovery
+	if !IsNil(o.TlsPemPath) {
+		toSerialize["tlsPemPath"] = o.TlsPemPath
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	toSerialize["username"] = o.Username
+	return toSerialize, nil
 }
 
 type NullableApiPrometheusView struct {

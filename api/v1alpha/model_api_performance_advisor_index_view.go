@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPerformanceAdvisorIndexView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPerformanceAdvisorIndexView{}
+
 // ApiPerformanceAdvisorIndexView struct for ApiPerformanceAdvisorIndexView
 type ApiPerformanceAdvisorIndexView struct {
 	// The average size of an object in the collection of this index.
@@ -49,7 +52,7 @@ func NewApiPerformanceAdvisorIndexViewWithDefaults() *ApiPerformanceAdvisorIndex
 
 // GetAvgObjSize returns the AvgObjSize field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetAvgObjSize() float64 {
-	if o == nil || o.AvgObjSize == nil {
+	if o == nil || IsNil(o.AvgObjSize) {
 		var ret float64
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetAvgObjSize() float64 {
 // GetAvgObjSizeOk returns a tuple with the AvgObjSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetAvgObjSizeOk() (*float64, bool) {
-	if o == nil || o.AvgObjSize == nil {
+	if o == nil || IsNil(o.AvgObjSize) {
 		return nil, false
 	}
 	return o.AvgObjSize, true
@@ -67,7 +70,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetAvgObjSizeOk() (*float64, bool) {
 
 // HasAvgObjSize returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasAvgObjSize() bool {
-	if o != nil && o.AvgObjSize != nil {
+	if o != nil && !IsNil(o.AvgObjSize) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *ApiPerformanceAdvisorIndexView) SetAvgObjSize(v float64) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -99,7 +102,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *ApiPerformanceAdvisorIndexView) SetId(v string) {
 
 // GetImpact returns the Impact field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetImpact() []string {
-	if o == nil || o.Impact == nil {
+	if o == nil || IsNil(o.Impact) {
 		var ret []string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetImpact() []string {
 // GetImpactOk returns a tuple with the Impact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetImpactOk() ([]string, bool) {
-	if o == nil || o.Impact == nil {
+	if o == nil || IsNil(o.Impact) {
 		return nil, false
 	}
 	return o.Impact, true
@@ -131,7 +134,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetImpactOk() ([]string, bool) {
 
 // HasImpact returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasImpact() bool {
-	if o != nil && o.Impact != nil {
+	if o != nil && !IsNil(o.Impact) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *ApiPerformanceAdvisorIndexView) SetImpact(v []string) {
 
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetIndex() []map[string]string {
-	if o == nil || o.Index == nil {
+	if o == nil || IsNil(o.Index) {
 		var ret []map[string]string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetIndex() []map[string]string {
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetIndexOk() ([]map[string]string, bool) {
-	if o == nil || o.Index == nil {
+	if o == nil || IsNil(o.Index) {
 		return nil, false
 	}
 	return o.Index, true
@@ -163,7 +166,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetIndexOk() ([]map[string]string, bool
 
 // HasIndex returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasIndex() bool {
-	if o != nil && o.Index != nil {
+	if o != nil && !IsNil(o.Index) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *ApiPerformanceAdvisorIndexView) SetIndex(v []map[string]string) {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -195,7 +198,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *ApiPerformanceAdvisorIndexView) SetNamespace(v string) {
 
 // GetWeight returns the Weight field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorIndexView) GetWeight() float64 {
-	if o == nil || o.Weight == nil {
+	if o == nil || IsNil(o.Weight) {
 		var ret float64
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetWeight() float64 {
 // GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorIndexView) GetWeightOk() (*float64, bool) {
-	if o == nil || o.Weight == nil {
+	if o == nil || IsNil(o.Weight) {
 		return nil, false
 	}
 	return o.Weight, true
@@ -227,7 +230,7 @@ func (o *ApiPerformanceAdvisorIndexView) GetWeightOk() (*float64, bool) {
 
 // HasWeight returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorIndexView) HasWeight() bool {
-	if o != nil && o.Weight != nil {
+	if o != nil && !IsNil(o.Weight) {
 		return true
 	}
 
@@ -240,26 +243,22 @@ func (o *ApiPerformanceAdvisorIndexView) SetWeight(v float64) {
 }
 
 func (o ApiPerformanceAdvisorIndexView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AvgObjSize != nil {
-		toSerialize["avgObjSize"] = o.AvgObjSize
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Impact != nil {
-		toSerialize["impact"] = o.Impact
-	}
-	if o.Index != nil {
-		toSerialize["index"] = o.Index
-	}
-	if o.Namespace != nil {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if o.Weight != nil {
-		toSerialize["weight"] = o.Weight
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPerformanceAdvisorIndexView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: avgObjSize is readOnly
+	// skip: id is readOnly
+	// skip: impact is readOnly
+	// skip: index is readOnly
+	// skip: namespace is readOnly
+	// skip: weight is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiPerformanceAdvisorIndexView struct {

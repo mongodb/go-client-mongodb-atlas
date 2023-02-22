@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PagerDutyNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PagerDutyNotificationView{}
+
 // PagerDutyNotificationView PagerDuty notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type PagerDutyNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -51,7 +54,7 @@ func NewPagerDutyNotificationViewWithDefaults() *PagerDutyNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *PagerDutyNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *PagerDutyNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PagerDutyNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -69,7 +72,7 @@ func (o *PagerDutyNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *PagerDutyNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *PagerDutyNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *PagerDutyNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *PagerDutyNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PagerDutyNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -101,7 +104,7 @@ func (o *PagerDutyNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *PagerDutyNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *PagerDutyNotificationView) SetIntervalMin(v int32) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *PagerDutyNotificationView) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *PagerDutyNotificationView) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PagerDutyNotificationView) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -133,7 +136,7 @@ func (o *PagerDutyNotificationView) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *PagerDutyNotificationView) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *PagerDutyNotificationView) SetRegion(v string) {
 
 // GetServiceKey returns the ServiceKey field value if set, zero value otherwise.
 func (o *PagerDutyNotificationView) GetServiceKey() string {
-	if o == nil || o.ServiceKey == nil {
+	if o == nil || IsNil(o.ServiceKey) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *PagerDutyNotificationView) GetServiceKey() string {
 // GetServiceKeyOk returns a tuple with the ServiceKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PagerDutyNotificationView) GetServiceKeyOk() (*string, bool) {
-	if o == nil || o.ServiceKey == nil {
+	if o == nil || IsNil(o.ServiceKey) {
 		return nil, false
 	}
 	return o.ServiceKey, true
@@ -165,7 +168,7 @@ func (o *PagerDutyNotificationView) GetServiceKeyOk() (*string, bool) {
 
 // HasServiceKey returns a boolean if a field has been set.
 func (o *PagerDutyNotificationView) HasServiceKey() bool {
-	if o != nil && o.ServiceKey != nil {
+	if o != nil && !IsNil(o.ServiceKey) {
 		return true
 	}
 
@@ -202,23 +205,29 @@ func (o *PagerDutyNotificationView) SetTypeName(v string) {
 }
 
 func (o PagerDutyNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.ServiceKey != nil {
-		toSerialize["serviceKey"] = o.ServiceKey
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PagerDutyNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.ServiceKey) {
+		toSerialize["serviceKey"] = o.ServiceKey
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullablePagerDutyNotificationView struct {

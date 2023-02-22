@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PrivateIPModeView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PrivateIPModeView{}
+
 // PrivateIPModeView struct for PrivateIPModeView
 type PrivateIPModeView struct {
 	// Flag that indicates whether someone enabled **Connect via Peering Only** mode for the specified project.
@@ -62,11 +65,17 @@ func (o *PrivateIPModeView) SetEnabled(v bool) {
 }
 
 func (o PrivateIPModeView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PrivateIPModeView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullablePrivateIPModeView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateAWSEndpointRequestAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAWSEndpointRequestAllOf{}
+
 // CreateAWSEndpointRequestAllOf struct for CreateAWSEndpointRequestAllOf
 type CreateAWSEndpointRequestAllOf struct {
 	// Unique string that identifies the private endpoint's network interface that someone added to this private endpoint service.
@@ -39,7 +42,7 @@ func NewCreateAWSEndpointRequestAllOfWithDefaults() *CreateAWSEndpointRequestAll
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateAWSEndpointRequestAllOf) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *CreateAWSEndpointRequestAllOf) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateAWSEndpointRequestAllOf) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -57,7 +60,7 @@ func (o *CreateAWSEndpointRequestAllOf) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateAWSEndpointRequestAllOf) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CreateAWSEndpointRequestAllOf) SetId(v string) {
 }
 
 func (o CreateAWSEndpointRequestAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateAWSEndpointRequestAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateAWSEndpointRequestAllOf struct {

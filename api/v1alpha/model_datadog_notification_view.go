@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DatadogNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DatadogNotificationView{}
+
 // DatadogNotificationView Datadog notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type DatadogNotificationView struct {
 	// Datadog API Key that MongoDB Cloud needs to send alert notifications to Datadog. You can find this API key in the Datadog dashboard. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
@@ -51,7 +54,7 @@ func NewDatadogNotificationViewWithDefaults() *DatadogNotificationView {
 
 // GetDatadogApiKey returns the DatadogApiKey field value if set, zero value otherwise.
 func (o *DatadogNotificationView) GetDatadogApiKey() string {
-	if o == nil || o.DatadogApiKey == nil {
+	if o == nil || IsNil(o.DatadogApiKey) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *DatadogNotificationView) GetDatadogApiKey() string {
 // GetDatadogApiKeyOk returns a tuple with the DatadogApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatadogNotificationView) GetDatadogApiKeyOk() (*string, bool) {
-	if o == nil || o.DatadogApiKey == nil {
+	if o == nil || IsNil(o.DatadogApiKey) {
 		return nil, false
 	}
 	return o.DatadogApiKey, true
@@ -69,7 +72,7 @@ func (o *DatadogNotificationView) GetDatadogApiKeyOk() (*string, bool) {
 
 // HasDatadogApiKey returns a boolean if a field has been set.
 func (o *DatadogNotificationView) HasDatadogApiKey() bool {
-	if o != nil && o.DatadogApiKey != nil {
+	if o != nil && !IsNil(o.DatadogApiKey) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *DatadogNotificationView) SetDatadogApiKey(v string) {
 
 // GetDatadogRegion returns the DatadogRegion field value if set, zero value otherwise.
 func (o *DatadogNotificationView) GetDatadogRegion() string {
-	if o == nil || o.DatadogRegion == nil {
+	if o == nil || IsNil(o.DatadogRegion) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *DatadogNotificationView) GetDatadogRegion() string {
 // GetDatadogRegionOk returns a tuple with the DatadogRegion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatadogNotificationView) GetDatadogRegionOk() (*string, bool) {
-	if o == nil || o.DatadogRegion == nil {
+	if o == nil || IsNil(o.DatadogRegion) {
 		return nil, false
 	}
 	return o.DatadogRegion, true
@@ -101,7 +104,7 @@ func (o *DatadogNotificationView) GetDatadogRegionOk() (*string, bool) {
 
 // HasDatadogRegion returns a boolean if a field has been set.
 func (o *DatadogNotificationView) HasDatadogRegion() bool {
-	if o != nil && o.DatadogRegion != nil {
+	if o != nil && !IsNil(o.DatadogRegion) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *DatadogNotificationView) SetDatadogRegion(v string) {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *DatadogNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *DatadogNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatadogNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -133,7 +136,7 @@ func (o *DatadogNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *DatadogNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *DatadogNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *DatadogNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *DatadogNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatadogNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -165,7 +168,7 @@ func (o *DatadogNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *DatadogNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -202,23 +205,29 @@ func (o *DatadogNotificationView) SetTypeName(v string) {
 }
 
 func (o DatadogNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DatadogApiKey != nil {
-		toSerialize["datadogApiKey"] = o.DatadogApiKey
-	}
-	if o.DatadogRegion != nil {
-		toSerialize["datadogRegion"] = o.DatadogRegion
-	}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DatadogNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DatadogApiKey) {
+		toSerialize["datadogApiKey"] = o.DatadogApiKey
+	}
+	if !IsNil(o.DatadogRegion) {
+		toSerialize["datadogRegion"] = o.DatadogRegion
+	}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableDatadogNotificationView struct {

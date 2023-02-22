@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HipChatNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HipChatNotificationView{}
+
 // HipChatNotificationView HipChat notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type HipChatNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -47,7 +50,7 @@ func NewHipChatNotificationViewWithDefaults() *HipChatNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *HipChatNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *HipChatNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HipChatNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -65,7 +68,7 @@ func (o *HipChatNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *HipChatNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *HipChatNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *HipChatNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *HipChatNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HipChatNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -97,7 +100,7 @@ func (o *HipChatNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *HipChatNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *HipChatNotificationView) SetIntervalMin(v int32) {
 
 // GetNotificationToken returns the NotificationToken field value if set, zero value otherwise.
 func (o *HipChatNotificationView) GetNotificationToken() string {
-	if o == nil || o.NotificationToken == nil {
+	if o == nil || IsNil(o.NotificationToken) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *HipChatNotificationView) GetNotificationToken() string {
 // GetNotificationTokenOk returns a tuple with the NotificationToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HipChatNotificationView) GetNotificationTokenOk() (*string, bool) {
-	if o == nil || o.NotificationToken == nil {
+	if o == nil || IsNil(o.NotificationToken) {
 		return nil, false
 	}
 	return o.NotificationToken, true
@@ -129,7 +132,7 @@ func (o *HipChatNotificationView) GetNotificationTokenOk() (*string, bool) {
 
 // HasNotificationToken returns a boolean if a field has been set.
 func (o *HipChatNotificationView) HasNotificationToken() bool {
-	if o != nil && o.NotificationToken != nil {
+	if o != nil && !IsNil(o.NotificationToken) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *HipChatNotificationView) SetNotificationToken(v string) {
 
 // GetRoomName returns the RoomName field value if set, zero value otherwise.
 func (o *HipChatNotificationView) GetRoomName() string {
-	if o == nil || o.RoomName == nil {
+	if o == nil || IsNil(o.RoomName) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *HipChatNotificationView) GetRoomName() string {
 // GetRoomNameOk returns a tuple with the RoomName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HipChatNotificationView) GetRoomNameOk() (*string, bool) {
-	if o == nil || o.RoomName == nil {
+	if o == nil || IsNil(o.RoomName) {
 		return nil, false
 	}
 	return o.RoomName, true
@@ -161,7 +164,7 @@ func (o *HipChatNotificationView) GetRoomNameOk() (*string, bool) {
 
 // HasRoomName returns a boolean if a field has been set.
 func (o *HipChatNotificationView) HasRoomName() bool {
-	if o != nil && o.RoomName != nil {
+	if o != nil && !IsNil(o.RoomName) {
 		return true
 	}
 
@@ -198,23 +201,29 @@ func (o *HipChatNotificationView) SetTypeName(v string) {
 }
 
 func (o HipChatNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.NotificationToken != nil {
-		toSerialize["notificationToken"] = o.NotificationToken
-	}
-	if o.RoomName != nil {
-		toSerialize["roomName"] = o.RoomName
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o HipChatNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.NotificationToken) {
+		toSerialize["notificationToken"] = o.NotificationToken
+	}
+	if !IsNil(o.RoomName) {
+		toSerialize["roomName"] = o.RoomName
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableHipChatNotificationView struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiGroupInvitationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiGroupInvitationView{}
+
 // ApiGroupInvitationView struct for ApiGroupInvitationView
 type ApiGroupInvitationView struct {
 	// Date and time when MongoDB Cloud sent the invitation. This parameter expresses its value in ISO 8601 format in UTC.
@@ -56,7 +59,7 @@ func NewApiGroupInvitationViewWithDefaults() *ApiGroupInvitationView {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -66,7 +69,7 @@ func (o *ApiGroupInvitationView) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -74,7 +77,7 @@ func (o *ApiGroupInvitationView) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *ApiGroupInvitationView) SetCreatedAt(v time.Time) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -98,7 +101,7 @@ func (o *ApiGroupInvitationView) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -106,7 +109,7 @@ func (o *ApiGroupInvitationView) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *ApiGroupInvitationView) SetExpiresAt(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *ApiGroupInvitationView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -138,7 +141,7 @@ func (o *ApiGroupInvitationView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *ApiGroupInvitationView) SetGroupId(v string) {
 
 // GetGroupName returns the GroupName field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetGroupName() string {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		var ret string
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *ApiGroupInvitationView) GetGroupName() string {
 // GetGroupNameOk returns a tuple with the GroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetGroupNameOk() (*string, bool) {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		return nil, false
 	}
 	return o.GroupName, true
@@ -170,7 +173,7 @@ func (o *ApiGroupInvitationView) GetGroupNameOk() (*string, bool) {
 
 // HasGroupName returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasGroupName() bool {
-	if o != nil && o.GroupName != nil {
+	if o != nil && !IsNil(o.GroupName) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *ApiGroupInvitationView) SetGroupName(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *ApiGroupInvitationView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -202,7 +205,7 @@ func (o *ApiGroupInvitationView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *ApiGroupInvitationView) SetId(v string) {
 
 // GetInviterUsername returns the InviterUsername field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetInviterUsername() string {
-	if o == nil || o.InviterUsername == nil {
+	if o == nil || IsNil(o.InviterUsername) {
 		var ret string
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *ApiGroupInvitationView) GetInviterUsername() string {
 // GetInviterUsernameOk returns a tuple with the InviterUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetInviterUsernameOk() (*string, bool) {
-	if o == nil || o.InviterUsername == nil {
+	if o == nil || IsNil(o.InviterUsername) {
 		return nil, false
 	}
 	return o.InviterUsername, true
@@ -234,7 +237,7 @@ func (o *ApiGroupInvitationView) GetInviterUsernameOk() (*string, bool) {
 
 // HasInviterUsername returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasInviterUsername() bool {
-	if o != nil && o.InviterUsername != nil {
+	if o != nil && !IsNil(o.InviterUsername) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *ApiGroupInvitationView) SetInviterUsername(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -258,7 +261,7 @@ func (o *ApiGroupInvitationView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -266,7 +269,7 @@ func (o *ApiGroupInvitationView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *ApiGroupInvitationView) SetLinks(v []Link) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -290,7 +293,7 @@ func (o *ApiGroupInvitationView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -298,7 +301,7 @@ func (o *ApiGroupInvitationView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *ApiGroupInvitationView) SetRoles(v []string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ApiGroupInvitationView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -322,7 +325,7 @@ func (o *ApiGroupInvitationView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -330,7 +333,7 @@ func (o *ApiGroupInvitationView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ApiGroupInvitationView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -343,35 +346,27 @@ func (o *ApiGroupInvitationView) SetUsername(v string) {
 }
 
 func (o ApiGroupInvitationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.ExpiresAt != nil {
-		toSerialize["expiresAt"] = o.ExpiresAt
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.GroupName != nil {
-		toSerialize["groupName"] = o.GroupName
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.InviterUsername != nil {
-		toSerialize["inviterUsername"] = o.InviterUsername
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiGroupInvitationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: createdAt is readOnly
+	// skip: expiresAt is readOnly
+	// skip: groupId is readOnly
+	// skip: groupName is readOnly
+	// skip: id is readOnly
+	// skip: inviterUsername is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiGroupInvitationView struct {

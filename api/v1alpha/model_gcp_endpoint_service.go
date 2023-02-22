@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPEndpointService type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPEndpointService{}
+
 // GCPEndpointService Group of Private Endpoint Service settings.
 type GCPEndpointService struct {
 	// List of Google Cloud network endpoint groups that corresponds to the Private Service Connect endpoint service.
@@ -49,7 +52,7 @@ func NewGCPEndpointServiceWithDefaults() *GCPEndpointService {
 
 // GetEndpointGroupNames returns the EndpointGroupNames field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetEndpointGroupNames() []string {
-	if o == nil || o.EndpointGroupNames == nil {
+	if o == nil || IsNil(o.EndpointGroupNames) {
 		var ret []string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *GCPEndpointService) GetEndpointGroupNames() []string {
 // GetEndpointGroupNamesOk returns a tuple with the EndpointGroupNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetEndpointGroupNamesOk() ([]string, bool) {
-	if o == nil || o.EndpointGroupNames == nil {
+	if o == nil || IsNil(o.EndpointGroupNames) {
 		return nil, false
 	}
 	return o.EndpointGroupNames, true
@@ -67,7 +70,7 @@ func (o *GCPEndpointService) GetEndpointGroupNamesOk() ([]string, bool) {
 
 // HasEndpointGroupNames returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasEndpointGroupNames() bool {
-	if o != nil && o.EndpointGroupNames != nil {
+	if o != nil && !IsNil(o.EndpointGroupNames) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *GCPEndpointService) SetEndpointGroupNames(v []string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *GCPEndpointService) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -99,7 +102,7 @@ func (o *GCPEndpointService) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *GCPEndpointService) SetErrorMessage(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *GCPEndpointService) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -131,7 +134,7 @@ func (o *GCPEndpointService) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *GCPEndpointService) SetId(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *GCPEndpointService) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -163,7 +166,7 @@ func (o *GCPEndpointService) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *GCPEndpointService) SetRegionName(v string) {
 
 // GetServiceAttachmentNames returns the ServiceAttachmentNames field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetServiceAttachmentNames() []string {
-	if o == nil || o.ServiceAttachmentNames == nil {
+	if o == nil || IsNil(o.ServiceAttachmentNames) {
 		var ret []string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *GCPEndpointService) GetServiceAttachmentNames() []string {
 // GetServiceAttachmentNamesOk returns a tuple with the ServiceAttachmentNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetServiceAttachmentNamesOk() ([]string, bool) {
-	if o == nil || o.ServiceAttachmentNames == nil {
+	if o == nil || IsNil(o.ServiceAttachmentNames) {
 		return nil, false
 	}
 	return o.ServiceAttachmentNames, true
@@ -195,7 +198,7 @@ func (o *GCPEndpointService) GetServiceAttachmentNamesOk() ([]string, bool) {
 
 // HasServiceAttachmentNames returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasServiceAttachmentNames() bool {
-	if o != nil && o.ServiceAttachmentNames != nil {
+	if o != nil && !IsNil(o.ServiceAttachmentNames) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *GCPEndpointService) SetServiceAttachmentNames(v []string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GCPEndpointService) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *GCPEndpointService) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPEndpointService) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -227,7 +230,7 @@ func (o *GCPEndpointService) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GCPEndpointService) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -240,26 +243,26 @@ func (o *GCPEndpointService) SetStatus(v string) {
 }
 
 func (o GCPEndpointService) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndpointGroupNames != nil {
-		toSerialize["endpointGroupNames"] = o.EndpointGroupNames
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.ServiceAttachmentNames != nil {
-		toSerialize["serviceAttachmentNames"] = o.ServiceAttachmentNames
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPEndpointService) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EndpointGroupNames) {
+		toSerialize["endpointGroupNames"] = o.EndpointGroupNames
+	}
+	// skip: errorMessage is readOnly
+	// skip: id is readOnly
+	// skip: regionName is readOnly
+	if !IsNil(o.ServiceAttachmentNames) {
+		toSerialize["serviceAttachmentNames"] = o.ServiceAttachmentNames
+	}
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableGCPEndpointService struct {

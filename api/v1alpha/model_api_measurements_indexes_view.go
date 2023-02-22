@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiMeasurementsIndexesView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMeasurementsIndexesView{}
+
 // ApiMeasurementsIndexesView struct for ApiMeasurementsIndexesView
 type ApiMeasurementsIndexesView struct {
 	// Human-readable label that identifies the collection.
@@ -58,7 +61,7 @@ func NewApiMeasurementsIndexesViewWithDefaults() *ApiMeasurementsIndexesView {
 
 // GetCollectionName returns the CollectionName field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetCollectionName() string {
-	if o == nil || o.CollectionName == nil {
+	if o == nil || IsNil(o.CollectionName) {
 		var ret string
 		return ret
 	}
@@ -68,7 +71,7 @@ func (o *ApiMeasurementsIndexesView) GetCollectionName() string {
 // GetCollectionNameOk returns a tuple with the CollectionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetCollectionNameOk() (*string, bool) {
-	if o == nil || o.CollectionName == nil {
+	if o == nil || IsNil(o.CollectionName) {
 		return nil, false
 	}
 	return o.CollectionName, true
@@ -76,7 +79,7 @@ func (o *ApiMeasurementsIndexesView) GetCollectionNameOk() (*string, bool) {
 
 // HasCollectionName returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasCollectionName() bool {
-	if o != nil && o.CollectionName != nil {
+	if o != nil && !IsNil(o.CollectionName) {
 		return true
 	}
 
@@ -90,7 +93,7 @@ func (o *ApiMeasurementsIndexesView) SetCollectionName(v string) {
 
 // GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetDatabaseName() string {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		var ret string
 		return ret
 	}
@@ -100,7 +103,7 @@ func (o *ApiMeasurementsIndexesView) GetDatabaseName() string {
 // GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetDatabaseNameOk() (*string, bool) {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		return nil, false
 	}
 	return o.DatabaseName, true
@@ -108,7 +111,7 @@ func (o *ApiMeasurementsIndexesView) GetDatabaseNameOk() (*string, bool) {
 
 // HasDatabaseName returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasDatabaseName() bool {
-	if o != nil && o.DatabaseName != nil {
+	if o != nil && !IsNil(o.DatabaseName) {
 		return true
 	}
 
@@ -122,7 +125,7 @@ func (o *ApiMeasurementsIndexesView) SetDatabaseName(v string) {
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetEnd() time.Time {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		var ret time.Time
 		return ret
 	}
@@ -132,7 +135,7 @@ func (o *ApiMeasurementsIndexesView) GetEnd() time.Time {
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetEndOk() (*time.Time, bool) {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
 	return o.End, true
@@ -140,7 +143,7 @@ func (o *ApiMeasurementsIndexesView) GetEndOk() (*time.Time, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasEnd() bool {
-	if o != nil && o.End != nil {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
@@ -154,7 +157,7 @@ func (o *ApiMeasurementsIndexesView) SetEnd(v time.Time) {
 
 // GetGranularity returns the Granularity field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetGranularity() string {
-	if o == nil || o.Granularity == nil {
+	if o == nil || IsNil(o.Granularity) {
 		var ret string
 		return ret
 	}
@@ -164,7 +167,7 @@ func (o *ApiMeasurementsIndexesView) GetGranularity() string {
 // GetGranularityOk returns a tuple with the Granularity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetGranularityOk() (*string, bool) {
-	if o == nil || o.Granularity == nil {
+	if o == nil || IsNil(o.Granularity) {
 		return nil, false
 	}
 	return o.Granularity, true
@@ -172,7 +175,7 @@ func (o *ApiMeasurementsIndexesView) GetGranularityOk() (*string, bool) {
 
 // HasGranularity returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasGranularity() bool {
-	if o != nil && o.Granularity != nil {
+	if o != nil && !IsNil(o.Granularity) {
 		return true
 	}
 
@@ -186,7 +189,7 @@ func (o *ApiMeasurementsIndexesView) SetGranularity(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -196,7 +199,7 @@ func (o *ApiMeasurementsIndexesView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -204,7 +207,7 @@ func (o *ApiMeasurementsIndexesView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -218,7 +221,7 @@ func (o *ApiMeasurementsIndexesView) SetGroupId(v string) {
 
 // GetIndexIds returns the IndexIds field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetIndexIds() []string {
-	if o == nil || o.IndexIds == nil {
+	if o == nil || IsNil(o.IndexIds) {
 		var ret []string
 		return ret
 	}
@@ -228,7 +231,7 @@ func (o *ApiMeasurementsIndexesView) GetIndexIds() []string {
 // GetIndexIdsOk returns a tuple with the IndexIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetIndexIdsOk() ([]string, bool) {
-	if o == nil || o.IndexIds == nil {
+	if o == nil || IsNil(o.IndexIds) {
 		return nil, false
 	}
 	return o.IndexIds, true
@@ -236,7 +239,7 @@ func (o *ApiMeasurementsIndexesView) GetIndexIdsOk() ([]string, bool) {
 
 // HasIndexIds returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasIndexIds() bool {
-	if o != nil && o.IndexIds != nil {
+	if o != nil && !IsNil(o.IndexIds) {
 		return true
 	}
 
@@ -250,7 +253,7 @@ func (o *ApiMeasurementsIndexesView) SetIndexIds(v []string) {
 
 // GetIndexStatsMeasurements returns the IndexStatsMeasurements field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetIndexStatsMeasurements() []ApiMeasurementView {
-	if o == nil || o.IndexStatsMeasurements == nil {
+	if o == nil || IsNil(o.IndexStatsMeasurements) {
 		var ret []ApiMeasurementView
 		return ret
 	}
@@ -260,7 +263,7 @@ func (o *ApiMeasurementsIndexesView) GetIndexStatsMeasurements() []ApiMeasuremen
 // GetIndexStatsMeasurementsOk returns a tuple with the IndexStatsMeasurements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetIndexStatsMeasurementsOk() ([]ApiMeasurementView, bool) {
-	if o == nil || o.IndexStatsMeasurements == nil {
+	if o == nil || IsNil(o.IndexStatsMeasurements) {
 		return nil, false
 	}
 	return o.IndexStatsMeasurements, true
@@ -268,7 +271,7 @@ func (o *ApiMeasurementsIndexesView) GetIndexStatsMeasurementsOk() ([]ApiMeasure
 
 // HasIndexStatsMeasurements returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasIndexStatsMeasurements() bool {
-	if o != nil && o.IndexStatsMeasurements != nil {
+	if o != nil && !IsNil(o.IndexStatsMeasurements) {
 		return true
 	}
 
@@ -282,7 +285,7 @@ func (o *ApiMeasurementsIndexesView) SetIndexStatsMeasurements(v []ApiMeasuremen
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -292,7 +295,7 @@ func (o *ApiMeasurementsIndexesView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -300,7 +303,7 @@ func (o *ApiMeasurementsIndexesView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -314,7 +317,7 @@ func (o *ApiMeasurementsIndexesView) SetLinks(v []Link) {
 
 // GetProcessId returns the ProcessId field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetProcessId() string {
-	if o == nil || o.ProcessId == nil {
+	if o == nil || IsNil(o.ProcessId) {
 		var ret string
 		return ret
 	}
@@ -324,7 +327,7 @@ func (o *ApiMeasurementsIndexesView) GetProcessId() string {
 // GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetProcessIdOk() (*string, bool) {
-	if o == nil || o.ProcessId == nil {
+	if o == nil || IsNil(o.ProcessId) {
 		return nil, false
 	}
 	return o.ProcessId, true
@@ -332,7 +335,7 @@ func (o *ApiMeasurementsIndexesView) GetProcessIdOk() (*string, bool) {
 
 // HasProcessId returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasProcessId() bool {
-	if o != nil && o.ProcessId != nil {
+	if o != nil && !IsNil(o.ProcessId) {
 		return true
 	}
 
@@ -346,7 +349,7 @@ func (o *ApiMeasurementsIndexesView) SetProcessId(v string) {
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *ApiMeasurementsIndexesView) GetStart() time.Time {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret time.Time
 		return ret
 	}
@@ -356,7 +359,7 @@ func (o *ApiMeasurementsIndexesView) GetStart() time.Time {
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementsIndexesView) GetStartOk() (*time.Time, bool) {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
 	return o.Start, true
@@ -364,7 +367,7 @@ func (o *ApiMeasurementsIndexesView) GetStartOk() (*time.Time, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *ApiMeasurementsIndexesView) HasStart() bool {
-	if o != nil && o.Start != nil {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
@@ -377,38 +380,26 @@ func (o *ApiMeasurementsIndexesView) SetStart(v time.Time) {
 }
 
 func (o ApiMeasurementsIndexesView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CollectionName != nil {
-		toSerialize["collectionName"] = o.CollectionName
-	}
-	if o.DatabaseName != nil {
-		toSerialize["databaseName"] = o.DatabaseName
-	}
-	if o.End != nil {
-		toSerialize["end"] = o.End
-	}
-	if o.Granularity != nil {
-		toSerialize["granularity"] = o.Granularity
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.IndexIds != nil {
-		toSerialize["indexIds"] = o.IndexIds
-	}
-	if o.IndexStatsMeasurements != nil {
-		toSerialize["indexStatsMeasurements"] = o.IndexStatsMeasurements
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.ProcessId != nil {
-		toSerialize["processId"] = o.ProcessId
-	}
-	if o.Start != nil {
-		toSerialize["start"] = o.Start
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMeasurementsIndexesView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: collectionName is readOnly
+	// skip: databaseName is readOnly
+	// skip: end is readOnly
+	// skip: granularity is readOnly
+	// skip: groupId is readOnly
+	// skip: indexIds is readOnly
+	// skip: indexStatsMeasurements is readOnly
+	// skip: links is readOnly
+	// skip: processId is readOnly
+	// skip: start is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiMeasurementsIndexesView struct {

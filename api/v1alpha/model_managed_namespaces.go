@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ManagedNamespaces type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ManagedNamespaces{}
+
 // ManagedNamespaces List that contains a namespace for a Global Cluster. MongoDB Cloud manages this cluster.
 type ManagedNamespaces struct {
 	// Human-readable label of the collection to manage for this Global Cluster.
@@ -135,7 +138,7 @@ func (o *ManagedNamespaces) SetDb(v string) {
 
 // GetIsCustomShardKeyHashed returns the IsCustomShardKeyHashed field value if set, zero value otherwise.
 func (o *ManagedNamespaces) GetIsCustomShardKeyHashed() bool {
-	if o == nil || o.IsCustomShardKeyHashed == nil {
+	if o == nil || IsNil(o.IsCustomShardKeyHashed) {
 		var ret bool
 		return ret
 	}
@@ -145,7 +148,7 @@ func (o *ManagedNamespaces) GetIsCustomShardKeyHashed() bool {
 // GetIsCustomShardKeyHashedOk returns a tuple with the IsCustomShardKeyHashed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaces) GetIsCustomShardKeyHashedOk() (*bool, bool) {
-	if o == nil || o.IsCustomShardKeyHashed == nil {
+	if o == nil || IsNil(o.IsCustomShardKeyHashed) {
 		return nil, false
 	}
 	return o.IsCustomShardKeyHashed, true
@@ -153,7 +156,7 @@ func (o *ManagedNamespaces) GetIsCustomShardKeyHashedOk() (*bool, bool) {
 
 // HasIsCustomShardKeyHashed returns a boolean if a field has been set.
 func (o *ManagedNamespaces) HasIsCustomShardKeyHashed() bool {
-	if o != nil && o.IsCustomShardKeyHashed != nil {
+	if o != nil && !IsNil(o.IsCustomShardKeyHashed) {
 		return true
 	}
 
@@ -167,7 +170,7 @@ func (o *ManagedNamespaces) SetIsCustomShardKeyHashed(v bool) {
 
 // GetIsShardKeyUnique returns the IsShardKeyUnique field value if set, zero value otherwise.
 func (o *ManagedNamespaces) GetIsShardKeyUnique() bool {
-	if o == nil || o.IsShardKeyUnique == nil {
+	if o == nil || IsNil(o.IsShardKeyUnique) {
 		var ret bool
 		return ret
 	}
@@ -177,7 +180,7 @@ func (o *ManagedNamespaces) GetIsShardKeyUnique() bool {
 // GetIsShardKeyUniqueOk returns a tuple with the IsShardKeyUnique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaces) GetIsShardKeyUniqueOk() (*bool, bool) {
-	if o == nil || o.IsShardKeyUnique == nil {
+	if o == nil || IsNil(o.IsShardKeyUnique) {
 		return nil, false
 	}
 	return o.IsShardKeyUnique, true
@@ -185,7 +188,7 @@ func (o *ManagedNamespaces) GetIsShardKeyUniqueOk() (*bool, bool) {
 
 // HasIsShardKeyUnique returns a boolean if a field has been set.
 func (o *ManagedNamespaces) HasIsShardKeyUnique() bool {
-	if o != nil && o.IsShardKeyUnique != nil {
+	if o != nil && !IsNil(o.IsShardKeyUnique) {
 		return true
 	}
 
@@ -199,7 +202,7 @@ func (o *ManagedNamespaces) SetIsShardKeyUnique(v bool) {
 
 // GetNumInitialChunks returns the NumInitialChunks field value if set, zero value otherwise.
 func (o *ManagedNamespaces) GetNumInitialChunks() int64 {
-	if o == nil || o.NumInitialChunks == nil {
+	if o == nil || IsNil(o.NumInitialChunks) {
 		var ret int64
 		return ret
 	}
@@ -209,7 +212,7 @@ func (o *ManagedNamespaces) GetNumInitialChunks() int64 {
 // GetNumInitialChunksOk returns a tuple with the NumInitialChunks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaces) GetNumInitialChunksOk() (*int64, bool) {
-	if o == nil || o.NumInitialChunks == nil {
+	if o == nil || IsNil(o.NumInitialChunks) {
 		return nil, false
 	}
 	return o.NumInitialChunks, true
@@ -217,7 +220,7 @@ func (o *ManagedNamespaces) GetNumInitialChunksOk() (*int64, bool) {
 
 // HasNumInitialChunks returns a boolean if a field has been set.
 func (o *ManagedNamespaces) HasNumInitialChunks() bool {
-	if o != nil && o.NumInitialChunks != nil {
+	if o != nil && !IsNil(o.NumInitialChunks) {
 		return true
 	}
 
@@ -231,7 +234,7 @@ func (o *ManagedNamespaces) SetNumInitialChunks(v int64) {
 
 // GetPresplitHashedZones returns the PresplitHashedZones field value if set, zero value otherwise.
 func (o *ManagedNamespaces) GetPresplitHashedZones() bool {
-	if o == nil || o.PresplitHashedZones == nil {
+	if o == nil || IsNil(o.PresplitHashedZones) {
 		var ret bool
 		return ret
 	}
@@ -241,7 +244,7 @@ func (o *ManagedNamespaces) GetPresplitHashedZones() bool {
 // GetPresplitHashedZonesOk returns a tuple with the PresplitHashedZones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaces) GetPresplitHashedZonesOk() (*bool, bool) {
-	if o == nil || o.PresplitHashedZones == nil {
+	if o == nil || IsNil(o.PresplitHashedZones) {
 		return nil, false
 	}
 	return o.PresplitHashedZones, true
@@ -249,7 +252,7 @@ func (o *ManagedNamespaces) GetPresplitHashedZonesOk() (*bool, bool) {
 
 // HasPresplitHashedZones returns a boolean if a field has been set.
 func (o *ManagedNamespaces) HasPresplitHashedZones() bool {
-	if o != nil && o.PresplitHashedZones != nil {
+	if o != nil && !IsNil(o.PresplitHashedZones) {
 		return true
 	}
 
@@ -262,29 +265,31 @@ func (o *ManagedNamespaces) SetPresplitHashedZones(v bool) {
 }
 
 func (o ManagedNamespaces) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["collection"] = o.Collection
-	}
-	if true {
-		toSerialize["customShardKey"] = o.CustomShardKey
-	}
-	if true {
-		toSerialize["db"] = o.Db
-	}
-	if o.IsCustomShardKeyHashed != nil {
-		toSerialize["isCustomShardKeyHashed"] = o.IsCustomShardKeyHashed
-	}
-	if o.IsShardKeyUnique != nil {
-		toSerialize["isShardKeyUnique"] = o.IsShardKeyUnique
-	}
-	if o.NumInitialChunks != nil {
-		toSerialize["numInitialChunks"] = o.NumInitialChunks
-	}
-	if o.PresplitHashedZones != nil {
-		toSerialize["presplitHashedZones"] = o.PresplitHashedZones
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ManagedNamespaces) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["collection"] = o.Collection
+	// skip: customShardKey is readOnly
+	toSerialize["db"] = o.Db
+	if !IsNil(o.IsCustomShardKeyHashed) {
+		toSerialize["isCustomShardKeyHashed"] = o.IsCustomShardKeyHashed
+	}
+	if !IsNil(o.IsShardKeyUnique) {
+		toSerialize["isShardKeyUnique"] = o.IsShardKeyUnique
+	}
+	if !IsNil(o.NumInitialChunks) {
+		toSerialize["numInitialChunks"] = o.NumInitialChunks
+	}
+	if !IsNil(o.PresplitHashedZones) {
+		toSerialize["presplitHashedZones"] = o.PresplitHashedZones
+	}
+	return toSerialize, nil
 }
 
 type NullableManagedNamespaces struct {

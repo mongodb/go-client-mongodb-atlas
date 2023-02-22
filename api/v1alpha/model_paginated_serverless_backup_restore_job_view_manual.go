@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaginatedServerlessBackupRestoreJobViewManual type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedServerlessBackupRestoreJobViewManual{}
+
 // PaginatedServerlessBackupRestoreJobViewManual struct for PaginatedServerlessBackupRestoreJobViewManual
 type PaginatedServerlessBackupRestoreJobViewManual struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -114,17 +117,19 @@ func (o *PaginatedServerlessBackupRestoreJobViewManual) SetTotalCount(v float32)
 }
 
 func (o PaginatedServerlessBackupRestoreJobViewManual) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["results"] = o.Results
-	}
-	if true {
-		toSerialize["totalCount"] = o.TotalCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PaginatedServerlessBackupRestoreJobViewManual) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	// skip: results is readOnly
+	// skip: totalCount is readOnly
+	return toSerialize, nil
 }
 
 type NullablePaginatedServerlessBackupRestoreJobViewManual struct {

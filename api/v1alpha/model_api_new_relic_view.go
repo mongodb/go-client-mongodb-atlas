@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiNewRelicView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiNewRelicView{}
+
 // ApiNewRelicView Details to integrate one New Relic account with one MongoDB Cloud project.  ***IMPORTANT**: Effective Wednesday, June 16th, 2021, New Relic no longer supports the plugin-based integration with MongoDB. We do not recommend that you sign up for the plugin-based integration.  To learn more, see the <a href=\"https://discuss.newrelic.com/t/new-relic-plugin-eol-wednesday-june-16th-2021/127267\" target=\"_blank\">New Relic Plugin EOL Statement</a>. Consider configuring an alternative monitoring integration before June 16th to maintain visibility into your MongoDB deployments.
 type ApiNewRelicView struct {
 	// Unique 40-hexadecimal digit string that identifies your New Relic account.
@@ -119,7 +122,7 @@ func (o *ApiNewRelicView) SetReadToken(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiNewRelicView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *ApiNewRelicView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiNewRelicView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -137,7 +140,7 @@ func (o *ApiNewRelicView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiNewRelicView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -174,23 +177,23 @@ func (o *ApiNewRelicView) SetWriteToken(v string) {
 }
 
 func (o ApiNewRelicView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["accountId"] = o.AccountId
-	}
-	if true {
-		toSerialize["licenseKey"] = o.LicenseKey
-	}
-	if true {
-		toSerialize["readToken"] = o.ReadToken
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["writeToken"] = o.WriteToken
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiNewRelicView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["accountId"] = o.AccountId
+	toSerialize["licenseKey"] = o.LicenseKey
+	toSerialize["readToken"] = o.ReadToken
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	toSerialize["writeToken"] = o.WriteToken
+	return toSerialize, nil
 }
 
 type NullableApiNewRelicView struct {

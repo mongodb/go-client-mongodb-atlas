@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LiveMigrationResponseView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LiveMigrationResponseView{}
+
 // LiveMigrationResponseView struct for LiveMigrationResponseView
 type LiveMigrationResponseView struct {
 	// Unique 24-hexadecimal digit string that identifies the migration job.
@@ -47,7 +50,7 @@ func NewLiveMigrationResponseViewWithDefaults() *LiveMigrationResponseView {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *LiveMigrationResponseView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *LiveMigrationResponseView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationResponseView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -65,7 +68,7 @@ func (o *LiveMigrationResponseView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *LiveMigrationResponseView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *LiveMigrationResponseView) SetId(v string) {
 
 // GetLagTimeSeconds returns the LagTimeSeconds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LiveMigrationResponseView) GetLagTimeSeconds() int64 {
-	if o == nil || o.LagTimeSeconds.Get() == nil {
+	if o == nil || IsNil(o.LagTimeSeconds.Get()) {
 		var ret int64
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *LiveMigrationResponseView) UnsetLagTimeSeconds() {
 
 // GetMigrationHosts returns the MigrationHosts field value if set, zero value otherwise.
 func (o *LiveMigrationResponseView) GetMigrationHosts() []string {
-	if o == nil || o.MigrationHosts == nil {
+	if o == nil || IsNil(o.MigrationHosts) {
 		var ret []string
 		return ret
 	}
@@ -131,7 +134,7 @@ func (o *LiveMigrationResponseView) GetMigrationHosts() []string {
 // GetMigrationHostsOk returns a tuple with the MigrationHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationResponseView) GetMigrationHostsOk() ([]string, bool) {
-	if o == nil || o.MigrationHosts == nil {
+	if o == nil || IsNil(o.MigrationHosts) {
 		return nil, false
 	}
 	return o.MigrationHosts, true
@@ -139,7 +142,7 @@ func (o *LiveMigrationResponseView) GetMigrationHostsOk() ([]string, bool) {
 
 // HasMigrationHosts returns a boolean if a field has been set.
 func (o *LiveMigrationResponseView) HasMigrationHosts() bool {
-	if o != nil && o.MigrationHosts != nil {
+	if o != nil && !IsNil(o.MigrationHosts) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *LiveMigrationResponseView) SetMigrationHosts(v []string) {
 
 // GetReadyForCutover returns the ReadyForCutover field value if set, zero value otherwise.
 func (o *LiveMigrationResponseView) GetReadyForCutover() bool {
-	if o == nil || o.ReadyForCutover == nil {
+	if o == nil || IsNil(o.ReadyForCutover) {
 		var ret bool
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *LiveMigrationResponseView) GetReadyForCutover() bool {
 // GetReadyForCutoverOk returns a tuple with the ReadyForCutover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationResponseView) GetReadyForCutoverOk() (*bool, bool) {
-	if o == nil || o.ReadyForCutover == nil {
+	if o == nil || IsNil(o.ReadyForCutover) {
 		return nil, false
 	}
 	return o.ReadyForCutover, true
@@ -171,7 +174,7 @@ func (o *LiveMigrationResponseView) GetReadyForCutoverOk() (*bool, bool) {
 
 // HasReadyForCutover returns a boolean if a field has been set.
 func (o *LiveMigrationResponseView) HasReadyForCutover() bool {
-	if o != nil && o.ReadyForCutover != nil {
+	if o != nil && !IsNil(o.ReadyForCutover) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *LiveMigrationResponseView) SetReadyForCutover(v bool) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LiveMigrationResponseView) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *LiveMigrationResponseView) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationResponseView) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -203,7 +206,7 @@ func (o *LiveMigrationResponseView) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *LiveMigrationResponseView) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -216,23 +219,23 @@ func (o *LiveMigrationResponseView) SetStatus(v string) {
 }
 
 func (o LiveMigrationResponseView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LiveMigrationResponseView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
 	if o.LagTimeSeconds.IsSet() {
 		toSerialize["lagTimeSeconds"] = o.LagTimeSeconds.Get()
 	}
-	if o.MigrationHosts != nil {
-		toSerialize["migrationHosts"] = o.MigrationHosts
-	}
-	if o.ReadyForCutover != nil {
-		toSerialize["readyForCutover"] = o.ReadyForCutover
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	return json.Marshal(toSerialize)
+	// skip: migrationHosts is readOnly
+	// skip: readyForCutover is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableLiveMigrationResponseView struct {

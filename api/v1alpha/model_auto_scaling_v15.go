@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AutoScalingV15 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AutoScalingV15{}
+
 // AutoScalingV15 Options that determine how this cluster handles resource scaling.
 type AutoScalingV15 struct {
 	Compute *ComputeAutoScalingV15 `json:"compute,omitempty"`
@@ -39,7 +42,7 @@ func NewAutoScalingV15WithDefaults() *AutoScalingV15 {
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *AutoScalingV15) GetCompute() ComputeAutoScalingV15 {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		var ret ComputeAutoScalingV15
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *AutoScalingV15) GetCompute() ComputeAutoScalingV15 {
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoScalingV15) GetComputeOk() (*ComputeAutoScalingV15, bool) {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		return nil, false
 	}
 	return o.Compute, true
@@ -57,7 +60,7 @@ func (o *AutoScalingV15) GetComputeOk() (*ComputeAutoScalingV15, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *AutoScalingV15) HasCompute() bool {
-	if o != nil && o.Compute != nil {
+	if o != nil && !IsNil(o.Compute) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *AutoScalingV15) SetCompute(v ComputeAutoScalingV15) {
 
 // GetDiskGB returns the DiskGB field value if set, zero value otherwise.
 func (o *AutoScalingV15) GetDiskGB() DiskGBAutoScaling {
-	if o == nil || o.DiskGB == nil {
+	if o == nil || IsNil(o.DiskGB) {
 		var ret DiskGBAutoScaling
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *AutoScalingV15) GetDiskGB() DiskGBAutoScaling {
 // GetDiskGBOk returns a tuple with the DiskGB field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoScalingV15) GetDiskGBOk() (*DiskGBAutoScaling, bool) {
-	if o == nil || o.DiskGB == nil {
+	if o == nil || IsNil(o.DiskGB) {
 		return nil, false
 	}
 	return o.DiskGB, true
@@ -89,7 +92,7 @@ func (o *AutoScalingV15) GetDiskGBOk() (*DiskGBAutoScaling, bool) {
 
 // HasDiskGB returns a boolean if a field has been set.
 func (o *AutoScalingV15) HasDiskGB() bool {
-	if o != nil && o.DiskGB != nil {
+	if o != nil && !IsNil(o.DiskGB) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *AutoScalingV15) SetDiskGB(v DiskGBAutoScaling) {
 }
 
 func (o AutoScalingV15) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Compute != nil {
-		toSerialize["compute"] = o.Compute
-	}
-	if o.DiskGB != nil {
-		toSerialize["diskGB"] = o.DiskGB
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AutoScalingV15) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Compute) {
+		toSerialize["compute"] = o.Compute
+	}
+	if !IsNil(o.DiskGB) {
+		toSerialize["diskGB"] = o.DiskGB
+	}
+	return toSerialize, nil
 }
 
 type NullableAutoScalingV15 struct {

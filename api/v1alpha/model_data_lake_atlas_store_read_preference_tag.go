@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeAtlasStoreReadPreferenceTag type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeAtlasStoreReadPreferenceTag{}
+
 // DataLakeAtlasStoreReadPreferenceTag List that contains [tag sets](https://docs.mongodb.com/manual/core/read-preference-tags/) or tag specification documents. If specified, Atlas Data Lake routes read requests to replica set member or members that are associated with the specified tags.
 type DataLakeAtlasStoreReadPreferenceTag struct {
 	// Human-readable label of the tag.
@@ -41,7 +44,7 @@ func NewDataLakeAtlasStoreReadPreferenceTagWithDefaults() *DataLakeAtlasStoreRea
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeAtlasStoreReadPreferenceTag) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStoreReadPreferenceTag) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -59,7 +62,7 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeAtlasStoreReadPreferenceTag) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) SetName(v string) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *DataLakeAtlasStoreReadPreferenceTag) GetValue() string {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) GetValue() string {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStoreReadPreferenceTag) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -91,7 +94,7 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *DataLakeAtlasStoreReadPreferenceTag) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *DataLakeAtlasStoreReadPreferenceTag) SetValue(v string) {
 }
 
 func (o DataLakeAtlasStoreReadPreferenceTag) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeAtlasStoreReadPreferenceTag) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeAtlasStoreReadPreferenceTag struct {

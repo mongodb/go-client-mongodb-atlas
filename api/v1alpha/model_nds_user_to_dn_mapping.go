@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NDSUserToDNMapping type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSUserToDNMapping{}
+
 // NDSUserToDNMapping User-to-Distinguished Name (DN) map that MongoDB Cloud uses to transform a Lightweight Directory Access Protocol (LDAP) username into an LDAP DN.
 type NDSUserToDNMapping struct {
 	// Lightweight Directory Access Protocol (LDAP) query template that inserts the LDAP name that the regular expression matches into an LDAP query Uniform Resource Identifier (URI). The formatting for the query must conform to [RFC 4515](https://datatracker.ietf.org/doc/html/rfc4515) and [RFC 4516](https://datatracker.ietf.org/doc/html/rfc4516).
@@ -114,17 +117,19 @@ func (o *NDSUserToDNMapping) SetSubstitution(v string) {
 }
 
 func (o NDSUserToDNMapping) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ldapQuery"] = o.LdapQuery
-	}
-	if true {
-		toSerialize["match"] = o.Match
-	}
-	if true {
-		toSerialize["substitution"] = o.Substitution
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSUserToDNMapping) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ldapQuery"] = o.LdapQuery
+	toSerialize["match"] = o.Match
+	toSerialize["substitution"] = o.Substitution
+	return toSerialize, nil
 }
 
 type NullableNDSUserToDNMapping struct {

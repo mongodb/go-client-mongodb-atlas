@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeAtlasStoreReadPreference type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeAtlasStoreReadPreference{}
+
 // DataLakeAtlasStoreReadPreference MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 type DataLakeAtlasStoreReadPreference struct {
 	// Maximum replication lag, or **staleness**, for reads from secondaries.
@@ -43,7 +46,7 @@ func NewDataLakeAtlasStoreReadPreferenceWithDefaults() *DataLakeAtlasStoreReadPr
 
 // GetMaxStalenessSeconds returns the MaxStalenessSeconds field value if set, zero value otherwise.
 func (o *DataLakeAtlasStoreReadPreference) GetMaxStalenessSeconds() int32 {
-	if o == nil || o.MaxStalenessSeconds == nil {
+	if o == nil || IsNil(o.MaxStalenessSeconds) {
 		var ret int32
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetMaxStalenessSeconds() int32 {
 // GetMaxStalenessSecondsOk returns a tuple with the MaxStalenessSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStoreReadPreference) GetMaxStalenessSecondsOk() (*int32, bool) {
-	if o == nil || o.MaxStalenessSeconds == nil {
+	if o == nil || IsNil(o.MaxStalenessSeconds) {
 		return nil, false
 	}
 	return o.MaxStalenessSeconds, true
@@ -61,7 +64,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetMaxStalenessSecondsOk() (*int32, b
 
 // HasMaxStalenessSeconds returns a boolean if a field has been set.
 func (o *DataLakeAtlasStoreReadPreference) HasMaxStalenessSeconds() bool {
-	if o != nil && o.MaxStalenessSeconds != nil {
+	if o != nil && !IsNil(o.MaxStalenessSeconds) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DataLakeAtlasStoreReadPreference) SetMaxStalenessSeconds(v int32) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *DataLakeAtlasStoreReadPreference) GetMode() string {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStoreReadPreference) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -93,7 +96,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *DataLakeAtlasStoreReadPreference) HasMode() bool {
-	if o != nil && o.Mode != nil {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DataLakeAtlasStoreReadPreference) SetMode(v string) {
 
 // GetTagSets returns the TagSets field value if set, zero value otherwise.
 func (o *DataLakeAtlasStoreReadPreference) GetTagSets() [][]DataLakeAtlasStoreReadPreferenceTag {
-	if o == nil || o.TagSets == nil {
+	if o == nil || IsNil(o.TagSets) {
 		var ret [][]DataLakeAtlasStoreReadPreferenceTag
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetTagSets() [][]DataLakeAtlasStoreRe
 // GetTagSetsOk returns a tuple with the TagSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStoreReadPreference) GetTagSetsOk() ([][]DataLakeAtlasStoreReadPreferenceTag, bool) {
-	if o == nil || o.TagSets == nil {
+	if o == nil || IsNil(o.TagSets) {
 		return nil, false
 	}
 	return o.TagSets, true
@@ -125,7 +128,7 @@ func (o *DataLakeAtlasStoreReadPreference) GetTagSetsOk() ([][]DataLakeAtlasStor
 
 // HasTagSets returns a boolean if a field has been set.
 func (o *DataLakeAtlasStoreReadPreference) HasTagSets() bool {
-	if o != nil && o.TagSets != nil {
+	if o != nil && !IsNil(o.TagSets) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *DataLakeAtlasStoreReadPreference) SetTagSets(v [][]DataLakeAtlasStoreRe
 }
 
 func (o DataLakeAtlasStoreReadPreference) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MaxStalenessSeconds != nil {
-		toSerialize["maxStalenessSeconds"] = o.MaxStalenessSeconds
-	}
-	if o.Mode != nil {
-		toSerialize["mode"] = o.Mode
-	}
-	if o.TagSets != nil {
-		toSerialize["tagSets"] = o.TagSets
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeAtlasStoreReadPreference) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxStalenessSeconds) {
+		toSerialize["maxStalenessSeconds"] = o.MaxStalenessSeconds
+	}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.TagSets) {
+		toSerialize["tagSets"] = o.TagSets
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeAtlasStoreReadPreference struct {

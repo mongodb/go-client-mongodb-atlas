@@ -135,212 +135,212 @@ func WebhookNotificationViewAsNotificationViewForNdsGroup(v *WebhookNotification
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotificationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into DatadogNotificationView
-        err = json.Unmarshal(data, &dst.DatadogNotificationView)
-        if err == nil {
-                jsonDatadogNotificationView, _ := json.Marshal(dst.DatadogNotificationView)
-                if string(jsonDatadogNotificationView) == "{}" { // empty struct
-                        dst.DatadogNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.DatadogNotificationView = nil
-        }
+	match := 0
+	// try to unmarshal data into DatadogNotificationView
+	err = json.Unmarshal(data, &dst.DatadogNotificationView)
+	if err == nil {
+		jsonDatadogNotificationView, _ := json.Marshal(dst.DatadogNotificationView)
+		if string(jsonDatadogNotificationView) == "{}" { // empty struct
+			dst.DatadogNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.DatadogNotificationView = nil
+	}
 
-        // try to unmarshal data into EmailNotificationView
-        err = json.Unmarshal(data, &dst.EmailNotificationView)
-        if err == nil {
-                jsonEmailNotificationView, _ := json.Marshal(dst.EmailNotificationView)
-                if string(jsonEmailNotificationView) == "{}" { // empty struct
-                        dst.EmailNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.EmailNotificationView = nil
-        }
+	// try to unmarshal data into EmailNotificationView
+	err = json.Unmarshal(data, &dst.EmailNotificationView)
+	if err == nil {
+		jsonEmailNotificationView, _ := json.Marshal(dst.EmailNotificationView)
+		if string(jsonEmailNotificationView) == "{}" { // empty struct
+			dst.EmailNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.EmailNotificationView = nil
+	}
 
-        // try to unmarshal data into GroupNotificationView
-        err = json.Unmarshal(data, &dst.GroupNotificationView)
-        if err == nil {
-                jsonGroupNotificationView, _ := json.Marshal(dst.GroupNotificationView)
-                if string(jsonGroupNotificationView) == "{}" { // empty struct
-                        dst.GroupNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.GroupNotificationView = nil
-        }
+	// try to unmarshal data into GroupNotificationView
+	err = json.Unmarshal(data, &dst.GroupNotificationView)
+	if err == nil {
+		jsonGroupNotificationView, _ := json.Marshal(dst.GroupNotificationView)
+		if string(jsonGroupNotificationView) == "{}" { // empty struct
+			dst.GroupNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GroupNotificationView = nil
+	}
 
-        // try to unmarshal data into HipChatNotificationView
-        err = json.Unmarshal(data, &dst.HipChatNotificationView)
-        if err == nil {
-                jsonHipChatNotificationView, _ := json.Marshal(dst.HipChatNotificationView)
-                if string(jsonHipChatNotificationView) == "{}" { // empty struct
-                        dst.HipChatNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.HipChatNotificationView = nil
-        }
+	// try to unmarshal data into HipChatNotificationView
+	err = json.Unmarshal(data, &dst.HipChatNotificationView)
+	if err == nil {
+		jsonHipChatNotificationView, _ := json.Marshal(dst.HipChatNotificationView)
+		if string(jsonHipChatNotificationView) == "{}" { // empty struct
+			dst.HipChatNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.HipChatNotificationView = nil
+	}
 
-        // try to unmarshal data into MicrosoftTeamsNotificationView
-        err = json.Unmarshal(data, &dst.MicrosoftTeamsNotificationView)
-        if err == nil {
-                jsonMicrosoftTeamsNotificationView, _ := json.Marshal(dst.MicrosoftTeamsNotificationView)
-                if string(jsonMicrosoftTeamsNotificationView) == "{}" { // empty struct
-                        dst.MicrosoftTeamsNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.MicrosoftTeamsNotificationView = nil
-        }
+	// try to unmarshal data into MicrosoftTeamsNotificationView
+	err = json.Unmarshal(data, &dst.MicrosoftTeamsNotificationView)
+	if err == nil {
+		jsonMicrosoftTeamsNotificationView, _ := json.Marshal(dst.MicrosoftTeamsNotificationView)
+		if string(jsonMicrosoftTeamsNotificationView) == "{}" { // empty struct
+			dst.MicrosoftTeamsNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.MicrosoftTeamsNotificationView = nil
+	}
 
-        // try to unmarshal data into OpsGenieNotificationView
-        err = json.Unmarshal(data, &dst.OpsGenieNotificationView)
-        if err == nil {
-                jsonOpsGenieNotificationView, _ := json.Marshal(dst.OpsGenieNotificationView)
-                if string(jsonOpsGenieNotificationView) == "{}" { // empty struct
-                        dst.OpsGenieNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.OpsGenieNotificationView = nil
-        }
+	// try to unmarshal data into OpsGenieNotificationView
+	err = json.Unmarshal(data, &dst.OpsGenieNotificationView)
+	if err == nil {
+		jsonOpsGenieNotificationView, _ := json.Marshal(dst.OpsGenieNotificationView)
+		if string(jsonOpsGenieNotificationView) == "{}" { // empty struct
+			dst.OpsGenieNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.OpsGenieNotificationView = nil
+	}
 
-        // try to unmarshal data into OrgNotificationView
-        err = json.Unmarshal(data, &dst.OrgNotificationView)
-        if err == nil {
-                jsonOrgNotificationView, _ := json.Marshal(dst.OrgNotificationView)
-                if string(jsonOrgNotificationView) == "{}" { // empty struct
-                        dst.OrgNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.OrgNotificationView = nil
-        }
+	// try to unmarshal data into OrgNotificationView
+	err = json.Unmarshal(data, &dst.OrgNotificationView)
+	if err == nil {
+		jsonOrgNotificationView, _ := json.Marshal(dst.OrgNotificationView)
+		if string(jsonOrgNotificationView) == "{}" { // empty struct
+			dst.OrgNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.OrgNotificationView = nil
+	}
 
-        // try to unmarshal data into PagerDutyNotificationView
-        err = json.Unmarshal(data, &dst.PagerDutyNotificationView)
-        if err == nil {
-                jsonPagerDutyNotificationView, _ := json.Marshal(dst.PagerDutyNotificationView)
-                if string(jsonPagerDutyNotificationView) == "{}" { // empty struct
-                        dst.PagerDutyNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.PagerDutyNotificationView = nil
-        }
+	// try to unmarshal data into PagerDutyNotificationView
+	err = json.Unmarshal(data, &dst.PagerDutyNotificationView)
+	if err == nil {
+		jsonPagerDutyNotificationView, _ := json.Marshal(dst.PagerDutyNotificationView)
+		if string(jsonPagerDutyNotificationView) == "{}" { // empty struct
+			dst.PagerDutyNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PagerDutyNotificationView = nil
+	}
 
-        // try to unmarshal data into SMSNotificationView
-        err = json.Unmarshal(data, &dst.SMSNotificationView)
-        if err == nil {
-                jsonSMSNotificationView, _ := json.Marshal(dst.SMSNotificationView)
-                if string(jsonSMSNotificationView) == "{}" { // empty struct
-                        dst.SMSNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.SMSNotificationView = nil
-        }
+	// try to unmarshal data into SMSNotificationView
+	err = json.Unmarshal(data, &dst.SMSNotificationView)
+	if err == nil {
+		jsonSMSNotificationView, _ := json.Marshal(dst.SMSNotificationView)
+		if string(jsonSMSNotificationView) == "{}" { // empty struct
+			dst.SMSNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.SMSNotificationView = nil
+	}
 
-        // try to unmarshal data into SlackNotificationView
-        err = json.Unmarshal(data, &dst.SlackNotificationView)
-        if err == nil {
-                jsonSlackNotificationView, _ := json.Marshal(dst.SlackNotificationView)
-                if string(jsonSlackNotificationView) == "{}" { // empty struct
-                        dst.SlackNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.SlackNotificationView = nil
-        }
+	// try to unmarshal data into SlackNotificationView
+	err = json.Unmarshal(data, &dst.SlackNotificationView)
+	if err == nil {
+		jsonSlackNotificationView, _ := json.Marshal(dst.SlackNotificationView)
+		if string(jsonSlackNotificationView) == "{}" { // empty struct
+			dst.SlackNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.SlackNotificationView = nil
+	}
 
-        // try to unmarshal data into TeamNotificationView
-        err = json.Unmarshal(data, &dst.TeamNotificationView)
-        if err == nil {
-                jsonTeamNotificationView, _ := json.Marshal(dst.TeamNotificationView)
-                if string(jsonTeamNotificationView) == "{}" { // empty struct
-                        dst.TeamNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TeamNotificationView = nil
-        }
+	// try to unmarshal data into TeamNotificationView
+	err = json.Unmarshal(data, &dst.TeamNotificationView)
+	if err == nil {
+		jsonTeamNotificationView, _ := json.Marshal(dst.TeamNotificationView)
+		if string(jsonTeamNotificationView) == "{}" { // empty struct
+			dst.TeamNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TeamNotificationView = nil
+	}
 
-        // try to unmarshal data into UserNotificationView
-        err = json.Unmarshal(data, &dst.UserNotificationView)
-        if err == nil {
-                jsonUserNotificationView, _ := json.Marshal(dst.UserNotificationView)
-                if string(jsonUserNotificationView) == "{}" { // empty struct
-                        dst.UserNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.UserNotificationView = nil
-        }
+	// try to unmarshal data into UserNotificationView
+	err = json.Unmarshal(data, &dst.UserNotificationView)
+	if err == nil {
+		jsonUserNotificationView, _ := json.Marshal(dst.UserNotificationView)
+		if string(jsonUserNotificationView) == "{}" { // empty struct
+			dst.UserNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.UserNotificationView = nil
+	}
 
-        // try to unmarshal data into VictorOpsNotificationView
-        err = json.Unmarshal(data, &dst.VictorOpsNotificationView)
-        if err == nil {
-                jsonVictorOpsNotificationView, _ := json.Marshal(dst.VictorOpsNotificationView)
-                if string(jsonVictorOpsNotificationView) == "{}" { // empty struct
-                        dst.VictorOpsNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.VictorOpsNotificationView = nil
-        }
+	// try to unmarshal data into VictorOpsNotificationView
+	err = json.Unmarshal(data, &dst.VictorOpsNotificationView)
+	if err == nil {
+		jsonVictorOpsNotificationView, _ := json.Marshal(dst.VictorOpsNotificationView)
+		if string(jsonVictorOpsNotificationView) == "{}" { // empty struct
+			dst.VictorOpsNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.VictorOpsNotificationView = nil
+	}
 
-        // try to unmarshal data into WebhookNotificationView
-        err = json.Unmarshal(data, &dst.WebhookNotificationView)
-        if err == nil {
-                jsonWebhookNotificationView, _ := json.Marshal(dst.WebhookNotificationView)
-                if string(jsonWebhookNotificationView) == "{}" { // empty struct
-                        dst.WebhookNotificationView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.WebhookNotificationView = nil
-        }
+	// try to unmarshal data into WebhookNotificationView
+	err = json.Unmarshal(data, &dst.WebhookNotificationView)
+	if err == nil {
+		jsonWebhookNotificationView, _ := json.Marshal(dst.WebhookNotificationView)
+		if string(jsonWebhookNotificationView) == "{}" { // empty struct
+			dst.WebhookNotificationView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebhookNotificationView = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.DatadogNotificationView = nil
-                dst.EmailNotificationView = nil
-                dst.GroupNotificationView = nil
-                dst.HipChatNotificationView = nil
-                dst.MicrosoftTeamsNotificationView = nil
-                dst.OpsGenieNotificationView = nil
-                dst.OrgNotificationView = nil
-                dst.PagerDutyNotificationView = nil
-                dst.SMSNotificationView = nil
-                dst.SlackNotificationView = nil
-                dst.TeamNotificationView = nil
-                dst.UserNotificationView = nil
-                dst.VictorOpsNotificationView = nil
-                dst.WebhookNotificationView = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.DatadogNotificationView = nil
+		dst.EmailNotificationView = nil
+		dst.GroupNotificationView = nil
+		dst.HipChatNotificationView = nil
+		dst.MicrosoftTeamsNotificationView = nil
+		dst.OpsGenieNotificationView = nil
+		dst.OrgNotificationView = nil
+		dst.PagerDutyNotificationView = nil
+		dst.SMSNotificationView = nil
+		dst.SlackNotificationView = nil
+		dst.TeamNotificationView = nil
+		dst.UserNotificationView = nil
+		dst.VictorOpsNotificationView = nil
+		dst.WebhookNotificationView = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(NotificationViewForNdsGroup)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(NotificationViewForNdsGroup)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(NotificationViewForNdsGroup)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(NotificationViewForNdsGroup)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

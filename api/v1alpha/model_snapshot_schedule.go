@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SnapshotSchedule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SnapshotSchedule{}
+
 // SnapshotSchedule struct for SnapshotSchedule
 type SnapshotSchedule struct {
 	// Quantity of time expressed in minutes between successive cluster checkpoints. This parameter applies only to sharded clusters. This number determines the granularity of continuous cloud backups for sharded clusters.
@@ -153,7 +156,7 @@ func (o *SnapshotSchedule) SetGroupId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *SnapshotSchedule) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *SnapshotSchedule) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SnapshotSchedule) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -171,7 +174,7 @@ func (o *SnapshotSchedule) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *SnapshotSchedule) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -304,38 +307,26 @@ func (o *SnapshotSchedule) SetWeeklySnapshotRetentionWeeks(v int32) {
 }
 
 func (o SnapshotSchedule) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clusterCheckpointIntervalMin"] = o.ClusterCheckpointIntervalMin
-	}
-	if true {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if true {
-		toSerialize["dailySnapshotRetentionDays"] = o.DailySnapshotRetentionDays
-	}
-	if true {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["monthlySnapshotRetentionMonths"] = o.MonthlySnapshotRetentionMonths
-	}
-	if true {
-		toSerialize["pointInTimeWindowHours"] = o.PointInTimeWindowHours
-	}
-	if true {
-		toSerialize["snapshotIntervalHours"] = o.SnapshotIntervalHours
-	}
-	if true {
-		toSerialize["snapshotRetentionDays"] = o.SnapshotRetentionDays
-	}
-	if true {
-		toSerialize["weeklySnapshotRetentionWeeks"] = o.WeeklySnapshotRetentionWeeks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SnapshotSchedule) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clusterCheckpointIntervalMin"] = o.ClusterCheckpointIntervalMin
+	toSerialize["clusterId"] = o.ClusterId
+	toSerialize["dailySnapshotRetentionDays"] = o.DailySnapshotRetentionDays
+	// skip: groupId is readOnly
+	// skip: links is readOnly
+	toSerialize["monthlySnapshotRetentionMonths"] = o.MonthlySnapshotRetentionMonths
+	toSerialize["pointInTimeWindowHours"] = o.PointInTimeWindowHours
+	toSerialize["snapshotIntervalHours"] = o.SnapshotIntervalHours
+	toSerialize["snapshotRetentionDays"] = o.SnapshotRetentionDays
+	toSerialize["weeklySnapshotRetentionWeeks"] = o.WeeklySnapshotRetentionWeeks
+	return toSerialize, nil
 }
 
 type NullableSnapshotSchedule struct {

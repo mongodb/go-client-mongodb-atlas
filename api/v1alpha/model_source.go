@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Source type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Source{}
+
 // Source Document that describes the source of the migration.
 type Source struct {
 	// Path to the CA certificate that signed SSL certificates use to authenticate to the source cluster.
@@ -51,7 +54,7 @@ func NewSourceWithDefaults() *Source {
 
 // GetCaCertificatePath returns the CaCertificatePath field value if set, zero value otherwise.
 func (o *Source) GetCaCertificatePath() string {
-	if o == nil || o.CaCertificatePath == nil {
+	if o == nil || IsNil(o.CaCertificatePath) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *Source) GetCaCertificatePath() string {
 // GetCaCertificatePathOk returns a tuple with the CaCertificatePath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Source) GetCaCertificatePathOk() (*string, bool) {
-	if o == nil || o.CaCertificatePath == nil {
+	if o == nil || IsNil(o.CaCertificatePath) {
 		return nil, false
 	}
 	return o.CaCertificatePath, true
@@ -69,7 +72,7 @@ func (o *Source) GetCaCertificatePathOk() (*string, bool) {
 
 // HasCaCertificatePath returns a boolean if a field has been set.
 func (o *Source) HasCaCertificatePath() bool {
-	if o != nil && o.CaCertificatePath != nil {
+	if o != nil && !IsNil(o.CaCertificatePath) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *Source) SetManagedAuthentication(v bool) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *Source) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *Source) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Source) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -173,7 +176,7 @@ func (o *Source) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *Source) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *Source) SetSsl(v bool) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *Source) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *Source) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Source) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -229,7 +232,7 @@ func (o *Source) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *Source) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -242,29 +245,29 @@ func (o *Source) SetUsername(v string) {
 }
 
 func (o Source) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CaCertificatePath != nil {
-		toSerialize["caCertificatePath"] = o.CaCertificatePath
-	}
-	if true {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if true {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["managedAuthentication"] = o.ManagedAuthentication
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if true {
-		toSerialize["ssl"] = o.Ssl
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Source) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CaCertificatePath) {
+		toSerialize["caCertificatePath"] = o.CaCertificatePath
+	}
+	toSerialize["clusterName"] = o.ClusterName
+	toSerialize["groupId"] = o.GroupId
+	toSerialize["managedAuthentication"] = o.ManagedAuthentication
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	toSerialize["ssl"] = o.Ssl
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
 }
 
 type NullableSource struct {

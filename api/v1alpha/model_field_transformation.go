@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FieldTransformation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FieldTransformation{}
+
 // FieldTransformation Field Transformations during ingestion of a Data Lake Pipeline.
 type FieldTransformation struct {
 	// Key in the document.
@@ -41,7 +44,7 @@ func NewFieldTransformationWithDefaults() *FieldTransformation {
 
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *FieldTransformation) GetField() string {
-	if o == nil || o.Field == nil {
+	if o == nil || IsNil(o.Field) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *FieldTransformation) GetField() string {
 // GetFieldOk returns a tuple with the Field field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldTransformation) GetFieldOk() (*string, bool) {
-	if o == nil || o.Field == nil {
+	if o == nil || IsNil(o.Field) {
 		return nil, false
 	}
 	return o.Field, true
@@ -59,7 +62,7 @@ func (o *FieldTransformation) GetFieldOk() (*string, bool) {
 
 // HasField returns a boolean if a field has been set.
 func (o *FieldTransformation) HasField() bool {
-	if o != nil && o.Field != nil {
+	if o != nil && !IsNil(o.Field) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *FieldTransformation) SetField(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FieldTransformation) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *FieldTransformation) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FieldTransformation) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -91,7 +94,7 @@ func (o *FieldTransformation) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *FieldTransformation) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *FieldTransformation) SetType(v string) {
 }
 
 func (o FieldTransformation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Field != nil {
-		toSerialize["field"] = o.Field
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FieldTransformation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Field) {
+		toSerialize["field"] = o.Field
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableFieldTransformation struct {

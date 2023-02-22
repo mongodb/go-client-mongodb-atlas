@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaginatedAlertView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedAlertView{}
+
 // PaginatedAlertView struct for PaginatedAlertView
 type PaginatedAlertView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -67,7 +70,7 @@ func (o *PaginatedAlertView) SetLinks(v []Link) {
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *PaginatedAlertView) GetResults() []AlertViewForNdsGroup {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		var ret []AlertViewForNdsGroup
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *PaginatedAlertView) GetResults() []AlertViewForNdsGroup {
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedAlertView) GetResultsOk() ([]AlertViewForNdsGroup, bool) {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
 	return o.Results, true
@@ -85,7 +88,7 @@ func (o *PaginatedAlertView) GetResultsOk() ([]AlertViewForNdsGroup, bool) {
 
 // HasResults returns a boolean if a field has been set.
 func (o *PaginatedAlertView) HasResults() bool {
-	if o != nil && o.Results != nil {
+	if o != nil && !IsNil(o.Results) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *PaginatedAlertView) SetResults(v []AlertViewForNdsGroup) {
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *PaginatedAlertView) GetTotalCount() int32 {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *PaginatedAlertView) GetTotalCount() int32 {
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedAlertView) GetTotalCountOk() (*int32, bool) {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
 	return o.TotalCount, true
@@ -117,7 +120,7 @@ func (o *PaginatedAlertView) GetTotalCountOk() (*int32, bool) {
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *PaginatedAlertView) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
+	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
 
@@ -130,17 +133,19 @@ func (o *PaginatedAlertView) SetTotalCount(v int32) {
 }
 
 func (o PaginatedAlertView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.Results != nil {
-		toSerialize["results"] = o.Results
-	}
-	if o.TotalCount != nil {
-		toSerialize["totalCount"] = o.TotalCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PaginatedAlertView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	// skip: results is readOnly
+	// skip: totalCount is readOnly
+	return toSerialize, nil
 }
 
 type NullablePaginatedAlertView struct {

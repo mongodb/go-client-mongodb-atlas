@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzurePrivateEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzurePrivateEndpoint{}
+
 // AzurePrivateEndpoint Group of Private Endpoint settings.
 type AzurePrivateEndpoint struct {
 	// Flag that indicates whether MongoDB Cloud received a request to remove the specified private endpoint from the private endpoint service.
@@ -49,7 +52,7 @@ func NewAzurePrivateEndpointWithDefaults() *AzurePrivateEndpoint {
 
 // GetDeleteRequested returns the DeleteRequested field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetDeleteRequested() bool {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		var ret bool
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *AzurePrivateEndpoint) GetDeleteRequested() bool {
 // GetDeleteRequestedOk returns a tuple with the DeleteRequested field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetDeleteRequestedOk() (*bool, bool) {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		return nil, false
 	}
 	return o.DeleteRequested, true
@@ -67,7 +70,7 @@ func (o *AzurePrivateEndpoint) GetDeleteRequestedOk() (*bool, bool) {
 
 // HasDeleteRequested returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasDeleteRequested() bool {
-	if o != nil && o.DeleteRequested != nil {
+	if o != nil && !IsNil(o.DeleteRequested) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *AzurePrivateEndpoint) SetDeleteRequested(v bool) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *AzurePrivateEndpoint) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -99,7 +102,7 @@ func (o *AzurePrivateEndpoint) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *AzurePrivateEndpoint) SetErrorMessage(v string) {
 
 // GetPrivateEndpointConnectionName returns the PrivateEndpointConnectionName field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointConnectionName() string {
-	if o == nil || o.PrivateEndpointConnectionName == nil {
+	if o == nil || IsNil(o.PrivateEndpointConnectionName) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointConnectionName() string {
 // GetPrivateEndpointConnectionNameOk returns a tuple with the PrivateEndpointConnectionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointConnectionNameOk() (*string, bool) {
-	if o == nil || o.PrivateEndpointConnectionName == nil {
+	if o == nil || IsNil(o.PrivateEndpointConnectionName) {
 		return nil, false
 	}
 	return o.PrivateEndpointConnectionName, true
@@ -131,7 +134,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointConnectionNameOk() (*string, bo
 
 // HasPrivateEndpointConnectionName returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasPrivateEndpointConnectionName() bool {
-	if o != nil && o.PrivateEndpointConnectionName != nil {
+	if o != nil && !IsNil(o.PrivateEndpointConnectionName) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *AzurePrivateEndpoint) SetPrivateEndpointConnectionName(v string) {
 
 // GetPrivateEndpointIPAddress returns the PrivateEndpointIPAddress field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointIPAddress() string {
-	if o == nil || o.PrivateEndpointIPAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIPAddress) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointIPAddress() string {
 // GetPrivateEndpointIPAddressOk returns a tuple with the PrivateEndpointIPAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointIPAddressOk() (*string, bool) {
-	if o == nil || o.PrivateEndpointIPAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIPAddress) {
 		return nil, false
 	}
 	return o.PrivateEndpointIPAddress, true
@@ -163,7 +166,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointIPAddressOk() (*string, bool) {
 
 // HasPrivateEndpointIPAddress returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasPrivateEndpointIPAddress() bool {
-	if o != nil && o.PrivateEndpointIPAddress != nil {
+	if o != nil && !IsNil(o.PrivateEndpointIPAddress) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *AzurePrivateEndpoint) SetPrivateEndpointIPAddress(v string) {
 
 // GetPrivateEndpointResourceId returns the PrivateEndpointResourceId field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointResourceId() string {
-	if o == nil || o.PrivateEndpointResourceId == nil {
+	if o == nil || IsNil(o.PrivateEndpointResourceId) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointResourceId() string {
 // GetPrivateEndpointResourceIdOk returns a tuple with the PrivateEndpointResourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetPrivateEndpointResourceIdOk() (*string, bool) {
-	if o == nil || o.PrivateEndpointResourceId == nil {
+	if o == nil || IsNil(o.PrivateEndpointResourceId) {
 		return nil, false
 	}
 	return o.PrivateEndpointResourceId, true
@@ -195,7 +198,7 @@ func (o *AzurePrivateEndpoint) GetPrivateEndpointResourceIdOk() (*string, bool) 
 
 // HasPrivateEndpointResourceId returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasPrivateEndpointResourceId() bool {
-	if o != nil && o.PrivateEndpointResourceId != nil {
+	if o != nil && !IsNil(o.PrivateEndpointResourceId) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *AzurePrivateEndpoint) SetPrivateEndpointResourceId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AzurePrivateEndpoint) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *AzurePrivateEndpoint) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateEndpoint) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -227,7 +230,7 @@ func (o *AzurePrivateEndpoint) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AzurePrivateEndpoint) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -240,26 +243,24 @@ func (o *AzurePrivateEndpoint) SetStatus(v string) {
 }
 
 func (o AzurePrivateEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DeleteRequested != nil {
-		toSerialize["deleteRequested"] = o.DeleteRequested
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.PrivateEndpointConnectionName != nil {
-		toSerialize["privateEndpointConnectionName"] = o.PrivateEndpointConnectionName
-	}
-	if o.PrivateEndpointIPAddress != nil {
-		toSerialize["privateEndpointIPAddress"] = o.PrivateEndpointIPAddress
-	}
-	if o.PrivateEndpointResourceId != nil {
-		toSerialize["privateEndpointResourceId"] = o.PrivateEndpointResourceId
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzurePrivateEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: deleteRequested is readOnly
+	// skip: errorMessage is readOnly
+	// skip: privateEndpointConnectionName is readOnly
+	if !IsNil(o.PrivateEndpointIPAddress) {
+		toSerialize["privateEndpointIPAddress"] = o.PrivateEndpointIPAddress
+	}
+	// skip: privateEndpointResourceId is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableAzurePrivateEndpoint struct {

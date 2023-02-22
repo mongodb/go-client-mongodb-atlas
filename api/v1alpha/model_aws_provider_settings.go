@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSProviderSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSProviderSettings{}
+
 // AWSProviderSettings struct for AWSProviderSettings
 type AWSProviderSettings struct {
 	AutoScaling *AWSAutoScaling `json:"autoScaling,omitempty"`
@@ -54,7 +57,7 @@ func NewAWSProviderSettingsWithDefaults() *AWSProviderSettings {
 
 // GetAutoScaling returns the AutoScaling field value if set, zero value otherwise.
 func (o *AWSProviderSettings) GetAutoScaling() AWSAutoScaling {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		var ret AWSAutoScaling
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *AWSProviderSettings) GetAutoScaling() AWSAutoScaling {
 // GetAutoScalingOk returns a tuple with the AutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProviderSettings) GetAutoScalingOk() (*AWSAutoScaling, bool) {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		return nil, false
 	}
 	return o.AutoScaling, true
@@ -72,7 +75,7 @@ func (o *AWSProviderSettings) GetAutoScalingOk() (*AWSAutoScaling, bool) {
 
 // HasAutoScaling returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasAutoScaling() bool {
-	if o != nil && o.AutoScaling != nil {
+	if o != nil && !IsNil(o.AutoScaling) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *AWSProviderSettings) SetAutoScaling(v AWSAutoScaling) {
 
 // GetDiskIOPS returns the DiskIOPS field value if set, zero value otherwise.
 func (o *AWSProviderSettings) GetDiskIOPS() int32 {
-	if o == nil || o.DiskIOPS == nil {
+	if o == nil || IsNil(o.DiskIOPS) {
 		var ret int32
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *AWSProviderSettings) GetDiskIOPS() int32 {
 // GetDiskIOPSOk returns a tuple with the DiskIOPS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProviderSettings) GetDiskIOPSOk() (*int32, bool) {
-	if o == nil || o.DiskIOPS == nil {
+	if o == nil || IsNil(o.DiskIOPS) {
 		return nil, false
 	}
 	return o.DiskIOPS, true
@@ -104,7 +107,7 @@ func (o *AWSProviderSettings) GetDiskIOPSOk() (*int32, bool) {
 
 // HasDiskIOPS returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasDiskIOPS() bool {
-	if o != nil && o.DiskIOPS != nil {
+	if o != nil && !IsNil(o.DiskIOPS) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *AWSProviderSettings) SetDiskIOPS(v int32) {
 // GetEncryptEBSVolume returns the EncryptEBSVolume field value if set, zero value otherwise.
 // Deprecated
 func (o *AWSProviderSettings) GetEncryptEBSVolume() bool {
-	if o == nil || o.EncryptEBSVolume == nil {
+	if o == nil || IsNil(o.EncryptEBSVolume) {
 		var ret bool
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *AWSProviderSettings) GetEncryptEBSVolume() bool {
 // and a boolean to check if the value has been set.
 // Deprecated
 func (o *AWSProviderSettings) GetEncryptEBSVolumeOk() (*bool, bool) {
-	if o == nil || o.EncryptEBSVolume == nil {
+	if o == nil || IsNil(o.EncryptEBSVolume) {
 		return nil, false
 	}
 	return o.EncryptEBSVolume, true
@@ -138,7 +141,7 @@ func (o *AWSProviderSettings) GetEncryptEBSVolumeOk() (*bool, bool) {
 
 // HasEncryptEBSVolume returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasEncryptEBSVolume() bool {
-	if o != nil && o.EncryptEBSVolume != nil {
+	if o != nil && !IsNil(o.EncryptEBSVolume) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *AWSProviderSettings) SetEncryptEBSVolume(v bool) {
 
 // GetInstanceSizeName returns the InstanceSizeName field value if set, zero value otherwise.
 func (o *AWSProviderSettings) GetInstanceSizeName() string {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		var ret string
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *AWSProviderSettings) GetInstanceSizeName() string {
 // GetInstanceSizeNameOk returns a tuple with the InstanceSizeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		return nil, false
 	}
 	return o.InstanceSizeName, true
@@ -171,7 +174,7 @@ func (o *AWSProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
 
 // HasInstanceSizeName returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasInstanceSizeName() bool {
-	if o != nil && o.InstanceSizeName != nil {
+	if o != nil && !IsNil(o.InstanceSizeName) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *AWSProviderSettings) SetInstanceSizeName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *AWSProviderSettings) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *AWSProviderSettings) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProviderSettings) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -203,7 +206,7 @@ func (o *AWSProviderSettings) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *AWSProviderSettings) SetRegionName(v string) {
 
 // GetVolumeType returns the VolumeType field value if set, zero value otherwise.
 func (o *AWSProviderSettings) GetVolumeType() string {
-	if o == nil || o.VolumeType == nil {
+	if o == nil || IsNil(o.VolumeType) {
 		var ret string
 		return ret
 	}
@@ -227,7 +230,7 @@ func (o *AWSProviderSettings) GetVolumeType() string {
 // GetVolumeTypeOk returns a tuple with the VolumeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSProviderSettings) GetVolumeTypeOk() (*string, bool) {
-	if o == nil || o.VolumeType == nil {
+	if o == nil || IsNil(o.VolumeType) {
 		return nil, false
 	}
 	return o.VolumeType, true
@@ -235,7 +238,7 @@ func (o *AWSProviderSettings) GetVolumeTypeOk() (*string, bool) {
 
 // HasVolumeType returns a boolean if a field has been set.
 func (o *AWSProviderSettings) HasVolumeType() bool {
-	if o != nil && o.VolumeType != nil {
+	if o != nil && !IsNil(o.VolumeType) {
 		return true
 	}
 
@@ -272,29 +275,35 @@ func (o *AWSProviderSettings) SetProviderName(v string) {
 }
 
 func (o AWSProviderSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoScaling != nil {
-		toSerialize["autoScaling"] = o.AutoScaling
-	}
-	if o.DiskIOPS != nil {
-		toSerialize["diskIOPS"] = o.DiskIOPS
-	}
-	if o.EncryptEBSVolume != nil {
-		toSerialize["encryptEBSVolume"] = o.EncryptEBSVolume
-	}
-	if o.InstanceSizeName != nil {
-		toSerialize["instanceSizeName"] = o.InstanceSizeName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.VolumeType != nil {
-		toSerialize["volumeType"] = o.VolumeType
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSProviderSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoScaling) {
+		toSerialize["autoScaling"] = o.AutoScaling
+	}
+	if !IsNil(o.DiskIOPS) {
+		toSerialize["diskIOPS"] = o.DiskIOPS
+	}
+	if !IsNil(o.EncryptEBSVolume) {
+		toSerialize["encryptEBSVolume"] = o.EncryptEBSVolume
+	}
+	if !IsNil(o.InstanceSizeName) {
+		toSerialize["instanceSizeName"] = o.InstanceSizeName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	if !IsNil(o.VolumeType) {
+		toSerialize["volumeType"] = o.VolumeType
+	}
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableAWSProviderSettings struct {

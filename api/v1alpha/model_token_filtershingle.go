@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFiltershingle type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFiltershingle{}
+
 // TokenFiltershingle Filter that constructs shingles (token n-grams) from a series of tokens. You can't use this token filter in synonym or autocomplete mapping definitions.
 type TokenFiltershingle struct {
 	// Value that specifies the maximum number of tokens per shingle. This value must be greater than or equal to **minShingleSize**.
@@ -114,17 +117,19 @@ func (o *TokenFiltershingle) SetType(v string) {
 }
 
 func (o TokenFiltershingle) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["maxShingleSize"] = o.MaxShingleSize
-	}
-	if true {
-		toSerialize["minShingleSize"] = o.MinShingleSize
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFiltershingle) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["maxShingleSize"] = o.MaxShingleSize
+	toSerialize["minShingleSize"] = o.MinShingleSize
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFiltershingle struct {

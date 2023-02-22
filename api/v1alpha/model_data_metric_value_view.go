@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataMetricValueView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataMetricValueView{}
+
 // DataMetricValueView Measurement of the **metricName** recorded at the time of the event.
 type DataMetricValueView struct {
 	// Amount of the **metricName** recorded at the time of the event. This value triggered the alert.
@@ -40,7 +43,7 @@ func NewDataMetricValueViewWithDefaults() *DataMetricValueView {
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *DataMetricValueView) GetNumber() float64 {
-	if o == nil || o.Number == nil {
+	if o == nil || IsNil(o.Number) {
 		var ret float64
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *DataMetricValueView) GetNumber() float64 {
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataMetricValueView) GetNumberOk() (*float64, bool) {
-	if o == nil || o.Number == nil {
+	if o == nil || IsNil(o.Number) {
 		return nil, false
 	}
 	return o.Number, true
@@ -58,7 +61,7 @@ func (o *DataMetricValueView) GetNumberOk() (*float64, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *DataMetricValueView) HasNumber() bool {
-	if o != nil && o.Number != nil {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *DataMetricValueView) SetNumber(v float64) {
 
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *DataMetricValueView) GetUnits() DataMetricUnits {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret DataMetricUnits
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *DataMetricValueView) GetUnits() DataMetricUnits {
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataMetricValueView) GetUnitsOk() (*DataMetricUnits, bool) {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
 	return o.Units, true
@@ -90,7 +93,7 @@ func (o *DataMetricValueView) GetUnitsOk() (*DataMetricUnits, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *DataMetricValueView) HasUnits() bool {
-	if o != nil && o.Units != nil {
+	if o != nil && !IsNil(o.Units) {
 		return true
 	}
 
@@ -103,14 +106,20 @@ func (o *DataMetricValueView) SetUnits(v DataMetricUnits) {
 }
 
 func (o DataMetricValueView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Number != nil {
-		toSerialize["number"] = o.Number
-	}
-	if o.Units != nil {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataMetricValueView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: number is readOnly
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	return toSerialize, nil
 }
 
 type NullableDataMetricValueView struct {

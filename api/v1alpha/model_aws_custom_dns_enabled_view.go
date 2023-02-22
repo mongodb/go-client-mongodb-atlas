@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSCustomDNSEnabledView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSCustomDNSEnabledView{}
+
 // AWSCustomDNSEnabledView struct for AWSCustomDNSEnabledView
 type AWSCustomDNSEnabledView struct {
 	// Flag that indicates whether the project's clusters deployed to Amazon Web Services (AWS) use a custom Domain Name System (DNS). When `\"enabled\": true`, connect to your cluster using Private IP for Peering connection strings.
@@ -62,11 +65,17 @@ func (o *AWSCustomDNSEnabledView) SetEnabled(v bool) {
 }
 
 func (o AWSCustomDNSEnabledView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSCustomDNSEnabledView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullableAWSCustomDNSEnabledView struct {

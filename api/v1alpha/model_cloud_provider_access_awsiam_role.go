@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CloudProviderAccessAWSIAMRole type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessAWSIAMRole{}
+
 // CloudProviderAccessAWSIAMRole Details that describe the features linked to the Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessAWSIAMRole struct {
 	// Amazon Resource Name that identifies the Amazon Web Services (AWS) user account that MongoDB Cloud uses when it assumes the Identity and Access Management (IAM) role.
@@ -54,7 +57,7 @@ func NewCloudProviderAccessAWSIAMRoleWithDefaults() *CloudProviderAccessAWSIAMRo
 
 // GetAtlasAWSAccountArn returns the AtlasAWSAccountArn field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetAtlasAWSAccountArn() string {
-	if o == nil || o.AtlasAWSAccountArn == nil {
+	if o == nil || IsNil(o.AtlasAWSAccountArn) {
 		var ret string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAtlasAWSAccountArn() string {
 // GetAtlasAWSAccountArnOk returns a tuple with the AtlasAWSAccountArn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetAtlasAWSAccountArnOk() (*string, bool) {
-	if o == nil || o.AtlasAWSAccountArn == nil {
+	if o == nil || IsNil(o.AtlasAWSAccountArn) {
 		return nil, false
 	}
 	return o.AtlasAWSAccountArn, true
@@ -72,7 +75,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAtlasAWSAccountArnOk() (*string, bool
 
 // HasAtlasAWSAccountArn returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasAtlasAWSAccountArn() bool {
-	if o != nil && o.AtlasAWSAccountArn != nil {
+	if o != nil && !IsNil(o.AtlasAWSAccountArn) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetAtlasAWSAccountArn(v string) {
 
 // GetAtlasAssumedRoleExternalId returns the AtlasAssumedRoleExternalId field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetAtlasAssumedRoleExternalId() string {
-	if o == nil || o.AtlasAssumedRoleExternalId == nil {
+	if o == nil || IsNil(o.AtlasAssumedRoleExternalId) {
 		var ret string
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAtlasAssumedRoleExternalId() string {
 // GetAtlasAssumedRoleExternalIdOk returns a tuple with the AtlasAssumedRoleExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetAtlasAssumedRoleExternalIdOk() (*string, bool) {
-	if o == nil || o.AtlasAssumedRoleExternalId == nil {
+	if o == nil || IsNil(o.AtlasAssumedRoleExternalId) {
 		return nil, false
 	}
 	return o.AtlasAssumedRoleExternalId, true
@@ -104,7 +107,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAtlasAssumedRoleExternalIdOk() (*stri
 
 // HasAtlasAssumedRoleExternalId returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasAtlasAssumedRoleExternalId() bool {
-	if o != nil && o.AtlasAssumedRoleExternalId != nil {
+	if o != nil && !IsNil(o.AtlasAssumedRoleExternalId) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetAtlasAssumedRoleExternalId(v string) 
 
 // GetAuthorizedDate returns the AuthorizedDate field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetAuthorizedDate() time.Time {
-	if o == nil || o.AuthorizedDate == nil {
+	if o == nil || IsNil(o.AuthorizedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAuthorizedDate() time.Time {
 // GetAuthorizedDateOk returns a tuple with the AuthorizedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetAuthorizedDateOk() (*time.Time, bool) {
-	if o == nil || o.AuthorizedDate == nil {
+	if o == nil || IsNil(o.AuthorizedDate) {
 		return nil, false
 	}
 	return o.AuthorizedDate, true
@@ -136,7 +139,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetAuthorizedDateOk() (*time.Time, bool)
 
 // HasAuthorizedDate returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasAuthorizedDate() bool {
-	if o != nil && o.AuthorizedDate != nil {
+	if o != nil && !IsNil(o.AuthorizedDate) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetAuthorizedDate(v time.Time) {
 
 // GetCreatedDate returns the CreatedDate field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetCreatedDate() time.Time {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetCreatedDate() time.Time {
 // GetCreatedDateOk returns a tuple with the CreatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetCreatedDateOk() (*time.Time, bool) {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		return nil, false
 	}
 	return o.CreatedDate, true
@@ -168,7 +171,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetCreatedDateOk() (*time.Time, bool) {
 
 // HasCreatedDate returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasCreatedDate() bool {
-	if o != nil && o.CreatedDate != nil {
+	if o != nil && !IsNil(o.CreatedDate) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetCreatedDate(v time.Time) {
 
 // GetFeatureUsages returns the FeatureUsages field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetFeatureUsages() []CloudProviderAccessFeatureUsage {
-	if o == nil || o.FeatureUsages == nil {
+	if o == nil || IsNil(o.FeatureUsages) {
 		var ret []CloudProviderAccessFeatureUsage
 		return ret
 	}
@@ -192,7 +195,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetFeatureUsages() []CloudProviderAccess
 // GetFeatureUsagesOk returns a tuple with the FeatureUsages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetFeatureUsagesOk() ([]CloudProviderAccessFeatureUsage, bool) {
-	if o == nil || o.FeatureUsages == nil {
+	if o == nil || IsNil(o.FeatureUsages) {
 		return nil, false
 	}
 	return o.FeatureUsages, true
@@ -200,7 +203,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetFeatureUsagesOk() ([]CloudProviderAcc
 
 // HasFeatureUsages returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasFeatureUsages() bool {
-	if o != nil && o.FeatureUsages != nil {
+	if o != nil && !IsNil(o.FeatureUsages) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetFeatureUsages(v []CloudProviderAccess
 
 // GetIamAssumedRoleArn returns the IamAssumedRoleArn field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetIamAssumedRoleArn() string {
-	if o == nil || o.IamAssumedRoleArn == nil {
+	if o == nil || IsNil(o.IamAssumedRoleArn) {
 		var ret string
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetIamAssumedRoleArn() string {
 // GetIamAssumedRoleArnOk returns a tuple with the IamAssumedRoleArn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetIamAssumedRoleArnOk() (*string, bool) {
-	if o == nil || o.IamAssumedRoleArn == nil {
+	if o == nil || IsNil(o.IamAssumedRoleArn) {
 		return nil, false
 	}
 	return o.IamAssumedRoleArn, true
@@ -232,7 +235,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetIamAssumedRoleArnOk() (*string, bool)
 
 // HasIamAssumedRoleArn returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasIamAssumedRoleArn() bool {
-	if o != nil && o.IamAssumedRoleArn != nil {
+	if o != nil && !IsNil(o.IamAssumedRoleArn) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *CloudProviderAccessAWSIAMRole) SetIamAssumedRoleArn(v string) {
 
 // GetRoleId returns the RoleId field value if set, zero value otherwise.
 func (o *CloudProviderAccessAWSIAMRole) GetRoleId() string {
-	if o == nil || o.RoleId == nil {
+	if o == nil || IsNil(o.RoleId) {
 		var ret string
 		return ret
 	}
@@ -256,7 +259,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetRoleId() string {
 // GetRoleIdOk returns a tuple with the RoleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessAWSIAMRole) GetRoleIdOk() (*string, bool) {
-	if o == nil || o.RoleId == nil {
+	if o == nil || IsNil(o.RoleId) {
 		return nil, false
 	}
 	return o.RoleId, true
@@ -264,7 +267,7 @@ func (o *CloudProviderAccessAWSIAMRole) GetRoleIdOk() (*string, bool) {
 
 // HasRoleId returns a boolean if a field has been set.
 func (o *CloudProviderAccessAWSIAMRole) HasRoleId() bool {
-	if o != nil && o.RoleId != nil {
+	if o != nil && !IsNil(o.RoleId) {
 		return true
 	}
 
@@ -301,32 +304,26 @@ func (o *CloudProviderAccessAWSIAMRole) SetProviderName(v string) {
 }
 
 func (o CloudProviderAccessAWSIAMRole) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AtlasAWSAccountArn != nil {
-		toSerialize["atlasAWSAccountArn"] = o.AtlasAWSAccountArn
-	}
-	if o.AtlasAssumedRoleExternalId != nil {
-		toSerialize["atlasAssumedRoleExternalId"] = o.AtlasAssumedRoleExternalId
-	}
-	if o.AuthorizedDate != nil {
-		toSerialize["authorizedDate"] = o.AuthorizedDate
-	}
-	if o.CreatedDate != nil {
-		toSerialize["createdDate"] = o.CreatedDate
-	}
-	if o.FeatureUsages != nil {
-		toSerialize["featureUsages"] = o.FeatureUsages
-	}
-	if o.IamAssumedRoleArn != nil {
-		toSerialize["iamAssumedRoleArn"] = o.IamAssumedRoleArn
-	}
-	if o.RoleId != nil {
-		toSerialize["roleId"] = o.RoleId
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessAWSIAMRole) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: atlasAWSAccountArn is readOnly
+	// skip: atlasAssumedRoleExternalId is readOnly
+	// skip: authorizedDate is readOnly
+	// skip: createdDate is readOnly
+	// skip: featureUsages is readOnly
+	if !IsNil(o.IamAssumedRoleArn) {
+		toSerialize["iamAssumedRoleArn"] = o.IamAssumedRoleArn
+	}
+	// skip: roleId is readOnly
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessAWSIAMRole struct {

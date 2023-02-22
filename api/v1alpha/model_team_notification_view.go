@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TeamNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TeamNotificationView{}
+
 // TeamNotificationView Team notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type TeamNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -51,7 +54,7 @@ func NewTeamNotificationViewWithDefaults() *TeamNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *TeamNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -69,7 +72,7 @@ func (o *TeamNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *TeamNotificationView) SetDelayMin(v int32) {
 
 // GetEmailEnabled returns the EmailEnabled field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetEmailEnabled() bool {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		var ret bool
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *TeamNotificationView) GetEmailEnabled() bool {
 // GetEmailEnabledOk returns a tuple with the EmailEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetEmailEnabledOk() (*bool, bool) {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		return nil, false
 	}
 	return o.EmailEnabled, true
@@ -101,7 +104,7 @@ func (o *TeamNotificationView) GetEmailEnabledOk() (*bool, bool) {
 
 // HasEmailEnabled returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasEmailEnabled() bool {
-	if o != nil && o.EmailEnabled != nil {
+	if o != nil && !IsNil(o.EmailEnabled) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *TeamNotificationView) SetEmailEnabled(v bool) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *TeamNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -133,7 +136,7 @@ func (o *TeamNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *TeamNotificationView) SetIntervalMin(v int32) {
 
 // GetSmsEnabled returns the SmsEnabled field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetSmsEnabled() bool {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *TeamNotificationView) GetSmsEnabled() bool {
 // GetSmsEnabledOk returns a tuple with the SmsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetSmsEnabledOk() (*bool, bool) {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		return nil, false
 	}
 	return o.SmsEnabled, true
@@ -165,7 +168,7 @@ func (o *TeamNotificationView) GetSmsEnabledOk() (*bool, bool) {
 
 // HasSmsEnabled returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasSmsEnabled() bool {
-	if o != nil && o.SmsEnabled != nil {
+	if o != nil && !IsNil(o.SmsEnabled) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *TeamNotificationView) SetSmsEnabled(v bool) {
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetTeamId() string {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *TeamNotificationView) GetTeamId() string {
 // GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetTeamIdOk() (*string, bool) {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		return nil, false
 	}
 	return o.TeamId, true
@@ -197,7 +200,7 @@ func (o *TeamNotificationView) GetTeamIdOk() (*string, bool) {
 
 // HasTeamId returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasTeamId() bool {
-	if o != nil && o.TeamId != nil {
+	if o != nil && !IsNil(o.TeamId) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *TeamNotificationView) SetTeamId(v string) {
 
 // GetTeamName returns the TeamName field value if set, zero value otherwise.
 func (o *TeamNotificationView) GetTeamName() string {
-	if o == nil || o.TeamName == nil {
+	if o == nil || IsNil(o.TeamName) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *TeamNotificationView) GetTeamName() string {
 // GetTeamNameOk returns a tuple with the TeamName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamNotificationView) GetTeamNameOk() (*string, bool) {
-	if o == nil || o.TeamName == nil {
+	if o == nil || IsNil(o.TeamName) {
 		return nil, false
 	}
 	return o.TeamName, true
@@ -229,7 +232,7 @@ func (o *TeamNotificationView) GetTeamNameOk() (*string, bool) {
 
 // HasTeamName returns a boolean if a field has been set.
 func (o *TeamNotificationView) HasTeamName() bool {
-	if o != nil && o.TeamName != nil {
+	if o != nil && !IsNil(o.TeamName) {
 		return true
 	}
 
@@ -266,29 +269,35 @@ func (o *TeamNotificationView) SetTypeName(v string) {
 }
 
 func (o TeamNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.EmailEnabled != nil {
-		toSerialize["emailEnabled"] = o.EmailEnabled
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.SmsEnabled != nil {
-		toSerialize["smsEnabled"] = o.SmsEnabled
-	}
-	if o.TeamId != nil {
-		toSerialize["teamId"] = o.TeamId
-	}
-	if o.TeamName != nil {
-		toSerialize["teamName"] = o.TeamName
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TeamNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.EmailEnabled) {
+		toSerialize["emailEnabled"] = o.EmailEnabled
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.SmsEnabled) {
+		toSerialize["smsEnabled"] = o.SmsEnabled
+	}
+	if !IsNil(o.TeamId) {
+		toSerialize["teamId"] = o.TeamId
+	}
+	if !IsNil(o.TeamName) {
+		toSerialize["teamName"] = o.TeamName
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableTeamNotificationView struct {

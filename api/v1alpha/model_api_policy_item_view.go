@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPolicyItemView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPolicyItemView{}
+
 // ApiPolicyItemView Specifications for one policy.
 type ApiPolicyItemView struct {
 	// Number that indicates the frequency interval for a set of snapshots. A value of `1` specifies the first instance of the corresponding `frequencyType`.  - In a monthly policy item, `1` indicates that the monthly snapshot occurs on the first day of the month and `40` indicates the last day of the month.  - In a weekly policy item, `1` indicates that the weekly snapshot occurs on Monday and `7` indicates Sunday.  - In an hourly policy item, you can set the frequency interval to `1`, `2`, `4`, `6`, `8`, or `12`. For hourly policy items for NVMe clusters, MongoDB Cloud only accepts `12` as the frequency interval value.
@@ -95,7 +98,7 @@ func (o *ApiPolicyItemView) SetFrequencyType(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiPolicyItemView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *ApiPolicyItemView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPolicyItemView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -113,7 +116,7 @@ func (o *ApiPolicyItemView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiPolicyItemView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -174,23 +177,23 @@ func (o *ApiPolicyItemView) SetRetentionValue(v int32) {
 }
 
 func (o ApiPolicyItemView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["frequencyInterval"] = o.FrequencyInterval
-	}
-	if true {
-		toSerialize["frequencyType"] = o.FrequencyType
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["retentionUnit"] = o.RetentionUnit
-	}
-	if true {
-		toSerialize["retentionValue"] = o.RetentionValue
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPolicyItemView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["frequencyInterval"] = o.FrequencyInterval
+	toSerialize["frequencyType"] = o.FrequencyType
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	toSerialize["retentionUnit"] = o.RetentionUnit
+	toSerialize["retentionValue"] = o.RetentionValue
+	return toSerialize, nil
 }
 
 type NullableApiPolicyItemView struct {

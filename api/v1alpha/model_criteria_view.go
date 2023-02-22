@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CriteriaView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CriteriaView{}
+
 // CriteriaView Rules by which MongoDB MongoDB Cloud archives data.  Use the **criteria.type** field to choose how MongoDB Cloud selects data to archive. Choose data using the age of the data or a MongoDB query. **\"criteria.type\": \"DATE\"** selects documents to archive based on a date. **\"criteria.type\": \"CUSTOM\"** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **\"criteria.type\": \"CUSTOM\"** when **\"collectionType\": \"TIMESERIES\"**.
 type CriteriaView struct {
 	// Means by which MongoDB Cloud selects data to archive. Data can be chosen using the age of the data or a MongoDB query. **DATE** selects documents to archive based on a date. **CUSTOM** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **CUSTOM** when `\"collectionType\": \"TIMESERIES\"`.
@@ -39,7 +42,7 @@ func NewCriteriaViewWithDefaults() *CriteriaView {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CriteriaView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *CriteriaView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CriteriaView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -57,7 +60,7 @@ func (o *CriteriaView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *CriteriaView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CriteriaView) SetType(v string) {
 }
 
 func (o CriteriaView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CriteriaView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableCriteriaView struct {

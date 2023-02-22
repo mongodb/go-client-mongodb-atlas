@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiAtlasFTSAnalyzersViewManual type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAtlasFTSAnalyzersViewManual{}
+
 // ApiAtlasFTSAnalyzersViewManual Settings that describe one Atlas Search custom analyzer.
 type ApiAtlasFTSAnalyzersViewManual struct {
 	// Filters that examine text one character at a time and perform filtering operations.
@@ -44,7 +47,7 @@ func NewApiAtlasFTSAnalyzersViewManualWithDefaults() *ApiAtlasFTSAnalyzersViewMa
 
 // GetCharFilters returns the CharFilters field value if set, zero value otherwise.
 func (o *ApiAtlasFTSAnalyzersViewManual) GetCharFilters() []ApiAtlasFTSAnalyzersViewManualCharFiltersInner {
-	if o == nil || o.CharFilters == nil {
+	if o == nil || IsNil(o.CharFilters) {
 		var ret []ApiAtlasFTSAnalyzersViewManualCharFiltersInner
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ApiAtlasFTSAnalyzersViewManual) GetCharFilters() []ApiAtlasFTSAnalyzers
 // GetCharFiltersOk returns a tuple with the CharFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAtlasFTSAnalyzersViewManual) GetCharFiltersOk() ([]ApiAtlasFTSAnalyzersViewManualCharFiltersInner, bool) {
-	if o == nil || o.CharFilters == nil {
+	if o == nil || IsNil(o.CharFilters) {
 		return nil, false
 	}
 	return o.CharFilters, true
@@ -62,7 +65,7 @@ func (o *ApiAtlasFTSAnalyzersViewManual) GetCharFiltersOk() ([]ApiAtlasFTSAnalyz
 
 // HasCharFilters returns a boolean if a field has been set.
 func (o *ApiAtlasFTSAnalyzersViewManual) HasCharFilters() bool {
-	if o != nil && o.CharFilters != nil {
+	if o != nil && !IsNil(o.CharFilters) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *ApiAtlasFTSAnalyzersViewManual) SetName(v string) {
 
 // GetTokenFilters returns the TokenFilters field value if set, zero value otherwise.
 func (o *ApiAtlasFTSAnalyzersViewManual) GetTokenFilters() []ApiAtlasFTSAnalyzersViewManualTokenFiltersInner {
-	if o == nil || o.TokenFilters == nil {
+	if o == nil || IsNil(o.TokenFilters) {
 		var ret []ApiAtlasFTSAnalyzersViewManualTokenFiltersInner
 		return ret
 	}
@@ -110,7 +113,7 @@ func (o *ApiAtlasFTSAnalyzersViewManual) GetTokenFilters() []ApiAtlasFTSAnalyzer
 // GetTokenFiltersOk returns a tuple with the TokenFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAtlasFTSAnalyzersViewManual) GetTokenFiltersOk() ([]ApiAtlasFTSAnalyzersViewManualTokenFiltersInner, bool) {
-	if o == nil || o.TokenFilters == nil {
+	if o == nil || IsNil(o.TokenFilters) {
 		return nil, false
 	}
 	return o.TokenFilters, true
@@ -118,7 +121,7 @@ func (o *ApiAtlasFTSAnalyzersViewManual) GetTokenFiltersOk() ([]ApiAtlasFTSAnaly
 
 // HasTokenFilters returns a boolean if a field has been set.
 func (o *ApiAtlasFTSAnalyzersViewManual) HasTokenFilters() bool {
-	if o != nil && o.TokenFilters != nil {
+	if o != nil && !IsNil(o.TokenFilters) {
 		return true
 	}
 
@@ -155,20 +158,24 @@ func (o *ApiAtlasFTSAnalyzersViewManual) SetTokenizer(v ApiAtlasFTSAnalyzersView
 }
 
 func (o ApiAtlasFTSAnalyzersViewManual) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CharFilters != nil {
-		toSerialize["charFilters"] = o.CharFilters
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.TokenFilters != nil {
-		toSerialize["tokenFilters"] = o.TokenFilters
-	}
-	if true {
-		toSerialize["tokenizer"] = o.Tokenizer
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAtlasFTSAnalyzersViewManual) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CharFilters) {
+		toSerialize["charFilters"] = o.CharFilters
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.TokenFilters) {
+		toSerialize["tokenFilters"] = o.TokenFilters
+	}
+	toSerialize["tokenizer"] = o.Tokenizer
+	return toSerialize, nil
 }
 
 type NullableApiAtlasFTSAnalyzersViewManual struct {

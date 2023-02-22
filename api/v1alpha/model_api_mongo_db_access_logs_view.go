@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiMongoDBAccessLogsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMongoDBAccessLogsView{}
+
 // ApiMongoDBAccessLogsView Authentication attempt, one per object, made against the cluster.
 type ApiMongoDBAccessLogsView struct {
 	// Flag that indicates whether the response should return successful authentication attempts only.
@@ -55,7 +58,7 @@ func NewApiMongoDBAccessLogsViewWithDefaults() *ApiMongoDBAccessLogsView {
 
 // GetAuthResult returns the AuthResult field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetAuthResult() bool {
-	if o == nil || o.AuthResult == nil {
+	if o == nil || IsNil(o.AuthResult) {
 		var ret bool
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *ApiMongoDBAccessLogsView) GetAuthResult() bool {
 // GetAuthResultOk returns a tuple with the AuthResult field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetAuthResultOk() (*bool, bool) {
-	if o == nil || o.AuthResult == nil {
+	if o == nil || IsNil(o.AuthResult) {
 		return nil, false
 	}
 	return o.AuthResult, true
@@ -73,7 +76,7 @@ func (o *ApiMongoDBAccessLogsView) GetAuthResultOk() (*bool, bool) {
 
 // HasAuthResult returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasAuthResult() bool {
-	if o != nil && o.AuthResult != nil {
+	if o != nil && !IsNil(o.AuthResult) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *ApiMongoDBAccessLogsView) SetAuthResult(v bool) {
 
 // GetAuthSource returns the AuthSource field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetAuthSource() string {
-	if o == nil || o.AuthSource == nil {
+	if o == nil || IsNil(o.AuthSource) {
 		var ret string
 		return ret
 	}
@@ -97,7 +100,7 @@ func (o *ApiMongoDBAccessLogsView) GetAuthSource() string {
 // GetAuthSourceOk returns a tuple with the AuthSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetAuthSourceOk() (*string, bool) {
-	if o == nil || o.AuthSource == nil {
+	if o == nil || IsNil(o.AuthSource) {
 		return nil, false
 	}
 	return o.AuthSource, true
@@ -105,7 +108,7 @@ func (o *ApiMongoDBAccessLogsView) GetAuthSourceOk() (*string, bool) {
 
 // HasAuthSource returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasAuthSource() bool {
-	if o != nil && o.AuthSource != nil {
+	if o != nil && !IsNil(o.AuthSource) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *ApiMongoDBAccessLogsView) SetAuthSource(v string) {
 
 // GetFailureReason returns the FailureReason field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetFailureReason() string {
-	if o == nil || o.FailureReason == nil {
+	if o == nil || IsNil(o.FailureReason) {
 		var ret string
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *ApiMongoDBAccessLogsView) GetFailureReason() string {
 // GetFailureReasonOk returns a tuple with the FailureReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetFailureReasonOk() (*string, bool) {
-	if o == nil || o.FailureReason == nil {
+	if o == nil || IsNil(o.FailureReason) {
 		return nil, false
 	}
 	return o.FailureReason, true
@@ -137,7 +140,7 @@ func (o *ApiMongoDBAccessLogsView) GetFailureReasonOk() (*string, bool) {
 
 // HasFailureReason returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasFailureReason() bool {
-	if o != nil && o.FailureReason != nil {
+	if o != nil && !IsNil(o.FailureReason) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *ApiMongoDBAccessLogsView) SetFailureReason(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *ApiMongoDBAccessLogsView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -169,7 +172,7 @@ func (o *ApiMongoDBAccessLogsView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *ApiMongoDBAccessLogsView) SetGroupId(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *ApiMongoDBAccessLogsView) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -201,7 +204,7 @@ func (o *ApiMongoDBAccessLogsView) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *ApiMongoDBAccessLogsView) SetHostname(v string) {
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetIpAddress() string {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *ApiMongoDBAccessLogsView) GetIpAddress() string {
 // GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetIpAddressOk() (*string, bool) {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		return nil, false
 	}
 	return o.IpAddress, true
@@ -233,7 +236,7 @@ func (o *ApiMongoDBAccessLogsView) GetIpAddressOk() (*string, bool) {
 
 // HasIpAddress returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasIpAddress() bool {
-	if o != nil && o.IpAddress != nil {
+	if o != nil && !IsNil(o.IpAddress) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *ApiMongoDBAccessLogsView) SetIpAddress(v string) {
 
 // GetLogLine returns the LogLine field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetLogLine() string {
-	if o == nil || o.LogLine == nil {
+	if o == nil || IsNil(o.LogLine) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *ApiMongoDBAccessLogsView) GetLogLine() string {
 // GetLogLineOk returns a tuple with the LogLine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetLogLineOk() (*string, bool) {
-	if o == nil || o.LogLine == nil {
+	if o == nil || IsNil(o.LogLine) {
 		return nil, false
 	}
 	return o.LogLine, true
@@ -265,7 +268,7 @@ func (o *ApiMongoDBAccessLogsView) GetLogLineOk() (*string, bool) {
 
 // HasLogLine returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasLogLine() bool {
-	if o != nil && o.LogLine != nil {
+	if o != nil && !IsNil(o.LogLine) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *ApiMongoDBAccessLogsView) SetLogLine(v string) {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetTimestamp() string {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret string
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *ApiMongoDBAccessLogsView) GetTimestamp() string {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetTimestampOk() (*string, bool) {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
@@ -297,7 +300,7 @@ func (o *ApiMongoDBAccessLogsView) GetTimestampOk() (*string, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *ApiMongoDBAccessLogsView) SetTimestamp(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -321,7 +324,7 @@ func (o *ApiMongoDBAccessLogsView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -329,7 +332,7 @@ func (o *ApiMongoDBAccessLogsView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -342,35 +345,27 @@ func (o *ApiMongoDBAccessLogsView) SetUsername(v string) {
 }
 
 func (o ApiMongoDBAccessLogsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AuthResult != nil {
-		toSerialize["authResult"] = o.AuthResult
-	}
-	if o.AuthSource != nil {
-		toSerialize["authSource"] = o.AuthSource
-	}
-	if o.FailureReason != nil {
-		toSerialize["failureReason"] = o.FailureReason
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Hostname != nil {
-		toSerialize["hostname"] = o.Hostname
-	}
-	if o.IpAddress != nil {
-		toSerialize["ipAddress"] = o.IpAddress
-	}
-	if o.LogLine != nil {
-		toSerialize["logLine"] = o.LogLine
-	}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMongoDBAccessLogsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AuthResult) {
+		toSerialize["authResult"] = o.AuthResult
+	}
+	// skip: authSource is readOnly
+	// skip: failureReason is readOnly
+	// skip: groupId is readOnly
+	// skip: hostname is readOnly
+	// skip: ipAddress is readOnly
+	// skip: logLine is readOnly
+	// skip: timestamp is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiMongoDBAccessLogsView struct {

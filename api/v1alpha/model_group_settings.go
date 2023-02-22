@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GroupSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GroupSettings{}
+
 // GroupSettings Collection of settings that configures the project.
 type GroupSettings struct {
 	// Flag that indicates whether to collect database-specific metrics  for the specified project.
@@ -49,7 +52,7 @@ func NewGroupSettingsWithDefaults() *GroupSettings {
 
 // GetIsCollectDatabaseSpecificsStatisticsEnabled returns the IsCollectDatabaseSpecificsStatisticsEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsCollectDatabaseSpecificsStatisticsEnabled() bool {
-	if o == nil || o.IsCollectDatabaseSpecificsStatisticsEnabled == nil {
+	if o == nil || IsNil(o.IsCollectDatabaseSpecificsStatisticsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *GroupSettings) GetIsCollectDatabaseSpecificsStatisticsEnabled() bool {
 // GetIsCollectDatabaseSpecificsStatisticsEnabledOk returns a tuple with the IsCollectDatabaseSpecificsStatisticsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsCollectDatabaseSpecificsStatisticsEnabledOk() (*bool, bool) {
-	if o == nil || o.IsCollectDatabaseSpecificsStatisticsEnabled == nil {
+	if o == nil || IsNil(o.IsCollectDatabaseSpecificsStatisticsEnabled) {
 		return nil, false
 	}
 	return o.IsCollectDatabaseSpecificsStatisticsEnabled, true
@@ -67,7 +70,7 @@ func (o *GroupSettings) GetIsCollectDatabaseSpecificsStatisticsEnabledOk() (*boo
 
 // HasIsCollectDatabaseSpecificsStatisticsEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsCollectDatabaseSpecificsStatisticsEnabled() bool {
-	if o != nil && o.IsCollectDatabaseSpecificsStatisticsEnabled != nil {
+	if o != nil && !IsNil(o.IsCollectDatabaseSpecificsStatisticsEnabled) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *GroupSettings) SetIsCollectDatabaseSpecificsStatisticsEnabled(v bool) {
 
 // GetIsDataExplorerEnabled returns the IsDataExplorerEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsDataExplorerEnabled() bool {
-	if o == nil || o.IsDataExplorerEnabled == nil {
+	if o == nil || IsNil(o.IsDataExplorerEnabled) {
 		var ret bool
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *GroupSettings) GetIsDataExplorerEnabled() bool {
 // GetIsDataExplorerEnabledOk returns a tuple with the IsDataExplorerEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsDataExplorerEnabledOk() (*bool, bool) {
-	if o == nil || o.IsDataExplorerEnabled == nil {
+	if o == nil || IsNil(o.IsDataExplorerEnabled) {
 		return nil, false
 	}
 	return o.IsDataExplorerEnabled, true
@@ -99,7 +102,7 @@ func (o *GroupSettings) GetIsDataExplorerEnabledOk() (*bool, bool) {
 
 // HasIsDataExplorerEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsDataExplorerEnabled() bool {
-	if o != nil && o.IsDataExplorerEnabled != nil {
+	if o != nil && !IsNil(o.IsDataExplorerEnabled) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *GroupSettings) SetIsDataExplorerEnabled(v bool) {
 
 // GetIsExtendedStorageSizesEnabled returns the IsExtendedStorageSizesEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsExtendedStorageSizesEnabled() bool {
-	if o == nil || o.IsExtendedStorageSizesEnabled == nil {
+	if o == nil || IsNil(o.IsExtendedStorageSizesEnabled) {
 		var ret bool
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *GroupSettings) GetIsExtendedStorageSizesEnabled() bool {
 // GetIsExtendedStorageSizesEnabledOk returns a tuple with the IsExtendedStorageSizesEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsExtendedStorageSizesEnabledOk() (*bool, bool) {
-	if o == nil || o.IsExtendedStorageSizesEnabled == nil {
+	if o == nil || IsNil(o.IsExtendedStorageSizesEnabled) {
 		return nil, false
 	}
 	return o.IsExtendedStorageSizesEnabled, true
@@ -131,7 +134,7 @@ func (o *GroupSettings) GetIsExtendedStorageSizesEnabledOk() (*bool, bool) {
 
 // HasIsExtendedStorageSizesEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsExtendedStorageSizesEnabled() bool {
-	if o != nil && o.IsExtendedStorageSizesEnabled != nil {
+	if o != nil && !IsNil(o.IsExtendedStorageSizesEnabled) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *GroupSettings) SetIsExtendedStorageSizesEnabled(v bool) {
 
 // GetIsPerformanceAdvisorEnabled returns the IsPerformanceAdvisorEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsPerformanceAdvisorEnabled() bool {
-	if o == nil || o.IsPerformanceAdvisorEnabled == nil {
+	if o == nil || IsNil(o.IsPerformanceAdvisorEnabled) {
 		var ret bool
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *GroupSettings) GetIsPerformanceAdvisorEnabled() bool {
 // GetIsPerformanceAdvisorEnabledOk returns a tuple with the IsPerformanceAdvisorEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsPerformanceAdvisorEnabledOk() (*bool, bool) {
-	if o == nil || o.IsPerformanceAdvisorEnabled == nil {
+	if o == nil || IsNil(o.IsPerformanceAdvisorEnabled) {
 		return nil, false
 	}
 	return o.IsPerformanceAdvisorEnabled, true
@@ -163,7 +166,7 @@ func (o *GroupSettings) GetIsPerformanceAdvisorEnabledOk() (*bool, bool) {
 
 // HasIsPerformanceAdvisorEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsPerformanceAdvisorEnabled() bool {
-	if o != nil && o.IsPerformanceAdvisorEnabled != nil {
+	if o != nil && !IsNil(o.IsPerformanceAdvisorEnabled) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *GroupSettings) SetIsPerformanceAdvisorEnabled(v bool) {
 
 // GetIsRealtimePerformancePanelEnabled returns the IsRealtimePerformancePanelEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsRealtimePerformancePanelEnabled() bool {
-	if o == nil || o.IsRealtimePerformancePanelEnabled == nil {
+	if o == nil || IsNil(o.IsRealtimePerformancePanelEnabled) {
 		var ret bool
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *GroupSettings) GetIsRealtimePerformancePanelEnabled() bool {
 // GetIsRealtimePerformancePanelEnabledOk returns a tuple with the IsRealtimePerformancePanelEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsRealtimePerformancePanelEnabledOk() (*bool, bool) {
-	if o == nil || o.IsRealtimePerformancePanelEnabled == nil {
+	if o == nil || IsNil(o.IsRealtimePerformancePanelEnabled) {
 		return nil, false
 	}
 	return o.IsRealtimePerformancePanelEnabled, true
@@ -195,7 +198,7 @@ func (o *GroupSettings) GetIsRealtimePerformancePanelEnabledOk() (*bool, bool) {
 
 // HasIsRealtimePerformancePanelEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsRealtimePerformancePanelEnabled() bool {
-	if o != nil && o.IsRealtimePerformancePanelEnabled != nil {
+	if o != nil && !IsNil(o.IsRealtimePerformancePanelEnabled) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *GroupSettings) SetIsRealtimePerformancePanelEnabled(v bool) {
 
 // GetIsSchemaAdvisorEnabled returns the IsSchemaAdvisorEnabled field value if set, zero value otherwise.
 func (o *GroupSettings) GetIsSchemaAdvisorEnabled() bool {
-	if o == nil || o.IsSchemaAdvisorEnabled == nil {
+	if o == nil || IsNil(o.IsSchemaAdvisorEnabled) {
 		var ret bool
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *GroupSettings) GetIsSchemaAdvisorEnabled() bool {
 // GetIsSchemaAdvisorEnabledOk returns a tuple with the IsSchemaAdvisorEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupSettings) GetIsSchemaAdvisorEnabledOk() (*bool, bool) {
-	if o == nil || o.IsSchemaAdvisorEnabled == nil {
+	if o == nil || IsNil(o.IsSchemaAdvisorEnabled) {
 		return nil, false
 	}
 	return o.IsSchemaAdvisorEnabled, true
@@ -227,7 +230,7 @@ func (o *GroupSettings) GetIsSchemaAdvisorEnabledOk() (*bool, bool) {
 
 // HasIsSchemaAdvisorEnabled returns a boolean if a field has been set.
 func (o *GroupSettings) HasIsSchemaAdvisorEnabled() bool {
-	if o != nil && o.IsSchemaAdvisorEnabled != nil {
+	if o != nil && !IsNil(o.IsSchemaAdvisorEnabled) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *GroupSettings) SetIsSchemaAdvisorEnabled(v bool) {
 }
 
 func (o GroupSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IsCollectDatabaseSpecificsStatisticsEnabled != nil {
-		toSerialize["isCollectDatabaseSpecificsStatisticsEnabled"] = o.IsCollectDatabaseSpecificsStatisticsEnabled
-	}
-	if o.IsDataExplorerEnabled != nil {
-		toSerialize["isDataExplorerEnabled"] = o.IsDataExplorerEnabled
-	}
-	if o.IsExtendedStorageSizesEnabled != nil {
-		toSerialize["isExtendedStorageSizesEnabled"] = o.IsExtendedStorageSizesEnabled
-	}
-	if o.IsPerformanceAdvisorEnabled != nil {
-		toSerialize["isPerformanceAdvisorEnabled"] = o.IsPerformanceAdvisorEnabled
-	}
-	if o.IsRealtimePerformancePanelEnabled != nil {
-		toSerialize["isRealtimePerformancePanelEnabled"] = o.IsRealtimePerformancePanelEnabled
-	}
-	if o.IsSchemaAdvisorEnabled != nil {
-		toSerialize["isSchemaAdvisorEnabled"] = o.IsSchemaAdvisorEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GroupSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsCollectDatabaseSpecificsStatisticsEnabled) {
+		toSerialize["isCollectDatabaseSpecificsStatisticsEnabled"] = o.IsCollectDatabaseSpecificsStatisticsEnabled
+	}
+	if !IsNil(o.IsDataExplorerEnabled) {
+		toSerialize["isDataExplorerEnabled"] = o.IsDataExplorerEnabled
+	}
+	if !IsNil(o.IsExtendedStorageSizesEnabled) {
+		toSerialize["isExtendedStorageSizesEnabled"] = o.IsExtendedStorageSizesEnabled
+	}
+	if !IsNil(o.IsPerformanceAdvisorEnabled) {
+		toSerialize["isPerformanceAdvisorEnabled"] = o.IsPerformanceAdvisorEnabled
+	}
+	if !IsNil(o.IsRealtimePerformancePanelEnabled) {
+		toSerialize["isRealtimePerformancePanelEnabled"] = o.IsRealtimePerformancePanelEnabled
+	}
+	if !IsNil(o.IsSchemaAdvisorEnabled) {
+		toSerialize["isSchemaAdvisorEnabled"] = o.IsSchemaAdvisorEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGroupSettings struct {

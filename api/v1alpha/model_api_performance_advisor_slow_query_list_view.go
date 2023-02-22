@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPerformanceAdvisorSlowQueryListView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPerformanceAdvisorSlowQueryListView{}
+
 // ApiPerformanceAdvisorSlowQueryListView struct for ApiPerformanceAdvisorSlowQueryListView
 type ApiPerformanceAdvisorSlowQueryListView struct {
 	// List of operations that the Performance Advisor detected that took longer to execute than a specified threshold.
@@ -39,7 +42,7 @@ func NewApiPerformanceAdvisorSlowQueryListViewWithDefaults() *ApiPerformanceAdvi
 
 // GetSlowQueries returns the SlowQueries field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorSlowQueryListView) GetSlowQueries() []ApiPerformanceAdvisorSlowQueryView {
-	if o == nil || o.SlowQueries == nil {
+	if o == nil || IsNil(o.SlowQueries) {
 		var ret []ApiPerformanceAdvisorSlowQueryView
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ApiPerformanceAdvisorSlowQueryListView) GetSlowQueries() []ApiPerforman
 // GetSlowQueriesOk returns a tuple with the SlowQueries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorSlowQueryListView) GetSlowQueriesOk() ([]ApiPerformanceAdvisorSlowQueryView, bool) {
-	if o == nil || o.SlowQueries == nil {
+	if o == nil || IsNil(o.SlowQueries) {
 		return nil, false
 	}
 	return o.SlowQueries, true
@@ -57,7 +60,7 @@ func (o *ApiPerformanceAdvisorSlowQueryListView) GetSlowQueriesOk() ([]ApiPerfor
 
 // HasSlowQueries returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorSlowQueryListView) HasSlowQueries() bool {
-	if o != nil && o.SlowQueries != nil {
+	if o != nil && !IsNil(o.SlowQueries) {
 		return true
 	}
 
@@ -70,11 +73,17 @@ func (o *ApiPerformanceAdvisorSlowQueryListView) SetSlowQueries(v []ApiPerforman
 }
 
 func (o ApiPerformanceAdvisorSlowQueryListView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.SlowQueries != nil {
-		toSerialize["slowQueries"] = o.SlowQueries
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPerformanceAdvisorSlowQueryListView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: slowQueries is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiPerformanceAdvisorSlowQueryListView struct {

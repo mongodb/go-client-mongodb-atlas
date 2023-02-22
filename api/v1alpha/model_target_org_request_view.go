@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TargetOrgRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TargetOrgRequestView{}
+
 // TargetOrgRequestView struct for TargetOrgRequestView
 type TargetOrgRequestView struct {
 	AccessListIps []string `json:"accessListIps,omitempty"`
@@ -38,7 +41,7 @@ func NewTargetOrgRequestViewWithDefaults() *TargetOrgRequestView {
 
 // GetAccessListIps returns the AccessListIps field value if set, zero value otherwise.
 func (o *TargetOrgRequestView) GetAccessListIps() []string {
-	if o == nil || o.AccessListIps == nil {
+	if o == nil || IsNil(o.AccessListIps) {
 		var ret []string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *TargetOrgRequestView) GetAccessListIps() []string {
 // GetAccessListIpsOk returns a tuple with the AccessListIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TargetOrgRequestView) GetAccessListIpsOk() ([]string, bool) {
-	if o == nil || o.AccessListIps == nil {
+	if o == nil || IsNil(o.AccessListIps) {
 		return nil, false
 	}
 	return o.AccessListIps, true
@@ -56,7 +59,7 @@ func (o *TargetOrgRequestView) GetAccessListIpsOk() ([]string, bool) {
 
 // HasAccessListIps returns a boolean if a field has been set.
 func (o *TargetOrgRequestView) HasAccessListIps() bool {
-	if o != nil && o.AccessListIps != nil {
+	if o != nil && !IsNil(o.AccessListIps) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *TargetOrgRequestView) SetAccessListIps(v []string) {
 }
 
 func (o TargetOrgRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AccessListIps != nil {
-		toSerialize["accessListIps"] = o.AccessListIps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TargetOrgRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccessListIps) {
+		toSerialize["accessListIps"] = o.AccessListIps
+	}
+	return toSerialize, nil
 }
 
 type NullableTargetOrgRequestView struct {

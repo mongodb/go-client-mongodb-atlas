@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FTSIndex type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FTSIndex{}
+
 // FTSIndex struct for FTSIndex
 type FTSIndex struct {
 	// Specific pre-defined method chosen to convert database field text into searchable words. This conversion reduces the text of fields into the smallest units of text. These units are called a **term** or **token**. This process, known as tokenization, involves a variety of changes made to the text in fields:  - extracting words - removing punctuation - removing accents - changing to lowercase - removing common words - reducing words to their root form (stemming) - changing words to their base form (lemmatization)  MongoDB Cloud uses the selected process to build the Atlas Search index.
@@ -64,7 +67,7 @@ func NewFTSIndexWithDefaults() *FTSIndex {
 
 // GetAnalyzer returns the Analyzer field value if set, zero value otherwise.
 func (o *FTSIndex) GetAnalyzer() string {
-	if o == nil || o.Analyzer == nil {
+	if o == nil || IsNil(o.Analyzer) {
 		var ret string
 		return ret
 	}
@@ -74,7 +77,7 @@ func (o *FTSIndex) GetAnalyzer() string {
 // GetAnalyzerOk returns a tuple with the Analyzer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetAnalyzerOk() (*string, bool) {
-	if o == nil || o.Analyzer == nil {
+	if o == nil || IsNil(o.Analyzer) {
 		return nil, false
 	}
 	return o.Analyzer, true
@@ -82,7 +85,7 @@ func (o *FTSIndex) GetAnalyzerOk() (*string, bool) {
 
 // HasAnalyzer returns a boolean if a field has been set.
 func (o *FTSIndex) HasAnalyzer() bool {
-	if o != nil && o.Analyzer != nil {
+	if o != nil && !IsNil(o.Analyzer) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *FTSIndex) SetAnalyzer(v string) {
 
 // GetAnalyzers returns the Analyzers field value if set, zero value otherwise.
 func (o *FTSIndex) GetAnalyzers() []ApiAtlasFTSAnalyzersViewManual {
-	if o == nil || o.Analyzers == nil {
+	if o == nil || IsNil(o.Analyzers) {
 		var ret []ApiAtlasFTSAnalyzersViewManual
 		return ret
 	}
@@ -106,7 +109,7 @@ func (o *FTSIndex) GetAnalyzers() []ApiAtlasFTSAnalyzersViewManual {
 // GetAnalyzersOk returns a tuple with the Analyzers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetAnalyzersOk() ([]ApiAtlasFTSAnalyzersViewManual, bool) {
-	if o == nil || o.Analyzers == nil {
+	if o == nil || IsNil(o.Analyzers) {
 		return nil, false
 	}
 	return o.Analyzers, true
@@ -114,7 +117,7 @@ func (o *FTSIndex) GetAnalyzersOk() ([]ApiAtlasFTSAnalyzersViewManual, bool) {
 
 // HasAnalyzers returns a boolean if a field has been set.
 func (o *FTSIndex) HasAnalyzers() bool {
-	if o != nil && o.Analyzers != nil {
+	if o != nil && !IsNil(o.Analyzers) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *FTSIndex) SetDatabase(v string) {
 
 // GetIndexID returns the IndexID field value if set, zero value otherwise.
 func (o *FTSIndex) GetIndexID() string {
-	if o == nil || o.IndexID == nil {
+	if o == nil || IsNil(o.IndexID) {
 		var ret string
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *FTSIndex) GetIndexID() string {
 // GetIndexIDOk returns a tuple with the IndexID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetIndexIDOk() (*string, bool) {
-	if o == nil || o.IndexID == nil {
+	if o == nil || IsNil(o.IndexID) {
 		return nil, false
 	}
 	return o.IndexID, true
@@ -194,7 +197,7 @@ func (o *FTSIndex) GetIndexIDOk() (*string, bool) {
 
 // HasIndexID returns a boolean if a field has been set.
 func (o *FTSIndex) HasIndexID() bool {
-	if o != nil && o.IndexID != nil {
+	if o != nil && !IsNil(o.IndexID) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *FTSIndex) SetIndexID(v string) {
 
 // GetMappings returns the Mappings field value if set, zero value otherwise.
 func (o *FTSIndex) GetMappings() ApiAtlasFTSMappingsViewManual {
-	if o == nil || o.Mappings == nil {
+	if o == nil || IsNil(o.Mappings) {
 		var ret ApiAtlasFTSMappingsViewManual
 		return ret
 	}
@@ -218,7 +221,7 @@ func (o *FTSIndex) GetMappings() ApiAtlasFTSMappingsViewManual {
 // GetMappingsOk returns a tuple with the Mappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetMappingsOk() (*ApiAtlasFTSMappingsViewManual, bool) {
-	if o == nil || o.Mappings == nil {
+	if o == nil || IsNil(o.Mappings) {
 		return nil, false
 	}
 	return o.Mappings, true
@@ -226,7 +229,7 @@ func (o *FTSIndex) GetMappingsOk() (*ApiAtlasFTSMappingsViewManual, bool) {
 
 // HasMappings returns a boolean if a field has been set.
 func (o *FTSIndex) HasMappings() bool {
-	if o != nil && o.Mappings != nil {
+	if o != nil && !IsNil(o.Mappings) {
 		return true
 	}
 
@@ -264,7 +267,7 @@ func (o *FTSIndex) SetName(v string) {
 
 // GetSearchAnalyzer returns the SearchAnalyzer field value if set, zero value otherwise.
 func (o *FTSIndex) GetSearchAnalyzer() string {
-	if o == nil || o.SearchAnalyzer == nil {
+	if o == nil || IsNil(o.SearchAnalyzer) {
 		var ret string
 		return ret
 	}
@@ -274,7 +277,7 @@ func (o *FTSIndex) GetSearchAnalyzer() string {
 // GetSearchAnalyzerOk returns a tuple with the SearchAnalyzer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetSearchAnalyzerOk() (*string, bool) {
-	if o == nil || o.SearchAnalyzer == nil {
+	if o == nil || IsNil(o.SearchAnalyzer) {
 		return nil, false
 	}
 	return o.SearchAnalyzer, true
@@ -282,7 +285,7 @@ func (o *FTSIndex) GetSearchAnalyzerOk() (*string, bool) {
 
 // HasSearchAnalyzer returns a boolean if a field has been set.
 func (o *FTSIndex) HasSearchAnalyzer() bool {
-	if o != nil && o.SearchAnalyzer != nil {
+	if o != nil && !IsNil(o.SearchAnalyzer) {
 		return true
 	}
 
@@ -296,7 +299,7 @@ func (o *FTSIndex) SetSearchAnalyzer(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *FTSIndex) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -306,7 +309,7 @@ func (o *FTSIndex) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -314,7 +317,7 @@ func (o *FTSIndex) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *FTSIndex) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -328,7 +331,7 @@ func (o *FTSIndex) SetStatus(v string) {
 
 // GetSynonyms returns the Synonyms field value if set, zero value otherwise.
 func (o *FTSIndex) GetSynonyms() []FTSSynonymMappingDefinition {
-	if o == nil || o.Synonyms == nil {
+	if o == nil || IsNil(o.Synonyms) {
 		var ret []FTSSynonymMappingDefinition
 		return ret
 	}
@@ -338,7 +341,7 @@ func (o *FTSIndex) GetSynonyms() []FTSSynonymMappingDefinition {
 // GetSynonymsOk returns a tuple with the Synonyms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FTSIndex) GetSynonymsOk() ([]FTSSynonymMappingDefinition, bool) {
-	if o == nil || o.Synonyms == nil {
+	if o == nil || IsNil(o.Synonyms) {
 		return nil, false
 	}
 	return o.Synonyms, true
@@ -346,7 +349,7 @@ func (o *FTSIndex) GetSynonymsOk() ([]FTSSynonymMappingDefinition, bool) {
 
 // HasSynonyms returns a boolean if a field has been set.
 func (o *FTSIndex) HasSynonyms() bool {
-	if o != nil && o.Synonyms != nil {
+	if o != nil && !IsNil(o.Synonyms) {
 		return true
 	}
 
@@ -359,38 +362,36 @@ func (o *FTSIndex) SetSynonyms(v []FTSSynonymMappingDefinition) {
 }
 
 func (o FTSIndex) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Analyzer != nil {
-		toSerialize["analyzer"] = o.Analyzer
-	}
-	if o.Analyzers != nil {
-		toSerialize["analyzers"] = o.Analyzers
-	}
-	if true {
-		toSerialize["collectionName"] = o.CollectionName
-	}
-	if true {
-		toSerialize["database"] = o.Database
-	}
-	if o.IndexID != nil {
-		toSerialize["indexID"] = o.IndexID
-	}
-	if o.Mappings != nil {
-		toSerialize["mappings"] = o.Mappings
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.SearchAnalyzer != nil {
-		toSerialize["searchAnalyzer"] = o.SearchAnalyzer
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Synonyms != nil {
-		toSerialize["synonyms"] = o.Synonyms
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FTSIndex) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Analyzer) {
+		toSerialize["analyzer"] = o.Analyzer
+	}
+	if !IsNil(o.Analyzers) {
+		toSerialize["analyzers"] = o.Analyzers
+	}
+	toSerialize["collectionName"] = o.CollectionName
+	toSerialize["database"] = o.Database
+	// skip: indexID is readOnly
+	if !IsNil(o.Mappings) {
+		toSerialize["mappings"] = o.Mappings
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.SearchAnalyzer) {
+		toSerialize["searchAnalyzer"] = o.SearchAnalyzer
+	}
+	// skip: status is readOnly
+	if !IsNil(o.Synonyms) {
+		toSerialize["synonyms"] = o.Synonyms
+	}
+	return toSerialize, nil
 }
 
 type NullableFTSIndex struct {

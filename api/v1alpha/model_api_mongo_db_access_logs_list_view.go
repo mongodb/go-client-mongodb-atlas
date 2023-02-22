@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiMongoDBAccessLogsListView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMongoDBAccessLogsListView{}
+
 // ApiMongoDBAccessLogsListView struct for ApiMongoDBAccessLogsListView
 type ApiMongoDBAccessLogsListView struct {
 	// Authentication attempt, one per object, made against the cluster.
@@ -39,7 +42,7 @@ func NewApiMongoDBAccessLogsListViewWithDefaults() *ApiMongoDBAccessLogsListView
 
 // GetAccessLogs returns the AccessLogs field value if set, zero value otherwise.
 func (o *ApiMongoDBAccessLogsListView) GetAccessLogs() []ApiMongoDBAccessLogsView {
-	if o == nil || o.AccessLogs == nil {
+	if o == nil || IsNil(o.AccessLogs) {
 		var ret []ApiMongoDBAccessLogsView
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ApiMongoDBAccessLogsListView) GetAccessLogs() []ApiMongoDBAccessLogsVie
 // GetAccessLogsOk returns a tuple with the AccessLogs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMongoDBAccessLogsListView) GetAccessLogsOk() ([]ApiMongoDBAccessLogsView, bool) {
-	if o == nil || o.AccessLogs == nil {
+	if o == nil || IsNil(o.AccessLogs) {
 		return nil, false
 	}
 	return o.AccessLogs, true
@@ -57,7 +60,7 @@ func (o *ApiMongoDBAccessLogsListView) GetAccessLogsOk() ([]ApiMongoDBAccessLogs
 
 // HasAccessLogs returns a boolean if a field has been set.
 func (o *ApiMongoDBAccessLogsListView) HasAccessLogs() bool {
-	if o != nil && o.AccessLogs != nil {
+	if o != nil && !IsNil(o.AccessLogs) {
 		return true
 	}
 
@@ -70,11 +73,17 @@ func (o *ApiMongoDBAccessLogsListView) SetAccessLogs(v []ApiMongoDBAccessLogsVie
 }
 
 func (o ApiMongoDBAccessLogsListView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AccessLogs != nil {
-		toSerialize["accessLogs"] = o.AccessLogs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMongoDBAccessLogsListView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: accessLogs is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiMongoDBAccessLogsListView struct {

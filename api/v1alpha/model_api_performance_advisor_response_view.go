@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPerformanceAdvisorResponseView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPerformanceAdvisorResponseView{}
+
 // ApiPerformanceAdvisorResponseView struct for ApiPerformanceAdvisorResponseView
 type ApiPerformanceAdvisorResponseView struct {
 	// List of query predicates, sorts, and projections that the Performance Advisor suggests.
@@ -41,7 +44,7 @@ func NewApiPerformanceAdvisorResponseViewWithDefaults() *ApiPerformanceAdvisorRe
 
 // GetShapes returns the Shapes field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorResponseView) GetShapes() []ApiPerformanceAdvisorShapeView {
-	if o == nil || o.Shapes == nil {
+	if o == nil || IsNil(o.Shapes) {
 		var ret []ApiPerformanceAdvisorShapeView
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiPerformanceAdvisorResponseView) GetShapes() []ApiPerformanceAdvisorS
 // GetShapesOk returns a tuple with the Shapes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorResponseView) GetShapesOk() ([]ApiPerformanceAdvisorShapeView, bool) {
-	if o == nil || o.Shapes == nil {
+	if o == nil || IsNil(o.Shapes) {
 		return nil, false
 	}
 	return o.Shapes, true
@@ -59,7 +62,7 @@ func (o *ApiPerformanceAdvisorResponseView) GetShapesOk() ([]ApiPerformanceAdvis
 
 // HasShapes returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorResponseView) HasShapes() bool {
-	if o != nil && o.Shapes != nil {
+	if o != nil && !IsNil(o.Shapes) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiPerformanceAdvisorResponseView) SetShapes(v []ApiPerformanceAdvisorS
 
 // GetSuggestedIndexes returns the SuggestedIndexes field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorResponseView) GetSuggestedIndexes() []ApiPerformanceAdvisorIndexView {
-	if o == nil || o.SuggestedIndexes == nil {
+	if o == nil || IsNil(o.SuggestedIndexes) {
 		var ret []ApiPerformanceAdvisorIndexView
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiPerformanceAdvisorResponseView) GetSuggestedIndexes() []ApiPerforman
 // GetSuggestedIndexesOk returns a tuple with the SuggestedIndexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorResponseView) GetSuggestedIndexesOk() ([]ApiPerformanceAdvisorIndexView, bool) {
-	if o == nil || o.SuggestedIndexes == nil {
+	if o == nil || IsNil(o.SuggestedIndexes) {
 		return nil, false
 	}
 	return o.SuggestedIndexes, true
@@ -91,7 +94,7 @@ func (o *ApiPerformanceAdvisorResponseView) GetSuggestedIndexesOk() ([]ApiPerfor
 
 // HasSuggestedIndexes returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorResponseView) HasSuggestedIndexes() bool {
-	if o != nil && o.SuggestedIndexes != nil {
+	if o != nil && !IsNil(o.SuggestedIndexes) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiPerformanceAdvisorResponseView) SetSuggestedIndexes(v []ApiPerforman
 }
 
 func (o ApiPerformanceAdvisorResponseView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Shapes != nil {
-		toSerialize["shapes"] = o.Shapes
-	}
-	if o.SuggestedIndexes != nil {
-		toSerialize["suggestedIndexes"] = o.SuggestedIndexes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPerformanceAdvisorResponseView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: shapes is readOnly
+	// skip: suggestedIndexes is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiPerformanceAdvisorResponseView struct {

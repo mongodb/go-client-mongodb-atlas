@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiDatabaseView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiDatabaseView{}
+
 // ApiDatabaseView struct for ApiDatabaseView
 type ApiDatabaseView struct {
 	// Human-readable label that identifies the database that the specified MongoDB process serves.
@@ -41,7 +44,7 @@ func NewApiDatabaseViewWithDefaults() *ApiDatabaseView {
 
 // GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
 func (o *ApiDatabaseView) GetDatabaseName() string {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiDatabaseView) GetDatabaseName() string {
 // GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDatabaseView) GetDatabaseNameOk() (*string, bool) {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		return nil, false
 	}
 	return o.DatabaseName, true
@@ -59,7 +62,7 @@ func (o *ApiDatabaseView) GetDatabaseNameOk() (*string, bool) {
 
 // HasDatabaseName returns a boolean if a field has been set.
 func (o *ApiDatabaseView) HasDatabaseName() bool {
-	if o != nil && o.DatabaseName != nil {
+	if o != nil && !IsNil(o.DatabaseName) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiDatabaseView) SetDatabaseName(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiDatabaseView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiDatabaseView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDatabaseView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -91,7 +94,7 @@ func (o *ApiDatabaseView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiDatabaseView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *ApiDatabaseView) SetLinks(v []Link) {
 }
 
 func (o ApiDatabaseView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DatabaseName != nil {
-		toSerialize["databaseName"] = o.DatabaseName
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiDatabaseView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DatabaseName) {
+		toSerialize["databaseName"] = o.DatabaseName
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiDatabaseView struct {

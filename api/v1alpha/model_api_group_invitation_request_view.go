@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiGroupInvitationRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiGroupInvitationRequestView{}
+
 // ApiGroupInvitationRequestView struct for ApiGroupInvitationRequestView
 type ApiGroupInvitationRequestView struct {
 	// One or more organization or project level roles to assign to the MongoDB Cloud user.
@@ -41,7 +44,7 @@ func NewApiGroupInvitationRequestViewWithDefaults() *ApiGroupInvitationRequestVi
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiGroupInvitationRequestView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiGroupInvitationRequestView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationRequestView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -59,7 +62,7 @@ func (o *ApiGroupInvitationRequestView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiGroupInvitationRequestView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiGroupInvitationRequestView) SetRoles(v []string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ApiGroupInvitationRequestView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiGroupInvitationRequestView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationRequestView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -91,7 +94,7 @@ func (o *ApiGroupInvitationRequestView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ApiGroupInvitationRequestView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *ApiGroupInvitationRequestView) SetUsername(v string) {
 }
 
 func (o ApiGroupInvitationRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiGroupInvitationRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
 }
 
 type NullableApiGroupInvitationRequestView struct {

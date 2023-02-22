@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint{}
+
 // ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint Private endpoint connection string that you can use to connect to this serverless instance through a private endpoint.
 type ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint struct {
 	// List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].srvConnectionString**.
@@ -43,7 +46,7 @@ func NewServerlessInstanceDescriptionConnectionStringsPrivateEndpointWithDefault
 
 // GetEndpoints returns the Endpoints field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetEndpoints() []ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		var ret []ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetEndpo
 // GetEndpointsOk returns a tuple with the Endpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetEndpointsOk() ([]ServerlessInstanceDescriptionConnectionStringsPrivateEndpointEndpoint, bool) {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		return nil, false
 	}
 	return o.Endpoints, true
@@ -61,7 +64,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetEndpo
 
 // HasEndpoints returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) HasEndpoints() bool {
-	if o != nil && o.Endpoints != nil {
+	if o != nil && !IsNil(o.Endpoints) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) SetEndpo
 
 // GetSrvConnectionString returns the SrvConnectionString field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionString() string {
-	if o == nil || o.SrvConnectionString == nil {
+	if o == nil || IsNil(o.SrvConnectionString) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetSrvCo
 // GetSrvConnectionStringOk returns a tuple with the SrvConnectionString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionStringOk() (*string, bool) {
-	if o == nil || o.SrvConnectionString == nil {
+	if o == nil || IsNil(o.SrvConnectionString) {
 		return nil, false
 	}
 	return o.SrvConnectionString, true
@@ -93,7 +96,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetSrvCo
 
 // HasSrvConnectionString returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) HasSrvConnectionString() bool {
-	if o != nil && o.SrvConnectionString != nil {
+	if o != nil && !IsNil(o.SrvConnectionString) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) SetSrvCo
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetType(
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -125,7 +128,7 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) GetTypeO
 
 // HasType returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) SetType(
 }
 
 func (o ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Endpoints != nil {
-		toSerialize["endpoints"] = o.Endpoints
-	}
-	if o.SrvConnectionString != nil {
-		toSerialize["srvConnectionString"] = o.SrvConnectionString
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: endpoints is readOnly
+	// skip: srvConnectionString is readOnly
+	// skip: type is readOnly
+	return toSerialize, nil
 }
 
 type NullableServerlessInstanceDescriptionConnectionStringsPrivateEndpoint struct {

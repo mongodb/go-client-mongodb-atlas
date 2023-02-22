@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DefaultAlertConfigViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DefaultAlertConfigViewForNdsGroup{}
+
 // DefaultAlertConfigViewForNdsGroup Other alerts which don't have extra details beside of basic one.
 type DefaultAlertConfigViewForNdsGroup struct {
 	// Date and time when MongoDB Cloud created the alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -59,7 +62,7 @@ func NewDefaultAlertConfigViewForNdsGroupWithDefaults() *DefaultAlertConfigViewF
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -69,7 +72,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -77,7 +80,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetCreated(v time.Time) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -101,7 +104,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -109,7 +112,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetEventTypeName(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -165,7 +168,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -197,7 +200,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -235,7 +238,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		var ret []MatcherView
 		return ret
 	}
@@ -245,7 +248,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
 	return o.Matchers, true
@@ -253,7 +256,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasMatchers() bool {
-	if o != nil && o.Matchers != nil {
+	if o != nil && !IsNil(o.Matchers) {
 		return true
 	}
 
@@ -267,7 +270,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetNotifications() []NotificationViewForNdsGroup {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		var ret []NotificationViewForNdsGroup
 		return ret
 	}
@@ -277,7 +280,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetNotifications() []NotificationVie
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetNotificationsOk() ([]NotificationViewForNdsGroup, bool) {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
 	return o.Notifications, true
@@ -285,7 +288,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetNotificationsOk() ([]Notification
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasNotifications() bool {
-	if o != nil && o.Notifications != nil {
+	if o != nil && !IsNil(o.Notifications) {
 		return true
 	}
 
@@ -299,7 +302,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetNotifications(v []NotificationVie
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetUpdated() time.Time {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		var ret time.Time
 		return ret
 	}
@@ -309,7 +312,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetUpdated() time.Time {
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
 	return o.Updated, true
@@ -317,7 +320,7 @@ func (o *DefaultAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
+	if o != nil && !IsNil(o.Updated) {
 		return true
 	}
 
@@ -330,35 +333,31 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
 }
 
 func (o DefaultAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.Matchers != nil {
-		toSerialize["matchers"] = o.Matchers
-	}
-	if o.Notifications != nil {
-		toSerialize["notifications"] = o.Notifications
-	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DefaultAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: created is readOnly
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
+	if !IsNil(o.Notifications) {
+		toSerialize["notifications"] = o.Notifications
+	}
+	// skip: updated is readOnly
+	return toSerialize, nil
 }
 
 type NullableDefaultAlertConfigViewForNdsGroup struct {

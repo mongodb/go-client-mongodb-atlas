@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PartitionField type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartitionField{}
+
 // PartitionField Partition Field in the Data Lake Storage provider for a Data Lake Pipeline.
 type PartitionField struct {
 	// Human-readable label that identifies the field name used to partition data.
@@ -28,8 +31,6 @@ type PartitionField struct {
 // will change when the set of required properties is changed
 func NewPartitionField() *PartitionField {
 	this := PartitionField{}
-	var order int32 = 0
-	this.Order = order
 	return &this
 }
 
@@ -92,14 +93,18 @@ func (o *PartitionField) SetOrder(v int32) {
 }
 
 func (o PartitionField) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["fieldName"] = o.FieldName
-	}
-	if true {
-		toSerialize["order"] = o.Order
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PartitionField) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["fieldName"] = o.FieldName
+	toSerialize["order"] = o.Order
+	return toSerialize, nil
 }
 
 type NullablePartitionField struct {

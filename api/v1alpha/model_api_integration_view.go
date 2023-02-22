@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiIntegrationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiIntegrationView{}
+
 // ApiIntegrationView Collection of settings that describe third-party integrations.
 type ApiIntegrationView struct {
 	Type *string `json:"type,omitempty"`
@@ -38,7 +41,7 @@ func NewApiIntegrationViewWithDefaults() *ApiIntegrationView {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiIntegrationView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ApiIntegrationView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiIntegrationView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -56,7 +59,7 @@ func (o *ApiIntegrationView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiIntegrationView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ApiIntegrationView) SetType(v string) {
 }
 
 func (o ApiIntegrationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiIntegrationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiIntegrationView struct {

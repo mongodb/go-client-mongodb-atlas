@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilteredgeGram type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilteredgeGram{}
+
 // TokenFilteredgeGram Filter that tokenizes input from the left side, or \"edge\", of a text input into n-grams of configured sizes. You can't use this token filter in synonym or autocomplete mapping definitions.
 type TokenFilteredgeGram struct {
 	// Value that specifies the maximum length of generated n-grams. This value must be greater than or equal to **minGram**.
@@ -97,7 +100,7 @@ func (o *TokenFilteredgeGram) SetMinGram(v int32) {
 
 // GetTermNotInBounds returns the TermNotInBounds field value if set, zero value otherwise.
 func (o *TokenFilteredgeGram) GetTermNotInBounds() string {
-	if o == nil || o.TermNotInBounds == nil {
+	if o == nil || IsNil(o.TermNotInBounds) {
 		var ret string
 		return ret
 	}
@@ -107,7 +110,7 @@ func (o *TokenFilteredgeGram) GetTermNotInBounds() string {
 // GetTermNotInBoundsOk returns a tuple with the TermNotInBounds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilteredgeGram) GetTermNotInBoundsOk() (*string, bool) {
-	if o == nil || o.TermNotInBounds == nil {
+	if o == nil || IsNil(o.TermNotInBounds) {
 		return nil, false
 	}
 	return o.TermNotInBounds, true
@@ -115,7 +118,7 @@ func (o *TokenFilteredgeGram) GetTermNotInBoundsOk() (*string, bool) {
 
 // HasTermNotInBounds returns a boolean if a field has been set.
 func (o *TokenFilteredgeGram) HasTermNotInBounds() bool {
-	if o != nil && o.TermNotInBounds != nil {
+	if o != nil && !IsNil(o.TermNotInBounds) {
 		return true
 	}
 
@@ -152,20 +155,22 @@ func (o *TokenFilteredgeGram) SetType(v string) {
 }
 
 func (o TokenFilteredgeGram) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["maxGram"] = o.MaxGram
-	}
-	if true {
-		toSerialize["minGram"] = o.MinGram
-	}
-	if o.TermNotInBounds != nil {
-		toSerialize["termNotInBounds"] = o.TermNotInBounds
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilteredgeGram) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["maxGram"] = o.MaxGram
+	toSerialize["minGram"] = o.MinGram
+	if !IsNil(o.TermNotInBounds) {
+		toSerialize["termNotInBounds"] = o.TermNotInBounds
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilteredgeGram struct {

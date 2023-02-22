@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessFeatureUsageExportSnapshotFeatureId type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessFeatureUsageExportSnapshotFeatureId{}
+
 // CloudProviderAccessFeatureUsageExportSnapshotFeatureId Identifying characteristics about the Amazon Web Services (AWS) Simple Storage Service (S3) export bucket linked to this AWS Identity and Access Management (IAM) role.
 type CloudProviderAccessFeatureUsageExportSnapshotFeatureId struct {
 	// Unique 24-hexadecimal digit string that identifies the AWS S3 bucket to which you export your snapshots. 
@@ -41,7 +44,7 @@ func NewCloudProviderAccessFeatureUsageExportSnapshotFeatureIdWithDefaults() *Cl
 
 // GetExportBucketId returns the ExportBucketId field value if set, zero value otherwise.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetExportBucketId() string {
-	if o == nil || o.ExportBucketId == nil {
+	if o == nil || IsNil(o.ExportBucketId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetExportBucket
 // GetExportBucketIdOk returns a tuple with the ExportBucketId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetExportBucketIdOk() (*string, bool) {
-	if o == nil || o.ExportBucketId == nil {
+	if o == nil || IsNil(o.ExportBucketId) {
 		return nil, false
 	}
 	return o.ExportBucketId, true
@@ -59,7 +62,7 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetExportBucket
 
 // HasExportBucketId returns a boolean if a field has been set.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) HasExportBucketId() bool {
-	if o != nil && o.ExportBucketId != nil {
+	if o != nil && !IsNil(o.ExportBucketId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) SetExportBucket
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetGroupId() st
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -91,7 +94,7 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) GetGroupIdOk() 
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) SetGroupId(v st
 }
 
 func (o CloudProviderAccessFeatureUsageExportSnapshotFeatureId) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExportBucketId != nil {
-		toSerialize["exportBucketId"] = o.ExportBucketId
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessFeatureUsageExportSnapshotFeatureId) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: exportBucketId is readOnly
+	// skip: groupId is readOnly
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessFeatureUsageExportSnapshotFeatureId struct {

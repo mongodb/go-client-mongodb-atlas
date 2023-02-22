@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EncryptionAtRest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EncryptionAtRest{}
+
 // EncryptionAtRest struct for EncryptionAtRest
 type EncryptionAtRest struct {
 	AwsKms *AWSKMS `json:"awsKms,omitempty"`
@@ -40,7 +43,7 @@ func NewEncryptionAtRestWithDefaults() *EncryptionAtRest {
 
 // GetAwsKms returns the AwsKms field value if set, zero value otherwise.
 func (o *EncryptionAtRest) GetAwsKms() AWSKMS {
-	if o == nil || o.AwsKms == nil {
+	if o == nil || IsNil(o.AwsKms) {
 		var ret AWSKMS
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *EncryptionAtRest) GetAwsKms() AWSKMS {
 // GetAwsKmsOk returns a tuple with the AwsKms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionAtRest) GetAwsKmsOk() (*AWSKMS, bool) {
-	if o == nil || o.AwsKms == nil {
+	if o == nil || IsNil(o.AwsKms) {
 		return nil, false
 	}
 	return o.AwsKms, true
@@ -58,7 +61,7 @@ func (o *EncryptionAtRest) GetAwsKmsOk() (*AWSKMS, bool) {
 
 // HasAwsKms returns a boolean if a field has been set.
 func (o *EncryptionAtRest) HasAwsKms() bool {
-	if o != nil && o.AwsKms != nil {
+	if o != nil && !IsNil(o.AwsKms) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *EncryptionAtRest) SetAwsKms(v AWSKMS) {
 
 // GetAzureKeyVault returns the AzureKeyVault field value if set, zero value otherwise.
 func (o *EncryptionAtRest) GetAzureKeyVault() AzureKeyVault {
-	if o == nil || o.AzureKeyVault == nil {
+	if o == nil || IsNil(o.AzureKeyVault) {
 		var ret AzureKeyVault
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *EncryptionAtRest) GetAzureKeyVault() AzureKeyVault {
 // GetAzureKeyVaultOk returns a tuple with the AzureKeyVault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionAtRest) GetAzureKeyVaultOk() (*AzureKeyVault, bool) {
-	if o == nil || o.AzureKeyVault == nil {
+	if o == nil || IsNil(o.AzureKeyVault) {
 		return nil, false
 	}
 	return o.AzureKeyVault, true
@@ -90,7 +93,7 @@ func (o *EncryptionAtRest) GetAzureKeyVaultOk() (*AzureKeyVault, bool) {
 
 // HasAzureKeyVault returns a boolean if a field has been set.
 func (o *EncryptionAtRest) HasAzureKeyVault() bool {
-	if o != nil && o.AzureKeyVault != nil {
+	if o != nil && !IsNil(o.AzureKeyVault) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *EncryptionAtRest) SetAzureKeyVault(v AzureKeyVault) {
 
 // GetGoogleCloudKms returns the GoogleCloudKms field value if set, zero value otherwise.
 func (o *EncryptionAtRest) GetGoogleCloudKms() GoogleCloudKMS {
-	if o == nil || o.GoogleCloudKms == nil {
+	if o == nil || IsNil(o.GoogleCloudKms) {
 		var ret GoogleCloudKMS
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *EncryptionAtRest) GetGoogleCloudKms() GoogleCloudKMS {
 // GetGoogleCloudKmsOk returns a tuple with the GoogleCloudKms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionAtRest) GetGoogleCloudKmsOk() (*GoogleCloudKMS, bool) {
-	if o == nil || o.GoogleCloudKms == nil {
+	if o == nil || IsNil(o.GoogleCloudKms) {
 		return nil, false
 	}
 	return o.GoogleCloudKms, true
@@ -122,7 +125,7 @@ func (o *EncryptionAtRest) GetGoogleCloudKmsOk() (*GoogleCloudKMS, bool) {
 
 // HasGoogleCloudKms returns a boolean if a field has been set.
 func (o *EncryptionAtRest) HasGoogleCloudKms() bool {
-	if o != nil && o.GoogleCloudKms != nil {
+	if o != nil && !IsNil(o.GoogleCloudKms) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *EncryptionAtRest) SetGoogleCloudKms(v GoogleCloudKMS) {
 }
 
 func (o EncryptionAtRest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AwsKms != nil {
-		toSerialize["awsKms"] = o.AwsKms
-	}
-	if o.AzureKeyVault != nil {
-		toSerialize["azureKeyVault"] = o.AzureKeyVault
-	}
-	if o.GoogleCloudKms != nil {
-		toSerialize["googleCloudKms"] = o.GoogleCloudKms
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EncryptionAtRest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AwsKms) {
+		toSerialize["awsKms"] = o.AwsKms
+	}
+	if !IsNil(o.AzureKeyVault) {
+		toSerialize["azureKeyVault"] = o.AzureKeyVault
+	}
+	if !IsNil(o.GoogleCloudKms) {
+		toSerialize["googleCloudKms"] = o.GoogleCloudKms
+	}
+	return toSerialize, nil
 }
 
 type NullableEncryptionAtRest struct {

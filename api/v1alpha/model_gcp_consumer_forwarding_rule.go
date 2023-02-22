@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPConsumerForwardingRule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPConsumerForwardingRule{}
+
 // GCPConsumerForwardingRule struct for GCPConsumerForwardingRule
 type GCPConsumerForwardingRule struct {
 	// Human-readable label that identifies the Google Cloud consumer forwarding rule that you created.
@@ -43,7 +46,7 @@ func NewGCPConsumerForwardingRuleWithDefaults() *GCPConsumerForwardingRule {
 
 // GetEndpointName returns the EndpointName field value if set, zero value otherwise.
 func (o *GCPConsumerForwardingRule) GetEndpointName() string {
-	if o == nil || o.EndpointName == nil {
+	if o == nil || IsNil(o.EndpointName) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *GCPConsumerForwardingRule) GetEndpointName() string {
 // GetEndpointNameOk returns a tuple with the EndpointName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPConsumerForwardingRule) GetEndpointNameOk() (*string, bool) {
-	if o == nil || o.EndpointName == nil {
+	if o == nil || IsNil(o.EndpointName) {
 		return nil, false
 	}
 	return o.EndpointName, true
@@ -61,7 +64,7 @@ func (o *GCPConsumerForwardingRule) GetEndpointNameOk() (*string, bool) {
 
 // HasEndpointName returns a boolean if a field has been set.
 func (o *GCPConsumerForwardingRule) HasEndpointName() bool {
-	if o != nil && o.EndpointName != nil {
+	if o != nil && !IsNil(o.EndpointName) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GCPConsumerForwardingRule) SetEndpointName(v string) {
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *GCPConsumerForwardingRule) GetIpAddress() string {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *GCPConsumerForwardingRule) GetIpAddress() string {
 // GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPConsumerForwardingRule) GetIpAddressOk() (*string, bool) {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		return nil, false
 	}
 	return o.IpAddress, true
@@ -93,7 +96,7 @@ func (o *GCPConsumerForwardingRule) GetIpAddressOk() (*string, bool) {
 
 // HasIpAddress returns a boolean if a field has been set.
 func (o *GCPConsumerForwardingRule) HasIpAddress() bool {
-	if o != nil && o.IpAddress != nil {
+	if o != nil && !IsNil(o.IpAddress) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GCPConsumerForwardingRule) SetIpAddress(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GCPConsumerForwardingRule) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *GCPConsumerForwardingRule) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPConsumerForwardingRule) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -125,7 +128,7 @@ func (o *GCPConsumerForwardingRule) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GCPConsumerForwardingRule) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *GCPConsumerForwardingRule) SetStatus(v string) {
 }
 
 func (o GCPConsumerForwardingRule) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndpointName != nil {
-		toSerialize["endpointName"] = o.EndpointName
-	}
-	if o.IpAddress != nil {
-		toSerialize["ipAddress"] = o.IpAddress
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPConsumerForwardingRule) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: endpointName is readOnly
+	// skip: ipAddress is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableGCPConsumerForwardingRule struct {

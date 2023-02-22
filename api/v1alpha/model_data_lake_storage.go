@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeStorage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeStorage{}
+
 // DataLakeStorage Configuration information for each data store and its mapping to MongoDB Cloud databases.
 type DataLakeStorage struct {
 	// Array that contains the queryable databases and collections for this data lake.
@@ -41,7 +44,7 @@ func NewDataLakeStorageWithDefaults() *DataLakeStorage {
 
 // GetDatabases returns the Databases field value if set, zero value otherwise.
 func (o *DataLakeStorage) GetDatabases() []DataLakeDatabase {
-	if o == nil || o.Databases == nil {
+	if o == nil || IsNil(o.Databases) {
 		var ret []DataLakeDatabase
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *DataLakeStorage) GetDatabases() []DataLakeDatabase {
 // GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeStorage) GetDatabasesOk() ([]DataLakeDatabase, bool) {
-	if o == nil || o.Databases == nil {
+	if o == nil || IsNil(o.Databases) {
 		return nil, false
 	}
 	return o.Databases, true
@@ -59,7 +62,7 @@ func (o *DataLakeStorage) GetDatabasesOk() ([]DataLakeDatabase, bool) {
 
 // HasDatabases returns a boolean if a field has been set.
 func (o *DataLakeStorage) HasDatabases() bool {
-	if o != nil && o.Databases != nil {
+	if o != nil && !IsNil(o.Databases) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *DataLakeStorage) SetDatabases(v []DataLakeDatabase) {
 
 // GetStores returns the Stores field value if set, zero value otherwise.
 func (o *DataLakeStorage) GetStores() []DataLakeStore {
-	if o == nil || o.Stores == nil {
+	if o == nil || IsNil(o.Stores) {
 		var ret []DataLakeStore
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *DataLakeStorage) GetStores() []DataLakeStore {
 // GetStoresOk returns a tuple with the Stores field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeStorage) GetStoresOk() ([]DataLakeStore, bool) {
-	if o == nil || o.Stores == nil {
+	if o == nil || IsNil(o.Stores) {
 		return nil, false
 	}
 	return o.Stores, true
@@ -91,7 +94,7 @@ func (o *DataLakeStorage) GetStoresOk() ([]DataLakeStore, bool) {
 
 // HasStores returns a boolean if a field has been set.
 func (o *DataLakeStorage) HasStores() bool {
-	if o != nil && o.Stores != nil {
+	if o != nil && !IsNil(o.Stores) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *DataLakeStorage) SetStores(v []DataLakeStore) {
 }
 
 func (o DataLakeStorage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Databases != nil {
-		toSerialize["databases"] = o.Databases
-	}
-	if o.Stores != nil {
-		toSerialize["stores"] = o.Stores
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeStorage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Databases) {
+		toSerialize["databases"] = o.Databases
+	}
+	if !IsNil(o.Stores) {
+		toSerialize["stores"] = o.Stores
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeStorage struct {

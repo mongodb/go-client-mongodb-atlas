@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PerformanceAdvisorOpStatsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PerformanceAdvisorOpStatsView{}
+
 // PerformanceAdvisorOpStatsView Details that this resource returned about the specified query.
 type PerformanceAdvisorOpStatsView struct {
 	// Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds. This parameter relates to the **duration** query parameter.
@@ -45,7 +48,7 @@ func NewPerformanceAdvisorOpStatsViewWithDefaults() *PerformanceAdvisorOpStatsVi
 
 // GetMs returns the Ms field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOpStatsView) GetMs() int64 {
-	if o == nil || o.Ms == nil {
+	if o == nil || IsNil(o.Ms) {
 		var ret int64
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *PerformanceAdvisorOpStatsView) GetMs() int64 {
 // GetMsOk returns a tuple with the Ms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOpStatsView) GetMsOk() (*int64, bool) {
-	if o == nil || o.Ms == nil {
+	if o == nil || IsNil(o.Ms) {
 		return nil, false
 	}
 	return o.Ms, true
@@ -63,7 +66,7 @@ func (o *PerformanceAdvisorOpStatsView) GetMsOk() (*int64, bool) {
 
 // HasMs returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOpStatsView) HasMs() bool {
-	if o != nil && o.Ms != nil {
+	if o != nil && !IsNil(o.Ms) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *PerformanceAdvisorOpStatsView) SetMs(v int64) {
 
 // GetNReturned returns the NReturned field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOpStatsView) GetNReturned() int64 {
-	if o == nil || o.NReturned == nil {
+	if o == nil || IsNil(o.NReturned) {
 		var ret int64
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *PerformanceAdvisorOpStatsView) GetNReturned() int64 {
 // GetNReturnedOk returns a tuple with the NReturned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOpStatsView) GetNReturnedOk() (*int64, bool) {
-	if o == nil || o.NReturned == nil {
+	if o == nil || IsNil(o.NReturned) {
 		return nil, false
 	}
 	return o.NReturned, true
@@ -95,7 +98,7 @@ func (o *PerformanceAdvisorOpStatsView) GetNReturnedOk() (*int64, bool) {
 
 // HasNReturned returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOpStatsView) HasNReturned() bool {
-	if o != nil && o.NReturned != nil {
+	if o != nil && !IsNil(o.NReturned) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *PerformanceAdvisorOpStatsView) SetNReturned(v int64) {
 
 // GetNScanned returns the NScanned field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOpStatsView) GetNScanned() int64 {
-	if o == nil || o.NScanned == nil {
+	if o == nil || IsNil(o.NScanned) {
 		var ret int64
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *PerformanceAdvisorOpStatsView) GetNScanned() int64 {
 // GetNScannedOk returns a tuple with the NScanned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOpStatsView) GetNScannedOk() (*int64, bool) {
-	if o == nil || o.NScanned == nil {
+	if o == nil || IsNil(o.NScanned) {
 		return nil, false
 	}
 	return o.NScanned, true
@@ -127,7 +130,7 @@ func (o *PerformanceAdvisorOpStatsView) GetNScannedOk() (*int64, bool) {
 
 // HasNScanned returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOpStatsView) HasNScanned() bool {
-	if o != nil && o.NScanned != nil {
+	if o != nil && !IsNil(o.NScanned) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *PerformanceAdvisorOpStatsView) SetNScanned(v int64) {
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOpStatsView) GetTs() int64 {
-	if o == nil || o.Ts == nil {
+	if o == nil || IsNil(o.Ts) {
 		var ret int64
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *PerformanceAdvisorOpStatsView) GetTs() int64 {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOpStatsView) GetTsOk() (*int64, bool) {
-	if o == nil || o.Ts == nil {
+	if o == nil || IsNil(o.Ts) {
 		return nil, false
 	}
 	return o.Ts, true
@@ -159,7 +162,7 @@ func (o *PerformanceAdvisorOpStatsView) GetTsOk() (*int64, bool) {
 
 // HasTs returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOpStatsView) HasTs() bool {
-	if o != nil && o.Ts != nil {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -172,20 +175,20 @@ func (o *PerformanceAdvisorOpStatsView) SetTs(v int64) {
 }
 
 func (o PerformanceAdvisorOpStatsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Ms != nil {
-		toSerialize["ms"] = o.Ms
-	}
-	if o.NReturned != nil {
-		toSerialize["nReturned"] = o.NReturned
-	}
-	if o.NScanned != nil {
-		toSerialize["nScanned"] = o.NScanned
-	}
-	if o.Ts != nil {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PerformanceAdvisorOpStatsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: ms is readOnly
+	// skip: nReturned is readOnly
+	// skip: nScanned is readOnly
+	// skip: ts is readOnly
+	return toSerialize, nil
 }
 
 type NullablePerformanceAdvisorOpStatsView struct {

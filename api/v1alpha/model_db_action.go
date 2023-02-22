@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DBAction type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DBAction{}
+
 // DBAction Privilege action that the role grants.
 type DBAction struct {
 	// Human-readable label that identifies the privilege action.
@@ -65,7 +68,7 @@ func (o *DBAction) SetAction(v string) {
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *DBAction) GetResources() []DBResource {
-	if o == nil || o.Resources == nil {
+	if o == nil || IsNil(o.Resources) {
 		var ret []DBResource
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *DBAction) GetResources() []DBResource {
 // GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DBAction) GetResourcesOk() ([]DBResource, bool) {
-	if o == nil || o.Resources == nil {
+	if o == nil || IsNil(o.Resources) {
 		return nil, false
 	}
 	return o.Resources, true
@@ -83,7 +86,7 @@ func (o *DBAction) GetResourcesOk() ([]DBResource, bool) {
 
 // HasResources returns a boolean if a field has been set.
 func (o *DBAction) HasResources() bool {
-	if o != nil && o.Resources != nil {
+	if o != nil && !IsNil(o.Resources) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *DBAction) SetResources(v []DBResource) {
 }
 
 func (o DBAction) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if o.Resources != nil {
-		toSerialize["resources"] = o.Resources
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DBAction) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["action"] = o.Action
+	if !IsNil(o.Resources) {
+		toSerialize["resources"] = o.Resources
+	}
+	return toSerialize, nil
 }
 
 type NullableDBAction struct {

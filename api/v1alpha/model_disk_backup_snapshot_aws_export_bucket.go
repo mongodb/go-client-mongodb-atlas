@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskBackupSnapshotAWSExportBucket type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupSnapshotAWSExportBucket{}
+
 // DiskBackupSnapshotAWSExportBucket struct for DiskBackupSnapshotAWSExportBucket
 type DiskBackupSnapshotAWSExportBucket struct {
 	// Unique 24-hexadecimal character string that identifies the Amazon Web Services (AWS) Simple Storage Service (S3) export bucket.
@@ -47,7 +50,7 @@ func NewDiskBackupSnapshotAWSExportBucketWithDefaults() *DiskBackupSnapshotAWSEx
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DiskBackupSnapshotAWSExportBucket) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -65,7 +68,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetId(v string) {
 
 // GetBucketName returns the BucketName field value if set, zero value otherwise.
 func (o *DiskBackupSnapshotAWSExportBucket) GetBucketName() string {
-	if o == nil || o.BucketName == nil {
+	if o == nil || IsNil(o.BucketName) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetBucketName() string {
 // GetBucketNameOk returns a tuple with the BucketName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) GetBucketNameOk() (*string, bool) {
-	if o == nil || o.BucketName == nil {
+	if o == nil || IsNil(o.BucketName) {
 		return nil, false
 	}
 	return o.BucketName, true
@@ -97,7 +100,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetBucketNameOk() (*string, bool) {
 
 // HasBucketName returns a boolean if a field has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) HasBucketName() bool {
-	if o != nil && o.BucketName != nil {
+	if o != nil && !IsNil(o.BucketName) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetBucketName(v string) {
 
 // GetCloudProvider returns the CloudProvider field value if set, zero value otherwise.
 func (o *DiskBackupSnapshotAWSExportBucket) GetCloudProvider() string {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetCloudProvider() string {
 // GetCloudProviderOk returns a tuple with the CloudProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) GetCloudProviderOk() (*string, bool) {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		return nil, false
 	}
 	return o.CloudProvider, true
@@ -129,7 +132,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetCloudProviderOk() (*string, bool)
 
 // HasCloudProvider returns a boolean if a field has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) HasCloudProvider() bool {
-	if o != nil && o.CloudProvider != nil {
+	if o != nil && !IsNil(o.CloudProvider) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetCloudProvider(v string) {
 
 // GetIamRoleId returns the IamRoleId field value if set, zero value otherwise.
 func (o *DiskBackupSnapshotAWSExportBucket) GetIamRoleId() string {
-	if o == nil || o.IamRoleId == nil {
+	if o == nil || IsNil(o.IamRoleId) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetIamRoleId() string {
 // GetIamRoleIdOk returns a tuple with the IamRoleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) GetIamRoleIdOk() (*string, bool) {
-	if o == nil || o.IamRoleId == nil {
+	if o == nil || IsNil(o.IamRoleId) {
 		return nil, false
 	}
 	return o.IamRoleId, true
@@ -161,7 +164,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetIamRoleIdOk() (*string, bool) {
 
 // HasIamRoleId returns a boolean if a field has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) HasIamRoleId() bool {
-	if o != nil && o.IamRoleId != nil {
+	if o != nil && !IsNil(o.IamRoleId) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetIamRoleId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DiskBackupSnapshotAWSExportBucket) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -193,7 +196,7 @@ func (o *DiskBackupSnapshotAWSExportBucket) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DiskBackupSnapshotAWSExportBucket) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -206,23 +209,27 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetLinks(v []Link) {
 }
 
 func (o DiskBackupSnapshotAWSExportBucket) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.BucketName != nil {
-		toSerialize["bucketName"] = o.BucketName
-	}
-	if o.CloudProvider != nil {
-		toSerialize["cloudProvider"] = o.CloudProvider
-	}
-	if o.IamRoleId != nil {
-		toSerialize["iamRoleId"] = o.IamRoleId
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupSnapshotAWSExportBucket) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	if !IsNil(o.BucketName) {
+		toSerialize["bucketName"] = o.BucketName
+	}
+	if !IsNil(o.CloudProvider) {
+		toSerialize["cloudProvider"] = o.CloudProvider
+	}
+	if !IsNil(o.IamRoleId) {
+		toSerialize["iamRoleId"] = o.IamRoleId
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableDiskBackupSnapshotAWSExportBucket struct {

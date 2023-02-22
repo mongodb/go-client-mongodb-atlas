@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskBackupCopySetting type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupCopySetting{}
+
 // DiskBackupCopySetting Copy setting item in the desired backup policy.
 type DiskBackupCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy.
@@ -47,7 +50,7 @@ func NewDiskBackupCopySettingWithDefaults() *DiskBackupCopySetting {
 
 // GetCloudProvider returns the CloudProvider field value if set, zero value otherwise.
 func (o *DiskBackupCopySetting) GetCloudProvider() string {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *DiskBackupCopySetting) GetCloudProvider() string {
 // GetCloudProviderOk returns a tuple with the CloudProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupCopySetting) GetCloudProviderOk() (*string, bool) {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		return nil, false
 	}
 	return o.CloudProvider, true
@@ -65,7 +68,7 @@ func (o *DiskBackupCopySetting) GetCloudProviderOk() (*string, bool) {
 
 // HasCloudProvider returns a boolean if a field has been set.
 func (o *DiskBackupCopySetting) HasCloudProvider() bool {
-	if o != nil && o.CloudProvider != nil {
+	if o != nil && !IsNil(o.CloudProvider) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *DiskBackupCopySetting) SetCloudProvider(v string) {
 
 // GetFrequencies returns the Frequencies field value if set, zero value otherwise.
 func (o *DiskBackupCopySetting) GetFrequencies() []string {
-	if o == nil || o.Frequencies == nil {
+	if o == nil || IsNil(o.Frequencies) {
 		var ret []string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *DiskBackupCopySetting) GetFrequencies() []string {
 // GetFrequenciesOk returns a tuple with the Frequencies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupCopySetting) GetFrequenciesOk() ([]string, bool) {
-	if o == nil || o.Frequencies == nil {
+	if o == nil || IsNil(o.Frequencies) {
 		return nil, false
 	}
 	return o.Frequencies, true
@@ -97,7 +100,7 @@ func (o *DiskBackupCopySetting) GetFrequenciesOk() ([]string, bool) {
 
 // HasFrequencies returns a boolean if a field has been set.
 func (o *DiskBackupCopySetting) HasFrequencies() bool {
-	if o != nil && o.Frequencies != nil {
+	if o != nil && !IsNil(o.Frequencies) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *DiskBackupCopySetting) SetFrequencies(v []string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *DiskBackupCopySetting) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *DiskBackupCopySetting) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupCopySetting) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -129,7 +132,7 @@ func (o *DiskBackupCopySetting) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *DiskBackupCopySetting) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *DiskBackupCopySetting) SetRegionName(v string) {
 
 // GetReplicationSpecId returns the ReplicationSpecId field value if set, zero value otherwise.
 func (o *DiskBackupCopySetting) GetReplicationSpecId() string {
-	if o == nil || o.ReplicationSpecId == nil {
+	if o == nil || IsNil(o.ReplicationSpecId) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *DiskBackupCopySetting) GetReplicationSpecId() string {
 // GetReplicationSpecIdOk returns a tuple with the ReplicationSpecId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupCopySetting) GetReplicationSpecIdOk() (*string, bool) {
-	if o == nil || o.ReplicationSpecId == nil {
+	if o == nil || IsNil(o.ReplicationSpecId) {
 		return nil, false
 	}
 	return o.ReplicationSpecId, true
@@ -161,7 +164,7 @@ func (o *DiskBackupCopySetting) GetReplicationSpecIdOk() (*string, bool) {
 
 // HasReplicationSpecId returns a boolean if a field has been set.
 func (o *DiskBackupCopySetting) HasReplicationSpecId() bool {
-	if o != nil && o.ReplicationSpecId != nil {
+	if o != nil && !IsNil(o.ReplicationSpecId) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *DiskBackupCopySetting) SetReplicationSpecId(v string) {
 
 // GetShouldCopyOplogs returns the ShouldCopyOplogs field value if set, zero value otherwise.
 func (o *DiskBackupCopySetting) GetShouldCopyOplogs() bool {
-	if o == nil || o.ShouldCopyOplogs == nil {
+	if o == nil || IsNil(o.ShouldCopyOplogs) {
 		var ret bool
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *DiskBackupCopySetting) GetShouldCopyOplogs() bool {
 // GetShouldCopyOplogsOk returns a tuple with the ShouldCopyOplogs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupCopySetting) GetShouldCopyOplogsOk() (*bool, bool) {
-	if o == nil || o.ShouldCopyOplogs == nil {
+	if o == nil || IsNil(o.ShouldCopyOplogs) {
 		return nil, false
 	}
 	return o.ShouldCopyOplogs, true
@@ -193,7 +196,7 @@ func (o *DiskBackupCopySetting) GetShouldCopyOplogsOk() (*bool, bool) {
 
 // HasShouldCopyOplogs returns a boolean if a field has been set.
 func (o *DiskBackupCopySetting) HasShouldCopyOplogs() bool {
-	if o != nil && o.ShouldCopyOplogs != nil {
+	if o != nil && !IsNil(o.ShouldCopyOplogs) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *DiskBackupCopySetting) SetShouldCopyOplogs(v bool) {
 }
 
 func (o DiskBackupCopySetting) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProvider != nil {
-		toSerialize["cloudProvider"] = o.CloudProvider
-	}
-	if o.Frequencies != nil {
-		toSerialize["frequencies"] = o.Frequencies
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.ReplicationSpecId != nil {
-		toSerialize["replicationSpecId"] = o.ReplicationSpecId
-	}
-	if o.ShouldCopyOplogs != nil {
-		toSerialize["shouldCopyOplogs"] = o.ShouldCopyOplogs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupCopySetting) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProvider) {
+		toSerialize["cloudProvider"] = o.CloudProvider
+	}
+	if !IsNil(o.Frequencies) {
+		toSerialize["frequencies"] = o.Frequencies
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	if !IsNil(o.ReplicationSpecId) {
+		toSerialize["replicationSpecId"] = o.ReplicationSpecId
+	}
+	if !IsNil(o.ShouldCopyOplogs) {
+		toSerialize["shouldCopyOplogs"] = o.ShouldCopyOplogs
+	}
+	return toSerialize, nil
 }
 
 type NullableDiskBackupCopySetting struct {

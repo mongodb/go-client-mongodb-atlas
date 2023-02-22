@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterDescriptionConnectionStringsPrivateEndpointEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterDescriptionConnectionStringsPrivateEndpointEndpoint{}
+
 // ClusterDescriptionConnectionStringsPrivateEndpointEndpoint Details of a private endpoint deployed for this cluster.
 type ClusterDescriptionConnectionStringsPrivateEndpointEndpoint struct {
 	// Unique string that the cloud provider uses to identify the private endpoint.
@@ -43,7 +46,7 @@ func NewClusterDescriptionConnectionStringsPrivateEndpointEndpointWithDefaults()
 
 // GetEndpointId returns the EndpointId field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetEndpointId() string {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetEndpoint
 // GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetEndpointIdOk() (*string, bool) {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		return nil, false
 	}
 	return o.EndpointId, true
@@ -61,7 +64,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetEndpoint
 
 // HasEndpointId returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) HasEndpointId() bool {
-	if o != nil && o.EndpointId != nil {
+	if o != nil && !IsNil(o.EndpointId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) SetEndpoint
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetProvider
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -93,7 +96,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetProvider
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) SetProvider
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetRegion()
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -125,7 +128,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) GetRegionOk
 
 // HasRegion returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) SetRegion(v
 }
 
 func (o ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndpointId != nil {
-		toSerialize["endpointId"] = o.EndpointId
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: endpointId is readOnly
+	// skip: providerName is readOnly
+	// skip: region is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterDescriptionConnectionStringsPrivateEndpointEndpoint struct {

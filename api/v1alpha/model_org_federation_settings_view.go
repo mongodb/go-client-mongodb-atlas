@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OrgFederationSettingsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrgFederationSettingsView{}
+
 // OrgFederationSettingsView Details that define how to connect one MongoDB Cloud organization to one federated authentication service.
 type OrgFederationSettingsView struct {
 	// List of domains associated with the organization's identity provider.
@@ -47,7 +50,7 @@ func NewOrgFederationSettingsViewWithDefaults() *OrgFederationSettingsView {
 
 // GetFederatedDomains returns the FederatedDomains field value if set, zero value otherwise.
 func (o *OrgFederationSettingsView) GetFederatedDomains() []string {
-	if o == nil || o.FederatedDomains == nil {
+	if o == nil || IsNil(o.FederatedDomains) {
 		var ret []string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *OrgFederationSettingsView) GetFederatedDomains() []string {
 // GetFederatedDomainsOk returns a tuple with the FederatedDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgFederationSettingsView) GetFederatedDomainsOk() ([]string, bool) {
-	if o == nil || o.FederatedDomains == nil {
+	if o == nil || IsNil(o.FederatedDomains) {
 		return nil, false
 	}
 	return o.FederatedDomains, true
@@ -65,7 +68,7 @@ func (o *OrgFederationSettingsView) GetFederatedDomainsOk() ([]string, bool) {
 
 // HasFederatedDomains returns a boolean if a field has been set.
 func (o *OrgFederationSettingsView) HasFederatedDomains() bool {
-	if o != nil && o.FederatedDomains != nil {
+	if o != nil && !IsNil(o.FederatedDomains) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *OrgFederationSettingsView) SetFederatedDomains(v []string) {
 
 // GetHasRoleMappings returns the HasRoleMappings field value if set, zero value otherwise.
 func (o *OrgFederationSettingsView) GetHasRoleMappings() bool {
-	if o == nil || o.HasRoleMappings == nil {
+	if o == nil || IsNil(o.HasRoleMappings) {
 		var ret bool
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *OrgFederationSettingsView) GetHasRoleMappings() bool {
 // GetHasRoleMappingsOk returns a tuple with the HasRoleMappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgFederationSettingsView) GetHasRoleMappingsOk() (*bool, bool) {
-	if o == nil || o.HasRoleMappings == nil {
+	if o == nil || IsNil(o.HasRoleMappings) {
 		return nil, false
 	}
 	return o.HasRoleMappings, true
@@ -97,7 +100,7 @@ func (o *OrgFederationSettingsView) GetHasRoleMappingsOk() (*bool, bool) {
 
 // HasHasRoleMappings returns a boolean if a field has been set.
 func (o *OrgFederationSettingsView) HasHasRoleMappings() bool {
-	if o != nil && o.HasRoleMappings != nil {
+	if o != nil && !IsNil(o.HasRoleMappings) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *OrgFederationSettingsView) SetHasRoleMappings(v bool) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *OrgFederationSettingsView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *OrgFederationSettingsView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgFederationSettingsView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -129,7 +132,7 @@ func (o *OrgFederationSettingsView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *OrgFederationSettingsView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *OrgFederationSettingsView) SetId(v string) {
 
 // GetIdentityProviderId returns the IdentityProviderId field value if set, zero value otherwise.
 func (o *OrgFederationSettingsView) GetIdentityProviderId() string {
-	if o == nil || o.IdentityProviderId == nil {
+	if o == nil || IsNil(o.IdentityProviderId) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *OrgFederationSettingsView) GetIdentityProviderId() string {
 // GetIdentityProviderIdOk returns a tuple with the IdentityProviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgFederationSettingsView) GetIdentityProviderIdOk() (*string, bool) {
-	if o == nil || o.IdentityProviderId == nil {
+	if o == nil || IsNil(o.IdentityProviderId) {
 		return nil, false
 	}
 	return o.IdentityProviderId, true
@@ -161,7 +164,7 @@ func (o *OrgFederationSettingsView) GetIdentityProviderIdOk() (*string, bool) {
 
 // HasIdentityProviderId returns a boolean if a field has been set.
 func (o *OrgFederationSettingsView) HasIdentityProviderId() bool {
-	if o != nil && o.IdentityProviderId != nil {
+	if o != nil && !IsNil(o.IdentityProviderId) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *OrgFederationSettingsView) SetIdentityProviderId(v string) {
 
 // GetIdentityProviderStatus returns the IdentityProviderStatus field value if set, zero value otherwise.
 func (o *OrgFederationSettingsView) GetIdentityProviderStatus() string {
-	if o == nil || o.IdentityProviderStatus == nil {
+	if o == nil || IsNil(o.IdentityProviderStatus) {
 		var ret string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *OrgFederationSettingsView) GetIdentityProviderStatus() string {
 // GetIdentityProviderStatusOk returns a tuple with the IdentityProviderStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgFederationSettingsView) GetIdentityProviderStatusOk() (*string, bool) {
-	if o == nil || o.IdentityProviderStatus == nil {
+	if o == nil || IsNil(o.IdentityProviderStatus) {
 		return nil, false
 	}
 	return o.IdentityProviderStatus, true
@@ -193,7 +196,7 @@ func (o *OrgFederationSettingsView) GetIdentityProviderStatusOk() (*string, bool
 
 // HasIdentityProviderStatus returns a boolean if a field has been set.
 func (o *OrgFederationSettingsView) HasIdentityProviderStatus() bool {
-	if o != nil && o.IdentityProviderStatus != nil {
+	if o != nil && !IsNil(o.IdentityProviderStatus) {
 		return true
 	}
 
@@ -206,23 +209,29 @@ func (o *OrgFederationSettingsView) SetIdentityProviderStatus(v string) {
 }
 
 func (o OrgFederationSettingsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FederatedDomains != nil {
-		toSerialize["federatedDomains"] = o.FederatedDomains
-	}
-	if o.HasRoleMappings != nil {
-		toSerialize["hasRoleMappings"] = o.HasRoleMappings
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.IdentityProviderId != nil {
-		toSerialize["identityProviderId"] = o.IdentityProviderId
-	}
-	if o.IdentityProviderStatus != nil {
-		toSerialize["identityProviderStatus"] = o.IdentityProviderStatus
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OrgFederationSettingsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FederatedDomains) {
+		toSerialize["federatedDomains"] = o.FederatedDomains
+	}
+	if !IsNil(o.HasRoleMappings) {
+		toSerialize["hasRoleMappings"] = o.HasRoleMappings
+	}
+	// skip: id is readOnly
+	if !IsNil(o.IdentityProviderId) {
+		toSerialize["identityProviderId"] = o.IdentityProviderId
+	}
+	if !IsNil(o.IdentityProviderStatus) {
+		toSerialize["identityProviderStatus"] = o.IdentityProviderStatus
+	}
+	return toSerialize, nil
 }
 
 type NullableOrgFederationSettingsView struct {

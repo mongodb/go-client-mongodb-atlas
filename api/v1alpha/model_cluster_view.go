@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterView{}
+
 // ClusterView Settings that describe the clusters in each project that the API key is authorized to view.
 type ClusterView struct {
 	// Whole number that indicates the quantity of alerts open on the cluster.
@@ -59,7 +62,7 @@ func NewClusterViewWithDefaults() *ClusterView {
 
 // GetAlertCount returns the AlertCount field value if set, zero value otherwise.
 func (o *ClusterView) GetAlertCount() int32 {
-	if o == nil || o.AlertCount == nil {
+	if o == nil || IsNil(o.AlertCount) {
 		var ret int32
 		return ret
 	}
@@ -69,7 +72,7 @@ func (o *ClusterView) GetAlertCount() int32 {
 // GetAlertCountOk returns a tuple with the AlertCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetAlertCountOk() (*int32, bool) {
-	if o == nil || o.AlertCount == nil {
+	if o == nil || IsNil(o.AlertCount) {
 		return nil, false
 	}
 	return o.AlertCount, true
@@ -77,7 +80,7 @@ func (o *ClusterView) GetAlertCountOk() (*int32, bool) {
 
 // HasAlertCount returns a boolean if a field has been set.
 func (o *ClusterView) HasAlertCount() bool {
-	if o != nil && o.AlertCount != nil {
+	if o != nil && !IsNil(o.AlertCount) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *ClusterView) SetAlertCount(v int32) {
 
 // GetAuthEnabled returns the AuthEnabled field value if set, zero value otherwise.
 func (o *ClusterView) GetAuthEnabled() bool {
-	if o == nil || o.AuthEnabled == nil {
+	if o == nil || IsNil(o.AuthEnabled) {
 		var ret bool
 		return ret
 	}
@@ -101,7 +104,7 @@ func (o *ClusterView) GetAuthEnabled() bool {
 // GetAuthEnabledOk returns a tuple with the AuthEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetAuthEnabledOk() (*bool, bool) {
-	if o == nil || o.AuthEnabled == nil {
+	if o == nil || IsNil(o.AuthEnabled) {
 		return nil, false
 	}
 	return o.AuthEnabled, true
@@ -109,7 +112,7 @@ func (o *ClusterView) GetAuthEnabledOk() (*bool, bool) {
 
 // HasAuthEnabled returns a boolean if a field has been set.
 func (o *ClusterView) HasAuthEnabled() bool {
-	if o != nil && o.AuthEnabled != nil {
+	if o != nil && !IsNil(o.AuthEnabled) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *ClusterView) SetAuthEnabled(v bool) {
 
 // GetAvailability returns the Availability field value if set, zero value otherwise.
 func (o *ClusterView) GetAvailability() string {
-	if o == nil || o.Availability == nil {
+	if o == nil || IsNil(o.Availability) {
 		var ret string
 		return ret
 	}
@@ -133,7 +136,7 @@ func (o *ClusterView) GetAvailability() string {
 // GetAvailabilityOk returns a tuple with the Availability field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetAvailabilityOk() (*string, bool) {
-	if o == nil || o.Availability == nil {
+	if o == nil || IsNil(o.Availability) {
 		return nil, false
 	}
 	return o.Availability, true
@@ -141,7 +144,7 @@ func (o *ClusterView) GetAvailabilityOk() (*string, bool) {
 
 // HasAvailability returns a boolean if a field has been set.
 func (o *ClusterView) HasAvailability() bool {
-	if o != nil && o.Availability != nil {
+	if o != nil && !IsNil(o.Availability) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *ClusterView) SetAvailability(v string) {
 
 // GetBackupEnabled returns the BackupEnabled field value if set, zero value otherwise.
 func (o *ClusterView) GetBackupEnabled() bool {
-	if o == nil || o.BackupEnabled == nil {
+	if o == nil || IsNil(o.BackupEnabled) {
 		var ret bool
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *ClusterView) GetBackupEnabled() bool {
 // GetBackupEnabledOk returns a tuple with the BackupEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetBackupEnabledOk() (*bool, bool) {
-	if o == nil || o.BackupEnabled == nil {
+	if o == nil || IsNil(o.BackupEnabled) {
 		return nil, false
 	}
 	return o.BackupEnabled, true
@@ -173,7 +176,7 @@ func (o *ClusterView) GetBackupEnabledOk() (*bool, bool) {
 
 // HasBackupEnabled returns a boolean if a field has been set.
 func (o *ClusterView) HasBackupEnabled() bool {
-	if o != nil && o.BackupEnabled != nil {
+	if o != nil && !IsNil(o.BackupEnabled) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *ClusterView) SetBackupEnabled(v bool) {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *ClusterView) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -197,7 +200,7 @@ func (o *ClusterView) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -205,7 +208,7 @@ func (o *ClusterView) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *ClusterView) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *ClusterView) SetClusterId(v string) {
 
 // GetDataSizeBytes returns the DataSizeBytes field value if set, zero value otherwise.
 func (o *ClusterView) GetDataSizeBytes() int64 {
-	if o == nil || o.DataSizeBytes == nil {
+	if o == nil || IsNil(o.DataSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -229,7 +232,7 @@ func (o *ClusterView) GetDataSizeBytes() int64 {
 // GetDataSizeBytesOk returns a tuple with the DataSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetDataSizeBytesOk() (*int64, bool) {
-	if o == nil || o.DataSizeBytes == nil {
+	if o == nil || IsNil(o.DataSizeBytes) {
 		return nil, false
 	}
 	return o.DataSizeBytes, true
@@ -237,7 +240,7 @@ func (o *ClusterView) GetDataSizeBytesOk() (*int64, bool) {
 
 // HasDataSizeBytes returns a boolean if a field has been set.
 func (o *ClusterView) HasDataSizeBytes() bool {
-	if o != nil && o.DataSizeBytes != nil {
+	if o != nil && !IsNil(o.DataSizeBytes) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *ClusterView) SetDataSizeBytes(v int64) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ClusterView) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -261,7 +264,7 @@ func (o *ClusterView) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -269,7 +272,7 @@ func (o *ClusterView) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ClusterView) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *ClusterView) SetName(v string) {
 
 // GetNodeCount returns the NodeCount field value if set, zero value otherwise.
 func (o *ClusterView) GetNodeCount() int32 {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		var ret int32
 		return ret
 	}
@@ -293,7 +296,7 @@ func (o *ClusterView) GetNodeCount() int32 {
 // GetNodeCountOk returns a tuple with the NodeCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetNodeCountOk() (*int32, bool) {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		return nil, false
 	}
 	return o.NodeCount, true
@@ -301,7 +304,7 @@ func (o *ClusterView) GetNodeCountOk() (*int32, bool) {
 
 // HasNodeCount returns a boolean if a field has been set.
 func (o *ClusterView) HasNodeCount() bool {
-	if o != nil && o.NodeCount != nil {
+	if o != nil && !IsNil(o.NodeCount) {
 		return true
 	}
 
@@ -315,7 +318,7 @@ func (o *ClusterView) SetNodeCount(v int32) {
 
 // GetSslEnabled returns the SslEnabled field value if set, zero value otherwise.
 func (o *ClusterView) GetSslEnabled() bool {
-	if o == nil || o.SslEnabled == nil {
+	if o == nil || IsNil(o.SslEnabled) {
 		var ret bool
 		return ret
 	}
@@ -325,7 +328,7 @@ func (o *ClusterView) GetSslEnabled() bool {
 // GetSslEnabledOk returns a tuple with the SslEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetSslEnabledOk() (*bool, bool) {
-	if o == nil || o.SslEnabled == nil {
+	if o == nil || IsNil(o.SslEnabled) {
 		return nil, false
 	}
 	return o.SslEnabled, true
@@ -333,7 +336,7 @@ func (o *ClusterView) GetSslEnabledOk() (*bool, bool) {
 
 // HasSslEnabled returns a boolean if a field has been set.
 func (o *ClusterView) HasSslEnabled() bool {
-	if o != nil && o.SslEnabled != nil {
+	if o != nil && !IsNil(o.SslEnabled) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *ClusterView) SetSslEnabled(v bool) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ClusterView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -357,7 +360,7 @@ func (o *ClusterView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -365,7 +368,7 @@ func (o *ClusterView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ClusterView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *ClusterView) SetType(v string) {
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
 func (o *ClusterView) GetVersions() []string {
-	if o == nil || o.Versions == nil {
+	if o == nil || IsNil(o.Versions) {
 		var ret []string
 		return ret
 	}
@@ -389,7 +392,7 @@ func (o *ClusterView) GetVersions() []string {
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterView) GetVersionsOk() ([]string, bool) {
-	if o == nil || o.Versions == nil {
+	if o == nil || IsNil(o.Versions) {
 		return nil, false
 	}
 	return o.Versions, true
@@ -397,7 +400,7 @@ func (o *ClusterView) GetVersionsOk() ([]string, bool) {
 
 // HasVersions returns a boolean if a field has been set.
 func (o *ClusterView) HasVersions() bool {
-	if o != nil && o.Versions != nil {
+	if o != nil && !IsNil(o.Versions) {
 		return true
 	}
 
@@ -410,41 +413,27 @@ func (o *ClusterView) SetVersions(v []string) {
 }
 
 func (o ClusterView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AlertCount != nil {
-		toSerialize["alertCount"] = o.AlertCount
-	}
-	if o.AuthEnabled != nil {
-		toSerialize["authEnabled"] = o.AuthEnabled
-	}
-	if o.Availability != nil {
-		toSerialize["availability"] = o.Availability
-	}
-	if o.BackupEnabled != nil {
-		toSerialize["backupEnabled"] = o.BackupEnabled
-	}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.DataSizeBytes != nil {
-		toSerialize["dataSizeBytes"] = o.DataSizeBytes
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.NodeCount != nil {
-		toSerialize["nodeCount"] = o.NodeCount
-	}
-	if o.SslEnabled != nil {
-		toSerialize["sslEnabled"] = o.SslEnabled
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Versions != nil {
-		toSerialize["versions"] = o.Versions
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: alertCount is readOnly
+	// skip: authEnabled is readOnly
+	// skip: availability is readOnly
+	// skip: backupEnabled is readOnly
+	// skip: clusterId is readOnly
+	// skip: dataSizeBytes is readOnly
+	// skip: name is readOnly
+	// skip: nodeCount is readOnly
+	// skip: sslEnabled is readOnly
+	// skip: type is readOnly
+	// skip: versions is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterView struct {

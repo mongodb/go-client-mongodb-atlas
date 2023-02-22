@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzureProviderSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureProviderSettings{}
+
 // AzureProviderSettings struct for AzureProviderSettings
 type AzureProviderSettings struct {
 	AutoScaling *AzureAutoScaling `json:"autoScaling,omitempty"`
@@ -45,7 +48,7 @@ func NewAzureProviderSettingsWithDefaults() *AzureProviderSettings {
 
 // GetAutoScaling returns the AutoScaling field value if set, zero value otherwise.
 func (o *AzureProviderSettings) GetAutoScaling() AzureAutoScaling {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		var ret AzureAutoScaling
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *AzureProviderSettings) GetAutoScaling() AzureAutoScaling {
 // GetAutoScalingOk returns a tuple with the AutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProviderSettings) GetAutoScalingOk() (*AzureAutoScaling, bool) {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		return nil, false
 	}
 	return o.AutoScaling, true
@@ -63,7 +66,7 @@ func (o *AzureProviderSettings) GetAutoScalingOk() (*AzureAutoScaling, bool) {
 
 // HasAutoScaling returns a boolean if a field has been set.
 func (o *AzureProviderSettings) HasAutoScaling() bool {
-	if o != nil && o.AutoScaling != nil {
+	if o != nil && !IsNil(o.AutoScaling) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *AzureProviderSettings) SetAutoScaling(v AzureAutoScaling) {
 
 // GetDiskTypeName returns the DiskTypeName field value if set, zero value otherwise.
 func (o *AzureProviderSettings) GetDiskTypeName() string {
-	if o == nil || o.DiskTypeName == nil {
+	if o == nil || IsNil(o.DiskTypeName) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *AzureProviderSettings) GetDiskTypeName() string {
 // GetDiskTypeNameOk returns a tuple with the DiskTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProviderSettings) GetDiskTypeNameOk() (*string, bool) {
-	if o == nil || o.DiskTypeName == nil {
+	if o == nil || IsNil(o.DiskTypeName) {
 		return nil, false
 	}
 	return o.DiskTypeName, true
@@ -95,7 +98,7 @@ func (o *AzureProviderSettings) GetDiskTypeNameOk() (*string, bool) {
 
 // HasDiskTypeName returns a boolean if a field has been set.
 func (o *AzureProviderSettings) HasDiskTypeName() bool {
-	if o != nil && o.DiskTypeName != nil {
+	if o != nil && !IsNil(o.DiskTypeName) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *AzureProviderSettings) SetDiskTypeName(v string) {
 
 // GetInstanceSizeName returns the InstanceSizeName field value if set, zero value otherwise.
 func (o *AzureProviderSettings) GetInstanceSizeName() string {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *AzureProviderSettings) GetInstanceSizeName() string {
 // GetInstanceSizeNameOk returns a tuple with the InstanceSizeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		return nil, false
 	}
 	return o.InstanceSizeName, true
@@ -127,7 +130,7 @@ func (o *AzureProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
 
 // HasInstanceSizeName returns a boolean if a field has been set.
 func (o *AzureProviderSettings) HasInstanceSizeName() bool {
-	if o != nil && o.InstanceSizeName != nil {
+	if o != nil && !IsNil(o.InstanceSizeName) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *AzureProviderSettings) SetInstanceSizeName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *AzureProviderSettings) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *AzureProviderSettings) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureProviderSettings) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -159,7 +162,7 @@ func (o *AzureProviderSettings) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *AzureProviderSettings) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -196,23 +199,29 @@ func (o *AzureProviderSettings) SetProviderName(v string) {
 }
 
 func (o AzureProviderSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoScaling != nil {
-		toSerialize["autoScaling"] = o.AutoScaling
-	}
-	if o.DiskTypeName != nil {
-		toSerialize["diskTypeName"] = o.DiskTypeName
-	}
-	if o.InstanceSizeName != nil {
-		toSerialize["instanceSizeName"] = o.InstanceSizeName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzureProviderSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoScaling) {
+		toSerialize["autoScaling"] = o.AutoScaling
+	}
+	if !IsNil(o.DiskTypeName) {
+		toSerialize["diskTypeName"] = o.DiskTypeName
+	}
+	if !IsNil(o.InstanceSizeName) {
+		toSerialize["instanceSizeName"] = o.InstanceSizeName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableAzureProviderSettings struct {

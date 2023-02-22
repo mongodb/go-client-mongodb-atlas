@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DatabaseUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DatabaseUser{}
+
 // DatabaseUser struct for DatabaseUser
 type DatabaseUser struct {
 	// Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role.
@@ -51,8 +54,6 @@ func NewDatabaseUser() *DatabaseUser {
 	this := DatabaseUser{}
 	var awsIAMType string = "NONE"
 	this.AwsIAMType = &awsIAMType
-	var databaseName string = "admin"
-	this.DatabaseName = databaseName
 	var ldapAuthType string = "NONE"
 	this.LdapAuthType = &ldapAuthType
 	var x509Type string = "NONE"
@@ -78,7 +79,7 @@ func NewDatabaseUserWithDefaults() *DatabaseUser {
 
 // GetAwsIAMType returns the AwsIAMType field value if set, zero value otherwise.
 func (o *DatabaseUser) GetAwsIAMType() string {
-	if o == nil || o.AwsIAMType == nil {
+	if o == nil || IsNil(o.AwsIAMType) {
 		var ret string
 		return ret
 	}
@@ -88,7 +89,7 @@ func (o *DatabaseUser) GetAwsIAMType() string {
 // GetAwsIAMTypeOk returns a tuple with the AwsIAMType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetAwsIAMTypeOk() (*string, bool) {
-	if o == nil || o.AwsIAMType == nil {
+	if o == nil || IsNil(o.AwsIAMType) {
 		return nil, false
 	}
 	return o.AwsIAMType, true
@@ -96,7 +97,7 @@ func (o *DatabaseUser) GetAwsIAMTypeOk() (*string, bool) {
 
 // HasAwsIAMType returns a boolean if a field has been set.
 func (o *DatabaseUser) HasAwsIAMType() bool {
-	if o != nil && o.AwsIAMType != nil {
+	if o != nil && !IsNil(o.AwsIAMType) {
 		return true
 	}
 
@@ -134,7 +135,7 @@ func (o *DatabaseUser) SetDatabaseName(v string) {
 
 // GetDeleteAfterDate returns the DeleteAfterDate field value if set, zero value otherwise.
 func (o *DatabaseUser) GetDeleteAfterDate() time.Time {
-	if o == nil || o.DeleteAfterDate == nil {
+	if o == nil || IsNil(o.DeleteAfterDate) {
 		var ret time.Time
 		return ret
 	}
@@ -144,7 +145,7 @@ func (o *DatabaseUser) GetDeleteAfterDate() time.Time {
 // GetDeleteAfterDateOk returns a tuple with the DeleteAfterDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetDeleteAfterDateOk() (*time.Time, bool) {
-	if o == nil || o.DeleteAfterDate == nil {
+	if o == nil || IsNil(o.DeleteAfterDate) {
 		return nil, false
 	}
 	return o.DeleteAfterDate, true
@@ -152,7 +153,7 @@ func (o *DatabaseUser) GetDeleteAfterDateOk() (*time.Time, bool) {
 
 // HasDeleteAfterDate returns a boolean if a field has been set.
 func (o *DatabaseUser) HasDeleteAfterDate() bool {
-	if o != nil && o.DeleteAfterDate != nil {
+	if o != nil && !IsNil(o.DeleteAfterDate) {
 		return true
 	}
 
@@ -190,7 +191,7 @@ func (o *DatabaseUser) SetGroupId(v string) {
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *DatabaseUser) GetLabels() []NDSLabel {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		var ret []NDSLabel
 		return ret
 	}
@@ -200,7 +201,7 @@ func (o *DatabaseUser) GetLabels() []NDSLabel {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetLabelsOk() ([]NDSLabel, bool) {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
 	return o.Labels, true
@@ -208,7 +209,7 @@ func (o *DatabaseUser) GetLabelsOk() ([]NDSLabel, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *DatabaseUser) HasLabels() bool {
-	if o != nil && o.Labels != nil {
+	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -222,7 +223,7 @@ func (o *DatabaseUser) SetLabels(v []NDSLabel) {
 
 // GetLdapAuthType returns the LdapAuthType field value if set, zero value otherwise.
 func (o *DatabaseUser) GetLdapAuthType() string {
-	if o == nil || o.LdapAuthType == nil {
+	if o == nil || IsNil(o.LdapAuthType) {
 		var ret string
 		return ret
 	}
@@ -232,7 +233,7 @@ func (o *DatabaseUser) GetLdapAuthType() string {
 // GetLdapAuthTypeOk returns a tuple with the LdapAuthType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetLdapAuthTypeOk() (*string, bool) {
-	if o == nil || o.LdapAuthType == nil {
+	if o == nil || IsNil(o.LdapAuthType) {
 		return nil, false
 	}
 	return o.LdapAuthType, true
@@ -240,7 +241,7 @@ func (o *DatabaseUser) GetLdapAuthTypeOk() (*string, bool) {
 
 // HasLdapAuthType returns a boolean if a field has been set.
 func (o *DatabaseUser) HasLdapAuthType() bool {
-	if o != nil && o.LdapAuthType != nil {
+	if o != nil && !IsNil(o.LdapAuthType) {
 		return true
 	}
 
@@ -254,7 +255,7 @@ func (o *DatabaseUser) SetLdapAuthType(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DatabaseUser) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -264,7 +265,7 @@ func (o *DatabaseUser) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -272,7 +273,7 @@ func (o *DatabaseUser) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DatabaseUser) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -286,7 +287,7 @@ func (o *DatabaseUser) SetLinks(v []Link) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *DatabaseUser) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -296,7 +297,7 @@ func (o *DatabaseUser) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -304,7 +305,7 @@ func (o *DatabaseUser) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *DatabaseUser) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -318,7 +319,7 @@ func (o *DatabaseUser) SetPassword(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *DatabaseUser) GetRoles() []Role {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []Role
 		return ret
 	}
@@ -328,7 +329,7 @@ func (o *DatabaseUser) GetRoles() []Role {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetRolesOk() ([]Role, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -336,7 +337,7 @@ func (o *DatabaseUser) GetRolesOk() ([]Role, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *DatabaseUser) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -350,7 +351,7 @@ func (o *DatabaseUser) SetRoles(v []Role) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
 func (o *DatabaseUser) GetScopes() []UserScope {
-	if o == nil || o.Scopes == nil {
+	if o == nil || IsNil(o.Scopes) {
 		var ret []UserScope
 		return ret
 	}
@@ -360,7 +361,7 @@ func (o *DatabaseUser) GetScopes() []UserScope {
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetScopesOk() ([]UserScope, bool) {
-	if o == nil || o.Scopes == nil {
+	if o == nil || IsNil(o.Scopes) {
 		return nil, false
 	}
 	return o.Scopes, true
@@ -368,7 +369,7 @@ func (o *DatabaseUser) GetScopesOk() ([]UserScope, bool) {
 
 // HasScopes returns a boolean if a field has been set.
 func (o *DatabaseUser) HasScopes() bool {
-	if o != nil && o.Scopes != nil {
+	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
 
@@ -406,7 +407,7 @@ func (o *DatabaseUser) SetUsername(v string) {
 
 // GetX509Type returns the X509Type field value if set, zero value otherwise.
 func (o *DatabaseUser) GetX509Type() string {
-	if o == nil || o.X509Type == nil {
+	if o == nil || IsNil(o.X509Type) {
 		var ret string
 		return ret
 	}
@@ -416,7 +417,7 @@ func (o *DatabaseUser) GetX509Type() string {
 // GetX509TypeOk returns a tuple with the X509Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseUser) GetX509TypeOk() (*string, bool) {
-	if o == nil || o.X509Type == nil {
+	if o == nil || IsNil(o.X509Type) {
 		return nil, false
 	}
 	return o.X509Type, true
@@ -424,7 +425,7 @@ func (o *DatabaseUser) GetX509TypeOk() (*string, bool) {
 
 // HasX509Type returns a boolean if a field has been set.
 func (o *DatabaseUser) HasX509Type() bool {
-	if o != nil && o.X509Type != nil {
+	if o != nil && !IsNil(o.X509Type) {
 		return true
 	}
 
@@ -437,44 +438,44 @@ func (o *DatabaseUser) SetX509Type(v string) {
 }
 
 func (o DatabaseUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AwsIAMType != nil {
-		toSerialize["awsIAMType"] = o.AwsIAMType
-	}
-	if true {
-		toSerialize["databaseName"] = o.DatabaseName
-	}
-	if o.DeleteAfterDate != nil {
-		toSerialize["deleteAfterDate"] = o.DeleteAfterDate
-	}
-	if true {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.LdapAuthType != nil {
-		toSerialize["ldapAuthType"] = o.LdapAuthType
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.Scopes != nil {
-		toSerialize["scopes"] = o.Scopes
-	}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	if o.X509Type != nil {
-		toSerialize["x509Type"] = o.X509Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DatabaseUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AwsIAMType) {
+		toSerialize["awsIAMType"] = o.AwsIAMType
+	}
+	toSerialize["databaseName"] = o.DatabaseName
+	if !IsNil(o.DeleteAfterDate) {
+		toSerialize["deleteAfterDate"] = o.DeleteAfterDate
+	}
+	toSerialize["groupId"] = o.GroupId
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.LdapAuthType) {
+		toSerialize["ldapAuthType"] = o.LdapAuthType
+	}
+	// skip: links is readOnly
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.Scopes) {
+		toSerialize["scopes"] = o.Scopes
+	}
+	toSerialize["username"] = o.Username
+	if !IsNil(o.X509Type) {
+		toSerialize["x509Type"] = o.X509Type
+	}
+	return toSerialize, nil
 }
 
 type NullableDatabaseUser struct {

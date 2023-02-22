@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiKeyView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiKeyView{}
+
 // ApiKeyView Details contained in one API key.
 type ApiKeyView struct {
 	// List of network addresses granted access to this API using this API key.
@@ -45,7 +48,7 @@ func NewApiKeyViewWithDefaults() *ApiKeyView {
 
 // GetAccessList returns the AccessList field value if set, zero value otherwise.
 func (o *ApiKeyView) GetAccessList() []AccessListItemView {
-	if o == nil || o.AccessList == nil {
+	if o == nil || IsNil(o.AccessList) {
 		var ret []AccessListItemView
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiKeyView) GetAccessList() []AccessListItemView {
 // GetAccessListOk returns a tuple with the AccessList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyView) GetAccessListOk() ([]AccessListItemView, bool) {
-	if o == nil || o.AccessList == nil {
+	if o == nil || IsNil(o.AccessList) {
 		return nil, false
 	}
 	return o.AccessList, true
@@ -63,7 +66,7 @@ func (o *ApiKeyView) GetAccessListOk() ([]AccessListItemView, bool) {
 
 // HasAccessList returns a boolean if a field has been set.
 func (o *ApiKeyView) HasAccessList() bool {
-	if o != nil && o.AccessList != nil {
+	if o != nil && !IsNil(o.AccessList) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *ApiKeyView) SetPublicKey(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiKeyView) GetRoles() []ApiRoleAssignmentView {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []ApiRoleAssignmentView
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *ApiKeyView) GetRoles() []ApiRoleAssignmentView {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -143,7 +146,7 @@ func (o *ApiKeyView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiKeyView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -156,20 +159,20 @@ func (o *ApiKeyView) SetRoles(v []ApiRoleAssignmentView) {
 }
 
 func (o ApiKeyView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AccessList != nil {
-		toSerialize["accessList"] = o.AccessList
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiKeyView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: accessList is readOnly
+	// skip: id is readOnly
+	// skip: publicKey is readOnly
+	// skip: roles is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiKeyView struct {

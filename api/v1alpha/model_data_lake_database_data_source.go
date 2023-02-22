@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeDatabaseDataSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeDatabaseDataSource{}
+
 // DataLakeDatabaseDataSource Data store that maps to a collection for this data lake.
 type DataLakeDatabaseDataSource struct {
 	// Flag that validates the scheme in the specified URLs. If `true`, allows insecure `HTTP` scheme, doesn't verify the server's certificate chain and hostname, and accepts any certificate with any hostname presented by the server. If `false`, allows secure `HTTPS` scheme only.
@@ -61,7 +64,7 @@ func NewDataLakeDatabaseDataSourceWithDefaults() *DataLakeDatabaseDataSource {
 
 // GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetAllowInsecure() bool {
-	if o == nil || o.AllowInsecure == nil {
+	if o == nil || IsNil(o.AllowInsecure) {
 		var ret bool
 		return ret
 	}
@@ -71,7 +74,7 @@ func (o *DataLakeDatabaseDataSource) GetAllowInsecure() bool {
 // GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetAllowInsecureOk() (*bool, bool) {
-	if o == nil || o.AllowInsecure == nil {
+	if o == nil || IsNil(o.AllowInsecure) {
 		return nil, false
 	}
 	return o.AllowInsecure, true
@@ -79,7 +82,7 @@ func (o *DataLakeDatabaseDataSource) GetAllowInsecureOk() (*bool, bool) {
 
 // HasAllowInsecure returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasAllowInsecure() bool {
-	if o != nil && o.AllowInsecure != nil {
+	if o != nil && !IsNil(o.AllowInsecure) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *DataLakeDatabaseDataSource) SetAllowInsecure(v bool) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetCollection() string {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		var ret string
 		return ret
 	}
@@ -103,7 +106,7 @@ func (o *DataLakeDatabaseDataSource) GetCollection() string {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetCollectionOk() (*string, bool) {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -111,7 +114,7 @@ func (o *DataLakeDatabaseDataSource) GetCollectionOk() (*string, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *DataLakeDatabaseDataSource) SetCollection(v string) {
 
 // GetCollectionRegex returns the CollectionRegex field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetCollectionRegex() string {
-	if o == nil || o.CollectionRegex == nil {
+	if o == nil || IsNil(o.CollectionRegex) {
 		var ret string
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *DataLakeDatabaseDataSource) GetCollectionRegex() string {
 // GetCollectionRegexOk returns a tuple with the CollectionRegex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetCollectionRegexOk() (*string, bool) {
-	if o == nil || o.CollectionRegex == nil {
+	if o == nil || IsNil(o.CollectionRegex) {
 		return nil, false
 	}
 	return o.CollectionRegex, true
@@ -143,7 +146,7 @@ func (o *DataLakeDatabaseDataSource) GetCollectionRegexOk() (*string, bool) {
 
 // HasCollectionRegex returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasCollectionRegex() bool {
-	if o != nil && o.CollectionRegex != nil {
+	if o != nil && !IsNil(o.CollectionRegex) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *DataLakeDatabaseDataSource) SetCollectionRegex(v string) {
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetDatabase() string {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret string
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *DataLakeDatabaseDataSource) GetDatabase() string {
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetDatabaseOk() (*string, bool) {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		return nil, false
 	}
 	return o.Database, true
@@ -175,7 +178,7 @@ func (o *DataLakeDatabaseDataSource) GetDatabaseOk() (*string, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasDatabase() bool {
-	if o != nil && o.Database != nil {
+	if o != nil && !IsNil(o.Database) {
 		return true
 	}
 
@@ -189,7 +192,7 @@ func (o *DataLakeDatabaseDataSource) SetDatabase(v string) {
 
 // GetDatabaseRegex returns the DatabaseRegex field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetDatabaseRegex() string {
-	if o == nil || o.DatabaseRegex == nil {
+	if o == nil || IsNil(o.DatabaseRegex) {
 		var ret string
 		return ret
 	}
@@ -199,7 +202,7 @@ func (o *DataLakeDatabaseDataSource) GetDatabaseRegex() string {
 // GetDatabaseRegexOk returns a tuple with the DatabaseRegex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetDatabaseRegexOk() (*string, bool) {
-	if o == nil || o.DatabaseRegex == nil {
+	if o == nil || IsNil(o.DatabaseRegex) {
 		return nil, false
 	}
 	return o.DatabaseRegex, true
@@ -207,7 +210,7 @@ func (o *DataLakeDatabaseDataSource) GetDatabaseRegexOk() (*string, bool) {
 
 // HasDatabaseRegex returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasDatabaseRegex() bool {
-	if o != nil && o.DatabaseRegex != nil {
+	if o != nil && !IsNil(o.DatabaseRegex) {
 		return true
 	}
 
@@ -221,7 +224,7 @@ func (o *DataLakeDatabaseDataSource) SetDatabaseRegex(v string) {
 
 // GetDefaultFormat returns the DefaultFormat field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetDefaultFormat() string {
-	if o == nil || o.DefaultFormat == nil {
+	if o == nil || IsNil(o.DefaultFormat) {
 		var ret string
 		return ret
 	}
@@ -231,7 +234,7 @@ func (o *DataLakeDatabaseDataSource) GetDefaultFormat() string {
 // GetDefaultFormatOk returns a tuple with the DefaultFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetDefaultFormatOk() (*string, bool) {
-	if o == nil || o.DefaultFormat == nil {
+	if o == nil || IsNil(o.DefaultFormat) {
 		return nil, false
 	}
 	return o.DefaultFormat, true
@@ -239,7 +242,7 @@ func (o *DataLakeDatabaseDataSource) GetDefaultFormatOk() (*string, bool) {
 
 // HasDefaultFormat returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasDefaultFormat() bool {
-	if o != nil && o.DefaultFormat != nil {
+	if o != nil && !IsNil(o.DefaultFormat) {
 		return true
 	}
 
@@ -253,7 +256,7 @@ func (o *DataLakeDatabaseDataSource) SetDefaultFormat(v string) {
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetPath() string {
-	if o == nil || o.Path == nil {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
@@ -263,7 +266,7 @@ func (o *DataLakeDatabaseDataSource) GetPath() string {
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetPathOk() (*string, bool) {
-	if o == nil || o.Path == nil {
+	if o == nil || IsNil(o.Path) {
 		return nil, false
 	}
 	return o.Path, true
@@ -271,7 +274,7 @@ func (o *DataLakeDatabaseDataSource) GetPathOk() (*string, bool) {
 
 // HasPath returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasPath() bool {
-	if o != nil && o.Path != nil {
+	if o != nil && !IsNil(o.Path) {
 		return true
 	}
 
@@ -285,7 +288,7 @@ func (o *DataLakeDatabaseDataSource) SetPath(v string) {
 
 // GetProvenanceFieldName returns the ProvenanceFieldName field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetProvenanceFieldName() string {
-	if o == nil || o.ProvenanceFieldName == nil {
+	if o == nil || IsNil(o.ProvenanceFieldName) {
 		var ret string
 		return ret
 	}
@@ -295,7 +298,7 @@ func (o *DataLakeDatabaseDataSource) GetProvenanceFieldName() string {
 // GetProvenanceFieldNameOk returns a tuple with the ProvenanceFieldName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetProvenanceFieldNameOk() (*string, bool) {
-	if o == nil || o.ProvenanceFieldName == nil {
+	if o == nil || IsNil(o.ProvenanceFieldName) {
 		return nil, false
 	}
 	return o.ProvenanceFieldName, true
@@ -303,7 +306,7 @@ func (o *DataLakeDatabaseDataSource) GetProvenanceFieldNameOk() (*string, bool) 
 
 // HasProvenanceFieldName returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasProvenanceFieldName() bool {
-	if o != nil && o.ProvenanceFieldName != nil {
+	if o != nil && !IsNil(o.ProvenanceFieldName) {
 		return true
 	}
 
@@ -317,7 +320,7 @@ func (o *DataLakeDatabaseDataSource) SetProvenanceFieldName(v string) {
 
 // GetStoreName returns the StoreName field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetStoreName() string {
-	if o == nil || o.StoreName == nil {
+	if o == nil || IsNil(o.StoreName) {
 		var ret string
 		return ret
 	}
@@ -327,7 +330,7 @@ func (o *DataLakeDatabaseDataSource) GetStoreName() string {
 // GetStoreNameOk returns a tuple with the StoreName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetStoreNameOk() (*string, bool) {
-	if o == nil || o.StoreName == nil {
+	if o == nil || IsNil(o.StoreName) {
 		return nil, false
 	}
 	return o.StoreName, true
@@ -335,7 +338,7 @@ func (o *DataLakeDatabaseDataSource) GetStoreNameOk() (*string, bool) {
 
 // HasStoreName returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasStoreName() bool {
-	if o != nil && o.StoreName != nil {
+	if o != nil && !IsNil(o.StoreName) {
 		return true
 	}
 
@@ -349,7 +352,7 @@ func (o *DataLakeDatabaseDataSource) SetStoreName(v string) {
 
 // GetUrls returns the Urls field value if set, zero value otherwise.
 func (o *DataLakeDatabaseDataSource) GetUrls() []string {
-	if o == nil || o.Urls == nil {
+	if o == nil || IsNil(o.Urls) {
 		var ret []string
 		return ret
 	}
@@ -359,7 +362,7 @@ func (o *DataLakeDatabaseDataSource) GetUrls() []string {
 // GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseDataSource) GetUrlsOk() ([]string, bool) {
-	if o == nil || o.Urls == nil {
+	if o == nil || IsNil(o.Urls) {
 		return nil, false
 	}
 	return o.Urls, true
@@ -367,7 +370,7 @@ func (o *DataLakeDatabaseDataSource) GetUrlsOk() ([]string, bool) {
 
 // HasUrls returns a boolean if a field has been set.
 func (o *DataLakeDatabaseDataSource) HasUrls() bool {
-	if o != nil && o.Urls != nil {
+	if o != nil && !IsNil(o.Urls) {
 		return true
 	}
 
@@ -380,38 +383,46 @@ func (o *DataLakeDatabaseDataSource) SetUrls(v []string) {
 }
 
 func (o DataLakeDatabaseDataSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AllowInsecure != nil {
-		toSerialize["allowInsecure"] = o.AllowInsecure
-	}
-	if o.Collection != nil {
-		toSerialize["collection"] = o.Collection
-	}
-	if o.CollectionRegex != nil {
-		toSerialize["collectionRegex"] = o.CollectionRegex
-	}
-	if o.Database != nil {
-		toSerialize["database"] = o.Database
-	}
-	if o.DatabaseRegex != nil {
-		toSerialize["databaseRegex"] = o.DatabaseRegex
-	}
-	if o.DefaultFormat != nil {
-		toSerialize["defaultFormat"] = o.DefaultFormat
-	}
-	if o.Path != nil {
-		toSerialize["path"] = o.Path
-	}
-	if o.ProvenanceFieldName != nil {
-		toSerialize["provenanceFieldName"] = o.ProvenanceFieldName
-	}
-	if o.StoreName != nil {
-		toSerialize["storeName"] = o.StoreName
-	}
-	if o.Urls != nil {
-		toSerialize["urls"] = o.Urls
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeDatabaseDataSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowInsecure) {
+		toSerialize["allowInsecure"] = o.AllowInsecure
+	}
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
+	}
+	if !IsNil(o.CollectionRegex) {
+		toSerialize["collectionRegex"] = o.CollectionRegex
+	}
+	if !IsNil(o.Database) {
+		toSerialize["database"] = o.Database
+	}
+	if !IsNil(o.DatabaseRegex) {
+		toSerialize["databaseRegex"] = o.DatabaseRegex
+	}
+	if !IsNil(o.DefaultFormat) {
+		toSerialize["defaultFormat"] = o.DefaultFormat
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	if !IsNil(o.ProvenanceFieldName) {
+		toSerialize["provenanceFieldName"] = o.ProvenanceFieldName
+	}
+	if !IsNil(o.StoreName) {
+		toSerialize["storeName"] = o.StoreName
+	}
+	if !IsNil(o.Urls) {
+		toSerialize["urls"] = o.Urls
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeDatabaseDataSource struct {

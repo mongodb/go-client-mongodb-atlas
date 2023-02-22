@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GeoSharding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GeoSharding{}
+
 // GeoSharding struct for GeoSharding
 type GeoSharding struct {
 	// List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to a unique 24-hexadecimal string that identifies the custom zone.  This parameter returns an empty object if no custom zones exist.
@@ -41,7 +44,7 @@ func NewGeoShardingWithDefaults() *GeoSharding {
 
 // GetCustomZoneMapping returns the CustomZoneMapping field value if set, zero value otherwise.
 func (o *GeoSharding) GetCustomZoneMapping() map[string]string {
-	if o == nil || o.CustomZoneMapping == nil {
+	if o == nil || IsNil(o.CustomZoneMapping) {
 		var ret map[string]string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *GeoSharding) GetCustomZoneMapping() map[string]string {
 // GetCustomZoneMappingOk returns a tuple with the CustomZoneMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GeoSharding) GetCustomZoneMappingOk() (*map[string]string, bool) {
-	if o == nil || o.CustomZoneMapping == nil {
+	if o == nil || IsNil(o.CustomZoneMapping) {
 		return nil, false
 	}
 	return o.CustomZoneMapping, true
@@ -59,7 +62,7 @@ func (o *GeoSharding) GetCustomZoneMappingOk() (*map[string]string, bool) {
 
 // HasCustomZoneMapping returns a boolean if a field has been set.
 func (o *GeoSharding) HasCustomZoneMapping() bool {
-	if o != nil && o.CustomZoneMapping != nil {
+	if o != nil && !IsNil(o.CustomZoneMapping) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GeoSharding) SetCustomZoneMapping(v map[string]string) {
 
 // GetManagedNamespaces returns the ManagedNamespaces field value if set, zero value otherwise.
 func (o *GeoSharding) GetManagedNamespaces() []ManagedNamespaces {
-	if o == nil || o.ManagedNamespaces == nil {
+	if o == nil || IsNil(o.ManagedNamespaces) {
 		var ret []ManagedNamespaces
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *GeoSharding) GetManagedNamespaces() []ManagedNamespaces {
 // GetManagedNamespacesOk returns a tuple with the ManagedNamespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GeoSharding) GetManagedNamespacesOk() ([]ManagedNamespaces, bool) {
-	if o == nil || o.ManagedNamespaces == nil {
+	if o == nil || IsNil(o.ManagedNamespaces) {
 		return nil, false
 	}
 	return o.ManagedNamespaces, true
@@ -91,7 +94,7 @@ func (o *GeoSharding) GetManagedNamespacesOk() ([]ManagedNamespaces, bool) {
 
 // HasManagedNamespaces returns a boolean if a field has been set.
 func (o *GeoSharding) HasManagedNamespaces() bool {
-	if o != nil && o.ManagedNamespaces != nil {
+	if o != nil && !IsNil(o.ManagedNamespaces) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *GeoSharding) SetManagedNamespaces(v []ManagedNamespaces) {
 }
 
 func (o GeoSharding) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CustomZoneMapping != nil {
-		toSerialize["customZoneMapping"] = o.CustomZoneMapping
-	}
-	if o.ManagedNamespaces != nil {
-		toSerialize["managedNamespaces"] = o.ManagedNamespaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GeoSharding) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: customZoneMapping is readOnly
+	// skip: managedNamespaces is readOnly
+	return toSerialize, nil
 }
 
 type NullableGeoSharding struct {

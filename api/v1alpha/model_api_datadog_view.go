@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiDatadogView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiDatadogView{}
+
 // ApiDatadogView Details to integrate one Datadog account with one MongoDB Cloud project.
 type ApiDatadogView struct {
 	// Key that allows MongoDB Cloud to access your Datadog account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
@@ -67,7 +70,7 @@ func (o *ApiDatadogView) SetApiKey(v string) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ApiDatadogView) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *ApiDatadogView) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDatadogView) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -85,7 +88,7 @@ func (o *ApiDatadogView) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *ApiDatadogView) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *ApiDatadogView) SetRegion(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiDatadogView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *ApiDatadogView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDatadogView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -117,7 +120,7 @@ func (o *ApiDatadogView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiDatadogView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *ApiDatadogView) SetType(v string) {
 }
 
 func (o ApiDatadogView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["apiKey"] = o.ApiKey
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiDatadogView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["apiKey"] = o.ApiKey
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiDatadogView struct {

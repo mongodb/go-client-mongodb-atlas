@@ -47,58 +47,58 @@ func GCPEndpointServiceAsEndpointService(v *GCPEndpointService) EndpointService 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *EndpointService) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into AWSPrivateLinkConnection
-        err = json.Unmarshal(data, &dst.AWSPrivateLinkConnection)
-        if err == nil {
-                jsonAWSPrivateLinkConnection, _ := json.Marshal(dst.AWSPrivateLinkConnection)
-                if string(jsonAWSPrivateLinkConnection) == "{}" { // empty struct
-                        dst.AWSPrivateLinkConnection = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AWSPrivateLinkConnection = nil
-        }
+	match := 0
+	// try to unmarshal data into AWSPrivateLinkConnection
+	err = json.Unmarshal(data, &dst.AWSPrivateLinkConnection)
+	if err == nil {
+		jsonAWSPrivateLinkConnection, _ := json.Marshal(dst.AWSPrivateLinkConnection)
+		if string(jsonAWSPrivateLinkConnection) == "{}" { // empty struct
+			dst.AWSPrivateLinkConnection = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AWSPrivateLinkConnection = nil
+	}
 
-        // try to unmarshal data into AzurePrivateLinkConnection
-        err = json.Unmarshal(data, &dst.AzurePrivateLinkConnection)
-        if err == nil {
-                jsonAzurePrivateLinkConnection, _ := json.Marshal(dst.AzurePrivateLinkConnection)
-                if string(jsonAzurePrivateLinkConnection) == "{}" { // empty struct
-                        dst.AzurePrivateLinkConnection = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AzurePrivateLinkConnection = nil
-        }
+	// try to unmarshal data into AzurePrivateLinkConnection
+	err = json.Unmarshal(data, &dst.AzurePrivateLinkConnection)
+	if err == nil {
+		jsonAzurePrivateLinkConnection, _ := json.Marshal(dst.AzurePrivateLinkConnection)
+		if string(jsonAzurePrivateLinkConnection) == "{}" { // empty struct
+			dst.AzurePrivateLinkConnection = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AzurePrivateLinkConnection = nil
+	}
 
-        // try to unmarshal data into GCPEndpointService
-        err = json.Unmarshal(data, &dst.GCPEndpointService)
-        if err == nil {
-                jsonGCPEndpointService, _ := json.Marshal(dst.GCPEndpointService)
-                if string(jsonGCPEndpointService) == "{}" { // empty struct
-                        dst.GCPEndpointService = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.GCPEndpointService = nil
-        }
+	// try to unmarshal data into GCPEndpointService
+	err = json.Unmarshal(data, &dst.GCPEndpointService)
+	if err == nil {
+		jsonGCPEndpointService, _ := json.Marshal(dst.GCPEndpointService)
+		if string(jsonGCPEndpointService) == "{}" { // empty struct
+			dst.GCPEndpointService = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GCPEndpointService = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.AWSPrivateLinkConnection = nil
-                dst.AzurePrivateLinkConnection = nil
-                dst.GCPEndpointService = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AWSPrivateLinkConnection = nil
+		dst.AzurePrivateLinkConnection = nil
+		dst.GCPEndpointService = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(EndpointService)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(EndpointService)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(EndpointService)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(EndpointService)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

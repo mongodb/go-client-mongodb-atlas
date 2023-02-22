@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenizeredgeGram type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenizeredgeGram{}
+
 // TokenizeredgeGram Tokenizer that splits input from the left side, or \"edge\", of a text input into n-grams of given sizes. You can't use the edgeGram tokenizer in synonym or autocomplete mapping definitions.
 type TokenizeredgeGram struct {
 	// Characters to include in the longest token that Atlas Search creates.
@@ -114,17 +117,19 @@ func (o *TokenizeredgeGram) SetType(v string) {
 }
 
 func (o TokenizeredgeGram) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["maxGram"] = o.MaxGram
-	}
-	if true {
-		toSerialize["minGram"] = o.MinGram
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenizeredgeGram) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["maxGram"] = o.MaxGram
+	toSerialize["minGram"] = o.MinGram
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizeredgeGram struct {

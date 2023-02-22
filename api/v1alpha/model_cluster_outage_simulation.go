@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ClusterOutageSimulation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterOutageSimulation{}
+
 // ClusterOutageSimulation struct for ClusterOutageSimulation
 type ClusterOutageSimulation struct {
 	// Human-readable label that identifies the cluster that undergoes outage simulation.
@@ -50,7 +53,7 @@ func NewClusterOutageSimulationWithDefaults() *ClusterOutageSimulation {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *ClusterOutageSimulation) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -68,7 +71,7 @@ func (o *ClusterOutageSimulation) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *ClusterOutageSimulation) SetClusterName(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *ClusterOutageSimulation) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -100,7 +103,7 @@ func (o *ClusterOutageSimulation) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *ClusterOutageSimulation) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *ClusterOutageSimulation) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -132,7 +135,7 @@ func (o *ClusterOutageSimulation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *ClusterOutageSimulation) SetId(v string) {
 
 // GetOutageFilters returns the OutageFilters field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetOutageFilters() []ClusterOutageSimulationOutageFilter {
-	if o == nil || o.OutageFilters == nil {
+	if o == nil || IsNil(o.OutageFilters) {
 		var ret []ClusterOutageSimulationOutageFilter
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *ClusterOutageSimulation) GetOutageFilters() []ClusterOutageSimulationOu
 // GetOutageFiltersOk returns a tuple with the OutageFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetOutageFiltersOk() ([]ClusterOutageSimulationOutageFilter, bool) {
-	if o == nil || o.OutageFilters == nil {
+	if o == nil || IsNil(o.OutageFilters) {
 		return nil, false
 	}
 	return o.OutageFilters, true
@@ -164,7 +167,7 @@ func (o *ClusterOutageSimulation) GetOutageFiltersOk() ([]ClusterOutageSimulatio
 
 // HasOutageFilters returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasOutageFilters() bool {
-	if o != nil && o.OutageFilters != nil {
+	if o != nil && !IsNil(o.OutageFilters) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *ClusterOutageSimulation) SetOutageFilters(v []ClusterOutageSimulationOu
 
 // GetStartRequestDate returns the StartRequestDate field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetStartRequestDate() time.Time {
-	if o == nil || o.StartRequestDate == nil {
+	if o == nil || IsNil(o.StartRequestDate) {
 		var ret time.Time
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *ClusterOutageSimulation) GetStartRequestDate() time.Time {
 // GetStartRequestDateOk returns a tuple with the StartRequestDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetStartRequestDateOk() (*time.Time, bool) {
-	if o == nil || o.StartRequestDate == nil {
+	if o == nil || IsNil(o.StartRequestDate) {
 		return nil, false
 	}
 	return o.StartRequestDate, true
@@ -196,7 +199,7 @@ func (o *ClusterOutageSimulation) GetStartRequestDateOk() (*time.Time, bool) {
 
 // HasStartRequestDate returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasStartRequestDate() bool {
-	if o != nil && o.StartRequestDate != nil {
+	if o != nil && !IsNil(o.StartRequestDate) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *ClusterOutageSimulation) SetStartRequestDate(v time.Time) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *ClusterOutageSimulation) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *ClusterOutageSimulation) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulation) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -228,7 +231,7 @@ func (o *ClusterOutageSimulation) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *ClusterOutageSimulation) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -241,26 +244,24 @@ func (o *ClusterOutageSimulation) SetState(v string) {
 }
 
 func (o ClusterOutageSimulation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.OutageFilters != nil {
-		toSerialize["outageFilters"] = o.OutageFilters
-	}
-	if o.StartRequestDate != nil {
-		toSerialize["startRequestDate"] = o.StartRequestDate
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterOutageSimulation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterName is readOnly
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	if !IsNil(o.OutageFilters) {
+		toSerialize["outageFilters"] = o.OutageFilters
+	}
+	// skip: startRequestDate is readOnly
+	// skip: state is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterOutageSimulation struct {

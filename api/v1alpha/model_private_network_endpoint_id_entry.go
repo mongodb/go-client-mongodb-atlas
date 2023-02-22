@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PrivateNetworkEndpointIdEntry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PrivateNetworkEndpointIdEntry{}
+
 // PrivateNetworkEndpointIdEntry struct for PrivateNetworkEndpointIdEntry
 type PrivateNetworkEndpointIdEntry struct {
 	// Human-readable string to associate with this private endpoint.
@@ -53,7 +56,7 @@ func NewPrivateNetworkEndpointIdEntryWithDefaults() *PrivateNetworkEndpointIdEnt
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *PrivateNetworkEndpointIdEntry) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -63,7 +66,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateNetworkEndpointIdEntry) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -71,7 +74,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *PrivateNetworkEndpointIdEntry) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *PrivateNetworkEndpointIdEntry) SetEndpointId(v string) {
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *PrivateNetworkEndpointIdEntry) GetProvider() string {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetProvider() string {
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateNetworkEndpointIdEntry) GetProviderOk() (*string, bool) {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		return nil, false
 	}
 	return o.Provider, true
@@ -127,7 +130,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetProviderOk() (*string, bool) {
 
 // HasProvider returns a boolean if a field has been set.
 func (o *PrivateNetworkEndpointIdEntry) HasProvider() bool {
-	if o != nil && o.Provider != nil {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *PrivateNetworkEndpointIdEntry) SetProvider(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PrivateNetworkEndpointIdEntry) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateNetworkEndpointIdEntry) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -159,7 +162,7 @@ func (o *PrivateNetworkEndpointIdEntry) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PrivateNetworkEndpointIdEntry) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -172,20 +175,26 @@ func (o *PrivateNetworkEndpointIdEntry) SetType(v string) {
 }
 
 func (o PrivateNetworkEndpointIdEntry) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["endpointId"] = o.EndpointId
-	}
-	if o.Provider != nil {
-		toSerialize["provider"] = o.Provider
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PrivateNetworkEndpointIdEntry) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["endpointId"] = o.EndpointId
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullablePrivateNetworkEndpointIdEntry struct {

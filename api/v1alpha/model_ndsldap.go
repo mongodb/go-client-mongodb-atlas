@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NDSLDAP type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSLDAP{}
+
 // NDSLDAP Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration details that apply to the specified project.
 type NDSLDAP struct {
 	// Flag that indicates whether users can authenticate using an Lightweight Directory Access Protocol (LDAP) host.
@@ -65,7 +68,7 @@ func NewNDSLDAPWithDefaults() *NDSLDAP {
 
 // GetAuthenticationEnabled returns the AuthenticationEnabled field value if set, zero value otherwise.
 func (o *NDSLDAP) GetAuthenticationEnabled() bool {
-	if o == nil || o.AuthenticationEnabled == nil {
+	if o == nil || IsNil(o.AuthenticationEnabled) {
 		var ret bool
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *NDSLDAP) GetAuthenticationEnabled() bool {
 // GetAuthenticationEnabledOk returns a tuple with the AuthenticationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetAuthenticationEnabledOk() (*bool, bool) {
-	if o == nil || o.AuthenticationEnabled == nil {
+	if o == nil || IsNil(o.AuthenticationEnabled) {
 		return nil, false
 	}
 	return o.AuthenticationEnabled, true
@@ -83,7 +86,7 @@ func (o *NDSLDAP) GetAuthenticationEnabledOk() (*bool, bool) {
 
 // HasAuthenticationEnabled returns a boolean if a field has been set.
 func (o *NDSLDAP) HasAuthenticationEnabled() bool {
-	if o != nil && o.AuthenticationEnabled != nil {
+	if o != nil && !IsNil(o.AuthenticationEnabled) {
 		return true
 	}
 
@@ -97,7 +100,7 @@ func (o *NDSLDAP) SetAuthenticationEnabled(v bool) {
 
 // GetAuthorizationEnabled returns the AuthorizationEnabled field value if set, zero value otherwise.
 func (o *NDSLDAP) GetAuthorizationEnabled() bool {
-	if o == nil || o.AuthorizationEnabled == nil {
+	if o == nil || IsNil(o.AuthorizationEnabled) {
 		var ret bool
 		return ret
 	}
@@ -107,7 +110,7 @@ func (o *NDSLDAP) GetAuthorizationEnabled() bool {
 // GetAuthorizationEnabledOk returns a tuple with the AuthorizationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetAuthorizationEnabledOk() (*bool, bool) {
-	if o == nil || o.AuthorizationEnabled == nil {
+	if o == nil || IsNil(o.AuthorizationEnabled) {
 		return nil, false
 	}
 	return o.AuthorizationEnabled, true
@@ -115,7 +118,7 @@ func (o *NDSLDAP) GetAuthorizationEnabledOk() (*bool, bool) {
 
 // HasAuthorizationEnabled returns a boolean if a field has been set.
 func (o *NDSLDAP) HasAuthorizationEnabled() bool {
-	if o != nil && o.AuthorizationEnabled != nil {
+	if o != nil && !IsNil(o.AuthorizationEnabled) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *NDSLDAP) SetAuthorizationEnabled(v bool) {
 
 // GetAuthzQueryTemplate returns the AuthzQueryTemplate field value if set, zero value otherwise.
 func (o *NDSLDAP) GetAuthzQueryTemplate() string {
-	if o == nil || o.AuthzQueryTemplate == nil {
+	if o == nil || IsNil(o.AuthzQueryTemplate) {
 		var ret string
 		return ret
 	}
@@ -139,7 +142,7 @@ func (o *NDSLDAP) GetAuthzQueryTemplate() string {
 // GetAuthzQueryTemplateOk returns a tuple with the AuthzQueryTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetAuthzQueryTemplateOk() (*string, bool) {
-	if o == nil || o.AuthzQueryTemplate == nil {
+	if o == nil || IsNil(o.AuthzQueryTemplate) {
 		return nil, false
 	}
 	return o.AuthzQueryTemplate, true
@@ -147,7 +150,7 @@ func (o *NDSLDAP) GetAuthzQueryTemplateOk() (*string, bool) {
 
 // HasAuthzQueryTemplate returns a boolean if a field has been set.
 func (o *NDSLDAP) HasAuthzQueryTemplate() bool {
-	if o != nil && o.AuthzQueryTemplate != nil {
+	if o != nil && !IsNil(o.AuthzQueryTemplate) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *NDSLDAP) SetAuthzQueryTemplate(v string) {
 
 // GetBindPassword returns the BindPassword field value if set, zero value otherwise.
 func (o *NDSLDAP) GetBindPassword() string {
-	if o == nil || o.BindPassword == nil {
+	if o == nil || IsNil(o.BindPassword) {
 		var ret string
 		return ret
 	}
@@ -171,7 +174,7 @@ func (o *NDSLDAP) GetBindPassword() string {
 // GetBindPasswordOk returns a tuple with the BindPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetBindPasswordOk() (*string, bool) {
-	if o == nil || o.BindPassword == nil {
+	if o == nil || IsNil(o.BindPassword) {
 		return nil, false
 	}
 	return o.BindPassword, true
@@ -179,7 +182,7 @@ func (o *NDSLDAP) GetBindPasswordOk() (*string, bool) {
 
 // HasBindPassword returns a boolean if a field has been set.
 func (o *NDSLDAP) HasBindPassword() bool {
-	if o != nil && o.BindPassword != nil {
+	if o != nil && !IsNil(o.BindPassword) {
 		return true
 	}
 
@@ -193,7 +196,7 @@ func (o *NDSLDAP) SetBindPassword(v string) {
 
 // GetBindUsername returns the BindUsername field value if set, zero value otherwise.
 func (o *NDSLDAP) GetBindUsername() string {
-	if o == nil || o.BindUsername == nil {
+	if o == nil || IsNil(o.BindUsername) {
 		var ret string
 		return ret
 	}
@@ -203,7 +206,7 @@ func (o *NDSLDAP) GetBindUsername() string {
 // GetBindUsernameOk returns a tuple with the BindUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetBindUsernameOk() (*string, bool) {
-	if o == nil || o.BindUsername == nil {
+	if o == nil || IsNil(o.BindUsername) {
 		return nil, false
 	}
 	return o.BindUsername, true
@@ -211,7 +214,7 @@ func (o *NDSLDAP) GetBindUsernameOk() (*string, bool) {
 
 // HasBindUsername returns a boolean if a field has been set.
 func (o *NDSLDAP) HasBindUsername() bool {
-	if o != nil && o.BindUsername != nil {
+	if o != nil && !IsNil(o.BindUsername) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *NDSLDAP) SetBindUsername(v string) {
 
 // GetCaCertificate returns the CaCertificate field value if set, zero value otherwise.
 func (o *NDSLDAP) GetCaCertificate() string {
-	if o == nil || o.CaCertificate == nil {
+	if o == nil || IsNil(o.CaCertificate) {
 		var ret string
 		return ret
 	}
@@ -235,7 +238,7 @@ func (o *NDSLDAP) GetCaCertificate() string {
 // GetCaCertificateOk returns a tuple with the CaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetCaCertificateOk() (*string, bool) {
-	if o == nil || o.CaCertificate == nil {
+	if o == nil || IsNil(o.CaCertificate) {
 		return nil, false
 	}
 	return o.CaCertificate, true
@@ -243,7 +246,7 @@ func (o *NDSLDAP) GetCaCertificateOk() (*string, bool) {
 
 // HasCaCertificate returns a boolean if a field has been set.
 func (o *NDSLDAP) HasCaCertificate() bool {
-	if o != nil && o.CaCertificate != nil {
+	if o != nil && !IsNil(o.CaCertificate) {
 		return true
 	}
 
@@ -257,7 +260,7 @@ func (o *NDSLDAP) SetCaCertificate(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *NDSLDAP) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -267,7 +270,7 @@ func (o *NDSLDAP) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -275,7 +278,7 @@ func (o *NDSLDAP) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *NDSLDAP) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -289,7 +292,7 @@ func (o *NDSLDAP) SetHostname(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NDSLDAP) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -299,7 +302,7 @@ func (o *NDSLDAP) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -307,7 +310,7 @@ func (o *NDSLDAP) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *NDSLDAP) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -321,7 +324,7 @@ func (o *NDSLDAP) SetLinks(v []Link) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *NDSLDAP) GetPort() int32 {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -331,7 +334,7 @@ func (o *NDSLDAP) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetPortOk() (*int32, bool) {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
 	return o.Port, true
@@ -339,7 +342,7 @@ func (o *NDSLDAP) GetPortOk() (*int32, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *NDSLDAP) HasPort() bool {
-	if o != nil && o.Port != nil {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -353,7 +356,7 @@ func (o *NDSLDAP) SetPort(v int32) {
 
 // GetUserToDNMapping returns the UserToDNMapping field value if set, zero value otherwise.
 func (o *NDSLDAP) GetUserToDNMapping() []NDSUserToDNMapping {
-	if o == nil || o.UserToDNMapping == nil {
+	if o == nil || IsNil(o.UserToDNMapping) {
 		var ret []NDSUserToDNMapping
 		return ret
 	}
@@ -363,7 +366,7 @@ func (o *NDSLDAP) GetUserToDNMapping() []NDSUserToDNMapping {
 // GetUserToDNMappingOk returns a tuple with the UserToDNMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAP) GetUserToDNMappingOk() ([]NDSUserToDNMapping, bool) {
-	if o == nil || o.UserToDNMapping == nil {
+	if o == nil || IsNil(o.UserToDNMapping) {
 		return nil, false
 	}
 	return o.UserToDNMapping, true
@@ -371,7 +374,7 @@ func (o *NDSLDAP) GetUserToDNMappingOk() ([]NDSUserToDNMapping, bool) {
 
 // HasUserToDNMapping returns a boolean if a field has been set.
 func (o *NDSLDAP) HasUserToDNMapping() bool {
-	if o != nil && o.UserToDNMapping != nil {
+	if o != nil && !IsNil(o.UserToDNMapping) {
 		return true
 	}
 
@@ -384,38 +387,44 @@ func (o *NDSLDAP) SetUserToDNMapping(v []NDSUserToDNMapping) {
 }
 
 func (o NDSLDAP) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AuthenticationEnabled != nil {
-		toSerialize["authenticationEnabled"] = o.AuthenticationEnabled
-	}
-	if o.AuthorizationEnabled != nil {
-		toSerialize["authorizationEnabled"] = o.AuthorizationEnabled
-	}
-	if o.AuthzQueryTemplate != nil {
-		toSerialize["authzQueryTemplate"] = o.AuthzQueryTemplate
-	}
-	if o.BindPassword != nil {
-		toSerialize["bindPassword"] = o.BindPassword
-	}
-	if o.BindUsername != nil {
-		toSerialize["bindUsername"] = o.BindUsername
-	}
-	if o.CaCertificate != nil {
-		toSerialize["caCertificate"] = o.CaCertificate
-	}
-	if o.Hostname != nil {
-		toSerialize["hostname"] = o.Hostname
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Port != nil {
-		toSerialize["port"] = o.Port
-	}
-	if o.UserToDNMapping != nil {
-		toSerialize["userToDNMapping"] = o.UserToDNMapping
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSLDAP) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AuthenticationEnabled) {
+		toSerialize["authenticationEnabled"] = o.AuthenticationEnabled
+	}
+	if !IsNil(o.AuthorizationEnabled) {
+		toSerialize["authorizationEnabled"] = o.AuthorizationEnabled
+	}
+	if !IsNil(o.AuthzQueryTemplate) {
+		toSerialize["authzQueryTemplate"] = o.AuthzQueryTemplate
+	}
+	if !IsNil(o.BindPassword) {
+		toSerialize["bindPassword"] = o.BindPassword
+	}
+	if !IsNil(o.BindUsername) {
+		toSerialize["bindUsername"] = o.BindUsername
+	}
+	if !IsNil(o.CaCertificate) {
+		toSerialize["caCertificate"] = o.CaCertificate
+	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
+	// skip: links is readOnly
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.UserToDNMapping) {
+		toSerialize["userToDNMapping"] = o.UserToDNMapping
+	}
+	return toSerialize, nil
 }
 
 type NullableNDSLDAP struct {

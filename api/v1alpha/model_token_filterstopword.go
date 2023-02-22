@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterstopword type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterstopword{}
+
 // TokenFilterstopword Filter that removes tokens that correspond to the specified stop words. This token filter doesn't analyze the stop words that you specify.
 type TokenFilterstopword struct {
 	// Flag that indicates whether to ignore the case of stop words when filtering the tokens to remove.
@@ -47,7 +50,7 @@ func NewTokenFilterstopwordWithDefaults() *TokenFilterstopword {
 
 // GetIgnoreCase returns the IgnoreCase field value if set, zero value otherwise.
 func (o *TokenFilterstopword) GetIgnoreCase() bool {
-	if o == nil || o.IgnoreCase == nil {
+	if o == nil || IsNil(o.IgnoreCase) {
 		var ret bool
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *TokenFilterstopword) GetIgnoreCase() bool {
 // GetIgnoreCaseOk returns a tuple with the IgnoreCase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilterstopword) GetIgnoreCaseOk() (*bool, bool) {
-	if o == nil || o.IgnoreCase == nil {
+	if o == nil || IsNil(o.IgnoreCase) {
 		return nil, false
 	}
 	return o.IgnoreCase, true
@@ -65,7 +68,7 @@ func (o *TokenFilterstopword) GetIgnoreCaseOk() (*bool, bool) {
 
 // HasIgnoreCase returns a boolean if a field has been set.
 func (o *TokenFilterstopword) HasIgnoreCase() bool {
-	if o != nil && o.IgnoreCase != nil {
+	if o != nil && !IsNil(o.IgnoreCase) {
 		return true
 	}
 
@@ -126,17 +129,21 @@ func (o *TokenFilterstopword) SetType(v string) {
 }
 
 func (o TokenFilterstopword) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IgnoreCase != nil {
-		toSerialize["ignoreCase"] = o.IgnoreCase
-	}
-	if true {
-		toSerialize["tokens"] = o.Tokens
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterstopword) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IgnoreCase) {
+		toSerialize["ignoreCase"] = o.IgnoreCase
+	}
+	toSerialize["tokens"] = o.Tokens
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterstopword struct {

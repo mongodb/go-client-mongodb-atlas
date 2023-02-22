@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSPrivateLinkConnection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSPrivateLinkConnection{}
+
 // AWSPrivateLinkConnection Group of Private Endpoint Service settings.
 type AWSPrivateLinkConnection struct {
 	// Unique string that identifies the Amazon Web Services (AWS) PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
@@ -49,7 +52,7 @@ func NewAWSPrivateLinkConnectionWithDefaults() *AWSPrivateLinkConnection {
 
 // GetEndpointServiceName returns the EndpointServiceName field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetEndpointServiceName() string {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *AWSPrivateLinkConnection) GetEndpointServiceName() string {
 // GetEndpointServiceNameOk returns a tuple with the EndpointServiceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetEndpointServiceNameOk() (*string, bool) {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		return nil, false
 	}
 	return o.EndpointServiceName, true
@@ -67,7 +70,7 @@ func (o *AWSPrivateLinkConnection) GetEndpointServiceNameOk() (*string, bool) {
 
 // HasEndpointServiceName returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasEndpointServiceName() bool {
-	if o != nil && o.EndpointServiceName != nil {
+	if o != nil && !IsNil(o.EndpointServiceName) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *AWSPrivateLinkConnection) SetEndpointServiceName(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *AWSPrivateLinkConnection) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -99,7 +102,7 @@ func (o *AWSPrivateLinkConnection) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *AWSPrivateLinkConnection) SetErrorMessage(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *AWSPrivateLinkConnection) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -131,7 +134,7 @@ func (o *AWSPrivateLinkConnection) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *AWSPrivateLinkConnection) SetId(v string) {
 
 // GetInterfaceEndpoints returns the InterfaceEndpoints field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetInterfaceEndpoints() []string {
-	if o == nil || o.InterfaceEndpoints == nil {
+	if o == nil || IsNil(o.InterfaceEndpoints) {
 		var ret []string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *AWSPrivateLinkConnection) GetInterfaceEndpoints() []string {
 // GetInterfaceEndpointsOk returns a tuple with the InterfaceEndpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetInterfaceEndpointsOk() ([]string, bool) {
-	if o == nil || o.InterfaceEndpoints == nil {
+	if o == nil || IsNil(o.InterfaceEndpoints) {
 		return nil, false
 	}
 	return o.InterfaceEndpoints, true
@@ -163,7 +166,7 @@ func (o *AWSPrivateLinkConnection) GetInterfaceEndpointsOk() ([]string, bool) {
 
 // HasInterfaceEndpoints returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasInterfaceEndpoints() bool {
-	if o != nil && o.InterfaceEndpoints != nil {
+	if o != nil && !IsNil(o.InterfaceEndpoints) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *AWSPrivateLinkConnection) SetInterfaceEndpoints(v []string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *AWSPrivateLinkConnection) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -195,7 +198,7 @@ func (o *AWSPrivateLinkConnection) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *AWSPrivateLinkConnection) SetRegionName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AWSPrivateLinkConnection) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *AWSPrivateLinkConnection) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSPrivateLinkConnection) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -227,7 +230,7 @@ func (o *AWSPrivateLinkConnection) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AWSPrivateLinkConnection) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -240,26 +243,22 @@ func (o *AWSPrivateLinkConnection) SetStatus(v string) {
 }
 
 func (o AWSPrivateLinkConnection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndpointServiceName != nil {
-		toSerialize["endpointServiceName"] = o.EndpointServiceName
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.InterfaceEndpoints != nil {
-		toSerialize["interfaceEndpoints"] = o.InterfaceEndpoints
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSPrivateLinkConnection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: endpointServiceName is readOnly
+	// skip: errorMessage is readOnly
+	// skip: id is readOnly
+	// skip: interfaceEndpoints is readOnly
+	// skip: regionName is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableAWSPrivateLinkConnection struct {

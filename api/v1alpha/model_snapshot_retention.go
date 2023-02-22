@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SnapshotRetention type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SnapshotRetention{}
+
 // SnapshotRetention struct for SnapshotRetention
 type SnapshotRetention struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -43,7 +46,7 @@ func NewSnapshotRetentionWithDefaults() *SnapshotRetention {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *SnapshotRetention) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *SnapshotRetention) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SnapshotRetention) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -61,7 +64,7 @@ func (o *SnapshotRetention) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *SnapshotRetention) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -122,17 +125,19 @@ func (o *SnapshotRetention) SetRetentionValue(v int32) {
 }
 
 func (o SnapshotRetention) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["retentionUnit"] = o.RetentionUnit
-	}
-	if true {
-		toSerialize["retentionValue"] = o.RetentionValue
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SnapshotRetention) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	toSerialize["retentionUnit"] = o.RetentionUnit
+	toSerialize["retentionValue"] = o.RetentionValue
+	return toSerialize, nil
 }
 
 type NullableSnapshotRetention struct {

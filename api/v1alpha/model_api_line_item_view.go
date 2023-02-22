@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiLineItemView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiLineItemView{}
+
 // ApiLineItemView One service included in this invoice.
 type ApiLineItemView struct {
 	// Human-readable label that identifies the cluster that incurred the charge.
@@ -72,7 +75,7 @@ func NewApiLineItemViewWithDefaults() *ApiLineItemView {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ApiLineItemView) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -90,7 +93,7 @@ func (o *ApiLineItemView) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *ApiLineItemView) SetClusterName(v string) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *ApiLineItemView) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -122,7 +125,7 @@ func (o *ApiLineItemView) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *ApiLineItemView) SetCreated(v time.Time) {
 
 // GetDiscountCents returns the DiscountCents field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetDiscountCents() int64 {
-	if o == nil || o.DiscountCents == nil {
+	if o == nil || IsNil(o.DiscountCents) {
 		var ret int64
 		return ret
 	}
@@ -146,7 +149,7 @@ func (o *ApiLineItemView) GetDiscountCents() int64 {
 // GetDiscountCentsOk returns a tuple with the DiscountCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetDiscountCentsOk() (*int64, bool) {
-	if o == nil || o.DiscountCents == nil {
+	if o == nil || IsNil(o.DiscountCents) {
 		return nil, false
 	}
 	return o.DiscountCents, true
@@ -154,7 +157,7 @@ func (o *ApiLineItemView) GetDiscountCentsOk() (*int64, bool) {
 
 // HasDiscountCents returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasDiscountCents() bool {
-	if o != nil && o.DiscountCents != nil {
+	if o != nil && !IsNil(o.DiscountCents) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *ApiLineItemView) SetDiscountCents(v int64) {
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetEndDate() time.Time {
-	if o == nil || o.EndDate == nil {
+	if o == nil || IsNil(o.EndDate) {
 		var ret time.Time
 		return ret
 	}
@@ -178,7 +181,7 @@ func (o *ApiLineItemView) GetEndDate() time.Time {
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetEndDateOk() (*time.Time, bool) {
-	if o == nil || o.EndDate == nil {
+	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
 	return o.EndDate, true
@@ -186,7 +189,7 @@ func (o *ApiLineItemView) GetEndDateOk() (*time.Time, bool) {
 
 // HasEndDate returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasEndDate() bool {
-	if o != nil && o.EndDate != nil {
+	if o != nil && !IsNil(o.EndDate) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *ApiLineItemView) SetEndDate(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -210,7 +213,7 @@ func (o *ApiLineItemView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -218,7 +221,7 @@ func (o *ApiLineItemView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -232,7 +235,7 @@ func (o *ApiLineItemView) SetGroupId(v string) {
 
 // GetGroupName returns the GroupName field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetGroupName() string {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		var ret string
 		return ret
 	}
@@ -242,7 +245,7 @@ func (o *ApiLineItemView) GetGroupName() string {
 // GetGroupNameOk returns a tuple with the GroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetGroupNameOk() (*string, bool) {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		return nil, false
 	}
 	return o.GroupName, true
@@ -250,7 +253,7 @@ func (o *ApiLineItemView) GetGroupNameOk() (*string, bool) {
 
 // HasGroupName returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasGroupName() bool {
-	if o != nil && o.GroupName != nil {
+	if o != nil && !IsNil(o.GroupName) {
 		return true
 	}
 
@@ -264,7 +267,7 @@ func (o *ApiLineItemView) SetGroupName(v string) {
 
 // GetNote returns the Note field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetNote() string {
-	if o == nil || o.Note == nil {
+	if o == nil || IsNil(o.Note) {
 		var ret string
 		return ret
 	}
@@ -274,7 +277,7 @@ func (o *ApiLineItemView) GetNote() string {
 // GetNoteOk returns a tuple with the Note field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetNoteOk() (*string, bool) {
-	if o == nil || o.Note == nil {
+	if o == nil || IsNil(o.Note) {
 		return nil, false
 	}
 	return o.Note, true
@@ -282,7 +285,7 @@ func (o *ApiLineItemView) GetNoteOk() (*string, bool) {
 
 // HasNote returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasNote() bool {
-	if o != nil && o.Note != nil {
+	if o != nil && !IsNil(o.Note) {
 		return true
 	}
 
@@ -296,7 +299,7 @@ func (o *ApiLineItemView) SetNote(v string) {
 
 // GetPercentDiscount returns the PercentDiscount field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetPercentDiscount() float32 {
-	if o == nil || o.PercentDiscount == nil {
+	if o == nil || IsNil(o.PercentDiscount) {
 		var ret float32
 		return ret
 	}
@@ -306,7 +309,7 @@ func (o *ApiLineItemView) GetPercentDiscount() float32 {
 // GetPercentDiscountOk returns a tuple with the PercentDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetPercentDiscountOk() (*float32, bool) {
-	if o == nil || o.PercentDiscount == nil {
+	if o == nil || IsNil(o.PercentDiscount) {
 		return nil, false
 	}
 	return o.PercentDiscount, true
@@ -314,7 +317,7 @@ func (o *ApiLineItemView) GetPercentDiscountOk() (*float32, bool) {
 
 // HasPercentDiscount returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasPercentDiscount() bool {
-	if o != nil && o.PercentDiscount != nil {
+	if o != nil && !IsNil(o.PercentDiscount) {
 		return true
 	}
 
@@ -328,7 +331,7 @@ func (o *ApiLineItemView) SetPercentDiscount(v float32) {
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetQuantity() float64 {
-	if o == nil || o.Quantity == nil {
+	if o == nil || IsNil(o.Quantity) {
 		var ret float64
 		return ret
 	}
@@ -338,7 +341,7 @@ func (o *ApiLineItemView) GetQuantity() float64 {
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetQuantityOk() (*float64, bool) {
-	if o == nil || o.Quantity == nil {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
 	return o.Quantity, true
@@ -346,7 +349,7 @@ func (o *ApiLineItemView) GetQuantityOk() (*float64, bool) {
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasQuantity() bool {
-	if o != nil && o.Quantity != nil {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
@@ -360,7 +363,7 @@ func (o *ApiLineItemView) SetQuantity(v float64) {
 
 // GetSku returns the Sku field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetSku() string {
-	if o == nil || o.Sku == nil {
+	if o == nil || IsNil(o.Sku) {
 		var ret string
 		return ret
 	}
@@ -370,7 +373,7 @@ func (o *ApiLineItemView) GetSku() string {
 // GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetSkuOk() (*string, bool) {
-	if o == nil || o.Sku == nil {
+	if o == nil || IsNil(o.Sku) {
 		return nil, false
 	}
 	return o.Sku, true
@@ -378,7 +381,7 @@ func (o *ApiLineItemView) GetSkuOk() (*string, bool) {
 
 // HasSku returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasSku() bool {
-	if o != nil && o.Sku != nil {
+	if o != nil && !IsNil(o.Sku) {
 		return true
 	}
 
@@ -392,7 +395,7 @@ func (o *ApiLineItemView) SetSku(v string) {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetStartDate() time.Time {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret time.Time
 		return ret
 	}
@@ -402,7 +405,7 @@ func (o *ApiLineItemView) GetStartDate() time.Time {
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
 	return o.StartDate, true
@@ -410,7 +413,7 @@ func (o *ApiLineItemView) GetStartDateOk() (*time.Time, bool) {
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
+	if o != nil && !IsNil(o.StartDate) {
 		return true
 	}
 
@@ -424,7 +427,7 @@ func (o *ApiLineItemView) SetStartDate(v time.Time) {
 
 // GetStitchAppName returns the StitchAppName field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetStitchAppName() string {
-	if o == nil || o.StitchAppName == nil {
+	if o == nil || IsNil(o.StitchAppName) {
 		var ret string
 		return ret
 	}
@@ -434,7 +437,7 @@ func (o *ApiLineItemView) GetStitchAppName() string {
 // GetStitchAppNameOk returns a tuple with the StitchAppName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetStitchAppNameOk() (*string, bool) {
-	if o == nil || o.StitchAppName == nil {
+	if o == nil || IsNil(o.StitchAppName) {
 		return nil, false
 	}
 	return o.StitchAppName, true
@@ -442,7 +445,7 @@ func (o *ApiLineItemView) GetStitchAppNameOk() (*string, bool) {
 
 // HasStitchAppName returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasStitchAppName() bool {
-	if o != nil && o.StitchAppName != nil {
+	if o != nil && !IsNil(o.StitchAppName) {
 		return true
 	}
 
@@ -456,7 +459,7 @@ func (o *ApiLineItemView) SetStitchAppName(v string) {
 
 // GetTierLowerBound returns the TierLowerBound field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetTierLowerBound() float64 {
-	if o == nil || o.TierLowerBound == nil {
+	if o == nil || IsNil(o.TierLowerBound) {
 		var ret float64
 		return ret
 	}
@@ -466,7 +469,7 @@ func (o *ApiLineItemView) GetTierLowerBound() float64 {
 // GetTierLowerBoundOk returns a tuple with the TierLowerBound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetTierLowerBoundOk() (*float64, bool) {
-	if o == nil || o.TierLowerBound == nil {
+	if o == nil || IsNil(o.TierLowerBound) {
 		return nil, false
 	}
 	return o.TierLowerBound, true
@@ -474,7 +477,7 @@ func (o *ApiLineItemView) GetTierLowerBoundOk() (*float64, bool) {
 
 // HasTierLowerBound returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasTierLowerBound() bool {
-	if o != nil && o.TierLowerBound != nil {
+	if o != nil && !IsNil(o.TierLowerBound) {
 		return true
 	}
 
@@ -488,7 +491,7 @@ func (o *ApiLineItemView) SetTierLowerBound(v float64) {
 
 // GetTierUpperBound returns the TierUpperBound field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetTierUpperBound() float64 {
-	if o == nil || o.TierUpperBound == nil {
+	if o == nil || IsNil(o.TierUpperBound) {
 		var ret float64
 		return ret
 	}
@@ -498,7 +501,7 @@ func (o *ApiLineItemView) GetTierUpperBound() float64 {
 // GetTierUpperBoundOk returns a tuple with the TierUpperBound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetTierUpperBoundOk() (*float64, bool) {
-	if o == nil || o.TierUpperBound == nil {
+	if o == nil || IsNil(o.TierUpperBound) {
 		return nil, false
 	}
 	return o.TierUpperBound, true
@@ -506,7 +509,7 @@ func (o *ApiLineItemView) GetTierUpperBoundOk() (*float64, bool) {
 
 // HasTierUpperBound returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasTierUpperBound() bool {
-	if o != nil && o.TierUpperBound != nil {
+	if o != nil && !IsNil(o.TierUpperBound) {
 		return true
 	}
 
@@ -520,7 +523,7 @@ func (o *ApiLineItemView) SetTierUpperBound(v float64) {
 
 // GetTotalPriceCents returns the TotalPriceCents field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetTotalPriceCents() int64 {
-	if o == nil || o.TotalPriceCents == nil {
+	if o == nil || IsNil(o.TotalPriceCents) {
 		var ret int64
 		return ret
 	}
@@ -530,7 +533,7 @@ func (o *ApiLineItemView) GetTotalPriceCents() int64 {
 // GetTotalPriceCentsOk returns a tuple with the TotalPriceCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetTotalPriceCentsOk() (*int64, bool) {
-	if o == nil || o.TotalPriceCents == nil {
+	if o == nil || IsNil(o.TotalPriceCents) {
 		return nil, false
 	}
 	return o.TotalPriceCents, true
@@ -538,7 +541,7 @@ func (o *ApiLineItemView) GetTotalPriceCentsOk() (*int64, bool) {
 
 // HasTotalPriceCents returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasTotalPriceCents() bool {
-	if o != nil && o.TotalPriceCents != nil {
+	if o != nil && !IsNil(o.TotalPriceCents) {
 		return true
 	}
 
@@ -552,7 +555,7 @@ func (o *ApiLineItemView) SetTotalPriceCents(v int64) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetUnit() string {
-	if o == nil || o.Unit == nil {
+	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
 	}
@@ -562,7 +565,7 @@ func (o *ApiLineItemView) GetUnit() string {
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetUnitOk() (*string, bool) {
-	if o == nil || o.Unit == nil {
+	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
 	return o.Unit, true
@@ -570,7 +573,7 @@ func (o *ApiLineItemView) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasUnit() bool {
-	if o != nil && o.Unit != nil {
+	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
 
@@ -584,7 +587,7 @@ func (o *ApiLineItemView) SetUnit(v string) {
 
 // GetUnitPriceDollars returns the UnitPriceDollars field value if set, zero value otherwise.
 func (o *ApiLineItemView) GetUnitPriceDollars() float64 {
-	if o == nil || o.UnitPriceDollars == nil {
+	if o == nil || IsNil(o.UnitPriceDollars) {
 		var ret float64
 		return ret
 	}
@@ -594,7 +597,7 @@ func (o *ApiLineItemView) GetUnitPriceDollars() float64 {
 // GetUnitPriceDollarsOk returns a tuple with the UnitPriceDollars field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLineItemView) GetUnitPriceDollarsOk() (*float64, bool) {
-	if o == nil || o.UnitPriceDollars == nil {
+	if o == nil || IsNil(o.UnitPriceDollars) {
 		return nil, false
 	}
 	return o.UnitPriceDollars, true
@@ -602,7 +605,7 @@ func (o *ApiLineItemView) GetUnitPriceDollarsOk() (*float64, bool) {
 
 // HasUnitPriceDollars returns a boolean if a field has been set.
 func (o *ApiLineItemView) HasUnitPriceDollars() bool {
-	if o != nil && o.UnitPriceDollars != nil {
+	if o != nil && !IsNil(o.UnitPriceDollars) {
 		return true
 	}
 
@@ -615,59 +618,35 @@ func (o *ApiLineItemView) SetUnitPriceDollars(v float64) {
 }
 
 func (o ApiLineItemView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.DiscountCents != nil {
-		toSerialize["discountCents"] = o.DiscountCents
-	}
-	if o.EndDate != nil {
-		toSerialize["endDate"] = o.EndDate
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.GroupName != nil {
-		toSerialize["groupName"] = o.GroupName
-	}
-	if o.Note != nil {
-		toSerialize["note"] = o.Note
-	}
-	if o.PercentDiscount != nil {
-		toSerialize["percentDiscount"] = o.PercentDiscount
-	}
-	if o.Quantity != nil {
-		toSerialize["quantity"] = o.Quantity
-	}
-	if o.Sku != nil {
-		toSerialize["sku"] = o.Sku
-	}
-	if o.StartDate != nil {
-		toSerialize["startDate"] = o.StartDate
-	}
-	if o.StitchAppName != nil {
-		toSerialize["stitchAppName"] = o.StitchAppName
-	}
-	if o.TierLowerBound != nil {
-		toSerialize["tierLowerBound"] = o.TierLowerBound
-	}
-	if o.TierUpperBound != nil {
-		toSerialize["tierUpperBound"] = o.TierUpperBound
-	}
-	if o.TotalPriceCents != nil {
-		toSerialize["totalPriceCents"] = o.TotalPriceCents
-	}
-	if o.Unit != nil {
-		toSerialize["unit"] = o.Unit
-	}
-	if o.UnitPriceDollars != nil {
-		toSerialize["unitPriceDollars"] = o.UnitPriceDollars
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiLineItemView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterName is readOnly
+	// skip: created is readOnly
+	// skip: discountCents is readOnly
+	// skip: endDate is readOnly
+	// skip: groupId is readOnly
+	if !IsNil(o.GroupName) {
+		toSerialize["groupName"] = o.GroupName
+	}
+	// skip: note is readOnly
+	// skip: percentDiscount is readOnly
+	// skip: quantity is readOnly
+	// skip: sku is readOnly
+	// skip: startDate is readOnly
+	// skip: stitchAppName is readOnly
+	// skip: tierLowerBound is readOnly
+	// skip: tierUpperBound is readOnly
+	// skip: totalPriceCents is readOnly
+	// skip: unit is readOnly
+	// skip: unitPriceDollars is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiLineItemView struct {

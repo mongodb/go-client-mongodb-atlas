@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiAppUserView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAppUserView{}
+
 // ApiAppUserView struct for ApiAppUserView
 type ApiAppUserView struct {
 	// Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
@@ -88,7 +91,7 @@ func (o *ApiAppUserView) SetCountry(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -98,7 +101,7 @@ func (o *ApiAppUserView) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -106,7 +109,7 @@ func (o *ApiAppUserView) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *ApiAppUserView) SetFirstName(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -178,7 +181,7 @@ func (o *ApiAppUserView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -186,7 +189,7 @@ func (o *ApiAppUserView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *ApiAppUserView) SetId(v string) {
 
 // GetLastAuth returns the LastAuth field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetLastAuth() time.Time {
-	if o == nil || o.LastAuth == nil {
+	if o == nil || IsNil(o.LastAuth) {
 		var ret time.Time
 		return ret
 	}
@@ -210,7 +213,7 @@ func (o *ApiAppUserView) GetLastAuth() time.Time {
 // GetLastAuthOk returns a tuple with the LastAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetLastAuthOk() (*time.Time, bool) {
-	if o == nil || o.LastAuth == nil {
+	if o == nil || IsNil(o.LastAuth) {
 		return nil, false
 	}
 	return o.LastAuth, true
@@ -218,7 +221,7 @@ func (o *ApiAppUserView) GetLastAuthOk() (*time.Time, bool) {
 
 // HasLastAuth returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasLastAuth() bool {
-	if o != nil && o.LastAuth != nil {
+	if o != nil && !IsNil(o.LastAuth) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *ApiAppUserView) SetLastName(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -266,7 +269,7 @@ func (o *ApiAppUserView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -274,7 +277,7 @@ func (o *ApiAppUserView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -336,7 +339,7 @@ func (o *ApiAppUserView) SetPassword(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetRoles() []ApiRoleAssignmentView {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []ApiRoleAssignmentView
 		return ret
 	}
@@ -346,7 +349,7 @@ func (o *ApiAppUserView) GetRoles() []ApiRoleAssignmentView {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -354,7 +357,7 @@ func (o *ApiAppUserView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -368,7 +371,7 @@ func (o *ApiAppUserView) SetRoles(v []ApiRoleAssignmentView) {
 
 // GetTeamIds returns the TeamIds field value if set, zero value otherwise.
 func (o *ApiAppUserView) GetTeamIds() []string {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		var ret []string
 		return ret
 	}
@@ -378,7 +381,7 @@ func (o *ApiAppUserView) GetTeamIds() []string {
 // GetTeamIdsOk returns a tuple with the TeamIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAppUserView) GetTeamIdsOk() ([]string, bool) {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		return nil, false
 	}
 	return o.TeamIds, true
@@ -386,7 +389,7 @@ func (o *ApiAppUserView) GetTeamIdsOk() ([]string, bool) {
 
 // HasTeamIds returns a boolean if a field has been set.
 func (o *ApiAppUserView) HasTeamIds() bool {
-	if o != nil && o.TeamIds != nil {
+	if o != nil && !IsNil(o.TeamIds) {
 		return true
 	}
 
@@ -423,47 +426,31 @@ func (o *ApiAppUserView) SetUsername(v string) {
 }
 
 func (o ApiAppUserView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["country"] = o.Country
-	}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["emailAddress"] = o.EmailAddress
-	}
-	if true {
-		toSerialize["firstName"] = o.FirstName
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.LastAuth != nil {
-		toSerialize["lastAuth"] = o.LastAuth
-	}
-	if true {
-		toSerialize["lastName"] = o.LastName
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["mobileNumber"] = o.MobileNumber
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.TeamIds != nil {
-		toSerialize["teamIds"] = o.TeamIds
-	}
-	if true {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAppUserView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["country"] = o.Country
+	// skip: createdAt is readOnly
+	toSerialize["emailAddress"] = o.EmailAddress
+	toSerialize["firstName"] = o.FirstName
+	// skip: id is readOnly
+	// skip: lastAuth is readOnly
+	toSerialize["lastName"] = o.LastName
+	// skip: links is readOnly
+	toSerialize["mobileNumber"] = o.MobileNumber
+	toSerialize["password"] = o.Password
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	// skip: teamIds is readOnly
+	toSerialize["username"] = o.Username
+	return toSerialize, nil
 }
 
 type NullableApiAppUserView struct {

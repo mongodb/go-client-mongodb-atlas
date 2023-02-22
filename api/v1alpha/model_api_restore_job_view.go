@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiRestoreJobView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiRestoreJobView{}
+
 // ApiRestoreJobView struct for ApiRestoreJobView
 type ApiRestoreJobView struct {
 	// Unique 24-hexadecimal digit string that identifies the batch to which this restore job belongs. This parameter exists only for a sharded cluster restore.
@@ -72,7 +75,7 @@ func NewApiRestoreJobViewWithDefaults() *ApiRestoreJobView {
 
 // GetBatchId returns the BatchId field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetBatchId() string {
-	if o == nil || o.BatchId == nil {
+	if o == nil || IsNil(o.BatchId) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ApiRestoreJobView) GetBatchId() string {
 // GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetBatchIdOk() (*string, bool) {
-	if o == nil || o.BatchId == nil {
+	if o == nil || IsNil(o.BatchId) {
 		return nil, false
 	}
 	return o.BatchId, true
@@ -90,7 +93,7 @@ func (o *ApiRestoreJobView) GetBatchIdOk() (*string, bool) {
 
 // HasBatchId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasBatchId() bool {
-	if o != nil && o.BatchId != nil {
+	if o != nil && !IsNil(o.BatchId) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *ApiRestoreJobView) SetBatchId(v string) {
 
 // GetCheckpointId returns the CheckpointId field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetCheckpointId() string {
-	if o == nil || o.CheckpointId == nil {
+	if o == nil || IsNil(o.CheckpointId) {
 		var ret string
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *ApiRestoreJobView) GetCheckpointId() string {
 // GetCheckpointIdOk returns a tuple with the CheckpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetCheckpointIdOk() (*string, bool) {
-	if o == nil || o.CheckpointId == nil {
+	if o == nil || IsNil(o.CheckpointId) {
 		return nil, false
 	}
 	return o.CheckpointId, true
@@ -122,7 +125,7 @@ func (o *ApiRestoreJobView) GetCheckpointIdOk() (*string, bool) {
 
 // HasCheckpointId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasCheckpointId() bool {
-	if o != nil && o.CheckpointId != nil {
+	if o != nil && !IsNil(o.CheckpointId) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *ApiRestoreJobView) SetCheckpointId(v string) {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -146,7 +149,7 @@ func (o *ApiRestoreJobView) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -154,7 +157,7 @@ func (o *ApiRestoreJobView) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *ApiRestoreJobView) SetClusterId(v string) {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -178,7 +181,7 @@ func (o *ApiRestoreJobView) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -186,7 +189,7 @@ func (o *ApiRestoreJobView) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *ApiRestoreJobView) SetClusterName(v string) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -210,7 +213,7 @@ func (o *ApiRestoreJobView) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -218,7 +221,7 @@ func (o *ApiRestoreJobView) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *ApiRestoreJobView) SetDelivery(v ApiRestoreJobDeliveryView) {
 
 // GetEncryptionEnabled returns the EncryptionEnabled field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetEncryptionEnabled() bool {
-	if o == nil || o.EncryptionEnabled == nil {
+	if o == nil || IsNil(o.EncryptionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -266,7 +269,7 @@ func (o *ApiRestoreJobView) GetEncryptionEnabled() bool {
 // GetEncryptionEnabledOk returns a tuple with the EncryptionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetEncryptionEnabledOk() (*bool, bool) {
-	if o == nil || o.EncryptionEnabled == nil {
+	if o == nil || IsNil(o.EncryptionEnabled) {
 		return nil, false
 	}
 	return o.EncryptionEnabled, true
@@ -274,7 +277,7 @@ func (o *ApiRestoreJobView) GetEncryptionEnabledOk() (*bool, bool) {
 
 // HasEncryptionEnabled returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasEncryptionEnabled() bool {
-	if o != nil && o.EncryptionEnabled != nil {
+	if o != nil && !IsNil(o.EncryptionEnabled) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *ApiRestoreJobView) SetEncryptionEnabled(v bool) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -298,7 +301,7 @@ func (o *ApiRestoreJobView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -306,7 +309,7 @@ func (o *ApiRestoreJobView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *ApiRestoreJobView) SetGroupId(v string) {
 
 // GetHashes returns the Hashes field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetHashes() []ApiRestoreJobFileHashView {
-	if o == nil || o.Hashes == nil {
+	if o == nil || IsNil(o.Hashes) {
 		var ret []ApiRestoreJobFileHashView
 		return ret
 	}
@@ -330,7 +333,7 @@ func (o *ApiRestoreJobView) GetHashes() []ApiRestoreJobFileHashView {
 // GetHashesOk returns a tuple with the Hashes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetHashesOk() ([]ApiRestoreJobFileHashView, bool) {
-	if o == nil || o.Hashes == nil {
+	if o == nil || IsNil(o.Hashes) {
 		return nil, false
 	}
 	return o.Hashes, true
@@ -338,7 +341,7 @@ func (o *ApiRestoreJobView) GetHashesOk() ([]ApiRestoreJobFileHashView, bool) {
 
 // HasHashes returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasHashes() bool {
-	if o != nil && o.Hashes != nil {
+	if o != nil && !IsNil(o.Hashes) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *ApiRestoreJobView) SetHashes(v []ApiRestoreJobFileHashView) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -362,7 +365,7 @@ func (o *ApiRestoreJobView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -370,7 +373,7 @@ func (o *ApiRestoreJobView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *ApiRestoreJobView) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -394,7 +397,7 @@ func (o *ApiRestoreJobView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -402,7 +405,7 @@ func (o *ApiRestoreJobView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *ApiRestoreJobView) SetLinks(v []Link) {
 
 // GetMasterKeyUUID returns the MasterKeyUUID field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetMasterKeyUUID() string {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		var ret string
 		return ret
 	}
@@ -426,7 +429,7 @@ func (o *ApiRestoreJobView) GetMasterKeyUUID() string {
 // GetMasterKeyUUIDOk returns a tuple with the MasterKeyUUID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetMasterKeyUUIDOk() (*string, bool) {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		return nil, false
 	}
 	return o.MasterKeyUUID, true
@@ -434,7 +437,7 @@ func (o *ApiRestoreJobView) GetMasterKeyUUIDOk() (*string, bool) {
 
 // HasMasterKeyUUID returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasMasterKeyUUID() bool {
-	if o != nil && o.MasterKeyUUID != nil {
+	if o != nil && !IsNil(o.MasterKeyUUID) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *ApiRestoreJobView) SetMasterKeyUUID(v string) {
 
 // GetOplogInc returns the OplogInc field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetOplogInc() int32 {
-	if o == nil || o.OplogInc == nil {
+	if o == nil || IsNil(o.OplogInc) {
 		var ret int32
 		return ret
 	}
@@ -458,7 +461,7 @@ func (o *ApiRestoreJobView) GetOplogInc() int32 {
 // GetOplogIncOk returns a tuple with the OplogInc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetOplogIncOk() (*int32, bool) {
-	if o == nil || o.OplogInc == nil {
+	if o == nil || IsNil(o.OplogInc) {
 		return nil, false
 	}
 	return o.OplogInc, true
@@ -466,7 +469,7 @@ func (o *ApiRestoreJobView) GetOplogIncOk() (*int32, bool) {
 
 // HasOplogInc returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasOplogInc() bool {
-	if o != nil && o.OplogInc != nil {
+	if o != nil && !IsNil(o.OplogInc) {
 		return true
 	}
 
@@ -480,7 +483,7 @@ func (o *ApiRestoreJobView) SetOplogInc(v int32) {
 
 // GetOplogTs returns the OplogTs field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetOplogTs() string {
-	if o == nil || o.OplogTs == nil {
+	if o == nil || IsNil(o.OplogTs) {
 		var ret string
 		return ret
 	}
@@ -490,7 +493,7 @@ func (o *ApiRestoreJobView) GetOplogTs() string {
 // GetOplogTsOk returns a tuple with the OplogTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetOplogTsOk() (*string, bool) {
-	if o == nil || o.OplogTs == nil {
+	if o == nil || IsNil(o.OplogTs) {
 		return nil, false
 	}
 	return o.OplogTs, true
@@ -498,7 +501,7 @@ func (o *ApiRestoreJobView) GetOplogTsOk() (*string, bool) {
 
 // HasOplogTs returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasOplogTs() bool {
-	if o != nil && o.OplogTs != nil {
+	if o != nil && !IsNil(o.OplogTs) {
 		return true
 	}
 
@@ -512,7 +515,7 @@ func (o *ApiRestoreJobView) SetOplogTs(v string) {
 
 // GetPointInTimeUTCMillis returns the PointInTimeUTCMillis field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetPointInTimeUTCMillis() int64 {
-	if o == nil || o.PointInTimeUTCMillis == nil {
+	if o == nil || IsNil(o.PointInTimeUTCMillis) {
 		var ret int64
 		return ret
 	}
@@ -522,7 +525,7 @@ func (o *ApiRestoreJobView) GetPointInTimeUTCMillis() int64 {
 // GetPointInTimeUTCMillisOk returns a tuple with the PointInTimeUTCMillis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetPointInTimeUTCMillisOk() (*int64, bool) {
-	if o == nil || o.PointInTimeUTCMillis == nil {
+	if o == nil || IsNil(o.PointInTimeUTCMillis) {
 		return nil, false
 	}
 	return o.PointInTimeUTCMillis, true
@@ -530,7 +533,7 @@ func (o *ApiRestoreJobView) GetPointInTimeUTCMillisOk() (*int64, bool) {
 
 // HasPointInTimeUTCMillis returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasPointInTimeUTCMillis() bool {
-	if o != nil && o.PointInTimeUTCMillis != nil {
+	if o != nil && !IsNil(o.PointInTimeUTCMillis) {
 		return true
 	}
 
@@ -544,7 +547,7 @@ func (o *ApiRestoreJobView) SetPointInTimeUTCMillis(v int64) {
 
 // GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetSnapshotId() string {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		var ret string
 		return ret
 	}
@@ -554,7 +557,7 @@ func (o *ApiRestoreJobView) GetSnapshotId() string {
 // GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetSnapshotIdOk() (*string, bool) {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		return nil, false
 	}
 	return o.SnapshotId, true
@@ -562,7 +565,7 @@ func (o *ApiRestoreJobView) GetSnapshotIdOk() (*string, bool) {
 
 // HasSnapshotId returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasSnapshotId() bool {
-	if o != nil && o.SnapshotId != nil {
+	if o != nil && !IsNil(o.SnapshotId) {
 		return true
 	}
 
@@ -576,7 +579,7 @@ func (o *ApiRestoreJobView) SetSnapshotId(v string) {
 
 // GetStatusName returns the StatusName field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetStatusName() string {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		var ret string
 		return ret
 	}
@@ -586,7 +589,7 @@ func (o *ApiRestoreJobView) GetStatusName() string {
 // GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetStatusNameOk() (*string, bool) {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		return nil, false
 	}
 	return o.StatusName, true
@@ -594,7 +597,7 @@ func (o *ApiRestoreJobView) GetStatusNameOk() (*string, bool) {
 
 // HasStatusName returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasStatusName() bool {
-	if o != nil && o.StatusName != nil {
+	if o != nil && !IsNil(o.StatusName) {
 		return true
 	}
 
@@ -608,7 +611,7 @@ func (o *ApiRestoreJobView) SetStatusName(v string) {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ApiRestoreJobView) GetTimestamp() ApiBSONTimestampView {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret ApiBSONTimestampView
 		return ret
 	}
@@ -618,7 +621,7 @@ func (o *ApiRestoreJobView) GetTimestamp() ApiBSONTimestampView {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobView) GetTimestampOk() (*ApiBSONTimestampView, bool) {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
@@ -626,7 +629,7 @@ func (o *ApiRestoreJobView) GetTimestampOk() (*ApiBSONTimestampView, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ApiRestoreJobView) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -639,62 +642,46 @@ func (o *ApiRestoreJobView) SetTimestamp(v ApiBSONTimestampView) {
 }
 
 func (o ApiRestoreJobView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BatchId != nil {
-		toSerialize["batchId"] = o.BatchId
-	}
-	if o.CheckpointId != nil {
-		toSerialize["checkpointId"] = o.CheckpointId
-	}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["delivery"] = o.Delivery
-	}
-	if o.EncryptionEnabled != nil {
-		toSerialize["encryptionEnabled"] = o.EncryptionEnabled
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Hashes != nil {
-		toSerialize["hashes"] = o.Hashes
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MasterKeyUUID != nil {
-		toSerialize["masterKeyUUID"] = o.MasterKeyUUID
-	}
-	if o.OplogInc != nil {
-		toSerialize["oplogInc"] = o.OplogInc
-	}
-	if o.OplogTs != nil {
-		toSerialize["oplogTs"] = o.OplogTs
-	}
-	if o.PointInTimeUTCMillis != nil {
-		toSerialize["pointInTimeUTCMillis"] = o.PointInTimeUTCMillis
-	}
-	if o.SnapshotId != nil {
-		toSerialize["snapshotId"] = o.SnapshotId
-	}
-	if o.StatusName != nil {
-		toSerialize["statusName"] = o.StatusName
-	}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiRestoreJobView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: batchId is readOnly
+	if !IsNil(o.CheckpointId) {
+		toSerialize["checkpointId"] = o.CheckpointId
+	}
+	// skip: clusterId is readOnly
+	// skip: clusterName is readOnly
+	// skip: created is readOnly
+	toSerialize["delivery"] = o.Delivery
+	// skip: encryptionEnabled is readOnly
+	// skip: groupId is readOnly
+	// skip: hashes is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: masterKeyUUID is readOnly
+	if !IsNil(o.OplogInc) {
+		toSerialize["oplogInc"] = o.OplogInc
+	}
+	if !IsNil(o.OplogTs) {
+		toSerialize["oplogTs"] = o.OplogTs
+	}
+	if !IsNil(o.PointInTimeUTCMillis) {
+		toSerialize["pointInTimeUTCMillis"] = o.PointInTimeUTCMillis
+	}
+	if !IsNil(o.SnapshotId) {
+		toSerialize["snapshotId"] = o.SnapshotId
+	}
+	// skip: statusName is readOnly
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	return toSerialize, nil
 }
 
 type NullableApiRestoreJobView struct {

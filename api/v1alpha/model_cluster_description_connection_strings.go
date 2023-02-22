@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterDescriptionConnectionStrings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterDescriptionConnectionStrings{}
+
 // ClusterDescriptionConnectionStrings Collection of Uniform Resource Locators that point to the MongoDB database.
 type ClusterDescriptionConnectionStrings struct {
 	// Private endpoint-aware connection strings that use AWS-hosted clusters with Amazon Web Services (AWS) PrivateLink. Each key identifies an Amazon Web Services (AWS) interface endpoint. Each value identifies the related `mongodb://` connection string that you use to connect to MongoDB Cloud through the interface endpoint that the key names.
@@ -51,7 +54,7 @@ func NewClusterDescriptionConnectionStringsWithDefaults() *ClusterDescriptionCon
 
 // GetAwsPrivateLink returns the AwsPrivateLink field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLink() map[string]string {
-	if o == nil || o.AwsPrivateLink == nil {
+	if o == nil || IsNil(o.AwsPrivateLink) {
 		var ret map[string]string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLink() map[string]str
 // GetAwsPrivateLinkOk returns a tuple with the AwsPrivateLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkOk() (*map[string]string, bool) {
-	if o == nil || o.AwsPrivateLink == nil {
+	if o == nil || IsNil(o.AwsPrivateLink) {
 		return nil, false
 	}
 	return o.AwsPrivateLink, true
@@ -69,7 +72,7 @@ func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkOk() (*map[string
 
 // HasAwsPrivateLink returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasAwsPrivateLink() bool {
-	if o != nil && o.AwsPrivateLink != nil {
+	if o != nil && !IsNil(o.AwsPrivateLink) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *ClusterDescriptionConnectionStrings) SetAwsPrivateLink(v map[string]str
 
 // GetAwsPrivateLinkSrv returns the AwsPrivateLinkSrv field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkSrv() map[string]string {
-	if o == nil || o.AwsPrivateLinkSrv == nil {
+	if o == nil || IsNil(o.AwsPrivateLinkSrv) {
 		var ret map[string]string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkSrv() map[string]
 // GetAwsPrivateLinkSrvOk returns a tuple with the AwsPrivateLinkSrv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkSrvOk() (*map[string]string, bool) {
-	if o == nil || o.AwsPrivateLinkSrv == nil {
+	if o == nil || IsNil(o.AwsPrivateLinkSrv) {
 		return nil, false
 	}
 	return o.AwsPrivateLinkSrv, true
@@ -101,7 +104,7 @@ func (o *ClusterDescriptionConnectionStrings) GetAwsPrivateLinkSrvOk() (*map[str
 
 // HasAwsPrivateLinkSrv returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasAwsPrivateLinkSrv() bool {
-	if o != nil && o.AwsPrivateLinkSrv != nil {
+	if o != nil && !IsNil(o.AwsPrivateLinkSrv) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *ClusterDescriptionConnectionStrings) SetAwsPrivateLinkSrv(v map[string]
 
 // GetPrivate returns the Private field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetPrivate() string {
-	if o == nil || o.Private == nil {
+	if o == nil || IsNil(o.Private) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivate() string {
 // GetPrivateOk returns a tuple with the Private field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetPrivateOk() (*string, bool) {
-	if o == nil || o.Private == nil {
+	if o == nil || IsNil(o.Private) {
 		return nil, false
 	}
 	return o.Private, true
@@ -133,7 +136,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivateOk() (*string, bool) {
 
 // HasPrivate returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasPrivate() bool {
-	if o != nil && o.Private != nil {
+	if o != nil && !IsNil(o.Private) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *ClusterDescriptionConnectionStrings) SetPrivate(v string) {
 
 // GetPrivateEndpoint returns the PrivateEndpoint field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetPrivateEndpoint() []ClusterDescriptionConnectionStringsPrivateEndpoint {
-	if o == nil || o.PrivateEndpoint == nil {
+	if o == nil || IsNil(o.PrivateEndpoint) {
 		var ret []ClusterDescriptionConnectionStringsPrivateEndpoint
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivateEndpoint() []ClusterDesc
 // GetPrivateEndpointOk returns a tuple with the PrivateEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetPrivateEndpointOk() ([]ClusterDescriptionConnectionStringsPrivateEndpoint, bool) {
-	if o == nil || o.PrivateEndpoint == nil {
+	if o == nil || IsNil(o.PrivateEndpoint) {
 		return nil, false
 	}
 	return o.PrivateEndpoint, true
@@ -165,7 +168,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivateEndpointOk() ([]ClusterD
 
 // HasPrivateEndpoint returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasPrivateEndpoint() bool {
-	if o != nil && o.PrivateEndpoint != nil {
+	if o != nil && !IsNil(o.PrivateEndpoint) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *ClusterDescriptionConnectionStrings) SetPrivateEndpoint(v []ClusterDesc
 
 // GetPrivateSrv returns the PrivateSrv field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetPrivateSrv() string {
-	if o == nil || o.PrivateSrv == nil {
+	if o == nil || IsNil(o.PrivateSrv) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivateSrv() string {
 // GetPrivateSrvOk returns a tuple with the PrivateSrv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetPrivateSrvOk() (*string, bool) {
-	if o == nil || o.PrivateSrv == nil {
+	if o == nil || IsNil(o.PrivateSrv) {
 		return nil, false
 	}
 	return o.PrivateSrv, true
@@ -197,7 +200,7 @@ func (o *ClusterDescriptionConnectionStrings) GetPrivateSrvOk() (*string, bool) 
 
 // HasPrivateSrv returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasPrivateSrv() bool {
-	if o != nil && o.PrivateSrv != nil {
+	if o != nil && !IsNil(o.PrivateSrv) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *ClusterDescriptionConnectionStrings) SetPrivateSrv(v string) {
 
 // GetStandard returns the Standard field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetStandard() string {
-	if o == nil || o.Standard == nil {
+	if o == nil || IsNil(o.Standard) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *ClusterDescriptionConnectionStrings) GetStandard() string {
 // GetStandardOk returns a tuple with the Standard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetStandardOk() (*string, bool) {
-	if o == nil || o.Standard == nil {
+	if o == nil || IsNil(o.Standard) {
 		return nil, false
 	}
 	return o.Standard, true
@@ -229,7 +232,7 @@ func (o *ClusterDescriptionConnectionStrings) GetStandardOk() (*string, bool) {
 
 // HasStandard returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasStandard() bool {
-	if o != nil && o.Standard != nil {
+	if o != nil && !IsNil(o.Standard) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *ClusterDescriptionConnectionStrings) SetStandard(v string) {
 
 // GetStandardSrv returns the StandardSrv field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStrings) GetStandardSrv() string {
-	if o == nil || o.StandardSrv == nil {
+	if o == nil || IsNil(o.StandardSrv) {
 		var ret string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *ClusterDescriptionConnectionStrings) GetStandardSrv() string {
 // GetStandardSrvOk returns a tuple with the StandardSrv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStrings) GetStandardSrvOk() (*string, bool) {
-	if o == nil || o.StandardSrv == nil {
+	if o == nil || IsNil(o.StandardSrv) {
 		return nil, false
 	}
 	return o.StandardSrv, true
@@ -261,7 +264,7 @@ func (o *ClusterDescriptionConnectionStrings) GetStandardSrvOk() (*string, bool)
 
 // HasStandardSrv returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStrings) HasStandardSrv() bool {
-	if o != nil && o.StandardSrv != nil {
+	if o != nil && !IsNil(o.StandardSrv) {
 		return true
 	}
 
@@ -274,29 +277,23 @@ func (o *ClusterDescriptionConnectionStrings) SetStandardSrv(v string) {
 }
 
 func (o ClusterDescriptionConnectionStrings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AwsPrivateLink != nil {
-		toSerialize["awsPrivateLink"] = o.AwsPrivateLink
-	}
-	if o.AwsPrivateLinkSrv != nil {
-		toSerialize["awsPrivateLinkSrv"] = o.AwsPrivateLinkSrv
-	}
-	if o.Private != nil {
-		toSerialize["private"] = o.Private
-	}
-	if o.PrivateEndpoint != nil {
-		toSerialize["privateEndpoint"] = o.PrivateEndpoint
-	}
-	if o.PrivateSrv != nil {
-		toSerialize["privateSrv"] = o.PrivateSrv
-	}
-	if o.Standard != nil {
-		toSerialize["standard"] = o.Standard
-	}
-	if o.StandardSrv != nil {
-		toSerialize["standardSrv"] = o.StandardSrv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterDescriptionConnectionStrings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: awsPrivateLink is readOnly
+	// skip: awsPrivateLinkSrv is readOnly
+	// skip: private is readOnly
+	// skip: privateEndpoint is readOnly
+	// skip: privateSrv is readOnly
+	// skip: standard is readOnly
+	// skip: standardSrv is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterDescriptionConnectionStrings struct {

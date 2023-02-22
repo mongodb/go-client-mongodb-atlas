@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiUserAccessListView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiUserAccessListView{}
+
 // ApiUserAccessListView struct for ApiUserAccessListView
 type ApiUserAccessListView struct {
 	// Range of network addresses that you want to add to the access list for the API key. This parameter requires the range to be expressed in classless inter-domain routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or **ipAddress** but not both in the same request.
@@ -52,7 +55,7 @@ func NewApiUserAccessListViewWithDefaults() *ApiUserAccessListView {
 
 // GetCidrBlock returns the CidrBlock field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetCidrBlock() string {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		var ret string
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *ApiUserAccessListView) GetCidrBlock() string {
 // GetCidrBlockOk returns a tuple with the CidrBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetCidrBlockOk() (*string, bool) {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		return nil, false
 	}
 	return o.CidrBlock, true
@@ -70,7 +73,7 @@ func (o *ApiUserAccessListView) GetCidrBlockOk() (*string, bool) {
 
 // HasCidrBlock returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasCidrBlock() bool {
-	if o != nil && o.CidrBlock != nil {
+	if o != nil && !IsNil(o.CidrBlock) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *ApiUserAccessListView) SetCidrBlock(v string) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetCount() int32 {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -94,7 +97,7 @@ func (o *ApiUserAccessListView) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetCountOk() (*int32, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -102,7 +105,7 @@ func (o *ApiUserAccessListView) GetCountOk() (*int32, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *ApiUserAccessListView) SetCount(v int32) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -126,7 +129,7 @@ func (o *ApiUserAccessListView) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -134,7 +137,7 @@ func (o *ApiUserAccessListView) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *ApiUserAccessListView) SetCreated(v time.Time) {
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetIpAddress() string {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		var ret string
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *ApiUserAccessListView) GetIpAddress() string {
 // GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetIpAddressOk() (*string, bool) {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		return nil, false
 	}
 	return o.IpAddress, true
@@ -166,7 +169,7 @@ func (o *ApiUserAccessListView) GetIpAddressOk() (*string, bool) {
 
 // HasIpAddress returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasIpAddress() bool {
-	if o != nil && o.IpAddress != nil {
+	if o != nil && !IsNil(o.IpAddress) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *ApiUserAccessListView) SetIpAddress(v string) {
 
 // GetLastUsed returns the LastUsed field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetLastUsed() time.Time {
-	if o == nil || o.LastUsed == nil {
+	if o == nil || IsNil(o.LastUsed) {
 		var ret time.Time
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *ApiUserAccessListView) GetLastUsed() time.Time {
 // GetLastUsedOk returns a tuple with the LastUsed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetLastUsedOk() (*time.Time, bool) {
-	if o == nil || o.LastUsed == nil {
+	if o == nil || IsNil(o.LastUsed) {
 		return nil, false
 	}
 	return o.LastUsed, true
@@ -198,7 +201,7 @@ func (o *ApiUserAccessListView) GetLastUsedOk() (*time.Time, bool) {
 
 // HasLastUsed returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasLastUsed() bool {
-	if o != nil && o.LastUsed != nil {
+	if o != nil && !IsNil(o.LastUsed) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *ApiUserAccessListView) SetLastUsed(v time.Time) {
 
 // GetLastUsedAddress returns the LastUsedAddress field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetLastUsedAddress() string {
-	if o == nil || o.LastUsedAddress == nil {
+	if o == nil || IsNil(o.LastUsedAddress) {
 		var ret string
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *ApiUserAccessListView) GetLastUsedAddress() string {
 // GetLastUsedAddressOk returns a tuple with the LastUsedAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetLastUsedAddressOk() (*string, bool) {
-	if o == nil || o.LastUsedAddress == nil {
+	if o == nil || IsNil(o.LastUsedAddress) {
 		return nil, false
 	}
 	return o.LastUsedAddress, true
@@ -230,7 +233,7 @@ func (o *ApiUserAccessListView) GetLastUsedAddressOk() (*string, bool) {
 
 // HasLastUsedAddress returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasLastUsedAddress() bool {
-	if o != nil && o.LastUsedAddress != nil {
+	if o != nil && !IsNil(o.LastUsedAddress) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *ApiUserAccessListView) SetLastUsedAddress(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiUserAccessListView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -254,7 +257,7 @@ func (o *ApiUserAccessListView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserAccessListView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -262,7 +265,7 @@ func (o *ApiUserAccessListView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiUserAccessListView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -275,29 +278,27 @@ func (o *ApiUserAccessListView) SetLinks(v []Link) {
 }
 
 func (o ApiUserAccessListView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CidrBlock != nil {
-		toSerialize["cidrBlock"] = o.CidrBlock
-	}
-	if o.Count != nil {
-		toSerialize["count"] = o.Count
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.IpAddress != nil {
-		toSerialize["ipAddress"] = o.IpAddress
-	}
-	if o.LastUsed != nil {
-		toSerialize["lastUsed"] = o.LastUsed
-	}
-	if o.LastUsedAddress != nil {
-		toSerialize["lastUsedAddress"] = o.LastUsedAddress
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiUserAccessListView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CidrBlock) {
+		toSerialize["cidrBlock"] = o.CidrBlock
+	}
+	// skip: count is readOnly
+	// skip: created is readOnly
+	if !IsNil(o.IpAddress) {
+		toSerialize["ipAddress"] = o.IpAddress
+	}
+	// skip: lastUsed is readOnly
+	// skip: lastUsedAddress is readOnly
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiUserAccessListView struct {

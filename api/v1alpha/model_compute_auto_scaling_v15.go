@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ComputeAutoScalingV15 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ComputeAutoScalingV15{}
+
 // ComputeAutoScalingV15 Options that determine how this cluster handles CPU scaling.
 type ComputeAutoScalingV15 struct {
 	// Flag that indicates whether someone enabled instance size auto-scaling.  - Set to `true` to enable instance size auto-scaling. If enabled, you must specify a value for **replicationSpecs[n].regionConfigs[m].autoScaling.compute.maxInstanceSize**. - Set to `false` to disable instance size automatic scaling.
@@ -43,7 +46,7 @@ func NewComputeAutoScalingV15WithDefaults() *ComputeAutoScalingV15 {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *ComputeAutoScalingV15) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ComputeAutoScalingV15) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComputeAutoScalingV15) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -61,7 +64,7 @@ func (o *ComputeAutoScalingV15) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *ComputeAutoScalingV15) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ComputeAutoScalingV15) SetEnabled(v bool) {
 
 // GetMaxInstanceSize returns the MaxInstanceSize field value if set, zero value otherwise.
 func (o *ComputeAutoScalingV15) GetMaxInstanceSize() InstanceSize {
-	if o == nil || o.MaxInstanceSize == nil {
+	if o == nil || IsNil(o.MaxInstanceSize) {
 		var ret InstanceSize
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ComputeAutoScalingV15) GetMaxInstanceSize() InstanceSize {
 // GetMaxInstanceSizeOk returns a tuple with the MaxInstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComputeAutoScalingV15) GetMaxInstanceSizeOk() (*InstanceSize, bool) {
-	if o == nil || o.MaxInstanceSize == nil {
+	if o == nil || IsNil(o.MaxInstanceSize) {
 		return nil, false
 	}
 	return o.MaxInstanceSize, true
@@ -93,7 +96,7 @@ func (o *ComputeAutoScalingV15) GetMaxInstanceSizeOk() (*InstanceSize, bool) {
 
 // HasMaxInstanceSize returns a boolean if a field has been set.
 func (o *ComputeAutoScalingV15) HasMaxInstanceSize() bool {
-	if o != nil && o.MaxInstanceSize != nil {
+	if o != nil && !IsNil(o.MaxInstanceSize) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ComputeAutoScalingV15) SetMaxInstanceSize(v InstanceSize) {
 
 // GetMinInstanceSize returns the MinInstanceSize field value if set, zero value otherwise.
 func (o *ComputeAutoScalingV15) GetMinInstanceSize() InstanceSize {
-	if o == nil || o.MinInstanceSize == nil {
+	if o == nil || IsNil(o.MinInstanceSize) {
 		var ret InstanceSize
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ComputeAutoScalingV15) GetMinInstanceSize() InstanceSize {
 // GetMinInstanceSizeOk returns a tuple with the MinInstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComputeAutoScalingV15) GetMinInstanceSizeOk() (*InstanceSize, bool) {
-	if o == nil || o.MinInstanceSize == nil {
+	if o == nil || IsNil(o.MinInstanceSize) {
 		return nil, false
 	}
 	return o.MinInstanceSize, true
@@ -125,7 +128,7 @@ func (o *ComputeAutoScalingV15) GetMinInstanceSizeOk() (*InstanceSize, bool) {
 
 // HasMinInstanceSize returns a boolean if a field has been set.
 func (o *ComputeAutoScalingV15) HasMinInstanceSize() bool {
-	if o != nil && o.MinInstanceSize != nil {
+	if o != nil && !IsNil(o.MinInstanceSize) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *ComputeAutoScalingV15) SetMinInstanceSize(v InstanceSize) {
 
 // GetScaleDownEnabled returns the ScaleDownEnabled field value if set, zero value otherwise.
 func (o *ComputeAutoScalingV15) GetScaleDownEnabled() bool {
-	if o == nil || o.ScaleDownEnabled == nil {
+	if o == nil || IsNil(o.ScaleDownEnabled) {
 		var ret bool
 		return ret
 	}
@@ -149,7 +152,7 @@ func (o *ComputeAutoScalingV15) GetScaleDownEnabled() bool {
 // GetScaleDownEnabledOk returns a tuple with the ScaleDownEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComputeAutoScalingV15) GetScaleDownEnabledOk() (*bool, bool) {
-	if o == nil || o.ScaleDownEnabled == nil {
+	if o == nil || IsNil(o.ScaleDownEnabled) {
 		return nil, false
 	}
 	return o.ScaleDownEnabled, true
@@ -157,7 +160,7 @@ func (o *ComputeAutoScalingV15) GetScaleDownEnabledOk() (*bool, bool) {
 
 // HasScaleDownEnabled returns a boolean if a field has been set.
 func (o *ComputeAutoScalingV15) HasScaleDownEnabled() bool {
-	if o != nil && o.ScaleDownEnabled != nil {
+	if o != nil && !IsNil(o.ScaleDownEnabled) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *ComputeAutoScalingV15) SetScaleDownEnabled(v bool) {
 }
 
 func (o ComputeAutoScalingV15) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.MaxInstanceSize != nil {
-		toSerialize["maxInstanceSize"] = o.MaxInstanceSize
-	}
-	if o.MinInstanceSize != nil {
-		toSerialize["minInstanceSize"] = o.MinInstanceSize
-	}
-	if o.ScaleDownEnabled != nil {
-		toSerialize["scaleDownEnabled"] = o.ScaleDownEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ComputeAutoScalingV15) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.MaxInstanceSize) {
+		toSerialize["maxInstanceSize"] = o.MaxInstanceSize
+	}
+	if !IsNil(o.MinInstanceSize) {
+		toSerialize["minInstanceSize"] = o.MinInstanceSize
+	}
+	if !IsNil(o.ScaleDownEnabled) {
+		toSerialize["scaleDownEnabled"] = o.ScaleDownEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableComputeAutoScalingV15 struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeCloudProviderConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeCloudProviderConfig{}
+
 // DataLakeCloudProviderConfig Cloud provider linked to this data lake.
 type DataLakeCloudProviderConfig struct {
 	Aws DataLakeAWSCloudProviderConfig `json:"aws"`
@@ -61,11 +64,17 @@ func (o *DataLakeCloudProviderConfig) SetAws(v DataLakeAWSCloudProviderConfig) {
 }
 
 func (o DataLakeCloudProviderConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["aws"] = o.Aws
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeCloudProviderConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["aws"] = o.Aws
+	return toSerialize, nil
 }
 
 type NullableDataLakeCloudProviderConfig struct {

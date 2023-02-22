@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskBackupExportJobRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupExportJobRequest{}
+
 // DiskBackupExportJobRequest struct for DiskBackupExportJobRequest
 type DiskBackupExportJobRequest struct {
 	// Collection of key-value pairs that represent custom data to add to the metadata file that MongoDB Cloud uploads to the bucket when the export job finishes.
@@ -45,7 +48,7 @@ func NewDiskBackupExportJobRequestWithDefaults() *DiskBackupExportJobRequest {
 
 // GetCustomData returns the CustomData field value if set, zero value otherwise.
 func (o *DiskBackupExportJobRequest) GetCustomData() []Label {
-	if o == nil || o.CustomData == nil {
+	if o == nil || IsNil(o.CustomData) {
 		var ret []Label
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *DiskBackupExportJobRequest) GetCustomData() []Label {
 // GetCustomDataOk returns a tuple with the CustomData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJobRequest) GetCustomDataOk() ([]Label, bool) {
-	if o == nil || o.CustomData == nil {
+	if o == nil || IsNil(o.CustomData) {
 		return nil, false
 	}
 	return o.CustomData, true
@@ -63,7 +66,7 @@ func (o *DiskBackupExportJobRequest) GetCustomDataOk() ([]Label, bool) {
 
 // HasCustomData returns a boolean if a field has been set.
 func (o *DiskBackupExportJobRequest) HasCustomData() bool {
-	if o != nil && o.CustomData != nil {
+	if o != nil && !IsNil(o.CustomData) {
 		return true
 	}
 
@@ -101,7 +104,7 @@ func (o *DiskBackupExportJobRequest) SetExportBucketId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DiskBackupExportJobRequest) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -111,7 +114,7 @@ func (o *DiskBackupExportJobRequest) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJobRequest) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -119,7 +122,7 @@ func (o *DiskBackupExportJobRequest) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DiskBackupExportJobRequest) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -156,20 +159,22 @@ func (o *DiskBackupExportJobRequest) SetSnapshotId(v string) {
 }
 
 func (o DiskBackupExportJobRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CustomData != nil {
-		toSerialize["customData"] = o.CustomData
-	}
-	if true {
-		toSerialize["exportBucketId"] = o.ExportBucketId
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["snapshotId"] = o.SnapshotId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupExportJobRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CustomData) {
+		toSerialize["customData"] = o.CustomData
+	}
+	toSerialize["exportBucketId"] = o.ExportBucketId
+	// skip: links is readOnly
+	toSerialize["snapshotId"] = o.SnapshotId
+	return toSerialize, nil
 }
 
 type NullableDiskBackupExportJobRequest struct {

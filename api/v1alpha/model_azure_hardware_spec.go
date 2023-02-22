@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzureHardwareSpec type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureHardwareSpec{}
+
 // AzureHardwareSpec struct for AzureHardwareSpec
 type AzureHardwareSpec struct {
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
@@ -41,7 +44,7 @@ func NewAzureHardwareSpecWithDefaults() *AzureHardwareSpec {
 
 // GetInstanceSize returns the InstanceSize field value if set, zero value otherwise.
 func (o *AzureHardwareSpec) GetInstanceSize() string {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *AzureHardwareSpec) GetInstanceSize() string {
 // GetInstanceSizeOk returns a tuple with the InstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureHardwareSpec) GetInstanceSizeOk() (*string, bool) {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		return nil, false
 	}
 	return o.InstanceSize, true
@@ -59,7 +62,7 @@ func (o *AzureHardwareSpec) GetInstanceSizeOk() (*string, bool) {
 
 // HasInstanceSize returns a boolean if a field has been set.
 func (o *AzureHardwareSpec) HasInstanceSize() bool {
-	if o != nil && o.InstanceSize != nil {
+	if o != nil && !IsNil(o.InstanceSize) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *AzureHardwareSpec) SetInstanceSize(v string) {
 
 // GetNodeCount returns the NodeCount field value if set, zero value otherwise.
 func (o *AzureHardwareSpec) GetNodeCount() int32 {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		var ret int32
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *AzureHardwareSpec) GetNodeCount() int32 {
 // GetNodeCountOk returns a tuple with the NodeCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureHardwareSpec) GetNodeCountOk() (*int32, bool) {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		return nil, false
 	}
 	return o.NodeCount, true
@@ -91,7 +94,7 @@ func (o *AzureHardwareSpec) GetNodeCountOk() (*int32, bool) {
 
 // HasNodeCount returns a boolean if a field has been set.
 func (o *AzureHardwareSpec) HasNodeCount() bool {
-	if o != nil && o.NodeCount != nil {
+	if o != nil && !IsNil(o.NodeCount) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *AzureHardwareSpec) SetNodeCount(v int32) {
 }
 
 func (o AzureHardwareSpec) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.InstanceSize != nil {
-		toSerialize["instanceSize"] = o.InstanceSize
-	}
-	if o.NodeCount != nil {
-		toSerialize["nodeCount"] = o.NodeCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzureHardwareSpec) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InstanceSize) {
+		toSerialize["instanceSize"] = o.InstanceSize
+	}
+	if !IsNil(o.NodeCount) {
+		toSerialize["nodeCount"] = o.NodeCount
+	}
+	return toSerialize, nil
 }
 
 type NullableAzureHardwareSpec struct {

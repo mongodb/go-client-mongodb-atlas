@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeDatabase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeDatabase{}
+
 // DataLakeDatabase Database associated with this data lake. Databases contain collections and views.
 type DataLakeDatabase struct {
 	// Array of collections and data sources that map to a ``stores`` data store.
@@ -49,7 +52,7 @@ func NewDataLakeDatabaseWithDefaults() *DataLakeDatabase {
 
 // GetCollections returns the Collections field value if set, zero value otherwise.
 func (o *DataLakeDatabase) GetCollections() []DataLakeDatabaseCollection {
-	if o == nil || o.Collections == nil {
+	if o == nil || IsNil(o.Collections) {
 		var ret []DataLakeDatabaseCollection
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *DataLakeDatabase) GetCollections() []DataLakeDatabaseCollection {
 // GetCollectionsOk returns a tuple with the Collections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabase) GetCollectionsOk() ([]DataLakeDatabaseCollection, bool) {
-	if o == nil || o.Collections == nil {
+	if o == nil || IsNil(o.Collections) {
 		return nil, false
 	}
 	return o.Collections, true
@@ -67,7 +70,7 @@ func (o *DataLakeDatabase) GetCollectionsOk() ([]DataLakeDatabaseCollection, boo
 
 // HasCollections returns a boolean if a field has been set.
 func (o *DataLakeDatabase) HasCollections() bool {
-	if o != nil && o.Collections != nil {
+	if o != nil && !IsNil(o.Collections) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *DataLakeDatabase) SetCollections(v []DataLakeDatabaseCollection) {
 
 // GetMaxWildcardCollections returns the MaxWildcardCollections field value if set, zero value otherwise.
 func (o *DataLakeDatabase) GetMaxWildcardCollections() int32 {
-	if o == nil || o.MaxWildcardCollections == nil {
+	if o == nil || IsNil(o.MaxWildcardCollections) {
 		var ret int32
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *DataLakeDatabase) GetMaxWildcardCollections() int32 {
 // GetMaxWildcardCollectionsOk returns a tuple with the MaxWildcardCollections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabase) GetMaxWildcardCollectionsOk() (*int32, bool) {
-	if o == nil || o.MaxWildcardCollections == nil {
+	if o == nil || IsNil(o.MaxWildcardCollections) {
 		return nil, false
 	}
 	return o.MaxWildcardCollections, true
@@ -99,7 +102,7 @@ func (o *DataLakeDatabase) GetMaxWildcardCollectionsOk() (*int32, bool) {
 
 // HasMaxWildcardCollections returns a boolean if a field has been set.
 func (o *DataLakeDatabase) HasMaxWildcardCollections() bool {
-	if o != nil && o.MaxWildcardCollections != nil {
+	if o != nil && !IsNil(o.MaxWildcardCollections) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *DataLakeDatabase) SetMaxWildcardCollections(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeDatabase) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *DataLakeDatabase) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabase) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -131,7 +134,7 @@ func (o *DataLakeDatabase) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeDatabase) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *DataLakeDatabase) SetName(v string) {
 
 // GetViews returns the Views field value if set, zero value otherwise.
 func (o *DataLakeDatabase) GetViews() []DataLakeView {
-	if o == nil || o.Views == nil {
+	if o == nil || IsNil(o.Views) {
 		var ret []DataLakeView
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *DataLakeDatabase) GetViews() []DataLakeView {
 // GetViewsOk returns a tuple with the Views field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabase) GetViewsOk() ([]DataLakeView, bool) {
-	if o == nil || o.Views == nil {
+	if o == nil || IsNil(o.Views) {
 		return nil, false
 	}
 	return o.Views, true
@@ -163,7 +166,7 @@ func (o *DataLakeDatabase) GetViewsOk() ([]DataLakeView, bool) {
 
 // HasViews returns a boolean if a field has been set.
 func (o *DataLakeDatabase) HasViews() bool {
-	if o != nil && o.Views != nil {
+	if o != nil && !IsNil(o.Views) {
 		return true
 	}
 
@@ -176,20 +179,28 @@ func (o *DataLakeDatabase) SetViews(v []DataLakeView) {
 }
 
 func (o DataLakeDatabase) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Collections != nil {
-		toSerialize["collections"] = o.Collections
-	}
-	if o.MaxWildcardCollections != nil {
-		toSerialize["maxWildcardCollections"] = o.MaxWildcardCollections
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Views != nil {
-		toSerialize["views"] = o.Views
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeDatabase) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Collections) {
+		toSerialize["collections"] = o.Collections
+	}
+	if !IsNil(o.MaxWildcardCollections) {
+		toSerialize["maxWildcardCollections"] = o.MaxWildcardCollections
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Views) {
+		toSerialize["views"] = o.Views
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeDatabase struct {

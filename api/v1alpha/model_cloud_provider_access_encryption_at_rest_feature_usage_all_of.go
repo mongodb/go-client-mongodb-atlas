@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessEncryptionAtRestFeatureUsageAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessEncryptionAtRestFeatureUsageAllOf{}
+
 // CloudProviderAccessEncryptionAtRestFeatureUsageAllOf struct for CloudProviderAccessEncryptionAtRestFeatureUsageAllOf
 type CloudProviderAccessEncryptionAtRestFeatureUsageAllOf struct {
 	// Object that contains the identifying characteristics of the Amazon Web Services (AWS) Key Management Service (KMS). This field always returns a null value.
@@ -50,15 +53,15 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) GetFeatureId() ma
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) GetFeatureIdOk() (map[string]interface{}, bool) {
-	if o == nil || o.FeatureId == nil {
-		return nil, false
+	if o == nil || IsNil(o.FeatureId) {
+		return map[string]interface{}{}, false
 	}
 	return o.FeatureId, true
 }
 
 // HasFeatureId returns a boolean if a field has been set.
 func (o *CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) HasFeatureId() bool {
-	if o != nil && o.FeatureId != nil {
+	if o != nil && IsNil(o.FeatureId) {
 		return true
 	}
 
@@ -71,11 +74,19 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) SetFeatureId(v ma
 }
 
 func (o CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessEncryptionAtRestFeatureUsageAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FeatureId != nil {
 		toSerialize["featureId"] = o.FeatureId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessEncryptionAtRestFeatureUsageAllOf struct {

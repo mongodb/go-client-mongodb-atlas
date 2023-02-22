@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiIndexRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiIndexRequestView{}
+
 // ApiIndexRequestView struct for ApiIndexRequestView
 type ApiIndexRequestView struct {
 	Collation *Collation `json:"collation,omitempty"`
@@ -45,7 +48,7 @@ func NewApiIndexRequestViewWithDefaults() *ApiIndexRequestView {
 
 // GetCollation returns the Collation field value if set, zero value otherwise.
 func (o *ApiIndexRequestView) GetCollation() Collation {
-	if o == nil || o.Collation == nil {
+	if o == nil || IsNil(o.Collation) {
 		var ret Collation
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiIndexRequestView) GetCollation() Collation {
 // GetCollationOk returns a tuple with the Collation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiIndexRequestView) GetCollationOk() (*Collation, bool) {
-	if o == nil || o.Collation == nil {
+	if o == nil || IsNil(o.Collation) {
 		return nil, false
 	}
 	return o.Collation, true
@@ -63,7 +66,7 @@ func (o *ApiIndexRequestView) GetCollationOk() (*Collation, bool) {
 
 // HasCollation returns a boolean if a field has been set.
 func (o *ApiIndexRequestView) HasCollation() bool {
-	if o != nil && o.Collation != nil {
+	if o != nil && !IsNil(o.Collation) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *ApiIndexRequestView) SetKeys(v []map[string]string) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *ApiIndexRequestView) GetOptions() IndexOptions {
-	if o == nil || o.Options == nil {
+	if o == nil || IsNil(o.Options) {
 		var ret IndexOptions
 		return ret
 	}
@@ -159,7 +162,7 @@ func (o *ApiIndexRequestView) GetOptions() IndexOptions {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiIndexRequestView) GetOptionsOk() (*IndexOptions, bool) {
-	if o == nil || o.Options == nil {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
 	return o.Options, true
@@ -167,7 +170,7 @@ func (o *ApiIndexRequestView) GetOptionsOk() (*IndexOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *ApiIndexRequestView) HasOptions() bool {
-	if o != nil && o.Options != nil {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -180,23 +183,25 @@ func (o *ApiIndexRequestView) SetOptions(v IndexOptions) {
 }
 
 func (o ApiIndexRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Collation != nil {
-		toSerialize["collation"] = o.Collation
-	}
-	if true {
-		toSerialize["collection"] = o.Collection
-	}
-	if true {
-		toSerialize["db"] = o.Db
-	}
-	if true {
-		toSerialize["keys"] = o.Keys
-	}
-	if o.Options != nil {
-		toSerialize["options"] = o.Options
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiIndexRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Collation) {
+		toSerialize["collation"] = o.Collation
+	}
+	toSerialize["collection"] = o.Collection
+	toSerialize["db"] = o.Db
+	toSerialize["keys"] = o.Keys
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
+	return toSerialize, nil
 }
 
 type NullableApiIndexRequestView struct {

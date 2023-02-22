@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SynonymSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SynonymSource{}
+
 // SynonymSource Data set that stores the mapping one or more words map to one or more synonyms of those words.
 type SynonymSource struct {
 	// Human-readable label that identifies the MongoDB collection that stores words and their applicable synonyms.
@@ -62,11 +65,17 @@ func (o *SynonymSource) SetCollection(v string) {
 }
 
 func (o SynonymSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["collection"] = o.Collection
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SynonymSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["collection"] = o.Collection
+	return toSerialize, nil
 }
 
 type NullableSynonymSource struct {

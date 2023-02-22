@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessProviderSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessProviderSettings{}
+
 // ServerlessProviderSettings Group of cloud provider settings that configure the provisioned MongoDB serverless instance.
 type ServerlessProviderSettings struct {
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
@@ -71,7 +74,7 @@ func (o *ServerlessProviderSettings) SetBackingProviderName(v string) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *ServerlessProviderSettings) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *ServerlessProviderSettings) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessProviderSettings) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -89,7 +92,7 @@ func (o *ServerlessProviderSettings) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *ServerlessProviderSettings) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -126,17 +129,21 @@ func (o *ServerlessProviderSettings) SetRegionName(v string) {
 }
 
 func (o ServerlessProviderSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["backingProviderName"] = o.BackingProviderName
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if true {
-		toSerialize["regionName"] = o.RegionName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessProviderSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["backingProviderName"] = o.BackingProviderName
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	toSerialize["regionName"] = o.RegionName
+	return toSerialize, nil
 }
 
 type NullableServerlessProviderSettings struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiSnapshotPartView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiSnapshotPartView{}
+
 // ApiSnapshotPartView Characteristics that identify this snapshot.
 type ApiSnapshotPartView struct {
 	// Unique 24-hexadecimal digit string that identifies the cluster with the snapshots you want to return.
@@ -57,7 +60,7 @@ func NewApiSnapshotPartViewWithDefaults() *ApiSnapshotPartView {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -67,7 +70,7 @@ func (o *ApiSnapshotPartView) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -75,7 +78,7 @@ func (o *ApiSnapshotPartView) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *ApiSnapshotPartView) SetClusterId(v string) {
 
 // GetCompressionSetting returns the CompressionSetting field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetCompressionSetting() string {
-	if o == nil || o.CompressionSetting == nil {
+	if o == nil || IsNil(o.CompressionSetting) {
 		var ret string
 		return ret
 	}
@@ -99,7 +102,7 @@ func (o *ApiSnapshotPartView) GetCompressionSetting() string {
 // GetCompressionSettingOk returns a tuple with the CompressionSetting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetCompressionSettingOk() (*string, bool) {
-	if o == nil || o.CompressionSetting == nil {
+	if o == nil || IsNil(o.CompressionSetting) {
 		return nil, false
 	}
 	return o.CompressionSetting, true
@@ -107,7 +110,7 @@ func (o *ApiSnapshotPartView) GetCompressionSettingOk() (*string, bool) {
 
 // HasCompressionSetting returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasCompressionSetting() bool {
-	if o != nil && o.CompressionSetting != nil {
+	if o != nil && !IsNil(o.CompressionSetting) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *ApiSnapshotPartView) SetCompressionSetting(v string) {
 
 // GetDataSizeBytes returns the DataSizeBytes field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetDataSizeBytes() int64 {
-	if o == nil || o.DataSizeBytes == nil {
+	if o == nil || IsNil(o.DataSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -131,7 +134,7 @@ func (o *ApiSnapshotPartView) GetDataSizeBytes() int64 {
 // GetDataSizeBytesOk returns a tuple with the DataSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetDataSizeBytesOk() (*int64, bool) {
-	if o == nil || o.DataSizeBytes == nil {
+	if o == nil || IsNil(o.DataSizeBytes) {
 		return nil, false
 	}
 	return o.DataSizeBytes, true
@@ -139,7 +142,7 @@ func (o *ApiSnapshotPartView) GetDataSizeBytesOk() (*int64, bool) {
 
 // HasDataSizeBytes returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasDataSizeBytes() bool {
-	if o != nil && o.DataSizeBytes != nil {
+	if o != nil && !IsNil(o.DataSizeBytes) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *ApiSnapshotPartView) SetDataSizeBytes(v int64) {
 
 // GetEncryptionEnabled returns the EncryptionEnabled field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetEncryptionEnabled() bool {
-	if o == nil || o.EncryptionEnabled == nil {
+	if o == nil || IsNil(o.EncryptionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *ApiSnapshotPartView) GetEncryptionEnabled() bool {
 // GetEncryptionEnabledOk returns a tuple with the EncryptionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetEncryptionEnabledOk() (*bool, bool) {
-	if o == nil || o.EncryptionEnabled == nil {
+	if o == nil || IsNil(o.EncryptionEnabled) {
 		return nil, false
 	}
 	return o.EncryptionEnabled, true
@@ -171,7 +174,7 @@ func (o *ApiSnapshotPartView) GetEncryptionEnabledOk() (*bool, bool) {
 
 // HasEncryptionEnabled returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasEncryptionEnabled() bool {
-	if o != nil && o.EncryptionEnabled != nil {
+	if o != nil && !IsNil(o.EncryptionEnabled) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *ApiSnapshotPartView) SetEncryptionEnabled(v bool) {
 
 // GetFileSizeBytes returns the FileSizeBytes field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetFileSizeBytes() int64 {
-	if o == nil || o.FileSizeBytes == nil {
+	if o == nil || IsNil(o.FileSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *ApiSnapshotPartView) GetFileSizeBytes() int64 {
 // GetFileSizeBytesOk returns a tuple with the FileSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetFileSizeBytesOk() (*int64, bool) {
-	if o == nil || o.FileSizeBytes == nil {
+	if o == nil || IsNil(o.FileSizeBytes) {
 		return nil, false
 	}
 	return o.FileSizeBytes, true
@@ -203,7 +206,7 @@ func (o *ApiSnapshotPartView) GetFileSizeBytesOk() (*int64, bool) {
 
 // HasFileSizeBytes returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasFileSizeBytes() bool {
-	if o != nil && o.FileSizeBytes != nil {
+	if o != nil && !IsNil(o.FileSizeBytes) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *ApiSnapshotPartView) SetFileSizeBytes(v int64) {
 
 // GetMasterKeyUUID returns the MasterKeyUUID field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetMasterKeyUUID() string {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		var ret string
 		return ret
 	}
@@ -227,7 +230,7 @@ func (o *ApiSnapshotPartView) GetMasterKeyUUID() string {
 // GetMasterKeyUUIDOk returns a tuple with the MasterKeyUUID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetMasterKeyUUIDOk() (*string, bool) {
-	if o == nil || o.MasterKeyUUID == nil {
+	if o == nil || IsNil(o.MasterKeyUUID) {
 		return nil, false
 	}
 	return o.MasterKeyUUID, true
@@ -235,7 +238,7 @@ func (o *ApiSnapshotPartView) GetMasterKeyUUIDOk() (*string, bool) {
 
 // HasMasterKeyUUID returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasMasterKeyUUID() bool {
-	if o != nil && o.MasterKeyUUID != nil {
+	if o != nil && !IsNil(o.MasterKeyUUID) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *ApiSnapshotPartView) SetMasterKeyUUID(v string) {
 
 // GetMongodVersion returns the MongodVersion field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetMongodVersion() string {
-	if o == nil || o.MongodVersion == nil {
+	if o == nil || IsNil(o.MongodVersion) {
 		var ret string
 		return ret
 	}
@@ -259,7 +262,7 @@ func (o *ApiSnapshotPartView) GetMongodVersion() string {
 // GetMongodVersionOk returns a tuple with the MongodVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetMongodVersionOk() (*string, bool) {
-	if o == nil || o.MongodVersion == nil {
+	if o == nil || IsNil(o.MongodVersion) {
 		return nil, false
 	}
 	return o.MongodVersion, true
@@ -267,7 +270,7 @@ func (o *ApiSnapshotPartView) GetMongodVersionOk() (*string, bool) {
 
 // HasMongodVersion returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasMongodVersion() bool {
-	if o != nil && o.MongodVersion != nil {
+	if o != nil && !IsNil(o.MongodVersion) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *ApiSnapshotPartView) SetMongodVersion(v string) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -291,7 +294,7 @@ func (o *ApiSnapshotPartView) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -299,7 +302,7 @@ func (o *ApiSnapshotPartView) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *ApiSnapshotPartView) SetReplicaSetName(v string) {
 
 // GetStorageSizeBytes returns the StorageSizeBytes field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetStorageSizeBytes() int64 {
-	if o == nil || o.StorageSizeBytes == nil {
+	if o == nil || IsNil(o.StorageSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -323,7 +326,7 @@ func (o *ApiSnapshotPartView) GetStorageSizeBytes() int64 {
 // GetStorageSizeBytesOk returns a tuple with the StorageSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetStorageSizeBytesOk() (*int64, bool) {
-	if o == nil || o.StorageSizeBytes == nil {
+	if o == nil || IsNil(o.StorageSizeBytes) {
 		return nil, false
 	}
 	return o.StorageSizeBytes, true
@@ -331,7 +334,7 @@ func (o *ApiSnapshotPartView) GetStorageSizeBytesOk() (*int64, bool) {
 
 // HasStorageSizeBytes returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasStorageSizeBytes() bool {
-	if o != nil && o.StorageSizeBytes != nil {
+	if o != nil && !IsNil(o.StorageSizeBytes) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *ApiSnapshotPartView) SetStorageSizeBytes(v int64) {
 
 // GetTypeName returns the TypeName field value if set, zero value otherwise.
 func (o *ApiSnapshotPartView) GetTypeName() string {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		var ret string
 		return ret
 	}
@@ -355,7 +358,7 @@ func (o *ApiSnapshotPartView) GetTypeName() string {
 // GetTypeNameOk returns a tuple with the TypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotPartView) GetTypeNameOk() (*string, bool) {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		return nil, false
 	}
 	return o.TypeName, true
@@ -363,7 +366,7 @@ func (o *ApiSnapshotPartView) GetTypeNameOk() (*string, bool) {
 
 // HasTypeName returns a boolean if a field has been set.
 func (o *ApiSnapshotPartView) HasTypeName() bool {
-	if o != nil && o.TypeName != nil {
+	if o != nil && !IsNil(o.TypeName) {
 		return true
 	}
 
@@ -376,38 +379,26 @@ func (o *ApiSnapshotPartView) SetTypeName(v string) {
 }
 
 func (o ApiSnapshotPartView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.CompressionSetting != nil {
-		toSerialize["compressionSetting"] = o.CompressionSetting
-	}
-	if o.DataSizeBytes != nil {
-		toSerialize["dataSizeBytes"] = o.DataSizeBytes
-	}
-	if o.EncryptionEnabled != nil {
-		toSerialize["encryptionEnabled"] = o.EncryptionEnabled
-	}
-	if o.FileSizeBytes != nil {
-		toSerialize["fileSizeBytes"] = o.FileSizeBytes
-	}
-	if o.MasterKeyUUID != nil {
-		toSerialize["masterKeyUUID"] = o.MasterKeyUUID
-	}
-	if o.MongodVersion != nil {
-		toSerialize["mongodVersion"] = o.MongodVersion
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.StorageSizeBytes != nil {
-		toSerialize["storageSizeBytes"] = o.StorageSizeBytes
-	}
-	if o.TypeName != nil {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiSnapshotPartView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterId is readOnly
+	// skip: compressionSetting is readOnly
+	// skip: dataSizeBytes is readOnly
+	// skip: encryptionEnabled is readOnly
+	// skip: fileSizeBytes is readOnly
+	// skip: masterKeyUUID is readOnly
+	// skip: mongodVersion is readOnly
+	// skip: replicaSetName is readOnly
+	// skip: storageSizeBytes is readOnly
+	// skip: typeName is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiSnapshotPartView struct {

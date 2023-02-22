@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AuditLog type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuditLog{}
+
 // AuditLog struct for AuditLog
 type AuditLog struct {
 	// Flag that indicates whether someone set auditing to track successful authentications. This only applies to the `\"atype\" : \"authCheck\"` audit filter. Setting this parameter to `true` degrades cluster performance.
@@ -32,10 +35,6 @@ type AuditLog struct {
 // will change when the set of required properties is changed
 func NewAuditLog() *AuditLog {
 	this := AuditLog{}
-	var auditAuthorizationSuccess bool = false
-	this.AuditAuthorizationSuccess = auditAuthorizationSuccess
-	var enabled bool = false
-	this.Enabled = enabled
 	return &this
 }
 
@@ -101,7 +100,7 @@ func (o *AuditLog) SetAuditFilter(v string) {
 
 // GetConfigurationType returns the ConfigurationType field value if set, zero value otherwise.
 func (o *AuditLog) GetConfigurationType() string {
-	if o == nil || o.ConfigurationType == nil {
+	if o == nil || IsNil(o.ConfigurationType) {
 		var ret string
 		return ret
 	}
@@ -111,7 +110,7 @@ func (o *AuditLog) GetConfigurationType() string {
 // GetConfigurationTypeOk returns a tuple with the ConfigurationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuditLog) GetConfigurationTypeOk() (*string, bool) {
-	if o == nil || o.ConfigurationType == nil {
+	if o == nil || IsNil(o.ConfigurationType) {
 		return nil, false
 	}
 	return o.ConfigurationType, true
@@ -119,7 +118,7 @@ func (o *AuditLog) GetConfigurationTypeOk() (*string, bool) {
 
 // HasConfigurationType returns a boolean if a field has been set.
 func (o *AuditLog) HasConfigurationType() bool {
-	if o != nil && o.ConfigurationType != nil {
+	if o != nil && !IsNil(o.ConfigurationType) {
 		return true
 	}
 
@@ -156,20 +155,20 @@ func (o *AuditLog) SetEnabled(v bool) {
 }
 
 func (o AuditLog) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["auditAuthorizationSuccess"] = o.AuditAuthorizationSuccess
-	}
-	if true {
-		toSerialize["auditFilter"] = o.AuditFilter
-	}
-	if o.ConfigurationType != nil {
-		toSerialize["configurationType"] = o.ConfigurationType
-	}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AuditLog) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["auditAuthorizationSuccess"] = o.AuditAuthorizationSuccess
+	toSerialize["auditFilter"] = o.AuditFilter
+	// skip: configurationType is readOnly
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullableAuditLog struct {

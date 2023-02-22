@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiOrganizationInvitationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiOrganizationInvitationView{}
+
 // ApiOrganizationInvitationView struct for ApiOrganizationInvitationView
 type ApiOrganizationInvitationView struct {
 	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
@@ -58,7 +61,7 @@ func NewApiOrganizationInvitationViewWithDefaults() *ApiOrganizationInvitationVi
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -68,7 +71,7 @@ func (o *ApiOrganizationInvitationView) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -76,7 +79,7 @@ func (o *ApiOrganizationInvitationView) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -90,7 +93,7 @@ func (o *ApiOrganizationInvitationView) SetCreatedAt(v time.Time) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -100,7 +103,7 @@ func (o *ApiOrganizationInvitationView) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -108,7 +111,7 @@ func (o *ApiOrganizationInvitationView) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -122,7 +125,7 @@ func (o *ApiOrganizationInvitationView) SetExpiresAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -132,7 +135,7 @@ func (o *ApiOrganizationInvitationView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -140,7 +143,7 @@ func (o *ApiOrganizationInvitationView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -154,7 +157,7 @@ func (o *ApiOrganizationInvitationView) SetId(v string) {
 
 // GetInviterUsername returns the InviterUsername field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetInviterUsername() string {
-	if o == nil || o.InviterUsername == nil {
+	if o == nil || IsNil(o.InviterUsername) {
 		var ret string
 		return ret
 	}
@@ -164,7 +167,7 @@ func (o *ApiOrganizationInvitationView) GetInviterUsername() string {
 // GetInviterUsernameOk returns a tuple with the InviterUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetInviterUsernameOk() (*string, bool) {
-	if o == nil || o.InviterUsername == nil {
+	if o == nil || IsNil(o.InviterUsername) {
 		return nil, false
 	}
 	return o.InviterUsername, true
@@ -172,7 +175,7 @@ func (o *ApiOrganizationInvitationView) GetInviterUsernameOk() (*string, bool) {
 
 // HasInviterUsername returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasInviterUsername() bool {
-	if o != nil && o.InviterUsername != nil {
+	if o != nil && !IsNil(o.InviterUsername) {
 		return true
 	}
 
@@ -186,7 +189,7 @@ func (o *ApiOrganizationInvitationView) SetInviterUsername(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -196,7 +199,7 @@ func (o *ApiOrganizationInvitationView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -204,7 +207,7 @@ func (o *ApiOrganizationInvitationView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -218,7 +221,7 @@ func (o *ApiOrganizationInvitationView) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -228,7 +231,7 @@ func (o *ApiOrganizationInvitationView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -236,7 +239,7 @@ func (o *ApiOrganizationInvitationView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -274,7 +277,7 @@ func (o *ApiOrganizationInvitationView) SetOrgName(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -284,7 +287,7 @@ func (o *ApiOrganizationInvitationView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -292,7 +295,7 @@ func (o *ApiOrganizationInvitationView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -306,7 +309,7 @@ func (o *ApiOrganizationInvitationView) SetRoles(v []string) {
 
 // GetTeamIds returns the TeamIds field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetTeamIds() []string {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		var ret []string
 		return ret
 	}
@@ -316,7 +319,7 @@ func (o *ApiOrganizationInvitationView) GetTeamIds() []string {
 // GetTeamIdsOk returns a tuple with the TeamIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetTeamIdsOk() ([]string, bool) {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		return nil, false
 	}
 	return o.TeamIds, true
@@ -324,7 +327,7 @@ func (o *ApiOrganizationInvitationView) GetTeamIdsOk() ([]string, bool) {
 
 // HasTeamIds returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasTeamIds() bool {
-	if o != nil && o.TeamIds != nil {
+	if o != nil && !IsNil(o.TeamIds) {
 		return true
 	}
 
@@ -338,7 +341,7 @@ func (o *ApiOrganizationInvitationView) SetTeamIds(v []string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -348,7 +351,7 @@ func (o *ApiOrganizationInvitationView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -356,7 +359,7 @@ func (o *ApiOrganizationInvitationView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -369,38 +372,30 @@ func (o *ApiOrganizationInvitationView) SetUsername(v string) {
 }
 
 func (o ApiOrganizationInvitationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.ExpiresAt != nil {
-		toSerialize["expiresAt"] = o.ExpiresAt
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.InviterUsername != nil {
-		toSerialize["inviterUsername"] = o.InviterUsername
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if true {
-		toSerialize["orgName"] = o.OrgName
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.TeamIds != nil {
-		toSerialize["teamIds"] = o.TeamIds
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiOrganizationInvitationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: createdAt is readOnly
+	// skip: expiresAt is readOnly
+	// skip: id is readOnly
+	// skip: inviterUsername is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	toSerialize["orgName"] = o.OrgName
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	// skip: teamIds is readOnly
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
 }
 
 type NullableApiOrganizationInvitationView struct {

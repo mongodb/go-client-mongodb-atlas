@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiError{}
+
 // ApiError struct for ApiError
 type ApiError struct {
 	Detail *string `json:"detail,omitempty"`
@@ -45,7 +48,7 @@ func NewApiErrorWithDefaults() *ApiError {
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *ApiError) GetDetail() string {
-	if o == nil || o.Detail == nil {
+	if o == nil || IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiError) GetDetail() string {
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiError) GetDetailOk() (*string, bool) {
-	if o == nil || o.Detail == nil {
+	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
 	return o.Detail, true
@@ -63,7 +66,7 @@ func (o *ApiError) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *ApiError) HasDetail() bool {
-	if o != nil && o.Detail != nil {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ApiError) SetDetail(v string) {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *ApiError) GetError() int32 {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *ApiError) GetError() int32 {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiError) GetErrorOk() (*int32, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -95,7 +98,7 @@ func (o *ApiError) GetErrorOk() (*int32, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ApiError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *ApiError) SetError(v int32) {
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
 func (o *ApiError) GetErrorCode() string {
-	if o == nil || o.ErrorCode == nil {
+	if o == nil || IsNil(o.ErrorCode) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *ApiError) GetErrorCode() string {
 // GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiError) GetErrorCodeOk() (*string, bool) {
-	if o == nil || o.ErrorCode == nil {
+	if o == nil || IsNil(o.ErrorCode) {
 		return nil, false
 	}
 	return o.ErrorCode, true
@@ -127,7 +130,7 @@ func (o *ApiError) GetErrorCodeOk() (*string, bool) {
 
 // HasErrorCode returns a boolean if a field has been set.
 func (o *ApiError) HasErrorCode() bool {
-	if o != nil && o.ErrorCode != nil {
+	if o != nil && !IsNil(o.ErrorCode) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *ApiError) SetErrorCode(v string) {
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *ApiError) GetParameters() []map[string]interface{} {
-	if o == nil || o.Parameters == nil {
+	if o == nil || IsNil(o.Parameters) {
 		var ret []map[string]interface{}
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *ApiError) GetParameters() []map[string]interface{} {
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiError) GetParametersOk() ([]map[string]interface{}, bool) {
-	if o == nil || o.Parameters == nil {
+	if o == nil || IsNil(o.Parameters) {
 		return nil, false
 	}
 	return o.Parameters, true
@@ -159,7 +162,7 @@ func (o *ApiError) GetParametersOk() ([]map[string]interface{}, bool) {
 
 // HasParameters returns a boolean if a field has been set.
 func (o *ApiError) HasParameters() bool {
-	if o != nil && o.Parameters != nil {
+	if o != nil && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *ApiError) SetParameters(v []map[string]interface{}) {
 
 // GetReason returns the Reason field value if set, zero value otherwise.
 func (o *ApiError) GetReason() string {
-	if o == nil || o.Reason == nil {
+	if o == nil || IsNil(o.Reason) {
 		var ret string
 		return ret
 	}
@@ -183,7 +186,7 @@ func (o *ApiError) GetReason() string {
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiError) GetReasonOk() (*string, bool) {
-	if o == nil || o.Reason == nil {
+	if o == nil || IsNil(o.Reason) {
 		return nil, false
 	}
 	return o.Reason, true
@@ -191,7 +194,7 @@ func (o *ApiError) GetReasonOk() (*string, bool) {
 
 // HasReason returns a boolean if a field has been set.
 func (o *ApiError) HasReason() bool {
-	if o != nil && o.Reason != nil {
+	if o != nil && !IsNil(o.Reason) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *ApiError) SetReason(v string) {
 }
 
 func (o ApiError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Detail != nil {
-		toSerialize["detail"] = o.Detail
-	}
-	if o.Error != nil {
-		toSerialize["error"] = o.Error
-	}
-	if o.ErrorCode != nil {
-		toSerialize["errorCode"] = o.ErrorCode
-	}
-	if o.Parameters != nil {
-		toSerialize["parameters"] = o.Parameters
-	}
-	if o.Reason != nil {
-		toSerialize["reason"] = o.Reason
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
+	}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.ErrorCode) {
+		toSerialize["errorCode"] = o.ErrorCode
+	}
+	if !IsNil(o.Parameters) {
+		toSerialize["parameters"] = o.Parameters
+	}
+	if !IsNil(o.Reason) {
+		toSerialize["reason"] = o.Reason
+	}
+	return toSerialize, nil
 }
 
 type NullableApiError struct {

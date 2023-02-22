@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiMeasurementView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMeasurementView{}
+
 // ApiMeasurementView struct for ApiMeasurementView
 type ApiMeasurementView struct {
 	// List that contains the value of, and metadata provided for, one data point generated at a particular moment in time. If no data point exists for a particular moment in time, the `value` parameter returns `null`.
@@ -43,7 +46,7 @@ func NewApiMeasurementViewWithDefaults() *ApiMeasurementView {
 
 // GetDataPoints returns the DataPoints field value if set, zero value otherwise.
 func (o *ApiMeasurementView) GetDataPoints() []ApiMetricDataPointView {
-	if o == nil || o.DataPoints == nil {
+	if o == nil || IsNil(o.DataPoints) {
 		var ret []ApiMetricDataPointView
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiMeasurementView) GetDataPoints() []ApiMetricDataPointView {
 // GetDataPointsOk returns a tuple with the DataPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementView) GetDataPointsOk() ([]ApiMetricDataPointView, bool) {
-	if o == nil || o.DataPoints == nil {
+	if o == nil || IsNil(o.DataPoints) {
 		return nil, false
 	}
 	return o.DataPoints, true
@@ -61,7 +64,7 @@ func (o *ApiMeasurementView) GetDataPointsOk() ([]ApiMetricDataPointView, bool) 
 
 // HasDataPoints returns a boolean if a field has been set.
 func (o *ApiMeasurementView) HasDataPoints() bool {
-	if o != nil && o.DataPoints != nil {
+	if o != nil && !IsNil(o.DataPoints) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ApiMeasurementView) SetDataPoints(v []ApiMetricDataPointView) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApiMeasurementView) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ApiMeasurementView) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementView) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -93,7 +96,7 @@ func (o *ApiMeasurementView) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiMeasurementView) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ApiMeasurementView) SetName(v string) {
 
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *ApiMeasurementView) GetUnits() string {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ApiMeasurementView) GetUnits() string {
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMeasurementView) GetUnitsOk() (*string, bool) {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
 	return o.Units, true
@@ -125,7 +128,7 @@ func (o *ApiMeasurementView) GetUnitsOk() (*string, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *ApiMeasurementView) HasUnits() bool {
-	if o != nil && o.Units != nil {
+	if o != nil && !IsNil(o.Units) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *ApiMeasurementView) SetUnits(v string) {
 }
 
 func (o ApiMeasurementView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DataPoints != nil {
-		toSerialize["dataPoints"] = o.DataPoints
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Units != nil {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMeasurementView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: dataPoints is readOnly
+	// skip: name is readOnly
+	// skip: units is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiMeasurementView struct {

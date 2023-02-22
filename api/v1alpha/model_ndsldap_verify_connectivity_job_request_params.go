@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NDSLDAPVerifyConnectivityJobRequestParams type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSLDAPVerifyConnectivityJobRequestParams{}
+
 // NDSLDAPVerifyConnectivityJobRequestParams Request information needed to verify an Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration. The response does not return the **bindPassword**.
 type NDSLDAPVerifyConnectivityJobRequestParams struct {
 	// Lightweight Directory Access Protocol (LDAP) query template that MongoDB Cloud applies to create an LDAP query to return the LDAP groups associated with the authenticated MongoDB user. MongoDB Cloud uses this parameter only for user authorization.  Use the `{USER}` placeholder in the Uniform Resource Locator (URL) to substitute the authenticated username. The query relates to the host specified with the hostname. Format this query per [RFC 4515](https://tools.ietf.org/search/rfc4515) and [RFC 4516](https://datatracker.ietf.org/doc/html/rfc4516).
@@ -40,8 +43,6 @@ func NewNDSLDAPVerifyConnectivityJobRequestParams() *NDSLDAPVerifyConnectivityJo
 	this := NDSLDAPVerifyConnectivityJobRequestParams{}
 	var authzQueryTemplate string = "{USER}?memberOf?base"
 	this.AuthzQueryTemplate = &authzQueryTemplate
-	var port int32 = 636
-	this.Port = port
 	return &this
 }
 
@@ -59,7 +60,7 @@ func NewNDSLDAPVerifyConnectivityJobRequestParamsWithDefaults() *NDSLDAPVerifyCo
 
 // GetAuthzQueryTemplate returns the AuthzQueryTemplate field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetAuthzQueryTemplate() string {
-	if o == nil || o.AuthzQueryTemplate == nil {
+	if o == nil || IsNil(o.AuthzQueryTemplate) {
 		var ret string
 		return ret
 	}
@@ -69,7 +70,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetAuthzQueryTemplate() stri
 // GetAuthzQueryTemplateOk returns a tuple with the AuthzQueryTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetAuthzQueryTemplateOk() (*string, bool) {
-	if o == nil || o.AuthzQueryTemplate == nil {
+	if o == nil || IsNil(o.AuthzQueryTemplate) {
 		return nil, false
 	}
 	return o.AuthzQueryTemplate, true
@@ -77,7 +78,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetAuthzQueryTemplateOk() (*
 
 // HasAuthzQueryTemplate returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) HasAuthzQueryTemplate() bool {
-	if o != nil && o.AuthzQueryTemplate != nil {
+	if o != nil && !IsNil(o.AuthzQueryTemplate) {
 		return true
 	}
 
@@ -139,7 +140,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetBindUsername(v string) {
 
 // GetCaCertificate returns the CaCertificate field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetCaCertificate() string {
-	if o == nil || o.CaCertificate == nil {
+	if o == nil || IsNil(o.CaCertificate) {
 		var ret string
 		return ret
 	}
@@ -149,7 +150,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetCaCertificate() string {
 // GetCaCertificateOk returns a tuple with the CaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetCaCertificateOk() (*string, bool) {
-	if o == nil || o.CaCertificate == nil {
+	if o == nil || IsNil(o.CaCertificate) {
 		return nil, false
 	}
 	return o.CaCertificate, true
@@ -157,7 +158,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetCaCertificateOk() (*strin
 
 // HasCaCertificate returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) HasCaCertificate() bool {
-	if o != nil && o.CaCertificate != nil {
+	if o != nil && !IsNil(o.CaCertificate) {
 		return true
 	}
 
@@ -195,7 +196,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetHostname(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -205,7 +206,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -213,7 +214,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetLinksOk() ([]Link, bool) 
 
 // HasLinks returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestParams) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -250,29 +251,27 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetPort(v int32) {
 }
 
 func (o NDSLDAPVerifyConnectivityJobRequestParams) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AuthzQueryTemplate != nil {
-		toSerialize["authzQueryTemplate"] = o.AuthzQueryTemplate
-	}
-	if true {
-		toSerialize["bindPassword"] = o.BindPassword
-	}
-	if true {
-		toSerialize["bindUsername"] = o.BindUsername
-	}
-	if o.CaCertificate != nil {
-		toSerialize["caCertificate"] = o.CaCertificate
-	}
-	if true {
-		toSerialize["hostname"] = o.Hostname
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["port"] = o.Port
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSLDAPVerifyConnectivityJobRequestParams) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AuthzQueryTemplate) {
+		toSerialize["authzQueryTemplate"] = o.AuthzQueryTemplate
+	}
+	toSerialize["bindPassword"] = o.BindPassword
+	toSerialize["bindUsername"] = o.BindUsername
+	if !IsNil(o.CaCertificate) {
+		toSerialize["caCertificate"] = o.CaCertificate
+	}
+	toSerialize["hostname"] = o.Hostname
+	// skip: links is readOnly
+	toSerialize["port"] = o.Port
+	return toSerialize, nil
 }
 
 type NullableNDSLDAPVerifyConnectivityJobRequestParams struct {
