@@ -407,3 +407,63 @@ func TestOrganizations_Delete(t *testing.T) {
 		t.Fatalf("Organizations.Delete returned error: %v", err)
 	}
 }
+
+func TestOrganizationsServiceOp_Create(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc("/api/atlas/v1.0/orgs", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPost)
+		_, _ = fmt.Fprint(w, `{
+			  "apiKey": {
+				"desc": "string",
+				"id": "32b6e34b3d91647abb20e7b8",				
+				"privateKey": "55c3bbb6-b4bb-0be1-e66d20841f3e",
+				"publicKey": "zmmrboas",
+				"roles": [
+				  {					
+					"orgId": "32b6e34b3d91647abb20e7b8",
+					"roleName": "ORG_OWNER"
+				  }
+				]
+			  },			  
+			  "organization": {
+				"id": "32b6e34b3d91647abb20e7b8",								
+				"name": "test"
+			  }
+			}`)
+	})
+
+	body := &CreateOrganizationRequest{
+		APIKey: &APIKeyInput{
+			Desc:  "string",
+			Roles: []string{"ORG_OWNER"},
+		},
+		Name: "test",
+	}
+
+	response, _, err := client.Organizations.Create(ctx, body)
+	if err != nil {
+		t.Fatalf("Organizations.Create returned error: %v", err)
+	}
+
+	expected := &CreateOrganizationResponse{
+		APIKey: &APIKey{
+			ID:   "32b6e34b3d91647abb20e7b8",
+			Desc: "string",
+			Roles: []AtlasRole{
+				{OrgID: "32b6e34b3d91647abb20e7b8", RoleName: "ORG_OWNER"},
+			},
+			PrivateKey: "55c3bbb6-b4bb-0be1-e66d20841f3e",
+			PublicKey:  "zmmrboas",
+		},
+		Organization: &Organization{
+			ID:   "32b6e34b3d91647abb20e7b8",
+			Name: "test",
+		},
+	}
+
+	if diff := deep.Equal(response, expected); diff != nil {
+		t.Error(diff)
+	}
+}
