@@ -107,22 +107,22 @@ function transformAllOf(objectPath, api) {
     throw new Error(`Invalid object for AllOf Transformation: ${parentName}`);
   }
 
-  if (!parentObject.properties) {
-    return console.error(
-      `AllOf: Transformation cannot be performed. ${parentName}.properties is empty`
-    );
-  }
+  if(!parentObject.oneOf && parentObject.discriminator && parentObject.discriminator.mapping){
+    console.warn(`Setting oneOf based on discriminator for allOf transformation in ${parentName}`)
+    oneOfReferences = Object.values(parentObject.discriminator.mapping);
+      // Remove duplicates in referneces
+    oneOfReferences = [...new Set(oneOfReferences)]
+    parentObject.oneOf = oneOfReferences.map(obj=> { return {"$ref": obj}})
 
+  } 
   const expandedParent = getObjectProperties(parentObject);
-
-  // Remove invalid fields
-  delete parentObject.properties;
-  delete parentObject.required;
 
   for (let childRef of parentObject.oneOf) {
     const childObject = getObjectFromReference(childRef, api);
     const childName = getObjectNameFromReference(childRef);
-
+    if(!childObject){
+      console.warn(`DEBUG ${childRef}`)
+    }
     if (removeParentFromAllOf(childObject, parentObject, api)) {
       console.debug(
         `AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`
@@ -136,6 +136,9 @@ function transformAllOf(objectPath, api) {
       flattenAllOfObject(childObject);
     }
   }
+  // Remove invalid fields
+  delete parentObject.properties;
+  delete parentObject.required;
 }
 
 // Moves all the properties/enum values of the children into the parent
@@ -219,7 +222,7 @@ function transformOneOfProperties(parentObject, api) {
 }
 
 function isAllOfTransformable(obj) {
-  return obj.properties && obj.oneOf;
+  return (obj.properties && obj.discriminator) || (obj.properties && obj.oneOf)
 }
 
 function canApplyOneOfTransformation(obj, api) {
