@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailNotificationView{}
+
 // EmailNotificationView Email notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type EmailNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -45,7 +48,7 @@ func NewEmailNotificationViewWithDefaults() *EmailNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *EmailNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *EmailNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -63,7 +66,7 @@ func (o *EmailNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *EmailNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *EmailNotificationView) SetDelayMin(v int32) {
 
 // GetEmailAddress returns the EmailAddress field value if set, zero value otherwise.
 func (o *EmailNotificationView) GetEmailAddress() string {
-	if o == nil || o.EmailAddress == nil {
+	if o == nil || IsNil(o.EmailAddress) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *EmailNotificationView) GetEmailAddress() string {
 // GetEmailAddressOk returns a tuple with the EmailAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailNotificationView) GetEmailAddressOk() (*string, bool) {
-	if o == nil || o.EmailAddress == nil {
+	if o == nil || IsNil(o.EmailAddress) {
 		return nil, false
 	}
 	return o.EmailAddress, true
@@ -95,7 +98,7 @@ func (o *EmailNotificationView) GetEmailAddressOk() (*string, bool) {
 
 // HasEmailAddress returns a boolean if a field has been set.
 func (o *EmailNotificationView) HasEmailAddress() bool {
-	if o != nil && o.EmailAddress != nil {
+	if o != nil && !IsNil(o.EmailAddress) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *EmailNotificationView) SetEmailAddress(v string) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *EmailNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *EmailNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -127,7 +130,7 @@ func (o *EmailNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *EmailNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -164,20 +167,26 @@ func (o *EmailNotificationView) SetTypeName(v string) {
 }
 
 func (o EmailNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.EmailAddress != nil {
-		toSerialize["emailAddress"] = o.EmailAddress
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EmailNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.EmailAddress) {
+		toSerialize["emailAddress"] = o.EmailAddress
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableEmailNotificationView struct {

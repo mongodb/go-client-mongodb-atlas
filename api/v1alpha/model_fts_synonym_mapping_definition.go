@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FTSSynonymMappingDefinition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FTSSynonymMappingDefinition{}
+
 // FTSSynonymMappingDefinition Synonyms used for this full text index.
 type FTSSynonymMappingDefinition struct {
 	// Specific pre-defined method chosen to apply to the synonyms to be searched.
@@ -29,8 +32,6 @@ type FTSSynonymMappingDefinition struct {
 // will change when the set of required properties is changed
 func NewFTSSynonymMappingDefinition() *FTSSynonymMappingDefinition {
 	this := FTSSynonymMappingDefinition{}
-	var analyzer string = "lucene.standard"
-	this.Analyzer = analyzer
 	return &this
 }
 
@@ -117,17 +118,19 @@ func (o *FTSSynonymMappingDefinition) SetSource(v SynonymSource) {
 }
 
 func (o FTSSynonymMappingDefinition) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["analyzer"] = o.Analyzer
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FTSSynonymMappingDefinition) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["analyzer"] = o.Analyzer
+	toSerialize["name"] = o.Name
+	toSerialize["source"] = o.Source
+	return toSerialize, nil
 }
 
 type NullableFTSSynonymMappingDefinition struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Raw type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Raw{}
+
 // Raw Additional meta information captured about this event. The response returns this parameter as a JSON object when the query parameter `includeRaw=true`. The list of fields in the raw document may change. Don't rely on raw values for formal monitoring.
 type Raw struct {
 	// Unique identifier of event type.
@@ -57,7 +60,7 @@ func NewRawWithDefaults() *Raw {
 
 // GetT returns the T field value if set, zero value otherwise.
 func (o *Raw) GetT() string {
-	if o == nil || o.T == nil {
+	if o == nil || IsNil(o.T) {
 		var ret string
 		return ret
 	}
@@ -67,7 +70,7 @@ func (o *Raw) GetT() string {
 // GetTOk returns a tuple with the T field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetTOk() (*string, bool) {
-	if o == nil || o.T == nil {
+	if o == nil || IsNil(o.T) {
 		return nil, false
 	}
 	return o.T, true
@@ -75,7 +78,7 @@ func (o *Raw) GetTOk() (*string, bool) {
 
 // HasT returns a boolean if a field has been set.
 func (o *Raw) HasT() bool {
-	if o != nil && o.T != nil {
+	if o != nil && !IsNil(o.T) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *Raw) SetT(v string) {
 
 // GetAlertConfigId returns the AlertConfigId field value if set, zero value otherwise.
 func (o *Raw) GetAlertConfigId() string {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		var ret string
 		return ret
 	}
@@ -99,7 +102,7 @@ func (o *Raw) GetAlertConfigId() string {
 // GetAlertConfigIdOk returns a tuple with the AlertConfigId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetAlertConfigIdOk() (*string, bool) {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		return nil, false
 	}
 	return o.AlertConfigId, true
@@ -107,7 +110,7 @@ func (o *Raw) GetAlertConfigIdOk() (*string, bool) {
 
 // HasAlertConfigId returns a boolean if a field has been set.
 func (o *Raw) HasAlertConfigId() bool {
-	if o != nil && o.AlertConfigId != nil {
+	if o != nil && !IsNil(o.AlertConfigId) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *Raw) SetAlertConfigId(v string) {
 
 // GetCid returns the Cid field value if set, zero value otherwise.
 func (o *Raw) GetCid() string {
-	if o == nil || o.Cid == nil {
+	if o == nil || IsNil(o.Cid) {
 		var ret string
 		return ret
 	}
@@ -131,7 +134,7 @@ func (o *Raw) GetCid() string {
 // GetCidOk returns a tuple with the Cid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetCidOk() (*string, bool) {
-	if o == nil || o.Cid == nil {
+	if o == nil || IsNil(o.Cid) {
 		return nil, false
 	}
 	return o.Cid, true
@@ -139,7 +142,7 @@ func (o *Raw) GetCidOk() (*string, bool) {
 
 // HasCid returns a boolean if a field has been set.
 func (o *Raw) HasCid() bool {
-	if o != nil && o.Cid != nil {
+	if o != nil && !IsNil(o.Cid) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *Raw) SetCid(v string) {
 
 // GetCre returns the Cre field value if set, zero value otherwise.
 func (o *Raw) GetCre() time.Time {
-	if o == nil || o.Cre == nil {
+	if o == nil || IsNil(o.Cre) {
 		var ret time.Time
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *Raw) GetCre() time.Time {
 // GetCreOk returns a tuple with the Cre field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetCreOk() (*time.Time, bool) {
-	if o == nil || o.Cre == nil {
+	if o == nil || IsNil(o.Cre) {
 		return nil, false
 	}
 	return o.Cre, true
@@ -171,7 +174,7 @@ func (o *Raw) GetCreOk() (*time.Time, bool) {
 
 // HasCre returns a boolean if a field has been set.
 func (o *Raw) HasCre() bool {
-	if o != nil && o.Cre != nil {
+	if o != nil && !IsNil(o.Cre) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *Raw) SetCre(v time.Time) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Raw) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *Raw) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -203,7 +206,7 @@ func (o *Raw) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Raw) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *Raw) SetDescription(v string) {
 
 // GetGn returns the Gn field value if set, zero value otherwise.
 func (o *Raw) GetGn() string {
-	if o == nil || o.Gn == nil {
+	if o == nil || IsNil(o.Gn) {
 		var ret string
 		return ret
 	}
@@ -227,7 +230,7 @@ func (o *Raw) GetGn() string {
 // GetGnOk returns a tuple with the Gn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetGnOk() (*string, bool) {
-	if o == nil || o.Gn == nil {
+	if o == nil || IsNil(o.Gn) {
 		return nil, false
 	}
 	return o.Gn, true
@@ -235,7 +238,7 @@ func (o *Raw) GetGnOk() (*string, bool) {
 
 // HasGn returns a boolean if a field has been set.
 func (o *Raw) HasGn() bool {
-	if o != nil && o.Gn != nil {
+	if o != nil && !IsNil(o.Gn) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *Raw) SetGn(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Raw) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -259,7 +262,7 @@ func (o *Raw) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -267,7 +270,7 @@ func (o *Raw) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Raw) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *Raw) SetId(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *Raw) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -291,7 +294,7 @@ func (o *Raw) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -299,7 +302,7 @@ func (o *Raw) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *Raw) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *Raw) SetOrgId(v string) {
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *Raw) GetOrgName() string {
-	if o == nil || o.OrgName == nil {
+	if o == nil || IsNil(o.OrgName) {
 		var ret string
 		return ret
 	}
@@ -323,7 +326,7 @@ func (o *Raw) GetOrgName() string {
 // GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetOrgNameOk() (*string, bool) {
-	if o == nil || o.OrgName == nil {
+	if o == nil || IsNil(o.OrgName) {
 		return nil, false
 	}
 	return o.OrgName, true
@@ -331,7 +334,7 @@ func (o *Raw) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *Raw) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
+	if o != nil && !IsNil(o.OrgName) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *Raw) SetOrgName(v string) {
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *Raw) GetSeverity() string {
-	if o == nil || o.Severity == nil {
+	if o == nil || IsNil(o.Severity) {
 		var ret string
 		return ret
 	}
@@ -355,7 +358,7 @@ func (o *Raw) GetSeverity() string {
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Raw) GetSeverityOk() (*string, bool) {
-	if o == nil || o.Severity == nil {
+	if o == nil || IsNil(o.Severity) {
 		return nil, false
 	}
 	return o.Severity, true
@@ -363,7 +366,7 @@ func (o *Raw) GetSeverityOk() (*string, bool) {
 
 // HasSeverity returns a boolean if a field has been set.
 func (o *Raw) HasSeverity() bool {
-	if o != nil && o.Severity != nil {
+	if o != nil && !IsNil(o.Severity) {
 		return true
 	}
 
@@ -376,38 +379,36 @@ func (o *Raw) SetSeverity(v string) {
 }
 
 func (o Raw) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.T != nil {
-		toSerialize["_t"] = o.T
-	}
-	if o.AlertConfigId != nil {
-		toSerialize["alertConfigId"] = o.AlertConfigId
-	}
-	if o.Cid != nil {
-		toSerialize["cid"] = o.Cid
-	}
-	if o.Cre != nil {
-		toSerialize["cre"] = o.Cre
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Gn != nil {
-		toSerialize["gn"] = o.Gn
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.OrgName != nil {
-		toSerialize["orgName"] = o.OrgName
-	}
-	if o.Severity != nil {
-		toSerialize["severity"] = o.Severity
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Raw) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.T) {
+		toSerialize["_t"] = o.T
+	}
+	// skip: alertConfigId is readOnly
+	// skip: cid is readOnly
+	// skip: cre is readOnly
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Gn) {
+		toSerialize["gn"] = o.Gn
+	}
+	// skip: id is readOnly
+	// skip: orgId is readOnly
+	if !IsNil(o.OrgName) {
+		toSerialize["orgName"] = o.OrgName
+	}
+	if !IsNil(o.Severity) {
+		toSerialize["severity"] = o.Severity
+	}
+	return toSerialize, nil
 }
 
 type NullableRaw struct {

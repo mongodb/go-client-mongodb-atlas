@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DBResource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DBResource{}
+
 // DBResource Namespace to which this database user has access.
 type DBResource struct {
 	// Flag that indicates whether to grant the action on the cluster resource. If `true`, MongoDB Cloud ignores the **actions.resources.collection** and **actions.resources.db** parameters.
@@ -114,17 +117,19 @@ func (o *DBResource) SetDb(v string) {
 }
 
 func (o DBResource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cluster"] = o.Cluster
-	}
-	if true {
-		toSerialize["collection"] = o.Collection
-	}
-	if true {
-		toSerialize["db"] = o.Db
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DBResource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["cluster"] = o.Cluster
+	toSerialize["collection"] = o.Collection
+	toSerialize["db"] = o.Db
+	return toSerialize, nil
 }
 
 type NullableDBResource struct {

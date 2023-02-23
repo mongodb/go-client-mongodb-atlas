@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiApiUserView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiApiUserView{}
+
 // ApiApiUserView struct for ApiApiUserView
 type ApiApiUserView struct {
 	// Purpose or explanation provided when someone created this organization API key.
@@ -49,7 +52,7 @@ func NewApiApiUserViewWithDefaults() *ApiApiUserView {
 
 // GetDesc returns the Desc field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetDesc() string {
-	if o == nil || o.Desc == nil {
+	if o == nil || IsNil(o.Desc) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *ApiApiUserView) GetDesc() string {
 // GetDescOk returns a tuple with the Desc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetDescOk() (*string, bool) {
-	if o == nil || o.Desc == nil {
+	if o == nil || IsNil(o.Desc) {
 		return nil, false
 	}
 	return o.Desc, true
@@ -67,7 +70,7 @@ func (o *ApiApiUserView) GetDescOk() (*string, bool) {
 
 // HasDesc returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasDesc() bool {
-	if o != nil && o.Desc != nil {
+	if o != nil && !IsNil(o.Desc) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *ApiApiUserView) SetDesc(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *ApiApiUserView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -99,7 +102,7 @@ func (o *ApiApiUserView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *ApiApiUserView) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *ApiApiUserView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -131,7 +134,7 @@ func (o *ApiApiUserView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *ApiApiUserView) SetLinks(v []Link) {
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetPrivateKey() string {
-	if o == nil || o.PrivateKey == nil {
+	if o == nil || IsNil(o.PrivateKey) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *ApiApiUserView) GetPrivateKey() string {
 // GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetPrivateKeyOk() (*string, bool) {
-	if o == nil || o.PrivateKey == nil {
+	if o == nil || IsNil(o.PrivateKey) {
 		return nil, false
 	}
 	return o.PrivateKey, true
@@ -163,7 +166,7 @@ func (o *ApiApiUserView) GetPrivateKeyOk() (*string, bool) {
 
 // HasPrivateKey returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasPrivateKey() bool {
-	if o != nil && o.PrivateKey != nil {
+	if o != nil && !IsNil(o.PrivateKey) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *ApiApiUserView) SetPrivateKey(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *ApiApiUserView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -195,7 +198,7 @@ func (o *ApiApiUserView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *ApiApiUserView) SetPublicKey(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiApiUserView) GetRoles() []ApiRoleAssignmentView {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []ApiRoleAssignmentView
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *ApiApiUserView) GetRoles() []ApiRoleAssignmentView {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiApiUserView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -227,7 +230,7 @@ func (o *ApiApiUserView) GetRolesOk() ([]ApiRoleAssignmentView, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiApiUserView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -240,26 +243,26 @@ func (o *ApiApiUserView) SetRoles(v []ApiRoleAssignmentView) {
 }
 
 func (o ApiApiUserView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Desc != nil {
-		toSerialize["desc"] = o.Desc
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.PrivateKey != nil {
-		toSerialize["privateKey"] = o.PrivateKey
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiApiUserView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Desc) {
+		toSerialize["desc"] = o.Desc
+	}
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: privateKey is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
 }
 
 type NullableApiApiUserView struct {

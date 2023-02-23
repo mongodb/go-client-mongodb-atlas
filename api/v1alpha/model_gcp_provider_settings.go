@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPProviderSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPProviderSettings{}
+
 // GCPProviderSettings struct for GCPProviderSettings
 type GCPProviderSettings struct {
 	AutoScaling *GCPAutoScaling `json:"autoScaling,omitempty"`
@@ -43,7 +46,7 @@ func NewGCPProviderSettingsWithDefaults() *GCPProviderSettings {
 
 // GetAutoScaling returns the AutoScaling field value if set, zero value otherwise.
 func (o *GCPProviderSettings) GetAutoScaling() GCPAutoScaling {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		var ret GCPAutoScaling
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *GCPProviderSettings) GetAutoScaling() GCPAutoScaling {
 // GetAutoScalingOk returns a tuple with the AutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProviderSettings) GetAutoScalingOk() (*GCPAutoScaling, bool) {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		return nil, false
 	}
 	return o.AutoScaling, true
@@ -61,7 +64,7 @@ func (o *GCPProviderSettings) GetAutoScalingOk() (*GCPAutoScaling, bool) {
 
 // HasAutoScaling returns a boolean if a field has been set.
 func (o *GCPProviderSettings) HasAutoScaling() bool {
-	if o != nil && o.AutoScaling != nil {
+	if o != nil && !IsNil(o.AutoScaling) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GCPProviderSettings) SetAutoScaling(v GCPAutoScaling) {
 
 // GetInstanceSizeName returns the InstanceSizeName field value if set, zero value otherwise.
 func (o *GCPProviderSettings) GetInstanceSizeName() string {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *GCPProviderSettings) GetInstanceSizeName() string {
 // GetInstanceSizeNameOk returns a tuple with the InstanceSizeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		return nil, false
 	}
 	return o.InstanceSizeName, true
@@ -93,7 +96,7 @@ func (o *GCPProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
 
 // HasInstanceSizeName returns a boolean if a field has been set.
 func (o *GCPProviderSettings) HasInstanceSizeName() bool {
-	if o != nil && o.InstanceSizeName != nil {
+	if o != nil && !IsNil(o.InstanceSizeName) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GCPProviderSettings) SetInstanceSizeName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *GCPProviderSettings) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *GCPProviderSettings) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPProviderSettings) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -125,7 +128,7 @@ func (o *GCPProviderSettings) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *GCPProviderSettings) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -162,20 +165,26 @@ func (o *GCPProviderSettings) SetProviderName(v string) {
 }
 
 func (o GCPProviderSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoScaling != nil {
-		toSerialize["autoScaling"] = o.AutoScaling
-	}
-	if o.InstanceSizeName != nil {
-		toSerialize["instanceSizeName"] = o.InstanceSizeName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPProviderSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoScaling) {
+		toSerialize["autoScaling"] = o.AutoScaling
+	}
+	if !IsNil(o.InstanceSizeName) {
+		toSerialize["instanceSizeName"] = o.InstanceSizeName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableGCPProviderSettings struct {

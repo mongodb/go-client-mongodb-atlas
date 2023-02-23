@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PartitionFieldView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartitionFieldView{}
+
 // PartitionFieldView Metadata to partition this online archive.
 type PartitionFieldView struct {
 	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
@@ -30,8 +33,6 @@ type PartitionFieldView struct {
 // will change when the set of required properties is changed
 func NewPartitionFieldView() *PartitionFieldView {
 	this := PartitionFieldView{}
-	var order int32 = 0
-	this.Order = order
 	return &this
 }
 
@@ -71,7 +72,7 @@ func (o *PartitionFieldView) SetFieldName(v string) {
 
 // GetFieldType returns the FieldType field value if set, zero value otherwise.
 func (o *PartitionFieldView) GetFieldType() string {
-	if o == nil || o.FieldType == nil {
+	if o == nil || IsNil(o.FieldType) {
 		var ret string
 		return ret
 	}
@@ -81,7 +82,7 @@ func (o *PartitionFieldView) GetFieldType() string {
 // GetFieldTypeOk returns a tuple with the FieldType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PartitionFieldView) GetFieldTypeOk() (*string, bool) {
-	if o == nil || o.FieldType == nil {
+	if o == nil || IsNil(o.FieldType) {
 		return nil, false
 	}
 	return o.FieldType, true
@@ -89,7 +90,7 @@ func (o *PartitionFieldView) GetFieldTypeOk() (*string, bool) {
 
 // HasFieldType returns a boolean if a field has been set.
 func (o *PartitionFieldView) HasFieldType() bool {
-	if o != nil && o.FieldType != nil {
+	if o != nil && !IsNil(o.FieldType) {
 		return true
 	}
 
@@ -126,17 +127,19 @@ func (o *PartitionFieldView) SetOrder(v int32) {
 }
 
 func (o PartitionFieldView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["fieldName"] = o.FieldName
-	}
-	if o.FieldType != nil {
-		toSerialize["fieldType"] = o.FieldType
-	}
-	if true {
-		toSerialize["order"] = o.Order
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PartitionFieldView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["fieldName"] = o.FieldName
+	// skip: fieldType is readOnly
+	toSerialize["order"] = o.Order
+	return toSerialize, nil
 }
 
 type NullablePartitionFieldView struct {

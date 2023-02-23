@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenizerregexCaptureGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenizerregexCaptureGroup{}
+
 // TokenizerregexCaptureGroup Tokenizer that uses a regular expression pattern to extract tokens.
 type TokenizerregexCaptureGroup struct {
 	// Index of the character group within the matching expression to extract into tokens. Use `0` to extract all character groups.
@@ -114,17 +117,19 @@ func (o *TokenizerregexCaptureGroup) SetType(v string) {
 }
 
 func (o TokenizerregexCaptureGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["group"] = o.Group
-	}
-	if true {
-		toSerialize["pattern"] = o.Pattern
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenizerregexCaptureGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["group"] = o.Group
+	toSerialize["pattern"] = o.Pattern
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizerregexCaptureGroup struct {

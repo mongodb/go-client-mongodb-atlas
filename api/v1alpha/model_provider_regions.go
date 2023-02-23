@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProviderRegions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProviderRegions{}
+
 // ProviderRegions struct for ProviderRegions
 type ProviderRegions struct {
 	// List of instances sizes that this cloud provider supports.
@@ -41,7 +44,7 @@ func NewProviderRegionsWithDefaults() *ProviderRegions {
 
 // GetInstanceSizes returns the InstanceSizes field value if set, zero value otherwise.
 func (o *ProviderRegions) GetInstanceSizes() []ApiInstanceSizeView {
-	if o == nil || o.InstanceSizes == nil {
+	if o == nil || IsNil(o.InstanceSizes) {
 		var ret []ApiInstanceSizeView
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ProviderRegions) GetInstanceSizes() []ApiInstanceSizeView {
 // GetInstanceSizesOk returns a tuple with the InstanceSizes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderRegions) GetInstanceSizesOk() ([]ApiInstanceSizeView, bool) {
-	if o == nil || o.InstanceSizes == nil {
+	if o == nil || IsNil(o.InstanceSizes) {
 		return nil, false
 	}
 	return o.InstanceSizes, true
@@ -59,7 +62,7 @@ func (o *ProviderRegions) GetInstanceSizesOk() ([]ApiInstanceSizeView, bool) {
 
 // HasInstanceSizes returns a boolean if a field has been set.
 func (o *ProviderRegions) HasInstanceSizes() bool {
-	if o != nil && o.InstanceSizes != nil {
+	if o != nil && !IsNil(o.InstanceSizes) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ProviderRegions) SetInstanceSizes(v []ApiInstanceSizeView) {
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *ProviderRegions) GetProvider() string {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ProviderRegions) GetProvider() string {
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProviderRegions) GetProviderOk() (*string, bool) {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		return nil, false
 	}
 	return o.Provider, true
@@ -91,7 +94,7 @@ func (o *ProviderRegions) GetProviderOk() (*string, bool) {
 
 // HasProvider returns a boolean if a field has been set.
 func (o *ProviderRegions) HasProvider() bool {
-	if o != nil && o.Provider != nil {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *ProviderRegions) SetProvider(v string) {
 }
 
 func (o ProviderRegions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.InstanceSizes != nil {
-		toSerialize["instanceSizes"] = o.InstanceSizes
-	}
-	if o.Provider != nil {
-		toSerialize["provider"] = o.Provider
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ProviderRegions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: instanceSizes is readOnly
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
+	return toSerialize, nil
 }
 
 type NullableProviderRegions struct {

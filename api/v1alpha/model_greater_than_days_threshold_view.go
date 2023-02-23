@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GreaterThanDaysThresholdView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GreaterThanDaysThresholdView{}
+
 // GreaterThanDaysThresholdView Threshold value that triggers an alert.
 type GreaterThanDaysThresholdView struct {
 	// Comparison operator to apply when checking the current metric value.
@@ -43,7 +46,7 @@ func NewGreaterThanDaysThresholdViewWithDefaults() *GreaterThanDaysThresholdView
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *GreaterThanDaysThresholdView) GetOperator() string {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *GreaterThanDaysThresholdView) GetOperator() string {
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GreaterThanDaysThresholdView) GetOperatorOk() (*string, bool) {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
 	return o.Operator, true
@@ -61,7 +64,7 @@ func (o *GreaterThanDaysThresholdView) GetOperatorOk() (*string, bool) {
 
 // HasOperator returns a boolean if a field has been set.
 func (o *GreaterThanDaysThresholdView) HasOperator() bool {
-	if o != nil && o.Operator != nil {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GreaterThanDaysThresholdView) SetOperator(v string) {
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
 func (o *GreaterThanDaysThresholdView) GetThreshold() int32 {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		var ret int32
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *GreaterThanDaysThresholdView) GetThreshold() int32 {
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GreaterThanDaysThresholdView) GetThresholdOk() (*int32, bool) {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
 	return o.Threshold, true
@@ -93,7 +96,7 @@ func (o *GreaterThanDaysThresholdView) GetThresholdOk() (*int32, bool) {
 
 // HasThreshold returns a boolean if a field has been set.
 func (o *GreaterThanDaysThresholdView) HasThreshold() bool {
-	if o != nil && o.Threshold != nil {
+	if o != nil && !IsNil(o.Threshold) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GreaterThanDaysThresholdView) SetThreshold(v int32) {
 
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *GreaterThanDaysThresholdView) GetUnits() string {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *GreaterThanDaysThresholdView) GetUnits() string {
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GreaterThanDaysThresholdView) GetUnitsOk() (*string, bool) {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
 	return o.Units, true
@@ -125,7 +128,7 @@ func (o *GreaterThanDaysThresholdView) GetUnitsOk() (*string, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *GreaterThanDaysThresholdView) HasUnits() bool {
-	if o != nil && o.Units != nil {
+	if o != nil && !IsNil(o.Units) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GreaterThanDaysThresholdView) SetUnits(v string) {
 }
 
 func (o GreaterThanDaysThresholdView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Operator != nil {
-		toSerialize["operator"] = o.Operator
-	}
-	if o.Threshold != nil {
-		toSerialize["threshold"] = o.Threshold
-	}
-	if o.Units != nil {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GreaterThanDaysThresholdView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
+	}
+	if !IsNil(o.Threshold) {
+		toSerialize["threshold"] = o.Threshold
+	}
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	return toSerialize, nil
 }
 
 type NullableGreaterThanDaysThresholdView struct {

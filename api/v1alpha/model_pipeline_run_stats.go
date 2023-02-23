@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PipelineRunStats type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PipelineRunStats{}
+
 // PipelineRunStats Runtime statistics for this Data Lake Pipeline run.
 type PipelineRunStats struct {
 	// Total data size in bytes exported for this pipeline run.
@@ -41,7 +44,7 @@ func NewPipelineRunStatsWithDefaults() *PipelineRunStats {
 
 // GetBytesExported returns the BytesExported field value if set, zero value otherwise.
 func (o *PipelineRunStats) GetBytesExported() int64 {
-	if o == nil || o.BytesExported == nil {
+	if o == nil || IsNil(o.BytesExported) {
 		var ret int64
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *PipelineRunStats) GetBytesExported() int64 {
 // GetBytesExportedOk returns a tuple with the BytesExported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PipelineRunStats) GetBytesExportedOk() (*int64, bool) {
-	if o == nil || o.BytesExported == nil {
+	if o == nil || IsNil(o.BytesExported) {
 		return nil, false
 	}
 	return o.BytesExported, true
@@ -59,7 +62,7 @@ func (o *PipelineRunStats) GetBytesExportedOk() (*int64, bool) {
 
 // HasBytesExported returns a boolean if a field has been set.
 func (o *PipelineRunStats) HasBytesExported() bool {
-	if o != nil && o.BytesExported != nil {
+	if o != nil && !IsNil(o.BytesExported) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *PipelineRunStats) SetBytesExported(v int64) {
 
 // GetNumDocs returns the NumDocs field value if set, zero value otherwise.
 func (o *PipelineRunStats) GetNumDocs() int64 {
-	if o == nil || o.NumDocs == nil {
+	if o == nil || IsNil(o.NumDocs) {
 		var ret int64
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *PipelineRunStats) GetNumDocs() int64 {
 // GetNumDocsOk returns a tuple with the NumDocs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PipelineRunStats) GetNumDocsOk() (*int64, bool) {
-	if o == nil || o.NumDocs == nil {
+	if o == nil || IsNil(o.NumDocs) {
 		return nil, false
 	}
 	return o.NumDocs, true
@@ -91,7 +94,7 @@ func (o *PipelineRunStats) GetNumDocsOk() (*int64, bool) {
 
 // HasNumDocs returns a boolean if a field has been set.
 func (o *PipelineRunStats) HasNumDocs() bool {
-	if o != nil && o.NumDocs != nil {
+	if o != nil && !IsNil(o.NumDocs) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *PipelineRunStats) SetNumDocs(v int64) {
 }
 
 func (o PipelineRunStats) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BytesExported != nil {
-		toSerialize["bytesExported"] = o.BytesExported
-	}
-	if o.NumDocs != nil {
-		toSerialize["numDocs"] = o.NumDocs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PipelineRunStats) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: bytesExported is readOnly
+	// skip: numDocs is readOnly
+	return toSerialize, nil
 }
 
 type NullablePipelineRunStats struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the IngestionPipeline type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IngestionPipeline{}
+
 // IngestionPipeline Details of a Data Lake Pipeline.
 type IngestionPipeline struct {
 	// Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
@@ -54,7 +57,7 @@ func NewIngestionPipelineWithDefaults() *IngestionPipeline {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *IngestionPipeline) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -72,7 +75,7 @@ func (o *IngestionPipeline) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *IngestionPipeline) SetId(v string) {
 
 // GetCreatedDate returns the CreatedDate field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetCreatedDate() time.Time {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *IngestionPipeline) GetCreatedDate() time.Time {
 // GetCreatedDateOk returns a tuple with the CreatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetCreatedDateOk() (*time.Time, bool) {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		return nil, false
 	}
 	return o.CreatedDate, true
@@ -104,7 +107,7 @@ func (o *IngestionPipeline) GetCreatedDateOk() (*time.Time, bool) {
 
 // HasCreatedDate returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasCreatedDate() bool {
-	if o != nil && o.CreatedDate != nil {
+	if o != nil && !IsNil(o.CreatedDate) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *IngestionPipeline) SetCreatedDate(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *IngestionPipeline) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -136,7 +139,7 @@ func (o *IngestionPipeline) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *IngestionPipeline) SetGroupId(v string) {
 
 // GetLastUpdatedDate returns the LastUpdatedDate field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetLastUpdatedDate() time.Time {
-	if o == nil || o.LastUpdatedDate == nil {
+	if o == nil || IsNil(o.LastUpdatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *IngestionPipeline) GetLastUpdatedDate() time.Time {
 // GetLastUpdatedDateOk returns a tuple with the LastUpdatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetLastUpdatedDateOk() (*time.Time, bool) {
-	if o == nil || o.LastUpdatedDate == nil {
+	if o == nil || IsNil(o.LastUpdatedDate) {
 		return nil, false
 	}
 	return o.LastUpdatedDate, true
@@ -168,7 +171,7 @@ func (o *IngestionPipeline) GetLastUpdatedDateOk() (*time.Time, bool) {
 
 // HasLastUpdatedDate returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasLastUpdatedDate() bool {
-	if o != nil && o.LastUpdatedDate != nil {
+	if o != nil && !IsNil(o.LastUpdatedDate) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *IngestionPipeline) SetLastUpdatedDate(v time.Time) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -192,7 +195,7 @@ func (o *IngestionPipeline) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -200,7 +203,7 @@ func (o *IngestionPipeline) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *IngestionPipeline) SetName(v string) {
 
 // GetSink returns the Sink field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetSink() IngestionSink {
-	if o == nil || o.Sink == nil {
+	if o == nil || IsNil(o.Sink) {
 		var ret IngestionSink
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *IngestionPipeline) GetSink() IngestionSink {
 // GetSinkOk returns a tuple with the Sink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetSinkOk() (*IngestionSink, bool) {
-	if o == nil || o.Sink == nil {
+	if o == nil || IsNil(o.Sink) {
 		return nil, false
 	}
 	return o.Sink, true
@@ -232,7 +235,7 @@ func (o *IngestionPipeline) GetSinkOk() (*IngestionSink, bool) {
 
 // HasSink returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasSink() bool {
-	if o != nil && o.Sink != nil {
+	if o != nil && !IsNil(o.Sink) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *IngestionPipeline) SetSink(v IngestionSink) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetSource() IngestionSource {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		var ret IngestionSource
 		return ret
 	}
@@ -256,7 +259,7 @@ func (o *IngestionPipeline) GetSource() IngestionSource {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetSourceOk() (*IngestionSource, bool) {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
 	return o.Source, true
@@ -264,7 +267,7 @@ func (o *IngestionPipeline) GetSourceOk() (*IngestionSource, bool) {
 
 // HasSource returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasSource() bool {
-	if o != nil && o.Source != nil {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *IngestionPipeline) SetSource(v IngestionSource) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -288,7 +291,7 @@ func (o *IngestionPipeline) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -296,7 +299,7 @@ func (o *IngestionPipeline) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *IngestionPipeline) SetState(v string) {
 
 // GetTransformations returns the Transformations field value if set, zero value otherwise.
 func (o *IngestionPipeline) GetTransformations() []FieldTransformation {
-	if o == nil || o.Transformations == nil {
+	if o == nil || IsNil(o.Transformations) {
 		var ret []FieldTransformation
 		return ret
 	}
@@ -320,7 +323,7 @@ func (o *IngestionPipeline) GetTransformations() []FieldTransformation {
 // GetTransformationsOk returns a tuple with the Transformations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipeline) GetTransformationsOk() ([]FieldTransformation, bool) {
-	if o == nil || o.Transformations == nil {
+	if o == nil || IsNil(o.Transformations) {
 		return nil, false
 	}
 	return o.Transformations, true
@@ -328,7 +331,7 @@ func (o *IngestionPipeline) GetTransformationsOk() ([]FieldTransformation, bool)
 
 // HasTransformations returns a boolean if a field has been set.
 func (o *IngestionPipeline) HasTransformations() bool {
-	if o != nil && o.Transformations != nil {
+	if o != nil && !IsNil(o.Transformations) {
 		return true
 	}
 
@@ -341,35 +344,33 @@ func (o *IngestionPipeline) SetTransformations(v []FieldTransformation) {
 }
 
 func (o IngestionPipeline) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.CreatedDate != nil {
-		toSerialize["createdDate"] = o.CreatedDate
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.LastUpdatedDate != nil {
-		toSerialize["lastUpdatedDate"] = o.LastUpdatedDate
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Sink != nil {
-		toSerialize["sink"] = o.Sink
-	}
-	if o.Source != nil {
-		toSerialize["source"] = o.Source
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Transformations != nil {
-		toSerialize["transformations"] = o.Transformations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IngestionPipeline) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: createdDate is readOnly
+	// skip: groupId is readOnly
+	// skip: lastUpdatedDate is readOnly
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Sink) {
+		toSerialize["sink"] = o.Sink
+	}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
+	// skip: state is readOnly
+	if !IsNil(o.Transformations) {
+		toSerialize["transformations"] = o.Transformations
+	}
+	return toSerialize, nil
 }
 
 type NullableIngestionPipeline struct {

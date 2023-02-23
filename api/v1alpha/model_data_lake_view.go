@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeView{}
+
 // DataLakeView An aggregation pipeline that applies to the collection.
 type DataLakeView struct {
 	// Human-readable label that identifies the view, which corresponds to an aggregation pipeline on a collection.
@@ -43,7 +46,7 @@ func NewDataLakeViewWithDefaults() *DataLakeView {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeView) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *DataLakeView) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeView) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -61,7 +64,7 @@ func (o *DataLakeView) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeView) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DataLakeView) SetName(v string) {
 
 // GetPipeline returns the Pipeline field value if set, zero value otherwise.
 func (o *DataLakeView) GetPipeline() string {
-	if o == nil || o.Pipeline == nil {
+	if o == nil || IsNil(o.Pipeline) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *DataLakeView) GetPipeline() string {
 // GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeView) GetPipelineOk() (*string, bool) {
-	if o == nil || o.Pipeline == nil {
+	if o == nil || IsNil(o.Pipeline) {
 		return nil, false
 	}
 	return o.Pipeline, true
@@ -93,7 +96,7 @@ func (o *DataLakeView) GetPipelineOk() (*string, bool) {
 
 // HasPipeline returns a boolean if a field has been set.
 func (o *DataLakeView) HasPipeline() bool {
-	if o != nil && o.Pipeline != nil {
+	if o != nil && !IsNil(o.Pipeline) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DataLakeView) SetPipeline(v string) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *DataLakeView) GetSource() string {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *DataLakeView) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeView) GetSourceOk() (*string, bool) {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
 	return o.Source, true
@@ -125,7 +128,7 @@ func (o *DataLakeView) GetSourceOk() (*string, bool) {
 
 // HasSource returns a boolean if a field has been set.
 func (o *DataLakeView) HasSource() bool {
-	if o != nil && o.Source != nil {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *DataLakeView) SetSource(v string) {
 }
 
 func (o DataLakeView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Pipeline != nil {
-		toSerialize["pipeline"] = o.Pipeline
-	}
-	if o.Source != nil {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Pipeline) {
+		toSerialize["pipeline"] = o.Pipeline
+	}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CustomCriteriaView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CustomCriteriaView{}
+
 // CustomCriteriaView **CUSTOM criteria.type**.
 type CustomCriteriaView struct {
 	// MongoDB find query that selects documents to archive. The specified query follows the syntax of the `db.collection.find(query)` command. This query can't use the empty document (`{}`) to return all documents. Set this parameter when **\"criteria.type\" : \"CUSTOM\"**.
@@ -62,11 +65,17 @@ func (o *CustomCriteriaView) SetQuery(v string) {
 }
 
 func (o CustomCriteriaView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["query"] = o.Query
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CustomCriteriaView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["query"] = o.Query
+	return toSerialize, nil
 }
 
 type NullableCustomCriteriaView struct {

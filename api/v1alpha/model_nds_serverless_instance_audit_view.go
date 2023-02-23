@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the NDSServerlessInstanceAuditView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSServerlessInstanceAuditView{}
+
 // NDSServerlessInstanceAuditView NDS serverless instance audit identifies any activities around serverless instance.
 type NDSServerlessInstanceAuditView struct {
 	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
@@ -62,7 +65,7 @@ func NewNDSServerlessInstanceAuditViewWithDefaults() *NDSServerlessInstanceAudit
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -72,7 +75,7 @@ func (o *NDSServerlessInstanceAuditView) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -80,7 +83,7 @@ func (o *NDSServerlessInstanceAuditView) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *NDSServerlessInstanceAuditView) SetEventTypeName(v NDSServerlessInstanc
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *NDSServerlessInstanceAuditView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -160,7 +163,7 @@ func (o *NDSServerlessInstanceAuditView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -198,7 +201,7 @@ func (o *NDSServerlessInstanceAuditView) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -208,7 +211,7 @@ func (o *NDSServerlessInstanceAuditView) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -216,7 +219,7 @@ func (o *NDSServerlessInstanceAuditView) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *NDSServerlessInstanceAuditView) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -264,7 +267,7 @@ func (o *NDSServerlessInstanceAuditView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -272,7 +275,7 @@ func (o *NDSServerlessInstanceAuditView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *NDSServerlessInstanceAuditView) SetOrgId(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -296,7 +299,7 @@ func (o *NDSServerlessInstanceAuditView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -304,7 +307,7 @@ func (o *NDSServerlessInstanceAuditView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -318,7 +321,7 @@ func (o *NDSServerlessInstanceAuditView) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -328,7 +331,7 @@ func (o *NDSServerlessInstanceAuditView) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -336,7 +339,7 @@ func (o *NDSServerlessInstanceAuditView) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -350,7 +353,7 @@ func (o *NDSServerlessInstanceAuditView) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -360,7 +363,7 @@ func (o *NDSServerlessInstanceAuditView) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -368,7 +371,7 @@ func (o *NDSServerlessInstanceAuditView) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -382,7 +385,7 @@ func (o *NDSServerlessInstanceAuditView) SetRemoteAddress(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -392,7 +395,7 @@ func (o *NDSServerlessInstanceAuditView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -400,7 +403,7 @@ func (o *NDSServerlessInstanceAuditView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -414,7 +417,7 @@ func (o *NDSServerlessInstanceAuditView) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *NDSServerlessInstanceAuditView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -424,7 +427,7 @@ func (o *NDSServerlessInstanceAuditView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSServerlessInstanceAuditView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -432,7 +435,7 @@ func (o *NDSServerlessInstanceAuditView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *NDSServerlessInstanceAuditView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -445,47 +448,31 @@ func (o *NDSServerlessInstanceAuditView) SetUsername(v string) {
 }
 
 func (o NDSServerlessInstanceAuditView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSServerlessInstanceAuditView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiKeyId is readOnly
+	// skip: created is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableNDSServerlessInstanceAuditView struct {

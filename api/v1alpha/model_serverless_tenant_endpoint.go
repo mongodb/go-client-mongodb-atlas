@@ -39,44 +39,44 @@ func ServerlessAzureTenantEndpointAsServerlessTenantEndpoint(v *ServerlessAzureT
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ServerlessTenantEndpoint) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into ServerlessAWSTenantEndpoint
-        err = json.Unmarshal(data, &dst.ServerlessAWSTenantEndpoint)
-        if err == nil {
-                jsonServerlessAWSTenantEndpoint, _ := json.Marshal(dst.ServerlessAWSTenantEndpoint)
-                if string(jsonServerlessAWSTenantEndpoint) == "{}" { // empty struct
-                        dst.ServerlessAWSTenantEndpoint = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ServerlessAWSTenantEndpoint = nil
-        }
+	match := 0
+	// try to unmarshal data into ServerlessAWSTenantEndpoint
+	err = json.Unmarshal(data, &dst.ServerlessAWSTenantEndpoint)
+	if err == nil {
+		jsonServerlessAWSTenantEndpoint, _ := json.Marshal(dst.ServerlessAWSTenantEndpoint)
+		if string(jsonServerlessAWSTenantEndpoint) == "{}" { // empty struct
+			dst.ServerlessAWSTenantEndpoint = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ServerlessAWSTenantEndpoint = nil
+	}
 
-        // try to unmarshal data into ServerlessAzureTenantEndpoint
-        err = json.Unmarshal(data, &dst.ServerlessAzureTenantEndpoint)
-        if err == nil {
-                jsonServerlessAzureTenantEndpoint, _ := json.Marshal(dst.ServerlessAzureTenantEndpoint)
-                if string(jsonServerlessAzureTenantEndpoint) == "{}" { // empty struct
-                        dst.ServerlessAzureTenantEndpoint = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ServerlessAzureTenantEndpoint = nil
-        }
+	// try to unmarshal data into ServerlessAzureTenantEndpoint
+	err = json.Unmarshal(data, &dst.ServerlessAzureTenantEndpoint)
+	if err == nil {
+		jsonServerlessAzureTenantEndpoint, _ := json.Marshal(dst.ServerlessAzureTenantEndpoint)
+		if string(jsonServerlessAzureTenantEndpoint) == "{}" { // empty struct
+			dst.ServerlessAzureTenantEndpoint = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ServerlessAzureTenantEndpoint = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.ServerlessAWSTenantEndpoint = nil
-                dst.ServerlessAzureTenantEndpoint = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ServerlessAWSTenantEndpoint = nil
+		dst.ServerlessAzureTenantEndpoint = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(ServerlessTenantEndpoint)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(ServerlessTenantEndpoint)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(ServerlessTenantEndpoint)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ServerlessTenantEndpoint)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

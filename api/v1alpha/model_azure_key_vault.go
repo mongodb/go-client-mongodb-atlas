@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzureKeyVault type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureKeyVault{}
+
 // AzureKeyVault Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 type AzureKeyVault struct {
 	// Azure environment in which your account credentials reside.
@@ -57,7 +60,7 @@ func NewAzureKeyVaultWithDefaults() *AzureKeyVault {
 
 // GetAzureEnvironment returns the AzureEnvironment field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetAzureEnvironment() string {
-	if o == nil || o.AzureEnvironment == nil {
+	if o == nil || IsNil(o.AzureEnvironment) {
 		var ret string
 		return ret
 	}
@@ -67,7 +70,7 @@ func (o *AzureKeyVault) GetAzureEnvironment() string {
 // GetAzureEnvironmentOk returns a tuple with the AzureEnvironment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetAzureEnvironmentOk() (*string, bool) {
-	if o == nil || o.AzureEnvironment == nil {
+	if o == nil || IsNil(o.AzureEnvironment) {
 		return nil, false
 	}
 	return o.AzureEnvironment, true
@@ -75,7 +78,7 @@ func (o *AzureKeyVault) GetAzureEnvironmentOk() (*string, bool) {
 
 // HasAzureEnvironment returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasAzureEnvironment() bool {
-	if o != nil && o.AzureEnvironment != nil {
+	if o != nil && !IsNil(o.AzureEnvironment) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *AzureKeyVault) SetAzureEnvironment(v string) {
 
 // GetClientID returns the ClientID field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetClientID() string {
-	if o == nil || o.ClientID == nil {
+	if o == nil || IsNil(o.ClientID) {
 		var ret string
 		return ret
 	}
@@ -99,7 +102,7 @@ func (o *AzureKeyVault) GetClientID() string {
 // GetClientIDOk returns a tuple with the ClientID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetClientIDOk() (*string, bool) {
-	if o == nil || o.ClientID == nil {
+	if o == nil || IsNil(o.ClientID) {
 		return nil, false
 	}
 	return o.ClientID, true
@@ -107,7 +110,7 @@ func (o *AzureKeyVault) GetClientIDOk() (*string, bool) {
 
 // HasClientID returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasClientID() bool {
-	if o != nil && o.ClientID != nil {
+	if o != nil && !IsNil(o.ClientID) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *AzureKeyVault) SetClientID(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -131,7 +134,7 @@ func (o *AzureKeyVault) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -139,7 +142,7 @@ func (o *AzureKeyVault) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *AzureKeyVault) SetEnabled(v bool) {
 
 // GetKeyIdentifier returns the KeyIdentifier field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetKeyIdentifier() string {
-	if o == nil || o.KeyIdentifier == nil {
+	if o == nil || IsNil(o.KeyIdentifier) {
 		var ret string
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *AzureKeyVault) GetKeyIdentifier() string {
 // GetKeyIdentifierOk returns a tuple with the KeyIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetKeyIdentifierOk() (*string, bool) {
-	if o == nil || o.KeyIdentifier == nil {
+	if o == nil || IsNil(o.KeyIdentifier) {
 		return nil, false
 	}
 	return o.KeyIdentifier, true
@@ -171,7 +174,7 @@ func (o *AzureKeyVault) GetKeyIdentifierOk() (*string, bool) {
 
 // HasKeyIdentifier returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasKeyIdentifier() bool {
-	if o != nil && o.KeyIdentifier != nil {
+	if o != nil && !IsNil(o.KeyIdentifier) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *AzureKeyVault) SetKeyIdentifier(v string) {
 
 // GetKeyVaultName returns the KeyVaultName field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetKeyVaultName() string {
-	if o == nil || o.KeyVaultName == nil {
+	if o == nil || IsNil(o.KeyVaultName) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *AzureKeyVault) GetKeyVaultName() string {
 // GetKeyVaultNameOk returns a tuple with the KeyVaultName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetKeyVaultNameOk() (*string, bool) {
-	if o == nil || o.KeyVaultName == nil {
+	if o == nil || IsNil(o.KeyVaultName) {
 		return nil, false
 	}
 	return o.KeyVaultName, true
@@ -203,7 +206,7 @@ func (o *AzureKeyVault) GetKeyVaultNameOk() (*string, bool) {
 
 // HasKeyVaultName returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasKeyVaultName() bool {
-	if o != nil && o.KeyVaultName != nil {
+	if o != nil && !IsNil(o.KeyVaultName) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *AzureKeyVault) SetKeyVaultName(v string) {
 
 // GetResourceGroupName returns the ResourceGroupName field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetResourceGroupName() string {
-	if o == nil || o.ResourceGroupName == nil {
+	if o == nil || IsNil(o.ResourceGroupName) {
 		var ret string
 		return ret
 	}
@@ -227,7 +230,7 @@ func (o *AzureKeyVault) GetResourceGroupName() string {
 // GetResourceGroupNameOk returns a tuple with the ResourceGroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetResourceGroupNameOk() (*string, bool) {
-	if o == nil || o.ResourceGroupName == nil {
+	if o == nil || IsNil(o.ResourceGroupName) {
 		return nil, false
 	}
 	return o.ResourceGroupName, true
@@ -235,7 +238,7 @@ func (o *AzureKeyVault) GetResourceGroupNameOk() (*string, bool) {
 
 // HasResourceGroupName returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasResourceGroupName() bool {
-	if o != nil && o.ResourceGroupName != nil {
+	if o != nil && !IsNil(o.ResourceGroupName) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *AzureKeyVault) SetResourceGroupName(v string) {
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetSecret() string {
-	if o == nil || o.Secret == nil {
+	if o == nil || IsNil(o.Secret) {
 		var ret string
 		return ret
 	}
@@ -259,7 +262,7 @@ func (o *AzureKeyVault) GetSecret() string {
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetSecretOk() (*string, bool) {
-	if o == nil || o.Secret == nil {
+	if o == nil || IsNil(o.Secret) {
 		return nil, false
 	}
 	return o.Secret, true
@@ -267,7 +270,7 @@ func (o *AzureKeyVault) GetSecretOk() (*string, bool) {
 
 // HasSecret returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasSecret() bool {
-	if o != nil && o.Secret != nil {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *AzureKeyVault) SetSecret(v string) {
 
 // GetSubscriptionID returns the SubscriptionID field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetSubscriptionID() string {
-	if o == nil || o.SubscriptionID == nil {
+	if o == nil || IsNil(o.SubscriptionID) {
 		var ret string
 		return ret
 	}
@@ -291,7 +294,7 @@ func (o *AzureKeyVault) GetSubscriptionID() string {
 // GetSubscriptionIDOk returns a tuple with the SubscriptionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetSubscriptionIDOk() (*string, bool) {
-	if o == nil || o.SubscriptionID == nil {
+	if o == nil || IsNil(o.SubscriptionID) {
 		return nil, false
 	}
 	return o.SubscriptionID, true
@@ -299,7 +302,7 @@ func (o *AzureKeyVault) GetSubscriptionIDOk() (*string, bool) {
 
 // HasSubscriptionID returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasSubscriptionID() bool {
-	if o != nil && o.SubscriptionID != nil {
+	if o != nil && !IsNil(o.SubscriptionID) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *AzureKeyVault) SetSubscriptionID(v string) {
 
 // GetTenantID returns the TenantID field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetTenantID() string {
-	if o == nil || o.TenantID == nil {
+	if o == nil || IsNil(o.TenantID) {
 		var ret string
 		return ret
 	}
@@ -323,7 +326,7 @@ func (o *AzureKeyVault) GetTenantID() string {
 // GetTenantIDOk returns a tuple with the TenantID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetTenantIDOk() (*string, bool) {
-	if o == nil || o.TenantID == nil {
+	if o == nil || IsNil(o.TenantID) {
 		return nil, false
 	}
 	return o.TenantID, true
@@ -331,7 +334,7 @@ func (o *AzureKeyVault) GetTenantIDOk() (*string, bool) {
 
 // HasTenantID returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasTenantID() bool {
-	if o != nil && o.TenantID != nil {
+	if o != nil && !IsNil(o.TenantID) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *AzureKeyVault) SetTenantID(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *AzureKeyVault) GetValid() bool {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -355,7 +358,7 @@ func (o *AzureKeyVault) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureKeyVault) GetValidOk() (*bool, bool) {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
 	return o.Valid, true
@@ -363,7 +366,7 @@ func (o *AzureKeyVault) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *AzureKeyVault) HasValid() bool {
-	if o != nil && o.Valid != nil {
+	if o != nil && !IsNil(o.Valid) {
 		return true
 	}
 
@@ -376,38 +379,44 @@ func (o *AzureKeyVault) SetValid(v bool) {
 }
 
 func (o AzureKeyVault) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AzureEnvironment != nil {
-		toSerialize["azureEnvironment"] = o.AzureEnvironment
-	}
-	if o.ClientID != nil {
-		toSerialize["clientID"] = o.ClientID
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.KeyIdentifier != nil {
-		toSerialize["keyIdentifier"] = o.KeyIdentifier
-	}
-	if o.KeyVaultName != nil {
-		toSerialize["keyVaultName"] = o.KeyVaultName
-	}
-	if o.ResourceGroupName != nil {
-		toSerialize["resourceGroupName"] = o.ResourceGroupName
-	}
-	if o.Secret != nil {
-		toSerialize["secret"] = o.Secret
-	}
-	if o.SubscriptionID != nil {
-		toSerialize["subscriptionID"] = o.SubscriptionID
-	}
-	if o.TenantID != nil {
-		toSerialize["tenantID"] = o.TenantID
-	}
-	if o.Valid != nil {
-		toSerialize["valid"] = o.Valid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzureKeyVault) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AzureEnvironment) {
+		toSerialize["azureEnvironment"] = o.AzureEnvironment
+	}
+	if !IsNil(o.ClientID) {
+		toSerialize["clientID"] = o.ClientID
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.KeyIdentifier) {
+		toSerialize["keyIdentifier"] = o.KeyIdentifier
+	}
+	if !IsNil(o.KeyVaultName) {
+		toSerialize["keyVaultName"] = o.KeyVaultName
+	}
+	if !IsNil(o.ResourceGroupName) {
+		toSerialize["resourceGroupName"] = o.ResourceGroupName
+	}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	if !IsNil(o.SubscriptionID) {
+		toSerialize["subscriptionID"] = o.SubscriptionID
+	}
+	if !IsNil(o.TenantID) {
+		toSerialize["tenantID"] = o.TenantID
+	}
+	// skip: valid is readOnly
+	return toSerialize, nil
 }
 
 type NullableAzureKeyVault struct {

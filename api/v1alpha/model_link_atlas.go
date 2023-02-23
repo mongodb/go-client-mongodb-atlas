@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LinkAtlas type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LinkAtlas{}
+
 // LinkAtlas struct for LinkAtlas
 type LinkAtlas struct {
 	// Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with `https://cloud.mongodb.com/api/atlas`.
@@ -41,7 +44,7 @@ func NewLinkAtlasWithDefaults() *LinkAtlas {
 
 // GetHref returns the Href field value if set, zero value otherwise.
 func (o *LinkAtlas) GetHref() string {
-	if o == nil || o.Href == nil {
+	if o == nil || IsNil(o.Href) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *LinkAtlas) GetHref() string {
 // GetHrefOk returns a tuple with the Href field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LinkAtlas) GetHrefOk() (*string, bool) {
-	if o == nil || o.Href == nil {
+	if o == nil || IsNil(o.Href) {
 		return nil, false
 	}
 	return o.Href, true
@@ -59,7 +62,7 @@ func (o *LinkAtlas) GetHrefOk() (*string, bool) {
 
 // HasHref returns a boolean if a field has been set.
 func (o *LinkAtlas) HasHref() bool {
-	if o != nil && o.Href != nil {
+	if o != nil && !IsNil(o.Href) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *LinkAtlas) SetHref(v string) {
 
 // GetRel returns the Rel field value if set, zero value otherwise.
 func (o *LinkAtlas) GetRel() string {
-	if o == nil || o.Rel == nil {
+	if o == nil || IsNil(o.Rel) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *LinkAtlas) GetRel() string {
 // GetRelOk returns a tuple with the Rel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LinkAtlas) GetRelOk() (*string, bool) {
-	if o == nil || o.Rel == nil {
+	if o == nil || IsNil(o.Rel) {
 		return nil, false
 	}
 	return o.Rel, true
@@ -91,7 +94,7 @@ func (o *LinkAtlas) GetRelOk() (*string, bool) {
 
 // HasRel returns a boolean if a field has been set.
 func (o *LinkAtlas) HasRel() bool {
-	if o != nil && o.Rel != nil {
+	if o != nil && !IsNil(o.Rel) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *LinkAtlas) SetRel(v string) {
 }
 
 func (o LinkAtlas) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Href != nil {
-		toSerialize["href"] = o.Href
-	}
-	if o.Rel != nil {
-		toSerialize["rel"] = o.Rel
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o LinkAtlas) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Href) {
+		toSerialize["href"] = o.Href
+	}
+	if !IsNil(o.Rel) {
+		toSerialize["rel"] = o.Rel
+	}
+	return toSerialize, nil
 }
 
 type NullableLinkAtlas struct {

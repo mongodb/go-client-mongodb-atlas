@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExampleResourceResponseView20230101 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExampleResourceResponseView20230101{}
+
 // ExampleResourceResponseView20230101 struct for ExampleResourceResponseView20230101
 type ExampleResourceResponseView20230101 struct {
 	// Dummy data added as response.
@@ -65,7 +68,7 @@ func (o *ExampleResourceResponseView20230101) SetData(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ExampleResourceResponseView20230101) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *ExampleResourceResponseView20230101) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExampleResourceResponseView20230101) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -83,7 +86,7 @@ func (o *ExampleResourceResponseView20230101) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ExampleResourceResponseView20230101) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -96,14 +99,18 @@ func (o *ExampleResourceResponseView20230101) SetLinks(v []Link) {
 }
 
 func (o ExampleResourceResponseView20230101) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExampleResourceResponseView20230101) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableExampleResourceResponseView20230101 struct {

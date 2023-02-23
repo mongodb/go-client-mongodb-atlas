@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OrgGroupView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrgGroupView{}
+
 // OrgGroupView struct for OrgGroupView
 type OrgGroupView struct {
 	// Settings that describe the clusters in each project that the API key is authorized to view.
@@ -51,7 +54,7 @@ func NewOrgGroupViewWithDefaults() *OrgGroupView {
 
 // GetClusters returns the Clusters field value if set, zero value otherwise.
 func (o *OrgGroupView) GetClusters() []ClusterView {
-	if o == nil || o.Clusters == nil {
+	if o == nil || IsNil(o.Clusters) {
 		var ret []ClusterView
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *OrgGroupView) GetClusters() []ClusterView {
 // GetClustersOk returns a tuple with the Clusters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetClustersOk() ([]ClusterView, bool) {
-	if o == nil || o.Clusters == nil {
+	if o == nil || IsNil(o.Clusters) {
 		return nil, false
 	}
 	return o.Clusters, true
@@ -69,7 +72,7 @@ func (o *OrgGroupView) GetClustersOk() ([]ClusterView, bool) {
 
 // HasClusters returns a boolean if a field has been set.
 func (o *OrgGroupView) HasClusters() bool {
-	if o != nil && o.Clusters != nil {
+	if o != nil && !IsNil(o.Clusters) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *OrgGroupView) SetClusters(v []ClusterView) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *OrgGroupView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *OrgGroupView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -101,7 +104,7 @@ func (o *OrgGroupView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *OrgGroupView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *OrgGroupView) SetGroupId(v string) {
 
 // GetGroupName returns the GroupName field value if set, zero value otherwise.
 func (o *OrgGroupView) GetGroupName() string {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *OrgGroupView) GetGroupName() string {
 // GetGroupNameOk returns a tuple with the GroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetGroupNameOk() (*string, bool) {
-	if o == nil || o.GroupName == nil {
+	if o == nil || IsNil(o.GroupName) {
 		return nil, false
 	}
 	return o.GroupName, true
@@ -133,7 +136,7 @@ func (o *OrgGroupView) GetGroupNameOk() (*string, bool) {
 
 // HasGroupName returns a boolean if a field has been set.
 func (o *OrgGroupView) HasGroupName() bool {
-	if o != nil && o.GroupName != nil {
+	if o != nil && !IsNil(o.GroupName) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *OrgGroupView) SetGroupName(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *OrgGroupView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *OrgGroupView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -165,7 +168,7 @@ func (o *OrgGroupView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *OrgGroupView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *OrgGroupView) SetOrgId(v string) {
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *OrgGroupView) GetOrgName() string {
-	if o == nil || o.OrgName == nil {
+	if o == nil || IsNil(o.OrgName) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *OrgGroupView) GetOrgName() string {
 // GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetOrgNameOk() (*string, bool) {
-	if o == nil || o.OrgName == nil {
+	if o == nil || IsNil(o.OrgName) {
 		return nil, false
 	}
 	return o.OrgName, true
@@ -197,7 +200,7 @@ func (o *OrgGroupView) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *OrgGroupView) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
+	if o != nil && !IsNil(o.OrgName) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *OrgGroupView) SetOrgName(v string) {
 
 // GetPlanType returns the PlanType field value if set, zero value otherwise.
 func (o *OrgGroupView) GetPlanType() string {
-	if o == nil || o.PlanType == nil {
+	if o == nil || IsNil(o.PlanType) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *OrgGroupView) GetPlanType() string {
 // GetPlanTypeOk returns a tuple with the PlanType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetPlanTypeOk() (*string, bool) {
-	if o == nil || o.PlanType == nil {
+	if o == nil || IsNil(o.PlanType) {
 		return nil, false
 	}
 	return o.PlanType, true
@@ -229,7 +232,7 @@ func (o *OrgGroupView) GetPlanTypeOk() (*string, bool) {
 
 // HasPlanType returns a boolean if a field has been set.
 func (o *OrgGroupView) HasPlanType() bool {
-	if o != nil && o.PlanType != nil {
+	if o != nil && !IsNil(o.PlanType) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *OrgGroupView) SetPlanType(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *OrgGroupView) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *OrgGroupView) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgGroupView) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -261,7 +264,7 @@ func (o *OrgGroupView) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *OrgGroupView) HasTags() bool {
-	if o != nil && o.Tags != nil {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -274,29 +277,27 @@ func (o *OrgGroupView) SetTags(v []string) {
 }
 
 func (o OrgGroupView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Clusters != nil {
-		toSerialize["clusters"] = o.Clusters
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.GroupName != nil {
-		toSerialize["groupName"] = o.GroupName
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.OrgName != nil {
-		toSerialize["orgName"] = o.OrgName
-	}
-	if o.PlanType != nil {
-		toSerialize["planType"] = o.PlanType
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OrgGroupView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusters is readOnly
+	// skip: groupId is readOnly
+	if !IsNil(o.GroupName) {
+		toSerialize["groupName"] = o.GroupName
+	}
+	// skip: orgId is readOnly
+	if !IsNil(o.OrgName) {
+		toSerialize["orgName"] = o.OrgName
+	}
+	// skip: planType is readOnly
+	// skip: tags is readOnly
+	return toSerialize, nil
 }
 
 type NullableOrgGroupView struct {

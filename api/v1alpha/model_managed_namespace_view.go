@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ManagedNamespaceView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ManagedNamespaceView{}
+
 // ManagedNamespaceView struct for ManagedNamespaceView
 type ManagedNamespaceView struct {
 	// Human-readable label of the collection to manage for this Global Cluster.
@@ -63,7 +66,7 @@ func NewManagedNamespaceViewWithDefaults() *ManagedNamespaceView {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetCollection() string {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		var ret string
 		return ret
 	}
@@ -73,7 +76,7 @@ func (o *ManagedNamespaceView) GetCollection() string {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetCollectionOk() (*string, bool) {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -81,7 +84,7 @@ func (o *ManagedNamespaceView) GetCollectionOk() (*string, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -95,7 +98,7 @@ func (o *ManagedNamespaceView) SetCollection(v string) {
 
 // GetCustomShardKey returns the CustomShardKey field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetCustomShardKey() string {
-	if o == nil || o.CustomShardKey == nil {
+	if o == nil || IsNil(o.CustomShardKey) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *ManagedNamespaceView) GetCustomShardKey() string {
 // GetCustomShardKeyOk returns a tuple with the CustomShardKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetCustomShardKeyOk() (*string, bool) {
-	if o == nil || o.CustomShardKey == nil {
+	if o == nil || IsNil(o.CustomShardKey) {
 		return nil, false
 	}
 	return o.CustomShardKey, true
@@ -113,7 +116,7 @@ func (o *ManagedNamespaceView) GetCustomShardKeyOk() (*string, bool) {
 
 // HasCustomShardKey returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasCustomShardKey() bool {
-	if o != nil && o.CustomShardKey != nil {
+	if o != nil && !IsNil(o.CustomShardKey) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *ManagedNamespaceView) SetCustomShardKey(v string) {
 
 // GetDb returns the Db field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetDb() string {
-	if o == nil || o.Db == nil {
+	if o == nil || IsNil(o.Db) {
 		var ret string
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *ManagedNamespaceView) GetDb() string {
 // GetDbOk returns a tuple with the Db field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetDbOk() (*string, bool) {
-	if o == nil || o.Db == nil {
+	if o == nil || IsNil(o.Db) {
 		return nil, false
 	}
 	return o.Db, true
@@ -145,7 +148,7 @@ func (o *ManagedNamespaceView) GetDbOk() (*string, bool) {
 
 // HasDb returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasDb() bool {
-	if o != nil && o.Db != nil {
+	if o != nil && !IsNil(o.Db) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *ManagedNamespaceView) SetDb(v string) {
 
 // GetIsCustomShardKeyHashed returns the IsCustomShardKeyHashed field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetIsCustomShardKeyHashed() bool {
-	if o == nil || o.IsCustomShardKeyHashed == nil {
+	if o == nil || IsNil(o.IsCustomShardKeyHashed) {
 		var ret bool
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *ManagedNamespaceView) GetIsCustomShardKeyHashed() bool {
 // GetIsCustomShardKeyHashedOk returns a tuple with the IsCustomShardKeyHashed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetIsCustomShardKeyHashedOk() (*bool, bool) {
-	if o == nil || o.IsCustomShardKeyHashed == nil {
+	if o == nil || IsNil(o.IsCustomShardKeyHashed) {
 		return nil, false
 	}
 	return o.IsCustomShardKeyHashed, true
@@ -177,7 +180,7 @@ func (o *ManagedNamespaceView) GetIsCustomShardKeyHashedOk() (*bool, bool) {
 
 // HasIsCustomShardKeyHashed returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasIsCustomShardKeyHashed() bool {
-	if o != nil && o.IsCustomShardKeyHashed != nil {
+	if o != nil && !IsNil(o.IsCustomShardKeyHashed) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *ManagedNamespaceView) SetIsCustomShardKeyHashed(v bool) {
 
 // GetIsShardKeyUnique returns the IsShardKeyUnique field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetIsShardKeyUnique() bool {
-	if o == nil || o.IsShardKeyUnique == nil {
+	if o == nil || IsNil(o.IsShardKeyUnique) {
 		var ret bool
 		return ret
 	}
@@ -201,7 +204,7 @@ func (o *ManagedNamespaceView) GetIsShardKeyUnique() bool {
 // GetIsShardKeyUniqueOk returns a tuple with the IsShardKeyUnique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetIsShardKeyUniqueOk() (*bool, bool) {
-	if o == nil || o.IsShardKeyUnique == nil {
+	if o == nil || IsNil(o.IsShardKeyUnique) {
 		return nil, false
 	}
 	return o.IsShardKeyUnique, true
@@ -209,7 +212,7 @@ func (o *ManagedNamespaceView) GetIsShardKeyUniqueOk() (*bool, bool) {
 
 // HasIsShardKeyUnique returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasIsShardKeyUnique() bool {
-	if o != nil && o.IsShardKeyUnique != nil {
+	if o != nil && !IsNil(o.IsShardKeyUnique) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *ManagedNamespaceView) SetIsShardKeyUnique(v bool) {
 
 // GetNumInitialChunks returns the NumInitialChunks field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetNumInitialChunks() int64 {
-	if o == nil || o.NumInitialChunks == nil {
+	if o == nil || IsNil(o.NumInitialChunks) {
 		var ret int64
 		return ret
 	}
@@ -233,7 +236,7 @@ func (o *ManagedNamespaceView) GetNumInitialChunks() int64 {
 // GetNumInitialChunksOk returns a tuple with the NumInitialChunks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetNumInitialChunksOk() (*int64, bool) {
-	if o == nil || o.NumInitialChunks == nil {
+	if o == nil || IsNil(o.NumInitialChunks) {
 		return nil, false
 	}
 	return o.NumInitialChunks, true
@@ -241,7 +244,7 @@ func (o *ManagedNamespaceView) GetNumInitialChunksOk() (*int64, bool) {
 
 // HasNumInitialChunks returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasNumInitialChunks() bool {
-	if o != nil && o.NumInitialChunks != nil {
+	if o != nil && !IsNil(o.NumInitialChunks) {
 		return true
 	}
 
@@ -255,7 +258,7 @@ func (o *ManagedNamespaceView) SetNumInitialChunks(v int64) {
 
 // GetPresplitHashedZones returns the PresplitHashedZones field value if set, zero value otherwise.
 func (o *ManagedNamespaceView) GetPresplitHashedZones() bool {
-	if o == nil || o.PresplitHashedZones == nil {
+	if o == nil || IsNil(o.PresplitHashedZones) {
 		var ret bool
 		return ret
 	}
@@ -265,7 +268,7 @@ func (o *ManagedNamespaceView) GetPresplitHashedZones() bool {
 // GetPresplitHashedZonesOk returns a tuple with the PresplitHashedZones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedNamespaceView) GetPresplitHashedZonesOk() (*bool, bool) {
-	if o == nil || o.PresplitHashedZones == nil {
+	if o == nil || IsNil(o.PresplitHashedZones) {
 		return nil, false
 	}
 	return o.PresplitHashedZones, true
@@ -273,7 +276,7 @@ func (o *ManagedNamespaceView) GetPresplitHashedZonesOk() (*bool, bool) {
 
 // HasPresplitHashedZones returns a boolean if a field has been set.
 func (o *ManagedNamespaceView) HasPresplitHashedZones() bool {
-	if o != nil && o.PresplitHashedZones != nil {
+	if o != nil && !IsNil(o.PresplitHashedZones) {
 		return true
 	}
 
@@ -286,29 +289,37 @@ func (o *ManagedNamespaceView) SetPresplitHashedZones(v bool) {
 }
 
 func (o ManagedNamespaceView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Collection != nil {
-		toSerialize["collection"] = o.Collection
-	}
-	if o.CustomShardKey != nil {
-		toSerialize["customShardKey"] = o.CustomShardKey
-	}
-	if o.Db != nil {
-		toSerialize["db"] = o.Db
-	}
-	if o.IsCustomShardKeyHashed != nil {
-		toSerialize["isCustomShardKeyHashed"] = o.IsCustomShardKeyHashed
-	}
-	if o.IsShardKeyUnique != nil {
-		toSerialize["isShardKeyUnique"] = o.IsShardKeyUnique
-	}
-	if o.NumInitialChunks != nil {
-		toSerialize["numInitialChunks"] = o.NumInitialChunks
-	}
-	if o.PresplitHashedZones != nil {
-		toSerialize["presplitHashedZones"] = o.PresplitHashedZones
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ManagedNamespaceView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Collection) {
+		toSerialize["collection"] = o.Collection
+	}
+	if !IsNil(o.CustomShardKey) {
+		toSerialize["customShardKey"] = o.CustomShardKey
+	}
+	if !IsNil(o.Db) {
+		toSerialize["db"] = o.Db
+	}
+	if !IsNil(o.IsCustomShardKeyHashed) {
+		toSerialize["isCustomShardKeyHashed"] = o.IsCustomShardKeyHashed
+	}
+	if !IsNil(o.IsShardKeyUnique) {
+		toSerialize["isShardKeyUnique"] = o.IsShardKeyUnique
+	}
+	if !IsNil(o.NumInitialChunks) {
+		toSerialize["numInitialChunks"] = o.NumInitialChunks
+	}
+	if !IsNil(o.PresplitHashedZones) {
+		toSerialize["presplitHashedZones"] = o.PresplitHashedZones
+	}
+	return toSerialize, nil
 }
 
 type NullableManagedNamespaceView struct {

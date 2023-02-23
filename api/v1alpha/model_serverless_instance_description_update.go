@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessInstanceDescriptionUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessInstanceDescriptionUpdate{}
+
 // ServerlessInstanceDescriptionUpdate Settings that you can update when you request a serverless cluster update.
 type ServerlessInstanceDescriptionUpdate struct {
 	ServerlessBackupOptions *ServerlessBackupOptions `json:"serverlessBackupOptions,omitempty"`
@@ -44,7 +47,7 @@ func NewServerlessInstanceDescriptionUpdateWithDefaults() *ServerlessInstanceDes
 
 // GetServerlessBackupOptions returns the ServerlessBackupOptions field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionUpdate) GetServerlessBackupOptions() ServerlessBackupOptions {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		var ret ServerlessBackupOptions
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ServerlessInstanceDescriptionUpdate) GetServerlessBackupOptions() Serve
 // GetServerlessBackupOptionsOk returns a tuple with the ServerlessBackupOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionUpdate) GetServerlessBackupOptionsOk() (*ServerlessBackupOptions, bool) {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		return nil, false
 	}
 	return o.ServerlessBackupOptions, true
@@ -62,7 +65,7 @@ func (o *ServerlessInstanceDescriptionUpdate) GetServerlessBackupOptionsOk() (*S
 
 // HasServerlessBackupOptions returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionUpdate) HasServerlessBackupOptions() bool {
-	if o != nil && o.ServerlessBackupOptions != nil {
+	if o != nil && !IsNil(o.ServerlessBackupOptions) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ServerlessInstanceDescriptionUpdate) SetServerlessBackupOptions(v Serve
 
 // GetTerminationProtectionEnabled returns the TerminationProtectionEnabled field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionUpdate) GetTerminationProtectionEnabled() bool {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ServerlessInstanceDescriptionUpdate) GetTerminationProtectionEnabled() 
 // GetTerminationProtectionEnabledOk returns a tuple with the TerminationProtectionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionUpdate) GetTerminationProtectionEnabledOk() (*bool, bool) {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		return nil, false
 	}
 	return o.TerminationProtectionEnabled, true
@@ -94,7 +97,7 @@ func (o *ServerlessInstanceDescriptionUpdate) GetTerminationProtectionEnabledOk(
 
 // HasTerminationProtectionEnabled returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionUpdate) HasTerminationProtectionEnabled() bool {
-	if o != nil && o.TerminationProtectionEnabled != nil {
+	if o != nil && !IsNil(o.TerminationProtectionEnabled) {
 		return true
 	}
 
@@ -107,14 +110,22 @@ func (o *ServerlessInstanceDescriptionUpdate) SetTerminationProtectionEnabled(v 
 }
 
 func (o ServerlessInstanceDescriptionUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ServerlessBackupOptions != nil {
-		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
-	}
-	if o.TerminationProtectionEnabled != nil {
-		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessInstanceDescriptionUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ServerlessBackupOptions) {
+		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
+	}
+	if !IsNil(o.TerminationProtectionEnabled) {
+		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessInstanceDescriptionUpdate struct {

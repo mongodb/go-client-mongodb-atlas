@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NDSLDAPVerifyConnectivityJobRequestValidation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSLDAPVerifyConnectivityJobRequestValidation{}
+
 // NDSLDAPVerifyConnectivityJobRequestValidation One test that MongoDB Cloud runs to test verification of the provided Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration details.
 type NDSLDAPVerifyConnectivityJobRequestValidation struct {
 	// Human-readable string that indicates the result of this verification test.
@@ -41,7 +44,7 @@ func NewNDSLDAPVerifyConnectivityJobRequestValidationWithDefaults() *NDSLDAPVeri
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -59,7 +62,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetStatusOk() (*string, 
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) SetStatus(v string) {
 
 // GetValidationType returns the ValidationType field value if set, zero value otherwise.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetValidationType() string {
-	if o == nil || o.ValidationType == nil {
+	if o == nil || IsNil(o.ValidationType) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetValidationType() stri
 // GetValidationTypeOk returns a tuple with the ValidationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetValidationTypeOk() (*string, bool) {
-	if o == nil || o.ValidationType == nil {
+	if o == nil || IsNil(o.ValidationType) {
 		return nil, false
 	}
 	return o.ValidationType, true
@@ -91,7 +94,7 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) GetValidationTypeOk() (*
 
 // HasValidationType returns a boolean if a field has been set.
 func (o *NDSLDAPVerifyConnectivityJobRequestValidation) HasValidationType() bool {
-	if o != nil && o.ValidationType != nil {
+	if o != nil && !IsNil(o.ValidationType) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) SetValidationType(v stri
 }
 
 func (o NDSLDAPVerifyConnectivityJobRequestValidation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.ValidationType != nil {
-		toSerialize["validationType"] = o.ValidationType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSLDAPVerifyConnectivityJobRequestValidation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: status is readOnly
+	// skip: validationType is readOnly
+	return toSerialize, nil
 }
 
 type NullableNDSLDAPVerifyConnectivityJobRequestValidation struct {

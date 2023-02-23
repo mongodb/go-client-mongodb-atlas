@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterasciiFolding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterasciiFolding{}
+
 // TokenFilterasciiFolding Filter that converts alphabetic, numeric, and symbolic unicode characters that are not in the Basic Latin Unicode block to their ASCII equivalents, if available.
 type TokenFilterasciiFolding struct {
 	// Value that indicates whether to include or omit the original tokens in the output of the token filter.  Choose `include` if you want to support queries on both the original tokens as well as the converted forms.   Choose `omit` if you want to query only on the converted forms of the original tokens.
@@ -45,7 +48,7 @@ func NewTokenFilterasciiFoldingWithDefaults() *TokenFilterasciiFolding {
 
 // GetOriginalTokens returns the OriginalTokens field value if set, zero value otherwise.
 func (o *TokenFilterasciiFolding) GetOriginalTokens() string {
-	if o == nil || o.OriginalTokens == nil {
+	if o == nil || IsNil(o.OriginalTokens) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *TokenFilterasciiFolding) GetOriginalTokens() string {
 // GetOriginalTokensOk returns a tuple with the OriginalTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilterasciiFolding) GetOriginalTokensOk() (*string, bool) {
-	if o == nil || o.OriginalTokens == nil {
+	if o == nil || IsNil(o.OriginalTokens) {
 		return nil, false
 	}
 	return o.OriginalTokens, true
@@ -63,7 +66,7 @@ func (o *TokenFilterasciiFolding) GetOriginalTokensOk() (*string, bool) {
 
 // HasOriginalTokens returns a boolean if a field has been set.
 func (o *TokenFilterasciiFolding) HasOriginalTokens() bool {
-	if o != nil && o.OriginalTokens != nil {
+	if o != nil && !IsNil(o.OriginalTokens) {
 		return true
 	}
 
@@ -100,14 +103,20 @@ func (o *TokenFilterasciiFolding) SetType(v string) {
 }
 
 func (o TokenFilterasciiFolding) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.OriginalTokens != nil {
-		toSerialize["originalTokens"] = o.OriginalTokens
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterasciiFolding) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OriginalTokens) {
+		toSerialize["originalTokens"] = o.OriginalTokens
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterasciiFolding struct {

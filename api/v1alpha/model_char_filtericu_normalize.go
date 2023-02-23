@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CharFiltericuNormalize type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CharFiltericuNormalize{}
+
 // CharFiltericuNormalize Filter that processes normalized text with the ICU Normalizer. It is based on Lucene's ICUNormalizer2CharFilter.
 type CharFiltericuNormalize struct {
 	// Human-readable label that identifies this character filter type.
@@ -62,11 +65,17 @@ func (o *CharFiltericuNormalize) SetType(v string) {
 }
 
 func (o CharFiltericuNormalize) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CharFiltericuNormalize) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableCharFiltericuNormalize struct {

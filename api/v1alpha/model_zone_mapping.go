@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ZoneMapping type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ZoneMapping{}
+
 // ZoneMapping Human-readable label that identifies the subset of a global cluster.
 type ZoneMapping struct {
 	// Code that represents a location that maps to a zone in your global cluster. MongoDB Cloud represents this location with a ISO 3166-2 location and subdivision codes when possible.
@@ -88,14 +91,18 @@ func (o *ZoneMapping) SetZone(v string) {
 }
 
 func (o ZoneMapping) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["location"] = o.Location
-	}
-	if true {
-		toSerialize["zone"] = o.Zone
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ZoneMapping) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["location"] = o.Location
+	toSerialize["zone"] = o.Zone
+	return toSerialize, nil
 }
 
 type NullableZoneMapping struct {

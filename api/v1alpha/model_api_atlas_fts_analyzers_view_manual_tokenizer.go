@@ -87,128 +87,128 @@ func TokenizerwhitespaceAsApiAtlasFTSAnalyzersViewManualTokenizer(v *Tokenizerwh
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ApiAtlasFTSAnalyzersViewManualTokenizer) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into TokenizeredgeGram
-        err = json.Unmarshal(data, &dst.TokenizeredgeGram)
-        if err == nil {
-                jsonTokenizeredgeGram, _ := json.Marshal(dst.TokenizeredgeGram)
-                if string(jsonTokenizeredgeGram) == "{}" { // empty struct
-                        dst.TokenizeredgeGram = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TokenizeredgeGram = nil
-        }
+	match := 0
+	// try to unmarshal data into TokenizeredgeGram
+	err = json.Unmarshal(data, &dst.TokenizeredgeGram)
+	if err == nil {
+		jsonTokenizeredgeGram, _ := json.Marshal(dst.TokenizeredgeGram)
+		if string(jsonTokenizeredgeGram) == "{}" { // empty struct
+			dst.TokenizeredgeGram = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TokenizeredgeGram = nil
+	}
 
-        // try to unmarshal data into Tokenizerkeyword
-        err = json.Unmarshal(data, &dst.Tokenizerkeyword)
-        if err == nil {
-                jsonTokenizerkeyword, _ := json.Marshal(dst.Tokenizerkeyword)
-                if string(jsonTokenizerkeyword) == "{}" { // empty struct
-                        dst.Tokenizerkeyword = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.Tokenizerkeyword = nil
-        }
+	// try to unmarshal data into Tokenizerkeyword
+	err = json.Unmarshal(data, &dst.Tokenizerkeyword)
+	if err == nil {
+		jsonTokenizerkeyword, _ := json.Marshal(dst.Tokenizerkeyword)
+		if string(jsonTokenizerkeyword) == "{}" { // empty struct
+			dst.Tokenizerkeyword = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Tokenizerkeyword = nil
+	}
 
-        // try to unmarshal data into TokenizernGram
-        err = json.Unmarshal(data, &dst.TokenizernGram)
-        if err == nil {
-                jsonTokenizernGram, _ := json.Marshal(dst.TokenizernGram)
-                if string(jsonTokenizernGram) == "{}" { // empty struct
-                        dst.TokenizernGram = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TokenizernGram = nil
-        }
+	// try to unmarshal data into TokenizernGram
+	err = json.Unmarshal(data, &dst.TokenizernGram)
+	if err == nil {
+		jsonTokenizernGram, _ := json.Marshal(dst.TokenizernGram)
+		if string(jsonTokenizernGram) == "{}" { // empty struct
+			dst.TokenizernGram = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TokenizernGram = nil
+	}
 
-        // try to unmarshal data into TokenizerregexCaptureGroup
-        err = json.Unmarshal(data, &dst.TokenizerregexCaptureGroup)
-        if err == nil {
-                jsonTokenizerregexCaptureGroup, _ := json.Marshal(dst.TokenizerregexCaptureGroup)
-                if string(jsonTokenizerregexCaptureGroup) == "{}" { // empty struct
-                        dst.TokenizerregexCaptureGroup = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TokenizerregexCaptureGroup = nil
-        }
+	// try to unmarshal data into TokenizerregexCaptureGroup
+	err = json.Unmarshal(data, &dst.TokenizerregexCaptureGroup)
+	if err == nil {
+		jsonTokenizerregexCaptureGroup, _ := json.Marshal(dst.TokenizerregexCaptureGroup)
+		if string(jsonTokenizerregexCaptureGroup) == "{}" { // empty struct
+			dst.TokenizerregexCaptureGroup = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TokenizerregexCaptureGroup = nil
+	}
 
-        // try to unmarshal data into TokenizerregexSplit
-        err = json.Unmarshal(data, &dst.TokenizerregexSplit)
-        if err == nil {
-                jsonTokenizerregexSplit, _ := json.Marshal(dst.TokenizerregexSplit)
-                if string(jsonTokenizerregexSplit) == "{}" { // empty struct
-                        dst.TokenizerregexSplit = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TokenizerregexSplit = nil
-        }
+	// try to unmarshal data into TokenizerregexSplit
+	err = json.Unmarshal(data, &dst.TokenizerregexSplit)
+	if err == nil {
+		jsonTokenizerregexSplit, _ := json.Marshal(dst.TokenizerregexSplit)
+		if string(jsonTokenizerregexSplit) == "{}" { // empty struct
+			dst.TokenizerregexSplit = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TokenizerregexSplit = nil
+	}
 
-        // try to unmarshal data into Tokenizerstandard
-        err = json.Unmarshal(data, &dst.Tokenizerstandard)
-        if err == nil {
-                jsonTokenizerstandard, _ := json.Marshal(dst.Tokenizerstandard)
-                if string(jsonTokenizerstandard) == "{}" { // empty struct
-                        dst.Tokenizerstandard = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.Tokenizerstandard = nil
-        }
+	// try to unmarshal data into Tokenizerstandard
+	err = json.Unmarshal(data, &dst.Tokenizerstandard)
+	if err == nil {
+		jsonTokenizerstandard, _ := json.Marshal(dst.Tokenizerstandard)
+		if string(jsonTokenizerstandard) == "{}" { // empty struct
+			dst.Tokenizerstandard = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Tokenizerstandard = nil
+	}
 
-        // try to unmarshal data into TokenizeruaxUrlEmail
-        err = json.Unmarshal(data, &dst.TokenizeruaxUrlEmail)
-        if err == nil {
-                jsonTokenizeruaxUrlEmail, _ := json.Marshal(dst.TokenizeruaxUrlEmail)
-                if string(jsonTokenizeruaxUrlEmail) == "{}" { // empty struct
-                        dst.TokenizeruaxUrlEmail = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.TokenizeruaxUrlEmail = nil
-        }
+	// try to unmarshal data into TokenizeruaxUrlEmail
+	err = json.Unmarshal(data, &dst.TokenizeruaxUrlEmail)
+	if err == nil {
+		jsonTokenizeruaxUrlEmail, _ := json.Marshal(dst.TokenizeruaxUrlEmail)
+		if string(jsonTokenizeruaxUrlEmail) == "{}" { // empty struct
+			dst.TokenizeruaxUrlEmail = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TokenizeruaxUrlEmail = nil
+	}
 
-        // try to unmarshal data into Tokenizerwhitespace
-        err = json.Unmarshal(data, &dst.Tokenizerwhitespace)
-        if err == nil {
-                jsonTokenizerwhitespace, _ := json.Marshal(dst.Tokenizerwhitespace)
-                if string(jsonTokenizerwhitespace) == "{}" { // empty struct
-                        dst.Tokenizerwhitespace = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.Tokenizerwhitespace = nil
-        }
+	// try to unmarshal data into Tokenizerwhitespace
+	err = json.Unmarshal(data, &dst.Tokenizerwhitespace)
+	if err == nil {
+		jsonTokenizerwhitespace, _ := json.Marshal(dst.Tokenizerwhitespace)
+		if string(jsonTokenizerwhitespace) == "{}" { // empty struct
+			dst.Tokenizerwhitespace = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Tokenizerwhitespace = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.TokenizeredgeGram = nil
-                dst.Tokenizerkeyword = nil
-                dst.TokenizernGram = nil
-                dst.TokenizerregexCaptureGroup = nil
-                dst.TokenizerregexSplit = nil
-                dst.Tokenizerstandard = nil
-                dst.TokenizeruaxUrlEmail = nil
-                dst.Tokenizerwhitespace = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.TokenizeredgeGram = nil
+		dst.Tokenizerkeyword = nil
+		dst.TokenizernGram = nil
+		dst.TokenizerregexCaptureGroup = nil
+		dst.TokenizerregexSplit = nil
+		dst.Tokenizerstandard = nil
+		dst.TokenizeruaxUrlEmail = nil
+		dst.Tokenizerwhitespace = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(ApiAtlasFTSAnalyzersViewManualTokenizer)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(ApiAtlasFTSAnalyzersViewManualTokenizer)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(ApiAtlasFTSAnalyzersViewManualTokenizer)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ApiAtlasFTSAnalyzersViewManualTokenizer)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

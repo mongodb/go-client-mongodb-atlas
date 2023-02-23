@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CustomCriteriaViewAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CustomCriteriaViewAllOf{}
+
 // CustomCriteriaViewAllOf struct for CustomCriteriaViewAllOf
 type CustomCriteriaViewAllOf struct {
 	// MongoDB find query that selects documents to archive. The specified query follows the syntax of the `db.collection.find(query)` command. This query can't use the empty document (`{}`) to return all documents. Set this parameter when **\"criteria.type\" : \"CUSTOM\"**.
@@ -39,7 +42,7 @@ func NewCustomCriteriaViewAllOfWithDefaults() *CustomCriteriaViewAllOf {
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *CustomCriteriaViewAllOf) GetQuery() string {
-	if o == nil || o.Query == nil {
+	if o == nil || IsNil(o.Query) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *CustomCriteriaViewAllOf) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomCriteriaViewAllOf) GetQueryOk() (*string, bool) {
-	if o == nil || o.Query == nil {
+	if o == nil || IsNil(o.Query) {
 		return nil, false
 	}
 	return o.Query, true
@@ -57,7 +60,7 @@ func (o *CustomCriteriaViewAllOf) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *CustomCriteriaViewAllOf) HasQuery() bool {
-	if o != nil && o.Query != nil {
+	if o != nil && !IsNil(o.Query) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CustomCriteriaViewAllOf) SetQuery(v string) {
 }
 
 func (o CustomCriteriaViewAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Query != nil {
-		toSerialize["query"] = o.Query
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CustomCriteriaViewAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Query) {
+		toSerialize["query"] = o.Query
+	}
+	return toSerialize, nil
 }
 
 type NullableCustomCriteriaViewAllOf struct {

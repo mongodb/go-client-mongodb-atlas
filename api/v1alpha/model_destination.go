@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Destination type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Destination{}
+
 // Destination Document that describes the destination of the migration.
 type Destination struct {
 	// Label that identifies the destination cluster.
@@ -32,8 +35,6 @@ type Destination struct {
 // will change when the set of required properties is changed
 func NewDestination() *Destination {
 	this := Destination{}
-	var hostnameSchemaType string = "PUBLIC"
-	this.HostnameSchemaType = hostnameSchemaType
 	return &this
 }
 
@@ -121,7 +122,7 @@ func (o *Destination) SetHostnameSchemaType(v string) {
 
 // GetPrivateLinkId returns the PrivateLinkId field value if set, zero value otherwise.
 func (o *Destination) GetPrivateLinkId() string {
-	if o == nil || o.PrivateLinkId == nil {
+	if o == nil || IsNil(o.PrivateLinkId) {
 		var ret string
 		return ret
 	}
@@ -131,7 +132,7 @@ func (o *Destination) GetPrivateLinkId() string {
 // GetPrivateLinkIdOk returns a tuple with the PrivateLinkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Destination) GetPrivateLinkIdOk() (*string, bool) {
-	if o == nil || o.PrivateLinkId == nil {
+	if o == nil || IsNil(o.PrivateLinkId) {
 		return nil, false
 	}
 	return o.PrivateLinkId, true
@@ -139,7 +140,7 @@ func (o *Destination) GetPrivateLinkIdOk() (*string, bool) {
 
 // HasPrivateLinkId returns a boolean if a field has been set.
 func (o *Destination) HasPrivateLinkId() bool {
-	if o != nil && o.PrivateLinkId != nil {
+	if o != nil && !IsNil(o.PrivateLinkId) {
 		return true
 	}
 
@@ -152,20 +153,22 @@ func (o *Destination) SetPrivateLinkId(v string) {
 }
 
 func (o Destination) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if true {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["hostnameSchemaType"] = o.HostnameSchemaType
-	}
-	if o.PrivateLinkId != nil {
-		toSerialize["privateLinkId"] = o.PrivateLinkId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Destination) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clusterName"] = o.ClusterName
+	toSerialize["groupId"] = o.GroupId
+	toSerialize["hostnameSchemaType"] = o.HostnameSchemaType
+	if !IsNil(o.PrivateLinkId) {
+		toSerialize["privateLinkId"] = o.PrivateLinkId
+	}
+	return toSerialize, nil
 }
 
 type NullableDestination struct {

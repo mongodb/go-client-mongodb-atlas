@@ -47,58 +47,58 @@ func CreateGCPEndpointGroupRequestAsCreatePrivateEndpointRequest(v *CreateGCPEnd
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreatePrivateEndpointRequest) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into CreateAWSEndpointRequest
-        err = json.Unmarshal(data, &dst.CreateAWSEndpointRequest)
-        if err == nil {
-                jsonCreateAWSEndpointRequest, _ := json.Marshal(dst.CreateAWSEndpointRequest)
-                if string(jsonCreateAWSEndpointRequest) == "{}" { // empty struct
-                        dst.CreateAWSEndpointRequest = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CreateAWSEndpointRequest = nil
-        }
+	match := 0
+	// try to unmarshal data into CreateAWSEndpointRequest
+	err = json.Unmarshal(data, &dst.CreateAWSEndpointRequest)
+	if err == nil {
+		jsonCreateAWSEndpointRequest, _ := json.Marshal(dst.CreateAWSEndpointRequest)
+		if string(jsonCreateAWSEndpointRequest) == "{}" { // empty struct
+			dst.CreateAWSEndpointRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CreateAWSEndpointRequest = nil
+	}
 
-        // try to unmarshal data into CreateAzureEndpointRequest
-        err = json.Unmarshal(data, &dst.CreateAzureEndpointRequest)
-        if err == nil {
-                jsonCreateAzureEndpointRequest, _ := json.Marshal(dst.CreateAzureEndpointRequest)
-                if string(jsonCreateAzureEndpointRequest) == "{}" { // empty struct
-                        dst.CreateAzureEndpointRequest = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CreateAzureEndpointRequest = nil
-        }
+	// try to unmarshal data into CreateAzureEndpointRequest
+	err = json.Unmarshal(data, &dst.CreateAzureEndpointRequest)
+	if err == nil {
+		jsonCreateAzureEndpointRequest, _ := json.Marshal(dst.CreateAzureEndpointRequest)
+		if string(jsonCreateAzureEndpointRequest) == "{}" { // empty struct
+			dst.CreateAzureEndpointRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CreateAzureEndpointRequest = nil
+	}
 
-        // try to unmarshal data into CreateGCPEndpointGroupRequest
-        err = json.Unmarshal(data, &dst.CreateGCPEndpointGroupRequest)
-        if err == nil {
-                jsonCreateGCPEndpointGroupRequest, _ := json.Marshal(dst.CreateGCPEndpointGroupRequest)
-                if string(jsonCreateGCPEndpointGroupRequest) == "{}" { // empty struct
-                        dst.CreateGCPEndpointGroupRequest = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CreateGCPEndpointGroupRequest = nil
-        }
+	// try to unmarshal data into CreateGCPEndpointGroupRequest
+	err = json.Unmarshal(data, &dst.CreateGCPEndpointGroupRequest)
+	if err == nil {
+		jsonCreateGCPEndpointGroupRequest, _ := json.Marshal(dst.CreateGCPEndpointGroupRequest)
+		if string(jsonCreateGCPEndpointGroupRequest) == "{}" { // empty struct
+			dst.CreateGCPEndpointGroupRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CreateGCPEndpointGroupRequest = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.CreateAWSEndpointRequest = nil
-                dst.CreateAzureEndpointRequest = nil
-                dst.CreateGCPEndpointGroupRequest = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.CreateAWSEndpointRequest = nil
+		dst.CreateAzureEndpointRequest = nil
+		dst.CreateGCPEndpointGroupRequest = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(CreatePrivateEndpointRequest)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(CreatePrivateEndpointRequest)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(CreatePrivateEndpointRequest)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(CreatePrivateEndpointRequest)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

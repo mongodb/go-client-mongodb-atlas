@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReplicationSpec type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReplicationSpec{}
+
 // ReplicationSpec Details that explain how MongoDB Cloud replicates data on the specified MongoDB database.
 type ReplicationSpec struct {
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a Multi-Cloud Cluster. If you include existing zones in the request, you must specify this parameter. If you add a new zone to an existing Multi-Cloud Cluster, you may specify this parameter. The request deletes any existing zones in the Multi-Cloud Cluster that you exclude from the request.
@@ -45,7 +48,7 @@ func NewReplicationSpecWithDefaults() *ReplicationSpec {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ReplicationSpec) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ReplicationSpec) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationSpec) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -63,7 +66,7 @@ func (o *ReplicationSpec) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ReplicationSpec) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ReplicationSpec) SetId(v string) {
 
 // GetNumShards returns the NumShards field value if set, zero value otherwise.
 func (o *ReplicationSpec) GetNumShards() int32 {
-	if o == nil || o.NumShards == nil {
+	if o == nil || IsNil(o.NumShards) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *ReplicationSpec) GetNumShards() int32 {
 // GetNumShardsOk returns a tuple with the NumShards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationSpec) GetNumShardsOk() (*int32, bool) {
-	if o == nil || o.NumShards == nil {
+	if o == nil || IsNil(o.NumShards) {
 		return nil, false
 	}
 	return o.NumShards, true
@@ -95,7 +98,7 @@ func (o *ReplicationSpec) GetNumShardsOk() (*int32, bool) {
 
 // HasNumShards returns a boolean if a field has been set.
 func (o *ReplicationSpec) HasNumShards() bool {
-	if o != nil && o.NumShards != nil {
+	if o != nil && !IsNil(o.NumShards) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *ReplicationSpec) SetNumShards(v int32) {
 
 // GetRegionConfigs returns the RegionConfigs field value if set, zero value otherwise.
 func (o *ReplicationSpec) GetRegionConfigs() []RegionConfig {
-	if o == nil || o.RegionConfigs == nil {
+	if o == nil || IsNil(o.RegionConfigs) {
 		var ret []RegionConfig
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *ReplicationSpec) GetRegionConfigs() []RegionConfig {
 // GetRegionConfigsOk returns a tuple with the RegionConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationSpec) GetRegionConfigsOk() ([]RegionConfig, bool) {
-	if o == nil || o.RegionConfigs == nil {
+	if o == nil || IsNil(o.RegionConfigs) {
 		return nil, false
 	}
 	return o.RegionConfigs, true
@@ -127,7 +130,7 @@ func (o *ReplicationSpec) GetRegionConfigsOk() ([]RegionConfig, bool) {
 
 // HasRegionConfigs returns a boolean if a field has been set.
 func (o *ReplicationSpec) HasRegionConfigs() bool {
-	if o != nil && o.RegionConfigs != nil {
+	if o != nil && !IsNil(o.RegionConfigs) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *ReplicationSpec) SetRegionConfigs(v []RegionConfig) {
 
 // GetZoneName returns the ZoneName field value if set, zero value otherwise.
 func (o *ReplicationSpec) GetZoneName() string {
-	if o == nil || o.ZoneName == nil {
+	if o == nil || IsNil(o.ZoneName) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *ReplicationSpec) GetZoneName() string {
 // GetZoneNameOk returns a tuple with the ZoneName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicationSpec) GetZoneNameOk() (*string, bool) {
-	if o == nil || o.ZoneName == nil {
+	if o == nil || IsNil(o.ZoneName) {
 		return nil, false
 	}
 	return o.ZoneName, true
@@ -159,7 +162,7 @@ func (o *ReplicationSpec) GetZoneNameOk() (*string, bool) {
 
 // HasZoneName returns a boolean if a field has been set.
 func (o *ReplicationSpec) HasZoneName() bool {
-	if o != nil && o.ZoneName != nil {
+	if o != nil && !IsNil(o.ZoneName) {
 		return true
 	}
 
@@ -172,20 +175,26 @@ func (o *ReplicationSpec) SetZoneName(v string) {
 }
 
 func (o ReplicationSpec) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.NumShards != nil {
-		toSerialize["numShards"] = o.NumShards
-	}
-	if o.RegionConfigs != nil {
-		toSerialize["regionConfigs"] = o.RegionConfigs
-	}
-	if o.ZoneName != nil {
-		toSerialize["zoneName"] = o.ZoneName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ReplicationSpec) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: id is readOnly
+	if !IsNil(o.NumShards) {
+		toSerialize["numShards"] = o.NumShards
+	}
+	if !IsNil(o.RegionConfigs) {
+		toSerialize["regionConfigs"] = o.RegionConfigs
+	}
+	if !IsNil(o.ZoneName) {
+		toSerialize["zoneName"] = o.ZoneName
+	}
+	return toSerialize, nil
 }
 
 type NullableReplicationSpec struct {

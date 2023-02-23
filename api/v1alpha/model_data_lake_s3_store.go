@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeS3Store type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeS3Store{}
+
 // DataLakeS3Store struct for DataLakeS3Store
 type DataLakeS3Store struct {
 	// Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results.
@@ -62,7 +65,7 @@ func NewDataLakeS3StoreWithDefaults() *DataLakeS3Store {
 
 // GetAdditionalStorageClasses returns the AdditionalStorageClasses field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetAdditionalStorageClasses() []string {
-	if o == nil || o.AdditionalStorageClasses == nil {
+	if o == nil || IsNil(o.AdditionalStorageClasses) {
 		var ret []string
 		return ret
 	}
@@ -72,7 +75,7 @@ func (o *DataLakeS3Store) GetAdditionalStorageClasses() []string {
 // GetAdditionalStorageClassesOk returns a tuple with the AdditionalStorageClasses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetAdditionalStorageClassesOk() ([]string, bool) {
-	if o == nil || o.AdditionalStorageClasses == nil {
+	if o == nil || IsNil(o.AdditionalStorageClasses) {
 		return nil, false
 	}
 	return o.AdditionalStorageClasses, true
@@ -80,7 +83,7 @@ func (o *DataLakeS3Store) GetAdditionalStorageClassesOk() ([]string, bool) {
 
 // HasAdditionalStorageClasses returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasAdditionalStorageClasses() bool {
-	if o != nil && o.AdditionalStorageClasses != nil {
+	if o != nil && !IsNil(o.AdditionalStorageClasses) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *DataLakeS3Store) SetAdditionalStorageClasses(v []string) {
 
 // GetBucket returns the Bucket field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetBucket() string {
-	if o == nil || o.Bucket == nil {
+	if o == nil || IsNil(o.Bucket) {
 		var ret string
 		return ret
 	}
@@ -104,7 +107,7 @@ func (o *DataLakeS3Store) GetBucket() string {
 // GetBucketOk returns a tuple with the Bucket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetBucketOk() (*string, bool) {
-	if o == nil || o.Bucket == nil {
+	if o == nil || IsNil(o.Bucket) {
 		return nil, false
 	}
 	return o.Bucket, true
@@ -112,7 +115,7 @@ func (o *DataLakeS3Store) GetBucketOk() (*string, bool) {
 
 // HasBucket returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasBucket() bool {
-	if o != nil && o.Bucket != nil {
+	if o != nil && !IsNil(o.Bucket) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *DataLakeS3Store) SetBucket(v string) {
 
 // GetDelimiter returns the Delimiter field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetDelimiter() string {
-	if o == nil || o.Delimiter == nil {
+	if o == nil || IsNil(o.Delimiter) {
 		var ret string
 		return ret
 	}
@@ -136,7 +139,7 @@ func (o *DataLakeS3Store) GetDelimiter() string {
 // GetDelimiterOk returns a tuple with the Delimiter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetDelimiterOk() (*string, bool) {
-	if o == nil || o.Delimiter == nil {
+	if o == nil || IsNil(o.Delimiter) {
 		return nil, false
 	}
 	return o.Delimiter, true
@@ -144,7 +147,7 @@ func (o *DataLakeS3Store) GetDelimiterOk() (*string, bool) {
 
 // HasDelimiter returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasDelimiter() bool {
-	if o != nil && o.Delimiter != nil {
+	if o != nil && !IsNil(o.Delimiter) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *DataLakeS3Store) SetDelimiter(v string) {
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetIncludeTags() bool {
-	if o == nil || o.IncludeTags == nil {
+	if o == nil || IsNil(o.IncludeTags) {
 		var ret bool
 		return ret
 	}
@@ -168,7 +171,7 @@ func (o *DataLakeS3Store) GetIncludeTags() bool {
 // GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetIncludeTagsOk() (*bool, bool) {
-	if o == nil || o.IncludeTags == nil {
+	if o == nil || IsNil(o.IncludeTags) {
 		return nil, false
 	}
 	return o.IncludeTags, true
@@ -176,7 +179,7 @@ func (o *DataLakeS3Store) GetIncludeTagsOk() (*bool, bool) {
 
 // HasIncludeTags returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasIncludeTags() bool {
-	if o != nil && o.IncludeTags != nil {
+	if o != nil && !IsNil(o.IncludeTags) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *DataLakeS3Store) SetIncludeTags(v bool) {
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetPrefix() string {
-	if o == nil || o.Prefix == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -200,7 +203,7 @@ func (o *DataLakeS3Store) GetPrefix() string {
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetPrefixOk() (*string, bool) {
-	if o == nil || o.Prefix == nil {
+	if o == nil || IsNil(o.Prefix) {
 		return nil, false
 	}
 	return o.Prefix, true
@@ -208,7 +211,7 @@ func (o *DataLakeS3Store) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasPrefix() bool {
-	if o != nil && o.Prefix != nil {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *DataLakeS3Store) SetPrefix(v string) {
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetPublic() bool {
-	if o == nil || o.Public == nil {
+	if o == nil || IsNil(o.Public) {
 		var ret bool
 		return ret
 	}
@@ -232,7 +235,7 @@ func (o *DataLakeS3Store) GetPublic() bool {
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetPublicOk() (*bool, bool) {
-	if o == nil || o.Public == nil {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
 	return o.Public, true
@@ -240,7 +243,7 @@ func (o *DataLakeS3Store) GetPublicOk() (*bool, bool) {
 
 // HasPublic returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasPublic() bool {
-	if o != nil && o.Public != nil {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *DataLakeS3Store) SetPublic(v bool) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -264,7 +267,7 @@ func (o *DataLakeS3Store) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -272,7 +275,7 @@ func (o *DataLakeS3Store) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *DataLakeS3Store) SetRegion(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeS3Store) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -296,7 +299,7 @@ func (o *DataLakeS3Store) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeS3Store) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -304,7 +307,7 @@ func (o *DataLakeS3Store) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeS3Store) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -341,35 +344,41 @@ func (o *DataLakeS3Store) SetProvider(v string) {
 }
 
 func (o DataLakeS3Store) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AdditionalStorageClasses != nil {
-		toSerialize["additionalStorageClasses"] = o.AdditionalStorageClasses
-	}
-	if o.Bucket != nil {
-		toSerialize["bucket"] = o.Bucket
-	}
-	if o.Delimiter != nil {
-		toSerialize["delimiter"] = o.Delimiter
-	}
-	if o.IncludeTags != nil {
-		toSerialize["includeTags"] = o.IncludeTags
-	}
-	if o.Prefix != nil {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if o.Public != nil {
-		toSerialize["public"] = o.Public
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["provider"] = o.Provider
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeS3Store) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdditionalStorageClasses) {
+		toSerialize["additionalStorageClasses"] = o.AdditionalStorageClasses
+	}
+	if !IsNil(o.Bucket) {
+		toSerialize["bucket"] = o.Bucket
+	}
+	if !IsNil(o.Delimiter) {
+		toSerialize["delimiter"] = o.Delimiter
+	}
+	if !IsNil(o.IncludeTags) {
+		toSerialize["includeTags"] = o.IncludeTags
+	}
+	if !IsNil(o.Prefix) {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if !IsNil(o.Public) {
+		toSerialize["public"] = o.Public
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["provider"] = o.Provider
+	return toSerialize, nil
 }
 
 type NullableDataLakeS3Store struct {

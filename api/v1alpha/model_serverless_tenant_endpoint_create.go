@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessTenantEndpointCreate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessTenantEndpointCreate{}
+
 // ServerlessTenantEndpointCreate struct for ServerlessTenantEndpointCreate
 type ServerlessTenantEndpointCreate struct {
 	// Human-readable comment associated with the private endpoint.
@@ -39,7 +42,7 @@ func NewServerlessTenantEndpointCreateWithDefaults() *ServerlessTenantEndpointCr
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ServerlessTenantEndpointCreate) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ServerlessTenantEndpointCreate) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessTenantEndpointCreate) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -57,7 +60,7 @@ func (o *ServerlessTenantEndpointCreate) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *ServerlessTenantEndpointCreate) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *ServerlessTenantEndpointCreate) SetComment(v string) {
 }
 
 func (o ServerlessTenantEndpointCreate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessTenantEndpointCreate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessTenantEndpointCreate struct {

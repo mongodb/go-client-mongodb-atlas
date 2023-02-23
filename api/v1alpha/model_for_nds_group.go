@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ForNdsGroup{}
+
 // ForNdsGroup ReplicaSet Event identifies different activities about replica set of mongod instances.
 type ForNdsGroup struct {
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -104,7 +107,7 @@ func (o *ForNdsGroup) SetEventTypeName(v ReplicaSetEventTypeViewForNdsGroup) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *ForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -122,7 +125,7 @@ func (o *ForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *ForNdsGroup) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *ForNdsGroup) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -202,7 +205,7 @@ func (o *ForNdsGroup) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *ForNdsGroup) SetOrgId(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetPort() int32 {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *ForNdsGroup) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetPortOk() (*int32, bool) {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
 	return o.Port, true
@@ -234,7 +237,7 @@ func (o *ForNdsGroup) GetPortOk() (*int32, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasPort() bool {
-	if o != nil && o.Port != nil {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *ForNdsGroup) SetPort(v int32) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -258,7 +261,7 @@ func (o *ForNdsGroup) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -266,7 +269,7 @@ func (o *ForNdsGroup) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *ForNdsGroup) SetRaw(v Raw) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -290,7 +293,7 @@ func (o *ForNdsGroup) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -298,7 +301,7 @@ func (o *ForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *ForNdsGroup) SetReplicaSetName(v string) {
 
 // GetShardName returns the ShardName field value if set, zero value otherwise.
 func (o *ForNdsGroup) GetShardName() string {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		var ret string
 		return ret
 	}
@@ -322,7 +325,7 @@ func (o *ForNdsGroup) GetShardName() string {
 // GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ForNdsGroup) GetShardNameOk() (*string, bool) {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		return nil, false
 	}
 	return o.ShardName, true
@@ -330,7 +333,7 @@ func (o *ForNdsGroup) GetShardNameOk() (*string, bool) {
 
 // HasShardName returns a boolean if a field has been set.
 func (o *ForNdsGroup) HasShardName() bool {
-	if o != nil && o.ShardName != nil {
+	if o != nil && !IsNil(o.ShardName) {
 		return true
 	}
 
@@ -343,38 +346,28 @@ func (o *ForNdsGroup) SetShardName(v string) {
 }
 
 func (o ForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Port != nil {
-		toSerialize["port"] = o.Port
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.ShardName != nil {
-		toSerialize["shardName"] = o.ShardName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: created is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: port is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: replicaSetName is readOnly
+	// skip: shardName is readOnly
+	return toSerialize, nil
 }
 
 type NullableForNdsGroup struct {

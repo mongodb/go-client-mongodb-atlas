@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSCloudProviderContainer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSCloudProviderContainer{}
+
 // AWSCloudProviderContainer Collection of settings that configures the network container for a virtual private connection on Amazon Web Services.
 type AWSCloudProviderContainer struct {
 	// IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. AWS and Azure further limit the block to between the `/24` and  `/21` ranges.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Amazon Web Services (AWS) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
@@ -49,7 +52,7 @@ func NewAWSCloudProviderContainerWithDefaults() *AWSCloudProviderContainer {
 
 // GetAtlasCidrBlock returns the AtlasCidrBlock field value if set, zero value otherwise.
 func (o *AWSCloudProviderContainer) GetAtlasCidrBlock() string {
-	if o == nil || o.AtlasCidrBlock == nil {
+	if o == nil || IsNil(o.AtlasCidrBlock) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *AWSCloudProviderContainer) GetAtlasCidrBlock() string {
 // GetAtlasCidrBlockOk returns a tuple with the AtlasCidrBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSCloudProviderContainer) GetAtlasCidrBlockOk() (*string, bool) {
-	if o == nil || o.AtlasCidrBlock == nil {
+	if o == nil || IsNil(o.AtlasCidrBlock) {
 		return nil, false
 	}
 	return o.AtlasCidrBlock, true
@@ -67,7 +70,7 @@ func (o *AWSCloudProviderContainer) GetAtlasCidrBlockOk() (*string, bool) {
 
 // HasAtlasCidrBlock returns a boolean if a field has been set.
 func (o *AWSCloudProviderContainer) HasAtlasCidrBlock() bool {
-	if o != nil && o.AtlasCidrBlock != nil {
+	if o != nil && !IsNil(o.AtlasCidrBlock) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *AWSCloudProviderContainer) SetRegionName(v string) {
 
 // GetVpcId returns the VpcId field value if set, zero value otherwise.
 func (o *AWSCloudProviderContainer) GetVpcId() string {
-	if o == nil || o.VpcId == nil {
+	if o == nil || IsNil(o.VpcId) {
 		var ret string
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *AWSCloudProviderContainer) GetVpcId() string {
 // GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSCloudProviderContainer) GetVpcIdOk() (*string, bool) {
-	if o == nil || o.VpcId == nil {
+	if o == nil || IsNil(o.VpcId) {
 		return nil, false
 	}
 	return o.VpcId, true
@@ -123,7 +126,7 @@ func (o *AWSCloudProviderContainer) GetVpcIdOk() (*string, bool) {
 
 // HasVpcId returns a boolean if a field has been set.
 func (o *AWSCloudProviderContainer) HasVpcId() bool {
-	if o != nil && o.VpcId != nil {
+	if o != nil && !IsNil(o.VpcId) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *AWSCloudProviderContainer) SetVpcId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSCloudProviderContainer) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -147,7 +150,7 @@ func (o *AWSCloudProviderContainer) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSCloudProviderContainer) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -155,7 +158,7 @@ func (o *AWSCloudProviderContainer) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AWSCloudProviderContainer) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -169,7 +172,7 @@ func (o *AWSCloudProviderContainer) SetId(v string) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *AWSCloudProviderContainer) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -179,7 +182,7 @@ func (o *AWSCloudProviderContainer) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSCloudProviderContainer) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -187,7 +190,7 @@ func (o *AWSCloudProviderContainer) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *AWSCloudProviderContainer) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -201,7 +204,7 @@ func (o *AWSCloudProviderContainer) SetProviderName(v string) {
 
 // GetProvisioned returns the Provisioned field value if set, zero value otherwise.
 func (o *AWSCloudProviderContainer) GetProvisioned() bool {
-	if o == nil || o.Provisioned == nil {
+	if o == nil || IsNil(o.Provisioned) {
 		var ret bool
 		return ret
 	}
@@ -211,7 +214,7 @@ func (o *AWSCloudProviderContainer) GetProvisioned() bool {
 // GetProvisionedOk returns a tuple with the Provisioned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
-	if o == nil || o.Provisioned == nil {
+	if o == nil || IsNil(o.Provisioned) {
 		return nil, false
 	}
 	return o.Provisioned, true
@@ -219,7 +222,7 @@ func (o *AWSCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
 
 // HasProvisioned returns a boolean if a field has been set.
 func (o *AWSCloudProviderContainer) HasProvisioned() bool {
-	if o != nil && o.Provisioned != nil {
+	if o != nil && !IsNil(o.Provisioned) {
 		return true
 	}
 
@@ -232,26 +235,26 @@ func (o *AWSCloudProviderContainer) SetProvisioned(v bool) {
 }
 
 func (o AWSCloudProviderContainer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AtlasCidrBlock != nil {
-		toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
-	}
-	if true {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.VpcId != nil {
-		toSerialize["vpcId"] = o.VpcId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.Provisioned != nil {
-		toSerialize["provisioned"] = o.Provisioned
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSCloudProviderContainer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AtlasCidrBlock) {
+		toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
+	}
+	toSerialize["regionName"] = o.RegionName
+	// skip: vpcId is readOnly
+	// skip: id is readOnly
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	// skip: provisioned is readOnly
+	return toSerialize, nil
 }
 
 type NullableAWSCloudProviderContainer struct {

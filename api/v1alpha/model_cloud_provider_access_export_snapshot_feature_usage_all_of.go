@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessExportSnapshotFeatureUsageAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessExportSnapshotFeatureUsageAllOf{}
+
 // CloudProviderAccessExportSnapshotFeatureUsageAllOf struct for CloudProviderAccessExportSnapshotFeatureUsageAllOf
 type CloudProviderAccessExportSnapshotFeatureUsageAllOf struct {
 	FeatureId *CloudProviderAccessFeatureUsageExportSnapshotFeatureId `json:"featureId,omitempty"`
@@ -38,7 +41,7 @@ func NewCloudProviderAccessExportSnapshotFeatureUsageAllOfWithDefaults() *CloudP
 
 // GetFeatureId returns the FeatureId field value if set, zero value otherwise.
 func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) GetFeatureId() CloudProviderAccessFeatureUsageExportSnapshotFeatureId {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		var ret CloudProviderAccessFeatureUsageExportSnapshotFeatureId
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) GetFeatureId() Clou
 // GetFeatureIdOk returns a tuple with the FeatureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) GetFeatureIdOk() (*CloudProviderAccessFeatureUsageExportSnapshotFeatureId, bool) {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		return nil, false
 	}
 	return o.FeatureId, true
@@ -56,7 +59,7 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) GetFeatureIdOk() (*
 
 // HasFeatureId returns a boolean if a field has been set.
 func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) HasFeatureId() bool {
-	if o != nil && o.FeatureId != nil {
+	if o != nil && !IsNil(o.FeatureId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsageAllOf) SetFeatureId(v Clou
 }
 
 func (o CloudProviderAccessExportSnapshotFeatureUsageAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FeatureId != nil {
-		toSerialize["featureId"] = o.FeatureId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessExportSnapshotFeatureUsageAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FeatureId) {
+		toSerialize["featureId"] = o.FeatureId
+	}
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessExportSnapshotFeatureUsageAllOf struct {

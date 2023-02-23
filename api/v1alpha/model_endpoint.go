@@ -47,58 +47,58 @@ func GCPEndpointGroupAsEndpoint(v *GCPEndpointGroup) Endpoint {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Endpoint) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into AWSInterfaceEndpoint
-        err = json.Unmarshal(data, &dst.AWSInterfaceEndpoint)
-        if err == nil {
-                jsonAWSInterfaceEndpoint, _ := json.Marshal(dst.AWSInterfaceEndpoint)
-                if string(jsonAWSInterfaceEndpoint) == "{}" { // empty struct
-                        dst.AWSInterfaceEndpoint = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AWSInterfaceEndpoint = nil
-        }
+	match := 0
+	// try to unmarshal data into AWSInterfaceEndpoint
+	err = json.Unmarshal(data, &dst.AWSInterfaceEndpoint)
+	if err == nil {
+		jsonAWSInterfaceEndpoint, _ := json.Marshal(dst.AWSInterfaceEndpoint)
+		if string(jsonAWSInterfaceEndpoint) == "{}" { // empty struct
+			dst.AWSInterfaceEndpoint = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AWSInterfaceEndpoint = nil
+	}
 
-        // try to unmarshal data into AzurePrivateEndpoint
-        err = json.Unmarshal(data, &dst.AzurePrivateEndpoint)
-        if err == nil {
-                jsonAzurePrivateEndpoint, _ := json.Marshal(dst.AzurePrivateEndpoint)
-                if string(jsonAzurePrivateEndpoint) == "{}" { // empty struct
-                        dst.AzurePrivateEndpoint = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.AzurePrivateEndpoint = nil
-        }
+	// try to unmarshal data into AzurePrivateEndpoint
+	err = json.Unmarshal(data, &dst.AzurePrivateEndpoint)
+	if err == nil {
+		jsonAzurePrivateEndpoint, _ := json.Marshal(dst.AzurePrivateEndpoint)
+		if string(jsonAzurePrivateEndpoint) == "{}" { // empty struct
+			dst.AzurePrivateEndpoint = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AzurePrivateEndpoint = nil
+	}
 
-        // try to unmarshal data into GCPEndpointGroup
-        err = json.Unmarshal(data, &dst.GCPEndpointGroup)
-        if err == nil {
-                jsonGCPEndpointGroup, _ := json.Marshal(dst.GCPEndpointGroup)
-                if string(jsonGCPEndpointGroup) == "{}" { // empty struct
-                        dst.GCPEndpointGroup = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.GCPEndpointGroup = nil
-        }
+	// try to unmarshal data into GCPEndpointGroup
+	err = json.Unmarshal(data, &dst.GCPEndpointGroup)
+	if err == nil {
+		jsonGCPEndpointGroup, _ := json.Marshal(dst.GCPEndpointGroup)
+		if string(jsonGCPEndpointGroup) == "{}" { // empty struct
+			dst.GCPEndpointGroup = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GCPEndpointGroup = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.AWSInterfaceEndpoint = nil
-                dst.AzurePrivateEndpoint = nil
-                dst.GCPEndpointGroup = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AWSInterfaceEndpoint = nil
+		dst.AzurePrivateEndpoint = nil
+		dst.GCPEndpointGroup = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(Endpoint)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(Endpoint)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(Endpoint)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(Endpoint)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

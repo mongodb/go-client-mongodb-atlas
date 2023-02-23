@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzurePrivateLinkConnection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzurePrivateLinkConnection{}
+
 // AzurePrivateLinkConnection Group of Private Endpoint Service settings.
 type AzurePrivateLinkConnection struct {
 	// Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
@@ -51,7 +54,7 @@ func NewAzurePrivateLinkConnectionWithDefaults() *AzurePrivateLinkConnection {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *AzurePrivateLinkConnection) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -69,7 +72,7 @@ func (o *AzurePrivateLinkConnection) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *AzurePrivateLinkConnection) SetErrorMessage(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *AzurePrivateLinkConnection) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -101,7 +104,7 @@ func (o *AzurePrivateLinkConnection) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *AzurePrivateLinkConnection) SetId(v string) {
 
 // GetPrivateEndpoints returns the PrivateEndpoints field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetPrivateEndpoints() []string {
-	if o == nil || o.PrivateEndpoints == nil {
+	if o == nil || IsNil(o.PrivateEndpoints) {
 		var ret []string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateEndpoints() []string {
 // GetPrivateEndpointsOk returns a tuple with the PrivateEndpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetPrivateEndpointsOk() ([]string, bool) {
-	if o == nil || o.PrivateEndpoints == nil {
+	if o == nil || IsNil(o.PrivateEndpoints) {
 		return nil, false
 	}
 	return o.PrivateEndpoints, true
@@ -133,7 +136,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateEndpointsOk() ([]string, bool) {
 
 // HasPrivateEndpoints returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasPrivateEndpoints() bool {
-	if o != nil && o.PrivateEndpoints != nil {
+	if o != nil && !IsNil(o.PrivateEndpoints) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *AzurePrivateLinkConnection) SetPrivateEndpoints(v []string) {
 
 // GetPrivateLinkServiceName returns the PrivateLinkServiceName field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceName() string {
-	if o == nil || o.PrivateLinkServiceName == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceName) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceName() string {
 // GetPrivateLinkServiceNameOk returns a tuple with the PrivateLinkServiceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceNameOk() (*string, bool) {
-	if o == nil || o.PrivateLinkServiceName == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceName) {
 		return nil, false
 	}
 	return o.PrivateLinkServiceName, true
@@ -165,7 +168,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceNameOk() (*string, boo
 
 // HasPrivateLinkServiceName returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasPrivateLinkServiceName() bool {
-	if o != nil && o.PrivateLinkServiceName != nil {
+	if o != nil && !IsNil(o.PrivateLinkServiceName) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *AzurePrivateLinkConnection) SetPrivateLinkServiceName(v string) {
 
 // GetPrivateLinkServiceResourceId returns the PrivateLinkServiceResourceId field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceResourceId() string {
-	if o == nil || o.PrivateLinkServiceResourceId == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceResourceId) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceResourceId() string {
 // GetPrivateLinkServiceResourceIdOk returns a tuple with the PrivateLinkServiceResourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceResourceIdOk() (*string, bool) {
-	if o == nil || o.PrivateLinkServiceResourceId == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceResourceId) {
 		return nil, false
 	}
 	return o.PrivateLinkServiceResourceId, true
@@ -197,7 +200,7 @@ func (o *AzurePrivateLinkConnection) GetPrivateLinkServiceResourceIdOk() (*strin
 
 // HasPrivateLinkServiceResourceId returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasPrivateLinkServiceResourceId() bool {
-	if o != nil && o.PrivateLinkServiceResourceId != nil {
+	if o != nil && !IsNil(o.PrivateLinkServiceResourceId) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *AzurePrivateLinkConnection) SetPrivateLinkServiceResourceId(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *AzurePrivateLinkConnection) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -229,7 +232,7 @@ func (o *AzurePrivateLinkConnection) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *AzurePrivateLinkConnection) SetRegionName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AzurePrivateLinkConnection) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *AzurePrivateLinkConnection) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePrivateLinkConnection) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -261,7 +264,7 @@ func (o *AzurePrivateLinkConnection) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AzurePrivateLinkConnection) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -274,29 +277,23 @@ func (o *AzurePrivateLinkConnection) SetStatus(v string) {
 }
 
 func (o AzurePrivateLinkConnection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.PrivateEndpoints != nil {
-		toSerialize["privateEndpoints"] = o.PrivateEndpoints
-	}
-	if o.PrivateLinkServiceName != nil {
-		toSerialize["privateLinkServiceName"] = o.PrivateLinkServiceName
-	}
-	if o.PrivateLinkServiceResourceId != nil {
-		toSerialize["privateLinkServiceResourceId"] = o.PrivateLinkServiceResourceId
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzurePrivateLinkConnection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: errorMessage is readOnly
+	// skip: id is readOnly
+	// skip: privateEndpoints is readOnly
+	// skip: privateLinkServiceName is readOnly
+	// skip: privateLinkServiceResourceId is readOnly
+	// skip: regionName is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableAzurePrivateLinkConnection struct {

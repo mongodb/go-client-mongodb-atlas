@@ -13,7 +13,7 @@ package v1alpha
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -154,8 +154,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dbAccessHistory/clusters/{clusterName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterToString(r.clusterName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(parameterValueToString(r.clusterName, "clusterName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -174,25 +174,25 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 	}
 
 	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.authResult != nil {
-		localVarQueryParams.Add("authResult", parameterToString(*r.authResult, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "authResult", r.authResult, "")
 	}
 	if r.end != nil {
-		localVarQueryParams.Add("end", parameterToString(*r.end, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
 	}
 	if r.ipAddress != nil {
-		localVarQueryParams.Add("ipAddress", parameterToString(*r.ipAddress, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "")
 	}
 	if r.nLogs != nil {
-		localVarQueryParams.Add("nLogs", parameterToString(*r.nLogs, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	}
 	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -221,9 +221,9 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -240,8 +240,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -251,8 +251,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -262,8 +262,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -375,8 +375,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dbAccessHistory/processes/{hostname}"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"hostname"+"}", url.PathEscape(parameterToString(r.hostname, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostname"+"}", url.PathEscape(parameterValueToString(r.hostname, "hostname")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -389,25 +389,25 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 	}
 
 	if r.envelope != nil {
-		localVarQueryParams.Add("envelope", parameterToString(*r.envelope, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	if r.pretty != nil {
-		localVarQueryParams.Add("pretty", parameterToString(*r.pretty, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.authResult != nil {
-		localVarQueryParams.Add("authResult", parameterToString(*r.authResult, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "authResult", r.authResult, "")
 	}
 	if r.end != nil {
-		localVarQueryParams.Add("end", parameterToString(*r.end, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
 	}
 	if r.ipAddress != nil {
-		localVarQueryParams.Add("ipAddress", parameterToString(*r.ipAddress, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "")
 	}
 	if r.nLogs != nil {
-		localVarQueryParams.Add("nLogs", parameterToString(*r.nLogs, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	}
 	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -436,9 +436,9 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -455,8 +455,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -466,8 +466,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -477,8 +477,8 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

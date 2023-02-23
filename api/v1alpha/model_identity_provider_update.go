@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityProviderUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityProviderUpdate{}
+
 // IdentityProviderUpdate struct for IdentityProviderUpdate
 type IdentityProviderUpdate struct {
 	// List that contains the domains associated with the identity provider.
@@ -54,7 +57,7 @@ func NewIdentityProviderUpdateWithDefaults() *IdentityProviderUpdate {
 
 // GetAssociatedDomains returns the AssociatedDomains field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetAssociatedDomains() []string {
-	if o == nil || o.AssociatedDomains == nil {
+	if o == nil || IsNil(o.AssociatedDomains) {
 		var ret []string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *IdentityProviderUpdate) GetAssociatedDomains() []string {
 // GetAssociatedDomainsOk returns a tuple with the AssociatedDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetAssociatedDomainsOk() ([]string, bool) {
-	if o == nil || o.AssociatedDomains == nil {
+	if o == nil || IsNil(o.AssociatedDomains) {
 		return nil, false
 	}
 	return o.AssociatedDomains, true
@@ -72,7 +75,7 @@ func (o *IdentityProviderUpdate) GetAssociatedDomainsOk() ([]string, bool) {
 
 // HasAssociatedDomains returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasAssociatedDomains() bool {
-	if o != nil && o.AssociatedDomains != nil {
+	if o != nil && !IsNil(o.AssociatedDomains) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *IdentityProviderUpdate) SetAssociatedDomains(v []string) {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetDisplayName() string {
-	if o == nil || o.DisplayName == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *IdentityProviderUpdate) GetDisplayName() string {
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetDisplayNameOk() (*string, bool) {
-	if o == nil || o.DisplayName == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
 	return o.DisplayName, true
@@ -104,7 +107,7 @@ func (o *IdentityProviderUpdate) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasDisplayName() bool {
-	if o != nil && o.DisplayName != nil {
+	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *IdentityProviderUpdate) SetDisplayName(v string) {
 
 // GetIssuerUri returns the IssuerUri field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetIssuerUri() string {
-	if o == nil || o.IssuerUri == nil {
+	if o == nil || IsNil(o.IssuerUri) {
 		var ret string
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *IdentityProviderUpdate) GetIssuerUri() string {
 // GetIssuerUriOk returns a tuple with the IssuerUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetIssuerUriOk() (*string, bool) {
-	if o == nil || o.IssuerUri == nil {
+	if o == nil || IsNil(o.IssuerUri) {
 		return nil, false
 	}
 	return o.IssuerUri, true
@@ -136,7 +139,7 @@ func (o *IdentityProviderUpdate) GetIssuerUriOk() (*string, bool) {
 
 // HasIssuerUri returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasIssuerUri() bool {
-	if o != nil && o.IssuerUri != nil {
+	if o != nil && !IsNil(o.IssuerUri) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *IdentityProviderUpdate) SetIssuerUri(v string) {
 
 // GetPemFileInfo returns the PemFileInfo field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetPemFileInfo() PemFileInfo {
-	if o == nil || o.PemFileInfo == nil {
+	if o == nil || IsNil(o.PemFileInfo) {
 		var ret PemFileInfo
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *IdentityProviderUpdate) GetPemFileInfo() PemFileInfo {
 // GetPemFileInfoOk returns a tuple with the PemFileInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetPemFileInfoOk() (*PemFileInfo, bool) {
-	if o == nil || o.PemFileInfo == nil {
+	if o == nil || IsNil(o.PemFileInfo) {
 		return nil, false
 	}
 	return o.PemFileInfo, true
@@ -168,7 +171,7 @@ func (o *IdentityProviderUpdate) GetPemFileInfoOk() (*PemFileInfo, bool) {
 
 // HasPemFileInfo returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasPemFileInfo() bool {
-	if o != nil && o.PemFileInfo != nil {
+	if o != nil && !IsNil(o.PemFileInfo) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *IdentityProviderUpdate) SetPemFileInfo(v PemFileInfo) {
 
 // GetRequestBinding returns the RequestBinding field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetRequestBinding() string {
-	if o == nil || o.RequestBinding == nil {
+	if o == nil || IsNil(o.RequestBinding) {
 		var ret string
 		return ret
 	}
@@ -192,7 +195,7 @@ func (o *IdentityProviderUpdate) GetRequestBinding() string {
 // GetRequestBindingOk returns a tuple with the RequestBinding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetRequestBindingOk() (*string, bool) {
-	if o == nil || o.RequestBinding == nil {
+	if o == nil || IsNil(o.RequestBinding) {
 		return nil, false
 	}
 	return o.RequestBinding, true
@@ -200,7 +203,7 @@ func (o *IdentityProviderUpdate) GetRequestBindingOk() (*string, bool) {
 
 // HasRequestBinding returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasRequestBinding() bool {
-	if o != nil && o.RequestBinding != nil {
+	if o != nil && !IsNil(o.RequestBinding) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *IdentityProviderUpdate) SetRequestBinding(v string) {
 
 // GetResponseSignatureAlgorithm returns the ResponseSignatureAlgorithm field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetResponseSignatureAlgorithm() string {
-	if o == nil || o.ResponseSignatureAlgorithm == nil {
+	if o == nil || IsNil(o.ResponseSignatureAlgorithm) {
 		var ret string
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *IdentityProviderUpdate) GetResponseSignatureAlgorithm() string {
 // GetResponseSignatureAlgorithmOk returns a tuple with the ResponseSignatureAlgorithm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetResponseSignatureAlgorithmOk() (*string, bool) {
-	if o == nil || o.ResponseSignatureAlgorithm == nil {
+	if o == nil || IsNil(o.ResponseSignatureAlgorithm) {
 		return nil, false
 	}
 	return o.ResponseSignatureAlgorithm, true
@@ -232,7 +235,7 @@ func (o *IdentityProviderUpdate) GetResponseSignatureAlgorithmOk() (*string, boo
 
 // HasResponseSignatureAlgorithm returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasResponseSignatureAlgorithm() bool {
-	if o != nil && o.ResponseSignatureAlgorithm != nil {
+	if o != nil && !IsNil(o.ResponseSignatureAlgorithm) {
 		return true
 	}
 
@@ -270,7 +273,7 @@ func (o *IdentityProviderUpdate) SetSsoDebugEnabled(v bool) {
 
 // GetSsoUrl returns the SsoUrl field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetSsoUrl() string {
-	if o == nil || o.SsoUrl == nil {
+	if o == nil || IsNil(o.SsoUrl) {
 		var ret string
 		return ret
 	}
@@ -280,7 +283,7 @@ func (o *IdentityProviderUpdate) GetSsoUrl() string {
 // GetSsoUrlOk returns a tuple with the SsoUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetSsoUrlOk() (*string, bool) {
-	if o == nil || o.SsoUrl == nil {
+	if o == nil || IsNil(o.SsoUrl) {
 		return nil, false
 	}
 	return o.SsoUrl, true
@@ -288,7 +291,7 @@ func (o *IdentityProviderUpdate) GetSsoUrlOk() (*string, bool) {
 
 // HasSsoUrl returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasSsoUrl() bool {
-	if o != nil && o.SsoUrl != nil {
+	if o != nil && !IsNil(o.SsoUrl) {
 		return true
 	}
 
@@ -302,7 +305,7 @@ func (o *IdentityProviderUpdate) SetSsoUrl(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IdentityProviderUpdate) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -312,7 +315,7 @@ func (o *IdentityProviderUpdate) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderUpdate) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -320,7 +323,7 @@ func (o *IdentityProviderUpdate) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *IdentityProviderUpdate) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -333,35 +336,41 @@ func (o *IdentityProviderUpdate) SetStatus(v string) {
 }
 
 func (o IdentityProviderUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AssociatedDomains != nil {
-		toSerialize["associatedDomains"] = o.AssociatedDomains
-	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.IssuerUri != nil {
-		toSerialize["issuerUri"] = o.IssuerUri
-	}
-	if o.PemFileInfo != nil {
-		toSerialize["pemFileInfo"] = o.PemFileInfo
-	}
-	if o.RequestBinding != nil {
-		toSerialize["requestBinding"] = o.RequestBinding
-	}
-	if o.ResponseSignatureAlgorithm != nil {
-		toSerialize["responseSignatureAlgorithm"] = o.ResponseSignatureAlgorithm
-	}
-	if true {
-		toSerialize["ssoDebugEnabled"] = o.SsoDebugEnabled
-	}
-	if o.SsoUrl != nil {
-		toSerialize["ssoUrl"] = o.SsoUrl
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IdentityProviderUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AssociatedDomains) {
+		toSerialize["associatedDomains"] = o.AssociatedDomains
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.IssuerUri) {
+		toSerialize["issuerUri"] = o.IssuerUri
+	}
+	if !IsNil(o.PemFileInfo) {
+		toSerialize["pemFileInfo"] = o.PemFileInfo
+	}
+	if !IsNil(o.RequestBinding) {
+		toSerialize["requestBinding"] = o.RequestBinding
+	}
+	if !IsNil(o.ResponseSignatureAlgorithm) {
+		toSerialize["responseSignatureAlgorithm"] = o.ResponseSignatureAlgorithm
+	}
+	toSerialize["ssoDebugEnabled"] = o.SsoDebugEnabled
+	if !IsNil(o.SsoUrl) {
+		toSerialize["ssoUrl"] = o.SsoUrl
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableIdentityProviderUpdate struct {

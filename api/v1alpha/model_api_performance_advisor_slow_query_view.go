@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPerformanceAdvisorSlowQueryView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPerformanceAdvisorSlowQueryView{}
+
 // ApiPerformanceAdvisorSlowQueryView Details of one slow query that the Performance Advisor detected.
 type ApiPerformanceAdvisorSlowQueryView struct {
 	// Text of the MongoDB log related to this slow query.
@@ -41,7 +44,7 @@ func NewApiPerformanceAdvisorSlowQueryViewWithDefaults() *ApiPerformanceAdvisorS
 
 // GetLine returns the Line field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorSlowQueryView) GetLine() string {
-	if o == nil || o.Line == nil {
+	if o == nil || IsNil(o.Line) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiPerformanceAdvisorSlowQueryView) GetLine() string {
 // GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorSlowQueryView) GetLineOk() (*string, bool) {
-	if o == nil || o.Line == nil {
+	if o == nil || IsNil(o.Line) {
 		return nil, false
 	}
 	return o.Line, true
@@ -59,7 +62,7 @@ func (o *ApiPerformanceAdvisorSlowQueryView) GetLineOk() (*string, bool) {
 
 // HasLine returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorSlowQueryView) HasLine() bool {
-	if o != nil && o.Line != nil {
+	if o != nil && !IsNil(o.Line) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiPerformanceAdvisorSlowQueryView) SetLine(v string) {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorSlowQueryView) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiPerformanceAdvisorSlowQueryView) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorSlowQueryView) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -91,7 +94,7 @@ func (o *ApiPerformanceAdvisorSlowQueryView) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorSlowQueryView) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiPerformanceAdvisorSlowQueryView) SetNamespace(v string) {
 }
 
 func (o ApiPerformanceAdvisorSlowQueryView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Line != nil {
-		toSerialize["line"] = o.Line
-	}
-	if o.Namespace != nil {
-		toSerialize["namespace"] = o.Namespace
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPerformanceAdvisorSlowQueryView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: line is readOnly
+	// skip: namespace is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiPerformanceAdvisorSlowQueryView struct {

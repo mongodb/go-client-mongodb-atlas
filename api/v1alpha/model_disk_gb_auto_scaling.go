@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskGBAutoScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskGBAutoScaling{}
+
 // DiskGBAutoScaling Setting that enables disk auto-scaling.
 type DiskGBAutoScaling struct {
 	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling.
@@ -39,7 +42,7 @@ func NewDiskGBAutoScalingWithDefaults() *DiskGBAutoScaling {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *DiskGBAutoScaling) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *DiskGBAutoScaling) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskGBAutoScaling) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -57,7 +60,7 @@ func (o *DiskGBAutoScaling) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *DiskGBAutoScaling) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *DiskGBAutoScaling) SetEnabled(v bool) {
 }
 
 func (o DiskGBAutoScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskGBAutoScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return toSerialize, nil
 }
 
 type NullableDiskGBAutoScaling struct {

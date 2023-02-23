@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPPeerVpc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPPeerVpc{}
+
 // GCPPeerVpc Group of Network Peering connection settings.
 type GCPPeerVpc struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
@@ -73,7 +76,7 @@ func (o *GCPPeerVpc) SetContainerId(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *GCPPeerVpc) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *GCPPeerVpc) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPPeerVpc) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -91,7 +94,7 @@ func (o *GCPPeerVpc) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *GCPPeerVpc) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *GCPPeerVpc) SetGcpProjectId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GCPPeerVpc) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -139,7 +142,7 @@ func (o *GCPPeerVpc) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPPeerVpc) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -147,7 +150,7 @@ func (o *GCPPeerVpc) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GCPPeerVpc) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *GCPPeerVpc) SetNetworkName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GCPPeerVpc) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *GCPPeerVpc) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPPeerVpc) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -203,7 +206,7 @@ func (o *GCPPeerVpc) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GCPPeerVpc) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -216,26 +219,22 @@ func (o *GCPPeerVpc) SetStatus(v string) {
 }
 
 func (o GCPPeerVpc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["containerId"] = o.ContainerId
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if true {
-		toSerialize["gcpProjectId"] = o.GcpProjectId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["networkName"] = o.NetworkName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPPeerVpc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	// skip: errorMessage is readOnly
+	toSerialize["gcpProjectId"] = o.GcpProjectId
+	// skip: id is readOnly
+	toSerialize["networkName"] = o.NetworkName
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableGCPPeerVpc struct {

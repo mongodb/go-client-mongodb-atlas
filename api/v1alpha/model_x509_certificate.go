@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the X509Certificate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &X509Certificate{}
+
 // X509Certificate struct for X509Certificate
 type X509Certificate struct {
 	Content *string `json:"content,omitempty"`
@@ -41,7 +44,7 @@ func NewX509CertificateWithDefaults() *X509Certificate {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *X509Certificate) GetContent() string {
-	if o == nil || o.Content == nil {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *X509Certificate) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *X509Certificate) GetContentOk() (*string, bool) {
-	if o == nil || o.Content == nil {
+	if o == nil || IsNil(o.Content) {
 		return nil, false
 	}
 	return o.Content, true
@@ -59,7 +62,7 @@ func (o *X509Certificate) GetContentOk() (*string, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *X509Certificate) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *X509Certificate) SetContent(v string) {
 
 // GetNotAfter returns the NotAfter field value if set, zero value otherwise.
 func (o *X509Certificate) GetNotAfter() time.Time {
-	if o == nil || o.NotAfter == nil {
+	if o == nil || IsNil(o.NotAfter) {
 		var ret time.Time
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *X509Certificate) GetNotAfter() time.Time {
 // GetNotAfterOk returns a tuple with the NotAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *X509Certificate) GetNotAfterOk() (*time.Time, bool) {
-	if o == nil || o.NotAfter == nil {
+	if o == nil || IsNil(o.NotAfter) {
 		return nil, false
 	}
 	return o.NotAfter, true
@@ -91,7 +94,7 @@ func (o *X509Certificate) GetNotAfterOk() (*time.Time, bool) {
 
 // HasNotAfter returns a boolean if a field has been set.
 func (o *X509Certificate) HasNotAfter() bool {
-	if o != nil && o.NotAfter != nil {
+	if o != nil && !IsNil(o.NotAfter) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *X509Certificate) SetNotAfter(v time.Time) {
 
 // GetNotBefore returns the NotBefore field value if set, zero value otherwise.
 func (o *X509Certificate) GetNotBefore() time.Time {
-	if o == nil || o.NotBefore == nil {
+	if o == nil || IsNil(o.NotBefore) {
 		var ret time.Time
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *X509Certificate) GetNotBefore() time.Time {
 // GetNotBeforeOk returns a tuple with the NotBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *X509Certificate) GetNotBeforeOk() (*time.Time, bool) {
-	if o == nil || o.NotBefore == nil {
+	if o == nil || IsNil(o.NotBefore) {
 		return nil, false
 	}
 	return o.NotBefore, true
@@ -123,7 +126,7 @@ func (o *X509Certificate) GetNotBeforeOk() (*time.Time, bool) {
 
 // HasNotBefore returns a boolean if a field has been set.
 func (o *X509Certificate) HasNotBefore() bool {
-	if o != nil && o.NotBefore != nil {
+	if o != nil && !IsNil(o.NotBefore) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *X509Certificate) SetNotBefore(v time.Time) {
 }
 
 func (o X509Certificate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Content != nil {
-		toSerialize["content"] = o.Content
-	}
-	if o.NotAfter != nil {
-		toSerialize["notAfter"] = o.NotAfter
-	}
-	if o.NotBefore != nil {
-		toSerialize["notBefore"] = o.NotBefore
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o X509Certificate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Content) {
+		toSerialize["content"] = o.Content
+	}
+	if !IsNil(o.NotAfter) {
+		toSerialize["notAfter"] = o.NotAfter
+	}
+	if !IsNil(o.NotBefore) {
+		toSerialize["notBefore"] = o.NotBefore
+	}
+	return toSerialize, nil
 }
 
 type NullableX509Certificate struct {

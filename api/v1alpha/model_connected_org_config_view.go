@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ConnectedOrgConfigView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConnectedOrgConfigView{}
+
 // ConnectedOrgConfigView struct for ConnectedOrgConfigView
 type ConnectedOrgConfigView struct {
 	// Approved domains that restrict users who can join the organization based on their email address.
@@ -51,7 +54,7 @@ func NewConnectedOrgConfigViewWithDefaults() *ConnectedOrgConfigView {
 
 // GetDomainAllowList returns the DomainAllowList field value if set, zero value otherwise.
 func (o *ConnectedOrgConfigView) GetDomainAllowList() []string {
-	if o == nil || o.DomainAllowList == nil {
+	if o == nil || IsNil(o.DomainAllowList) {
 		var ret []string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *ConnectedOrgConfigView) GetDomainAllowList() []string {
 // GetDomainAllowListOk returns a tuple with the DomainAllowList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConnectedOrgConfigView) GetDomainAllowListOk() ([]string, bool) {
-	if o == nil || o.DomainAllowList == nil {
+	if o == nil || IsNil(o.DomainAllowList) {
 		return nil, false
 	}
 	return o.DomainAllowList, true
@@ -69,7 +72,7 @@ func (o *ConnectedOrgConfigView) GetDomainAllowListOk() ([]string, bool) {
 
 // HasDomainAllowList returns a boolean if a field has been set.
 func (o *ConnectedOrgConfigView) HasDomainAllowList() bool {
-	if o != nil && o.DomainAllowList != nil {
+	if o != nil && !IsNil(o.DomainAllowList) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *ConnectedOrgConfigView) SetOrgId(v string) {
 
 // GetPostAuthRoleGrants returns the PostAuthRoleGrants field value if set, zero value otherwise.
 func (o *ConnectedOrgConfigView) GetPostAuthRoleGrants() []string {
-	if o == nil || o.PostAuthRoleGrants == nil {
+	if o == nil || IsNil(o.PostAuthRoleGrants) {
 		var ret []string
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *ConnectedOrgConfigView) GetPostAuthRoleGrants() []string {
 // GetPostAuthRoleGrantsOk returns a tuple with the PostAuthRoleGrants field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConnectedOrgConfigView) GetPostAuthRoleGrantsOk() ([]string, bool) {
-	if o == nil || o.PostAuthRoleGrants == nil {
+	if o == nil || IsNil(o.PostAuthRoleGrants) {
 		return nil, false
 	}
 	return o.PostAuthRoleGrants, true
@@ -173,7 +176,7 @@ func (o *ConnectedOrgConfigView) GetPostAuthRoleGrantsOk() ([]string, bool) {
 
 // HasPostAuthRoleGrants returns a boolean if a field has been set.
 func (o *ConnectedOrgConfigView) HasPostAuthRoleGrants() bool {
-	if o != nil && o.PostAuthRoleGrants != nil {
+	if o != nil && !IsNil(o.PostAuthRoleGrants) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *ConnectedOrgConfigView) SetPostAuthRoleGrants(v []string) {
 
 // GetRoleMappings returns the RoleMappings field value if set, zero value otherwise.
 func (o *ConnectedOrgConfigView) GetRoleMappings() []RoleMappingView {
-	if o == nil || o.RoleMappings == nil {
+	if o == nil || IsNil(o.RoleMappings) {
 		var ret []RoleMappingView
 		return ret
 	}
@@ -197,7 +200,7 @@ func (o *ConnectedOrgConfigView) GetRoleMappings() []RoleMappingView {
 // GetRoleMappingsOk returns a tuple with the RoleMappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConnectedOrgConfigView) GetRoleMappingsOk() ([]RoleMappingView, bool) {
-	if o == nil || o.RoleMappings == nil {
+	if o == nil || IsNil(o.RoleMappings) {
 		return nil, false
 	}
 	return o.RoleMappings, true
@@ -205,7 +208,7 @@ func (o *ConnectedOrgConfigView) GetRoleMappingsOk() ([]RoleMappingView, bool) {
 
 // HasRoleMappings returns a boolean if a field has been set.
 func (o *ConnectedOrgConfigView) HasRoleMappings() bool {
-	if o != nil && o.RoleMappings != nil {
+	if o != nil && !IsNil(o.RoleMappings) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *ConnectedOrgConfigView) SetRoleMappings(v []RoleMappingView) {
 
 // GetUserConflicts returns the UserConflicts field value if set, zero value otherwise.
 func (o *ConnectedOrgConfigView) GetUserConflicts() []FederatedUserView {
-	if o == nil || o.UserConflicts == nil {
+	if o == nil || IsNil(o.UserConflicts) {
 		var ret []FederatedUserView
 		return ret
 	}
@@ -229,7 +232,7 @@ func (o *ConnectedOrgConfigView) GetUserConflicts() []FederatedUserView {
 // GetUserConflictsOk returns a tuple with the UserConflicts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConnectedOrgConfigView) GetUserConflictsOk() ([]FederatedUserView, bool) {
-	if o == nil || o.UserConflicts == nil {
+	if o == nil || IsNil(o.UserConflicts) {
 		return nil, false
 	}
 	return o.UserConflicts, true
@@ -237,7 +240,7 @@ func (o *ConnectedOrgConfigView) GetUserConflictsOk() ([]FederatedUserView, bool
 
 // HasUserConflicts returns a boolean if a field has been set.
 func (o *ConnectedOrgConfigView) HasUserConflicts() bool {
-	if o != nil && o.UserConflicts != nil {
+	if o != nil && !IsNil(o.UserConflicts) {
 		return true
 	}
 
@@ -250,29 +253,31 @@ func (o *ConnectedOrgConfigView) SetUserConflicts(v []FederatedUserView) {
 }
 
 func (o ConnectedOrgConfigView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DomainAllowList != nil {
-		toSerialize["domainAllowList"] = o.DomainAllowList
-	}
-	if true {
-		toSerialize["domainRestrictionEnabled"] = o.DomainRestrictionEnabled
-	}
-	if true {
-		toSerialize["identityProviderId"] = o.IdentityProviderId
-	}
-	if true {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.PostAuthRoleGrants != nil {
-		toSerialize["postAuthRoleGrants"] = o.PostAuthRoleGrants
-	}
-	if o.RoleMappings != nil {
-		toSerialize["roleMappings"] = o.RoleMappings
-	}
-	if o.UserConflicts != nil {
-		toSerialize["userConflicts"] = o.UserConflicts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ConnectedOrgConfigView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DomainAllowList) {
+		toSerialize["domainAllowList"] = o.DomainAllowList
+	}
+	toSerialize["domainRestrictionEnabled"] = o.DomainRestrictionEnabled
+	toSerialize["identityProviderId"] = o.IdentityProviderId
+	// skip: orgId is readOnly
+	if !IsNil(o.PostAuthRoleGrants) {
+		toSerialize["postAuthRoleGrants"] = o.PostAuthRoleGrants
+	}
+	if !IsNil(o.RoleMappings) {
+		toSerialize["roleMappings"] = o.RoleMappings
+	}
+	if !IsNil(o.UserConflicts) {
+		toSerialize["userConflicts"] = o.UserConflicts
+	}
+	return toSerialize, nil
 }
 
 type NullableConnectedOrgConfigView struct {

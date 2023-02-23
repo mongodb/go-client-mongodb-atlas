@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPagerDutyView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPagerDutyView{}
+
 // ApiPagerDutyView Details to integrate one PagerDuty account with one MongoDB Cloud project.
 type ApiPagerDutyView struct {
 	// PagerDuty region that indicates the API Uniform Resource Locator (URL) to use.
@@ -43,7 +46,7 @@ func NewApiPagerDutyViewWithDefaults() *ApiPagerDutyView {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ApiPagerDutyView) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiPagerDutyView) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPagerDutyView) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -61,7 +64,7 @@ func (o *ApiPagerDutyView) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *ApiPagerDutyView) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *ApiPagerDutyView) SetServiceKey(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiPagerDutyView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *ApiPagerDutyView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPagerDutyView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -117,7 +120,7 @@ func (o *ApiPagerDutyView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiPagerDutyView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *ApiPagerDutyView) SetType(v string) {
 }
 
 func (o ApiPagerDutyView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if true {
-		toSerialize["serviceKey"] = o.ServiceKey
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPagerDutyView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	toSerialize["serviceKey"] = o.ServiceKey
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiPagerDutyView struct {

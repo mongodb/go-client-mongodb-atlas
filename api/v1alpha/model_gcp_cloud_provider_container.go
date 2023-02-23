@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPCloudProviderContainer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPCloudProviderContainer{}
+
 // GCPCloudProviderContainer Collection of settings that configures the network container for a virtual private connection on Amazon Web Services.
 type GCPCloudProviderContainer struct {
 	// IP addresses expressed in Classless Inter-Domain Routing (CIDR) notation that MongoDB Cloud uses for the network peering containers in your project. MongoDB Cloud assigns all of the project's clusters deployed to this cloud provider an IP address from this range. MongoDB Cloud locks this value if an M10 or greater cluster or a network peering connection exists in this project.  These CIDR blocks must fall within the ranges reserved per RFC 1918. GCP further limits the block to a lower bound of the `/18` range.  To modify the CIDR block, the target project cannot have:  - Any M10 or greater clusters - Any other VPC peering connections   You can also create a new project and create a network peering connection to set the desired MongoDB Cloud network peering container CIDR block for that project. MongoDB Cloud limits the number of MongoDB nodes per network peering connection based on the CIDR block and the region selected for the project.   **Example:** A project in an Google Cloud (GCP) region supporting three availability zones and an MongoDB CIDR network peering container block of limit of `/24` equals 27 three-node replica sets.
@@ -75,7 +78,7 @@ func (o *GCPCloudProviderContainer) SetAtlasCidrBlock(v string) {
 
 // GetGcpProjectId returns the GcpProjectId field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetGcpProjectId() string {
-	if o == nil || o.GcpProjectId == nil {
+	if o == nil || IsNil(o.GcpProjectId) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *GCPCloudProviderContainer) GetGcpProjectId() string {
 // GetGcpProjectIdOk returns a tuple with the GcpProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetGcpProjectIdOk() (*string, bool) {
-	if o == nil || o.GcpProjectId == nil {
+	if o == nil || IsNil(o.GcpProjectId) {
 		return nil, false
 	}
 	return o.GcpProjectId, true
@@ -93,7 +96,7 @@ func (o *GCPCloudProviderContainer) GetGcpProjectIdOk() (*string, bool) {
 
 // HasGcpProjectId returns a boolean if a field has been set.
 func (o *GCPCloudProviderContainer) HasGcpProjectId() bool {
-	if o != nil && o.GcpProjectId != nil {
+	if o != nil && !IsNil(o.GcpProjectId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GCPCloudProviderContainer) SetGcpProjectId(v string) {
 
 // GetNetworkName returns the NetworkName field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetNetworkName() string {
-	if o == nil || o.NetworkName == nil {
+	if o == nil || IsNil(o.NetworkName) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *GCPCloudProviderContainer) GetNetworkName() string {
 // GetNetworkNameOk returns a tuple with the NetworkName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetNetworkNameOk() (*string, bool) {
-	if o == nil || o.NetworkName == nil {
+	if o == nil || IsNil(o.NetworkName) {
 		return nil, false
 	}
 	return o.NetworkName, true
@@ -125,7 +128,7 @@ func (o *GCPCloudProviderContainer) GetNetworkNameOk() (*string, bool) {
 
 // HasNetworkName returns a boolean if a field has been set.
 func (o *GCPCloudProviderContainer) HasNetworkName() bool {
-	if o != nil && o.NetworkName != nil {
+	if o != nil && !IsNil(o.NetworkName) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *GCPCloudProviderContainer) SetRegions(v []string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -173,7 +176,7 @@ func (o *GCPCloudProviderContainer) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -181,7 +184,7 @@ func (o *GCPCloudProviderContainer) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GCPCloudProviderContainer) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *GCPCloudProviderContainer) SetId(v string) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -205,7 +208,7 @@ func (o *GCPCloudProviderContainer) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -213,7 +216,7 @@ func (o *GCPCloudProviderContainer) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *GCPCloudProviderContainer) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -227,7 +230,7 @@ func (o *GCPCloudProviderContainer) SetProviderName(v string) {
 
 // GetProvisioned returns the Provisioned field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetProvisioned() bool {
-	if o == nil || o.Provisioned == nil {
+	if o == nil || IsNil(o.Provisioned) {
 		var ret bool
 		return ret
 	}
@@ -237,7 +240,7 @@ func (o *GCPCloudProviderContainer) GetProvisioned() bool {
 // GetProvisionedOk returns a tuple with the Provisioned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
-	if o == nil || o.Provisioned == nil {
+	if o == nil || IsNil(o.Provisioned) {
 		return nil, false
 	}
 	return o.Provisioned, true
@@ -245,7 +248,7 @@ func (o *GCPCloudProviderContainer) GetProvisionedOk() (*bool, bool) {
 
 // HasProvisioned returns a boolean if a field has been set.
 func (o *GCPCloudProviderContainer) HasProvisioned() bool {
-	if o != nil && o.Provisioned != nil {
+	if o != nil && !IsNil(o.Provisioned) {
 		return true
 	}
 
@@ -258,29 +261,25 @@ func (o *GCPCloudProviderContainer) SetProvisioned(v bool) {
 }
 
 func (o GCPCloudProviderContainer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
-	}
-	if o.GcpProjectId != nil {
-		toSerialize["gcpProjectId"] = o.GcpProjectId
-	}
-	if o.NetworkName != nil {
-		toSerialize["networkName"] = o.NetworkName
-	}
-	if true {
-		toSerialize["regions"] = o.Regions
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.Provisioned != nil {
-		toSerialize["provisioned"] = o.Provisioned
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPCloudProviderContainer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
+	// skip: gcpProjectId is readOnly
+	// skip: networkName is readOnly
+	toSerialize["regions"] = o.Regions
+	// skip: id is readOnly
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	// skip: provisioned is readOnly
+	return toSerialize, nil
 }
 
 type NullableGCPCloudProviderContainer struct {

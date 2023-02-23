@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiSnapshotView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiSnapshotView{}
+
 // ApiSnapshotView struct for ApiSnapshotView
 type ApiSnapshotView struct {
 	// Unique 24-hexadecimal digit string that identifies the cluster with the snapshots you want to return.
@@ -56,7 +59,7 @@ func NewApiSnapshotViewWithDefaults() *ApiSnapshotView {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -66,7 +69,7 @@ func (o *ApiSnapshotView) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -74,7 +77,7 @@ func (o *ApiSnapshotView) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *ApiSnapshotView) SetClusterId(v string) {
 
 // GetComplete returns the Complete field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetComplete() bool {
-	if o == nil || o.Complete == nil {
+	if o == nil || IsNil(o.Complete) {
 		var ret bool
 		return ret
 	}
@@ -98,7 +101,7 @@ func (o *ApiSnapshotView) GetComplete() bool {
 // GetCompleteOk returns a tuple with the Complete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetCompleteOk() (*bool, bool) {
-	if o == nil || o.Complete == nil {
+	if o == nil || IsNil(o.Complete) {
 		return nil, false
 	}
 	return o.Complete, true
@@ -106,7 +109,7 @@ func (o *ApiSnapshotView) GetCompleteOk() (*bool, bool) {
 
 // HasComplete returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasComplete() bool {
-	if o != nil && o.Complete != nil {
+	if o != nil && !IsNil(o.Complete) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *ApiSnapshotView) SetComplete(v bool) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetCreated() ApiBSONTimestampView {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret ApiBSONTimestampView
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *ApiSnapshotView) GetCreated() ApiBSONTimestampView {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetCreatedOk() (*ApiBSONTimestampView, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -138,7 +141,7 @@ func (o *ApiSnapshotView) GetCreatedOk() (*ApiBSONTimestampView, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *ApiSnapshotView) SetCreated(v ApiBSONTimestampView) {
 
 // GetDoNotDelete returns the DoNotDelete field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetDoNotDelete() bool {
-	if o == nil || o.DoNotDelete == nil {
+	if o == nil || IsNil(o.DoNotDelete) {
 		var ret bool
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *ApiSnapshotView) GetDoNotDelete() bool {
 // GetDoNotDeleteOk returns a tuple with the DoNotDelete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetDoNotDeleteOk() (*bool, bool) {
-	if o == nil || o.DoNotDelete == nil {
+	if o == nil || IsNil(o.DoNotDelete) {
 		return nil, false
 	}
 	return o.DoNotDelete, true
@@ -170,7 +173,7 @@ func (o *ApiSnapshotView) GetDoNotDeleteOk() (*bool, bool) {
 
 // HasDoNotDelete returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasDoNotDelete() bool {
-	if o != nil && o.DoNotDelete != nil {
+	if o != nil && !IsNil(o.DoNotDelete) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *ApiSnapshotView) SetDoNotDelete(v bool) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetExpires() time.Time {
-	if o == nil || o.Expires == nil {
+	if o == nil || IsNil(o.Expires) {
 		var ret time.Time
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *ApiSnapshotView) GetExpires() time.Time {
 // GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetExpiresOk() (*time.Time, bool) {
-	if o == nil || o.Expires == nil {
+	if o == nil || IsNil(o.Expires) {
 		return nil, false
 	}
 	return o.Expires, true
@@ -202,7 +205,7 @@ func (o *ApiSnapshotView) GetExpiresOk() (*time.Time, bool) {
 
 // HasExpires returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasExpires() bool {
-	if o != nil && o.Expires != nil {
+	if o != nil && !IsNil(o.Expires) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *ApiSnapshotView) SetExpires(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *ApiSnapshotView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -234,7 +237,7 @@ func (o *ApiSnapshotView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *ApiSnapshotView) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -258,7 +261,7 @@ func (o *ApiSnapshotView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -266,7 +269,7 @@ func (o *ApiSnapshotView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *ApiSnapshotView) SetId(v string) {
 
 // GetLastOplogAppliedTimestamp returns the LastOplogAppliedTimestamp field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetLastOplogAppliedTimestamp() ApiBSONTimestampView {
-	if o == nil || o.LastOplogAppliedTimestamp == nil {
+	if o == nil || IsNil(o.LastOplogAppliedTimestamp) {
 		var ret ApiBSONTimestampView
 		return ret
 	}
@@ -290,7 +293,7 @@ func (o *ApiSnapshotView) GetLastOplogAppliedTimestamp() ApiBSONTimestampView {
 // GetLastOplogAppliedTimestampOk returns a tuple with the LastOplogAppliedTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetLastOplogAppliedTimestampOk() (*ApiBSONTimestampView, bool) {
-	if o == nil || o.LastOplogAppliedTimestamp == nil {
+	if o == nil || IsNil(o.LastOplogAppliedTimestamp) {
 		return nil, false
 	}
 	return o.LastOplogAppliedTimestamp, true
@@ -298,7 +301,7 @@ func (o *ApiSnapshotView) GetLastOplogAppliedTimestampOk() (*ApiBSONTimestampVie
 
 // HasLastOplogAppliedTimestamp returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasLastOplogAppliedTimestamp() bool {
-	if o != nil && o.LastOplogAppliedTimestamp != nil {
+	if o != nil && !IsNil(o.LastOplogAppliedTimestamp) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *ApiSnapshotView) SetLastOplogAppliedTimestamp(v ApiBSONTimestampView) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -322,7 +325,7 @@ func (o *ApiSnapshotView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -330,7 +333,7 @@ func (o *ApiSnapshotView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -344,7 +347,7 @@ func (o *ApiSnapshotView) SetLinks(v []Link) {
 
 // GetParts returns the Parts field value if set, zero value otherwise.
 func (o *ApiSnapshotView) GetParts() []ApiSnapshotPartView {
-	if o == nil || o.Parts == nil {
+	if o == nil || IsNil(o.Parts) {
 		var ret []ApiSnapshotPartView
 		return ret
 	}
@@ -354,7 +357,7 @@ func (o *ApiSnapshotView) GetParts() []ApiSnapshotPartView {
 // GetPartsOk returns a tuple with the Parts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSnapshotView) GetPartsOk() ([]ApiSnapshotPartView, bool) {
-	if o == nil || o.Parts == nil {
+	if o == nil || IsNil(o.Parts) {
 		return nil, false
 	}
 	return o.Parts, true
@@ -362,7 +365,7 @@ func (o *ApiSnapshotView) GetPartsOk() ([]ApiSnapshotPartView, bool) {
 
 // HasParts returns a boolean if a field has been set.
 func (o *ApiSnapshotView) HasParts() bool {
-	if o != nil && o.Parts != nil {
+	if o != nil && !IsNil(o.Parts) {
 		return true
 	}
 
@@ -375,38 +378,34 @@ func (o *ApiSnapshotView) SetParts(v []ApiSnapshotPartView) {
 }
 
 func (o ApiSnapshotView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.Complete != nil {
-		toSerialize["complete"] = o.Complete
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.DoNotDelete != nil {
-		toSerialize["doNotDelete"] = o.DoNotDelete
-	}
-	if o.Expires != nil {
-		toSerialize["expires"] = o.Expires
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.LastOplogAppliedTimestamp != nil {
-		toSerialize["lastOplogAppliedTimestamp"] = o.LastOplogAppliedTimestamp
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Parts != nil {
-		toSerialize["parts"] = o.Parts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiSnapshotView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterId is readOnly
+	// skip: complete is readOnly
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
+	if !IsNil(o.DoNotDelete) {
+		toSerialize["doNotDelete"] = o.DoNotDelete
+	}
+	if !IsNil(o.Expires) {
+		toSerialize["expires"] = o.Expires
+	}
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	if !IsNil(o.LastOplogAppliedTimestamp) {
+		toSerialize["lastOplogAppliedTimestamp"] = o.LastOplogAppliedTimestamp
+	}
+	// skip: links is readOnly
+	// skip: parts is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiSnapshotView struct {

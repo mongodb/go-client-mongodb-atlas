@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiAtlasNetPeerRequestBase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAtlasNetPeerRequestBase{}
+
 // ApiAtlasNetPeerRequestBase struct for ApiAtlasNetPeerRequestBase
 type ApiAtlasNetPeerRequestBase struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
@@ -88,14 +91,18 @@ func (o *ApiAtlasNetPeerRequestBase) SetProviderName(v string) {
 }
 
 func (o ApiAtlasNetPeerRequestBase) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["containerId"] = o.ContainerId
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAtlasNetPeerRequestBase) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableApiAtlasNetPeerRequestBase struct {

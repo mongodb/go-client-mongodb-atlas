@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiWebhookView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiWebhookView{}
+
 // ApiWebhookView Details to integrate one webhook with one MongoDB Cloud project.
 type ApiWebhookView struct {
 	// An optional field returned if your webhook is configured with a secret.  **NOTE**: When you view or edit the alert for a webhook notification, the secret appears completely redacted.
@@ -43,7 +46,7 @@ func NewApiWebhookViewWithDefaults() *ApiWebhookView {
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *ApiWebhookView) GetSecret() string {
-	if o == nil || o.Secret == nil {
+	if o == nil || IsNil(o.Secret) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiWebhookView) GetSecret() string {
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiWebhookView) GetSecretOk() (*string, bool) {
-	if o == nil || o.Secret == nil {
+	if o == nil || IsNil(o.Secret) {
 		return nil, false
 	}
 	return o.Secret, true
@@ -61,7 +64,7 @@ func (o *ApiWebhookView) GetSecretOk() (*string, bool) {
 
 // HasSecret returns a boolean if a field has been set.
 func (o *ApiWebhookView) HasSecret() bool {
-	if o != nil && o.Secret != nil {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ApiWebhookView) SetSecret(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiWebhookView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ApiWebhookView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiWebhookView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -93,7 +96,7 @@ func (o *ApiWebhookView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiWebhookView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *ApiWebhookView) SetUrl(v string) {
 }
 
 func (o ApiWebhookView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Secret != nil {
-		toSerialize["secret"] = o.Secret
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiWebhookView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	toSerialize["url"] = o.Url
+	return toSerialize, nil
 }
 
 type NullableApiWebhookView struct {

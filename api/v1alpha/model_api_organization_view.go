@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiOrganizationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiOrganizationView{}
+
 // ApiOrganizationView struct for ApiOrganizationView
 type ApiOrganizationView struct {
 	// Unique 24-hexadecimal digit string that identifies the organization.
@@ -45,7 +48,7 @@ func NewApiOrganizationViewWithDefaults() *ApiOrganizationView {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiOrganizationView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiOrganizationView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -63,7 +66,7 @@ func (o *ApiOrganizationView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiOrganizationView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ApiOrganizationView) SetId(v string) {
 
 // GetIsDeleted returns the IsDeleted field value if set, zero value otherwise.
 func (o *ApiOrganizationView) GetIsDeleted() bool {
-	if o == nil || o.IsDeleted == nil {
+	if o == nil || IsNil(o.IsDeleted) {
 		var ret bool
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *ApiOrganizationView) GetIsDeleted() bool {
 // GetIsDeletedOk returns a tuple with the IsDeleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationView) GetIsDeletedOk() (*bool, bool) {
-	if o == nil || o.IsDeleted == nil {
+	if o == nil || IsNil(o.IsDeleted) {
 		return nil, false
 	}
 	return o.IsDeleted, true
@@ -95,7 +98,7 @@ func (o *ApiOrganizationView) GetIsDeletedOk() (*bool, bool) {
 
 // HasIsDeleted returns a boolean if a field has been set.
 func (o *ApiOrganizationView) HasIsDeleted() bool {
-	if o != nil && o.IsDeleted != nil {
+	if o != nil && !IsNil(o.IsDeleted) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *ApiOrganizationView) SetIsDeleted(v bool) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiOrganizationView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *ApiOrganizationView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -127,7 +130,7 @@ func (o *ApiOrganizationView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiOrganizationView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -164,20 +167,20 @@ func (o *ApiOrganizationView) SetName(v string) {
 }
 
 func (o ApiOrganizationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsDeleted != nil {
-		toSerialize["isDeleted"] = o.IsDeleted
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiOrganizationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: id is readOnly
+	// skip: isDeleted is readOnly
+	// skip: links is readOnly
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
 }
 
 type NullableApiOrganizationView struct {

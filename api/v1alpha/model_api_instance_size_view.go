@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiInstanceSizeView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiInstanceSizeView{}
+
 // ApiInstanceSizeView List of instances sizes that this cloud provider supports.
 type ApiInstanceSizeView struct {
 	// List of regions that this cloud provider supports for this instance size.
@@ -41,7 +44,7 @@ func NewApiInstanceSizeViewWithDefaults() *ApiInstanceSizeView {
 
 // GetAvailableRegions returns the AvailableRegions field value if set, zero value otherwise.
 func (o *ApiInstanceSizeView) GetAvailableRegions() []ApiAvailableRegionView {
-	if o == nil || o.AvailableRegions == nil {
+	if o == nil || IsNil(o.AvailableRegions) {
 		var ret []ApiAvailableRegionView
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiInstanceSizeView) GetAvailableRegions() []ApiAvailableRegionView {
 // GetAvailableRegionsOk returns a tuple with the AvailableRegions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInstanceSizeView) GetAvailableRegionsOk() ([]ApiAvailableRegionView, bool) {
-	if o == nil || o.AvailableRegions == nil {
+	if o == nil || IsNil(o.AvailableRegions) {
 		return nil, false
 	}
 	return o.AvailableRegions, true
@@ -59,7 +62,7 @@ func (o *ApiInstanceSizeView) GetAvailableRegionsOk() ([]ApiAvailableRegionView,
 
 // HasAvailableRegions returns a boolean if a field has been set.
 func (o *ApiInstanceSizeView) HasAvailableRegions() bool {
-	if o != nil && o.AvailableRegions != nil {
+	if o != nil && !IsNil(o.AvailableRegions) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiInstanceSizeView) SetAvailableRegions(v []ApiAvailableRegionView) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApiInstanceSizeView) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiInstanceSizeView) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInstanceSizeView) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -91,7 +94,7 @@ func (o *ApiInstanceSizeView) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiInstanceSizeView) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiInstanceSizeView) SetName(v string) {
 }
 
 func (o ApiInstanceSizeView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AvailableRegions != nil {
-		toSerialize["availableRegions"] = o.AvailableRegions
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiInstanceSizeView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: availableRegions is readOnly
+	// skip: name is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiInstanceSizeView struct {

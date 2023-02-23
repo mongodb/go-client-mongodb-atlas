@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiVictorOpsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiVictorOpsView{}
+
 // ApiVictorOpsView Details to integrate one Splunk On-Call account with one MongoDB Cloud project.
 type ApiVictorOpsView struct {
 	// Key that allows MongoDB Cloud to access your VictorOps account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
@@ -67,7 +70,7 @@ func (o *ApiVictorOpsView) SetApiKey(v string) {
 
 // GetRoutingKey returns the RoutingKey field value if set, zero value otherwise.
 func (o *ApiVictorOpsView) GetRoutingKey() string {
-	if o == nil || o.RoutingKey == nil {
+	if o == nil || IsNil(o.RoutingKey) {
 		var ret string
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *ApiVictorOpsView) GetRoutingKey() string {
 // GetRoutingKeyOk returns a tuple with the RoutingKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiVictorOpsView) GetRoutingKeyOk() (*string, bool) {
-	if o == nil || o.RoutingKey == nil {
+	if o == nil || IsNil(o.RoutingKey) {
 		return nil, false
 	}
 	return o.RoutingKey, true
@@ -85,7 +88,7 @@ func (o *ApiVictorOpsView) GetRoutingKeyOk() (*string, bool) {
 
 // HasRoutingKey returns a boolean if a field has been set.
 func (o *ApiVictorOpsView) HasRoutingKey() bool {
-	if o != nil && o.RoutingKey != nil {
+	if o != nil && !IsNil(o.RoutingKey) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *ApiVictorOpsView) SetRoutingKey(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiVictorOpsView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *ApiVictorOpsView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiVictorOpsView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -117,7 +120,7 @@ func (o *ApiVictorOpsView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiVictorOpsView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *ApiVictorOpsView) SetType(v string) {
 }
 
 func (o ApiVictorOpsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["apiKey"] = o.ApiKey
-	}
-	if o.RoutingKey != nil {
-		toSerialize["routingKey"] = o.RoutingKey
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiVictorOpsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["apiKey"] = o.ApiKey
+	if !IsNil(o.RoutingKey) {
+		toSerialize["routingKey"] = o.RoutingKey
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiVictorOpsView struct {

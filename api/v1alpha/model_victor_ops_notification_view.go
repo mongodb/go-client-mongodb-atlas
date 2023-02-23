@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VictorOpsNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VictorOpsNotificationView{}
+
 // VictorOpsNotificationView VictorOps notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type VictorOpsNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -47,7 +50,7 @@ func NewVictorOpsNotificationViewWithDefaults() *VictorOpsNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *VictorOpsNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *VictorOpsNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VictorOpsNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -65,7 +68,7 @@ func (o *VictorOpsNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *VictorOpsNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *VictorOpsNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *VictorOpsNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *VictorOpsNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VictorOpsNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -97,7 +100,7 @@ func (o *VictorOpsNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *VictorOpsNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -135,7 +138,7 @@ func (o *VictorOpsNotificationView) SetTypeName(v string) {
 
 // GetVictorOpsApiKey returns the VictorOpsApiKey field value if set, zero value otherwise.
 func (o *VictorOpsNotificationView) GetVictorOpsApiKey() string {
-	if o == nil || o.VictorOpsApiKey == nil {
+	if o == nil || IsNil(o.VictorOpsApiKey) {
 		var ret string
 		return ret
 	}
@@ -145,7 +148,7 @@ func (o *VictorOpsNotificationView) GetVictorOpsApiKey() string {
 // GetVictorOpsApiKeyOk returns a tuple with the VictorOpsApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VictorOpsNotificationView) GetVictorOpsApiKeyOk() (*string, bool) {
-	if o == nil || o.VictorOpsApiKey == nil {
+	if o == nil || IsNil(o.VictorOpsApiKey) {
 		return nil, false
 	}
 	return o.VictorOpsApiKey, true
@@ -153,7 +156,7 @@ func (o *VictorOpsNotificationView) GetVictorOpsApiKeyOk() (*string, bool) {
 
 // HasVictorOpsApiKey returns a boolean if a field has been set.
 func (o *VictorOpsNotificationView) HasVictorOpsApiKey() bool {
-	if o != nil && o.VictorOpsApiKey != nil {
+	if o != nil && !IsNil(o.VictorOpsApiKey) {
 		return true
 	}
 
@@ -167,7 +170,7 @@ func (o *VictorOpsNotificationView) SetVictorOpsApiKey(v string) {
 
 // GetVictorOpsRoutingKey returns the VictorOpsRoutingKey field value if set, zero value otherwise.
 func (o *VictorOpsNotificationView) GetVictorOpsRoutingKey() string {
-	if o == nil || o.VictorOpsRoutingKey == nil {
+	if o == nil || IsNil(o.VictorOpsRoutingKey) {
 		var ret string
 		return ret
 	}
@@ -177,7 +180,7 @@ func (o *VictorOpsNotificationView) GetVictorOpsRoutingKey() string {
 // GetVictorOpsRoutingKeyOk returns a tuple with the VictorOpsRoutingKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VictorOpsNotificationView) GetVictorOpsRoutingKeyOk() (*string, bool) {
-	if o == nil || o.VictorOpsRoutingKey == nil {
+	if o == nil || IsNil(o.VictorOpsRoutingKey) {
 		return nil, false
 	}
 	return o.VictorOpsRoutingKey, true
@@ -185,7 +188,7 @@ func (o *VictorOpsNotificationView) GetVictorOpsRoutingKeyOk() (*string, bool) {
 
 // HasVictorOpsRoutingKey returns a boolean if a field has been set.
 func (o *VictorOpsNotificationView) HasVictorOpsRoutingKey() bool {
-	if o != nil && o.VictorOpsRoutingKey != nil {
+	if o != nil && !IsNil(o.VictorOpsRoutingKey) {
 		return true
 	}
 
@@ -198,23 +201,29 @@ func (o *VictorOpsNotificationView) SetVictorOpsRoutingKey(v string) {
 }
 
 func (o VictorOpsNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
-	}
-	if o.VictorOpsApiKey != nil {
-		toSerialize["victorOpsApiKey"] = o.VictorOpsApiKey
-	}
-	if o.VictorOpsRoutingKey != nil {
-		toSerialize["victorOpsRoutingKey"] = o.VictorOpsRoutingKey
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VictorOpsNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	toSerialize["typeName"] = o.TypeName
+	if !IsNil(o.VictorOpsApiKey) {
+		toSerialize["victorOpsApiKey"] = o.VictorOpsApiKey
+	}
+	if !IsNil(o.VictorOpsRoutingKey) {
+		toSerialize["victorOpsRoutingKey"] = o.VictorOpsRoutingKey
+	}
+	return toSerialize, nil
 }
 
 type NullableVictorOpsNotificationView struct {

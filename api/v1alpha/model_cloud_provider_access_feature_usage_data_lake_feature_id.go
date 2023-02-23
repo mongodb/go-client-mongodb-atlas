@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessFeatureUsageDataLakeFeatureId type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessFeatureUsageDataLakeFeatureId{}
+
 // CloudProviderAccessFeatureUsageDataLakeFeatureId Identifying characteristics about the data lake linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessFeatureUsageDataLakeFeatureId struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -41,7 +44,7 @@ func NewCloudProviderAccessFeatureUsageDataLakeFeatureIdWithDefaults() *CloudPro
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -59,7 +62,7 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetGroupIdOk() (*stri
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) SetGroupId(v string) 
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -91,7 +94,7 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) GetNameOk() (*string,
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) SetName(v string) {
 }
 
 func (o CloudProviderAccessFeatureUsageDataLakeFeatureId) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessFeatureUsageDataLakeFeatureId) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: groupId is readOnly
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessFeatureUsageDataLakeFeatureId struct {

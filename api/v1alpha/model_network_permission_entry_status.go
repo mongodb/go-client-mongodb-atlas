@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NetworkPermissionEntryStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkPermissionEntryStatus{}
+
 // NetworkPermissionEntryStatus struct for NetworkPermissionEntryStatus
 type NetworkPermissionEntryStatus struct {
 	// State of the access list entry when MongoDB Cloud made this request.  | Status | Activity | |---|---| | `ACTIVE` | This access list entry applies to all relevant cloud providers. | | `PENDING` | MongoDB Cloud has started to add access list entry. This access list entry may not apply to all cloud providers at the time of this request. | | `FAILED` | MongoDB Cloud didn't succeed in adding this access list entry. | 
@@ -62,11 +65,17 @@ func (o *NetworkPermissionEntryStatus) SetSTATUS(v string) {
 }
 
 func (o NetworkPermissionEntryStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["STATUS"] = o.STATUS
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NetworkPermissionEntryStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: STATUS is readOnly
+	return toSerialize, nil
 }
 
 type NullableNetworkPermissionEntryStatus struct {

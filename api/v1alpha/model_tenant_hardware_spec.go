@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TenantHardwareSpec type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TenantHardwareSpec{}
+
 // TenantHardwareSpec struct for TenantHardwareSpec
 type TenantHardwareSpec struct {
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
@@ -39,7 +42,7 @@ func NewTenantHardwareSpecWithDefaults() *TenantHardwareSpec {
 
 // GetInstanceSize returns the InstanceSize field value if set, zero value otherwise.
 func (o *TenantHardwareSpec) GetInstanceSize() string {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *TenantHardwareSpec) GetInstanceSize() string {
 // GetInstanceSizeOk returns a tuple with the InstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantHardwareSpec) GetInstanceSizeOk() (*string, bool) {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		return nil, false
 	}
 	return o.InstanceSize, true
@@ -57,7 +60,7 @@ func (o *TenantHardwareSpec) GetInstanceSizeOk() (*string, bool) {
 
 // HasInstanceSize returns a boolean if a field has been set.
 func (o *TenantHardwareSpec) HasInstanceSize() bool {
-	if o != nil && o.InstanceSize != nil {
+	if o != nil && !IsNil(o.InstanceSize) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *TenantHardwareSpec) SetInstanceSize(v string) {
 }
 
 func (o TenantHardwareSpec) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.InstanceSize != nil {
-		toSerialize["instanceSize"] = o.InstanceSize
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TenantHardwareSpec) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InstanceSize) {
+		toSerialize["instanceSize"] = o.InstanceSize
+	}
+	return toSerialize, nil
 }
 
 type NullableTenantHardwareSpec struct {

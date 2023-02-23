@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterdaitchMokotoffSoundex type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterdaitchMokotoffSoundex{}
+
 // TokenFilterdaitchMokotoffSoundex Filter that creates tokens for words that sound the same based on the Daitch-Mokotoff Soundex phonetic algorithm. This filter can generate multiple encodings for each input, where each encoded token is a 6 digit number.  **NOTE**: Don't use the **daitchMokotoffSoundex** token filter in:  -Synonym or autocomplete mapping definitions - Operators where **fuzzy** is enabled. Atlas Search supports the **fuzzy** option only for the **autocomplete**, **term**, and **text** operators.
 type TokenFilterdaitchMokotoffSoundex struct {
 	// Value that indicates whether to include or omit the original tokens in the output of the token filter.  Choose `include` if you want to support queries on both the original tokens as well as the converted forms.   Choose `omit` if you want to query only on the converted forms of the original tokens.
@@ -45,7 +48,7 @@ func NewTokenFilterdaitchMokotoffSoundexWithDefaults() *TokenFilterdaitchMokotof
 
 // GetOriginalTokens returns the OriginalTokens field value if set, zero value otherwise.
 func (o *TokenFilterdaitchMokotoffSoundex) GetOriginalTokens() string {
-	if o == nil || o.OriginalTokens == nil {
+	if o == nil || IsNil(o.OriginalTokens) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *TokenFilterdaitchMokotoffSoundex) GetOriginalTokens() string {
 // GetOriginalTokensOk returns a tuple with the OriginalTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilterdaitchMokotoffSoundex) GetOriginalTokensOk() (*string, bool) {
-	if o == nil || o.OriginalTokens == nil {
+	if o == nil || IsNil(o.OriginalTokens) {
 		return nil, false
 	}
 	return o.OriginalTokens, true
@@ -63,7 +66,7 @@ func (o *TokenFilterdaitchMokotoffSoundex) GetOriginalTokensOk() (*string, bool)
 
 // HasOriginalTokens returns a boolean if a field has been set.
 func (o *TokenFilterdaitchMokotoffSoundex) HasOriginalTokens() bool {
-	if o != nil && o.OriginalTokens != nil {
+	if o != nil && !IsNil(o.OriginalTokens) {
 		return true
 	}
 
@@ -100,14 +103,20 @@ func (o *TokenFilterdaitchMokotoffSoundex) SetType(v string) {
 }
 
 func (o TokenFilterdaitchMokotoffSoundex) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.OriginalTokens != nil {
-		toSerialize["originalTokens"] = o.OriginalTokens
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterdaitchMokotoffSoundex) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OriginalTokens) {
+		toSerialize["originalTokens"] = o.OriginalTokens
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterdaitchMokotoffSoundex struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ServerlessInstanceDescription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessInstanceDescription{}
+
 // ServerlessInstanceDescription Group of settings that configure a MongoDB serverless instance.
 type ServerlessInstanceDescription struct {
 	ConnectionStrings *ServerlessInstanceDescriptionConnectionStrings `json:"connectionStrings,omitempty"`
@@ -61,7 +64,7 @@ func NewServerlessInstanceDescriptionWithDefaults() *ServerlessInstanceDescripti
 
 // GetConnectionStrings returns the ConnectionStrings field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetConnectionStrings() ServerlessInstanceDescriptionConnectionStrings {
-	if o == nil || o.ConnectionStrings == nil {
+	if o == nil || IsNil(o.ConnectionStrings) {
 		var ret ServerlessInstanceDescriptionConnectionStrings
 		return ret
 	}
@@ -71,7 +74,7 @@ func (o *ServerlessInstanceDescription) GetConnectionStrings() ServerlessInstanc
 // GetConnectionStringsOk returns a tuple with the ConnectionStrings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetConnectionStringsOk() (*ServerlessInstanceDescriptionConnectionStrings, bool) {
-	if o == nil || o.ConnectionStrings == nil {
+	if o == nil || IsNil(o.ConnectionStrings) {
 		return nil, false
 	}
 	return o.ConnectionStrings, true
@@ -79,7 +82,7 @@ func (o *ServerlessInstanceDescription) GetConnectionStringsOk() (*ServerlessIns
 
 // HasConnectionStrings returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasConnectionStrings() bool {
-	if o != nil && o.ConnectionStrings != nil {
+	if o != nil && !IsNil(o.ConnectionStrings) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *ServerlessInstanceDescription) SetConnectionStrings(v ServerlessInstanc
 
 // GetCreateDate returns the CreateDate field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetCreateDate() time.Time {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		var ret time.Time
 		return ret
 	}
@@ -103,7 +106,7 @@ func (o *ServerlessInstanceDescription) GetCreateDate() time.Time {
 // GetCreateDateOk returns a tuple with the CreateDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetCreateDateOk() (*time.Time, bool) {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		return nil, false
 	}
 	return o.CreateDate, true
@@ -111,7 +114,7 @@ func (o *ServerlessInstanceDescription) GetCreateDateOk() (*time.Time, bool) {
 
 // HasCreateDate returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasCreateDate() bool {
-	if o != nil && o.CreateDate != nil {
+	if o != nil && !IsNil(o.CreateDate) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *ServerlessInstanceDescription) SetCreateDate(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *ServerlessInstanceDescription) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -143,7 +146,7 @@ func (o *ServerlessInstanceDescription) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *ServerlessInstanceDescription) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *ServerlessInstanceDescription) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -175,7 +178,7 @@ func (o *ServerlessInstanceDescription) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -189,7 +192,7 @@ func (o *ServerlessInstanceDescription) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -199,7 +202,7 @@ func (o *ServerlessInstanceDescription) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -207,7 +210,7 @@ func (o *ServerlessInstanceDescription) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -221,7 +224,7 @@ func (o *ServerlessInstanceDescription) SetLinks(v []Link) {
 
 // GetMongoDBVersion returns the MongoDBVersion field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetMongoDBVersion() string {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		var ret string
 		return ret
 	}
@@ -231,7 +234,7 @@ func (o *ServerlessInstanceDescription) GetMongoDBVersion() string {
 // GetMongoDBVersionOk returns a tuple with the MongoDBVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetMongoDBVersionOk() (*string, bool) {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		return nil, false
 	}
 	return o.MongoDBVersion, true
@@ -239,7 +242,7 @@ func (o *ServerlessInstanceDescription) GetMongoDBVersionOk() (*string, bool) {
 
 // HasMongoDBVersion returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasMongoDBVersion() bool {
-	if o != nil && o.MongoDBVersion != nil {
+	if o != nil && !IsNil(o.MongoDBVersion) {
 		return true
 	}
 
@@ -253,7 +256,7 @@ func (o *ServerlessInstanceDescription) SetMongoDBVersion(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -263,7 +266,7 @@ func (o *ServerlessInstanceDescription) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -271,7 +274,7 @@ func (o *ServerlessInstanceDescription) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -309,7 +312,7 @@ func (o *ServerlessInstanceDescription) SetProviderSettings(v ServerlessProvider
 
 // GetServerlessBackupOptions returns the ServerlessBackupOptions field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetServerlessBackupOptions() ServerlessBackupOptions {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		var ret ServerlessBackupOptions
 		return ret
 	}
@@ -319,7 +322,7 @@ func (o *ServerlessInstanceDescription) GetServerlessBackupOptions() ServerlessB
 // GetServerlessBackupOptionsOk returns a tuple with the ServerlessBackupOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetServerlessBackupOptionsOk() (*ServerlessBackupOptions, bool) {
-	if o == nil || o.ServerlessBackupOptions == nil {
+	if o == nil || IsNil(o.ServerlessBackupOptions) {
 		return nil, false
 	}
 	return o.ServerlessBackupOptions, true
@@ -327,7 +330,7 @@ func (o *ServerlessInstanceDescription) GetServerlessBackupOptionsOk() (*Serverl
 
 // HasServerlessBackupOptions returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasServerlessBackupOptions() bool {
-	if o != nil && o.ServerlessBackupOptions != nil {
+	if o != nil && !IsNil(o.ServerlessBackupOptions) {
 		return true
 	}
 
@@ -341,7 +344,7 @@ func (o *ServerlessInstanceDescription) SetServerlessBackupOptions(v ServerlessB
 
 // GetStateName returns the StateName field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetStateName() string {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		var ret string
 		return ret
 	}
@@ -351,7 +354,7 @@ func (o *ServerlessInstanceDescription) GetStateName() string {
 // GetStateNameOk returns a tuple with the StateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetStateNameOk() (*string, bool) {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		return nil, false
 	}
 	return o.StateName, true
@@ -359,7 +362,7 @@ func (o *ServerlessInstanceDescription) GetStateNameOk() (*string, bool) {
 
 // HasStateName returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasStateName() bool {
-	if o != nil && o.StateName != nil {
+	if o != nil && !IsNil(o.StateName) {
 		return true
 	}
 
@@ -373,7 +376,7 @@ func (o *ServerlessInstanceDescription) SetStateName(v string) {
 
 // GetTerminationProtectionEnabled returns the TerminationProtectionEnabled field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescription) GetTerminationProtectionEnabled() bool {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -383,7 +386,7 @@ func (o *ServerlessInstanceDescription) GetTerminationProtectionEnabled() bool {
 // GetTerminationProtectionEnabledOk returns a tuple with the TerminationProtectionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescription) GetTerminationProtectionEnabledOk() (*bool, bool) {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		return nil, false
 	}
 	return o.TerminationProtectionEnabled, true
@@ -391,7 +394,7 @@ func (o *ServerlessInstanceDescription) GetTerminationProtectionEnabledOk() (*bo
 
 // HasTerminationProtectionEnabled returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescription) HasTerminationProtectionEnabled() bool {
-	if o != nil && o.TerminationProtectionEnabled != nil {
+	if o != nil && !IsNil(o.TerminationProtectionEnabled) {
 		return true
 	}
 
@@ -404,41 +407,33 @@ func (o *ServerlessInstanceDescription) SetTerminationProtectionEnabled(v bool) 
 }
 
 func (o ServerlessInstanceDescription) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ConnectionStrings != nil {
-		toSerialize["connectionStrings"] = o.ConnectionStrings
-	}
-	if o.CreateDate != nil {
-		toSerialize["createDate"] = o.CreateDate
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MongoDBVersion != nil {
-		toSerialize["mongoDBVersion"] = o.MongoDBVersion
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["providerSettings"] = o.ProviderSettings
-	}
-	if o.ServerlessBackupOptions != nil {
-		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
-	}
-	if o.StateName != nil {
-		toSerialize["stateName"] = o.StateName
-	}
-	if o.TerminationProtectionEnabled != nil {
-		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessInstanceDescription) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ConnectionStrings) {
+		toSerialize["connectionStrings"] = o.ConnectionStrings
+	}
+	// skip: createDate is readOnly
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: mongoDBVersion is readOnly
+	// skip: name is readOnly
+	toSerialize["providerSettings"] = o.ProviderSettings
+	if !IsNil(o.ServerlessBackupOptions) {
+		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
+	}
+	// skip: stateName is readOnly
+	if !IsNil(o.TerminationProtectionEnabled) {
+		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessInstanceDescription struct {

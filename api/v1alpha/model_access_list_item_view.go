@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AccessListItemView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessListItemView{}
+
 // AccessListItemView struct for AccessListItemView
 type AccessListItemView struct {
 	// Range of IP addresses in Classless Inter-Domain Routing (CIDR) notation that found in this project's access list.
@@ -41,7 +44,7 @@ func NewAccessListItemViewWithDefaults() *AccessListItemView {
 
 // GetCidrBlock returns the CidrBlock field value if set, zero value otherwise.
 func (o *AccessListItemView) GetCidrBlock() string {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *AccessListItemView) GetCidrBlock() string {
 // GetCidrBlockOk returns a tuple with the CidrBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AccessListItemView) GetCidrBlockOk() (*string, bool) {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		return nil, false
 	}
 	return o.CidrBlock, true
@@ -59,7 +62,7 @@ func (o *AccessListItemView) GetCidrBlockOk() (*string, bool) {
 
 // HasCidrBlock returns a boolean if a field has been set.
 func (o *AccessListItemView) HasCidrBlock() bool {
-	if o != nil && o.CidrBlock != nil {
+	if o != nil && !IsNil(o.CidrBlock) {
 		return true
 	}
 
@@ -96,14 +99,18 @@ func (o *AccessListItemView) SetIpAddress(v string) {
 }
 
 func (o AccessListItemView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CidrBlock != nil {
-		toSerialize["cidrBlock"] = o.CidrBlock
-	}
-	if true {
-		toSerialize["ipAddress"] = o.IpAddress
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AccessListItemView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: cidrBlock is readOnly
+	// skip: ipAddress is readOnly
+	return toSerialize, nil
 }
 
 type NullableAccessListItemView struct {

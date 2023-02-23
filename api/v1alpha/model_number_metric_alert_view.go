@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the NumberMetricAlertView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NumberMetricAlertView{}
+
 // NumberMetricAlertView struct for NumberMetricAlertView
 type NumberMetricAlertView struct {
 	// Date and time until which this alert has been acknowledged. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if a MongoDB User previously acknowledged this alert.  - To acknowledge this alert forever, set the parameter value to 100 years in the future.  - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
@@ -98,7 +101,7 @@ func (o *NumberMetricAlertView) SetAcknowledgedUntil(v time.Time) {
 
 // GetAcknowledgementComment returns the AcknowledgementComment field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetAcknowledgementComment() string {
-	if o == nil || o.AcknowledgementComment == nil {
+	if o == nil || IsNil(o.AcknowledgementComment) {
 		var ret string
 		return ret
 	}
@@ -108,7 +111,7 @@ func (o *NumberMetricAlertView) GetAcknowledgementComment() string {
 // GetAcknowledgementCommentOk returns a tuple with the AcknowledgementComment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetAcknowledgementCommentOk() (*string, bool) {
-	if o == nil || o.AcknowledgementComment == nil {
+	if o == nil || IsNil(o.AcknowledgementComment) {
 		return nil, false
 	}
 	return o.AcknowledgementComment, true
@@ -116,7 +119,7 @@ func (o *NumberMetricAlertView) GetAcknowledgementCommentOk() (*string, bool) {
 
 // HasAcknowledgementComment returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasAcknowledgementComment() bool {
-	if o != nil && o.AcknowledgementComment != nil {
+	if o != nil && !IsNil(o.AcknowledgementComment) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *NumberMetricAlertView) SetAcknowledgementComment(v string) {
 
 // GetAcknowledgingUsername returns the AcknowledgingUsername field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetAcknowledgingUsername() string {
-	if o == nil || o.AcknowledgingUsername == nil {
+	if o == nil || IsNil(o.AcknowledgingUsername) {
 		var ret string
 		return ret
 	}
@@ -140,7 +143,7 @@ func (o *NumberMetricAlertView) GetAcknowledgingUsername() string {
 // GetAcknowledgingUsernameOk returns a tuple with the AcknowledgingUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetAcknowledgingUsernameOk() (*string, bool) {
-	if o == nil || o.AcknowledgingUsername == nil {
+	if o == nil || IsNil(o.AcknowledgingUsername) {
 		return nil, false
 	}
 	return o.AcknowledgingUsername, true
@@ -148,7 +151,7 @@ func (o *NumberMetricAlertView) GetAcknowledgingUsernameOk() (*string, bool) {
 
 // HasAcknowledgingUsername returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasAcknowledgingUsername() bool {
-	if o != nil && o.AcknowledgingUsername != nil {
+	if o != nil && !IsNil(o.AcknowledgingUsername) {
 		return true
 	}
 
@@ -186,7 +189,7 @@ func (o *NumberMetricAlertView) SetAlertConfigId(v string) {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -196,7 +199,7 @@ func (o *NumberMetricAlertView) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -204,7 +207,7 @@ func (o *NumberMetricAlertView) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *NumberMetricAlertView) SetCreated(v time.Time) {
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetCurrentValue() NumberMetricValueView {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		var ret NumberMetricValueView
 		return ret
 	}
@@ -252,7 +255,7 @@ func (o *NumberMetricAlertView) GetCurrentValue() NumberMetricValueView {
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetCurrentValueOk() (*NumberMetricValueView, bool) {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
 	return o.CurrentValue, true
@@ -260,7 +263,7 @@ func (o *NumberMetricAlertView) GetCurrentValueOk() (*NumberMetricValueView, boo
 
 // HasCurrentValue returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasCurrentValue() bool {
-	if o != nil && o.CurrentValue != nil {
+	if o != nil && !IsNil(o.CurrentValue) {
 		return true
 	}
 
@@ -298,7 +301,7 @@ func (o *NumberMetricAlertView) SetEventTypeName(v HostMetricEventTypeViewAlerta
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -308,7 +311,7 @@ func (o *NumberMetricAlertView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -316,7 +319,7 @@ func (o *NumberMetricAlertView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -330,7 +333,7 @@ func (o *NumberMetricAlertView) SetGroupId(v string) {
 
 // GetHostnameAndPort returns the HostnameAndPort field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetHostnameAndPort() string {
-	if o == nil || o.HostnameAndPort == nil {
+	if o == nil || IsNil(o.HostnameAndPort) {
 		var ret string
 		return ret
 	}
@@ -340,7 +343,7 @@ func (o *NumberMetricAlertView) GetHostnameAndPort() string {
 // GetHostnameAndPortOk returns a tuple with the HostnameAndPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetHostnameAndPortOk() (*string, bool) {
-	if o == nil || o.HostnameAndPort == nil {
+	if o == nil || IsNil(o.HostnameAndPort) {
 		return nil, false
 	}
 	return o.HostnameAndPort, true
@@ -348,7 +351,7 @@ func (o *NumberMetricAlertView) GetHostnameAndPortOk() (*string, bool) {
 
 // HasHostnameAndPort returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasHostnameAndPort() bool {
-	if o != nil && o.HostnameAndPort != nil {
+	if o != nil && !IsNil(o.HostnameAndPort) {
 		return true
 	}
 
@@ -386,7 +389,7 @@ func (o *NumberMetricAlertView) SetId(v string) {
 
 // GetLastNotified returns the LastNotified field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetLastNotified() time.Time {
-	if o == nil || o.LastNotified == nil {
+	if o == nil || IsNil(o.LastNotified) {
 		var ret time.Time
 		return ret
 	}
@@ -396,7 +399,7 @@ func (o *NumberMetricAlertView) GetLastNotified() time.Time {
 // GetLastNotifiedOk returns a tuple with the LastNotified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetLastNotifiedOk() (*time.Time, bool) {
-	if o == nil || o.LastNotified == nil {
+	if o == nil || IsNil(o.LastNotified) {
 		return nil, false
 	}
 	return o.LastNotified, true
@@ -404,7 +407,7 @@ func (o *NumberMetricAlertView) GetLastNotifiedOk() (*time.Time, bool) {
 
 // HasLastNotified returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasLastNotified() bool {
-	if o != nil && o.LastNotified != nil {
+	if o != nil && !IsNil(o.LastNotified) {
 		return true
 	}
 
@@ -442,7 +445,7 @@ func (o *NumberMetricAlertView) SetLinks(v []Link) {
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetMetricName() string {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		var ret string
 		return ret
 	}
@@ -452,7 +455,7 @@ func (o *NumberMetricAlertView) GetMetricName() string {
 // GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetMetricNameOk() (*string, bool) {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		return nil, false
 	}
 	return o.MetricName, true
@@ -460,7 +463,7 @@ func (o *NumberMetricAlertView) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
+	if o != nil && !IsNil(o.MetricName) {
 		return true
 	}
 
@@ -474,7 +477,7 @@ func (o *NumberMetricAlertView) SetMetricName(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -484,7 +487,7 @@ func (o *NumberMetricAlertView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -492,7 +495,7 @@ func (o *NumberMetricAlertView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -506,7 +509,7 @@ func (o *NumberMetricAlertView) SetOrgId(v string) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -516,7 +519,7 @@ func (o *NumberMetricAlertView) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -524,7 +527,7 @@ func (o *NumberMetricAlertView) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -538,7 +541,7 @@ func (o *NumberMetricAlertView) SetReplicaSetName(v string) {
 
 // GetResolved returns the Resolved field value if set, zero value otherwise.
 func (o *NumberMetricAlertView) GetResolved() time.Time {
-	if o == nil || o.Resolved == nil {
+	if o == nil || IsNil(o.Resolved) {
 		var ret time.Time
 		return ret
 	}
@@ -548,7 +551,7 @@ func (o *NumberMetricAlertView) GetResolved() time.Time {
 // GetResolvedOk returns a tuple with the Resolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricAlertView) GetResolvedOk() (*time.Time, bool) {
-	if o == nil || o.Resolved == nil {
+	if o == nil || IsNil(o.Resolved) {
 		return nil, false
 	}
 	return o.Resolved, true
@@ -556,7 +559,7 @@ func (o *NumberMetricAlertView) GetResolvedOk() (*time.Time, bool) {
 
 // HasResolved returns a boolean if a field has been set.
 func (o *NumberMetricAlertView) HasResolved() bool {
-	if o != nil && o.Resolved != nil {
+	if o != nil && !IsNil(o.Resolved) {
 		return true
 	}
 
@@ -617,65 +620,39 @@ func (o *NumberMetricAlertView) SetUpdated(v time.Time) {
 }
 
 func (o NumberMetricAlertView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
-	}
-	if o.AcknowledgementComment != nil {
-		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
-	}
-	if o.AcknowledgingUsername != nil {
-		toSerialize["acknowledgingUsername"] = o.AcknowledgingUsername
-	}
-	if true {
-		toSerialize["alertConfigId"] = o.AlertConfigId
-	}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if o.CurrentValue != nil {
-		toSerialize["currentValue"] = o.CurrentValue
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.HostnameAndPort != nil {
-		toSerialize["hostnameAndPort"] = o.HostnameAndPort
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.LastNotified != nil {
-		toSerialize["lastNotified"] = o.LastNotified
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.MetricName != nil {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.Resolved != nil {
-		toSerialize["resolved"] = o.Resolved
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated"] = o.Updated
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NumberMetricAlertView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
+	if !IsNil(o.AcknowledgementComment) {
+		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
+	}
+	// skip: acknowledgingUsername is readOnly
+	// skip: alertConfigId is readOnly
+	// skip: clusterName is readOnly
+	// skip: created is readOnly
+	if !IsNil(o.CurrentValue) {
+		toSerialize["currentValue"] = o.CurrentValue
+	}
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: hostnameAndPort is readOnly
+	// skip: id is readOnly
+	// skip: lastNotified is readOnly
+	// skip: links is readOnly
+	// skip: metricName is readOnly
+	// skip: orgId is readOnly
+	// skip: replicaSetName is readOnly
+	// skip: resolved is readOnly
+	// skip: status is readOnly
+	// skip: updated is readOnly
+	return toSerialize, nil
 }
 
 type NullableNumberMetricAlertView struct {

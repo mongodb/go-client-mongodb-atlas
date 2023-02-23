@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiSystemStatusView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiSystemStatusView{}
+
 // ApiSystemStatusView struct for ApiSystemStatusView
 type ApiSystemStatusView struct {
 	ApiKey NullableApiKeyView `json:"apiKey"`
@@ -120,7 +123,7 @@ func (o *ApiSystemStatusView) SetBuild(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiSystemStatusView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *ApiSystemStatusView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiSystemStatusView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -138,7 +141,7 @@ func (o *ApiSystemStatusView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiSystemStatusView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -175,23 +178,21 @@ func (o *ApiSystemStatusView) SetThrottling(v bool) {
 }
 
 func (o ApiSystemStatusView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["apiKey"] = o.ApiKey.Get()
-	}
-	if true {
-		toSerialize["appName"] = o.AppName
-	}
-	if true {
-		toSerialize["build"] = o.Build
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["throttling"] = o.Throttling
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiSystemStatusView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["apiKey"] = o.ApiKey.Get()
+	// skip: appName is readOnly
+	// skip: build is readOnly
+	// skip: links is readOnly
+	// skip: throttling is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiSystemStatusView struct {

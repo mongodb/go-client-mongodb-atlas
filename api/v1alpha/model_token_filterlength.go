@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterlength type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterlength{}
+
 // TokenFilterlength Filter that removes tokens that are too short or too long.
 type TokenFilterlength struct {
 	// Number that specifies the maximum length of a token. Value must be greater than or equal to **min**.
@@ -51,7 +54,7 @@ func NewTokenFilterlengthWithDefaults() *TokenFilterlength {
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *TokenFilterlength) GetMax() int32 {
-	if o == nil || o.Max == nil {
+	if o == nil || IsNil(o.Max) {
 		var ret int32
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *TokenFilterlength) GetMax() int32 {
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilterlength) GetMaxOk() (*int32, bool) {
-	if o == nil || o.Max == nil {
+	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
 	return o.Max, true
@@ -69,7 +72,7 @@ func (o *TokenFilterlength) GetMaxOk() (*int32, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *TokenFilterlength) HasMax() bool {
-	if o != nil && o.Max != nil {
+	if o != nil && !IsNil(o.Max) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *TokenFilterlength) SetMax(v int32) {
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *TokenFilterlength) GetMin() int32 {
-	if o == nil || o.Min == nil {
+	if o == nil || IsNil(o.Min) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *TokenFilterlength) GetMin() int32 {
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFilterlength) GetMinOk() (*int32, bool) {
-	if o == nil || o.Min == nil {
+	if o == nil || IsNil(o.Min) {
 		return nil, false
 	}
 	return o.Min, true
@@ -101,7 +104,7 @@ func (o *TokenFilterlength) GetMinOk() (*int32, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *TokenFilterlength) HasMin() bool {
-	if o != nil && o.Min != nil {
+	if o != nil && !IsNil(o.Min) {
 		return true
 	}
 
@@ -138,17 +141,23 @@ func (o *TokenFilterlength) SetType(v string) {
 }
 
 func (o TokenFilterlength) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Max != nil {
-		toSerialize["max"] = o.Max
-	}
-	if o.Min != nil {
-		toSerialize["min"] = o.Min
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterlength) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterlength struct {

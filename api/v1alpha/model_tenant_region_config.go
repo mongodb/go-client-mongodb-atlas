@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TenantRegionConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TenantRegionConfig{}
+
 // TenantRegionConfig Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
 type TenantRegionConfig struct {
 	// Cloud service provider on which MongoDB Cloud provisioned the multi-tenant cluster. The resource returns this parameter when **providerSettings.providerName** is `TENANT` and **providerSetting.instanceSizeName** is `M2` or `M5`.
@@ -46,7 +49,7 @@ func NewTenantRegionConfigWithDefaults() *TenantRegionConfig {
 
 // GetBackingProviderName returns the BackingProviderName field value if set, zero value otherwise.
 func (o *TenantRegionConfig) GetBackingProviderName() string {
-	if o == nil || o.BackingProviderName == nil {
+	if o == nil || IsNil(o.BackingProviderName) {
 		var ret string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *TenantRegionConfig) GetBackingProviderName() string {
 // GetBackingProviderNameOk returns a tuple with the BackingProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantRegionConfig) GetBackingProviderNameOk() (*string, bool) {
-	if o == nil || o.BackingProviderName == nil {
+	if o == nil || IsNil(o.BackingProviderName) {
 		return nil, false
 	}
 	return o.BackingProviderName, true
@@ -64,7 +67,7 @@ func (o *TenantRegionConfig) GetBackingProviderNameOk() (*string, bool) {
 
 // HasBackingProviderName returns a boolean if a field has been set.
 func (o *TenantRegionConfig) HasBackingProviderName() bool {
-	if o != nil && o.BackingProviderName != nil {
+	if o != nil && !IsNil(o.BackingProviderName) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *TenantRegionConfig) SetBackingProviderName(v string) {
 
 // GetElectableSpecs returns the ElectableSpecs field value if set, zero value otherwise.
 func (o *TenantRegionConfig) GetElectableSpecs() HardwareSpec {
-	if o == nil || o.ElectableSpecs == nil {
+	if o == nil || IsNil(o.ElectableSpecs) {
 		var ret HardwareSpec
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *TenantRegionConfig) GetElectableSpecs() HardwareSpec {
 // GetElectableSpecsOk returns a tuple with the ElectableSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
-	if o == nil || o.ElectableSpecs == nil {
+	if o == nil || IsNil(o.ElectableSpecs) {
 		return nil, false
 	}
 	return o.ElectableSpecs, true
@@ -96,7 +99,7 @@ func (o *TenantRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
 
 // HasElectableSpecs returns a boolean if a field has been set.
 func (o *TenantRegionConfig) HasElectableSpecs() bool {
-	if o != nil && o.ElectableSpecs != nil {
+	if o != nil && !IsNil(o.ElectableSpecs) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *TenantRegionConfig) SetElectableSpecs(v HardwareSpec) {
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *TenantRegionConfig) GetPriority() int32 {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		var ret int32
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *TenantRegionConfig) GetPriority() int32 {
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantRegionConfig) GetPriorityOk() (*int32, bool) {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
 	return o.Priority, true
@@ -128,7 +131,7 @@ func (o *TenantRegionConfig) GetPriorityOk() (*int32, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *TenantRegionConfig) HasPriority() bool {
-	if o != nil && o.Priority != nil {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *TenantRegionConfig) SetPriority(v int32) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *TenantRegionConfig) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *TenantRegionConfig) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantRegionConfig) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -160,7 +163,7 @@ func (o *TenantRegionConfig) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *TenantRegionConfig) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *TenantRegionConfig) SetProviderName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *TenantRegionConfig) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -184,7 +187,7 @@ func (o *TenantRegionConfig) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantRegionConfig) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -192,7 +195,7 @@ func (o *TenantRegionConfig) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *TenantRegionConfig) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *TenantRegionConfig) SetRegionName(v string) {
 }
 
 func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BackingProviderName != nil {
-		toSerialize["backingProviderName"] = o.BackingProviderName
-	}
-	if o.ElectableSpecs != nil {
-		toSerialize["electableSpecs"] = o.ElectableSpecs
-	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TenantRegionConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackingProviderName) {
+		toSerialize["backingProviderName"] = o.BackingProviderName
+	}
+	if !IsNil(o.ElectableSpecs) {
+		toSerialize["electableSpecs"] = o.ElectableSpecs
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	return toSerialize, nil
 }
 
 type NullableTenantRegionConfig struct {

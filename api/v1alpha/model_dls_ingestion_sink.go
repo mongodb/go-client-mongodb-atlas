@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DLSIngestionSink type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DLSIngestionSink{}
+
 // DLSIngestionSink Atlas Data Lake Storage as the destination for a Data Lake Pipeline.
 type DLSIngestionSink struct {
 	// Target cloud provider for this Data Lake Pipeline.
@@ -43,7 +46,7 @@ func NewDLSIngestionSinkWithDefaults() *DLSIngestionSink {
 
 // GetMetadataProvider returns the MetadataProvider field value if set, zero value otherwise.
 func (o *DLSIngestionSink) GetMetadataProvider() string {
-	if o == nil || o.MetadataProvider == nil {
+	if o == nil || IsNil(o.MetadataProvider) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *DLSIngestionSink) GetMetadataProvider() string {
 // GetMetadataProviderOk returns a tuple with the MetadataProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DLSIngestionSink) GetMetadataProviderOk() (*string, bool) {
-	if o == nil || o.MetadataProvider == nil {
+	if o == nil || IsNil(o.MetadataProvider) {
 		return nil, false
 	}
 	return o.MetadataProvider, true
@@ -61,7 +64,7 @@ func (o *DLSIngestionSink) GetMetadataProviderOk() (*string, bool) {
 
 // HasMetadataProvider returns a boolean if a field has been set.
 func (o *DLSIngestionSink) HasMetadataProvider() bool {
-	if o != nil && o.MetadataProvider != nil {
+	if o != nil && !IsNil(o.MetadataProvider) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DLSIngestionSink) SetMetadataProvider(v string) {
 
 // GetMetadataRegion returns the MetadataRegion field value if set, zero value otherwise.
 func (o *DLSIngestionSink) GetMetadataRegion() string {
-	if o == nil || o.MetadataRegion == nil {
+	if o == nil || IsNil(o.MetadataRegion) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *DLSIngestionSink) GetMetadataRegion() string {
 // GetMetadataRegionOk returns a tuple with the MetadataRegion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DLSIngestionSink) GetMetadataRegionOk() (*string, bool) {
-	if o == nil || o.MetadataRegion == nil {
+	if o == nil || IsNil(o.MetadataRegion) {
 		return nil, false
 	}
 	return o.MetadataRegion, true
@@ -93,7 +96,7 @@ func (o *DLSIngestionSink) GetMetadataRegionOk() (*string, bool) {
 
 // HasMetadataRegion returns a boolean if a field has been set.
 func (o *DLSIngestionSink) HasMetadataRegion() bool {
-	if o != nil && o.MetadataRegion != nil {
+	if o != nil && !IsNil(o.MetadataRegion) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DLSIngestionSink) SetMetadataRegion(v string) {
 
 // GetPartitionFields returns the PartitionFields field value if set, zero value otherwise.
 func (o *DLSIngestionSink) GetPartitionFields() []PartitionField {
-	if o == nil || o.PartitionFields == nil {
+	if o == nil || IsNil(o.PartitionFields) {
 		var ret []PartitionField
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *DLSIngestionSink) GetPartitionFields() []PartitionField {
 // GetPartitionFieldsOk returns a tuple with the PartitionFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DLSIngestionSink) GetPartitionFieldsOk() ([]PartitionField, bool) {
-	if o == nil || o.PartitionFields == nil {
+	if o == nil || IsNil(o.PartitionFields) {
 		return nil, false
 	}
 	return o.PartitionFields, true
@@ -125,7 +128,7 @@ func (o *DLSIngestionSink) GetPartitionFieldsOk() ([]PartitionField, bool) {
 
 // HasPartitionFields returns a boolean if a field has been set.
 func (o *DLSIngestionSink) HasPartitionFields() bool {
-	if o != nil && o.PartitionFields != nil {
+	if o != nil && !IsNil(o.PartitionFields) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *DLSIngestionSink) SetPartitionFields(v []PartitionField) {
 }
 
 func (o DLSIngestionSink) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MetadataProvider != nil {
-		toSerialize["metadataProvider"] = o.MetadataProvider
-	}
-	if o.MetadataRegion != nil {
-		toSerialize["metadataRegion"] = o.MetadataRegion
-	}
-	if o.PartitionFields != nil {
-		toSerialize["partitionFields"] = o.PartitionFields
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DLSIngestionSink) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MetadataProvider) {
+		toSerialize["metadataProvider"] = o.MetadataProvider
+	}
+	if !IsNil(o.MetadataRegion) {
+		toSerialize["metadataRegion"] = o.MetadataRegion
+	}
+	if !IsNil(o.PartitionFields) {
+		toSerialize["partitionFields"] = o.PartitionFields
+	}
+	return toSerialize, nil
 }
 
 type NullableDLSIngestionSink struct {

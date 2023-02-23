@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterDescriptionConnectionStringsPrivateEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterDescriptionConnectionStringsPrivateEndpoint{}
+
 // ClusterDescriptionConnectionStringsPrivateEndpoint Private endpoint-aware connection string that you can use to connect to this cluster through a private endpoint.
 type ClusterDescriptionConnectionStringsPrivateEndpoint struct {
 	// Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
@@ -47,7 +50,7 @@ func NewClusterDescriptionConnectionStringsPrivateEndpointWithDefaults() *Cluste
 
 // GetConnectionString returns the ConnectionString field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetConnectionString() string {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil || IsNil(o.ConnectionString) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetConnectionString
 // GetConnectionStringOk returns a tuple with the ConnectionString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetConnectionStringOk() (*string, bool) {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil || IsNil(o.ConnectionString) {
 		return nil, false
 	}
 	return o.ConnectionString, true
@@ -65,7 +68,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetConnectionString
 
 // HasConnectionString returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasConnectionString() bool {
-	if o != nil && o.ConnectionString != nil {
+	if o != nil && !IsNil(o.ConnectionString) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetConnectionString
 
 // GetEndpoints returns the Endpoints field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetEndpoints() []ClusterDescriptionConnectionStringsPrivateEndpointEndpoint {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		var ret []ClusterDescriptionConnectionStringsPrivateEndpointEndpoint
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetEndpoints() []Cl
 // GetEndpointsOk returns a tuple with the Endpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetEndpointsOk() ([]ClusterDescriptionConnectionStringsPrivateEndpointEndpoint, bool) {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		return nil, false
 	}
 	return o.Endpoints, true
@@ -97,7 +100,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetEndpointsOk() ([
 
 // HasEndpoints returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasEndpoints() bool {
-	if o != nil && o.Endpoints != nil {
+	if o != nil && !IsNil(o.Endpoints) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetEndpoints(v []Cl
 
 // GetSrvConnectionString returns the SrvConnectionString field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionString() string {
-	if o == nil || o.SrvConnectionString == nil {
+	if o == nil || IsNil(o.SrvConnectionString) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionStr
 // GetSrvConnectionStringOk returns a tuple with the SrvConnectionString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionStringOk() (*string, bool) {
-	if o == nil || o.SrvConnectionString == nil {
+	if o == nil || IsNil(o.SrvConnectionString) {
 		return nil, false
 	}
 	return o.SrvConnectionString, true
@@ -129,7 +132,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvConnectionStr
 
 // HasSrvConnectionString returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasSrvConnectionString() bool {
-	if o != nil && o.SrvConnectionString != nil {
+	if o != nil && !IsNil(o.SrvConnectionString) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetSrvConnectionStr
 
 // GetSrvShardOptimizedConnectionString returns the SrvShardOptimizedConnectionString field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimizedConnectionString() string {
-	if o == nil || o.SrvShardOptimizedConnectionString == nil {
+	if o == nil || IsNil(o.SrvShardOptimizedConnectionString) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimize
 // GetSrvShardOptimizedConnectionStringOk returns a tuple with the SrvShardOptimizedConnectionString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimizedConnectionStringOk() (*string, bool) {
-	if o == nil || o.SrvShardOptimizedConnectionString == nil {
+	if o == nil || IsNil(o.SrvShardOptimizedConnectionString) {
 		return nil, false
 	}
 	return o.SrvShardOptimizedConnectionString, true
@@ -161,7 +164,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetSrvShardOptimize
 
 // HasSrvShardOptimizedConnectionString returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasSrvShardOptimizedConnectionString() bool {
-	if o != nil && o.SrvShardOptimizedConnectionString != nil {
+	if o != nil && !IsNil(o.SrvShardOptimizedConnectionString) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetSrvShardOptimize
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -193,7 +196,7 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) GetTypeOk() (*strin
 
 // HasType returns a boolean if a field has been set.
 func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -206,23 +209,21 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetType(v string) {
 }
 
 func (o ClusterDescriptionConnectionStringsPrivateEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ConnectionString != nil {
-		toSerialize["connectionString"] = o.ConnectionString
-	}
-	if o.Endpoints != nil {
-		toSerialize["endpoints"] = o.Endpoints
-	}
-	if o.SrvConnectionString != nil {
-		toSerialize["srvConnectionString"] = o.SrvConnectionString
-	}
-	if o.SrvShardOptimizedConnectionString != nil {
-		toSerialize["srvShardOptimizedConnectionString"] = o.SrvShardOptimizedConnectionString
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterDescriptionConnectionStringsPrivateEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: connectionString is readOnly
+	// skip: endpoints is readOnly
+	// skip: srvConnectionString is readOnly
+	// skip: srvShardOptimizedConnectionString is readOnly
+	// skip: type is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterDescriptionConnectionStringsPrivateEndpoint struct {

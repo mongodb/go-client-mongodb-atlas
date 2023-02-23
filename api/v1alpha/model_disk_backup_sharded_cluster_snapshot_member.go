@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskBackupShardedClusterSnapshotMember type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupShardedClusterSnapshotMember{}
+
 // DiskBackupShardedClusterSnapshotMember List that includes the snapshots and the cloud provider that stores the snapshots. The resource returns this parameter when `\"type\" : \"SHARDED_CLUSTER\"`.
 type DiskBackupShardedClusterSnapshotMember struct {
 	// Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\".`
@@ -114,17 +117,19 @@ func (o *DiskBackupShardedClusterSnapshotMember) SetReplicaSetName(v string) {
 }
 
 func (o DiskBackupShardedClusterSnapshotMember) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cloudProvider"] = o.CloudProvider
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupShardedClusterSnapshotMember) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: cloudProvider is readOnly
+	// skip: id is readOnly
+	// skip: replicaSetName is readOnly
+	return toSerialize, nil
 }
 
 type NullableDiskBackupShardedClusterSnapshotMember struct {

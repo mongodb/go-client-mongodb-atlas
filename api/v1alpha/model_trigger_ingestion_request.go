@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TriggerIngestionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TriggerIngestionRequest{}
+
 // TriggerIngestionRequest struct for TriggerIngestionRequest
 type TriggerIngestionRequest struct {
 	// Unique 24-hexadecimal character string that identifies the snapshot.
@@ -62,11 +65,17 @@ func (o *TriggerIngestionRequest) SetSnapshotId(v string) {
 }
 
 func (o TriggerIngestionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["snapshotId"] = o.SnapshotId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TriggerIngestionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["snapshotId"] = o.SnapshotId
+	return toSerialize, nil
 }
 
 type NullableTriggerIngestionRequest struct {

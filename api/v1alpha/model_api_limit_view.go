@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiLimitView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiLimitView{}
+
 // ApiLimitView Details of user managed limits.
 type ApiLimitView struct {
 	// Amount that indicates the current usage of the limit.
@@ -47,7 +50,7 @@ func NewApiLimitViewWithDefaults() *ApiLimitView {
 
 // GetCurrentUsage returns the CurrentUsage field value if set, zero value otherwise.
 func (o *ApiLimitView) GetCurrentUsage() int64 {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		var ret int64
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *ApiLimitView) GetCurrentUsage() int64 {
 // GetCurrentUsageOk returns a tuple with the CurrentUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLimitView) GetCurrentUsageOk() (*int64, bool) {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		return nil, false
 	}
 	return o.CurrentUsage, true
@@ -65,7 +68,7 @@ func (o *ApiLimitView) GetCurrentUsageOk() (*int64, bool) {
 
 // HasCurrentUsage returns a boolean if a field has been set.
 func (o *ApiLimitView) HasCurrentUsage() bool {
-	if o != nil && o.CurrentUsage != nil {
+	if o != nil && !IsNil(o.CurrentUsage) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ApiLimitView) SetCurrentUsage(v int64) {
 
 // GetDefaultLimit returns the DefaultLimit field value if set, zero value otherwise.
 func (o *ApiLimitView) GetDefaultLimit() int64 {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		var ret int64
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *ApiLimitView) GetDefaultLimit() int64 {
 // GetDefaultLimitOk returns a tuple with the DefaultLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLimitView) GetDefaultLimitOk() (*int64, bool) {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		return nil, false
 	}
 	return o.DefaultLimit, true
@@ -97,7 +100,7 @@ func (o *ApiLimitView) GetDefaultLimitOk() (*int64, bool) {
 
 // HasDefaultLimit returns a boolean if a field has been set.
 func (o *ApiLimitView) HasDefaultLimit() bool {
-	if o != nil && o.DefaultLimit != nil {
+	if o != nil && !IsNil(o.DefaultLimit) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *ApiLimitView) SetDefaultLimit(v int64) {
 
 // GetMaximumLimit returns the MaximumLimit field value if set, zero value otherwise.
 func (o *ApiLimitView) GetMaximumLimit() int64 {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		var ret int64
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *ApiLimitView) GetMaximumLimit() int64 {
 // GetMaximumLimitOk returns a tuple with the MaximumLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiLimitView) GetMaximumLimitOk() (*int64, bool) {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		return nil, false
 	}
 	return o.MaximumLimit, true
@@ -129,7 +132,7 @@ func (o *ApiLimitView) GetMaximumLimitOk() (*int64, bool) {
 
 // HasMaximumLimit returns a boolean if a field has been set.
 func (o *ApiLimitView) HasMaximumLimit() bool {
-	if o != nil && o.MaximumLimit != nil {
+	if o != nil && !IsNil(o.MaximumLimit) {
 		return true
 	}
 
@@ -190,23 +193,21 @@ func (o *ApiLimitView) SetValue(v int64) {
 }
 
 func (o ApiLimitView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CurrentUsage != nil {
-		toSerialize["currentUsage"] = o.CurrentUsage
-	}
-	if o.DefaultLimit != nil {
-		toSerialize["defaultLimit"] = o.DefaultLimit
-	}
-	if o.MaximumLimit != nil {
-		toSerialize["maximumLimit"] = o.MaximumLimit
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiLimitView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: currentUsage is readOnly
+	// skip: defaultLimit is readOnly
+	// skip: maximumLimit is readOnly
+	// skip: name is readOnly
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableApiLimitView struct {

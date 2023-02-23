@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSRegionConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSRegionConfig{}
+
 // AWSRegionConfig Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database.
 type AWSRegionConfig struct {
 	AnalyticsAutoScaling *AutoScalingV15 `json:"analyticsAutoScaling,omitempty"`
@@ -48,7 +51,7 @@ func NewAWSRegionConfigWithDefaults() *AWSRegionConfig {
 
 // GetAnalyticsAutoScaling returns the AnalyticsAutoScaling field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetAnalyticsAutoScaling() AutoScalingV15 {
-	if o == nil || o.AnalyticsAutoScaling == nil {
+	if o == nil || IsNil(o.AnalyticsAutoScaling) {
 		var ret AutoScalingV15
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *AWSRegionConfig) GetAnalyticsAutoScaling() AutoScalingV15 {
 // GetAnalyticsAutoScalingOk returns a tuple with the AnalyticsAutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetAnalyticsAutoScalingOk() (*AutoScalingV15, bool) {
-	if o == nil || o.AnalyticsAutoScaling == nil {
+	if o == nil || IsNil(o.AnalyticsAutoScaling) {
 		return nil, false
 	}
 	return o.AnalyticsAutoScaling, true
@@ -66,7 +69,7 @@ func (o *AWSRegionConfig) GetAnalyticsAutoScalingOk() (*AutoScalingV15, bool) {
 
 // HasAnalyticsAutoScaling returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasAnalyticsAutoScaling() bool {
-	if o != nil && o.AnalyticsAutoScaling != nil {
+	if o != nil && !IsNil(o.AnalyticsAutoScaling) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *AWSRegionConfig) SetAnalyticsAutoScaling(v AutoScalingV15) {
 
 // GetAnalyticsSpecs returns the AnalyticsSpecs field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetAnalyticsSpecs() DedicatedHardwareSpec {
-	if o == nil || o.AnalyticsSpecs == nil {
+	if o == nil || IsNil(o.AnalyticsSpecs) {
 		var ret DedicatedHardwareSpec
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *AWSRegionConfig) GetAnalyticsSpecs() DedicatedHardwareSpec {
 // GetAnalyticsSpecsOk returns a tuple with the AnalyticsSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetAnalyticsSpecsOk() (*DedicatedHardwareSpec, bool) {
-	if o == nil || o.AnalyticsSpecs == nil {
+	if o == nil || IsNil(o.AnalyticsSpecs) {
 		return nil, false
 	}
 	return o.AnalyticsSpecs, true
@@ -98,7 +101,7 @@ func (o *AWSRegionConfig) GetAnalyticsSpecsOk() (*DedicatedHardwareSpec, bool) {
 
 // HasAnalyticsSpecs returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasAnalyticsSpecs() bool {
-	if o != nil && o.AnalyticsSpecs != nil {
+	if o != nil && !IsNil(o.AnalyticsSpecs) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *AWSRegionConfig) SetAnalyticsSpecs(v DedicatedHardwareSpec) {
 
 // GetAutoScaling returns the AutoScaling field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetAutoScaling() AutoScalingV15 {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		var ret AutoScalingV15
 		return ret
 	}
@@ -122,7 +125,7 @@ func (o *AWSRegionConfig) GetAutoScaling() AutoScalingV15 {
 // GetAutoScalingOk returns a tuple with the AutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetAutoScalingOk() (*AutoScalingV15, bool) {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		return nil, false
 	}
 	return o.AutoScaling, true
@@ -130,7 +133,7 @@ func (o *AWSRegionConfig) GetAutoScalingOk() (*AutoScalingV15, bool) {
 
 // HasAutoScaling returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasAutoScaling() bool {
-	if o != nil && o.AutoScaling != nil {
+	if o != nil && !IsNil(o.AutoScaling) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *AWSRegionConfig) SetAutoScaling(v AutoScalingV15) {
 
 // GetReadOnlySpecs returns the ReadOnlySpecs field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetReadOnlySpecs() DedicatedHardwareSpec {
-	if o == nil || o.ReadOnlySpecs == nil {
+	if o == nil || IsNil(o.ReadOnlySpecs) {
 		var ret DedicatedHardwareSpec
 		return ret
 	}
@@ -154,7 +157,7 @@ func (o *AWSRegionConfig) GetReadOnlySpecs() DedicatedHardwareSpec {
 // GetReadOnlySpecsOk returns a tuple with the ReadOnlySpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetReadOnlySpecsOk() (*DedicatedHardwareSpec, bool) {
-	if o == nil || o.ReadOnlySpecs == nil {
+	if o == nil || IsNil(o.ReadOnlySpecs) {
 		return nil, false
 	}
 	return o.ReadOnlySpecs, true
@@ -162,7 +165,7 @@ func (o *AWSRegionConfig) GetReadOnlySpecsOk() (*DedicatedHardwareSpec, bool) {
 
 // HasReadOnlySpecs returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasReadOnlySpecs() bool {
-	if o != nil && o.ReadOnlySpecs != nil {
+	if o != nil && !IsNil(o.ReadOnlySpecs) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *AWSRegionConfig) SetReadOnlySpecs(v DedicatedHardwareSpec) {
 
 // GetElectableSpecs returns the ElectableSpecs field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetElectableSpecs() HardwareSpec {
-	if o == nil || o.ElectableSpecs == nil {
+	if o == nil || IsNil(o.ElectableSpecs) {
 		var ret HardwareSpec
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *AWSRegionConfig) GetElectableSpecs() HardwareSpec {
 // GetElectableSpecsOk returns a tuple with the ElectableSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
-	if o == nil || o.ElectableSpecs == nil {
+	if o == nil || IsNil(o.ElectableSpecs) {
 		return nil, false
 	}
 	return o.ElectableSpecs, true
@@ -194,7 +197,7 @@ func (o *AWSRegionConfig) GetElectableSpecsOk() (*HardwareSpec, bool) {
 
 // HasElectableSpecs returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasElectableSpecs() bool {
-	if o != nil && o.ElectableSpecs != nil {
+	if o != nil && !IsNil(o.ElectableSpecs) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *AWSRegionConfig) SetElectableSpecs(v HardwareSpec) {
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetPriority() int32 {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		var ret int32
 		return ret
 	}
@@ -218,7 +221,7 @@ func (o *AWSRegionConfig) GetPriority() int32 {
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetPriorityOk() (*int32, bool) {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
 	return o.Priority, true
@@ -226,7 +229,7 @@ func (o *AWSRegionConfig) GetPriorityOk() (*int32, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasPriority() bool {
-	if o != nil && o.Priority != nil {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -240,7 +243,7 @@ func (o *AWSRegionConfig) SetPriority(v int32) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -250,7 +253,7 @@ func (o *AWSRegionConfig) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -258,7 +261,7 @@ func (o *AWSRegionConfig) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -272,7 +275,7 @@ func (o *AWSRegionConfig) SetProviderName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *AWSRegionConfig) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -282,7 +285,7 @@ func (o *AWSRegionConfig) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSRegionConfig) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -290,7 +293,7 @@ func (o *AWSRegionConfig) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *AWSRegionConfig) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -303,32 +306,40 @@ func (o *AWSRegionConfig) SetRegionName(v string) {
 }
 
 func (o AWSRegionConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AnalyticsAutoScaling != nil {
-		toSerialize["analyticsAutoScaling"] = o.AnalyticsAutoScaling
-	}
-	if o.AnalyticsSpecs != nil {
-		toSerialize["analyticsSpecs"] = o.AnalyticsSpecs
-	}
-	if o.AutoScaling != nil {
-		toSerialize["autoScaling"] = o.AutoScaling
-	}
-	if o.ReadOnlySpecs != nil {
-		toSerialize["readOnlySpecs"] = o.ReadOnlySpecs
-	}
-	if o.ElectableSpecs != nil {
-		toSerialize["electableSpecs"] = o.ElectableSpecs
-	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSRegionConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AnalyticsAutoScaling) {
+		toSerialize["analyticsAutoScaling"] = o.AnalyticsAutoScaling
+	}
+	if !IsNil(o.AnalyticsSpecs) {
+		toSerialize["analyticsSpecs"] = o.AnalyticsSpecs
+	}
+	if !IsNil(o.AutoScaling) {
+		toSerialize["autoScaling"] = o.AutoScaling
+	}
+	if !IsNil(o.ReadOnlySpecs) {
+		toSerialize["readOnlySpecs"] = o.ReadOnlySpecs
+	}
+	if !IsNil(o.ElectableSpecs) {
+		toSerialize["electableSpecs"] = o.ElectableSpecs
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	return toSerialize, nil
 }
 
 type NullableAWSRegionConfig struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiNamespacesView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiNamespacesView{}
+
 // ApiNamespacesView struct for ApiNamespacesView
 type ApiNamespacesView struct {
 	// List that contains each combination of database, collection, and type on the specified host.
@@ -39,7 +42,7 @@ func NewApiNamespacesViewWithDefaults() *ApiNamespacesView {
 
 // GetNamespaces returns the Namespaces field value if set, zero value otherwise.
 func (o *ApiNamespacesView) GetNamespaces() []ApiNamespaceObjView {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		var ret []ApiNamespaceObjView
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ApiNamespacesView) GetNamespaces() []ApiNamespaceObjView {
 // GetNamespacesOk returns a tuple with the Namespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiNamespacesView) GetNamespacesOk() ([]ApiNamespaceObjView, bool) {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		return nil, false
 	}
 	return o.Namespaces, true
@@ -57,7 +60,7 @@ func (o *ApiNamespacesView) GetNamespacesOk() ([]ApiNamespaceObjView, bool) {
 
 // HasNamespaces returns a boolean if a field has been set.
 func (o *ApiNamespacesView) HasNamespaces() bool {
-	if o != nil && o.Namespaces != nil {
+	if o != nil && !IsNil(o.Namespaces) {
 		return true
 	}
 
@@ -70,11 +73,17 @@ func (o *ApiNamespacesView) SetNamespaces(v []ApiNamespaceObjView) {
 }
 
 func (o ApiNamespacesView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Namespaces != nil {
-		toSerialize["namespaces"] = o.Namespaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiNamespacesView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: namespaces is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiNamespacesView struct {

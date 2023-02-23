@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessExportSnapshotFeatureUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessExportSnapshotFeatureUsage{}
+
 // CloudProviderAccessExportSnapshotFeatureUsage Details that describe the Amazon Web Services (AWS) Simple Storage Service (S3) export buckets linked to this AWS Identity and Access Management (IAM) role.
 type CloudProviderAccessExportSnapshotFeatureUsage struct {
 	FeatureId *CloudProviderAccessFeatureUsageExportSnapshotFeatureId `json:"featureId,omitempty"`
@@ -38,7 +41,7 @@ func NewCloudProviderAccessExportSnapshotFeatureUsageWithDefaults() *CloudProvid
 
 // GetFeatureId returns the FeatureId field value if set, zero value otherwise.
 func (o *CloudProviderAccessExportSnapshotFeatureUsage) GetFeatureId() CloudProviderAccessFeatureUsageExportSnapshotFeatureId {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		var ret CloudProviderAccessFeatureUsageExportSnapshotFeatureId
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsage) GetFeatureId() CloudProv
 // GetFeatureIdOk returns a tuple with the FeatureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessExportSnapshotFeatureUsage) GetFeatureIdOk() (*CloudProviderAccessFeatureUsageExportSnapshotFeatureId, bool) {
-	if o == nil || o.FeatureId == nil {
+	if o == nil || IsNil(o.FeatureId) {
 		return nil, false
 	}
 	return o.FeatureId, true
@@ -56,7 +59,7 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsage) GetFeatureIdOk() (*Cloud
 
 // HasFeatureId returns a boolean if a field has been set.
 func (o *CloudProviderAccessExportSnapshotFeatureUsage) HasFeatureId() bool {
-	if o != nil && o.FeatureId != nil {
+	if o != nil && !IsNil(o.FeatureId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsage) SetFeatureId(v CloudProv
 }
 
 func (o CloudProviderAccessExportSnapshotFeatureUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FeatureId != nil {
-		toSerialize["featureId"] = o.FeatureId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessExportSnapshotFeatureUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FeatureId) {
+		toSerialize["featureId"] = o.FeatureId
+	}
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessExportSnapshotFeatureUsage struct {

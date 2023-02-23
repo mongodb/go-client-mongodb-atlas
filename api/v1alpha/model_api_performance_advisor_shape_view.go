@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiPerformanceAdvisorShapeView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiPerformanceAdvisorShapeView{}
+
 // ApiPerformanceAdvisorShapeView struct for ApiPerformanceAdvisorShapeView
 type ApiPerformanceAdvisorShapeView struct {
 	// Average duration in milliseconds for the queries examined that match this shape.
@@ -49,7 +52,7 @@ func NewApiPerformanceAdvisorShapeViewWithDefaults() *ApiPerformanceAdvisorShape
 
 // GetAvgMs returns the AvgMs field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetAvgMs() int64 {
-	if o == nil || o.AvgMs == nil {
+	if o == nil || IsNil(o.AvgMs) {
 		var ret int64
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetAvgMs() int64 {
 // GetAvgMsOk returns a tuple with the AvgMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetAvgMsOk() (*int64, bool) {
-	if o == nil || o.AvgMs == nil {
+	if o == nil || IsNil(o.AvgMs) {
 		return nil, false
 	}
 	return o.AvgMs, true
@@ -67,7 +70,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetAvgMsOk() (*int64, bool) {
 
 // HasAvgMs returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasAvgMs() bool {
-	if o != nil && o.AvgMs != nil {
+	if o != nil && !IsNil(o.AvgMs) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *ApiPerformanceAdvisorShapeView) SetAvgMs(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetCountOk() (*int64, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -99,7 +102,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *ApiPerformanceAdvisorShapeView) SetCount(v int64) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -131,7 +134,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *ApiPerformanceAdvisorShapeView) SetId(v string) {
 
 // GetInefficiencyScore returns the InefficiencyScore field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetInefficiencyScore() int64 {
-	if o == nil || o.InefficiencyScore == nil {
+	if o == nil || IsNil(o.InefficiencyScore) {
 		var ret int64
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetInefficiencyScore() int64 {
 // GetInefficiencyScoreOk returns a tuple with the InefficiencyScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetInefficiencyScoreOk() (*int64, bool) {
-	if o == nil || o.InefficiencyScore == nil {
+	if o == nil || IsNil(o.InefficiencyScore) {
 		return nil, false
 	}
 	return o.InefficiencyScore, true
@@ -163,7 +166,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetInefficiencyScoreOk() (*int64, bool)
 
 // HasInefficiencyScore returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasInefficiencyScore() bool {
-	if o != nil && o.InefficiencyScore != nil {
+	if o != nil && !IsNil(o.InefficiencyScore) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *ApiPerformanceAdvisorShapeView) SetInefficiencyScore(v int64) {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -195,7 +198,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *ApiPerformanceAdvisorShapeView) SetNamespace(v string) {
 
 // GetOperations returns the Operations field value if set, zero value otherwise.
 func (o *ApiPerformanceAdvisorShapeView) GetOperations() []PerformanceAdvisorOperationView {
-	if o == nil || o.Operations == nil {
+	if o == nil || IsNil(o.Operations) {
 		var ret []PerformanceAdvisorOperationView
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetOperations() []PerformanceAdvisorOpe
 // GetOperationsOk returns a tuple with the Operations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPerformanceAdvisorShapeView) GetOperationsOk() ([]PerformanceAdvisorOperationView, bool) {
-	if o == nil || o.Operations == nil {
+	if o == nil || IsNil(o.Operations) {
 		return nil, false
 	}
 	return o.Operations, true
@@ -227,7 +230,7 @@ func (o *ApiPerformanceAdvisorShapeView) GetOperationsOk() ([]PerformanceAdvisor
 
 // HasOperations returns a boolean if a field has been set.
 func (o *ApiPerformanceAdvisorShapeView) HasOperations() bool {
-	if o != nil && o.Operations != nil {
+	if o != nil && !IsNil(o.Operations) {
 		return true
 	}
 
@@ -240,26 +243,22 @@ func (o *ApiPerformanceAdvisorShapeView) SetOperations(v []PerformanceAdvisorOpe
 }
 
 func (o ApiPerformanceAdvisorShapeView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AvgMs != nil {
-		toSerialize["avgMs"] = o.AvgMs
-	}
-	if o.Count != nil {
-		toSerialize["count"] = o.Count
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.InefficiencyScore != nil {
-		toSerialize["inefficiencyScore"] = o.InefficiencyScore
-	}
-	if o.Namespace != nil {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if o.Operations != nil {
-		toSerialize["operations"] = o.Operations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiPerformanceAdvisorShapeView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: avgMs is readOnly
+	// skip: count is readOnly
+	// skip: id is readOnly
+	// skip: inefficiencyScore is readOnly
+	// skip: namespace is readOnly
+	// skip: operations is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiPerformanceAdvisorShapeView struct {

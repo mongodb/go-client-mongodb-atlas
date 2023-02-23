@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GroupNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GroupNotificationView{}
+
 // GroupNotificationView Group notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type GroupNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -49,7 +52,7 @@ func NewGroupNotificationViewWithDefaults() *GroupNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *GroupNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *GroupNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -67,7 +70,7 @@ func (o *GroupNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *GroupNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *GroupNotificationView) SetDelayMin(v int32) {
 
 // GetEmailEnabled returns the EmailEnabled field value if set, zero value otherwise.
 func (o *GroupNotificationView) GetEmailEnabled() bool {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		var ret bool
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *GroupNotificationView) GetEmailEnabled() bool {
 // GetEmailEnabledOk returns a tuple with the EmailEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupNotificationView) GetEmailEnabledOk() (*bool, bool) {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		return nil, false
 	}
 	return o.EmailEnabled, true
@@ -99,7 +102,7 @@ func (o *GroupNotificationView) GetEmailEnabledOk() (*bool, bool) {
 
 // HasEmailEnabled returns a boolean if a field has been set.
 func (o *GroupNotificationView) HasEmailEnabled() bool {
-	if o != nil && o.EmailEnabled != nil {
+	if o != nil && !IsNil(o.EmailEnabled) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *GroupNotificationView) SetEmailEnabled(v bool) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *GroupNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *GroupNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -131,7 +134,7 @@ func (o *GroupNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *GroupNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *GroupNotificationView) SetIntervalMin(v int32) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *GroupNotificationView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *GroupNotificationView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupNotificationView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -163,7 +166,7 @@ func (o *GroupNotificationView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *GroupNotificationView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *GroupNotificationView) SetRoles(v []string) {
 
 // GetSmsEnabled returns the SmsEnabled field value if set, zero value otherwise.
 func (o *GroupNotificationView) GetSmsEnabled() bool {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *GroupNotificationView) GetSmsEnabled() bool {
 // GetSmsEnabledOk returns a tuple with the SmsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupNotificationView) GetSmsEnabledOk() (*bool, bool) {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		return nil, false
 	}
 	return o.SmsEnabled, true
@@ -195,7 +198,7 @@ func (o *GroupNotificationView) GetSmsEnabledOk() (*bool, bool) {
 
 // HasSmsEnabled returns a boolean if a field has been set.
 func (o *GroupNotificationView) HasSmsEnabled() bool {
-	if o != nil && o.SmsEnabled != nil {
+	if o != nil && !IsNil(o.SmsEnabled) {
 		return true
 	}
 
@@ -232,26 +235,32 @@ func (o *GroupNotificationView) SetTypeName(v string) {
 }
 
 func (o GroupNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.EmailEnabled != nil {
-		toSerialize["emailEnabled"] = o.EmailEnabled
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.SmsEnabled != nil {
-		toSerialize["smsEnabled"] = o.SmsEnabled
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GroupNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.EmailEnabled) {
+		toSerialize["emailEnabled"] = o.EmailEnabled
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.SmsEnabled) {
+		toSerialize["smsEnabled"] = o.SmsEnabled
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableGroupNotificationView struct {

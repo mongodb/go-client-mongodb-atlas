@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Tokenizerstandard type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Tokenizerstandard{}
+
 // Tokenizerstandard Tokenizer that splits tokens based on word break rules from the Unicode Text Segmentation algorithm.
 type Tokenizerstandard struct {
 	// Maximum number of characters in a single token. Tokens greater than this length are split at this length into multiple tokens.
@@ -45,7 +48,7 @@ func NewTokenizerstandardWithDefaults() *Tokenizerstandard {
 
 // GetMaxTokenLength returns the MaxTokenLength field value if set, zero value otherwise.
 func (o *Tokenizerstandard) GetMaxTokenLength() int32 {
-	if o == nil || o.MaxTokenLength == nil {
+	if o == nil || IsNil(o.MaxTokenLength) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *Tokenizerstandard) GetMaxTokenLength() int32 {
 // GetMaxTokenLengthOk returns a tuple with the MaxTokenLength field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tokenizerstandard) GetMaxTokenLengthOk() (*int32, bool) {
-	if o == nil || o.MaxTokenLength == nil {
+	if o == nil || IsNil(o.MaxTokenLength) {
 		return nil, false
 	}
 	return o.MaxTokenLength, true
@@ -63,7 +66,7 @@ func (o *Tokenizerstandard) GetMaxTokenLengthOk() (*int32, bool) {
 
 // HasMaxTokenLength returns a boolean if a field has been set.
 func (o *Tokenizerstandard) HasMaxTokenLength() bool {
-	if o != nil && o.MaxTokenLength != nil {
+	if o != nil && !IsNil(o.MaxTokenLength) {
 		return true
 	}
 
@@ -100,14 +103,20 @@ func (o *Tokenizerstandard) SetType(v string) {
 }
 
 func (o Tokenizerstandard) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MaxTokenLength != nil {
-		toSerialize["maxTokenLength"] = o.MaxTokenLength
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Tokenizerstandard) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxTokenLength) {
+		toSerialize["maxTokenLength"] = o.MaxTokenLength
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizerstandard struct {

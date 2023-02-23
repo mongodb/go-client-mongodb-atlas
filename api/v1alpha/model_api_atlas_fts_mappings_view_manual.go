@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiAtlasFTSMappingsViewManual type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAtlasFTSMappingsViewManual{}
+
 // ApiAtlasFTSMappingsViewManual Index specifications for the collection's fields.
 type ApiAtlasFTSMappingsViewManual struct {
 	// Flag that indicates whether the index uses dynamic or static mappings. Required if **mappings.fields** is omitted.
@@ -45,7 +48,7 @@ func NewApiAtlasFTSMappingsViewManualWithDefaults() *ApiAtlasFTSMappingsViewManu
 
 // GetDynamic returns the Dynamic field value if set, zero value otherwise.
 func (o *ApiAtlasFTSMappingsViewManual) GetDynamic() bool {
-	if o == nil || o.Dynamic == nil {
+	if o == nil || IsNil(o.Dynamic) {
 		var ret bool
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiAtlasFTSMappingsViewManual) GetDynamic() bool {
 // GetDynamicOk returns a tuple with the Dynamic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAtlasFTSMappingsViewManual) GetDynamicOk() (*bool, bool) {
-	if o == nil || o.Dynamic == nil {
+	if o == nil || IsNil(o.Dynamic) {
 		return nil, false
 	}
 	return o.Dynamic, true
@@ -63,7 +66,7 @@ func (o *ApiAtlasFTSMappingsViewManual) GetDynamicOk() (*bool, bool) {
 
 // HasDynamic returns a boolean if a field has been set.
 func (o *ApiAtlasFTSMappingsViewManual) HasDynamic() bool {
-	if o != nil && o.Dynamic != nil {
+	if o != nil && !IsNil(o.Dynamic) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ApiAtlasFTSMappingsViewManual) SetDynamic(v bool) {
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *ApiAtlasFTSMappingsViewManual) GetFields() map[string]map[string]interface{} {
-	if o == nil || o.Fields == nil {
+	if o == nil || IsNil(o.Fields) {
 		var ret map[string]map[string]interface{}
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *ApiAtlasFTSMappingsViewManual) GetFields() map[string]map[string]interf
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAtlasFTSMappingsViewManual) GetFieldsOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Fields == nil {
-		return nil, false
+	if o == nil || IsNil(o.Fields) {
+		return map[string]map[string]interface{}{}, false
 	}
 	return o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
 func (o *ApiAtlasFTSMappingsViewManual) HasFields() bool {
-	if o != nil && o.Fields != nil {
+	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
 
@@ -108,14 +111,22 @@ func (o *ApiAtlasFTSMappingsViewManual) SetFields(v map[string]map[string]interf
 }
 
 func (o ApiAtlasFTSMappingsViewManual) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Dynamic != nil {
-		toSerialize["dynamic"] = o.Dynamic
-	}
-	if o.Fields != nil {
-		toSerialize["fields"] = o.Fields
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAtlasFTSMappingsViewManual) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Dynamic) {
+		toSerialize["dynamic"] = o.Dynamic
+	}
+	if !IsNil(o.Fields) {
+		toSerialize["fields"] = o.Fields
+	}
+	return toSerialize, nil
 }
 
 type NullableApiAtlasFTSMappingsViewManual struct {

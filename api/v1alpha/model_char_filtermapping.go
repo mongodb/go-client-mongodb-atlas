@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CharFiltermapping type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CharFiltermapping{}
+
 // CharFiltermapping Filter that applies normalization mappings that you specify to characters.
 type CharFiltermapping struct {
 	Mappings CharFiltermappingMappings `json:"mappings"`
@@ -87,14 +90,18 @@ func (o *CharFiltermapping) SetType(v string) {
 }
 
 func (o CharFiltermapping) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mappings"] = o.Mappings
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CharFiltermapping) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["mappings"] = o.Mappings
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableCharFiltermapping struct {

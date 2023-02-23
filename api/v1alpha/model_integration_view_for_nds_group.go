@@ -95,142 +95,142 @@ func ApiWebhookViewAsIntegrationViewForNdsGroup(v *ApiWebhookView) IntegrationVi
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *IntegrationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into ApiDatadogView
-        err = json.Unmarshal(data, &dst.ApiDatadogView)
-        if err == nil {
-                jsonApiDatadogView, _ := json.Marshal(dst.ApiDatadogView)
-                if string(jsonApiDatadogView) == "{}" { // empty struct
-                        dst.ApiDatadogView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiDatadogView = nil
-        }
+	match := 0
+	// try to unmarshal data into ApiDatadogView
+	err = json.Unmarshal(data, &dst.ApiDatadogView)
+	if err == nil {
+		jsonApiDatadogView, _ := json.Marshal(dst.ApiDatadogView)
+		if string(jsonApiDatadogView) == "{}" { // empty struct
+			dst.ApiDatadogView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiDatadogView = nil
+	}
 
-        // try to unmarshal data into ApiMicrosoftTeamsView
-        err = json.Unmarshal(data, &dst.ApiMicrosoftTeamsView)
-        if err == nil {
-                jsonApiMicrosoftTeamsView, _ := json.Marshal(dst.ApiMicrosoftTeamsView)
-                if string(jsonApiMicrosoftTeamsView) == "{}" { // empty struct
-                        dst.ApiMicrosoftTeamsView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiMicrosoftTeamsView = nil
-        }
+	// try to unmarshal data into ApiMicrosoftTeamsView
+	err = json.Unmarshal(data, &dst.ApiMicrosoftTeamsView)
+	if err == nil {
+		jsonApiMicrosoftTeamsView, _ := json.Marshal(dst.ApiMicrosoftTeamsView)
+		if string(jsonApiMicrosoftTeamsView) == "{}" { // empty struct
+			dst.ApiMicrosoftTeamsView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiMicrosoftTeamsView = nil
+	}
 
-        // try to unmarshal data into ApiNewRelicView
-        err = json.Unmarshal(data, &dst.ApiNewRelicView)
-        if err == nil {
-                jsonApiNewRelicView, _ := json.Marshal(dst.ApiNewRelicView)
-                if string(jsonApiNewRelicView) == "{}" { // empty struct
-                        dst.ApiNewRelicView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiNewRelicView = nil
-        }
+	// try to unmarshal data into ApiNewRelicView
+	err = json.Unmarshal(data, &dst.ApiNewRelicView)
+	if err == nil {
+		jsonApiNewRelicView, _ := json.Marshal(dst.ApiNewRelicView)
+		if string(jsonApiNewRelicView) == "{}" { // empty struct
+			dst.ApiNewRelicView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiNewRelicView = nil
+	}
 
-        // try to unmarshal data into ApiOpsGenieView
-        err = json.Unmarshal(data, &dst.ApiOpsGenieView)
-        if err == nil {
-                jsonApiOpsGenieView, _ := json.Marshal(dst.ApiOpsGenieView)
-                if string(jsonApiOpsGenieView) == "{}" { // empty struct
-                        dst.ApiOpsGenieView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiOpsGenieView = nil
-        }
+	// try to unmarshal data into ApiOpsGenieView
+	err = json.Unmarshal(data, &dst.ApiOpsGenieView)
+	if err == nil {
+		jsonApiOpsGenieView, _ := json.Marshal(dst.ApiOpsGenieView)
+		if string(jsonApiOpsGenieView) == "{}" { // empty struct
+			dst.ApiOpsGenieView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiOpsGenieView = nil
+	}
 
-        // try to unmarshal data into ApiPagerDutyView
-        err = json.Unmarshal(data, &dst.ApiPagerDutyView)
-        if err == nil {
-                jsonApiPagerDutyView, _ := json.Marshal(dst.ApiPagerDutyView)
-                if string(jsonApiPagerDutyView) == "{}" { // empty struct
-                        dst.ApiPagerDutyView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiPagerDutyView = nil
-        }
+	// try to unmarshal data into ApiPagerDutyView
+	err = json.Unmarshal(data, &dst.ApiPagerDutyView)
+	if err == nil {
+		jsonApiPagerDutyView, _ := json.Marshal(dst.ApiPagerDutyView)
+		if string(jsonApiPagerDutyView) == "{}" { // empty struct
+			dst.ApiPagerDutyView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiPagerDutyView = nil
+	}
 
-        // try to unmarshal data into ApiPrometheusView
-        err = json.Unmarshal(data, &dst.ApiPrometheusView)
-        if err == nil {
-                jsonApiPrometheusView, _ := json.Marshal(dst.ApiPrometheusView)
-                if string(jsonApiPrometheusView) == "{}" { // empty struct
-                        dst.ApiPrometheusView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiPrometheusView = nil
-        }
+	// try to unmarshal data into ApiPrometheusView
+	err = json.Unmarshal(data, &dst.ApiPrometheusView)
+	if err == nil {
+		jsonApiPrometheusView, _ := json.Marshal(dst.ApiPrometheusView)
+		if string(jsonApiPrometheusView) == "{}" { // empty struct
+			dst.ApiPrometheusView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiPrometheusView = nil
+	}
 
-        // try to unmarshal data into ApiSlackView
-        err = json.Unmarshal(data, &dst.ApiSlackView)
-        if err == nil {
-                jsonApiSlackView, _ := json.Marshal(dst.ApiSlackView)
-                if string(jsonApiSlackView) == "{}" { // empty struct
-                        dst.ApiSlackView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiSlackView = nil
-        }
+	// try to unmarshal data into ApiSlackView
+	err = json.Unmarshal(data, &dst.ApiSlackView)
+	if err == nil {
+		jsonApiSlackView, _ := json.Marshal(dst.ApiSlackView)
+		if string(jsonApiSlackView) == "{}" { // empty struct
+			dst.ApiSlackView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiSlackView = nil
+	}
 
-        // try to unmarshal data into ApiVictorOpsView
-        err = json.Unmarshal(data, &dst.ApiVictorOpsView)
-        if err == nil {
-                jsonApiVictorOpsView, _ := json.Marshal(dst.ApiVictorOpsView)
-                if string(jsonApiVictorOpsView) == "{}" { // empty struct
-                        dst.ApiVictorOpsView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiVictorOpsView = nil
-        }
+	// try to unmarshal data into ApiVictorOpsView
+	err = json.Unmarshal(data, &dst.ApiVictorOpsView)
+	if err == nil {
+		jsonApiVictorOpsView, _ := json.Marshal(dst.ApiVictorOpsView)
+		if string(jsonApiVictorOpsView) == "{}" { // empty struct
+			dst.ApiVictorOpsView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiVictorOpsView = nil
+	}
 
-        // try to unmarshal data into ApiWebhookView
-        err = json.Unmarshal(data, &dst.ApiWebhookView)
-        if err == nil {
-                jsonApiWebhookView, _ := json.Marshal(dst.ApiWebhookView)
-                if string(jsonApiWebhookView) == "{}" { // empty struct
-                        dst.ApiWebhookView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.ApiWebhookView = nil
-        }
+	// try to unmarshal data into ApiWebhookView
+	err = json.Unmarshal(data, &dst.ApiWebhookView)
+	if err == nil {
+		jsonApiWebhookView, _ := json.Marshal(dst.ApiWebhookView)
+		if string(jsonApiWebhookView) == "{}" { // empty struct
+			dst.ApiWebhookView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ApiWebhookView = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.ApiDatadogView = nil
-                dst.ApiMicrosoftTeamsView = nil
-                dst.ApiNewRelicView = nil
-                dst.ApiOpsGenieView = nil
-                dst.ApiPagerDutyView = nil
-                dst.ApiPrometheusView = nil
-                dst.ApiSlackView = nil
-                dst.ApiVictorOpsView = nil
-                dst.ApiWebhookView = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ApiDatadogView = nil
+		dst.ApiMicrosoftTeamsView = nil
+		dst.ApiNewRelicView = nil
+		dst.ApiOpsGenieView = nil
+		dst.ApiPagerDutyView = nil
+		dst.ApiPrometheusView = nil
+		dst.ApiSlackView = nil
+		dst.ApiVictorOpsView = nil
+		dst.ApiWebhookView = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(IntegrationViewForNdsGroup)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(IntegrationViewForNdsGroup)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(IntegrationViewForNdsGroup)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(IntegrationViewForNdsGroup)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

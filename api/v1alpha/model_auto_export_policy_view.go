@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AutoExportPolicyView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AutoExportPolicyView{}
+
 // AutoExportPolicyView Policy for automatically exporting cloud backup snapshots.
 type AutoExportPolicyView struct {
 	// Unique 24-hexadecimal character string that identifies the AWS Bucket.
@@ -41,7 +44,7 @@ func NewAutoExportPolicyViewWithDefaults() *AutoExportPolicyView {
 
 // GetExportBucketId returns the ExportBucketId field value if set, zero value otherwise.
 func (o *AutoExportPolicyView) GetExportBucketId() string {
-	if o == nil || o.ExportBucketId == nil {
+	if o == nil || IsNil(o.ExportBucketId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *AutoExportPolicyView) GetExportBucketId() string {
 // GetExportBucketIdOk returns a tuple with the ExportBucketId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoExportPolicyView) GetExportBucketIdOk() (*string, bool) {
-	if o == nil || o.ExportBucketId == nil {
+	if o == nil || IsNil(o.ExportBucketId) {
 		return nil, false
 	}
 	return o.ExportBucketId, true
@@ -59,7 +62,7 @@ func (o *AutoExportPolicyView) GetExportBucketIdOk() (*string, bool) {
 
 // HasExportBucketId returns a boolean if a field has been set.
 func (o *AutoExportPolicyView) HasExportBucketId() bool {
-	if o != nil && o.ExportBucketId != nil {
+	if o != nil && !IsNil(o.ExportBucketId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *AutoExportPolicyView) SetExportBucketId(v string) {
 
 // GetFrequencyType returns the FrequencyType field value if set, zero value otherwise.
 func (o *AutoExportPolicyView) GetFrequencyType() string {
-	if o == nil || o.FrequencyType == nil {
+	if o == nil || IsNil(o.FrequencyType) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *AutoExportPolicyView) GetFrequencyType() string {
 // GetFrequencyTypeOk returns a tuple with the FrequencyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoExportPolicyView) GetFrequencyTypeOk() (*string, bool) {
-	if o == nil || o.FrequencyType == nil {
+	if o == nil || IsNil(o.FrequencyType) {
 		return nil, false
 	}
 	return o.FrequencyType, true
@@ -91,7 +94,7 @@ func (o *AutoExportPolicyView) GetFrequencyTypeOk() (*string, bool) {
 
 // HasFrequencyType returns a boolean if a field has been set.
 func (o *AutoExportPolicyView) HasFrequencyType() bool {
-	if o != nil && o.FrequencyType != nil {
+	if o != nil && !IsNil(o.FrequencyType) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *AutoExportPolicyView) SetFrequencyType(v string) {
 }
 
 func (o AutoExportPolicyView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExportBucketId != nil {
-		toSerialize["exportBucketId"] = o.ExportBucketId
-	}
-	if o.FrequencyType != nil {
-		toSerialize["frequencyType"] = o.FrequencyType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AutoExportPolicyView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExportBucketId) {
+		toSerialize["exportBucketId"] = o.ExportBucketId
+	}
+	if !IsNil(o.FrequencyType) {
+		toSerialize["frequencyType"] = o.FrequencyType
+	}
+	return toSerialize, nil
 }
 
 type NullableAutoExportPolicyView struct {

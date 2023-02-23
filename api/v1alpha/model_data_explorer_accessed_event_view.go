@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DataExplorerAccessedEventView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataExplorerAccessedEventView{}
+
 // DataExplorerAccessedEventView Data Explorer accessed event tracks different data operations via Data Explorer interactions.
 type DataExplorerAccessedEventView struct {
 	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
@@ -68,7 +71,7 @@ func NewDataExplorerAccessedEventViewWithDefaults() *DataExplorerAccessedEventVi
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -78,7 +81,7 @@ func (o *DataExplorerAccessedEventView) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -86,7 +89,7 @@ func (o *DataExplorerAccessedEventView) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *DataExplorerAccessedEventView) SetApiKeyId(v string) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetCollection() string {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		var ret string
 		return ret
 	}
@@ -110,7 +113,7 @@ func (o *DataExplorerAccessedEventView) GetCollection() string {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetCollectionOk() (*string, bool) {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -118,7 +121,7 @@ func (o *DataExplorerAccessedEventView) GetCollectionOk() (*string, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *DataExplorerAccessedEventView) SetCreated(v time.Time) {
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetDatabase() string {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret string
 		return ret
 	}
@@ -166,7 +169,7 @@ func (o *DataExplorerAccessedEventView) GetDatabase() string {
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetDatabaseOk() (*string, bool) {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		return nil, false
 	}
 	return o.Database, true
@@ -174,7 +177,7 @@ func (o *DataExplorerAccessedEventView) GetDatabaseOk() (*string, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasDatabase() bool {
-	if o != nil && o.Database != nil {
+	if o != nil && !IsNil(o.Database) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *DataExplorerAccessedEventView) SetEventTypeName(v DataExplorerAccessedE
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *DataExplorerAccessedEventView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -230,7 +233,7 @@ func (o *DataExplorerAccessedEventView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -268,7 +271,7 @@ func (o *DataExplorerAccessedEventView) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -278,7 +281,7 @@ func (o *DataExplorerAccessedEventView) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -286,7 +289,7 @@ func (o *DataExplorerAccessedEventView) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -324,7 +327,7 @@ func (o *DataExplorerAccessedEventView) SetLinks(v []Link) {
 
 // GetOpType returns the OpType field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetOpType() string {
-	if o == nil || o.OpType == nil {
+	if o == nil || IsNil(o.OpType) {
 		var ret string
 		return ret
 	}
@@ -334,7 +337,7 @@ func (o *DataExplorerAccessedEventView) GetOpType() string {
 // GetOpTypeOk returns a tuple with the OpType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetOpTypeOk() (*string, bool) {
-	if o == nil || o.OpType == nil {
+	if o == nil || IsNil(o.OpType) {
 		return nil, false
 	}
 	return o.OpType, true
@@ -342,7 +345,7 @@ func (o *DataExplorerAccessedEventView) GetOpTypeOk() (*string, bool) {
 
 // HasOpType returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasOpType() bool {
-	if o != nil && o.OpType != nil {
+	if o != nil && !IsNil(o.OpType) {
 		return true
 	}
 
@@ -356,7 +359,7 @@ func (o *DataExplorerAccessedEventView) SetOpType(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -366,7 +369,7 @@ func (o *DataExplorerAccessedEventView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -374,7 +377,7 @@ func (o *DataExplorerAccessedEventView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -388,7 +391,7 @@ func (o *DataExplorerAccessedEventView) SetOrgId(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -398,7 +401,7 @@ func (o *DataExplorerAccessedEventView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -406,7 +409,7 @@ func (o *DataExplorerAccessedEventView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -420,7 +423,7 @@ func (o *DataExplorerAccessedEventView) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -430,7 +433,7 @@ func (o *DataExplorerAccessedEventView) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -438,7 +441,7 @@ func (o *DataExplorerAccessedEventView) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -452,7 +455,7 @@ func (o *DataExplorerAccessedEventView) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -462,7 +465,7 @@ func (o *DataExplorerAccessedEventView) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -470,7 +473,7 @@ func (o *DataExplorerAccessedEventView) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -484,7 +487,7 @@ func (o *DataExplorerAccessedEventView) SetRemoteAddress(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -494,7 +497,7 @@ func (o *DataExplorerAccessedEventView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -502,7 +505,7 @@ func (o *DataExplorerAccessedEventView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -516,7 +519,7 @@ func (o *DataExplorerAccessedEventView) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -526,7 +529,7 @@ func (o *DataExplorerAccessedEventView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -534,7 +537,7 @@ func (o *DataExplorerAccessedEventView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *DataExplorerAccessedEventView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -547,56 +550,34 @@ func (o *DataExplorerAccessedEventView) SetUsername(v string) {
 }
 
 func (o DataExplorerAccessedEventView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if o.Collection != nil {
-		toSerialize["collection"] = o.Collection
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if o.Database != nil {
-		toSerialize["database"] = o.Database
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OpType != nil {
-		toSerialize["opType"] = o.OpType
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataExplorerAccessedEventView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiKeyId is readOnly
+	// skip: collection is readOnly
+	// skip: created is readOnly
+	// skip: database is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: opType is readOnly
+	// skip: orgId is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableDataExplorerAccessedEventView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FreeProviderSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FreeProviderSettings{}
+
 // FreeProviderSettings struct for FreeProviderSettings
 type FreeProviderSettings struct {
 	AutoScaling *FreeAutoScaling `json:"autoScaling,omitempty"`
@@ -45,7 +48,7 @@ func NewFreeProviderSettingsWithDefaults() *FreeProviderSettings {
 
 // GetAutoScaling returns the AutoScaling field value if set, zero value otherwise.
 func (o *FreeProviderSettings) GetAutoScaling() FreeAutoScaling {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		var ret FreeAutoScaling
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *FreeProviderSettings) GetAutoScaling() FreeAutoScaling {
 // GetAutoScalingOk returns a tuple with the AutoScaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FreeProviderSettings) GetAutoScalingOk() (*FreeAutoScaling, bool) {
-	if o == nil || o.AutoScaling == nil {
+	if o == nil || IsNil(o.AutoScaling) {
 		return nil, false
 	}
 	return o.AutoScaling, true
@@ -63,7 +66,7 @@ func (o *FreeProviderSettings) GetAutoScalingOk() (*FreeAutoScaling, bool) {
 
 // HasAutoScaling returns a boolean if a field has been set.
 func (o *FreeProviderSettings) HasAutoScaling() bool {
-	if o != nil && o.AutoScaling != nil {
+	if o != nil && !IsNil(o.AutoScaling) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *FreeProviderSettings) SetAutoScaling(v FreeAutoScaling) {
 
 // GetBackingProviderName returns the BackingProviderName field value if set, zero value otherwise.
 func (o *FreeProviderSettings) GetBackingProviderName() string {
-	if o == nil || o.BackingProviderName == nil {
+	if o == nil || IsNil(o.BackingProviderName) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *FreeProviderSettings) GetBackingProviderName() string {
 // GetBackingProviderNameOk returns a tuple with the BackingProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FreeProviderSettings) GetBackingProviderNameOk() (*string, bool) {
-	if o == nil || o.BackingProviderName == nil {
+	if o == nil || IsNil(o.BackingProviderName) {
 		return nil, false
 	}
 	return o.BackingProviderName, true
@@ -95,7 +98,7 @@ func (o *FreeProviderSettings) GetBackingProviderNameOk() (*string, bool) {
 
 // HasBackingProviderName returns a boolean if a field has been set.
 func (o *FreeProviderSettings) HasBackingProviderName() bool {
-	if o != nil && o.BackingProviderName != nil {
+	if o != nil && !IsNil(o.BackingProviderName) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *FreeProviderSettings) SetBackingProviderName(v string) {
 
 // GetInstanceSizeName returns the InstanceSizeName field value if set, zero value otherwise.
 func (o *FreeProviderSettings) GetInstanceSizeName() string {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *FreeProviderSettings) GetInstanceSizeName() string {
 // GetInstanceSizeNameOk returns a tuple with the InstanceSizeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FreeProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
-	if o == nil || o.InstanceSizeName == nil {
+	if o == nil || IsNil(o.InstanceSizeName) {
 		return nil, false
 	}
 	return o.InstanceSizeName, true
@@ -127,7 +130,7 @@ func (o *FreeProviderSettings) GetInstanceSizeNameOk() (*string, bool) {
 
 // HasInstanceSizeName returns a boolean if a field has been set.
 func (o *FreeProviderSettings) HasInstanceSizeName() bool {
-	if o != nil && o.InstanceSizeName != nil {
+	if o != nil && !IsNil(o.InstanceSizeName) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *FreeProviderSettings) SetInstanceSizeName(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *FreeProviderSettings) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *FreeProviderSettings) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FreeProviderSettings) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -159,7 +162,7 @@ func (o *FreeProviderSettings) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *FreeProviderSettings) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -196,23 +199,29 @@ func (o *FreeProviderSettings) SetProviderName(v string) {
 }
 
 func (o FreeProviderSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoScaling != nil {
-		toSerialize["autoScaling"] = o.AutoScaling
-	}
-	if o.BackingProviderName != nil {
-		toSerialize["backingProviderName"] = o.BackingProviderName
-	}
-	if o.InstanceSizeName != nil {
-		toSerialize["instanceSizeName"] = o.InstanceSizeName
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FreeProviderSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoScaling) {
+		toSerialize["autoScaling"] = o.AutoScaling
+	}
+	if !IsNil(o.BackingProviderName) {
+		toSerialize["backingProviderName"] = o.BackingProviderName
+	}
+	if !IsNil(o.InstanceSizeName) {
+		toSerialize["instanceSizeName"] = o.InstanceSizeName
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableFreeProviderSettings struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PeriodicCpsSnapshotSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PeriodicCpsSnapshotSource{}
+
 // PeriodicCpsSnapshotSource Scheduled Cloud Provider Snapshot as Source for a Data Lake Pipeline.
 type PeriodicCpsSnapshotSource struct {
 	// Human-readable name that identifies the cluster.
@@ -49,7 +52,7 @@ func NewPeriodicCpsSnapshotSourceWithDefaults() *PeriodicCpsSnapshotSource {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *PeriodicCpsSnapshotSource) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -67,7 +70,7 @@ func (o *PeriodicCpsSnapshotSource) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *PeriodicCpsSnapshotSource) SetClusterName(v string) {
 
 // GetCollectionName returns the CollectionName field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetCollectionName() string {
-	if o == nil || o.CollectionName == nil {
+	if o == nil || IsNil(o.CollectionName) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *PeriodicCpsSnapshotSource) GetCollectionName() string {
 // GetCollectionNameOk returns a tuple with the CollectionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetCollectionNameOk() (*string, bool) {
-	if o == nil || o.CollectionName == nil {
+	if o == nil || IsNil(o.CollectionName) {
 		return nil, false
 	}
 	return o.CollectionName, true
@@ -99,7 +102,7 @@ func (o *PeriodicCpsSnapshotSource) GetCollectionNameOk() (*string, bool) {
 
 // HasCollectionName returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasCollectionName() bool {
-	if o != nil && o.CollectionName != nil {
+	if o != nil && !IsNil(o.CollectionName) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *PeriodicCpsSnapshotSource) SetCollectionName(v string) {
 
 // GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetDatabaseName() string {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *PeriodicCpsSnapshotSource) GetDatabaseName() string {
 // GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetDatabaseNameOk() (*string, bool) {
-	if o == nil || o.DatabaseName == nil {
+	if o == nil || IsNil(o.DatabaseName) {
 		return nil, false
 	}
 	return o.DatabaseName, true
@@ -131,7 +134,7 @@ func (o *PeriodicCpsSnapshotSource) GetDatabaseNameOk() (*string, bool) {
 
 // HasDatabaseName returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasDatabaseName() bool {
-	if o != nil && o.DatabaseName != nil {
+	if o != nil && !IsNil(o.DatabaseName) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *PeriodicCpsSnapshotSource) SetDatabaseName(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *PeriodicCpsSnapshotSource) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -163,7 +166,7 @@ func (o *PeriodicCpsSnapshotSource) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *PeriodicCpsSnapshotSource) SetGroupId(v string) {
 
 // GetPolicyItemId returns the PolicyItemId field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetPolicyItemId() string {
-	if o == nil || o.PolicyItemId == nil {
+	if o == nil || IsNil(o.PolicyItemId) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *PeriodicCpsSnapshotSource) GetPolicyItemId() string {
 // GetPolicyItemIdOk returns a tuple with the PolicyItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetPolicyItemIdOk() (*string, bool) {
-	if o == nil || o.PolicyItemId == nil {
+	if o == nil || IsNil(o.PolicyItemId) {
 		return nil, false
 	}
 	return o.PolicyItemId, true
@@ -195,7 +198,7 @@ func (o *PeriodicCpsSnapshotSource) GetPolicyItemIdOk() (*string, bool) {
 
 // HasPolicyItemId returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasPolicyItemId() bool {
-	if o != nil && o.PolicyItemId != nil {
+	if o != nil && !IsNil(o.PolicyItemId) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *PeriodicCpsSnapshotSource) SetPolicyItemId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PeriodicCpsSnapshotSource) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *PeriodicCpsSnapshotSource) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodicCpsSnapshotSource) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -227,7 +230,7 @@ func (o *PeriodicCpsSnapshotSource) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PeriodicCpsSnapshotSource) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -240,26 +243,32 @@ func (o *PeriodicCpsSnapshotSource) SetType(v string) {
 }
 
 func (o PeriodicCpsSnapshotSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.CollectionName != nil {
-		toSerialize["collectionName"] = o.CollectionName
-	}
-	if o.DatabaseName != nil {
-		toSerialize["databaseName"] = o.DatabaseName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.PolicyItemId != nil {
-		toSerialize["policyItemId"] = o.PolicyItemId
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PeriodicCpsSnapshotSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClusterName) {
+		toSerialize["clusterName"] = o.ClusterName
+	}
+	if !IsNil(o.CollectionName) {
+		toSerialize["collectionName"] = o.CollectionName
+	}
+	if !IsNil(o.DatabaseName) {
+		toSerialize["databaseName"] = o.DatabaseName
+	}
+	// skip: groupId is readOnly
+	if !IsNil(o.PolicyItemId) {
+		toSerialize["policyItemId"] = o.PolicyItemId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullablePeriodicCpsSnapshotSource struct {

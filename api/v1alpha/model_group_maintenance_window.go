@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GroupMaintenanceWindow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GroupMaintenanceWindow{}
+
 // GroupMaintenanceWindow struct for GroupMaintenanceWindow
 type GroupMaintenanceWindow struct {
 	// Flag that indicates whether MongoDB Cloud should defer all maintenance windows for one week after you enable them.
@@ -45,7 +48,7 @@ func NewGroupMaintenanceWindowWithDefaults() *GroupMaintenanceWindow {
 
 // GetAutoDeferOnceEnabled returns the AutoDeferOnceEnabled field value if set, zero value otherwise.
 func (o *GroupMaintenanceWindow) GetAutoDeferOnceEnabled() bool {
-	if o == nil || o.AutoDeferOnceEnabled == nil {
+	if o == nil || IsNil(o.AutoDeferOnceEnabled) {
 		var ret bool
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *GroupMaintenanceWindow) GetAutoDeferOnceEnabled() bool {
 // GetAutoDeferOnceEnabledOk returns a tuple with the AutoDeferOnceEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMaintenanceWindow) GetAutoDeferOnceEnabledOk() (*bool, bool) {
-	if o == nil || o.AutoDeferOnceEnabled == nil {
+	if o == nil || IsNil(o.AutoDeferOnceEnabled) {
 		return nil, false
 	}
 	return o.AutoDeferOnceEnabled, true
@@ -63,7 +66,7 @@ func (o *GroupMaintenanceWindow) GetAutoDeferOnceEnabledOk() (*bool, bool) {
 
 // HasAutoDeferOnceEnabled returns a boolean if a field has been set.
 func (o *GroupMaintenanceWindow) HasAutoDeferOnceEnabled() bool {
-	if o != nil && o.AutoDeferOnceEnabled != nil {
+	if o != nil && !IsNil(o.AutoDeferOnceEnabled) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *GroupMaintenanceWindow) SetHourOfDay(v int32) {
 
 // GetStartASAP returns the StartASAP field value if set, zero value otherwise.
 func (o *GroupMaintenanceWindow) GetStartASAP() bool {
-	if o == nil || o.StartASAP == nil {
+	if o == nil || IsNil(o.StartASAP) {
 		var ret bool
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *GroupMaintenanceWindow) GetStartASAP() bool {
 // GetStartASAPOk returns a tuple with the StartASAP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMaintenanceWindow) GetStartASAPOk() (*bool, bool) {
-	if o == nil || o.StartASAP == nil {
+	if o == nil || IsNil(o.StartASAP) {
 		return nil, false
 	}
 	return o.StartASAP, true
@@ -143,7 +146,7 @@ func (o *GroupMaintenanceWindow) GetStartASAPOk() (*bool, bool) {
 
 // HasStartASAP returns a boolean if a field has been set.
 func (o *GroupMaintenanceWindow) HasStartASAP() bool {
-	if o != nil && o.StartASAP != nil {
+	if o != nil && !IsNil(o.StartASAP) {
 		return true
 	}
 
@@ -156,20 +159,24 @@ func (o *GroupMaintenanceWindow) SetStartASAP(v bool) {
 }
 
 func (o GroupMaintenanceWindow) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoDeferOnceEnabled != nil {
-		toSerialize["autoDeferOnceEnabled"] = o.AutoDeferOnceEnabled
-	}
-	if true {
-		toSerialize["dayOfWeek"] = o.DayOfWeek
-	}
-	if true {
-		toSerialize["hourOfDay"] = o.HourOfDay
-	}
-	if o.StartASAP != nil {
-		toSerialize["startASAP"] = o.StartASAP
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GroupMaintenanceWindow) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoDeferOnceEnabled) {
+		toSerialize["autoDeferOnceEnabled"] = o.AutoDeferOnceEnabled
+	}
+	toSerialize["dayOfWeek"] = o.DayOfWeek
+	toSerialize["hourOfDay"] = o.HourOfDay
+	if !IsNil(o.StartASAP) {
+		toSerialize["startASAP"] = o.StartASAP
+	}
+	return toSerialize, nil
 }
 
 type NullableGroupMaintenanceWindow struct {

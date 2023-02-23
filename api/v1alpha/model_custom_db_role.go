@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CustomDBRole type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CustomDBRole{}
+
 // CustomDBRole struct for CustomDBRole
 type CustomDBRole struct {
 	// List of the individual privilege actions that the role grants.
@@ -43,7 +46,7 @@ func NewCustomDBRoleWithDefaults() *CustomDBRole {
 
 // GetActions returns the Actions field value if set, zero value otherwise.
 func (o *CustomDBRole) GetActions() []DBAction {
-	if o == nil || o.Actions == nil {
+	if o == nil || IsNil(o.Actions) {
 		var ret []DBAction
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *CustomDBRole) GetActions() []DBAction {
 // GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDBRole) GetActionsOk() ([]DBAction, bool) {
-	if o == nil || o.Actions == nil {
+	if o == nil || IsNil(o.Actions) {
 		return nil, false
 	}
 	return o.Actions, true
@@ -61,7 +64,7 @@ func (o *CustomDBRole) GetActionsOk() ([]DBAction, bool) {
 
 // HasActions returns a boolean if a field has been set.
 func (o *CustomDBRole) HasActions() bool {
-	if o != nil && o.Actions != nil {
+	if o != nil && !IsNil(o.Actions) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CustomDBRole) SetActions(v []DBAction) {
 
 // GetInheritedRoles returns the InheritedRoles field value if set, zero value otherwise.
 func (o *CustomDBRole) GetInheritedRoles() []InheritedRole {
-	if o == nil || o.InheritedRoles == nil {
+	if o == nil || IsNil(o.InheritedRoles) {
 		var ret []InheritedRole
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *CustomDBRole) GetInheritedRoles() []InheritedRole {
 // GetInheritedRolesOk returns a tuple with the InheritedRoles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDBRole) GetInheritedRolesOk() ([]InheritedRole, bool) {
-	if o == nil || o.InheritedRoles == nil {
+	if o == nil || IsNil(o.InheritedRoles) {
 		return nil, false
 	}
 	return o.InheritedRoles, true
@@ -93,7 +96,7 @@ func (o *CustomDBRole) GetInheritedRolesOk() ([]InheritedRole, bool) {
 
 // HasInheritedRoles returns a boolean if a field has been set.
 func (o *CustomDBRole) HasInheritedRoles() bool {
-	if o != nil && o.InheritedRoles != nil {
+	if o != nil && !IsNil(o.InheritedRoles) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *CustomDBRole) SetRoleName(v string) {
 }
 
 func (o CustomDBRole) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Actions != nil {
-		toSerialize["actions"] = o.Actions
-	}
-	if o.InheritedRoles != nil {
-		toSerialize["inheritedRoles"] = o.InheritedRoles
-	}
-	if true {
-		toSerialize["roleName"] = o.RoleName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CustomDBRole) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Actions) {
+		toSerialize["actions"] = o.Actions
+	}
+	if !IsNil(o.InheritedRoles) {
+		toSerialize["inheritedRoles"] = o.InheritedRoles
+	}
+	toSerialize["roleName"] = o.RoleName
+	return toSerialize, nil
 }
 
 type NullableCustomDBRole struct {

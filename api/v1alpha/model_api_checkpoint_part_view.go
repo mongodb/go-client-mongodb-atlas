@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiCheckpointPartView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiCheckpointPartView{}
+
 // ApiCheckpointPartView Metadata contained in one document that describes the complete snapshot taken for this node.
 type ApiCheckpointPartView struct {
 	// Human-readable label that identifies the replica set to which this checkpoint applies.
@@ -46,7 +49,7 @@ func NewApiCheckpointPartViewWithDefaults() *ApiCheckpointPartView {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *ApiCheckpointPartView) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *ApiCheckpointPartView) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCheckpointPartView) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -64,7 +67,7 @@ func (o *ApiCheckpointPartView) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *ApiCheckpointPartView) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *ApiCheckpointPartView) SetReplicaSetName(v string) {
 
 // GetShardName returns the ShardName field value if set, zero value otherwise.
 func (o *ApiCheckpointPartView) GetShardName() string {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		var ret string
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *ApiCheckpointPartView) GetShardName() string {
 // GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCheckpointPartView) GetShardNameOk() (*string, bool) {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		return nil, false
 	}
 	return o.ShardName, true
@@ -96,7 +99,7 @@ func (o *ApiCheckpointPartView) GetShardNameOk() (*string, bool) {
 
 // HasShardName returns a boolean if a field has been set.
 func (o *ApiCheckpointPartView) HasShardName() bool {
-	if o != nil && o.ShardName != nil {
+	if o != nil && !IsNil(o.ShardName) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *ApiCheckpointPartView) SetShardName(v string) {
 
 // GetTokenDiscovered returns the TokenDiscovered field value if set, zero value otherwise.
 func (o *ApiCheckpointPartView) GetTokenDiscovered() bool {
-	if o == nil || o.TokenDiscovered == nil {
+	if o == nil || IsNil(o.TokenDiscovered) {
 		var ret bool
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *ApiCheckpointPartView) GetTokenDiscovered() bool {
 // GetTokenDiscoveredOk returns a tuple with the TokenDiscovered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCheckpointPartView) GetTokenDiscoveredOk() (*bool, bool) {
-	if o == nil || o.TokenDiscovered == nil {
+	if o == nil || IsNil(o.TokenDiscovered) {
 		return nil, false
 	}
 	return o.TokenDiscovered, true
@@ -128,7 +131,7 @@ func (o *ApiCheckpointPartView) GetTokenDiscoveredOk() (*bool, bool) {
 
 // HasTokenDiscovered returns a boolean if a field has been set.
 func (o *ApiCheckpointPartView) HasTokenDiscovered() bool {
-	if o != nil && o.TokenDiscovered != nil {
+	if o != nil && !IsNil(o.TokenDiscovered) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *ApiCheckpointPartView) SetTokenDiscovered(v bool) {
 
 // GetTokenTimestamp returns the TokenTimestamp field value if set, zero value otherwise.
 func (o *ApiCheckpointPartView) GetTokenTimestamp() ApiBSONTimestampView {
-	if o == nil || o.TokenTimestamp == nil {
+	if o == nil || IsNil(o.TokenTimestamp) {
 		var ret ApiBSONTimestampView
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *ApiCheckpointPartView) GetTokenTimestamp() ApiBSONTimestampView {
 // GetTokenTimestampOk returns a tuple with the TokenTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCheckpointPartView) GetTokenTimestampOk() (*ApiBSONTimestampView, bool) {
-	if o == nil || o.TokenTimestamp == nil {
+	if o == nil || IsNil(o.TokenTimestamp) {
 		return nil, false
 	}
 	return o.TokenTimestamp, true
@@ -160,7 +163,7 @@ func (o *ApiCheckpointPartView) GetTokenTimestampOk() (*ApiBSONTimestampView, bo
 
 // HasTokenTimestamp returns a boolean if a field has been set.
 func (o *ApiCheckpointPartView) HasTokenTimestamp() bool {
-	if o != nil && o.TokenTimestamp != nil {
+	if o != nil && !IsNil(o.TokenTimestamp) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *ApiCheckpointPartView) SetTokenTimestamp(v ApiBSONTimestampView) {
 
 // GetTypeName returns the TypeName field value if set, zero value otherwise.
 func (o *ApiCheckpointPartView) GetTypeName() string {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		var ret string
 		return ret
 	}
@@ -184,7 +187,7 @@ func (o *ApiCheckpointPartView) GetTypeName() string {
 // GetTypeNameOk returns a tuple with the TypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCheckpointPartView) GetTypeNameOk() (*string, bool) {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		return nil, false
 	}
 	return o.TypeName, true
@@ -192,7 +195,7 @@ func (o *ApiCheckpointPartView) GetTypeNameOk() (*string, bool) {
 
 // HasTypeName returns a boolean if a field has been set.
 func (o *ApiCheckpointPartView) HasTypeName() bool {
-	if o != nil && o.TypeName != nil {
+	if o != nil && !IsNil(o.TypeName) {
 		return true
 	}
 
@@ -205,23 +208,23 @@ func (o *ApiCheckpointPartView) SetTypeName(v string) {
 }
 
 func (o ApiCheckpointPartView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.ShardName != nil {
-		toSerialize["shardName"] = o.ShardName
-	}
-	if o.TokenDiscovered != nil {
-		toSerialize["tokenDiscovered"] = o.TokenDiscovered
-	}
-	if o.TokenTimestamp != nil {
-		toSerialize["tokenTimestamp"] = o.TokenTimestamp
-	}
-	if o.TypeName != nil {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiCheckpointPartView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: replicaSetName is readOnly
+	// skip: shardName is readOnly
+	// skip: tokenDiscovered is readOnly
+	if !IsNil(o.TokenTimestamp) {
+		toSerialize["tokenTimestamp"] = o.TokenTimestamp
+	}
+	// skip: typeName is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiCheckpointPartView struct {

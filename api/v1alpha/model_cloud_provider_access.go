@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccess type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccess{}
+
 // CloudProviderAccess struct for CloudProviderAccess
 type CloudProviderAccess struct {
 	// List that contains the Amazon Web Services (AWS) IAM roles registered and authorized with MongoDB Cloud.
@@ -39,7 +42,7 @@ func NewCloudProviderAccessWithDefaults() *CloudProviderAccess {
 
 // GetAwsIamRoles returns the AwsIamRoles field value if set, zero value otherwise.
 func (o *CloudProviderAccess) GetAwsIamRoles() []CloudProviderAccessAWSIAMRole {
-	if o == nil || o.AwsIamRoles == nil {
+	if o == nil || IsNil(o.AwsIamRoles) {
 		var ret []CloudProviderAccessAWSIAMRole
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *CloudProviderAccess) GetAwsIamRoles() []CloudProviderAccessAWSIAMRole {
 // GetAwsIamRolesOk returns a tuple with the AwsIamRoles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccess) GetAwsIamRolesOk() ([]CloudProviderAccessAWSIAMRole, bool) {
-	if o == nil || o.AwsIamRoles == nil {
+	if o == nil || IsNil(o.AwsIamRoles) {
 		return nil, false
 	}
 	return o.AwsIamRoles, true
@@ -57,7 +60,7 @@ func (o *CloudProviderAccess) GetAwsIamRolesOk() ([]CloudProviderAccessAWSIAMRol
 
 // HasAwsIamRoles returns a boolean if a field has been set.
 func (o *CloudProviderAccess) HasAwsIamRoles() bool {
-	if o != nil && o.AwsIamRoles != nil {
+	if o != nil && !IsNil(o.AwsIamRoles) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CloudProviderAccess) SetAwsIamRoles(v []CloudProviderAccessAWSIAMRole) 
 }
 
 func (o CloudProviderAccess) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AwsIamRoles != nil {
-		toSerialize["awsIamRoles"] = o.AwsIamRoles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccess) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AwsIamRoles) {
+		toSerialize["awsIamRoles"] = o.AwsIamRoles
+	}
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccess struct {

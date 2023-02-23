@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaginatedCloudBackupShardedClusterSnapshotView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedCloudBackupShardedClusterSnapshotView{}
+
 // PaginatedCloudBackupShardedClusterSnapshotView struct for PaginatedCloudBackupShardedClusterSnapshotView
 type PaginatedCloudBackupShardedClusterSnapshotView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -43,7 +46,7 @@ func NewPaginatedCloudBackupShardedClusterSnapshotViewWithDefaults() *PaginatedC
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -61,7 +64,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetLinksOk() ([]Link, b
 
 // HasLinks returns a boolean if a field has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) SetLinks(v []Link) {
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetResults() []DiskBackupShardedClusterSnapshot {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		var ret []DiskBackupShardedClusterSnapshot
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetResults() []DiskBack
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetResultsOk() ([]DiskBackupShardedClusterSnapshot, bool) {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
 	return o.Results, true
@@ -93,7 +96,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetResultsOk() ([]DiskB
 
 // HasResults returns a boolean if a field has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) HasResults() bool {
-	if o != nil && o.Results != nil {
+	if o != nil && !IsNil(o.Results) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) SetResults(v []DiskBack
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetTotalCount() int32 {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetTotalCount() int32 {
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetTotalCountOk() (*int32, bool) {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
 	return o.TotalCount, true
@@ -125,7 +128,7 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) GetTotalCountOk() (*int
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *PaginatedCloudBackupShardedClusterSnapshotView) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
+	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *PaginatedCloudBackupShardedClusterSnapshotView) SetTotalCount(v int32) 
 }
 
 func (o PaginatedCloudBackupShardedClusterSnapshotView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Results != nil {
-		toSerialize["results"] = o.Results
-	}
-	if o.TotalCount != nil {
-		toSerialize["totalCount"] = o.TotalCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PaginatedCloudBackupShardedClusterSnapshotView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	// skip: results is readOnly
+	// skip: totalCount is readOnly
+	return toSerialize, nil
 }
 
 type NullablePaginatedCloudBackupShardedClusterSnapshotView struct {

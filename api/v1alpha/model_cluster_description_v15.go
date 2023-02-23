@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ClusterDescriptionV15 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterDescriptionV15{}
+
 // ClusterDescriptionV15 struct for ClusterDescriptionV15
 type ClusterDescriptionV15 struct {
 	// Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
@@ -98,7 +101,7 @@ func NewClusterDescriptionV15WithDefaults() *ClusterDescriptionV15 {
 
 // GetBackupEnabled returns the BackupEnabled field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetBackupEnabled() bool {
-	if o == nil || o.BackupEnabled == nil {
+	if o == nil || IsNil(o.BackupEnabled) {
 		var ret bool
 		return ret
 	}
@@ -108,7 +111,7 @@ func (o *ClusterDescriptionV15) GetBackupEnabled() bool {
 // GetBackupEnabledOk returns a tuple with the BackupEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetBackupEnabledOk() (*bool, bool) {
-	if o == nil || o.BackupEnabled == nil {
+	if o == nil || IsNil(o.BackupEnabled) {
 		return nil, false
 	}
 	return o.BackupEnabled, true
@@ -116,7 +119,7 @@ func (o *ClusterDescriptionV15) GetBackupEnabledOk() (*bool, bool) {
 
 // HasBackupEnabled returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasBackupEnabled() bool {
-	if o != nil && o.BackupEnabled != nil {
+	if o != nil && !IsNil(o.BackupEnabled) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *ClusterDescriptionV15) SetBackupEnabled(v bool) {
 
 // GetBiConnector returns the BiConnector field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetBiConnector() BiConnector {
-	if o == nil || o.BiConnector == nil {
+	if o == nil || IsNil(o.BiConnector) {
 		var ret BiConnector
 		return ret
 	}
@@ -140,7 +143,7 @@ func (o *ClusterDescriptionV15) GetBiConnector() BiConnector {
 // GetBiConnectorOk returns a tuple with the BiConnector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetBiConnectorOk() (*BiConnector, bool) {
-	if o == nil || o.BiConnector == nil {
+	if o == nil || IsNil(o.BiConnector) {
 		return nil, false
 	}
 	return o.BiConnector, true
@@ -148,7 +151,7 @@ func (o *ClusterDescriptionV15) GetBiConnectorOk() (*BiConnector, bool) {
 
 // HasBiConnector returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasBiConnector() bool {
-	if o != nil && o.BiConnector != nil {
+	if o != nil && !IsNil(o.BiConnector) {
 		return true
 	}
 
@@ -162,7 +165,7 @@ func (o *ClusterDescriptionV15) SetBiConnector(v BiConnector) {
 
 // GetClusterType returns the ClusterType field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetClusterType() string {
-	if o == nil || o.ClusterType == nil {
+	if o == nil || IsNil(o.ClusterType) {
 		var ret string
 		return ret
 	}
@@ -172,7 +175,7 @@ func (o *ClusterDescriptionV15) GetClusterType() string {
 // GetClusterTypeOk returns a tuple with the ClusterType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetClusterTypeOk() (*string, bool) {
-	if o == nil || o.ClusterType == nil {
+	if o == nil || IsNil(o.ClusterType) {
 		return nil, false
 	}
 	return o.ClusterType, true
@@ -180,7 +183,7 @@ func (o *ClusterDescriptionV15) GetClusterTypeOk() (*string, bool) {
 
 // HasClusterType returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasClusterType() bool {
-	if o != nil && o.ClusterType != nil {
+	if o != nil && !IsNil(o.ClusterType) {
 		return true
 	}
 
@@ -194,7 +197,7 @@ func (o *ClusterDescriptionV15) SetClusterType(v string) {
 
 // GetConnectionStrings returns the ConnectionStrings field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetConnectionStrings() ClusterDescriptionConnectionStrings {
-	if o == nil || o.ConnectionStrings == nil {
+	if o == nil || IsNil(o.ConnectionStrings) {
 		var ret ClusterDescriptionConnectionStrings
 		return ret
 	}
@@ -204,7 +207,7 @@ func (o *ClusterDescriptionV15) GetConnectionStrings() ClusterDescriptionConnect
 // GetConnectionStringsOk returns a tuple with the ConnectionStrings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetConnectionStringsOk() (*ClusterDescriptionConnectionStrings, bool) {
-	if o == nil || o.ConnectionStrings == nil {
+	if o == nil || IsNil(o.ConnectionStrings) {
 		return nil, false
 	}
 	return o.ConnectionStrings, true
@@ -212,7 +215,7 @@ func (o *ClusterDescriptionV15) GetConnectionStringsOk() (*ClusterDescriptionCon
 
 // HasConnectionStrings returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasConnectionStrings() bool {
-	if o != nil && o.ConnectionStrings != nil {
+	if o != nil && !IsNil(o.ConnectionStrings) {
 		return true
 	}
 
@@ -226,7 +229,7 @@ func (o *ClusterDescriptionV15) SetConnectionStrings(v ClusterDescriptionConnect
 
 // GetCreateDate returns the CreateDate field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetCreateDate() time.Time {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		var ret time.Time
 		return ret
 	}
@@ -236,7 +239,7 @@ func (o *ClusterDescriptionV15) GetCreateDate() time.Time {
 // GetCreateDateOk returns a tuple with the CreateDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetCreateDateOk() (*time.Time, bool) {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		return nil, false
 	}
 	return o.CreateDate, true
@@ -244,7 +247,7 @@ func (o *ClusterDescriptionV15) GetCreateDateOk() (*time.Time, bool) {
 
 // HasCreateDate returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasCreateDate() bool {
-	if o != nil && o.CreateDate != nil {
+	if o != nil && !IsNil(o.CreateDate) {
 		return true
 	}
 
@@ -258,7 +261,7 @@ func (o *ClusterDescriptionV15) SetCreateDate(v time.Time) {
 
 // GetDiskSizeGB returns the DiskSizeGB field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetDiskSizeGB() float64 {
-	if o == nil || o.DiskSizeGB == nil {
+	if o == nil || IsNil(o.DiskSizeGB) {
 		var ret float64
 		return ret
 	}
@@ -268,7 +271,7 @@ func (o *ClusterDescriptionV15) GetDiskSizeGB() float64 {
 // GetDiskSizeGBOk returns a tuple with the DiskSizeGB field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetDiskSizeGBOk() (*float64, bool) {
-	if o == nil || o.DiskSizeGB == nil {
+	if o == nil || IsNil(o.DiskSizeGB) {
 		return nil, false
 	}
 	return o.DiskSizeGB, true
@@ -276,7 +279,7 @@ func (o *ClusterDescriptionV15) GetDiskSizeGBOk() (*float64, bool) {
 
 // HasDiskSizeGB returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasDiskSizeGB() bool {
-	if o != nil && o.DiskSizeGB != nil {
+	if o != nil && !IsNil(o.DiskSizeGB) {
 		return true
 	}
 
@@ -290,7 +293,7 @@ func (o *ClusterDescriptionV15) SetDiskSizeGB(v float64) {
 
 // GetEncryptionAtRestProvider returns the EncryptionAtRestProvider field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetEncryptionAtRestProvider() string {
-	if o == nil || o.EncryptionAtRestProvider == nil {
+	if o == nil || IsNil(o.EncryptionAtRestProvider) {
 		var ret string
 		return ret
 	}
@@ -300,7 +303,7 @@ func (o *ClusterDescriptionV15) GetEncryptionAtRestProvider() string {
 // GetEncryptionAtRestProviderOk returns a tuple with the EncryptionAtRestProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetEncryptionAtRestProviderOk() (*string, bool) {
-	if o == nil || o.EncryptionAtRestProvider == nil {
+	if o == nil || IsNil(o.EncryptionAtRestProvider) {
 		return nil, false
 	}
 	return o.EncryptionAtRestProvider, true
@@ -308,7 +311,7 @@ func (o *ClusterDescriptionV15) GetEncryptionAtRestProviderOk() (*string, bool) 
 
 // HasEncryptionAtRestProvider returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasEncryptionAtRestProvider() bool {
-	if o != nil && o.EncryptionAtRestProvider != nil {
+	if o != nil && !IsNil(o.EncryptionAtRestProvider) {
 		return true
 	}
 
@@ -322,7 +325,7 @@ func (o *ClusterDescriptionV15) SetEncryptionAtRestProvider(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -332,7 +335,7 @@ func (o *ClusterDescriptionV15) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -340,7 +343,7 @@ func (o *ClusterDescriptionV15) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -354,7 +357,7 @@ func (o *ClusterDescriptionV15) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -364,7 +367,7 @@ func (o *ClusterDescriptionV15) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -372,7 +375,7 @@ func (o *ClusterDescriptionV15) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -386,7 +389,7 @@ func (o *ClusterDescriptionV15) SetId(v string) {
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetLabels() []NDSLabel {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		var ret []NDSLabel
 		return ret
 	}
@@ -396,7 +399,7 @@ func (o *ClusterDescriptionV15) GetLabels() []NDSLabel {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetLabelsOk() ([]NDSLabel, bool) {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
 	return o.Labels, true
@@ -404,7 +407,7 @@ func (o *ClusterDescriptionV15) GetLabelsOk() ([]NDSLabel, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasLabels() bool {
-	if o != nil && o.Labels != nil {
+	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -418,7 +421,7 @@ func (o *ClusterDescriptionV15) SetLabels(v []NDSLabel) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -428,7 +431,7 @@ func (o *ClusterDescriptionV15) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -436,7 +439,7 @@ func (o *ClusterDescriptionV15) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -450,7 +453,7 @@ func (o *ClusterDescriptionV15) SetLinks(v []Link) {
 
 // GetMongoDBMajorVersion returns the MongoDBMajorVersion field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetMongoDBMajorVersion() string {
-	if o == nil || o.MongoDBMajorVersion == nil {
+	if o == nil || IsNil(o.MongoDBMajorVersion) {
 		var ret string
 		return ret
 	}
@@ -460,7 +463,7 @@ func (o *ClusterDescriptionV15) GetMongoDBMajorVersion() string {
 // GetMongoDBMajorVersionOk returns a tuple with the MongoDBMajorVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetMongoDBMajorVersionOk() (*string, bool) {
-	if o == nil || o.MongoDBMajorVersion == nil {
+	if o == nil || IsNil(o.MongoDBMajorVersion) {
 		return nil, false
 	}
 	return o.MongoDBMajorVersion, true
@@ -468,7 +471,7 @@ func (o *ClusterDescriptionV15) GetMongoDBMajorVersionOk() (*string, bool) {
 
 // HasMongoDBMajorVersion returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasMongoDBMajorVersion() bool {
-	if o != nil && o.MongoDBMajorVersion != nil {
+	if o != nil && !IsNil(o.MongoDBMajorVersion) {
 		return true
 	}
 
@@ -482,7 +485,7 @@ func (o *ClusterDescriptionV15) SetMongoDBMajorVersion(v string) {
 
 // GetMongoDBVersion returns the MongoDBVersion field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetMongoDBVersion() string {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		var ret string
 		return ret
 	}
@@ -492,7 +495,7 @@ func (o *ClusterDescriptionV15) GetMongoDBVersion() string {
 // GetMongoDBVersionOk returns a tuple with the MongoDBVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetMongoDBVersionOk() (*string, bool) {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		return nil, false
 	}
 	return o.MongoDBVersion, true
@@ -500,7 +503,7 @@ func (o *ClusterDescriptionV15) GetMongoDBVersionOk() (*string, bool) {
 
 // HasMongoDBVersion returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasMongoDBVersion() bool {
-	if o != nil && o.MongoDBVersion != nil {
+	if o != nil && !IsNil(o.MongoDBVersion) {
 		return true
 	}
 
@@ -514,7 +517,7 @@ func (o *ClusterDescriptionV15) SetMongoDBVersion(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -524,7 +527,7 @@ func (o *ClusterDescriptionV15) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -532,7 +535,7 @@ func (o *ClusterDescriptionV15) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -546,7 +549,7 @@ func (o *ClusterDescriptionV15) SetName(v string) {
 
 // GetPaused returns the Paused field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetPaused() bool {
-	if o == nil || o.Paused == nil {
+	if o == nil || IsNil(o.Paused) {
 		var ret bool
 		return ret
 	}
@@ -556,7 +559,7 @@ func (o *ClusterDescriptionV15) GetPaused() bool {
 // GetPausedOk returns a tuple with the Paused field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetPausedOk() (*bool, bool) {
-	if o == nil || o.Paused == nil {
+	if o == nil || IsNil(o.Paused) {
 		return nil, false
 	}
 	return o.Paused, true
@@ -564,7 +567,7 @@ func (o *ClusterDescriptionV15) GetPausedOk() (*bool, bool) {
 
 // HasPaused returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasPaused() bool {
-	if o != nil && o.Paused != nil {
+	if o != nil && !IsNil(o.Paused) {
 		return true
 	}
 
@@ -578,7 +581,7 @@ func (o *ClusterDescriptionV15) SetPaused(v bool) {
 
 // GetPitEnabled returns the PitEnabled field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetPitEnabled() bool {
-	if o == nil || o.PitEnabled == nil {
+	if o == nil || IsNil(o.PitEnabled) {
 		var ret bool
 		return ret
 	}
@@ -588,7 +591,7 @@ func (o *ClusterDescriptionV15) GetPitEnabled() bool {
 // GetPitEnabledOk returns a tuple with the PitEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetPitEnabledOk() (*bool, bool) {
-	if o == nil || o.PitEnabled == nil {
+	if o == nil || IsNil(o.PitEnabled) {
 		return nil, false
 	}
 	return o.PitEnabled, true
@@ -596,7 +599,7 @@ func (o *ClusterDescriptionV15) GetPitEnabledOk() (*bool, bool) {
 
 // HasPitEnabled returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasPitEnabled() bool {
-	if o != nil && o.PitEnabled != nil {
+	if o != nil && !IsNil(o.PitEnabled) {
 		return true
 	}
 
@@ -610,7 +613,7 @@ func (o *ClusterDescriptionV15) SetPitEnabled(v bool) {
 
 // GetReplicationSpecs returns the ReplicationSpecs field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetReplicationSpecs() []ReplicationSpec {
-	if o == nil || o.ReplicationSpecs == nil {
+	if o == nil || IsNil(o.ReplicationSpecs) {
 		var ret []ReplicationSpec
 		return ret
 	}
@@ -620,7 +623,7 @@ func (o *ClusterDescriptionV15) GetReplicationSpecs() []ReplicationSpec {
 // GetReplicationSpecsOk returns a tuple with the ReplicationSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetReplicationSpecsOk() ([]ReplicationSpec, bool) {
-	if o == nil || o.ReplicationSpecs == nil {
+	if o == nil || IsNil(o.ReplicationSpecs) {
 		return nil, false
 	}
 	return o.ReplicationSpecs, true
@@ -628,7 +631,7 @@ func (o *ClusterDescriptionV15) GetReplicationSpecsOk() ([]ReplicationSpec, bool
 
 // HasReplicationSpecs returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasReplicationSpecs() bool {
-	if o != nil && o.ReplicationSpecs != nil {
+	if o != nil && !IsNil(o.ReplicationSpecs) {
 		return true
 	}
 
@@ -642,7 +645,7 @@ func (o *ClusterDescriptionV15) SetReplicationSpecs(v []ReplicationSpec) {
 
 // GetRootCertType returns the RootCertType field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetRootCertType() string {
-	if o == nil || o.RootCertType == nil {
+	if o == nil || IsNil(o.RootCertType) {
 		var ret string
 		return ret
 	}
@@ -652,7 +655,7 @@ func (o *ClusterDescriptionV15) GetRootCertType() string {
 // GetRootCertTypeOk returns a tuple with the RootCertType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetRootCertTypeOk() (*string, bool) {
-	if o == nil || o.RootCertType == nil {
+	if o == nil || IsNil(o.RootCertType) {
 		return nil, false
 	}
 	return o.RootCertType, true
@@ -660,7 +663,7 @@ func (o *ClusterDescriptionV15) GetRootCertTypeOk() (*string, bool) {
 
 // HasRootCertType returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasRootCertType() bool {
-	if o != nil && o.RootCertType != nil {
+	if o != nil && !IsNil(o.RootCertType) {
 		return true
 	}
 
@@ -674,7 +677,7 @@ func (o *ClusterDescriptionV15) SetRootCertType(v string) {
 
 // GetStateName returns the StateName field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetStateName() string {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		var ret string
 		return ret
 	}
@@ -684,7 +687,7 @@ func (o *ClusterDescriptionV15) GetStateName() string {
 // GetStateNameOk returns a tuple with the StateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetStateNameOk() (*string, bool) {
-	if o == nil || o.StateName == nil {
+	if o == nil || IsNil(o.StateName) {
 		return nil, false
 	}
 	return o.StateName, true
@@ -692,7 +695,7 @@ func (o *ClusterDescriptionV15) GetStateNameOk() (*string, bool) {
 
 // HasStateName returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasStateName() bool {
-	if o != nil && o.StateName != nil {
+	if o != nil && !IsNil(o.StateName) {
 		return true
 	}
 
@@ -706,7 +709,7 @@ func (o *ClusterDescriptionV15) SetStateName(v string) {
 
 // GetTerminationProtectionEnabled returns the TerminationProtectionEnabled field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetTerminationProtectionEnabled() bool {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -716,7 +719,7 @@ func (o *ClusterDescriptionV15) GetTerminationProtectionEnabled() bool {
 // GetTerminationProtectionEnabledOk returns a tuple with the TerminationProtectionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetTerminationProtectionEnabledOk() (*bool, bool) {
-	if o == nil || o.TerminationProtectionEnabled == nil {
+	if o == nil || IsNil(o.TerminationProtectionEnabled) {
 		return nil, false
 	}
 	return o.TerminationProtectionEnabled, true
@@ -724,7 +727,7 @@ func (o *ClusterDescriptionV15) GetTerminationProtectionEnabledOk() (*bool, bool
 
 // HasTerminationProtectionEnabled returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasTerminationProtectionEnabled() bool {
-	if o != nil && o.TerminationProtectionEnabled != nil {
+	if o != nil && !IsNil(o.TerminationProtectionEnabled) {
 		return true
 	}
 
@@ -738,7 +741,7 @@ func (o *ClusterDescriptionV15) SetTerminationProtectionEnabled(v bool) {
 
 // GetVersionReleaseSystem returns the VersionReleaseSystem field value if set, zero value otherwise.
 func (o *ClusterDescriptionV15) GetVersionReleaseSystem() string {
-	if o == nil || o.VersionReleaseSystem == nil {
+	if o == nil || IsNil(o.VersionReleaseSystem) {
 		var ret string
 		return ret
 	}
@@ -748,7 +751,7 @@ func (o *ClusterDescriptionV15) GetVersionReleaseSystem() string {
 // GetVersionReleaseSystemOk returns a tuple with the VersionReleaseSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterDescriptionV15) GetVersionReleaseSystemOk() (*string, bool) {
-	if o == nil || o.VersionReleaseSystem == nil {
+	if o == nil || IsNil(o.VersionReleaseSystem) {
 		return nil, false
 	}
 	return o.VersionReleaseSystem, true
@@ -756,7 +759,7 @@ func (o *ClusterDescriptionV15) GetVersionReleaseSystemOk() (*string, bool) {
 
 // HasVersionReleaseSystem returns a boolean if a field has been set.
 func (o *ClusterDescriptionV15) HasVersionReleaseSystem() bool {
-	if o != nil && o.VersionReleaseSystem != nil {
+	if o != nil && !IsNil(o.VersionReleaseSystem) {
 		return true
 	}
 
@@ -769,71 +772,67 @@ func (o *ClusterDescriptionV15) SetVersionReleaseSystem(v string) {
 }
 
 func (o ClusterDescriptionV15) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BackupEnabled != nil {
-		toSerialize["backupEnabled"] = o.BackupEnabled
-	}
-	if o.BiConnector != nil {
-		toSerialize["biConnector"] = o.BiConnector
-	}
-	if o.ClusterType != nil {
-		toSerialize["clusterType"] = o.ClusterType
-	}
-	if o.ConnectionStrings != nil {
-		toSerialize["connectionStrings"] = o.ConnectionStrings
-	}
-	if o.CreateDate != nil {
-		toSerialize["createDate"] = o.CreateDate
-	}
-	if o.DiskSizeGB != nil {
-		toSerialize["diskSizeGB"] = o.DiskSizeGB
-	}
-	if o.EncryptionAtRestProvider != nil {
-		toSerialize["encryptionAtRestProvider"] = o.EncryptionAtRestProvider
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MongoDBMajorVersion != nil {
-		toSerialize["mongoDBMajorVersion"] = o.MongoDBMajorVersion
-	}
-	if o.MongoDBVersion != nil {
-		toSerialize["mongoDBVersion"] = o.MongoDBVersion
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Paused != nil {
-		toSerialize["paused"] = o.Paused
-	}
-	if o.PitEnabled != nil {
-		toSerialize["pitEnabled"] = o.PitEnabled
-	}
-	if o.ReplicationSpecs != nil {
-		toSerialize["replicationSpecs"] = o.ReplicationSpecs
-	}
-	if o.RootCertType != nil {
-		toSerialize["rootCertType"] = o.RootCertType
-	}
-	if o.StateName != nil {
-		toSerialize["stateName"] = o.StateName
-	}
-	if o.TerminationProtectionEnabled != nil {
-		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
-	}
-	if o.VersionReleaseSystem != nil {
-		toSerialize["versionReleaseSystem"] = o.VersionReleaseSystem
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterDescriptionV15) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackupEnabled) {
+		toSerialize["backupEnabled"] = o.BackupEnabled
+	}
+	if !IsNil(o.BiConnector) {
+		toSerialize["biConnector"] = o.BiConnector
+	}
+	if !IsNil(o.ClusterType) {
+		toSerialize["clusterType"] = o.ClusterType
+	}
+	if !IsNil(o.ConnectionStrings) {
+		toSerialize["connectionStrings"] = o.ConnectionStrings
+	}
+	// skip: createDate is readOnly
+	if !IsNil(o.DiskSizeGB) {
+		toSerialize["diskSizeGB"] = o.DiskSizeGB
+	}
+	if !IsNil(o.EncryptionAtRestProvider) {
+		toSerialize["encryptionAtRestProvider"] = o.EncryptionAtRestProvider
+	}
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	// skip: links is readOnly
+	if !IsNil(o.MongoDBMajorVersion) {
+		toSerialize["mongoDBMajorVersion"] = o.MongoDBMajorVersion
+	}
+	// skip: mongoDBVersion is readOnly
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Paused) {
+		toSerialize["paused"] = o.Paused
+	}
+	if !IsNil(o.PitEnabled) {
+		toSerialize["pitEnabled"] = o.PitEnabled
+	}
+	if !IsNil(o.ReplicationSpecs) {
+		toSerialize["replicationSpecs"] = o.ReplicationSpecs
+	}
+	if !IsNil(o.RootCertType) {
+		toSerialize["rootCertType"] = o.RootCertType
+	}
+	// skip: stateName is readOnly
+	if !IsNil(o.TerminationProtectionEnabled) {
+		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
+	}
+	if !IsNil(o.VersionReleaseSystem) {
+		toSerialize["versionReleaseSystem"] = o.VersionReleaseSystem
+	}
+	return toSerialize, nil
 }
 
 type NullableClusterDescriptionV15 struct {

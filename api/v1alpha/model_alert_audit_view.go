@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the AlertAuditView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AlertAuditView{}
+
 // AlertAuditView Alert audit indicates acknowledgement status of an alert.
 type AlertAuditView struct {
 	// Unique 24-hexadecimal digit string that identifies the alert associated with the event.
@@ -64,7 +67,7 @@ func NewAlertAuditViewWithDefaults() *AlertAuditView {
 
 // GetAlertId returns the AlertId field value if set, zero value otherwise.
 func (o *AlertAuditView) GetAlertId() string {
-	if o == nil || o.AlertId == nil {
+	if o == nil || IsNil(o.AlertId) {
 		var ret string
 		return ret
 	}
@@ -74,7 +77,7 @@ func (o *AlertAuditView) GetAlertId() string {
 // GetAlertIdOk returns a tuple with the AlertId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetAlertIdOk() (*string, bool) {
-	if o == nil || o.AlertId == nil {
+	if o == nil || IsNil(o.AlertId) {
 		return nil, false
 	}
 	return o.AlertId, true
@@ -82,7 +85,7 @@ func (o *AlertAuditView) GetAlertIdOk() (*string, bool) {
 
 // HasAlertId returns a boolean if a field has been set.
 func (o *AlertAuditView) HasAlertId() bool {
-	if o != nil && o.AlertId != nil {
+	if o != nil && !IsNil(o.AlertId) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *AlertAuditView) SetAlertId(v string) {
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *AlertAuditView) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -106,7 +109,7 @@ func (o *AlertAuditView) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -114,7 +117,7 @@ func (o *AlertAuditView) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *AlertAuditView) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *AlertAuditView) SetEventTypeName(v AlertAuditTypeView) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *AlertAuditView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *AlertAuditView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -194,7 +197,7 @@ func (o *AlertAuditView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *AlertAuditView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -232,7 +235,7 @@ func (o *AlertAuditView) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *AlertAuditView) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -242,7 +245,7 @@ func (o *AlertAuditView) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -250,7 +253,7 @@ func (o *AlertAuditView) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *AlertAuditView) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *AlertAuditView) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *AlertAuditView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -298,7 +301,7 @@ func (o *AlertAuditView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -306,7 +309,7 @@ func (o *AlertAuditView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *AlertAuditView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *AlertAuditView) SetOrgId(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *AlertAuditView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -330,7 +333,7 @@ func (o *AlertAuditView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -338,7 +341,7 @@ func (o *AlertAuditView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *AlertAuditView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *AlertAuditView) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *AlertAuditView) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -362,7 +365,7 @@ func (o *AlertAuditView) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -370,7 +373,7 @@ func (o *AlertAuditView) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *AlertAuditView) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *AlertAuditView) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *AlertAuditView) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -394,7 +397,7 @@ func (o *AlertAuditView) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -402,7 +405,7 @@ func (o *AlertAuditView) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *AlertAuditView) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *AlertAuditView) SetRemoteAddress(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *AlertAuditView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -426,7 +429,7 @@ func (o *AlertAuditView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -434,7 +437,7 @@ func (o *AlertAuditView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *AlertAuditView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *AlertAuditView) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *AlertAuditView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -458,7 +461,7 @@ func (o *AlertAuditView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertAuditView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -466,7 +469,7 @@ func (o *AlertAuditView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *AlertAuditView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -479,50 +482,32 @@ func (o *AlertAuditView) SetUsername(v string) {
 }
 
 func (o AlertAuditView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AlertId != nil {
-		toSerialize["alertId"] = o.AlertId
-	}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AlertAuditView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: alertId is readOnly
+	// skip: apiKeyId is readOnly
+	// skip: created is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableAlertAuditView struct {

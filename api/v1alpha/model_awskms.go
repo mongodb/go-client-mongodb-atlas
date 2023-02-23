@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSKMS type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSKMS{}
+
 // AWSKMS Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
 type AWSKMS struct {
 	// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
@@ -51,7 +54,7 @@ func NewAWSKMSWithDefaults() *AWSKMS {
 
 // GetAccessKeyID returns the AccessKeyID field value if set, zero value otherwise.
 func (o *AWSKMS) GetAccessKeyID() string {
-	if o == nil || o.AccessKeyID == nil {
+	if o == nil || IsNil(o.AccessKeyID) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *AWSKMS) GetAccessKeyID() string {
 // GetAccessKeyIDOk returns a tuple with the AccessKeyID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetAccessKeyIDOk() (*string, bool) {
-	if o == nil || o.AccessKeyID == nil {
+	if o == nil || IsNil(o.AccessKeyID) {
 		return nil, false
 	}
 	return o.AccessKeyID, true
@@ -69,7 +72,7 @@ func (o *AWSKMS) GetAccessKeyIDOk() (*string, bool) {
 
 // HasAccessKeyID returns a boolean if a field has been set.
 func (o *AWSKMS) HasAccessKeyID() bool {
-	if o != nil && o.AccessKeyID != nil {
+	if o != nil && !IsNil(o.AccessKeyID) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *AWSKMS) SetAccessKeyID(v string) {
 
 // GetCustomerMasterKeyID returns the CustomerMasterKeyID field value if set, zero value otherwise.
 func (o *AWSKMS) GetCustomerMasterKeyID() string {
-	if o == nil || o.CustomerMasterKeyID == nil {
+	if o == nil || IsNil(o.CustomerMasterKeyID) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *AWSKMS) GetCustomerMasterKeyID() string {
 // GetCustomerMasterKeyIDOk returns a tuple with the CustomerMasterKeyID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetCustomerMasterKeyIDOk() (*string, bool) {
-	if o == nil || o.CustomerMasterKeyID == nil {
+	if o == nil || IsNil(o.CustomerMasterKeyID) {
 		return nil, false
 	}
 	return o.CustomerMasterKeyID, true
@@ -101,7 +104,7 @@ func (o *AWSKMS) GetCustomerMasterKeyIDOk() (*string, bool) {
 
 // HasCustomerMasterKeyID returns a boolean if a field has been set.
 func (o *AWSKMS) HasCustomerMasterKeyID() bool {
-	if o != nil && o.CustomerMasterKeyID != nil {
+	if o != nil && !IsNil(o.CustomerMasterKeyID) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *AWSKMS) SetCustomerMasterKeyID(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *AWSKMS) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *AWSKMS) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -133,7 +136,7 @@ func (o *AWSKMS) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *AWSKMS) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *AWSKMS) SetEnabled(v bool) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AWSKMS) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *AWSKMS) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -165,7 +168,7 @@ func (o *AWSKMS) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *AWSKMS) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *AWSKMS) SetRegion(v string) {
 
 // GetRoleId returns the RoleId field value if set, zero value otherwise.
 func (o *AWSKMS) GetRoleId() string {
-	if o == nil || o.RoleId == nil {
+	if o == nil || IsNil(o.RoleId) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *AWSKMS) GetRoleId() string {
 // GetRoleIdOk returns a tuple with the RoleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetRoleIdOk() (*string, bool) {
-	if o == nil || o.RoleId == nil {
+	if o == nil || IsNil(o.RoleId) {
 		return nil, false
 	}
 	return o.RoleId, true
@@ -197,7 +200,7 @@ func (o *AWSKMS) GetRoleIdOk() (*string, bool) {
 
 // HasRoleId returns a boolean if a field has been set.
 func (o *AWSKMS) HasRoleId() bool {
-	if o != nil && o.RoleId != nil {
+	if o != nil && !IsNil(o.RoleId) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *AWSKMS) SetRoleId(v string) {
 
 // GetSecretAccessKey returns the SecretAccessKey field value if set, zero value otherwise.
 func (o *AWSKMS) GetSecretAccessKey() string {
-	if o == nil || o.SecretAccessKey == nil {
+	if o == nil || IsNil(o.SecretAccessKey) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *AWSKMS) GetSecretAccessKey() string {
 // GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetSecretAccessKeyOk() (*string, bool) {
-	if o == nil || o.SecretAccessKey == nil {
+	if o == nil || IsNil(o.SecretAccessKey) {
 		return nil, false
 	}
 	return o.SecretAccessKey, true
@@ -229,7 +232,7 @@ func (o *AWSKMS) GetSecretAccessKeyOk() (*string, bool) {
 
 // HasSecretAccessKey returns a boolean if a field has been set.
 func (o *AWSKMS) HasSecretAccessKey() bool {
-	if o != nil && o.SecretAccessKey != nil {
+	if o != nil && !IsNil(o.SecretAccessKey) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *AWSKMS) SetSecretAccessKey(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *AWSKMS) GetValid() bool {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *AWSKMS) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSKMS) GetValidOk() (*bool, bool) {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
 	return o.Valid, true
@@ -261,7 +264,7 @@ func (o *AWSKMS) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *AWSKMS) HasValid() bool {
-	if o != nil && o.Valid != nil {
+	if o != nil && !IsNil(o.Valid) {
 		return true
 	}
 
@@ -274,29 +277,35 @@ func (o *AWSKMS) SetValid(v bool) {
 }
 
 func (o AWSKMS) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AccessKeyID != nil {
-		toSerialize["accessKeyID"] = o.AccessKeyID
-	}
-	if o.CustomerMasterKeyID != nil {
-		toSerialize["customerMasterKeyID"] = o.CustomerMasterKeyID
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.RoleId != nil {
-		toSerialize["roleId"] = o.RoleId
-	}
-	if o.SecretAccessKey != nil {
-		toSerialize["secretAccessKey"] = o.SecretAccessKey
-	}
-	if o.Valid != nil {
-		toSerialize["valid"] = o.Valid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSKMS) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccessKeyID) {
+		toSerialize["accessKeyID"] = o.AccessKeyID
+	}
+	if !IsNil(o.CustomerMasterKeyID) {
+		toSerialize["customerMasterKeyID"] = o.CustomerMasterKeyID
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.RoleId) {
+		toSerialize["roleId"] = o.RoleId
+	}
+	if !IsNil(o.SecretAccessKey) {
+		toSerialize["secretAccessKey"] = o.SecretAccessKey
+	}
+	// skip: valid is readOnly
+	return toSerialize, nil
 }
 
 type NullableAWSKMS struct {

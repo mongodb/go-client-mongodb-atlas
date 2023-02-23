@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the SampleDatasetStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SampleDatasetStatus{}
+
 // SampleDatasetStatus struct for SampleDatasetStatus
 type SampleDatasetStatus struct {
 	// Unique 24-hexadecimal character string that identifies this sample dataset.
@@ -50,7 +53,7 @@ func NewSampleDatasetStatusWithDefaults() *SampleDatasetStatus {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *SampleDatasetStatus) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -68,7 +71,7 @@ func (o *SampleDatasetStatus) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *SampleDatasetStatus) SetId(v string) {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *SampleDatasetStatus) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -100,7 +103,7 @@ func (o *SampleDatasetStatus) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *SampleDatasetStatus) SetClusterName(v string) {
 
 // GetCompleteDate returns the CompleteDate field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetCompleteDate() time.Time {
-	if o == nil || o.CompleteDate == nil {
+	if o == nil || IsNil(o.CompleteDate) {
 		var ret time.Time
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *SampleDatasetStatus) GetCompleteDate() time.Time {
 // GetCompleteDateOk returns a tuple with the CompleteDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetCompleteDateOk() (*time.Time, bool) {
-	if o == nil || o.CompleteDate == nil {
+	if o == nil || IsNil(o.CompleteDate) {
 		return nil, false
 	}
 	return o.CompleteDate, true
@@ -132,7 +135,7 @@ func (o *SampleDatasetStatus) GetCompleteDateOk() (*time.Time, bool) {
 
 // HasCompleteDate returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasCompleteDate() bool {
-	if o != nil && o.CompleteDate != nil {
+	if o != nil && !IsNil(o.CompleteDate) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *SampleDatasetStatus) SetCompleteDate(v time.Time) {
 
 // GetCreateDate returns the CreateDate field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetCreateDate() time.Time {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		var ret time.Time
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *SampleDatasetStatus) GetCreateDate() time.Time {
 // GetCreateDateOk returns a tuple with the CreateDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetCreateDateOk() (*time.Time, bool) {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		return nil, false
 	}
 	return o.CreateDate, true
@@ -164,7 +167,7 @@ func (o *SampleDatasetStatus) GetCreateDateOk() (*time.Time, bool) {
 
 // HasCreateDate returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasCreateDate() bool {
-	if o != nil && o.CreateDate != nil {
+	if o != nil && !IsNil(o.CreateDate) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *SampleDatasetStatus) SetCreateDate(v time.Time) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *SampleDatasetStatus) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -196,7 +199,7 @@ func (o *SampleDatasetStatus) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *SampleDatasetStatus) SetErrorMessage(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *SampleDatasetStatus) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *SampleDatasetStatus) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SampleDatasetStatus) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -228,7 +231,7 @@ func (o *SampleDatasetStatus) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *SampleDatasetStatus) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -241,26 +244,22 @@ func (o *SampleDatasetStatus) SetState(v string) {
 }
 
 func (o SampleDatasetStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.CompleteDate != nil {
-		toSerialize["completeDate"] = o.CompleteDate
-	}
-	if o.CreateDate != nil {
-		toSerialize["createDate"] = o.CreateDate
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SampleDatasetStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: clusterName is readOnly
+	// skip: completeDate is readOnly
+	// skip: createDate is readOnly
+	// skip: errorMessage is readOnly
+	// skip: state is readOnly
+	return toSerialize, nil
 }
 
 type NullableSampleDatasetStatus struct {

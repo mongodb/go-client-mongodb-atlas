@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the EventViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EventViewForNdsGroup{}
+
 // EventViewForNdsGroup struct for EventViewForNdsGroup
 type EventViewForNdsGroup struct {
 	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
@@ -95,7 +98,7 @@ func NewEventViewForNdsGroupWithDefaults() *EventViewForNdsGroup {
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *EventViewForNdsGroup) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -113,7 +116,7 @@ func (o *EventViewForNdsGroup) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *EventViewForNdsGroup) SetApiKeyId(v string) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *EventViewForNdsGroup) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -145,7 +148,7 @@ func (o *EventViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *EventViewForNdsGroup) SetCreated(v time.Time) {
 
 // GetEventTypeName returns the EventTypeName field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetEventTypeName() UserEventTypeViewForNdsGroup {
-	if o == nil || o.EventTypeName == nil {
+	if o == nil || IsNil(o.EventTypeName) {
 		var ret UserEventTypeViewForNdsGroup
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *EventViewForNdsGroup) GetEventTypeName() UserEventTypeViewForNdsGroup {
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetEventTypeNameOk() (*UserEventTypeViewForNdsGroup, bool) {
-	if o == nil || o.EventTypeName == nil {
+	if o == nil || IsNil(o.EventTypeName) {
 		return nil, false
 	}
 	return o.EventTypeName, true
@@ -177,7 +180,7 @@ func (o *EventViewForNdsGroup) GetEventTypeNameOk() (*UserEventTypeViewForNdsGro
 
 // HasEventTypeName returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasEventTypeName() bool {
-	if o != nil && o.EventTypeName != nil {
+	if o != nil && !IsNil(o.EventTypeName) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *EventViewForNdsGroup) SetEventTypeName(v UserEventTypeViewForNdsGroup) 
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -201,7 +204,7 @@ func (o *EventViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -209,7 +212,7 @@ func (o *EventViewForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *EventViewForNdsGroup) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -233,7 +236,7 @@ func (o *EventViewForNdsGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -241,7 +244,7 @@ func (o *EventViewForNdsGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -255,7 +258,7 @@ func (o *EventViewForNdsGroup) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -265,7 +268,7 @@ func (o *EventViewForNdsGroup) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -273,7 +276,7 @@ func (o *EventViewForNdsGroup) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -287,7 +290,7 @@ func (o *EventViewForNdsGroup) SetIsGlobalAdmin(v bool) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -297,7 +300,7 @@ func (o *EventViewForNdsGroup) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -305,7 +308,7 @@ func (o *EventViewForNdsGroup) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -319,7 +322,7 @@ func (o *EventViewForNdsGroup) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -329,7 +332,7 @@ func (o *EventViewForNdsGroup) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -337,7 +340,7 @@ func (o *EventViewForNdsGroup) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -351,7 +354,7 @@ func (o *EventViewForNdsGroup) SetOrgId(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -361,7 +364,7 @@ func (o *EventViewForNdsGroup) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -369,7 +372,7 @@ func (o *EventViewForNdsGroup) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -383,7 +386,7 @@ func (o *EventViewForNdsGroup) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -393,7 +396,7 @@ func (o *EventViewForNdsGroup) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -401,7 +404,7 @@ func (o *EventViewForNdsGroup) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -415,7 +418,7 @@ func (o *EventViewForNdsGroup) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -425,7 +428,7 @@ func (o *EventViewForNdsGroup) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -433,7 +436,7 @@ func (o *EventViewForNdsGroup) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -447,7 +450,7 @@ func (o *EventViewForNdsGroup) SetRemoteAddress(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -457,7 +460,7 @@ func (o *EventViewForNdsGroup) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -465,7 +468,7 @@ func (o *EventViewForNdsGroup) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -479,7 +482,7 @@ func (o *EventViewForNdsGroup) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -489,7 +492,7 @@ func (o *EventViewForNdsGroup) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -497,7 +500,7 @@ func (o *EventViewForNdsGroup) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -511,7 +514,7 @@ func (o *EventViewForNdsGroup) SetUsername(v string) {
 
 // GetAlertId returns the AlertId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetAlertId() string {
-	if o == nil || o.AlertId == nil {
+	if o == nil || IsNil(o.AlertId) {
 		var ret string
 		return ret
 	}
@@ -521,7 +524,7 @@ func (o *EventViewForNdsGroup) GetAlertId() string {
 // GetAlertIdOk returns a tuple with the AlertId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetAlertIdOk() (*string, bool) {
-	if o == nil || o.AlertId == nil {
+	if o == nil || IsNil(o.AlertId) {
 		return nil, false
 	}
 	return o.AlertId, true
@@ -529,7 +532,7 @@ func (o *EventViewForNdsGroup) GetAlertIdOk() (*string, bool) {
 
 // HasAlertId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasAlertId() bool {
-	if o != nil && o.AlertId != nil {
+	if o != nil && !IsNil(o.AlertId) {
 		return true
 	}
 
@@ -543,7 +546,7 @@ func (o *EventViewForNdsGroup) SetAlertId(v string) {
 
 // GetAlertConfigId returns the AlertConfigId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetAlertConfigId() string {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		var ret string
 		return ret
 	}
@@ -553,7 +556,7 @@ func (o *EventViewForNdsGroup) GetAlertConfigId() string {
 // GetAlertConfigIdOk returns a tuple with the AlertConfigId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetAlertConfigIdOk() (*string, bool) {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		return nil, false
 	}
 	return o.AlertConfigId, true
@@ -561,7 +564,7 @@ func (o *EventViewForNdsGroup) GetAlertConfigIdOk() (*string, bool) {
 
 // HasAlertConfigId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasAlertConfigId() bool {
-	if o != nil && o.AlertConfigId != nil {
+	if o != nil && !IsNil(o.AlertConfigId) {
 		return true
 	}
 
@@ -575,7 +578,7 @@ func (o *EventViewForNdsGroup) SetAlertConfigId(v string) {
 
 // GetInvoiceId returns the InvoiceId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetInvoiceId() string {
-	if o == nil || o.InvoiceId == nil {
+	if o == nil || IsNil(o.InvoiceId) {
 		var ret string
 		return ret
 	}
@@ -585,7 +588,7 @@ func (o *EventViewForNdsGroup) GetInvoiceId() string {
 // GetInvoiceIdOk returns a tuple with the InvoiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetInvoiceIdOk() (*string, bool) {
-	if o == nil || o.InvoiceId == nil {
+	if o == nil || IsNil(o.InvoiceId) {
 		return nil, false
 	}
 	return o.InvoiceId, true
@@ -593,7 +596,7 @@ func (o *EventViewForNdsGroup) GetInvoiceIdOk() (*string, bool) {
 
 // HasInvoiceId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasInvoiceId() bool {
-	if o != nil && o.InvoiceId != nil {
+	if o != nil && !IsNil(o.InvoiceId) {
 		return true
 	}
 
@@ -607,7 +610,7 @@ func (o *EventViewForNdsGroup) SetInvoiceId(v string) {
 
 // GetPaymentId returns the PaymentId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetPaymentId() string {
-	if o == nil || o.PaymentId == nil {
+	if o == nil || IsNil(o.PaymentId) {
 		var ret string
 		return ret
 	}
@@ -617,7 +620,7 @@ func (o *EventViewForNdsGroup) GetPaymentId() string {
 // GetPaymentIdOk returns a tuple with the PaymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetPaymentIdOk() (*string, bool) {
-	if o == nil || o.PaymentId == nil {
+	if o == nil || IsNil(o.PaymentId) {
 		return nil, false
 	}
 	return o.PaymentId, true
@@ -625,7 +628,7 @@ func (o *EventViewForNdsGroup) GetPaymentIdOk() (*string, bool) {
 
 // HasPaymentId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasPaymentId() bool {
-	if o != nil && o.PaymentId != nil {
+	if o != nil && !IsNil(o.PaymentId) {
 		return true
 	}
 
@@ -639,7 +642,7 @@ func (o *EventViewForNdsGroup) SetPaymentId(v string) {
 
 // GetShardName returns the ShardName field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetShardName() string {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		var ret string
 		return ret
 	}
@@ -649,7 +652,7 @@ func (o *EventViewForNdsGroup) GetShardName() string {
 // GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetShardNameOk() (*string, bool) {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		return nil, false
 	}
 	return o.ShardName, true
@@ -657,7 +660,7 @@ func (o *EventViewForNdsGroup) GetShardNameOk() (*string, bool) {
 
 // HasShardName returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasShardName() bool {
-	if o != nil && o.ShardName != nil {
+	if o != nil && !IsNil(o.ShardName) {
 		return true
 	}
 
@@ -671,7 +674,7 @@ func (o *EventViewForNdsGroup) SetShardName(v string) {
 
 // GetCollection returns the Collection field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetCollection() string {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		var ret string
 		return ret
 	}
@@ -681,7 +684,7 @@ func (o *EventViewForNdsGroup) GetCollection() string {
 // GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetCollectionOk() (*string, bool) {
-	if o == nil || o.Collection == nil {
+	if o == nil || IsNil(o.Collection) {
 		return nil, false
 	}
 	return o.Collection, true
@@ -689,7 +692,7 @@ func (o *EventViewForNdsGroup) GetCollectionOk() (*string, bool) {
 
 // HasCollection returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasCollection() bool {
-	if o != nil && o.Collection != nil {
+	if o != nil && !IsNil(o.Collection) {
 		return true
 	}
 
@@ -703,7 +706,7 @@ func (o *EventViewForNdsGroup) SetCollection(v string) {
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetDatabase() string {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret string
 		return ret
 	}
@@ -713,7 +716,7 @@ func (o *EventViewForNdsGroup) GetDatabase() string {
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetDatabaseOk() (*string, bool) {
-	if o == nil || o.Database == nil {
+	if o == nil || IsNil(o.Database) {
 		return nil, false
 	}
 	return o.Database, true
@@ -721,7 +724,7 @@ func (o *EventViewForNdsGroup) GetDatabaseOk() (*string, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasDatabase() bool {
-	if o != nil && o.Database != nil {
+	if o != nil && !IsNil(o.Database) {
 		return true
 	}
 
@@ -735,7 +738,7 @@ func (o *EventViewForNdsGroup) SetDatabase(v string) {
 
 // GetOpType returns the OpType field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetOpType() string {
-	if o == nil || o.OpType == nil {
+	if o == nil || IsNil(o.OpType) {
 		var ret string
 		return ret
 	}
@@ -745,7 +748,7 @@ func (o *EventViewForNdsGroup) GetOpType() string {
 // GetOpTypeOk returns a tuple with the OpType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetOpTypeOk() (*string, bool) {
-	if o == nil || o.OpType == nil {
+	if o == nil || IsNil(o.OpType) {
 		return nil, false
 	}
 	return o.OpType, true
@@ -753,7 +756,7 @@ func (o *EventViewForNdsGroup) GetOpTypeOk() (*string, bool) {
 
 // HasOpType returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasOpType() bool {
-	if o != nil && o.OpType != nil {
+	if o != nil && !IsNil(o.OpType) {
 		return true
 	}
 
@@ -767,7 +770,7 @@ func (o *EventViewForNdsGroup) SetOpType(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetPort() int32 {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -777,7 +780,7 @@ func (o *EventViewForNdsGroup) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetPortOk() (*int32, bool) {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
 	return o.Port, true
@@ -785,7 +788,7 @@ func (o *EventViewForNdsGroup) GetPortOk() (*int32, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasPort() bool {
-	if o != nil && o.Port != nil {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -799,7 +802,7 @@ func (o *EventViewForNdsGroup) SetPort(v int32) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -809,7 +812,7 @@ func (o *EventViewForNdsGroup) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -817,7 +820,7 @@ func (o *EventViewForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -831,7 +834,7 @@ func (o *EventViewForNdsGroup) SetReplicaSetName(v string) {
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetCurrentValue() HostMetricValueView {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		var ret HostMetricValueView
 		return ret
 	}
@@ -841,7 +844,7 @@ func (o *EventViewForNdsGroup) GetCurrentValue() HostMetricValueView {
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
 	return o.CurrentValue, true
@@ -849,7 +852,7 @@ func (o *EventViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) 
 
 // HasCurrentValue returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasCurrentValue() bool {
-	if o != nil && o.CurrentValue != nil {
+	if o != nil && !IsNil(o.CurrentValue) {
 		return true
 	}
 
@@ -863,7 +866,7 @@ func (o *EventViewForNdsGroup) SetCurrentValue(v HostMetricValueView) {
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetMetricName() string {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		var ret string
 		return ret
 	}
@@ -873,7 +876,7 @@ func (o *EventViewForNdsGroup) GetMetricName() string {
 // GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetMetricNameOk() (*string, bool) {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		return nil, false
 	}
 	return o.MetricName, true
@@ -881,7 +884,7 @@ func (o *EventViewForNdsGroup) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
+	if o != nil && !IsNil(o.MetricName) {
 		return true
 	}
 
@@ -895,7 +898,7 @@ func (o *EventViewForNdsGroup) SetMetricName(v string) {
 
 // GetWhitelistEntry returns the WhitelistEntry field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetWhitelistEntry() string {
-	if o == nil || o.WhitelistEntry == nil {
+	if o == nil || IsNil(o.WhitelistEntry) {
 		var ret string
 		return ret
 	}
@@ -905,7 +908,7 @@ func (o *EventViewForNdsGroup) GetWhitelistEntry() string {
 // GetWhitelistEntryOk returns a tuple with the WhitelistEntry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetWhitelistEntryOk() (*string, bool) {
-	if o == nil || o.WhitelistEntry == nil {
+	if o == nil || IsNil(o.WhitelistEntry) {
 		return nil, false
 	}
 	return o.WhitelistEntry, true
@@ -913,7 +916,7 @@ func (o *EventViewForNdsGroup) GetWhitelistEntryOk() (*string, bool) {
 
 // HasWhitelistEntry returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasWhitelistEntry() bool {
-	if o != nil && o.WhitelistEntry != nil {
+	if o != nil && !IsNil(o.WhitelistEntry) {
 		return true
 	}
 
@@ -927,7 +930,7 @@ func (o *EventViewForNdsGroup) SetWhitelistEntry(v string) {
 
 // GetEndpointId returns the EndpointId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetEndpointId() string {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		var ret string
 		return ret
 	}
@@ -937,7 +940,7 @@ func (o *EventViewForNdsGroup) GetEndpointId() string {
 // GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetEndpointIdOk() (*string, bool) {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		return nil, false
 	}
 	return o.EndpointId, true
@@ -945,7 +948,7 @@ func (o *EventViewForNdsGroup) GetEndpointIdOk() (*string, bool) {
 
 // HasEndpointId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasEndpointId() bool {
-	if o != nil && o.EndpointId != nil {
+	if o != nil && !IsNil(o.EndpointId) {
 		return true
 	}
 
@@ -959,7 +962,7 @@ func (o *EventViewForNdsGroup) SetEndpointId(v string) {
 
 // GetProviderEndpointId returns the ProviderEndpointId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetProviderEndpointId() string {
-	if o == nil || o.ProviderEndpointId == nil {
+	if o == nil || IsNil(o.ProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -969,7 +972,7 @@ func (o *EventViewForNdsGroup) GetProviderEndpointId() string {
 // GetProviderEndpointIdOk returns a tuple with the ProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.ProviderEndpointId == nil {
+	if o == nil || IsNil(o.ProviderEndpointId) {
 		return nil, false
 	}
 	return o.ProviderEndpointId, true
@@ -977,7 +980,7 @@ func (o *EventViewForNdsGroup) GetProviderEndpointIdOk() (*string, bool) {
 
 // HasProviderEndpointId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasProviderEndpointId() bool {
-	if o != nil && o.ProviderEndpointId != nil {
+	if o != nil && !IsNil(o.ProviderEndpointId) {
 		return true
 	}
 
@@ -991,7 +994,7 @@ func (o *EventViewForNdsGroup) SetProviderEndpointId(v string) {
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetTeamId() string {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		var ret string
 		return ret
 	}
@@ -1001,7 +1004,7 @@ func (o *EventViewForNdsGroup) GetTeamId() string {
 // GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetTeamIdOk() (*string, bool) {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		return nil, false
 	}
 	return o.TeamId, true
@@ -1009,7 +1012,7 @@ func (o *EventViewForNdsGroup) GetTeamIdOk() (*string, bool) {
 
 // HasTeamId returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasTeamId() bool {
-	if o != nil && o.TeamId != nil {
+	if o != nil && !IsNil(o.TeamId) {
 		return true
 	}
 
@@ -1023,7 +1026,7 @@ func (o *EventViewForNdsGroup) SetTeamId(v string) {
 
 // GetTargetUsername returns the TargetUsername field value if set, zero value otherwise.
 func (o *EventViewForNdsGroup) GetTargetUsername() string {
-	if o == nil || o.TargetUsername == nil {
+	if o == nil || IsNil(o.TargetUsername) {
 		var ret string
 		return ret
 	}
@@ -1033,7 +1036,7 @@ func (o *EventViewForNdsGroup) GetTargetUsername() string {
 // GetTargetUsernameOk returns a tuple with the TargetUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventViewForNdsGroup) GetTargetUsernameOk() (*string, bool) {
-	if o == nil || o.TargetUsername == nil {
+	if o == nil || IsNil(o.TargetUsername) {
 		return nil, false
 	}
 	return o.TargetUsername, true
@@ -1041,7 +1044,7 @@ func (o *EventViewForNdsGroup) GetTargetUsernameOk() (*string, bool) {
 
 // HasTargetUsername returns a boolean if a field has been set.
 func (o *EventViewForNdsGroup) HasTargetUsername() bool {
-	if o != nil && o.TargetUsername != nil {
+	if o != nil && !IsNil(o.TargetUsername) {
 		return true
 	}
 
@@ -1054,98 +1057,52 @@ func (o *EventViewForNdsGroup) SetTargetUsername(v string) {
 }
 
 func (o EventViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.EventTypeName != nil {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
-	}
-	if o.AlertId != nil {
-		toSerialize["alertId"] = o.AlertId
-	}
-	if o.AlertConfigId != nil {
-		toSerialize["alertConfigId"] = o.AlertConfigId
-	}
-	if o.InvoiceId != nil {
-		toSerialize["invoiceId"] = o.InvoiceId
-	}
-	if o.PaymentId != nil {
-		toSerialize["paymentId"] = o.PaymentId
-	}
-	if o.ShardName != nil {
-		toSerialize["shardName"] = o.ShardName
-	}
-	if o.Collection != nil {
-		toSerialize["collection"] = o.Collection
-	}
-	if o.Database != nil {
-		toSerialize["database"] = o.Database
-	}
-	if o.OpType != nil {
-		toSerialize["opType"] = o.OpType
-	}
-	if o.Port != nil {
-		toSerialize["port"] = o.Port
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.CurrentValue != nil {
-		toSerialize["currentValue"] = o.CurrentValue
-	}
-	if o.MetricName != nil {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if o.WhitelistEntry != nil {
-		toSerialize["whitelistEntry"] = o.WhitelistEntry
-	}
-	if o.EndpointId != nil {
-		toSerialize["endpointId"] = o.EndpointId
-	}
-	if o.ProviderEndpointId != nil {
-		toSerialize["providerEndpointId"] = o.ProviderEndpointId
-	}
-	if o.TeamId != nil {
-		toSerialize["teamId"] = o.TeamId
-	}
-	if o.TargetUsername != nil {
-		toSerialize["targetUsername"] = o.TargetUsername
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EventViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiKeyId is readOnly
+	// skip: created is readOnly
+	if !IsNil(o.EventTypeName) {
+		toSerialize["eventTypeName"] = o.EventTypeName
+	}
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	// skip: alertId is readOnly
+	// skip: alertConfigId is readOnly
+	// skip: invoiceId is readOnly
+	// skip: paymentId is readOnly
+	// skip: shardName is readOnly
+	// skip: collection is readOnly
+	// skip: database is readOnly
+	// skip: opType is readOnly
+	// skip: port is readOnly
+	// skip: replicaSetName is readOnly
+	if !IsNil(o.CurrentValue) {
+		toSerialize["currentValue"] = o.CurrentValue
+	}
+	// skip: metricName is readOnly
+	// skip: whitelistEntry is readOnly
+	// skip: endpointId is readOnly
+	// skip: providerEndpointId is readOnly
+	// skip: teamId is readOnly
+	// skip: targetUsername is readOnly
+	return toSerialize, nil
 }
 
 type NullableEventViewForNdsGroup struct {

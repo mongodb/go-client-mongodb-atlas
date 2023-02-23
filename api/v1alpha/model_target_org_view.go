@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TargetOrgView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TargetOrgView{}
+
 // TargetOrgView struct for TargetOrgView
 type TargetOrgView struct {
 	// Link token that contains all the information required to complete the link.
@@ -62,11 +65,17 @@ func (o *TargetOrgView) SetLinkToken(v string) {
 }
 
 func (o TargetOrgView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["linkToken"] = o.LinkToken
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TargetOrgView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["linkToken"] = o.LinkToken
+	return toSerialize, nil
 }
 
 type NullableTargetOrgView struct {

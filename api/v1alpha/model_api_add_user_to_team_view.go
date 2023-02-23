@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiAddUserToTeamView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAddUserToTeamView{}
+
 // ApiAddUserToTeamView struct for ApiAddUserToTeamView
 type ApiAddUserToTeamView struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
@@ -62,11 +65,17 @@ func (o *ApiAddUserToTeamView) SetId(v string) {
 }
 
 func (o ApiAddUserToTeamView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAddUserToTeamView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
 }
 
 type NullableApiAddUserToTeamView struct {

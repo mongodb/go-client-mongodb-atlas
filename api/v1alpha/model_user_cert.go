@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the UserCert type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserCert{}
+
 // UserCert struct for UserCert
 type UserCert struct {
 	// Unique 24-hexadecimal character string that identifies this certificate.
@@ -56,7 +59,7 @@ func NewUserCertWithDefaults() *UserCert {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UserCert) GetId() int64 {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
@@ -66,7 +69,7 @@ func (o *UserCert) GetId() int64 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetIdOk() (*int64, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -74,7 +77,7 @@ func (o *UserCert) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UserCert) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *UserCert) SetId(v int64) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *UserCert) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -98,7 +101,7 @@ func (o *UserCert) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -106,7 +109,7 @@ func (o *UserCert) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *UserCert) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *UserCert) SetCreatedAt(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *UserCert) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *UserCert) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -138,7 +141,7 @@ func (o *UserCert) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *UserCert) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *UserCert) SetGroupId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *UserCert) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *UserCert) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -170,7 +173,7 @@ func (o *UserCert) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *UserCert) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *UserCert) SetLinks(v []Link) {
 
 // GetMonthsUntilExpiration returns the MonthsUntilExpiration field value if set, zero value otherwise.
 func (o *UserCert) GetMonthsUntilExpiration() int32 {
-	if o == nil || o.MonthsUntilExpiration == nil {
+	if o == nil || IsNil(o.MonthsUntilExpiration) {
 		var ret int32
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *UserCert) GetMonthsUntilExpiration() int32 {
 // GetMonthsUntilExpirationOk returns a tuple with the MonthsUntilExpiration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetMonthsUntilExpirationOk() (*int32, bool) {
-	if o == nil || o.MonthsUntilExpiration == nil {
+	if o == nil || IsNil(o.MonthsUntilExpiration) {
 		return nil, false
 	}
 	return o.MonthsUntilExpiration, true
@@ -202,7 +205,7 @@ func (o *UserCert) GetMonthsUntilExpirationOk() (*int32, bool) {
 
 // HasMonthsUntilExpiration returns a boolean if a field has been set.
 func (o *UserCert) HasMonthsUntilExpiration() bool {
-	if o != nil && o.MonthsUntilExpiration != nil {
+	if o != nil && !IsNil(o.MonthsUntilExpiration) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *UserCert) SetMonthsUntilExpiration(v int32) {
 
 // GetNotAfter returns the NotAfter field value if set, zero value otherwise.
 func (o *UserCert) GetNotAfter() time.Time {
-	if o == nil || o.NotAfter == nil {
+	if o == nil || IsNil(o.NotAfter) {
 		var ret time.Time
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *UserCert) GetNotAfter() time.Time {
 // GetNotAfterOk returns a tuple with the NotAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetNotAfterOk() (*time.Time, bool) {
-	if o == nil || o.NotAfter == nil {
+	if o == nil || IsNil(o.NotAfter) {
 		return nil, false
 	}
 	return o.NotAfter, true
@@ -234,7 +237,7 @@ func (o *UserCert) GetNotAfterOk() (*time.Time, bool) {
 
 // HasNotAfter returns a boolean if a field has been set.
 func (o *UserCert) HasNotAfter() bool {
-	if o != nil && o.NotAfter != nil {
+	if o != nil && !IsNil(o.NotAfter) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *UserCert) SetNotAfter(v time.Time) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *UserCert) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -258,7 +261,7 @@ func (o *UserCert) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCert) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -266,7 +269,7 @@ func (o *UserCert) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *UserCert) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -279,29 +282,25 @@ func (o *UserCert) SetSubject(v string) {
 }
 
 func (o UserCert) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MonthsUntilExpiration != nil {
-		toSerialize["monthsUntilExpiration"] = o.MonthsUntilExpiration
-	}
-	if o.NotAfter != nil {
-		toSerialize["notAfter"] = o.NotAfter
-	}
-	if o.Subject != nil {
-		toSerialize["subject"] = o.Subject
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserCert) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: createdAt is readOnly
+	// skip: groupId is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.MonthsUntilExpiration) {
+		toSerialize["monthsUntilExpiration"] = o.MonthsUntilExpiration
+	}
+	// skip: notAfter is readOnly
+	// skip: subject is readOnly
+	return toSerialize, nil
 }
 
 type NullableUserCert struct {

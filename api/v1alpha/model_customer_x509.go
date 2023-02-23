@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CustomerX509 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CustomerX509{}
+
 // CustomerX509 Settings to configure TLS Certificates for database users.
 type CustomerX509 struct {
 	// Concatenated list of customer certificate authority (CA) certificates needed to authenticate database users. MongoDB Cloud expects this as a PEM-formatted certificate.
@@ -41,7 +44,7 @@ func NewCustomerX509WithDefaults() *CustomerX509 {
 
 // GetCas returns the Cas field value if set, zero value otherwise.
 func (o *CustomerX509) GetCas() string {
-	if o == nil || o.Cas == nil {
+	if o == nil || IsNil(o.Cas) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *CustomerX509) GetCas() string {
 // GetCasOk returns a tuple with the Cas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomerX509) GetCasOk() (*string, bool) {
-	if o == nil || o.Cas == nil {
+	if o == nil || IsNil(o.Cas) {
 		return nil, false
 	}
 	return o.Cas, true
@@ -59,7 +62,7 @@ func (o *CustomerX509) GetCasOk() (*string, bool) {
 
 // HasCas returns a boolean if a field has been set.
 func (o *CustomerX509) HasCas() bool {
-	if o != nil && o.Cas != nil {
+	if o != nil && !IsNil(o.Cas) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CustomerX509) SetCas(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *CustomerX509) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *CustomerX509) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomerX509) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -91,7 +94,7 @@ func (o *CustomerX509) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *CustomerX509) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *CustomerX509) SetLinks(v []Link) {
 }
 
 func (o CustomerX509) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Cas != nil {
-		toSerialize["cas"] = o.Cas
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CustomerX509) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Cas) {
+		toSerialize["cas"] = o.Cas
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableCustomerX509 struct {

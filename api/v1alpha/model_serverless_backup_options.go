@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessBackupOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessBackupOptions{}
+
 // ServerlessBackupOptions Group of settings that configure serverless backup.
 type ServerlessBackupOptions struct {
 	// Flag that indicates whether the serverless instance uses **Serverless Continuous Backup**.  If this parameter is `false`, the serverless instance uses **Basic Backup**.   | Option | Description |  |---|---|  | Serverless Continuous Backup | Atlas takes incremental [snapshots](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-serverless-snapshots) of the data in your serverless instance every six hours and lets you restore the data from a selected point in time within the last 72 hours. Atlas also takes daily snapshots and retains these daily snapshots for 35 days. To learn more, see [Serverless Instance Costs](https://www.mongodb.com/docs/atlas/billing/serverless-instance-costs/#std-label-serverless-instance-costs). |  | Basic Backup | Atlas takes incremental [snapshots](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-serverless-snapshots) of the data in your serverless instance every six hours and retains only the two most recent snapshots. You can use this option for free. |
@@ -43,7 +46,7 @@ func NewServerlessBackupOptionsWithDefaults() *ServerlessBackupOptions {
 
 // GetServerlessContinuousBackupEnabled returns the ServerlessContinuousBackupEnabled field value if set, zero value otherwise.
 func (o *ServerlessBackupOptions) GetServerlessContinuousBackupEnabled() bool {
-	if o == nil || o.ServerlessContinuousBackupEnabled == nil {
+	if o == nil || IsNil(o.ServerlessContinuousBackupEnabled) {
 		var ret bool
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ServerlessBackupOptions) GetServerlessContinuousBackupEnabled() bool {
 // GetServerlessContinuousBackupEnabledOk returns a tuple with the ServerlessContinuousBackupEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessBackupOptions) GetServerlessContinuousBackupEnabledOk() (*bool, bool) {
-	if o == nil || o.ServerlessContinuousBackupEnabled == nil {
+	if o == nil || IsNil(o.ServerlessContinuousBackupEnabled) {
 		return nil, false
 	}
 	return o.ServerlessContinuousBackupEnabled, true
@@ -61,7 +64,7 @@ func (o *ServerlessBackupOptions) GetServerlessContinuousBackupEnabledOk() (*boo
 
 // HasServerlessContinuousBackupEnabled returns a boolean if a field has been set.
 func (o *ServerlessBackupOptions) HasServerlessContinuousBackupEnabled() bool {
-	if o != nil && o.ServerlessContinuousBackupEnabled != nil {
+	if o != nil && !IsNil(o.ServerlessContinuousBackupEnabled) {
 		return true
 	}
 
@@ -74,11 +77,19 @@ func (o *ServerlessBackupOptions) SetServerlessContinuousBackupEnabled(v bool) {
 }
 
 func (o ServerlessBackupOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ServerlessContinuousBackupEnabled != nil {
-		toSerialize["serverlessContinuousBackupEnabled"] = o.ServerlessContinuousBackupEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessBackupOptions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ServerlessContinuousBackupEnabled) {
+		toSerialize["serverlessContinuousBackupEnabled"] = o.ServerlessContinuousBackupEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessBackupOptions struct {

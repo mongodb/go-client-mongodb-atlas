@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ValidationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ValidationView{}
+
 // ValidationView struct for ValidationView
 type ValidationView struct {
 	Id *string `json:"_id,omitempty"`
@@ -46,7 +49,7 @@ func NewValidationViewWithDefaults() *ValidationView {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ValidationView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *ValidationView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidationView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -64,7 +67,7 @@ func (o *ValidationView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ValidationView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *ValidationView) SetId(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationView) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage.Get() == nil {
+	if o == nil || IsNil(o.ErrorMessage.Get()) {
 		var ret string
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *ValidationView) UnsetErrorMessage() {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ValidationView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *ValidationView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidationView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -138,7 +141,7 @@ func (o *ValidationView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ValidationView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *ValidationView) SetGroupId(v string) {
 
 // GetSourceGroupId returns the SourceGroupId field value if set, zero value otherwise.
 func (o *ValidationView) GetSourceGroupId() string {
-	if o == nil || o.SourceGroupId == nil {
+	if o == nil || IsNil(o.SourceGroupId) {
 		var ret string
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *ValidationView) GetSourceGroupId() string {
 // GetSourceGroupIdOk returns a tuple with the SourceGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ValidationView) GetSourceGroupIdOk() (*string, bool) {
-	if o == nil || o.SourceGroupId == nil {
+	if o == nil || IsNil(o.SourceGroupId) {
 		return nil, false
 	}
 	return o.SourceGroupId, true
@@ -170,7 +173,7 @@ func (o *ValidationView) GetSourceGroupIdOk() (*string, bool) {
 
 // HasSourceGroupId returns a boolean if a field has been set.
 func (o *ValidationView) HasSourceGroupId() bool {
-	if o != nil && o.SourceGroupId != nil {
+	if o != nil && !IsNil(o.SourceGroupId) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *ValidationView) SetSourceGroupId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationView) GetStatus() string {
-	if o == nil || o.Status.Get() == nil {
+	if o == nil || IsNil(o.Status.Get()) {
 		var ret string
 		return ret
 	}
@@ -225,23 +228,29 @@ func (o *ValidationView) UnsetStatus() {
 }
 
 func (o ValidationView) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ValidationView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
 	}
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
 	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.SourceGroupId != nil {
+	// skip: groupId is readOnly
+	if !IsNil(o.SourceGroupId) {
 		toSerialize["sourceGroupId"] = o.SourceGroupId
 	}
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableValidationView struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiRefundView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiRefundView{}
+
 // ApiRefundView One payment that MongoDB returned to the organization for this invoice.
 type ApiRefundView struct {
 	// Sum of the funds returned to the specified organization expressed in cents (100th of US Dollar).
@@ -46,7 +49,7 @@ func NewApiRefundViewWithDefaults() *ApiRefundView {
 
 // GetAmountCents returns the AmountCents field value if set, zero value otherwise.
 func (o *ApiRefundView) GetAmountCents() int64 {
-	if o == nil || o.AmountCents == nil {
+	if o == nil || IsNil(o.AmountCents) {
 		var ret int64
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *ApiRefundView) GetAmountCents() int64 {
 // GetAmountCentsOk returns a tuple with the AmountCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRefundView) GetAmountCentsOk() (*int64, bool) {
-	if o == nil || o.AmountCents == nil {
+	if o == nil || IsNil(o.AmountCents) {
 		return nil, false
 	}
 	return o.AmountCents, true
@@ -64,7 +67,7 @@ func (o *ApiRefundView) GetAmountCentsOk() (*int64, bool) {
 
 // HasAmountCents returns a boolean if a field has been set.
 func (o *ApiRefundView) HasAmountCents() bool {
-	if o != nil && o.AmountCents != nil {
+	if o != nil && !IsNil(o.AmountCents) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *ApiRefundView) SetAmountCents(v int64) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiRefundView) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *ApiRefundView) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRefundView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -96,7 +99,7 @@ func (o *ApiRefundView) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiRefundView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *ApiRefundView) SetCreated(v time.Time) {
 
 // GetPaymentId returns the PaymentId field value if set, zero value otherwise.
 func (o *ApiRefundView) GetPaymentId() string {
-	if o == nil || o.PaymentId == nil {
+	if o == nil || IsNil(o.PaymentId) {
 		var ret string
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *ApiRefundView) GetPaymentId() string {
 // GetPaymentIdOk returns a tuple with the PaymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRefundView) GetPaymentIdOk() (*string, bool) {
-	if o == nil || o.PaymentId == nil {
+	if o == nil || IsNil(o.PaymentId) {
 		return nil, false
 	}
 	return o.PaymentId, true
@@ -128,7 +131,7 @@ func (o *ApiRefundView) GetPaymentIdOk() (*string, bool) {
 
 // HasPaymentId returns a boolean if a field has been set.
 func (o *ApiRefundView) HasPaymentId() bool {
-	if o != nil && o.PaymentId != nil {
+	if o != nil && !IsNil(o.PaymentId) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *ApiRefundView) SetPaymentId(v string) {
 
 // GetReason returns the Reason field value if set, zero value otherwise.
 func (o *ApiRefundView) GetReason() string {
-	if o == nil || o.Reason == nil {
+	if o == nil || IsNil(o.Reason) {
 		var ret string
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *ApiRefundView) GetReason() string {
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRefundView) GetReasonOk() (*string, bool) {
-	if o == nil || o.Reason == nil {
+	if o == nil || IsNil(o.Reason) {
 		return nil, false
 	}
 	return o.Reason, true
@@ -160,7 +163,7 @@ func (o *ApiRefundView) GetReasonOk() (*string, bool) {
 
 // HasReason returns a boolean if a field has been set.
 func (o *ApiRefundView) HasReason() bool {
-	if o != nil && o.Reason != nil {
+	if o != nil && !IsNil(o.Reason) {
 		return true
 	}
 
@@ -173,20 +176,20 @@ func (o *ApiRefundView) SetReason(v string) {
 }
 
 func (o ApiRefundView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AmountCents != nil {
-		toSerialize["amountCents"] = o.AmountCents
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.PaymentId != nil {
-		toSerialize["paymentId"] = o.PaymentId
-	}
-	if o.Reason != nil {
-		toSerialize["reason"] = o.Reason
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiRefundView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: amountCents is readOnly
+	// skip: created is readOnly
+	// skip: paymentId is readOnly
+	// skip: reason is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiRefundView struct {

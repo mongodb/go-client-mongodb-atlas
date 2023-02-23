@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenizernGram type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenizernGram{}
+
 // TokenizernGram Tokenizer that splits input into text chunks, or \"n-grams\", of into given sizes. You can't use the nGram tokenizer in synonym or autocomplete mapping definitions.
 type TokenizernGram struct {
 	// Characters to include in the longest token that Atlas Search creates.
@@ -114,17 +117,19 @@ func (o *TokenizernGram) SetType(v string) {
 }
 
 func (o TokenizernGram) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["maxGram"] = o.MaxGram
-	}
-	if true {
-		toSerialize["minGram"] = o.MinGram
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenizernGram) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["maxGram"] = o.MaxGram
+	toSerialize["minGram"] = o.MinGram
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizernGram struct {

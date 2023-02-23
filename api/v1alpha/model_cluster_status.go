@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterStatus{}
+
 // ClusterStatus struct for ClusterStatus
 type ClusterStatus struct {
 	// State of cluster at the time of this request.
@@ -41,7 +44,7 @@ func NewClusterStatusWithDefaults() *ClusterStatus {
 
 // GetChangeStatus returns the ChangeStatus field value if set, zero value otherwise.
 func (o *ClusterStatus) GetChangeStatus() string {
-	if o == nil || o.ChangeStatus == nil {
+	if o == nil || IsNil(o.ChangeStatus) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ClusterStatus) GetChangeStatus() string {
 // GetChangeStatusOk returns a tuple with the ChangeStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterStatus) GetChangeStatusOk() (*string, bool) {
-	if o == nil || o.ChangeStatus == nil {
+	if o == nil || IsNil(o.ChangeStatus) {
 		return nil, false
 	}
 	return o.ChangeStatus, true
@@ -59,7 +62,7 @@ func (o *ClusterStatus) GetChangeStatusOk() (*string, bool) {
 
 // HasChangeStatus returns a boolean if a field has been set.
 func (o *ClusterStatus) HasChangeStatus() bool {
-	if o != nil && o.ChangeStatus != nil {
+	if o != nil && !IsNil(o.ChangeStatus) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ClusterStatus) SetChangeStatus(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ClusterStatus) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ClusterStatus) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterStatus) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -91,7 +94,7 @@ func (o *ClusterStatus) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ClusterStatus) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *ClusterStatus) SetLinks(v []Link) {
 }
 
 func (o ClusterStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ChangeStatus != nil {
-		toSerialize["changeStatus"] = o.ChangeStatus
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ChangeStatus) {
+		toSerialize["changeStatus"] = o.ChangeStatus
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterStatus struct {

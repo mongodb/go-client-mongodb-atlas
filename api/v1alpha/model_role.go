@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Role type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Role{}
+
 // Role Range of resources available to this database user.
 type Role struct {
 	// Collection on which this role applies.
@@ -114,17 +117,19 @@ func (o *Role) SetRoleName(v string) {
 }
 
 func (o Role) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["collectionName"] = o.CollectionName
-	}
-	if true {
-		toSerialize["databaseName"] = o.DatabaseName
-	}
-	if true {
-		toSerialize["roleName"] = o.RoleName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Role) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["collectionName"] = o.CollectionName
+	toSerialize["databaseName"] = o.DatabaseName
+	toSerialize["roleName"] = o.RoleName
+	return toSerialize, nil
 }
 
 type NullableRole struct {

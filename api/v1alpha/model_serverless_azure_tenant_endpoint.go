@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessAzureTenantEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessAzureTenantEndpoint{}
+
 // ServerlessAzureTenantEndpoint View for a serverless Azure tenant endpoint.
 type ServerlessAzureTenantEndpoint struct {
 	// Unique 24-hexadecimal digit string that identifies the private endpoint.
@@ -55,7 +58,7 @@ func NewServerlessAzureTenantEndpointWithDefaults() *ServerlessAzureTenantEndpoi
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *ServerlessAzureTenantEndpoint) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -73,7 +76,7 @@ func (o *ServerlessAzureTenantEndpoint) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *ServerlessAzureTenantEndpoint) SetId(v string) {
 
 // GetCloudProviderEndpointId returns the CloudProviderEndpointId field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetCloudProviderEndpointId() string {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -97,7 +100,7 @@ func (o *ServerlessAzureTenantEndpoint) GetCloudProviderEndpointId() string {
 // GetCloudProviderEndpointIdOk returns a tuple with the CloudProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetCloudProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		return nil, false
 	}
 	return o.CloudProviderEndpointId, true
@@ -105,7 +108,7 @@ func (o *ServerlessAzureTenantEndpoint) GetCloudProviderEndpointIdOk() (*string,
 
 // HasCloudProviderEndpointId returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasCloudProviderEndpointId() bool {
-	if o != nil && o.CloudProviderEndpointId != nil {
+	if o != nil && !IsNil(o.CloudProviderEndpointId) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *ServerlessAzureTenantEndpoint) SetCloudProviderEndpointId(v string) {
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *ServerlessAzureTenantEndpoint) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -137,7 +140,7 @@ func (o *ServerlessAzureTenantEndpoint) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *ServerlessAzureTenantEndpoint) SetComment(v string) {
 
 // GetEndpointServiceName returns the EndpointServiceName field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetEndpointServiceName() string {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *ServerlessAzureTenantEndpoint) GetEndpointServiceName() string {
 // GetEndpointServiceNameOk returns a tuple with the EndpointServiceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetEndpointServiceNameOk() (*string, bool) {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		return nil, false
 	}
 	return o.EndpointServiceName, true
@@ -169,7 +172,7 @@ func (o *ServerlessAzureTenantEndpoint) GetEndpointServiceNameOk() (*string, boo
 
 // HasEndpointServiceName returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasEndpointServiceName() bool {
-	if o != nil && o.EndpointServiceName != nil {
+	if o != nil && !IsNil(o.EndpointServiceName) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *ServerlessAzureTenantEndpoint) SetEndpointServiceName(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *ServerlessAzureTenantEndpoint) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -201,7 +204,7 @@ func (o *ServerlessAzureTenantEndpoint) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *ServerlessAzureTenantEndpoint) SetErrorMessage(v string) {
 
 // GetPrivateEndpointIpAddress returns the PrivateEndpointIpAddress field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetPrivateEndpointIpAddress() string {
-	if o == nil || o.PrivateEndpointIpAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIpAddress) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *ServerlessAzureTenantEndpoint) GetPrivateEndpointIpAddress() string {
 // GetPrivateEndpointIpAddressOk returns a tuple with the PrivateEndpointIpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetPrivateEndpointIpAddressOk() (*string, bool) {
-	if o == nil || o.PrivateEndpointIpAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIpAddress) {
 		return nil, false
 	}
 	return o.PrivateEndpointIpAddress, true
@@ -233,7 +236,7 @@ func (o *ServerlessAzureTenantEndpoint) GetPrivateEndpointIpAddressOk() (*string
 
 // HasPrivateEndpointIpAddress returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasPrivateEndpointIpAddress() bool {
-	if o != nil && o.PrivateEndpointIpAddress != nil {
+	if o != nil && !IsNil(o.PrivateEndpointIpAddress) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *ServerlessAzureTenantEndpoint) SetPrivateEndpointIpAddress(v string) {
 
 // GetPrivateLinkServiceResourceId returns the PrivateLinkServiceResourceId field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetPrivateLinkServiceResourceId() string {
-	if o == nil || o.PrivateLinkServiceResourceId == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceResourceId) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *ServerlessAzureTenantEndpoint) GetPrivateLinkServiceResourceId() string
 // GetPrivateLinkServiceResourceIdOk returns a tuple with the PrivateLinkServiceResourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetPrivateLinkServiceResourceIdOk() (*string, bool) {
-	if o == nil || o.PrivateLinkServiceResourceId == nil {
+	if o == nil || IsNil(o.PrivateLinkServiceResourceId) {
 		return nil, false
 	}
 	return o.PrivateLinkServiceResourceId, true
@@ -265,7 +268,7 @@ func (o *ServerlessAzureTenantEndpoint) GetPrivateLinkServiceResourceIdOk() (*st
 
 // HasPrivateLinkServiceResourceId returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasPrivateLinkServiceResourceId() bool {
-	if o != nil && o.PrivateLinkServiceResourceId != nil {
+	if o != nil && !IsNil(o.PrivateLinkServiceResourceId) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *ServerlessAzureTenantEndpoint) SetPrivateLinkServiceResourceId(v string
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *ServerlessAzureTenantEndpoint) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -297,7 +300,7 @@ func (o *ServerlessAzureTenantEndpoint) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *ServerlessAzureTenantEndpoint) SetProviderName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpoint) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -321,7 +324,7 @@ func (o *ServerlessAzureTenantEndpoint) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpoint) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -329,7 +332,7 @@ func (o *ServerlessAzureTenantEndpoint) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpoint) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -342,35 +345,25 @@ func (o *ServerlessAzureTenantEndpoint) SetStatus(v string) {
 }
 
 func (o ServerlessAzureTenantEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.CloudProviderEndpointId != nil {
-		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
-	}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
-	}
-	if o.EndpointServiceName != nil {
-		toSerialize["endpointServiceName"] = o.EndpointServiceName
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.PrivateEndpointIpAddress != nil {
-		toSerialize["privateEndpointIpAddress"] = o.PrivateEndpointIpAddress
-	}
-	if o.PrivateLinkServiceResourceId != nil {
-		toSerialize["privateLinkServiceResourceId"] = o.PrivateLinkServiceResourceId
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessAzureTenantEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: cloudProviderEndpointId is readOnly
+	// skip: comment is readOnly
+	// skip: endpointServiceName is readOnly
+	// skip: errorMessage is readOnly
+	// skip: privateEndpointIpAddress is readOnly
+	// skip: privateLinkServiceResourceId is readOnly
+	// skip: providerName is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableServerlessAzureTenantEndpoint struct {

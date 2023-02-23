@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DiskBackupExportJob type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupExportJob{}
+
 // DiskBackupExportJob struct for DiskBackupExportJob
 type DiskBackupExportJob struct {
 	// Information on the export job for each replica set in the sharded cluster.
@@ -61,7 +64,7 @@ func NewDiskBackupExportJobWithDefaults() *DiskBackupExportJob {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetComponents() []DiskBackupBaseRestoreMember {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		var ret []DiskBackupBaseRestoreMember
 		return ret
 	}
@@ -71,7 +74,7 @@ func (o *DiskBackupExportJob) GetComponents() []DiskBackupBaseRestoreMember {
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetComponentsOk() ([]DiskBackupBaseRestoreMember, bool) {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -79,7 +82,7 @@ func (o *DiskBackupExportJob) GetComponentsOk() ([]DiskBackupBaseRestoreMember, 
 
 // HasComponents returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *DiskBackupExportJob) SetComponents(v []DiskBackupBaseRestoreMember) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -103,7 +106,7 @@ func (o *DiskBackupExportJob) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -111,7 +114,7 @@ func (o *DiskBackupExportJob) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *DiskBackupExportJob) SetCreatedAt(v time.Time) {
 
 // GetCustomData returns the CustomData field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetCustomData() []Label {
-	if o == nil || o.CustomData == nil {
+	if o == nil || IsNil(o.CustomData) {
 		var ret []Label
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *DiskBackupExportJob) GetCustomData() []Label {
 // GetCustomDataOk returns a tuple with the CustomData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetCustomDataOk() ([]Label, bool) {
-	if o == nil || o.CustomData == nil {
+	if o == nil || IsNil(o.CustomData) {
 		return nil, false
 	}
 	return o.CustomData, true
@@ -143,7 +146,7 @@ func (o *DiskBackupExportJob) GetCustomDataOk() ([]Label, bool) {
 
 // HasCustomData returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasCustomData() bool {
-	if o != nil && o.CustomData != nil {
+	if o != nil && !IsNil(o.CustomData) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *DiskBackupExportJob) SetCustomData(v []Label) {
 
 // GetDeliveryUrl returns the DeliveryUrl field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetDeliveryUrl() []string {
-	if o == nil || o.DeliveryUrl == nil {
+	if o == nil || IsNil(o.DeliveryUrl) {
 		var ret []string
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *DiskBackupExportJob) GetDeliveryUrl() []string {
 // GetDeliveryUrlOk returns a tuple with the DeliveryUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetDeliveryUrlOk() ([]string, bool) {
-	if o == nil || o.DeliveryUrl == nil {
+	if o == nil || IsNil(o.DeliveryUrl) {
 		return nil, false
 	}
 	return o.DeliveryUrl, true
@@ -175,7 +178,7 @@ func (o *DiskBackupExportJob) GetDeliveryUrlOk() ([]string, bool) {
 
 // HasDeliveryUrl returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasDeliveryUrl() bool {
-	if o != nil && o.DeliveryUrl != nil {
+	if o != nil && !IsNil(o.DeliveryUrl) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *DiskBackupExportJob) SetExportBucketId(v string) {
 
 // GetExportStatus returns the ExportStatus field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetExportStatus() ApiExportStatusView {
-	if o == nil || o.ExportStatus == nil {
+	if o == nil || IsNil(o.ExportStatus) {
 		var ret ApiExportStatusView
 		return ret
 	}
@@ -223,7 +226,7 @@ func (o *DiskBackupExportJob) GetExportStatus() ApiExportStatusView {
 // GetExportStatusOk returns a tuple with the ExportStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetExportStatusOk() (*ApiExportStatusView, bool) {
-	if o == nil || o.ExportStatus == nil {
+	if o == nil || IsNil(o.ExportStatus) {
 		return nil, false
 	}
 	return o.ExportStatus, true
@@ -231,7 +234,7 @@ func (o *DiskBackupExportJob) GetExportStatusOk() (*ApiExportStatusView, bool) {
 
 // HasExportStatus returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasExportStatus() bool {
-	if o != nil && o.ExportStatus != nil {
+	if o != nil && !IsNil(o.ExportStatus) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *DiskBackupExportJob) SetExportStatus(v ApiExportStatusView) {
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetFinishedAt() time.Time {
-	if o == nil || o.FinishedAt == nil {
+	if o == nil || IsNil(o.FinishedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -255,7 +258,7 @@ func (o *DiskBackupExportJob) GetFinishedAt() time.Time {
 // GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetFinishedAtOk() (*time.Time, bool) {
-	if o == nil || o.FinishedAt == nil {
+	if o == nil || IsNil(o.FinishedAt) {
 		return nil, false
 	}
 	return o.FinishedAt, true
@@ -263,7 +266,7 @@ func (o *DiskBackupExportJob) GetFinishedAtOk() (*time.Time, bool) {
 
 // HasFinishedAt returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasFinishedAt() bool {
-	if o != nil && o.FinishedAt != nil {
+	if o != nil && !IsNil(o.FinishedAt) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *DiskBackupExportJob) SetFinishedAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -287,7 +290,7 @@ func (o *DiskBackupExportJob) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -295,7 +298,7 @@ func (o *DiskBackupExportJob) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -309,7 +312,7 @@ func (o *DiskBackupExportJob) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -319,7 +322,7 @@ func (o *DiskBackupExportJob) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -327,7 +330,7 @@ func (o *DiskBackupExportJob) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -341,7 +344,7 @@ func (o *DiskBackupExportJob) SetLinks(v []Link) {
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetPrefix() string {
-	if o == nil || o.Prefix == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -351,7 +354,7 @@ func (o *DiskBackupExportJob) GetPrefix() string {
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetPrefixOk() (*string, bool) {
-	if o == nil || o.Prefix == nil {
+	if o == nil || IsNil(o.Prefix) {
 		return nil, false
 	}
 	return o.Prefix, true
@@ -359,7 +362,7 @@ func (o *DiskBackupExportJob) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasPrefix() bool {
-	if o != nil && o.Prefix != nil {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -373,7 +376,7 @@ func (o *DiskBackupExportJob) SetPrefix(v string) {
 
 // GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetSnapshotId() string {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		var ret string
 		return ret
 	}
@@ -383,7 +386,7 @@ func (o *DiskBackupExportJob) GetSnapshotId() string {
 // GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetSnapshotIdOk() (*string, bool) {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		return nil, false
 	}
 	return o.SnapshotId, true
@@ -391,7 +394,7 @@ func (o *DiskBackupExportJob) GetSnapshotIdOk() (*string, bool) {
 
 // HasSnapshotId returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasSnapshotId() bool {
-	if o != nil && o.SnapshotId != nil {
+	if o != nil && !IsNil(o.SnapshotId) {
 		return true
 	}
 
@@ -405,7 +408,7 @@ func (o *DiskBackupExportJob) SetSnapshotId(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *DiskBackupExportJob) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -415,7 +418,7 @@ func (o *DiskBackupExportJob) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupExportJob) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -423,7 +426,7 @@ func (o *DiskBackupExportJob) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *DiskBackupExportJob) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -436,44 +439,34 @@ func (o *DiskBackupExportJob) SetState(v string) {
 }
 
 func (o DiskBackupExportJob) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.CreatedAt != nil {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.CustomData != nil {
-		toSerialize["customData"] = o.CustomData
-	}
-	if o.DeliveryUrl != nil {
-		toSerialize["deliveryUrl"] = o.DeliveryUrl
-	}
-	if true {
-		toSerialize["exportBucketId"] = o.ExportBucketId
-	}
-	if o.ExportStatus != nil {
-		toSerialize["exportStatus"] = o.ExportStatus
-	}
-	if o.FinishedAt != nil {
-		toSerialize["finishedAt"] = o.FinishedAt
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Prefix != nil {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if o.SnapshotId != nil {
-		toSerialize["snapshotId"] = o.SnapshotId
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupExportJob) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: components is readOnly
+	// skip: createdAt is readOnly
+	if !IsNil(o.CustomData) {
+		toSerialize["customData"] = o.CustomData
+	}
+	// skip: deliveryUrl is readOnly
+	// skip: exportBucketId is readOnly
+	if !IsNil(o.ExportStatus) {
+		toSerialize["exportStatus"] = o.ExportStatus
+	}
+	// skip: finishedAt is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: prefix is readOnly
+	if !IsNil(o.SnapshotId) {
+		toSerialize["snapshotId"] = o.SnapshotId
+	}
+	// skip: state is readOnly
+	return toSerialize, nil
 }
 
 type NullableDiskBackupExportJob struct {
