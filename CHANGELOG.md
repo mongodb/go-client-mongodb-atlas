@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.23.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.0) (February 23, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.22.0...v0.23.0)
+
+**Closed issues:**
+
+- CloudQuery Source Plugin? [\#375](https://github.com/mongodb/go-client-mongodb-atlas/issues/375)
+
+**Merged pull requests:**
+
+- feat: add org creation endpoint [\#387](https://github.com/mongodb/go-client-mongodb-atlas/pull/387) ([gssbzn](https://github.com/gssbzn))
+- task: update linter version [\#384](https://github.com/mongodb/go-client-mongodb-atlas/pull/384) ([gssbzn](https://github.com/gssbzn))
+- CLOUDP-156187: change owners team to apix-1 [\#367](https://github.com/mongodb/go-client-mongodb-atlas/pull/367) ([wtrocki](https://github.com/wtrocki))
+
 ## [v0.22.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.22.0) (January 30, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.21.0...v0.22.0)
