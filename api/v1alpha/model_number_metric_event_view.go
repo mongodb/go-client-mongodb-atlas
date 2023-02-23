@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the NumberMetricEventView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NumberMetricEventView{}
+
 // NumberMetricEventView struct for NumberMetricEventView
 type NumberMetricEventView struct {
 	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
@@ -71,7 +74,7 @@ func NewNumberMetricEventViewWithDefaults() *NumberMetricEventView {
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *NumberMetricEventView) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -89,7 +92,7 @@ func (o *NumberMetricEventView) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *NumberMetricEventView) SetCreated(v time.Time) {
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetCurrentValue() NumberMetricValueView {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		var ret NumberMetricValueView
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *NumberMetricEventView) GetCurrentValue() NumberMetricValueView {
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetCurrentValueOk() (*NumberMetricValueView, bool) {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
 	return o.CurrentValue, true
@@ -145,7 +148,7 @@ func (o *NumberMetricEventView) GetCurrentValueOk() (*NumberMetricValueView, boo
 
 // HasCurrentValue returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasCurrentValue() bool {
-	if o != nil && o.CurrentValue != nil {
+	if o != nil && !IsNil(o.CurrentValue) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *NumberMetricEventView) SetEventTypeName(v HostMetricEventTypeView) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *NumberMetricEventView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -201,7 +204,7 @@ func (o *NumberMetricEventView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *NumberMetricEventView) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -249,7 +252,7 @@ func (o *NumberMetricEventView) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -257,7 +260,7 @@ func (o *NumberMetricEventView) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -295,7 +298,7 @@ func (o *NumberMetricEventView) SetLinks(v []Link) {
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetMetricName() string {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		var ret string
 		return ret
 	}
@@ -305,7 +308,7 @@ func (o *NumberMetricEventView) GetMetricName() string {
 // GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetMetricNameOk() (*string, bool) {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		return nil, false
 	}
 	return o.MetricName, true
@@ -313,7 +316,7 @@ func (o *NumberMetricEventView) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
+	if o != nil && !IsNil(o.MetricName) {
 		return true
 	}
 
@@ -327,7 +330,7 @@ func (o *NumberMetricEventView) SetMetricName(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -337,7 +340,7 @@ func (o *NumberMetricEventView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -345,7 +348,7 @@ func (o *NumberMetricEventView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -359,7 +362,7 @@ func (o *NumberMetricEventView) SetOrgId(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetPort() int32 {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -369,7 +372,7 @@ func (o *NumberMetricEventView) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetPortOk() (*int32, bool) {
-	if o == nil || o.Port == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
 	return o.Port, true
@@ -377,7 +380,7 @@ func (o *NumberMetricEventView) GetPortOk() (*int32, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasPort() bool {
-	if o != nil && o.Port != nil {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -391,7 +394,7 @@ func (o *NumberMetricEventView) SetPort(v int32) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -401,7 +404,7 @@ func (o *NumberMetricEventView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -409,7 +412,7 @@ func (o *NumberMetricEventView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -423,7 +426,7 @@ func (o *NumberMetricEventView) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -433,7 +436,7 @@ func (o *NumberMetricEventView) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -441,7 +444,7 @@ func (o *NumberMetricEventView) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -455,7 +458,7 @@ func (o *NumberMetricEventView) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -465,7 +468,7 @@ func (o *NumberMetricEventView) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -473,7 +476,7 @@ func (o *NumberMetricEventView) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -487,7 +490,7 @@ func (o *NumberMetricEventView) SetRemoteAddress(v string) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -497,7 +500,7 @@ func (o *NumberMetricEventView) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -505,7 +508,7 @@ func (o *NumberMetricEventView) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -519,7 +522,7 @@ func (o *NumberMetricEventView) SetReplicaSetName(v string) {
 
 // GetShardName returns the ShardName field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetShardName() string {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		var ret string
 		return ret
 	}
@@ -529,7 +532,7 @@ func (o *NumberMetricEventView) GetShardName() string {
 // GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetShardNameOk() (*string, bool) {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		return nil, false
 	}
 	return o.ShardName, true
@@ -537,7 +540,7 @@ func (o *NumberMetricEventView) GetShardNameOk() (*string, bool) {
 
 // HasShardName returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasShardName() bool {
-	if o != nil && o.ShardName != nil {
+	if o != nil && !IsNil(o.ShardName) {
 		return true
 	}
 
@@ -551,7 +554,7 @@ func (o *NumberMetricEventView) SetShardName(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -561,7 +564,7 @@ func (o *NumberMetricEventView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -569,7 +572,7 @@ func (o *NumberMetricEventView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -583,7 +586,7 @@ func (o *NumberMetricEventView) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *NumberMetricEventView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -593,7 +596,7 @@ func (o *NumberMetricEventView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NumberMetricEventView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -601,7 +604,7 @@ func (o *NumberMetricEventView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *NumberMetricEventView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -614,62 +617,38 @@ func (o *NumberMetricEventView) SetUsername(v string) {
 }
 
 func (o NumberMetricEventView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if o.CurrentValue != nil {
-		toSerialize["currentValue"] = o.CurrentValue
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.MetricName != nil {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Port != nil {
-		toSerialize["port"] = o.Port
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.ShardName != nil {
-		toSerialize["shardName"] = o.ShardName
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NumberMetricEventView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiKeyId is readOnly
+	// skip: created is readOnly
+	if !IsNil(o.CurrentValue) {
+		toSerialize["currentValue"] = o.CurrentValue
+	}
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: metricName is readOnly
+	// skip: orgId is readOnly
+	// skip: port is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: replicaSetName is readOnly
+	// skip: shardName is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableNumberMetricEventView struct {

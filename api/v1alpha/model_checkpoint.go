@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Checkpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Checkpoint{}
+
 // Checkpoint struct for Checkpoint
 type Checkpoint struct {
 	// Unique 24-hexadecimal digit string that identifies the cluster that contains the checkpoint.
@@ -56,7 +59,7 @@ func NewCheckpointWithDefaults() *Checkpoint {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *Checkpoint) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -66,7 +69,7 @@ func (o *Checkpoint) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -74,7 +77,7 @@ func (o *Checkpoint) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *Checkpoint) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *Checkpoint) SetClusterId(v string) {
 
 // GetCompleted returns the Completed field value if set, zero value otherwise.
 func (o *Checkpoint) GetCompleted() time.Time {
-	if o == nil || o.Completed == nil {
+	if o == nil || IsNil(o.Completed) {
 		var ret time.Time
 		return ret
 	}
@@ -98,7 +101,7 @@ func (o *Checkpoint) GetCompleted() time.Time {
 // GetCompletedOk returns a tuple with the Completed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetCompletedOk() (*time.Time, bool) {
-	if o == nil || o.Completed == nil {
+	if o == nil || IsNil(o.Completed) {
 		return nil, false
 	}
 	return o.Completed, true
@@ -106,7 +109,7 @@ func (o *Checkpoint) GetCompletedOk() (*time.Time, bool) {
 
 // HasCompleted returns a boolean if a field has been set.
 func (o *Checkpoint) HasCompleted() bool {
-	if o != nil && o.Completed != nil {
+	if o != nil && !IsNil(o.Completed) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *Checkpoint) SetCompleted(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *Checkpoint) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *Checkpoint) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -138,7 +141,7 @@ func (o *Checkpoint) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *Checkpoint) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *Checkpoint) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Checkpoint) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *Checkpoint) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -170,7 +173,7 @@ func (o *Checkpoint) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Checkpoint) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *Checkpoint) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *Checkpoint) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *Checkpoint) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -202,7 +205,7 @@ func (o *Checkpoint) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *Checkpoint) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *Checkpoint) SetLinks(v []Link) {
 
 // GetParts returns the Parts field value if set, zero value otherwise.
 func (o *Checkpoint) GetParts() []ApiCheckpointPartView {
-	if o == nil || o.Parts == nil {
+	if o == nil || IsNil(o.Parts) {
 		var ret []ApiCheckpointPartView
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *Checkpoint) GetParts() []ApiCheckpointPartView {
 // GetPartsOk returns a tuple with the Parts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetPartsOk() ([]ApiCheckpointPartView, bool) {
-	if o == nil || o.Parts == nil {
+	if o == nil || IsNil(o.Parts) {
 		return nil, false
 	}
 	return o.Parts, true
@@ -234,7 +237,7 @@ func (o *Checkpoint) GetPartsOk() ([]ApiCheckpointPartView, bool) {
 
 // HasParts returns a boolean if a field has been set.
 func (o *Checkpoint) HasParts() bool {
-	if o != nil && o.Parts != nil {
+	if o != nil && !IsNil(o.Parts) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *Checkpoint) SetParts(v []ApiCheckpointPartView) {
 
 // GetRestorable returns the Restorable field value if set, zero value otherwise.
 func (o *Checkpoint) GetRestorable() bool {
-	if o == nil || o.Restorable == nil {
+	if o == nil || IsNil(o.Restorable) {
 		var ret bool
 		return ret
 	}
@@ -258,7 +261,7 @@ func (o *Checkpoint) GetRestorable() bool {
 // GetRestorableOk returns a tuple with the Restorable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetRestorableOk() (*bool, bool) {
-	if o == nil || o.Restorable == nil {
+	if o == nil || IsNil(o.Restorable) {
 		return nil, false
 	}
 	return o.Restorable, true
@@ -266,7 +269,7 @@ func (o *Checkpoint) GetRestorableOk() (*bool, bool) {
 
 // HasRestorable returns a boolean if a field has been set.
 func (o *Checkpoint) HasRestorable() bool {
-	if o != nil && o.Restorable != nil {
+	if o != nil && !IsNil(o.Restorable) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *Checkpoint) SetRestorable(v bool) {
 
 // GetStarted returns the Started field value if set, zero value otherwise.
 func (o *Checkpoint) GetStarted() time.Time {
-	if o == nil || o.Started == nil {
+	if o == nil || IsNil(o.Started) {
 		var ret time.Time
 		return ret
 	}
@@ -290,7 +293,7 @@ func (o *Checkpoint) GetStarted() time.Time {
 // GetStartedOk returns a tuple with the Started field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetStartedOk() (*time.Time, bool) {
-	if o == nil || o.Started == nil {
+	if o == nil || IsNil(o.Started) {
 		return nil, false
 	}
 	return o.Started, true
@@ -298,7 +301,7 @@ func (o *Checkpoint) GetStartedOk() (*time.Time, bool) {
 
 // HasStarted returns a boolean if a field has been set.
 func (o *Checkpoint) HasStarted() bool {
-	if o != nil && o.Started != nil {
+	if o != nil && !IsNil(o.Started) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *Checkpoint) SetStarted(v time.Time) {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *Checkpoint) GetTimestamp() time.Time {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
@@ -322,7 +325,7 @@ func (o *Checkpoint) GetTimestamp() time.Time {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkpoint) GetTimestampOk() (*time.Time, bool) {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
@@ -330,7 +333,7 @@ func (o *Checkpoint) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *Checkpoint) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -343,35 +346,25 @@ func (o *Checkpoint) SetTimestamp(v time.Time) {
 }
 
 func (o Checkpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.Completed != nil {
-		toSerialize["completed"] = o.Completed
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Parts != nil {
-		toSerialize["parts"] = o.Parts
-	}
-	if o.Restorable != nil {
-		toSerialize["restorable"] = o.Restorable
-	}
-	if o.Started != nil {
-		toSerialize["started"] = o.Started
-	}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Checkpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterId is readOnly
+	// skip: completed is readOnly
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: parts is readOnly
+	// skip: restorable is readOnly
+	// skip: started is readOnly
+	// skip: timestamp is readOnly
+	return toSerialize, nil
 }
 
 type NullableCheckpoint struct {

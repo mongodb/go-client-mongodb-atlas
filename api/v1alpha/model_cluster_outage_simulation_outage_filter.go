@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterOutageSimulationOutageFilter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterOutageSimulationOutageFilter{}
+
 // ClusterOutageSimulationOutageFilter struct for ClusterOutageSimulationOutageFilter
 type ClusterOutageSimulationOutageFilter struct {
 	// The cloud provider of the region that undergoes the outage simulation.
@@ -43,7 +46,7 @@ func NewClusterOutageSimulationOutageFilterWithDefaults() *ClusterOutageSimulati
 
 // GetCloudProvider returns the CloudProvider field value if set, zero value otherwise.
 func (o *ClusterOutageSimulationOutageFilter) GetCloudProvider() string {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetCloudProvider() string {
 // GetCloudProviderOk returns a tuple with the CloudProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulationOutageFilter) GetCloudProviderOk() (*string, bool) {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		return nil, false
 	}
 	return o.CloudProvider, true
@@ -61,7 +64,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetCloudProviderOk() (*string, boo
 
 // HasCloudProvider returns a boolean if a field has been set.
 func (o *ClusterOutageSimulationOutageFilter) HasCloudProvider() bool {
-	if o != nil && o.CloudProvider != nil {
+	if o != nil && !IsNil(o.CloudProvider) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ClusterOutageSimulationOutageFilter) SetCloudProvider(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *ClusterOutageSimulationOutageFilter) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulationOutageFilter) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -93,7 +96,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetRegionNameOk() (*string, bool) 
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *ClusterOutageSimulationOutageFilter) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ClusterOutageSimulationOutageFilter) SetRegionName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ClusterOutageSimulationOutageFilter) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterOutageSimulationOutageFilter) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -125,7 +128,7 @@ func (o *ClusterOutageSimulationOutageFilter) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ClusterOutageSimulationOutageFilter) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *ClusterOutageSimulationOutageFilter) SetType(v string) {
 }
 
 func (o ClusterOutageSimulationOutageFilter) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProvider != nil {
-		toSerialize["cloudProvider"] = o.CloudProvider
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterOutageSimulationOutageFilter) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProvider) {
+		toSerialize["cloudProvider"] = o.CloudProvider
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableClusterOutageSimulationOutageFilter struct {

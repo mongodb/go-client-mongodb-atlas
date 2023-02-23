@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InheritedRole type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InheritedRole{}
+
 // InheritedRole Role inherited from another context for this database user.
 type InheritedRole struct {
 	// Human-readable label that identifies the database on which someone grants the action to one MongoDB user.
@@ -88,14 +91,18 @@ func (o *InheritedRole) SetRole(v string) {
 }
 
 func (o InheritedRole) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["db"] = o.Db
-	}
-	if true {
-		toSerialize["role"] = o.Role
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o InheritedRole) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["db"] = o.Db
+	toSerialize["role"] = o.Role
+	return toSerialize, nil
 }
 
 type NullableInheritedRole struct {

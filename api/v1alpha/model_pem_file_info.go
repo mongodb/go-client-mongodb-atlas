@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PemFileInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PemFileInfo{}
+
 // PemFileInfo PEM file information for the identity provider's certificates.
 type PemFileInfo struct {
 	Certificates []X509Certificate `json:"certificates,omitempty"`
@@ -39,7 +42,7 @@ func NewPemFileInfoWithDefaults() *PemFileInfo {
 
 // GetCertificates returns the Certificates field value if set, zero value otherwise.
 func (o *PemFileInfo) GetCertificates() []X509Certificate {
-	if o == nil || o.Certificates == nil {
+	if o == nil || IsNil(o.Certificates) {
 		var ret []X509Certificate
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *PemFileInfo) GetCertificates() []X509Certificate {
 // GetCertificatesOk returns a tuple with the Certificates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PemFileInfo) GetCertificatesOk() ([]X509Certificate, bool) {
-	if o == nil || o.Certificates == nil {
+	if o == nil || IsNil(o.Certificates) {
 		return nil, false
 	}
 	return o.Certificates, true
@@ -57,7 +60,7 @@ func (o *PemFileInfo) GetCertificatesOk() ([]X509Certificate, bool) {
 
 // HasCertificates returns a boolean if a field has been set.
 func (o *PemFileInfo) HasCertificates() bool {
-	if o != nil && o.Certificates != nil {
+	if o != nil && !IsNil(o.Certificates) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *PemFileInfo) SetCertificates(v []X509Certificate) {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *PemFileInfo) GetFileName() string {
-	if o == nil || o.FileName == nil {
+	if o == nil || IsNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *PemFileInfo) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PemFileInfo) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
+	if o == nil || IsNil(o.FileName) {
 		return nil, false
 	}
 	return o.FileName, true
@@ -89,7 +92,7 @@ func (o *PemFileInfo) GetFileNameOk() (*string, bool) {
 
 // HasFileName returns a boolean if a field has been set.
 func (o *PemFileInfo) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+	if o != nil && !IsNil(o.FileName) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *PemFileInfo) SetFileName(v string) {
 }
 
 func (o PemFileInfo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Certificates != nil {
-		toSerialize["certificates"] = o.Certificates
-	}
-	if o.FileName != nil {
-		toSerialize["fileName"] = o.FileName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PemFileInfo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Certificates) {
+		toSerialize["certificates"] = o.Certificates
+	}
+	if !IsNil(o.FileName) {
+		toSerialize["fileName"] = o.FileName
+	}
+	return toSerialize, nil
 }
 
 type NullablePemFileInfo struct {

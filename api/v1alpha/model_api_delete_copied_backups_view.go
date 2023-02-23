@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiDeleteCopiedBackupsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiDeleteCopiedBackupsView{}
+
 // ApiDeleteCopiedBackupsView Deleted copy setting whose backup copies need to also be deleted.
 type ApiDeleteCopiedBackupsView struct {
 	// Human-readable label that identifies the cloud provider for the deleted copy setting whose backup copies you want to delete.
@@ -43,7 +46,7 @@ func NewApiDeleteCopiedBackupsViewWithDefaults() *ApiDeleteCopiedBackupsView {
 
 // GetCloudProvider returns the CloudProvider field value if set, zero value otherwise.
 func (o *ApiDeleteCopiedBackupsView) GetCloudProvider() string {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiDeleteCopiedBackupsView) GetCloudProvider() string {
 // GetCloudProviderOk returns a tuple with the CloudProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDeleteCopiedBackupsView) GetCloudProviderOk() (*string, bool) {
-	if o == nil || o.CloudProvider == nil {
+	if o == nil || IsNil(o.CloudProvider) {
 		return nil, false
 	}
 	return o.CloudProvider, true
@@ -61,7 +64,7 @@ func (o *ApiDeleteCopiedBackupsView) GetCloudProviderOk() (*string, bool) {
 
 // HasCloudProvider returns a boolean if a field has been set.
 func (o *ApiDeleteCopiedBackupsView) HasCloudProvider() bool {
-	if o != nil && o.CloudProvider != nil {
+	if o != nil && !IsNil(o.CloudProvider) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ApiDeleteCopiedBackupsView) SetCloudProvider(v string) {
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
 func (o *ApiDeleteCopiedBackupsView) GetRegionName() string {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ApiDeleteCopiedBackupsView) GetRegionName() string {
 // GetRegionNameOk returns a tuple with the RegionName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDeleteCopiedBackupsView) GetRegionNameOk() (*string, bool) {
-	if o == nil || o.RegionName == nil {
+	if o == nil || IsNil(o.RegionName) {
 		return nil, false
 	}
 	return o.RegionName, true
@@ -93,7 +96,7 @@ func (o *ApiDeleteCopiedBackupsView) GetRegionNameOk() (*string, bool) {
 
 // HasRegionName returns a boolean if a field has been set.
 func (o *ApiDeleteCopiedBackupsView) HasRegionName() bool {
-	if o != nil && o.RegionName != nil {
+	if o != nil && !IsNil(o.RegionName) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ApiDeleteCopiedBackupsView) SetRegionName(v string) {
 
 // GetReplicationSpecId returns the ReplicationSpecId field value if set, zero value otherwise.
 func (o *ApiDeleteCopiedBackupsView) GetReplicationSpecId() string {
-	if o == nil || o.ReplicationSpecId == nil {
+	if o == nil || IsNil(o.ReplicationSpecId) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ApiDeleteCopiedBackupsView) GetReplicationSpecId() string {
 // GetReplicationSpecIdOk returns a tuple with the ReplicationSpecId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiDeleteCopiedBackupsView) GetReplicationSpecIdOk() (*string, bool) {
-	if o == nil || o.ReplicationSpecId == nil {
+	if o == nil || IsNil(o.ReplicationSpecId) {
 		return nil, false
 	}
 	return o.ReplicationSpecId, true
@@ -125,7 +128,7 @@ func (o *ApiDeleteCopiedBackupsView) GetReplicationSpecIdOk() (*string, bool) {
 
 // HasReplicationSpecId returns a boolean if a field has been set.
 func (o *ApiDeleteCopiedBackupsView) HasReplicationSpecId() bool {
-	if o != nil && o.ReplicationSpecId != nil {
+	if o != nil && !IsNil(o.ReplicationSpecId) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *ApiDeleteCopiedBackupsView) SetReplicationSpecId(v string) {
 }
 
 func (o ApiDeleteCopiedBackupsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProvider != nil {
-		toSerialize["cloudProvider"] = o.CloudProvider
-	}
-	if o.RegionName != nil {
-		toSerialize["regionName"] = o.RegionName
-	}
-	if o.ReplicationSpecId != nil {
-		toSerialize["replicationSpecId"] = o.ReplicationSpecId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiDeleteCopiedBackupsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProvider) {
+		toSerialize["cloudProvider"] = o.CloudProvider
+	}
+	if !IsNil(o.RegionName) {
+		toSerialize["regionName"] = o.RegionName
+	}
+	if !IsNil(o.ReplicationSpecId) {
+		toSerialize["replicationSpecId"] = o.ReplicationSpecId
+	}
+	return toSerialize, nil
 }
 
 type NullableApiDeleteCopiedBackupsView struct {

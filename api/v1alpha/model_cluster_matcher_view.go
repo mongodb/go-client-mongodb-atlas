@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClusterMatcherView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterMatcherView{}
+
 // ClusterMatcherView Rules to apply when comparing an cluster against this alert configuration.
 type ClusterMatcherView struct {
 	FieldName *ClusterMatcherField `json:"fieldName,omitempty"`
@@ -42,7 +45,7 @@ func NewClusterMatcherViewWithDefaults() *ClusterMatcherView {
 
 // GetFieldName returns the FieldName field value if set, zero value otherwise.
 func (o *ClusterMatcherView) GetFieldName() ClusterMatcherField {
-	if o == nil || o.FieldName == nil {
+	if o == nil || IsNil(o.FieldName) {
 		var ret ClusterMatcherField
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ClusterMatcherView) GetFieldName() ClusterMatcherField {
 // GetFieldNameOk returns a tuple with the FieldName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterMatcherView) GetFieldNameOk() (*ClusterMatcherField, bool) {
-	if o == nil || o.FieldName == nil {
+	if o == nil || IsNil(o.FieldName) {
 		return nil, false
 	}
 	return o.FieldName, true
@@ -60,7 +63,7 @@ func (o *ClusterMatcherView) GetFieldNameOk() (*ClusterMatcherField, bool) {
 
 // HasFieldName returns a boolean if a field has been set.
 func (o *ClusterMatcherView) HasFieldName() bool {
-	if o != nil && o.FieldName != nil {
+	if o != nil && !IsNil(o.FieldName) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ClusterMatcherView) SetFieldName(v ClusterMatcherField) {
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *ClusterMatcherView) GetOperator() string {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ClusterMatcherView) GetOperator() string {
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterMatcherView) GetOperatorOk() (*string, bool) {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
 	return o.Operator, true
@@ -92,7 +95,7 @@ func (o *ClusterMatcherView) GetOperatorOk() (*string, bool) {
 
 // HasOperator returns a boolean if a field has been set.
 func (o *ClusterMatcherView) HasOperator() bool {
-	if o != nil && o.Operator != nil {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ClusterMatcherView) SetOperator(v string) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ClusterMatcherView) GetValue() string {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ClusterMatcherView) GetValue() string {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterMatcherView) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -124,7 +127,7 @@ func (o *ClusterMatcherView) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *ClusterMatcherView) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ClusterMatcherView) SetValue(v string) {
 }
 
 func (o ClusterMatcherView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FieldName != nil {
-		toSerialize["fieldName"] = o.FieldName
-	}
-	if o.Operator != nil {
-		toSerialize["operator"] = o.Operator
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterMatcherView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FieldName) {
+		toSerialize["fieldName"] = o.FieldName
+	}
+	if !IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableClusterMatcherView struct {

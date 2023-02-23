@@ -55,72 +55,72 @@ func CharFilterpersianAsApiAtlasFTSAnalyzersViewManualCharFiltersInner(v *CharFi
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ApiAtlasFTSAnalyzersViewManualCharFiltersInner) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into CharFilterhtmlStrip
-        err = json.Unmarshal(data, &dst.CharFilterhtmlStrip)
-        if err == nil {
-                jsonCharFilterhtmlStrip, _ := json.Marshal(dst.CharFilterhtmlStrip)
-                if string(jsonCharFilterhtmlStrip) == "{}" { // empty struct
-                        dst.CharFilterhtmlStrip = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CharFilterhtmlStrip = nil
-        }
+	match := 0
+	// try to unmarshal data into CharFilterhtmlStrip
+	err = json.Unmarshal(data, &dst.CharFilterhtmlStrip)
+	if err == nil {
+		jsonCharFilterhtmlStrip, _ := json.Marshal(dst.CharFilterhtmlStrip)
+		if string(jsonCharFilterhtmlStrip) == "{}" { // empty struct
+			dst.CharFilterhtmlStrip = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CharFilterhtmlStrip = nil
+	}
 
-        // try to unmarshal data into CharFiltericuNormalize
-        err = json.Unmarshal(data, &dst.CharFiltericuNormalize)
-        if err == nil {
-                jsonCharFiltericuNormalize, _ := json.Marshal(dst.CharFiltericuNormalize)
-                if string(jsonCharFiltericuNormalize) == "{}" { // empty struct
-                        dst.CharFiltericuNormalize = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CharFiltericuNormalize = nil
-        }
+	// try to unmarshal data into CharFiltericuNormalize
+	err = json.Unmarshal(data, &dst.CharFiltericuNormalize)
+	if err == nil {
+		jsonCharFiltericuNormalize, _ := json.Marshal(dst.CharFiltericuNormalize)
+		if string(jsonCharFiltericuNormalize) == "{}" { // empty struct
+			dst.CharFiltericuNormalize = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CharFiltericuNormalize = nil
+	}
 
-        // try to unmarshal data into CharFiltermapping
-        err = json.Unmarshal(data, &dst.CharFiltermapping)
-        if err == nil {
-                jsonCharFiltermapping, _ := json.Marshal(dst.CharFiltermapping)
-                if string(jsonCharFiltermapping) == "{}" { // empty struct
-                        dst.CharFiltermapping = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CharFiltermapping = nil
-        }
+	// try to unmarshal data into CharFiltermapping
+	err = json.Unmarshal(data, &dst.CharFiltermapping)
+	if err == nil {
+		jsonCharFiltermapping, _ := json.Marshal(dst.CharFiltermapping)
+		if string(jsonCharFiltermapping) == "{}" { // empty struct
+			dst.CharFiltermapping = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CharFiltermapping = nil
+	}
 
-        // try to unmarshal data into CharFilterpersian
-        err = json.Unmarshal(data, &dst.CharFilterpersian)
-        if err == nil {
-                jsonCharFilterpersian, _ := json.Marshal(dst.CharFilterpersian)
-                if string(jsonCharFilterpersian) == "{}" { // empty struct
-                        dst.CharFilterpersian = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.CharFilterpersian = nil
-        }
+	// try to unmarshal data into CharFilterpersian
+	err = json.Unmarshal(data, &dst.CharFilterpersian)
+	if err == nil {
+		jsonCharFilterpersian, _ := json.Marshal(dst.CharFilterpersian)
+		if string(jsonCharFilterpersian) == "{}" { // empty struct
+			dst.CharFilterpersian = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.CharFilterpersian = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.CharFilterhtmlStrip = nil
-                dst.CharFiltericuNormalize = nil
-                dst.CharFiltermapping = nil
-                dst.CharFilterpersian = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.CharFilterhtmlStrip = nil
+		dst.CharFiltericuNormalize = nil
+		dst.CharFiltermapping = nil
+		dst.CharFilterpersian = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(ApiAtlasFTSAnalyzersViewManualCharFiltersInner)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(ApiAtlasFTSAnalyzersViewManualCharFiltersInner)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(ApiAtlasFTSAnalyzersViewManualCharFiltersInner)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ApiAtlasFTSAnalyzersViewManualCharFiltersInner)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

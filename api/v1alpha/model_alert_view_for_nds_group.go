@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the AlertViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AlertViewForNdsGroup{}
+
 // AlertViewForNdsGroup struct for AlertViewForNdsGroup
 type AlertViewForNdsGroup struct {
 	// Date and time until which this alert has been acknowledged. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if a MongoDB User previously acknowledged this alert.  - To acknowledge this alert forever, set the parameter value to 100 years in the future.  - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
@@ -77,7 +80,7 @@ func NewAlertViewForNdsGroupWithDefaults() *AlertViewForNdsGroup {
 
 // GetAcknowledgedUntil returns the AcknowledgedUntil field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetAcknowledgedUntil() time.Time {
-	if o == nil || o.AcknowledgedUntil == nil {
+	if o == nil || IsNil(o.AcknowledgedUntil) {
 		var ret time.Time
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgedUntil() time.Time {
 // GetAcknowledgedUntilOk returns a tuple with the AcknowledgedUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetAcknowledgedUntilOk() (*time.Time, bool) {
-	if o == nil || o.AcknowledgedUntil == nil {
+	if o == nil || IsNil(o.AcknowledgedUntil) {
 		return nil, false
 	}
 	return o.AcknowledgedUntil, true
@@ -95,7 +98,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgedUntilOk() (*time.Time, bool) {
 
 // HasAcknowledgedUntil returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasAcknowledgedUntil() bool {
-	if o != nil && o.AcknowledgedUntil != nil {
+	if o != nil && !IsNil(o.AcknowledgedUntil) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *AlertViewForNdsGroup) SetAcknowledgedUntil(v time.Time) {
 
 // GetAcknowledgementComment returns the AcknowledgementComment field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetAcknowledgementComment() string {
-	if o == nil || o.AcknowledgementComment == nil {
+	if o == nil || IsNil(o.AcknowledgementComment) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgementComment() string {
 // GetAcknowledgementCommentOk returns a tuple with the AcknowledgementComment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetAcknowledgementCommentOk() (*string, bool) {
-	if o == nil || o.AcknowledgementComment == nil {
+	if o == nil || IsNil(o.AcknowledgementComment) {
 		return nil, false
 	}
 	return o.AcknowledgementComment, true
@@ -127,7 +130,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgementCommentOk() (*string, bool) {
 
 // HasAcknowledgementComment returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasAcknowledgementComment() bool {
-	if o != nil && o.AcknowledgementComment != nil {
+	if o != nil && !IsNil(o.AcknowledgementComment) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *AlertViewForNdsGroup) SetAcknowledgementComment(v string) {
 
 // GetAcknowledgingUsername returns the AcknowledgingUsername field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetAcknowledgingUsername() string {
-	if o == nil || o.AcknowledgingUsername == nil {
+	if o == nil || IsNil(o.AcknowledgingUsername) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgingUsername() string {
 // GetAcknowledgingUsernameOk returns a tuple with the AcknowledgingUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetAcknowledgingUsernameOk() (*string, bool) {
-	if o == nil || o.AcknowledgingUsername == nil {
+	if o == nil || IsNil(o.AcknowledgingUsername) {
 		return nil, false
 	}
 	return o.AcknowledgingUsername, true
@@ -159,7 +162,7 @@ func (o *AlertViewForNdsGroup) GetAcknowledgingUsernameOk() (*string, bool) {
 
 // HasAcknowledgingUsername returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasAcknowledgingUsername() bool {
-	if o != nil && o.AcknowledgingUsername != nil {
+	if o != nil && !IsNil(o.AcknowledgingUsername) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *AlertViewForNdsGroup) SetAcknowledgingUsername(v string) {
 
 // GetAlertConfigId returns the AlertConfigId field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetAlertConfigId() string {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		var ret string
 		return ret
 	}
@@ -183,7 +186,7 @@ func (o *AlertViewForNdsGroup) GetAlertConfigId() string {
 // GetAlertConfigIdOk returns a tuple with the AlertConfigId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetAlertConfigIdOk() (*string, bool) {
-	if o == nil || o.AlertConfigId == nil {
+	if o == nil || IsNil(o.AlertConfigId) {
 		return nil, false
 	}
 	return o.AlertConfigId, true
@@ -191,7 +194,7 @@ func (o *AlertViewForNdsGroup) GetAlertConfigIdOk() (*string, bool) {
 
 // HasAlertConfigId returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasAlertConfigId() bool {
-	if o != nil && o.AlertConfigId != nil {
+	if o != nil && !IsNil(o.AlertConfigId) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *AlertViewForNdsGroup) SetAlertConfigId(v string) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -215,7 +218,7 @@ func (o *AlertViewForNdsGroup) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -223,7 +226,7 @@ func (o *AlertViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *AlertViewForNdsGroup) SetCreated(v time.Time) {
 
 // GetEventTypeName returns the EventTypeName field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertable {
-	if o == nil || o.EventTypeName == nil {
+	if o == nil || IsNil(o.EventTypeName) {
 		var ret ReplicaSetEventTypeViewForNdsGroupAlertable
 		return ret
 	}
@@ -247,7 +250,7 @@ func (o *AlertViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsG
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetEventTypeNameOk() (*ReplicaSetEventTypeViewForNdsGroupAlertable, bool) {
-	if o == nil || o.EventTypeName == nil {
+	if o == nil || IsNil(o.EventTypeName) {
 		return nil, false
 	}
 	return o.EventTypeName, true
@@ -255,7 +258,7 @@ func (o *AlertViewForNdsGroup) GetEventTypeNameOk() (*ReplicaSetEventTypeViewFor
 
 // HasEventTypeName returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasEventTypeName() bool {
-	if o != nil && o.EventTypeName != nil {
+	if o != nil && !IsNil(o.EventTypeName) {
 		return true
 	}
 
@@ -269,7 +272,7 @@ func (o *AlertViewForNdsGroup) SetEventTypeName(v ReplicaSetEventTypeViewForNdsG
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -279,7 +282,7 @@ func (o *AlertViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -287,7 +290,7 @@ func (o *AlertViewForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -301,7 +304,7 @@ func (o *AlertViewForNdsGroup) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -311,7 +314,7 @@ func (o *AlertViewForNdsGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -319,7 +322,7 @@ func (o *AlertViewForNdsGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -333,7 +336,7 @@ func (o *AlertViewForNdsGroup) SetId(v string) {
 
 // GetLastNotified returns the LastNotified field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetLastNotified() time.Time {
-	if o == nil || o.LastNotified == nil {
+	if o == nil || IsNil(o.LastNotified) {
 		var ret time.Time
 		return ret
 	}
@@ -343,7 +346,7 @@ func (o *AlertViewForNdsGroup) GetLastNotified() time.Time {
 // GetLastNotifiedOk returns a tuple with the LastNotified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetLastNotifiedOk() (*time.Time, bool) {
-	if o == nil || o.LastNotified == nil {
+	if o == nil || IsNil(o.LastNotified) {
 		return nil, false
 	}
 	return o.LastNotified, true
@@ -351,7 +354,7 @@ func (o *AlertViewForNdsGroup) GetLastNotifiedOk() (*time.Time, bool) {
 
 // HasLastNotified returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasLastNotified() bool {
-	if o != nil && o.LastNotified != nil {
+	if o != nil && !IsNil(o.LastNotified) {
 		return true
 	}
 
@@ -365,7 +368,7 @@ func (o *AlertViewForNdsGroup) SetLastNotified(v time.Time) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -375,7 +378,7 @@ func (o *AlertViewForNdsGroup) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -383,7 +386,7 @@ func (o *AlertViewForNdsGroup) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -397,7 +400,7 @@ func (o *AlertViewForNdsGroup) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -407,7 +410,7 @@ func (o *AlertViewForNdsGroup) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -415,7 +418,7 @@ func (o *AlertViewForNdsGroup) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -429,7 +432,7 @@ func (o *AlertViewForNdsGroup) SetOrgId(v string) {
 
 // GetResolved returns the Resolved field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetResolved() time.Time {
-	if o == nil || o.Resolved == nil {
+	if o == nil || IsNil(o.Resolved) {
 		var ret time.Time
 		return ret
 	}
@@ -439,7 +442,7 @@ func (o *AlertViewForNdsGroup) GetResolved() time.Time {
 // GetResolvedOk returns a tuple with the Resolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetResolvedOk() (*time.Time, bool) {
-	if o == nil || o.Resolved == nil {
+	if o == nil || IsNil(o.Resolved) {
 		return nil, false
 	}
 	return o.Resolved, true
@@ -447,7 +450,7 @@ func (o *AlertViewForNdsGroup) GetResolvedOk() (*time.Time, bool) {
 
 // HasResolved returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasResolved() bool {
-	if o != nil && o.Resolved != nil {
+	if o != nil && !IsNil(o.Resolved) {
 		return true
 	}
 
@@ -461,7 +464,7 @@ func (o *AlertViewForNdsGroup) SetResolved(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -471,7 +474,7 @@ func (o *AlertViewForNdsGroup) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -479,7 +482,7 @@ func (o *AlertViewForNdsGroup) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -493,7 +496,7 @@ func (o *AlertViewForNdsGroup) SetStatus(v string) {
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetUpdated() time.Time {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		var ret time.Time
 		return ret
 	}
@@ -503,7 +506,7 @@ func (o *AlertViewForNdsGroup) GetUpdated() time.Time {
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
 	return o.Updated, true
@@ -511,7 +514,7 @@ func (o *AlertViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
+	if o != nil && !IsNil(o.Updated) {
 		return true
 	}
 
@@ -525,7 +528,7 @@ func (o *AlertViewForNdsGroup) SetUpdated(v time.Time) {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -535,7 +538,7 @@ func (o *AlertViewForNdsGroup) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -543,7 +546,7 @@ func (o *AlertViewForNdsGroup) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -557,7 +560,7 @@ func (o *AlertViewForNdsGroup) SetClusterName(v string) {
 
 // GetHostnameAndPort returns the HostnameAndPort field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetHostnameAndPort() string {
-	if o == nil || o.HostnameAndPort == nil {
+	if o == nil || IsNil(o.HostnameAndPort) {
 		var ret string
 		return ret
 	}
@@ -567,7 +570,7 @@ func (o *AlertViewForNdsGroup) GetHostnameAndPort() string {
 // GetHostnameAndPortOk returns a tuple with the HostnameAndPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetHostnameAndPortOk() (*string, bool) {
-	if o == nil || o.HostnameAndPort == nil {
+	if o == nil || IsNil(o.HostnameAndPort) {
 		return nil, false
 	}
 	return o.HostnameAndPort, true
@@ -575,7 +578,7 @@ func (o *AlertViewForNdsGroup) GetHostnameAndPortOk() (*string, bool) {
 
 // HasHostnameAndPort returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasHostnameAndPort() bool {
-	if o != nil && o.HostnameAndPort != nil {
+	if o != nil && !IsNil(o.HostnameAndPort) {
 		return true
 	}
 
@@ -589,7 +592,7 @@ func (o *AlertViewForNdsGroup) SetHostnameAndPort(v string) {
 
 // GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetReplicaSetName() string {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		var ret string
 		return ret
 	}
@@ -599,7 +602,7 @@ func (o *AlertViewForNdsGroup) GetReplicaSetName() string {
 // GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || o.ReplicaSetName == nil {
+	if o == nil || IsNil(o.ReplicaSetName) {
 		return nil, false
 	}
 	return o.ReplicaSetName, true
@@ -607,7 +610,7 @@ func (o *AlertViewForNdsGroup) GetReplicaSetNameOk() (*string, bool) {
 
 // HasReplicaSetName returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasReplicaSetName() bool {
-	if o != nil && o.ReplicaSetName != nil {
+	if o != nil && !IsNil(o.ReplicaSetName) {
 		return true
 	}
 
@@ -621,7 +624,7 @@ func (o *AlertViewForNdsGroup) SetReplicaSetName(v string) {
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetCurrentValue() HostMetricValueView {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		var ret HostMetricValueView
 		return ret
 	}
@@ -631,7 +634,7 @@ func (o *AlertViewForNdsGroup) GetCurrentValue() HostMetricValueView {
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) {
-	if o == nil || o.CurrentValue == nil {
+	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
 	return o.CurrentValue, true
@@ -639,7 +642,7 @@ func (o *AlertViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) 
 
 // HasCurrentValue returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasCurrentValue() bool {
-	if o != nil && o.CurrentValue != nil {
+	if o != nil && !IsNil(o.CurrentValue) {
 		return true
 	}
 
@@ -653,7 +656,7 @@ func (o *AlertViewForNdsGroup) SetCurrentValue(v HostMetricValueView) {
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetMetricName() string {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		var ret string
 		return ret
 	}
@@ -663,7 +666,7 @@ func (o *AlertViewForNdsGroup) GetMetricName() string {
 // GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetMetricNameOk() (*string, bool) {
-	if o == nil || o.MetricName == nil {
+	if o == nil || IsNil(o.MetricName) {
 		return nil, false
 	}
 	return o.MetricName, true
@@ -671,7 +674,7 @@ func (o *AlertViewForNdsGroup) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
+	if o != nil && !IsNil(o.MetricName) {
 		return true
 	}
 
@@ -685,7 +688,7 @@ func (o *AlertViewForNdsGroup) SetMetricName(v string) {
 
 // GetNonRunningHostIds returns the NonRunningHostIds field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetNonRunningHostIds() []string {
-	if o == nil || o.NonRunningHostIds == nil {
+	if o == nil || IsNil(o.NonRunningHostIds) {
 		var ret []string
 		return ret
 	}
@@ -695,7 +698,7 @@ func (o *AlertViewForNdsGroup) GetNonRunningHostIds() []string {
 // GetNonRunningHostIdsOk returns a tuple with the NonRunningHostIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetNonRunningHostIdsOk() ([]string, bool) {
-	if o == nil || o.NonRunningHostIds == nil {
+	if o == nil || IsNil(o.NonRunningHostIds) {
 		return nil, false
 	}
 	return o.NonRunningHostIds, true
@@ -703,7 +706,7 @@ func (o *AlertViewForNdsGroup) GetNonRunningHostIdsOk() ([]string, bool) {
 
 // HasNonRunningHostIds returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasNonRunningHostIds() bool {
-	if o != nil && o.NonRunningHostIds != nil {
+	if o != nil && !IsNil(o.NonRunningHostIds) {
 		return true
 	}
 
@@ -717,7 +720,7 @@ func (o *AlertViewForNdsGroup) SetNonRunningHostIds(v []string) {
 
 // GetParentClusterId returns the ParentClusterId field value if set, zero value otherwise.
 func (o *AlertViewForNdsGroup) GetParentClusterId() string {
-	if o == nil || o.ParentClusterId == nil {
+	if o == nil || IsNil(o.ParentClusterId) {
 		var ret string
 		return ret
 	}
@@ -727,7 +730,7 @@ func (o *AlertViewForNdsGroup) GetParentClusterId() string {
 // GetParentClusterIdOk returns a tuple with the ParentClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlertViewForNdsGroup) GetParentClusterIdOk() (*string, bool) {
-	if o == nil || o.ParentClusterId == nil {
+	if o == nil || IsNil(o.ParentClusterId) {
 		return nil, false
 	}
 	return o.ParentClusterId, true
@@ -735,7 +738,7 @@ func (o *AlertViewForNdsGroup) GetParentClusterIdOk() (*string, bool) {
 
 // HasParentClusterId returns a boolean if a field has been set.
 func (o *AlertViewForNdsGroup) HasParentClusterId() bool {
-	if o != nil && o.ParentClusterId != nil {
+	if o != nil && !IsNil(o.ParentClusterId) {
 		return true
 	}
 
@@ -748,71 +751,45 @@ func (o *AlertViewForNdsGroup) SetParentClusterId(v string) {
 }
 
 func (o AlertViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AcknowledgedUntil != nil {
-		toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
-	}
-	if o.AcknowledgementComment != nil {
-		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
-	}
-	if o.AcknowledgingUsername != nil {
-		toSerialize["acknowledgingUsername"] = o.AcknowledgingUsername
-	}
-	if o.AlertConfigId != nil {
-		toSerialize["alertConfigId"] = o.AlertConfigId
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.EventTypeName != nil {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.LastNotified != nil {
-		toSerialize["lastNotified"] = o.LastNotified
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Resolved != nil {
-		toSerialize["resolved"] = o.Resolved
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
-	}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.HostnameAndPort != nil {
-		toSerialize["hostnameAndPort"] = o.HostnameAndPort
-	}
-	if o.ReplicaSetName != nil {
-		toSerialize["replicaSetName"] = o.ReplicaSetName
-	}
-	if o.CurrentValue != nil {
-		toSerialize["currentValue"] = o.CurrentValue
-	}
-	if o.MetricName != nil {
-		toSerialize["metricName"] = o.MetricName
-	}
-	if o.NonRunningHostIds != nil {
-		toSerialize["nonRunningHostIds"] = o.NonRunningHostIds
-	}
-	if o.ParentClusterId != nil {
-		toSerialize["parentClusterId"] = o.ParentClusterId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AlertViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AcknowledgedUntil) {
+		toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
+	}
+	if !IsNil(o.AcknowledgementComment) {
+		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
+	}
+	// skip: acknowledgingUsername is readOnly
+	// skip: alertConfigId is readOnly
+	// skip: created is readOnly
+	if !IsNil(o.EventTypeName) {
+		toSerialize["eventTypeName"] = o.EventTypeName
+	}
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: lastNotified is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: resolved is readOnly
+	// skip: status is readOnly
+	// skip: updated is readOnly
+	// skip: clusterName is readOnly
+	// skip: hostnameAndPort is readOnly
+	// skip: replicaSetName is readOnly
+	if !IsNil(o.CurrentValue) {
+		toSerialize["currentValue"] = o.CurrentValue
+	}
+	// skip: metricName is readOnly
+	// skip: nonRunningHostIds is readOnly
+	// skip: parentClusterId is readOnly
+	return toSerialize, nil
 }
 
 type NullableAlertViewForNdsGroup struct {

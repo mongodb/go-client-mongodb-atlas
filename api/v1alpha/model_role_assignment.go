@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RoleAssignment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RoleAssignment{}
+
 // RoleAssignment struct for RoleAssignment
 type RoleAssignment struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or **orgId** but not both in the same request.
@@ -43,7 +46,7 @@ func NewRoleAssignmentWithDefaults() *RoleAssignment {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *RoleAssignment) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *RoleAssignment) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoleAssignment) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -61,7 +64,7 @@ func (o *RoleAssignment) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *RoleAssignment) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *RoleAssignment) SetGroupId(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *RoleAssignment) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *RoleAssignment) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoleAssignment) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -93,7 +96,7 @@ func (o *RoleAssignment) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *RoleAssignment) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *RoleAssignment) SetOrgId(v string) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *RoleAssignment) GetRole() string {
-	if o == nil || o.Role == nil {
+	if o == nil || IsNil(o.Role) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *RoleAssignment) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoleAssignment) GetRoleOk() (*string, bool) {
-	if o == nil || o.Role == nil {
+	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
 	return o.Role, true
@@ -125,7 +128,7 @@ func (o *RoleAssignment) GetRoleOk() (*string, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *RoleAssignment) HasRole() bool {
-	if o != nil && o.Role != nil {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *RoleAssignment) SetRole(v string) {
 }
 
 func (o RoleAssignment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Role != nil {
-		toSerialize["role"] = o.Role
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RoleAssignment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GroupId) {
+		toSerialize["groupId"] = o.GroupId
+	}
+	if !IsNil(o.OrgId) {
+		toSerialize["orgId"] = o.OrgId
+	}
+	if !IsNil(o.Role) {
+		toSerialize["role"] = o.Role
+	}
+	return toSerialize, nil
 }
 
 type NullableRoleAssignment struct {

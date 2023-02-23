@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OnlineArchive type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OnlineArchive{}
+
 // OnlineArchive struct for OnlineArchive
 type OnlineArchive struct {
 	// Unique 24-hexadecimal digit string that identifies the online archive.
@@ -59,7 +62,7 @@ func NewOnlineArchiveWithDefaults() *OnlineArchive {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *OnlineArchive) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -69,7 +72,7 @@ func (o *OnlineArchive) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -77,7 +80,7 @@ func (o *OnlineArchive) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *OnlineArchive) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *OnlineArchive) SetId(v string) {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *OnlineArchive) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -101,7 +104,7 @@ func (o *OnlineArchive) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -109,7 +112,7 @@ func (o *OnlineArchive) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *OnlineArchive) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *OnlineArchive) SetClusterName(v string) {
 
 // GetCollName returns the CollName field value if set, zero value otherwise.
 func (o *OnlineArchive) GetCollName() string {
-	if o == nil || o.CollName == nil {
+	if o == nil || IsNil(o.CollName) {
 		var ret string
 		return ret
 	}
@@ -133,7 +136,7 @@ func (o *OnlineArchive) GetCollName() string {
 // GetCollNameOk returns a tuple with the CollName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetCollNameOk() (*string, bool) {
-	if o == nil || o.CollName == nil {
+	if o == nil || IsNil(o.CollName) {
 		return nil, false
 	}
 	return o.CollName, true
@@ -141,7 +144,7 @@ func (o *OnlineArchive) GetCollNameOk() (*string, bool) {
 
 // HasCollName returns a boolean if a field has been set.
 func (o *OnlineArchive) HasCollName() bool {
-	if o != nil && o.CollName != nil {
+	if o != nil && !IsNil(o.CollName) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *OnlineArchive) SetCollName(v string) {
 
 // GetCollectionType returns the CollectionType field value if set, zero value otherwise.
 func (o *OnlineArchive) GetCollectionType() string {
-	if o == nil || o.CollectionType == nil {
+	if o == nil || IsNil(o.CollectionType) {
 		var ret string
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *OnlineArchive) GetCollectionType() string {
 // GetCollectionTypeOk returns a tuple with the CollectionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetCollectionTypeOk() (*string, bool) {
-	if o == nil || o.CollectionType == nil {
+	if o == nil || IsNil(o.CollectionType) {
 		return nil, false
 	}
 	return o.CollectionType, true
@@ -173,7 +176,7 @@ func (o *OnlineArchive) GetCollectionTypeOk() (*string, bool) {
 
 // HasCollectionType returns a boolean if a field has been set.
 func (o *OnlineArchive) HasCollectionType() bool {
-	if o != nil && o.CollectionType != nil {
+	if o != nil && !IsNil(o.CollectionType) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *OnlineArchive) SetCriteria(v CriteriaView) {
 
 // GetDbName returns the DbName field value if set, zero value otherwise.
 func (o *OnlineArchive) GetDbName() string {
-	if o == nil || o.DbName == nil {
+	if o == nil || IsNil(o.DbName) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *OnlineArchive) GetDbName() string {
 // GetDbNameOk returns a tuple with the DbName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetDbNameOk() (*string, bool) {
-	if o == nil || o.DbName == nil {
+	if o == nil || IsNil(o.DbName) {
 		return nil, false
 	}
 	return o.DbName, true
@@ -229,7 +232,7 @@ func (o *OnlineArchive) GetDbNameOk() (*string, bool) {
 
 // HasDbName returns a boolean if a field has been set.
 func (o *OnlineArchive) HasDbName() bool {
-	if o != nil && o.DbName != nil {
+	if o != nil && !IsNil(o.DbName) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *OnlineArchive) SetDbName(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *OnlineArchive) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *OnlineArchive) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -261,7 +264,7 @@ func (o *OnlineArchive) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *OnlineArchive) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -275,7 +278,7 @@ func (o *OnlineArchive) SetGroupId(v string) {
 
 // GetPartitionFields returns the PartitionFields field value if set, zero value otherwise.
 func (o *OnlineArchive) GetPartitionFields() []PartitionFieldView {
-	if o == nil || o.PartitionFields == nil {
+	if o == nil || IsNil(o.PartitionFields) {
 		var ret []PartitionFieldView
 		return ret
 	}
@@ -285,7 +288,7 @@ func (o *OnlineArchive) GetPartitionFields() []PartitionFieldView {
 // GetPartitionFieldsOk returns a tuple with the PartitionFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetPartitionFieldsOk() ([]PartitionFieldView, bool) {
-	if o == nil || o.PartitionFields == nil {
+	if o == nil || IsNil(o.PartitionFields) {
 		return nil, false
 	}
 	return o.PartitionFields, true
@@ -293,7 +296,7 @@ func (o *OnlineArchive) GetPartitionFieldsOk() ([]PartitionFieldView, bool) {
 
 // HasPartitionFields returns a boolean if a field has been set.
 func (o *OnlineArchive) HasPartitionFields() bool {
-	if o != nil && o.PartitionFields != nil {
+	if o != nil && !IsNil(o.PartitionFields) {
 		return true
 	}
 
@@ -307,7 +310,7 @@ func (o *OnlineArchive) SetPartitionFields(v []PartitionFieldView) {
 
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *OnlineArchive) GetSchedule() OnlineArchiveSchedule {
-	if o == nil || o.Schedule == nil {
+	if o == nil || IsNil(o.Schedule) {
 		var ret OnlineArchiveSchedule
 		return ret
 	}
@@ -317,7 +320,7 @@ func (o *OnlineArchive) GetSchedule() OnlineArchiveSchedule {
 // GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetScheduleOk() (*OnlineArchiveSchedule, bool) {
-	if o == nil || o.Schedule == nil {
+	if o == nil || IsNil(o.Schedule) {
 		return nil, false
 	}
 	return o.Schedule, true
@@ -325,7 +328,7 @@ func (o *OnlineArchive) GetScheduleOk() (*OnlineArchiveSchedule, bool) {
 
 // HasSchedule returns a boolean if a field has been set.
 func (o *OnlineArchive) HasSchedule() bool {
-	if o != nil && o.Schedule != nil {
+	if o != nil && !IsNil(o.Schedule) {
 		return true
 	}
 
@@ -339,7 +342,7 @@ func (o *OnlineArchive) SetSchedule(v OnlineArchiveSchedule) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *OnlineArchive) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -349,7 +352,7 @@ func (o *OnlineArchive) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -357,7 +360,7 @@ func (o *OnlineArchive) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *OnlineArchive) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -370,38 +373,36 @@ func (o *OnlineArchive) SetState(v string) {
 }
 
 func (o OnlineArchive) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.CollName != nil {
-		toSerialize["collName"] = o.CollName
-	}
-	if o.CollectionType != nil {
-		toSerialize["collectionType"] = o.CollectionType
-	}
-	if true {
-		toSerialize["criteria"] = o.Criteria
-	}
-	if o.DbName != nil {
-		toSerialize["dbName"] = o.DbName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.PartitionFields != nil {
-		toSerialize["partitionFields"] = o.PartitionFields
-	}
-	if o.Schedule != nil {
-		toSerialize["schedule"] = o.Schedule
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OnlineArchive) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: clusterName is readOnly
+	if !IsNil(o.CollName) {
+		toSerialize["collName"] = o.CollName
+	}
+	if !IsNil(o.CollectionType) {
+		toSerialize["collectionType"] = o.CollectionType
+	}
+	toSerialize["criteria"] = o.Criteria
+	if !IsNil(o.DbName) {
+		toSerialize["dbName"] = o.DbName
+	}
+	// skip: groupId is readOnly
+	if !IsNil(o.PartitionFields) {
+		toSerialize["partitionFields"] = o.PartitionFields
+	}
+	if !IsNil(o.Schedule) {
+		toSerialize["schedule"] = o.Schedule
+	}
+	// skip: state is readOnly
+	return toSerialize, nil
 }
 
 type NullableOnlineArchive struct {

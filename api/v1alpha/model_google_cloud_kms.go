@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GoogleCloudKMS type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GoogleCloudKMS{}
+
 // GoogleCloudKMS Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 type GoogleCloudKMS struct {
 	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
@@ -45,7 +48,7 @@ func NewGoogleCloudKMSWithDefaults() *GoogleCloudKMS {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GoogleCloudKMS) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *GoogleCloudKMS) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GoogleCloudKMS) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -63,7 +66,7 @@ func (o *GoogleCloudKMS) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GoogleCloudKMS) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GoogleCloudKMS) SetEnabled(v bool) {
 
 // GetKeyVersionResourceID returns the KeyVersionResourceID field value if set, zero value otherwise.
 func (o *GoogleCloudKMS) GetKeyVersionResourceID() string {
-	if o == nil || o.KeyVersionResourceID == nil {
+	if o == nil || IsNil(o.KeyVersionResourceID) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *GoogleCloudKMS) GetKeyVersionResourceID() string {
 // GetKeyVersionResourceIDOk returns a tuple with the KeyVersionResourceID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GoogleCloudKMS) GetKeyVersionResourceIDOk() (*string, bool) {
-	if o == nil || o.KeyVersionResourceID == nil {
+	if o == nil || IsNil(o.KeyVersionResourceID) {
 		return nil, false
 	}
 	return o.KeyVersionResourceID, true
@@ -95,7 +98,7 @@ func (o *GoogleCloudKMS) GetKeyVersionResourceIDOk() (*string, bool) {
 
 // HasKeyVersionResourceID returns a boolean if a field has been set.
 func (o *GoogleCloudKMS) HasKeyVersionResourceID() bool {
-	if o != nil && o.KeyVersionResourceID != nil {
+	if o != nil && !IsNil(o.KeyVersionResourceID) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GoogleCloudKMS) SetKeyVersionResourceID(v string) {
 
 // GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise.
 func (o *GoogleCloudKMS) GetServiceAccountKey() string {
-	if o == nil || o.ServiceAccountKey == nil {
+	if o == nil || IsNil(o.ServiceAccountKey) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *GoogleCloudKMS) GetServiceAccountKey() string {
 // GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GoogleCloudKMS) GetServiceAccountKeyOk() (*string, bool) {
-	if o == nil || o.ServiceAccountKey == nil {
+	if o == nil || IsNil(o.ServiceAccountKey) {
 		return nil, false
 	}
 	return o.ServiceAccountKey, true
@@ -127,7 +130,7 @@ func (o *GoogleCloudKMS) GetServiceAccountKeyOk() (*string, bool) {
 
 // HasServiceAccountKey returns a boolean if a field has been set.
 func (o *GoogleCloudKMS) HasServiceAccountKey() bool {
-	if o != nil && o.ServiceAccountKey != nil {
+	if o != nil && !IsNil(o.ServiceAccountKey) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GoogleCloudKMS) SetServiceAccountKey(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *GoogleCloudKMS) GetValid() bool {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *GoogleCloudKMS) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GoogleCloudKMS) GetValidOk() (*bool, bool) {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
 	return o.Valid, true
@@ -159,7 +162,7 @@ func (o *GoogleCloudKMS) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *GoogleCloudKMS) HasValid() bool {
-	if o != nil && o.Valid != nil {
+	if o != nil && !IsNil(o.Valid) {
 		return true
 	}
 
@@ -172,20 +175,26 @@ func (o *GoogleCloudKMS) SetValid(v bool) {
 }
 
 func (o GoogleCloudKMS) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.KeyVersionResourceID != nil {
-		toSerialize["keyVersionResourceID"] = o.KeyVersionResourceID
-	}
-	if o.ServiceAccountKey != nil {
-		toSerialize["serviceAccountKey"] = o.ServiceAccountKey
-	}
-	if o.Valid != nil {
-		toSerialize["valid"] = o.Valid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GoogleCloudKMS) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.KeyVersionResourceID) {
+		toSerialize["keyVersionResourceID"] = o.KeyVersionResourceID
+	}
+	if !IsNil(o.ServiceAccountKey) {
+		toSerialize["serviceAccountKey"] = o.ServiceAccountKey
+	}
+	// skip: valid is readOnly
+	return toSerialize, nil
 }
 
 type NullableGoogleCloudKMS struct {

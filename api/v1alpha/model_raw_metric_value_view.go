@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RawMetricValueView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RawMetricValueView{}
+
 // RawMetricValueView Measurement of the **metricName** recorded at the time of the event.
 type RawMetricValueView struct {
 	// Amount of the **metricName** recorded at the time of the event. This value triggered the alert.
@@ -44,7 +47,7 @@ func NewRawMetricValueViewWithDefaults() *RawMetricValueView {
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *RawMetricValueView) GetNumber() float64 {
-	if o == nil || o.Number == nil {
+	if o == nil || IsNil(o.Number) {
 		var ret float64
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *RawMetricValueView) GetNumber() float64 {
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RawMetricValueView) GetNumberOk() (*float64, bool) {
-	if o == nil || o.Number == nil {
+	if o == nil || IsNil(o.Number) {
 		return nil, false
 	}
 	return o.Number, true
@@ -62,7 +65,7 @@ func (o *RawMetricValueView) GetNumberOk() (*float64, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *RawMetricValueView) HasNumber() bool {
-	if o != nil && o.Number != nil {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *RawMetricValueView) SetNumber(v float64) {
 
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *RawMetricValueView) GetUnits() RawMetricUnits {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		var ret RawMetricUnits
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *RawMetricValueView) GetUnits() RawMetricUnits {
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RawMetricValueView) GetUnitsOk() (*RawMetricUnits, bool) {
-	if o == nil || o.Units == nil {
+	if o == nil || IsNil(o.Units) {
 		return nil, false
 	}
 	return o.Units, true
@@ -94,7 +97,7 @@ func (o *RawMetricValueView) GetUnitsOk() (*RawMetricUnits, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *RawMetricValueView) HasUnits() bool {
-	if o != nil && o.Units != nil {
+	if o != nil && !IsNil(o.Units) {
 		return true
 	}
 
@@ -107,14 +110,20 @@ func (o *RawMetricValueView) SetUnits(v RawMetricUnits) {
 }
 
 func (o RawMetricValueView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Number != nil {
-		toSerialize["number"] = o.Number
-	}
-	if o.Units != nil {
-		toSerialize["units"] = o.Units
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RawMetricValueView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: number is readOnly
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	return toSerialize, nil
 }
 
 type NullableRawMetricValueView struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DataFederationQueryLimit type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataFederationQueryLimit{}
+
 // DataFederationQueryLimit Details of a query limit for Data Federation. Query limit is the limit on the amount of usage during a time period based on cost.
 type DataFederationQueryLimit struct {
 	// Amount that indicates the current usage of the limit.
@@ -52,7 +55,7 @@ func NewDataFederationQueryLimitWithDefaults() *DataFederationQueryLimit {
 
 // GetCurrentUsage returns the CurrentUsage field value if set, zero value otherwise.
 func (o *DataFederationQueryLimit) GetCurrentUsage() int64 {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		var ret int64
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *DataFederationQueryLimit) GetCurrentUsage() int64 {
 // GetCurrentUsageOk returns a tuple with the CurrentUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationQueryLimit) GetCurrentUsageOk() (*int64, bool) {
-	if o == nil || o.CurrentUsage == nil {
+	if o == nil || IsNil(o.CurrentUsage) {
 		return nil, false
 	}
 	return o.CurrentUsage, true
@@ -70,7 +73,7 @@ func (o *DataFederationQueryLimit) GetCurrentUsageOk() (*int64, bool) {
 
 // HasCurrentUsage returns a boolean if a field has been set.
 func (o *DataFederationQueryLimit) HasCurrentUsage() bool {
-	if o != nil && o.CurrentUsage != nil {
+	if o != nil && !IsNil(o.CurrentUsage) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *DataFederationQueryLimit) SetCurrentUsage(v int64) {
 
 // GetDefaultLimit returns the DefaultLimit field value if set, zero value otherwise.
 func (o *DataFederationQueryLimit) GetDefaultLimit() int64 {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		var ret int64
 		return ret
 	}
@@ -94,7 +97,7 @@ func (o *DataFederationQueryLimit) GetDefaultLimit() int64 {
 // GetDefaultLimitOk returns a tuple with the DefaultLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationQueryLimit) GetDefaultLimitOk() (*int64, bool) {
-	if o == nil || o.DefaultLimit == nil {
+	if o == nil || IsNil(o.DefaultLimit) {
 		return nil, false
 	}
 	return o.DefaultLimit, true
@@ -102,7 +105,7 @@ func (o *DataFederationQueryLimit) GetDefaultLimitOk() (*int64, bool) {
 
 // HasDefaultLimit returns a boolean if a field has been set.
 func (o *DataFederationQueryLimit) HasDefaultLimit() bool {
-	if o != nil && o.DefaultLimit != nil {
+	if o != nil && !IsNil(o.DefaultLimit) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *DataFederationQueryLimit) SetDefaultLimit(v int64) {
 
 // GetLastModifiedDate returns the LastModifiedDate field value if set, zero value otherwise.
 func (o *DataFederationQueryLimit) GetLastModifiedDate() time.Time {
-	if o == nil || o.LastModifiedDate == nil {
+	if o == nil || IsNil(o.LastModifiedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -126,7 +129,7 @@ func (o *DataFederationQueryLimit) GetLastModifiedDate() time.Time {
 // GetLastModifiedDateOk returns a tuple with the LastModifiedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationQueryLimit) GetLastModifiedDateOk() (*time.Time, bool) {
-	if o == nil || o.LastModifiedDate == nil {
+	if o == nil || IsNil(o.LastModifiedDate) {
 		return nil, false
 	}
 	return o.LastModifiedDate, true
@@ -134,7 +137,7 @@ func (o *DataFederationQueryLimit) GetLastModifiedDateOk() (*time.Time, bool) {
 
 // HasLastModifiedDate returns a boolean if a field has been set.
 func (o *DataFederationQueryLimit) HasLastModifiedDate() bool {
-	if o != nil && o.LastModifiedDate != nil {
+	if o != nil && !IsNil(o.LastModifiedDate) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *DataFederationQueryLimit) SetLastModifiedDate(v time.Time) {
 
 // GetMaximumLimit returns the MaximumLimit field value if set, zero value otherwise.
 func (o *DataFederationQueryLimit) GetMaximumLimit() int64 {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		var ret int64
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *DataFederationQueryLimit) GetMaximumLimit() int64 {
 // GetMaximumLimitOk returns a tuple with the MaximumLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationQueryLimit) GetMaximumLimitOk() (*int64, bool) {
-	if o == nil || o.MaximumLimit == nil {
+	if o == nil || IsNil(o.MaximumLimit) {
 		return nil, false
 	}
 	return o.MaximumLimit, true
@@ -166,7 +169,7 @@ func (o *DataFederationQueryLimit) GetMaximumLimitOk() (*int64, bool) {
 
 // HasMaximumLimit returns a boolean if a field has been set.
 func (o *DataFederationQueryLimit) HasMaximumLimit() bool {
-	if o != nil && o.MaximumLimit != nil {
+	if o != nil && !IsNil(o.MaximumLimit) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *DataFederationQueryLimit) SetName(v string) {
 
 // GetOverrunPolicy returns the OverrunPolicy field value if set, zero value otherwise.
 func (o *DataFederationQueryLimit) GetOverrunPolicy() string {
-	if o == nil || o.OverrunPolicy == nil {
+	if o == nil || IsNil(o.OverrunPolicy) {
 		var ret string
 		return ret
 	}
@@ -214,7 +217,7 @@ func (o *DataFederationQueryLimit) GetOverrunPolicy() string {
 // GetOverrunPolicyOk returns a tuple with the OverrunPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataFederationQueryLimit) GetOverrunPolicyOk() (*string, bool) {
-	if o == nil || o.OverrunPolicy == nil {
+	if o == nil || IsNil(o.OverrunPolicy) {
 		return nil, false
 	}
 	return o.OverrunPolicy, true
@@ -222,7 +225,7 @@ func (o *DataFederationQueryLimit) GetOverrunPolicyOk() (*string, bool) {
 
 // HasOverrunPolicy returns a boolean if a field has been set.
 func (o *DataFederationQueryLimit) HasOverrunPolicy() bool {
-	if o != nil && o.OverrunPolicy != nil {
+	if o != nil && !IsNil(o.OverrunPolicy) {
 		return true
 	}
 
@@ -259,29 +262,25 @@ func (o *DataFederationQueryLimit) SetValue(v int64) {
 }
 
 func (o DataFederationQueryLimit) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CurrentUsage != nil {
-		toSerialize["currentUsage"] = o.CurrentUsage
-	}
-	if o.DefaultLimit != nil {
-		toSerialize["defaultLimit"] = o.DefaultLimit
-	}
-	if o.LastModifiedDate != nil {
-		toSerialize["lastModifiedDate"] = o.LastModifiedDate
-	}
-	if o.MaximumLimit != nil {
-		toSerialize["maximumLimit"] = o.MaximumLimit
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.OverrunPolicy != nil {
-		toSerialize["overrunPolicy"] = o.OverrunPolicy
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataFederationQueryLimit) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: currentUsage is readOnly
+	// skip: defaultLimit is readOnly
+	// skip: lastModifiedDate is readOnly
+	// skip: maximumLimit is readOnly
+	// skip: name is readOnly
+	if !IsNil(o.OverrunPolicy) {
+		toSerialize["overrunPolicy"] = o.OverrunPolicy
+	}
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableDataFederationQueryLimit struct {

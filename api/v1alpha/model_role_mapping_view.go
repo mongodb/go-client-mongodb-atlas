@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RoleMappingView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RoleMappingView{}
+
 // RoleMappingView Mapping settings that link one IdP and MongoDB Cloud.
 type RoleMappingView struct {
 	// Unique human-readable label that identifies the identity provider group to whichthis role mapping applies.
@@ -67,7 +70,7 @@ func (o *RoleMappingView) SetExternalGroupName(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RoleMappingView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *RoleMappingView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoleMappingView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -85,7 +88,7 @@ func (o *RoleMappingView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *RoleMappingView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *RoleMappingView) SetId(v string) {
 
 // GetRoleAssignments returns the RoleAssignments field value if set, zero value otherwise.
 func (o *RoleMappingView) GetRoleAssignments() []RoleAssignment {
-	if o == nil || o.RoleAssignments == nil {
+	if o == nil || IsNil(o.RoleAssignments) {
 		var ret []RoleAssignment
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *RoleMappingView) GetRoleAssignments() []RoleAssignment {
 // GetRoleAssignmentsOk returns a tuple with the RoleAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoleMappingView) GetRoleAssignmentsOk() ([]RoleAssignment, bool) {
-	if o == nil || o.RoleAssignments == nil {
+	if o == nil || IsNil(o.RoleAssignments) {
 		return nil, false
 	}
 	return o.RoleAssignments, true
@@ -117,7 +120,7 @@ func (o *RoleMappingView) GetRoleAssignmentsOk() ([]RoleAssignment, bool) {
 
 // HasRoleAssignments returns a boolean if a field has been set.
 func (o *RoleMappingView) HasRoleAssignments() bool {
-	if o != nil && o.RoleAssignments != nil {
+	if o != nil && !IsNil(o.RoleAssignments) {
 		return true
 	}
 
@@ -130,17 +133,21 @@ func (o *RoleMappingView) SetRoleAssignments(v []RoleAssignment) {
 }
 
 func (o RoleMappingView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["externalGroupName"] = o.ExternalGroupName
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.RoleAssignments != nil {
-		toSerialize["roleAssignments"] = o.RoleAssignments
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RoleMappingView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["externalGroupName"] = o.ExternalGroupName
+	// skip: id is readOnly
+	if !IsNil(o.RoleAssignments) {
+		toSerialize["roleAssignments"] = o.RoleAssignments
+	}
+	return toSerialize, nil
 }
 
 type NullableRoleMappingView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WebhookNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WebhookNotificationView{}
+
 // WebhookNotificationView Webhook notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type WebhookNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -47,7 +50,7 @@ func NewWebhookNotificationViewWithDefaults() *WebhookNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *WebhookNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *WebhookNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -65,7 +68,7 @@ func (o *WebhookNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *WebhookNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *WebhookNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *WebhookNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *WebhookNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -97,7 +100,7 @@ func (o *WebhookNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *WebhookNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -135,7 +138,7 @@ func (o *WebhookNotificationView) SetTypeName(v string) {
 
 // GetWebhookSecret returns the WebhookSecret field value if set, zero value otherwise.
 func (o *WebhookNotificationView) GetWebhookSecret() string {
-	if o == nil || o.WebhookSecret == nil {
+	if o == nil || IsNil(o.WebhookSecret) {
 		var ret string
 		return ret
 	}
@@ -145,7 +148,7 @@ func (o *WebhookNotificationView) GetWebhookSecret() string {
 // GetWebhookSecretOk returns a tuple with the WebhookSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookNotificationView) GetWebhookSecretOk() (*string, bool) {
-	if o == nil || o.WebhookSecret == nil {
+	if o == nil || IsNil(o.WebhookSecret) {
 		return nil, false
 	}
 	return o.WebhookSecret, true
@@ -153,7 +156,7 @@ func (o *WebhookNotificationView) GetWebhookSecretOk() (*string, bool) {
 
 // HasWebhookSecret returns a boolean if a field has been set.
 func (o *WebhookNotificationView) HasWebhookSecret() bool {
-	if o != nil && o.WebhookSecret != nil {
+	if o != nil && !IsNil(o.WebhookSecret) {
 		return true
 	}
 
@@ -167,7 +170,7 @@ func (o *WebhookNotificationView) SetWebhookSecret(v string) {
 
 // GetWebhookUrl returns the WebhookUrl field value if set, zero value otherwise.
 func (o *WebhookNotificationView) GetWebhookUrl() string {
-	if o == nil || o.WebhookUrl == nil {
+	if o == nil || IsNil(o.WebhookUrl) {
 		var ret string
 		return ret
 	}
@@ -177,7 +180,7 @@ func (o *WebhookNotificationView) GetWebhookUrl() string {
 // GetWebhookUrlOk returns a tuple with the WebhookUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebhookNotificationView) GetWebhookUrlOk() (*string, bool) {
-	if o == nil || o.WebhookUrl == nil {
+	if o == nil || IsNil(o.WebhookUrl) {
 		return nil, false
 	}
 	return o.WebhookUrl, true
@@ -185,7 +188,7 @@ func (o *WebhookNotificationView) GetWebhookUrlOk() (*string, bool) {
 
 // HasWebhookUrl returns a boolean if a field has been set.
 func (o *WebhookNotificationView) HasWebhookUrl() bool {
-	if o != nil && o.WebhookUrl != nil {
+	if o != nil && !IsNil(o.WebhookUrl) {
 		return true
 	}
 
@@ -198,23 +201,29 @@ func (o *WebhookNotificationView) SetWebhookUrl(v string) {
 }
 
 func (o WebhookNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
-	}
-	if o.WebhookSecret != nil {
-		toSerialize["webhookSecret"] = o.WebhookSecret
-	}
-	if o.WebhookUrl != nil {
-		toSerialize["webhookUrl"] = o.WebhookUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o WebhookNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	toSerialize["typeName"] = o.TypeName
+	if !IsNil(o.WebhookSecret) {
+		toSerialize["webhookSecret"] = o.WebhookSecret
+	}
+	if !IsNil(o.WebhookUrl) {
+		toSerialize["webhookUrl"] = o.WebhookUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableWebhookNotificationView struct {

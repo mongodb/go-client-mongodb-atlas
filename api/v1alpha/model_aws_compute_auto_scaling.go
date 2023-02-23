@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSComputeAutoScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSComputeAutoScaling{}
+
 // AWSComputeAutoScaling Collection of settings that configures how a cluster might scale its cluster tier and whether the cluster can scale down. Cluster tier auto-scaling is unavailable for clusters using Low CPU or NVME storage classes.
 type AWSComputeAutoScaling struct {
 	// Maximum instance size to which your cluster can automatically scale.
@@ -41,7 +44,7 @@ func NewAWSComputeAutoScalingWithDefaults() *AWSComputeAutoScaling {
 
 // GetMaxInstanceSize returns the MaxInstanceSize field value if set, zero value otherwise.
 func (o *AWSComputeAutoScaling) GetMaxInstanceSize() string {
-	if o == nil || o.MaxInstanceSize == nil {
+	if o == nil || IsNil(o.MaxInstanceSize) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *AWSComputeAutoScaling) GetMaxInstanceSize() string {
 // GetMaxInstanceSizeOk returns a tuple with the MaxInstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSComputeAutoScaling) GetMaxInstanceSizeOk() (*string, bool) {
-	if o == nil || o.MaxInstanceSize == nil {
+	if o == nil || IsNil(o.MaxInstanceSize) {
 		return nil, false
 	}
 	return o.MaxInstanceSize, true
@@ -59,7 +62,7 @@ func (o *AWSComputeAutoScaling) GetMaxInstanceSizeOk() (*string, bool) {
 
 // HasMaxInstanceSize returns a boolean if a field has been set.
 func (o *AWSComputeAutoScaling) HasMaxInstanceSize() bool {
-	if o != nil && o.MaxInstanceSize != nil {
+	if o != nil && !IsNil(o.MaxInstanceSize) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *AWSComputeAutoScaling) SetMaxInstanceSize(v string) {
 
 // GetMinInstanceSize returns the MinInstanceSize field value if set, zero value otherwise.
 func (o *AWSComputeAutoScaling) GetMinInstanceSize() string {
-	if o == nil || o.MinInstanceSize == nil {
+	if o == nil || IsNil(o.MinInstanceSize) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *AWSComputeAutoScaling) GetMinInstanceSize() string {
 // GetMinInstanceSizeOk returns a tuple with the MinInstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSComputeAutoScaling) GetMinInstanceSizeOk() (*string, bool) {
-	if o == nil || o.MinInstanceSize == nil {
+	if o == nil || IsNil(o.MinInstanceSize) {
 		return nil, false
 	}
 	return o.MinInstanceSize, true
@@ -91,7 +94,7 @@ func (o *AWSComputeAutoScaling) GetMinInstanceSizeOk() (*string, bool) {
 
 // HasMinInstanceSize returns a boolean if a field has been set.
 func (o *AWSComputeAutoScaling) HasMinInstanceSize() bool {
-	if o != nil && o.MinInstanceSize != nil {
+	if o != nil && !IsNil(o.MinInstanceSize) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *AWSComputeAutoScaling) SetMinInstanceSize(v string) {
 }
 
 func (o AWSComputeAutoScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MaxInstanceSize != nil {
-		toSerialize["maxInstanceSize"] = o.MaxInstanceSize
-	}
-	if o.MinInstanceSize != nil {
-		toSerialize["minInstanceSize"] = o.MinInstanceSize
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSComputeAutoScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxInstanceSize) {
+		toSerialize["maxInstanceSize"] = o.MaxInstanceSize
+	}
+	if !IsNil(o.MinInstanceSize) {
+		toSerialize["minInstanceSize"] = o.MinInstanceSize
+	}
+	return toSerialize, nil
 }
 
 type NullableAWSComputeAutoScaling struct {

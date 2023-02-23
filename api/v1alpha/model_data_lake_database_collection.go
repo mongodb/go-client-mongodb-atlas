@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeDatabaseCollection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeDatabaseCollection{}
+
 // DataLakeDatabaseCollection A collection and data sources that map to a ``stores`` data store.
 type DataLakeDatabaseCollection struct {
 	// Array that contains the data stores that map to a collection for this data lake.
@@ -41,7 +44,7 @@ func NewDataLakeDatabaseCollectionWithDefaults() *DataLakeDatabaseCollection {
 
 // GetDataSources returns the DataSources field value if set, zero value otherwise.
 func (o *DataLakeDatabaseCollection) GetDataSources() []DataLakeDatabaseDataSource {
-	if o == nil || o.DataSources == nil {
+	if o == nil || IsNil(o.DataSources) {
 		var ret []DataLakeDatabaseDataSource
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *DataLakeDatabaseCollection) GetDataSources() []DataLakeDatabaseDataSour
 // GetDataSourcesOk returns a tuple with the DataSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseCollection) GetDataSourcesOk() ([]DataLakeDatabaseDataSource, bool) {
-	if o == nil || o.DataSources == nil {
+	if o == nil || IsNil(o.DataSources) {
 		return nil, false
 	}
 	return o.DataSources, true
@@ -59,7 +62,7 @@ func (o *DataLakeDatabaseCollection) GetDataSourcesOk() ([]DataLakeDatabaseDataS
 
 // HasDataSources returns a boolean if a field has been set.
 func (o *DataLakeDatabaseCollection) HasDataSources() bool {
-	if o != nil && o.DataSources != nil {
+	if o != nil && !IsNil(o.DataSources) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *DataLakeDatabaseCollection) SetDataSources(v []DataLakeDatabaseDataSour
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeDatabaseCollection) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *DataLakeDatabaseCollection) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeDatabaseCollection) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -91,7 +94,7 @@ func (o *DataLakeDatabaseCollection) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeDatabaseCollection) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *DataLakeDatabaseCollection) SetName(v string) {
 }
 
 func (o DataLakeDatabaseCollection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DataSources != nil {
-		toSerialize["dataSources"] = o.DataSources
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeDatabaseCollection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DataSources) {
+		toSerialize["dataSources"] = o.DataSources
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeDatabaseCollection struct {

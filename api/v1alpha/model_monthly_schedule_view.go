@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MonthlyScheduleView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MonthlyScheduleView{}
+
 // MonthlyScheduleView struct for MonthlyScheduleView
 type MonthlyScheduleView struct {
 	// Day of the month when the scheduled archive starts.
@@ -48,7 +51,7 @@ func NewMonthlyScheduleViewWithDefaults() *MonthlyScheduleView {
 
 // GetDayOfMonth returns the DayOfMonth field value if set, zero value otherwise.
 func (o *MonthlyScheduleView) GetDayOfMonth() int32 {
-	if o == nil || o.DayOfMonth == nil {
+	if o == nil || IsNil(o.DayOfMonth) {
 		var ret int32
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *MonthlyScheduleView) GetDayOfMonth() int32 {
 // GetDayOfMonthOk returns a tuple with the DayOfMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyScheduleView) GetDayOfMonthOk() (*int32, bool) {
-	if o == nil || o.DayOfMonth == nil {
+	if o == nil || IsNil(o.DayOfMonth) {
 		return nil, false
 	}
 	return o.DayOfMonth, true
@@ -66,7 +69,7 @@ func (o *MonthlyScheduleView) GetDayOfMonthOk() (*int32, bool) {
 
 // HasDayOfMonth returns a boolean if a field has been set.
 func (o *MonthlyScheduleView) HasDayOfMonth() bool {
-	if o != nil && o.DayOfMonth != nil {
+	if o != nil && !IsNil(o.DayOfMonth) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *MonthlyScheduleView) SetDayOfMonth(v int32) {
 
 // GetEndHour returns the EndHour field value if set, zero value otherwise.
 func (o *MonthlyScheduleView) GetEndHour() int32 {
-	if o == nil || o.EndHour == nil {
+	if o == nil || IsNil(o.EndHour) {
 		var ret int32
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *MonthlyScheduleView) GetEndHour() int32 {
 // GetEndHourOk returns a tuple with the EndHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyScheduleView) GetEndHourOk() (*int32, bool) {
-	if o == nil || o.EndHour == nil {
+	if o == nil || IsNil(o.EndHour) {
 		return nil, false
 	}
 	return o.EndHour, true
@@ -98,7 +101,7 @@ func (o *MonthlyScheduleView) GetEndHourOk() (*int32, bool) {
 
 // HasEndHour returns a boolean if a field has been set.
 func (o *MonthlyScheduleView) HasEndHour() bool {
-	if o != nil && o.EndHour != nil {
+	if o != nil && !IsNil(o.EndHour) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *MonthlyScheduleView) SetEndHour(v int32) {
 
 // GetEndMinute returns the EndMinute field value if set, zero value otherwise.
 func (o *MonthlyScheduleView) GetEndMinute() int32 {
-	if o == nil || o.EndMinute == nil {
+	if o == nil || IsNil(o.EndMinute) {
 		var ret int32
 		return ret
 	}
@@ -122,7 +125,7 @@ func (o *MonthlyScheduleView) GetEndMinute() int32 {
 // GetEndMinuteOk returns a tuple with the EndMinute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyScheduleView) GetEndMinuteOk() (*int32, bool) {
-	if o == nil || o.EndMinute == nil {
+	if o == nil || IsNil(o.EndMinute) {
 		return nil, false
 	}
 	return o.EndMinute, true
@@ -130,7 +133,7 @@ func (o *MonthlyScheduleView) GetEndMinuteOk() (*int32, bool) {
 
 // HasEndMinute returns a boolean if a field has been set.
 func (o *MonthlyScheduleView) HasEndMinute() bool {
-	if o != nil && o.EndMinute != nil {
+	if o != nil && !IsNil(o.EndMinute) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *MonthlyScheduleView) SetEndMinute(v int32) {
 
 // GetStartHour returns the StartHour field value if set, zero value otherwise.
 func (o *MonthlyScheduleView) GetStartHour() int32 {
-	if o == nil || o.StartHour == nil {
+	if o == nil || IsNil(o.StartHour) {
 		var ret int32
 		return ret
 	}
@@ -154,7 +157,7 @@ func (o *MonthlyScheduleView) GetStartHour() int32 {
 // GetStartHourOk returns a tuple with the StartHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyScheduleView) GetStartHourOk() (*int32, bool) {
-	if o == nil || o.StartHour == nil {
+	if o == nil || IsNil(o.StartHour) {
 		return nil, false
 	}
 	return o.StartHour, true
@@ -162,7 +165,7 @@ func (o *MonthlyScheduleView) GetStartHourOk() (*int32, bool) {
 
 // HasStartHour returns a boolean if a field has been set.
 func (o *MonthlyScheduleView) HasStartHour() bool {
-	if o != nil && o.StartHour != nil {
+	if o != nil && !IsNil(o.StartHour) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *MonthlyScheduleView) SetStartHour(v int32) {
 
 // GetStartMinute returns the StartMinute field value if set, zero value otherwise.
 func (o *MonthlyScheduleView) GetStartMinute() int32 {
-	if o == nil || o.StartMinute == nil {
+	if o == nil || IsNil(o.StartMinute) {
 		var ret int32
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *MonthlyScheduleView) GetStartMinute() int32 {
 // GetStartMinuteOk returns a tuple with the StartMinute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyScheduleView) GetStartMinuteOk() (*int32, bool) {
-	if o == nil || o.StartMinute == nil {
+	if o == nil || IsNil(o.StartMinute) {
 		return nil, false
 	}
 	return o.StartMinute, true
@@ -194,7 +197,7 @@ func (o *MonthlyScheduleView) GetStartMinuteOk() (*int32, bool) {
 
 // HasStartMinute returns a boolean if a field has been set.
 func (o *MonthlyScheduleView) HasStartMinute() bool {
-	if o != nil && o.StartMinute != nil {
+	if o != nil && !IsNil(o.StartMinute) {
 		return true
 	}
 
@@ -231,26 +234,32 @@ func (o *MonthlyScheduleView) SetType(v string) {
 }
 
 func (o MonthlyScheduleView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DayOfMonth != nil {
-		toSerialize["dayOfMonth"] = o.DayOfMonth
-	}
-	if o.EndHour != nil {
-		toSerialize["endHour"] = o.EndHour
-	}
-	if o.EndMinute != nil {
-		toSerialize["endMinute"] = o.EndMinute
-	}
-	if o.StartHour != nil {
-		toSerialize["startHour"] = o.StartHour
-	}
-	if o.StartMinute != nil {
-		toSerialize["startMinute"] = o.StartMinute
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MonthlyScheduleView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DayOfMonth) {
+		toSerialize["dayOfMonth"] = o.DayOfMonth
+	}
+	if !IsNil(o.EndHour) {
+		toSerialize["endHour"] = o.EndHour
+	}
+	if !IsNil(o.EndMinute) {
+		toSerialize["endMinute"] = o.EndMinute
+	}
+	if !IsNil(o.StartHour) {
+		toSerialize["startHour"] = o.StartHour
+	}
+	if !IsNil(o.StartMinute) {
+		toSerialize["startMinute"] = o.StartMinute
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableMonthlyScheduleView struct {

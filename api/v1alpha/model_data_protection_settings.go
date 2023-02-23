@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DataProtectionSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataProtectionSettings{}
+
 // DataProtectionSettings struct for DataProtectionSettings
 type DataProtectionSettings struct {
 	// Flag that indicates whether the cluster enabled additional backup copies.
@@ -57,7 +60,7 @@ func NewDataProtectionSettingsWithDefaults() *DataProtectionSettings {
 
 // GetCopyProtectionEnabled returns the CopyProtectionEnabled field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetCopyProtectionEnabled() bool {
-	if o == nil || o.CopyProtectionEnabled == nil {
+	if o == nil || IsNil(o.CopyProtectionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -67,7 +70,7 @@ func (o *DataProtectionSettings) GetCopyProtectionEnabled() bool {
 // GetCopyProtectionEnabledOk returns a tuple with the CopyProtectionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetCopyProtectionEnabledOk() (*bool, bool) {
-	if o == nil || o.CopyProtectionEnabled == nil {
+	if o == nil || IsNil(o.CopyProtectionEnabled) {
 		return nil, false
 	}
 	return o.CopyProtectionEnabled, true
@@ -75,7 +78,7 @@ func (o *DataProtectionSettings) GetCopyProtectionEnabledOk() (*bool, bool) {
 
 // HasCopyProtectionEnabled returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasCopyProtectionEnabled() bool {
-	if o != nil && o.CopyProtectionEnabled != nil {
+	if o != nil && !IsNil(o.CopyProtectionEnabled) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *DataProtectionSettings) SetCopyProtectionEnabled(v bool) {
 
 // GetEncryptionAtRestEnabled returns the EncryptionAtRestEnabled field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetEncryptionAtRestEnabled() bool {
-	if o == nil || o.EncryptionAtRestEnabled == nil {
+	if o == nil || IsNil(o.EncryptionAtRestEnabled) {
 		var ret bool
 		return ret
 	}
@@ -99,7 +102,7 @@ func (o *DataProtectionSettings) GetEncryptionAtRestEnabled() bool {
 // GetEncryptionAtRestEnabledOk returns a tuple with the EncryptionAtRestEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetEncryptionAtRestEnabledOk() (*bool, bool) {
-	if o == nil || o.EncryptionAtRestEnabled == nil {
+	if o == nil || IsNil(o.EncryptionAtRestEnabled) {
 		return nil, false
 	}
 	return o.EncryptionAtRestEnabled, true
@@ -107,7 +110,7 @@ func (o *DataProtectionSettings) GetEncryptionAtRestEnabledOk() (*bool, bool) {
 
 // HasEncryptionAtRestEnabled returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasEncryptionAtRestEnabled() bool {
-	if o != nil && o.EncryptionAtRestEnabled != nil {
+	if o != nil && !IsNil(o.EncryptionAtRestEnabled) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *DataProtectionSettings) SetEncryptionAtRestEnabled(v bool) {
 
 // GetOnDemandPolicyItem returns the OnDemandPolicyItem field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetOnDemandPolicyItem() ApiPolicyItemView {
-	if o == nil || o.OnDemandPolicyItem == nil {
+	if o == nil || IsNil(o.OnDemandPolicyItem) {
 		var ret ApiPolicyItemView
 		return ret
 	}
@@ -131,7 +134,7 @@ func (o *DataProtectionSettings) GetOnDemandPolicyItem() ApiPolicyItemView {
 // GetOnDemandPolicyItemOk returns a tuple with the OnDemandPolicyItem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetOnDemandPolicyItemOk() (*ApiPolicyItemView, bool) {
-	if o == nil || o.OnDemandPolicyItem == nil {
+	if o == nil || IsNil(o.OnDemandPolicyItem) {
 		return nil, false
 	}
 	return o.OnDemandPolicyItem, true
@@ -139,7 +142,7 @@ func (o *DataProtectionSettings) GetOnDemandPolicyItemOk() (*ApiPolicyItemView, 
 
 // HasOnDemandPolicyItem returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasOnDemandPolicyItem() bool {
-	if o != nil && o.OnDemandPolicyItem != nil {
+	if o != nil && !IsNil(o.OnDemandPolicyItem) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *DataProtectionSettings) SetOnDemandPolicyItem(v ApiPolicyItemView) {
 
 // GetPitEnabled returns the PitEnabled field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetPitEnabled() bool {
-	if o == nil || o.PitEnabled == nil {
+	if o == nil || IsNil(o.PitEnabled) {
 		var ret bool
 		return ret
 	}
@@ -163,7 +166,7 @@ func (o *DataProtectionSettings) GetPitEnabled() bool {
 // GetPitEnabledOk returns a tuple with the PitEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetPitEnabledOk() (*bool, bool) {
-	if o == nil || o.PitEnabled == nil {
+	if o == nil || IsNil(o.PitEnabled) {
 		return nil, false
 	}
 	return o.PitEnabled, true
@@ -171,7 +174,7 @@ func (o *DataProtectionSettings) GetPitEnabledOk() (*bool, bool) {
 
 // HasPitEnabled returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasPitEnabled() bool {
-	if o != nil && o.PitEnabled != nil {
+	if o != nil && !IsNil(o.PitEnabled) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *DataProtectionSettings) SetPitEnabled(v bool) {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -195,7 +198,7 @@ func (o *DataProtectionSettings) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -203,7 +206,7 @@ func (o *DataProtectionSettings) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *DataProtectionSettings) SetProjectId(v string) {
 
 // GetRestoreWindowDays returns the RestoreWindowDays field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetRestoreWindowDays() int32 {
-	if o == nil || o.RestoreWindowDays == nil {
+	if o == nil || IsNil(o.RestoreWindowDays) {
 		var ret int32
 		return ret
 	}
@@ -227,7 +230,7 @@ func (o *DataProtectionSettings) GetRestoreWindowDays() int32 {
 // GetRestoreWindowDaysOk returns a tuple with the RestoreWindowDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetRestoreWindowDaysOk() (*int32, bool) {
-	if o == nil || o.RestoreWindowDays == nil {
+	if o == nil || IsNil(o.RestoreWindowDays) {
 		return nil, false
 	}
 	return o.RestoreWindowDays, true
@@ -235,7 +238,7 @@ func (o *DataProtectionSettings) GetRestoreWindowDaysOk() (*int32, bool) {
 
 // HasRestoreWindowDays returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasRestoreWindowDays() bool {
-	if o != nil && o.RestoreWindowDays != nil {
+	if o != nil && !IsNil(o.RestoreWindowDays) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *DataProtectionSettings) SetRestoreWindowDays(v int32) {
 
 // GetScheduledPolicyItems returns the ScheduledPolicyItems field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetScheduledPolicyItems() []ApiPolicyItemView {
-	if o == nil || o.ScheduledPolicyItems == nil {
+	if o == nil || IsNil(o.ScheduledPolicyItems) {
 		var ret []ApiPolicyItemView
 		return ret
 	}
@@ -259,7 +262,7 @@ func (o *DataProtectionSettings) GetScheduledPolicyItems() []ApiPolicyItemView {
 // GetScheduledPolicyItemsOk returns a tuple with the ScheduledPolicyItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetScheduledPolicyItemsOk() ([]ApiPolicyItemView, bool) {
-	if o == nil || o.ScheduledPolicyItems == nil {
+	if o == nil || IsNil(o.ScheduledPolicyItems) {
 		return nil, false
 	}
 	return o.ScheduledPolicyItems, true
@@ -267,7 +270,7 @@ func (o *DataProtectionSettings) GetScheduledPolicyItemsOk() ([]ApiPolicyItemVie
 
 // HasScheduledPolicyItems returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasScheduledPolicyItems() bool {
-	if o != nil && o.ScheduledPolicyItems != nil {
+	if o != nil && !IsNil(o.ScheduledPolicyItems) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *DataProtectionSettings) SetScheduledPolicyItems(v []ApiPolicyItemView) 
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -291,7 +294,7 @@ func (o *DataProtectionSettings) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -299,7 +302,7 @@ func (o *DataProtectionSettings) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *DataProtectionSettings) SetState(v string) {
 
 // GetUpdatedDate returns the UpdatedDate field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetUpdatedDate() time.Time {
-	if o == nil || o.UpdatedDate == nil {
+	if o == nil || IsNil(o.UpdatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -323,7 +326,7 @@ func (o *DataProtectionSettings) GetUpdatedDate() time.Time {
 // GetUpdatedDateOk returns a tuple with the UpdatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetUpdatedDateOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedDate == nil {
+	if o == nil || IsNil(o.UpdatedDate) {
 		return nil, false
 	}
 	return o.UpdatedDate, true
@@ -331,7 +334,7 @@ func (o *DataProtectionSettings) GetUpdatedDateOk() (*time.Time, bool) {
 
 // HasUpdatedDate returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasUpdatedDate() bool {
-	if o != nil && o.UpdatedDate != nil {
+	if o != nil && !IsNil(o.UpdatedDate) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *DataProtectionSettings) SetUpdatedDate(v time.Time) {
 
 // GetUpdatedUser returns the UpdatedUser field value if set, zero value otherwise.
 func (o *DataProtectionSettings) GetUpdatedUser() string {
-	if o == nil || o.UpdatedUser == nil {
+	if o == nil || IsNil(o.UpdatedUser) {
 		var ret string
 		return ret
 	}
@@ -355,7 +358,7 @@ func (o *DataProtectionSettings) GetUpdatedUser() string {
 // GetUpdatedUserOk returns a tuple with the UpdatedUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataProtectionSettings) GetUpdatedUserOk() (*string, bool) {
-	if o == nil || o.UpdatedUser == nil {
+	if o == nil || IsNil(o.UpdatedUser) {
 		return nil, false
 	}
 	return o.UpdatedUser, true
@@ -363,7 +366,7 @@ func (o *DataProtectionSettings) GetUpdatedUserOk() (*string, bool) {
 
 // HasUpdatedUser returns a boolean if a field has been set.
 func (o *DataProtectionSettings) HasUpdatedUser() bool {
-	if o != nil && o.UpdatedUser != nil {
+	if o != nil && !IsNil(o.UpdatedUser) {
 		return true
 	}
 
@@ -376,38 +379,40 @@ func (o *DataProtectionSettings) SetUpdatedUser(v string) {
 }
 
 func (o DataProtectionSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CopyProtectionEnabled != nil {
-		toSerialize["copyProtectionEnabled"] = o.CopyProtectionEnabled
-	}
-	if o.EncryptionAtRestEnabled != nil {
-		toSerialize["encryptionAtRestEnabled"] = o.EncryptionAtRestEnabled
-	}
-	if o.OnDemandPolicyItem != nil {
-		toSerialize["onDemandPolicyItem"] = o.OnDemandPolicyItem
-	}
-	if o.PitEnabled != nil {
-		toSerialize["pitEnabled"] = o.PitEnabled
-	}
-	if o.ProjectId != nil {
-		toSerialize["projectId"] = o.ProjectId
-	}
-	if o.RestoreWindowDays != nil {
-		toSerialize["restoreWindowDays"] = o.RestoreWindowDays
-	}
-	if o.ScheduledPolicyItems != nil {
-		toSerialize["scheduledPolicyItems"] = o.ScheduledPolicyItems
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.UpdatedDate != nil {
-		toSerialize["updatedDate"] = o.UpdatedDate
-	}
-	if o.UpdatedUser != nil {
-		toSerialize["updatedUser"] = o.UpdatedUser
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataProtectionSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CopyProtectionEnabled) {
+		toSerialize["copyProtectionEnabled"] = o.CopyProtectionEnabled
+	}
+	if !IsNil(o.EncryptionAtRestEnabled) {
+		toSerialize["encryptionAtRestEnabled"] = o.EncryptionAtRestEnabled
+	}
+	if !IsNil(o.OnDemandPolicyItem) {
+		toSerialize["onDemandPolicyItem"] = o.OnDemandPolicyItem
+	}
+	if !IsNil(o.PitEnabled) {
+		toSerialize["pitEnabled"] = o.PitEnabled
+	}
+	// skip: projectId is readOnly
+	if !IsNil(o.RestoreWindowDays) {
+		toSerialize["restoreWindowDays"] = o.RestoreWindowDays
+	}
+	if !IsNil(o.ScheduledPolicyItems) {
+		toSerialize["scheduledPolicyItems"] = o.ScheduledPolicyItems
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	// skip: updatedDate is readOnly
+	// skip: updatedUser is readOnly
+	return toSerialize, nil
 }
 
 type NullableDataProtectionSettings struct {

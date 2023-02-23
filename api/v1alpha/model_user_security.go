@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserSecurity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserSecurity{}
+
 // UserSecurity struct for UserSecurity
 type UserSecurity struct {
 	CustomerX509 *CustomerX509 `json:"customerX509,omitempty"`
@@ -41,7 +44,7 @@ func NewUserSecurityWithDefaults() *UserSecurity {
 
 // GetCustomerX509 returns the CustomerX509 field value if set, zero value otherwise.
 func (o *UserSecurity) GetCustomerX509() CustomerX509 {
-	if o == nil || o.CustomerX509 == nil {
+	if o == nil || IsNil(o.CustomerX509) {
 		var ret CustomerX509
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *UserSecurity) GetCustomerX509() CustomerX509 {
 // GetCustomerX509Ok returns a tuple with the CustomerX509 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSecurity) GetCustomerX509Ok() (*CustomerX509, bool) {
-	if o == nil || o.CustomerX509 == nil {
+	if o == nil || IsNil(o.CustomerX509) {
 		return nil, false
 	}
 	return o.CustomerX509, true
@@ -59,7 +62,7 @@ func (o *UserSecurity) GetCustomerX509Ok() (*CustomerX509, bool) {
 
 // HasCustomerX509 returns a boolean if a field has been set.
 func (o *UserSecurity) HasCustomerX509() bool {
-	if o != nil && o.CustomerX509 != nil {
+	if o != nil && !IsNil(o.CustomerX509) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UserSecurity) SetCustomerX509(v CustomerX509) {
 
 // GetLdap returns the Ldap field value if set, zero value otherwise.
 func (o *UserSecurity) GetLdap() NDSLDAP {
-	if o == nil || o.Ldap == nil {
+	if o == nil || IsNil(o.Ldap) {
 		var ret NDSLDAP
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *UserSecurity) GetLdap() NDSLDAP {
 // GetLdapOk returns a tuple with the Ldap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSecurity) GetLdapOk() (*NDSLDAP, bool) {
-	if o == nil || o.Ldap == nil {
+	if o == nil || IsNil(o.Ldap) {
 		return nil, false
 	}
 	return o.Ldap, true
@@ -91,7 +94,7 @@ func (o *UserSecurity) GetLdapOk() (*NDSLDAP, bool) {
 
 // HasLdap returns a boolean if a field has been set.
 func (o *UserSecurity) HasLdap() bool {
-	if o != nil && o.Ldap != nil {
+	if o != nil && !IsNil(o.Ldap) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *UserSecurity) SetLdap(v NDSLDAP) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *UserSecurity) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *UserSecurity) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSecurity) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -123,7 +126,7 @@ func (o *UserSecurity) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *UserSecurity) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -136,17 +139,23 @@ func (o *UserSecurity) SetLinks(v []Link) {
 }
 
 func (o UserSecurity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CustomerX509 != nil {
-		toSerialize["customerX509"] = o.CustomerX509
-	}
-	if o.Ldap != nil {
-		toSerialize["ldap"] = o.Ldap
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserSecurity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CustomerX509) {
+		toSerialize["customerX509"] = o.CustomerX509
+	}
+	if !IsNil(o.Ldap) {
+		toSerialize["ldap"] = o.Ldap
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableUserSecurity struct {

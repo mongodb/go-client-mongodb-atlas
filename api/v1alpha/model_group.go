@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Group type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Group{}
+
 // Group struct for Group
 type Group struct {
 	// Quantity of MongoDB Cloud clusters deployed in this project.
@@ -100,7 +103,7 @@ func (o *Group) SetCreated(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Group) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -110,7 +113,7 @@ func (o *Group) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Group) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -118,7 +121,7 @@ func (o *Group) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Group) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -132,7 +135,7 @@ func (o *Group) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *Group) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -142,7 +145,7 @@ func (o *Group) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Group) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -150,7 +153,7 @@ func (o *Group) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *Group) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *Group) SetOrgId(v string) {
 
 // GetWithDefaultAlertsSettings returns the WithDefaultAlertsSettings field value if set, zero value otherwise.
 func (o *Group) GetWithDefaultAlertsSettings() bool {
-	if o == nil || o.WithDefaultAlertsSettings == nil {
+	if o == nil || IsNil(o.WithDefaultAlertsSettings) {
 		var ret bool
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *Group) GetWithDefaultAlertsSettings() bool {
 // GetWithDefaultAlertsSettingsOk returns a tuple with the WithDefaultAlertsSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Group) GetWithDefaultAlertsSettingsOk() (*bool, bool) {
-	if o == nil || o.WithDefaultAlertsSettings == nil {
+	if o == nil || IsNil(o.WithDefaultAlertsSettings) {
 		return nil, false
 	}
 	return o.WithDefaultAlertsSettings, true
@@ -230,7 +233,7 @@ func (o *Group) GetWithDefaultAlertsSettingsOk() (*bool, bool) {
 
 // HasWithDefaultAlertsSettings returns a boolean if a field has been set.
 func (o *Group) HasWithDefaultAlertsSettings() bool {
-	if o != nil && o.WithDefaultAlertsSettings != nil {
+	if o != nil && !IsNil(o.WithDefaultAlertsSettings) {
 		return true
 	}
 
@@ -243,29 +246,25 @@ func (o *Group) SetWithDefaultAlertsSettings(v bool) {
 }
 
 func (o Group) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clusterCount"] = o.ClusterCount
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.WithDefaultAlertsSettings != nil {
-		toSerialize["withDefaultAlertsSettings"] = o.WithDefaultAlertsSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Group) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: clusterCount is readOnly
+	// skip: created is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	toSerialize["name"] = o.Name
+	toSerialize["orgId"] = o.OrgId
+	if !IsNil(o.WithDefaultAlertsSettings) {
+		toSerialize["withDefaultAlertsSettings"] = o.WithDefaultAlertsSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableGroup struct {

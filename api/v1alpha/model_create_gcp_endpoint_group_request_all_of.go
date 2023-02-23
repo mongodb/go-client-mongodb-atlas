@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateGCPEndpointGroupRequestAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateGCPEndpointGroupRequestAllOf{}
+
 // CreateGCPEndpointGroupRequestAllOf struct for CreateGCPEndpointGroupRequestAllOf
 type CreateGCPEndpointGroupRequestAllOf struct {
 	// Human-readable label that identifies a set of endpoints.
@@ -43,7 +46,7 @@ func NewCreateGCPEndpointGroupRequestAllOfWithDefaults() *CreateGCPEndpointGroup
 
 // GetEndpointGroupName returns the EndpointGroupName field value if set, zero value otherwise.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointGroupName() string {
-	if o == nil || o.EndpointGroupName == nil {
+	if o == nil || IsNil(o.EndpointGroupName) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointGroupName() string {
 // GetEndpointGroupNameOk returns a tuple with the EndpointGroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointGroupNameOk() (*string, bool) {
-	if o == nil || o.EndpointGroupName == nil {
+	if o == nil || IsNil(o.EndpointGroupName) {
 		return nil, false
 	}
 	return o.EndpointGroupName, true
@@ -61,7 +64,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointGroupNameOk() (*string, 
 
 // HasEndpointGroupName returns a boolean if a field has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) HasEndpointGroupName() bool {
-	if o != nil && o.EndpointGroupName != nil {
+	if o != nil && !IsNil(o.EndpointGroupName) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) SetEndpointGroupName(v string) {
 
 // GetEndpoints returns the Endpoints field value if set, zero value otherwise.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpoints() []CreateGCPForwardingRuleRequest {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		var ret []CreateGCPForwardingRuleRequest
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpoints() []CreateGCPForwardin
 // GetEndpointsOk returns a tuple with the Endpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointsOk() ([]CreateGCPForwardingRuleRequest, bool) {
-	if o == nil || o.Endpoints == nil {
+	if o == nil || IsNil(o.Endpoints) {
 		return nil, false
 	}
 	return o.Endpoints, true
@@ -93,7 +96,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetEndpointsOk() ([]CreateGCPForwar
 
 // HasEndpoints returns a boolean if a field has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) HasEndpoints() bool {
-	if o != nil && o.Endpoints != nil {
+	if o != nil && !IsNil(o.Endpoints) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) SetEndpoints(v []CreateGCPForwardin
 
 // GetGcpProjectId returns the GcpProjectId field value if set, zero value otherwise.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetGcpProjectId() string {
-	if o == nil || o.GcpProjectId == nil {
+	if o == nil || IsNil(o.GcpProjectId) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetGcpProjectId() string {
 // GetGcpProjectIdOk returns a tuple with the GcpProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) GetGcpProjectIdOk() (*string, bool) {
-	if o == nil || o.GcpProjectId == nil {
+	if o == nil || IsNil(o.GcpProjectId) {
 		return nil, false
 	}
 	return o.GcpProjectId, true
@@ -125,7 +128,7 @@ func (o *CreateGCPEndpointGroupRequestAllOf) GetGcpProjectIdOk() (*string, bool)
 
 // HasGcpProjectId returns a boolean if a field has been set.
 func (o *CreateGCPEndpointGroupRequestAllOf) HasGcpProjectId() bool {
-	if o != nil && o.GcpProjectId != nil {
+	if o != nil && !IsNil(o.GcpProjectId) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateGCPEndpointGroupRequestAllOf) SetGcpProjectId(v string) {
 }
 
 func (o CreateGCPEndpointGroupRequestAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndpointGroupName != nil {
-		toSerialize["endpointGroupName"] = o.EndpointGroupName
-	}
-	if o.Endpoints != nil {
-		toSerialize["endpoints"] = o.Endpoints
-	}
-	if o.GcpProjectId != nil {
-		toSerialize["gcpProjectId"] = o.GcpProjectId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateGCPEndpointGroupRequestAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EndpointGroupName) {
+		toSerialize["endpointGroupName"] = o.EndpointGroupName
+	}
+	if !IsNil(o.Endpoints) {
+		toSerialize["endpoints"] = o.Endpoints
+	}
+	if !IsNil(o.GcpProjectId) {
+		toSerialize["gcpProjectId"] = o.GcpProjectId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateGCPEndpointGroupRequestAllOf struct {

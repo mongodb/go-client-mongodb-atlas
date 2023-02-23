@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterregex type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterregex{}
+
 // TokenFilterregex Filter that applies a regular expression to each token, replacing matches with a specified string.
 type TokenFilterregex struct {
 	// Value that indicates whether to replace only the first matching pattern or all matching patterns.
@@ -140,20 +143,20 @@ func (o *TokenFilterregex) SetType(v string) {
 }
 
 func (o TokenFilterregex) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["matches"] = o.Matches
-	}
-	if true {
-		toSerialize["pattern"] = o.Pattern
-	}
-	if true {
-		toSerialize["replacement"] = o.Replacement
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterregex) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["matches"] = o.Matches
+	toSerialize["pattern"] = o.Pattern
+	toSerialize["replacement"] = o.Replacement
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterregex struct {

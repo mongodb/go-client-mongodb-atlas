@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessTenantEndpointUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessTenantEndpointUpdate{}
+
 // ServerlessTenantEndpointUpdate Update view for a serverless tenant endpoint.
 type ServerlessTenantEndpointUpdate struct {
 	// Human-readable comment associated with the private endpoint.
@@ -40,7 +43,7 @@ func NewServerlessTenantEndpointUpdateWithDefaults() *ServerlessTenantEndpointUp
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ServerlessTenantEndpointUpdate) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ServerlessTenantEndpointUpdate) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessTenantEndpointUpdate) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -58,7 +61,7 @@ func (o *ServerlessTenantEndpointUpdate) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *ServerlessTenantEndpointUpdate) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -95,14 +98,20 @@ func (o *ServerlessTenantEndpointUpdate) SetProviderName(v string) {
 }
 
 func (o ServerlessTenantEndpointUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessTenantEndpointUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["providerName"] = o.ProviderName
+	return toSerialize, nil
 }
 
 type NullableServerlessTenantEndpointUpdate struct {

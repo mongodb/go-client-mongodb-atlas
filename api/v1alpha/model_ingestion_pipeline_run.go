@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the IngestionPipelineRun type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IngestionPipelineRun{}
+
 // IngestionPipelineRun Run details of a Data Lake Pipeline.
 type IngestionPipelineRun struct {
 	// Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
@@ -59,7 +62,7 @@ func NewIngestionPipelineRunWithDefaults() *IngestionPipelineRun {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -69,7 +72,7 @@ func (o *IngestionPipelineRun) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -77,7 +80,7 @@ func (o *IngestionPipelineRun) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *IngestionPipelineRun) SetId(v string) {
 
 // GetBackupFrequencyType returns the BackupFrequencyType field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetBackupFrequencyType() string {
-	if o == nil || o.BackupFrequencyType == nil {
+	if o == nil || IsNil(o.BackupFrequencyType) {
 		var ret string
 		return ret
 	}
@@ -101,7 +104,7 @@ func (o *IngestionPipelineRun) GetBackupFrequencyType() string {
 // GetBackupFrequencyTypeOk returns a tuple with the BackupFrequencyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetBackupFrequencyTypeOk() (*string, bool) {
-	if o == nil || o.BackupFrequencyType == nil {
+	if o == nil || IsNil(o.BackupFrequencyType) {
 		return nil, false
 	}
 	return o.BackupFrequencyType, true
@@ -109,7 +112,7 @@ func (o *IngestionPipelineRun) GetBackupFrequencyTypeOk() (*string, bool) {
 
 // HasBackupFrequencyType returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasBackupFrequencyType() bool {
-	if o != nil && o.BackupFrequencyType != nil {
+	if o != nil && !IsNil(o.BackupFrequencyType) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *IngestionPipelineRun) SetBackupFrequencyType(v string) {
 
 // GetCreatedDate returns the CreatedDate field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetCreatedDate() time.Time {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -133,7 +136,7 @@ func (o *IngestionPipelineRun) GetCreatedDate() time.Time {
 // GetCreatedDateOk returns a tuple with the CreatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetCreatedDateOk() (*time.Time, bool) {
-	if o == nil || o.CreatedDate == nil {
+	if o == nil || IsNil(o.CreatedDate) {
 		return nil, false
 	}
 	return o.CreatedDate, true
@@ -141,7 +144,7 @@ func (o *IngestionPipelineRun) GetCreatedDateOk() (*time.Time, bool) {
 
 // HasCreatedDate returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasCreatedDate() bool {
-	if o != nil && o.CreatedDate != nil {
+	if o != nil && !IsNil(o.CreatedDate) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *IngestionPipelineRun) SetCreatedDate(v time.Time) {
 
 // GetDatasetName returns the DatasetName field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetDatasetName() string {
-	if o == nil || o.DatasetName == nil {
+	if o == nil || IsNil(o.DatasetName) {
 		var ret string
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *IngestionPipelineRun) GetDatasetName() string {
 // GetDatasetNameOk returns a tuple with the DatasetName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetDatasetNameOk() (*string, bool) {
-	if o == nil || o.DatasetName == nil {
+	if o == nil || IsNil(o.DatasetName) {
 		return nil, false
 	}
 	return o.DatasetName, true
@@ -173,7 +176,7 @@ func (o *IngestionPipelineRun) GetDatasetNameOk() (*string, bool) {
 
 // HasDatasetName returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasDatasetName() bool {
-	if o != nil && o.DatasetName != nil {
+	if o != nil && !IsNil(o.DatasetName) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *IngestionPipelineRun) SetDatasetName(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -197,7 +200,7 @@ func (o *IngestionPipelineRun) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -205,7 +208,7 @@ func (o *IngestionPipelineRun) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *IngestionPipelineRun) SetGroupId(v string) {
 
 // GetLastUpdatedDate returns the LastUpdatedDate field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetLastUpdatedDate() time.Time {
-	if o == nil || o.LastUpdatedDate == nil {
+	if o == nil || IsNil(o.LastUpdatedDate) {
 		var ret time.Time
 		return ret
 	}
@@ -229,7 +232,7 @@ func (o *IngestionPipelineRun) GetLastUpdatedDate() time.Time {
 // GetLastUpdatedDateOk returns a tuple with the LastUpdatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetLastUpdatedDateOk() (*time.Time, bool) {
-	if o == nil || o.LastUpdatedDate == nil {
+	if o == nil || IsNil(o.LastUpdatedDate) {
 		return nil, false
 	}
 	return o.LastUpdatedDate, true
@@ -237,7 +240,7 @@ func (o *IngestionPipelineRun) GetLastUpdatedDateOk() (*time.Time, bool) {
 
 // HasLastUpdatedDate returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasLastUpdatedDate() bool {
-	if o != nil && o.LastUpdatedDate != nil {
+	if o != nil && !IsNil(o.LastUpdatedDate) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *IngestionPipelineRun) SetLastUpdatedDate(v time.Time) {
 
 // GetPhase returns the Phase field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetPhase() string {
-	if o == nil || o.Phase == nil {
+	if o == nil || IsNil(o.Phase) {
 		var ret string
 		return ret
 	}
@@ -261,7 +264,7 @@ func (o *IngestionPipelineRun) GetPhase() string {
 // GetPhaseOk returns a tuple with the Phase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetPhaseOk() (*string, bool) {
-	if o == nil || o.Phase == nil {
+	if o == nil || IsNil(o.Phase) {
 		return nil, false
 	}
 	return o.Phase, true
@@ -269,7 +272,7 @@ func (o *IngestionPipelineRun) GetPhaseOk() (*string, bool) {
 
 // HasPhase returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasPhase() bool {
-	if o != nil && o.Phase != nil {
+	if o != nil && !IsNil(o.Phase) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *IngestionPipelineRun) SetPhase(v string) {
 
 // GetPipelineId returns the PipelineId field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetPipelineId() string {
-	if o == nil || o.PipelineId == nil {
+	if o == nil || IsNil(o.PipelineId) {
 		var ret string
 		return ret
 	}
@@ -293,7 +296,7 @@ func (o *IngestionPipelineRun) GetPipelineId() string {
 // GetPipelineIdOk returns a tuple with the PipelineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetPipelineIdOk() (*string, bool) {
-	if o == nil || o.PipelineId == nil {
+	if o == nil || IsNil(o.PipelineId) {
 		return nil, false
 	}
 	return o.PipelineId, true
@@ -301,7 +304,7 @@ func (o *IngestionPipelineRun) GetPipelineIdOk() (*string, bool) {
 
 // HasPipelineId returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasPipelineId() bool {
-	if o != nil && o.PipelineId != nil {
+	if o != nil && !IsNil(o.PipelineId) {
 		return true
 	}
 
@@ -315,7 +318,7 @@ func (o *IngestionPipelineRun) SetPipelineId(v string) {
 
 // GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetSnapshotId() string {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		var ret string
 		return ret
 	}
@@ -325,7 +328,7 @@ func (o *IngestionPipelineRun) GetSnapshotId() string {
 // GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetSnapshotIdOk() (*string, bool) {
-	if o == nil || o.SnapshotId == nil {
+	if o == nil || IsNil(o.SnapshotId) {
 		return nil, false
 	}
 	return o.SnapshotId, true
@@ -333,7 +336,7 @@ func (o *IngestionPipelineRun) GetSnapshotIdOk() (*string, bool) {
 
 // HasSnapshotId returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasSnapshotId() bool {
-	if o != nil && o.SnapshotId != nil {
+	if o != nil && !IsNil(o.SnapshotId) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *IngestionPipelineRun) SetSnapshotId(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -357,7 +360,7 @@ func (o *IngestionPipelineRun) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -365,7 +368,7 @@ func (o *IngestionPipelineRun) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *IngestionPipelineRun) SetState(v string) {
 
 // GetStats returns the Stats field value if set, zero value otherwise.
 func (o *IngestionPipelineRun) GetStats() PipelineRunStats {
-	if o == nil || o.Stats == nil {
+	if o == nil || IsNil(o.Stats) {
 		var ret PipelineRunStats
 		return ret
 	}
@@ -389,7 +392,7 @@ func (o *IngestionPipelineRun) GetStats() PipelineRunStats {
 // GetStatsOk returns a tuple with the Stats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IngestionPipelineRun) GetStatsOk() (*PipelineRunStats, bool) {
-	if o == nil || o.Stats == nil {
+	if o == nil || IsNil(o.Stats) {
 		return nil, false
 	}
 	return o.Stats, true
@@ -397,7 +400,7 @@ func (o *IngestionPipelineRun) GetStatsOk() (*PipelineRunStats, bool) {
 
 // HasStats returns a boolean if a field has been set.
 func (o *IngestionPipelineRun) HasStats() bool {
-	if o != nil && o.Stats != nil {
+	if o != nil && !IsNil(o.Stats) {
 		return true
 	}
 
@@ -410,41 +413,29 @@ func (o *IngestionPipelineRun) SetStats(v PipelineRunStats) {
 }
 
 func (o IngestionPipelineRun) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.BackupFrequencyType != nil {
-		toSerialize["backupFrequencyType"] = o.BackupFrequencyType
-	}
-	if o.CreatedDate != nil {
-		toSerialize["createdDate"] = o.CreatedDate
-	}
-	if o.DatasetName != nil {
-		toSerialize["datasetName"] = o.DatasetName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.LastUpdatedDate != nil {
-		toSerialize["lastUpdatedDate"] = o.LastUpdatedDate
-	}
-	if o.Phase != nil {
-		toSerialize["phase"] = o.Phase
-	}
-	if o.PipelineId != nil {
-		toSerialize["pipelineId"] = o.PipelineId
-	}
-	if o.SnapshotId != nil {
-		toSerialize["snapshotId"] = o.SnapshotId
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Stats != nil {
-		toSerialize["stats"] = o.Stats
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IngestionPipelineRun) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: backupFrequencyType is readOnly
+	// skip: createdDate is readOnly
+	// skip: datasetName is readOnly
+	// skip: groupId is readOnly
+	// skip: lastUpdatedDate is readOnly
+	// skip: phase is readOnly
+	// skip: pipelineId is readOnly
+	// skip: snapshotId is readOnly
+	// skip: state is readOnly
+	if !IsNil(o.Stats) {
+		toSerialize["stats"] = o.Stats
+	}
+	return toSerialize, nil
 }
 
 type NullableIngestionPipelineRun struct {

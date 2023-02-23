@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeAWSCloudProviderConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeAWSCloudProviderConfig{}
+
 // DataLakeAWSCloudProviderConfig Name of the cloud service that hosts the data lake's data stores.
 type DataLakeAWSCloudProviderConfig struct {
 	// Unique identifier associated with the Identity and Access Management (IAM) role that the data lake assumes when accessing the data stores.
@@ -47,7 +50,7 @@ func NewDataLakeAWSCloudProviderConfigWithDefaults() *DataLakeAWSCloudProviderCo
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *DataLakeAWSCloudProviderConfig) GetExternalId() string {
-	if o == nil || o.ExternalId == nil {
+	if o == nil || IsNil(o.ExternalId) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetExternalId() string {
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAWSCloudProviderConfig) GetExternalIdOk() (*string, bool) {
-	if o == nil || o.ExternalId == nil {
+	if o == nil || IsNil(o.ExternalId) {
 		return nil, false
 	}
 	return o.ExternalId, true
@@ -65,7 +68,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetExternalIdOk() (*string, bool) {
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *DataLakeAWSCloudProviderConfig) HasExternalId() bool {
-	if o != nil && o.ExternalId != nil {
+	if o != nil && !IsNil(o.ExternalId) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *DataLakeAWSCloudProviderConfig) SetExternalId(v string) {
 
 // GetIamAssumedRoleARN returns the IamAssumedRoleARN field value if set, zero value otherwise.
 func (o *DataLakeAWSCloudProviderConfig) GetIamAssumedRoleARN() string {
-	if o == nil || o.IamAssumedRoleARN == nil {
+	if o == nil || IsNil(o.IamAssumedRoleARN) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetIamAssumedRoleARN() string {
 // GetIamAssumedRoleARNOk returns a tuple with the IamAssumedRoleARN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAWSCloudProviderConfig) GetIamAssumedRoleARNOk() (*string, bool) {
-	if o == nil || o.IamAssumedRoleARN == nil {
+	if o == nil || IsNil(o.IamAssumedRoleARN) {
 		return nil, false
 	}
 	return o.IamAssumedRoleARN, true
@@ -97,7 +100,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetIamAssumedRoleARNOk() (*string, bool
 
 // HasIamAssumedRoleARN returns a boolean if a field has been set.
 func (o *DataLakeAWSCloudProviderConfig) HasIamAssumedRoleARN() bool {
-	if o != nil && o.IamAssumedRoleARN != nil {
+	if o != nil && !IsNil(o.IamAssumedRoleARN) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *DataLakeAWSCloudProviderConfig) SetIamAssumedRoleARN(v string) {
 
 // GetIamUserARN returns the IamUserARN field value if set, zero value otherwise.
 func (o *DataLakeAWSCloudProviderConfig) GetIamUserARN() string {
-	if o == nil || o.IamUserARN == nil {
+	if o == nil || IsNil(o.IamUserARN) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetIamUserARN() string {
 // GetIamUserARNOk returns a tuple with the IamUserARN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAWSCloudProviderConfig) GetIamUserARNOk() (*string, bool) {
-	if o == nil || o.IamUserARN == nil {
+	if o == nil || IsNil(o.IamUserARN) {
 		return nil, false
 	}
 	return o.IamUserARN, true
@@ -129,7 +132,7 @@ func (o *DataLakeAWSCloudProviderConfig) GetIamUserARNOk() (*string, bool) {
 
 // HasIamUserARN returns a boolean if a field has been set.
 func (o *DataLakeAWSCloudProviderConfig) HasIamUserARN() bool {
-	if o != nil && o.IamUserARN != nil {
+	if o != nil && !IsNil(o.IamUserARN) {
 		return true
 	}
 
@@ -190,23 +193,21 @@ func (o *DataLakeAWSCloudProviderConfig) SetTestS3Bucket(v string) {
 }
 
 func (o DataLakeAWSCloudProviderConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExternalId != nil {
-		toSerialize["externalId"] = o.ExternalId
-	}
-	if o.IamAssumedRoleARN != nil {
-		toSerialize["iamAssumedRoleARN"] = o.IamAssumedRoleARN
-	}
-	if o.IamUserARN != nil {
-		toSerialize["iamUserARN"] = o.IamUserARN
-	}
-	if true {
-		toSerialize["roleId"] = o.RoleId
-	}
-	if true {
-		toSerialize["testS3Bucket"] = o.TestS3Bucket
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeAWSCloudProviderConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: externalId is readOnly
+	// skip: iamAssumedRoleARN is readOnly
+	// skip: iamUserARN is readOnly
+	toSerialize["roleId"] = o.RoleId
+	toSerialize["testS3Bucket"] = o.TestS3Bucket
+	return toSerialize, nil
 }
 
 type NullableDataLakeAWSCloudProviderConfig struct {

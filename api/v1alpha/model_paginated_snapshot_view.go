@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PaginatedSnapshotView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedSnapshotView{}
+
 // PaginatedSnapshotView struct for PaginatedSnapshotView
 type PaginatedSnapshotView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -43,7 +46,7 @@ func NewPaginatedSnapshotViewWithDefaults() *PaginatedSnapshotView {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *PaginatedSnapshotView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PaginatedSnapshotView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedSnapshotView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -61,7 +64,7 @@ func (o *PaginatedSnapshotView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *PaginatedSnapshotView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PaginatedSnapshotView) SetLinks(v []Link) {
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *PaginatedSnapshotView) GetResults() []ApiSnapshotView {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		var ret []ApiSnapshotView
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *PaginatedSnapshotView) GetResults() []ApiSnapshotView {
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedSnapshotView) GetResultsOk() ([]ApiSnapshotView, bool) {
-	if o == nil || o.Results == nil {
+	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
 	return o.Results, true
@@ -93,7 +96,7 @@ func (o *PaginatedSnapshotView) GetResultsOk() ([]ApiSnapshotView, bool) {
 
 // HasResults returns a boolean if a field has been set.
 func (o *PaginatedSnapshotView) HasResults() bool {
-	if o != nil && o.Results != nil {
+	if o != nil && !IsNil(o.Results) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PaginatedSnapshotView) SetResults(v []ApiSnapshotView) {
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *PaginatedSnapshotView) GetTotalCount() int32 {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *PaginatedSnapshotView) GetTotalCount() int32 {
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedSnapshotView) GetTotalCountOk() (*int32, bool) {
-	if o == nil || o.TotalCount == nil {
+	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
 	return o.TotalCount, true
@@ -125,7 +128,7 @@ func (o *PaginatedSnapshotView) GetTotalCountOk() (*int32, bool) {
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *PaginatedSnapshotView) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
+	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
 
@@ -138,17 +141,19 @@ func (o *PaginatedSnapshotView) SetTotalCount(v int32) {
 }
 
 func (o PaginatedSnapshotView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Results != nil {
-		toSerialize["results"] = o.Results
-	}
-	if o.TotalCount != nil {
-		toSerialize["totalCount"] = o.TotalCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PaginatedSnapshotView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	// skip: results is readOnly
+	// skip: totalCount is readOnly
+	return toSerialize, nil
 }
 
 type NullablePaginatedSnapshotView struct {

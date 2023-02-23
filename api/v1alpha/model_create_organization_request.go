@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationRequest{}
+
 // CreateOrganizationRequest struct for CreateOrganizationRequest
 type CreateOrganizationRequest struct {
 	ApiKey *ApiCreateApiKeyView `json:"apiKey,omitempty"`
@@ -42,7 +45,7 @@ func NewCreateOrganizationRequestWithDefaults() *CreateOrganizationRequest {
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetApiKey() ApiCreateApiKeyView {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		var ret ApiCreateApiKeyView
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *CreateOrganizationRequest) GetApiKey() ApiCreateApiKeyView {
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetApiKeyOk() (*ApiCreateApiKeyView, bool) {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
 	return o.ApiKey, true
@@ -60,7 +63,7 @@ func (o *CreateOrganizationRequest) GetApiKeyOk() (*ApiCreateApiKeyView, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
+	if o != nil && !IsNil(o.ApiKey) {
 		return true
 	}
 
@@ -121,17 +124,21 @@ func (o *CreateOrganizationRequest) SetOrgOwnerId(v string) {
 }
 
 func (o CreateOrganizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKey != nil {
-		toSerialize["apiKey"] = o.ApiKey
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["orgOwnerId"] = o.OrgOwnerId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiKey) {
+		toSerialize["apiKey"] = o.ApiKey
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["orgOwnerId"] = o.OrgOwnerId
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationRequest struct {

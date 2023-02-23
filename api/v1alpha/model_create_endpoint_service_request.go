@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateEndpointServiceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateEndpointServiceRequest{}
+
 // CreateEndpointServiceRequest struct for CreateEndpointServiceRequest
 type CreateEndpointServiceRequest struct {
 	// Human-readable label that identifies the cloud service provider for which you want to create the private endpoint service.
@@ -88,14 +91,18 @@ func (o *CreateEndpointServiceRequest) SetRegion(v string) {
 }
 
 func (o CreateEndpointServiceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if true {
-		toSerialize["region"] = o.Region
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateEndpointServiceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["providerName"] = o.ProviderName
+	toSerialize["region"] = o.Region
+	return toSerialize, nil
 }
 
 type NullableCreateEndpointServiceRequest struct {

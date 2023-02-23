@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessFeatureUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessFeatureUsage{}
+
 // CloudProviderAccessFeatureUsage MongoDB Cloud features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessFeatureUsage struct {
 	// Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
@@ -39,7 +42,7 @@ func NewCloudProviderAccessFeatureUsageWithDefaults() *CloudProviderAccessFeatur
 
 // GetFeatureType returns the FeatureType field value if set, zero value otherwise.
 func (o *CloudProviderAccessFeatureUsage) GetFeatureType() string {
-	if o == nil || o.FeatureType == nil {
+	if o == nil || IsNil(o.FeatureType) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *CloudProviderAccessFeatureUsage) GetFeatureType() string {
 // GetFeatureTypeOk returns a tuple with the FeatureType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudProviderAccessFeatureUsage) GetFeatureTypeOk() (*string, bool) {
-	if o == nil || o.FeatureType == nil {
+	if o == nil || IsNil(o.FeatureType) {
 		return nil, false
 	}
 	return o.FeatureType, true
@@ -57,7 +60,7 @@ func (o *CloudProviderAccessFeatureUsage) GetFeatureTypeOk() (*string, bool) {
 
 // HasFeatureType returns a boolean if a field has been set.
 func (o *CloudProviderAccessFeatureUsage) HasFeatureType() bool {
-	if o != nil && o.FeatureType != nil {
+	if o != nil && !IsNil(o.FeatureType) {
 		return true
 	}
 
@@ -70,11 +73,17 @@ func (o *CloudProviderAccessFeatureUsage) SetFeatureType(v string) {
 }
 
 func (o CloudProviderAccessFeatureUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FeatureType != nil {
-		toSerialize["featureType"] = o.FeatureType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessFeatureUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: featureType is readOnly
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessFeatureUsage struct {

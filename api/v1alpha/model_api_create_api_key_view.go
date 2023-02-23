@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiCreateApiKeyView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiCreateApiKeyView{}
+
 // ApiCreateApiKeyView struct for ApiCreateApiKeyView
 type ApiCreateApiKeyView struct {
 	// Purpose or explanation provided when someone created this organization API key.
@@ -41,7 +44,7 @@ func NewApiCreateApiKeyViewWithDefaults() *ApiCreateApiKeyView {
 
 // GetDesc returns the Desc field value if set, zero value otherwise.
 func (o *ApiCreateApiKeyView) GetDesc() string {
-	if o == nil || o.Desc == nil {
+	if o == nil || IsNil(o.Desc) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiCreateApiKeyView) GetDesc() string {
 // GetDescOk returns a tuple with the Desc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCreateApiKeyView) GetDescOk() (*string, bool) {
-	if o == nil || o.Desc == nil {
+	if o == nil || IsNil(o.Desc) {
 		return nil, false
 	}
 	return o.Desc, true
@@ -59,7 +62,7 @@ func (o *ApiCreateApiKeyView) GetDescOk() (*string, bool) {
 
 // HasDesc returns a boolean if a field has been set.
 func (o *ApiCreateApiKeyView) HasDesc() bool {
-	if o != nil && o.Desc != nil {
+	if o != nil && !IsNil(o.Desc) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiCreateApiKeyView) SetDesc(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiCreateApiKeyView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiCreateApiKeyView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiCreateApiKeyView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -91,7 +94,7 @@ func (o *ApiCreateApiKeyView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiCreateApiKeyView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *ApiCreateApiKeyView) SetRoles(v []string) {
 }
 
 func (o ApiCreateApiKeyView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Desc != nil {
-		toSerialize["desc"] = o.Desc
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiCreateApiKeyView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Desc) {
+		toSerialize["desc"] = o.Desc
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
 }
 
 type NullableApiCreateApiKeyView struct {

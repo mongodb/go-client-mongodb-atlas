@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiMetricDataPointViewAtlas type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMetricDataPointViewAtlas{}
+
 // ApiMetricDataPointViewAtlas value of, and metadata provided for, one data point generated at a particular moment in time. If no data point exists for a particular moment in time, the `value` parameter returns `null`.
 type ApiMetricDataPointViewAtlas struct {
 	// Date and time when this data point occurred. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -42,7 +45,7 @@ func NewApiMetricDataPointViewAtlasWithDefaults() *ApiMetricDataPointViewAtlas {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ApiMetricDataPointViewAtlas) GetTimestamp() time.Time {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ApiMetricDataPointViewAtlas) GetTimestamp() time.Time {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMetricDataPointViewAtlas) GetTimestampOk() (*time.Time, bool) {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
@@ -60,7 +63,7 @@ func (o *ApiMetricDataPointViewAtlas) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ApiMetricDataPointViewAtlas) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ApiMetricDataPointViewAtlas) SetTimestamp(v time.Time) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ApiMetricDataPointViewAtlas) GetValue() float32 {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret float32
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ApiMetricDataPointViewAtlas) GetValue() float32 {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMetricDataPointViewAtlas) GetValueOk() (*float32, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -92,7 +95,7 @@ func (o *ApiMetricDataPointViewAtlas) GetValueOk() (*float32, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *ApiMetricDataPointViewAtlas) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -105,14 +108,18 @@ func (o *ApiMetricDataPointViewAtlas) SetValue(v float32) {
 }
 
 func (o ApiMetricDataPointViewAtlas) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMetricDataPointViewAtlas) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: timestamp is readOnly
+	// skip: value is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiMetricDataPointViewAtlas struct {

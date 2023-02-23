@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiFTSMetricsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiFTSMetricsView{}
+
 // ApiFTSMetricsView struct for ApiFTSMetricsView
 type ApiFTSMetricsView struct {
 	// Unique 24-hexadecimal digit string that identifies the project.
@@ -73,7 +76,7 @@ func (o *ApiFTSMetricsView) SetGroupId(v string) {
 
 // GetHardwareMetrics returns the HardwareMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetHardwareMetrics() []ApiFTSMetricView {
-	if o == nil || o.HardwareMetrics == nil {
+	if o == nil || IsNil(o.HardwareMetrics) {
 		var ret []ApiFTSMetricView
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiFTSMetricsView) GetHardwareMetrics() []ApiFTSMetricView {
 // GetHardwareMetricsOk returns a tuple with the HardwareMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetHardwareMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil || o.HardwareMetrics == nil {
+	if o == nil || IsNil(o.HardwareMetrics) {
 		return nil, false
 	}
 	return o.HardwareMetrics, true
@@ -91,7 +94,7 @@ func (o *ApiFTSMetricsView) GetHardwareMetricsOk() ([]ApiFTSMetricView, bool) {
 
 // HasHardwareMetrics returns a boolean if a field has been set.
 func (o *ApiFTSMetricsView) HasHardwareMetrics() bool {
-	if o != nil && o.HardwareMetrics != nil {
+	if o != nil && !IsNil(o.HardwareMetrics) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ApiFTSMetricsView) SetHardwareMetrics(v []ApiFTSMetricView) {
 
 // GetIndexMetrics returns the IndexMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetIndexMetrics() []ApiFTSMetricView {
-	if o == nil || o.IndexMetrics == nil {
+	if o == nil || IsNil(o.IndexMetrics) {
 		var ret []ApiFTSMetricView
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *ApiFTSMetricsView) GetIndexMetrics() []ApiFTSMetricView {
 // GetIndexMetricsOk returns a tuple with the IndexMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetIndexMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil || o.IndexMetrics == nil {
+	if o == nil || IsNil(o.IndexMetrics) {
 		return nil, false
 	}
 	return o.IndexMetrics, true
@@ -123,7 +126,7 @@ func (o *ApiFTSMetricsView) GetIndexMetricsOk() ([]ApiFTSMetricView, bool) {
 
 // HasIndexMetrics returns a boolean if a field has been set.
 func (o *ApiFTSMetricsView) HasIndexMetrics() bool {
-	if o != nil && o.IndexMetrics != nil {
+	if o != nil && !IsNil(o.IndexMetrics) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ApiFTSMetricsView) SetIndexMetrics(v []ApiFTSMetricView) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -147,7 +150,7 @@ func (o *ApiFTSMetricsView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -155,7 +158,7 @@ func (o *ApiFTSMetricsView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiFTSMetricsView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -193,7 +196,7 @@ func (o *ApiFTSMetricsView) SetProcessId(v string) {
 
 // GetStatusMetrics returns the StatusMetrics field value if set, zero value otherwise.
 func (o *ApiFTSMetricsView) GetStatusMetrics() []ApiFTSMetricView {
-	if o == nil || o.StatusMetrics == nil {
+	if o == nil || IsNil(o.StatusMetrics) {
 		var ret []ApiFTSMetricView
 		return ret
 	}
@@ -203,7 +206,7 @@ func (o *ApiFTSMetricsView) GetStatusMetrics() []ApiFTSMetricView {
 // GetStatusMetricsOk returns a tuple with the StatusMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiFTSMetricsView) GetStatusMetricsOk() ([]ApiFTSMetricView, bool) {
-	if o == nil || o.StatusMetrics == nil {
+	if o == nil || IsNil(o.StatusMetrics) {
 		return nil, false
 	}
 	return o.StatusMetrics, true
@@ -211,7 +214,7 @@ func (o *ApiFTSMetricsView) GetStatusMetricsOk() ([]ApiFTSMetricView, bool) {
 
 // HasStatusMetrics returns a boolean if a field has been set.
 func (o *ApiFTSMetricsView) HasStatusMetrics() bool {
-	if o != nil && o.StatusMetrics != nil {
+	if o != nil && !IsNil(o.StatusMetrics) {
 		return true
 	}
 
@@ -224,26 +227,22 @@ func (o *ApiFTSMetricsView) SetStatusMetrics(v []ApiFTSMetricView) {
 }
 
 func (o ApiFTSMetricsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.HardwareMetrics != nil {
-		toSerialize["hardwareMetrics"] = o.HardwareMetrics
-	}
-	if o.IndexMetrics != nil {
-		toSerialize["indexMetrics"] = o.IndexMetrics
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["processId"] = o.ProcessId
-	}
-	if o.StatusMetrics != nil {
-		toSerialize["statusMetrics"] = o.StatusMetrics
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiFTSMetricsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: groupId is readOnly
+	// skip: hardwareMetrics is readOnly
+	// skip: indexMetrics is readOnly
+	// skip: links is readOnly
+	// skip: processId is readOnly
+	// skip: statusMetrics is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiFTSMetricsView struct {

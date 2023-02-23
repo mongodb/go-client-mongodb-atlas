@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DailyScheduleView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DailyScheduleView{}
+
 // DailyScheduleView struct for DailyScheduleView
 type DailyScheduleView struct {
 	// Hour of the day when the scheduled window to run one online archive ends.
@@ -46,7 +49,7 @@ func NewDailyScheduleViewWithDefaults() *DailyScheduleView {
 
 // GetEndHour returns the EndHour field value if set, zero value otherwise.
 func (o *DailyScheduleView) GetEndHour() int32 {
-	if o == nil || o.EndHour == nil {
+	if o == nil || IsNil(o.EndHour) {
 		var ret int32
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *DailyScheduleView) GetEndHour() int32 {
 // GetEndHourOk returns a tuple with the EndHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DailyScheduleView) GetEndHourOk() (*int32, bool) {
-	if o == nil || o.EndHour == nil {
+	if o == nil || IsNil(o.EndHour) {
 		return nil, false
 	}
 	return o.EndHour, true
@@ -64,7 +67,7 @@ func (o *DailyScheduleView) GetEndHourOk() (*int32, bool) {
 
 // HasEndHour returns a boolean if a field has been set.
 func (o *DailyScheduleView) HasEndHour() bool {
-	if o != nil && o.EndHour != nil {
+	if o != nil && !IsNil(o.EndHour) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *DailyScheduleView) SetEndHour(v int32) {
 
 // GetEndMinute returns the EndMinute field value if set, zero value otherwise.
 func (o *DailyScheduleView) GetEndMinute() int32 {
-	if o == nil || o.EndMinute == nil {
+	if o == nil || IsNil(o.EndMinute) {
 		var ret int32
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *DailyScheduleView) GetEndMinute() int32 {
 // GetEndMinuteOk returns a tuple with the EndMinute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DailyScheduleView) GetEndMinuteOk() (*int32, bool) {
-	if o == nil || o.EndMinute == nil {
+	if o == nil || IsNil(o.EndMinute) {
 		return nil, false
 	}
 	return o.EndMinute, true
@@ -96,7 +99,7 @@ func (o *DailyScheduleView) GetEndMinuteOk() (*int32, bool) {
 
 // HasEndMinute returns a boolean if a field has been set.
 func (o *DailyScheduleView) HasEndMinute() bool {
-	if o != nil && o.EndMinute != nil {
+	if o != nil && !IsNil(o.EndMinute) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *DailyScheduleView) SetEndMinute(v int32) {
 
 // GetStartHour returns the StartHour field value if set, zero value otherwise.
 func (o *DailyScheduleView) GetStartHour() int32 {
-	if o == nil || o.StartHour == nil {
+	if o == nil || IsNil(o.StartHour) {
 		var ret int32
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *DailyScheduleView) GetStartHour() int32 {
 // GetStartHourOk returns a tuple with the StartHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DailyScheduleView) GetStartHourOk() (*int32, bool) {
-	if o == nil || o.StartHour == nil {
+	if o == nil || IsNil(o.StartHour) {
 		return nil, false
 	}
 	return o.StartHour, true
@@ -128,7 +131,7 @@ func (o *DailyScheduleView) GetStartHourOk() (*int32, bool) {
 
 // HasStartHour returns a boolean if a field has been set.
 func (o *DailyScheduleView) HasStartHour() bool {
-	if o != nil && o.StartHour != nil {
+	if o != nil && !IsNil(o.StartHour) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *DailyScheduleView) SetStartHour(v int32) {
 
 // GetStartMinute returns the StartMinute field value if set, zero value otherwise.
 func (o *DailyScheduleView) GetStartMinute() int32 {
-	if o == nil || o.StartMinute == nil {
+	if o == nil || IsNil(o.StartMinute) {
 		var ret int32
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *DailyScheduleView) GetStartMinute() int32 {
 // GetStartMinuteOk returns a tuple with the StartMinute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DailyScheduleView) GetStartMinuteOk() (*int32, bool) {
-	if o == nil || o.StartMinute == nil {
+	if o == nil || IsNil(o.StartMinute) {
 		return nil, false
 	}
 	return o.StartMinute, true
@@ -160,7 +163,7 @@ func (o *DailyScheduleView) GetStartMinuteOk() (*int32, bool) {
 
 // HasStartMinute returns a boolean if a field has been set.
 func (o *DailyScheduleView) HasStartMinute() bool {
-	if o != nil && o.StartMinute != nil {
+	if o != nil && !IsNil(o.StartMinute) {
 		return true
 	}
 
@@ -197,23 +200,29 @@ func (o *DailyScheduleView) SetType(v string) {
 }
 
 func (o DailyScheduleView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.EndHour != nil {
-		toSerialize["endHour"] = o.EndHour
-	}
-	if o.EndMinute != nil {
-		toSerialize["endMinute"] = o.EndMinute
-	}
-	if o.StartHour != nil {
-		toSerialize["startHour"] = o.StartHour
-	}
-	if o.StartMinute != nil {
-		toSerialize["startMinute"] = o.StartMinute
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DailyScheduleView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EndHour) {
+		toSerialize["endHour"] = o.EndHour
+	}
+	if !IsNil(o.EndMinute) {
+		toSerialize["endMinute"] = o.EndMinute
+	}
+	if !IsNil(o.StartHour) {
+		toSerialize["startHour"] = o.StartHour
+	}
+	if !IsNil(o.StartMinute) {
+		toSerialize["startMinute"] = o.StartMinute
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableDailyScheduleView struct {

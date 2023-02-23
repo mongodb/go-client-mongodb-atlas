@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserNotificationView{}
+
 // UserNotificationView User notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type UserNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -49,7 +52,7 @@ func NewUserNotificationViewWithDefaults() *UserNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *UserNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *UserNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -67,7 +70,7 @@ func (o *UserNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *UserNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UserNotificationView) SetDelayMin(v int32) {
 
 // GetEmailEnabled returns the EmailEnabled field value if set, zero value otherwise.
 func (o *UserNotificationView) GetEmailEnabled() bool {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		var ret bool
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *UserNotificationView) GetEmailEnabled() bool {
 // GetEmailEnabledOk returns a tuple with the EmailEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNotificationView) GetEmailEnabledOk() (*bool, bool) {
-	if o == nil || o.EmailEnabled == nil {
+	if o == nil || IsNil(o.EmailEnabled) {
 		return nil, false
 	}
 	return o.EmailEnabled, true
@@ -99,7 +102,7 @@ func (o *UserNotificationView) GetEmailEnabledOk() (*bool, bool) {
 
 // HasEmailEnabled returns a boolean if a field has been set.
 func (o *UserNotificationView) HasEmailEnabled() bool {
-	if o != nil && o.EmailEnabled != nil {
+	if o != nil && !IsNil(o.EmailEnabled) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UserNotificationView) SetEmailEnabled(v bool) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *UserNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *UserNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -131,7 +134,7 @@ func (o *UserNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *UserNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UserNotificationView) SetIntervalMin(v int32) {
 
 // GetSmsEnabled returns the SmsEnabled field value if set, zero value otherwise.
 func (o *UserNotificationView) GetSmsEnabled() bool {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *UserNotificationView) GetSmsEnabled() bool {
 // GetSmsEnabledOk returns a tuple with the SmsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNotificationView) GetSmsEnabledOk() (*bool, bool) {
-	if o == nil || o.SmsEnabled == nil {
+	if o == nil || IsNil(o.SmsEnabled) {
 		return nil, false
 	}
 	return o.SmsEnabled, true
@@ -163,7 +166,7 @@ func (o *UserNotificationView) GetSmsEnabledOk() (*bool, bool) {
 
 // HasSmsEnabled returns a boolean if a field has been set.
 func (o *UserNotificationView) HasSmsEnabled() bool {
-	if o != nil && o.SmsEnabled != nil {
+	if o != nil && !IsNil(o.SmsEnabled) {
 		return true
 	}
 
@@ -201,7 +204,7 @@ func (o *UserNotificationView) SetTypeName(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *UserNotificationView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -211,7 +214,7 @@ func (o *UserNotificationView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserNotificationView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -219,7 +222,7 @@ func (o *UserNotificationView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *UserNotificationView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -232,26 +235,32 @@ func (o *UserNotificationView) SetUsername(v string) {
 }
 
 func (o UserNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.EmailEnabled != nil {
-		toSerialize["emailEnabled"] = o.EmailEnabled
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.SmsEnabled != nil {
-		toSerialize["smsEnabled"] = o.SmsEnabled
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.EmailEnabled) {
+		toSerialize["emailEnabled"] = o.EmailEnabled
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.SmsEnabled) {
+		toSerialize["smsEnabled"] = o.SmsEnabled
+	}
+	toSerialize["typeName"] = o.TypeName
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
 }
 
 type NullableUserNotificationView struct {

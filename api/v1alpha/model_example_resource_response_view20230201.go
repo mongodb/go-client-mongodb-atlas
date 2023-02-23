@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExampleResourceResponseView20230201 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExampleResourceResponseView20230201{}
+
 // ExampleResourceResponseView20230201 struct for ExampleResourceResponseView20230201
 type ExampleResourceResponseView20230201 struct {
 	// Dummy additional field added to the response.
@@ -45,7 +48,7 @@ func NewExampleResourceResponseView20230201WithDefaults() *ExampleResourceRespon
 
 // GetAdditionalInfo returns the AdditionalInfo field value if set, zero value otherwise.
 func (o *ExampleResourceResponseView20230201) GetAdditionalInfo() string {
-	if o == nil || o.AdditionalInfo == nil {
+	if o == nil || IsNil(o.AdditionalInfo) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ExampleResourceResponseView20230201) GetAdditionalInfo() string {
 // GetAdditionalInfoOk returns a tuple with the AdditionalInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExampleResourceResponseView20230201) GetAdditionalInfoOk() (*string, bool) {
-	if o == nil || o.AdditionalInfo == nil {
+	if o == nil || IsNil(o.AdditionalInfo) {
 		return nil, false
 	}
 	return o.AdditionalInfo, true
@@ -63,7 +66,7 @@ func (o *ExampleResourceResponseView20230201) GetAdditionalInfoOk() (*string, bo
 
 // HasAdditionalInfo returns a boolean if a field has been set.
 func (o *ExampleResourceResponseView20230201) HasAdditionalInfo() bool {
-	if o != nil && o.AdditionalInfo != nil {
+	if o != nil && !IsNil(o.AdditionalInfo) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ExampleResourceResponseView20230201) SetAdditionalInfo(v string) {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ExampleResourceResponseView20230201) GetData() []string {
-	if o == nil || o.Data == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret []string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *ExampleResourceResponseView20230201) GetData() []string {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExampleResourceResponseView20230201) GetDataOk() ([]string, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -95,7 +98,7 @@ func (o *ExampleResourceResponseView20230201) GetDataOk() ([]string, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *ExampleResourceResponseView20230201) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -133,7 +136,7 @@ func (o *ExampleResourceResponseView20230201) SetDescription(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ExampleResourceResponseView20230201) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -143,7 +146,7 @@ func (o *ExampleResourceResponseView20230201) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExampleResourceResponseView20230201) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -151,7 +154,7 @@ func (o *ExampleResourceResponseView20230201) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ExampleResourceResponseView20230201) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -164,20 +167,24 @@ func (o *ExampleResourceResponseView20230201) SetLinks(v []Link) {
 }
 
 func (o ExampleResourceResponseView20230201) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AdditionalInfo != nil {
-		toSerialize["additionalInfo"] = o.AdditionalInfo
-	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExampleResourceResponseView20230201) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdditionalInfo) {
+		toSerialize["additionalInfo"] = o.AdditionalInfo
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
+	toSerialize["description"] = o.Description
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableExampleResourceResponseView20230201 struct {

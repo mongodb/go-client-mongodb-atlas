@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationResponse{}
+
 // CreateOrganizationResponse struct for CreateOrganizationResponse
 type CreateOrganizationResponse struct {
 	ApiKey *ApiApiUserView `json:"apiKey,omitempty"`
@@ -41,7 +44,7 @@ func NewCreateOrganizationResponseWithDefaults() *CreateOrganizationResponse {
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *CreateOrganizationResponse) GetApiKey() ApiApiUserView {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		var ret ApiApiUserView
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *CreateOrganizationResponse) GetApiKey() ApiApiUserView {
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationResponse) GetApiKeyOk() (*ApiApiUserView, bool) {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
 	return o.ApiKey, true
@@ -59,7 +62,7 @@ func (o *CreateOrganizationResponse) GetApiKeyOk() (*ApiApiUserView, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *CreateOrganizationResponse) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
+	if o != nil && !IsNil(o.ApiKey) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationResponse) SetApiKey(v ApiApiUserView) {
 
 // GetOrgOwnerId returns the OrgOwnerId field value if set, zero value otherwise.
 func (o *CreateOrganizationResponse) GetOrgOwnerId() string {
-	if o == nil || o.OrgOwnerId == nil {
+	if o == nil || IsNil(o.OrgOwnerId) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *CreateOrganizationResponse) GetOrgOwnerId() string {
 // GetOrgOwnerIdOk returns a tuple with the OrgOwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationResponse) GetOrgOwnerIdOk() (*string, bool) {
-	if o == nil || o.OrgOwnerId == nil {
+	if o == nil || IsNil(o.OrgOwnerId) {
 		return nil, false
 	}
 	return o.OrgOwnerId, true
@@ -91,7 +94,7 @@ func (o *CreateOrganizationResponse) GetOrgOwnerIdOk() (*string, bool) {
 
 // HasOrgOwnerId returns a boolean if a field has been set.
 func (o *CreateOrganizationResponse) HasOrgOwnerId() bool {
-	if o != nil && o.OrgOwnerId != nil {
+	if o != nil && !IsNil(o.OrgOwnerId) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *CreateOrganizationResponse) SetOrgOwnerId(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *CreateOrganizationResponse) GetOrganization() ApiOrganizationView {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		var ret ApiOrganizationView
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *CreateOrganizationResponse) GetOrganization() ApiOrganizationView {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationResponse) GetOrganizationOk() (*ApiOrganizationView, bool) {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -123,7 +126,7 @@ func (o *CreateOrganizationResponse) GetOrganizationOk() (*ApiOrganizationView, 
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *CreateOrganizationResponse) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -136,17 +139,23 @@ func (o *CreateOrganizationResponse) SetOrganization(v ApiOrganizationView) {
 }
 
 func (o CreateOrganizationResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKey != nil {
-		toSerialize["apiKey"] = o.ApiKey
-	}
-	if o.OrgOwnerId != nil {
-		toSerialize["orgOwnerId"] = o.OrgOwnerId
-	}
-	if o.Organization != nil {
-		toSerialize["organization"] = o.Organization
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiKey) {
+		toSerialize["apiKey"] = o.ApiKey
+	}
+	// skip: orgOwnerId is readOnly
+	if !IsNil(o.Organization) {
+		toSerialize["organization"] = o.Organization
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationResponse struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzureAutoScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureAutoScaling{}
+
 // AzureAutoScaling Range of instance sizes to which your cluster can scale.
 type AzureAutoScaling struct {
 	Compute *AzureComputeAutoScaling `json:"compute,omitempty"`
@@ -38,7 +41,7 @@ func NewAzureAutoScalingWithDefaults() *AzureAutoScaling {
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *AzureAutoScaling) GetCompute() AzureComputeAutoScaling {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		var ret AzureComputeAutoScaling
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *AzureAutoScaling) GetCompute() AzureComputeAutoScaling {
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureAutoScaling) GetComputeOk() (*AzureComputeAutoScaling, bool) {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		return nil, false
 	}
 	return o.Compute, true
@@ -56,7 +59,7 @@ func (o *AzureAutoScaling) GetComputeOk() (*AzureComputeAutoScaling, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *AzureAutoScaling) HasCompute() bool {
-	if o != nil && o.Compute != nil {
+	if o != nil && !IsNil(o.Compute) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *AzureAutoScaling) SetCompute(v AzureComputeAutoScaling) {
 }
 
 func (o AzureAutoScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Compute != nil {
-		toSerialize["compute"] = o.Compute
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzureAutoScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Compute) {
+		toSerialize["compute"] = o.Compute
+	}
+	return toSerialize, nil
 }
 
 type NullableAzureAutoScaling struct {

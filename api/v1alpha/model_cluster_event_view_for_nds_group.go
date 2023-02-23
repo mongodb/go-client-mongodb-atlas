@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ClusterEventViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClusterEventViewForNdsGroup{}
+
 // ClusterEventViewForNdsGroup Cluster event identifies different activities about cluster of mongod hosts.
 type ClusterEventViewForNdsGroup struct {
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -100,7 +103,7 @@ func (o *ClusterEventViewForNdsGroup) SetEventTypeName(v ClusterEventTypeViewFor
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ClusterEventViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -110,7 +113,7 @@ func (o *ClusterEventViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterEventViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -118,7 +121,7 @@ func (o *ClusterEventViewForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ClusterEventViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *ClusterEventViewForNdsGroup) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ClusterEventViewForNdsGroup) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *ClusterEventViewForNdsGroup) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterEventViewForNdsGroup) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -198,7 +201,7 @@ func (o *ClusterEventViewForNdsGroup) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *ClusterEventViewForNdsGroup) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *ClusterEventViewForNdsGroup) SetOrgId(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *ClusterEventViewForNdsGroup) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *ClusterEventViewForNdsGroup) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterEventViewForNdsGroup) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -230,7 +233,7 @@ func (o *ClusterEventViewForNdsGroup) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *ClusterEventViewForNdsGroup) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *ClusterEventViewForNdsGroup) SetRaw(v Raw) {
 
 // GetShardName returns the ShardName field value if set, zero value otherwise.
 func (o *ClusterEventViewForNdsGroup) GetShardName() string {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		var ret string
 		return ret
 	}
@@ -254,7 +257,7 @@ func (o *ClusterEventViewForNdsGroup) GetShardName() string {
 // GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClusterEventViewForNdsGroup) GetShardNameOk() (*string, bool) {
-	if o == nil || o.ShardName == nil {
+	if o == nil || IsNil(o.ShardName) {
 		return nil, false
 	}
 	return o.ShardName, true
@@ -262,7 +265,7 @@ func (o *ClusterEventViewForNdsGroup) GetShardNameOk() (*string, bool) {
 
 // HasShardName returns a boolean if a field has been set.
 func (o *ClusterEventViewForNdsGroup) HasShardName() bool {
-	if o != nil && o.ShardName != nil {
+	if o != nil && !IsNil(o.ShardName) {
 		return true
 	}
 
@@ -275,32 +278,26 @@ func (o *ClusterEventViewForNdsGroup) SetShardName(v string) {
 }
 
 func (o ClusterEventViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.ShardName != nil {
-		toSerialize["shardName"] = o.ShardName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClusterEventViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: created is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: shardName is readOnly
+	return toSerialize, nil
 }
 
 type NullableClusterEventViewForNdsGroup struct {

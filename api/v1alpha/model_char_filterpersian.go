@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CharFilterpersian type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CharFilterpersian{}
+
 // CharFilterpersian Filter that replaces instances of a zero-width non-joiner with an ordinary space. It is based on Lucene's PersianCharFilter.
 type CharFilterpersian struct {
 	// Human-readable label that identifies this character filter type.
@@ -62,11 +65,17 @@ func (o *CharFilterpersian) SetType(v string) {
 }
 
 func (o CharFilterpersian) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CharFilterpersian) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableCharFilterpersian struct {

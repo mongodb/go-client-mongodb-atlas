@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SlackNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SlackNotificationView{}
+
 // SlackNotificationView Slack notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type SlackNotificationView struct {
 	// Slack API token or Bot token that MongoDB Cloud needs to send alert notifications via Slack. The resource requires this parameter when `\"notifications.[n].typeName\" : \"SLACK\"`. If the token later becomes invalid, MongoDB Cloud sends an email to the project owners. If the token remains invalid, MongoDB Cloud removes the token.   **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
@@ -47,7 +50,7 @@ func NewSlackNotificationViewWithDefaults() *SlackNotificationView {
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
 func (o *SlackNotificationView) GetApiToken() string {
-	if o == nil || o.ApiToken == nil {
+	if o == nil || IsNil(o.ApiToken) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *SlackNotificationView) GetApiToken() string {
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SlackNotificationView) GetApiTokenOk() (*string, bool) {
-	if o == nil || o.ApiToken == nil {
+	if o == nil || IsNil(o.ApiToken) {
 		return nil, false
 	}
 	return o.ApiToken, true
@@ -65,7 +68,7 @@ func (o *SlackNotificationView) GetApiTokenOk() (*string, bool) {
 
 // HasApiToken returns a boolean if a field has been set.
 func (o *SlackNotificationView) HasApiToken() bool {
-	if o != nil && o.ApiToken != nil {
+	if o != nil && !IsNil(o.ApiToken) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *SlackNotificationView) SetApiToken(v string) {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *SlackNotificationView) GetChannelName() string {
-	if o == nil || o.ChannelName == nil {
+	if o == nil || IsNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *SlackNotificationView) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SlackNotificationView) GetChannelNameOk() (*string, bool) {
-	if o == nil || o.ChannelName == nil {
+	if o == nil || IsNil(o.ChannelName) {
 		return nil, false
 	}
 	return o.ChannelName, true
@@ -97,7 +100,7 @@ func (o *SlackNotificationView) GetChannelNameOk() (*string, bool) {
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *SlackNotificationView) HasChannelName() bool {
-	if o != nil && o.ChannelName != nil {
+	if o != nil && !IsNil(o.ChannelName) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *SlackNotificationView) SetChannelName(v string) {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *SlackNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *SlackNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SlackNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -129,7 +132,7 @@ func (o *SlackNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *SlackNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *SlackNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *SlackNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *SlackNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SlackNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -161,7 +164,7 @@ func (o *SlackNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *SlackNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -198,23 +201,29 @@ func (o *SlackNotificationView) SetTypeName(v string) {
 }
 
 func (o SlackNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiToken != nil {
-		toSerialize["apiToken"] = o.ApiToken
-	}
-	if o.ChannelName != nil {
-		toSerialize["channelName"] = o.ChannelName
-	}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SlackNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiToken) {
+		toSerialize["apiToken"] = o.ApiToken
+	}
+	if !IsNil(o.ChannelName) {
+		toSerialize["channelName"] = o.ChannelName
+	}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableSlackNotificationView struct {

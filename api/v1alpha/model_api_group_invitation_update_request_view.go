@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiGroupInvitationUpdateRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiGroupInvitationUpdateRequestView{}
+
 // ApiGroupInvitationUpdateRequestView struct for ApiGroupInvitationUpdateRequestView
 type ApiGroupInvitationUpdateRequestView struct {
 	// One or more organization or project level roles to assign to the MongoDB Cloud user.
@@ -39,7 +42,7 @@ func NewApiGroupInvitationUpdateRequestViewWithDefaults() *ApiGroupInvitationUpd
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiGroupInvitationUpdateRequestView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ApiGroupInvitationUpdateRequestView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiGroupInvitationUpdateRequestView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -57,7 +60,7 @@ func (o *ApiGroupInvitationUpdateRequestView) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiGroupInvitationUpdateRequestView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *ApiGroupInvitationUpdateRequestView) SetRoles(v []string) {
 }
 
 func (o ApiGroupInvitationUpdateRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiGroupInvitationUpdateRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
 }
 
 type NullableApiGroupInvitationUpdateRequestView struct {

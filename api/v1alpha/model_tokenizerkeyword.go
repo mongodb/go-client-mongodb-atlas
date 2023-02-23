@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Tokenizerkeyword type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Tokenizerkeyword{}
+
 // Tokenizerkeyword Tokenizer that combines the entire input as a single token.
 type Tokenizerkeyword struct {
 	// Human-readable label that identifies this tokenizer type.
@@ -62,11 +65,17 @@ func (o *Tokenizerkeyword) SetType(v string) {
 }
 
 func (o Tokenizerkeyword) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Tokenizerkeyword) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizerkeyword struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudProviderAccessEncryptionAtRestFeatureUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudProviderAccessEncryptionAtRestFeatureUsage{}
+
 // CloudProviderAccessEncryptionAtRestFeatureUsage Details that describe the Key Management Service (KMS) linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessEncryptionAtRestFeatureUsage struct {
 	// Object that contains the identifying characteristics of the Amazon Web Services (AWS) Key Management Service (KMS). This field always returns a null value.
@@ -50,15 +53,15 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) GetFeatureId() map[str
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) GetFeatureIdOk() (map[string]interface{}, bool) {
-	if o == nil || o.FeatureId == nil {
-		return nil, false
+	if o == nil || IsNil(o.FeatureId) {
+		return map[string]interface{}{}, false
 	}
 	return o.FeatureId, true
 }
 
 // HasFeatureId returns a boolean if a field has been set.
 func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) HasFeatureId() bool {
-	if o != nil && o.FeatureId != nil {
+	if o != nil && IsNil(o.FeatureId) {
 		return true
 	}
 
@@ -71,11 +74,19 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) SetFeatureId(v map[str
 }
 
 func (o CloudProviderAccessEncryptionAtRestFeatureUsage) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CloudProviderAccessEncryptionAtRestFeatureUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FeatureId != nil {
 		toSerialize["featureId"] = o.FeatureId
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCloudProviderAccessEncryptionAtRestFeatureUsage struct {

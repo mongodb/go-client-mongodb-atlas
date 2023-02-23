@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessInstanceDescriptionConnectionStrings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessInstanceDescriptionConnectionStrings{}
+
 // ServerlessInstanceDescriptionConnectionStrings Collection of Uniform Resource Locators that point to the MongoDB database.
 type ServerlessInstanceDescriptionConnectionStrings struct {
 	// List of private endpoint-aware connection strings that you can use to connect to this serverless instance through a private endpoint. This parameter returns only if you created a private endpoint for this serverless instance and it is AVAILABLE.
@@ -41,7 +44,7 @@ func NewServerlessInstanceDescriptionConnectionStringsWithDefaults() *Serverless
 
 // GetPrivateEndpoint returns the PrivateEndpoint field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionConnectionStrings) GetPrivateEndpoint() []ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint {
-	if o == nil || o.PrivateEndpoint == nil {
+	if o == nil || IsNil(o.PrivateEndpoint) {
 		var ret []ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) GetPrivateEndpoint() []
 // GetPrivateEndpointOk returns a tuple with the PrivateEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionConnectionStrings) GetPrivateEndpointOk() ([]ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint, bool) {
-	if o == nil || o.PrivateEndpoint == nil {
+	if o == nil || IsNil(o.PrivateEndpoint) {
 		return nil, false
 	}
 	return o.PrivateEndpoint, true
@@ -59,7 +62,7 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) GetPrivateEndpointOk() 
 
 // HasPrivateEndpoint returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionConnectionStrings) HasPrivateEndpoint() bool {
-	if o != nil && o.PrivateEndpoint != nil {
+	if o != nil && !IsNil(o.PrivateEndpoint) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) SetPrivateEndpoint(v []
 
 // GetStandardSrv returns the StandardSrv field value if set, zero value otherwise.
 func (o *ServerlessInstanceDescriptionConnectionStrings) GetStandardSrv() string {
-	if o == nil || o.StandardSrv == nil {
+	if o == nil || IsNil(o.StandardSrv) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) GetStandardSrv() string
 // GetStandardSrvOk returns a tuple with the StandardSrv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessInstanceDescriptionConnectionStrings) GetStandardSrvOk() (*string, bool) {
-	if o == nil || o.StandardSrv == nil {
+	if o == nil || IsNil(o.StandardSrv) {
 		return nil, false
 	}
 	return o.StandardSrv, true
@@ -91,7 +94,7 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) GetStandardSrvOk() (*st
 
 // HasStandardSrv returns a boolean if a field has been set.
 func (o *ServerlessInstanceDescriptionConnectionStrings) HasStandardSrv() bool {
-	if o != nil && o.StandardSrv != nil {
+	if o != nil && !IsNil(o.StandardSrv) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) SetStandardSrv(v string
 }
 
 func (o ServerlessInstanceDescriptionConnectionStrings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PrivateEndpoint != nil {
-		toSerialize["privateEndpoint"] = o.PrivateEndpoint
-	}
-	if o.StandardSrv != nil {
-		toSerialize["standardSrv"] = o.StandardSrv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessInstanceDescriptionConnectionStrings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: privateEndpoint is readOnly
+	// skip: standardSrv is readOnly
+	return toSerialize, nil
 }
 
 type NullableServerlessInstanceDescriptionConnectionStrings struct {

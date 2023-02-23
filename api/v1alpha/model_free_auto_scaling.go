@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FreeAutoScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FreeAutoScaling{}
+
 // FreeAutoScaling Range of instance sizes to which your cluster can scale.
 type FreeAutoScaling struct {
 	// Collection of settings that configures how a cluster might scale its cluster tier and whether the cluster can scale down.
@@ -39,7 +42,7 @@ func NewFreeAutoScalingWithDefaults() *FreeAutoScaling {
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *FreeAutoScaling) GetCompute() string {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *FreeAutoScaling) GetCompute() string {
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FreeAutoScaling) GetComputeOk() (*string, bool) {
-	if o == nil || o.Compute == nil {
+	if o == nil || IsNil(o.Compute) {
 		return nil, false
 	}
 	return o.Compute, true
@@ -57,7 +60,7 @@ func (o *FreeAutoScaling) GetComputeOk() (*string, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *FreeAutoScaling) HasCompute() bool {
-	if o != nil && o.Compute != nil {
+	if o != nil && !IsNil(o.Compute) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *FreeAutoScaling) SetCompute(v string) {
 }
 
 func (o FreeAutoScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Compute != nil {
-		toSerialize["compute"] = o.Compute
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FreeAutoScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Compute) {
+		toSerialize["compute"] = o.Compute
+	}
+	return toSerialize, nil
 }
 
 type NullableFreeAutoScaling struct {

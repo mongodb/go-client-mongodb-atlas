@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeTenant type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeTenant{}
+
 // DataLakeTenant struct for DataLakeTenant
 type DataLakeTenant struct {
 	CloudProviderConfig *DataLakeCloudProviderConfig `json:"cloudProviderConfig,omitempty"`
@@ -42,7 +45,7 @@ func NewDataLakeTenantWithDefaults() *DataLakeTenant {
 
 // GetCloudProviderConfig returns the CloudProviderConfig field value if set, zero value otherwise.
 func (o *DataLakeTenant) GetCloudProviderConfig() DataLakeCloudProviderConfig {
-	if o == nil || o.CloudProviderConfig == nil {
+	if o == nil || IsNil(o.CloudProviderConfig) {
 		var ret DataLakeCloudProviderConfig
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *DataLakeTenant) GetCloudProviderConfig() DataLakeCloudProviderConfig {
 // GetCloudProviderConfigOk returns a tuple with the CloudProviderConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeTenant) GetCloudProviderConfigOk() (*DataLakeCloudProviderConfig, bool) {
-	if o == nil || o.CloudProviderConfig == nil {
+	if o == nil || IsNil(o.CloudProviderConfig) {
 		return nil, false
 	}
 	return o.CloudProviderConfig, true
@@ -60,7 +63,7 @@ func (o *DataLakeTenant) GetCloudProviderConfigOk() (*DataLakeCloudProviderConfi
 
 // HasCloudProviderConfig returns a boolean if a field has been set.
 func (o *DataLakeTenant) HasCloudProviderConfig() bool {
-	if o != nil && o.CloudProviderConfig != nil {
+	if o != nil && !IsNil(o.CloudProviderConfig) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *DataLakeTenant) SetCloudProviderConfig(v DataLakeCloudProviderConfig) {
 
 // GetDataProcessRegion returns the DataProcessRegion field value if set, zero value otherwise.
 func (o *DataLakeTenant) GetDataProcessRegion() DataLakeDataProcessRegion {
-	if o == nil || o.DataProcessRegion == nil {
+	if o == nil || IsNil(o.DataProcessRegion) {
 		var ret DataLakeDataProcessRegion
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *DataLakeTenant) GetDataProcessRegion() DataLakeDataProcessRegion {
 // GetDataProcessRegionOk returns a tuple with the DataProcessRegion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeTenant) GetDataProcessRegionOk() (*DataLakeDataProcessRegion, bool) {
-	if o == nil || o.DataProcessRegion == nil {
+	if o == nil || IsNil(o.DataProcessRegion) {
 		return nil, false
 	}
 	return o.DataProcessRegion, true
@@ -92,7 +95,7 @@ func (o *DataLakeTenant) GetDataProcessRegionOk() (*DataLakeDataProcessRegion, b
 
 // HasDataProcessRegion returns a boolean if a field has been set.
 func (o *DataLakeTenant) HasDataProcessRegion() bool {
-	if o != nil && o.DataProcessRegion != nil {
+	if o != nil && !IsNil(o.DataProcessRegion) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *DataLakeTenant) SetDataProcessRegion(v DataLakeDataProcessRegion) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeTenant) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *DataLakeTenant) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeTenant) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -124,7 +127,7 @@ func (o *DataLakeTenant) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeTenant) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *DataLakeTenant) SetName(v string) {
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *DataLakeTenant) GetStorage() DataLakeStorage {
-	if o == nil || o.Storage == nil {
+	if o == nil || IsNil(o.Storage) {
 		var ret DataLakeStorage
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *DataLakeTenant) GetStorage() DataLakeStorage {
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeTenant) GetStorageOk() (*DataLakeStorage, bool) {
-	if o == nil || o.Storage == nil {
+	if o == nil || IsNil(o.Storage) {
 		return nil, false
 	}
 	return o.Storage, true
@@ -156,7 +159,7 @@ func (o *DataLakeTenant) GetStorageOk() (*DataLakeStorage, bool) {
 
 // HasStorage returns a boolean if a field has been set.
 func (o *DataLakeTenant) HasStorage() bool {
-	if o != nil && o.Storage != nil {
+	if o != nil && !IsNil(o.Storage) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *DataLakeTenant) SetStorage(v DataLakeStorage) {
 }
 
 func (o DataLakeTenant) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProviderConfig != nil {
-		toSerialize["cloudProviderConfig"] = o.CloudProviderConfig
-	}
-	if o.DataProcessRegion != nil {
-		toSerialize["dataProcessRegion"] = o.DataProcessRegion
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Storage != nil {
-		toSerialize["storage"] = o.Storage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeTenant) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProviderConfig) {
+		toSerialize["cloudProviderConfig"] = o.CloudProviderConfig
+	}
+	if !IsNil(o.DataProcessRegion) {
+		toSerialize["dataProcessRegion"] = o.DataProcessRegion
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
+	}
+	return toSerialize, nil
 }
 
 type NullableDataLakeTenant struct {

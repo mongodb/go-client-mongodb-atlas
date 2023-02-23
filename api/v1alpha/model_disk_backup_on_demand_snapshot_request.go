@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiskBackupOnDemandSnapshotRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiskBackupOnDemandSnapshotRequest{}
+
 // DiskBackupOnDemandSnapshotRequest struct for DiskBackupOnDemandSnapshotRequest
 type DiskBackupOnDemandSnapshotRequest struct {
 	// Human-readable phrase or sentence that explains the purpose of the snapshot. The resource returns this parameter when `\"status\" : \"onDemand\"`.
@@ -43,7 +46,7 @@ func NewDiskBackupOnDemandSnapshotRequestWithDefaults() *DiskBackupOnDemandSnaps
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *DiskBackupOnDemandSnapshotRequest) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -61,7 +64,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) SetDescription(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DiskBackupOnDemandSnapshotRequest) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -93,7 +96,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) SetLinks(v []Link) {
 
 // GetRetentionInDays returns the RetentionInDays field value if set, zero value otherwise.
 func (o *DiskBackupOnDemandSnapshotRequest) GetRetentionInDays() int32 {
-	if o == nil || o.RetentionInDays == nil {
+	if o == nil || IsNil(o.RetentionInDays) {
 		var ret int32
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetRetentionInDays() int32 {
 // GetRetentionInDaysOk returns a tuple with the RetentionInDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) GetRetentionInDaysOk() (*int32, bool) {
-	if o == nil || o.RetentionInDays == nil {
+	if o == nil || IsNil(o.RetentionInDays) {
 		return nil, false
 	}
 	return o.RetentionInDays, true
@@ -125,7 +128,7 @@ func (o *DiskBackupOnDemandSnapshotRequest) GetRetentionInDaysOk() (*int32, bool
 
 // HasRetentionInDays returns a boolean if a field has been set.
 func (o *DiskBackupOnDemandSnapshotRequest) HasRetentionInDays() bool {
-	if o != nil && o.RetentionInDays != nil {
+	if o != nil && !IsNil(o.RetentionInDays) {
 		return true
 	}
 
@@ -138,17 +141,23 @@ func (o *DiskBackupOnDemandSnapshotRequest) SetRetentionInDays(v int32) {
 }
 
 func (o DiskBackupOnDemandSnapshotRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.RetentionInDays != nil {
-		toSerialize["retentionInDays"] = o.RetentionInDays
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiskBackupOnDemandSnapshotRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	// skip: links is readOnly
+	if !IsNil(o.RetentionInDays) {
+		toSerialize["retentionInDays"] = o.RetentionInDays
+	}
+	return toSerialize, nil
 }
 
 type NullableDiskBackupOnDemandSnapshotRequest struct {

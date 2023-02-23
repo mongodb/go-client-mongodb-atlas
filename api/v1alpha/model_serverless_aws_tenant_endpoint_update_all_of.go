@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessAWSTenantEndpointUpdateAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessAWSTenantEndpointUpdateAllOf{}
+
 // ServerlessAWSTenantEndpointUpdateAllOf struct for ServerlessAWSTenantEndpointUpdateAllOf
 type ServerlessAWSTenantEndpointUpdateAllOf struct {
 	// Unique string that identifies the private endpoint's network interface.
@@ -39,7 +42,7 @@ func NewServerlessAWSTenantEndpointUpdateAllOfWithDefaults() *ServerlessAWSTenan
 
 // GetCloudProviderEndpointId returns the CloudProviderEndpointId field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpointUpdateAllOf) GetCloudProviderEndpointId() string {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ServerlessAWSTenantEndpointUpdateAllOf) GetCloudProviderEndpointId() st
 // GetCloudProviderEndpointIdOk returns a tuple with the CloudProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpointUpdateAllOf) GetCloudProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		return nil, false
 	}
 	return o.CloudProviderEndpointId, true
@@ -57,7 +60,7 @@ func (o *ServerlessAWSTenantEndpointUpdateAllOf) GetCloudProviderEndpointIdOk() 
 
 // HasCloudProviderEndpointId returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpointUpdateAllOf) HasCloudProviderEndpointId() bool {
-	if o != nil && o.CloudProviderEndpointId != nil {
+	if o != nil && !IsNil(o.CloudProviderEndpointId) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *ServerlessAWSTenantEndpointUpdateAllOf) SetCloudProviderEndpointId(v st
 }
 
 func (o ServerlessAWSTenantEndpointUpdateAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProviderEndpointId != nil {
-		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessAWSTenantEndpointUpdateAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProviderEndpointId) {
+		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessAWSTenantEndpointUpdateAllOf struct {

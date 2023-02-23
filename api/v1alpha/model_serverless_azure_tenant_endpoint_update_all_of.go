@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessAzureTenantEndpointUpdateAllOf type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessAzureTenantEndpointUpdateAllOf{}
+
 // ServerlessAzureTenantEndpointUpdateAllOf struct for ServerlessAzureTenantEndpointUpdateAllOf
 type ServerlessAzureTenantEndpointUpdateAllOf struct {
 	// Unique string that identifies the Azure private endpoint's network interface for this private endpoint service.
@@ -41,7 +44,7 @@ func NewServerlessAzureTenantEndpointUpdateAllOfWithDefaults() *ServerlessAzureT
 
 // GetCloudProviderEndpointId returns the CloudProviderEndpointId field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetCloudProviderEndpointId() string {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetCloudProviderEndpointId() 
 // GetCloudProviderEndpointIdOk returns a tuple with the CloudProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetCloudProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		return nil, false
 	}
 	return o.CloudProviderEndpointId, true
@@ -59,7 +62,7 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetCloudProviderEndpointIdOk(
 
 // HasCloudProviderEndpointId returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) HasCloudProviderEndpointId() bool {
-	if o != nil && o.CloudProviderEndpointId != nil {
+	if o != nil && !IsNil(o.CloudProviderEndpointId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) SetCloudProviderEndpointId(v 
 
 // GetPrivateEndpointIpAddress returns the PrivateEndpointIpAddress field value if set, zero value otherwise.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetPrivateEndpointIpAddress() string {
-	if o == nil || o.PrivateEndpointIpAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIpAddress) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetPrivateEndpointIpAddress()
 // GetPrivateEndpointIpAddressOk returns a tuple with the PrivateEndpointIpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetPrivateEndpointIpAddressOk() (*string, bool) {
-	if o == nil || o.PrivateEndpointIpAddress == nil {
+	if o == nil || IsNil(o.PrivateEndpointIpAddress) {
 		return nil, false
 	}
 	return o.PrivateEndpointIpAddress, true
@@ -91,7 +94,7 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) GetPrivateEndpointIpAddressOk
 
 // HasPrivateEndpointIpAddress returns a boolean if a field has been set.
 func (o *ServerlessAzureTenantEndpointUpdateAllOf) HasPrivateEndpointIpAddress() bool {
-	if o != nil && o.PrivateEndpointIpAddress != nil {
+	if o != nil && !IsNil(o.PrivateEndpointIpAddress) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *ServerlessAzureTenantEndpointUpdateAllOf) SetPrivateEndpointIpAddress(v
 }
 
 func (o ServerlessAzureTenantEndpointUpdateAllOf) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CloudProviderEndpointId != nil {
-		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
-	}
-	if o.PrivateEndpointIpAddress != nil {
-		toSerialize["privateEndpointIpAddress"] = o.PrivateEndpointIpAddress
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessAzureTenantEndpointUpdateAllOf) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CloudProviderEndpointId) {
+		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
+	}
+	if !IsNil(o.PrivateEndpointIpAddress) {
+		toSerialize["privateEndpointIpAddress"] = o.PrivateEndpointIpAddress
+	}
+	return toSerialize, nil
 }
 
 type NullableServerlessAzureTenantEndpointUpdateAllOf struct {

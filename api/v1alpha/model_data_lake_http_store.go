@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeHTTPStore type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeHTTPStore{}
+
 // DataLakeHTTPStore struct for DataLakeHTTPStore
 type DataLakeHTTPStore struct {
 	// Flag that validates the scheme in the specified URLs. If `true`, allows insecure `HTTP` scheme, doesn't verify the server's certificate chain and hostname, and accepts any certificate with any hostname presented by the server. If `false`, allows secure `HTTPS` scheme only.
@@ -50,7 +53,7 @@ func NewDataLakeHTTPStoreWithDefaults() *DataLakeHTTPStore {
 
 // GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.
 func (o *DataLakeHTTPStore) GetAllowInsecure() bool {
-	if o == nil || o.AllowInsecure == nil {
+	if o == nil || IsNil(o.AllowInsecure) {
 		var ret bool
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *DataLakeHTTPStore) GetAllowInsecure() bool {
 // GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeHTTPStore) GetAllowInsecureOk() (*bool, bool) {
-	if o == nil || o.AllowInsecure == nil {
+	if o == nil || IsNil(o.AllowInsecure) {
 		return nil, false
 	}
 	return o.AllowInsecure, true
@@ -68,7 +71,7 @@ func (o *DataLakeHTTPStore) GetAllowInsecureOk() (*bool, bool) {
 
 // HasAllowInsecure returns a boolean if a field has been set.
 func (o *DataLakeHTTPStore) HasAllowInsecure() bool {
-	if o != nil && o.AllowInsecure != nil {
+	if o != nil && !IsNil(o.AllowInsecure) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *DataLakeHTTPStore) SetAllowInsecure(v bool) {
 
 // GetDefaultFormat returns the DefaultFormat field value if set, zero value otherwise.
 func (o *DataLakeHTTPStore) GetDefaultFormat() string {
-	if o == nil || o.DefaultFormat == nil {
+	if o == nil || IsNil(o.DefaultFormat) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *DataLakeHTTPStore) GetDefaultFormat() string {
 // GetDefaultFormatOk returns a tuple with the DefaultFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeHTTPStore) GetDefaultFormatOk() (*string, bool) {
-	if o == nil || o.DefaultFormat == nil {
+	if o == nil || IsNil(o.DefaultFormat) {
 		return nil, false
 	}
 	return o.DefaultFormat, true
@@ -100,7 +103,7 @@ func (o *DataLakeHTTPStore) GetDefaultFormatOk() (*string, bool) {
 
 // HasDefaultFormat returns a boolean if a field has been set.
 func (o *DataLakeHTTPStore) HasDefaultFormat() bool {
-	if o != nil && o.DefaultFormat != nil {
+	if o != nil && !IsNil(o.DefaultFormat) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *DataLakeHTTPStore) SetDefaultFormat(v string) {
 
 // GetUrls returns the Urls field value if set, zero value otherwise.
 func (o *DataLakeHTTPStore) GetUrls() []string {
-	if o == nil || o.Urls == nil {
+	if o == nil || IsNil(o.Urls) {
 		var ret []string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *DataLakeHTTPStore) GetUrls() []string {
 // GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeHTTPStore) GetUrlsOk() ([]string, bool) {
-	if o == nil || o.Urls == nil {
+	if o == nil || IsNil(o.Urls) {
 		return nil, false
 	}
 	return o.Urls, true
@@ -132,7 +135,7 @@ func (o *DataLakeHTTPStore) GetUrlsOk() ([]string, bool) {
 
 // HasUrls returns a boolean if a field has been set.
 func (o *DataLakeHTTPStore) HasUrls() bool {
-	if o != nil && o.Urls != nil {
+	if o != nil && !IsNil(o.Urls) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *DataLakeHTTPStore) SetUrls(v []string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeHTTPStore) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *DataLakeHTTPStore) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeHTTPStore) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -164,7 +167,7 @@ func (o *DataLakeHTTPStore) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeHTTPStore) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -201,23 +204,29 @@ func (o *DataLakeHTTPStore) SetProvider(v string) {
 }
 
 func (o DataLakeHTTPStore) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AllowInsecure != nil {
-		toSerialize["allowInsecure"] = o.AllowInsecure
-	}
-	if o.DefaultFormat != nil {
-		toSerialize["defaultFormat"] = o.DefaultFormat
-	}
-	if o.Urls != nil {
-		toSerialize["urls"] = o.Urls
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["provider"] = o.Provider
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeHTTPStore) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowInsecure) {
+		toSerialize["allowInsecure"] = o.AllowInsecure
+	}
+	if !IsNil(o.DefaultFormat) {
+		toSerialize["defaultFormat"] = o.DefaultFormat
+	}
+	if !IsNil(o.Urls) {
+		toSerialize["urls"] = o.Urls
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["provider"] = o.Provider
+	return toSerialize, nil
 }
 
 type NullableDataLakeHTTPStore struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AWSInterfaceEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AWSInterfaceEndpoint{}
+
 // AWSInterfaceEndpoint Group of Private Endpoint settings.
 type AWSInterfaceEndpoint struct {
 	// State of the Amazon Web Service PrivateLink connection when MongoDB Cloud received this request.
@@ -45,7 +48,7 @@ func NewAWSInterfaceEndpointWithDefaults() *AWSInterfaceEndpoint {
 
 // GetConnectionStatus returns the ConnectionStatus field value if set, zero value otherwise.
 func (o *AWSInterfaceEndpoint) GetConnectionStatus() string {
-	if o == nil || o.ConnectionStatus == nil {
+	if o == nil || IsNil(o.ConnectionStatus) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *AWSInterfaceEndpoint) GetConnectionStatus() string {
 // GetConnectionStatusOk returns a tuple with the ConnectionStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSInterfaceEndpoint) GetConnectionStatusOk() (*string, bool) {
-	if o == nil || o.ConnectionStatus == nil {
+	if o == nil || IsNil(o.ConnectionStatus) {
 		return nil, false
 	}
 	return o.ConnectionStatus, true
@@ -63,7 +66,7 @@ func (o *AWSInterfaceEndpoint) GetConnectionStatusOk() (*string, bool) {
 
 // HasConnectionStatus returns a boolean if a field has been set.
 func (o *AWSInterfaceEndpoint) HasConnectionStatus() bool {
-	if o != nil && o.ConnectionStatus != nil {
+	if o != nil && !IsNil(o.ConnectionStatus) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *AWSInterfaceEndpoint) SetConnectionStatus(v string) {
 
 // GetDeleteRequested returns the DeleteRequested field value if set, zero value otherwise.
 func (o *AWSInterfaceEndpoint) GetDeleteRequested() bool {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		var ret bool
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *AWSInterfaceEndpoint) GetDeleteRequested() bool {
 // GetDeleteRequestedOk returns a tuple with the DeleteRequested field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSInterfaceEndpoint) GetDeleteRequestedOk() (*bool, bool) {
-	if o == nil || o.DeleteRequested == nil {
+	if o == nil || IsNil(o.DeleteRequested) {
 		return nil, false
 	}
 	return o.DeleteRequested, true
@@ -95,7 +98,7 @@ func (o *AWSInterfaceEndpoint) GetDeleteRequestedOk() (*bool, bool) {
 
 // HasDeleteRequested returns a boolean if a field has been set.
 func (o *AWSInterfaceEndpoint) HasDeleteRequested() bool {
-	if o != nil && o.DeleteRequested != nil {
+	if o != nil && !IsNil(o.DeleteRequested) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *AWSInterfaceEndpoint) SetDeleteRequested(v bool) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *AWSInterfaceEndpoint) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *AWSInterfaceEndpoint) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSInterfaceEndpoint) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -127,7 +130,7 @@ func (o *AWSInterfaceEndpoint) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *AWSInterfaceEndpoint) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *AWSInterfaceEndpoint) SetErrorMessage(v string) {
 
 // GetInterfaceEndpointId returns the InterfaceEndpointId field value if set, zero value otherwise.
 func (o *AWSInterfaceEndpoint) GetInterfaceEndpointId() string {
-	if o == nil || o.InterfaceEndpointId == nil {
+	if o == nil || IsNil(o.InterfaceEndpointId) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *AWSInterfaceEndpoint) GetInterfaceEndpointId() string {
 // GetInterfaceEndpointIdOk returns a tuple with the InterfaceEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSInterfaceEndpoint) GetInterfaceEndpointIdOk() (*string, bool) {
-	if o == nil || o.InterfaceEndpointId == nil {
+	if o == nil || IsNil(o.InterfaceEndpointId) {
 		return nil, false
 	}
 	return o.InterfaceEndpointId, true
@@ -159,7 +162,7 @@ func (o *AWSInterfaceEndpoint) GetInterfaceEndpointIdOk() (*string, bool) {
 
 // HasInterfaceEndpointId returns a boolean if a field has been set.
 func (o *AWSInterfaceEndpoint) HasInterfaceEndpointId() bool {
-	if o != nil && o.InterfaceEndpointId != nil {
+	if o != nil && !IsNil(o.InterfaceEndpointId) {
 		return true
 	}
 
@@ -172,20 +175,20 @@ func (o *AWSInterfaceEndpoint) SetInterfaceEndpointId(v string) {
 }
 
 func (o AWSInterfaceEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ConnectionStatus != nil {
-		toSerialize["connectionStatus"] = o.ConnectionStatus
-	}
-	if o.DeleteRequested != nil {
-		toSerialize["deleteRequested"] = o.DeleteRequested
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.InterfaceEndpointId != nil {
-		toSerialize["interfaceEndpointId"] = o.InterfaceEndpointId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AWSInterfaceEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: connectionStatus is readOnly
+	// skip: deleteRequested is readOnly
+	// skip: errorMessage is readOnly
+	// skip: interfaceEndpointId is readOnly
+	return toSerialize, nil
 }
 
 type NullableAWSInterfaceEndpoint struct {

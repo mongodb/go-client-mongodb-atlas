@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CharFilterhtmlStrip type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CharFilterhtmlStrip{}
+
 // CharFilterhtmlStrip Filter that strips out HTML constructs.
 type CharFilterhtmlStrip struct {
 	// The HTML tags that you want to exclude from filtering.
@@ -41,7 +44,7 @@ func NewCharFilterhtmlStripWithDefaults() *CharFilterhtmlStrip {
 
 // GetIgnoredTags returns the IgnoredTags field value if set, zero value otherwise.
 func (o *CharFilterhtmlStrip) GetIgnoredTags() []string {
-	if o == nil || o.IgnoredTags == nil {
+	if o == nil || IsNil(o.IgnoredTags) {
 		var ret []string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *CharFilterhtmlStrip) GetIgnoredTags() []string {
 // GetIgnoredTagsOk returns a tuple with the IgnoredTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CharFilterhtmlStrip) GetIgnoredTagsOk() ([]string, bool) {
-	if o == nil || o.IgnoredTags == nil {
+	if o == nil || IsNil(o.IgnoredTags) {
 		return nil, false
 	}
 	return o.IgnoredTags, true
@@ -59,7 +62,7 @@ func (o *CharFilterhtmlStrip) GetIgnoredTagsOk() ([]string, bool) {
 
 // HasIgnoredTags returns a boolean if a field has been set.
 func (o *CharFilterhtmlStrip) HasIgnoredTags() bool {
-	if o != nil && o.IgnoredTags != nil {
+	if o != nil && !IsNil(o.IgnoredTags) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *CharFilterhtmlStrip) SetType(v string) {
 }
 
 func (o CharFilterhtmlStrip) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IgnoredTags != nil {
-		toSerialize["ignoredTags"] = o.IgnoredTags
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CharFilterhtmlStrip) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IgnoredTags) {
+		toSerialize["ignoredTags"] = o.IgnoredTags
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableCharFilterhtmlStrip struct {

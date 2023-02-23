@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the AppServiceMetricAlertConfigViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AppServiceMetricAlertConfigViewForNdsGroup{}
+
 // AppServiceMetricAlertConfigViewForNdsGroup App Service metric alert configuration allows to select which app service metrics trigger alerts and how users are notified.
 type AppServiceMetricAlertConfigViewForNdsGroup struct {
 	// Date and time when MongoDB Cloud created the alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -60,7 +63,7 @@ func NewAppServiceMetricAlertConfigViewForNdsGroupWithDefaults() *AppServiceMetr
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -70,7 +73,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -78,7 +81,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time,
 
 // HasCreated returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetCreated(v time.Time) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -102,7 +105,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -110,7 +113,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetEventTypeName(v AppServi
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -166,7 +169,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bo
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -198,7 +201,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchers() []AppServiceMetricMatcherView {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		var ret []AppServiceMetricMatcherView
 		return ret
 	}
@@ -246,7 +249,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchers() []AppServiceM
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchersOk() ([]AppServiceMetricMatcherView, bool) {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
 	return o.Matchers, true
@@ -254,7 +257,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchersOk() ([]AppServi
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasMatchers() bool {
-	if o != nil && o.Matchers != nil {
+	if o != nil && !IsNil(o.Matchers) {
 		return true
 	}
 
@@ -268,7 +271,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMatchers(v []AppServiceM
 
 // GetMetricThreshold returns the MetricThreshold field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThreshold() AppServiceMetricThresholdView {
-	if o == nil || o.MetricThreshold == nil {
+	if o == nil || IsNil(o.MetricThreshold) {
 		var ret AppServiceMetricThresholdView
 		return ret
 	}
@@ -278,7 +281,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThreshold() AppSer
 // GetMetricThresholdOk returns a tuple with the MetricThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThresholdOk() (*AppServiceMetricThresholdView, bool) {
-	if o == nil || o.MetricThreshold == nil {
+	if o == nil || IsNil(o.MetricThreshold) {
 		return nil, false
 	}
 	return o.MetricThreshold, true
@@ -286,7 +289,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThresholdOk() (*Ap
 
 // HasMetricThreshold returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasMetricThreshold() bool {
-	if o != nil && o.MetricThreshold != nil {
+	if o != nil && !IsNil(o.MetricThreshold) {
 		return true
 	}
 
@@ -300,7 +303,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMetricThreshold(v AppSer
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetNotifications() []NotificationViewForNdsGroup {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		var ret []NotificationViewForNdsGroup
 		return ret
 	}
@@ -310,7 +313,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetNotifications() []Notifi
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetNotificationsOk() ([]NotificationViewForNdsGroup, bool) {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
 	return o.Notifications, true
@@ -318,7 +321,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetNotificationsOk() ([]Not
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasNotifications() bool {
-	if o != nil && o.Notifications != nil {
+	if o != nil && !IsNil(o.Notifications) {
 		return true
 	}
 
@@ -332,7 +335,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetNotifications(v []Notifi
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetUpdated() time.Time {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		var ret time.Time
 		return ret
 	}
@@ -342,7 +345,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetUpdated() time.Time {
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
 	return o.Updated, true
@@ -350,7 +353,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time,
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
+	if o != nil && !IsNil(o.Updated) {
 		return true
 	}
 
@@ -363,38 +366,34 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
 }
 
 func (o AppServiceMetricAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.Matchers != nil {
-		toSerialize["matchers"] = o.Matchers
-	}
-	if o.MetricThreshold != nil {
-		toSerialize["metricThreshold"] = o.MetricThreshold
-	}
-	if o.Notifications != nil {
-		toSerialize["notifications"] = o.Notifications
-	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AppServiceMetricAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: created is readOnly
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
+	if !IsNil(o.MetricThreshold) {
+		toSerialize["metricThreshold"] = o.MetricThreshold
+	}
+	if !IsNil(o.Notifications) {
+		toSerialize["notifications"] = o.Notifications
+	}
+	// skip: updated is readOnly
+	return toSerialize, nil
 }
 
 type NullableAppServiceMetricAlertConfigViewForNdsGroup struct {

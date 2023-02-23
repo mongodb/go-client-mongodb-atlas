@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RegionSpec type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegionSpec{}
+
 // RegionSpec Physical location where MongoDB Cloud provisions cluster nodes.
 type RegionSpec struct {
 	// Number of analytics nodes in the region. Analytics nodes handle analytic data such as reporting queries from MongoDB Connector for Business Intelligence on MongoDB Cloud. Analytics nodes are read-only, and can never become the primary. Use **replicationSpecs[n].{region}.analyticsNodes** instead.
@@ -45,7 +48,7 @@ func NewRegionSpecWithDefaults() *RegionSpec {
 
 // GetAnalyticsNodes returns the AnalyticsNodes field value if set, zero value otherwise.
 func (o *RegionSpec) GetAnalyticsNodes() int32 {
-	if o == nil || o.AnalyticsNodes == nil {
+	if o == nil || IsNil(o.AnalyticsNodes) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *RegionSpec) GetAnalyticsNodes() int32 {
 // GetAnalyticsNodesOk returns a tuple with the AnalyticsNodes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionSpec) GetAnalyticsNodesOk() (*int32, bool) {
-	if o == nil || o.AnalyticsNodes == nil {
+	if o == nil || IsNil(o.AnalyticsNodes) {
 		return nil, false
 	}
 	return o.AnalyticsNodes, true
@@ -63,7 +66,7 @@ func (o *RegionSpec) GetAnalyticsNodesOk() (*int32, bool) {
 
 // HasAnalyticsNodes returns a boolean if a field has been set.
 func (o *RegionSpec) HasAnalyticsNodes() bool {
-	if o != nil && o.AnalyticsNodes != nil {
+	if o != nil && !IsNil(o.AnalyticsNodes) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *RegionSpec) SetAnalyticsNodes(v int32) {
 
 // GetElectableNodes returns the ElectableNodes field value if set, zero value otherwise.
 func (o *RegionSpec) GetElectableNodes() int32 {
-	if o == nil || o.ElectableNodes == nil {
+	if o == nil || IsNil(o.ElectableNodes) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *RegionSpec) GetElectableNodes() int32 {
 // GetElectableNodesOk returns a tuple with the ElectableNodes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionSpec) GetElectableNodesOk() (*int32, bool) {
-	if o == nil || o.ElectableNodes == nil {
+	if o == nil || IsNil(o.ElectableNodes) {
 		return nil, false
 	}
 	return o.ElectableNodes, true
@@ -95,7 +98,7 @@ func (o *RegionSpec) GetElectableNodesOk() (*int32, bool) {
 
 // HasElectableNodes returns a boolean if a field has been set.
 func (o *RegionSpec) HasElectableNodes() bool {
-	if o != nil && o.ElectableNodes != nil {
+	if o != nil && !IsNil(o.ElectableNodes) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *RegionSpec) SetElectableNodes(v int32) {
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *RegionSpec) GetPriority() int32 {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		var ret int32
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *RegionSpec) GetPriority() int32 {
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionSpec) GetPriorityOk() (*int32, bool) {
-	if o == nil || o.Priority == nil {
+	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
 	return o.Priority, true
@@ -127,7 +130,7 @@ func (o *RegionSpec) GetPriorityOk() (*int32, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *RegionSpec) HasPriority() bool {
-	if o != nil && o.Priority != nil {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *RegionSpec) SetPriority(v int32) {
 
 // GetReadOnlyNodes returns the ReadOnlyNodes field value if set, zero value otherwise.
 func (o *RegionSpec) GetReadOnlyNodes() int32 {
-	if o == nil || o.ReadOnlyNodes == nil {
+	if o == nil || IsNil(o.ReadOnlyNodes) {
 		var ret int32
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *RegionSpec) GetReadOnlyNodes() int32 {
 // GetReadOnlyNodesOk returns a tuple with the ReadOnlyNodes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionSpec) GetReadOnlyNodesOk() (*int32, bool) {
-	if o == nil || o.ReadOnlyNodes == nil {
+	if o == nil || IsNil(o.ReadOnlyNodes) {
 		return nil, false
 	}
 	return o.ReadOnlyNodes, true
@@ -159,7 +162,7 @@ func (o *RegionSpec) GetReadOnlyNodesOk() (*int32, bool) {
 
 // HasReadOnlyNodes returns a boolean if a field has been set.
 func (o *RegionSpec) HasReadOnlyNodes() bool {
-	if o != nil && o.ReadOnlyNodes != nil {
+	if o != nil && !IsNil(o.ReadOnlyNodes) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *RegionSpec) SetReadOnlyNodes(v int32) {
 }
 
 func (o RegionSpec) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AnalyticsNodes != nil {
-		toSerialize["analyticsNodes"] = o.AnalyticsNodes
-	}
-	if o.ElectableNodes != nil {
-		toSerialize["electableNodes"] = o.ElectableNodes
-	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
-	}
-	if o.ReadOnlyNodes != nil {
-		toSerialize["readOnlyNodes"] = o.ReadOnlyNodes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RegionSpec) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AnalyticsNodes) {
+		toSerialize["analyticsNodes"] = o.AnalyticsNodes
+	}
+	if !IsNil(o.ElectableNodes) {
+		toSerialize["electableNodes"] = o.ElectableNodes
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.ReadOnlyNodes) {
+		toSerialize["readOnlyNodes"] = o.ReadOnlyNodes
+	}
+	return toSerialize, nil
 }
 
 type NullableRegionSpec struct {

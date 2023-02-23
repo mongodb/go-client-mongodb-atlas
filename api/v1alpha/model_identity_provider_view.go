@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityProviderView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityProviderView{}
+
 // IdentityProviderView struct for IdentityProviderView
 type IdentityProviderView struct {
 	// URL that points to where to send the SAML response.
@@ -62,7 +65,7 @@ func NewIdentityProviderViewWithDefaults() *IdentityProviderView {
 
 // GetAcsUrl returns the AcsUrl field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetAcsUrl() string {
-	if o == nil || o.AcsUrl == nil {
+	if o == nil || IsNil(o.AcsUrl) {
 		var ret string
 		return ret
 	}
@@ -72,7 +75,7 @@ func (o *IdentityProviderView) GetAcsUrl() string {
 // GetAcsUrlOk returns a tuple with the AcsUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetAcsUrlOk() (*string, bool) {
-	if o == nil || o.AcsUrl == nil {
+	if o == nil || IsNil(o.AcsUrl) {
 		return nil, false
 	}
 	return o.AcsUrl, true
@@ -80,7 +83,7 @@ func (o *IdentityProviderView) GetAcsUrlOk() (*string, bool) {
 
 // HasAcsUrl returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasAcsUrl() bool {
-	if o != nil && o.AcsUrl != nil {
+	if o != nil && !IsNil(o.AcsUrl) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *IdentityProviderView) SetAcsUrl(v string) {
 
 // GetAssociatedDomains returns the AssociatedDomains field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetAssociatedDomains() []string {
-	if o == nil || o.AssociatedDomains == nil {
+	if o == nil || IsNil(o.AssociatedDomains) {
 		var ret []string
 		return ret
 	}
@@ -104,7 +107,7 @@ func (o *IdentityProviderView) GetAssociatedDomains() []string {
 // GetAssociatedDomainsOk returns a tuple with the AssociatedDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetAssociatedDomainsOk() ([]string, bool) {
-	if o == nil || o.AssociatedDomains == nil {
+	if o == nil || IsNil(o.AssociatedDomains) {
 		return nil, false
 	}
 	return o.AssociatedDomains, true
@@ -112,7 +115,7 @@ func (o *IdentityProviderView) GetAssociatedDomainsOk() ([]string, bool) {
 
 // HasAssociatedDomains returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasAssociatedDomains() bool {
-	if o != nil && o.AssociatedDomains != nil {
+	if o != nil && !IsNil(o.AssociatedDomains) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *IdentityProviderView) SetAssociatedDomains(v []string) {
 
 // GetAssociatedOrgs returns the AssociatedOrgs field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetAssociatedOrgs() []ConnectedOrgConfigView {
-	if o == nil || o.AssociatedOrgs == nil {
+	if o == nil || IsNil(o.AssociatedOrgs) {
 		var ret []ConnectedOrgConfigView
 		return ret
 	}
@@ -136,7 +139,7 @@ func (o *IdentityProviderView) GetAssociatedOrgs() []ConnectedOrgConfigView {
 // GetAssociatedOrgsOk returns a tuple with the AssociatedOrgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetAssociatedOrgsOk() ([]ConnectedOrgConfigView, bool) {
-	if o == nil || o.AssociatedOrgs == nil {
+	if o == nil || IsNil(o.AssociatedOrgs) {
 		return nil, false
 	}
 	return o.AssociatedOrgs, true
@@ -144,7 +147,7 @@ func (o *IdentityProviderView) GetAssociatedOrgsOk() ([]ConnectedOrgConfigView, 
 
 // HasAssociatedOrgs returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasAssociatedOrgs() bool {
-	if o != nil && o.AssociatedOrgs != nil {
+	if o != nil && !IsNil(o.AssociatedOrgs) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *IdentityProviderView) SetAssociatedOrgs(v []ConnectedOrgConfigView) {
 
 // GetAudienceUri returns the AudienceUri field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetAudienceUri() string {
-	if o == nil || o.AudienceUri == nil {
+	if o == nil || IsNil(o.AudienceUri) {
 		var ret string
 		return ret
 	}
@@ -168,7 +171,7 @@ func (o *IdentityProviderView) GetAudienceUri() string {
 // GetAudienceUriOk returns a tuple with the AudienceUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetAudienceUriOk() (*string, bool) {
-	if o == nil || o.AudienceUri == nil {
+	if o == nil || IsNil(o.AudienceUri) {
 		return nil, false
 	}
 	return o.AudienceUri, true
@@ -176,7 +179,7 @@ func (o *IdentityProviderView) GetAudienceUriOk() (*string, bool) {
 
 // HasAudienceUri returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasAudienceUri() bool {
-	if o != nil && o.AudienceUri != nil {
+	if o != nil && !IsNil(o.AudienceUri) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *IdentityProviderView) SetAudienceUri(v string) {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetDisplayName() string {
-	if o == nil || o.DisplayName == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
@@ -200,7 +203,7 @@ func (o *IdentityProviderView) GetDisplayName() string {
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetDisplayNameOk() (*string, bool) {
-	if o == nil || o.DisplayName == nil {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
 	return o.DisplayName, true
@@ -208,7 +211,7 @@ func (o *IdentityProviderView) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasDisplayName() bool {
-	if o != nil && o.DisplayName != nil {
+	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *IdentityProviderView) SetDisplayName(v string) {
 
 // GetIssuerUri returns the IssuerUri field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetIssuerUri() string {
-	if o == nil || o.IssuerUri == nil {
+	if o == nil || IsNil(o.IssuerUri) {
 		var ret string
 		return ret
 	}
@@ -232,7 +235,7 @@ func (o *IdentityProviderView) GetIssuerUri() string {
 // GetIssuerUriOk returns a tuple with the IssuerUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetIssuerUriOk() (*string, bool) {
-	if o == nil || o.IssuerUri == nil {
+	if o == nil || IsNil(o.IssuerUri) {
 		return nil, false
 	}
 	return o.IssuerUri, true
@@ -240,7 +243,7 @@ func (o *IdentityProviderView) GetIssuerUriOk() (*string, bool) {
 
 // HasIssuerUri returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasIssuerUri() bool {
-	if o != nil && o.IssuerUri != nil {
+	if o != nil && !IsNil(o.IssuerUri) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *IdentityProviderView) SetOktaIdpId(v string) {
 
 // GetPemFileInfo returns the PemFileInfo field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetPemFileInfo() PemFileInfoView {
-	if o == nil || o.PemFileInfo == nil {
+	if o == nil || IsNil(o.PemFileInfo) {
 		var ret PemFileInfoView
 		return ret
 	}
@@ -288,7 +291,7 @@ func (o *IdentityProviderView) GetPemFileInfo() PemFileInfoView {
 // GetPemFileInfoOk returns a tuple with the PemFileInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetPemFileInfoOk() (*PemFileInfoView, bool) {
-	if o == nil || o.PemFileInfo == nil {
+	if o == nil || IsNil(o.PemFileInfo) {
 		return nil, false
 	}
 	return o.PemFileInfo, true
@@ -296,7 +299,7 @@ func (o *IdentityProviderView) GetPemFileInfoOk() (*PemFileInfoView, bool) {
 
 // HasPemFileInfo returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasPemFileInfo() bool {
-	if o != nil && o.PemFileInfo != nil {
+	if o != nil && !IsNil(o.PemFileInfo) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *IdentityProviderView) SetPemFileInfo(v PemFileInfoView) {
 
 // GetRequestBinding returns the RequestBinding field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetRequestBinding() string {
-	if o == nil || o.RequestBinding == nil {
+	if o == nil || IsNil(o.RequestBinding) {
 		var ret string
 		return ret
 	}
@@ -320,7 +323,7 @@ func (o *IdentityProviderView) GetRequestBinding() string {
 // GetRequestBindingOk returns a tuple with the RequestBinding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetRequestBindingOk() (*string, bool) {
-	if o == nil || o.RequestBinding == nil {
+	if o == nil || IsNil(o.RequestBinding) {
 		return nil, false
 	}
 	return o.RequestBinding, true
@@ -328,7 +331,7 @@ func (o *IdentityProviderView) GetRequestBindingOk() (*string, bool) {
 
 // HasRequestBinding returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasRequestBinding() bool {
-	if o != nil && o.RequestBinding != nil {
+	if o != nil && !IsNil(o.RequestBinding) {
 		return true
 	}
 
@@ -342,7 +345,7 @@ func (o *IdentityProviderView) SetRequestBinding(v string) {
 
 // GetResponseSignatureAlgorithm returns the ResponseSignatureAlgorithm field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetResponseSignatureAlgorithm() string {
-	if o == nil || o.ResponseSignatureAlgorithm == nil {
+	if o == nil || IsNil(o.ResponseSignatureAlgorithm) {
 		var ret string
 		return ret
 	}
@@ -352,7 +355,7 @@ func (o *IdentityProviderView) GetResponseSignatureAlgorithm() string {
 // GetResponseSignatureAlgorithmOk returns a tuple with the ResponseSignatureAlgorithm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetResponseSignatureAlgorithmOk() (*string, bool) {
-	if o == nil || o.ResponseSignatureAlgorithm == nil {
+	if o == nil || IsNil(o.ResponseSignatureAlgorithm) {
 		return nil, false
 	}
 	return o.ResponseSignatureAlgorithm, true
@@ -360,7 +363,7 @@ func (o *IdentityProviderView) GetResponseSignatureAlgorithmOk() (*string, bool)
 
 // HasResponseSignatureAlgorithm returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasResponseSignatureAlgorithm() bool {
-	if o != nil && o.ResponseSignatureAlgorithm != nil {
+	if o != nil && !IsNil(o.ResponseSignatureAlgorithm) {
 		return true
 	}
 
@@ -374,7 +377,7 @@ func (o *IdentityProviderView) SetResponseSignatureAlgorithm(v string) {
 
 // GetSsoDebugEnabled returns the SsoDebugEnabled field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetSsoDebugEnabled() bool {
-	if o == nil || o.SsoDebugEnabled == nil {
+	if o == nil || IsNil(o.SsoDebugEnabled) {
 		var ret bool
 		return ret
 	}
@@ -384,7 +387,7 @@ func (o *IdentityProviderView) GetSsoDebugEnabled() bool {
 // GetSsoDebugEnabledOk returns a tuple with the SsoDebugEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetSsoDebugEnabledOk() (*bool, bool) {
-	if o == nil || o.SsoDebugEnabled == nil {
+	if o == nil || IsNil(o.SsoDebugEnabled) {
 		return nil, false
 	}
 	return o.SsoDebugEnabled, true
@@ -392,7 +395,7 @@ func (o *IdentityProviderView) GetSsoDebugEnabledOk() (*bool, bool) {
 
 // HasSsoDebugEnabled returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasSsoDebugEnabled() bool {
-	if o != nil && o.SsoDebugEnabled != nil {
+	if o != nil && !IsNil(o.SsoDebugEnabled) {
 		return true
 	}
 
@@ -406,7 +409,7 @@ func (o *IdentityProviderView) SetSsoDebugEnabled(v bool) {
 
 // GetSsoUrl returns the SsoUrl field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetSsoUrl() string {
-	if o == nil || o.SsoUrl == nil {
+	if o == nil || IsNil(o.SsoUrl) {
 		var ret string
 		return ret
 	}
@@ -416,7 +419,7 @@ func (o *IdentityProviderView) GetSsoUrl() string {
 // GetSsoUrlOk returns a tuple with the SsoUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetSsoUrlOk() (*string, bool) {
-	if o == nil || o.SsoUrl == nil {
+	if o == nil || IsNil(o.SsoUrl) {
 		return nil, false
 	}
 	return o.SsoUrl, true
@@ -424,7 +427,7 @@ func (o *IdentityProviderView) GetSsoUrlOk() (*string, bool) {
 
 // HasSsoUrl returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasSsoUrl() bool {
-	if o != nil && o.SsoUrl != nil {
+	if o != nil && !IsNil(o.SsoUrl) {
 		return true
 	}
 
@@ -438,7 +441,7 @@ func (o *IdentityProviderView) SetSsoUrl(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IdentityProviderView) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -448,7 +451,7 @@ func (o *IdentityProviderView) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityProviderView) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -456,7 +459,7 @@ func (o *IdentityProviderView) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *IdentityProviderView) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -469,47 +472,53 @@ func (o *IdentityProviderView) SetStatus(v string) {
 }
 
 func (o IdentityProviderView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AcsUrl != nil {
-		toSerialize["acsUrl"] = o.AcsUrl
-	}
-	if o.AssociatedDomains != nil {
-		toSerialize["associatedDomains"] = o.AssociatedDomains
-	}
-	if o.AssociatedOrgs != nil {
-		toSerialize["associatedOrgs"] = o.AssociatedOrgs
-	}
-	if o.AudienceUri != nil {
-		toSerialize["audienceUri"] = o.AudienceUri
-	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.IssuerUri != nil {
-		toSerialize["issuerUri"] = o.IssuerUri
-	}
-	if true {
-		toSerialize["oktaIdpId"] = o.OktaIdpId
-	}
-	if o.PemFileInfo != nil {
-		toSerialize["pemFileInfo"] = o.PemFileInfo
-	}
-	if o.RequestBinding != nil {
-		toSerialize["requestBinding"] = o.RequestBinding
-	}
-	if o.ResponseSignatureAlgorithm != nil {
-		toSerialize["responseSignatureAlgorithm"] = o.ResponseSignatureAlgorithm
-	}
-	if o.SsoDebugEnabled != nil {
-		toSerialize["ssoDebugEnabled"] = o.SsoDebugEnabled
-	}
-	if o.SsoUrl != nil {
-		toSerialize["ssoUrl"] = o.SsoUrl
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IdentityProviderView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AcsUrl) {
+		toSerialize["acsUrl"] = o.AcsUrl
+	}
+	if !IsNil(o.AssociatedDomains) {
+		toSerialize["associatedDomains"] = o.AssociatedDomains
+	}
+	if !IsNil(o.AssociatedOrgs) {
+		toSerialize["associatedOrgs"] = o.AssociatedOrgs
+	}
+	if !IsNil(o.AudienceUri) {
+		toSerialize["audienceUri"] = o.AudienceUri
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.IssuerUri) {
+		toSerialize["issuerUri"] = o.IssuerUri
+	}
+	toSerialize["oktaIdpId"] = o.OktaIdpId
+	if !IsNil(o.PemFileInfo) {
+		toSerialize["pemFileInfo"] = o.PemFileInfo
+	}
+	if !IsNil(o.RequestBinding) {
+		toSerialize["requestBinding"] = o.RequestBinding
+	}
+	if !IsNil(o.ResponseSignatureAlgorithm) {
+		toSerialize["responseSignatureAlgorithm"] = o.ResponseSignatureAlgorithm
+	}
+	if !IsNil(o.SsoDebugEnabled) {
+		toSerialize["ssoDebugEnabled"] = o.SsoDebugEnabled
+	}
+	if !IsNil(o.SsoUrl) {
+		toSerialize["ssoUrl"] = o.SsoUrl
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableIdentityProviderView struct {

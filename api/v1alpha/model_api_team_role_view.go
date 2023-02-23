@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiTeamRoleView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiTeamRoleView{}
+
 // ApiTeamRoleView struct for ApiTeamRoleView
 type ApiTeamRoleView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
@@ -43,7 +46,7 @@ func NewApiTeamRoleViewWithDefaults() *ApiTeamRoleView {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiTeamRoleView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiTeamRoleView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiTeamRoleView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -61,7 +64,7 @@ func (o *ApiTeamRoleView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiTeamRoleView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ApiTeamRoleView) SetLinks(v []Link) {
 
 // GetRoleNames returns the RoleNames field value if set, zero value otherwise.
 func (o *ApiTeamRoleView) GetRoleNames() []string {
-	if o == nil || o.RoleNames == nil {
+	if o == nil || IsNil(o.RoleNames) {
 		var ret []string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ApiTeamRoleView) GetRoleNames() []string {
 // GetRoleNamesOk returns a tuple with the RoleNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiTeamRoleView) GetRoleNamesOk() ([]string, bool) {
-	if o == nil || o.RoleNames == nil {
+	if o == nil || IsNil(o.RoleNames) {
 		return nil, false
 	}
 	return o.RoleNames, true
@@ -93,7 +96,7 @@ func (o *ApiTeamRoleView) GetRoleNamesOk() ([]string, bool) {
 
 // HasRoleNames returns a boolean if a field has been set.
 func (o *ApiTeamRoleView) HasRoleNames() bool {
-	if o != nil && o.RoleNames != nil {
+	if o != nil && !IsNil(o.RoleNames) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ApiTeamRoleView) SetRoleNames(v []string) {
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *ApiTeamRoleView) GetTeamId() string {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ApiTeamRoleView) GetTeamId() string {
 // GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiTeamRoleView) GetTeamIdOk() (*string, bool) {
-	if o == nil || o.TeamId == nil {
+	if o == nil || IsNil(o.TeamId) {
 		return nil, false
 	}
 	return o.TeamId, true
@@ -125,7 +128,7 @@ func (o *ApiTeamRoleView) GetTeamIdOk() (*string, bool) {
 
 // HasTeamId returns a boolean if a field has been set.
 func (o *ApiTeamRoleView) HasTeamId() bool {
-	if o != nil && o.TeamId != nil {
+	if o != nil && !IsNil(o.TeamId) {
 		return true
 	}
 
@@ -138,17 +141,23 @@ func (o *ApiTeamRoleView) SetTeamId(v string) {
 }
 
 func (o ApiTeamRoleView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.RoleNames != nil {
-		toSerialize["roleNames"] = o.RoleNames
-	}
-	if o.TeamId != nil {
-		toSerialize["teamId"] = o.TeamId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiTeamRoleView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: links is readOnly
+	if !IsNil(o.RoleNames) {
+		toSerialize["roleNames"] = o.RoleNames
+	}
+	if !IsNil(o.TeamId) {
+		toSerialize["teamId"] = o.TeamId
+	}
+	return toSerialize, nil
 }
 
 type NullableApiTeamRoleView struct {

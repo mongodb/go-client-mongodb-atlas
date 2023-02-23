@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ReplicaSetAlertConfigViewForNdsGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReplicaSetAlertConfigViewForNdsGroup{}
+
 // ReplicaSetAlertConfigViewForNdsGroup Replica Set alert configuration allows to select which conditions of mongod replica set trigger alerts and how users are notified.
 type ReplicaSetAlertConfigViewForNdsGroup struct {
 	// Date and time when MongoDB Cloud created the alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -60,7 +63,7 @@ func NewReplicaSetAlertConfigViewForNdsGroupWithDefaults() *ReplicaSetAlertConfi
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -70,7 +73,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -78,7 +81,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool)
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetCreated(v time.Time) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -102,7 +105,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
 	return o.Enabled, true
@@ -110,7 +113,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetEventTypeName(v ReplicaSetEven
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -166,7 +169,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -198,7 +201,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcherView {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		var ret []ReplicaSetMatcherView
 		return ret
 	}
@@ -246,7 +249,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcher
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcherView, bool) {
-	if o == nil || o.Matchers == nil {
+	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
 	return o.Matchers, true
@@ -254,7 +257,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatc
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasMatchers() bool {
-	if o != nil && o.Matchers != nil {
+	if o != nil && !IsNil(o.Matchers) {
 		return true
 	}
 
@@ -268,7 +271,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcher
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetNotifications() []NotificationViewForNdsGroup {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		var ret []NotificationViewForNdsGroup
 		return ret
 	}
@@ -278,7 +281,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetNotifications() []Notification
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetNotificationsOk() ([]NotificationViewForNdsGroup, bool) {
-	if o == nil || o.Notifications == nil {
+	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
 	return o.Notifications, true
@@ -286,7 +289,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetNotificationsOk() ([]Notificat
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasNotifications() bool {
-	if o != nil && o.Notifications != nil {
+	if o != nil && !IsNil(o.Notifications) {
 		return true
 	}
 
@@ -300,7 +303,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetNotifications(v []Notification
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetThreshold() ThresholdViewInteger {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		var ret ThresholdViewInteger
 		return ret
 	}
@@ -310,7 +313,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetThreshold() ThresholdViewInteg
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetThresholdOk() (*ThresholdViewInteger, bool) {
-	if o == nil || o.Threshold == nil {
+	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
 	return o.Threshold, true
@@ -318,7 +321,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetThresholdOk() (*ThresholdViewI
 
 // HasThreshold returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasThreshold() bool {
-	if o != nil && o.Threshold != nil {
+	if o != nil && !IsNil(o.Threshold) {
 		return true
 	}
 
@@ -332,7 +335,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetThreshold(v ThresholdViewInteg
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetUpdated() time.Time {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		var ret time.Time
 		return ret
 	}
@@ -342,7 +345,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetUpdated() time.Time {
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
 	return o.Updated, true
@@ -350,7 +353,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool)
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *ReplicaSetAlertConfigViewForNdsGroup) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
+	if o != nil && !IsNil(o.Updated) {
 		return true
 	}
 
@@ -363,38 +366,34 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
 }
 
 func (o ReplicaSetAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.Matchers != nil {
-		toSerialize["matchers"] = o.Matchers
-	}
-	if o.Notifications != nil {
-		toSerialize["notifications"] = o.Notifications
-	}
-	if o.Threshold != nil {
-		toSerialize["threshold"] = o.Threshold
-	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ReplicaSetAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: created is readOnly
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
+	if !IsNil(o.Notifications) {
+		toSerialize["notifications"] = o.Notifications
+	}
+	if !IsNil(o.Threshold) {
+		toSerialize["threshold"] = o.Threshold
+	}
+	// skip: updated is readOnly
+	return toSerialize, nil
 }
 
 type NullableReplicaSetAlertConfigViewForNdsGroup struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AvailableDeploymentView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AvailableDeploymentView{}
+
 // AvailableDeploymentView Deployments that can be migrated to MongoDB Atlas.
 type AvailableDeploymentView struct {
 	// Version of MongoDB Agent that monitors/manages the cluster.
@@ -59,7 +62,7 @@ func NewAvailableDeploymentViewWithDefaults() *AvailableDeploymentView {
 
 // GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
 func (o *AvailableDeploymentView) GetAgentVersion() string {
-	if o == nil || o.AgentVersion == nil {
+	if o == nil || IsNil(o.AgentVersion) {
 		var ret string
 		return ret
 	}
@@ -69,7 +72,7 @@ func (o *AvailableDeploymentView) GetAgentVersion() string {
 // GetAgentVersionOk returns a tuple with the AgentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableDeploymentView) GetAgentVersionOk() (*string, bool) {
-	if o == nil || o.AgentVersion == nil {
+	if o == nil || IsNil(o.AgentVersion) {
 		return nil, false
 	}
 	return o.AgentVersion, true
@@ -77,7 +80,7 @@ func (o *AvailableDeploymentView) GetAgentVersionOk() (*string, bool) {
 
 // HasAgentVersion returns a boolean if a field has been set.
 func (o *AvailableDeploymentView) HasAgentVersion() bool {
-	if o != nil && o.AgentVersion != nil {
+	if o != nil && !IsNil(o.AgentVersion) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *AvailableDeploymentView) SetAgentVersion(v string) {
 
 // GetClusterId returns the ClusterId field value if set, zero value otherwise.
 func (o *AvailableDeploymentView) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		var ret string
 		return ret
 	}
@@ -101,7 +104,7 @@ func (o *AvailableDeploymentView) GetClusterId() string {
 // GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableDeploymentView) GetClusterIdOk() (*string, bool) {
-	if o == nil || o.ClusterId == nil {
+	if o == nil || IsNil(o.ClusterId) {
 		return nil, false
 	}
 	return o.ClusterId, true
@@ -109,7 +112,7 @@ func (o *AvailableDeploymentView) GetClusterIdOk() (*string, bool) {
 
 // HasClusterId returns a boolean if a field has been set.
 func (o *AvailableDeploymentView) HasClusterId() bool {
-	if o != nil && o.ClusterId != nil {
+	if o != nil && !IsNil(o.ClusterId) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *AvailableDeploymentView) SetClusterId(v string) {
 
 // GetDbSizeBytes returns the DbSizeBytes field value if set, zero value otherwise.
 func (o *AvailableDeploymentView) GetDbSizeBytes() int64 {
-	if o == nil || o.DbSizeBytes == nil {
+	if o == nil || IsNil(o.DbSizeBytes) {
 		var ret int64
 		return ret
 	}
@@ -133,7 +136,7 @@ func (o *AvailableDeploymentView) GetDbSizeBytes() int64 {
 // GetDbSizeBytesOk returns a tuple with the DbSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableDeploymentView) GetDbSizeBytesOk() (*int64, bool) {
-	if o == nil || o.DbSizeBytes == nil {
+	if o == nil || IsNil(o.DbSizeBytes) {
 		return nil, false
 	}
 	return o.DbSizeBytes, true
@@ -141,7 +144,7 @@ func (o *AvailableDeploymentView) GetDbSizeBytesOk() (*int64, bool) {
 
 // HasDbSizeBytes returns a boolean if a field has been set.
 func (o *AvailableDeploymentView) HasDbSizeBytes() bool {
-	if o != nil && o.DbSizeBytes != nil {
+	if o != nil && !IsNil(o.DbSizeBytes) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *AvailableDeploymentView) SetName(v string) {
 
 // GetOplogSizeMB returns the OplogSizeMB field value if set, zero value otherwise.
 func (o *AvailableDeploymentView) GetOplogSizeMB() int32 {
-	if o == nil || o.OplogSizeMB == nil {
+	if o == nil || IsNil(o.OplogSizeMB) {
 		var ret int32
 		return ret
 	}
@@ -261,7 +264,7 @@ func (o *AvailableDeploymentView) GetOplogSizeMB() int32 {
 // GetOplogSizeMBOk returns a tuple with the OplogSizeMB field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableDeploymentView) GetOplogSizeMBOk() (*int32, bool) {
-	if o == nil || o.OplogSizeMB == nil {
+	if o == nil || IsNil(o.OplogSizeMB) {
 		return nil, false
 	}
 	return o.OplogSizeMB, true
@@ -269,7 +272,7 @@ func (o *AvailableDeploymentView) GetOplogSizeMBOk() (*int32, bool) {
 
 // HasOplogSizeMB returns a boolean if a field has been set.
 func (o *AvailableDeploymentView) HasOplogSizeMB() bool {
-	if o != nil && o.OplogSizeMB != nil {
+	if o != nil && !IsNil(o.OplogSizeMB) {
 		return true
 	}
 
@@ -307,7 +310,7 @@ func (o *AvailableDeploymentView) SetSharded(v bool) {
 
 // GetShardsSize returns the ShardsSize field value if set, zero value otherwise.
 func (o *AvailableDeploymentView) GetShardsSize() int32 {
-	if o == nil || o.ShardsSize == nil {
+	if o == nil || IsNil(o.ShardsSize) {
 		var ret int32
 		return ret
 	}
@@ -317,7 +320,7 @@ func (o *AvailableDeploymentView) GetShardsSize() int32 {
 // GetShardsSizeOk returns a tuple with the ShardsSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AvailableDeploymentView) GetShardsSizeOk() (*int32, bool) {
-	if o == nil || o.ShardsSize == nil {
+	if o == nil || IsNil(o.ShardsSize) {
 		return nil, false
 	}
 	return o.ShardsSize, true
@@ -325,7 +328,7 @@ func (o *AvailableDeploymentView) GetShardsSizeOk() (*int32, bool) {
 
 // HasShardsSize returns a boolean if a field has been set.
 func (o *AvailableDeploymentView) HasShardsSize() bool {
-	if o != nil && o.ShardsSize != nil {
+	if o != nil && !IsNil(o.ShardsSize) {
 		return true
 	}
 
@@ -362,41 +365,27 @@ func (o *AvailableDeploymentView) SetTlsEnabled(v bool) {
 }
 
 func (o AvailableDeploymentView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AgentVersion != nil {
-		toSerialize["agentVersion"] = o.AgentVersion
-	}
-	if o.ClusterId != nil {
-		toSerialize["clusterId"] = o.ClusterId
-	}
-	if o.DbSizeBytes != nil {
-		toSerialize["dbSizeBytes"] = o.DbSizeBytes
-	}
-	if true {
-		toSerialize["featureCompatibilityVersion"] = o.FeatureCompatibilityVersion
-	}
-	if true {
-		toSerialize["managed"] = o.Managed
-	}
-	if true {
-		toSerialize["mongoDBVersion"] = o.MongoDBVersion
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.OplogSizeMB != nil {
-		toSerialize["oplogSizeMB"] = o.OplogSizeMB
-	}
-	if true {
-		toSerialize["sharded"] = o.Sharded
-	}
-	if o.ShardsSize != nil {
-		toSerialize["shardsSize"] = o.ShardsSize
-	}
-	if true {
-		toSerialize["tlsEnabled"] = o.TlsEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AvailableDeploymentView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: agentVersion is readOnly
+	// skip: clusterId is readOnly
+	// skip: dbSizeBytes is readOnly
+	// skip: featureCompatibilityVersion is readOnly
+	// skip: managed is readOnly
+	// skip: mongoDBVersion is readOnly
+	// skip: name is readOnly
+	// skip: oplogSizeMB is readOnly
+	// skip: sharded is readOnly
+	// skip: shardsSize is readOnly
+	// skip: tlsEnabled is readOnly
+	return toSerialize, nil
 }
 
 type NullableAvailableDeploymentView struct {

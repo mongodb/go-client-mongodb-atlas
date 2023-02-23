@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Collation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Collation{}
+
 // Collation One or more settings that specify language-specific rules to compare strings within this index.
 type Collation struct {
 	// Method to handle whitespace and punctuation as base characters for purposes of comparison.  | Value | Evaluate Whitespace and Punctuation as Base Characters | |---|---| | `\"non-ignorable\"` | Yes | | `\"shifted\"` | No. MongoDB Cloud distinguishes these characters when `\"strength\" > 3`. | 
@@ -83,7 +86,7 @@ func NewCollationWithDefaults() *Collation {
 
 // GetAlternate returns the Alternate field value if set, zero value otherwise.
 func (o *Collation) GetAlternate() string {
-	if o == nil || o.Alternate == nil {
+	if o == nil || IsNil(o.Alternate) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *Collation) GetAlternate() string {
 // GetAlternateOk returns a tuple with the Alternate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetAlternateOk() (*string, bool) {
-	if o == nil || o.Alternate == nil {
+	if o == nil || IsNil(o.Alternate) {
 		return nil, false
 	}
 	return o.Alternate, true
@@ -101,7 +104,7 @@ func (o *Collation) GetAlternateOk() (*string, bool) {
 
 // HasAlternate returns a boolean if a field has been set.
 func (o *Collation) HasAlternate() bool {
-	if o != nil && o.Alternate != nil {
+	if o != nil && !IsNil(o.Alternate) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *Collation) SetAlternate(v string) {
 
 // GetBackwards returns the Backwards field value if set, zero value otherwise.
 func (o *Collation) GetBackwards() bool {
-	if o == nil || o.Backwards == nil {
+	if o == nil || IsNil(o.Backwards) {
 		var ret bool
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *Collation) GetBackwards() bool {
 // GetBackwardsOk returns a tuple with the Backwards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetBackwardsOk() (*bool, bool) {
-	if o == nil || o.Backwards == nil {
+	if o == nil || IsNil(o.Backwards) {
 		return nil, false
 	}
 	return o.Backwards, true
@@ -133,7 +136,7 @@ func (o *Collation) GetBackwardsOk() (*bool, bool) {
 
 // HasBackwards returns a boolean if a field has been set.
 func (o *Collation) HasBackwards() bool {
-	if o != nil && o.Backwards != nil {
+	if o != nil && !IsNil(o.Backwards) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *Collation) SetBackwards(v bool) {
 
 // GetCaseFirst returns the CaseFirst field value if set, zero value otherwise.
 func (o *Collation) GetCaseFirst() string {
-	if o == nil || o.CaseFirst == nil {
+	if o == nil || IsNil(o.CaseFirst) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *Collation) GetCaseFirst() string {
 // GetCaseFirstOk returns a tuple with the CaseFirst field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetCaseFirstOk() (*string, bool) {
-	if o == nil || o.CaseFirst == nil {
+	if o == nil || IsNil(o.CaseFirst) {
 		return nil, false
 	}
 	return o.CaseFirst, true
@@ -165,7 +168,7 @@ func (o *Collation) GetCaseFirstOk() (*string, bool) {
 
 // HasCaseFirst returns a boolean if a field has been set.
 func (o *Collation) HasCaseFirst() bool {
-	if o != nil && o.CaseFirst != nil {
+	if o != nil && !IsNil(o.CaseFirst) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *Collation) SetCaseFirst(v string) {
 
 // GetCaseLevel returns the CaseLevel field value if set, zero value otherwise.
 func (o *Collation) GetCaseLevel() bool {
-	if o == nil || o.CaseLevel == nil {
+	if o == nil || IsNil(o.CaseLevel) {
 		var ret bool
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *Collation) GetCaseLevel() bool {
 // GetCaseLevelOk returns a tuple with the CaseLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetCaseLevelOk() (*bool, bool) {
-	if o == nil || o.CaseLevel == nil {
+	if o == nil || IsNil(o.CaseLevel) {
 		return nil, false
 	}
 	return o.CaseLevel, true
@@ -197,7 +200,7 @@ func (o *Collation) GetCaseLevelOk() (*bool, bool) {
 
 // HasCaseLevel returns a boolean if a field has been set.
 func (o *Collation) HasCaseLevel() bool {
-	if o != nil && o.CaseLevel != nil {
+	if o != nil && !IsNil(o.CaseLevel) {
 		return true
 	}
 
@@ -235,7 +238,7 @@ func (o *Collation) SetLocale(v string) {
 
 // GetMaxVariable returns the MaxVariable field value if set, zero value otherwise.
 func (o *Collation) GetMaxVariable() string {
-	if o == nil || o.MaxVariable == nil {
+	if o == nil || IsNil(o.MaxVariable) {
 		var ret string
 		return ret
 	}
@@ -245,7 +248,7 @@ func (o *Collation) GetMaxVariable() string {
 // GetMaxVariableOk returns a tuple with the MaxVariable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetMaxVariableOk() (*string, bool) {
-	if o == nil || o.MaxVariable == nil {
+	if o == nil || IsNil(o.MaxVariable) {
 		return nil, false
 	}
 	return o.MaxVariable, true
@@ -253,7 +256,7 @@ func (o *Collation) GetMaxVariableOk() (*string, bool) {
 
 // HasMaxVariable returns a boolean if a field has been set.
 func (o *Collation) HasMaxVariable() bool {
-	if o != nil && o.MaxVariable != nil {
+	if o != nil && !IsNil(o.MaxVariable) {
 		return true
 	}
 
@@ -267,7 +270,7 @@ func (o *Collation) SetMaxVariable(v string) {
 
 // GetNormalization returns the Normalization field value if set, zero value otherwise.
 func (o *Collation) GetNormalization() bool {
-	if o == nil || o.Normalization == nil {
+	if o == nil || IsNil(o.Normalization) {
 		var ret bool
 		return ret
 	}
@@ -277,7 +280,7 @@ func (o *Collation) GetNormalization() bool {
 // GetNormalizationOk returns a tuple with the Normalization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetNormalizationOk() (*bool, bool) {
-	if o == nil || o.Normalization == nil {
+	if o == nil || IsNil(o.Normalization) {
 		return nil, false
 	}
 	return o.Normalization, true
@@ -285,7 +288,7 @@ func (o *Collation) GetNormalizationOk() (*bool, bool) {
 
 // HasNormalization returns a boolean if a field has been set.
 func (o *Collation) HasNormalization() bool {
-	if o != nil && o.Normalization != nil {
+	if o != nil && !IsNil(o.Normalization) {
 		return true
 	}
 
@@ -299,7 +302,7 @@ func (o *Collation) SetNormalization(v bool) {
 
 // GetNumericOrdering returns the NumericOrdering field value if set, zero value otherwise.
 func (o *Collation) GetNumericOrdering() bool {
-	if o == nil || o.NumericOrdering == nil {
+	if o == nil || IsNil(o.NumericOrdering) {
 		var ret bool
 		return ret
 	}
@@ -309,7 +312,7 @@ func (o *Collation) GetNumericOrdering() bool {
 // GetNumericOrderingOk returns a tuple with the NumericOrdering field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetNumericOrderingOk() (*bool, bool) {
-	if o == nil || o.NumericOrdering == nil {
+	if o == nil || IsNil(o.NumericOrdering) {
 		return nil, false
 	}
 	return o.NumericOrdering, true
@@ -317,7 +320,7 @@ func (o *Collation) GetNumericOrderingOk() (*bool, bool) {
 
 // HasNumericOrdering returns a boolean if a field has been set.
 func (o *Collation) HasNumericOrdering() bool {
-	if o != nil && o.NumericOrdering != nil {
+	if o != nil && !IsNil(o.NumericOrdering) {
 		return true
 	}
 
@@ -331,7 +334,7 @@ func (o *Collation) SetNumericOrdering(v bool) {
 
 // GetStrength returns the Strength field value if set, zero value otherwise.
 func (o *Collation) GetStrength() int32 {
-	if o == nil || o.Strength == nil {
+	if o == nil || IsNil(o.Strength) {
 		var ret int32
 		return ret
 	}
@@ -341,7 +344,7 @@ func (o *Collation) GetStrength() int32 {
 // GetStrengthOk returns a tuple with the Strength field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Collation) GetStrengthOk() (*int32, bool) {
-	if o == nil || o.Strength == nil {
+	if o == nil || IsNil(o.Strength) {
 		return nil, false
 	}
 	return o.Strength, true
@@ -349,7 +352,7 @@ func (o *Collation) GetStrengthOk() (*int32, bool) {
 
 // HasStrength returns a boolean if a field has been set.
 func (o *Collation) HasStrength() bool {
-	if o != nil && o.Strength != nil {
+	if o != nil && !IsNil(o.Strength) {
 		return true
 	}
 
@@ -362,35 +365,41 @@ func (o *Collation) SetStrength(v int32) {
 }
 
 func (o Collation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Alternate != nil {
-		toSerialize["alternate"] = o.Alternate
-	}
-	if o.Backwards != nil {
-		toSerialize["backwards"] = o.Backwards
-	}
-	if o.CaseFirst != nil {
-		toSerialize["caseFirst"] = o.CaseFirst
-	}
-	if o.CaseLevel != nil {
-		toSerialize["caseLevel"] = o.CaseLevel
-	}
-	if true {
-		toSerialize["locale"] = o.Locale
-	}
-	if o.MaxVariable != nil {
-		toSerialize["maxVariable"] = o.MaxVariable
-	}
-	if o.Normalization != nil {
-		toSerialize["normalization"] = o.Normalization
-	}
-	if o.NumericOrdering != nil {
-		toSerialize["numericOrdering"] = o.NumericOrdering
-	}
-	if o.Strength != nil {
-		toSerialize["strength"] = o.Strength
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Collation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Alternate) {
+		toSerialize["alternate"] = o.Alternate
+	}
+	if !IsNil(o.Backwards) {
+		toSerialize["backwards"] = o.Backwards
+	}
+	if !IsNil(o.CaseFirst) {
+		toSerialize["caseFirst"] = o.CaseFirst
+	}
+	if !IsNil(o.CaseLevel) {
+		toSerialize["caseLevel"] = o.CaseLevel
+	}
+	toSerialize["locale"] = o.Locale
+	if !IsNil(o.MaxVariable) {
+		toSerialize["maxVariable"] = o.MaxVariable
+	}
+	if !IsNil(o.Normalization) {
+		toSerialize["normalization"] = o.Normalization
+	}
+	if !IsNil(o.NumericOrdering) {
+		toSerialize["numericOrdering"] = o.NumericOrdering
+	}
+	if !IsNil(o.Strength) {
+		toSerialize["strength"] = o.Strength
+	}
+	return toSerialize, nil
 }
 
 type NullableCollation struct {

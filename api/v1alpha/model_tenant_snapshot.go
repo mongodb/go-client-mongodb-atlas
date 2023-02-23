@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the TenantSnapshot type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TenantSnapshot{}
+
 // TenantSnapshot struct for TenantSnapshot
 type TenantSnapshot struct {
 	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -54,7 +57,7 @@ func NewTenantSnapshotWithDefaults() *TenantSnapshot {
 
 // GetExpiration returns the Expiration field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetExpiration() time.Time {
-	if o == nil || o.Expiration == nil {
+	if o == nil || IsNil(o.Expiration) {
 		var ret time.Time
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *TenantSnapshot) GetExpiration() time.Time {
 // GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetExpirationOk() (*time.Time, bool) {
-	if o == nil || o.Expiration == nil {
+	if o == nil || IsNil(o.Expiration) {
 		return nil, false
 	}
 	return o.Expiration, true
@@ -72,7 +75,7 @@ func (o *TenantSnapshot) GetExpirationOk() (*time.Time, bool) {
 
 // HasExpiration returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasExpiration() bool {
-	if o != nil && o.Expiration != nil {
+	if o != nil && !IsNil(o.Expiration) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *TenantSnapshot) SetExpiration(v time.Time) {
 
 // GetFinishTime returns the FinishTime field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetFinishTime() time.Time {
-	if o == nil || o.FinishTime == nil {
+	if o == nil || IsNil(o.FinishTime) {
 		var ret time.Time
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *TenantSnapshot) GetFinishTime() time.Time {
 // GetFinishTimeOk returns a tuple with the FinishTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetFinishTimeOk() (*time.Time, bool) {
-	if o == nil || o.FinishTime == nil {
+	if o == nil || IsNil(o.FinishTime) {
 		return nil, false
 	}
 	return o.FinishTime, true
@@ -104,7 +107,7 @@ func (o *TenantSnapshot) GetFinishTimeOk() (*time.Time, bool) {
 
 // HasFinishTime returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasFinishTime() bool {
-	if o != nil && o.FinishTime != nil {
+	if o != nil && !IsNil(o.FinishTime) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *TenantSnapshot) SetFinishTime(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *TenantSnapshot) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -136,7 +139,7 @@ func (o *TenantSnapshot) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *TenantSnapshot) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *TenantSnapshot) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -168,7 +171,7 @@ func (o *TenantSnapshot) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *TenantSnapshot) SetLinks(v []Link) {
 
 // GetMongoDBVersion returns the MongoDBVersion field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetMongoDBVersion() string {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		var ret string
 		return ret
 	}
@@ -192,7 +195,7 @@ func (o *TenantSnapshot) GetMongoDBVersion() string {
 // GetMongoDBVersionOk returns a tuple with the MongoDBVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetMongoDBVersionOk() (*string, bool) {
-	if o == nil || o.MongoDBVersion == nil {
+	if o == nil || IsNil(o.MongoDBVersion) {
 		return nil, false
 	}
 	return o.MongoDBVersion, true
@@ -200,7 +203,7 @@ func (o *TenantSnapshot) GetMongoDBVersionOk() (*string, bool) {
 
 // HasMongoDBVersion returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasMongoDBVersion() bool {
-	if o != nil && o.MongoDBVersion != nil {
+	if o != nil && !IsNil(o.MongoDBVersion) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *TenantSnapshot) SetMongoDBVersion(v string) {
 
 // GetScheduledTime returns the ScheduledTime field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetScheduledTime() time.Time {
-	if o == nil || o.ScheduledTime == nil {
+	if o == nil || IsNil(o.ScheduledTime) {
 		var ret time.Time
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *TenantSnapshot) GetScheduledTime() time.Time {
 // GetScheduledTimeOk returns a tuple with the ScheduledTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetScheduledTimeOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledTime == nil {
+	if o == nil || IsNil(o.ScheduledTime) {
 		return nil, false
 	}
 	return o.ScheduledTime, true
@@ -232,7 +235,7 @@ func (o *TenantSnapshot) GetScheduledTimeOk() (*time.Time, bool) {
 
 // HasScheduledTime returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasScheduledTime() bool {
-	if o != nil && o.ScheduledTime != nil {
+	if o != nil && !IsNil(o.ScheduledTime) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *TenantSnapshot) SetScheduledTime(v time.Time) {
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetStartTime() time.Time {
-	if o == nil || o.StartTime == nil {
+	if o == nil || IsNil(o.StartTime) {
 		var ret time.Time
 		return ret
 	}
@@ -256,7 +259,7 @@ func (o *TenantSnapshot) GetStartTime() time.Time {
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetStartTimeOk() (*time.Time, bool) {
-	if o == nil || o.StartTime == nil {
+	if o == nil || IsNil(o.StartTime) {
 		return nil, false
 	}
 	return o.StartTime, true
@@ -264,7 +267,7 @@ func (o *TenantSnapshot) GetStartTimeOk() (*time.Time, bool) {
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasStartTime() bool {
-	if o != nil && o.StartTime != nil {
+	if o != nil && !IsNil(o.StartTime) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *TenantSnapshot) SetStartTime(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *TenantSnapshot) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -288,7 +291,7 @@ func (o *TenantSnapshot) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantSnapshot) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -296,7 +299,7 @@ func (o *TenantSnapshot) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *TenantSnapshot) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -309,32 +312,24 @@ func (o *TenantSnapshot) SetStatus(v string) {
 }
 
 func (o TenantSnapshot) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Expiration != nil {
-		toSerialize["expiration"] = o.Expiration
-	}
-	if o.FinishTime != nil {
-		toSerialize["finishTime"] = o.FinishTime
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.MongoDBVersion != nil {
-		toSerialize["mongoDBVersion"] = o.MongoDBVersion
-	}
-	if o.ScheduledTime != nil {
-		toSerialize["scheduledTime"] = o.ScheduledTime
-	}
-	if o.StartTime != nil {
-		toSerialize["startTime"] = o.StartTime
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TenantSnapshot) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: expiration is readOnly
+	// skip: finishTime is readOnly
+	// skip: id is readOnly
+	// skip: links is readOnly
+	// skip: mongoDBVersion is readOnly
+	// skip: scheduledTime is readOnly
+	// skip: startTime is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableTenantSnapshot struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DedicatedHardwareSpec type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DedicatedHardwareSpec{}
+
 // DedicatedHardwareSpec Hardware specifications for read-only nodes in the region. Read-only nodes can never become the primary member, but can enable local reads.If you don't specify this parameter, no read-only nodes are deployed to the region.
 type DedicatedHardwareSpec struct {
 	// Number of read-only nodes for MongoDB Cloud to deploy to the region. Read-only nodes can never become the primary, but can enable local reads.
@@ -49,7 +52,7 @@ func NewDedicatedHardwareSpecWithDefaults() *DedicatedHardwareSpec {
 
 // GetNodeCount returns the NodeCount field value if set, zero value otherwise.
 func (o *DedicatedHardwareSpec) GetNodeCount() int32 {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		var ret int32
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *DedicatedHardwareSpec) GetNodeCount() int32 {
 // GetNodeCountOk returns a tuple with the NodeCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DedicatedHardwareSpec) GetNodeCountOk() (*int32, bool) {
-	if o == nil || o.NodeCount == nil {
+	if o == nil || IsNil(o.NodeCount) {
 		return nil, false
 	}
 	return o.NodeCount, true
@@ -67,7 +70,7 @@ func (o *DedicatedHardwareSpec) GetNodeCountOk() (*int32, bool) {
 
 // HasNodeCount returns a boolean if a field has been set.
 func (o *DedicatedHardwareSpec) HasNodeCount() bool {
-	if o != nil && o.NodeCount != nil {
+	if o != nil && !IsNil(o.NodeCount) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *DedicatedHardwareSpec) SetNodeCount(v int32) {
 
 // GetDiskIOPS returns the DiskIOPS field value if set, zero value otherwise.
 func (o *DedicatedHardwareSpec) GetDiskIOPS() int32 {
-	if o == nil || o.DiskIOPS == nil {
+	if o == nil || IsNil(o.DiskIOPS) {
 		var ret int32
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *DedicatedHardwareSpec) GetDiskIOPS() int32 {
 // GetDiskIOPSOk returns a tuple with the DiskIOPS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DedicatedHardwareSpec) GetDiskIOPSOk() (*int32, bool) {
-	if o == nil || o.DiskIOPS == nil {
+	if o == nil || IsNil(o.DiskIOPS) {
 		return nil, false
 	}
 	return o.DiskIOPS, true
@@ -99,7 +102,7 @@ func (o *DedicatedHardwareSpec) GetDiskIOPSOk() (*int32, bool) {
 
 // HasDiskIOPS returns a boolean if a field has been set.
 func (o *DedicatedHardwareSpec) HasDiskIOPS() bool {
-	if o != nil && o.DiskIOPS != nil {
+	if o != nil && !IsNil(o.DiskIOPS) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *DedicatedHardwareSpec) SetDiskIOPS(v int32) {
 
 // GetEbsVolumeType returns the EbsVolumeType field value if set, zero value otherwise.
 func (o *DedicatedHardwareSpec) GetEbsVolumeType() string {
-	if o == nil || o.EbsVolumeType == nil {
+	if o == nil || IsNil(o.EbsVolumeType) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *DedicatedHardwareSpec) GetEbsVolumeType() string {
 // GetEbsVolumeTypeOk returns a tuple with the EbsVolumeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DedicatedHardwareSpec) GetEbsVolumeTypeOk() (*string, bool) {
-	if o == nil || o.EbsVolumeType == nil {
+	if o == nil || IsNil(o.EbsVolumeType) {
 		return nil, false
 	}
 	return o.EbsVolumeType, true
@@ -131,7 +134,7 @@ func (o *DedicatedHardwareSpec) GetEbsVolumeTypeOk() (*string, bool) {
 
 // HasEbsVolumeType returns a boolean if a field has been set.
 func (o *DedicatedHardwareSpec) HasEbsVolumeType() bool {
-	if o != nil && o.EbsVolumeType != nil {
+	if o != nil && !IsNil(o.EbsVolumeType) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *DedicatedHardwareSpec) SetEbsVolumeType(v string) {
 
 // GetInstanceSize returns the InstanceSize field value if set, zero value otherwise.
 func (o *DedicatedHardwareSpec) GetInstanceSize() string {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *DedicatedHardwareSpec) GetInstanceSize() string {
 // GetInstanceSizeOk returns a tuple with the InstanceSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DedicatedHardwareSpec) GetInstanceSizeOk() (*string, bool) {
-	if o == nil || o.InstanceSize == nil {
+	if o == nil || IsNil(o.InstanceSize) {
 		return nil, false
 	}
 	return o.InstanceSize, true
@@ -163,7 +166,7 @@ func (o *DedicatedHardwareSpec) GetInstanceSizeOk() (*string, bool) {
 
 // HasInstanceSize returns a boolean if a field has been set.
 func (o *DedicatedHardwareSpec) HasInstanceSize() bool {
-	if o != nil && o.InstanceSize != nil {
+	if o != nil && !IsNil(o.InstanceSize) {
 		return true
 	}
 
@@ -176,20 +179,28 @@ func (o *DedicatedHardwareSpec) SetInstanceSize(v string) {
 }
 
 func (o DedicatedHardwareSpec) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.NodeCount != nil {
-		toSerialize["nodeCount"] = o.NodeCount
-	}
-	if o.DiskIOPS != nil {
-		toSerialize["diskIOPS"] = o.DiskIOPS
-	}
-	if o.EbsVolumeType != nil {
-		toSerialize["ebsVolumeType"] = o.EbsVolumeType
-	}
-	if o.InstanceSize != nil {
-		toSerialize["instanceSize"] = o.InstanceSize
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DedicatedHardwareSpec) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NodeCount) {
+		toSerialize["nodeCount"] = o.NodeCount
+	}
+	if !IsNil(o.DiskIOPS) {
+		toSerialize["diskIOPS"] = o.DiskIOPS
+	}
+	if !IsNil(o.EbsVolumeType) {
+		toSerialize["ebsVolumeType"] = o.EbsVolumeType
+	}
+	if !IsNil(o.InstanceSize) {
+		toSerialize["instanceSize"] = o.InstanceSize
+	}
+	return toSerialize, nil
 }
 
 type NullableDedicatedHardwareSpec struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiOrganizationInvitationUpdateRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiOrganizationInvitationUpdateRequestView{}
+
 // ApiOrganizationInvitationUpdateRequestView struct for ApiOrganizationInvitationUpdateRequestView
 type ApiOrganizationInvitationUpdateRequestView struct {
 	// One or more organization or project level roles to assign to the MongoDB Cloud user.
@@ -41,7 +44,7 @@ func NewApiOrganizationInvitationUpdateRequestViewWithDefaults() *ApiOrganizatio
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationUpdateRequestView) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiOrganizationInvitationUpdateRequestView) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationUpdateRequestView) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -59,7 +62,7 @@ func (o *ApiOrganizationInvitationUpdateRequestView) GetRolesOk() ([]string, boo
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationUpdateRequestView) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiOrganizationInvitationUpdateRequestView) SetRoles(v []string) {
 
 // GetTeamIds returns the TeamIds field value if set, zero value otherwise.
 func (o *ApiOrganizationInvitationUpdateRequestView) GetTeamIds() []string {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		var ret []string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiOrganizationInvitationUpdateRequestView) GetTeamIds() []string {
 // GetTeamIdsOk returns a tuple with the TeamIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOrganizationInvitationUpdateRequestView) GetTeamIdsOk() ([]string, bool) {
-	if o == nil || o.TeamIds == nil {
+	if o == nil || IsNil(o.TeamIds) {
 		return nil, false
 	}
 	return o.TeamIds, true
@@ -91,7 +94,7 @@ func (o *ApiOrganizationInvitationUpdateRequestView) GetTeamIdsOk() ([]string, b
 
 // HasTeamIds returns a boolean if a field has been set.
 func (o *ApiOrganizationInvitationUpdateRequestView) HasTeamIds() bool {
-	if o != nil && o.TeamIds != nil {
+	if o != nil && !IsNil(o.TeamIds) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *ApiOrganizationInvitationUpdateRequestView) SetTeamIds(v []string) {
 }
 
 func (o ApiOrganizationInvitationUpdateRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.TeamIds != nil {
-		toSerialize["teamIds"] = o.TeamIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiOrganizationInvitationUpdateRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.TeamIds) {
+		toSerialize["teamIds"] = o.TeamIds
+	}
+	return toSerialize, nil
 }
 
 type NullableApiOrganizationInvitationUpdateRequestView struct {

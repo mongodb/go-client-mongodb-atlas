@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IndexOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IndexOptions{}
+
 // IndexOptions One or more settings that determine how the MongoDB Cloud creates this MongoDB index.
 type IndexOptions struct {
 	// Index version number applied to the 2dsphere index. MongoDB 3.2 and later use version 3. Use this option to override the default version number. This option applies to the **2dsphere** index type only.
@@ -58,8 +61,6 @@ type IndexOptions struct {
 // will change when the set of required properties is changed
 func NewIndexOptions() *IndexOptions {
 	this := IndexOptions{}
-	var var2dsphereIndexVersion int32 = 3
-	this.Var2dsphereIndexVersion = var2dsphereIndexVersion
 	var background bool = false
 	this.Background = &background
 	var bits int32 = 26
@@ -139,7 +140,7 @@ func (o *IndexOptions) SetVar2dsphereIndexVersion(v int32) {
 
 // GetBackground returns the Background field value if set, zero value otherwise.
 func (o *IndexOptions) GetBackground() bool {
-	if o == nil || o.Background == nil {
+	if o == nil || IsNil(o.Background) {
 		var ret bool
 		return ret
 	}
@@ -149,7 +150,7 @@ func (o *IndexOptions) GetBackground() bool {
 // GetBackgroundOk returns a tuple with the Background field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetBackgroundOk() (*bool, bool) {
-	if o == nil || o.Background == nil {
+	if o == nil || IsNil(o.Background) {
 		return nil, false
 	}
 	return o.Background, true
@@ -157,7 +158,7 @@ func (o *IndexOptions) GetBackgroundOk() (*bool, bool) {
 
 // HasBackground returns a boolean if a field has been set.
 func (o *IndexOptions) HasBackground() bool {
-	if o != nil && o.Background != nil {
+	if o != nil && !IsNil(o.Background) {
 		return true
 	}
 
@@ -171,7 +172,7 @@ func (o *IndexOptions) SetBackground(v bool) {
 
 // GetBits returns the Bits field value if set, zero value otherwise.
 func (o *IndexOptions) GetBits() int32 {
-	if o == nil || o.Bits == nil {
+	if o == nil || IsNil(o.Bits) {
 		var ret int32
 		return ret
 	}
@@ -181,7 +182,7 @@ func (o *IndexOptions) GetBits() int32 {
 // GetBitsOk returns a tuple with the Bits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetBitsOk() (*int32, bool) {
-	if o == nil || o.Bits == nil {
+	if o == nil || IsNil(o.Bits) {
 		return nil, false
 	}
 	return o.Bits, true
@@ -189,7 +190,7 @@ func (o *IndexOptions) GetBitsOk() (*int32, bool) {
 
 // HasBits returns a boolean if a field has been set.
 func (o *IndexOptions) HasBits() bool {
-	if o != nil && o.Bits != nil {
+	if o != nil && !IsNil(o.Bits) {
 		return true
 	}
 
@@ -203,7 +204,7 @@ func (o *IndexOptions) SetBits(v int32) {
 
 // GetBucketSize returns the BucketSize field value if set, zero value otherwise.
 func (o *IndexOptions) GetBucketSize() int32 {
-	if o == nil || o.BucketSize == nil {
+	if o == nil || IsNil(o.BucketSize) {
 		var ret int32
 		return ret
 	}
@@ -213,7 +214,7 @@ func (o *IndexOptions) GetBucketSize() int32 {
 // GetBucketSizeOk returns a tuple with the BucketSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetBucketSizeOk() (*int32, bool) {
-	if o == nil || o.BucketSize == nil {
+	if o == nil || IsNil(o.BucketSize) {
 		return nil, false
 	}
 	return o.BucketSize, true
@@ -221,7 +222,7 @@ func (o *IndexOptions) GetBucketSizeOk() (*int32, bool) {
 
 // HasBucketSize returns a boolean if a field has been set.
 func (o *IndexOptions) HasBucketSize() bool {
-	if o != nil && o.BucketSize != nil {
+	if o != nil && !IsNil(o.BucketSize) {
 		return true
 	}
 
@@ -235,7 +236,7 @@ func (o *IndexOptions) SetBucketSize(v int32) {
 
 // GetDefaultLanguage returns the DefaultLanguage field value if set, zero value otherwise.
 func (o *IndexOptions) GetDefaultLanguage() string {
-	if o == nil || o.DefaultLanguage == nil {
+	if o == nil || IsNil(o.DefaultLanguage) {
 		var ret string
 		return ret
 	}
@@ -245,7 +246,7 @@ func (o *IndexOptions) GetDefaultLanguage() string {
 // GetDefaultLanguageOk returns a tuple with the DefaultLanguage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetDefaultLanguageOk() (*string, bool) {
-	if o == nil || o.DefaultLanguage == nil {
+	if o == nil || IsNil(o.DefaultLanguage) {
 		return nil, false
 	}
 	return o.DefaultLanguage, true
@@ -253,7 +254,7 @@ func (o *IndexOptions) GetDefaultLanguageOk() (*string, bool) {
 
 // HasDefaultLanguage returns a boolean if a field has been set.
 func (o *IndexOptions) HasDefaultLanguage() bool {
-	if o != nil && o.DefaultLanguage != nil {
+	if o != nil && !IsNil(o.DefaultLanguage) {
 		return true
 	}
 
@@ -267,7 +268,7 @@ func (o *IndexOptions) SetDefaultLanguage(v string) {
 
 // GetExpireAfterSeconds returns the ExpireAfterSeconds field value if set, zero value otherwise.
 func (o *IndexOptions) GetExpireAfterSeconds() int32 {
-	if o == nil || o.ExpireAfterSeconds == nil {
+	if o == nil || IsNil(o.ExpireAfterSeconds) {
 		var ret int32
 		return ret
 	}
@@ -277,7 +278,7 @@ func (o *IndexOptions) GetExpireAfterSeconds() int32 {
 // GetExpireAfterSecondsOk returns a tuple with the ExpireAfterSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetExpireAfterSecondsOk() (*int32, bool) {
-	if o == nil || o.ExpireAfterSeconds == nil {
+	if o == nil || IsNil(o.ExpireAfterSeconds) {
 		return nil, false
 	}
 	return o.ExpireAfterSeconds, true
@@ -285,7 +286,7 @@ func (o *IndexOptions) GetExpireAfterSecondsOk() (*int32, bool) {
 
 // HasExpireAfterSeconds returns a boolean if a field has been set.
 func (o *IndexOptions) HasExpireAfterSeconds() bool {
-	if o != nil && o.ExpireAfterSeconds != nil {
+	if o != nil && !IsNil(o.ExpireAfterSeconds) {
 		return true
 	}
 
@@ -299,7 +300,7 @@ func (o *IndexOptions) SetExpireAfterSeconds(v int32) {
 
 // GetHidden returns the Hidden field value if set, zero value otherwise.
 func (o *IndexOptions) GetHidden() bool {
-	if o == nil || o.Hidden == nil {
+	if o == nil || IsNil(o.Hidden) {
 		var ret bool
 		return ret
 	}
@@ -309,7 +310,7 @@ func (o *IndexOptions) GetHidden() bool {
 // GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetHiddenOk() (*bool, bool) {
-	if o == nil || o.Hidden == nil {
+	if o == nil || IsNil(o.Hidden) {
 		return nil, false
 	}
 	return o.Hidden, true
@@ -317,7 +318,7 @@ func (o *IndexOptions) GetHiddenOk() (*bool, bool) {
 
 // HasHidden returns a boolean if a field has been set.
 func (o *IndexOptions) HasHidden() bool {
-	if o != nil && o.Hidden != nil {
+	if o != nil && !IsNil(o.Hidden) {
 		return true
 	}
 
@@ -331,7 +332,7 @@ func (o *IndexOptions) SetHidden(v bool) {
 
 // GetLanguageOverride returns the LanguageOverride field value if set, zero value otherwise.
 func (o *IndexOptions) GetLanguageOverride() string {
-	if o == nil || o.LanguageOverride == nil {
+	if o == nil || IsNil(o.LanguageOverride) {
 		var ret string
 		return ret
 	}
@@ -341,7 +342,7 @@ func (o *IndexOptions) GetLanguageOverride() string {
 // GetLanguageOverrideOk returns a tuple with the LanguageOverride field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetLanguageOverrideOk() (*string, bool) {
-	if o == nil || o.LanguageOverride == nil {
+	if o == nil || IsNil(o.LanguageOverride) {
 		return nil, false
 	}
 	return o.LanguageOverride, true
@@ -349,7 +350,7 @@ func (o *IndexOptions) GetLanguageOverrideOk() (*string, bool) {
 
 // HasLanguageOverride returns a boolean if a field has been set.
 func (o *IndexOptions) HasLanguageOverride() bool {
-	if o != nil && o.LanguageOverride != nil {
+	if o != nil && !IsNil(o.LanguageOverride) {
 		return true
 	}
 
@@ -363,7 +364,7 @@ func (o *IndexOptions) SetLanguageOverride(v string) {
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *IndexOptions) GetMax() int32 {
-	if o == nil || o.Max == nil {
+	if o == nil || IsNil(o.Max) {
 		var ret int32
 		return ret
 	}
@@ -373,7 +374,7 @@ func (o *IndexOptions) GetMax() int32 {
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetMaxOk() (*int32, bool) {
-	if o == nil || o.Max == nil {
+	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
 	return o.Max, true
@@ -381,7 +382,7 @@ func (o *IndexOptions) GetMaxOk() (*int32, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *IndexOptions) HasMax() bool {
-	if o != nil && o.Max != nil {
+	if o != nil && !IsNil(o.Max) {
 		return true
 	}
 
@@ -395,7 +396,7 @@ func (o *IndexOptions) SetMax(v int32) {
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *IndexOptions) GetMin() int32 {
-	if o == nil || o.Min == nil {
+	if o == nil || IsNil(o.Min) {
 		var ret int32
 		return ret
 	}
@@ -405,7 +406,7 @@ func (o *IndexOptions) GetMin() int32 {
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetMinOk() (*int32, bool) {
-	if o == nil || o.Min == nil {
+	if o == nil || IsNil(o.Min) {
 		return nil, false
 	}
 	return o.Min, true
@@ -413,7 +414,7 @@ func (o *IndexOptions) GetMinOk() (*int32, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *IndexOptions) HasMin() bool {
-	if o != nil && o.Min != nil {
+	if o != nil && !IsNil(o.Min) {
 		return true
 	}
 
@@ -427,7 +428,7 @@ func (o *IndexOptions) SetMin(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IndexOptions) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -437,7 +438,7 @@ func (o *IndexOptions) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -445,7 +446,7 @@ func (o *IndexOptions) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *IndexOptions) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -459,7 +460,7 @@ func (o *IndexOptions) SetName(v string) {
 
 // GetPartialFilterExpression returns the PartialFilterExpression field value if set, zero value otherwise.
 func (o *IndexOptions) GetPartialFilterExpression() map[string]interface{} {
-	if o == nil || o.PartialFilterExpression == nil {
+	if o == nil || IsNil(o.PartialFilterExpression) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -469,15 +470,15 @@ func (o *IndexOptions) GetPartialFilterExpression() map[string]interface{} {
 // GetPartialFilterExpressionOk returns a tuple with the PartialFilterExpression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetPartialFilterExpressionOk() (map[string]interface{}, bool) {
-	if o == nil || o.PartialFilterExpression == nil {
-		return nil, false
+	if o == nil || IsNil(o.PartialFilterExpression) {
+		return map[string]interface{}{}, false
 	}
 	return o.PartialFilterExpression, true
 }
 
 // HasPartialFilterExpression returns a boolean if a field has been set.
 func (o *IndexOptions) HasPartialFilterExpression() bool {
-	if o != nil && o.PartialFilterExpression != nil {
+	if o != nil && !IsNil(o.PartialFilterExpression) {
 		return true
 	}
 
@@ -491,7 +492,7 @@ func (o *IndexOptions) SetPartialFilterExpression(v map[string]interface{}) {
 
 // GetSparse returns the Sparse field value if set, zero value otherwise.
 func (o *IndexOptions) GetSparse() bool {
-	if o == nil || o.Sparse == nil {
+	if o == nil || IsNil(o.Sparse) {
 		var ret bool
 		return ret
 	}
@@ -501,7 +502,7 @@ func (o *IndexOptions) GetSparse() bool {
 // GetSparseOk returns a tuple with the Sparse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetSparseOk() (*bool, bool) {
-	if o == nil || o.Sparse == nil {
+	if o == nil || IsNil(o.Sparse) {
 		return nil, false
 	}
 	return o.Sparse, true
@@ -509,7 +510,7 @@ func (o *IndexOptions) GetSparseOk() (*bool, bool) {
 
 // HasSparse returns a boolean if a field has been set.
 func (o *IndexOptions) HasSparse() bool {
-	if o != nil && o.Sparse != nil {
+	if o != nil && !IsNil(o.Sparse) {
 		return true
 	}
 
@@ -523,7 +524,7 @@ func (o *IndexOptions) SetSparse(v bool) {
 
 // GetStorageEngine returns the StorageEngine field value if set, zero value otherwise.
 func (o *IndexOptions) GetStorageEngine() map[string]interface{} {
-	if o == nil || o.StorageEngine == nil {
+	if o == nil || IsNil(o.StorageEngine) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -533,15 +534,15 @@ func (o *IndexOptions) GetStorageEngine() map[string]interface{} {
 // GetStorageEngineOk returns a tuple with the StorageEngine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetStorageEngineOk() (map[string]interface{}, bool) {
-	if o == nil || o.StorageEngine == nil {
-		return nil, false
+	if o == nil || IsNil(o.StorageEngine) {
+		return map[string]interface{}{}, false
 	}
 	return o.StorageEngine, true
 }
 
 // HasStorageEngine returns a boolean if a field has been set.
 func (o *IndexOptions) HasStorageEngine() bool {
-	if o != nil && o.StorageEngine != nil {
+	if o != nil && !IsNil(o.StorageEngine) {
 		return true
 	}
 
@@ -555,7 +556,7 @@ func (o *IndexOptions) SetStorageEngine(v map[string]interface{}) {
 
 // GetTextIndexVersion returns the TextIndexVersion field value if set, zero value otherwise.
 func (o *IndexOptions) GetTextIndexVersion() int32 {
-	if o == nil || o.TextIndexVersion == nil {
+	if o == nil || IsNil(o.TextIndexVersion) {
 		var ret int32
 		return ret
 	}
@@ -565,7 +566,7 @@ func (o *IndexOptions) GetTextIndexVersion() int32 {
 // GetTextIndexVersionOk returns a tuple with the TextIndexVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetTextIndexVersionOk() (*int32, bool) {
-	if o == nil || o.TextIndexVersion == nil {
+	if o == nil || IsNil(o.TextIndexVersion) {
 		return nil, false
 	}
 	return o.TextIndexVersion, true
@@ -573,7 +574,7 @@ func (o *IndexOptions) GetTextIndexVersionOk() (*int32, bool) {
 
 // HasTextIndexVersion returns a boolean if a field has been set.
 func (o *IndexOptions) HasTextIndexVersion() bool {
-	if o != nil && o.TextIndexVersion != nil {
+	if o != nil && !IsNil(o.TextIndexVersion) {
 		return true
 	}
 
@@ -587,7 +588,7 @@ func (o *IndexOptions) SetTextIndexVersion(v int32) {
 
 // GetUnique returns the Unique field value if set, zero value otherwise.
 func (o *IndexOptions) GetUnique() bool {
-	if o == nil || o.Unique == nil {
+	if o == nil || IsNil(o.Unique) {
 		var ret bool
 		return ret
 	}
@@ -597,7 +598,7 @@ func (o *IndexOptions) GetUnique() bool {
 // GetUniqueOk returns a tuple with the Unique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetUniqueOk() (*bool, bool) {
-	if o == nil || o.Unique == nil {
+	if o == nil || IsNil(o.Unique) {
 		return nil, false
 	}
 	return o.Unique, true
@@ -605,7 +606,7 @@ func (o *IndexOptions) GetUniqueOk() (*bool, bool) {
 
 // HasUnique returns a boolean if a field has been set.
 func (o *IndexOptions) HasUnique() bool {
-	if o != nil && o.Unique != nil {
+	if o != nil && !IsNil(o.Unique) {
 		return true
 	}
 
@@ -619,7 +620,7 @@ func (o *IndexOptions) SetUnique(v bool) {
 
 // GetWeights returns the Weights field value if set, zero value otherwise.
 func (o *IndexOptions) GetWeights() map[string]interface{} {
-	if o == nil || o.Weights == nil {
+	if o == nil || IsNil(o.Weights) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -629,15 +630,15 @@ func (o *IndexOptions) GetWeights() map[string]interface{} {
 // GetWeightsOk returns a tuple with the Weights field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IndexOptions) GetWeightsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Weights == nil {
-		return nil, false
+	if o == nil || IsNil(o.Weights) {
+		return map[string]interface{}{}, false
 	}
 	return o.Weights, true
 }
 
 // HasWeights returns a boolean if a field has been set.
 func (o *IndexOptions) HasWeights() bool {
-	if o != nil && o.Weights != nil {
+	if o != nil && !IsNil(o.Weights) {
 		return true
 	}
 
@@ -650,59 +651,65 @@ func (o *IndexOptions) SetWeights(v map[string]interface{}) {
 }
 
 func (o IndexOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["2dsphereIndexVersion"] = o.Var2dsphereIndexVersion
-	}
-	if o.Background != nil {
-		toSerialize["background"] = o.Background
-	}
-	if o.Bits != nil {
-		toSerialize["bits"] = o.Bits
-	}
-	if o.BucketSize != nil {
-		toSerialize["bucketSize"] = o.BucketSize
-	}
-	if o.DefaultLanguage != nil {
-		toSerialize["default_language"] = o.DefaultLanguage
-	}
-	if o.ExpireAfterSeconds != nil {
-		toSerialize["expireAfterSeconds"] = o.ExpireAfterSeconds
-	}
-	if o.Hidden != nil {
-		toSerialize["hidden"] = o.Hidden
-	}
-	if o.LanguageOverride != nil {
-		toSerialize["language_override"] = o.LanguageOverride
-	}
-	if o.Max != nil {
-		toSerialize["max"] = o.Max
-	}
-	if o.Min != nil {
-		toSerialize["min"] = o.Min
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.PartialFilterExpression != nil {
-		toSerialize["partialFilterExpression"] = o.PartialFilterExpression
-	}
-	if o.Sparse != nil {
-		toSerialize["sparse"] = o.Sparse
-	}
-	if o.StorageEngine != nil {
-		toSerialize["storageEngine"] = o.StorageEngine
-	}
-	if o.TextIndexVersion != nil {
-		toSerialize["textIndexVersion"] = o.TextIndexVersion
-	}
-	if o.Unique != nil {
-		toSerialize["unique"] = o.Unique
-	}
-	if o.Weights != nil {
-		toSerialize["weights"] = o.Weights
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IndexOptions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["2dsphereIndexVersion"] = o.Var2dsphereIndexVersion
+	if !IsNil(o.Background) {
+		toSerialize["background"] = o.Background
+	}
+	if !IsNil(o.Bits) {
+		toSerialize["bits"] = o.Bits
+	}
+	if !IsNil(o.BucketSize) {
+		toSerialize["bucketSize"] = o.BucketSize
+	}
+	if !IsNil(o.DefaultLanguage) {
+		toSerialize["default_language"] = o.DefaultLanguage
+	}
+	if !IsNil(o.ExpireAfterSeconds) {
+		toSerialize["expireAfterSeconds"] = o.ExpireAfterSeconds
+	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.LanguageOverride) {
+		toSerialize["language_override"] = o.LanguageOverride
+	}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PartialFilterExpression) {
+		toSerialize["partialFilterExpression"] = o.PartialFilterExpression
+	}
+	if !IsNil(o.Sparse) {
+		toSerialize["sparse"] = o.Sparse
+	}
+	if !IsNil(o.StorageEngine) {
+		toSerialize["storageEngine"] = o.StorageEngine
+	}
+	if !IsNil(o.TextIndexVersion) {
+		toSerialize["textIndexVersion"] = o.TextIndexVersion
+	}
+	if !IsNil(o.Unique) {
+		toSerialize["unique"] = o.Unique
+	}
+	if !IsNil(o.Weights) {
+		toSerialize["weights"] = o.Weights
+	}
+	return toSerialize, nil
 }
 
 type NullableIndexOptions struct {

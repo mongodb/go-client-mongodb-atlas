@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiAvailableRegionView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiAvailableRegionView{}
+
 // ApiAvailableRegionView List of regions that this cloud provider supports for this instance size.
 type ApiAvailableRegionView struct {
 	// Flag that indicates whether the cloud provider sets this region as its default. AWS defaults to US_EAST_1, GCP defaults to CENTRAL_US, and AZURE defaults to US_WEST_2.
@@ -41,7 +44,7 @@ func NewApiAvailableRegionViewWithDefaults() *ApiAvailableRegionView {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *ApiAvailableRegionView) GetDefault() bool {
-	if o == nil || o.Default == nil {
+	if o == nil || IsNil(o.Default) {
 		var ret bool
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiAvailableRegionView) GetDefault() bool {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAvailableRegionView) GetDefaultOk() (*bool, bool) {
-	if o == nil || o.Default == nil {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -59,7 +62,7 @@ func (o *ApiAvailableRegionView) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *ApiAvailableRegionView) HasDefault() bool {
-	if o != nil && o.Default != nil {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiAvailableRegionView) SetDefault(v bool) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApiAvailableRegionView) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiAvailableRegionView) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiAvailableRegionView) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -91,7 +94,7 @@ func (o *ApiAvailableRegionView) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiAvailableRegionView) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,18 @@ func (o *ApiAvailableRegionView) SetName(v string) {
 }
 
 func (o ApiAvailableRegionView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Default != nil {
-		toSerialize["default"] = o.Default
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiAvailableRegionView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: default is readOnly
+	// skip: name is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiAvailableRegionView struct {

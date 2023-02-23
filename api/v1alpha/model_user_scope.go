@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserScope type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserScope{}
+
 // UserScope Range of resources available to this database user.
 type UserScope struct {
 	// Human-readable label that identifies the cluster or MongoDB Atlas Data Lake that this database user can access.
@@ -88,14 +91,18 @@ func (o *UserScope) SetType(v string) {
 }
 
 func (o UserScope) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserScope) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableUserScope struct {

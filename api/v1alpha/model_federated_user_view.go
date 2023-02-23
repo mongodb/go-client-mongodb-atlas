@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FederatedUserView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FederatedUserView{}
+
 // FederatedUserView MongoDB Cloud user linked to this federated authentication.
 type FederatedUserView struct {
 	// Email address of the MongoDB Cloud user linked to the federated organization.
@@ -143,7 +146,7 @@ func (o *FederatedUserView) SetLastName(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *FederatedUserView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *FederatedUserView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FederatedUserView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -161,7 +164,7 @@ func (o *FederatedUserView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *FederatedUserView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -174,23 +177,21 @@ func (o *FederatedUserView) SetUserId(v string) {
 }
 
 func (o FederatedUserView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["emailAddress"] = o.EmailAddress
-	}
-	if true {
-		toSerialize["federationSettingsId"] = o.FederationSettingsId
-	}
-	if true {
-		toSerialize["firstName"] = o.FirstName
-	}
-	if true {
-		toSerialize["lastName"] = o.LastName
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FederatedUserView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["emailAddress"] = o.EmailAddress
+	toSerialize["federationSettingsId"] = o.FederationSettingsId
+	toSerialize["firstName"] = o.FirstName
+	toSerialize["lastName"] = o.LastName
+	// skip: userId is readOnly
+	return toSerialize, nil
 }
 
 type NullableFederatedUserView struct {

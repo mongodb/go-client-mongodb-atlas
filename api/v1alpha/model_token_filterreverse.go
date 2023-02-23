@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterreverse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterreverse{}
+
 // TokenFilterreverse Filter that reverses each string token.
 type TokenFilterreverse struct {
 	// Human-readable label that identifies this token filter type.
@@ -62,11 +65,17 @@ func (o *TokenFilterreverse) SetType(v string) {
 }
 
 func (o TokenFilterreverse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterreverse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterreverse struct {

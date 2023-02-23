@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzurePeerNetworkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzurePeerNetworkRequest{}
+
 // AzurePeerNetworkRequest struct for AzurePeerNetworkRequest
 type AzurePeerNetworkRequest struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud network container that contains the specified network peering connection.
@@ -151,7 +154,7 @@ func (o *AzurePeerNetworkRequest) SetAzureSubscriptionId(v string) {
 
 // GetErrorState returns the ErrorState field value if set, zero value otherwise.
 func (o *AzurePeerNetworkRequest) GetErrorState() string {
-	if o == nil || o.ErrorState == nil {
+	if o == nil || IsNil(o.ErrorState) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *AzurePeerNetworkRequest) GetErrorState() string {
 // GetErrorStateOk returns a tuple with the ErrorState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePeerNetworkRequest) GetErrorStateOk() (*string, bool) {
-	if o == nil || o.ErrorState == nil {
+	if o == nil || IsNil(o.ErrorState) {
 		return nil, false
 	}
 	return o.ErrorState, true
@@ -169,7 +172,7 @@ func (o *AzurePeerNetworkRequest) GetErrorStateOk() (*string, bool) {
 
 // HasErrorState returns a boolean if a field has been set.
 func (o *AzurePeerNetworkRequest) HasErrorState() bool {
-	if o != nil && o.ErrorState != nil {
+	if o != nil && !IsNil(o.ErrorState) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *AzurePeerNetworkRequest) SetErrorState(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AzurePeerNetworkRequest) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *AzurePeerNetworkRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePeerNetworkRequest) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -201,7 +204,7 @@ func (o *AzurePeerNetworkRequest) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AzurePeerNetworkRequest) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *AzurePeerNetworkRequest) SetResourceGroupName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AzurePeerNetworkRequest) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -249,7 +252,7 @@ func (o *AzurePeerNetworkRequest) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzurePeerNetworkRequest) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -257,7 +260,7 @@ func (o *AzurePeerNetworkRequest) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AzurePeerNetworkRequest) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -294,35 +297,25 @@ func (o *AzurePeerNetworkRequest) SetVnetName(v string) {
 }
 
 func (o AzurePeerNetworkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["containerId"] = o.ContainerId
-	}
-	if true {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if true {
-		toSerialize["azureDirectoryId"] = o.AzureDirectoryId
-	}
-	if true {
-		toSerialize["azureSubscriptionId"] = o.AzureSubscriptionId
-	}
-	if o.ErrorState != nil {
-		toSerialize["errorState"] = o.ErrorState
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["resourceGroupName"] = o.ResourceGroupName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["vnetName"] = o.VnetName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzurePeerNetworkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	toSerialize["providerName"] = o.ProviderName
+	toSerialize["azureDirectoryId"] = o.AzureDirectoryId
+	toSerialize["azureSubscriptionId"] = o.AzureSubscriptionId
+	// skip: errorState is readOnly
+	// skip: id is readOnly
+	toSerialize["resourceGroupName"] = o.ResourceGroupName
+	// skip: status is readOnly
+	toSerialize["vnetName"] = o.VnetName
+	return toSerialize, nil
 }
 
 type NullableAzurePeerNetworkRequest struct {

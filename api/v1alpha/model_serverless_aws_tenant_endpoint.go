@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServerlessAWSTenantEndpoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessAWSTenantEndpoint{}
+
 // ServerlessAWSTenantEndpoint View for a serverless AWS tenant endpoint.
 type ServerlessAWSTenantEndpoint struct {
 	// Unique 24-hexadecimal digit string that identifies the private endpoint.
@@ -51,7 +54,7 @@ func NewServerlessAWSTenantEndpointWithDefaults() *ServerlessAWSTenantEndpoint {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *ServerlessAWSTenantEndpoint) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -69,7 +72,7 @@ func (o *ServerlessAWSTenantEndpoint) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *ServerlessAWSTenantEndpoint) SetId(v string) {
 
 // GetCloudProviderEndpointId returns the CloudProviderEndpointId field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetCloudProviderEndpointId() string {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *ServerlessAWSTenantEndpoint) GetCloudProviderEndpointId() string {
 // GetCloudProviderEndpointIdOk returns a tuple with the CloudProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetCloudProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.CloudProviderEndpointId == nil {
+	if o == nil || IsNil(o.CloudProviderEndpointId) {
 		return nil, false
 	}
 	return o.CloudProviderEndpointId, true
@@ -101,7 +104,7 @@ func (o *ServerlessAWSTenantEndpoint) GetCloudProviderEndpointIdOk() (*string, b
 
 // HasCloudProviderEndpointId returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasCloudProviderEndpointId() bool {
-	if o != nil && o.CloudProviderEndpointId != nil {
+	if o != nil && !IsNil(o.CloudProviderEndpointId) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *ServerlessAWSTenantEndpoint) SetCloudProviderEndpointId(v string) {
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *ServerlessAWSTenantEndpoint) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -133,7 +136,7 @@ func (o *ServerlessAWSTenantEndpoint) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *ServerlessAWSTenantEndpoint) SetComment(v string) {
 
 // GetEndpointServiceName returns the EndpointServiceName field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetEndpointServiceName() string {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *ServerlessAWSTenantEndpoint) GetEndpointServiceName() string {
 // GetEndpointServiceNameOk returns a tuple with the EndpointServiceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetEndpointServiceNameOk() (*string, bool) {
-	if o == nil || o.EndpointServiceName == nil {
+	if o == nil || IsNil(o.EndpointServiceName) {
 		return nil, false
 	}
 	return o.EndpointServiceName, true
@@ -165,7 +168,7 @@ func (o *ServerlessAWSTenantEndpoint) GetEndpointServiceNameOk() (*string, bool)
 
 // HasEndpointServiceName returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasEndpointServiceName() bool {
-	if o != nil && o.EndpointServiceName != nil {
+	if o != nil && !IsNil(o.EndpointServiceName) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *ServerlessAWSTenantEndpoint) SetEndpointServiceName(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *ServerlessAWSTenantEndpoint) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return o.ErrorMessage, true
@@ -197,7 +200,7 @@ func (o *ServerlessAWSTenantEndpoint) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *ServerlessAWSTenantEndpoint) SetErrorMessage(v string) {
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetProviderName() string {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *ServerlessAWSTenantEndpoint) GetProviderName() string {
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetProviderNameOk() (*string, bool) {
-	if o == nil || o.ProviderName == nil {
+	if o == nil || IsNil(o.ProviderName) {
 		return nil, false
 	}
 	return o.ProviderName, true
@@ -229,7 +232,7 @@ func (o *ServerlessAWSTenantEndpoint) GetProviderNameOk() (*string, bool) {
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasProviderName() bool {
-	if o != nil && o.ProviderName != nil {
+	if o != nil && !IsNil(o.ProviderName) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *ServerlessAWSTenantEndpoint) SetProviderName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ServerlessAWSTenantEndpoint) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *ServerlessAWSTenantEndpoint) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerlessAWSTenantEndpoint) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -261,7 +264,7 @@ func (o *ServerlessAWSTenantEndpoint) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ServerlessAWSTenantEndpoint) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -274,29 +277,23 @@ func (o *ServerlessAWSTenantEndpoint) SetStatus(v string) {
 }
 
 func (o ServerlessAWSTenantEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if o.CloudProviderEndpointId != nil {
-		toSerialize["cloudProviderEndpointId"] = o.CloudProviderEndpointId
-	}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
-	}
-	if o.EndpointServiceName != nil {
-		toSerialize["endpointServiceName"] = o.EndpointServiceName
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
-	if o.ProviderName != nil {
-		toSerialize["providerName"] = o.ProviderName
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServerlessAWSTenantEndpoint) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	// skip: cloudProviderEndpointId is readOnly
+	// skip: comment is readOnly
+	// skip: endpointServiceName is readOnly
+	// skip: errorMessage is readOnly
+	// skip: providerName is readOnly
+	// skip: status is readOnly
+	return toSerialize, nil
 }
 
 type NullableServerlessAWSTenantEndpoint struct {

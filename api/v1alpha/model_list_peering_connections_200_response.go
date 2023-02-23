@@ -47,58 +47,58 @@ func PaginatedGCPPeerVpcViewAsListPeeringConnections200Response(v *PaginatedGCPP
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ListPeeringConnections200Response) UnmarshalJSON(data []byte) error {
 	var err error
-        match := 0
-        // try to unmarshal data into PaginatedAWSPeerVpcView
-        err = json.Unmarshal(data, &dst.PaginatedAWSPeerVpcView)
-        if err == nil {
-                jsonPaginatedAWSPeerVpcView, _ := json.Marshal(dst.PaginatedAWSPeerVpcView)
-                if string(jsonPaginatedAWSPeerVpcView) == "{}" { // empty struct
-                        dst.PaginatedAWSPeerVpcView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.PaginatedAWSPeerVpcView = nil
-        }
+	match := 0
+	// try to unmarshal data into PaginatedAWSPeerVpcView
+	err = json.Unmarshal(data, &dst.PaginatedAWSPeerVpcView)
+	if err == nil {
+		jsonPaginatedAWSPeerVpcView, _ := json.Marshal(dst.PaginatedAWSPeerVpcView)
+		if string(jsonPaginatedAWSPeerVpcView) == "{}" { // empty struct
+			dst.PaginatedAWSPeerVpcView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaginatedAWSPeerVpcView = nil
+	}
 
-        // try to unmarshal data into PaginatedAzurePeerNetworkView
-        err = json.Unmarshal(data, &dst.PaginatedAzurePeerNetworkView)
-        if err == nil {
-                jsonPaginatedAzurePeerNetworkView, _ := json.Marshal(dst.PaginatedAzurePeerNetworkView)
-                if string(jsonPaginatedAzurePeerNetworkView) == "{}" { // empty struct
-                        dst.PaginatedAzurePeerNetworkView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.PaginatedAzurePeerNetworkView = nil
-        }
+	// try to unmarshal data into PaginatedAzurePeerNetworkView
+	err = json.Unmarshal(data, &dst.PaginatedAzurePeerNetworkView)
+	if err == nil {
+		jsonPaginatedAzurePeerNetworkView, _ := json.Marshal(dst.PaginatedAzurePeerNetworkView)
+		if string(jsonPaginatedAzurePeerNetworkView) == "{}" { // empty struct
+			dst.PaginatedAzurePeerNetworkView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaginatedAzurePeerNetworkView = nil
+	}
 
-        // try to unmarshal data into PaginatedGCPPeerVpcView
-        err = json.Unmarshal(data, &dst.PaginatedGCPPeerVpcView)
-        if err == nil {
-                jsonPaginatedGCPPeerVpcView, _ := json.Marshal(dst.PaginatedGCPPeerVpcView)
-                if string(jsonPaginatedGCPPeerVpcView) == "{}" { // empty struct
-                        dst.PaginatedGCPPeerVpcView = nil
-                } else {
-                        match++
-                }
-        } else {
-                dst.PaginatedGCPPeerVpcView = nil
-        }
+	// try to unmarshal data into PaginatedGCPPeerVpcView
+	err = json.Unmarshal(data, &dst.PaginatedGCPPeerVpcView)
+	if err == nil {
+		jsonPaginatedGCPPeerVpcView, _ := json.Marshal(dst.PaginatedGCPPeerVpcView)
+		if string(jsonPaginatedGCPPeerVpcView) == "{}" { // empty struct
+			dst.PaginatedGCPPeerVpcView = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaginatedGCPPeerVpcView = nil
+	}
 
-        if match > 1 { // more than 1 match
-                // reset to nil
-                dst.PaginatedAWSPeerVpcView = nil
-                dst.PaginatedAzurePeerNetworkView = nil
-                dst.PaginatedGCPPeerVpcView = nil
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.PaginatedAWSPeerVpcView = nil
+		dst.PaginatedAzurePeerNetworkView = nil
+		dst.PaginatedGCPPeerVpcView = nil
 
-                return fmt.Errorf("data matches more than one schema in oneOf(ListPeeringConnections200Response)")
-        } else if match == 1 {
-                return nil // exactly one match
-        } else { // no match
-                return fmt.Errorf("data failed to match schemas in oneOf(ListPeeringConnections200Response)")
-        }
+		return fmt.Errorf("data matches more than one schema in oneOf(ListPeeringConnections200Response)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ListPeeringConnections200Response)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

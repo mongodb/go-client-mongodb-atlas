@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the NetworkPermissionEntry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkPermissionEntry{}
+
 // NetworkPermissionEntry struct for NetworkPermissionEntry
 type NetworkPermissionEntry struct {
 	// Unique string of the Amazon Web Services (AWS) security group that you want to add to the project's IP access list. Your IP access list entry can be one **awsSecurityGroup**, one **cidrBlock**, or one **ipAddress**. You must configure Virtual Private Connection (VPC) peering for your project before you can add an AWS security group to an IP access list. You cannot set AWS security groups as temporary access list entries. Don't set this parameter if you set **cidrBlock** or **ipAddress**.
@@ -52,7 +55,7 @@ func NewNetworkPermissionEntryWithDefaults() *NetworkPermissionEntry {
 
 // GetAwsSecurityGroup returns the AwsSecurityGroup field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetAwsSecurityGroup() string {
-	if o == nil || o.AwsSecurityGroup == nil {
+	if o == nil || IsNil(o.AwsSecurityGroup) {
 		var ret string
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *NetworkPermissionEntry) GetAwsSecurityGroup() string {
 // GetAwsSecurityGroupOk returns a tuple with the AwsSecurityGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetAwsSecurityGroupOk() (*string, bool) {
-	if o == nil || o.AwsSecurityGroup == nil {
+	if o == nil || IsNil(o.AwsSecurityGroup) {
 		return nil, false
 	}
 	return o.AwsSecurityGroup, true
@@ -70,7 +73,7 @@ func (o *NetworkPermissionEntry) GetAwsSecurityGroupOk() (*string, bool) {
 
 // HasAwsSecurityGroup returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasAwsSecurityGroup() bool {
-	if o != nil && o.AwsSecurityGroup != nil {
+	if o != nil && !IsNil(o.AwsSecurityGroup) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *NetworkPermissionEntry) SetAwsSecurityGroup(v string) {
 
 // GetCidrBlock returns the CidrBlock field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetCidrBlock() string {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		var ret string
 		return ret
 	}
@@ -94,7 +97,7 @@ func (o *NetworkPermissionEntry) GetCidrBlock() string {
 // GetCidrBlockOk returns a tuple with the CidrBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetCidrBlockOk() (*string, bool) {
-	if o == nil || o.CidrBlock == nil {
+	if o == nil || IsNil(o.CidrBlock) {
 		return nil, false
 	}
 	return o.CidrBlock, true
@@ -102,7 +105,7 @@ func (o *NetworkPermissionEntry) GetCidrBlockOk() (*string, bool) {
 
 // HasCidrBlock returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasCidrBlock() bool {
-	if o != nil && o.CidrBlock != nil {
+	if o != nil && !IsNil(o.CidrBlock) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *NetworkPermissionEntry) SetCidrBlock(v string) {
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetComment() string {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -126,7 +129,7 @@ func (o *NetworkPermissionEntry) GetComment() string {
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetCommentOk() (*string, bool) {
-	if o == nil || o.Comment == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
 	return o.Comment, true
@@ -134,7 +137,7 @@ func (o *NetworkPermissionEntry) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasComment() bool {
-	if o != nil && o.Comment != nil {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *NetworkPermissionEntry) SetComment(v string) {
 
 // GetDeleteAfterDate returns the DeleteAfterDate field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetDeleteAfterDate() time.Time {
-	if o == nil || o.DeleteAfterDate == nil {
+	if o == nil || IsNil(o.DeleteAfterDate) {
 		var ret time.Time
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *NetworkPermissionEntry) GetDeleteAfterDate() time.Time {
 // GetDeleteAfterDateOk returns a tuple with the DeleteAfterDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetDeleteAfterDateOk() (*time.Time, bool) {
-	if o == nil || o.DeleteAfterDate == nil {
+	if o == nil || IsNil(o.DeleteAfterDate) {
 		return nil, false
 	}
 	return o.DeleteAfterDate, true
@@ -166,7 +169,7 @@ func (o *NetworkPermissionEntry) GetDeleteAfterDateOk() (*time.Time, bool) {
 
 // HasDeleteAfterDate returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasDeleteAfterDate() bool {
-	if o != nil && o.DeleteAfterDate != nil {
+	if o != nil && !IsNil(o.DeleteAfterDate) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *NetworkPermissionEntry) SetDeleteAfterDate(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *NetworkPermissionEntry) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -198,7 +201,7 @@ func (o *NetworkPermissionEntry) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *NetworkPermissionEntry) SetGroupId(v string) {
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetIpAddress() string {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		var ret string
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *NetworkPermissionEntry) GetIpAddress() string {
 // GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetIpAddressOk() (*string, bool) {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		return nil, false
 	}
 	return o.IpAddress, true
@@ -230,7 +233,7 @@ func (o *NetworkPermissionEntry) GetIpAddressOk() (*string, bool) {
 
 // HasIpAddress returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasIpAddress() bool {
-	if o != nil && o.IpAddress != nil {
+	if o != nil && !IsNil(o.IpAddress) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *NetworkPermissionEntry) SetIpAddress(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkPermissionEntry) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -254,7 +257,7 @@ func (o *NetworkPermissionEntry) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkPermissionEntry) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -262,7 +265,7 @@ func (o *NetworkPermissionEntry) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *NetworkPermissionEntry) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -275,29 +278,33 @@ func (o *NetworkPermissionEntry) SetLinks(v []Link) {
 }
 
 func (o NetworkPermissionEntry) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AwsSecurityGroup != nil {
-		toSerialize["awsSecurityGroup"] = o.AwsSecurityGroup
-	}
-	if o.CidrBlock != nil {
-		toSerialize["cidrBlock"] = o.CidrBlock
-	}
-	if o.Comment != nil {
-		toSerialize["comment"] = o.Comment
-	}
-	if o.DeleteAfterDate != nil {
-		toSerialize["deleteAfterDate"] = o.DeleteAfterDate
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.IpAddress != nil {
-		toSerialize["ipAddress"] = o.IpAddress
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NetworkPermissionEntry) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AwsSecurityGroup) {
+		toSerialize["awsSecurityGroup"] = o.AwsSecurityGroup
+	}
+	if !IsNil(o.CidrBlock) {
+		toSerialize["cidrBlock"] = o.CidrBlock
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.DeleteAfterDate) {
+		toSerialize["deleteAfterDate"] = o.DeleteAfterDate
+	}
+	// skip: groupId is readOnly
+	if !IsNil(o.IpAddress) {
+		toSerialize["ipAddress"] = o.IpAddress
+	}
+	// skip: links is readOnly
+	return toSerialize, nil
 }
 
 type NullableNetworkPermissionEntry struct {

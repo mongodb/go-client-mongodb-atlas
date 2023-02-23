@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiTeamView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiTeamView{}
+
 // ApiTeamView struct for ApiTeamView
 type ApiTeamView struct {
 	// Unique 24-hexadecimal digit string that identifies this team.
@@ -69,7 +72,7 @@ func (o *ApiTeamView) SetId(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiTeamView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -79,7 +82,7 @@ func (o *ApiTeamView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiTeamView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -87,7 +90,7 @@ func (o *ApiTeamView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiTeamView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *ApiTeamView) SetName(v string) {
 
 // GetUsernames returns the Usernames field value if set, zero value otherwise.
 func (o *ApiTeamView) GetUsernames() []string {
-	if o == nil || o.Usernames == nil {
+	if o == nil || IsNil(o.Usernames) {
 		var ret []string
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *ApiTeamView) GetUsernames() []string {
 // GetUsernamesOk returns a tuple with the Usernames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiTeamView) GetUsernamesOk() ([]string, bool) {
-	if o == nil || o.Usernames == nil {
+	if o == nil || IsNil(o.Usernames) {
 		return nil, false
 	}
 	return o.Usernames, true
@@ -143,7 +146,7 @@ func (o *ApiTeamView) GetUsernamesOk() ([]string, bool) {
 
 // HasUsernames returns a boolean if a field has been set.
 func (o *ApiTeamView) HasUsernames() bool {
-	if o != nil && o.Usernames != nil {
+	if o != nil && !IsNil(o.Usernames) {
 		return true
 	}
 
@@ -156,20 +159,22 @@ func (o *ApiTeamView) SetUsernames(v []string) {
 }
 
 func (o ApiTeamView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.Usernames != nil {
-		toSerialize["usernames"] = o.Usernames
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiTeamView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: id is readOnly
+	// skip: links is readOnly
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Usernames) {
+		toSerialize["usernames"] = o.Usernames
+	}
+	return toSerialize, nil
 }
 
 type NullableApiTeamView struct {

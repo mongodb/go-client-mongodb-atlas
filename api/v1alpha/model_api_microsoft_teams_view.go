@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiMicrosoftTeamsView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiMicrosoftTeamsView{}
+
 // ApiMicrosoftTeamsView Details to integrate one Microsoft Teams account with one MongoDB Cloud project.
 type ApiMicrosoftTeamsView struct {
 	// Endpoint web address of the Microsoft Teams webhook to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a Microsoft Teams notification, the URL appears partially redacted.
@@ -65,7 +68,7 @@ func (o *ApiMicrosoftTeamsView) SetMicrosoftTeamsWebhookUrl(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiMicrosoftTeamsView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *ApiMicrosoftTeamsView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiMicrosoftTeamsView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -83,7 +86,7 @@ func (o *ApiMicrosoftTeamsView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiMicrosoftTeamsView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *ApiMicrosoftTeamsView) SetType(v string) {
 }
 
 func (o ApiMicrosoftTeamsView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["microsoftTeamsWebhookUrl"] = o.MicrosoftTeamsWebhookUrl
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiMicrosoftTeamsView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["microsoftTeamsWebhookUrl"] = o.MicrosoftTeamsWebhookUrl
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiMicrosoftTeamsView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SMSNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SMSNotificationView{}
+
 // SMSNotificationView SMS notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type SMSNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -45,7 +48,7 @@ func NewSMSNotificationViewWithDefaults() *SMSNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *SMSNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *SMSNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SMSNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -63,7 +66,7 @@ func (o *SMSNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *SMSNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *SMSNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *SMSNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *SMSNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SMSNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -95,7 +98,7 @@ func (o *SMSNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *SMSNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *SMSNotificationView) SetIntervalMin(v int32) {
 
 // GetMobileNumber returns the MobileNumber field value if set, zero value otherwise.
 func (o *SMSNotificationView) GetMobileNumber() string {
-	if o == nil || o.MobileNumber == nil {
+	if o == nil || IsNil(o.MobileNumber) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *SMSNotificationView) GetMobileNumber() string {
 // GetMobileNumberOk returns a tuple with the MobileNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SMSNotificationView) GetMobileNumberOk() (*string, bool) {
-	if o == nil || o.MobileNumber == nil {
+	if o == nil || IsNil(o.MobileNumber) {
 		return nil, false
 	}
 	return o.MobileNumber, true
@@ -127,7 +130,7 @@ func (o *SMSNotificationView) GetMobileNumberOk() (*string, bool) {
 
 // HasMobileNumber returns a boolean if a field has been set.
 func (o *SMSNotificationView) HasMobileNumber() bool {
-	if o != nil && o.MobileNumber != nil {
+	if o != nil && !IsNil(o.MobileNumber) {
 		return true
 	}
 
@@ -164,20 +167,26 @@ func (o *SMSNotificationView) SetTypeName(v string) {
 }
 
 func (o SMSNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.MobileNumber != nil {
-		toSerialize["mobileNumber"] = o.MobileNumber
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SMSNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.MobileNumber) {
+		toSerialize["mobileNumber"] = o.MobileNumber
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableSMSNotificationView struct {

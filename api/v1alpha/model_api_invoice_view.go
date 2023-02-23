@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiInvoiceView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiInvoiceView{}
+
 // ApiInvoiceView struct for ApiInvoiceView
 type ApiInvoiceView struct {
 	// Sum of services that the specified organization consumed in the period covered in this invoice. This parameter expresses its value in cents (100ths of one US Dollar) and calculates its value as **subtotalCents** + **salesTaxCents** - **startingBalanceCents**.
@@ -76,7 +79,7 @@ func NewApiInvoiceViewWithDefaults() *ApiInvoiceView {
 
 // GetAmountBilledCents returns the AmountBilledCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetAmountBilledCents() int64 {
-	if o == nil || o.AmountBilledCents == nil {
+	if o == nil || IsNil(o.AmountBilledCents) {
 		var ret int64
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ApiInvoiceView) GetAmountBilledCents() int64 {
 // GetAmountBilledCentsOk returns a tuple with the AmountBilledCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetAmountBilledCentsOk() (*int64, bool) {
-	if o == nil || o.AmountBilledCents == nil {
+	if o == nil || IsNil(o.AmountBilledCents) {
 		return nil, false
 	}
 	return o.AmountBilledCents, true
@@ -94,7 +97,7 @@ func (o *ApiInvoiceView) GetAmountBilledCentsOk() (*int64, bool) {
 
 // HasAmountBilledCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasAmountBilledCents() bool {
-	if o != nil && o.AmountBilledCents != nil {
+	if o != nil && !IsNil(o.AmountBilledCents) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ApiInvoiceView) SetAmountBilledCents(v int64) {
 
 // GetAmountPaidCents returns the AmountPaidCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetAmountPaidCents() int64 {
-	if o == nil || o.AmountPaidCents == nil {
+	if o == nil || IsNil(o.AmountPaidCents) {
 		var ret int64
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ApiInvoiceView) GetAmountPaidCents() int64 {
 // GetAmountPaidCentsOk returns a tuple with the AmountPaidCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetAmountPaidCentsOk() (*int64, bool) {
-	if o == nil || o.AmountPaidCents == nil {
+	if o == nil || IsNil(o.AmountPaidCents) {
 		return nil, false
 	}
 	return o.AmountPaidCents, true
@@ -126,7 +129,7 @@ func (o *ApiInvoiceView) GetAmountPaidCentsOk() (*int64, bool) {
 
 // HasAmountPaidCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasAmountPaidCents() bool {
-	if o != nil && o.AmountPaidCents != nil {
+	if o != nil && !IsNil(o.AmountPaidCents) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ApiInvoiceView) SetAmountPaidCents(v int64) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ApiInvoiceView) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -158,7 +161,7 @@ func (o *ApiInvoiceView) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *ApiInvoiceView) SetCreated(v time.Time) {
 
 // GetCreditsCents returns the CreditsCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetCreditsCents() int64 {
-	if o == nil || o.CreditsCents == nil {
+	if o == nil || IsNil(o.CreditsCents) {
 		var ret int64
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *ApiInvoiceView) GetCreditsCents() int64 {
 // GetCreditsCentsOk returns a tuple with the CreditsCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetCreditsCentsOk() (*int64, bool) {
-	if o == nil || o.CreditsCents == nil {
+	if o == nil || IsNil(o.CreditsCents) {
 		return nil, false
 	}
 	return o.CreditsCents, true
@@ -190,7 +193,7 @@ func (o *ApiInvoiceView) GetCreditsCentsOk() (*int64, bool) {
 
 // HasCreditsCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasCreditsCents() bool {
-	if o != nil && o.CreditsCents != nil {
+	if o != nil && !IsNil(o.CreditsCents) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *ApiInvoiceView) SetCreditsCents(v int64) {
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetEndDate() time.Time {
-	if o == nil || o.EndDate == nil {
+	if o == nil || IsNil(o.EndDate) {
 		var ret time.Time
 		return ret
 	}
@@ -214,7 +217,7 @@ func (o *ApiInvoiceView) GetEndDate() time.Time {
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetEndDateOk() (*time.Time, bool) {
-	if o == nil || o.EndDate == nil {
+	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
 	return o.EndDate, true
@@ -222,7 +225,7 @@ func (o *ApiInvoiceView) GetEndDateOk() (*time.Time, bool) {
 
 // HasEndDate returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasEndDate() bool {
-	if o != nil && o.EndDate != nil {
+	if o != nil && !IsNil(o.EndDate) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *ApiInvoiceView) SetEndDate(v time.Time) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -246,7 +249,7 @@ func (o *ApiInvoiceView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -254,7 +257,7 @@ func (o *ApiInvoiceView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -268,7 +271,7 @@ func (o *ApiInvoiceView) SetGroupId(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -278,7 +281,7 @@ func (o *ApiInvoiceView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -286,7 +289,7 @@ func (o *ApiInvoiceView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -300,7 +303,7 @@ func (o *ApiInvoiceView) SetId(v string) {
 
 // GetLineItems returns the LineItems field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetLineItems() []ApiLineItemView {
-	if o == nil || o.LineItems == nil {
+	if o == nil || IsNil(o.LineItems) {
 		var ret []ApiLineItemView
 		return ret
 	}
@@ -310,7 +313,7 @@ func (o *ApiInvoiceView) GetLineItems() []ApiLineItemView {
 // GetLineItemsOk returns a tuple with the LineItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetLineItemsOk() ([]ApiLineItemView, bool) {
-	if o == nil || o.LineItems == nil {
+	if o == nil || IsNil(o.LineItems) {
 		return nil, false
 	}
 	return o.LineItems, true
@@ -318,7 +321,7 @@ func (o *ApiInvoiceView) GetLineItemsOk() ([]ApiLineItemView, bool) {
 
 // HasLineItems returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasLineItems() bool {
-	if o != nil && o.LineItems != nil {
+	if o != nil && !IsNil(o.LineItems) {
 		return true
 	}
 
@@ -332,7 +335,7 @@ func (o *ApiInvoiceView) SetLineItems(v []ApiLineItemView) {
 
 // GetLinkedInvoices returns the LinkedInvoices field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetLinkedInvoices() []ApiInvoiceView {
-	if o == nil || o.LinkedInvoices == nil {
+	if o == nil || IsNil(o.LinkedInvoices) {
 		var ret []ApiInvoiceView
 		return ret
 	}
@@ -342,7 +345,7 @@ func (o *ApiInvoiceView) GetLinkedInvoices() []ApiInvoiceView {
 // GetLinkedInvoicesOk returns a tuple with the LinkedInvoices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetLinkedInvoicesOk() ([]ApiInvoiceView, bool) {
-	if o == nil || o.LinkedInvoices == nil {
+	if o == nil || IsNil(o.LinkedInvoices) {
 		return nil, false
 	}
 	return o.LinkedInvoices, true
@@ -350,7 +353,7 @@ func (o *ApiInvoiceView) GetLinkedInvoicesOk() ([]ApiInvoiceView, bool) {
 
 // HasLinkedInvoices returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasLinkedInvoices() bool {
-	if o != nil && o.LinkedInvoices != nil {
+	if o != nil && !IsNil(o.LinkedInvoices) {
 		return true
 	}
 
@@ -364,7 +367,7 @@ func (o *ApiInvoiceView) SetLinkedInvoices(v []ApiInvoiceView) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -374,7 +377,7 @@ func (o *ApiInvoiceView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -382,7 +385,7 @@ func (o *ApiInvoiceView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -396,7 +399,7 @@ func (o *ApiInvoiceView) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -406,7 +409,7 @@ func (o *ApiInvoiceView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -414,7 +417,7 @@ func (o *ApiInvoiceView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -428,7 +431,7 @@ func (o *ApiInvoiceView) SetOrgId(v string) {
 
 // GetPayments returns the Payments field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetPayments() []ApiPaymentView {
-	if o == nil || o.Payments == nil {
+	if o == nil || IsNil(o.Payments) {
 		var ret []ApiPaymentView
 		return ret
 	}
@@ -438,7 +441,7 @@ func (o *ApiInvoiceView) GetPayments() []ApiPaymentView {
 // GetPaymentsOk returns a tuple with the Payments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetPaymentsOk() ([]ApiPaymentView, bool) {
-	if o == nil || o.Payments == nil {
+	if o == nil || IsNil(o.Payments) {
 		return nil, false
 	}
 	return o.Payments, true
@@ -446,7 +449,7 @@ func (o *ApiInvoiceView) GetPaymentsOk() ([]ApiPaymentView, bool) {
 
 // HasPayments returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasPayments() bool {
-	if o != nil && o.Payments != nil {
+	if o != nil && !IsNil(o.Payments) {
 		return true
 	}
 
@@ -460,7 +463,7 @@ func (o *ApiInvoiceView) SetPayments(v []ApiPaymentView) {
 
 // GetRefunds returns the Refunds field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetRefunds() []ApiRefundView {
-	if o == nil || o.Refunds == nil {
+	if o == nil || IsNil(o.Refunds) {
 		var ret []ApiRefundView
 		return ret
 	}
@@ -470,7 +473,7 @@ func (o *ApiInvoiceView) GetRefunds() []ApiRefundView {
 // GetRefundsOk returns a tuple with the Refunds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetRefundsOk() ([]ApiRefundView, bool) {
-	if o == nil || o.Refunds == nil {
+	if o == nil || IsNil(o.Refunds) {
 		return nil, false
 	}
 	return o.Refunds, true
@@ -478,7 +481,7 @@ func (o *ApiInvoiceView) GetRefundsOk() ([]ApiRefundView, bool) {
 
 // HasRefunds returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasRefunds() bool {
-	if o != nil && o.Refunds != nil {
+	if o != nil && !IsNil(o.Refunds) {
 		return true
 	}
 
@@ -492,7 +495,7 @@ func (o *ApiInvoiceView) SetRefunds(v []ApiRefundView) {
 
 // GetSalesTaxCents returns the SalesTaxCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetSalesTaxCents() int64 {
-	if o == nil || o.SalesTaxCents == nil {
+	if o == nil || IsNil(o.SalesTaxCents) {
 		var ret int64
 		return ret
 	}
@@ -502,7 +505,7 @@ func (o *ApiInvoiceView) GetSalesTaxCents() int64 {
 // GetSalesTaxCentsOk returns a tuple with the SalesTaxCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetSalesTaxCentsOk() (*int64, bool) {
-	if o == nil || o.SalesTaxCents == nil {
+	if o == nil || IsNil(o.SalesTaxCents) {
 		return nil, false
 	}
 	return o.SalesTaxCents, true
@@ -510,7 +513,7 @@ func (o *ApiInvoiceView) GetSalesTaxCentsOk() (*int64, bool) {
 
 // HasSalesTaxCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasSalesTaxCents() bool {
-	if o != nil && o.SalesTaxCents != nil {
+	if o != nil && !IsNil(o.SalesTaxCents) {
 		return true
 	}
 
@@ -524,7 +527,7 @@ func (o *ApiInvoiceView) SetSalesTaxCents(v int64) {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetStartDate() time.Time {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret time.Time
 		return ret
 	}
@@ -534,7 +537,7 @@ func (o *ApiInvoiceView) GetStartDate() time.Time {
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
 	return o.StartDate, true
@@ -542,7 +545,7 @@ func (o *ApiInvoiceView) GetStartDateOk() (*time.Time, bool) {
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
+	if o != nil && !IsNil(o.StartDate) {
 		return true
 	}
 
@@ -556,7 +559,7 @@ func (o *ApiInvoiceView) SetStartDate(v time.Time) {
 
 // GetStartingBalanceCents returns the StartingBalanceCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetStartingBalanceCents() int64 {
-	if o == nil || o.StartingBalanceCents == nil {
+	if o == nil || IsNil(o.StartingBalanceCents) {
 		var ret int64
 		return ret
 	}
@@ -566,7 +569,7 @@ func (o *ApiInvoiceView) GetStartingBalanceCents() int64 {
 // GetStartingBalanceCentsOk returns a tuple with the StartingBalanceCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetStartingBalanceCentsOk() (*int64, bool) {
-	if o == nil || o.StartingBalanceCents == nil {
+	if o == nil || IsNil(o.StartingBalanceCents) {
 		return nil, false
 	}
 	return o.StartingBalanceCents, true
@@ -574,7 +577,7 @@ func (o *ApiInvoiceView) GetStartingBalanceCentsOk() (*int64, bool) {
 
 // HasStartingBalanceCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasStartingBalanceCents() bool {
-	if o != nil && o.StartingBalanceCents != nil {
+	if o != nil && !IsNil(o.StartingBalanceCents) {
 		return true
 	}
 
@@ -588,7 +591,7 @@ func (o *ApiInvoiceView) SetStartingBalanceCents(v int64) {
 
 // GetStatusName returns the StatusName field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetStatusName() string {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		var ret string
 		return ret
 	}
@@ -598,7 +601,7 @@ func (o *ApiInvoiceView) GetStatusName() string {
 // GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetStatusNameOk() (*string, bool) {
-	if o == nil || o.StatusName == nil {
+	if o == nil || IsNil(o.StatusName) {
 		return nil, false
 	}
 	return o.StatusName, true
@@ -606,7 +609,7 @@ func (o *ApiInvoiceView) GetStatusNameOk() (*string, bool) {
 
 // HasStatusName returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasStatusName() bool {
-	if o != nil && o.StatusName != nil {
+	if o != nil && !IsNil(o.StatusName) {
 		return true
 	}
 
@@ -620,7 +623,7 @@ func (o *ApiInvoiceView) SetStatusName(v string) {
 
 // GetSubtotalCents returns the SubtotalCents field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetSubtotalCents() int64 {
-	if o == nil || o.SubtotalCents == nil {
+	if o == nil || IsNil(o.SubtotalCents) {
 		var ret int64
 		return ret
 	}
@@ -630,7 +633,7 @@ func (o *ApiInvoiceView) GetSubtotalCents() int64 {
 // GetSubtotalCentsOk returns a tuple with the SubtotalCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetSubtotalCentsOk() (*int64, bool) {
-	if o == nil || o.SubtotalCents == nil {
+	if o == nil || IsNil(o.SubtotalCents) {
 		return nil, false
 	}
 	return o.SubtotalCents, true
@@ -638,7 +641,7 @@ func (o *ApiInvoiceView) GetSubtotalCentsOk() (*int64, bool) {
 
 // HasSubtotalCents returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasSubtotalCents() bool {
-	if o != nil && o.SubtotalCents != nil {
+	if o != nil && !IsNil(o.SubtotalCents) {
 		return true
 	}
 
@@ -652,7 +655,7 @@ func (o *ApiInvoiceView) SetSubtotalCents(v int64) {
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *ApiInvoiceView) GetUpdated() time.Time {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		var ret time.Time
 		return ret
 	}
@@ -662,7 +665,7 @@ func (o *ApiInvoiceView) GetUpdated() time.Time {
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiInvoiceView) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || o.Updated == nil {
+	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
 	return o.Updated, true
@@ -670,7 +673,7 @@ func (o *ApiInvoiceView) GetUpdatedOk() (*time.Time, bool) {
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *ApiInvoiceView) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
+	if o != nil && !IsNil(o.Updated) {
 		return true
 	}
 
@@ -683,65 +686,37 @@ func (o *ApiInvoiceView) SetUpdated(v time.Time) {
 }
 
 func (o ApiInvoiceView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AmountBilledCents != nil {
-		toSerialize["amountBilledCents"] = o.AmountBilledCents
-	}
-	if o.AmountPaidCents != nil {
-		toSerialize["amountPaidCents"] = o.AmountPaidCents
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.CreditsCents != nil {
-		toSerialize["creditsCents"] = o.CreditsCents
-	}
-	if o.EndDate != nil {
-		toSerialize["endDate"] = o.EndDate
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.LineItems != nil {
-		toSerialize["lineItems"] = o.LineItems
-	}
-	if o.LinkedInvoices != nil {
-		toSerialize["linkedInvoices"] = o.LinkedInvoices
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.Payments != nil {
-		toSerialize["payments"] = o.Payments
-	}
-	if o.Refunds != nil {
-		toSerialize["refunds"] = o.Refunds
-	}
-	if o.SalesTaxCents != nil {
-		toSerialize["salesTaxCents"] = o.SalesTaxCents
-	}
-	if o.StartDate != nil {
-		toSerialize["startDate"] = o.StartDate
-	}
-	if o.StartingBalanceCents != nil {
-		toSerialize["startingBalanceCents"] = o.StartingBalanceCents
-	}
-	if o.StatusName != nil {
-		toSerialize["statusName"] = o.StatusName
-	}
-	if o.SubtotalCents != nil {
-		toSerialize["subtotalCents"] = o.SubtotalCents
-	}
-	if o.Updated != nil {
-		toSerialize["updated"] = o.Updated
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiInvoiceView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: amountBilledCents is readOnly
+	// skip: amountPaidCents is readOnly
+	// skip: created is readOnly
+	// skip: creditsCents is readOnly
+	// skip: endDate is readOnly
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: lineItems is readOnly
+	// skip: linkedInvoices is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: payments is readOnly
+	// skip: refunds is readOnly
+	// skip: salesTaxCents is readOnly
+	// skip: startDate is readOnly
+	// skip: startingBalanceCents is readOnly
+	if !IsNil(o.StatusName) {
+		toSerialize["statusName"] = o.StatusName
+	}
+	// skip: subtotalCents is readOnly
+	// skip: updated is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiInvoiceView struct {

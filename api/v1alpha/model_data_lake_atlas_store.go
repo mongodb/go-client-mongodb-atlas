@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DataLakeAtlasStore type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DataLakeAtlasStore{}
+
 // DataLakeAtlasStore struct for DataLakeAtlasStore
 type DataLakeAtlasStore struct {
 	// Human-readable label of the MongoDB Cloud cluster on which the store is based.
@@ -45,7 +48,7 @@ func NewDataLakeAtlasStoreWithDefaults() *DataLakeAtlasStore {
 
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *DataLakeAtlasStore) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *DataLakeAtlasStore) GetClusterName() string {
 // GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStore) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
+	if o == nil || IsNil(o.ClusterName) {
 		return nil, false
 	}
 	return o.ClusterName, true
@@ -63,7 +66,7 @@ func (o *DataLakeAtlasStore) GetClusterNameOk() (*string, bool) {
 
 // HasClusterName returns a boolean if a field has been set.
 func (o *DataLakeAtlasStore) HasClusterName() bool {
-	if o != nil && o.ClusterName != nil {
+	if o != nil && !IsNil(o.ClusterName) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *DataLakeAtlasStore) SetClusterName(v string) {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *DataLakeAtlasStore) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *DataLakeAtlasStore) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStore) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -95,7 +98,7 @@ func (o *DataLakeAtlasStore) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *DataLakeAtlasStore) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *DataLakeAtlasStore) SetProjectId(v string) {
 
 // GetReadPreference returns the ReadPreference field value if set, zero value otherwise.
 func (o *DataLakeAtlasStore) GetReadPreference() DataLakeAtlasStoreReadPreference {
-	if o == nil || o.ReadPreference == nil {
+	if o == nil || IsNil(o.ReadPreference) {
 		var ret DataLakeAtlasStoreReadPreference
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *DataLakeAtlasStore) GetReadPreference() DataLakeAtlasStoreReadPreferenc
 // GetReadPreferenceOk returns a tuple with the ReadPreference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStore) GetReadPreferenceOk() (*DataLakeAtlasStoreReadPreference, bool) {
-	if o == nil || o.ReadPreference == nil {
+	if o == nil || IsNil(o.ReadPreference) {
 		return nil, false
 	}
 	return o.ReadPreference, true
@@ -127,7 +130,7 @@ func (o *DataLakeAtlasStore) GetReadPreferenceOk() (*DataLakeAtlasStoreReadPrefe
 
 // HasReadPreference returns a boolean if a field has been set.
 func (o *DataLakeAtlasStore) HasReadPreference() bool {
-	if o != nil && o.ReadPreference != nil {
+	if o != nil && !IsNil(o.ReadPreference) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *DataLakeAtlasStore) SetReadPreference(v DataLakeAtlasStoreReadPreferenc
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DataLakeAtlasStore) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *DataLakeAtlasStore) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataLakeAtlasStore) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -159,7 +162,7 @@ func (o *DataLakeAtlasStore) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DataLakeAtlasStore) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -196,23 +199,27 @@ func (o *DataLakeAtlasStore) SetProvider(v string) {
 }
 
 func (o DataLakeAtlasStore) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClusterName != nil {
-		toSerialize["clusterName"] = o.ClusterName
-	}
-	if o.ProjectId != nil {
-		toSerialize["projectId"] = o.ProjectId
-	}
-	if o.ReadPreference != nil {
-		toSerialize["readPreference"] = o.ReadPreference
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["provider"] = o.Provider
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DataLakeAtlasStore) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClusterName) {
+		toSerialize["clusterName"] = o.ClusterName
+	}
+	// skip: projectId is readOnly
+	if !IsNil(o.ReadPreference) {
+		toSerialize["readPreference"] = o.ReadPreference
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["provider"] = o.Provider
+	return toSerialize, nil
 }
 
 type NullableDataLakeAtlasStore struct {

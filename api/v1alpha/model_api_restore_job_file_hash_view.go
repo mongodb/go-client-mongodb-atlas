@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiRestoreJobFileHashView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiRestoreJobFileHashView{}
+
 // ApiRestoreJobFileHashView Key and value pair that map one restore file to one hashed checksum. This parameter applies after you download the corresponding **delivery.url**.
 type ApiRestoreJobFileHashView struct {
 	// Human-readable label that identifies the hashed file.
@@ -45,7 +48,7 @@ func NewApiRestoreJobFileHashViewWithDefaults() *ApiRestoreJobFileHashView {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *ApiRestoreJobFileHashView) GetFileName() string {
-	if o == nil || o.FileName == nil {
+	if o == nil || IsNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *ApiRestoreJobFileHashView) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobFileHashView) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
+	if o == nil || IsNil(o.FileName) {
 		return nil, false
 	}
 	return o.FileName, true
@@ -63,7 +66,7 @@ func (o *ApiRestoreJobFileHashView) GetFileNameOk() (*string, bool) {
 
 // HasFileName returns a boolean if a field has been set.
 func (o *ApiRestoreJobFileHashView) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+	if o != nil && !IsNil(o.FileName) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ApiRestoreJobFileHashView) SetFileName(v string) {
 
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ApiRestoreJobFileHashView) GetHash() string {
-	if o == nil || o.Hash == nil {
+	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *ApiRestoreJobFileHashView) GetHash() string {
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobFileHashView) GetHashOk() (*string, bool) {
-	if o == nil || o.Hash == nil {
+	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
 	return o.Hash, true
@@ -95,7 +98,7 @@ func (o *ApiRestoreJobFileHashView) GetHashOk() (*string, bool) {
 
 // HasHash returns a boolean if a field has been set.
 func (o *ApiRestoreJobFileHashView) HasHash() bool {
-	if o != nil && o.Hash != nil {
+	if o != nil && !IsNil(o.Hash) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *ApiRestoreJobFileHashView) SetHash(v string) {
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ApiRestoreJobFileHashView) GetLinks() []Link {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *ApiRestoreJobFileHashView) GetLinks() []Link {
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobFileHashView) GetLinksOk() ([]Link, bool) {
-	if o == nil || o.Links == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
@@ -127,7 +130,7 @@ func (o *ApiRestoreJobFileHashView) GetLinksOk() ([]Link, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *ApiRestoreJobFileHashView) HasLinks() bool {
-	if o != nil && o.Links != nil {
+	if o != nil && !IsNil(o.Links) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *ApiRestoreJobFileHashView) SetLinks(v []Link) {
 
 // GetTypeName returns the TypeName field value if set, zero value otherwise.
 func (o *ApiRestoreJobFileHashView) GetTypeName() string {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *ApiRestoreJobFileHashView) GetTypeName() string {
 // GetTypeNameOk returns a tuple with the TypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRestoreJobFileHashView) GetTypeNameOk() (*string, bool) {
-	if o == nil || o.TypeName == nil {
+	if o == nil || IsNil(o.TypeName) {
 		return nil, false
 	}
 	return o.TypeName, true
@@ -159,7 +162,7 @@ func (o *ApiRestoreJobFileHashView) GetTypeNameOk() (*string, bool) {
 
 // HasTypeName returns a boolean if a field has been set.
 func (o *ApiRestoreJobFileHashView) HasTypeName() bool {
-	if o != nil && o.TypeName != nil {
+	if o != nil && !IsNil(o.TypeName) {
 		return true
 	}
 
@@ -172,20 +175,20 @@ func (o *ApiRestoreJobFileHashView) SetTypeName(v string) {
 }
 
 func (o ApiRestoreJobFileHashView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FileName != nil {
-		toSerialize["fileName"] = o.FileName
-	}
-	if o.Hash != nil {
-		toSerialize["hash"] = o.Hash
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.TypeName != nil {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiRestoreJobFileHashView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: fileName is readOnly
+	// skip: hash is readOnly
+	// skip: links is readOnly
+	// skip: typeName is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiRestoreJobFileHashView struct {

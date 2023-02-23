@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the NDSTenantEndpointAuditView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NDSTenantEndpointAuditView{}
+
 // NDSTenantEndpointAuditView NDS tenant endpoint audit indicates when atlas auto-scaling cluster tier up or down.
 type NDSTenantEndpointAuditView struct {
 	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
@@ -66,7 +69,7 @@ func NewNDSTenantEndpointAuditViewWithDefaults() *NDSTenantEndpointAuditView {
 
 // GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetApiKeyId() string {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		var ret string
 		return ret
 	}
@@ -76,7 +79,7 @@ func (o *NDSTenantEndpointAuditView) GetApiKeyId() string {
 // GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || o.ApiKeyId == nil {
+	if o == nil || IsNil(o.ApiKeyId) {
 		return nil, false
 	}
 	return o.ApiKeyId, true
@@ -84,7 +87,7 @@ func (o *NDSTenantEndpointAuditView) GetApiKeyIdOk() (*string, bool) {
 
 // HasApiKeyId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasApiKeyId() bool {
-	if o != nil && o.ApiKeyId != nil {
+	if o != nil && !IsNil(o.ApiKeyId) {
 		return true
 	}
 
@@ -122,7 +125,7 @@ func (o *NDSTenantEndpointAuditView) SetCreated(v time.Time) {
 
 // GetEndpointId returns the EndpointId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetEndpointId() string {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		var ret string
 		return ret
 	}
@@ -132,7 +135,7 @@ func (o *NDSTenantEndpointAuditView) GetEndpointId() string {
 // GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetEndpointIdOk() (*string, bool) {
-	if o == nil || o.EndpointId == nil {
+	if o == nil || IsNil(o.EndpointId) {
 		return nil, false
 	}
 	return o.EndpointId, true
@@ -140,7 +143,7 @@ func (o *NDSTenantEndpointAuditView) GetEndpointIdOk() (*string, bool) {
 
 // HasEndpointId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasEndpointId() bool {
-	if o != nil && o.EndpointId != nil {
+	if o != nil && !IsNil(o.EndpointId) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *NDSTenantEndpointAuditView) SetEventTypeName(v NDSTenantEndpointAuditTy
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *NDSTenantEndpointAuditView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -196,7 +199,7 @@ func (o *NDSTenantEndpointAuditView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -234,7 +237,7 @@ func (o *NDSTenantEndpointAuditView) SetId(v string) {
 
 // GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetIsGlobalAdmin() bool {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		var ret bool
 		return ret
 	}
@@ -244,7 +247,7 @@ func (o *NDSTenantEndpointAuditView) GetIsGlobalAdmin() bool {
 // GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || o.IsGlobalAdmin == nil {
+	if o == nil || IsNil(o.IsGlobalAdmin) {
 		return nil, false
 	}
 	return o.IsGlobalAdmin, true
@@ -252,7 +255,7 @@ func (o *NDSTenantEndpointAuditView) GetIsGlobalAdminOk() (*bool, bool) {
 
 // HasIsGlobalAdmin returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasIsGlobalAdmin() bool {
-	if o != nil && o.IsGlobalAdmin != nil {
+	if o != nil && !IsNil(o.IsGlobalAdmin) {
 		return true
 	}
 
@@ -290,7 +293,7 @@ func (o *NDSTenantEndpointAuditView) SetLinks(v []Link) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -300,7 +303,7 @@ func (o *NDSTenantEndpointAuditView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -308,7 +311,7 @@ func (o *NDSTenantEndpointAuditView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -322,7 +325,7 @@ func (o *NDSTenantEndpointAuditView) SetOrgId(v string) {
 
 // GetProviderEndpointId returns the ProviderEndpointId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetProviderEndpointId() string {
-	if o == nil || o.ProviderEndpointId == nil {
+	if o == nil || IsNil(o.ProviderEndpointId) {
 		var ret string
 		return ret
 	}
@@ -332,7 +335,7 @@ func (o *NDSTenantEndpointAuditView) GetProviderEndpointId() string {
 // GetProviderEndpointIdOk returns a tuple with the ProviderEndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetProviderEndpointIdOk() (*string, bool) {
-	if o == nil || o.ProviderEndpointId == nil {
+	if o == nil || IsNil(o.ProviderEndpointId) {
 		return nil, false
 	}
 	return o.ProviderEndpointId, true
@@ -340,7 +343,7 @@ func (o *NDSTenantEndpointAuditView) GetProviderEndpointIdOk() (*string, bool) {
 
 // HasProviderEndpointId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasProviderEndpointId() bool {
-	if o != nil && o.ProviderEndpointId != nil {
+	if o != nil && !IsNil(o.ProviderEndpointId) {
 		return true
 	}
 
@@ -354,7 +357,7 @@ func (o *NDSTenantEndpointAuditView) SetProviderEndpointId(v string) {
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -364,7 +367,7 @@ func (o *NDSTenantEndpointAuditView) GetPublicKey() string {
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
 	return o.PublicKey, true
@@ -372,7 +375,7 @@ func (o *NDSTenantEndpointAuditView) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -386,7 +389,7 @@ func (o *NDSTenantEndpointAuditView) SetPublicKey(v string) {
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetRaw() Raw {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		var ret Raw
 		return ret
 	}
@@ -396,7 +399,7 @@ func (o *NDSTenantEndpointAuditView) GetRaw() Raw {
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetRawOk() (*Raw, bool) {
-	if o == nil || o.Raw == nil {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return o.Raw, true
@@ -404,7 +407,7 @@ func (o *NDSTenantEndpointAuditView) GetRawOk() (*Raw, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasRaw() bool {
-	if o != nil && o.Raw != nil {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -418,7 +421,7 @@ func (o *NDSTenantEndpointAuditView) SetRaw(v Raw) {
 
 // GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetRemoteAddress() string {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		var ret string
 		return ret
 	}
@@ -428,7 +431,7 @@ func (o *NDSTenantEndpointAuditView) GetRemoteAddress() string {
 // GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || o.RemoteAddress == nil {
+	if o == nil || IsNil(o.RemoteAddress) {
 		return nil, false
 	}
 	return o.RemoteAddress, true
@@ -436,7 +439,7 @@ func (o *NDSTenantEndpointAuditView) GetRemoteAddressOk() (*string, bool) {
 
 // HasRemoteAddress returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasRemoteAddress() bool {
-	if o != nil && o.RemoteAddress != nil {
+	if o != nil && !IsNil(o.RemoteAddress) {
 		return true
 	}
 
@@ -450,7 +453,7 @@ func (o *NDSTenantEndpointAuditView) SetRemoteAddress(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -460,7 +463,7 @@ func (o *NDSTenantEndpointAuditView) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -468,7 +471,7 @@ func (o *NDSTenantEndpointAuditView) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -482,7 +485,7 @@ func (o *NDSTenantEndpointAuditView) SetUserId(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *NDSTenantEndpointAuditView) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -492,7 +495,7 @@ func (o *NDSTenantEndpointAuditView) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSTenantEndpointAuditView) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -500,7 +503,7 @@ func (o *NDSTenantEndpointAuditView) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *NDSTenantEndpointAuditView) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -513,53 +516,33 @@ func (o *NDSTenantEndpointAuditView) SetUsername(v string) {
 }
 
 func (o NDSTenantEndpointAuditView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiKeyId != nil {
-		toSerialize["apiKeyId"] = o.ApiKeyId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if o.EndpointId != nil {
-		toSerialize["endpointId"] = o.EndpointId
-	}
-	if true {
-		toSerialize["eventTypeName"] = o.EventTypeName
-	}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IsGlobalAdmin != nil {
-		toSerialize["isGlobalAdmin"] = o.IsGlobalAdmin
-	}
-	if true {
-		toSerialize["links"] = o.Links
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.ProviderEndpointId != nil {
-		toSerialize["providerEndpointId"] = o.ProviderEndpointId
-	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if o.Raw != nil {
-		toSerialize["raw"] = o.Raw
-	}
-	if o.RemoteAddress != nil {
-		toSerialize["remoteAddress"] = o.RemoteAddress
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NDSTenantEndpointAuditView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiKeyId is readOnly
+	// skip: created is readOnly
+	// skip: endpointId is readOnly
+	toSerialize["eventTypeName"] = o.EventTypeName
+	// skip: groupId is readOnly
+	// skip: id is readOnly
+	// skip: isGlobalAdmin is readOnly
+	// skip: links is readOnly
+	// skip: orgId is readOnly
+	// skip: providerEndpointId is readOnly
+	// skip: publicKey is readOnly
+	if !IsNil(o.Raw) {
+		toSerialize["raw"] = o.Raw
+	}
+	// skip: remoteAddress is readOnly
+	// skip: userId is readOnly
+	// skip: username is readOnly
+	return toSerialize, nil
 }
 
 type NullableNDSTenantEndpointAuditView struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LiveMigrationRequestView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LiveMigrationRequestView{}
+
 // LiveMigrationRequestView struct for LiveMigrationRequestView
 type LiveMigrationRequestView struct {
 	// Unique 24-hexadecimal digit string that identifies the migration request.
@@ -45,7 +48,7 @@ func NewLiveMigrationRequestViewWithDefaults() *LiveMigrationRequestView {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *LiveMigrationRequestView) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *LiveMigrationRequestView) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationRequestView) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -63,7 +66,7 @@ func (o *LiveMigrationRequestView) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *LiveMigrationRequestView) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -172,23 +175,21 @@ func (o *LiveMigrationRequestView) SetSource(v Source) {
 }
 
 func (o LiveMigrationRequestView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["_id"] = o.Id
-	}
-	if true {
-		toSerialize["destination"] = o.Destination
-	}
-	if true {
-		toSerialize["dropEnabled"] = o.DropEnabled
-	}
-	if true {
-		toSerialize["migrationHosts"] = o.MigrationHosts
-	}
-	if true {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o LiveMigrationRequestView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: _id is readOnly
+	toSerialize["destination"] = o.Destination
+	toSerialize["dropEnabled"] = o.DropEnabled
+	toSerialize["migrationHosts"] = o.MigrationHosts
+	toSerialize["source"] = o.Source
+	return toSerialize, nil
 }
 
 type NullableLiveMigrationRequestView struct {

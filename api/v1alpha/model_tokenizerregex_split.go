@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenizerregexSplit type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenizerregexSplit{}
+
 // TokenizerregexSplit Tokenizer that splits tokens using a regular-expression based delimiter.
 type TokenizerregexSplit struct {
 	// Regular expression to match against.
@@ -88,14 +91,18 @@ func (o *TokenizerregexSplit) SetType(v string) {
 }
 
 func (o TokenizerregexSplit) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["pattern"] = o.Pattern
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenizerregexSplit) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["pattern"] = o.Pattern
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenizerregexSplit struct {

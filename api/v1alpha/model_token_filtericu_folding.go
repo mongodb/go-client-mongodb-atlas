@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFiltericuFolding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFiltericuFolding{}
+
 // TokenFiltericuFolding Filter that applies character folding from Unicode Technical Report #30.
 type TokenFiltericuFolding struct {
 	// Human-readable label that identifies this token filter type.
@@ -62,11 +65,17 @@ func (o *TokenFiltericuFolding) SetType(v string) {
 }
 
 func (o TokenFiltericuFolding) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFiltericuFolding) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFiltericuFolding struct {

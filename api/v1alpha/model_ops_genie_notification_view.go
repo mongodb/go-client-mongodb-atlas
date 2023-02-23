@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OpsGenieNotificationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OpsGenieNotificationView{}
+
 // OpsGenieNotificationView OpsGenie notification configuration for MongoDB Cloud to send information when an event triggers an alert condition.
 type OpsGenieNotificationView struct {
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
@@ -51,7 +54,7 @@ func NewOpsGenieNotificationViewWithDefaults() *OpsGenieNotificationView {
 
 // GetDelayMin returns the DelayMin field value if set, zero value otherwise.
 func (o *OpsGenieNotificationView) GetDelayMin() int32 {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		var ret int32
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *OpsGenieNotificationView) GetDelayMin() int32 {
 // GetDelayMinOk returns a tuple with the DelayMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OpsGenieNotificationView) GetDelayMinOk() (*int32, bool) {
-	if o == nil || o.DelayMin == nil {
+	if o == nil || IsNil(o.DelayMin) {
 		return nil, false
 	}
 	return o.DelayMin, true
@@ -69,7 +72,7 @@ func (o *OpsGenieNotificationView) GetDelayMinOk() (*int32, bool) {
 
 // HasDelayMin returns a boolean if a field has been set.
 func (o *OpsGenieNotificationView) HasDelayMin() bool {
-	if o != nil && o.DelayMin != nil {
+	if o != nil && !IsNil(o.DelayMin) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *OpsGenieNotificationView) SetDelayMin(v int32) {
 
 // GetIntervalMin returns the IntervalMin field value if set, zero value otherwise.
 func (o *OpsGenieNotificationView) GetIntervalMin() int32 {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *OpsGenieNotificationView) GetIntervalMin() int32 {
 // GetIntervalMinOk returns a tuple with the IntervalMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OpsGenieNotificationView) GetIntervalMinOk() (*int32, bool) {
-	if o == nil || o.IntervalMin == nil {
+	if o == nil || IsNil(o.IntervalMin) {
 		return nil, false
 	}
 	return o.IntervalMin, true
@@ -101,7 +104,7 @@ func (o *OpsGenieNotificationView) GetIntervalMinOk() (*int32, bool) {
 
 // HasIntervalMin returns a boolean if a field has been set.
 func (o *OpsGenieNotificationView) HasIntervalMin() bool {
-	if o != nil && o.IntervalMin != nil {
+	if o != nil && !IsNil(o.IntervalMin) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *OpsGenieNotificationView) SetIntervalMin(v int32) {
 
 // GetOpsGenieApiKey returns the OpsGenieApiKey field value if set, zero value otherwise.
 func (o *OpsGenieNotificationView) GetOpsGenieApiKey() string {
-	if o == nil || o.OpsGenieApiKey == nil {
+	if o == nil || IsNil(o.OpsGenieApiKey) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *OpsGenieNotificationView) GetOpsGenieApiKey() string {
 // GetOpsGenieApiKeyOk returns a tuple with the OpsGenieApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OpsGenieNotificationView) GetOpsGenieApiKeyOk() (*string, bool) {
-	if o == nil || o.OpsGenieApiKey == nil {
+	if o == nil || IsNil(o.OpsGenieApiKey) {
 		return nil, false
 	}
 	return o.OpsGenieApiKey, true
@@ -133,7 +136,7 @@ func (o *OpsGenieNotificationView) GetOpsGenieApiKeyOk() (*string, bool) {
 
 // HasOpsGenieApiKey returns a boolean if a field has been set.
 func (o *OpsGenieNotificationView) HasOpsGenieApiKey() bool {
-	if o != nil && o.OpsGenieApiKey != nil {
+	if o != nil && !IsNil(o.OpsGenieApiKey) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *OpsGenieNotificationView) SetOpsGenieApiKey(v string) {
 
 // GetOpsGenieRegion returns the OpsGenieRegion field value if set, zero value otherwise.
 func (o *OpsGenieNotificationView) GetOpsGenieRegion() string {
-	if o == nil || o.OpsGenieRegion == nil {
+	if o == nil || IsNil(o.OpsGenieRegion) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *OpsGenieNotificationView) GetOpsGenieRegion() string {
 // GetOpsGenieRegionOk returns a tuple with the OpsGenieRegion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OpsGenieNotificationView) GetOpsGenieRegionOk() (*string, bool) {
-	if o == nil || o.OpsGenieRegion == nil {
+	if o == nil || IsNil(o.OpsGenieRegion) {
 		return nil, false
 	}
 	return o.OpsGenieRegion, true
@@ -165,7 +168,7 @@ func (o *OpsGenieNotificationView) GetOpsGenieRegionOk() (*string, bool) {
 
 // HasOpsGenieRegion returns a boolean if a field has been set.
 func (o *OpsGenieNotificationView) HasOpsGenieRegion() bool {
-	if o != nil && o.OpsGenieRegion != nil {
+	if o != nil && !IsNil(o.OpsGenieRegion) {
 		return true
 	}
 
@@ -202,23 +205,29 @@ func (o *OpsGenieNotificationView) SetTypeName(v string) {
 }
 
 func (o OpsGenieNotificationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DelayMin != nil {
-		toSerialize["delayMin"] = o.DelayMin
-	}
-	if o.IntervalMin != nil {
-		toSerialize["intervalMin"] = o.IntervalMin
-	}
-	if o.OpsGenieApiKey != nil {
-		toSerialize["opsGenieApiKey"] = o.OpsGenieApiKey
-	}
-	if o.OpsGenieRegion != nil {
-		toSerialize["opsGenieRegion"] = o.OpsGenieRegion
-	}
-	if true {
-		toSerialize["typeName"] = o.TypeName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OpsGenieNotificationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DelayMin) {
+		toSerialize["delayMin"] = o.DelayMin
+	}
+	if !IsNil(o.IntervalMin) {
+		toSerialize["intervalMin"] = o.IntervalMin
+	}
+	if !IsNil(o.OpsGenieApiKey) {
+		toSerialize["opsGenieApiKey"] = o.OpsGenieApiKey
+	}
+	if !IsNil(o.OpsGenieRegion) {
+		toSerialize["opsGenieRegion"] = o.OpsGenieRegion
+	}
+	toSerialize["typeName"] = o.TypeName
+	return toSerialize, nil
 }
 
 type NullableOpsGenieNotificationView struct {

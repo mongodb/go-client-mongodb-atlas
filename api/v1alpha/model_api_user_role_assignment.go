@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiUserRoleAssignment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiUserRoleAssignment{}
+
 // ApiUserRoleAssignment struct for ApiUserRoleAssignment
 type ApiUserRoleAssignment struct {
 	// Unique 24-hexadecimal digit string that identifies the organization API key.
@@ -41,7 +44,7 @@ func NewApiUserRoleAssignmentWithDefaults() *ApiUserRoleAssignment {
 
 // GetApiUserId returns the ApiUserId field value if set, zero value otherwise.
 func (o *ApiUserRoleAssignment) GetApiUserId() string {
-	if o == nil || o.ApiUserId == nil {
+	if o == nil || IsNil(o.ApiUserId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ApiUserRoleAssignment) GetApiUserId() string {
 // GetApiUserIdOk returns a tuple with the ApiUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserRoleAssignment) GetApiUserIdOk() (*string, bool) {
-	if o == nil || o.ApiUserId == nil {
+	if o == nil || IsNil(o.ApiUserId) {
 		return nil, false
 	}
 	return o.ApiUserId, true
@@ -59,7 +62,7 @@ func (o *ApiUserRoleAssignment) GetApiUserIdOk() (*string, bool) {
 
 // HasApiUserId returns a boolean if a field has been set.
 func (o *ApiUserRoleAssignment) HasApiUserId() bool {
-	if o != nil && o.ApiUserId != nil {
+	if o != nil && !IsNil(o.ApiUserId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ApiUserRoleAssignment) SetApiUserId(v string) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *ApiUserRoleAssignment) GetRoles() []string {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ApiUserRoleAssignment) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiUserRoleAssignment) GetRolesOk() ([]string, bool) {
-	if o == nil || o.Roles == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
@@ -91,7 +94,7 @@ func (o *ApiUserRoleAssignment) GetRolesOk() ([]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ApiUserRoleAssignment) HasRoles() bool {
-	if o != nil && o.Roles != nil {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -104,14 +107,20 @@ func (o *ApiUserRoleAssignment) SetRoles(v []string) {
 }
 
 func (o ApiUserRoleAssignment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiUserId != nil {
-		toSerialize["apiUserId"] = o.ApiUserId
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiUserRoleAssignment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: apiUserId is readOnly
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
 }
 
 type NullableApiUserRoleAssignment struct {

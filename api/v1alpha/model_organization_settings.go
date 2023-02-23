@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OrganizationSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrganizationSettings{}
+
 // OrganizationSettings Collection of settings that configures the organization.
 type OrganizationSettings struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
@@ -43,7 +46,7 @@ func NewOrganizationSettingsWithDefaults() *OrganizationSettings {
 
 // GetApiAccessListRequired returns the ApiAccessListRequired field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetApiAccessListRequired() bool {
-	if o == nil || o.ApiAccessListRequired == nil {
+	if o == nil || IsNil(o.ApiAccessListRequired) {
 		var ret bool
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *OrganizationSettings) GetApiAccessListRequired() bool {
 // GetApiAccessListRequiredOk returns a tuple with the ApiAccessListRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationSettings) GetApiAccessListRequiredOk() (*bool, bool) {
-	if o == nil || o.ApiAccessListRequired == nil {
+	if o == nil || IsNil(o.ApiAccessListRequired) {
 		return nil, false
 	}
 	return o.ApiAccessListRequired, true
@@ -61,7 +64,7 @@ func (o *OrganizationSettings) GetApiAccessListRequiredOk() (*bool, bool) {
 
 // HasApiAccessListRequired returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasApiAccessListRequired() bool {
-	if o != nil && o.ApiAccessListRequired != nil {
+	if o != nil && !IsNil(o.ApiAccessListRequired) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *OrganizationSettings) SetApiAccessListRequired(v bool) {
 
 // GetMultiFactorAuthRequired returns the MultiFactorAuthRequired field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetMultiFactorAuthRequired() bool {
-	if o == nil || o.MultiFactorAuthRequired == nil {
+	if o == nil || IsNil(o.MultiFactorAuthRequired) {
 		var ret bool
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *OrganizationSettings) GetMultiFactorAuthRequired() bool {
 // GetMultiFactorAuthRequiredOk returns a tuple with the MultiFactorAuthRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationSettings) GetMultiFactorAuthRequiredOk() (*bool, bool) {
-	if o == nil || o.MultiFactorAuthRequired == nil {
+	if o == nil || IsNil(o.MultiFactorAuthRequired) {
 		return nil, false
 	}
 	return o.MultiFactorAuthRequired, true
@@ -93,7 +96,7 @@ func (o *OrganizationSettings) GetMultiFactorAuthRequiredOk() (*bool, bool) {
 
 // HasMultiFactorAuthRequired returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasMultiFactorAuthRequired() bool {
-	if o != nil && o.MultiFactorAuthRequired != nil {
+	if o != nil && !IsNil(o.MultiFactorAuthRequired) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *OrganizationSettings) SetMultiFactorAuthRequired(v bool) {
 
 // GetRestrictEmployeeAccess returns the RestrictEmployeeAccess field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetRestrictEmployeeAccess() bool {
-	if o == nil || o.RestrictEmployeeAccess == nil {
+	if o == nil || IsNil(o.RestrictEmployeeAccess) {
 		var ret bool
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *OrganizationSettings) GetRestrictEmployeeAccess() bool {
 // GetRestrictEmployeeAccessOk returns a tuple with the RestrictEmployeeAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationSettings) GetRestrictEmployeeAccessOk() (*bool, bool) {
-	if o == nil || o.RestrictEmployeeAccess == nil {
+	if o == nil || IsNil(o.RestrictEmployeeAccess) {
 		return nil, false
 	}
 	return o.RestrictEmployeeAccess, true
@@ -125,7 +128,7 @@ func (o *OrganizationSettings) GetRestrictEmployeeAccessOk() (*bool, bool) {
 
 // HasRestrictEmployeeAccess returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasRestrictEmployeeAccess() bool {
-	if o != nil && o.RestrictEmployeeAccess != nil {
+	if o != nil && !IsNil(o.RestrictEmployeeAccess) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *OrganizationSettings) SetRestrictEmployeeAccess(v bool) {
 }
 
 func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ApiAccessListRequired != nil {
-		toSerialize["apiAccessListRequired"] = o.ApiAccessListRequired
-	}
-	if o.MultiFactorAuthRequired != nil {
-		toSerialize["multiFactorAuthRequired"] = o.MultiFactorAuthRequired
-	}
-	if o.RestrictEmployeeAccess != nil {
-		toSerialize["restrictEmployeeAccess"] = o.RestrictEmployeeAccess
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OrganizationSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiAccessListRequired) {
+		toSerialize["apiAccessListRequired"] = o.ApiAccessListRequired
+	}
+	if !IsNil(o.MultiFactorAuthRequired) {
+		toSerialize["multiFactorAuthRequired"] = o.MultiFactorAuthRequired
+	}
+	if !IsNil(o.RestrictEmployeeAccess) {
+		toSerialize["restrictEmployeeAccess"] = o.RestrictEmployeeAccess
+	}
+	return toSerialize, nil
 }
 
 type NullableOrganizationSettings struct {

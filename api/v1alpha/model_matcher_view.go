@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MatcherView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MatcherView{}
+
 // MatcherView Rules to apply when comparing an target instance against this alert configuration.
 type MatcherView struct {
 	// Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations.
@@ -43,7 +46,7 @@ func NewMatcherViewWithDefaults() *MatcherView {
 
 // GetFieldName returns the FieldName field value if set, zero value otherwise.
 func (o *MatcherView) GetFieldName() string {
-	if o == nil || o.FieldName == nil {
+	if o == nil || IsNil(o.FieldName) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *MatcherView) GetFieldName() string {
 // GetFieldNameOk returns a tuple with the FieldName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MatcherView) GetFieldNameOk() (*string, bool) {
-	if o == nil || o.FieldName == nil {
+	if o == nil || IsNil(o.FieldName) {
 		return nil, false
 	}
 	return o.FieldName, true
@@ -61,7 +64,7 @@ func (o *MatcherView) GetFieldNameOk() (*string, bool) {
 
 // HasFieldName returns a boolean if a field has been set.
 func (o *MatcherView) HasFieldName() bool {
-	if o != nil && o.FieldName != nil {
+	if o != nil && !IsNil(o.FieldName) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *MatcherView) SetFieldName(v string) {
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *MatcherView) GetOperator() string {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *MatcherView) GetOperator() string {
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MatcherView) GetOperatorOk() (*string, bool) {
-	if o == nil || o.Operator == nil {
+	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
 	return o.Operator, true
@@ -93,7 +96,7 @@ func (o *MatcherView) GetOperatorOk() (*string, bool) {
 
 // HasOperator returns a boolean if a field has been set.
 func (o *MatcherView) HasOperator() bool {
-	if o != nil && o.Operator != nil {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *MatcherView) SetOperator(v string) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *MatcherView) GetValue() string {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *MatcherView) GetValue() string {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MatcherView) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -125,7 +128,7 @@ func (o *MatcherView) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *MatcherView) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *MatcherView) SetValue(v string) {
 }
 
 func (o MatcherView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FieldName != nil {
-		toSerialize["fieldName"] = o.FieldName
-	}
-	if o.Operator != nil {
-		toSerialize["operator"] = o.Operator
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MatcherView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FieldName) {
+		toSerialize["fieldName"] = o.FieldName
+	}
+	if !IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableMatcherView struct {

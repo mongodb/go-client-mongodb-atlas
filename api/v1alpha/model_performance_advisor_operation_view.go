@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PerformanceAdvisorOperationView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PerformanceAdvisorOperationView{}
+
 // PerformanceAdvisorOperationView struct for PerformanceAdvisorOperationView
 type PerformanceAdvisorOperationView struct {
 	// List that contains the search criteria that the query uses. To use the values in key-value pairs in these predicates requires **Project Data Access Read Only** permissions or greater. Otherwise, MongoDB Cloud redacts these values.
@@ -40,7 +43,7 @@ func NewPerformanceAdvisorOperationViewWithDefaults() *PerformanceAdvisorOperati
 
 // GetPredicates returns the Predicates field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOperationView) GetPredicates() []map[string]interface{} {
-	if o == nil || o.Predicates == nil {
+	if o == nil || IsNil(o.Predicates) {
 		var ret []map[string]interface{}
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *PerformanceAdvisorOperationView) GetPredicates() []map[string]interface
 // GetPredicatesOk returns a tuple with the Predicates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOperationView) GetPredicatesOk() ([]map[string]interface{}, bool) {
-	if o == nil || o.Predicates == nil {
+	if o == nil || IsNil(o.Predicates) {
 		return nil, false
 	}
 	return o.Predicates, true
@@ -58,7 +61,7 @@ func (o *PerformanceAdvisorOperationView) GetPredicatesOk() ([]map[string]interf
 
 // HasPredicates returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOperationView) HasPredicates() bool {
-	if o != nil && o.Predicates != nil {
+	if o != nil && !IsNil(o.Predicates) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *PerformanceAdvisorOperationView) SetPredicates(v []map[string]interface
 
 // GetStats returns the Stats field value if set, zero value otherwise.
 func (o *PerformanceAdvisorOperationView) GetStats() PerformanceAdvisorOpStatsView {
-	if o == nil || o.Stats == nil {
+	if o == nil || IsNil(o.Stats) {
 		var ret PerformanceAdvisorOpStatsView
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *PerformanceAdvisorOperationView) GetStats() PerformanceAdvisorOpStatsVi
 // GetStatsOk returns a tuple with the Stats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PerformanceAdvisorOperationView) GetStatsOk() (*PerformanceAdvisorOpStatsView, bool) {
-	if o == nil || o.Stats == nil {
+	if o == nil || IsNil(o.Stats) {
 		return nil, false
 	}
 	return o.Stats, true
@@ -90,7 +93,7 @@ func (o *PerformanceAdvisorOperationView) GetStatsOk() (*PerformanceAdvisorOpSta
 
 // HasStats returns a boolean if a field has been set.
 func (o *PerformanceAdvisorOperationView) HasStats() bool {
-	if o != nil && o.Stats != nil {
+	if o != nil && !IsNil(o.Stats) {
 		return true
 	}
 
@@ -103,14 +106,20 @@ func (o *PerformanceAdvisorOperationView) SetStats(v PerformanceAdvisorOpStatsVi
 }
 
 func (o PerformanceAdvisorOperationView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Predicates != nil {
-		toSerialize["predicates"] = o.Predicates
-	}
-	if o.Stats != nil {
-		toSerialize["stats"] = o.Stats
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PerformanceAdvisorOperationView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: predicates is readOnly
+	if !IsNil(o.Stats) {
+		toSerialize["stats"] = o.Stats
+	}
+	return toSerialize, nil
 }
 
 type NullablePerformanceAdvisorOperationView struct {

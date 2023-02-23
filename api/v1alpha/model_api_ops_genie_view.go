@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiOpsGenieView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiOpsGenieView{}
+
 // ApiOpsGenieView Details to integrate one Opsgenie account with one MongoDB Cloud project.
 type ApiOpsGenieView struct {
 	// Key that allows MongoDB Cloud to access your Opsgenie account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
@@ -71,7 +74,7 @@ func (o *ApiOpsGenieView) SetApiKey(v string) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ApiOpsGenieView) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *ApiOpsGenieView) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOpsGenieView) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -89,7 +92,7 @@ func (o *ApiOpsGenieView) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *ApiOpsGenieView) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *ApiOpsGenieView) SetRegion(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApiOpsGenieView) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -113,7 +116,7 @@ func (o *ApiOpsGenieView) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiOpsGenieView) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -121,7 +124,7 @@ func (o *ApiOpsGenieView) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ApiOpsGenieView) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -134,17 +137,23 @@ func (o *ApiOpsGenieView) SetType(v string) {
 }
 
 func (o ApiOpsGenieView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["apiKey"] = o.ApiKey
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiOpsGenieView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["apiKey"] = o.ApiKey
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableApiOpsGenieView struct {

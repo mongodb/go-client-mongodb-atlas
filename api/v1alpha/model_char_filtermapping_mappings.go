@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CharFiltermappingMappings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CharFiltermappingMappings{}
+
 // CharFiltermappingMappings Comma-separated list of mappings. A mapping indicates that one character or group of characters should be substituted for another, using the following format:  `<original> : <replacement>`
 type CharFiltermappingMappings struct {
 	AdditionalPropertiesField *string `json:"additionalProperties,omitempty"`
@@ -38,7 +41,7 @@ func NewCharFiltermappingMappingsWithDefaults() *CharFiltermappingMappings {
 
 // GetAdditionalPropertiesField returns the AdditionalPropertiesField field value if set, zero value otherwise.
 func (o *CharFiltermappingMappings) GetAdditionalPropertiesField() string {
-	if o == nil || o.AdditionalPropertiesField == nil {
+	if o == nil || IsNil(o.AdditionalPropertiesField) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *CharFiltermappingMappings) GetAdditionalPropertiesField() string {
 // GetAdditionalPropertiesFieldOk returns a tuple with the AdditionalPropertiesField field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CharFiltermappingMappings) GetAdditionalPropertiesFieldOk() (*string, bool) {
-	if o == nil || o.AdditionalPropertiesField == nil {
+	if o == nil || IsNil(o.AdditionalPropertiesField) {
 		return nil, false
 	}
 	return o.AdditionalPropertiesField, true
@@ -56,7 +59,7 @@ func (o *CharFiltermappingMappings) GetAdditionalPropertiesFieldOk() (*string, b
 
 // HasAdditionalPropertiesField returns a boolean if a field has been set.
 func (o *CharFiltermappingMappings) HasAdditionalPropertiesField() bool {
-	if o != nil && o.AdditionalPropertiesField != nil {
+	if o != nil && !IsNil(o.AdditionalPropertiesField) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CharFiltermappingMappings) SetAdditionalPropertiesField(v string) {
 }
 
 func (o CharFiltermappingMappings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AdditionalPropertiesField != nil {
-		toSerialize["additionalProperties"] = o.AdditionalPropertiesField
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CharFiltermappingMappings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdditionalPropertiesField) {
+		toSerialize["additionalProperties"] = o.AdditionalPropertiesField
+	}
+	return toSerialize, nil
 }
 
 type NullableCharFiltermappingMappings struct {

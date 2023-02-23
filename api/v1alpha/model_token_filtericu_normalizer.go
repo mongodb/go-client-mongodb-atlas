@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFiltericuNormalizer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFiltericuNormalizer{}
+
 // TokenFiltericuNormalizer Filter that normalizes tokens using a standard Unicode Normalization Mode.
 type TokenFiltericuNormalizer struct {
 	// Normalization form to apply.
@@ -45,7 +48,7 @@ func NewTokenFiltericuNormalizerWithDefaults() *TokenFiltericuNormalizer {
 
 // GetNormalizationForm returns the NormalizationForm field value if set, zero value otherwise.
 func (o *TokenFiltericuNormalizer) GetNormalizationForm() string {
-	if o == nil || o.NormalizationForm == nil {
+	if o == nil || IsNil(o.NormalizationForm) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *TokenFiltericuNormalizer) GetNormalizationForm() string {
 // GetNormalizationFormOk returns a tuple with the NormalizationForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenFiltericuNormalizer) GetNormalizationFormOk() (*string, bool) {
-	if o == nil || o.NormalizationForm == nil {
+	if o == nil || IsNil(o.NormalizationForm) {
 		return nil, false
 	}
 	return o.NormalizationForm, true
@@ -63,7 +66,7 @@ func (o *TokenFiltericuNormalizer) GetNormalizationFormOk() (*string, bool) {
 
 // HasNormalizationForm returns a boolean if a field has been set.
 func (o *TokenFiltericuNormalizer) HasNormalizationForm() bool {
-	if o != nil && o.NormalizationForm != nil {
+	if o != nil && !IsNil(o.NormalizationForm) {
 		return true
 	}
 
@@ -100,14 +103,20 @@ func (o *TokenFiltericuNormalizer) SetType(v string) {
 }
 
 func (o TokenFiltericuNormalizer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.NormalizationForm != nil {
-		toSerialize["normalizationForm"] = o.NormalizationForm
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFiltericuNormalizer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NormalizationForm) {
+		toSerialize["normalizationForm"] = o.NormalizationForm
+	}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFiltericuNormalizer struct {

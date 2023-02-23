@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ApiRoleAssignmentView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiRoleAssignmentView{}
+
 // ApiRoleAssignmentView MongoDB Cloud user's roles and the corresponding organization or project to which that role applies. Each role can apply to one organization or one project but not both.
 type ApiRoleAssignmentView struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or **orgId** but not both in the same request.
@@ -43,7 +46,7 @@ func NewApiRoleAssignmentViewWithDefaults() *ApiRoleAssignmentView {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *ApiRoleAssignmentView) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ApiRoleAssignmentView) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRoleAssignmentView) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -61,7 +64,7 @@ func (o *ApiRoleAssignmentView) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *ApiRoleAssignmentView) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ApiRoleAssignmentView) SetGroupId(v string) {
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ApiRoleAssignmentView) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ApiRoleAssignmentView) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRoleAssignmentView) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
+	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
 	return o.OrgId, true
@@ -93,7 +96,7 @@ func (o *ApiRoleAssignmentView) GetOrgIdOk() (*string, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *ApiRoleAssignmentView) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
+	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ApiRoleAssignmentView) SetOrgId(v string) {
 
 // GetRoleName returns the RoleName field value if set, zero value otherwise.
 func (o *ApiRoleAssignmentView) GetRoleName() string {
-	if o == nil || o.RoleName == nil {
+	if o == nil || IsNil(o.RoleName) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ApiRoleAssignmentView) GetRoleName() string {
 // GetRoleNameOk returns a tuple with the RoleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiRoleAssignmentView) GetRoleNameOk() (*string, bool) {
-	if o == nil || o.RoleName == nil {
+	if o == nil || IsNil(o.RoleName) {
 		return nil, false
 	}
 	return o.RoleName, true
@@ -125,7 +128,7 @@ func (o *ApiRoleAssignmentView) GetRoleNameOk() (*string, bool) {
 
 // HasRoleName returns a boolean if a field has been set.
 func (o *ApiRoleAssignmentView) HasRoleName() bool {
-	if o != nil && o.RoleName != nil {
+	if o != nil && !IsNil(o.RoleName) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *ApiRoleAssignmentView) SetRoleName(v string) {
 }
 
 func (o ApiRoleAssignmentView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GroupId != nil {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if o.OrgId != nil {
-		toSerialize["orgId"] = o.OrgId
-	}
-	if o.RoleName != nil {
-		toSerialize["roleName"] = o.RoleName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiRoleAssignmentView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GroupId) {
+		toSerialize["groupId"] = o.GroupId
+	}
+	if !IsNil(o.OrgId) {
+		toSerialize["orgId"] = o.OrgId
+	}
+	if !IsNil(o.RoleName) {
+		toSerialize["roleName"] = o.RoleName
+	}
+	return toSerialize, nil
 }
 
 type NullableApiRoleAssignmentView struct {

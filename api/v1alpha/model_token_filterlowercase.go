@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenFilterlowercase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenFilterlowercase{}
+
 // TokenFilterlowercase Filter that normalizes token text to lowercase.
 type TokenFilterlowercase struct {
 	// Human-readable label that identifies this token filter type.
@@ -62,11 +65,17 @@ func (o *TokenFilterlowercase) SetType(v string) {
 }
 
 func (o TokenFilterlowercase) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenFilterlowercase) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableTokenFilterlowercase struct {

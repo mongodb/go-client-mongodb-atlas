@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ApiBSONTimestampView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiBSONTimestampView{}
+
 // ApiBSONTimestampView BSON timestamp that indicates when the checkpoint token entry in the oplog occurred.
 type ApiBSONTimestampView struct {
 	// Date and time when the oplog recorded this database operation. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -42,7 +45,7 @@ func NewApiBSONTimestampViewWithDefaults() *ApiBSONTimestampView {
 
 // GetDate returns the Date field value if set, zero value otherwise.
 func (o *ApiBSONTimestampView) GetDate() time.Time {
-	if o == nil || o.Date == nil {
+	if o == nil || IsNil(o.Date) {
 		var ret time.Time
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ApiBSONTimestampView) GetDate() time.Time {
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiBSONTimestampView) GetDateOk() (*time.Time, bool) {
-	if o == nil || o.Date == nil {
+	if o == nil || IsNil(o.Date) {
 		return nil, false
 	}
 	return o.Date, true
@@ -60,7 +63,7 @@ func (o *ApiBSONTimestampView) GetDateOk() (*time.Time, bool) {
 
 // HasDate returns a boolean if a field has been set.
 func (o *ApiBSONTimestampView) HasDate() bool {
-	if o != nil && o.Date != nil {
+	if o != nil && !IsNil(o.Date) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ApiBSONTimestampView) SetDate(v time.Time) {
 
 // GetIncrement returns the Increment field value if set, zero value otherwise.
 func (o *ApiBSONTimestampView) GetIncrement() int32 {
-	if o == nil || o.Increment == nil {
+	if o == nil || IsNil(o.Increment) {
 		var ret int32
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ApiBSONTimestampView) GetIncrement() int32 {
 // GetIncrementOk returns a tuple with the Increment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiBSONTimestampView) GetIncrementOk() (*int32, bool) {
-	if o == nil || o.Increment == nil {
+	if o == nil || IsNil(o.Increment) {
 		return nil, false
 	}
 	return o.Increment, true
@@ -92,7 +95,7 @@ func (o *ApiBSONTimestampView) GetIncrementOk() (*int32, bool) {
 
 // HasIncrement returns a boolean if a field has been set.
 func (o *ApiBSONTimestampView) HasIncrement() bool {
-	if o != nil && o.Increment != nil {
+	if o != nil && !IsNil(o.Increment) {
 		return true
 	}
 
@@ -105,14 +108,18 @@ func (o *ApiBSONTimestampView) SetIncrement(v int32) {
 }
 
 func (o ApiBSONTimestampView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Date != nil {
-		toSerialize["date"] = o.Date
-	}
-	if o.Increment != nil {
-		toSerialize["increment"] = o.Increment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ApiBSONTimestampView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	// skip: date is readOnly
+	// skip: increment is readOnly
+	return toSerialize, nil
 }
 
 type NullableApiBSONTimestampView struct {
