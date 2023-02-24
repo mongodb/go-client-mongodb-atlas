@@ -77,7 +77,7 @@ type Organizations struct {
 type CreateOrganizationRequest struct {
 	APIKey     *APIKeyInput `json:"apiKey,omitempty"`
 	Name       string       `json:"name"`
-	OrgOwnerID string       `json:"orgOwnerId"`
+	OrgOwnerID *string      `json:"orgOwnerId,omitempty"`
 }
 
 // CreateOrganizationResponse struct for CreateOrganizationResponse.
