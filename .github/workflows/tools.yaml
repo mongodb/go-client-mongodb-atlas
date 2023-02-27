@@ -18,3 +18,10 @@ jobs:
         run: |
           npm install
           npm run ci
+      - working-directory: ./tools
+        run: |
+          make clean_and_generate
+      - name: Fail when generate introducing diff
+        run: |
+          (( $(git status --porcelain | wc -l) > 0 )) &&  exit 1
+        
