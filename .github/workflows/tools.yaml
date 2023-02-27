@@ -24,4 +24,10 @@ jobs:
       - name: Fail when generate introducing diff
         run: |
           (( $(git status --porcelain | wc -l) > 0 )) &&  exit 1
+      - name: Make sure that no breaking changes were introduced
+        run: | 
+          make v2-lint && make v2-test
+
+
+
         
