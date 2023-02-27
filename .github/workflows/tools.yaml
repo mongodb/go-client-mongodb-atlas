@@ -23,6 +23,7 @@ jobs:
           make clean_and_generate
       - name: Fail when generate introducing diff
         run: |
+          git diff | cat
           (( $(git status --porcelain | wc -l) > 0 )) &&  exit 1
       - name: Make sure that no breaking changes were introduced
         run: | 
