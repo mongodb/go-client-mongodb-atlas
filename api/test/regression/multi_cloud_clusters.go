@@ -128,8 +128,6 @@ func TestMultiCloudClustersModelRegression() {
 			Standard:          _string,
 			StandardSrv:       _string,
 		},
-		// TODO this should be removed as they are part of the response body.
-		// See: https://jira.mongodb.org/browse/CLOUDP-151153
 		CreateDate: nil,
 		Paused:     nil,
 		Links:      nil,
