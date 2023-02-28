@@ -23,8 +23,7 @@ jobs:
           make clean_and_generate
       - name: Fail when generate introducing diff
         run: |
-          git diff | cat
-          (( $(git status --porcelain | wc -l) > 0 )) &&  exit 1
+          git diff --exit-code
       - name: Make sure that no breaking changes were introduced
         run: | 
           make v2-lint && make v2-test
