@@ -1,4 +1,4 @@
-# Go API client	
+# Go API client
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://cloud.mongodb.com*

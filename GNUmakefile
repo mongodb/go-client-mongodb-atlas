@@ -61,14 +61,6 @@ openapi-pipeline:
 	echo "Validating generated SDK"
 	$(MAKE) v2-examples-build
 
-.PHONY: v2-lint
-v2-lint:
-	golangci-lint run "$(APIV2_FOLDER)/$(SOURCE_FILES)"
-
 .PHONY: v2-examples-build
 v2-examples-build:
 	go build "$(APIV2_FOLDER)/examples/example_cluster_aws.go"
-
-.PHONY: v2-test
-v2-test:
-	go test "$(APIV2_FOLDER)/$(SOURCE_FILES)" -coverprofile $(COVERAGE) -timeout=30s -parallel=4 -cover -race

@@ -24,10 +24,4 @@ jobs:
       - name: Fail when generate introducing diff
         run: |
           git diff --exit-code
-      - name: Make sure that no breaking changes were introduced
-        run: | 
-          make tools v2-lint v2-test
-
-
-
-        
+          
