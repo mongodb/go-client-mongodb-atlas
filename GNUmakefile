@@ -53,7 +53,7 @@ check-version:
 	scripts/check-version.sh "$(TAG)"
 
 .PHONY: openapi-pipeline
-openapi-pipeline: tools
+openapi-pipeline:
 	echo "Running OpenAPI Generation and Validation process"
 	$(MAKE) -C tools clean_client
 	echo "Running client generation"

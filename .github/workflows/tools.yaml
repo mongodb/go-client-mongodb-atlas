@@ -26,7 +26,7 @@ jobs:
           git diff --exit-code
       - name: Make sure that no breaking changes were introduced
         run: | 
-          make v2-lint && make v2-test
+          make tools v2-lint v2-test
 
 
 
