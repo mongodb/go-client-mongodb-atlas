@@ -36,3 +36,12 @@ We use mustache comments to mark templates as modified:
 
 - `{{! X-XGEN-CUSTOM }}` - usually present at the top of the file - means that the whole file is currently customized.
 - `{{! X-XGEN-MODIFIED }}` - is put into existing templates to note areas in the code that were customized.
+
+#### Contributing
+
+We need to regenerate our SDK if changes in tools will affect the generated clients.
+PR based checks will verify if changes are up to date.
+
+```
+make clean_and_generate
+```
