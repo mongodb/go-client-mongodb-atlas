@@ -1,11 +1,10 @@
+## Note this workflow is replicated to the master branch
+## When editing please consider updating master branch with the same changes.
 name: Generate Client
 on:
  push:
   branches:
     - sdkv2
- workflow_dispatch:
- schedule:
-   - cron: "0 8 * * MON-FRI"
 
 jobs:
   generate-client:
