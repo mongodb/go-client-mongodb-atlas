@@ -21,7 +21,6 @@ import (
 	"time"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 const ipOrgID = "1234567890abcdefghij"
@@ -93,7 +92,7 @@ func TestFederatedSettingsIdentityProviderOp_List(t *testing.T) {
 				},
 				RequestBinding:             "HTTP-POST",
 				ResponseSignatureAlgorithm: "SHA-256",
-				SsoDebugEnabled:            pointy.Bool(true),
+				SsoDebugEnabled:            pointer(true),
 				SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
 				Status:                     "INACTIVE"},
 		}
@@ -157,7 +156,7 @@ func TestFederatedSettingsIdentityProviderOp_Get(t *testing.T) {
 		OktaIdpID:                  "1234567890abcdefghij",
 		RequestBinding:             "HTTP-POST",
 		ResponseSignatureAlgorithm: "SHA-256",
-		SsoDebugEnabled:            pointy.Bool(true),
+		SsoDebugEnabled:            pointer(true),
 		SsoURL:                     "https://123456789000.us.provider.com/samlp/12345678901234567890123456789012",
 		Status:                     "INACTIVE",
 	}

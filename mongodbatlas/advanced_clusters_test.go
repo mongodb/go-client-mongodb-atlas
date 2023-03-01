@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -254,11 +253,11 @@ func TestAdvancedClusters_List(t *testing.T) {
 							{
 								AnalyticsAutoScaling: &AdvancedAutoScaling{
 									DiskGB: &DiskGB{
-										Enabled: pointy.Bool(true),
+										Enabled: pointer(true),
 									},
 									Compute: &Compute{
-										Enabled:          pointy.Bool(true),
-										ScaleDownEnabled: pointy.Bool(false),
+										Enabled:          pointer(true),
+										ScaleDownEnabled: pointer(false),
 										MinInstanceSize:  "M10",
 										MaxInstanceSize:  "M20",
 									},
@@ -527,7 +526,7 @@ func TestAdvancedClusters_Get(t *testing.T) {
 		Paused:                       &paused,
 		PitEnabled:                   &pitEnabled,
 		StateName:                    "CREATING",
-		TerminationProtectionEnabled: pointy.Bool(false),
+		TerminationProtectionEnabled: pointer(false),
 		VersionReleaseSystem:         "LTS",
 		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{

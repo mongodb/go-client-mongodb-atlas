@@ -640,3 +640,7 @@ func parseVersionInfo(s string) *ServiceVersion {
 func (resp *Response) ServiceVersion() *ServiceVersion {
 	return parseVersionInfo(resp.Header.Get("X-MongoDB-Service-Version"))
 }
+
+func pointer[T any](x T) *T {
+	return &x
+}

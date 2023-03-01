@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestClusters_ListClusters(t *testing.T) {
@@ -194,14 +193,14 @@ func TestClusters_ListClusters(t *testing.T) {
 
 	cluster1 := Cluster{
 		AutoScaling: &AutoScaling{
-			DiskGBEnabled: pointy.Bool(true),
+			DiskGBEnabled: pointer(true),
 			Compute: &Compute{
-				Enabled:          pointy.Bool(true),
-				ScaleDownEnabled: pointy.Bool(true),
+				Enabled:          pointer(true),
+				ScaleDownEnabled: pointer(true),
 			},
 		},
-		BackupEnabled: pointy.Bool(true),
-		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		BackupEnabled: pointer(true),
+		BiConnector:   &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
 		ConnectionStrings: &ConnectionStrings{
 			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
@@ -226,7 +225,7 @@ func TestClusters_ListClusters(t *testing.T) {
 			},
 		},
 
-		DiskSizeGB:               pointy.Float64(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  "5356823b3794de37132bb7b",
 		MongoDBVersion:           "3.4.9",
@@ -234,12 +233,12 @@ func TestClusters_ListClusters(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     "AppData",
-		NumShards:                pointy.Int64(1),
-		Paused:                   pointy.Bool(false),
+		NumShards:                pointer(int64(1)),
+		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointy.Int64(1320),
-			EncryptEBSVolume: pointy.Bool(false),
+			DiskIOPS:         pointer(int64(1320)),
+			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling: &AutoScaling{
@@ -249,13 +248,13 @@ func TestClusters_ListClusters(t *testing.T) {
 				},
 			},
 		},
-		ReplicationFactor: pointy.Int64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointy.Int64(3),
-				Priority:       pointy.Int64(7),
-				ReadOnlyNodes:  pointy.Int64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -353,12 +352,12 @@ func TestClusters_Create(t *testing.T) {
 
 	createRequest := &Cluster{
 		ID: "1",
-		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
-			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
-		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
+			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
+		BackupEnabled:            pointer(true),
+		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointy.Float64(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -366,23 +365,23 @@ func TestClusters_Create(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     "AppData",
-		NumShards:                pointy.Int64(1),
-		Paused:                   pointy.Bool(false),
+		NumShards:                pointer(int64(1)),
+		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointy.Int64(1320),
-			EncryptEBSVolume: pointy.Bool(false),
+			DiskIOPS:         pointer(int64(1320)),
+			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M10", MaxInstanceSize: "M60"}},
 		},
-		ReplicationFactor: pointy.Int64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointy.Int64(3),
-				Priority:       pointy.Int64(7),
-				ReadOnlyNodes:  pointy.Int64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -536,12 +535,12 @@ func TestClusters_Update(t *testing.T) {
 
 	updateRequest := &Cluster{
 		ID: "1",
-		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
-			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
-		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
+			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
+		BackupEnabled:            pointer(true),
+		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointy.Float64(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -549,23 +548,23 @@ func TestClusters_Update(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointy.Int64(1),
-		Paused:                   pointy.Bool(false),
+		NumShards:                pointer(int64(1)),
+		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointy.Int64(1320),
-			EncryptEBSVolume: pointy.Bool(false),
+			DiskIOPS:         pointer(int64(1320)),
+			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
 		},
-		ReplicationFactor: pointy.Int64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointy.Int64(3),
-				Priority:       pointy.Int64(7),
-				ReadOnlyNodes:  pointy.Int64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -733,14 +732,14 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 	updateRequest := &ProcessArgs{
 		DefaultReadConcern:               defaultReadConcern,
 		DefaultWriteConcern:              defaultWriteConcern,
-		FailIndexKeyTooLong:              pointy.Bool(false),
-		JavascriptEnabled:                pointy.Bool(false),
+		FailIndexKeyTooLong:              pointer(false),
+		JavascriptEnabled:                pointer(false),
 		MinimumEnabledTLSProtocol:        tlsProtocol,
-		NoTableScan:                      pointy.Bool(true),
-		OplogSizeMB:                      pointy.Int64(2000),
-		OplogMinRetentionHours:           pointy.Float64(100),
-		SampleSizeBIConnector:            pointy.Int64(5000),
-		SampleRefreshIntervalBIConnector: pointy.Int64(300),
+		NoTableScan:                      pointer(true),
+		OplogSizeMB:                      pointer(int64(2000)),
+		OplogMinRetentionHours:           pointer(100.0),
+		SampleSizeBIConnector:            pointer(int64(5000)),
+		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -796,8 +795,8 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		t.Errorf("expected tlsProtocol '%s', received '%s'", tlsProtocol, tls)
 	}
 
-	if jsEnabled := processArgs.JavascriptEnabled; pointy.BoolValue(jsEnabled, false) != false {
-		t.Errorf("expected javascriptEnabled '%t', received '%t'", pointy.BoolValue(jsEnabled, false), false)
+	if jsEnabled := processArgs.JavascriptEnabled; *jsEnabled != false {
+		t.Errorf("expected javascriptEnabled '%t', received '%t'", *jsEnabled, false)
 	}
 }
 
@@ -828,13 +827,13 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 	expected := &ProcessArgs{
 		DefaultReadConcern:               "available",
 		DefaultWriteConcern:              "1",
-		FailIndexKeyTooLong:              pointy.Bool(false),
-		JavascriptEnabled:                pointy.Bool(false),
+		FailIndexKeyTooLong:              pointer(false),
+		JavascriptEnabled:                pointer(false),
 		MinimumEnabledTLSProtocol:        "TLS1_2",
-		NoTableScan:                      pointy.Bool(true),
-		OplogSizeMB:                      pointy.Int64(2000),
-		SampleSizeBIConnector:            pointy.Int64(5000),
-		SampleRefreshIntervalBIConnector: pointy.Int64(300),
+		NoTableScan:                      pointer(true),
+		OplogSizeMB:                      pointer(int64(2000)),
+		SampleSizeBIConnector:            pointer(int64(5000)),
+		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 	}
 
 	if diff := deep.Equal(processArgs, expected); diff != nil {
@@ -931,9 +930,9 @@ func TestClusters_Get(t *testing.T) {
 
 	expected := &Cluster{
 		ID:            "1",
-		AutoScaling:   &AutoScaling{DiskGBEnabled: pointy.Bool(true)},
-		BackupEnabled: pointy.Bool(true),
-		BiConnector:   &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		AutoScaling:   &AutoScaling{DiskGBEnabled: pointer(true)},
+		BackupEnabled: pointer(true),
+		BiConnector:   &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:   "REPLICASET",
 		ConnectionStrings: &ConnectionStrings{
 			Standard:          "mongodb://cluster0-shard-00-00-auylw.mongodb.net:27017,cluster0-shard-00-01-auylw.mongodb.net:27017,cluster0-shard-00-02-auylw.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0",
@@ -957,7 +956,7 @@ func TestClusters_Get(t *testing.T) {
 				},
 			},
 		},
-		DiskSizeGB:               pointy.Float64(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -965,28 +964,28 @@ func TestClusters_Get(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointy.Int64(1),
-		Paused:                   pointy.Bool(false),
-		PitEnabled:               pointy.Bool(false),
+		NumShards:                pointer(int64(1)),
+		Paused:                   pointer(false),
+		PitEnabled:               pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointy.Int64(1320),
-			EncryptEBSVolume: pointy.Bool(false),
+			DiskIOPS:         pointer(int64(1320)),
+			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 		},
-		ReplicationFactor: pointy.Int64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointy.Int64(3),
-				Priority:       pointy.Int64(7),
-				ReadOnlyNodes:  pointy.Int64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:                   "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 		StateName:                    "IDLE",
-		TerminationProtectionEnabled: pointy.Bool(false),
+		TerminationProtectionEnabled: pointer(false),
 		VersionReleaseSystem:         "LTS",
 	}
 
@@ -1293,12 +1292,12 @@ func TestClusters_Upgrade(t *testing.T) {
 
 	upgradeRequest := &Cluster{
 		ID: "1",
-		AutoScaling: &AutoScaling{DiskGBEnabled: pointy.Bool(true),
-			Compute: &Compute{Enabled: pointy.Bool(true), ScaleDownEnabled: pointy.Bool(true)}},
-		BackupEnabled:            pointy.Bool(true),
-		BiConnector:              &BiConnector{Enabled: pointy.Bool(false), ReadPreference: "secondary"},
+		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
+			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
+		BackupEnabled:            pointer(true),
+		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointy.Float64(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -1306,23 +1305,23 @@ func TestClusters_Upgrade(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointy.Int64(1),
-		Paused:                   pointy.Bool(false),
+		NumShards:                pointer(int64(1)),
+		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointy.Int64(1320),
-			EncryptEBSVolume: pointy.Bool(false),
+			DiskIOPS:         pointer(int64(1320)),
+			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
 		},
-		ReplicationFactor: pointy.Int64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointy.Int64(3),
-				Priority:       pointy.Int64(7),
-				ReadOnlyNodes:  pointy.Int64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",

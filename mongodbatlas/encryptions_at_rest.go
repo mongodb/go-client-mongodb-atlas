@@ -18,8 +18,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-
-	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -179,9 +177,9 @@ func (s *EncryptionsAtRestServiceOp) Delete(ctx context.Context, groupID string)
 	}
 
 	createRequest := EncryptionAtRest{
-		AwsKms:         AwsKms{Enabled: pointy.Bool(false)},
-		AzureKeyVault:  AzureKeyVault{Enabled: pointy.Bool(false)},
-		GoogleCloudKms: GoogleCloudKms{Enabled: pointy.Bool(false)},
+		AwsKms:         AwsKms{Enabled: pointer(false)},
+		AzureKeyVault:  AzureKeyVault{Enabled: pointer(false)},
+		GoogleCloudKms: GoogleCloudKms{Enabled: pointer(false)},
 	}
 
 	path := fmt.Sprintf(encryptionsAtRestBasePath, groupID)

@@ -22,7 +22,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestPrivateEndpointDeprecated_Create(t *testing.T) {
@@ -225,7 +224,7 @@ func TestPrivateEndpointDeprecated_AddOneInterfaceEndpoint(t *testing.T) {
 	expected := &InterfaceEndpointConnectionDeprecated{
 		ID:               "vpce-08fb7e9319909ec7b",
 		ConnectionStatus: "PENDING",
-		DeleteRequested:  pointy.Bool(false),
+		DeleteRequested:  pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -258,7 +257,7 @@ func TestPrivateEndpointsDeprecated_GetOneInterfaceEndpoint(t *testing.T) {
 	expected := &InterfaceEndpointConnectionDeprecated{
 		ID:               "vpce-08fb7e9319909ec7b",
 		ConnectionStatus: "PENDING",
-		DeleteRequested:  pointy.Bool(false),
+		DeleteRequested:  pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {

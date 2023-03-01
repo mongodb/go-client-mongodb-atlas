@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestProject_GetAllProjects(t *testing.T) {
@@ -240,7 +239,7 @@ func TestProject_Create(t *testing.T) {
 		},
 		Name:                      "ProjectFoobar",
 		OrgID:                     "5a0a1e7e0f2912c554080adc",
-		WithDefaultAlertsSettings: pointy.Bool(true),
+		WithDefaultAlertsSettings: pointer(true),
 	}
 
 	if diff := deep.Equal(project, expected); diff != nil {

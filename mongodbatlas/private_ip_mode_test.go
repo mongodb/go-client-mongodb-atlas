@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestPrivateIPMode_Get(t *testing.T) {
@@ -43,7 +42,7 @@ func TestPrivateIPMode_Get(t *testing.T) {
 	}
 
 	expected := &PrivateIPMode{
-		Enabled: pointy.Bool(true),
+		Enabled: pointer(true),
 	}
 
 	if diff := deep.Equal(privateIPMode, expected); diff != nil {
@@ -58,7 +57,7 @@ func TestPrivateIPMode_Update(t *testing.T) {
 	groupID := "1"
 
 	updateRequest := &PrivateIPMode{
-		Enabled: pointy.Bool(true),
+		Enabled: pointer(true),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/"+privateIPModePath, groupID), func(w http.ResponseWriter, r *http.Request) {
@@ -90,7 +89,7 @@ func TestPrivateIPMode_Update(t *testing.T) {
 		t.Fatalf("PrivateIPMode.Update returned error: %v", err)
 	}
 
-	if enabled := pointy.BoolValue(privateIPMode.Enabled, false); !enabled {
-		t.Errorf("expected privateIPMode '%t', received '%t'", true, enabled)
+	if enabled := privateIPMode.Enabled; !*enabled {
+		t.Errorf("expected privateIPMode '%t', received '%v'", true, enabled)
 	}
 }

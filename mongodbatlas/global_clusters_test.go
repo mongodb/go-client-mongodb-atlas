@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestGlobalClusters_Get(t *testing.T) {
@@ -89,10 +88,10 @@ func TestGlobalClusters_Get(t *testing.T) {
 				Collection:             "zips",
 				CustomShardKey:         "city",
 				Db:                     "mydata",
-				IsCustomShardKeyHashed: pointy.Bool(true),
-				IsShardKeyUnique:       pointy.Bool(true),
+				IsCustomShardKeyHashed: pointer(true),
+				IsShardKeyUnique:       pointer(true),
 				NumInitialChunks:       4,
-				PresplitHashedZones:    pointy.Bool(true),
+				PresplitHashedZones:    pointer(true),
 			}, {
 				Collection:     "stores",
 				CustomShardKey: "store_number",
@@ -117,10 +116,10 @@ func TestGlobalClusters_AddManagedNamespace(t *testing.T) {
 		Db:                     "mydata",
 		Collection:             "publishers",
 		CustomShardKey:         "city",
-		IsCustomShardKeyHashed: pointy.Bool(true),
-		IsShardKeyUnique:       pointy.Bool(true),
+		IsCustomShardKeyHashed: pointer(true),
+		IsShardKeyUnique:       pointer(true),
 		NumInitialChunks:       4,
-		PresplitHashedZones:    pointy.Bool(true),
+		PresplitHashedZones:    pointer(true),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters/%s/globalWrites/managedNamespaces", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {

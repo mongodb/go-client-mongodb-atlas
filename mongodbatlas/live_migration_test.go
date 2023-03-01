@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestLiveMigration_CreateLinkToken(t *testing.T) {
@@ -86,13 +85,13 @@ func TestLiveMigration_CreateValidation(t *testing.T) {
 			GroupID:               "9b43a5b329223c3a1591a678",
 			Username:              "example",
 			Password:              "string",
-			SSL:                   pointy.Bool(true),
+			SSL:                   pointer(true),
 			CACertificatePath:     "/path/to/ca",
-			ManagedAuthentication: pointy.Bool(false),
+			ManagedAuthentication: pointer(false),
 		},
 		Destination:    &Destination{ClusterName: "exampleClusterB", GroupID: "e01c9427f054fe80745f3f6c"},
 		MigrationHosts: []string{"vm001.example.com"},
-		DropEnabled:    pointy.Bool(true),
+		DropEnabled:    pointer(true),
 	}
 
 	response, _, err := client.LiveMigration.CreateValidation(ctx, groupID, body)
@@ -162,13 +161,13 @@ func TestLiveMigration_Create(t *testing.T) {
 			GroupID:               "9b43a5b329223c3a1591a678",
 			Username:              "example",
 			Password:              "string",
-			SSL:                   pointy.Bool(true),
+			SSL:                   pointer(true),
 			CACertificatePath:     "/path/to/ca",
-			ManagedAuthentication: pointy.Bool(false),
+			ManagedAuthentication: pointer(false),
 		},
 		Destination:    &Destination{ClusterName: "exampleClusterB", GroupID: "e01c9427f054fe80745f3f6c"},
 		MigrationHosts: []string{"vm001.example.com"},
-		DropEnabled:    pointy.Bool(true),
+		DropEnabled:    pointer(true),
 	}
 
 	response, _, err := client.LiveMigration.Create(ctx, groupID, body)
@@ -210,7 +209,7 @@ func TestLiveMigration_Get(t *testing.T) {
 		ID:              "a659ce44c03ca1e348b1e992",
 		Status:          "PENDING",
 		MigrationHosts:  []string{"vm001.example.com"},
-		ReadyForCutover: pointy.Bool(false),
+		ReadyForCutover: pointer(false),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {

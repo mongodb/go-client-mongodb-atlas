@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestEncryptionsAtRest_Create(t *testing.T) {
@@ -31,7 +30,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 	createRequest := &EncryptionAtRest{
 		GroupID: "6d2065c687d9d64ae7acdg41",
 		AwsKms: AwsKms{
-			Enabled:             pointy.Bool(true),
+			Enabled:             pointer(true),
 			AccessKeyID:         "AKIAIOSFODNN7EXAMPLE",
 			SecretAccessKey:     "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
 			CustomerMasterKeyID: "030gce02-586d-48d2-a966-05ea954fde0g",
@@ -39,7 +38,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 			RoleID:              "5f232b94af0a6b41747bcc2d",
 		},
 		AzureKeyVault: AzureKeyVault{
-			Enabled:           pointy.Bool(true),
+			Enabled:           pointer(true),
 			ClientID:          "g54f9e2-89e3-40fd-8188-EXAMPLEID",
 			AzureEnvironment:  Azure,
 			SubscriptionID:    "0ec944e3-g725-44f9-a147-EXAMPLEID",
@@ -50,7 +49,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 			TenantID:          "e8e4b6ba-ff32-4c88-a9af-EXAMPLEID",
 		},
 		GoogleCloudKms: GoogleCloudKms{
-			Enabled:              pointy.Bool(true),
+			Enabled:              pointer(true),
 			ServiceAccountKey:    "{\"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}",
 			KeyVersionResourceID: "projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1",
 		},
@@ -127,15 +126,15 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 
 	expected := &EncryptionAtRest{
 		AwsKms: AwsKms{
-			Enabled:             pointy.Bool(true),
+			Enabled:             pointer(true),
 			AccessKeyID:         "AKIAIOSFODNN7EXAMPLE",
 			CustomerMasterKeyID: "030gce02-586d-48d2-a966-05ea954fde0g",
 			Region:              "US_EAST_1",
 			RoleID:              "5f232b94af0a6b41747bcc2d",
-			Valid:               pointy.Bool(true),
+			Valid:               pointer(true),
 		},
 		AzureKeyVault: AzureKeyVault{
-			Enabled:           pointy.Bool(true),
+			Enabled:           pointer(true),
 			ClientID:          "g54f9e2-89e3-40fd-8188-EXAMPLEID",
 			AzureEnvironment:  "AZURE",
 			SubscriptionID:    "0ec944e3-g725-44f9-a147-EXAMPLEID",
@@ -145,7 +144,7 @@ func TestEncryptionsAtRest_Create(t *testing.T) {
 			TenantID:          "e8e4b6ba-ff32-4c88-a9af-dc17efegdf63",
 		},
 		GoogleCloudKms: GoogleCloudKms{
-			Enabled:              pointy.Bool(true),
+			Enabled:              pointer(true),
 			KeyVersionResourceID: "projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1",
 		},
 	}
@@ -196,15 +195,15 @@ func TestEncryptionsAtRest_Get(t *testing.T) {
 
 	expected := &EncryptionAtRest{
 		AwsKms: AwsKms{
-			Enabled:             pointy.Bool(true),
+			Enabled:             pointer(true),
 			AccessKeyID:         "AKIAIOSFODNN7EXAMPLE",
 			CustomerMasterKeyID: "030gce02-586d-48d2-a966-05ea954fde0g",
 			Region:              "US_EAST_1",
 			RoleID:              "5f232b94af0a6b41747bcc2d",
-			Valid:               pointy.Bool(true),
+			Valid:               pointer(true),
 		},
 		AzureKeyVault: AzureKeyVault{
-			Enabled:           pointy.Bool(true),
+			Enabled:           pointer(true),
 			AzureEnvironment:  "AZURE",
 			ClientID:          "g54f9e2-89e3-40fd-8188-EXAMPLEID",
 			KeyIdentifier:     "https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86",
@@ -214,7 +213,7 @@ func TestEncryptionsAtRest_Get(t *testing.T) {
 			TenantID:          "e8e4b6ba-ff32-4c88-a9af-EXAMPLEID",
 		},
 		GoogleCloudKms: GoogleCloudKms{
-			Enabled:              pointy.Bool(true),
+			Enabled:              pointer(true),
 			KeyVersionResourceID: "projects/my-project/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1",
 		},
 	}

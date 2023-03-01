@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestSearch_ListIndexes(t *testing.T) {
@@ -443,7 +442,7 @@ func TestSearch_ListAnalyzers(t *testing.T) {
 	expected := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Int(32),
+			MaxTokenLength: pointer(32),
 			Name:           "my_new_analyzer",
 		},
 		{
@@ -483,9 +482,9 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 	request := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Int(32),
+			MaxTokenLength: pointer(32),
 			Name:           "my_new_analyzer",
-			IgnoreCase:     pointy.Bool(true),
+			IgnoreCase:     pointer(true),
 		},
 		{
 			BaseAnalyzer: "lucene.english",
@@ -502,9 +501,9 @@ func TestSearch_UpdateAllAnalyzers(t *testing.T) {
 	expected := []*SearchAnalyzer{
 		{
 			BaseAnalyzer:   "lucene.standard",
-			MaxTokenLength: pointy.Int(32),
+			MaxTokenLength: pointer(32),
 			Name:           "my_new_analyzer",
-			IgnoreCase:     pointy.Bool(true),
+			IgnoreCase:     pointer(true),
 		},
 		{
 			BaseAnalyzer: "lucene.english",

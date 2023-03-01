@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 const (
@@ -178,7 +177,7 @@ func TestServerlessInstances_Get(t *testing.T) {
 		Name:                         "test1",
 		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
 		StateName:                    "IDLE",
-		TerminationProtectionEnabled: pointy.Bool(false),
+		TerminationProtectionEnabled: pointer(false),
 		ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
 		CreateDate:                   "2021-06-25T21:32:06Z",
 		Links: []*Link{
@@ -293,8 +292,8 @@ func TestServerlessInstances_Update(t *testing.T) {
 	})
 
 	bodyParam := &ServerlessUpdateRequestParams{
-		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
-		TerminationProtectionEnabled: pointy.Bool(true),
+		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
+		TerminationProtectionEnabled: pointer(true),
 	}
 
 	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
@@ -311,8 +310,8 @@ func TestServerlessInstances_Update(t *testing.T) {
 		StateName:                    "IDLE",
 		ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
 		CreateDate:                   "2021-06-25T21:31:10Z",
-		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointy.Bool(true)},
-		TerminationProtectionEnabled: pointy.Bool(true),
+		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
+		TerminationProtectionEnabled: pointer(true),
 		Links: []*Link{
 			{
 				Rel:  "self",

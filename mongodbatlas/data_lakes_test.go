@@ -22,7 +22,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestDataLakes_List(t *testing.T) {
@@ -139,7 +138,7 @@ func TestDataLakes_List(t *testing.T) {
 								Pipeline: "my.pipeline",
 							},
 						},
-						MaxWildcardCollections: pointy.Int64(92),
+						MaxWildcardCollections: pointer(int64(92)),
 					},
 				},
 				Stores: []DataLakeStore{
@@ -150,7 +149,7 @@ func TestDataLakes_List(t *testing.T) {
 						Bucket:                   "datacenter-alpha",
 						Prefix:                   "/metrics",
 						Delimiter:                "/",
-						IncludeTags:              pointy.Bool(false),
+						IncludeTags:              pointer(false),
 						AdditionalStorageClasses: []string{"STANDARD_IA"},
 					},
 				},

@@ -20,7 +20,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestProjects_GetProjectSettings(t *testing.T) {
@@ -44,11 +43,11 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 	}
 
 	expected := &ProjectSettings{
-		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		IsDataExplorerEnabled:                       pointy.Bool(true),
-		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
+		IsDataExplorerEnabled:                       pointer(true),
+		IsPerformanceAdvisorEnabled:                 pointer(true),
+		IsRealtimePerformancePanelEnabled:           pointer(true),
+		IsSchemaAdvisorEnabled:                      pointer(true),
 	}
 
 	if diff := deep.Equal(projectSettings, expected); diff != nil {
@@ -72,11 +71,11 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	})
 
 	body := &ProjectSettings{
-		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		IsDataExplorerEnabled:                       pointy.Bool(true),
-		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
+		IsDataExplorerEnabled:                       pointer(true),
+		IsPerformanceAdvisorEnabled:                 pointer(true),
+		IsRealtimePerformancePanelEnabled:           pointer(true),
+		IsSchemaAdvisorEnabled:                      pointer(true),
 	}
 
 	response, _, err := client.Projects.UpdateProjectSettings(ctx, groupID, body)
@@ -85,11 +84,11 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	}
 
 	expected := &ProjectSettings{
-		IsCollectDatabaseSpecificsStatisticsEnabled: pointy.Bool(true),
-		IsDataExplorerEnabled:                       pointy.Bool(true),
-		IsPerformanceAdvisorEnabled:                 pointy.Bool(true),
-		IsRealtimePerformancePanelEnabled:           pointy.Bool(true),
-		IsSchemaAdvisorEnabled:                      pointy.Bool(true),
+		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
+		IsDataExplorerEnabled:                       pointer(true),
+		IsPerformanceAdvisorEnabled:                 pointer(true),
+		IsRealtimePerformancePanelEnabled:           pointer(true),
+		IsSchemaAdvisorEnabled:                      pointer(true),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {
