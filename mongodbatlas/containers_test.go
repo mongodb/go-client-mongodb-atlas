@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestContainers_List(t *testing.T) {
@@ -64,14 +63,14 @@ func TestContainers_List(t *testing.T) {
 			GCPProjectID:   "my-sample-project-191923",
 			NetworkName:    "test1",
 			ProviderName:   "GCP",
-			Provisioned:    pointy.Bool(true),
+			Provisioned:    pointer(true),
 		}
 
 		AWSContainer := Container{
 			AtlasCIDRBlock: "10.8.0.0/21",
 			ID:             "1112269b3bf99403840e8934",
 			ProviderName:   "AWS",
-			Provisioned:    pointy.Bool(true),
+			Provisioned:    pointer(true),
 			RegionName:     "US_EAST_1",
 			VPCID:          "vpc-zz0zzzzz",
 		}
@@ -97,13 +96,13 @@ func TestContainers_List(t *testing.T) {
 						GCPProjectID:   "my-sample-project-191923",
 						NetworkName:    "test1",
 						ProviderName:   "GCP",
-						Provisioned:    pointy.Bool(true),
+						Provisioned:    pointer(true),
 					},
 					{
 						AtlasCIDRBlock: "10.8.0.0/21",
 						ID:             "1112269b3bf99403840e8934",
 						ProviderName:   "AWS",
-						Provisioned:    pointy.Bool(true),
+						Provisioned:    pointer(true),
 						RegionName:     "US_EAST_1",
 						VPCID:          "vpc-zz0zzzzz",
 					},
@@ -216,14 +215,14 @@ func TestContainers_ListAll(t *testing.T) {
 		GCPProjectID:   "my-sample-project-191923",
 		NetworkName:    "test1",
 		ProviderName:   "GCP",
-		Provisioned:    pointy.Bool(true),
+		Provisioned:    pointer(true),
 	}
 
 	AWSContainer := Container{
 		AtlasCIDRBlock: "10.8.0.0/21",
 		ID:             "1112269b3bf99403840e8934",
 		ProviderName:   "AWS",
-		Provisioned:    pointy.Bool(true),
+		Provisioned:    pointer(true),
 		RegionName:     "US_EAST_1",
 		VPCID:          "vpc-zz0zzzzz",
 	}
@@ -407,7 +406,7 @@ func TestContainersServiceOp_Create(t *testing.T) {
 			expectedResponse: &Container{
 				AtlasCIDRBlock: "10.8.0.0/21",
 				ID:             "1112269b3bf99403840e8934",
-				Provisioned:    pointy.Bool(true),
+				Provisioned:    pointer(true),
 				RegionName:     "US_EAST_1",
 				VPCID:          "vpc-zz0zzzzz",
 			},
@@ -436,7 +435,7 @@ func TestContainersServiceOp_Create(t *testing.T) {
 				AtlasCIDRBlock:      "10.8.0.0/21",
 				AzureSubscriptionID: "602336d43d098d433845971g",
 				ID:                  "5cbf563d87d9d67253be590a",
-				Provisioned:         pointy.Bool(false),
+				Provisioned:         pointer(false),
 				ProviderName:        "AZURE",
 				Region:              "US_EAST_2",
 			},
@@ -460,7 +459,7 @@ func TestContainersServiceOp_Create(t *testing.T) {
 			expectedResponse: &Container{
 				AtlasCIDRBlock: "10.8.0.0/18",
 				ID:             "1112269b3bf99403840e8934",
-				Provisioned:    pointy.Bool(true),
+				Provisioned:    pointer(true),
 				NetworkName:    "null",
 				GCPProjectID:   "null",
 			},

@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestAlertConfiguration_Create(t *testing.T) {
@@ -79,14 +78,14 @@ func TestAlertConfiguration_Create(t *testing.T) {
 
 	alertReq := &AlertConfiguration{
 		EventTypeName: "NO_PRIMARY",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		Notifications: []Notification{
 			{
 				TypeName:     "GROUP",
 				IntervalMin:  5,
-				DelayMin:     pointy.Int(0),
-				SMSEnabled:   pointy.Bool(false),
-				EmailEnabled: pointy.Bool(true),
+				DelayMin:     pointer(0),
+				SMSEnabled:   pointer(false),
+				EmailEnabled: pointer(true),
 				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
@@ -101,16 +100,16 @@ func TestAlertConfiguration_Create(t *testing.T) {
 	expected := &AlertConfiguration{
 		ID:            "57b76ddc96e8215c017ceafb",
 		Created:       "2016-08-19T20:36:44Z",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		EventTypeName: "NO_PRIMARY",
 		GroupID:       "535683b3794d371327b",
 		Matchers:      []Matcher{},
 		Notifications: []Notification{
 			{
-				DelayMin:     pointy.Int(0),
-				EmailEnabled: pointy.Bool(true),
+				DelayMin:     pointer(0),
+				EmailEnabled: pointer(true),
 				IntervalMin:  5,
-				SMSEnabled:   pointy.Bool(false),
+				SMSEnabled:   pointer(false),
 				TypeName:     "GROUP",
 				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
@@ -166,24 +165,24 @@ func TestAlertConfiguration_EnableAnAlertConfig(t *testing.T) {
 		}`)
 	})
 
-	alertConfiguration, _, err := client.AlertConfigurations.EnableAnAlertConfig(ctx, groupID, alertConfigID, pointy.Bool(true))
+	alertConfiguration, _, err := client.AlertConfigurations.EnableAnAlertConfig(ctx, groupID, alertConfigID, pointer(true))
 	if err != nil {
 		t.Fatalf("AlertConfiguration.EnableAnAlertConfig returned error: %v", err)
 	}
 
 	expected := &AlertConfiguration{
 		Created:       "2016-08-19T20:45:29Z",
-		Enabled:       pointy.Bool(false),
+		Enabled:       pointer(false),
 		EventTypeName: "NO_PRIMARY",
 		GroupID:       "535683b3794d371327b",
 		ID:            "57b76ddc96e8215c017ceafb",
 		Matchers:      []Matcher{},
 		Notifications: []Notification{
 			{
-				DelayMin:     pointy.Int(5),
-				EmailEnabled: pointy.Bool(false),
+				DelayMin:     pointer(5),
+				EmailEnabled: pointer(false),
 				IntervalMin:  5,
-				SMSEnabled:   pointy.Bool(true),
+				SMSEnabled:   pointer(true),
 				TypeName:     "GROUP",
 			},
 		},
@@ -248,7 +247,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 		EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
 		Created:       "2016-08-23T20:26:50Z",
 		Updated:       "2016-08-23T20:26:50Z",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		Matchers: []Matcher{
 			{
 				FieldName: "HOSTNAME_AND_PORT",
@@ -260,7 +259,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 			{
 				TypeName:     "SMS",
 				IntervalMin:  5,
-				DelayMin:     pointy.Int(0),
+				DelayMin:     pointer(0),
 				MobileNumber: "2343454567",
 				Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 			},
@@ -341,7 +340,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 			LastNotified:      "2016-08-22T15:57:24.126Z",
 			MetricName:        "ASSERT_REGULAR",
 			CurrentValue: &CurrentValue{
-				Number: pointy.Float64(0.0),
+				Number: pointer(0.0),
 				Units:  "RAW",
 			},
 		},
@@ -355,7 +354,7 @@ func TestAlertConfiguration_GetOpenAlertsConfig(t *testing.T) {
 			LastNotified:  "2016-08-22T20:14:19.313Z",
 			MetricName:    "ASSERT_REGULAR",
 			CurrentValue: &CurrentValue{
-				Number: pointy.Float64(0.0),
+				Number: pointer(0.0),
 				Units:  "RAW",
 			},
 		},
@@ -455,7 +454,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 			EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
 			Created:       "2016-08-23T20:26:50Z",
 			Updated:       "2016-08-23T20:26:50Z",
-			Enabled:       pointy.Bool(true),
+			Enabled:       pointer(true),
 			Matchers: []Matcher{
 				{
 					FieldName: "HOSTNAME_AND_PORT",
@@ -467,7 +466,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 				{
 					TypeName:     "SMS",
 					IntervalMin:  5,
-					DelayMin:     pointy.Int(0),
+					DelayMin:     pointer(0),
 					MobileNumber: "2343454567",
 					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
@@ -486,7 +485,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 			EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
 			Created:       "2016-08-23T20:26:50Z",
 			Updated:       "2016-08-23T20:26:50Z",
-			Enabled:       pointy.Bool(true),
+			Enabled:       pointer(true),
 			Matchers: []Matcher{
 				{
 					FieldName: "HOSTNAME_AND_PORT",
@@ -498,7 +497,7 @@ func TestAlertConfiguration_List(t *testing.T) {
 				{
 					TypeName:     "SMS",
 					IntervalMin:  5,
-					DelayMin:     pointy.Int(0),
+					DelayMin:     pointer(0),
 					MobileNumber: "2343454567",
 					Roles:        []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 				},
@@ -575,14 +574,14 @@ func TestAlertConfiguration_Update(t *testing.T) {
 
 	alertReq := &AlertConfiguration{
 		EventTypeName: "NO_PRIMARY",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		Notifications: []Notification{
 			{
 				TypeName:     "GROUP",
 				IntervalMin:  5,
-				DelayMin:     pointy.Int(5),
-				SMSEnabled:   pointy.Bool(true),
-				EmailEnabled: pointy.Bool(false),
+				DelayMin:     pointer(5),
+				SMSEnabled:   pointer(true),
+				EmailEnabled: pointer(false),
 				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
@@ -596,7 +595,7 @@ func TestAlertConfiguration_Update(t *testing.T) {
 
 	expected := &AlertConfiguration{
 		Created:       "2016-08-19T20:45:29Z",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		EventTypeName: "NO_PRIMARY",
 		GroupID:       "535683b3794d371327b",
 		ID:            "57b76ddc96e8215c017ceafb",
@@ -604,9 +603,9 @@ func TestAlertConfiguration_Update(t *testing.T) {
 			{
 				TypeName:     "GROUP",
 				IntervalMin:  5,
-				DelayMin:     pointy.Int(5),
-				SMSEnabled:   pointy.Bool(true),
-				EmailEnabled: pointy.Bool(false),
+				DelayMin:     pointer(5),
+				SMSEnabled:   pointer(true),
+				EmailEnabled: pointer(false),
 				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
@@ -728,7 +727,7 @@ func TestAlertConfiguration_GetAnAlertConfigTeams(t *testing.T) {
 		EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
 		Created:       "2016-08-23T20:26:50Z",
 		Updated:       "2016-08-23T20:26:50Z",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		Matchers: []Matcher{
 			{
 				FieldName: "HOSTNAME_AND_PORT",
@@ -740,7 +739,7 @@ func TestAlertConfiguration_GetAnAlertConfigTeams(t *testing.T) {
 			{
 				TypeName:                 "MICROSOFT_TEAMS",
 				IntervalMin:              5,
-				DelayMin:                 pointy.Int(0),
+				DelayMin:                 pointer(0),
 				MicrosoftTeamsWebhookURL: "http://941a-47-225-212-178.ngrok.io",
 				Roles:                    []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},
 			},
@@ -813,7 +812,7 @@ func TestAlertConfiguration_GetAnAlertConfigWebhook(t *testing.T) {
 		EventTypeName: "OUTSIDE_METRIC_THRESHOLD",
 		Created:       "2016-08-23T20:26:50Z",
 		Updated:       "2016-08-23T20:26:50Z",
-		Enabled:       pointy.Bool(true),
+		Enabled:       pointer(true),
 		Matchers: []Matcher{
 			{
 				FieldName: "HOSTNAME_AND_PORT",
@@ -825,7 +824,7 @@ func TestAlertConfiguration_GetAnAlertConfigWebhook(t *testing.T) {
 			{
 				TypeName:      "WEBHOOK",
 				IntervalMin:   5,
-				DelayMin:      pointy.Int(0),
+				DelayMin:      pointer(0),
 				WebhookSecret: "SECRET",
 				WebhookURL:    "http://941a-47-225-212-178.ngrok.io",
 				Roles:         []string{"GROUP_DATA_ACCESS_ADMIN", "GROUP_DATA_ACCESS_READ_ONLY"},

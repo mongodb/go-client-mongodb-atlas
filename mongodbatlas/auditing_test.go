@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestConfigureAuditing(t *testing.T) {
@@ -56,9 +55,9 @@ func TestConfigureAuditing(t *testing.T) {
 	})
 
 	auditingRequest := &Auditing{
-		AuditAuthorizationSuccess: pointy.Bool(false),
+		AuditAuthorizationSuccess: pointer(false),
 		AuditFilter:               "{\n  \"atype\": \"authenticate\",\n  \"param\": {\n    \"user\": \"auditAdmin\",\n    \"db\": \"admin\",\n    \"mechanism\": \"SCRAM-SHA-1\"\n  }\n}",
-		Enabled:                   pointy.Bool(true),
+		Enabled:                   pointer(true),
 	}
 
 	auditingResponse, _, err := client.Auditing.Configure(ctx, groupID, auditingRequest)
@@ -67,10 +66,10 @@ func TestConfigureAuditing(t *testing.T) {
 	}
 
 	expected := &Auditing{
-		AuditAuthorizationSuccess: pointy.Bool(false),
+		AuditAuthorizationSuccess: pointer(false),
 		AuditFilter:               "{\n  \"atype\": \"authenticate\",\n  \"param\": {\n    \"user\": \"auditAdmin\",\n    \"db\": \"admin\",\n    \"mechanism\": \"SCRAM-SHA-1\"\n  }\n}",
 		ConfigurationType:         "FILTER_JSON",
-		Enabled:                   pointy.Bool(true),
+		Enabled:                   pointer(true),
 	}
 
 	if diff := deep.Equal(auditingResponse, expected); diff != nil {
@@ -100,10 +99,10 @@ func TestAuditing_Get(t *testing.T) {
 	}
 
 	expected := &Auditing{
-		AuditAuthorizationSuccess: pointy.Bool(false),
+		AuditAuthorizationSuccess: pointer(false),
 		AuditFilter:               "{\n  \"atype\": \"authenticate\",\n  \"param\": {\n    \"user\": \"auditAdmin\",\n    \"db\": \"admin\",\n    \"mechanism\": \"SCRAM-SHA-1\"\n  }\n}",
 		ConfigurationType:         "FILTER_JSON",
-		Enabled:                   pointy.Bool(true),
+		Enabled:                   pointer(true),
 	}
 
 	if diff := deep.Equal(auditing, expected); diff != nil {

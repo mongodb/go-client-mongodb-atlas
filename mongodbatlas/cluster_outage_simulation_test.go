@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestClusterOutageSimulationServiceOp_GetOutageSimulation(t *testing.T) {
@@ -54,18 +53,18 @@ func TestClusterOutageSimulationServiceOp_GetOutageSimulation(t *testing.T) {
 	}
 
 	expected := &ClusterOutageSimulation{
-		ClusterName: pointy.String(clusterName),
-		GroupID:     pointy.String(groupID),
-		ID:          pointy.String("63599c987d469e386156afcb"),
+		ClusterName: pointer(clusterName),
+		GroupID:     pointer(groupID),
+		ID:          pointer("63599c987d469e386156afcb"),
 		OutageFilters: []ClusterOutageSimulationOutageFilter{
 			{
-				CloudProvider: pointy.String("AWS"),
-				RegionName:    pointy.String("string"),
-				Type:          pointy.String("REGION"),
+				CloudProvider: pointer("AWS"),
+				RegionName:    pointer("string"),
+				Type:          pointer("REGION"),
 			},
 		},
-		StartRequestDate: pointy.String("2022-01-01T00:00:00Z"),
-		State:            pointy.String("START_REQUESTED"),
+		StartRequestDate: pointer("2022-01-01T00:00:00Z"),
+		State:            pointer("START_REQUESTED"),
 	}
 
 	if diff := deep.Equal(simulation, expected); diff != nil {
@@ -103,18 +102,18 @@ func TestClusterOutageSimulationServiceOp_EndOutageSimulation(t *testing.T) {
 	}
 
 	expected := &ClusterOutageSimulation{
-		ClusterName: pointy.String(clusterName),
-		GroupID:     pointy.String(groupID),
-		ID:          pointy.String("63599c987d469e386156afcb"),
+		ClusterName: pointer(clusterName),
+		GroupID:     pointer(groupID),
+		ID:          pointer("63599c987d469e386156afcb"),
 		OutageFilters: []ClusterOutageSimulationOutageFilter{
 			{
-				CloudProvider: pointy.String("AWS"),
-				RegionName:    pointy.String("string"),
-				Type:          pointy.String("REGION"),
+				CloudProvider: pointer("AWS"),
+				RegionName:    pointer("string"),
+				Type:          pointer("REGION"),
 			},
 		},
-		StartRequestDate: pointy.String("2022-01-01T00:00:00Z"),
-		State:            pointy.String("START_REQUESTED"),
+		StartRequestDate: pointer("2022-01-01T00:00:00Z"),
+		State:            pointer("START_REQUESTED"),
 	}
 
 	if diff := deep.Equal(simulation, expected); diff != nil {
@@ -131,9 +130,9 @@ func TestClusterOutageSimulationServiceOp_StartOutageSimulation(t *testing.T) {
 	createRequest := &ClusterOutageSimulationRequest{
 		OutageFilters: []ClusterOutageSimulationOutageFilter{
 			{
-				CloudProvider: pointy.String("AWS"),
-				RegionName:    pointy.String("string"),
-				Type:          pointy.String("REGION"),
+				CloudProvider: pointer("AWS"),
+				RegionName:    pointer("string"),
+				Type:          pointer("REGION"),
 			},
 		},
 	}
@@ -181,18 +180,18 @@ func TestClusterOutageSimulationServiceOp_StartOutageSimulation(t *testing.T) {
 	}
 
 	expected := &ClusterOutageSimulation{
-		ClusterName: pointy.String(clusterName),
-		GroupID:     pointy.String(groupID),
-		ID:          pointy.String("63599c987d469e386156afcb"),
+		ClusterName: pointer(clusterName),
+		GroupID:     pointer(groupID),
+		ID:          pointer("63599c987d469e386156afcb"),
 		OutageFilters: []ClusterOutageSimulationOutageFilter{
 			{
-				CloudProvider: pointy.String("AWS"),
-				RegionName:    pointy.String("string"),
-				Type:          pointy.String("REGION"),
+				CloudProvider: pointer("AWS"),
+				RegionName:    pointer("string"),
+				Type:          pointer("REGION"),
 			},
 		},
-		StartRequestDate: pointy.String("2022-01-01T00:00:00Z"),
-		State:            pointy.String("START_REQUESTED"),
+		StartRequestDate: pointer("2022-01-01T00:00:00Z"),
+		State:            pointer("START_REQUESTED"),
 	}
 
 	if diff := deep.Equal(simulation, expected); diff != nil {

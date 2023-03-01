@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
@@ -176,15 +175,15 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    pointy.Int64(17),
-		ReferenceMinuteOfHour: pointy.Int64(24),
-		RestoreWindowDays:     pointy.Int64(7),
-		AutoExportEnabled:     pointy.Bool(true),
+		ReferenceHourOfDay:    pointer64(17),
+		ReferenceMinuteOfHour: pointer64(24),
+		RestoreWindowDays:     pointer64(7),
+		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
 		},
-		UseOrgAndGroupNamesInExportPrefix: pointy.Bool(false),
+		UseOrgAndGroupNamesInExportPrefix: pointer(false),
 	}
 
 	if diff := deep.Equal(snapshotBackupPolicy, expected); diff != nil {
@@ -346,8 +345,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	})
 
 	updateRequest := &CloudProviderSnapshotBackupPolicy{
-		ReferenceHourOfDay:    pointy.Int64(12),
-		ReferenceMinuteOfHour: pointy.Int64(30),
+		ReferenceHourOfDay:    pointer64(12),
+		ReferenceMinuteOfHour: pointer64(30),
 		Policies: []Policy{
 			{
 				ID: "5c95242c87d9d636e70c28ef",
@@ -369,8 +368,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		UpdateSnapshots:   pointy.Bool(true),
-		AutoExportEnabled: pointy.Bool(true),
+		UpdateSnapshots:   pointer(true),
+		AutoExportEnabled: pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
@@ -423,9 +422,9 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    pointy.Int64(12),
-		ReferenceMinuteOfHour: pointy.Int64(30),
-		AutoExportEnabled:     pointy.Bool(true),
+		ReferenceHourOfDay:    pointer64(12),
+		ReferenceMinuteOfHour: pointer64(30),
+		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",
@@ -534,10 +533,10 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 				PolicyItems: []PolicyItem{},
 			},
 		},
-		ReferenceHourOfDay:    pointy.Int64(17),
-		ReferenceMinuteOfHour: pointy.Int64(24),
-		RestoreWindowDays:     pointy.Int64(7),
-		AutoExportEnabled:     pointy.Bool(true),
+		ReferenceHourOfDay:    pointer64(17),
+		ReferenceMinuteOfHour: pointer64(24),
+		RestoreWindowDays:     pointer64(7),
+		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
 			FrequencyType:  "monthly",

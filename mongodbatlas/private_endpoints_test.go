@@ -22,7 +22,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestPrivateEndpointAWS_Create(t *testing.T) {
@@ -569,7 +568,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointAWS(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		InterfaceEndpointID: "vpce-08fb7e9319909ec7b",
 		AWSConnectionStatus: "PENDING",
-		DeleteRequested:     pointy.Bool(false),
+		DeleteRequested:     pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -623,7 +622,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointAzure(t *testing.T) {
 		PrivateEndpointIPAddress:  "10.0.0.4",
 		PrivateEndpointResourceID: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/privatelink/providers/Microsoft.Network/privateEndpoints/test",
 		AWSConnectionStatus:       "INITIATING",
-		DeleteRequested:           pointy.Bool(false),
+		DeleteRequested:           pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -723,7 +722,7 @@ func TestPrivateEndpoint_AddOneInterfaceEndpointGCP(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		ID:              "2948cdcc04958372bc938493",
 		Status:          "INITIATING",
-		DeleteRequested: pointy.Bool(false),
+		DeleteRequested: pointer(false),
 		Endpoints: []*GCPEndpoint{
 			{
 				Status:                "AVAILABLE",
@@ -776,7 +775,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAWS(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		InterfaceEndpointID: "vpce-08fb7e9319909ec7b",
 		AWSConnectionStatus: "PENDING",
-		DeleteRequested:     pointy.Bool(false),
+		DeleteRequested:     pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -813,7 +812,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointAzure(t *testing.T) {
 		PrivateEndpointIPAddress:  "10.0.0.4",
 		PrivateEndpointResourceID: interfaceEndpointID,
 		Status:                    "INITIATING",
-		DeleteRequested:           pointy.Bool(false),
+		DeleteRequested:           pointer(false),
 	}
 
 	if !reflect.DeepEqual(interfaceEndpoint, expected) {
@@ -868,7 +867,7 @@ func TestPrivateEndpoints_GetOneInterfaceEndpointGCP(t *testing.T) {
 	expected := &InterfaceEndpointConnection{
 		ID:              "2948cdcc04958372bc938493",
 		Status:          "INITIATING",
-		DeleteRequested: pointy.Bool(false),
+		DeleteRequested: pointer(false),
 		Endpoints: []*GCPEndpoint{
 			{
 				Status:                "AVAILABLE",

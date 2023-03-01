@@ -22,7 +22,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestOnlineArchiveServiceOp_List(t *testing.T) {
@@ -121,7 +120,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "employees",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "created",
-					ExpireAfterDays: pointy.Float64(5),
+					ExpireAfterDays: pointer(5),
 				},
 				DBName:  "people",
 				GroupID: groupID,
@@ -129,20 +128,20 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					{
 						FieldName: "firstName",
 						FieldType: "string",
-						Order:     pointy.Float64(0),
+						Order:     pointer(0),
 					},
 					{
 						FieldName: "lastName",
 						FieldType: "string",
-						Order:     pointy.Float64(1),
+						Order:     pointer(1),
 					},
 					{
 						FieldName: "created",
 						FieldType: "date",
-						Order:     pointy.Float64(2),
+						Order:     pointer(2),
 					},
 				},
-				Paused: pointy.Bool(false),
+				Paused: pointer(false),
 			},
 			{
 				ID:          "5ebc2789fe9c0ab8d33b96cd",
@@ -150,7 +149,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "invoices",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "year",
-					ExpireAfterDays: pointy.Float64(5),
+					ExpireAfterDays: pointer(5),
 				},
 				DBName:  "accounting",
 				GroupID: groupID,
@@ -158,20 +157,20 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					{
 						FieldName: "year",
 						FieldType: "date",
-						Order:     pointy.Float64(0),
+						Order:     pointer(0),
 					},
 					{
 						FieldName: "month",
 						FieldType: "string",
-						Order:     pointy.Float64(1),
+						Order:     pointer(1),
 					},
 					{
 						FieldName: "invoiceNumber",
 						FieldType: "int",
-						Order:     pointy.Float64(2),
+						Order:     pointer(2),
 					},
 				},
-				Paused: pointy.Bool(false),
+				Paused: pointer(false),
 			},
 		},
 		TotalCount: 2,
@@ -232,7 +231,7 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 		CollName:    "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: pointy.Float64(5),
+			ExpireAfterDays: pointer(5),
 		},
 		DBName:  "people",
 		GroupID: groupID,
@@ -240,20 +239,20 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 			{
 				FieldName: "firstName",
 				FieldType: "string",
-				Order:     pointy.Float64(0),
+				Order:     pointer(0),
 			},
 			{
 				FieldName: "lastName",
 				FieldType: "string",
-				Order:     pointy.Float64(1),
+				Order:     pointer(1),
 			},
 			{
 				FieldName: "created",
 				FieldType: "date",
-				Order:     pointy.Float64(2),
+				Order:     pointer(2),
 			},
 		},
-		Paused: pointy.Bool(false),
+		Paused: pointer(false),
 	}
 
 	if diff := deep.Equal(archive, expected); diff != nil {
@@ -272,14 +271,14 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 		CollName: "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: pointy.Float64(5),
+			ExpireAfterDays: pointer(5),
 		},
 		DBName: "people",
 		PartitionFields: []*PartitionFields{
 			{
 				FieldName: "created",
 				FieldType: "date",
-				Order:     pointy.Float64(0),
+				Order:     pointer(0),
 			},
 		},
 	}
@@ -359,7 +358,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 
 	updateRequest := &OnlineArchive{
 		Criteria: &OnlineArchiveCriteria{
-			ExpireAfterDays: pointy.Float64(6),
+			ExpireAfterDays: pointer(6),
 		},
 	}
 
@@ -403,7 +402,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 		t.Fatalf("OnlineArchives.Update returned error: %v", err)
 	}
 
-	expectedExpireAfterDays := pointy.Float64(6)
+	expectedExpireAfterDays := pointer(6)
 	if *(archive.Criteria.ExpireAfterDays) != *expectedExpireAfterDays {
 		t.Errorf("expected expireAfterDays '%f', received '%f'", *expectedExpireAfterDays, *archive.Criteria.ExpireAfterDays)
 	}
