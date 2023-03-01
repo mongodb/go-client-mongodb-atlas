@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.23.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.1) (March 01, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.0...v0.23.1)
+
+**Breaking changes:**
+
+- fix: make org owner optional [\#393](https://github.com/mongodb/go-client-mongodb-atlas/pull/393) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.23.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.0) (February 23, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.22.0...v0.23.0)
