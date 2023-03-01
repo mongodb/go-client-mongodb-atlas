@@ -39,15 +39,8 @@ We use mustache comments to mark templates as modified:
 
 #### Contributing
 
-1. After making change validate correctness of your changes by running
-
-```
-(cd .. && make v2-lint v2-test)
-```
-
-> NOTE: We need to regenerate our SDK if changes in tools will affect the generated clients.
-> PR jobs will verify if changes are up to date.
-> To regenerate run:
+We need to regenerate our SDK if changes in tools will affect the generated clients.
+PR based checks will verify if changes are up to date.
 
 ```
 make clean_and_generate
