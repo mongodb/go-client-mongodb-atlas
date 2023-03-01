@@ -175,9 +175,9 @@ func TestCloudProviderSnapshotBackupPolicies_Get(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    pointer64(17),
-		ReferenceMinuteOfHour: pointer64(24),
-		RestoreWindowDays:     pointer64(7),
+		ReferenceHourOfDay:    pointer(int64(17)),
+		ReferenceMinuteOfHour: pointer(int64(24)),
+		RestoreWindowDays:     pointer(int64(7)),
 		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
@@ -345,8 +345,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 	})
 
 	updateRequest := &CloudProviderSnapshotBackupPolicy{
-		ReferenceHourOfDay:    pointer64(12),
-		ReferenceMinuteOfHour: pointer64(30),
+		ReferenceHourOfDay:    pointer(int64(12)),
+		ReferenceMinuteOfHour: pointer(int64(30)),
 		Policies: []Policy{
 			{
 				ID: "5c95242c87d9d636e70c28ef",
@@ -422,8 +422,8 @@ func TestCloudProviderSnapshotBackupPolicies_Update(t *testing.T) {
 				},
 			},
 		},
-		ReferenceHourOfDay:    pointer64(12),
-		ReferenceMinuteOfHour: pointer64(30),
+		ReferenceHourOfDay:    pointer(int64(12)),
+		ReferenceMinuteOfHour: pointer(int64(30)),
 		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",
@@ -533,9 +533,9 @@ func TestCloudProviderSnapshotBackupPolicies_Delete(t *testing.T) {
 				PolicyItems: []PolicyItem{},
 			},
 		},
-		ReferenceHourOfDay:    pointer64(17),
-		ReferenceMinuteOfHour: pointer64(24),
-		RestoreWindowDays:     pointer64(7),
+		ReferenceHourOfDay:    pointer(int64(17)),
+		ReferenceMinuteOfHour: pointer(int64(24)),
+		RestoreWindowDays:     pointer(int64(7)),
 		AutoExportEnabled:     pointer(true),
 		Export: &Export{
 			ExportBucketID: "604f6322dc786a5341d4f7fb",

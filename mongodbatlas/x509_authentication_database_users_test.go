@@ -108,14 +108,14 @@ func TestX509AuthDBUsers_GetUserCertificates(t *testing.T) {
 
 	expected := []UserCertificate{
 		{
-			ID:        pointer64(5433027191242719574),
+			ID:        pointer(int64(5433027191242719574)),
 			CreatedAt: "2019-12-03T21:00:42Z",
 			GroupID:   "ec13d5f09d521a5206e5d726",
 			NotAfter:  "2020-06-03T22:00:42Z",
 			Subject:   "CN=myX509User",
 		},
 		{
-			ID:        pointer64(946028664465903704),
+			ID:        pointer(int64(946028664465903704)),
 			CreatedAt: "2019-12-05T13:50:49Z",
 			GroupID:   "ec13d5f09d521a5206e5d726",
 			NotAfter:  "2020-03-05T14:50:49Z",

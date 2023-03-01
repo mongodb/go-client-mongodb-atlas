@@ -120,7 +120,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "employees",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "created",
-					ExpireAfterDays: pointer(5),
+					ExpireAfterDays: pointer(5.0),
 				},
 				DBName:  "people",
 				GroupID: groupID,
@@ -128,17 +128,17 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					{
 						FieldName: "firstName",
 						FieldType: "string",
-						Order:     pointer(0),
+						Order:     pointer(0.0),
 					},
 					{
 						FieldName: "lastName",
 						FieldType: "string",
-						Order:     pointer(1),
+						Order:     pointer(1.0),
 					},
 					{
 						FieldName: "created",
 						FieldType: "date",
-						Order:     pointer(2),
+						Order:     pointer(2.0),
 					},
 				},
 				Paused: pointer(false),
@@ -149,7 +149,7 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 				CollName:    "invoices",
 				Criteria: &OnlineArchiveCriteria{
 					DateField:       "year",
-					ExpireAfterDays: pointer(5),
+					ExpireAfterDays: pointer(5.0),
 				},
 				DBName:  "accounting",
 				GroupID: groupID,
@@ -157,17 +157,17 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					{
 						FieldName: "year",
 						FieldType: "date",
-						Order:     pointer(0),
+						Order:     pointer(0.0),
 					},
 					{
 						FieldName: "month",
 						FieldType: "string",
-						Order:     pointer(1),
+						Order:     pointer(1.0),
 					},
 					{
 						FieldName: "invoiceNumber",
 						FieldType: "int",
-						Order:     pointer(2),
+						Order:     pointer(2.0),
 					},
 				},
 				Paused: pointer(false),
@@ -231,7 +231,7 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 		CollName:    "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: pointer(5),
+			ExpireAfterDays: pointer(5.0),
 		},
 		DBName:  "people",
 		GroupID: groupID,
@@ -239,17 +239,17 @@ func TestOnlineArchiveServiceOp_Get(t *testing.T) {
 			{
 				FieldName: "firstName",
 				FieldType: "string",
-				Order:     pointer(0),
+				Order:     pointer(0.0),
 			},
 			{
 				FieldName: "lastName",
 				FieldType: "string",
-				Order:     pointer(1),
+				Order:     pointer(1.0),
 			},
 			{
 				FieldName: "created",
 				FieldType: "date",
-				Order:     pointer(2),
+				Order:     pointer(2.0),
 			},
 		},
 		Paused: pointer(false),
@@ -271,14 +271,14 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 		CollName: "employees",
 		Criteria: &OnlineArchiveCriteria{
 			DateField:       "created",
-			ExpireAfterDays: pointer(5),
+			ExpireAfterDays: pointer(5.0),
 		},
 		DBName: "people",
 		PartitionFields: []*PartitionFields{
 			{
 				FieldName: "created",
 				FieldType: "date",
-				Order:     pointer(0),
+				Order:     pointer(0.0),
 			},
 		},
 	}
@@ -358,7 +358,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 
 	updateRequest := &OnlineArchive{
 		Criteria: &OnlineArchiveCriteria{
-			ExpireAfterDays: pointer(6),
+			ExpireAfterDays: pointer(6.0),
 		},
 	}
 
@@ -402,7 +402,7 @@ func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 		t.Fatalf("OnlineArchives.Update returned error: %v", err)
 	}
 
-	expectedExpireAfterDays := pointer(6)
+	expectedExpireAfterDays := pointer(6.0)
 	if *(archive.Criteria.ExpireAfterDays) != *expectedExpireAfterDays {
 		t.Errorf("expected expireAfterDays '%f', received '%f'", *expectedExpireAfterDays, *archive.Criteria.ExpireAfterDays)
 	}

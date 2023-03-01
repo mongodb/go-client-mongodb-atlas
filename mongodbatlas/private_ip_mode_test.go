@@ -89,7 +89,7 @@ func TestPrivateIPMode_Update(t *testing.T) {
 		t.Fatalf("PrivateIPMode.Update returned error: %v", err)
 	}
 
-	if enabled := pointerValue(privateIPMode.Enabled, false); !enabled {
-		t.Errorf("expected privateIPMode '%t', received '%t'", true, enabled)
+	if enabled := privateIPMode.Enabled; !*enabled {
+		t.Errorf("expected privateIPMode '%t', received '%v'", true, enabled)
 	}
 }

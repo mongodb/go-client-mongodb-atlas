@@ -225,7 +225,7 @@ func TestClusters_ListClusters(t *testing.T) {
 			},
 		},
 
-		DiskSizeGB:               pointer(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  "5356823b3794de37132bb7b",
 		MongoDBVersion:           "3.4.9",
@@ -233,11 +233,11 @@ func TestClusters_ListClusters(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     "AppData",
-		NumShards:                pointer64(1),
+		NumShards:                pointer(int64(1)),
 		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointer64(1320),
+			DiskIOPS:         pointer(int64(1320)),
 			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
@@ -248,13 +248,13 @@ func TestClusters_ListClusters(t *testing.T) {
 				},
 			},
 		},
-		ReplicationFactor: pointer64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointer64(3),
-				Priority:       pointer64(7),
-				ReadOnlyNodes:  pointer64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -357,7 +357,7 @@ func TestClusters_Create(t *testing.T) {
 		BackupEnabled:            pointer(true),
 		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointer(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -365,23 +365,23 @@ func TestClusters_Create(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     "AppData",
-		NumShards:                pointer64(1),
+		NumShards:                pointer(int64(1)),
 		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointer64(1320),
+			DiskIOPS:         pointer(int64(1320)),
 			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M10", MaxInstanceSize: "M60"}},
 		},
-		ReplicationFactor: pointer64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointer64(3),
-				Priority:       pointer64(7),
-				ReadOnlyNodes:  pointer64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -540,7 +540,7 @@ func TestClusters_Update(t *testing.T) {
 		BackupEnabled:            pointer(true),
 		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointer(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -548,23 +548,23 @@ func TestClusters_Update(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointer64(1),
+		NumShards:                pointer(int64(1)),
 		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointer64(1320),
+			DiskIOPS:         pointer(int64(1320)),
 			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
 		},
-		ReplicationFactor: pointer64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointer64(3),
-				Priority:       pointer64(7),
-				ReadOnlyNodes:  pointer64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -736,10 +736,10 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		JavascriptEnabled:                pointer(false),
 		MinimumEnabledTLSProtocol:        tlsProtocol,
 		NoTableScan:                      pointer(true),
-		OplogSizeMB:                      pointer64(2000),
-		OplogMinRetentionHours:           pointer(100),
-		SampleSizeBIConnector:            pointer64(5000),
-		SampleRefreshIntervalBIConnector: pointer64(300),
+		OplogSizeMB:                      pointer(int64(2000)),
+		OplogMinRetentionHours:           pointer(100.0),
+		SampleSizeBIConnector:            pointer(int64(5000)),
+		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -795,8 +795,8 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		t.Errorf("expected tlsProtocol '%s', received '%s'", tlsProtocol, tls)
 	}
 
-	if jsEnabled := processArgs.JavascriptEnabled; pointerValue(jsEnabled, false) != false {
-		t.Errorf("expected javascriptEnabled '%t', received '%t'", pointerValue(jsEnabled, false), false)
+	if jsEnabled := processArgs.JavascriptEnabled; *jsEnabled != false {
+		t.Errorf("expected javascriptEnabled '%t', received '%t'", *jsEnabled, false)
 	}
 }
 
@@ -831,9 +831,9 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 		JavascriptEnabled:                pointer(false),
 		MinimumEnabledTLSProtocol:        "TLS1_2",
 		NoTableScan:                      pointer(true),
-		OplogSizeMB:                      pointer64(2000),
-		SampleSizeBIConnector:            pointer64(5000),
-		SampleRefreshIntervalBIConnector: pointer64(300),
+		OplogSizeMB:                      pointer(int64(2000)),
+		SampleSizeBIConnector:            pointer(int64(5000)),
+		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 	}
 
 	if diff := deep.Equal(processArgs, expected); diff != nil {
@@ -956,7 +956,7 @@ func TestClusters_Get(t *testing.T) {
 				},
 			},
 		},
-		DiskSizeGB:               pointer(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -964,23 +964,23 @@ func TestClusters_Get(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointer64(1),
+		NumShards:                pointer(int64(1)),
 		Paused:                   pointer(false),
 		PitEnabled:               pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointer64(1320),
+			DiskIOPS:         pointer(int64(1320)),
 			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 		},
-		ReplicationFactor: pointer64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointer64(3),
-				Priority:       pointer64(7),
-				ReadOnlyNodes:  pointer64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:                   "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
@@ -1297,7 +1297,7 @@ func TestClusters_Upgrade(t *testing.T) {
 		BackupEnabled:            pointer(true),
 		BiConnector:              &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
 		ClusterType:              "REPLICASET",
-		DiskSizeGB:               pointer(160),
+		DiskSizeGB:               pointer(160.0),
 		EncryptionAtRestProvider: "AWS",
 		GroupID:                  groupID,
 		MongoDBVersion:           "3.4.9",
@@ -1305,23 +1305,23 @@ func TestClusters_Upgrade(t *testing.T) {
 		MongoURIUpdated:          "2017-10-23T21:26:17Z",
 		MongoURIWithOptions:      "mongodb://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=mongo-shard-0",
 		Name:                     clusterName,
-		NumShards:                pointer64(1),
+		NumShards:                pointer(int64(1)),
 		Paused:                   pointer(false),
 		ProviderSettings: &ProviderSettings{
 			ProviderName:     "AWS",
-			DiskIOPS:         pointer64(1320),
+			DiskIOPS:         pointer(int64(1320)),
 			EncryptEBSVolume: pointer(false),
 			InstanceSizeName: "M40",
 			RegionName:       "US_WEST_2",
 			AutoScaling:      &AutoScaling{Compute: &Compute{MinInstanceSize: "M20", MaxInstanceSize: "M80"}},
 		},
-		ReplicationFactor: pointer64(3),
+		ReplicationFactor: pointer(int64(3)),
 
 		ReplicationSpec: map[string]RegionsConfig{
 			"US_EAST_1": {
-				ElectableNodes: pointer64(3),
-				Priority:       pointer64(7),
-				ReadOnlyNodes:  pointer64(0),
+				ElectableNodes: pointer(int64(3)),
+				Priority:       pointer(int64(7)),
+				ReadOnlyNodes:  pointer(int64(0)),
 			},
 		},
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
