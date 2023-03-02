@@ -2,13 +2,13 @@
 set -o errexit
 set -o nounset
 
-#######################################
+#########################################################
 # Fetch openapi from remote file
 # Environment variables:
 #   CURRENT_REVISION - current revision of the versioned API
 #   OPENAPI_FILE_NAME - openapi file name to use
 #   OPENAPI_FOLDER - folder for saving openapi file
-#######################################
+#########################################################
 
 ## Input variables with defaults
 

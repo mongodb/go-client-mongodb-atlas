@@ -1,10 +1,10 @@
 ---
 name: shellcheck
 on:
-  push:
-    branches:
-      - master
   pull_request:
+    paths:
+      - "**/**.sh"
+
 jobs:
   shellcheck:
     name: shellcheck
