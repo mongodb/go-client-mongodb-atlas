@@ -221,7 +221,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -505,9 +505,16 @@ type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	ApiService OnlineArchiveApi
 	groupId string
 	clusterName string
+	envelope *bool
 	startDate *int64
 	endDate *int64
 	archiveOnly *bool
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) Envelope(envelope bool) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
+	r.envelope = &envelope
+	return r
 }
 
 // Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
@@ -586,6 +593,9 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
+	if r.envelope != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
+	}
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
 	}
@@ -1180,7 +1190,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

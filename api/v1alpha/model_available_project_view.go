@@ -21,6 +21,7 @@ var _ MappedNullable = &AvailableProjectView{}
 type AvailableProjectView struct {
 	// List of clusters that can be migrated to MongoDB Cloud.
 	Deployments []AvailableDeploymentView `json:"deployments,omitempty"`
+	// Hostname of MongoDB Agent list that you configured to perform a migration.
 	MigrationHosts []string `json:"migrationHosts,omitempty"`
 	// Human-readable label that identifies this project.
 	Name string `json:"name"`

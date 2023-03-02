@@ -15,21 +15,21 @@ import (
 	"time"
 )
 
-// checks if the ApiAtlasServerlessBackupSnapshotViewManual type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ApiAtlasServerlessBackupSnapshotViewManual{}
+// checks if the ServerlessBackupSnapshot type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessBackupSnapshot{}
 
-// ApiAtlasServerlessBackupSnapshotViewManual struct for ApiAtlasServerlessBackupSnapshotViewManual
-type ApiAtlasServerlessBackupSnapshotViewManual struct {
+// ServerlessBackupSnapshot struct for ServerlessBackupSnapshot
+type ServerlessBackupSnapshot struct {
 	// Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	// Human-readable phrase or sentence that explains the purpose of the snapshot. The resource returns this parameter when `\"status\" : \"onDemand\"`.
-	Description *string `json:"description,omitempty"`
 	// Date and time when MongoDB Cloud deletes the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
 	// Human-readable label that identifies how often this snapshot triggers.
 	FrequencyType *string `json:"frequencyType,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot.
 	Id *string `json:"id,omitempty"`
+	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
+	Links []Link `json:"links,omitempty"`
 	// Version of the MongoDB host that this snapshot backs up.
 	MongodVersion *string `json:"mongodVersion,omitempty"`
 	// Human-readable label given to the serverless instance from which MongoDB Cloud took this snapshot.
@@ -39,28 +39,28 @@ type ApiAtlasServerlessBackupSnapshotViewManual struct {
 	// Human-readable label that indicates the stage of the backup process for this snapshot.
 	Status *string `json:"status,omitempty"`
 	// Number of bytes taken to store the backup snapshot.
-	StorageSizeBytes *int32 `json:"storageSizeBytes,omitempty"`
+	StorageSizeBytes *int64 `json:"storageSizeBytes,omitempty"`
 }
 
-// NewApiAtlasServerlessBackupSnapshotViewManual instantiates a new ApiAtlasServerlessBackupSnapshotViewManual object
+// NewServerlessBackupSnapshot instantiates a new ServerlessBackupSnapshot object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiAtlasServerlessBackupSnapshotViewManual() *ApiAtlasServerlessBackupSnapshotViewManual {
-	this := ApiAtlasServerlessBackupSnapshotViewManual{}
+func NewServerlessBackupSnapshot() *ServerlessBackupSnapshot {
+	this := ServerlessBackupSnapshot{}
 	return &this
 }
 
-// NewApiAtlasServerlessBackupSnapshotViewManualWithDefaults instantiates a new ApiAtlasServerlessBackupSnapshotViewManual object
+// NewServerlessBackupSnapshotWithDefaults instantiates a new ServerlessBackupSnapshot object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApiAtlasServerlessBackupSnapshotViewManualWithDefaults() *ApiAtlasServerlessBackupSnapshotViewManual {
-	this := ApiAtlasServerlessBackupSnapshotViewManual{}
+func NewServerlessBackupSnapshotWithDefaults() *ServerlessBackupSnapshot {
+	this := ServerlessBackupSnapshot{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetCreatedAt() time.Time {
+func (o *ServerlessBackupSnapshot) GetCreatedAt() time.Time {
 	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
@@ -70,7 +70,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetCreatedAtOk() (*time.Time, bool) {
+func (o *ServerlessBackupSnapshot) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetCreatedAtOk() (*time.Tim
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasCreatedAt() bool {
+func (o *ServerlessBackupSnapshot) HasCreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -87,44 +87,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetCreatedAt(v time.Time) {
+func (o *ServerlessBackupSnapshot) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetExpiresAt() time.Time {
+func (o *ServerlessBackupSnapshot) GetExpiresAt() time.Time {
 	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
@@ -134,7 +102,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetExpiresAt() time.Time {
 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetExpiresAtOk() (*time.Time, bool) {
+func (o *ServerlessBackupSnapshot) GetExpiresAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
@@ -142,7 +110,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetExpiresAtOk() (*time.Tim
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasExpiresAt() bool {
+func (o *ServerlessBackupSnapshot) HasExpiresAt() bool {
 	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
@@ -151,12 +119,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasExpiresAt() bool {
 }
 
 // SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetExpiresAt(v time.Time) {
+func (o *ServerlessBackupSnapshot) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = &v
 }
 
 // GetFrequencyType returns the FrequencyType field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetFrequencyType() string {
+func (o *ServerlessBackupSnapshot) GetFrequencyType() string {
 	if o == nil || IsNil(o.FrequencyType) {
 		var ret string
 		return ret
@@ -166,7 +134,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetFrequencyType() string {
 
 // GetFrequencyTypeOk returns a tuple with the FrequencyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetFrequencyTypeOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetFrequencyTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.FrequencyType) {
 		return nil, false
 	}
@@ -174,7 +142,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetFrequencyTypeOk() (*stri
 }
 
 // HasFrequencyType returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasFrequencyType() bool {
+func (o *ServerlessBackupSnapshot) HasFrequencyType() bool {
 	if o != nil && !IsNil(o.FrequencyType) {
 		return true
 	}
@@ -183,12 +151,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasFrequencyType() bool {
 }
 
 // SetFrequencyType gets a reference to the given string and assigns it to the FrequencyType field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetFrequencyType(v string) {
+func (o *ServerlessBackupSnapshot) SetFrequencyType(v string) {
 	o.FrequencyType = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetId() string {
+func (o *ServerlessBackupSnapshot) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -198,7 +166,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetIdOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -206,7 +174,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasId() bool {
+func (o *ServerlessBackupSnapshot) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -215,12 +183,44 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetId(v string) {
+func (o *ServerlessBackupSnapshot) SetId(v string) {
 	o.Id = &v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *ServerlessBackupSnapshot) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessBackupSnapshot) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *ServerlessBackupSnapshot) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *ServerlessBackupSnapshot) SetLinks(v []Link) {
+	o.Links = v
+}
+
 // GetMongodVersion returns the MongodVersion field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetMongodVersion() string {
+func (o *ServerlessBackupSnapshot) GetMongodVersion() string {
 	if o == nil || IsNil(o.MongodVersion) {
 		var ret string
 		return ret
@@ -230,7 +230,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetMongodVersion() string {
 
 // GetMongodVersionOk returns a tuple with the MongodVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetMongodVersionOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetMongodVersionOk() (*string, bool) {
 	if o == nil || IsNil(o.MongodVersion) {
 		return nil, false
 	}
@@ -238,7 +238,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetMongodVersionOk() (*stri
 }
 
 // HasMongodVersion returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasMongodVersion() bool {
+func (o *ServerlessBackupSnapshot) HasMongodVersion() bool {
 	if o != nil && !IsNil(o.MongodVersion) {
 		return true
 	}
@@ -247,12 +247,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasMongodVersion() bool {
 }
 
 // SetMongodVersion gets a reference to the given string and assigns it to the MongodVersion field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetMongodVersion(v string) {
+func (o *ServerlessBackupSnapshot) SetMongodVersion(v string) {
 	o.MongodVersion = &v
 }
 
 // GetServerlessInstanceName returns the ServerlessInstanceName field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetServerlessInstanceName() string {
+func (o *ServerlessBackupSnapshot) GetServerlessInstanceName() string {
 	if o == nil || IsNil(o.ServerlessInstanceName) {
 		var ret string
 		return ret
@@ -262,7 +262,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetServerlessInstanceName()
 
 // GetServerlessInstanceNameOk returns a tuple with the ServerlessInstanceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetServerlessInstanceNameOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetServerlessInstanceNameOk() (*string, bool) {
 	if o == nil || IsNil(o.ServerlessInstanceName) {
 		return nil, false
 	}
@@ -270,7 +270,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetServerlessInstanceNameOk
 }
 
 // HasServerlessInstanceName returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasServerlessInstanceName() bool {
+func (o *ServerlessBackupSnapshot) HasServerlessInstanceName() bool {
 	if o != nil && !IsNil(o.ServerlessInstanceName) {
 		return true
 	}
@@ -279,12 +279,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasServerlessInstanceName()
 }
 
 // SetServerlessInstanceName gets a reference to the given string and assigns it to the ServerlessInstanceName field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetServerlessInstanceName(v string) {
+func (o *ServerlessBackupSnapshot) SetServerlessInstanceName(v string) {
 	o.ServerlessInstanceName = &v
 }
 
 // GetSnapshotType returns the SnapshotType field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetSnapshotType() string {
+func (o *ServerlessBackupSnapshot) GetSnapshotType() string {
 	if o == nil || IsNil(o.SnapshotType) {
 		var ret string
 		return ret
@@ -294,7 +294,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetSnapshotType() string {
 
 // GetSnapshotTypeOk returns a tuple with the SnapshotType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetSnapshotTypeOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetSnapshotTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.SnapshotType) {
 		return nil, false
 	}
@@ -302,7 +302,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetSnapshotTypeOk() (*strin
 }
 
 // HasSnapshotType returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasSnapshotType() bool {
+func (o *ServerlessBackupSnapshot) HasSnapshotType() bool {
 	if o != nil && !IsNil(o.SnapshotType) {
 		return true
 	}
@@ -311,12 +311,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasSnapshotType() bool {
 }
 
 // SetSnapshotType gets a reference to the given string and assigns it to the SnapshotType field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetSnapshotType(v string) {
+func (o *ServerlessBackupSnapshot) SetSnapshotType(v string) {
 	o.SnapshotType = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStatus() string {
+func (o *ServerlessBackupSnapshot) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
@@ -326,7 +326,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStatusOk() (*string, bool) {
+func (o *ServerlessBackupSnapshot) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -334,7 +334,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStatusOk() (*string, boo
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasStatus() bool {
+func (o *ServerlessBackupSnapshot) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -343,14 +343,14 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetStatus(v string) {
+func (o *ServerlessBackupSnapshot) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetStorageSizeBytes returns the StorageSizeBytes field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStorageSizeBytes() int32 {
+func (o *ServerlessBackupSnapshot) GetStorageSizeBytes() int64 {
 	if o == nil || IsNil(o.StorageSizeBytes) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StorageSizeBytes
@@ -358,7 +358,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStorageSizeBytes() int32
 
 // GetStorageSizeBytesOk returns a tuple with the StorageSizeBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStorageSizeBytesOk() (*int32, bool) {
+func (o *ServerlessBackupSnapshot) GetStorageSizeBytesOk() (*int64, bool) {
 	if o == nil || IsNil(o.StorageSizeBytes) {
 		return nil, false
 	}
@@ -366,7 +366,7 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) GetStorageSizeBytesOk() (*i
 }
 
 // HasStorageSizeBytes returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasStorageSizeBytes() bool {
+func (o *ServerlessBackupSnapshot) HasStorageSizeBytes() bool {
 	if o != nil && !IsNil(o.StorageSizeBytes) {
 		return true
 	}
@@ -374,12 +374,12 @@ func (o *ApiAtlasServerlessBackupSnapshotViewManual) HasStorageSizeBytes() bool 
 	return false
 }
 
-// SetStorageSizeBytes gets a reference to the given int32 and assigns it to the StorageSizeBytes field.
-func (o *ApiAtlasServerlessBackupSnapshotViewManual) SetStorageSizeBytes(v int32) {
+// SetStorageSizeBytes gets a reference to the given int64 and assigns it to the StorageSizeBytes field.
+func (o *ServerlessBackupSnapshot) SetStorageSizeBytes(v int64) {
 	o.StorageSizeBytes = &v
 }
 
-func (o ApiAtlasServerlessBackupSnapshotViewManual) MarshalJSON() ([]byte, error) {
+func (o ServerlessBackupSnapshot) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -387,13 +387,13 @@ func (o ApiAtlasServerlessBackupSnapshotViewManual) MarshalJSON() ([]byte, error
 	return json.Marshal(toSerialize)
 }
 
-func (o ApiAtlasServerlessBackupSnapshotViewManual) ToMap() (map[string]interface{}, error) {
+func (o ServerlessBackupSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	// skip: createdAt is readOnly
-	// skip: description is readOnly
 	// skip: expiresAt is readOnly
 	// skip: frequencyType is readOnly
 	// skip: id is readOnly
+	// skip: links is readOnly
 	// skip: mongodVersion is readOnly
 	// skip: serverlessInstanceName is readOnly
 	// skip: snapshotType is readOnly
@@ -402,38 +402,38 @@ func (o ApiAtlasServerlessBackupSnapshotViewManual) ToMap() (map[string]interfac
 	return toSerialize, nil
 }
 
-type NullableApiAtlasServerlessBackupSnapshotViewManual struct {
-	value *ApiAtlasServerlessBackupSnapshotViewManual
+type NullableServerlessBackupSnapshot struct {
+	value *ServerlessBackupSnapshot
 	isSet bool
 }
 
-func (v NullableApiAtlasServerlessBackupSnapshotViewManual) Get() *ApiAtlasServerlessBackupSnapshotViewManual {
+func (v NullableServerlessBackupSnapshot) Get() *ServerlessBackupSnapshot {
 	return v.value
 }
 
-func (v *NullableApiAtlasServerlessBackupSnapshotViewManual) Set(val *ApiAtlasServerlessBackupSnapshotViewManual) {
+func (v *NullableServerlessBackupSnapshot) Set(val *ServerlessBackupSnapshot) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableApiAtlasServerlessBackupSnapshotViewManual) IsSet() bool {
+func (v NullableServerlessBackupSnapshot) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableApiAtlasServerlessBackupSnapshotViewManual) Unset() {
+func (v *NullableServerlessBackupSnapshot) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableApiAtlasServerlessBackupSnapshotViewManual(val *ApiAtlasServerlessBackupSnapshotViewManual) *NullableApiAtlasServerlessBackupSnapshotViewManual {
-	return &NullableApiAtlasServerlessBackupSnapshotViewManual{value: val, isSet: true}
+func NewNullableServerlessBackupSnapshot(val *ServerlessBackupSnapshot) *NullableServerlessBackupSnapshot {
+	return &NullableServerlessBackupSnapshot{value: val, isSet: true}
 }
 
-func (v NullableApiAtlasServerlessBackupSnapshotViewManual) MarshalJSON() ([]byte, error) {
+func (v NullableServerlessBackupSnapshot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableApiAtlasServerlessBackupSnapshotViewManual) UnmarshalJSON(src []byte) error {
+func (v *NullableServerlessBackupSnapshot) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

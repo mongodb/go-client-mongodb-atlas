@@ -21,7 +21,7 @@ var _ MappedNullable = &DatadogNotificationView{}
 type DatadogNotificationView struct {
 	// Datadog API Key that MongoDB Cloud needs to send alert notifications to Datadog. You can find this API key in the Datadog dashboard. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
 	DatadogApiKey *string `json:"datadogApiKey,omitempty"`
-	// Datadog region that indicates which API Uniform Resource Locator (URL) to use. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  To learn more about Datadog's regions, see <a href=\"https://docs.datadoghq.com/getting_started/site/\" target=\"_blank\" rel=\"noopener noreferrer\">Datadog Sites.</a>
+	// Datadog region that indicates which API Uniform Resource Locator (URL) to use. The resource requires this parameter when `\"notifications.[n].typeName\" : \"DATADOG\"`.  To learn more about Datadog's regions, see <a href=\"https://docs.datadoghq.com/getting_started/site/\" target=\"_blank\" rel=\"noopener noreferrer\">Datadog Sites</a>.
 	DatadogRegion *string `json:"datadogRegion,omitempty"`
 	// Number of minutes that MongoDB Cloud waits after detecting an alert condition before it sends out the first notification.
 	DelayMin *int32 `json:"delayMin,omitempty"`

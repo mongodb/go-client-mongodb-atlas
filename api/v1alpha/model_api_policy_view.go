@@ -22,7 +22,7 @@ type ApiPolicyView struct {
 	// Unique 24-hexadecimal digit string that identifies this backup policy.
 	Id *string `json:"id,omitempty"`
 	// List that contains the specifications for one policy.
-	PolicyItems []ApiPolicyItemView `json:"policyItems"`
+	PolicyItems []ApiPolicyItemView `json:"policyItems,omitempty"`
 }
 
 // NewApiPolicyView instantiates a new ApiPolicyView object
@@ -74,26 +74,34 @@ func (o *ApiPolicyView) SetId(v string) {
 	o.Id = &v
 }
 
-// GetPolicyItems returns the PolicyItems field value
+// GetPolicyItems returns the PolicyItems field value if set, zero value otherwise.
 func (o *ApiPolicyView) GetPolicyItems() []ApiPolicyItemView {
-	if o == nil {
+	if o == nil || IsNil(o.PolicyItems) {
 		var ret []ApiPolicyItemView
 		return ret
 	}
-
 	return o.PolicyItems
 }
 
-// GetPolicyItemsOk returns a tuple with the PolicyItems field value
+// GetPolicyItemsOk returns a tuple with the PolicyItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiPolicyView) GetPolicyItemsOk() ([]ApiPolicyItemView, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PolicyItems) {
 		return nil, false
 	}
 	return o.PolicyItems, true
 }
 
-// SetPolicyItems sets field value
+// HasPolicyItems returns a boolean if a field has been set.
+func (o *ApiPolicyView) HasPolicyItems() bool {
+	if o != nil && !IsNil(o.PolicyItems) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicyItems gets a reference to the given []ApiPolicyItemView and assigns it to the PolicyItems field.
 func (o *ApiPolicyView) SetPolicyItems(v []ApiPolicyItemView) {
 	o.PolicyItems = v
 }
@@ -111,7 +119,9 @@ func (o ApiPolicyView) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	toSerialize["policyItems"] = o.PolicyItems
+	if !IsNil(o.PolicyItems) {
+		toSerialize["policyItems"] = o.PolicyItems
+	}
 	return toSerialize, nil
 }
 

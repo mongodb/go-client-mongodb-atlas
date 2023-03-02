@@ -117,7 +117,7 @@ type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	pretty *bool
 }
 
-// Third-party integration configuration that you want to configure for your project.
+// Third-party integration that you want to configure for your project.
 func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
 	return r
@@ -224,7 +224,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -889,7 +889,7 @@ type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	pretty *bool
 }
 
-// Third-party integration configuration that you want to configure for your project.
+// Third-party integration that you want to configure for your project.
 func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
 	return r
@@ -996,7 +996,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

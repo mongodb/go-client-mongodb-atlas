@@ -25,7 +25,7 @@ type ApiIndexRequestView struct {
 	// Human-readable label of the database that holds the collection on which MongoDB Cloud creates an index.
 	Db string `json:"db"`
 	// List that contains one or more objects that describe the parameters that you want to index.
-	Keys []map[string]string `json:"keys"`
+	Keys []map[string]string `json:"keys,omitempty"`
 	Options *IndexOptions `json:"options,omitempty"`
 }
 
@@ -126,26 +126,34 @@ func (o *ApiIndexRequestView) SetDb(v string) {
 	o.Db = v
 }
 
-// GetKeys returns the Keys field value
+// GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *ApiIndexRequestView) GetKeys() []map[string]string {
-	if o == nil {
+	if o == nil || IsNil(o.Keys) {
 		var ret []map[string]string
 		return ret
 	}
-
 	return o.Keys
 }
 
-// GetKeysOk returns a tuple with the Keys field value
+// GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiIndexRequestView) GetKeysOk() ([]map[string]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Keys) {
 		return nil, false
 	}
 	return o.Keys, true
 }
 
-// SetKeys sets field value
+// HasKeys returns a boolean if a field has been set.
+func (o *ApiIndexRequestView) HasKeys() bool {
+	if o != nil && !IsNil(o.Keys) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeys gets a reference to the given []map[string]string and assigns it to the Keys field.
 func (o *ApiIndexRequestView) SetKeys(v []map[string]string) {
 	o.Keys = v
 }
@@ -197,7 +205,9 @@ func (o ApiIndexRequestView) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["collection"] = o.Collection
 	toSerialize["db"] = o.Db
-	toSerialize["keys"] = o.Keys
+	if !IsNil(o.Keys) {
+		toSerialize["keys"] = o.Keys
+	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}

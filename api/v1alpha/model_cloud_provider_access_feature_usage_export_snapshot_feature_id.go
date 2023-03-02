@@ -19,7 +19,7 @@ var _ MappedNullable = &CloudProviderAccessFeatureUsageExportSnapshotFeatureId{}
 
 // CloudProviderAccessFeatureUsageExportSnapshotFeatureId Identifying characteristics about the Amazon Web Services (AWS) Simple Storage Service (S3) export bucket linked to this AWS Identity and Access Management (IAM) role.
 type CloudProviderAccessFeatureUsageExportSnapshotFeatureId struct {
-	// Unique 24-hexadecimal digit string that identifies the AWS S3 bucket to which you export your snapshots. 
+	// Unique 24-hexadecimal digit string that identifies the AWS S3 bucket to which you export your snapshots.
 	ExportBucketId *string `json:"exportBucketId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	GroupId *string `json:"groupId,omitempty"`

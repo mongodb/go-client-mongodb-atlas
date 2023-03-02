@@ -195,7 +195,7 @@ func (a *AlertsApiService) AcknowledgeAlertExecute(r AlertsApiAcknowledgeAlertRe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -475,6 +475,7 @@ type AlertsApiListAlertsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 	pretty *bool
+	status *string
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
@@ -504,6 +505,12 @@ func (r AlertsApiListAlertsRequest) PageNum(pageNum int32) AlertsApiListAlertsRe
 // Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r AlertsApiListAlertsRequest) Pretty(pretty bool) AlertsApiListAlertsRequest {
 	r.pretty = &pretty
+	return r
+}
+
+// Status of the alerts to return. Omit to return all alerts in all statuses.
+func (r AlertsApiListAlertsRequest) Status(status string) AlertsApiListAlertsRequest {
+	r.status = &status
 	return r
 }
 
@@ -572,6 +579,9 @@ func (a *AlertsApiService) ListAlertsExecute(r AlertsApiListAlertsRequest) (*Pag
 	}
 	if r.pretty != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

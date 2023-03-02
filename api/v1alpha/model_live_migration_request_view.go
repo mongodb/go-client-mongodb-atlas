@@ -25,7 +25,7 @@ type LiveMigrationRequestView struct {
 	// Flag that indicates whether the migration process drops all collections from the destination cluster before the migration starts.
 	DropEnabled bool `json:"dropEnabled"`
 	// List of migration hosts used for this migration.
-	MigrationHosts []string `json:"migrationHosts"`
+	MigrationHosts []string `json:"migrationHosts,omitempty"`
 	Source Source `json:"source"`
 }
 
@@ -126,26 +126,34 @@ func (o *LiveMigrationRequestView) SetDropEnabled(v bool) {
 	o.DropEnabled = v
 }
 
-// GetMigrationHosts returns the MigrationHosts field value
+// GetMigrationHosts returns the MigrationHosts field value if set, zero value otherwise.
 func (o *LiveMigrationRequestView) GetMigrationHosts() []string {
-	if o == nil {
+	if o == nil || IsNil(o.MigrationHosts) {
 		var ret []string
 		return ret
 	}
-
 	return o.MigrationHosts
 }
 
-// GetMigrationHostsOk returns a tuple with the MigrationHosts field value
+// GetMigrationHostsOk returns a tuple with the MigrationHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LiveMigrationRequestView) GetMigrationHostsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MigrationHosts) {
 		return nil, false
 	}
 	return o.MigrationHosts, true
 }
 
-// SetMigrationHosts sets field value
+// HasMigrationHosts returns a boolean if a field has been set.
+func (o *LiveMigrationRequestView) HasMigrationHosts() bool {
+	if o != nil && !IsNil(o.MigrationHosts) {
+		return true
+	}
+
+	return false
+}
+
+// SetMigrationHosts gets a reference to the given []string and assigns it to the MigrationHosts field.
 func (o *LiveMigrationRequestView) SetMigrationHosts(v []string) {
 	o.MigrationHosts = v
 }
@@ -187,7 +195,9 @@ func (o LiveMigrationRequestView) ToMap() (map[string]interface{}, error) {
 	// skip: _id is readOnly
 	toSerialize["destination"] = o.Destination
 	toSerialize["dropEnabled"] = o.DropEnabled
-	toSerialize["migrationHosts"] = o.MigrationHosts
+	if !IsNil(o.MigrationHosts) {
+		toSerialize["migrationHosts"] = o.MigrationHosts
+	}
 	toSerialize["source"] = o.Source
 	return toSerialize, nil
 }

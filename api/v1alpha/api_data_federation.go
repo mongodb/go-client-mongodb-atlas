@@ -41,7 +41,7 @@ type DataFederationApi interface {
 	/*
 	CreateFederatedDatabase Create One Federated Database Instance in One Project
 
-	Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+	Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -73,7 +73,7 @@ type DataFederationApi interface {
 	/*
 	DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 
-	Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+	Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -88,7 +88,7 @@ type DataFederationApi interface {
 	/*
 	DeleteFederatedDatabase Remove One Federated Database Instance from One Project
 
-	Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+	Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -119,7 +119,7 @@ type DataFederationApi interface {
 	/*
 	DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
 
-	Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
+	Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -230,7 +230,7 @@ type DataFederationApi interface {
 	/*
 	UpdateFederatedDatabase Update One Federated Database Instance in One Project
 
-	Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or higher role. This resource doesn't require the API Key to have an Access List.
+	Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -333,7 +333,7 @@ func (a *DataFederationApiService) CreateDataFederationPrivateEndpointExecute(r 
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -427,6 +427,7 @@ type DataFederationApiCreateFederatedDatabaseRequest struct {
 	dataLakeTenant *DataLakeTenant
 	envelope *bool
 	pretty *bool
+	skipRoleValidation *bool
 }
 
 // Details to create one federated database instance in the specified project.
@@ -447,6 +448,12 @@ func (r DataFederationApiCreateFederatedDatabaseRequest) Pretty(pretty bool) Dat
 	return r
 }
 
+// Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
+func (r DataFederationApiCreateFederatedDatabaseRequest) SkipRoleValidation(skipRoleValidation bool) DataFederationApiCreateFederatedDatabaseRequest {
+	r.skipRoleValidation = &skipRoleValidation
+	return r
+}
+
 func (r DataFederationApiCreateFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
 	return r.ApiService.CreateFederatedDatabaseExecute(r)
 }
@@ -454,7 +461,7 @@ func (r DataFederationApiCreateFederatedDatabaseRequest) Execute() (*DataLakeTen
 /*
 CreateFederatedDatabase Create One Federated Database Instance in One Project
 
-Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+Creates one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -505,8 +512,11 @@ func (a *DataFederationApiService) CreateFederatedDatabaseExecute(r DataFederati
 	if r.pretty != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
+	if r.skipRoleValidation != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skipRoleValidation", r.skipRoleValidation, "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -666,7 +676,7 @@ func (a *DataFederationApiService) CreateOneDataFederationQueryLimitExecute(r Da
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -792,7 +802,7 @@ func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Execute() (
 /*
 DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 
-Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+Removes one private endpoint for Federated Database Instances and Online Archives in the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -952,7 +962,7 @@ func (r DataFederationApiDeleteFederatedDatabaseRequest) Execute() (*http.Respon
 /*
 DeleteFederatedDatabase Remove One Federated Database Instance from One Project
 
-Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
+Removes one federated database instance from the specified project. To use this resource, the requesting API Key must have the Project Owner or Project Charts Admin roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1232,7 +1242,7 @@ func (r DataFederationApiDownloadFederatedDatabaseQueryLogsRequest) Execute() (*
 /*
 DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
 
-Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Atlas Admin or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
+Downloads the query logs for the specified federated database instance. To use this resource, the requesting API Key must have the Project Owner or Project Data Access Read Write roles. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -2447,7 +2457,7 @@ func (r DataFederationApiUpdateFederatedDatabaseRequest) Execute() (*DataLakeTen
 /*
 UpdateFederatedDatabase Update One Federated Database Instance in One Project
 
-Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin or higher role. This resource doesn't require the API Key to have an Access List.
+Updates the details of one federated database instance in the specified project. To use this resource, the requesting API Key must have the Project Owner or higher role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -2506,7 +2516,7 @@ func (a *DataFederationApiService) UpdateFederatedDatabaseExecute(r DataFederati
 	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "skipRoleValidation", r.skipRoleValidation, "")
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
