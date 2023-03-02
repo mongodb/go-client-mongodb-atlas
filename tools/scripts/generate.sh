@@ -2,13 +2,13 @@
 set -o errexit
 set -o nounset
 
-#######################################
+######################################################
 # Generate client using OpenAPI generator
 # Environment variables:
 #   OPENAPI_FOLDER - folder containing openapi file
 #   OPENAPI_FILE_NAME - openapi file name
 #   SDK_FOLDER - folder location for generated client
-#######################################
+######################################################
 
 OPENAPI_FOLDER=${OPENAPI_FOLDER:-./openapi}
 OPENAPI_FILE_NAME=${OPENAPI_FILE_NAME:-atlas-api.yaml}
