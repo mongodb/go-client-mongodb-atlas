@@ -30,7 +30,7 @@ type ReplicaSetThresholdAlertConfigViewForNdsGroup struct {
 	// Unique 24-hexadecimal digit string that identifies this alert configuration.
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
 	Matchers []ReplicaSetMatcherView `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
@@ -213,26 +213,34 @@ func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetId(v string) {
 	o.Id = &v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 	o.Links = v
 }

@@ -19,7 +19,7 @@ var _ MappedNullable = &DiskBackupShardedClusterSnapshotMember{}
 
 // DiskBackupShardedClusterSnapshotMember List that includes the snapshots and the cloud provider that stores the snapshots. The resource returns this parameter when `\"type\" : \"SHARDED_CLUSTER\"`.
 type DiskBackupShardedClusterSnapshotMember struct {
-	// Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\".`
+	// Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
 	CloudProvider string `json:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot.
 	Id string `json:"id"`

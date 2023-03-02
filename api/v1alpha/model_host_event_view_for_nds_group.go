@@ -20,7 +20,7 @@ var _ MappedNullable = &HostEventViewForNdsGroup{}
 
 // HostEventViewForNdsGroup Host event identifies different activities about mongod host.
 type HostEventViewForNdsGroup struct {
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
@@ -29,26 +29,26 @@ type HostEventViewForNdsGroup struct {
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
 	Id string `json:"id"`
-	// (**For audit only**), Flag that indicates whether a MongoDB employee triggered the specified event.
+	// Flag that indicates whether a MongoDB employee triggered the specified event.
 	IsGlobalAdmin *bool `json:"isGlobalAdmin,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
 	OrgId *string `json:"orgId,omitempty"`
 	// IANA port on which the MongoDB process listens for requests.
 	Port *int32 `json:"port,omitempty"`
-	// (**For audit only**), Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
+	// Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
 	PublicKey *string `json:"publicKey,omitempty"`
 	Raw *Raw `json:"raw,omitempty"`
-	// (**For audit only**), IPv4 or IPv6 address from which the user triggered this event.
+	// IPv4 or IPv6 address from which the user triggered this event.
 	RemoteAddress *string `json:"remoteAddress,omitempty"`
 	// Human-readable label of the replica set associated with the event.
 	ReplicaSetName *string `json:"replicaSetName,omitempty"`
 	// Human-readable label of the shard associated with the event.
 	ShardName *string `json:"shardName,omitempty"`
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
 	UserId *string `json:"userId,omitempty"`
-	// (**For audit only**), Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
+	// Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
 	Username *string `json:"username,omitempty"`
 }
 
@@ -237,26 +237,34 @@ func (o *HostEventViewForNdsGroup) SetIsGlobalAdmin(v bool) {
 	o.IsGlobalAdmin = &v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *HostEventViewForNdsGroup) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HostEventViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *HostEventViewForNdsGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *HostEventViewForNdsGroup) SetLinks(v []Link) {
 	o.Links = v
 }

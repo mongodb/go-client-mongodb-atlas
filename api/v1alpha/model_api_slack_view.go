@@ -19,7 +19,7 @@ var _ MappedNullable = &ApiSlackView{}
 
 // ApiSlackView Details to integrate one Slack account with one MongoDB Cloud project.
 type ApiSlackView struct {
-	// Key that allows MongoDB Cloud to access your Slack account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.  **IMPORTANT**: Slack integrations now use the OAuth2 verification method and must  be initially configured, or updated from a legacy integration, through the Atlas  third-party service integrations page. Legacy tokens will soon no longer be  supported.  
+	// Key that allows MongoDB Cloud to access your Slack account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.  **IMPORTANT**: Slack integrations now use the OAuth2 verification method and must  be initially configured, or updated from a legacy integration, through the Atlas  third-party service integrations page. Legacy tokens will soon no longer be  supported.
 	ApiToken string `json:"apiToken"`
 	// Name of the Slack channel to which MongoDB Cloud sends alert notifications.
 	ChannelName NullableString `json:"channelName"`

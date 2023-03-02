@@ -31,7 +31,7 @@ type DefaultAlertConfigViewForNdsGroup struct {
 	// Unique 24-hexadecimal digit string that identifies this alert configuration.
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	Matchers []MatcherView `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
@@ -212,26 +212,34 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetId(v string) {
 	o.Id = &v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DefaultAlertConfigViewForNdsGroup) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DefaultAlertConfigViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *DefaultAlertConfigViewForNdsGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *DefaultAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 	o.Links = v
 }

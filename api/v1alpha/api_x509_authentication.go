@@ -25,7 +25,7 @@ type X509AuthenticationApi interface {
 	/*
 	CreateDatabaseUserCertificate Create One X.509 Certificate for One MongoDB User
 
-	Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+	Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 To get MongoDB Cloud to generate a managed certificate for a database user, set `"x509Type" : "MANAGED"` on the desired MongoDB Database User.
 
@@ -114,7 +114,7 @@ func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) Execute() (*U
 /*
 CreateDatabaseUserCertificate Create One X.509 Certificate for One MongoDB User
 
-Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+Generates one X.509 certificate for the specified MongoDB user. Atlas manages the certificate and MongoDB user that belong to one project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 To get MongoDB Cloud to generate a managed certificate for a database user, set `"x509Type" : "MANAGED"` on the desired MongoDB Database User.
 
@@ -173,7 +173,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

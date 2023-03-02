@@ -40,7 +40,7 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**GetBackupExportJob**](docs/CloudBackupsApi.md#getbackupexportjob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/exports/{exportId} | Return One Cloud Backup Snapshot Export Job
 *CloudBackupsApi* | [**GetBackupRestoreJob**](docs/CloudBackupsApi.md#getbackuprestorejob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/restoreJobs/{restoreJobId} | Return One Restore Job of One Cluster
 *CloudBackupsApi* | [**GetBackupSchedule**](docs/CloudBackupsApi.md#getbackupschedule) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Return One Cloud Backup Schedule
-*CloudBackupsApi* | [**GetDataProtectionSettings**](docs/CloudBackupsApi.md#getdataprotectionsettings) | **Get** /api/atlas/v2/groups/{groupId}/dataProtection | Return data protection settings
+*CloudBackupsApi* | [**GetDataProtectionSettings**](docs/CloudBackupsApi.md#getdataprotectionsettings) | **Get** /api/atlas/v2/groups/{groupId}/dataProtection | Return the Data Protection Policy settings
 *CloudBackupsApi* | [**GetExportBucket**](docs/CloudBackupsApi.md#getexportbucket) | **Get** /api/atlas/v2/groups/{groupId}/backup/exportBuckets/{exportBucketId} | Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
 *CloudBackupsApi* | [**GetReplicaSetBackup**](docs/CloudBackupsApi.md#getreplicasetbackup) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Return One Replica Set Cloud Backup
 *CloudBackupsApi* | [**GetServerlessBackup**](docs/CloudBackupsApi.md#getserverlessbackup) | **Get** /api/atlas/v2/groups/{groupId}/serverless/{clusterName}/backup/snapshots/{snapshotId} | Return One Snapshot of One Serverless Instance
@@ -55,6 +55,7 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**ListShardedClusterBackups**](docs/CloudBackupsApi.md#listshardedclusterbackups) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/shardedClusters | Return All Sharded Cluster Cloud Backups
 *CloudBackupsApi* | [**TakeSnapshot**](docs/CloudBackupsApi.md#takesnapshot) | **Post** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots | Take One On-Demand Snapshot
 *CloudBackupsApi* | [**UpdateBackupSchedule**](docs/CloudBackupsApi.md#updatebackupschedule) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Update Cloud Backup Schedule for One Cluster
+*CloudBackupsApi* | [**UpdateDataProtectionSettings**](docs/CloudBackupsApi.md#updatedataprotectionsettings) | **Put** /api/atlas/v2/groups/{groupId}/dataProtection | Update or enable the Data Protection Policy settings
 *CloudBackupsApi* | [**UpdateSnapshotRetention**](docs/CloudBackupsApi.md#updatesnapshotretention) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Change Expiration Date for One Cloud Backup
 *CloudMigrationServiceApi* | [**CreateLinkToken**](docs/CloudMigrationServiceApi.md#createlinktoken) | **Post** /api/atlas/v2/orgs/{orgId}/liveMigrations/linkTokens | Create One Link-Token
 *CloudMigrationServiceApi* | [**CreatePushMigration**](docs/CloudMigrationServiceApi.md#createpushmigration) | **Post** /api/atlas/v2/groups/{groupId}/liveMigrations | Migrate One Local Managed Cluster to MongoDB Atlas
@@ -275,6 +276,7 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**ListProjects**](docs/ProjectsApi.md#listprojects) | **Get** /api/atlas/v2/groups | Return All Projects
 *ProjectsApi* | [**RemoveProjectUser**](docs/ProjectsApi.md#removeprojectuser) | **Delete** /api/atlas/v2/groups/{groupId}/users/{userId} | Remove One User from One Project
 *ProjectsApi* | [**SetProjectLimit**](docs/ProjectsApi.md#setprojectlimit) | **Patch** /api/atlas/v2/groups/{groupId}/limits/{limitName} | Set One Project Limit
+*ProjectsApi* | [**UpdateProject**](docs/ProjectsApi.md#updateproject) | **Patch** /api/atlas/v2/groups/{groupId} | Update One Project Name
 *ProjectsApi* | [**UpdateProjectInvitation**](docs/ProjectsApi.md#updateprojectinvitation) | **Patch** /api/atlas/v2/groups/{groupId}/invites | Update One Project Invitation
 *ProjectsApi* | [**UpdateProjectInvitationById**](docs/ProjectsApi.md#updateprojectinvitationbyid) | **Patch** /api/atlas/v2/groups/{groupId}/invites/{invitationId} | Update One Project Invitation by Invitation ID
 *ProjectsApi* | [**UpdateProjectSettings**](docs/ProjectsApi.md#updateprojectsettings) | **Patch** /api/atlas/v2/groups/{groupId}/settings | Update One Project Settings
@@ -353,8 +355,6 @@ Class | Method | HTTP request | Description
  - [ApiAtlasFTSAnalyzersViewManualTokenizer](docs/ApiAtlasFTSAnalyzersViewManualTokenizer.md)
  - [ApiAtlasFTSMappingsViewManual](docs/ApiAtlasFTSMappingsViewManual.md)
  - [ApiAtlasNetPeerRequestBase](docs/ApiAtlasNetPeerRequestBase.md)
- - [ApiAtlasServerlessBackupRestoreJobViewManual](docs/ApiAtlasServerlessBackupRestoreJobViewManual.md)
- - [ApiAtlasServerlessBackupSnapshotViewManual](docs/ApiAtlasServerlessBackupSnapshotViewManual.md)
  - [ApiAvailableRegionView](docs/ApiAvailableRegionView.md)
  - [ApiBSONTimestampView](docs/ApiBSONTimestampView.md)
  - [ApiCheckpointPartView](docs/ApiCheckpointPartView.md)
@@ -621,6 +621,7 @@ Class | Method | HTTP request | Description
  - [GreaterThanTimeThresholdView](docs/GreaterThanTimeThresholdView.md)
  - [Group](docs/Group.md)
  - [GroupMaintenanceWindow](docs/GroupMaintenanceWindow.md)
+ - [GroupName](docs/GroupName.md)
  - [GroupNotificationView](docs/GroupNotificationView.md)
  - [GroupPaginatedEventView](docs/GroupPaginatedEventView.md)
  - [GroupPaginatedIntegrationView](docs/GroupPaginatedIntegrationView.md)
@@ -719,6 +720,8 @@ Class | Method | HTTP request | Description
  - [PaginatedApiAtlasDatabaseUserView](docs/PaginatedApiAtlasDatabaseUserView.md)
  - [PaginatedApiAtlasDiskBackupExportJobView](docs/PaginatedApiAtlasDiskBackupExportJobView.md)
  - [PaginatedApiAtlasProviderRegionsView](docs/PaginatedApiAtlasProviderRegionsView.md)
+ - [PaginatedApiAtlasServerlessBackupRestoreJobView](docs/PaginatedApiAtlasServerlessBackupRestoreJobView.md)
+ - [PaginatedApiAtlasServerlessBackupSnapshotView](docs/PaginatedApiAtlasServerlessBackupSnapshotView.md)
  - [PaginatedApiInvoiceView](docs/PaginatedApiInvoiceView.md)
  - [PaginatedApiUserAccessListView](docs/PaginatedApiUserAccessListView.md)
  - [PaginatedAppUserView](docs/PaginatedAppUserView.md)
@@ -743,8 +746,6 @@ Class | Method | HTTP request | Description
  - [PaginatedPipelineRunView](docs/PaginatedPipelineRunView.md)
  - [PaginatedPrivateLinkConnectionView](docs/PaginatedPrivateLinkConnectionView.md)
  - [PaginatedRestoreJobView](docs/PaginatedRestoreJobView.md)
- - [PaginatedServerlessBackupRestoreJobViewManual](docs/PaginatedServerlessBackupRestoreJobViewManual.md)
- - [PaginatedServerlessBackupSnapshotViewManual](docs/PaginatedServerlessBackupSnapshotViewManual.md)
  - [PaginatedServerlessInstanceDescriptionView](docs/PaginatedServerlessInstanceDescriptionView.md)
  - [PaginatedSnapshotView](docs/PaginatedSnapshotView.md)
  - [PaginatedTeamRoleView](docs/PaginatedTeamRoleView.md)
@@ -795,6 +796,8 @@ Class | Method | HTTP request | Description
  - [ServerlessAzureTenantEndpointUpdate](docs/ServerlessAzureTenantEndpointUpdate.md)
  - [ServerlessAzureTenantEndpointUpdateAllOf](docs/ServerlessAzureTenantEndpointUpdateAllOf.md)
  - [ServerlessBackupOptions](docs/ServerlessBackupOptions.md)
+ - [ServerlessBackupRestoreJob](docs/ServerlessBackupRestoreJob.md)
+ - [ServerlessBackupSnapshot](docs/ServerlessBackupSnapshot.md)
  - [ServerlessEventTypeViewAlertable](docs/ServerlessEventTypeViewAlertable.md)
  - [ServerlessInstanceDescription](docs/ServerlessInstanceDescription.md)
  - [ServerlessInstanceDescriptionConnectionStrings](docs/ServerlessInstanceDescriptionConnectionStrings.md)

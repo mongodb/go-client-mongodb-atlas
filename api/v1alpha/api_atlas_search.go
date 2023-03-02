@@ -206,7 +206,7 @@ func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r AtlasSearchApiCr
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -907,7 +907,7 @@ func (a *AtlasSearchApiService) UpdateAtlasSearchIndexExecute(r AtlasSearchApiUp
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

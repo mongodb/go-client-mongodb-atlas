@@ -19,6 +19,7 @@ var _ MappedNullable = &TargetOrgRequestView{}
 
 // TargetOrgRequestView struct for TargetOrgRequestView
 type TargetOrgRequestView struct {
+	// IP address access list entries associated with the API key.
 	AccessListIps []string `json:"accessListIps,omitempty"`
 }
 

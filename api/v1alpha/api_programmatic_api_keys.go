@@ -341,7 +341,7 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -503,7 +503,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -705,7 +705,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -889,7 +889,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2430,7 +2430,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2527,6 +2527,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	itemsPerPage *int32
 	includeCount *bool
 	pretty *bool
+	envelope *bool
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.
@@ -2556,6 +2557,12 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) IncludeCount(includeCoun
 // Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.pretty = &pretty
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
+	r.envelope = &envelope
 	return r
 }
 
@@ -2632,8 +2639,11 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 	if r.pretty != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
+	if r.envelope != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

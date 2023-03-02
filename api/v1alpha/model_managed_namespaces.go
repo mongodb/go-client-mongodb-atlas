@@ -17,7 +17,7 @@ import (
 // checks if the ManagedNamespaces type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ManagedNamespaces{}
 
-// ManagedNamespaces List that contains a namespace for a Global Cluster. MongoDB Cloud manages this cluster.
+// ManagedNamespaces struct for ManagedNamespaces
 type ManagedNamespaces struct {
 	// Human-readable label of the collection to manage for this Global Cluster.
 	Collection string `json:"collection"`

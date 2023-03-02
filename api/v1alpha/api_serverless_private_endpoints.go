@@ -115,18 +115,19 @@ type ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest struct 
 	ApiService ServerlessPrivateEndpointsApi
 	groupId string
 	instanceName string
-	envelope *bool
 	serverlessTenantEndpointCreate *ServerlessTenantEndpointCreate
+	envelope *bool
+}
+
+// Information about the Private Endpoint to create for the Serverless Instance.
+func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) ServerlessTenantEndpointCreate(serverlessTenantEndpointCreate ServerlessTenantEndpointCreate) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
+	r.serverlessTenantEndpointCreate = &serverlessTenantEndpointCreate
+	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
 func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) Envelope(envelope bool) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
 	r.envelope = &envelope
-	return r
-}
-
-func (r ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest) ServerlessTenantEndpointCreate(serverlessTenantEndpointCreate ServerlessTenantEndpointCreate) ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest {
-	r.serverlessTenantEndpointCreate = &serverlessTenantEndpointCreate
 	return r
 }
 
@@ -186,12 +187,15 @@ func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointEx
 	if strlen(r.instanceName) > 64 {
 		return localVarReturnValue, nil, reportError("instanceName must have less than 64 elements")
 	}
+	if r.serverlessTenantEndpointCreate == nil {
+		return localVarReturnValue, nil, reportError("serverlessTenantEndpointCreate is required and must be specified")
+	}
 
 	if r.envelope != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

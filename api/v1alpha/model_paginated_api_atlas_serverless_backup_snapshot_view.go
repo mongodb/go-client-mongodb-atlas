@@ -14,38 +14,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the GroupPaginatedEventView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GroupPaginatedEventView{}
+// checks if the PaginatedApiAtlasServerlessBackupSnapshotView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedApiAtlasServerlessBackupSnapshotView{}
 
-// GroupPaginatedEventView struct for GroupPaginatedEventView
-type GroupPaginatedEventView struct {
+// PaginatedApiAtlasServerlessBackupSnapshotView struct for PaginatedApiAtlasServerlessBackupSnapshotView
+type PaginatedApiAtlasServerlessBackupSnapshotView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []EventViewForNdsGroup `json:"results,omitempty"`
-	// Number of documents returned in this response if **includeCount** query param is true.
+	Results []ServerlessBackupSnapshot `json:"results,omitempty"`
+	// Number of documents returned in this response.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
-// NewGroupPaginatedEventView instantiates a new GroupPaginatedEventView object
+// NewPaginatedApiAtlasServerlessBackupSnapshotView instantiates a new PaginatedApiAtlasServerlessBackupSnapshotView object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupPaginatedEventView() *GroupPaginatedEventView {
-	this := GroupPaginatedEventView{}
+func NewPaginatedApiAtlasServerlessBackupSnapshotView() *PaginatedApiAtlasServerlessBackupSnapshotView {
+	this := PaginatedApiAtlasServerlessBackupSnapshotView{}
 	return &this
 }
 
-// NewGroupPaginatedEventViewWithDefaults instantiates a new GroupPaginatedEventView object
+// NewPaginatedApiAtlasServerlessBackupSnapshotViewWithDefaults instantiates a new PaginatedApiAtlasServerlessBackupSnapshotView object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGroupPaginatedEventViewWithDefaults() *GroupPaginatedEventView {
-	this := GroupPaginatedEventView{}
+func NewPaginatedApiAtlasServerlessBackupSnapshotViewWithDefaults() *PaginatedApiAtlasServerlessBackupSnapshotView {
+	this := PaginatedApiAtlasServerlessBackupSnapshotView{}
 	return &this
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *GroupPaginatedEventView) GetLinks() []Link {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
@@ -55,7 +55,7 @@ func (o *GroupPaginatedEventView) GetLinks() []Link {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedEventView) GetLinksOk() ([]Link, bool) {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetLinksOk() ([]Link, bool) {
 	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *GroupPaginatedEventView) GetLinksOk() ([]Link, bool) {
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *GroupPaginatedEventView) HasLinks() bool {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) HasLinks() bool {
 	if o != nil && !IsNil(o.Links) {
 		return true
 	}
@@ -72,14 +72,14 @@ func (o *GroupPaginatedEventView) HasLinks() bool {
 }
 
 // SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *GroupPaginatedEventView) SetLinks(v []Link) {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *GroupPaginatedEventView) GetResults() []EventViewForNdsGroup {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetResults() []ServerlessBackupSnapshot {
 	if o == nil || IsNil(o.Results) {
-		var ret []EventViewForNdsGroup
+		var ret []ServerlessBackupSnapshot
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *GroupPaginatedEventView) GetResults() []EventViewForNdsGroup {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedEventView) GetResultsOk() ([]EventViewForNdsGroup, bool) {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetResultsOk() ([]ServerlessBackupSnapshot, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *GroupPaginatedEventView) GetResultsOk() ([]EventViewForNdsGroup, bool) 
 }
 
 // HasResults returns a boolean if a field has been set.
-func (o *GroupPaginatedEventView) HasResults() bool {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) HasResults() bool {
 	if o != nil && !IsNil(o.Results) {
 		return true
 	}
@@ -103,13 +103,13 @@ func (o *GroupPaginatedEventView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []EventViewForNdsGroup and assigns it to the Results field.
-func (o *GroupPaginatedEventView) SetResults(v []EventViewForNdsGroup) {
+// SetResults gets a reference to the given []ServerlessBackupSnapshot and assigns it to the Results field.
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) SetResults(v []ServerlessBackupSnapshot) {
 	o.Results = v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
-func (o *GroupPaginatedEventView) GetTotalCount() int32 {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetTotalCount() int32 {
 	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
@@ -119,7 +119,7 @@ func (o *GroupPaginatedEventView) GetTotalCount() int32 {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedEventView) GetTotalCountOk() (*int32, bool) {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) GetTotalCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *GroupPaginatedEventView) GetTotalCountOk() (*int32, bool) {
 }
 
 // HasTotalCount returns a boolean if a field has been set.
-func (o *GroupPaginatedEventView) HasTotalCount() bool {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) HasTotalCount() bool {
 	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
@@ -136,11 +136,11 @@ func (o *GroupPaginatedEventView) HasTotalCount() bool {
 }
 
 // SetTotalCount gets a reference to the given int32 and assigns it to the TotalCount field.
-func (o *GroupPaginatedEventView) SetTotalCount(v int32) {
+func (o *PaginatedApiAtlasServerlessBackupSnapshotView) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o GroupPaginatedEventView) MarshalJSON() ([]byte, error) {
+func (o PaginatedApiAtlasServerlessBackupSnapshotView) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,7 +148,7 @@ func (o GroupPaginatedEventView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GroupPaginatedEventView) ToMap() (map[string]interface{}, error) {
+func (o PaginatedApiAtlasServerlessBackupSnapshotView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	// skip: links is readOnly
 	// skip: results is readOnly
@@ -156,38 +156,38 @@ func (o GroupPaginatedEventView) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableGroupPaginatedEventView struct {
-	value *GroupPaginatedEventView
+type NullablePaginatedApiAtlasServerlessBackupSnapshotView struct {
+	value *PaginatedApiAtlasServerlessBackupSnapshotView
 	isSet bool
 }
 
-func (v NullableGroupPaginatedEventView) Get() *GroupPaginatedEventView {
+func (v NullablePaginatedApiAtlasServerlessBackupSnapshotView) Get() *PaginatedApiAtlasServerlessBackupSnapshotView {
 	return v.value
 }
 
-func (v *NullableGroupPaginatedEventView) Set(val *GroupPaginatedEventView) {
+func (v *NullablePaginatedApiAtlasServerlessBackupSnapshotView) Set(val *PaginatedApiAtlasServerlessBackupSnapshotView) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGroupPaginatedEventView) IsSet() bool {
+func (v NullablePaginatedApiAtlasServerlessBackupSnapshotView) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGroupPaginatedEventView) Unset() {
+func (v *NullablePaginatedApiAtlasServerlessBackupSnapshotView) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGroupPaginatedEventView(val *GroupPaginatedEventView) *NullableGroupPaginatedEventView {
-	return &NullableGroupPaginatedEventView{value: val, isSet: true}
+func NewNullablePaginatedApiAtlasServerlessBackupSnapshotView(val *PaginatedApiAtlasServerlessBackupSnapshotView) *NullablePaginatedApiAtlasServerlessBackupSnapshotView {
+	return &NullablePaginatedApiAtlasServerlessBackupSnapshotView{value: val, isSet: true}
 }
 
-func (v NullableGroupPaginatedEventView) MarshalJSON() ([]byte, error) {
+func (v NullablePaginatedApiAtlasServerlessBackupSnapshotView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGroupPaginatedEventView) UnmarshalJSON(src []byte) error {
+func (v *NullablePaginatedApiAtlasServerlessBackupSnapshotView) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

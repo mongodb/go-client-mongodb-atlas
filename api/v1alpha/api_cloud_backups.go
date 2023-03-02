@@ -25,7 +25,7 @@ type CloudBackupsApi interface {
 	/*
 	CancelBackupRestoreJob Cancel One Restore Job of One Cluster
 
-	Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -57,7 +57,7 @@ type CloudBackupsApi interface {
 	/*
 	CreateBackupRestoreJob Restore One Snapshot of One Cluster
 
-	Restores one snapshot of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Restores one snapshot of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -73,7 +73,7 @@ type CloudBackupsApi interface {
 	/*
 	CreateExportBucket Grant Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-	Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+	Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -88,7 +88,7 @@ type CloudBackupsApi interface {
 	/*
 	CreateServerlessBackupRestoreJob Restore One Snapshot of One Serverless Instance
 
-	Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -98,8 +98,8 @@ type CloudBackupsApi interface {
 	CreateServerlessBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CloudBackupsApiCreateServerlessBackupRestoreJobRequest
 
 	// CreateServerlessBackupRestoreJobExecute executes the request
-	//  @return ApiAtlasServerlessBackupRestoreJobViewManual
-	CreateServerlessBackupRestoreJobExecute(r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error)
+	//  @return ServerlessBackupRestoreJob
+	CreateServerlessBackupRestoreJobExecute(r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	DeleteAllBackupSchedules Remove All Cloud Backup Schedules
@@ -120,7 +120,7 @@ type CloudBackupsApi interface {
 	/*
 	DeleteExportBucket Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-	Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+	Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -135,7 +135,7 @@ type CloudBackupsApi interface {
 	/*
 	DeleteReplicaSetBackup Remove One Replica Set Cloud Backup
 
-	Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -151,7 +151,7 @@ type CloudBackupsApi interface {
 	/*
 	DeleteShardedClusterBackup Remove One Sharded Cluster Cloud Backup
 
-	Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -184,7 +184,7 @@ type CloudBackupsApi interface {
 	/*
 	GetBackupRestoreJob Return One Restore Job of One Cluster
 
-	Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -215,9 +215,9 @@ type CloudBackupsApi interface {
 	GetBackupScheduleExecute(r CloudBackupsApiGetBackupScheduleRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
 
 	/*
-	GetDataProtectionSettings Return data protection settings
+	GetDataProtectionSettings Return the Data Protection Policy settings
 
-	Returns data protection settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+	Returns the Data Protection Policy settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -276,13 +276,13 @@ type CloudBackupsApi interface {
 	GetServerlessBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) CloudBackupsApiGetServerlessBackupRequest
 
 	// GetServerlessBackupExecute executes the request
-	//  @return ApiAtlasServerlessBackupSnapshotViewManual
-	GetServerlessBackupExecute(r CloudBackupsApiGetServerlessBackupRequest) (*ApiAtlasServerlessBackupSnapshotViewManual, *http.Response, error)
+	//  @return ServerlessBackupSnapshot
+	GetServerlessBackupExecute(r CloudBackupsApiGetServerlessBackupRequest) (*ServerlessBackupSnapshot, *http.Response, error)
 
 	/*
 	GetServerlessBackupRestoreJob Return One Restore Job for One Serverless Instance
 
-	Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -293,8 +293,8 @@ type CloudBackupsApi interface {
 	GetServerlessBackupRestoreJob(ctx context.Context, groupId string, clusterName string, restoreJobId string) CloudBackupsApiGetServerlessBackupRestoreJobRequest
 
 	// GetServerlessBackupRestoreJobExecute executes the request
-	//  @return ApiAtlasServerlessBackupRestoreJobViewManual
-	GetServerlessBackupRestoreJobExecute(r CloudBackupsApiGetServerlessBackupRestoreJobRequest) (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error)
+	//  @return ServerlessBackupRestoreJob
+	GetServerlessBackupRestoreJobExecute(r CloudBackupsApiGetServerlessBackupRestoreJobRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	GetShardedClusterBackup Return One Sharded Cluster Cloud Backup
@@ -332,7 +332,7 @@ type CloudBackupsApi interface {
 	/*
 	ListBackupRestoreJobs Return All Restore Jobs for One Cluster
 
-	Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -379,7 +379,7 @@ type CloudBackupsApi interface {
 	/*
 	ListServerlessBackupRestoreJobs Return All Restore Jobs for One Serverless Instance
 
-	Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -389,8 +389,8 @@ type CloudBackupsApi interface {
 	ListServerlessBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListServerlessBackupRestoreJobsRequest
 
 	// ListServerlessBackupRestoreJobsExecute executes the request
-	//  @return PaginatedServerlessBackupRestoreJobViewManual
-	ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedServerlessBackupRestoreJobViewManual, *http.Response, error)
+	//  @return PaginatedApiAtlasServerlessBackupRestoreJobView
+	ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error)
 
 	/*
 	ListServerlessBackups Return All Snapshots of One Serverless Instance
@@ -405,8 +405,8 @@ type CloudBackupsApi interface {
 	ListServerlessBackups(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListServerlessBackupsRequest
 
 	// ListServerlessBackupsExecute executes the request
-	//  @return PaginatedServerlessBackupSnapshotViewManual
-	ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedServerlessBackupSnapshotViewManual, *http.Response, error)
+	//  @return PaginatedApiAtlasServerlessBackupSnapshotView
+	ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error)
 
 	/*
 	ListShardedClusterBackups Return All Sharded Cluster Cloud Backups
@@ -427,7 +427,7 @@ type CloudBackupsApi interface {
 	/*
 	TakeSnapshot Take One On-Demand Snapshot
 
-	Takes one on-demand snapshot for the specified cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Takes one on-demand snapshot for the specified cluster. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -443,7 +443,7 @@ type CloudBackupsApi interface {
 	/*
 	UpdateBackupSchedule Update Cloud Backup Schedule for One Cluster
 
-	Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -455,6 +455,21 @@ type CloudBackupsApi interface {
 	// UpdateBackupScheduleExecute executes the request
 	//  @return DiskBackupSnapshotSchedule
 	UpdateBackupScheduleExecute(r CloudBackupsApiUpdateBackupScheduleRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
+
+	/*
+	UpdateDataProtectionSettings Update or enable the Data Protection Policy settings
+
+	Updates the Data Protection Policy settings for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+	@return CloudBackupsApiUpdateDataProtectionSettingsRequest
+	*/
+	UpdateDataProtectionSettings(ctx context.Context, groupId string) CloudBackupsApiUpdateDataProtectionSettingsRequest
+
+	// UpdateDataProtectionSettingsExecute executes the request
+	//  @return DataProtectionSettings
+	UpdateDataProtectionSettingsExecute(r CloudBackupsApiUpdateDataProtectionSettingsRequest) (*DataProtectionSettings, *http.Response, error)
 
 	/*
 	UpdateSnapshotRetention Change Expiration Date for One Cloud Backup
@@ -506,7 +521,7 @@ func (r CloudBackupsApiCancelBackupRestoreJobRequest) Execute() (*http.Response,
 /*
 CancelBackupRestoreJob Cancel One Restore Job of One Cluster
 
-Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Cancels one cloud backup restore job of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -652,18 +667,19 @@ type CloudBackupsApiCreateBackupExportJobRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
 	diskBackupExportJobRequest *DiskBackupExportJobRequest
+	envelope *bool
+}
+
+// Information about the Cloud Backup Snapshot Export Job to create.
+func (r CloudBackupsApiCreateBackupExportJobRequest) DiskBackupExportJobRequest(diskBackupExportJobRequest DiskBackupExportJobRequest) CloudBackupsApiCreateBackupExportJobRequest {
+	r.diskBackupExportJobRequest = &diskBackupExportJobRequest
+	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
 func (r CloudBackupsApiCreateBackupExportJobRequest) Envelope(envelope bool) CloudBackupsApiCreateBackupExportJobRequest {
 	r.envelope = &envelope
-	return r
-}
-
-func (r CloudBackupsApiCreateBackupExportJobRequest) DiskBackupExportJobRequest(diskBackupExportJobRequest DiskBackupExportJobRequest) CloudBackupsApiCreateBackupExportJobRequest {
-	r.diskBackupExportJobRequest = &diskBackupExportJobRequest
 	return r
 }
 
@@ -724,12 +740,15 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
+	if r.diskBackupExportJobRequest == nil {
+		return localVarReturnValue, nil, reportError("diskBackupExportJobRequest is required and must be specified")
+	}
 
 	if r.envelope != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -873,7 +892,7 @@ func (r CloudBackupsApiCreateBackupRestoreJobRequest) Execute() (*DiskBackupRest
 /*
 CreateBackupRestoreJob Restore One Snapshot of One Cluster
 
-Restores one snapshot of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Restores one snapshot of one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -934,7 +953,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1077,7 +1096,7 @@ func (r CloudBackupsApiCreateExportBucketRequest) Execute() (*DiskBackupSnapshot
 /*
 CreateExportBucket Grant Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+Grants MongoDB Cloud access to the specified AWS S3 bucket. This enables this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1129,7 +1148,7 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1232,14 +1251,14 @@ type CloudBackupsApiCreateServerlessBackupRestoreJobRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	apiAtlasServerlessBackupRestoreJobViewManual *ApiAtlasServerlessBackupRestoreJobViewManual
+	serverlessBackupRestoreJob *ServerlessBackupRestoreJob
 	envelope *bool
 	pretty *bool
 }
 
 // Restores one snapshot of one serverless instance from the specified project.
-func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) ApiAtlasServerlessBackupRestoreJobViewManual(apiAtlasServerlessBackupRestoreJobViewManual ApiAtlasServerlessBackupRestoreJobViewManual) CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
-	r.apiAtlasServerlessBackupRestoreJobViewManual = &apiAtlasServerlessBackupRestoreJobViewManual
+func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) ServerlessBackupRestoreJob(serverlessBackupRestoreJob ServerlessBackupRestoreJob) CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
+	r.serverlessBackupRestoreJob = &serverlessBackupRestoreJob
 	return r
 }
 
@@ -1255,14 +1274,14 @@ func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) Pretty(pretty bo
 	return r
 }
 
-func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) Execute() (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error) {
+func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
 	return r.ApiService.CreateServerlessBackupRestoreJobExecute(r)
 }
 
 /*
 CreateServerlessBackupRestoreJob Restore One Snapshot of One Serverless Instance
 
-Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Restores one snapshot of one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1279,13 +1298,13 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJob(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ApiAtlasServerlessBackupRestoreJobViewManual
-func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error) {
+//  @return ServerlessBackupRestoreJob
+func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAtlasServerlessBackupRestoreJobViewManual
+		localVarReturnValue  *ServerlessBackupRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.CreateServerlessBackupRestoreJob")
@@ -1312,8 +1331,8 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
-	if r.apiAtlasServerlessBackupRestoreJobViewManual == nil {
-		return localVarReturnValue, nil, reportError("apiAtlasServerlessBackupRestoreJobViewManual is required and must be specified")
+	if r.serverlessBackupRestoreJob == nil {
+		return localVarReturnValue, nil, reportError("serverlessBackupRestoreJob is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1323,7 +1342,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1340,7 +1359,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAtlasServerlessBackupRestoreJobViewManual
+	localVarPostBody = r.serverlessBackupRestoreJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1614,7 +1633,7 @@ func (r CloudBackupsApiDeleteExportBucketRequest) Execute() (*http.Response, err
 /*
 DeleteExportBucket Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role. This resource doesn't require the API Key to have an Access List.
+Revoke MongoDB Cloud access to the specified AWS S3 bucket. This prevents this bucket to receive Atlas Cloud Backup snapshots. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1783,7 +1802,7 @@ func (r CloudBackupsApiDeleteReplicaSetBackupRequest) Execute() (*http.Response,
 /*
 DeleteReplicaSetBackup Remove One Replica Set Cloud Backup
 
-Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Removes the specified snapshot. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1953,7 +1972,7 @@ func (r CloudBackupsApiDeleteShardedClusterBackupRequest) Execute() (*http.Respo
 /*
 DeleteShardedClusterBackup Remove One Sharded Cluster Cloud Backup
 
-Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Removes one snapshot of one sharded cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -2266,7 +2285,7 @@ func (r CloudBackupsApiGetBackupRestoreJobRequest) Execute() (*DiskBackupRestore
 /*
 GetBackupRestoreJob Return One Restore Job of One Cluster
 
-Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Returns one cloud backup restore job for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -2592,9 +2611,9 @@ func (r CloudBackupsApiGetDataProtectionSettingsRequest) Execute() (*DataProtect
 }
 
 /*
-GetDataProtectionSettings Return data protection settings
+GetDataProtectionSettings Return the Data Protection Policy settings
 
-Returns data protection settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
+Returns the Data Protection Policy settings with the specified project. To use this resource, the requesting API Key must have the Project Read Only role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -3085,7 +3104,7 @@ func (r CloudBackupsApiGetServerlessBackupRequest) Envelope(envelope bool) Cloud
 	return r
 }
 
-func (r CloudBackupsApiGetServerlessBackupRequest) Execute() (*ApiAtlasServerlessBackupSnapshotViewManual, *http.Response, error) {
+func (r CloudBackupsApiGetServerlessBackupRequest) Execute() (*ServerlessBackupSnapshot, *http.Response, error) {
 	return r.ApiService.GetServerlessBackupExecute(r)
 }
 
@@ -3111,13 +3130,13 @@ func (a *CloudBackupsApiService) GetServerlessBackup(ctx context.Context, groupI
 }
 
 // Execute executes the request
-//  @return ApiAtlasServerlessBackupSnapshotViewManual
-func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGetServerlessBackupRequest) (*ApiAtlasServerlessBackupSnapshotViewManual, *http.Response, error) {
+//  @return ServerlessBackupSnapshot
+func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGetServerlessBackupRequest) (*ServerlessBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAtlasServerlessBackupSnapshotViewManual
+		localVarReturnValue  *ServerlessBackupSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.GetServerlessBackup")
@@ -3263,14 +3282,14 @@ func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Pretty(pretty bool)
 	return r
 }
 
-func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Execute() (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error) {
+func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
 	return r.ApiService.GetServerlessBackupRestoreJobExecute(r)
 }
 
 /*
 GetServerlessBackupRestoreJob Return One Restore Job for One Serverless Instance
 
-Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Returns one restore job for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -3289,13 +3308,13 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJob(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ApiAtlasServerlessBackupRestoreJobViewManual
-func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBackupsApiGetServerlessBackupRestoreJobRequest) (*ApiAtlasServerlessBackupRestoreJobViewManual, *http.Response, error) {
+//  @return ServerlessBackupRestoreJob
+func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBackupsApiGetServerlessBackupRestoreJobRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAtlasServerlessBackupRestoreJobViewManual
+		localVarReturnValue  *ServerlessBackupRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.GetServerlessBackupRestoreJob")
@@ -3842,7 +3861,7 @@ func (r CloudBackupsApiListBackupRestoreJobsRequest) Execute() (*PaginatedCloudB
 /*
 ListBackupRestoreJobs Return All Restore Jobs for One Cluster
 
-Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Returns all cloud backup restore jobs for one cluster from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -4355,14 +4374,14 @@ func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Pretty(pretty boo
 	return r
 }
 
-func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedServerlessBackupRestoreJobViewManual, *http.Response, error) {
+func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error) {
 	return r.ApiService.ListServerlessBackupRestoreJobsExecute(r)
 }
 
 /*
 ListServerlessBackupRestoreJobs Return All Restore Jobs for One Serverless Instance
 
-Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Returns all restore jobs for one serverless instance from the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -4379,13 +4398,13 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobs(ctx context.Con
 }
 
 // Execute executes the request
-//  @return PaginatedServerlessBackupRestoreJobViewManual
-func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedServerlessBackupRestoreJobViewManual, *http.Response, error) {
+//  @return PaginatedApiAtlasServerlessBackupRestoreJobView
+func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedServerlessBackupRestoreJobViewManual
+		localVarReturnValue  *PaginatedApiAtlasServerlessBackupRestoreJobView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListServerlessBackupRestoreJobs")
@@ -4547,7 +4566,7 @@ func (r CloudBackupsApiListServerlessBackupsRequest) PageNum(pageNum int32) Clou
 	return r
 }
 
-func (r CloudBackupsApiListServerlessBackupsRequest) Execute() (*PaginatedServerlessBackupSnapshotViewManual, *http.Response, error) {
+func (r CloudBackupsApiListServerlessBackupsRequest) Execute() (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error) {
 	return r.ApiService.ListServerlessBackupsExecute(r)
 }
 
@@ -4571,13 +4590,13 @@ func (a *CloudBackupsApiService) ListServerlessBackups(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return PaginatedServerlessBackupSnapshotViewManual
-func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedServerlessBackupSnapshotViewManual, *http.Response, error) {
+//  @return PaginatedApiAtlasServerlessBackupSnapshotView
+func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedServerlessBackupSnapshotViewManual
+		localVarReturnValue  *PaginatedApiAtlasServerlessBackupSnapshotView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListServerlessBackups")
@@ -4912,7 +4931,7 @@ func (r CloudBackupsApiTakeSnapshotRequest) Execute() (*DiskBackupSnapshot, *htt
 /*
 TakeSnapshot Take One On-Demand Snapshot
 
-Takes one on-demand snapshot for the specified cluster. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Takes one on-demand snapshot for the specified cluster. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -4973,7 +4992,7 @@ func (a *CloudBackupsApiService) TakeSnapshotExecute(r CloudBackupsApiTakeSnapsh
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -5095,7 +5114,7 @@ func (r CloudBackupsApiUpdateBackupScheduleRequest) Execute() (*DiskBackupSnapsh
 /*
 UpdateBackupSchedule Update Cloud Backup Schedule for One Cluster
 
-Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Updates the cloud backup schedule for one cluster within the specified project. This schedule defines when MongoDB Cloud takes scheduled snapshots and how long it stores those snapshots. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -5156,7 +5175,7 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -5197,6 +5216,179 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CloudBackupsApiUpdateDataProtectionSettingsRequest struct {
+	ctx context.Context
+	ApiService CloudBackupsApi
+	groupId string
+	dataProtectionSettings *DataProtectionSettings
+	envelope *bool
+	pretty *bool
+}
+
+// The new Data Protection Policy settings.
+func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) DataProtectionSettings(dataProtectionSettings DataProtectionSettings) CloudBackupsApiUpdateDataProtectionSettingsRequest {
+	r.dataProtectionSettings = &dataProtectionSettings
+	return r
+}
+
+// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
+func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) Envelope(envelope bool) CloudBackupsApiUpdateDataProtectionSettingsRequest {
+	r.envelope = &envelope
+	return r
+}
+
+// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
+func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) Pretty(pretty bool) CloudBackupsApiUpdateDataProtectionSettingsRequest {
+	r.pretty = &pretty
+	return r
+}
+
+func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
+	return r.ApiService.UpdateDataProtectionSettingsExecute(r)
+}
+
+/*
+UpdateDataProtectionSettings Update or enable the Data Protection Policy settings
+
+Updates the Data Protection Policy settings for the specified project. To use this resource, the requesting API Key must have the Project Owner role. This resource doesn't require the API Key to have an Access List.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
+ @return CloudBackupsApiUpdateDataProtectionSettingsRequest
+*/
+func (a *CloudBackupsApiService) UpdateDataProtectionSettings(ctx context.Context, groupId string) CloudBackupsApiUpdateDataProtectionSettingsRequest {
+	return CloudBackupsApiUpdateDataProtectionSettingsRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: groupId,
+	}
+}
+
+// Execute executes the request
+//  @return DataProtectionSettings
+func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r CloudBackupsApiUpdateDataProtectionSettingsRequest) (*DataProtectionSettings, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DataProtectionSettings
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.UpdateDataProtectionSettings")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/dataProtection"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.groupId) < 24 {
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+	}
+	if strlen(r.groupId) > 24 {
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+	}
+	if r.dataProtectionSettings == nil {
+		return localVarReturnValue, nil, reportError("dataProtectionSettings is required and must be specified")
+	}
+
+	if r.envelope != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
+	}
+	if r.pretty != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.dataProtectionSettings
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5349,7 +5541,7 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r CloudBackupsAp
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

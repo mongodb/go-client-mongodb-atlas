@@ -20,7 +20,7 @@ var _ MappedNullable = &CustomZoneMappings{}
 // CustomZoneMappings struct for CustomZoneMappings
 type CustomZoneMappings struct {
 	// List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to the human-readable label for the desired custom zone. MongoDB Cloud maps the ISO 3166-1a2 code to the nearest geographical zone by default. Include this parameter to override the default mappings.  This parameter returns an empty object if no custom zones exist.
-	CustomZoneMappings []ZoneMapping `json:"customZoneMappings"`
+	CustomZoneMappings []ZoneMapping `json:"customZoneMappings,omitempty"`
 }
 
 // NewCustomZoneMappings instantiates a new CustomZoneMappings object
@@ -40,26 +40,34 @@ func NewCustomZoneMappingsWithDefaults() *CustomZoneMappings {
 	return &this
 }
 
-// GetCustomZoneMappings returns the CustomZoneMappings field value
+// GetCustomZoneMappings returns the CustomZoneMappings field value if set, zero value otherwise.
 func (o *CustomZoneMappings) GetCustomZoneMappings() []ZoneMapping {
-	if o == nil {
+	if o == nil || IsNil(o.CustomZoneMappings) {
 		var ret []ZoneMapping
 		return ret
 	}
-
 	return o.CustomZoneMappings
 }
 
-// GetCustomZoneMappingsOk returns a tuple with the CustomZoneMappings field value
+// GetCustomZoneMappingsOk returns a tuple with the CustomZoneMappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomZoneMappings) GetCustomZoneMappingsOk() ([]ZoneMapping, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustomZoneMappings) {
 		return nil, false
 	}
 	return o.CustomZoneMappings, true
 }
 
-// SetCustomZoneMappings sets field value
+// HasCustomZoneMappings returns a boolean if a field has been set.
+func (o *CustomZoneMappings) HasCustomZoneMappings() bool {
+	if o != nil && !IsNil(o.CustomZoneMappings) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomZoneMappings gets a reference to the given []ZoneMapping and assigns it to the CustomZoneMappings field.
 func (o *CustomZoneMappings) SetCustomZoneMappings(v []ZoneMapping) {
 	o.CustomZoneMappings = v
 }
@@ -74,7 +82,9 @@ func (o CustomZoneMappings) MarshalJSON() ([]byte, error) {
 
 func (o CustomZoneMappings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["customZoneMappings"] = o.CustomZoneMappings
+	if !IsNil(o.CustomZoneMappings) {
+		toSerialize["customZoneMappings"] = o.CustomZoneMappings
+	}
 	return toSerialize, nil
 }
 

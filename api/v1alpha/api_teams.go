@@ -314,7 +314,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -519,7 +519,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -714,7 +714,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2429,7 +2429,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2634,7 +2634,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

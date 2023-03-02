@@ -26,7 +26,7 @@ type GCPCloudProviderContainer struct {
 	// Human-readable label that identifies the network in which MongoDB Cloud clusters in this network peering container exist. MongoDB Cloud returns **null** if no clusters exist in this network peering container.
 	NetworkName *string `json:"networkName,omitempty"`
 	// List of GCP regions to which you want to deploy this MongoDB Cloud network peering container.  In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects.
-	Regions []string `json:"regions"`
+	Regions []string `json:"regions,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the network peering container.
 	Id *string `json:"id,omitempty"`
 	// Cloud service provider that serves the requested network peering containers.
@@ -140,26 +140,34 @@ func (o *GCPCloudProviderContainer) SetNetworkName(v string) {
 	o.NetworkName = &v
 }
 
-// GetRegions returns the Regions field value
+// GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *GCPCloudProviderContainer) GetRegions() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Regions) {
 		var ret []string
 		return ret
 	}
-
 	return o.Regions
 }
 
-// GetRegionsOk returns a tuple with the Regions field value
+// GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPCloudProviderContainer) GetRegionsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Regions) {
 		return nil, false
 	}
 	return o.Regions, true
 }
 
-// SetRegions sets field value
+// HasRegions returns a boolean if a field has been set.
+func (o *GCPCloudProviderContainer) HasRegions() bool {
+	if o != nil && !IsNil(o.Regions) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegions gets a reference to the given []string and assigns it to the Regions field.
 func (o *GCPCloudProviderContainer) SetRegions(v []string) {
 	o.Regions = v
 }
@@ -273,7 +281,9 @@ func (o GCPCloudProviderContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
 	// skip: gcpProjectId is readOnly
 	// skip: networkName is readOnly
-	toSerialize["regions"] = o.Regions
+	if !IsNil(o.Regions) {
+		toSerialize["regions"] = o.Regions
+	}
 	// skip: id is readOnly
 	if !IsNil(o.ProviderName) {
 		toSerialize["providerName"] = o.ProviderName

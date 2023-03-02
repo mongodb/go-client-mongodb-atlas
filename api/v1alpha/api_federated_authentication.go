@@ -354,7 +354,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2373,7 +2373,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2557,7 +2557,7 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2751,7 +2751,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

@@ -25,7 +25,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 	/*
 	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
-	Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.
+	Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role.
 
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
@@ -87,7 +87,7 @@ func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEn
 /*
 ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
-Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.
+Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role.
 
 **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
 
@@ -300,7 +300,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

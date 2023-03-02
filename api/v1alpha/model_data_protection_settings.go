@@ -20,24 +20,24 @@ var _ MappedNullable = &DataProtectionSettings{}
 
 // DataProtectionSettings struct for DataProtectionSettings
 type DataProtectionSettings struct {
-	// Flag that indicates whether the cluster enabled additional backup copies.
+	// Flag that indicates whether to enable additional backup copies for the cluster.
 	CopyProtectionEnabled *bool `json:"copyProtectionEnabled,omitempty"`
-	// Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters on data protection.
+	// Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters with a Data Protection Policy.
 	EncryptionAtRestEnabled *bool `json:"encryptionAtRestEnabled,omitempty"`
 	OnDemandPolicyItem *ApiPolicyItemView `json:"onDemandPolicyItem,omitempty"`
-	// Flag that indicates whether the cluster uses Continuous Cloud Backups on data protection.
+	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Data Protection Policy.
 	PitEnabled *bool `json:"pitEnabled,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies the project for the data protection settings.
+	// Unique 24-hexadecimal digit string that identifies the project for the Data Protection Policy.
 	ProjectId *string `json:"projectId,omitempty"`
-	// Number of previous days that you can restore back to with Continuous Cloud Backup on data protection. You must specify a positive, non-zero integer, and the maximum retention window cannot exceed the hourly retention time. This parameter applies to Continuous Cloud Backups on data protection only.
+	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Data Protection Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Data Protection Policy.
 	RestoreWindowDays *int32 `json:"restoreWindowDays,omitempty"`
 	// List that contains the specifications for one scheduled policy.
 	ScheduledPolicyItems []ApiPolicyItemView `json:"scheduledPolicyItems,omitempty"`
-	// State of the data protection settings.
+	// Label that indicates the state of the Data Protection Policy settings.
 	State *string `json:"state,omitempty"`
-	// Date and time when the data protection settings got updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	// ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings.
 	UpdatedDate *time.Time `json:"updatedDate,omitempty"`
-	// Email address of the user who updated the data protection settings.
+	// Email address that identifies the user who updated the Data Protection Policy settings.
 	UpdatedUser *string `json:"updatedUser,omitempty"`
 }
 
@@ -400,16 +400,16 @@ func (o DataProtectionSettings) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PitEnabled) {
 		toSerialize["pitEnabled"] = o.PitEnabled
 	}
-	// skip: projectId is readOnly
+	if !IsNil(o.ProjectId) {
+		toSerialize["projectId"] = o.ProjectId
+	}
 	if !IsNil(o.RestoreWindowDays) {
 		toSerialize["restoreWindowDays"] = o.RestoreWindowDays
 	}
 	if !IsNil(o.ScheduledPolicyItems) {
 		toSerialize["scheduledPolicyItems"] = o.ScheduledPolicyItems
 	}
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
-	}
+	// skip: state is readOnly
 	// skip: updatedDate is readOnly
 	// skip: updatedUser is readOnly
 	return toSerialize, nil
