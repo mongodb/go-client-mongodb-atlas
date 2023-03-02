@@ -19,6 +19,7 @@ var _ MappedNullable = &ValidationView{}
 
 // ValidationView struct for ValidationView
 type ValidationView struct {
+	// Unique 24-hexadecimal digit string that identifies the validation.
 	Id *string `json:"_id,omitempty"`
 	// Reason why the validation job failed.
 	ErrorMessage NullableString `json:"errorMessage,omitempty"`
@@ -237,9 +238,7 @@ func (o ValidationView) MarshalJSON() ([]byte, error) {
 
 func (o ValidationView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["_id"] = o.Id
-	}
+	// skip: _id is readOnly
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
 	}

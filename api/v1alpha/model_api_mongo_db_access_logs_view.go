@@ -23,7 +23,7 @@ type ApiMongoDBAccessLogsView struct {
 	AuthResult *bool `json:"authResult,omitempty"`
 	// Database against which someone attempted to authenticate.
 	AuthSource *string `json:"authSource,omitempty"`
-	// Reason that the authentication failed. Null if authentication succeeded. 
+	// Reason that the authentication failed. Null if authentication succeeded.
 	FailureReason *string `json:"failureReason,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the project.
 	GroupId *string `json:"groupId,omitempty"`

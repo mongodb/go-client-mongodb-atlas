@@ -22,8 +22,8 @@ type CreateOrganizationRequest struct {
 	ApiKey *ApiCreateApiKeyView `json:"apiKey,omitempty"`
 	// Human-readable label that identifies the organization.
 	Name string `json:"name"`
-	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.
-	OrgOwnerId string `json:"orgOwnerId"`
+	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key. This is required if you call the Admin API endpoint directly, but not required when you call through the Atlas CLI.
+	OrgOwnerId *string `json:"orgOwnerId,omitempty"`
 }
 
 // NewCreateOrganizationRequest instantiates a new CreateOrganizationRequest object
@@ -99,28 +99,36 @@ func (o *CreateOrganizationRequest) SetName(v string) {
 	o.Name = v
 }
 
-// GetOrgOwnerId returns the OrgOwnerId field value
+// GetOrgOwnerId returns the OrgOwnerId field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetOrgOwnerId() string {
-	if o == nil {
+	if o == nil || IsNil(o.OrgOwnerId) {
 		var ret string
 		return ret
 	}
-
-	return o.OrgOwnerId
+	return *o.OrgOwnerId
 }
 
-// GetOrgOwnerIdOk returns a tuple with the OrgOwnerId field value
+// GetOrgOwnerIdOk returns a tuple with the OrgOwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetOrgOwnerIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrgOwnerId) {
 		return nil, false
 	}
-	return &o.OrgOwnerId, true
+	return o.OrgOwnerId, true
 }
 
-// SetOrgOwnerId sets field value
+// HasOrgOwnerId returns a boolean if a field has been set.
+func (o *CreateOrganizationRequest) HasOrgOwnerId() bool {
+	if o != nil && !IsNil(o.OrgOwnerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgOwnerId gets a reference to the given string and assigns it to the OrgOwnerId field.
 func (o *CreateOrganizationRequest) SetOrgOwnerId(v string) {
-	o.OrgOwnerId = v
+	o.OrgOwnerId = &v
 }
 
 func (o CreateOrganizationRequest) MarshalJSON() ([]byte, error) {
@@ -137,7 +145,9 @@ func (o CreateOrganizationRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["apiKey"] = o.ApiKey
 	}
 	toSerialize["name"] = o.Name
-	toSerialize["orgOwnerId"] = o.OrgOwnerId
+	if !IsNil(o.OrgOwnerId) {
+		toSerialize["orgOwnerId"] = o.OrgOwnerId
+	}
 	return toSerialize, nil
 }
 

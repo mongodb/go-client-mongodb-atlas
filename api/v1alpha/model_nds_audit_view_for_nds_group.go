@@ -32,7 +32,7 @@ type NDSAuditViewForNdsGroup struct {
 	// Flag that indicates whether a MongoDB employee triggered the specified event.
 	IsGlobalAdmin *bool `json:"isGlobalAdmin,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
 	OrgId *string `json:"orgId,omitempty"`
 	// Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
@@ -44,7 +44,7 @@ type NDSAuditViewForNdsGroup struct {
 	UserId *string `json:"userId,omitempty"`
 	// Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
 	Username *string `json:"username,omitempty"`
-	// (**For audit only**), Entry in the list of source host addresses that the API key accepts and this event targets.
+	// Entry in the list of source host addresses that the API key accepts and this event targets.
 	WhitelistEntry *string `json:"whitelistEntry,omitempty"`
 }
 
@@ -233,26 +233,34 @@ func (o *NDSAuditViewForNdsGroup) SetIsGlobalAdmin(v bool) {
 	o.IsGlobalAdmin = &v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NDSAuditViewForNdsGroup) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSAuditViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *NDSAuditViewForNdsGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *NDSAuditViewForNdsGroup) SetLinks(v []Link) {
 	o.Links = v
 }

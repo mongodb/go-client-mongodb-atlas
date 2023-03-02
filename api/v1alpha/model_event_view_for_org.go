@@ -20,7 +20,7 @@ var _ MappedNullable = &EventViewForOrg{}
 
 // EventViewForOrg struct for EventViewForOrg
 type EventViewForOrg struct {
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created *time.Time `json:"created,omitempty"`
@@ -29,20 +29,20 @@ type EventViewForOrg struct {
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
 	Id *string `json:"id,omitempty"`
-	// (**For audit only**), Flag that indicates whether a MongoDB employee triggered the specified event.
+	// Flag that indicates whether a MongoDB employee triggered the specified event.
 	IsGlobalAdmin *bool `json:"isGlobalAdmin,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
 	OrgId *string `json:"orgId,omitempty"`
-	// (**For audit only**), Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
+	// Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
 	PublicKey *string `json:"publicKey,omitempty"`
 	Raw *Raw `json:"raw,omitempty"`
-	// (**For audit only**), IPv4 or IPv6 address from which the user triggered this event.
+	// IPv4 or IPv6 address from which the user triggered this event.
 	RemoteAddress *string `json:"remoteAddress,omitempty"`
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
 	UserId *string `json:"userId,omitempty"`
-	// (**For audit only**), Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
+	// Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
 	Username *string `json:"username,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the alert associated with the event.
 	AlertId *string `json:"alertId,omitempty"`
@@ -52,7 +52,7 @@ type EventViewForOrg struct {
 	InvoiceId *string `json:"invoiceId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the invoice payment associated with this event.
 	PaymentId *string `json:"paymentId,omitempty"`
-	// (**For audit only**), Entry in the list of source host addresses that the API key accepts and this event targets.
+	// Entry in the list of source host addresses that the API key accepts and this event targets.
 	WhitelistEntry *string `json:"whitelistEntry,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization team associated with this event.
 	TeamId *string `json:"teamId,omitempty"`

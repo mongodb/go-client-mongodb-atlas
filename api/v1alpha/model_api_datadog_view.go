@@ -21,7 +21,7 @@ var _ MappedNullable = &ApiDatadogView{}
 type ApiDatadogView struct {
 	// Key that allows MongoDB Cloud to access your Datadog account.  **NOTE**: After you create a notification which requires an API or integration key, the key appears partially redacted when you:  * View or edit the alert through the Atlas UI.  * Query the alert for the notification through the Atlas Administration API.
 	ApiKey string `json:"apiKey"`
-	// Two-letter code that indicates which regional URL MongoDB uses to access the Datadog API.  To learn more about Datadog's regions, see <a href=\"https://docs.datadoghq.com/getting_started/site/\" target=\"_blank\" rel=\"noopener noreferrer\">Datadog Sites.</a>
+	// Two-letter code that indicates which regional URL MongoDB uses to access the Datadog API.  To learn more about Datadog's regions, see <a href=\"https://docs.datadoghq.com/getting_started/site/\" target=\"_blank\" rel=\"noopener noreferrer\">Datadog Sites</a>.
 	Region *string `json:"region,omitempty"`
 	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
 	Type *string `json:"type,omitempty"`

@@ -25,7 +25,7 @@ type LegacyBackupApi interface {
 	/*
 	DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
-	Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+	Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -249,7 +249,7 @@ func (r LegacyBackupApiDeleteLegacySnapshotRequest) Execute() (*http.Response, e
 /*
 DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
-Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Atlas Admin role and an entry for the project access list.
+Removes one legacy backup snapshot for one cluster in the specified project. To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
@@ -1525,6 +1525,7 @@ type LegacyBackupApiListLegacySnapshotsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 	pretty *bool
+	completed *string
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
@@ -1554,6 +1555,12 @@ func (r LegacyBackupApiListLegacySnapshotsRequest) PageNum(pageNum int32) Legacy
 // Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r LegacyBackupApiListLegacySnapshotsRequest) Pretty(pretty bool) LegacyBackupApiListLegacySnapshotsRequest {
 	r.pretty = &pretty
+	return r
+}
+
+// Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots.
+func (r LegacyBackupApiListLegacySnapshotsRequest) Completed(completed string) LegacyBackupApiListLegacySnapshotsRequest {
+	r.completed = &completed
 	return r
 }
 
@@ -1632,6 +1639,9 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 	}
 	if r.pretty != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
+	}
+	if r.completed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "completed", r.completed, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1817,7 +1827,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1992,7 +2002,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBac
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

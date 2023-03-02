@@ -20,7 +20,7 @@ var _ MappedNullable = &DiskBackupReplicaSet{}
 
 // DiskBackupReplicaSet Details of the replica set snapshot that MongoDB Cloud created.
 type DiskBackupReplicaSet struct {
-	// Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\".`
+	// Human-readable label that identifies the cloud provider that stores this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
 	CloudProvider *string `json:"cloudProvider,omitempty"`
 	// List that identifies the regions to which MongoDB Cloud copies the snapshot.
 	CopyRegions []string `json:"copyRegions,omitempty"`
@@ -42,7 +42,7 @@ type DiskBackupReplicaSet struct {
 	MongodVersion *string `json:"mongodVersion,omitempty"`
 	// List that contains unique identifiers for the policy items.
 	PolicyItems []string `json:"policyItems,omitempty"`
-	// Human-readable label that identifies the replica set from which MongoDB Cloud took this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`
+	// Human-readable label that identifies the replica set from which MongoDB Cloud took this snapshot. The resource returns this parameter when `\"type\": \"replicaSet\"`.
 	ReplicaSetName *string `json:"replicaSetName,omitempty"`
 	// Human-readable label that identifies when this snapshot triggers.
 	SnapshotType *string `json:"snapshotType,omitempty"`

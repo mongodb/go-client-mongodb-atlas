@@ -20,35 +20,35 @@ var _ MappedNullable = &DataExplorerAccessedEventView{}
 
 // DataExplorerAccessedEventView Data Explorer accessed event tracks different data operations via Data Explorer interactions.
 type DataExplorerAccessedEventView struct {
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
-	// (**For audit only**), Human-readable label of the collection on which the event occurred. The resource returns this parameter when the **eventTypeName** includes `DATA_EXPLORER`.
+	// Human-readable label of the collection on which the event occurred. The resource returns this parameter when the **eventTypeName** includes `DATA_EXPLORER`.
 	Collection *string `json:"collection,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	// (**For audit only**), Human-readable label of the database on which this incident occurred. The resource returns this parameter when `\"eventTypeName\" : \"DATA_EXPLORER\"` or `\"eventTypeName\" : \"DATA_EXPLORER_CRUD\"`.
+	// Human-readable label of the database on which this incident occurred. The resource returns this parameter when `\"eventTypeName\" : \"DATA_EXPLORER\"` or `\"eventTypeName\" : \"DATA_EXPLORER_CRUD\"`.
 	Database *string `json:"database,omitempty"`
 	EventTypeName DataExplorerAccessedEventTypeView `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
 	Id string `json:"id"`
-	// (**For audit only**), Flag that indicates whether a MongoDB employee triggered the specified event.
+	// Flag that indicates whether a MongoDB employee triggered the specified event.
 	IsGlobalAdmin *bool `json:"isGlobalAdmin,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
-	// (**For audit only**), Action that the database attempted to execute when the event triggered. The response returns this parameter when `eventTypeName\" : \"DATA_EXPLORER\"`.
+	Links []Link `json:"links,omitempty"`
+	// Action that the database attempted to execute when the event triggered. The response returns this parameter when `eventTypeName\" : \"DATA_EXPLORER\"`.
 	OpType *string `json:"opType,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
 	OrgId *string `json:"orgId,omitempty"`
-	// (**For audit only**), Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
+	// Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
 	PublicKey *string `json:"publicKey,omitempty"`
 	Raw *Raw `json:"raw,omitempty"`
-	// (**For audit only**), IPv4 or IPv6 address from which the user triggered this event.
+	// IPv4 or IPv6 address from which the user triggered this event.
 	RemoteAddress *string `json:"remoteAddress,omitempty"`
-	// (**For audit only**), Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
+	// Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
 	UserId *string `json:"userId,omitempty"`
-	// (**For audit only**), Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
+	// Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
 	Username *string `json:"username,omitempty"`
 }
 
@@ -301,26 +301,34 @@ func (o *DataExplorerAccessedEventView) SetIsGlobalAdmin(v bool) {
 	o.IsGlobalAdmin = &v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *DataExplorerAccessedEventView) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataExplorerAccessedEventView) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *DataExplorerAccessedEventView) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *DataExplorerAccessedEventView) SetLinks(v []Link) {
 	o.Links = v
 }

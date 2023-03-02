@@ -204,7 +204,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-02-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -339,7 +339,7 @@ func (r MultiCloudClustersApiDeleteClusterRequest) Envelope(envelope bool) Multi
 	return r
 }
 
-// Flag that indicates whether backup snapshots should be retained for the deleted cluster.
+// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
 func (r MultiCloudClustersApiDeleteClusterRequest) RetainBackups(retainBackups bool) MultiCloudClustersApiDeleteClusterRequest {
 	r.retainBackups = &retainBackups
 	return r
@@ -1091,7 +1091,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-02-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

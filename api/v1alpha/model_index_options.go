@@ -42,17 +42,17 @@ type IndexOptions struct {
 	// Human-readable label that identifies this index. This option applies to all index types.
 	Name *string `json:"name,omitempty"`
 	// Rules that limit the documents that the index references to a filter expression. All MongoDB index types accept a **partialFilterExpression** option. **partialFilterExpression** can include following expressions:  - equality (`\"parameter\" : \"value\"` or using the `$eq` operator) - `\"$exists\": true` , maximum: `$gt`, `$gte`, `$lt`, `$lte` comparisons - `$type` - `$and` (top-level only)  This option applies to all index types.
-	PartialFilterExpression map[string]interface{} `json:"partialFilterExpression,omitempty"`
+	PartialFilterExpression map[string]map[string]interface{} `json:"partialFilterExpression,omitempty"`
 	// Flag that indicates whether the index references documents that only have the specified parameter. These indexes use less space but behave differently in some situations like when sorting. The following index types default to sparse and ignore this option: `2dsphere`, `2d`, `geoHaystack`, `text`.  Compound indexes that includes one or more indexes with `2dsphere` keys alongside other key types, only the `2dsphere` index parameters determine which documents the index references. If you run MongoDB 3.2 or later, use partial indexes. This option applies to all index types.
 	Sparse *bool `json:"sparse,omitempty"`
 	// Storage engine set for the specific index. This value can be set only at creation. This option uses the following format: `\"storageEngine\" : { \"<storage-engine-name>\" : \"<options>\" }` MongoDB validates storage engine configuration options when creating indexes. To support replica sets with members with different storage engines, MongoDB logs these options to the oplog during replication. This option applies to all index types.
-	StorageEngine map[string]interface{} `json:"storageEngine,omitempty"`
+	StorageEngine map[string]map[string]interface{} `json:"storageEngine,omitempty"`
 	// Version applied to this text index. MongoDB 3.2 and later use version `3`. Use this option to override the default version number. This option applies to the **text** index type only.
 	TextIndexVersion *int32 `json:"textIndexVersion,omitempty"`
 	// Flag that indicates whether this index can accept insertion or update of documents when the index key value matches an existing index key value. Set `\"unique\" : true` to set this index as unique. You can't set a hashed index to be unique. This option applies to all index types.
 	Unique *bool `json:"unique,omitempty"`
 	// Relative importance to place upon provided index parameters. This object expresses this as key/value pairs of index parameter and weight to apply to that parameter. You can specify weights for some or all the indexed parameters. The weight must be an integer between 1 and 99,999. MongoDB 5.0 and later can apply **weights** to **text** indexes only.
-	Weights map[string]interface{} `json:"weights,omitempty"`
+	Weights map[string]map[string]interface{} `json:"weights,omitempty"`
 }
 
 // NewIndexOptions instantiates a new IndexOptions object
@@ -459,9 +459,9 @@ func (o *IndexOptions) SetName(v string) {
 }
 
 // GetPartialFilterExpression returns the PartialFilterExpression field value if set, zero value otherwise.
-func (o *IndexOptions) GetPartialFilterExpression() map[string]interface{} {
+func (o *IndexOptions) GetPartialFilterExpression() map[string]map[string]interface{} {
 	if o == nil || IsNil(o.PartialFilterExpression) {
-		var ret map[string]interface{}
+		var ret map[string]map[string]interface{}
 		return ret
 	}
 	return o.PartialFilterExpression
@@ -469,9 +469,9 @@ func (o *IndexOptions) GetPartialFilterExpression() map[string]interface{} {
 
 // GetPartialFilterExpressionOk returns a tuple with the PartialFilterExpression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndexOptions) GetPartialFilterExpressionOk() (map[string]interface{}, bool) {
+func (o *IndexOptions) GetPartialFilterExpressionOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.PartialFilterExpression) {
-		return map[string]interface{}{}, false
+		return map[string]map[string]interface{}{}, false
 	}
 	return o.PartialFilterExpression, true
 }
@@ -485,8 +485,8 @@ func (o *IndexOptions) HasPartialFilterExpression() bool {
 	return false
 }
 
-// SetPartialFilterExpression gets a reference to the given map[string]interface{} and assigns it to the PartialFilterExpression field.
-func (o *IndexOptions) SetPartialFilterExpression(v map[string]interface{}) {
+// SetPartialFilterExpression gets a reference to the given map[string]map[string]interface{} and assigns it to the PartialFilterExpression field.
+func (o *IndexOptions) SetPartialFilterExpression(v map[string]map[string]interface{}) {
 	o.PartialFilterExpression = v
 }
 
@@ -523,9 +523,9 @@ func (o *IndexOptions) SetSparse(v bool) {
 }
 
 // GetStorageEngine returns the StorageEngine field value if set, zero value otherwise.
-func (o *IndexOptions) GetStorageEngine() map[string]interface{} {
+func (o *IndexOptions) GetStorageEngine() map[string]map[string]interface{} {
 	if o == nil || IsNil(o.StorageEngine) {
-		var ret map[string]interface{}
+		var ret map[string]map[string]interface{}
 		return ret
 	}
 	return o.StorageEngine
@@ -533,9 +533,9 @@ func (o *IndexOptions) GetStorageEngine() map[string]interface{} {
 
 // GetStorageEngineOk returns a tuple with the StorageEngine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndexOptions) GetStorageEngineOk() (map[string]interface{}, bool) {
+func (o *IndexOptions) GetStorageEngineOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.StorageEngine) {
-		return map[string]interface{}{}, false
+		return map[string]map[string]interface{}{}, false
 	}
 	return o.StorageEngine, true
 }
@@ -549,8 +549,8 @@ func (o *IndexOptions) HasStorageEngine() bool {
 	return false
 }
 
-// SetStorageEngine gets a reference to the given map[string]interface{} and assigns it to the StorageEngine field.
-func (o *IndexOptions) SetStorageEngine(v map[string]interface{}) {
+// SetStorageEngine gets a reference to the given map[string]map[string]interface{} and assigns it to the StorageEngine field.
+func (o *IndexOptions) SetStorageEngine(v map[string]map[string]interface{}) {
 	o.StorageEngine = v
 }
 
@@ -619,9 +619,9 @@ func (o *IndexOptions) SetUnique(v bool) {
 }
 
 // GetWeights returns the Weights field value if set, zero value otherwise.
-func (o *IndexOptions) GetWeights() map[string]interface{} {
+func (o *IndexOptions) GetWeights() map[string]map[string]interface{} {
 	if o == nil || IsNil(o.Weights) {
-		var ret map[string]interface{}
+		var ret map[string]map[string]interface{}
 		return ret
 	}
 	return o.Weights
@@ -629,9 +629,9 @@ func (o *IndexOptions) GetWeights() map[string]interface{} {
 
 // GetWeightsOk returns a tuple with the Weights field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndexOptions) GetWeightsOk() (map[string]interface{}, bool) {
+func (o *IndexOptions) GetWeightsOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Weights) {
-		return map[string]interface{}{}, false
+		return map[string]map[string]interface{}{}, false
 	}
 	return o.Weights, true
 }
@@ -645,8 +645,8 @@ func (o *IndexOptions) HasWeights() bool {
 	return false
 }
 
-// SetWeights gets a reference to the given map[string]interface{} and assigns it to the Weights field.
-func (o *IndexOptions) SetWeights(v map[string]interface{}) {
+// SetWeights gets a reference to the given map[string]map[string]interface{} and assigns it to the Weights field.
+func (o *IndexOptions) SetWeights(v map[string]map[string]interface{}) {
 	o.Weights = v
 }
 

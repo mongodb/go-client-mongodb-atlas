@@ -50,8 +50,8 @@ type InvoicesApi interface {
 	GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest
 
 	// GetInvoiceExecute executes the request
-	//  @return string
-	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (string, *http.Response, error)
+	//  @return ApiInvoiceView
+	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*ApiInvoiceView, *http.Response, error)
 
 	/*
 	ListInvoices Return All Invoices for One Organization
@@ -251,7 +251,7 @@ func (r InvoicesApiGetInvoiceRequest) Pretty(pretty bool) InvoicesApiGetInvoiceR
 	return r
 }
 
-func (r InvoicesApiGetInvoiceRequest) Execute() (string, *http.Response, error) {
+func (r InvoicesApiGetInvoiceRequest) Execute() (*ApiInvoiceView, *http.Response, error) {
 	return r.ApiService.GetInvoiceExecute(r)
 }
 
@@ -275,13 +275,13 @@ func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoi
 }
 
 // Execute executes the request
-//  @return string
-func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (string, *http.Response, error) {
+//  @return ApiInvoiceView
+func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*ApiInvoiceView, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *ApiInvoiceView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoice")
@@ -325,7 +325,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+csv", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

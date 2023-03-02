@@ -15,16 +15,16 @@ import (
 	"time"
 )
 
-// checks if the ApiAtlasServerlessBackupRestoreJobViewManual type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ApiAtlasServerlessBackupRestoreJobViewManual{}
+// checks if the ServerlessBackupRestoreJob type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerlessBackupRestoreJob{}
 
-// ApiAtlasServerlessBackupRestoreJobViewManual struct for ApiAtlasServerlessBackupRestoreJobViewManual
-type ApiAtlasServerlessBackupRestoreJobViewManual struct {
+// ServerlessBackupRestoreJob struct for ServerlessBackupRestoreJob
+type ServerlessBackupRestoreJob struct {
 	// Flag that indicates whether someone canceled this restore job.
 	Cancelled *bool `json:"cancelled,omitempty"`
 	// Human-readable label that categorizes the restore job to create.
 	DeliveryType string `json:"deliveryType"`
-	// One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.\"
+	// One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.
 	DeliveryUrl []string `json:"deliveryUrl,omitempty"`
 	DesiredTimestamp *ApiBSONTimestampView `json:"desiredTimestamp,omitempty"`
 	// Flag that indicates whether the restore job expired.
@@ -37,6 +37,14 @@ type ApiAtlasServerlessBackupRestoreJobViewManual struct {
 	FinishedAt *time.Time `json:"finishedAt,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the restore job.
 	Id *string `json:"id,omitempty"`
+	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
+	Links []Link `json:"links,omitempty"`
+	// Oplog operation number from which you want to restore this snapshot. This number represents the second part of an Oplog timestamp. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **oplogTs** exceeds `0`.
+	OplogInc *int32 `json:"oplogInc,omitempty"`
+	// Date and time from which you want to restore this snapshot. This parameter expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch. This number represents the first part of an Oplog timestamp. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **oplogTs** exceeds `0`.
+	OplogTs *int32 `json:"oplogTs,omitempty"`
+	// Date and time from which MongoDB Cloud restored this snapshot. This parameter expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch. The resource returns this parameter when `\"deliveryType\" : \"pointInTime\"` and **pointInTimeUTCSeconds** exceeds `0`.
+	PointInTimeUTCSeconds *int32 `json:"pointInTimeUTCSeconds,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the snapshot.
 	SnapshotId *string `json:"snapshotId,omitempty"`
 	// Human-readable label that identifies the target cluster to which the restore job restores the snapshot. The resource returns this parameter when `\"deliveryType\":` `\"automated\"`.
@@ -47,25 +55,25 @@ type ApiAtlasServerlessBackupRestoreJobViewManual struct {
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
-// NewApiAtlasServerlessBackupRestoreJobViewManual instantiates a new ApiAtlasServerlessBackupRestoreJobViewManual object
+// NewServerlessBackupRestoreJob instantiates a new ServerlessBackupRestoreJob object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiAtlasServerlessBackupRestoreJobViewManual() *ApiAtlasServerlessBackupRestoreJobViewManual {
-	this := ApiAtlasServerlessBackupRestoreJobViewManual{}
+func NewServerlessBackupRestoreJob() *ServerlessBackupRestoreJob {
+	this := ServerlessBackupRestoreJob{}
 	return &this
 }
 
-// NewApiAtlasServerlessBackupRestoreJobViewManualWithDefaults instantiates a new ApiAtlasServerlessBackupRestoreJobViewManual object
+// NewServerlessBackupRestoreJobWithDefaults instantiates a new ServerlessBackupRestoreJob object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApiAtlasServerlessBackupRestoreJobViewManualWithDefaults() *ApiAtlasServerlessBackupRestoreJobViewManual {
-	this := ApiAtlasServerlessBackupRestoreJobViewManual{}
+func NewServerlessBackupRestoreJobWithDefaults() *ServerlessBackupRestoreJob {
+	this := ServerlessBackupRestoreJob{}
 	return &this
 }
 
 // GetCancelled returns the Cancelled field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetCancelled() bool {
+func (o *ServerlessBackupRestoreJob) GetCancelled() bool {
 	if o == nil || IsNil(o.Cancelled) {
 		var ret bool
 		return ret
@@ -75,7 +83,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetCancelled() bool {
 
 // GetCancelledOk returns a tuple with the Cancelled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetCancelledOk() (*bool, bool) {
+func (o *ServerlessBackupRestoreJob) GetCancelledOk() (*bool, bool) {
 	if o == nil || IsNil(o.Cancelled) {
 		return nil, false
 	}
@@ -83,7 +91,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetCancelledOk() (*bool, 
 }
 
 // HasCancelled returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasCancelled() bool {
+func (o *ServerlessBackupRestoreJob) HasCancelled() bool {
 	if o != nil && !IsNil(o.Cancelled) {
 		return true
 	}
@@ -92,12 +100,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasCancelled() bool {
 }
 
 // SetCancelled gets a reference to the given bool and assigns it to the Cancelled field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetCancelled(v bool) {
+func (o *ServerlessBackupRestoreJob) SetCancelled(v bool) {
 	o.Cancelled = &v
 }
 
 // GetDeliveryType returns the DeliveryType field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryType() string {
+func (o *ServerlessBackupRestoreJob) GetDeliveryType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -108,7 +116,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryType() string 
 
 // GetDeliveryTypeOk returns a tuple with the DeliveryType field value
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryTypeOk() (*string, bool) {
+func (o *ServerlessBackupRestoreJob) GetDeliveryTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,12 +124,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryTypeOk() (*str
 }
 
 // SetDeliveryType sets field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetDeliveryType(v string) {
+func (o *ServerlessBackupRestoreJob) SetDeliveryType(v string) {
 	o.DeliveryType = v
 }
 
 // GetDeliveryUrl returns the DeliveryUrl field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryUrl() []string {
+func (o *ServerlessBackupRestoreJob) GetDeliveryUrl() []string {
 	if o == nil || IsNil(o.DeliveryUrl) {
 		var ret []string
 		return ret
@@ -131,7 +139,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryUrl() []string
 
 // GetDeliveryUrlOk returns a tuple with the DeliveryUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryUrlOk() ([]string, bool) {
+func (o *ServerlessBackupRestoreJob) GetDeliveryUrlOk() ([]string, bool) {
 	if o == nil || IsNil(o.DeliveryUrl) {
 		return nil, false
 	}
@@ -139,7 +147,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDeliveryUrlOk() ([]str
 }
 
 // HasDeliveryUrl returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasDeliveryUrl() bool {
+func (o *ServerlessBackupRestoreJob) HasDeliveryUrl() bool {
 	if o != nil && !IsNil(o.DeliveryUrl) {
 		return true
 	}
@@ -148,12 +156,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasDeliveryUrl() bool {
 }
 
 // SetDeliveryUrl gets a reference to the given []string and assigns it to the DeliveryUrl field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetDeliveryUrl(v []string) {
+func (o *ServerlessBackupRestoreJob) SetDeliveryUrl(v []string) {
 	o.DeliveryUrl = v
 }
 
 // GetDesiredTimestamp returns the DesiredTimestamp field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDesiredTimestamp() ApiBSONTimestampView {
+func (o *ServerlessBackupRestoreJob) GetDesiredTimestamp() ApiBSONTimestampView {
 	if o == nil || IsNil(o.DesiredTimestamp) {
 		var ret ApiBSONTimestampView
 		return ret
@@ -163,7 +171,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDesiredTimestamp() Api
 
 // GetDesiredTimestampOk returns a tuple with the DesiredTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDesiredTimestampOk() (*ApiBSONTimestampView, bool) {
+func (o *ServerlessBackupRestoreJob) GetDesiredTimestampOk() (*ApiBSONTimestampView, bool) {
 	if o == nil || IsNil(o.DesiredTimestamp) {
 		return nil, false
 	}
@@ -171,7 +179,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetDesiredTimestampOk() (
 }
 
 // HasDesiredTimestamp returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasDesiredTimestamp() bool {
+func (o *ServerlessBackupRestoreJob) HasDesiredTimestamp() bool {
 	if o != nil && !IsNil(o.DesiredTimestamp) {
 		return true
 	}
@@ -180,12 +188,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasDesiredTimestamp() boo
 }
 
 // SetDesiredTimestamp gets a reference to the given ApiBSONTimestampView and assigns it to the DesiredTimestamp field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetDesiredTimestamp(v ApiBSONTimestampView) {
+func (o *ServerlessBackupRestoreJob) SetDesiredTimestamp(v ApiBSONTimestampView) {
 	o.DesiredTimestamp = &v
 }
 
 // GetExpired returns the Expired field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpired() bool {
+func (o *ServerlessBackupRestoreJob) GetExpired() bool {
 	if o == nil || IsNil(o.Expired) {
 		var ret bool
 		return ret
@@ -195,7 +203,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpired() bool {
 
 // GetExpiredOk returns a tuple with the Expired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiredOk() (*bool, bool) {
+func (o *ServerlessBackupRestoreJob) GetExpiredOk() (*bool, bool) {
 	if o == nil || IsNil(o.Expired) {
 		return nil, false
 	}
@@ -203,7 +211,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiredOk() (*bool, bo
 }
 
 // HasExpired returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasExpired() bool {
+func (o *ServerlessBackupRestoreJob) HasExpired() bool {
 	if o != nil && !IsNil(o.Expired) {
 		return true
 	}
@@ -212,12 +220,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasExpired() bool {
 }
 
 // SetExpired gets a reference to the given bool and assigns it to the Expired field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetExpired(v bool) {
+func (o *ServerlessBackupRestoreJob) SetExpired(v bool) {
 	o.Expired = &v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiresAt() time.Time {
+func (o *ServerlessBackupRestoreJob) GetExpiresAt() time.Time {
 	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
@@ -227,7 +235,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiresAt() time.Time 
 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiresAtOk() (*time.Time, bool) {
+func (o *ServerlessBackupRestoreJob) GetExpiresAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
@@ -235,7 +243,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetExpiresAtOk() (*time.T
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasExpiresAt() bool {
+func (o *ServerlessBackupRestoreJob) HasExpiresAt() bool {
 	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
@@ -244,12 +252,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasExpiresAt() bool {
 }
 
 // SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetExpiresAt(v time.Time) {
+func (o *ServerlessBackupRestoreJob) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = &v
 }
 
 // GetFailed returns the Failed field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFailed() bool {
+func (o *ServerlessBackupRestoreJob) GetFailed() bool {
 	if o == nil || IsNil(o.Failed) {
 		var ret bool
 		return ret
@@ -259,7 +267,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFailed() bool {
 
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFailedOk() (*bool, bool) {
+func (o *ServerlessBackupRestoreJob) GetFailedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Failed) {
 		return nil, false
 	}
@@ -267,7 +275,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFailedOk() (*bool, boo
 }
 
 // HasFailed returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasFailed() bool {
+func (o *ServerlessBackupRestoreJob) HasFailed() bool {
 	if o != nil && !IsNil(o.Failed) {
 		return true
 	}
@@ -276,12 +284,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasFailed() bool {
 }
 
 // SetFailed gets a reference to the given bool and assigns it to the Failed field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetFailed(v bool) {
+func (o *ServerlessBackupRestoreJob) SetFailed(v bool) {
 	o.Failed = &v
 }
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFinishedAt() time.Time {
+func (o *ServerlessBackupRestoreJob) GetFinishedAt() time.Time {
 	if o == nil || IsNil(o.FinishedAt) {
 		var ret time.Time
 		return ret
@@ -291,7 +299,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFinishedAt() time.Time
 
 // GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFinishedAtOk() (*time.Time, bool) {
+func (o *ServerlessBackupRestoreJob) GetFinishedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.FinishedAt) {
 		return nil, false
 	}
@@ -299,7 +307,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetFinishedAtOk() (*time.
 }
 
 // HasFinishedAt returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasFinishedAt() bool {
+func (o *ServerlessBackupRestoreJob) HasFinishedAt() bool {
 	if o != nil && !IsNil(o.FinishedAt) {
 		return true
 	}
@@ -308,12 +316,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasFinishedAt() bool {
 }
 
 // SetFinishedAt gets a reference to the given time.Time and assigns it to the FinishedAt field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetFinishedAt(v time.Time) {
+func (o *ServerlessBackupRestoreJob) SetFinishedAt(v time.Time) {
 	o.FinishedAt = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetId() string {
+func (o *ServerlessBackupRestoreJob) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -323,7 +331,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetIdOk() (*string, bool) {
+func (o *ServerlessBackupRestoreJob) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -331,7 +339,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetIdOk() (*string, bool)
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasId() bool {
+func (o *ServerlessBackupRestoreJob) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -340,12 +348,140 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetId(v string) {
+func (o *ServerlessBackupRestoreJob) SetId(v string) {
 	o.Id = &v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *ServerlessBackupRestoreJob) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessBackupRestoreJob) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *ServerlessBackupRestoreJob) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *ServerlessBackupRestoreJob) SetLinks(v []Link) {
+	o.Links = v
+}
+
+// GetOplogInc returns the OplogInc field value if set, zero value otherwise.
+func (o *ServerlessBackupRestoreJob) GetOplogInc() int32 {
+	if o == nil || IsNil(o.OplogInc) {
+		var ret int32
+		return ret
+	}
+	return *o.OplogInc
+}
+
+// GetOplogIncOk returns a tuple with the OplogInc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessBackupRestoreJob) GetOplogIncOk() (*int32, bool) {
+	if o == nil || IsNil(o.OplogInc) {
+		return nil, false
+	}
+	return o.OplogInc, true
+}
+
+// HasOplogInc returns a boolean if a field has been set.
+func (o *ServerlessBackupRestoreJob) HasOplogInc() bool {
+	if o != nil && !IsNil(o.OplogInc) {
+		return true
+	}
+
+	return false
+}
+
+// SetOplogInc gets a reference to the given int32 and assigns it to the OplogInc field.
+func (o *ServerlessBackupRestoreJob) SetOplogInc(v int32) {
+	o.OplogInc = &v
+}
+
+// GetOplogTs returns the OplogTs field value if set, zero value otherwise.
+func (o *ServerlessBackupRestoreJob) GetOplogTs() int32 {
+	if o == nil || IsNil(o.OplogTs) {
+		var ret int32
+		return ret
+	}
+	return *o.OplogTs
+}
+
+// GetOplogTsOk returns a tuple with the OplogTs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessBackupRestoreJob) GetOplogTsOk() (*int32, bool) {
+	if o == nil || IsNil(o.OplogTs) {
+		return nil, false
+	}
+	return o.OplogTs, true
+}
+
+// HasOplogTs returns a boolean if a field has been set.
+func (o *ServerlessBackupRestoreJob) HasOplogTs() bool {
+	if o != nil && !IsNil(o.OplogTs) {
+		return true
+	}
+
+	return false
+}
+
+// SetOplogTs gets a reference to the given int32 and assigns it to the OplogTs field.
+func (o *ServerlessBackupRestoreJob) SetOplogTs(v int32) {
+	o.OplogTs = &v
+}
+
+// GetPointInTimeUTCSeconds returns the PointInTimeUTCSeconds field value if set, zero value otherwise.
+func (o *ServerlessBackupRestoreJob) GetPointInTimeUTCSeconds() int32 {
+	if o == nil || IsNil(o.PointInTimeUTCSeconds) {
+		var ret int32
+		return ret
+	}
+	return *o.PointInTimeUTCSeconds
+}
+
+// GetPointInTimeUTCSecondsOk returns a tuple with the PointInTimeUTCSeconds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessBackupRestoreJob) GetPointInTimeUTCSecondsOk() (*int32, bool) {
+	if o == nil || IsNil(o.PointInTimeUTCSeconds) {
+		return nil, false
+	}
+	return o.PointInTimeUTCSeconds, true
+}
+
+// HasPointInTimeUTCSeconds returns a boolean if a field has been set.
+func (o *ServerlessBackupRestoreJob) HasPointInTimeUTCSeconds() bool {
+	if o != nil && !IsNil(o.PointInTimeUTCSeconds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPointInTimeUTCSeconds gets a reference to the given int32 and assigns it to the PointInTimeUTCSeconds field.
+func (o *ServerlessBackupRestoreJob) SetPointInTimeUTCSeconds(v int32) {
+	o.PointInTimeUTCSeconds = &v
+}
+
 // GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetSnapshotId() string {
+func (o *ServerlessBackupRestoreJob) GetSnapshotId() string {
 	if o == nil || IsNil(o.SnapshotId) {
 		var ret string
 		return ret
@@ -355,7 +491,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetSnapshotId() string {
 
 // GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetSnapshotIdOk() (*string, bool) {
+func (o *ServerlessBackupRestoreJob) GetSnapshotIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SnapshotId) {
 		return nil, false
 	}
@@ -363,7 +499,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetSnapshotIdOk() (*strin
 }
 
 // HasSnapshotId returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasSnapshotId() bool {
+func (o *ServerlessBackupRestoreJob) HasSnapshotId() bool {
 	if o != nil && !IsNil(o.SnapshotId) {
 		return true
 	}
@@ -372,12 +508,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasSnapshotId() bool {
 }
 
 // SetSnapshotId gets a reference to the given string and assigns it to the SnapshotId field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetSnapshotId(v string) {
+func (o *ServerlessBackupRestoreJob) SetSnapshotId(v string) {
 	o.SnapshotId = &v
 }
 
 // GetTargetClusterName returns the TargetClusterName field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetClusterName() string {
+func (o *ServerlessBackupRestoreJob) GetTargetClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -388,7 +524,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetClusterName() st
 
 // GetTargetClusterNameOk returns a tuple with the TargetClusterName field value
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetClusterNameOk() (*string, bool) {
+func (o *ServerlessBackupRestoreJob) GetTargetClusterNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -396,12 +532,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetClusterNameOk() 
 }
 
 // SetTargetClusterName sets field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetTargetClusterName(v string) {
+func (o *ServerlessBackupRestoreJob) SetTargetClusterName(v string) {
 	o.TargetClusterName = v
 }
 
 // GetTargetGroupId returns the TargetGroupId field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetGroupId() string {
+func (o *ServerlessBackupRestoreJob) GetTargetGroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -412,7 +548,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetGroupId() string
 
 // GetTargetGroupIdOk returns a tuple with the TargetGroupId field value
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetGroupIdOk() (*string, bool) {
+func (o *ServerlessBackupRestoreJob) GetTargetGroupIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -420,12 +556,12 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTargetGroupIdOk() (*st
 }
 
 // SetTargetGroupId sets field value
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetTargetGroupId(v string) {
+func (o *ServerlessBackupRestoreJob) SetTargetGroupId(v string) {
 	o.TargetGroupId = v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTimestamp() time.Time {
+func (o *ServerlessBackupRestoreJob) GetTimestamp() time.Time {
 	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
@@ -435,7 +571,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTimestamp() time.Time 
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTimestampOk() (*time.Time, bool) {
+func (o *ServerlessBackupRestoreJob) GetTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -443,7 +579,7 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) GetTimestampOk() (*time.T
 }
 
 // HasTimestamp returns a boolean if a field has been set.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasTimestamp() bool {
+func (o *ServerlessBackupRestoreJob) HasTimestamp() bool {
 	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
@@ -452,11 +588,11 @@ func (o *ApiAtlasServerlessBackupRestoreJobViewManual) HasTimestamp() bool {
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
-func (o *ApiAtlasServerlessBackupRestoreJobViewManual) SetTimestamp(v time.Time) {
+func (o *ServerlessBackupRestoreJob) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
-func (o ApiAtlasServerlessBackupRestoreJobViewManual) MarshalJSON() ([]byte, error) {
+func (o ServerlessBackupRestoreJob) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -464,7 +600,7 @@ func (o ApiAtlasServerlessBackupRestoreJobViewManual) MarshalJSON() ([]byte, err
 	return json.Marshal(toSerialize)
 }
 
-func (o ApiAtlasServerlessBackupRestoreJobViewManual) ToMap() (map[string]interface{}, error) {
+func (o ServerlessBackupRestoreJob) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	// skip: cancelled is readOnly
 	toSerialize["deliveryType"] = o.DeliveryType
@@ -477,6 +613,16 @@ func (o ApiAtlasServerlessBackupRestoreJobViewManual) ToMap() (map[string]interf
 	// skip: failed is readOnly
 	// skip: finishedAt is readOnly
 	// skip: id is readOnly
+	// skip: links is readOnly
+	if !IsNil(o.OplogInc) {
+		toSerialize["oplogInc"] = o.OplogInc
+	}
+	if !IsNil(o.OplogTs) {
+		toSerialize["oplogTs"] = o.OplogTs
+	}
+	if !IsNil(o.PointInTimeUTCSeconds) {
+		toSerialize["pointInTimeUTCSeconds"] = o.PointInTimeUTCSeconds
+	}
 	if !IsNil(o.SnapshotId) {
 		toSerialize["snapshotId"] = o.SnapshotId
 	}
@@ -486,38 +632,38 @@ func (o ApiAtlasServerlessBackupRestoreJobViewManual) ToMap() (map[string]interf
 	return toSerialize, nil
 }
 
-type NullableApiAtlasServerlessBackupRestoreJobViewManual struct {
-	value *ApiAtlasServerlessBackupRestoreJobViewManual
+type NullableServerlessBackupRestoreJob struct {
+	value *ServerlessBackupRestoreJob
 	isSet bool
 }
 
-func (v NullableApiAtlasServerlessBackupRestoreJobViewManual) Get() *ApiAtlasServerlessBackupRestoreJobViewManual {
+func (v NullableServerlessBackupRestoreJob) Get() *ServerlessBackupRestoreJob {
 	return v.value
 }
 
-func (v *NullableApiAtlasServerlessBackupRestoreJobViewManual) Set(val *ApiAtlasServerlessBackupRestoreJobViewManual) {
+func (v *NullableServerlessBackupRestoreJob) Set(val *ServerlessBackupRestoreJob) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableApiAtlasServerlessBackupRestoreJobViewManual) IsSet() bool {
+func (v NullableServerlessBackupRestoreJob) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableApiAtlasServerlessBackupRestoreJobViewManual) Unset() {
+func (v *NullableServerlessBackupRestoreJob) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableApiAtlasServerlessBackupRestoreJobViewManual(val *ApiAtlasServerlessBackupRestoreJobViewManual) *NullableApiAtlasServerlessBackupRestoreJobViewManual {
-	return &NullableApiAtlasServerlessBackupRestoreJobViewManual{value: val, isSet: true}
+func NewNullableServerlessBackupRestoreJob(val *ServerlessBackupRestoreJob) *NullableServerlessBackupRestoreJob {
+	return &NullableServerlessBackupRestoreJob{value: val, isSet: true}
 }
 
-func (v NullableApiAtlasServerlessBackupRestoreJobViewManual) MarshalJSON() ([]byte, error) {
+func (v NullableServerlessBackupRestoreJob) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableApiAtlasServerlessBackupRestoreJobViewManual) UnmarshalJSON(src []byte) error {
+func (v *NullableServerlessBackupRestoreJob) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

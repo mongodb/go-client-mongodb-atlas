@@ -67,8 +67,7 @@ type CloudMigrationServiceApi interface {
 	CutoverMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiCutoverMigrationRequest
 
 	// CutoverMigrationExecute executes the request
-	//  @return ValidationView
-	CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*ValidationView, *http.Response, error)
+	CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*http.Response, error)
 
 	/*
 	DeleteLinkToken Remove One Link-Token
@@ -154,9 +153,15 @@ type CloudMigrationServiceApiCreateLinkTokenRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	orgId string
+	targetOrgRequestView *TargetOrgRequestView
 	envelope *bool
 	pretty *bool
-	targetOrgRequestView *TargetOrgRequestView
+}
+
+// IP address access list entries associated with the migration.
+func (r CloudMigrationServiceApiCreateLinkTokenRequest) TargetOrgRequestView(targetOrgRequestView TargetOrgRequestView) CloudMigrationServiceApiCreateLinkTokenRequest {
+	r.targetOrgRequestView = &targetOrgRequestView
+	return r
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
@@ -168,11 +173,6 @@ func (r CloudMigrationServiceApiCreateLinkTokenRequest) Envelope(envelope bool) 
 // Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
 func (r CloudMigrationServiceApiCreateLinkTokenRequest) Pretty(pretty bool) CloudMigrationServiceApiCreateLinkTokenRequest {
 	r.pretty = &pretty
-	return r
-}
-
-func (r CloudMigrationServiceApiCreateLinkTokenRequest) TargetOrgRequestView(targetOrgRequestView TargetOrgRequestView) CloudMigrationServiceApiCreateLinkTokenRequest {
-	r.targetOrgRequestView = &targetOrgRequestView
 	return r
 }
 
@@ -224,6 +224,9 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
+	if r.targetOrgRequestView == nil {
+		return localVarReturnValue, nil, reportError("targetOrgRequestView is required and must be specified")
+	}
 
 	if r.envelope != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
@@ -232,7 +235,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -407,7 +410,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -537,7 +540,7 @@ func (r CloudMigrationServiceApiCutoverMigrationRequest) Pretty(pretty bool) Clo
 	return r
 }
 
-func (r CloudMigrationServiceApiCutoverMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
+func (r CloudMigrationServiceApiCutoverMigrationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CutoverMigrationExecute(r)
 }
 
@@ -561,18 +564,16 @@ func (a *CloudMigrationServiceApiService) CutoverMigration(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return ValidationView
-func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*ValidationView, *http.Response, error) {
+func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrationServiceApiCutoverMigrationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ValidationView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.CutoverMigration")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/liveMigrations/{liveMigrationId}/cutover"
@@ -583,16 +584,16 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.groupId) < 24 {
-		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
+		return nil, reportError("groupId must have at least 24 elements")
 	}
 	if strlen(r.groupId) > 24 {
-		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
+		return nil, reportError("groupId must have less than 24 elements")
 	}
 	if strlen(r.liveMigrationId) < 24 {
-		return localVarReturnValue, nil, reportError("liveMigrationId must have at least 24 elements")
+		return nil, reportError("liveMigrationId must have at least 24 elements")
 	}
 	if strlen(r.liveMigrationId) > 24 {
-		return localVarReturnValue, nil, reportError("liveMigrationId must have less than 24 elements")
+		return nil, reportError("liveMigrationId must have less than 24 elements")
 	}
 
 	if r.envelope != nil {
@@ -620,19 +621,19 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -645,68 +646,59 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type CloudMigrationServiceApiDeleteLinkTokenRequest struct {
@@ -1461,7 +1453,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)

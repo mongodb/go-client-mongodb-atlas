@@ -42,7 +42,7 @@ type ApiLineItemView struct {
 	Sku *string `json:"sku,omitempty"`
 	// Date and time when MongoDB Cloud began charging for this line item. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	StartDate *time.Time `json:"startDate,omitempty"`
-	// Human-readable label that identifies the Atlas App Service associated with this line item.
+	// Human-readable label that identifies the Atlas App Services application associated with this line item.
 	StitchAppName *string `json:"stitchAppName,omitempty"`
 	// Lower bound for usage amount range in current SKU tier.   **NOTE**: **lineItems[n].tierLowerBound** appears only if your **lineItems[n].sku** is tiered.
 	TierLowerBound *float64 `json:"tierLowerBound,omitempty"`

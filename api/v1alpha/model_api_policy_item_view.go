@@ -188,9 +188,7 @@ func (o ApiPolicyItemView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["frequencyInterval"] = o.FrequencyInterval
 	toSerialize["frequencyType"] = o.FrequencyType
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	// skip: id is readOnly
 	toSerialize["retentionUnit"] = o.RetentionUnit
 	toSerialize["retentionValue"] = o.RetentionValue
 	return toSerialize, nil

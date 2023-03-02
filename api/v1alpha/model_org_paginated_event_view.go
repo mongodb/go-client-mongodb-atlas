@@ -20,7 +20,7 @@ var _ MappedNullable = &OrgPaginatedEventView{}
 // OrgPaginatedEventView struct for OrgPaginatedEventView
 type OrgPaginatedEventView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
 	Results []EventViewForOrg `json:"results,omitempty"`
 	// Number of documents returned in this response if **includeCount** query param is true.
@@ -44,26 +44,34 @@ func NewOrgPaginatedEventViewWithDefaults() *OrgPaginatedEventView {
 	return &this
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *OrgPaginatedEventView) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgPaginatedEventView) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *OrgPaginatedEventView) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *OrgPaginatedEventView) SetLinks(v []Link) {
 	o.Links = v
 }
