@@ -2,11 +2,9 @@ const {
   getObjectFromReference,
   getNameFromYamlPath,
   getObjectFromYamlPath,
-  getAllObjects
+  getAllObjects,
 } = require("../engine/readers");
-const {
-  detectDuplicates,
-} = require("../engine/transformers");
+const { detectDuplicates } = require("../engine/transformers");
 
 // Name of the key (OpenAPI extension) to trigger transformation
 const extensionKey = "x-xgen-go-transform";
@@ -134,5 +132,5 @@ function canApplyOneOfTransformation(obj, api) {
 
 module.exports = {
   applyOneOfTransformations,
-  transformOneOf
+  transformOneOf,
 };

@@ -1,6 +1,4 @@
-const {
-  getObjectFromReference,
-} = require("../engine/readers");
+const { getObjectFromReference } = require("../engine/readers");
 
 function filterObjectProperties(object, filter = (_k, _v) => true) {
   const filteredObj = Object.keys(object)

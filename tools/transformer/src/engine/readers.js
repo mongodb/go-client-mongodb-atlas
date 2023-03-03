@@ -1,6 +1,6 @@
 /**
  * Fetch all children JS objects and their paths that have a property which satisfies a set of conditions
- * 
+ *
  * @param {Object} apiObject - object to be searched
  * @param {String} key - the property that is searched
  * @param {(key, value) => boolean} [predicate] - validation function for the property
@@ -19,10 +19,10 @@ function getAllObjectsWithProperty(
 
 /**
  * Fetch all transformation objects
- * 
- * @param {*} object 
- * @param {*} filter 
- * @returns 
+ *
+ * @param {*} object
+ * @param {*} filter
+ * @returns
  */
 function getAllObjects(object, filter = (_obj) => true) {
   const objs = [];

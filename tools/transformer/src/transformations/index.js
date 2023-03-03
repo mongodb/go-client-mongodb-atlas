@@ -1,11 +1,9 @@
-const {applyAllOfTransformations} = require("./allOf")
-const {applyModelNameTransformations} = require("./name")
-const {applyOneOfTransformations} = require("./oneOf")
-
+const { applyAllOfTransformations } = require("./allOf");
+const { applyModelNameTransformations } = require("./name");
+const { applyOneOfTransformations } = require("./oneOf");
 
 module.exports = {
-    applyModelNameTransformations,
-    applyAllOfTransformations,
-    applyOneOfTransformations
+  applyModelNameTransformations,
+  applyAllOfTransformations,
+  applyOneOfTransformations,
 };
-  

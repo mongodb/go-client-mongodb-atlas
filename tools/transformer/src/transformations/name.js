@@ -38,5 +38,5 @@ function applyModelNameTransformations(api, prefix, suffix) {
 }
 
 module.exports = {
-  applyModelNameTransformations
+  applyModelNameTransformations,
 };

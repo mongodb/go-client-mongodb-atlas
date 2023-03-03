@@ -3,13 +3,13 @@ const {
   getNameFromYamlPath,
   getObjectFromYamlPath,
   getObjectNameFromReference,
-  getAllObjects
+  getAllObjects,
 } = require("../engine/readers");
 
 const {
   removeParentFromAllOf,
   flattenAllOfObject,
-  filterObjectProperties
+  filterObjectProperties,
 } = require("../engine/transformers");
 
 /**
@@ -32,7 +32,6 @@ function applyAllOfTransformations(api) {
   }
   return api;
 }
-
 
 // Moves all the properties of the parent into the children
 function transformAllOf(objectPath, api) {
@@ -69,7 +68,6 @@ function transformAllOf(objectPath, api) {
   delete parentObject.required;
 }
 
-
 function isAllOfTransformable(obj) {
   return obj.properties && obj.oneOf;
 }
@@ -84,5 +82,5 @@ function getObjectProperties(obj) {
 
 module.exports = {
   applyAllOfTransformations,
-  transformAllOf
+  transformAllOf,
 };
