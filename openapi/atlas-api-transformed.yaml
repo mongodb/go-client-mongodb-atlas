@@ -20133,61 +20133,11 @@ components:
           REALM_TRIGGERS_FAILED_REQUESTS: "#/components/schemas/RawMetricThresholdView"
           REALM_TRIGGERS_RESPONSE_MS: "#/components/schemas/TimeMetricThresholdView"
         propertyName: metricName
-      properties:
-        metricName:
-          type: string
-          description: Human-readable label that identifies the metric against which
-            MongoDB Cloud checks the configured **metricThreshold.threshold**.
-        mode:
-          type: string
-          description: MongoDB Cloud computes the current metric value as an average.
-          enum:
-            - AVERAGE
-        operator:
-          $ref: "#/components/schemas/Operator"
-        threshold:
-          type: number
-          format: double
-          description: Value of metric that, when exceeded, triggers an alert.
-        units:
-          type: string
-          description: Element used to express the quantity. This can be an element of
-            time, storage capacity, and the like.
-          enum:
-            - bits
-            - Kbits
-            - Mbits
-            - Gbits
-            - bytes
-            - KB
-            - MB
-            - GB
-            - TB
-            - PB
-            - nsec
-            - msec
-            - sec
-            - min
-            - hours
-            - million minutes
-            - days
-            - requests
-            - 1000 requests
-            - GB seconds
-            - GB hours
-            - GB days
-            - RPU
-            - thousand RPU
-            - million RPU
-            - WPU
-            - thousand WPU
-            - million WPU
-            - count
-            - thousand
-            - million
-            - billion
-            - ""
       title: App Services Metric Threshold
+      oneOf:
+        - $ref: "#/components/schemas/RawMetricThresholdView"
+        - $ref: "#/components/schemas/TimeMetricThresholdView"
+        - $ref: "#/components/schemas/DataMetricThresholdView"
     AutoExportPolicyView:
       type: object
       description: Policy for automatically exporting cloud backup snapshots.
@@ -21774,7 +21724,23 @@ components:
           CUSTOM: "#/components/schemas/CustomCriteriaView"
           DATE: "#/components/schemas/DateCriteriaView"
         propertyName: type
+      oneOf:
+        - $ref: "#/components/schemas/CustomCriteriaView"
+        - $ref: "#/components/schemas/DateCriteriaView"
+    CustomCriteriaView:
+      type: object
+      description: "**CUSTOM criteria.type**."
+      required:
+        - query
+      title: Archival Criteria
       properties:
+        query:
+          type: string
+          description: "MongoDB find query that selects documents to archive. The
+            specified query follows the syntax of the
+            `db.collection.find(query)` command. This query can't use the empty
+            document (`{}`) to return all documents. Set this parameter when
+            **\"criteria.type\" : \"CUSTOM\"**."
         type:
           type: string
           description: >-
@@ -21787,23 +21753,6 @@ components:
           enum:
             - DATE
             - CUSTOM
-    CustomCriteriaView:
-      type: object
-      allOf:
-        - $ref: "#/components/schemas/CriteriaView"
-        - type: object
-          properties:
-            query:
-              type: string
-              description: "MongoDB find query that selects documents to archive. The
-                specified query follows the syntax of the
-                `db.collection.find(query)` command. This query can't use the
-                empty document (`{}`) to return all documents. Set this
-                parameter when **\"criteria.type\" : \"CUSTOM\"**."
-      description: "**CUSTOM criteria.type**."
-      required:
-        - query
-      title: Archival Criteria
     DailyScheduleView:
       type: object
       properties:
@@ -22396,42 +22345,51 @@ components:
       title: Datadog Notification
     DateCriteriaView:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/CriteriaView"
-        - type: object
-          properties:
-            dateField:
-              type: string
-              description: 'Indexed database parameter that stores the date that determines
-                when data moves to the online archive. MongoDB Cloud archives
-                the data when the current date exceeds the date in this database
-                parameter plus the number of days specified through the
-                **expireAfterDays** parameter. Set this parameter when you set
-                `"criteria.type" : "DATE"`.'
-            dateFormat:
-              type: string
-              default: ISODATE
-              description: >-
-                Syntax used to write the date after which data moves to the online
-                archive. Date can be expressed as ISO 8601 or Epoch timestamps.
-                The Epoch timestamp can be expressed as nanoseconds,
-                milliseconds, or seconds. Set this parameter when
-                **"criteria.type" : "DATE"**.
-
-                You must set **"criteria.type" : "DATE"** if **"collectionType": "TIMESERIES"**.
-              enum:
-                - ISODATE
-                - EPOCH_SECONDS
-                - EPOCH_MILLIS
-                - EPOCH_NANOSECONDS
-            expireAfterDays:
-              type: integer
-              format: int32
-              description: 'Number of days after the value in the **criteria.dateField** when
-                MongoDB Cloud archives data in the specified cluster. Set this
-                parameter when you set **"criteria.type" : "DATE"**.'
       description: "**DATE criteria.type**."
       title: Archival Criteria
+      properties:
+        dateField:
+          type: string
+          description: 'Indexed database parameter that stores the date that determines
+            when data moves to the online archive. MongoDB Cloud archives the
+            data when the current date exceeds the date in this database
+            parameter plus the number of days specified through the
+            **expireAfterDays** parameter. Set this parameter when you set
+            `"criteria.type" : "DATE"`.'
+        dateFormat:
+          type: string
+          default: ISODATE
+          description: >-
+            Syntax used to write the date after which data moves to the online
+            archive. Date can be expressed as ISO 8601 or Epoch timestamps. The
+            Epoch timestamp can be expressed as nanoseconds, milliseconds, or
+            seconds. Set this parameter when **"criteria.type" : "DATE"**.
+
+            You must set **"criteria.type" : "DATE"** if **"collectionType": "TIMESERIES"**.
+          enum:
+            - ISODATE
+            - EPOCH_SECONDS
+            - EPOCH_MILLIS
+            - EPOCH_NANOSECONDS
+        expireAfterDays:
+          type: integer
+          format: int32
+          description: 'Number of days after the value in the **criteria.dateField** when
+            MongoDB Cloud archives data in the specified cluster. Set this
+            parameter when you set **"criteria.type" : "DATE"**.'
+        type:
+          type: string
+          description: >-
+            Means by which MongoDB Cloud selects data to archive. Data can be
+            chosen using the age of the data or a MongoDB query.
+
+            **DATE** selects documents to archive based on a date.
+
+            **CUSTOM** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **CUSTOM** when `"collectionType": "TIMESERIES"`.
+          enum:
+            - DATE
+            - CUSTOM
+      required: []
     DefaultAlertConfigViewForNdsGroup:
       type: object
       description: Other alerts which don't have extra details beside of basic one.
@@ -25596,177 +25554,12 @@ components:
           TICKETS_AVAILABLE_READS: "#/components/schemas/RawMetricAlertView"
           TICKETS_AVAILABLE_WRITES: "#/components/schemas/RawMetricAlertView"
         propertyName: metricName
-      properties:
-        acknowledgedUntil:
-          type: string
-          format: date-time
-          description: >-
-            Date and time until which this alert has been acknowledged. This
-            parameter expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC. The
-            resource returns this parameter if a MongoDB User previously
-            acknowledged this alert.
-
-
-            - To acknowledge this alert forever, set the parameter value to 100 years in the future.
-
-
-            - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
-        acknowledgementComment:
-          type: string
-          description: Comment that a MongoDB Cloud user submitted when acknowledging the
-            alert.
-          example: Expiration on 3/19.  Silencing for 7days.
-          maxLength: 200
-        acknowledgingUsername:
-          type: string
-          format: email
-          description: MongoDB Cloud username of the person who acknowledged the alert.
-            The response returns this parameter if a MongoDB Cloud user
-            previously acknowledged this alert.
-          readOnly: true
-        alertConfigId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the alert
-            configuration that sets this alert.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        clusterName:
-          type: string
-          description: Human-readable label that identifies the cluster to which this
-            alert applies. This resource returns this parameter for alerts of
-            events impacting backups, replica sets, or sharded clusters.
-          example: cluster1
-          maxLength: 64
-          minLength: 1
-          pattern: ^([a-zA-Z0-9]([a-zA-Z0-9-]){0,21}(?<!-)([\w]{0,42}))$
-          readOnly: true
-        created:
-          type: string
-          format: date-time
-          description: Date and time when MongoDB Cloud created this alert. This parameter
-            expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC.
-          readOnly: true
-        currentValue:
-          $ref: "#/components/schemas/HostMetricValueView"
-        eventTypeName:
-          $ref: "#/components/schemas/HostMetricEventTypeViewAlertable"
-        groupId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project that
-            owns this alert.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        hostnameAndPort:
-          type: string
-          description: Hostname and port of the host to which this alert applies. The
-            resource returns this parameter for alerts of events impacting hosts
-            or replica sets.
-          example: cloud-test.mongodb.com:27017
-          readOnly: true
-        id:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies this alert.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        lastNotified:
-          type: string
-          format: date-time
-          description: Date and time that any notifications were last sent for this alert.
-            This parameter expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC. The
-            resource returns this parameter if MongoDB Cloud has sent
-            notifications for this alert.
-          readOnly: true
-        links:
-          type: array
-          description: List of one or more Uniform Resource Locators (URLs) that point to
-            API sub-resources, related API resources, or both. RFC 5988 outlines
-            these relationships.
-          externalDocs:
-            description: Web Linking Specification (RFC 5988)
-            url: https://datatracker.ietf.org/doc/html/rfc5988
-          items:
-            $ref: "#/components/schemas/Link"
-          readOnly: true
-        metricName:
-          type: string
-          description: >-
-            Name of the metric against which Atlas checks the configured
-            `metricThreshold.threshold`.
-
-
-            To learn more about the available metrics, see <a href="https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#std-label-measurement-types" target="_blank">Host Metrics</a>.
-
-
-            **NOTE**: If you set eventTypeName to OUTSIDE_SERVERLESS_METRIC_THRESHOLD, you can specify only metrics available for serverless. To learn more, see <a href="https://dochub.mongodb.org/core/alert-config-serverless-measurements" target="_blank">Serverless Measurements</a>.
-          example: ASSERT_USER
-          readOnly: true
-        orgId:
-          type: string
-          description: Unique 24-hexadecimal character string that identifies the
-            organization that owns the project to which this alert applies.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        replicaSetName:
-          type: string
-          description: Name of the replica set to which this alert applies. The response
-            returns this parameter for alerts of events impacting backups,
-            hosts, or replica sets.
-          example: event-replica-set
-          readOnly: true
-        resolved:
-          type: string
-          format: date-time
-          description: 'Date and time that this alert changed to `"status" : "CLOSED"`.
-            This parameter expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC. The
-            resource returns this parameter once `"status" : "CLOSED"`.'
-          readOnly: true
-        status:
-          type: string
-          description: State of this alert at the time you requested its details.
-          enum:
-            - CANCELLED
-            - CLOSED
-            - OPEN
-            - TRACKING
-          example: OPEN
-          readOnly: true
-        updated:
-          type: string
-          format: date-time
-          description: Date and time when someone last updated this alert. This parameter
-            expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC.
-          readOnly: true
-      required:
-        - acknowledgedUntil
-        - alertConfigId
-        - created
-        - eventTypeName
-        - id
-        - status
-        - updated
       title: Host Metric Alerts
+      oneOf:
+        - $ref: "#/components/schemas/RawMetricAlertView"
+        - $ref: "#/components/schemas/TimeMetricAlertView"
+        - $ref: "#/components/schemas/DataMetricAlertView"
+        - $ref: "#/components/schemas/NumberMetricAlertView"
     HostMetricEventTypeView:
       type: string
       description: Unique identifier of event type.
@@ -25949,135 +25742,12 @@ components:
           TICKETS_AVAILABLE_READS: "#/components/schemas/RawMetricEventView"
           TICKETS_AVAILABLE_WRITES: "#/components/schemas/RawMetricEventView"
         propertyName: metricName
-      properties:
-        apiKeyId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the [API
-            Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that
-            triggered the event. If this resource returns this parameter, it
-            doesn't return the **userId** parameter.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        created:
-          type: string
-          format: date-time
-          description: Date and time when this event occurred. This parameter expresses
-            its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
-            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp
-            format in UTC.
-          readOnly: true
-        currentValue:
-          $ref: "#/components/schemas/HostMetricValueView"
-        eventTypeName:
-          $ref: "#/components/schemas/HostMetricEventTypeView"
-        groupId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project in
-            which the event occurred. The **eventId** identifies the specific
-            event.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        id:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the event.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        isGlobalAdmin:
-          type: boolean
-          default: false
-          description: Flag that indicates whether a MongoDB employee triggered the
-            specified event.
-          readOnly: true
-        links:
-          type: array
-          description: List of one or more Uniform Resource Locators (URLs) that point to
-            API sub-resources, related API resources, or both. RFC 5988 outlines
-            these relationships.
-          externalDocs:
-            description: Web Linking Specification (RFC 5988)
-            url: https://datatracker.ietf.org/doc/html/rfc5988
-          items:
-            $ref: "#/components/schemas/Link"
-          readOnly: true
-        metricName:
-          type: string
-          description: Human-readable label of the metric associated with the **alertId**.
-            This field may change type of **currentValue** field.
-          readOnly: true
-        orgId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the organization
-            to which these events apply.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        port:
-          type: integer
-          format: int32
-          description: IANA port on which the MongoDB process listens for requests.
-          example: 27017
-          readOnly: true
-        publicKey:
-          type: string
-          format: email
-          description: Public part of the [API
-            Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that
-            triggered the event. If this resource returns this parameter, it
-            doesn't return the **username** parameter.
-          example: test.user@mongodb.com
-          readOnly: true
-        raw:
-          $ref: "#/components/schemas/raw"
-        remoteAddress:
-          type: string
-          description: IPv4 or IPv6 address from which the user triggered this event.
-          example: 216.172.40.186
-          pattern: ^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}|([0-9a-f]{1,4}\:){7}[0-9a-f]{1,4}$
-          readOnly: true
-        replicaSetName:
-          type: string
-          description: Human-readable label of the replica set associated with the event.
-          example: event-replica-set
-          readOnly: true
-        shardName:
-          type: string
-          description: Human-readable label of the shard associated with the event.
-          example: event-sh-01
-          readOnly: true
-        userId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the console user
-            who triggered the event. If this resource returns this parameter, it
-            doesn't return the **apiKeyId** parameter.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        username:
-          type: string
-          format: email
-          description: Email address for the user who triggered this event. If this
-            resource returns this parameter, it doesn't return the
-            **publicApiKey** parameter.
-          example: test.user@mongodb.com
-          readOnly: true
-      required:
-        - created
-        - eventTypeName
-        - id
       title: Host Metric Events
+      oneOf:
+        - $ref: "#/components/schemas/RawMetricEventView"
+        - $ref: "#/components/schemas/TimeMetricEventView"
+        - $ref: "#/components/schemas/DataMetricEventView"
+        - $ref: "#/components/schemas/NumberMetricEventView"
     HostMetricThresholdView:
       type: object
       description: Threshold for the metric that, when exceeded, triggers an alert.
@@ -26246,61 +25916,12 @@ components:
           TICKETS_AVAILABLE_READS: "#/components/schemas/RawMetricThresholdView"
           TICKETS_AVAILABLE_WRITES: "#/components/schemas/RawMetricThresholdView"
         propertyName: metricName
-      properties:
-        metricName:
-          type: string
-          description: Human-readable label that identifies the metric against which
-            MongoDB Cloud checks the configured **metricThreshold.threshold**.
-        mode:
-          type: string
-          description: MongoDB Cloud computes the current metric value as an average.
-          enum:
-            - AVERAGE
-        operator:
-          $ref: "#/components/schemas/Operator"
-        threshold:
-          type: number
-          format: double
-          description: Value of metric that, when exceeded, triggers an alert.
-        units:
-          type: string
-          description: Element used to express the quantity. This can be an element of
-            time, storage capacity, and the like.
-          enum:
-            - bits
-            - Kbits
-            - Mbits
-            - Gbits
-            - bytes
-            - KB
-            - MB
-            - GB
-            - TB
-            - PB
-            - nsec
-            - msec
-            - sec
-            - min
-            - hours
-            - million minutes
-            - days
-            - requests
-            - 1000 requests
-            - GB seconds
-            - GB hours
-            - GB days
-            - RPU
-            - thousand RPU
-            - million RPU
-            - WPU
-            - thousand WPU
-            - million WPU
-            - count
-            - thousand
-            - million
-            - billion
-            - ""
       title: Host Metric Threshold
+      oneOf:
+        - $ref: "#/components/schemas/RawMetricThresholdView"
+        - $ref: "#/components/schemas/TimeMetricThresholdView"
+        - $ref: "#/components/schemas/DataMetricThresholdView"
+        - $ref: "#/components/schemas/NumberMetricThresholdView"
     HostMetricValueView:
       type: object
       description: Value of the metric that triggered the alert. The resource returns
@@ -30884,79 +30505,10 @@ components:
           TOO_MANY_ELECTIONS: "#/components/schemas/GreaterThanRawThresholdAlertConfigVie\
             wForNdsGroup"
         propertyName: eventTypeName
-      properties:
-        created:
-          type: string
-          format: date-time
-          description: Date and time when MongoDB Cloud created the alert configuration.
-            This parameter expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC.
-          readOnly: true
-        enabled:
-          type: boolean
-          default: false
-          description: Flag that indicates whether someone enabled this alert
-            configuration for the specified project.
-        eventTypeName:
-          $ref: "#/components/schemas/ReplicaSetEventTypeViewForNdsGroupAlertableWithThre\
-            shold"
-        groupId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project that
-            owns this alert configuration.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        id:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies this alert
-            configuration.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        links:
-          type: array
-          description: List of one or more Uniform Resource Locators (URLs) that point to
-            API sub-resources, related API resources, or both. RFC 5988 outlines
-            these relationships.
-          externalDocs:
-            description: Web Linking Specification (RFC 5988)
-            url: https://datatracker.ietf.org/doc/html/rfc5988
-          items:
-            $ref: "#/components/schemas/Link"
-          readOnly: true
-        matchers:
-          type: array
-          description: List of rules that determine whether MongoDB Cloud checks an object
-            for the alert configuration. You can filter using the matchers array
-            if the **eventTypeName** specifies an event for a host, replica set,
-            or sharded cluster.
-          items:
-            $ref: "#/components/schemas/ReplicaSetMatcherView"
-        notifications:
-          type: array
-          description: List that contains the targets that MongoDB Cloud sends
-            notifications.
-          items:
-            $ref: "#/components/schemas/NotificationViewForNdsGroup"
-        threshold:
-          $ref: "#/components/schemas/ThresholdViewInteger"
-        updated:
-          type: string
-          format: date-time
-          description: Date and time when someone last updated this alert configuration.
-            This parameter expresses its value in the <a
-            href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank"
-            rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC.
-          readOnly: true
-      required:
-        - eventTypeName
       title: Replica Set Threshold Alert Configuration
+      oneOf:
+        - $ref: "#/components/schemas/LessThanTimeThresholdAlertConfigViewForNdsGroup"
+        - $ref: "#/components/schemas/GreaterThanRawThresholdAlertConfigViewForNdsGroup"
     RoleAssignment:
       type: object
       properties:
@@ -31198,61 +30750,12 @@ components:
           SERVERLESS_TOTAL_READ_UNITS: "#/components/schemas/RPUMetricThresholdView"
           SERVERLESS_TOTAL_WRITE_UNITS: "#/components/schemas/RPUMetricThresholdView"
         propertyName: metricName
-      properties:
-        metricName:
-          type: string
-          description: Human-readable label that identifies the metric against which
-            MongoDB Cloud checks the configured **metricThreshold.threshold**.
-        mode:
-          type: string
-          description: MongoDB Cloud computes the current metric value as an average.
-          enum:
-            - AVERAGE
-        operator:
-          $ref: "#/components/schemas/Operator"
-        threshold:
-          type: number
-          format: double
-          description: Value of metric that, when exceeded, triggers an alert.
-        units:
-          type: string
-          description: Element used to express the quantity. This can be an element of
-            time, storage capacity, and the like.
-          enum:
-            - bits
-            - Kbits
-            - Mbits
-            - Gbits
-            - bytes
-            - KB
-            - MB
-            - GB
-            - TB
-            - PB
-            - nsec
-            - msec
-            - sec
-            - min
-            - hours
-            - million minutes
-            - days
-            - requests
-            - 1000 requests
-            - GB seconds
-            - GB hours
-            - GB days
-            - RPU
-            - thousand RPU
-            - million RPU
-            - WPU
-            - thousand WPU
-            - million WPU
-            - count
-            - thousand
-            - million
-            - billion
-            - ""
       title: Serverless Metric Threshold
+      oneOf:
+        - $ref: "#/components/schemas/TimeMetricThresholdView"
+        - $ref: "#/components/schemas/RawMetricThresholdView"
+        - $ref: "#/components/schemas/DataMetricThresholdView"
+        - $ref: "#/components/schemas/RPUMetricThresholdView"
     ServerlessMetricUnits:
       type: string
       description: Element used to express the quantity. This can be an element of
@@ -35202,37 +34705,61 @@ components:
             - AWS
     CloudProviderAccessDataLakeFeatureUsage:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/CloudProviderAccessFeatureUsage"
-        - type: object
-          properties:
-            featureId:
-              $ref: "#/components/schemas/CloudProviderAccessFeatureUsageDataLakeFeatureId"
       description: Details that describe the Atlas Data Lakes linked to this Amazon
         Web Services (AWS) Identity and Access Management (IAM) role.
+      properties:
+        featureId:
+          $ref: "#/components/schemas/CloudProviderAccessFeatureUsageDataLakeFeatureId"
+        featureType:
+          type: string
+          description: Human-readable label that describes one MongoDB Cloud feature
+            linked to this Amazon Web Services (AWS) Identity and Access
+            Management (IAM) role.
+          enum:
+            - ATLAS_DATA_LAKE
+            - ENCRYPTION_AT_REST
+            - EXPORT_SNAPSHOT
+          readOnly: true
+      required: []
     CloudProviderAccessEncryptionAtRestFeatureUsage:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/CloudProviderAccessFeatureUsage"
-        - type: object
-          properties:
-            featureId:
-              $ref: "#/components/schemas/CloudProviderAccessFeatureUsageFeatureId"
       description: Details that describe the Key Management Service (KMS) linked to
         this Amazon Web Services (AWS) Identity and Access Management (IAM)
         role.
+      properties:
+        featureId:
+          $ref: "#/components/schemas/CloudProviderAccessFeatureUsageFeatureId"
+        featureType:
+          type: string
+          description: Human-readable label that describes one MongoDB Cloud feature
+            linked to this Amazon Web Services (AWS) Identity and Access
+            Management (IAM) role.
+          enum:
+            - ATLAS_DATA_LAKE
+            - ENCRYPTION_AT_REST
+            - EXPORT_SNAPSHOT
+          readOnly: true
+      required: []
     CloudProviderAccessExportSnapshotFeatureUsage:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/CloudProviderAccessFeatureUsage"
-        - type: object
-          properties:
-            featureId:
-              $ref: "#/components/schemas/CloudProviderAccessFeatureUsageExportSnapshotFeatur\
-                eId"
       description: Details that describe the Amazon Web Services (AWS) Simple Storage
         Service (S3) export buckets linked to this AWS Identity and Access
         Management (IAM) role.
+      properties:
+        featureId:
+          $ref: "#/components/schemas/CloudProviderAccessFeatureUsageExportSnapshotFeatur\
+            eId"
+        featureType:
+          type: string
+          description: Human-readable label that describes one MongoDB Cloud feature
+            linked to this Amazon Web Services (AWS) Identity and Access
+            Management (IAM) role.
+          enum:
+            - ATLAS_DATA_LAKE
+            - ENCRYPTION_AT_REST
+            - EXPORT_SNAPSHOT
+          readOnly: true
+      required: []
     CloudProviderAccessFeatureUsageDataLakeFeatureId:
       type: object
       description: Identifying characteristics about the data lake linked to this
@@ -35289,17 +34816,10 @@ components:
             atureUsage"
           EXPORT_SNAPSHOT: "#/components/schemas/CloudProviderAccessExportSnapshotFeatureUsage"
         propertyName: featureType
-      properties:
-        featureType:
-          type: string
-          description: Human-readable label that describes one MongoDB Cloud feature
-            linked to this Amazon Web Services (AWS) Identity and Access
-            Management (IAM) role.
-          enum:
-            - ATLAS_DATA_LAKE
-            - ENCRYPTION_AT_REST
-            - EXPORT_SNAPSHOT
-          readOnly: true
+      oneOf:
+        - $ref: "#/components/schemas/CloudProviderAccessDataLakeFeatureUsage"
+        - $ref: "#/components/schemas/CloudProviderAccessEncryptionAtRestFeatureUsage"
+        - $ref: "#/components/schemas/CloudProviderAccessExportSnapshotFeatureUsage"
     CloudProviderAccessRole:
       type: object
       description: Cloud provider access role.
@@ -36337,28 +35857,31 @@ components:
       title: Permitted Namespace
     DLSIngestionSink:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/IngestionSink"
-        - type: object
-          properties:
-            metadataProvider:
-              type: string
-              description: Target cloud provider for this Data Lake Pipeline.
-              enum:
-                - AWS
-            metadataRegion:
-              type: string
-              description: Target cloud provider region for this Data Lake Pipeline.
-              externalDocs:
-                description: Supported cloud provider regions
-                url: https://www.mongodb.com/docs/datalake/limitations
-            partitionFields:
-              type: array
-              description: Ordered fields used to physically organize data in the destination.
-              items:
-                $ref: "#/components/schemas/PartitionField"
       description: Atlas Data Lake Storage as the destination for a Data Lake Pipeline.
       title: DLS Ingestion Destination
+      properties:
+        metadataProvider:
+          type: string
+          description: Target cloud provider for this Data Lake Pipeline.
+          enum:
+            - AWS
+        metadataRegion:
+          type: string
+          description: Target cloud provider region for this Data Lake Pipeline.
+          externalDocs:
+            description: Supported cloud provider regions
+            url: https://www.mongodb.com/docs/datalake/limitations
+        partitionFields:
+          type: array
+          description: Ordered fields used to physically organize data in the destination.
+          items:
+            $ref: "#/components/schemas/PartitionField"
+        type:
+          type: string
+          description: Type of ingestion destination of this Data Lake Pipeline.
+          enum:
+            - DLS
+      required: []
     DataFederationQueryLimit:
       type: object
       description: Details of a query limit for Data Federation. Query limit is the
@@ -38049,109 +37572,9 @@ components:
           REPLICA_SET: "#/components/schemas/DiskBackupReplicaSet"
           SHARDED_CLUSTER: "#/components/schemas/DiskBackupShardedClusterSnapshot"
         propertyName: type
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          description: Date and time when MongoDB Cloud took the snapshot. This parameter
-            expresses its value in the ISO 8601 timestamp format in UTC.
-          readOnly: true
-        description:
-          type: string
-          description: 'Human-readable phrase or sentence that explains the purpose of the
-            snapshot. The resource returns this parameter when `"status":
-            "onDemand"`.'
-          readOnly: true
-        expiresAt:
-          type: string
-          format: date-time
-          description: Date and time when MongoDB Cloud deletes the snapshot. This
-            parameter expresses its value in the ISO 8601 timestamp format in
-            UTC.
-          readOnly: true
-        frequencyType:
-          type: string
-          description: Human-readable label that identifies how often this snapshot
-            triggers.
-          enum:
-            - hourly
-            - daily
-            - weekly
-            - monthly
-          readOnly: true
-        id:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the snapshot.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        links:
-          type: array
-          description: List of one or more Uniform Resource Locators (URLs) that point to
-            API sub-resources, related API resources, or both. RFC 5988 outlines
-            these relationships.
-          externalDocs:
-            description: Web Linking Specification (RFC 5988)
-            url: https://datatracker.ietf.org/doc/html/rfc5988
-          items:
-            $ref: "#/components/schemas/Link"
-          readOnly: true
-        masterKeyUUID:
-          type: string
-          format: uuid
-          description: 'Unique string that identifies the Amazon Web Services (AWS) Key
-            Management Service (KMS) Customer Master Key (CMK) used to encrypt
-            the snapshot. The resource returns this value when
-            `"encryptionEnabled" : true`.'
-          readOnly: true
-        mongodVersion:
-          type: string
-          description: Version of the MongoDB host that this snapshot backs up.
-          pattern: ([\d]+\.[\d]+\.[\d]+)
-          readOnly: true
-        policyItems:
-          type: array
-          description: List that contains unique identifiers for the policy items.
-          items:
-            type: string
-            description: Unique 24-hexadecimal digit string that identifies one policy item.
-            example: 32b6e34b3d91647abb20e7b8
-            maxLength: 24
-            minLength: 24
-            pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        snapshotType:
-          type: string
-          description: Human-readable label that identifies when this snapshot triggers.
-          enum:
-            - onDemand
-            - scheduled
-          readOnly: true
-        status:
-          type: string
-          description: Human-readable label that indicates the stage of the backup process
-            for this snapshot.
-          enum:
-            - queued
-            - inProgress
-            - completed
-            - failed
-          readOnly: true
-        storageSizeBytes:
-          type: integer
-          format: int64
-          description: Number of bytes taken to store the backup snapshot.
-          readOnly: true
-        type:
-          type: string
-          description: Human-readable label that categorizes the cluster as a replica set
-            or sharded cluster.
-          enum:
-            - REPLICA_SET
-            - SHARDED_CLUSTER
-          readOnly: true
+      oneOf:
+        - $ref: "#/components/schemas/DiskBackupReplicaSet"
+        - $ref: "#/components/schemas/DiskBackupShardedClusterSnapshot"
     DiskGBAutoScaling:
       type: object
       description: Setting that enables disk auto-scaling.
@@ -39582,13 +39005,9 @@ components:
         mapping:
           DLS: "#/components/schemas/DLSIngestionSink"
         propertyName: type
-      properties:
-        type:
-          type: string
-          description: Type of ingestion destination of this Data Lake Pipeline.
-          enum:
-            - DLS
       title: Ingestion Destination
+      oneOf:
+        - $ref: "#/components/schemas/DLSIngestionSink"
     IngestionSource:
       type: object
       description: Ingestion Source of a Data Lake Pipeline.
@@ -40883,18 +40302,24 @@ components:
           readOnly: true
     ServerlessAWSTenantEndpointUpdate:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/ServerlessTenantEndpointUpdate"
-        - type: object
-          properties:
-            cloudProviderEndpointId:
-              type: string
-              description: Unique string that identifies the private endpoint's network
-                interface.
-              pattern: ^(vpce-[0-9a-f]{17}$
-              writeOnly: true
       description: Updates to a serverless AWS tenant endpoint.
       title: AWS
+      properties:
+        cloudProviderEndpointId:
+          type: string
+          description: Unique string that identifies the private endpoint's network
+            interface.
+          pattern: ^(vpce-[0-9a-f]{17}$
+          writeOnly: true
+        comment:
+          type: string
+          description: Human-readable comment associated with the private endpoint.
+          maxLength: 80
+          writeOnly: true
+        providerName:
+          type: string
+      required:
+        - providerName
     ServerlessAWSTenantEndpoint:
       type: object
       description: View for a serverless AWS tenant endpoint.
@@ -40952,24 +40377,30 @@ components:
       title: AWS
     ServerlessAzureTenantEndpointUpdate:
       type: object
-      allOf:
-        - $ref: "#/components/schemas/ServerlessTenantEndpointUpdate"
-        - type: object
-          properties:
-            cloudProviderEndpointId:
-              type: string
-              description: Unique string that identifies the Azure private endpoint's network
-                interface for this private endpoint service.
-              pattern: ^\/subscriptions\/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\/resource[gG]roups\/private[Ll]ink\/providers\/Microsoft\.Network\/privateEndpoints\/[-\w._()]+)$
-              writeOnly: true
-            privateEndpointIpAddress:
-              type: string
-              description: IPv4 address of the private endpoint in your Azure VNet that
-                someone added to this private endpoint service.
-              pattern: ^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}|([0-9a-f]{1,4}\:){7}[0-9a-f]{1,4}$
-              writeOnly: true
       description: Updates to a serverless Azure tenant endpoint.
       title: AZURE
+      properties:
+        cloudProviderEndpointId:
+          type: string
+          description: Unique string that identifies the Azure private endpoint's network
+            interface for this private endpoint service.
+          pattern: ^\/subscriptions\/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\/resource[gG]roups\/private[Ll]ink\/providers\/Microsoft\.Network\/privateEndpoints\/[-\w._()]+)$
+          writeOnly: true
+        privateEndpointIpAddress:
+          type: string
+          description: IPv4 address of the private endpoint in your Azure VNet that
+            someone added to this private endpoint service.
+          pattern: ^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}|([0-9a-f]{1,4}\:){7}[0-9a-f]{1,4}$
+          writeOnly: true
+        comment:
+          type: string
+          description: Human-readable comment associated with the private endpoint.
+          maxLength: 80
+          writeOnly: true
+        providerName:
+          type: string
+      required:
+        - providerName
     ServerlessAzureTenantEndpoint:
       type: object
       description: View for a serverless Azure tenant endpoint.
@@ -41522,16 +40953,9 @@ components:
           AWS: "#/components/schemas/ServerlessAWSTenantEndpointUpdate"
           AZURE: "#/components/schemas/ServerlessAzureTenantEndpointUpdate"
         propertyName: providerName
-      properties:
-        comment:
-          type: string
-          description: Human-readable comment associated with the private endpoint.
-          maxLength: 80
-          writeOnly: true
-        providerName:
-          type: string
-      required:
-        - providerName
+      oneOf:
+        - $ref: "#/components/schemas/ServerlessAWSTenantEndpointUpdate"
+        - $ref: "#/components/schemas/ServerlessAzureTenantEndpointUpdate"
     ServerlessTenantEndpoint:
       type: object
       oneOf:

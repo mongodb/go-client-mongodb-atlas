@@ -108,6 +108,10 @@ function getObjectNameFromReference(obj) {
   }
 }
 
+function getObjectNameFromReferenceString(objString) {
+  return objString.replace("#/components/schemas/", "");
+}
+
 function getNameFromYamlPath(path) {
   return path.split(".").pop();
 }
@@ -144,4 +148,5 @@ module.exports = {
   getAllObjectsWithProperty,
   getAllObjects,
   getObjectNameFromReference,
+  getObjectNameFromReferenceString,
 };
