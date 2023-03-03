@@ -43,3 +43,14 @@ For parent model containing multiple children:
 
 - Moves all parent property fields into children.
 - Removes redundant allOf fields on children
+
+## Adjusting logging
+
+`XGEN_LOGGING_LEVEL` env variable can be used to specify logging levels:
+
+- info
+- warn
+- debug
+- error
+
+Default: 'warn"
