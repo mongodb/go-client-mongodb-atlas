@@ -9,7 +9,7 @@ const log = require("simple-node-logger").createSimpleLogger();
 
 // Override default logger
 global.console = log;
-log.setLevel("warn");
+log.setLevel(process.env.XGEN_LOGGING_LEVEL || "warn");
 
 let { doc, apiFileLocation } = getAPI()();
 
