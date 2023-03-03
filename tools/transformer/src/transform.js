@@ -3,7 +3,7 @@ const {
   applyOneOfTransformations,
   applyModelNameTransformations,
 } = require("./transformations");
-const { getAPI, saveAPI } = require("./apifile");
+const { getAPI, saveAPI } = require("./engine/apifile");
 
 const log = require("simple-node-logger").createSimpleLogger();
 
@@ -15,7 +15,6 @@ let { doc, apiFileLocation } = getAPI(process.argv.slice(2));
 
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
-
 doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
 
 saveAPI(doc, apiFileLocation);

@@ -3,6 +3,7 @@ const { readFileSync, writeFileSync } = require("fs");
 
 /**
  * Read and parse API file as json
+ *
  * @returns  {doc, apiFileLocation}
  */
 function getAPI(apiFileLocation) {
@@ -23,6 +24,7 @@ function getAPI(apiFileLocation) {
 
 /**
  * Save API to target location
+ *
  * @param {*} doc openapi doc
  * @param {*} apiFileLocation location to save
  */
