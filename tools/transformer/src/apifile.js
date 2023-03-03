@@ -1,11 +1,11 @@
 const { parse, stringify } = require("yaml");
+const { readFileSync, writeFileSync } = require("fs");
 
 /**
  * Read and parse API file as json
  * @returns  {doc, apiFileLocation}
  */
 function getAPI(apiFileLocation) {
-  let apiFileLocation = process.argv.slice(2);
   if (!apiFileLocation && !apiFileLocation[0]) {
     throw new Error("Missing positional argument for openapi file");
   }

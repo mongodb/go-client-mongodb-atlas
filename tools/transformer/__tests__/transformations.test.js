@@ -41,7 +41,6 @@ test("Transform AllOf model", () => {
 
 test("Fail Transform AllOf with wrong object structure", () => {
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
-  console.log(api.components.schemas.ApiAtlasRegionConfigView);
   expect(() =>
     transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api)
   ).toThrow(/Invalid object for AllOf Transformation/);

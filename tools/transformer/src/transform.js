@@ -11,7 +11,7 @@ const log = require("simple-node-logger").createSimpleLogger();
 global.console = log;
 log.setLevel(process.env.XGEN_LOGGING_LEVEL || "warn");
 
-let { doc, apiFileLocation } = getAPI()();
+let { doc, apiFileLocation } = getAPI(process.argv.slice(2));
 
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
