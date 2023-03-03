@@ -64,7 +64,7 @@ function transformDiscriminatorOneOf(objectPath, api) {
 }
 
 function isTransformable(obj) {
-  return (obj.properties && obj.discriminator) || (obj.properties && obj.oneOf);
+  return !!obj.discriminator;
 }
 
 function getObjectProperties(obj) {
