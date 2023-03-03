@@ -43,7 +43,7 @@ type Collation struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollation() *Collation {
+func NewCollation(locale string) *Collation {
 	this := Collation{}
 	var alternate string = "non-ignorable"
 	this.Alternate = &alternate
@@ -53,6 +53,7 @@ func NewCollation() *Collation {
 	this.CaseFirst = &caseFirst
 	var caseLevel bool = false
 	this.CaseLevel = &caseLevel
+	this.Locale = locale
 	var normalization bool = false
 	this.Normalization = &normalization
 	var numericOrdering bool = false

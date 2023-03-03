@@ -44,6 +44,18 @@ For parent model containing multiple children:
 - Moves all parent property fields into children.
 - Removes redundant allOf fields on children
 
+3. Discriminator transformation
+
+Applied to all objects that meet the following criteria:
+
+> Have "discriminator" field
+> Missing "oneOf" field
+
+For parent model containing discriminator
+
+- Fails if discriminator is missing mapping field (invalid case)
+- Uses discriminator mapping in order to add oneOf field
+
 ## Adjusting logging
 
 `XGEN_LOGGING_LEVEL` env variable can be used to specify logging levels:

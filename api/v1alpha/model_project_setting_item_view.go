@@ -27,8 +27,9 @@ type ProjectSettingItemView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectSettingItemView() *ProjectSettingItemView {
+func NewProjectSettingItemView(enabled bool) *ProjectSettingItemView {
 	this := ProjectSettingItemView{}
+	this.Enabled = enabled
 	return &this
 }
 

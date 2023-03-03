@@ -50,12 +50,15 @@ type DatabaseUser struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatabaseUser() *DatabaseUser {
+func NewDatabaseUser(databaseName string, groupId string, username string) *DatabaseUser {
 	this := DatabaseUser{}
 	var awsIAMType string = "NONE"
 	this.AwsIAMType = &awsIAMType
+	this.DatabaseName = databaseName
+	this.GroupId = groupId
 	var ldapAuthType string = "NONE"
 	this.LdapAuthType = &ldapAuthType
+	this.Username = username
 	var x509Type string = "NONE"
 	this.X509Type = &x509Type
 	return &this

@@ -33,8 +33,12 @@ type TokenFilterregex struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFilterregex() *TokenFilterregex {
+func NewTokenFilterregex(matches string, pattern string, replacement string, type_ string) *TokenFilterregex {
 	this := TokenFilterregex{}
+	this.Matches = matches
+	this.Pattern = pattern
+	this.Replacement = replacement
+	this.Type = type_
 	return &this
 }
 

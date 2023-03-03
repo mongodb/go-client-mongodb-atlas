@@ -12,80 +12,119 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the CriteriaView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CriteriaView{}
-
-// CriteriaView Rules by which MongoDB MongoDB Cloud archives data.  Use the **criteria.type** field to choose how MongoDB Cloud selects data to archive. Choose data using the age of the data or a MongoDB query. **\"criteria.type\": \"DATE\"** selects documents to archive based on a date. **\"criteria.type\": \"CUSTOM\"** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **\"criteria.type\": \"CUSTOM\"** when **\"collectionType\": \"TIMESERIES\"**.
+// CriteriaView - Rules by which MongoDB MongoDB Cloud archives data.  Use the **criteria.type** field to choose how MongoDB Cloud selects data to archive. Choose data using the age of the data or a MongoDB query. **\"criteria.type\": \"DATE\"** selects documents to archive based on a date. **\"criteria.type\": \"CUSTOM\"** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **\"criteria.type\": \"CUSTOM\"** when **\"collectionType\": \"TIMESERIES\"**.
 type CriteriaView struct {
-	// Means by which MongoDB Cloud selects data to archive. Data can be chosen using the age of the data or a MongoDB query. **DATE** selects documents to archive based on a date. **CUSTOM** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **CUSTOM** when `\"collectionType\": \"TIMESERIES\"`.
-	Type *string `json:"type,omitempty"`
+	CustomCriteriaView *CustomCriteriaView
+	DateCriteriaView *DateCriteriaView
 }
 
-// NewCriteriaView instantiates a new CriteriaView object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCriteriaView() *CriteriaView {
-	this := CriteriaView{}
-	return &this
-}
-
-// NewCriteriaViewWithDefaults instantiates a new CriteriaView object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCriteriaViewWithDefaults() *CriteriaView {
-	this := CriteriaView{}
-	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *CriteriaView) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
+// CustomCriteriaViewAsCriteriaView is a convenience function that returns CustomCriteriaView wrapped in CriteriaView
+func CustomCriteriaViewAsCriteriaView(v *CustomCriteriaView) CriteriaView {
+	return CriteriaView{
+		CustomCriteriaView: v,
 	}
-	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CriteriaView) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
+// DateCriteriaViewAsCriteriaView is a convenience function that returns DateCriteriaView wrapped in CriteriaView
+func DateCriteriaViewAsCriteriaView(v *DateCriteriaView) CriteriaView {
+	return CriteriaView{
+		DateCriteriaView: v,
 	}
-	return o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CriteriaView) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
 
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CriteriaView) SetType(v string) {
-	o.Type = &v
-}
-
-func (o CriteriaView) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *CriteriaView) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'CUSTOM'
+	if jsonDict["type"] == "CUSTOM" {
+		// try to unmarshal JSON data into CustomCriteriaView
+		err = json.Unmarshal(data, &dst.CustomCriteriaView)
+		if err == nil {
+			return nil // data stored in dst.CustomCriteriaView, return on the first match
+		} else {
+			dst.CustomCriteriaView = nil
+			return fmt.Errorf("failed to unmarshal CriteriaView as CustomCriteriaView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CustomCriteriaView'
+	if jsonDict["type"] == "CustomCriteriaView" {
+		// try to unmarshal JSON data into CustomCriteriaView
+		err = json.Unmarshal(data, &dst.CustomCriteriaView)
+		if err == nil {
+			return nil // data stored in dst.CustomCriteriaView, return on the first match
+		} else {
+			dst.CustomCriteriaView = nil
+			return fmt.Errorf("failed to unmarshal CriteriaView as CustomCriteriaView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DATE'
+	if jsonDict["type"] == "DATE" {
+		// try to unmarshal JSON data into DateCriteriaView
+		err = json.Unmarshal(data, &dst.DateCriteriaView)
+		if err == nil {
+			return nil // data stored in dst.DateCriteriaView, return on the first match
+		} else {
+			dst.DateCriteriaView = nil
+			return fmt.Errorf("failed to unmarshal CriteriaView as DateCriteriaView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DateCriteriaView'
+	if jsonDict["type"] == "DateCriteriaView" {
+		// try to unmarshal JSON data into DateCriteriaView
+		err = json.Unmarshal(data, &dst.DateCriteriaView)
+		if err == nil {
+			return nil // data stored in dst.DateCriteriaView, return on the first match
+		} else {
+			dst.DateCriteriaView = nil
+			return fmt.Errorf("failed to unmarshal CriteriaView as DateCriteriaView: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o CriteriaView) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src CriteriaView) MarshalJSON() ([]byte, error) {
+	if src.CustomCriteriaView != nil {
+		return json.Marshal(&src.CustomCriteriaView)
 	}
-	return toSerialize, nil
+
+	if src.DateCriteriaView != nil {
+		return json.Marshal(&src.DateCriteriaView)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *CriteriaView) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.CustomCriteriaView != nil {
+		return obj.CustomCriteriaView
+	}
+
+	if obj.DateCriteriaView != nil {
+		return obj.DateCriteriaView
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableCriteriaView struct {

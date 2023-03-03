@@ -52,8 +52,14 @@ type AlertView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlertView() *AlertView {
+func NewAlertView(acknowledgedUntil time.Time, alertConfigId string, created time.Time, id string, status string, updated time.Time) *AlertView {
 	this := AlertView{}
+	this.AcknowledgedUntil = acknowledgedUntil
+	this.AlertConfigId = alertConfigId
+	this.Created = created
+	this.Id = id
+	this.Status = status
+	this.Updated = updated
 	return &this
 }
 

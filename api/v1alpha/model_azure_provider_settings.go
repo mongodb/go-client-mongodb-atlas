@@ -33,8 +33,9 @@ type AzureProviderSettings struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureProviderSettings() *AzureProviderSettings {
+func NewAzureProviderSettings(providerName string) *AzureProviderSettings {
 	this := AzureProviderSettings{}
+	this.ProviderName = providerName
 	return &this
 }
 

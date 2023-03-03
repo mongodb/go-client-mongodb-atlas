@@ -31,8 +31,11 @@ type NDSUserToDNMapping struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNDSUserToDNMapping() *NDSUserToDNMapping {
+func NewNDSUserToDNMapping(ldapQuery string, match string, substitution string) *NDSUserToDNMapping {
 	this := NDSUserToDNMapping{}
+	this.LdapQuery = ldapQuery
+	this.Match = match
+	this.Substitution = substitution
 	return &this
 }
 

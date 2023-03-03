@@ -37,8 +37,9 @@ type OrgNotificationView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgNotificationView() *OrgNotificationView {
+func NewOrgNotificationView(typeName string) *OrgNotificationView {
 	this := OrgNotificationView{}
+	this.TypeName = typeName
 	return &this
 }
 

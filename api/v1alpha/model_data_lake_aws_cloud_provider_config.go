@@ -35,8 +35,10 @@ type DataLakeAWSCloudProviderConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataLakeAWSCloudProviderConfig() *DataLakeAWSCloudProviderConfig {
+func NewDataLakeAWSCloudProviderConfig(roleId string, testS3Bucket string) *DataLakeAWSCloudProviderConfig {
 	this := DataLakeAWSCloudProviderConfig{}
+	this.RoleId = roleId
+	this.TestS3Bucket = testS3Bucket
 	return &this
 }
 

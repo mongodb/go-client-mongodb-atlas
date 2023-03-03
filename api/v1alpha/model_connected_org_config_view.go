@@ -39,8 +39,11 @@ type ConnectedOrgConfigView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectedOrgConfigView() *ConnectedOrgConfigView {
+func NewConnectedOrgConfigView(domainRestrictionEnabled bool, identityProviderId string, orgId string) *ConnectedOrgConfigView {
 	this := ConnectedOrgConfigView{}
+	this.DomainRestrictionEnabled = domainRestrictionEnabled
+	this.IdentityProviderId = identityProviderId
+	this.OrgId = orgId
 	return &this
 }
 

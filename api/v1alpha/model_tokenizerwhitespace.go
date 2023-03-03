@@ -29,10 +29,11 @@ type Tokenizerwhitespace struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenizerwhitespace() *Tokenizerwhitespace {
+func NewTokenizerwhitespace(type_ string) *Tokenizerwhitespace {
 	this := Tokenizerwhitespace{}
 	var maxTokenLength int32 = 255
 	this.MaxTokenLength = &maxTokenLength
+	this.Type = type_
 	return &this
 }
 

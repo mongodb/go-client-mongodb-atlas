@@ -12,651 +12,2071 @@ package v1alpha
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
 )
 
-// checks if the HostMetricEventView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HostMetricEventView{}
-
-// HostMetricEventView Host Metric Event reflects different measurements and metrics about mongod host.
+// HostMetricEventView - Host Metric Event reflects different measurements and metrics about mongod host.
 type HostMetricEventView struct {
-	// Unique 24-hexadecimal digit string that identifies the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **userId** parameter.
-	ApiKeyId *string `json:"apiKeyId,omitempty"`
-	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
-	Created time.Time `json:"created"`
-	CurrentValue *HostMetricValueView `json:"currentValue,omitempty"`
-	EventTypeName HostMetricEventTypeView `json:"eventTypeName"`
-	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
-	GroupId *string `json:"groupId,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies the event.
-	Id string `json:"id"`
-	// Flag that indicates whether a MongoDB employee triggered the specified event.
-	IsGlobalAdmin *bool `json:"isGlobalAdmin,omitempty"`
-	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links,omitempty"`
-	// Human-readable label of the metric associated with the **alertId**. This field may change type of **currentValue** field.
-	MetricName *string `json:"metricName,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
-	OrgId *string `json:"orgId,omitempty"`
-	// IANA port on which the MongoDB process listens for requests.
-	Port *int32 `json:"port,omitempty"`
-	// Public part of the [API Key](https://dochub.mongodb.org/core/atlas-create-prog-api-key) that triggered the event. If this resource returns this parameter, it doesn't return the **username** parameter.
-	PublicKey *string `json:"publicKey,omitempty"`
-	Raw *Raw `json:"raw,omitempty"`
-	// IPv4 or IPv6 address from which the user triggered this event.
-	RemoteAddress *string `json:"remoteAddress,omitempty"`
-	// Human-readable label of the replica set associated with the event.
-	ReplicaSetName *string `json:"replicaSetName,omitempty"`
-	// Human-readable label of the shard associated with the event.
-	ShardName *string `json:"shardName,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies the console user who triggered the event. If this resource returns this parameter, it doesn't return the **apiKeyId** parameter.
-	UserId *string `json:"userId,omitempty"`
-	// Email address for the user who triggered this event. If this resource returns this parameter, it doesn't return the **publicApiKey** parameter.
-	Username *string `json:"username,omitempty"`
+	DataMetricEventView *DataMetricEventView
+	NumberMetricEventView *NumberMetricEventView
+	RawMetricEventView *RawMetricEventView
+	TimeMetricEventView *TimeMetricEventView
 }
 
-// NewHostMetricEventView instantiates a new HostMetricEventView object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewHostMetricEventView() *HostMetricEventView {
-	this := HostMetricEventView{}
-	return &this
-}
-
-// NewHostMetricEventViewWithDefaults instantiates a new HostMetricEventView object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewHostMetricEventViewWithDefaults() *HostMetricEventView {
-	this := HostMetricEventView{}
-	return &this
-}
-
-// GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetApiKeyId() string {
-	if o == nil || IsNil(o.ApiKeyId) {
-		var ret string
-		return ret
+// DataMetricEventViewAsHostMetricEventView is a convenience function that returns DataMetricEventView wrapped in HostMetricEventView
+func DataMetricEventViewAsHostMetricEventView(v *DataMetricEventView) HostMetricEventView {
+	return HostMetricEventView{
+		DataMetricEventView: v,
 	}
-	return *o.ApiKeyId
 }
 
-// GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetApiKeyIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiKeyId) {
-		return nil, false
+// NumberMetricEventViewAsHostMetricEventView is a convenience function that returns NumberMetricEventView wrapped in HostMetricEventView
+func NumberMetricEventViewAsHostMetricEventView(v *NumberMetricEventView) HostMetricEventView {
+	return HostMetricEventView{
+		NumberMetricEventView: v,
 	}
-	return o.ApiKeyId, true
 }
 
-// HasApiKeyId returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasApiKeyId() bool {
-	if o != nil && !IsNil(o.ApiKeyId) {
-		return true
+// RawMetricEventViewAsHostMetricEventView is a convenience function that returns RawMetricEventView wrapped in HostMetricEventView
+func RawMetricEventViewAsHostMetricEventView(v *RawMetricEventView) HostMetricEventView {
+	return HostMetricEventView{
+		RawMetricEventView: v,
 	}
-
-	return false
 }
 
-// SetApiKeyId gets a reference to the given string and assigns it to the ApiKeyId field.
-func (o *HostMetricEventView) SetApiKeyId(v string) {
-	o.ApiKeyId = &v
-}
-
-// GetCreated returns the Created field value
-func (o *HostMetricEventView) GetCreated() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
+// TimeMetricEventViewAsHostMetricEventView is a convenience function that returns TimeMetricEventView wrapped in HostMetricEventView
+func TimeMetricEventViewAsHostMetricEventView(v *TimeMetricEventView) HostMetricEventView {
+	return HostMetricEventView{
+		TimeMetricEventView: v,
 	}
-
-	return o.Created
-}
-
-// GetCreatedOk returns a tuple with the Created field value
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetCreatedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Created, true
-}
-
-// SetCreated sets field value
-func (o *HostMetricEventView) SetCreated(v time.Time) {
-	o.Created = v
-}
-
-// GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetCurrentValue() HostMetricValueView {
-	if o == nil || IsNil(o.CurrentValue) {
-		var ret HostMetricValueView
-		return ret
-	}
-	return *o.CurrentValue
-}
-
-// GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetCurrentValueOk() (*HostMetricValueView, bool) {
-	if o == nil || IsNil(o.CurrentValue) {
-		return nil, false
-	}
-	return o.CurrentValue, true
-}
-
-// HasCurrentValue returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasCurrentValue() bool {
-	if o != nil && !IsNil(o.CurrentValue) {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrentValue gets a reference to the given HostMetricValueView and assigns it to the CurrentValue field.
-func (o *HostMetricEventView) SetCurrentValue(v HostMetricValueView) {
-	o.CurrentValue = &v
-}
-
-// GetEventTypeName returns the EventTypeName field value
-func (o *HostMetricEventView) GetEventTypeName() HostMetricEventTypeView {
-	if o == nil {
-		var ret HostMetricEventTypeView
-		return ret
-	}
-
-	return o.EventTypeName
-}
-
-// GetEventTypeNameOk returns a tuple with the EventTypeName field value
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetEventTypeNameOk() (*HostMetricEventTypeView, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventTypeName, true
-}
-
-// SetEventTypeName sets field value
-func (o *HostMetricEventView) SetEventTypeName(v HostMetricEventTypeView) {
-	o.EventTypeName = v
-}
-
-// GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetGroupId() string {
-	if o == nil || IsNil(o.GroupId) {
-		var ret string
-		return ret
-	}
-	return *o.GroupId
-}
-
-// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetGroupIdOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupId) {
-		return nil, false
-	}
-	return o.GroupId, true
-}
-
-// HasGroupId returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasGroupId() bool {
-	if o != nil && !IsNil(o.GroupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
-func (o *HostMetricEventView) SetGroupId(v string) {
-	o.GroupId = &v
-}
-
-// GetId returns the Id field value
-func (o *HostMetricEventView) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *HostMetricEventView) SetId(v string) {
-	o.Id = v
-}
-
-// GetIsGlobalAdmin returns the IsGlobalAdmin field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetIsGlobalAdmin() bool {
-	if o == nil || IsNil(o.IsGlobalAdmin) {
-		var ret bool
-		return ret
-	}
-	return *o.IsGlobalAdmin
-}
-
-// GetIsGlobalAdminOk returns a tuple with the IsGlobalAdmin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetIsGlobalAdminOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsGlobalAdmin) {
-		return nil, false
-	}
-	return o.IsGlobalAdmin, true
-}
-
-// HasIsGlobalAdmin returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasIsGlobalAdmin() bool {
-	if o != nil && !IsNil(o.IsGlobalAdmin) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsGlobalAdmin gets a reference to the given bool and assigns it to the IsGlobalAdmin field.
-func (o *HostMetricEventView) SetIsGlobalAdmin(v bool) {
-	o.IsGlobalAdmin = &v
-}
-
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
-		var ret []Link
-		return ret
-	}
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *HostMetricEventView) SetLinks(v []Link) {
-	o.Links = v
-}
-
-// GetMetricName returns the MetricName field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetMetricName() string {
-	if o == nil || IsNil(o.MetricName) {
-		var ret string
-		return ret
-	}
-	return *o.MetricName
-}
-
-// GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetMetricNameOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricName) {
-		return nil, false
-	}
-	return o.MetricName, true
-}
-
-// HasMetricName returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasMetricName() bool {
-	if o != nil && !IsNil(o.MetricName) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetricName gets a reference to the given string and assigns it to the MetricName field.
-func (o *HostMetricEventView) SetMetricName(v string) {
-	o.MetricName = &v
-}
-
-// GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetOrgId() string {
-	if o == nil || IsNil(o.OrgId) {
-		var ret string
-		return ret
-	}
-	return *o.OrgId
-}
-
-// GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetOrgIdOk() (*string, bool) {
-	if o == nil || IsNil(o.OrgId) {
-		return nil, false
-	}
-	return o.OrgId, true
-}
-
-// HasOrgId returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasOrgId() bool {
-	if o != nil && !IsNil(o.OrgId) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrgId gets a reference to the given string and assigns it to the OrgId field.
-func (o *HostMetricEventView) SetOrgId(v string) {
-	o.OrgId = &v
-}
-
-// GetPort returns the Port field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetPort() int32 {
-	if o == nil || IsNil(o.Port) {
-		var ret int32
-		return ret
-	}
-	return *o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetPortOk() (*int32, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
-}
-
-// HasPort returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
-}
-
-// SetPort gets a reference to the given int32 and assigns it to the Port field.
-func (o *HostMetricEventView) SetPort(v int32) {
-	o.Port = &v
-}
-
-// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetPublicKey() string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret string
-		return ret
-	}
-	return *o.PublicKey
-}
-
-// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetPublicKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PublicKey) {
-		return nil, false
-	}
-	return o.PublicKey, true
-}
-
-// HasPublicKey returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
-		return true
-	}
-
-	return false
-}
-
-// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
-func (o *HostMetricEventView) SetPublicKey(v string) {
-	o.PublicKey = &v
-}
-
-// GetRaw returns the Raw field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetRaw() Raw {
-	if o == nil || IsNil(o.Raw) {
-		var ret Raw
-		return ret
-	}
-	return *o.Raw
-}
-
-// GetRawOk returns a tuple with the Raw field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetRawOk() (*Raw, bool) {
-	if o == nil || IsNil(o.Raw) {
-		return nil, false
-	}
-	return o.Raw, true
-}
-
-// HasRaw returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasRaw() bool {
-	if o != nil && !IsNil(o.Raw) {
-		return true
-	}
-
-	return false
-}
-
-// SetRaw gets a reference to the given Raw and assigns it to the Raw field.
-func (o *HostMetricEventView) SetRaw(v Raw) {
-	o.Raw = &v
-}
-
-// GetRemoteAddress returns the RemoteAddress field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetRemoteAddress() string {
-	if o == nil || IsNil(o.RemoteAddress) {
-		var ret string
-		return ret
-	}
-	return *o.RemoteAddress
-}
-
-// GetRemoteAddressOk returns a tuple with the RemoteAddress field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetRemoteAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.RemoteAddress) {
-		return nil, false
-	}
-	return o.RemoteAddress, true
-}
-
-// HasRemoteAddress returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasRemoteAddress() bool {
-	if o != nil && !IsNil(o.RemoteAddress) {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteAddress gets a reference to the given string and assigns it to the RemoteAddress field.
-func (o *HostMetricEventView) SetRemoteAddress(v string) {
-	o.RemoteAddress = &v
-}
-
-// GetReplicaSetName returns the ReplicaSetName field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetReplicaSetName() string {
-	if o == nil || IsNil(o.ReplicaSetName) {
-		var ret string
-		return ret
-	}
-	return *o.ReplicaSetName
-}
-
-// GetReplicaSetNameOk returns a tuple with the ReplicaSetName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetReplicaSetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ReplicaSetName) {
-		return nil, false
-	}
-	return o.ReplicaSetName, true
-}
-
-// HasReplicaSetName returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasReplicaSetName() bool {
-	if o != nil && !IsNil(o.ReplicaSetName) {
-		return true
-	}
-
-	return false
-}
-
-// SetReplicaSetName gets a reference to the given string and assigns it to the ReplicaSetName field.
-func (o *HostMetricEventView) SetReplicaSetName(v string) {
-	o.ReplicaSetName = &v
-}
-
-// GetShardName returns the ShardName field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetShardName() string {
-	if o == nil || IsNil(o.ShardName) {
-		var ret string
-		return ret
-	}
-	return *o.ShardName
-}
-
-// GetShardNameOk returns a tuple with the ShardName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetShardNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ShardName) {
-		return nil, false
-	}
-	return o.ShardName, true
-}
-
-// HasShardName returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasShardName() bool {
-	if o != nil && !IsNil(o.ShardName) {
-		return true
-	}
-
-	return false
-}
-
-// SetShardName gets a reference to the given string and assigns it to the ShardName field.
-func (o *HostMetricEventView) SetShardName(v string) {
-	o.ShardName = &v
-}
-
-// GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetUserId() string {
-	if o == nil || IsNil(o.UserId) {
-		var ret string
-		return ret
-	}
-	return *o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetUserIdOk() (*string, bool) {
-	if o == nil || IsNil(o.UserId) {
-		return nil, false
-	}
-	return o.UserId, true
-}
-
-// HasUserId returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasUserId() bool {
-	if o != nil && !IsNil(o.UserId) {
-		return true
-	}
-
-	return false
-}
-
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *HostMetricEventView) SetUserId(v string) {
-	o.UserId = &v
-}
-
-// GetUsername returns the Username field value if set, zero value otherwise.
-func (o *HostMetricEventView) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
-		var ret string
-		return ret
-	}
-	return *o.Username
-}
-
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricEventView) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
-}
-
-// HasUsername returns a boolean if a field has been set.
-func (o *HostMetricEventView) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
 }
 
-// SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *HostMetricEventView) SetUsername(v string) {
-	o.Username = &v
-}
 
-func (o HostMetricEventView) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *HostMetricEventView) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'ASSERT_MSG'
+	if jsonDict["metricName"] == "ASSERT_MSG" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_REGULAR'
+	if jsonDict["metricName"] == "ASSERT_REGULAR" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_USER'
+	if jsonDict["metricName"] == "ASSERT_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_WARNING'
+	if jsonDict["metricName"] == "ASSERT_WARNING" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_COMMAND_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_COMMAND_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_READ_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_READ_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_WRITE_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_WRITE_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'BACKGROUND_FLUSH_AVG'
+	if jsonDict["metricName"] == "BACKGROUND_FLUSH_AVG" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_BYTES_READ_INTO'
+	if jsonDict["metricName"] == "CACHE_BYTES_READ_INTO" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_BYTES_WRITTEN_FROM'
+	if jsonDict["metricName"] == "CACHE_BYTES_WRITTEN_FROM" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_USAGE_DIRTY'
+	if jsonDict["metricName"] == "CACHE_USAGE_DIRTY" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_USAGE_USED'
+	if jsonDict["metricName"] == "CACHE_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'COMPUTED_MEMORY'
+	if jsonDict["metricName"] == "COMPUTED_MEMORY" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS'
+	if jsonDict["metricName"] == "CONNECTIONS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS_MAX'
+	if jsonDict["metricName"] == "CONNECTIONS_MAX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS_PERCENT'
+	if jsonDict["metricName"] == "CONNECTIONS_PERCENT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_CLIENT_CURSORS_SIZE'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_CLIENT_CURSORS_SIZE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_OPEN'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_OPEN" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_TIMED_OUT'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_TIMED_OUT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_DATA_SIZE_TOTAL'
+	if jsonDict["metricName"] == "DB_DATA_SIZE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_DATA_SIZE_TOTAL_WO_SYSTEM'
+	if jsonDict["metricName"] == "DB_DATA_SIZE_TOTAL_WO_SYSTEM" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_INDEX_SIZE_TOTAL'
+	if jsonDict["metricName"] == "DB_INDEX_SIZE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_STORAGE_TOTAL'
+	if jsonDict["metricName"] == "DB_STORAGE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_DELETED'
+	if jsonDict["metricName"] == "DOCUMENT_DELETED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_INSERTED'
+	if jsonDict["metricName"] == "DOCUMENT_INSERTED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_RETURNED'
+	if jsonDict["metricName"] == "DOCUMENT_RETURNED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_UPDATED'
+	if jsonDict["metricName"] == "DOCUMENT_UPDATED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DataMetricEventView'
+	if jsonDict["metricName"] == "DataMetricEventView" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'EXTRA_INFO_PAGE_FAULTS'
+	if jsonDict["metricName"] == "EXTRA_INFO_PAGE_FAULTS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_DISK_UTILIZATION'
+	if jsonDict["metricName"] == "FTS_DISK_UTILIZATION" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_JVM_CURRENT_MEMORY'
+	if jsonDict["metricName"] == "FTS_JVM_CURRENT_MEMORY" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_JVM_MAX_MEMORY'
+	if jsonDict["metricName"] == "FTS_JVM_MAX_MEMORY" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_MAPPED'
+	if jsonDict["metricName"] == "FTS_MEMORY_MAPPED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_RESIDENT'
+	if jsonDict["metricName"] == "FTS_MEMORY_RESIDENT" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_VIRTUAL'
+	if jsonDict["metricName"] == "FTS_MEMORY_VIRTUAL" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_PROCESS_CPU_KERNEL'
+	if jsonDict["metricName"] == "FTS_PROCESS_CPU_KERNEL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_PROCESS_CPU_USER'
+	if jsonDict["metricName"] == "FTS_PROCESS_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_ACCESSES_NOT_IN_MEMORY'
+	if jsonDict["metricName"] == "GLOBAL_ACCESSES_NOT_IN_MEMORY" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_READERS'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_READERS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_TOTAL'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_TOTAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_WRITERS'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_WRITERS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_PERCENTAGE'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_PERCENTAGE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN'
+	if jsonDict["metricName"] == "GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_ACCESSES'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_ACCESSES" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_HITS'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_HITS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_MISSES'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_MISSES" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_MISS_RATIO'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_MISS_RATIO" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_COMMITS_IN_WRITE_LOCK'
+	if jsonDict["metricName"] == "JOURNALING_COMMITS_IN_WRITE_LOCK" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_MB'
+	if jsonDict["metricName"] == "JOURNALING_MB" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_WRITE_DATA_FILES_MB'
+	if jsonDict["metricName"] == "JOURNALING_WRITE_DATA_FILES_MB" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'LOGICAL_SIZE'
+	if jsonDict["metricName"] == "LOGICAL_SIZE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_NORMALIZED_SYSTEM_CPU_STEAL'
+	if jsonDict["metricName"] == "MAX_NORMALIZED_SYSTEM_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_NORMALIZED_SYSTEM_CPU_USER'
+	if jsonDict["metricName"] == "MAX_NORMALIZED_SYSTEM_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SWAP_USAGE_FREE'
+	if jsonDict["metricName"] == "MAX_SWAP_USAGE_FREE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SWAP_USAGE_USED'
+	if jsonDict["metricName"] == "MAX_SWAP_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_AVAILABLE'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_AVAILABLE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_PERCENT_USED'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_PERCENT_USED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_USED'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_USED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_NETWORK_IN'
+	if jsonDict["metricName"] == "MAX_SYSTEM_NETWORK_IN" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_NETWORK_OUT'
+	if jsonDict["metricName"] == "MAX_SYSTEM_NETWORK_OUT" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_MAPPED'
+	if jsonDict["metricName"] == "MEMORY_MAPPED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_RESIDENT'
+	if jsonDict["metricName"] == "MEMORY_RESIDENT" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_VIRTUAL'
+	if jsonDict["metricName"] == "MEMORY_VIRTUAL" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_IOWAIT'
+	if jsonDict["metricName"] == "MUNIN_CPU_IOWAIT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_IRQ'
+	if jsonDict["metricName"] == "MUNIN_CPU_IRQ" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_NICE'
+	if jsonDict["metricName"] == "MUNIN_CPU_NICE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_SOFTIRQ'
+	if jsonDict["metricName"] == "MUNIN_CPU_SOFTIRQ" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_STEAL'
+	if jsonDict["metricName"] == "MUNIN_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_SYSTEM'
+	if jsonDict["metricName"] == "MUNIN_CPU_SYSTEM" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_USER'
+	if jsonDict["metricName"] == "MUNIN_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_BYTES_IN'
+	if jsonDict["metricName"] == "NETWORK_BYTES_IN" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_BYTES_OUT'
+	if jsonDict["metricName"] == "NETWORK_BYTES_OUT" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_NUM_REQUESTS'
+	if jsonDict["metricName"] == "NETWORK_NUM_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_FTS_PROCESS_CPU_KERNEL'
+	if jsonDict["metricName"] == "NORMALIZED_FTS_PROCESS_CPU_KERNEL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_FTS_PROCESS_CPU_USER'
+	if jsonDict["metricName"] == "NORMALIZED_FTS_PROCESS_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_SYSTEM_CPU_STEAL'
+	if jsonDict["metricName"] == "NORMALIZED_SYSTEM_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_SYSTEM_CPU_USER'
+	if jsonDict["metricName"] == "NORMALIZED_SYSTEM_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NumberMetricEventView'
+	if jsonDict["metricName"] == "NumberMetricEventView" {
+		// try to unmarshal JSON data into NumberMetricEventView
+		err = json.Unmarshal(data, &dst.NumberMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.NumberMetricEventView, return on the first match
+		} else {
+			dst.NumberMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as NumberMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_CMD'
+	if jsonDict["metricName"] == "OPCOUNTER_CMD" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_DELETE'
+	if jsonDict["metricName"] == "OPCOUNTER_DELETE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_GETMORE'
+	if jsonDict["metricName"] == "OPCOUNTER_GETMORE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_INSERT'
+	if jsonDict["metricName"] == "OPCOUNTER_INSERT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_QUERY'
+	if jsonDict["metricName"] == "OPCOUNTER_QUERY" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_CMD'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_CMD" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_DELETE'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_DELETE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_INSERT'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_INSERT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_UPDATE'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_UPDATE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_UPDATE'
+	if jsonDict["metricName"] == "OPCOUNTER_UPDATE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPERATIONS_SCAN_AND_ORDER'
+	if jsonDict["metricName"] == "OPERATIONS_SCAN_AND_ORDER" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_LAG_TIME_DIFF'
+	if jsonDict["metricName"] == "OPLOG_MASTER_LAG_TIME_DIFF" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_TIME'
+	if jsonDict["metricName"] == "OPLOG_MASTER_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_TIME_ESTIMATED_TTL'
+	if jsonDict["metricName"] == "OPLOG_MASTER_TIME_ESTIMATED_TTL" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_RATE_GB_PER_HOUR'
+	if jsonDict["metricName"] == "OPLOG_RATE_GB_PER_HOUR" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_REPLICATION_LAG_TIME'
+	if jsonDict["metricName"] == "OPLOG_REPLICATION_LAG_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_SLAVE_LAG_MASTER_TIME'
+	if jsonDict["metricName"] == "OPLOG_SLAVE_LAG_MASTER_TIME" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_EXECUTOR_SCANNED'
+	if jsonDict["metricName"] == "QUERY_EXECUTOR_SCANNED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_EXECUTOR_SCANNED_OBJECTS'
+	if jsonDict["metricName"] == "QUERY_EXECUTOR_SCANNED_OBJECTS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED'
+	if jsonDict["metricName"] == "QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_TARGETING_SCANNED_PER_RETURNED'
+	if jsonDict["metricName"] == "QUERY_TARGETING_SCANNED_PER_RETURNED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RESTARTS_IN_LAST_HOUR'
+	if jsonDict["metricName"] == "RESTARTS_IN_LAST_HOUR" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RawMetricEventView'
+	if jsonDict["metricName"] == "RawMetricEventView" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_INDEX_SIZE'
+	if jsonDict["metricName"] == "SEARCH_INDEX_SIZE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_MAX_NUMBER_OF_LUCENE_DOCS'
+	if jsonDict["metricName"] == "SEARCH_MAX_NUMBER_OF_LUCENE_DOCS" {
+		// try to unmarshal JSON data into NumberMetricEventView
+		err = json.Unmarshal(data, &dst.NumberMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.NumberMetricEventView, return on the first match
+		} else {
+			dst.NumberMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as NumberMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_FIELDS_IN_INDEX'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_FIELDS_IN_INDEX" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_ERROR'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_ERROR" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_SUCCESS'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_SUCCESS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_TOTAL'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_TOTAL" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_DELETE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_DELETE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_GETMORE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_GETMORE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_INSERT'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_INSERT" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_UPDATE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_UPDATE" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_REPLICATION_LAG'
+	if jsonDict["metricName"] == "SEARCH_REPLICATION_LAG" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SWAP_USAGE_FREE'
+	if jsonDict["metricName"] == "SWAP_USAGE_FREE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SWAP_USAGE_USED'
+	if jsonDict["metricName"] == "SWAP_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_AVAILABLE'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_AVAILABLE" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_PERCENT_USED'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_PERCENT_USED" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_USED'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_USED" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_NETWORK_IN'
+	if jsonDict["metricName"] == "SYSTEM_NETWORK_IN" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_NETWORK_OUT'
+	if jsonDict["metricName"] == "SYSTEM_NETWORK_OUT" {
+		// try to unmarshal JSON data into DataMetricEventView
+		err = json.Unmarshal(data, &dst.DataMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricEventView, return on the first match
+		} else {
+			dst.DataMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as DataMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TICKETS_AVAILABLE_READS'
+	if jsonDict["metricName"] == "TICKETS_AVAILABLE_READS" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TICKETS_AVAILABLE_WRITES'
+	if jsonDict["metricName"] == "TICKETS_AVAILABLE_WRITES" {
+		// try to unmarshal JSON data into RawMetricEventView
+		err = json.Unmarshal(data, &dst.RawMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricEventView, return on the first match
+		} else {
+			dst.RawMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as RawMetricEventView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TimeMetricEventView'
+	if jsonDict["metricName"] == "TimeMetricEventView" {
+		// try to unmarshal JSON data into TimeMetricEventView
+		err = json.Unmarshal(data, &dst.TimeMetricEventView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricEventView, return on the first match
+		} else {
+			dst.TimeMetricEventView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricEventView as TimeMetricEventView: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o HostMetricEventView) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	// skip: apiKeyId is readOnly
-	// skip: created is readOnly
-	if !IsNil(o.CurrentValue) {
-		toSerialize["currentValue"] = o.CurrentValue
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src HostMetricEventView) MarshalJSON() ([]byte, error) {
+	if src.DataMetricEventView != nil {
+		return json.Marshal(&src.DataMetricEventView)
 	}
-	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: isGlobalAdmin is readOnly
-	// skip: links is readOnly
-	// skip: metricName is readOnly
-	// skip: orgId is readOnly
-	// skip: port is readOnly
-	// skip: publicKey is readOnly
-	if !IsNil(o.Raw) {
-		toSerialize["raw"] = o.Raw
+
+	if src.NumberMetricEventView != nil {
+		return json.Marshal(&src.NumberMetricEventView)
 	}
-	// skip: remoteAddress is readOnly
-	// skip: replicaSetName is readOnly
-	// skip: shardName is readOnly
-	// skip: userId is readOnly
-	// skip: username is readOnly
-	return toSerialize, nil
+
+	if src.RawMetricEventView != nil {
+		return json.Marshal(&src.RawMetricEventView)
+	}
+
+	if src.TimeMetricEventView != nil {
+		return json.Marshal(&src.TimeMetricEventView)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *HostMetricEventView) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.DataMetricEventView != nil {
+		return obj.DataMetricEventView
+	}
+
+	if obj.NumberMetricEventView != nil {
+		return obj.NumberMetricEventView
+	}
+
+	if obj.RawMetricEventView != nil {
+		return obj.RawMetricEventView
+	}
+
+	if obj.TimeMetricEventView != nil {
+		return obj.TimeMetricEventView
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableHostMetricEventView struct {

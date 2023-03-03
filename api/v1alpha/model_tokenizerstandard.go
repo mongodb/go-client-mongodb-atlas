@@ -29,10 +29,11 @@ type Tokenizerstandard struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenizerstandard() *Tokenizerstandard {
+func NewTokenizerstandard(type_ string) *Tokenizerstandard {
 	this := Tokenizerstandard{}
 	var maxTokenLength int32 = 255
 	this.MaxTokenLength = &maxTokenLength
+	this.Type = type_
 	return &this
 }
 

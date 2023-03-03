@@ -31,8 +31,11 @@ type DiskBackupShardedClusterSnapshotMember struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiskBackupShardedClusterSnapshotMember() *DiskBackupShardedClusterSnapshotMember {
+func NewDiskBackupShardedClusterSnapshotMember(cloudProvider string, id string, replicaSetName string) *DiskBackupShardedClusterSnapshotMember {
 	this := DiskBackupShardedClusterSnapshotMember{}
+	this.CloudProvider = cloudProvider
+	this.Id = id
+	this.ReplicaSetName = replicaSetName
 	return &this
 }
 

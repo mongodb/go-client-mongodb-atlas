@@ -41,10 +41,14 @@ type ApiPrometheusView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiPrometheusView() *ApiPrometheusView {
+func NewApiPrometheusView(enabled bool, scheme string, serviceDiscovery string, username string) *ApiPrometheusView {
 	this := ApiPrometheusView{}
+	this.Enabled = enabled
 	var listenAddress string = ":9216"
 	this.ListenAddress = &listenAddress
+	this.Scheme = scheme
+	this.ServiceDiscovery = serviceDiscovery
+	this.Username = username
 	return &this
 }
 

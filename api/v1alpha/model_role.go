@@ -31,8 +31,11 @@ type Role struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRole() *Role {
+func NewRole(collectionName string, databaseName string, roleName string) *Role {
 	this := Role{}
+	this.CollectionName = collectionName
+	this.DatabaseName = databaseName
+	this.RoleName = roleName
 	return &this
 }
 

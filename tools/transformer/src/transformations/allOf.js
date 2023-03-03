@@ -20,7 +20,7 @@ const {
  * @returns OpenAPI JSON File
  */
 function applyAllOfTransformations(api) {
-  const allOfTransformations = getAllObjects(api, isAllOfTransformable);
+  const allOfTransformations = getAllObjects(api, isTransformable);
 
   console.info(
     "# AllOf transformations: ",
@@ -38,7 +38,7 @@ function transformAllOf(objectPath, api) {
   const parentObject = getObjectFromYamlPath(objectPath, api);
   const parentName = getNameFromYamlPath(objectPath);
 
-  if (!isAllOfTransformable(parentObject)) {
+  if (!isTransformable(parentObject)) {
     throw new Error(`Invalid object for AllOf Transformation: ${parentName}`);
   }
 
@@ -68,7 +68,7 @@ function transformAllOf(objectPath, api) {
   delete parentObject.required;
 }
 
-function isAllOfTransformable(obj) {
+function isTransformable(obj) {
   return obj.properties && obj.oneOf;
 }
 

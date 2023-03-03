@@ -27,8 +27,9 @@ type TokenFiltericuFolding struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFiltericuFolding() *TokenFiltericuFolding {
+func NewTokenFiltericuFolding(type_ string) *TokenFiltericuFolding {
 	this := TokenFiltericuFolding{}
+	this.Type = type_
 	return &this
 }
 

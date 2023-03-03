@@ -41,8 +41,13 @@ type AzurePeerNetwork struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzurePeerNetwork() *AzurePeerNetwork {
+func NewAzurePeerNetwork(azureDirectoryId string, azureSubscriptionId string, containerId string, resourceGroupName string, vnetName string) *AzurePeerNetwork {
 	this := AzurePeerNetwork{}
+	this.AzureDirectoryId = azureDirectoryId
+	this.AzureSubscriptionId = azureSubscriptionId
+	this.ContainerId = containerId
+	this.ResourceGroupName = resourceGroupName
+	this.VnetName = vnetName
 	return &this
 }
 

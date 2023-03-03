@@ -54,8 +54,10 @@ type TenantRestore struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTenantRestore() *TenantRestore {
+func NewTenantRestore(snapshotId string, targetDeploymentItemName string) *TenantRestore {
 	this := TenantRestore{}
+	this.SnapshotId = snapshotId
+	this.TargetDeploymentItemName = targetDeploymentItemName
 	return &this
 }
 

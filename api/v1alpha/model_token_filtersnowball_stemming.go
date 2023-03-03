@@ -29,8 +29,10 @@ type TokenFiltersnowballStemming struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFiltersnowballStemming() *TokenFiltersnowballStemming {
+func NewTokenFiltersnowballStemming(stemmerName string, type_ string) *TokenFiltersnowballStemming {
 	this := TokenFiltersnowballStemming{}
+	this.StemmerName = stemmerName
+	this.Type = type_
 	return &this
 }
 
