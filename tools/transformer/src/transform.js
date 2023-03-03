@@ -3,7 +3,7 @@ const {
   applyOneOfTransformations,
   applyModelNameTransformations,
 } = require("./transformations");
-const { getAPI, saveAPI } = require("./wrappers/apifile");
+const { getAPI, saveAPI } = require("./engine/apifile");
 
 const log = require("simple-node-logger").createSimpleLogger();
 
