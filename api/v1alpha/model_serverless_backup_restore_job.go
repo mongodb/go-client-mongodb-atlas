@@ -59,8 +59,11 @@ type ServerlessBackupRestoreJob struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessBackupRestoreJob() *ServerlessBackupRestoreJob {
+func NewServerlessBackupRestoreJob(deliveryType string, targetClusterName string, targetGroupId string) *ServerlessBackupRestoreJob {
 	this := ServerlessBackupRestoreJob{}
+	this.DeliveryType = deliveryType
+	this.TargetClusterName = targetClusterName
+	this.TargetGroupId = targetGroupId
 	return &this
 }
 

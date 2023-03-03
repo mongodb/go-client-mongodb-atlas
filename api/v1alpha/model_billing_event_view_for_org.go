@@ -54,8 +54,11 @@ type BillingEventViewForOrg struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBillingEventViewForOrg() *BillingEventViewForOrg {
+func NewBillingEventViewForOrg(created time.Time, eventTypeName BillingEventTypeViewForOrg, id string) *BillingEventViewForOrg {
 	this := BillingEventViewForOrg{}
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
 	return &this
 }
 

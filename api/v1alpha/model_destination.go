@@ -33,8 +33,11 @@ type Destination struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDestination() *Destination {
+func NewDestination(clusterName string, groupId string, hostnameSchemaType string) *Destination {
 	this := Destination{}
+	this.ClusterName = clusterName
+	this.GroupId = groupId
+	this.HostnameSchemaType = hostnameSchemaType
 	return &this
 }
 

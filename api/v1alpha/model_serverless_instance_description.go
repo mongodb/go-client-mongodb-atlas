@@ -45,8 +45,9 @@ type ServerlessInstanceDescription struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessInstanceDescription() *ServerlessInstanceDescription {
+func NewServerlessInstanceDescription(providerSettings ServerlessProviderSettings) *ServerlessInstanceDescription {
 	this := ServerlessInstanceDescription{}
+	this.ProviderSettings = providerSettings
 	var terminationProtectionEnabled bool = false
 	this.TerminationProtectionEnabled = &terminationProtectionEnabled
 	return &this

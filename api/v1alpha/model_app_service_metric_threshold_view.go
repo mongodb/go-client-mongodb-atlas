@@ -12,227 +12,447 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the AppServiceMetricThresholdView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AppServiceMetricThresholdView{}
-
-// AppServiceMetricThresholdView Threshold for the metric that, when exceeded, triggers an alert. The metric threshold pertains to event types which reflects changes of measurements and metrics in the app services.
+// AppServiceMetricThresholdView - Threshold for the metric that, when exceeded, triggers an alert. The metric threshold pertains to event types which reflects changes of measurements and metrics in the app services.
 type AppServiceMetricThresholdView struct {
-	// Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
-	MetricName *string `json:"metricName,omitempty"`
-	// MongoDB Cloud computes the current metric value as an average.
-	Mode *string `json:"mode,omitempty"`
-	Operator *Operator `json:"operator,omitempty"`
-	// Value of metric that, when exceeded, triggers an alert.
-	Threshold *float64 `json:"threshold,omitempty"`
-	// Element used to express the quantity. This can be an element of time, storage capacity, and the like.
-	Units *string `json:"units,omitempty"`
+	DataMetricThresholdView *DataMetricThresholdView
+	RawMetricThresholdView *RawMetricThresholdView
+	TimeMetricThresholdView *TimeMetricThresholdView
 }
 
-// NewAppServiceMetricThresholdView instantiates a new AppServiceMetricThresholdView object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAppServiceMetricThresholdView() *AppServiceMetricThresholdView {
-	this := AppServiceMetricThresholdView{}
-	return &this
-}
-
-// NewAppServiceMetricThresholdViewWithDefaults instantiates a new AppServiceMetricThresholdView object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewAppServiceMetricThresholdViewWithDefaults() *AppServiceMetricThresholdView {
-	this := AppServiceMetricThresholdView{}
-	return &this
-}
-
-// GetMetricName returns the MetricName field value if set, zero value otherwise.
-func (o *AppServiceMetricThresholdView) GetMetricName() string {
-	if o == nil || IsNil(o.MetricName) {
-		var ret string
-		return ret
+// DataMetricThresholdViewAsAppServiceMetricThresholdView is a convenience function that returns DataMetricThresholdView wrapped in AppServiceMetricThresholdView
+func DataMetricThresholdViewAsAppServiceMetricThresholdView(v *DataMetricThresholdView) AppServiceMetricThresholdView {
+	return AppServiceMetricThresholdView{
+		DataMetricThresholdView: v,
 	}
-	return *o.MetricName
 }
 
-// GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppServiceMetricThresholdView) GetMetricNameOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricName) {
-		return nil, false
+// RawMetricThresholdViewAsAppServiceMetricThresholdView is a convenience function that returns RawMetricThresholdView wrapped in AppServiceMetricThresholdView
+func RawMetricThresholdViewAsAppServiceMetricThresholdView(v *RawMetricThresholdView) AppServiceMetricThresholdView {
+	return AppServiceMetricThresholdView{
+		RawMetricThresholdView: v,
 	}
-	return o.MetricName, true
 }
 
-// HasMetricName returns a boolean if a field has been set.
-func (o *AppServiceMetricThresholdView) HasMetricName() bool {
-	if o != nil && !IsNil(o.MetricName) {
-		return true
+// TimeMetricThresholdViewAsAppServiceMetricThresholdView is a convenience function that returns TimeMetricThresholdView wrapped in AppServiceMetricThresholdView
+func TimeMetricThresholdViewAsAppServiceMetricThresholdView(v *TimeMetricThresholdView) AppServiceMetricThresholdView {
+	return AppServiceMetricThresholdView{
+		TimeMetricThresholdView: v,
 	}
-
-	return false
 }
 
-// SetMetricName gets a reference to the given string and assigns it to the MetricName field.
-func (o *AppServiceMetricThresholdView) SetMetricName(v string) {
-	o.MetricName = &v
-}
 
-// GetMode returns the Mode field value if set, zero value otherwise.
-func (o *AppServiceMetricThresholdView) GetMode() string {
-	if o == nil || IsNil(o.Mode) {
-		var ret string
-		return ret
-	}
-	return *o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppServiceMetricThresholdView) GetModeOk() (*string, bool) {
-	if o == nil || IsNil(o.Mode) {
-		return nil, false
-	}
-	return o.Mode, true
-}
-
-// HasMode returns a boolean if a field has been set.
-func (o *AppServiceMetricThresholdView) HasMode() bool {
-	if o != nil && !IsNil(o.Mode) {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *AppServiceMetricThresholdView) SetMode(v string) {
-	o.Mode = &v
-}
-
-// GetOperator returns the Operator field value if set, zero value otherwise.
-func (o *AppServiceMetricThresholdView) GetOperator() Operator {
-	if o == nil || IsNil(o.Operator) {
-		var ret Operator
-		return ret
-	}
-	return *o.Operator
-}
-
-// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppServiceMetricThresholdView) GetOperatorOk() (*Operator, bool) {
-	if o == nil || IsNil(o.Operator) {
-		return nil, false
-	}
-	return o.Operator, true
-}
-
-// HasOperator returns a boolean if a field has been set.
-func (o *AppServiceMetricThresholdView) HasOperator() bool {
-	if o != nil && !IsNil(o.Operator) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperator gets a reference to the given Operator and assigns it to the Operator field.
-func (o *AppServiceMetricThresholdView) SetOperator(v Operator) {
-	o.Operator = &v
-}
-
-// GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *AppServiceMetricThresholdView) GetThreshold() float64 {
-	if o == nil || IsNil(o.Threshold) {
-		var ret float64
-		return ret
-	}
-	return *o.Threshold
-}
-
-// GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppServiceMetricThresholdView) GetThresholdOk() (*float64, bool) {
-	if o == nil || IsNil(o.Threshold) {
-		return nil, false
-	}
-	return o.Threshold, true
-}
-
-// HasThreshold returns a boolean if a field has been set.
-func (o *AppServiceMetricThresholdView) HasThreshold() bool {
-	if o != nil && !IsNil(o.Threshold) {
-		return true
-	}
-
-	return false
-}
-
-// SetThreshold gets a reference to the given float64 and assigns it to the Threshold field.
-func (o *AppServiceMetricThresholdView) SetThreshold(v float64) {
-	o.Threshold = &v
-}
-
-// GetUnits returns the Units field value if set, zero value otherwise.
-func (o *AppServiceMetricThresholdView) GetUnits() string {
-	if o == nil || IsNil(o.Units) {
-		var ret string
-		return ret
-	}
-	return *o.Units
-}
-
-// GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppServiceMetricThresholdView) GetUnitsOk() (*string, bool) {
-	if o == nil || IsNil(o.Units) {
-		return nil, false
-	}
-	return o.Units, true
-}
-
-// HasUnits returns a boolean if a field has been set.
-func (o *AppServiceMetricThresholdView) HasUnits() bool {
-	if o != nil && !IsNil(o.Units) {
-		return true
-	}
-
-	return false
-}
-
-// SetUnits gets a reference to the given string and assigns it to the Units field.
-func (o *AppServiceMetricThresholdView) SetUnits(v string) {
-	o.Units = &v
-}
-
-func (o AppServiceMetricThresholdView) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *AppServiceMetricThresholdView) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'DataMetricThresholdView'
+	if jsonDict["metricName"] == "DataMetricThresholdView" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_AUTH_LOGIN_FAIL'
+	if jsonDict["metricName"] == "REALM_AUTH_LOGIN_FAIL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_ENDPOINTS_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_ENDPOINTS_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_ENDPOINTS_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_ENDPOINTS_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_ENDPOINTS_FAILED_REQUESTS'
+	if jsonDict["metricName"] == "REALM_ENDPOINTS_FAILED_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_ENDPOINTS_RESPONSE_MS'
+	if jsonDict["metricName"] == "REALM_ENDPOINTS_RESPONSE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_GQL_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_GQL_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_GQL_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_GQL_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_GQL_FAILED_REQUESTS'
+	if jsonDict["metricName"] == "REALM_GQL_FAILED_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_GQL_RESPONSE_MS'
+	if jsonDict["metricName"] == "REALM_GQL_RESPONSE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_OVERALL_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_OVERALL_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_OVERALL_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_OVERALL_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_OVERALL_FAILED_REQUESTS'
+	if jsonDict["metricName"] == "REALM_OVERALL_FAILED_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDKFNS_FAILED_REQUESTS'
+	if jsonDict["metricName"] == "REALM_SDKFNS_FAILED_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_FNS_RESPONSE_MS'
+	if jsonDict["metricName"] == "REALM_SDK_FNS_RESPONSE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_FUNCTIONS_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_SDK_FUNCTIONS_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_FUNCTIONS_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_SDK_FUNCTIONS_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_MQL_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_SDK_MQL_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_MQL_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_SDK_MQL_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SDK_MQL_RESPONSE_MS'
+	if jsonDict["metricName"] == "REALM_SDK_MQL_RESPONSE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SYNC_CURRENT_OPLOG_LAG_MS_SUM'
+	if jsonDict["metricName"] == "REALM_SYNC_CURRENT_OPLOG_LAG_MS_SUM" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SYNC_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_SYNC_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_SYNC_NUM_UNSYNCABLE_DOCS_PERCENT'
+	if jsonDict["metricName"] == "REALM_SYNC_NUM_UNSYNCABLE_DOCS_PERCENT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_TRIGGERS_COMPUTE_MS'
+	if jsonDict["metricName"] == "REALM_TRIGGERS_COMPUTE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_TRIGGERS_CURRENT_OPLOG_LAG_MS_SUM'
+	if jsonDict["metricName"] == "REALM_TRIGGERS_CURRENT_OPLOG_LAG_MS_SUM" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_TRIGGERS_EGRESS_BYTES'
+	if jsonDict["metricName"] == "REALM_TRIGGERS_EGRESS_BYTES" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_TRIGGERS_FAILED_REQUESTS'
+	if jsonDict["metricName"] == "REALM_TRIGGERS_FAILED_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REALM_TRIGGERS_RESPONSE_MS'
+	if jsonDict["metricName"] == "REALM_TRIGGERS_RESPONSE_MS" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RawMetricThresholdView'
+	if jsonDict["metricName"] == "RawMetricThresholdView" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TimeMetricThresholdView'
+	if jsonDict["metricName"] == "TimeMetricThresholdView" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o AppServiceMetricThresholdView) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MetricName) {
-		toSerialize["metricName"] = o.MetricName
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src AppServiceMetricThresholdView) MarshalJSON() ([]byte, error) {
+	if src.DataMetricThresholdView != nil {
+		return json.Marshal(&src.DataMetricThresholdView)
 	}
-	if !IsNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
+
+	if src.RawMetricThresholdView != nil {
+		return json.Marshal(&src.RawMetricThresholdView)
 	}
-	if !IsNil(o.Operator) {
-		toSerialize["operator"] = o.Operator
+
+	if src.TimeMetricThresholdView != nil {
+		return json.Marshal(&src.TimeMetricThresholdView)
 	}
-	if !IsNil(o.Threshold) {
-		toSerialize["threshold"] = o.Threshold
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *AppServiceMetricThresholdView) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
 	}
-	if !IsNil(o.Units) {
-		toSerialize["units"] = o.Units
+	if obj.DataMetricThresholdView != nil {
+		return obj.DataMetricThresholdView
 	}
-	return toSerialize, nil
+
+	if obj.RawMetricThresholdView != nil {
+		return obj.RawMetricThresholdView
+	}
+
+	if obj.TimeMetricThresholdView != nil {
+		return obj.TimeMetricThresholdView
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableAppServiceMetricThresholdView struct {

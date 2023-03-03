@@ -52,8 +52,11 @@ type NDSAuditViewForNdsGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNDSAuditViewForNdsGroup() *NDSAuditViewForNdsGroup {
+func NewNDSAuditViewForNdsGroup(created time.Time, eventTypeName NDSAuditTypeViewForNdsGroup, id string) *NDSAuditViewForNdsGroup {
 	this := NDSAuditViewForNdsGroup{}
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
 	return &this
 }
 

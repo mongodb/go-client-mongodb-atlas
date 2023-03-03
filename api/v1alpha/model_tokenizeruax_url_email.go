@@ -29,10 +29,11 @@ type TokenizeruaxUrlEmail struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenizeruaxUrlEmail() *TokenizeruaxUrlEmail {
+func NewTokenizeruaxUrlEmail(type_ string) *TokenizeruaxUrlEmail {
 	this := TokenizeruaxUrlEmail{}
 	var maxTokenLength int32 = 255
 	this.MaxTokenLength = &maxTokenLength
+	this.Type = type_
 	return &this
 }
 

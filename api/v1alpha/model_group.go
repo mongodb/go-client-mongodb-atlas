@@ -40,8 +40,12 @@ type Group struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroup() *Group {
+func NewGroup(clusterCount int64, created time.Time, name string, orgId string) *Group {
 	this := Group{}
+	this.ClusterCount = clusterCount
+	this.Created = created
+	this.Name = name
+	this.OrgId = orgId
 	return &this
 }
 

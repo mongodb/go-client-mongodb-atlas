@@ -31,12 +31,13 @@ type TokenFilterlength struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFilterlength() *TokenFilterlength {
+func NewTokenFilterlength(type_ string) *TokenFilterlength {
 	this := TokenFilterlength{}
 	var max int32 = 255
 	this.Max = &max
 	var min int32 = 0
 	this.Min = &min
+	this.Type = type_
 	return &this
 }
 

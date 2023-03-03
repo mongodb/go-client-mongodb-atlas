@@ -61,8 +61,11 @@ type DiskBackupRestoreJob struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiskBackupRestoreJob() *DiskBackupRestoreJob {
+func NewDiskBackupRestoreJob(deliveryType string, targetClusterName string, targetGroupId string) *DiskBackupRestoreJob {
 	this := DiskBackupRestoreJob{}
+	this.DeliveryType = deliveryType
+	this.TargetClusterName = targetClusterName
+	this.TargetGroupId = targetGroupId
 	return &this
 }
 

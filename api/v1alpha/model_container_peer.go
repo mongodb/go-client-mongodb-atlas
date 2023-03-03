@@ -29,8 +29,9 @@ type ContainerPeer struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerPeer() *ContainerPeer {
+func NewContainerPeer(containerId string) *ContainerPeer {
 	this := ContainerPeer{}
+	this.ContainerId = containerId
 	return &this
 }
 

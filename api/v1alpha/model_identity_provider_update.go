@@ -42,8 +42,9 @@ type IdentityProviderUpdate struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityProviderUpdate() *IdentityProviderUpdate {
+func NewIdentityProviderUpdate(ssoDebugEnabled bool) *IdentityProviderUpdate {
 	this := IdentityProviderUpdate{}
+	this.SsoDebugEnabled = ssoDebugEnabled
 	return &this
 }
 

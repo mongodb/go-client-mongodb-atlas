@@ -12,227 +12,2071 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the HostMetricThresholdView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HostMetricThresholdView{}
-
-// HostMetricThresholdView Threshold for the metric that, when exceeded, triggers an alert. The metric threshold pertains to event types which reflects changes of measurements and metrics about mongod host.
+// HostMetricThresholdView - Threshold for the metric that, when exceeded, triggers an alert. The metric threshold pertains to event types which reflects changes of measurements and metrics about mongod host.
 type HostMetricThresholdView struct {
-	// Human-readable label that identifies the metric against which MongoDB Cloud checks the configured **metricThreshold.threshold**.
-	MetricName *string `json:"metricName,omitempty"`
-	// MongoDB Cloud computes the current metric value as an average.
-	Mode *string `json:"mode,omitempty"`
-	Operator *Operator `json:"operator,omitempty"`
-	// Value of metric that, when exceeded, triggers an alert.
-	Threshold *float64 `json:"threshold,omitempty"`
-	// Element used to express the quantity. This can be an element of time, storage capacity, and the like.
-	Units *string `json:"units,omitempty"`
+	DataMetricThresholdView *DataMetricThresholdView
+	NumberMetricThresholdView *NumberMetricThresholdView
+	RawMetricThresholdView *RawMetricThresholdView
+	TimeMetricThresholdView *TimeMetricThresholdView
 }
 
-// NewHostMetricThresholdView instantiates a new HostMetricThresholdView object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewHostMetricThresholdView() *HostMetricThresholdView {
-	this := HostMetricThresholdView{}
-	return &this
-}
-
-// NewHostMetricThresholdViewWithDefaults instantiates a new HostMetricThresholdView object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewHostMetricThresholdViewWithDefaults() *HostMetricThresholdView {
-	this := HostMetricThresholdView{}
-	return &this
-}
-
-// GetMetricName returns the MetricName field value if set, zero value otherwise.
-func (o *HostMetricThresholdView) GetMetricName() string {
-	if o == nil || IsNil(o.MetricName) {
-		var ret string
-		return ret
+// DataMetricThresholdViewAsHostMetricThresholdView is a convenience function that returns DataMetricThresholdView wrapped in HostMetricThresholdView
+func DataMetricThresholdViewAsHostMetricThresholdView(v *DataMetricThresholdView) HostMetricThresholdView {
+	return HostMetricThresholdView{
+		DataMetricThresholdView: v,
 	}
-	return *o.MetricName
 }
 
-// GetMetricNameOk returns a tuple with the MetricName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricThresholdView) GetMetricNameOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricName) {
-		return nil, false
+// NumberMetricThresholdViewAsHostMetricThresholdView is a convenience function that returns NumberMetricThresholdView wrapped in HostMetricThresholdView
+func NumberMetricThresholdViewAsHostMetricThresholdView(v *NumberMetricThresholdView) HostMetricThresholdView {
+	return HostMetricThresholdView{
+		NumberMetricThresholdView: v,
 	}
-	return o.MetricName, true
 }
 
-// HasMetricName returns a boolean if a field has been set.
-func (o *HostMetricThresholdView) HasMetricName() bool {
-	if o != nil && !IsNil(o.MetricName) {
-		return true
+// RawMetricThresholdViewAsHostMetricThresholdView is a convenience function that returns RawMetricThresholdView wrapped in HostMetricThresholdView
+func RawMetricThresholdViewAsHostMetricThresholdView(v *RawMetricThresholdView) HostMetricThresholdView {
+	return HostMetricThresholdView{
+		RawMetricThresholdView: v,
 	}
-
-	return false
 }
 
-// SetMetricName gets a reference to the given string and assigns it to the MetricName field.
-func (o *HostMetricThresholdView) SetMetricName(v string) {
-	o.MetricName = &v
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise.
-func (o *HostMetricThresholdView) GetMode() string {
-	if o == nil || IsNil(o.Mode) {
-		var ret string
-		return ret
+// TimeMetricThresholdViewAsHostMetricThresholdView is a convenience function that returns TimeMetricThresholdView wrapped in HostMetricThresholdView
+func TimeMetricThresholdViewAsHostMetricThresholdView(v *TimeMetricThresholdView) HostMetricThresholdView {
+	return HostMetricThresholdView{
+		TimeMetricThresholdView: v,
 	}
-	return *o.Mode
 }
 
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricThresholdView) GetModeOk() (*string, bool) {
-	if o == nil || IsNil(o.Mode) {
-		return nil, false
-	}
-	return o.Mode, true
-}
 
-// HasMode returns a boolean if a field has been set.
-func (o *HostMetricThresholdView) HasMode() bool {
-	if o != nil && !IsNil(o.Mode) {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *HostMetricThresholdView) SetMode(v string) {
-	o.Mode = &v
-}
-
-// GetOperator returns the Operator field value if set, zero value otherwise.
-func (o *HostMetricThresholdView) GetOperator() Operator {
-	if o == nil || IsNil(o.Operator) {
-		var ret Operator
-		return ret
-	}
-	return *o.Operator
-}
-
-// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricThresholdView) GetOperatorOk() (*Operator, bool) {
-	if o == nil || IsNil(o.Operator) {
-		return nil, false
-	}
-	return o.Operator, true
-}
-
-// HasOperator returns a boolean if a field has been set.
-func (o *HostMetricThresholdView) HasOperator() bool {
-	if o != nil && !IsNil(o.Operator) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperator gets a reference to the given Operator and assigns it to the Operator field.
-func (o *HostMetricThresholdView) SetOperator(v Operator) {
-	o.Operator = &v
-}
-
-// GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *HostMetricThresholdView) GetThreshold() float64 {
-	if o == nil || IsNil(o.Threshold) {
-		var ret float64
-		return ret
-	}
-	return *o.Threshold
-}
-
-// GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricThresholdView) GetThresholdOk() (*float64, bool) {
-	if o == nil || IsNil(o.Threshold) {
-		return nil, false
-	}
-	return o.Threshold, true
-}
-
-// HasThreshold returns a boolean if a field has been set.
-func (o *HostMetricThresholdView) HasThreshold() bool {
-	if o != nil && !IsNil(o.Threshold) {
-		return true
-	}
-
-	return false
-}
-
-// SetThreshold gets a reference to the given float64 and assigns it to the Threshold field.
-func (o *HostMetricThresholdView) SetThreshold(v float64) {
-	o.Threshold = &v
-}
-
-// GetUnits returns the Units field value if set, zero value otherwise.
-func (o *HostMetricThresholdView) GetUnits() string {
-	if o == nil || IsNil(o.Units) {
-		var ret string
-		return ret
-	}
-	return *o.Units
-}
-
-// GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HostMetricThresholdView) GetUnitsOk() (*string, bool) {
-	if o == nil || IsNil(o.Units) {
-		return nil, false
-	}
-	return o.Units, true
-}
-
-// HasUnits returns a boolean if a field has been set.
-func (o *HostMetricThresholdView) HasUnits() bool {
-	if o != nil && !IsNil(o.Units) {
-		return true
-	}
-
-	return false
-}
-
-// SetUnits gets a reference to the given string and assigns it to the Units field.
-func (o *HostMetricThresholdView) SetUnits(v string) {
-	o.Units = &v
-}
-
-func (o HostMetricThresholdView) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *HostMetricThresholdView) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'ASSERT_MSG'
+	if jsonDict["metricName"] == "ASSERT_MSG" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_REGULAR'
+	if jsonDict["metricName"] == "ASSERT_REGULAR" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_USER'
+	if jsonDict["metricName"] == "ASSERT_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ASSERT_WARNING'
+	if jsonDict["metricName"] == "ASSERT_WARNING" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_COMMAND_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_COMMAND_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_READ_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_READ_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'AVG_WRITE_EXECUTION_TIME'
+	if jsonDict["metricName"] == "AVG_WRITE_EXECUTION_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'BACKGROUND_FLUSH_AVG'
+	if jsonDict["metricName"] == "BACKGROUND_FLUSH_AVG" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_BYTES_READ_INTO'
+	if jsonDict["metricName"] == "CACHE_BYTES_READ_INTO" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_BYTES_WRITTEN_FROM'
+	if jsonDict["metricName"] == "CACHE_BYTES_WRITTEN_FROM" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_USAGE_DIRTY'
+	if jsonDict["metricName"] == "CACHE_USAGE_DIRTY" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CACHE_USAGE_USED'
+	if jsonDict["metricName"] == "CACHE_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'COMPUTED_MEMORY'
+	if jsonDict["metricName"] == "COMPUTED_MEMORY" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS'
+	if jsonDict["metricName"] == "CONNECTIONS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS_MAX'
+	if jsonDict["metricName"] == "CONNECTIONS_MAX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONNECTIONS_PERCENT'
+	if jsonDict["metricName"] == "CONNECTIONS_PERCENT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_CLIENT_CURSORS_SIZE'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_CLIENT_CURSORS_SIZE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_OPEN'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_OPEN" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CURSORS_TOTAL_TIMED_OUT'
+	if jsonDict["metricName"] == "CURSORS_TOTAL_TIMED_OUT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_DATA_SIZE_TOTAL'
+	if jsonDict["metricName"] == "DB_DATA_SIZE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_DATA_SIZE_TOTAL_WO_SYSTEM'
+	if jsonDict["metricName"] == "DB_DATA_SIZE_TOTAL_WO_SYSTEM" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_INDEX_SIZE_TOTAL'
+	if jsonDict["metricName"] == "DB_INDEX_SIZE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DB_STORAGE_TOTAL'
+	if jsonDict["metricName"] == "DB_STORAGE_TOTAL" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_QUEUE_DEPTH_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_QUEUE_DEPTH_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_READ_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_READ_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_SPACE_USED_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_SPACE_USED_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_UTILIZATION_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_UTILIZATION_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_DATA'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_INDEX'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DISK_PARTITION_WRITE_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "DISK_PARTITION_WRITE_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_DELETED'
+	if jsonDict["metricName"] == "DOCUMENT_DELETED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_INSERTED'
+	if jsonDict["metricName"] == "DOCUMENT_INSERTED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_RETURNED'
+	if jsonDict["metricName"] == "DOCUMENT_RETURNED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DOCUMENT_UPDATED'
+	if jsonDict["metricName"] == "DOCUMENT_UPDATED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DataMetricThresholdView'
+	if jsonDict["metricName"] == "DataMetricThresholdView" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'EXTRA_INFO_PAGE_FAULTS'
+	if jsonDict["metricName"] == "EXTRA_INFO_PAGE_FAULTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_DISK_UTILIZATION'
+	if jsonDict["metricName"] == "FTS_DISK_UTILIZATION" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_JVM_CURRENT_MEMORY'
+	if jsonDict["metricName"] == "FTS_JVM_CURRENT_MEMORY" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_JVM_MAX_MEMORY'
+	if jsonDict["metricName"] == "FTS_JVM_MAX_MEMORY" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_MAPPED'
+	if jsonDict["metricName"] == "FTS_MEMORY_MAPPED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_RESIDENT'
+	if jsonDict["metricName"] == "FTS_MEMORY_RESIDENT" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_MEMORY_VIRTUAL'
+	if jsonDict["metricName"] == "FTS_MEMORY_VIRTUAL" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_PROCESS_CPU_KERNEL'
+	if jsonDict["metricName"] == "FTS_PROCESS_CPU_KERNEL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FTS_PROCESS_CPU_USER'
+	if jsonDict["metricName"] == "FTS_PROCESS_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_ACCESSES_NOT_IN_MEMORY'
+	if jsonDict["metricName"] == "GLOBAL_ACCESSES_NOT_IN_MEMORY" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_READERS'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_READERS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_TOTAL'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_TOTAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_CURRENT_QUEUE_WRITERS'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_CURRENT_QUEUE_WRITERS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_LOCK_PERCENTAGE'
+	if jsonDict["metricName"] == "GLOBAL_LOCK_PERCENTAGE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN'
+	if jsonDict["metricName"] == "GLOBAL_PAGE_FAULT_EXCEPTIONS_THROWN" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_ACCESSES'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_ACCESSES" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_HITS'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_HITS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_MISSES'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_MISSES" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'INDEX_COUNTERS_BTREE_MISS_RATIO'
+	if jsonDict["metricName"] == "INDEX_COUNTERS_BTREE_MISS_RATIO" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_COMMITS_IN_WRITE_LOCK'
+	if jsonDict["metricName"] == "JOURNALING_COMMITS_IN_WRITE_LOCK" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_MB'
+	if jsonDict["metricName"] == "JOURNALING_MB" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'JOURNALING_WRITE_DATA_FILES_MB'
+	if jsonDict["metricName"] == "JOURNALING_WRITE_DATA_FILES_MB" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'LOGICAL_SIZE'
+	if jsonDict["metricName"] == "LOGICAL_SIZE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_QUEUE_DEPTH_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_QUEUE_DEPTH_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_READ_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_READ_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_SPACE_USED_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_SPACE_USED_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_UTILIZATION_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_UTILIZATION_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_DATA" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_IOPS_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_IOPS_JOURNAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_DATA'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_DATA" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_INDEX'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_INDEX" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_DISK_PARTITION_WRITE_LATENCY_JOURNAL'
+	if jsonDict["metricName"] == "MAX_DISK_PARTITION_WRITE_LATENCY_JOURNAL" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_NORMALIZED_SYSTEM_CPU_STEAL'
+	if jsonDict["metricName"] == "MAX_NORMALIZED_SYSTEM_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_NORMALIZED_SYSTEM_CPU_USER'
+	if jsonDict["metricName"] == "MAX_NORMALIZED_SYSTEM_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SWAP_USAGE_FREE'
+	if jsonDict["metricName"] == "MAX_SWAP_USAGE_FREE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SWAP_USAGE_USED'
+	if jsonDict["metricName"] == "MAX_SWAP_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_AVAILABLE'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_AVAILABLE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_PERCENT_USED'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_PERCENT_USED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_MEMORY_USED'
+	if jsonDict["metricName"] == "MAX_SYSTEM_MEMORY_USED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_NETWORK_IN'
+	if jsonDict["metricName"] == "MAX_SYSTEM_NETWORK_IN" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MAX_SYSTEM_NETWORK_OUT'
+	if jsonDict["metricName"] == "MAX_SYSTEM_NETWORK_OUT" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_MAPPED'
+	if jsonDict["metricName"] == "MEMORY_MAPPED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_RESIDENT'
+	if jsonDict["metricName"] == "MEMORY_RESIDENT" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MEMORY_VIRTUAL'
+	if jsonDict["metricName"] == "MEMORY_VIRTUAL" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_IOWAIT'
+	if jsonDict["metricName"] == "MUNIN_CPU_IOWAIT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_IRQ'
+	if jsonDict["metricName"] == "MUNIN_CPU_IRQ" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_NICE'
+	if jsonDict["metricName"] == "MUNIN_CPU_NICE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_SOFTIRQ'
+	if jsonDict["metricName"] == "MUNIN_CPU_SOFTIRQ" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_STEAL'
+	if jsonDict["metricName"] == "MUNIN_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_SYSTEM'
+	if jsonDict["metricName"] == "MUNIN_CPU_SYSTEM" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MUNIN_CPU_USER'
+	if jsonDict["metricName"] == "MUNIN_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_BYTES_IN'
+	if jsonDict["metricName"] == "NETWORK_BYTES_IN" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_BYTES_OUT'
+	if jsonDict["metricName"] == "NETWORK_BYTES_OUT" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NETWORK_NUM_REQUESTS'
+	if jsonDict["metricName"] == "NETWORK_NUM_REQUESTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_FTS_PROCESS_CPU_KERNEL'
+	if jsonDict["metricName"] == "NORMALIZED_FTS_PROCESS_CPU_KERNEL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_FTS_PROCESS_CPU_USER'
+	if jsonDict["metricName"] == "NORMALIZED_FTS_PROCESS_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_SYSTEM_CPU_STEAL'
+	if jsonDict["metricName"] == "NORMALIZED_SYSTEM_CPU_STEAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NORMALIZED_SYSTEM_CPU_USER'
+	if jsonDict["metricName"] == "NORMALIZED_SYSTEM_CPU_USER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NumberMetricThresholdView'
+	if jsonDict["metricName"] == "NumberMetricThresholdView" {
+		// try to unmarshal JSON data into NumberMetricThresholdView
+		err = json.Unmarshal(data, &dst.NumberMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.NumberMetricThresholdView, return on the first match
+		} else {
+			dst.NumberMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as NumberMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_CMD'
+	if jsonDict["metricName"] == "OPCOUNTER_CMD" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_DELETE'
+	if jsonDict["metricName"] == "OPCOUNTER_DELETE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_GETMORE'
+	if jsonDict["metricName"] == "OPCOUNTER_GETMORE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_INSERT'
+	if jsonDict["metricName"] == "OPCOUNTER_INSERT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_QUERY'
+	if jsonDict["metricName"] == "OPCOUNTER_QUERY" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_CMD'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_CMD" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_DELETE'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_DELETE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_INSERT'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_INSERT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_REPL_UPDATE'
+	if jsonDict["metricName"] == "OPCOUNTER_REPL_UPDATE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPCOUNTER_UPDATE'
+	if jsonDict["metricName"] == "OPCOUNTER_UPDATE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPERATIONS_SCAN_AND_ORDER'
+	if jsonDict["metricName"] == "OPERATIONS_SCAN_AND_ORDER" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_LAG_TIME_DIFF'
+	if jsonDict["metricName"] == "OPLOG_MASTER_LAG_TIME_DIFF" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_TIME'
+	if jsonDict["metricName"] == "OPLOG_MASTER_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_MASTER_TIME_ESTIMATED_TTL'
+	if jsonDict["metricName"] == "OPLOG_MASTER_TIME_ESTIMATED_TTL" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_RATE_GB_PER_HOUR'
+	if jsonDict["metricName"] == "OPLOG_RATE_GB_PER_HOUR" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_REPLICATION_LAG_TIME'
+	if jsonDict["metricName"] == "OPLOG_REPLICATION_LAG_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPLOG_SLAVE_LAG_MASTER_TIME'
+	if jsonDict["metricName"] == "OPLOG_SLAVE_LAG_MASTER_TIME" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_EXECUTOR_SCANNED'
+	if jsonDict["metricName"] == "QUERY_EXECUTOR_SCANNED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_EXECUTOR_SCANNED_OBJECTS'
+	if jsonDict["metricName"] == "QUERY_EXECUTOR_SCANNED_OBJECTS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED'
+	if jsonDict["metricName"] == "QUERY_TARGETING_SCANNED_OBJECTS_PER_RETURNED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'QUERY_TARGETING_SCANNED_PER_RETURNED'
+	if jsonDict["metricName"] == "QUERY_TARGETING_SCANNED_PER_RETURNED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RESTARTS_IN_LAST_HOUR'
+	if jsonDict["metricName"] == "RESTARTS_IN_LAST_HOUR" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'RawMetricThresholdView'
+	if jsonDict["metricName"] == "RawMetricThresholdView" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_INDEX_SIZE'
+	if jsonDict["metricName"] == "SEARCH_INDEX_SIZE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_MAX_NUMBER_OF_LUCENE_DOCS'
+	if jsonDict["metricName"] == "SEARCH_MAX_NUMBER_OF_LUCENE_DOCS" {
+		// try to unmarshal JSON data into NumberMetricThresholdView
+		err = json.Unmarshal(data, &dst.NumberMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.NumberMetricThresholdView, return on the first match
+		} else {
+			dst.NumberMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as NumberMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_FIELDS_IN_INDEX'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_FIELDS_IN_INDEX" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_ERROR'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_ERROR" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_SUCCESS'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_SUCCESS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_NUMBER_OF_QUERIES_TOTAL'
+	if jsonDict["metricName"] == "SEARCH_NUMBER_OF_QUERIES_TOTAL" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_DELETE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_DELETE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_GETMORE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_GETMORE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_INSERT'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_INSERT" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_OPCOUNTER_UPDATE'
+	if jsonDict["metricName"] == "SEARCH_OPCOUNTER_UPDATE" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SEARCH_REPLICATION_LAG'
+	if jsonDict["metricName"] == "SEARCH_REPLICATION_LAG" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SWAP_USAGE_FREE'
+	if jsonDict["metricName"] == "SWAP_USAGE_FREE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SWAP_USAGE_USED'
+	if jsonDict["metricName"] == "SWAP_USAGE_USED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_AVAILABLE'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_AVAILABLE" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_PERCENT_USED'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_PERCENT_USED" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_MEMORY_USED'
+	if jsonDict["metricName"] == "SYSTEM_MEMORY_USED" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_NETWORK_IN'
+	if jsonDict["metricName"] == "SYSTEM_NETWORK_IN" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SYSTEM_NETWORK_OUT'
+	if jsonDict["metricName"] == "SYSTEM_NETWORK_OUT" {
+		// try to unmarshal JSON data into DataMetricThresholdView
+		err = json.Unmarshal(data, &dst.DataMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThresholdView, return on the first match
+		} else {
+			dst.DataMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as DataMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TICKETS_AVAILABLE_READS'
+	if jsonDict["metricName"] == "TICKETS_AVAILABLE_READS" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TICKETS_AVAILABLE_WRITES'
+	if jsonDict["metricName"] == "TICKETS_AVAILABLE_WRITES" {
+		// try to unmarshal JSON data into RawMetricThresholdView
+		err = json.Unmarshal(data, &dst.RawMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.RawMetricThresholdView, return on the first match
+		} else {
+			dst.RawMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as RawMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TimeMetricThresholdView'
+	if jsonDict["metricName"] == "TimeMetricThresholdView" {
+		// try to unmarshal JSON data into TimeMetricThresholdView
+		err = json.Unmarshal(data, &dst.TimeMetricThresholdView)
+		if err == nil {
+			return nil // data stored in dst.TimeMetricThresholdView, return on the first match
+		} else {
+			dst.TimeMetricThresholdView = nil
+			return fmt.Errorf("failed to unmarshal HostMetricThresholdView as TimeMetricThresholdView: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o HostMetricThresholdView) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MetricName) {
-		toSerialize["metricName"] = o.MetricName
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src HostMetricThresholdView) MarshalJSON() ([]byte, error) {
+	if src.DataMetricThresholdView != nil {
+		return json.Marshal(&src.DataMetricThresholdView)
 	}
-	if !IsNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
+
+	if src.NumberMetricThresholdView != nil {
+		return json.Marshal(&src.NumberMetricThresholdView)
 	}
-	if !IsNil(o.Operator) {
-		toSerialize["operator"] = o.Operator
+
+	if src.RawMetricThresholdView != nil {
+		return json.Marshal(&src.RawMetricThresholdView)
 	}
-	if !IsNil(o.Threshold) {
-		toSerialize["threshold"] = o.Threshold
+
+	if src.TimeMetricThresholdView != nil {
+		return json.Marshal(&src.TimeMetricThresholdView)
 	}
-	if !IsNil(o.Units) {
-		toSerialize["units"] = o.Units
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *HostMetricThresholdView) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
 	}
-	return toSerialize, nil
+	if obj.DataMetricThresholdView != nil {
+		return obj.DataMetricThresholdView
+	}
+
+	if obj.NumberMetricThresholdView != nil {
+		return obj.NumberMetricThresholdView
+	}
+
+	if obj.RawMetricThresholdView != nil {
+		return obj.RawMetricThresholdView
+	}
+
+	if obj.TimeMetricThresholdView != nil {
+		return obj.TimeMetricThresholdView
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableHostMetricThresholdView struct {

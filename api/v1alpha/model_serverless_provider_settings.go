@@ -31,10 +31,12 @@ type ServerlessProviderSettings struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessProviderSettings() *ServerlessProviderSettings {
+func NewServerlessProviderSettings(backingProviderName string, regionName string) *ServerlessProviderSettings {
 	this := ServerlessProviderSettings{}
+	this.BackingProviderName = backingProviderName
 	var providerName string = "SERVERLESS"
 	this.ProviderName = &providerName
+	this.RegionName = regionName
 	return &this
 }
 

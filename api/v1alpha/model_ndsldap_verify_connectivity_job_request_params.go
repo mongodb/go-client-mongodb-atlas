@@ -39,10 +39,14 @@ type NDSLDAPVerifyConnectivityJobRequestParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNDSLDAPVerifyConnectivityJobRequestParams() *NDSLDAPVerifyConnectivityJobRequestParams {
+func NewNDSLDAPVerifyConnectivityJobRequestParams(bindPassword string, bindUsername string, hostname string, port int32) *NDSLDAPVerifyConnectivityJobRequestParams {
 	this := NDSLDAPVerifyConnectivityJobRequestParams{}
 	var authzQueryTemplate string = "{USER}?memberOf?base"
 	this.AuthzQueryTemplate = &authzQueryTemplate
+	this.BindPassword = bindPassword
+	this.BindUsername = bindUsername
+	this.Hostname = hostname
+	this.Port = port
 	return &this
 }
 

@@ -59,8 +59,9 @@ type IndexOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndexOptions() *IndexOptions {
+func NewIndexOptions(var2dsphereIndexVersion int32) *IndexOptions {
 	this := IndexOptions{}
+	this.Var2dsphereIndexVersion = var2dsphereIndexVersion
 	var background bool = false
 	this.Background = &background
 	var bits int32 = 26

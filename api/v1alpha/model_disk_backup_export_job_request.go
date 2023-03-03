@@ -33,8 +33,10 @@ type DiskBackupExportJobRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiskBackupExportJobRequest() *DiskBackupExportJobRequest {
+func NewDiskBackupExportJobRequest(exportBucketId string, snapshotId string) *DiskBackupExportJobRequest {
 	this := DiskBackupExportJobRequest{}
+	this.ExportBucketId = exportBucketId
+	this.SnapshotId = snapshotId
 	return &this
 }
 

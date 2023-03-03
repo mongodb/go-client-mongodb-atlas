@@ -33,8 +33,9 @@ type PrivateNetworkEndpointIdEntry struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivateNetworkEndpointIdEntry() *PrivateNetworkEndpointIdEntry {
+func NewPrivateNetworkEndpointIdEntry(endpointId string) *PrivateNetworkEndpointIdEntry {
 	this := PrivateNetworkEndpointIdEntry{}
+	this.EndpointId = endpointId
 	var provider string = "AWS"
 	this.Provider = &provider
 	var type_ string = "DATA_LAKE"

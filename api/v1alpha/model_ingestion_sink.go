@@ -12,80 +12,79 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the IngestionSink type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IngestionSink{}
-
-// IngestionSink Ingestion destination of a Data Lake Pipeline.
+// IngestionSink - Ingestion destination of a Data Lake Pipeline.
 type IngestionSink struct {
-	// Type of ingestion destination of this Data Lake Pipeline.
-	Type *string `json:"type,omitempty"`
+	DLSIngestionSink *DLSIngestionSink
 }
 
-// NewIngestionSink instantiates a new IngestionSink object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIngestionSink() *IngestionSink {
-	this := IngestionSink{}
-	return &this
-}
-
-// NewIngestionSinkWithDefaults instantiates a new IngestionSink object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewIngestionSinkWithDefaults() *IngestionSink {
-	this := IngestionSink{}
-	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *IngestionSink) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
+// DLSIngestionSinkAsIngestionSink is a convenience function that returns DLSIngestionSink wrapped in IngestionSink
+func DLSIngestionSinkAsIngestionSink(v *DLSIngestionSink) IngestionSink {
+	return IngestionSink{
+		DLSIngestionSink: v,
 	}
-	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IngestionSink) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
 
-// HasType returns a boolean if a field has been set.
-func (o *IngestionSink) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *IngestionSink) SetType(v string) {
-	o.Type = &v
-}
-
-func (o IngestionSink) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *IngestionSink) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'DLS'
+	if jsonDict["type"] == "DLS" {
+		// try to unmarshal JSON data into DLSIngestionSink
+		err = json.Unmarshal(data, &dst.DLSIngestionSink)
+		if err == nil {
+			return nil // data stored in dst.DLSIngestionSink, return on the first match
+		} else {
+			dst.DLSIngestionSink = nil
+			return fmt.Errorf("failed to unmarshal IngestionSink as DLSIngestionSink: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DLSIngestionSink'
+	if jsonDict["type"] == "DLSIngestionSink" {
+		// try to unmarshal JSON data into DLSIngestionSink
+		err = json.Unmarshal(data, &dst.DLSIngestionSink)
+		if err == nil {
+			return nil // data stored in dst.DLSIngestionSink, return on the first match
+		} else {
+			dst.DLSIngestionSink = nil
+			return fmt.Errorf("failed to unmarshal IngestionSink as DLSIngestionSink: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o IngestionSink) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src IngestionSink) MarshalJSON() ([]byte, error) {
+	if src.DLSIngestionSink != nil {
+		return json.Marshal(&src.DLSIngestionSink)
 	}
-	return toSerialize, nil
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *IngestionSink) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.DLSIngestionSink != nil {
+		return obj.DLSIngestionSink
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableIngestionSink struct {

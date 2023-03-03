@@ -29,8 +29,10 @@ type CreateEndpointServiceRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateEndpointServiceRequest() *CreateEndpointServiceRequest {
+func NewCreateEndpointServiceRequest(providerName string, region string) *CreateEndpointServiceRequest {
 	this := CreateEndpointServiceRequest{}
+	this.ProviderName = providerName
+	this.Region = region
 	return &this
 }
 

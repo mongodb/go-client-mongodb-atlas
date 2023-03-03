@@ -33,8 +33,9 @@ type SMSNotificationView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSMSNotificationView() *SMSNotificationView {
+func NewSMSNotificationView(typeName string) *SMSNotificationView {
 	this := SMSNotificationView{}
+	this.TypeName = typeName
 	return &this
 }
 

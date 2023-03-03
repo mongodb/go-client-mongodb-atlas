@@ -45,8 +45,14 @@ type AWSPeerVpcRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAWSPeerVpcRequest() *AWSPeerVpcRequest {
+func NewAWSPeerVpcRequest(containerId string, providerName string, accepterRegionName string, awsAccountId string, routeTableCidrBlock string, vpcId string) *AWSPeerVpcRequest {
 	this := AWSPeerVpcRequest{}
+	this.ContainerId = containerId
+	this.ProviderName = providerName
+	this.AccepterRegionName = accepterRegionName
+	this.AwsAccountId = awsAccountId
+	this.RouteTableCidrBlock = routeTableCidrBlock
+	this.VpcId = vpcId
 	return &this
 }
 

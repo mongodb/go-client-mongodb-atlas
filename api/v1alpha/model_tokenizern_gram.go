@@ -31,8 +31,11 @@ type TokenizernGram struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenizernGram() *TokenizernGram {
+func NewTokenizernGram(maxGram int32, minGram int32, type_ string) *TokenizernGram {
 	this := TokenizernGram{}
+	this.MaxGram = maxGram
+	this.MinGram = minGram
+	this.Type = type_
 	return &this
 }
 

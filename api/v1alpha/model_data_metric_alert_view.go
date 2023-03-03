@@ -62,8 +62,15 @@ type DataMetricAlertView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataMetricAlertView() *DataMetricAlertView {
+func NewDataMetricAlertView(acknowledgedUntil time.Time, alertConfigId string, created time.Time, eventTypeName HostMetricEventTypeViewAlertable, id string, status string, updated time.Time) *DataMetricAlertView {
 	this := DataMetricAlertView{}
+	this.AcknowledgedUntil = acknowledgedUntil
+	this.AlertConfigId = alertConfigId
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
+	this.Status = status
+	this.Updated = updated
 	return &this
 }
 

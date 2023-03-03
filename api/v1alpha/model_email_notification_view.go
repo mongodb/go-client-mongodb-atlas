@@ -33,8 +33,9 @@ type EmailNotificationView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailNotificationView() *EmailNotificationView {
+func NewEmailNotificationView(typeName string) *EmailNotificationView {
 	this := EmailNotificationView{}
+	this.TypeName = typeName
 	return &this
 }
 

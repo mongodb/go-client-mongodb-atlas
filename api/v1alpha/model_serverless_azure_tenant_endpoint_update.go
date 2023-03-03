@@ -23,14 +23,18 @@ type ServerlessAzureTenantEndpointUpdate struct {
 	CloudProviderEndpointId *string `json:"cloudProviderEndpointId,omitempty"`
 	// IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
 	PrivateEndpointIpAddress *string `json:"privateEndpointIpAddress,omitempty"`
+	// Human-readable comment associated with the private endpoint.
+	Comment *string `json:"comment,omitempty"`
+	ProviderName string `json:"providerName"`
 }
 
 // NewServerlessAzureTenantEndpointUpdate instantiates a new ServerlessAzureTenantEndpointUpdate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessAzureTenantEndpointUpdate() *ServerlessAzureTenantEndpointUpdate {
+func NewServerlessAzureTenantEndpointUpdate(providerName string) *ServerlessAzureTenantEndpointUpdate {
 	this := ServerlessAzureTenantEndpointUpdate{}
+	this.ProviderName = providerName
 	return &this
 }
 
@@ -106,6 +110,62 @@ func (o *ServerlessAzureTenantEndpointUpdate) SetPrivateEndpointIpAddress(v stri
 	o.PrivateEndpointIpAddress = &v
 }
 
+// GetComment returns the Comment field value if set, zero value otherwise.
+func (o *ServerlessAzureTenantEndpointUpdate) GetComment() string {
+	if o == nil || IsNil(o.Comment) {
+		var ret string
+		return ret
+	}
+	return *o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerlessAzureTenantEndpointUpdate) GetCommentOk() (*string, bool) {
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
+	}
+	return o.Comment, true
+}
+
+// HasComment returns a boolean if a field has been set.
+func (o *ServerlessAzureTenantEndpointUpdate) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
+func (o *ServerlessAzureTenantEndpointUpdate) SetComment(v string) {
+	o.Comment = &v
+}
+
+// GetProviderName returns the ProviderName field value
+func (o *ServerlessAzureTenantEndpointUpdate) GetProviderName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value
+// and a boolean to check if the value has been set.
+func (o *ServerlessAzureTenantEndpointUpdate) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderName, true
+}
+
+// SetProviderName sets field value
+func (o *ServerlessAzureTenantEndpointUpdate) SetProviderName(v string) {
+	o.ProviderName = v
+}
+
 func (o ServerlessAzureTenantEndpointUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -122,6 +182,10 @@ func (o ServerlessAzureTenantEndpointUpdate) ToMap() (map[string]interface{}, er
 	if !IsNil(o.PrivateEndpointIpAddress) {
 		toSerialize["privateEndpointIpAddress"] = o.PrivateEndpointIpAddress
 	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["providerName"] = o.ProviderName
 	return toSerialize, nil
 }
 

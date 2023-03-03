@@ -29,8 +29,9 @@ type ExampleResourceResponseView20230101 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExampleResourceResponseView20230101() *ExampleResourceResponseView20230101 {
+func NewExampleResourceResponseView20230101(data string) *ExampleResourceResponseView20230101 {
 	this := ExampleResourceResponseView20230101{}
+	this.Data = data
 	return &this
 }
 

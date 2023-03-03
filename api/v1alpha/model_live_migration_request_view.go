@@ -33,8 +33,11 @@ type LiveMigrationRequestView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLiveMigrationRequestView() *LiveMigrationRequestView {
+func NewLiveMigrationRequestView(destination Destination, dropEnabled bool, source Source) *LiveMigrationRequestView {
 	this := LiveMigrationRequestView{}
+	this.Destination = destination
+	this.DropEnabled = dropEnabled
+	this.Source = source
 	return &this
 }
 

@@ -21,14 +21,17 @@ var _ MappedNullable = &CustomCriteriaView{}
 type CustomCriteriaView struct {
 	// MongoDB find query that selects documents to archive. The specified query follows the syntax of the `db.collection.find(query)` command. This query can't use the empty document (`{}`) to return all documents. Set this parameter when **\"criteria.type\" : \"CUSTOM\"**.
 	Query string `json:"query"`
+	// Means by which MongoDB Cloud selects data to archive. Data can be chosen using the age of the data or a MongoDB query. **DATE** selects documents to archive based on a date. **CUSTOM** selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support **CUSTOM** when `\"collectionType\": \"TIMESERIES\"`.
+	Type *string `json:"type,omitempty"`
 }
 
 // NewCustomCriteriaView instantiates a new CustomCriteriaView object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomCriteriaView() *CustomCriteriaView {
+func NewCustomCriteriaView(query string) *CustomCriteriaView {
 	this := CustomCriteriaView{}
+	this.Query = query
 	return &this
 }
 
@@ -64,6 +67,38 @@ func (o *CustomCriteriaView) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *CustomCriteriaView) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomCriteriaView) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *CustomCriteriaView) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *CustomCriteriaView) SetType(v string) {
+	o.Type = &v
+}
+
 func (o CustomCriteriaView) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -75,6 +110,9 @@ func (o CustomCriteriaView) MarshalJSON() ([]byte, error) {
 func (o CustomCriteriaView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["query"] = o.Query
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	return toSerialize, nil
 }
 

@@ -29,8 +29,10 @@ type ApiFTSMetricView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiFTSMetricView() *ApiFTSMetricView {
+func NewApiFTSMetricView(metricName string, units string) *ApiFTSMetricView {
 	this := ApiFTSMetricView{}
+	this.MetricName = metricName
+	this.Units = units
 	return &this
 }
 

@@ -33,8 +33,10 @@ type ApiKeyView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiKeyView() *ApiKeyView {
+func NewApiKeyView(id string, publicKey string) *ApiKeyView {
 	this := ApiKeyView{}
+	this.Id = id
+	this.PublicKey = publicKey
 	return &this
 }
 

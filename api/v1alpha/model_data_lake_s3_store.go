@@ -42,12 +42,13 @@ type DataLakeS3Store struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataLakeS3Store() *DataLakeS3Store {
+func NewDataLakeS3Store(provider string) *DataLakeS3Store {
 	this := DataLakeS3Store{}
 	var includeTags bool = false
 	this.IncludeTags = &includeTags
 	var public bool = false
 	this.Public = &public
+	this.Provider = provider
 	return &this
 }
 

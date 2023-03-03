@@ -33,8 +33,10 @@ type ApiTeamView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiTeamView() *ApiTeamView {
+func NewApiTeamView(id string, name string) *ApiTeamView {
 	this := ApiTeamView{}
+	this.Id = id
+	this.Name = name
 	return &this
 }
 

@@ -35,8 +35,12 @@ type FederatedUserView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFederatedUserView() *FederatedUserView {
+func NewFederatedUserView(emailAddress string, federationSettingsId string, firstName string, lastName string) *FederatedUserView {
 	this := FederatedUserView{}
+	this.EmailAddress = emailAddress
+	this.FederationSettingsId = federationSettingsId
+	this.FirstName = firstName
+	this.LastName = lastName
 	return &this
 }
 

@@ -31,8 +31,11 @@ type TokenFiltershingle struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFiltershingle() *TokenFiltershingle {
+func NewTokenFiltershingle(maxShingleSize int32, minShingleSize int32, type_ string) *TokenFiltershingle {
 	this := TokenFiltershingle{}
+	this.MaxShingleSize = maxShingleSize
+	this.MinShingleSize = minShingleSize
+	this.Type = type_
 	return &this
 }
 

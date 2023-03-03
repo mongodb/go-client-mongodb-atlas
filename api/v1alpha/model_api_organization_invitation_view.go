@@ -46,8 +46,9 @@ type ApiOrganizationInvitationView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiOrganizationInvitationView() *ApiOrganizationInvitationView {
+func NewApiOrganizationInvitationView(orgName string) *ApiOrganizationInvitationView {
 	this := ApiOrganizationInvitationView{}
+	this.OrgName = orgName
 	return &this
 }
 

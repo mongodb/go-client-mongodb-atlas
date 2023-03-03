@@ -33,10 +33,13 @@ type TokenFilternGram struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFilternGram() *TokenFilternGram {
+func NewTokenFilternGram(maxGram int32, minGram int32, type_ string) *TokenFilternGram {
 	this := TokenFilternGram{}
+	this.MaxGram = maxGram
+	this.MinGram = minGram
 	var termNotInBounds string = "omit"
 	this.TermNotInBounds = &termNotInBounds
+	this.Type = type_
 	return &this
 }
 
