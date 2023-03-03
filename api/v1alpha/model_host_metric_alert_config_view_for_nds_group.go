@@ -44,10 +44,11 @@ type HostMetricAlertConfigViewForNdsGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHostMetricAlertConfigViewForNdsGroup() *HostMetricAlertConfigViewForNdsGroup {
+func NewHostMetricAlertConfigViewForNdsGroup(eventTypeName HostMetricEventTypeViewAlertable) *HostMetricAlertConfigViewForNdsGroup {
 	this := HostMetricAlertConfigViewForNdsGroup{}
 	var enabled bool = false
 	this.Enabled = &enabled
+	this.EventTypeName = eventTypeName
 	return &this
 }
 

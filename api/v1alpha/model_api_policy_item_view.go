@@ -35,8 +35,12 @@ type ApiPolicyItemView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiPolicyItemView() *ApiPolicyItemView {
+func NewApiPolicyItemView(frequencyInterval int32, frequencyType string, retentionUnit string, retentionValue int32) *ApiPolicyItemView {
 	this := ApiPolicyItemView{}
+	this.FrequencyInterval = frequencyInterval
+	this.FrequencyType = frequencyType
+	this.RetentionUnit = retentionUnit
+	this.RetentionValue = retentionValue
 	return &this
 }
 

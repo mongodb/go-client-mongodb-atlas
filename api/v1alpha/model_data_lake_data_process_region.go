@@ -28,8 +28,10 @@ type DataLakeDataProcessRegion struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataLakeDataProcessRegion() *DataLakeDataProcessRegion {
+func NewDataLakeDataProcessRegion(cloudProvider string, region DataLakeRegion) *DataLakeDataProcessRegion {
 	this := DataLakeDataProcessRegion{}
+	this.CloudProvider = cloudProvider
+	this.Region = region
 	return &this
 }
 

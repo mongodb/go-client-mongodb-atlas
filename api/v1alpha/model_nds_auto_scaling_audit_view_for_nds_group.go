@@ -50,8 +50,11 @@ type NDSAutoScalingAuditViewForNdsGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNDSAutoScalingAuditViewForNdsGroup() *NDSAutoScalingAuditViewForNdsGroup {
+func NewNDSAutoScalingAuditViewForNdsGroup(created time.Time, eventTypeName NDSAutoScalingAuditTypeViewForNdsGroup, id string) *NDSAutoScalingAuditViewForNdsGroup {
 	this := NDSAutoScalingAuditViewForNdsGroup{}
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
 	return &this
 }
 

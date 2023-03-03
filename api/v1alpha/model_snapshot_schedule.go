@@ -45,8 +45,17 @@ type SnapshotSchedule struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSnapshotSchedule() *SnapshotSchedule {
+func NewSnapshotSchedule(clusterCheckpointIntervalMin int32, clusterId string, dailySnapshotRetentionDays int32, groupId string, monthlySnapshotRetentionMonths int32, pointInTimeWindowHours int32, snapshotIntervalHours int32, snapshotRetentionDays int32, weeklySnapshotRetentionWeeks int32) *SnapshotSchedule {
 	this := SnapshotSchedule{}
+	this.ClusterCheckpointIntervalMin = clusterCheckpointIntervalMin
+	this.ClusterId = clusterId
+	this.DailySnapshotRetentionDays = dailySnapshotRetentionDays
+	this.GroupId = groupId
+	this.MonthlySnapshotRetentionMonths = monthlySnapshotRetentionMonths
+	this.PointInTimeWindowHours = pointInTimeWindowHours
+	this.SnapshotIntervalHours = snapshotIntervalHours
+	this.SnapshotRetentionDays = snapshotRetentionDays
+	this.WeeklySnapshotRetentionWeeks = weeklySnapshotRetentionWeeks
 	return &this
 }
 

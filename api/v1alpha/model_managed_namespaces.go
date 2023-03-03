@@ -39,8 +39,11 @@ type ManagedNamespaces struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManagedNamespaces() *ManagedNamespaces {
+func NewManagedNamespaces(collection string, customShardKey string, db string) *ManagedNamespaces {
 	this := ManagedNamespaces{}
+	this.Collection = collection
+	this.CustomShardKey = customShardKey
+	this.Db = db
 	var isCustomShardKeyHashed bool = false
 	this.IsCustomShardKeyHashed = &isCustomShardKeyHashed
 	var isShardKeyUnique bool = false

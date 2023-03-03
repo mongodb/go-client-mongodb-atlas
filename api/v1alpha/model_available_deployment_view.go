@@ -47,8 +47,14 @@ type AvailableDeploymentView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAvailableDeploymentView() *AvailableDeploymentView {
+func NewAvailableDeploymentView(featureCompatibilityVersion string, managed bool, mongoDBVersion string, name string, sharded bool, tlsEnabled bool) *AvailableDeploymentView {
 	this := AvailableDeploymentView{}
+	this.FeatureCompatibilityVersion = featureCompatibilityVersion
+	this.Managed = managed
+	this.MongoDBVersion = mongoDBVersion
+	this.Name = name
+	this.Sharded = sharded
+	this.TlsEnabled = tlsEnabled
 	return &this
 }
 

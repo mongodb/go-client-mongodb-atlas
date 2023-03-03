@@ -30,8 +30,11 @@ type FTSSynonymMappingDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFTSSynonymMappingDefinition() *FTSSynonymMappingDefinition {
+func NewFTSSynonymMappingDefinition(analyzer string, name string, source SynonymSource) *FTSSynonymMappingDefinition {
 	this := FTSSynonymMappingDefinition{}
+	this.Analyzer = analyzer
+	this.Name = name
+	this.Source = source
 	return &this
 }
 

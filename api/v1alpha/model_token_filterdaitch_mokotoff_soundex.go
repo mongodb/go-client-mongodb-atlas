@@ -29,10 +29,11 @@ type TokenFilterdaitchMokotoffSoundex struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFilterdaitchMokotoffSoundex() *TokenFilterdaitchMokotoffSoundex {
+func NewTokenFilterdaitchMokotoffSoundex(type_ string) *TokenFilterdaitchMokotoffSoundex {
 	this := TokenFilterdaitchMokotoffSoundex{}
 	var originalTokens string = "include"
 	this.OriginalTokens = &originalTokens
+	this.Type = type_
 	return &this
 }
 

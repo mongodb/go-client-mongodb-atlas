@@ -12,78 +12,159 @@ package v1alpha
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the CloudProviderAccessFeatureUsage type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CloudProviderAccessFeatureUsage{}
-
-// CloudProviderAccessFeatureUsage MongoDB Cloud features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
+// CloudProviderAccessFeatureUsage - MongoDB Cloud features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessFeatureUsage struct {
-	// Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
-	FeatureType *string `json:"featureType,omitempty"`
+	CloudProviderAccessDataLakeFeatureUsage *CloudProviderAccessDataLakeFeatureUsage
+	CloudProviderAccessEncryptionAtRestFeatureUsage *CloudProviderAccessEncryptionAtRestFeatureUsage
+	CloudProviderAccessExportSnapshotFeatureUsage *CloudProviderAccessExportSnapshotFeatureUsage
 }
 
-// NewCloudProviderAccessFeatureUsage instantiates a new CloudProviderAccessFeatureUsage object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCloudProviderAccessFeatureUsage() *CloudProviderAccessFeatureUsage {
-	this := CloudProviderAccessFeatureUsage{}
-	return &this
-}
-
-// NewCloudProviderAccessFeatureUsageWithDefaults instantiates a new CloudProviderAccessFeatureUsage object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCloudProviderAccessFeatureUsageWithDefaults() *CloudProviderAccessFeatureUsage {
-	this := CloudProviderAccessFeatureUsage{}
-	return &this
-}
-
-// GetFeatureType returns the FeatureType field value if set, zero value otherwise.
-func (o *CloudProviderAccessFeatureUsage) GetFeatureType() string {
-	if o == nil || IsNil(o.FeatureType) {
-		var ret string
-		return ret
+// CloudProviderAccessDataLakeFeatureUsageAsCloudProviderAccessFeatureUsage is a convenience function that returns CloudProviderAccessDataLakeFeatureUsage wrapped in CloudProviderAccessFeatureUsage
+func CloudProviderAccessDataLakeFeatureUsageAsCloudProviderAccessFeatureUsage(v *CloudProviderAccessDataLakeFeatureUsage) CloudProviderAccessFeatureUsage {
+	return CloudProviderAccessFeatureUsage{
+		CloudProviderAccessDataLakeFeatureUsage: v,
 	}
-	return *o.FeatureType
 }
 
-// GetFeatureTypeOk returns a tuple with the FeatureType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CloudProviderAccessFeatureUsage) GetFeatureTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.FeatureType) {
-		return nil, false
+// CloudProviderAccessEncryptionAtRestFeatureUsageAsCloudProviderAccessFeatureUsage is a convenience function that returns CloudProviderAccessEncryptionAtRestFeatureUsage wrapped in CloudProviderAccessFeatureUsage
+func CloudProviderAccessEncryptionAtRestFeatureUsageAsCloudProviderAccessFeatureUsage(v *CloudProviderAccessEncryptionAtRestFeatureUsage) CloudProviderAccessFeatureUsage {
+	return CloudProviderAccessFeatureUsage{
+		CloudProviderAccessEncryptionAtRestFeatureUsage: v,
 	}
-	return o.FeatureType, true
 }
 
-// HasFeatureType returns a boolean if a field has been set.
-func (o *CloudProviderAccessFeatureUsage) HasFeatureType() bool {
-	if o != nil && !IsNil(o.FeatureType) {
-		return true
+// CloudProviderAccessExportSnapshotFeatureUsageAsCloudProviderAccessFeatureUsage is a convenience function that returns CloudProviderAccessExportSnapshotFeatureUsage wrapped in CloudProviderAccessFeatureUsage
+func CloudProviderAccessExportSnapshotFeatureUsageAsCloudProviderAccessFeatureUsage(v *CloudProviderAccessExportSnapshotFeatureUsage) CloudProviderAccessFeatureUsage {
+	return CloudProviderAccessFeatureUsage{
+		CloudProviderAccessExportSnapshotFeatureUsage: v,
 	}
-
-	return false
 }
 
-// SetFeatureType gets a reference to the given string and assigns it to the FeatureType field.
-func (o *CloudProviderAccessFeatureUsage) SetFeatureType(v string) {
-	o.FeatureType = &v
-}
 
-func (o CloudProviderAccessFeatureUsage) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *CloudProviderAccessFeatureUsage) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'ATLAS_DATA_LAKE'
+	if jsonDict["featureType"] == "ATLAS_DATA_LAKE" {
+		// try to unmarshal JSON data into CloudProviderAccessDataLakeFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessDataLakeFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessDataLakeFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessDataLakeFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessDataLakeFeatureUsage: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CloudProviderAccessDataLakeFeatureUsage'
+	if jsonDict["featureType"] == "CloudProviderAccessDataLakeFeatureUsage" {
+		// try to unmarshal JSON data into CloudProviderAccessDataLakeFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessDataLakeFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessDataLakeFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessDataLakeFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessDataLakeFeatureUsage: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CloudProviderAccessEncryptionAtRestFeatureUsage'
+	if jsonDict["featureType"] == "CloudProviderAccessEncryptionAtRestFeatureUsage" {
+		// try to unmarshal JSON data into CloudProviderAccessEncryptionAtRestFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessEncryptionAtRestFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessEncryptionAtRestFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessEncryptionAtRestFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessEncryptionAtRestFeatureUsage: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CloudProviderAccessExportSnapshotFeatureUsage'
+	if jsonDict["featureType"] == "CloudProviderAccessExportSnapshotFeatureUsage" {
+		// try to unmarshal JSON data into CloudProviderAccessExportSnapshotFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessExportSnapshotFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessExportSnapshotFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessExportSnapshotFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessExportSnapshotFeatureUsage: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ENCRYPTION_AT_REST'
+	if jsonDict["featureType"] == "ENCRYPTION_AT_REST" {
+		// try to unmarshal JSON data into CloudProviderAccessEncryptionAtRestFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessEncryptionAtRestFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessEncryptionAtRestFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessEncryptionAtRestFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessEncryptionAtRestFeatureUsage: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'EXPORT_SNAPSHOT'
+	if jsonDict["featureType"] == "EXPORT_SNAPSHOT" {
+		// try to unmarshal JSON data into CloudProviderAccessExportSnapshotFeatureUsage
+		err = json.Unmarshal(data, &dst.CloudProviderAccessExportSnapshotFeatureUsage)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessExportSnapshotFeatureUsage, return on the first match
+		} else {
+			dst.CloudProviderAccessExportSnapshotFeatureUsage = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessFeatureUsage as CloudProviderAccessExportSnapshotFeatureUsage: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o CloudProviderAccessFeatureUsage) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	// skip: featureType is readOnly
-	return toSerialize, nil
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src CloudProviderAccessFeatureUsage) MarshalJSON() ([]byte, error) {
+	if src.CloudProviderAccessDataLakeFeatureUsage != nil {
+		return json.Marshal(&src.CloudProviderAccessDataLakeFeatureUsage)
+	}
+
+	if src.CloudProviderAccessEncryptionAtRestFeatureUsage != nil {
+		return json.Marshal(&src.CloudProviderAccessEncryptionAtRestFeatureUsage)
+	}
+
+	if src.CloudProviderAccessExportSnapshotFeatureUsage != nil {
+		return json.Marshal(&src.CloudProviderAccessExportSnapshotFeatureUsage)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *CloudProviderAccessFeatureUsage) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.CloudProviderAccessDataLakeFeatureUsage != nil {
+		return obj.CloudProviderAccessDataLakeFeatureUsage
+	}
+
+	if obj.CloudProviderAccessEncryptionAtRestFeatureUsage != nil {
+		return obj.CloudProviderAccessEncryptionAtRestFeatureUsage
+	}
+
+	if obj.CloudProviderAccessExportSnapshotFeatureUsage != nil {
+		return obj.CloudProviderAccessExportSnapshotFeatureUsage
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableCloudProviderAccessFeatureUsage struct {

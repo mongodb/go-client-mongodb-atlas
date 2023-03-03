@@ -52,8 +52,11 @@ type AlertConfigAuditView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlertConfigAuditView() *AlertConfigAuditView {
+func NewAlertConfigAuditView(created time.Time, eventTypeName AlertConfigAuditTypeView, id string) *AlertConfigAuditView {
 	this := AlertConfigAuditView{}
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
 	return &this
 }
 

@@ -38,10 +38,11 @@ type AWSProviderSettings struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAWSProviderSettings() *AWSProviderSettings {
+func NewAWSProviderSettings(providerName string) *AWSProviderSettings {
 	this := AWSProviderSettings{}
 	var encryptEBSVolume bool = true
 	this.EncryptEBSVolume = &encryptEBSVolume
+	this.ProviderName = providerName
 	return &this
 }
 

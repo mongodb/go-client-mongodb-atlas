@@ -29,10 +29,11 @@ type TokenFilterasciiFolding struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenFilterasciiFolding() *TokenFilterasciiFolding {
+func NewTokenFilterasciiFolding(type_ string) *TokenFilterasciiFolding {
 	this := TokenFilterasciiFolding{}
 	var originalTokens string = "omit"
 	this.OriginalTokens = &originalTokens
+	this.Type = type_
 	return &this
 }
 

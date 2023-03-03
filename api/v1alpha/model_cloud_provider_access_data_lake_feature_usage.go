@@ -20,6 +20,8 @@ var _ MappedNullable = &CloudProviderAccessDataLakeFeatureUsage{}
 // CloudProviderAccessDataLakeFeatureUsage Details that describe the Atlas Data Lakes linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
 type CloudProviderAccessDataLakeFeatureUsage struct {
 	FeatureId *CloudProviderAccessFeatureUsageDataLakeFeatureId `json:"featureId,omitempty"`
+	// Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
+	FeatureType *string `json:"featureType,omitempty"`
 }
 
 // NewCloudProviderAccessDataLakeFeatureUsage instantiates a new CloudProviderAccessDataLakeFeatureUsage object
@@ -71,6 +73,38 @@ func (o *CloudProviderAccessDataLakeFeatureUsage) SetFeatureId(v CloudProviderAc
 	o.FeatureId = &v
 }
 
+// GetFeatureType returns the FeatureType field value if set, zero value otherwise.
+func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureType() string {
+	if o == nil || IsNil(o.FeatureType) {
+		var ret string
+		return ret
+	}
+	return *o.FeatureType
+}
+
+// GetFeatureTypeOk returns a tuple with the FeatureType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudProviderAccessDataLakeFeatureUsage) GetFeatureTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.FeatureType) {
+		return nil, false
+	}
+	return o.FeatureType, true
+}
+
+// HasFeatureType returns a boolean if a field has been set.
+func (o *CloudProviderAccessDataLakeFeatureUsage) HasFeatureType() bool {
+	if o != nil && !IsNil(o.FeatureType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatureType gets a reference to the given string and assigns it to the FeatureType field.
+func (o *CloudProviderAccessDataLakeFeatureUsage) SetFeatureType(v string) {
+	o.FeatureType = &v
+}
+
 func (o CloudProviderAccessDataLakeFeatureUsage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -84,6 +118,7 @@ func (o CloudProviderAccessDataLakeFeatureUsage) ToMap() (map[string]interface{}
 	if !IsNil(o.FeatureId) {
 		toSerialize["featureId"] = o.FeatureId
 	}
+	// skip: featureType is readOnly
 	return toSerialize, nil
 }
 

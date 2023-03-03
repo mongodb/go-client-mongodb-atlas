@@ -44,10 +44,13 @@ type FTSIndex struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFTSIndex() *FTSIndex {
+func NewFTSIndex(collectionName string, database string, name string) *FTSIndex {
 	this := FTSIndex{}
 	var analyzer string = "lucene.standard"
 	this.Analyzer = &analyzer
+	this.CollectionName = collectionName
+	this.Database = database
+	this.Name = name
 	var searchAnalyzer string = "lucene.standard"
 	this.SearchAnalyzer = &searchAnalyzer
 	return &this

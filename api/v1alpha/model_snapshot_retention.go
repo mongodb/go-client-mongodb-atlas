@@ -31,8 +31,10 @@ type SnapshotRetention struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSnapshotRetention() *SnapshotRetention {
+func NewSnapshotRetention(retentionUnit string, retentionValue int32) *SnapshotRetention {
 	this := SnapshotRetention{}
+	this.RetentionUnit = retentionUnit
+	this.RetentionValue = retentionValue
 	return &this
 }
 

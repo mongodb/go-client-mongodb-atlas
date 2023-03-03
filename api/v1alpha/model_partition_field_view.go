@@ -31,8 +31,10 @@ type PartitionFieldView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartitionFieldView() *PartitionFieldView {
+func NewPartitionFieldView(fieldName string, order int32) *PartitionFieldView {
 	this := PartitionFieldView{}
+	this.FieldName = fieldName
+	this.Order = order
 	return &this
 }
 

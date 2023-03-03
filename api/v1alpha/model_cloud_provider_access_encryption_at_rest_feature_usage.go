@@ -21,6 +21,8 @@ var _ MappedNullable = &CloudProviderAccessEncryptionAtRestFeatureUsage{}
 type CloudProviderAccessEncryptionAtRestFeatureUsage struct {
 	// Object that contains the identifying characteristics of the Amazon Web Services (AWS) Key Management Service (KMS). This field always returns a null value.
 	FeatureId map[string]interface{} `json:"featureId,omitempty"`
+	// Human-readable label that describes one MongoDB Cloud feature linked to this Amazon Web Services (AWS) Identity and Access Management (IAM) role.
+	FeatureType *string `json:"featureType,omitempty"`
 }
 
 // NewCloudProviderAccessEncryptionAtRestFeatureUsage instantiates a new CloudProviderAccessEncryptionAtRestFeatureUsage object
@@ -73,6 +75,38 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) SetFeatureId(v map[str
 	o.FeatureId = v
 }
 
+// GetFeatureType returns the FeatureType field value if set, zero value otherwise.
+func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) GetFeatureType() string {
+	if o == nil || IsNil(o.FeatureType) {
+		var ret string
+		return ret
+	}
+	return *o.FeatureType
+}
+
+// GetFeatureTypeOk returns a tuple with the FeatureType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) GetFeatureTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.FeatureType) {
+		return nil, false
+	}
+	return o.FeatureType, true
+}
+
+// HasFeatureType returns a boolean if a field has been set.
+func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) HasFeatureType() bool {
+	if o != nil && !IsNil(o.FeatureType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatureType gets a reference to the given string and assigns it to the FeatureType field.
+func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) SetFeatureType(v string) {
+	o.FeatureType = &v
+}
+
 func (o CloudProviderAccessEncryptionAtRestFeatureUsage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -86,6 +120,7 @@ func (o CloudProviderAccessEncryptionAtRestFeatureUsage) ToMap() (map[string]int
 	if o.FeatureId != nil {
 		toSerialize["featureId"] = o.FeatureId
 	}
+	// skip: featureType is readOnly
 	return toSerialize, nil
 }
 

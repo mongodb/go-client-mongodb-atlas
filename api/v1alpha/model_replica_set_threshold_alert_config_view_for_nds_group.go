@@ -12,396 +12,119 @@ package v1alpha
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
 )
 
-// checks if the ReplicaSetThresholdAlertConfigViewForNdsGroup type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ReplicaSetThresholdAlertConfigViewForNdsGroup{}
-
-// ReplicaSetThresholdAlertConfigViewForNdsGroup Replica Set threshold alert configuration allows to select thresholds for conditions of mongod replica set which trigger alerts and how users are notified.
+// ReplicaSetThresholdAlertConfigViewForNdsGroup - Replica Set threshold alert configuration allows to select thresholds for conditions of mongod replica set which trigger alerts and how users are notified.
 type ReplicaSetThresholdAlertConfigViewForNdsGroup struct {
-	// Date and time when MongoDB Cloud created the alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
-	Created *time.Time `json:"created,omitempty"`
-	// Flag that indicates whether someone enabled this alert configuration for the specified project.
-	Enabled *bool `json:"enabled,omitempty"`
-	EventTypeName ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold `json:"eventTypeName"`
-	// Unique 24-hexadecimal digit string that identifies the project that owns this alert configuration.
-	GroupId *string `json:"groupId,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies this alert configuration.
-	Id *string `json:"id,omitempty"`
-	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
-	Links []Link `json:"links,omitempty"`
-	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []ReplicaSetMatcherView `json:"matchers,omitempty"`
-	// List that contains the targets that MongoDB Cloud sends notifications.
-	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *ThresholdViewInteger `json:"threshold,omitempty"`
-	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
-	Updated *time.Time `json:"updated,omitempty"`
+	GreaterThanRawThresholdAlertConfigViewForNdsGroup *GreaterThanRawThresholdAlertConfigViewForNdsGroup
+	LessThanTimeThresholdAlertConfigViewForNdsGroup *LessThanTimeThresholdAlertConfigViewForNdsGroup
 }
 
-// NewReplicaSetThresholdAlertConfigViewForNdsGroup instantiates a new ReplicaSetThresholdAlertConfigViewForNdsGroup object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewReplicaSetThresholdAlertConfigViewForNdsGroup() *ReplicaSetThresholdAlertConfigViewForNdsGroup {
-	this := ReplicaSetThresholdAlertConfigViewForNdsGroup{}
-	var enabled bool = false
-	this.Enabled = &enabled
-	return &this
-}
-
-// NewReplicaSetThresholdAlertConfigViewForNdsGroupWithDefaults instantiates a new ReplicaSetThresholdAlertConfigViewForNdsGroup object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewReplicaSetThresholdAlertConfigViewForNdsGroupWithDefaults() *ReplicaSetThresholdAlertConfigViewForNdsGroup {
-	this := ReplicaSetThresholdAlertConfigViewForNdsGroup{}
-	var enabled bool = false
-	this.Enabled = &enabled
-	return &this
-}
-
-// GetCreated returns the Created field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetCreated() time.Time {
-	if o == nil || IsNil(o.Created) {
-		var ret time.Time
-		return ret
+// GreaterThanRawThresholdAlertConfigViewForNdsGroupAsReplicaSetThresholdAlertConfigViewForNdsGroup is a convenience function that returns GreaterThanRawThresholdAlertConfigViewForNdsGroup wrapped in ReplicaSetThresholdAlertConfigViewForNdsGroup
+func GreaterThanRawThresholdAlertConfigViewForNdsGroupAsReplicaSetThresholdAlertConfigViewForNdsGroup(v *GreaterThanRawThresholdAlertConfigViewForNdsGroup) ReplicaSetThresholdAlertConfigViewForNdsGroup {
+	return ReplicaSetThresholdAlertConfigViewForNdsGroup{
+		GreaterThanRawThresholdAlertConfigViewForNdsGroup: v,
 	}
-	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Created) {
-		return nil, false
+// LessThanTimeThresholdAlertConfigViewForNdsGroupAsReplicaSetThresholdAlertConfigViewForNdsGroup is a convenience function that returns LessThanTimeThresholdAlertConfigViewForNdsGroup wrapped in ReplicaSetThresholdAlertConfigViewForNdsGroup
+func LessThanTimeThresholdAlertConfigViewForNdsGroupAsReplicaSetThresholdAlertConfigViewForNdsGroup(v *LessThanTimeThresholdAlertConfigViewForNdsGroup) ReplicaSetThresholdAlertConfigViewForNdsGroup {
+	return ReplicaSetThresholdAlertConfigViewForNdsGroup{
+		LessThanTimeThresholdAlertConfigViewForNdsGroup: v,
 	}
-	return o.Created, true
 }
 
-// HasCreated returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasCreated() bool {
-	if o != nil && !IsNil(o.Created) {
-		return true
-	}
 
-	return false
-}
-
-// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetCreated(v time.Time) {
-	o.Created = &v
-}
-
-// GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetEnabled() bool {
-	if o == nil || IsNil(o.Enabled) {
-		var ret bool
-		return ret
-	}
-	return *o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.Enabled) {
-		return nil, false
-	}
-	return o.Enabled, true
-}
-
-// HasEnabled returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasEnabled() bool {
-	if o != nil && !IsNil(o.Enabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetEnabled(v bool) {
-	o.Enabled = &v
-}
-
-// GetEventTypeName returns the EventTypeName field value
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold {
-	if o == nil {
-		var ret ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold
-		return ret
-	}
-
-	return o.EventTypeName
-}
-
-// GetEventTypeNameOk returns a tuple with the EventTypeName field value
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetEventTypeNameOk() (*ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventTypeName, true
-}
-
-// SetEventTypeName sets field value
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetEventTypeName(v ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold) {
-	o.EventTypeName = v
-}
-
-// GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetGroupId() string {
-	if o == nil || IsNil(o.GroupId) {
-		var ret string
-		return ret
-	}
-	return *o.GroupId
-}
-
-// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetGroupIdOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupId) {
-		return nil, false
-	}
-	return o.GroupId, true
-}
-
-// HasGroupId returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasGroupId() bool {
-	if o != nil && !IsNil(o.GroupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetGroupId(v string) {
-	o.GroupId = &v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetId(v string) {
-	o.Id = &v
-}
-
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
-		var ret []Link
-		return ret
-	}
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
-	o.Links = v
-}
-
-// GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcherView {
-	if o == nil || IsNil(o.Matchers) {
-		var ret []ReplicaSetMatcherView
-		return ret
-	}
-	return o.Matchers
-}
-
-// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcherView, bool) {
-	if o == nil || IsNil(o.Matchers) {
-		return nil, false
-	}
-	return o.Matchers, true
-}
-
-// HasMatchers returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
-	if o != nil && !IsNil(o.Matchers) {
-		return true
-	}
-
-	return false
-}
-
-// SetMatchers gets a reference to the given []ReplicaSetMatcherView and assigns it to the Matchers field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcherView) {
-	o.Matchers = v
-}
-
-// GetNotifications returns the Notifications field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetNotifications() []NotificationViewForNdsGroup {
-	if o == nil || IsNil(o.Notifications) {
-		var ret []NotificationViewForNdsGroup
-		return ret
-	}
-	return o.Notifications
-}
-
-// GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetNotificationsOk() ([]NotificationViewForNdsGroup, bool) {
-	if o == nil || IsNil(o.Notifications) {
-		return nil, false
-	}
-	return o.Notifications, true
-}
-
-// HasNotifications returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasNotifications() bool {
-	if o != nil && !IsNil(o.Notifications) {
-		return true
-	}
-
-	return false
-}
-
-// SetNotifications gets a reference to the given []NotificationViewForNdsGroup and assigns it to the Notifications field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetNotifications(v []NotificationViewForNdsGroup) {
-	o.Notifications = v
-}
-
-// GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetThreshold() ThresholdViewInteger {
-	if o == nil || IsNil(o.Threshold) {
-		var ret ThresholdViewInteger
-		return ret
-	}
-	return *o.Threshold
-}
-
-// GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*ThresholdViewInteger, bool) {
-	if o == nil || IsNil(o.Threshold) {
-		return nil, false
-	}
-	return o.Threshold, true
-}
-
-// HasThreshold returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasThreshold() bool {
-	if o != nil && !IsNil(o.Threshold) {
-		return true
-	}
-
-	return false
-}
-
-// SetThreshold gets a reference to the given ThresholdViewInteger and assigns it to the Threshold field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetThreshold(v ThresholdViewInteger) {
-	o.Threshold = &v
-}
-
-// GetUpdated returns the Updated field value if set, zero value otherwise.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetUpdated() time.Time {
-	if o == nil || IsNil(o.Updated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.Updated
-}
-
-// GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetUpdatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Updated) {
-		return nil, false
-	}
-	return o.Updated, true
-}
-
-// HasUpdated returns a boolean if a field has been set.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) HasUpdated() bool {
-	if o != nil && !IsNil(o.Updated) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdated gets a reference to the given time.Time and assigns it to the Updated field.
-func (o *ReplicaSetThresholdAlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
-	o.Updated = &v
-}
-
-func (o ReplicaSetThresholdAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ReplicaSetThresholdAlertConfigViewForNdsGroup) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'GreaterThanRawThresholdAlertConfigViewForNdsGroup'
+	if jsonDict["eventTypeName"] == "GreaterThanRawThresholdAlertConfigViewForNdsGroup" {
+		// try to unmarshal JSON data into GreaterThanRawThresholdAlertConfigViewForNdsGroup
+		err = json.Unmarshal(data, &dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup)
+		if err == nil {
+			return nil // data stored in dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup, return on the first match
+		} else {
+			dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup = nil
+			return fmt.Errorf("failed to unmarshal ReplicaSetThresholdAlertConfigViewForNdsGroup as GreaterThanRawThresholdAlertConfigViewForNdsGroup: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'LessThanTimeThresholdAlertConfigViewForNdsGroup'
+	if jsonDict["eventTypeName"] == "LessThanTimeThresholdAlertConfigViewForNdsGroup" {
+		// try to unmarshal JSON data into LessThanTimeThresholdAlertConfigViewForNdsGroup
+		err = json.Unmarshal(data, &dst.LessThanTimeThresholdAlertConfigViewForNdsGroup)
+		if err == nil {
+			return nil // data stored in dst.LessThanTimeThresholdAlertConfigViewForNdsGroup, return on the first match
+		} else {
+			dst.LessThanTimeThresholdAlertConfigViewForNdsGroup = nil
+			return fmt.Errorf("failed to unmarshal ReplicaSetThresholdAlertConfigViewForNdsGroup as LessThanTimeThresholdAlertConfigViewForNdsGroup: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'REPLICATION_OPLOG_WINDOW_RUNNING_OUT'
+	if jsonDict["eventTypeName"] == "REPLICATION_OPLOG_WINDOW_RUNNING_OUT" {
+		// try to unmarshal JSON data into LessThanTimeThresholdAlertConfigViewForNdsGroup
+		err = json.Unmarshal(data, &dst.LessThanTimeThresholdAlertConfigViewForNdsGroup)
+		if err == nil {
+			return nil // data stored in dst.LessThanTimeThresholdAlertConfigViewForNdsGroup, return on the first match
+		} else {
+			dst.LessThanTimeThresholdAlertConfigViewForNdsGroup = nil
+			return fmt.Errorf("failed to unmarshal ReplicaSetThresholdAlertConfigViewForNdsGroup as LessThanTimeThresholdAlertConfigViewForNdsGroup: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'TOO_MANY_ELECTIONS'
+	if jsonDict["eventTypeName"] == "TOO_MANY_ELECTIONS" {
+		// try to unmarshal JSON data into GreaterThanRawThresholdAlertConfigViewForNdsGroup
+		err = json.Unmarshal(data, &dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup)
+		if err == nil {
+			return nil // data stored in dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup, return on the first match
+		} else {
+			dst.GreaterThanRawThresholdAlertConfigViewForNdsGroup = nil
+			return fmt.Errorf("failed to unmarshal ReplicaSetThresholdAlertConfigViewForNdsGroup as GreaterThanRawThresholdAlertConfigViewForNdsGroup: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o ReplicaSetThresholdAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
-	if !IsNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ReplicaSetThresholdAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
+	if src.GreaterThanRawThresholdAlertConfigViewForNdsGroup != nil {
+		return json.Marshal(&src.GreaterThanRawThresholdAlertConfigViewForNdsGroup)
 	}
-	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	if !IsNil(o.Matchers) {
-		toSerialize["matchers"] = o.Matchers
+
+	if src.LessThanTimeThresholdAlertConfigViewForNdsGroup != nil {
+		return json.Marshal(&src.LessThanTimeThresholdAlertConfigViewForNdsGroup)
 	}
-	if !IsNil(o.Notifications) {
-		toSerialize["notifications"] = o.Notifications
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *ReplicaSetThresholdAlertConfigViewForNdsGroup) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
 	}
-	if !IsNil(o.Threshold) {
-		toSerialize["threshold"] = o.Threshold
+	if obj.GreaterThanRawThresholdAlertConfigViewForNdsGroup != nil {
+		return obj.GreaterThanRawThresholdAlertConfigViewForNdsGroup
 	}
-	// skip: updated is readOnly
-	return toSerialize, nil
+
+	if obj.LessThanTimeThresholdAlertConfigViewForNdsGroup != nil {
+		return obj.LessThanTimeThresholdAlertConfigViewForNdsGroup
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableReplicaSetThresholdAlertConfigViewForNdsGroup struct {

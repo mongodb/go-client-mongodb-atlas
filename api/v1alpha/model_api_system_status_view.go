@@ -34,8 +34,12 @@ type ApiSystemStatusView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiSystemStatusView() *ApiSystemStatusView {
+func NewApiSystemStatusView(apiKey NullableApiKeyView, appName string, build string, throttling bool) *ApiSystemStatusView {
 	this := ApiSystemStatusView{}
+	this.ApiKey = apiKey
+	this.AppName = appName
+	this.Build = build
+	this.Throttling = throttling
 	return &this
 }
 

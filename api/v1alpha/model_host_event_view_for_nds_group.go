@@ -56,8 +56,11 @@ type HostEventViewForNdsGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHostEventViewForNdsGroup() *HostEventViewForNdsGroup {
+func NewHostEventViewForNdsGroup(created time.Time, eventTypeName HostEventTypeViewForNdsGroup, id string) *HostEventViewForNdsGroup {
 	this := HostEventViewForNdsGroup{}
+	this.Created = created
+	this.EventTypeName = eventTypeName
+	this.Id = id
 	return &this
 }
 

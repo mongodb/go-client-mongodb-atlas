@@ -31,8 +31,11 @@ type TokenizerregexCaptureGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenizerregexCaptureGroup() *TokenizerregexCaptureGroup {
+func NewTokenizerregexCaptureGroup(group int32, pattern string, type_ string) *TokenizerregexCaptureGroup {
 	this := TokenizerregexCaptureGroup{}
+	this.Group = group
+	this.Pattern = pattern
+	this.Type = type_
 	return &this
 }
 

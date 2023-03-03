@@ -35,8 +35,12 @@ type ApiNewRelicView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiNewRelicView() *ApiNewRelicView {
+func NewApiNewRelicView(accountId string, licenseKey string, readToken string, writeToken string) *ApiNewRelicView {
 	this := ApiNewRelicView{}
+	this.AccountId = accountId
+	this.LicenseKey = licenseKey
+	this.ReadToken = readToken
+	this.WriteToken = writeToken
 	return &this
 }
 

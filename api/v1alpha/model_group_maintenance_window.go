@@ -33,8 +33,10 @@ type GroupMaintenanceWindow struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupMaintenanceWindow() *GroupMaintenanceWindow {
+func NewGroupMaintenanceWindow(dayOfWeek int32, hourOfDay int32) *GroupMaintenanceWindow {
 	this := GroupMaintenanceWindow{}
+	this.DayOfWeek = dayOfWeek
+	this.HourOfDay = hourOfDay
 	return &this
 }
 

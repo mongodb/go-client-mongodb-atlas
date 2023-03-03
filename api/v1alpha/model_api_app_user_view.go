@@ -52,8 +52,15 @@ type ApiAppUserView struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiAppUserView() *ApiAppUserView {
+func NewApiAppUserView(country string, emailAddress string, firstName string, lastName string, mobileNumber string, password string, username string) *ApiAppUserView {
 	this := ApiAppUserView{}
+	this.Country = country
+	this.EmailAddress = emailAddress
+	this.FirstName = firstName
+	this.LastName = lastName
+	this.MobileNumber = mobileNumber
+	this.Password = password
+	this.Username = username
 	return &this
 }
 

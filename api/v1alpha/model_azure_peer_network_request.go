@@ -43,8 +43,14 @@ type AzurePeerNetworkRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzurePeerNetworkRequest() *AzurePeerNetworkRequest {
+func NewAzurePeerNetworkRequest(containerId string, providerName string, azureDirectoryId string, azureSubscriptionId string, resourceGroupName string, vnetName string) *AzurePeerNetworkRequest {
 	this := AzurePeerNetworkRequest{}
+	this.ContainerId = containerId
+	this.ProviderName = providerName
+	this.AzureDirectoryId = azureDirectoryId
+	this.AzureSubscriptionId = azureSubscriptionId
+	this.ResourceGroupName = resourceGroupName
+	this.VnetName = vnetName
 	return &this
 }
 

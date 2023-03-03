@@ -37,8 +37,11 @@ type GCPPeerVpc struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGCPPeerVpc() *GCPPeerVpc {
+func NewGCPPeerVpc(containerId string, gcpProjectId string, networkName string) *GCPPeerVpc {
 	this := GCPPeerVpc{}
+	this.ContainerId = containerId
+	this.GcpProjectId = gcpProjectId
+	this.NetworkName = networkName
 	return &this
 }
 

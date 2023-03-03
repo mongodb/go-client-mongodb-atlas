@@ -33,8 +33,11 @@ type AuditLog struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuditLog() *AuditLog {
+func NewAuditLog(auditAuthorizationSuccess bool, auditFilter string, enabled bool) *AuditLog {
 	this := AuditLog{}
+	this.AuditAuthorizationSuccess = auditAuthorizationSuccess
+	this.AuditFilter = auditFilter
+	this.Enabled = enabled
 	return &this
 }
 

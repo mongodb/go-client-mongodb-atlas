@@ -31,8 +31,9 @@ type CustomDBRole struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomDBRole() *CustomDBRole {
+func NewCustomDBRole(roleName string) *CustomDBRole {
 	this := CustomDBRole{}
+	this.RoleName = roleName
 	return &this
 }
 
