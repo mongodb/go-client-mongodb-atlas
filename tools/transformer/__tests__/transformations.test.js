@@ -2,8 +2,8 @@ const fs = require("fs");
 const { test, beforeEach, expect, jest: jestGlobal } = require("@jest/globals");
 const {
   applyModelNameTransformations,
-  transformOneOf,
   transformAllOf,
+  transformOneOf,
 } = require("../src/transformations");
 const cases = require("./transformations-snapshots");
 
