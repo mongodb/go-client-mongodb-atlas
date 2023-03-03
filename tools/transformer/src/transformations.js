@@ -203,7 +203,7 @@ function transformOneOfProperties(parentObject, api) {
     ]);
     if (duplicates.length > 0) {
       const duplicatesSource = childObject.title || "";
-      console.warn(
+      console.info(
         `## ${duplicatesSource} - Detected properties that would be overriden: ${duplicates}\n`
       );
     }
