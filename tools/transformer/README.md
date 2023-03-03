@@ -48,13 +48,13 @@ For parent model containing multiple children:
 
 Applied to all objects that meet the following criteria:
 
-> Have "discriminator" filed
+> Have "discriminator" field
 > Missing "oneOf" field
 
 For parent model containing discriminator
 
-- Fails if discriminator is missing mapping file
-- Uses discriminator mapping to build oneOf object
+- Fails if discriminator is missing mapping field (invalid case)
+- Uses discriminator mapping in order to add oneOf field
 
 ## Adjusting logging
 
