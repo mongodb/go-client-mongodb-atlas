@@ -12,7 +12,6 @@ const {
 
 // Name of the key (OpenAPI extension) to trigger transformation
 const extensionKey = "x-xgen-go-transform";
-const extensionAllOfValue = "merge-allOf";
 const extensionOneOfValue = "merge-oneOf";
 
 /**
@@ -30,7 +29,7 @@ function applyAllOfTransformations(api) {
     allOfTransformations.map((e) => e.path)
   );
 
-  for (let { path, obj } of allOfTransformations) {
+  for (let { path } of allOfTransformations) {
     transformAllOf(path, api);
   }
   return api;
@@ -53,7 +52,7 @@ function applyOneOfTransformations(api) {
     oneOfTransformations.map((e) => e.path)
   );
 
-  for (let { path, obj } of oneOfTransformations) {
+  for (let { path } of oneOfTransformations) {
     transformOneOf(path, api);
   }
   return api;
@@ -107,22 +106,15 @@ function transformAllOf(objectPath, api) {
     throw new Error(`Invalid object for AllOf Transformation: ${parentName}`);
   }
 
-  if (!parentObject.properties) {
-    return console.error(
-      `AllOf: Transformation cannot be performed. ${parentName}.properties is empty`
-    );
-  }
 
   const expandedParent = getObjectProperties(parentObject);
-
-  // Remove invalid fields
-  delete parentObject.properties;
-  delete parentObject.required;
 
   for (let childRef of parentObject.oneOf) {
     const childObject = getObjectFromReference(childRef, api);
     const childName = getObjectNameFromReference(childRef);
-
+    if (!childObject) {
+      console.warn(`DEBUG ${childRef}`);
+    }
     if (removeParentFromAllOf(childObject, parentObject, api)) {
       console.debug(
         `AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`
@@ -135,6 +127,32 @@ function transformAllOf(objectPath, api) {
       // Flatten child allOf
       flattenAllOfObject(childObject);
     }
+  }
+  // Remove invalid fields
+  delete parentObject.properties;
+  delete parentObject.required;
+}
+
+function handleDiscriminators(parentObject, parentName) {
+  if (!parentObject.oneOf && parentObject.discriminator) {
+    if (!parentObject.discriminator.mapping) {
+      throw new Error(`OpenAPI object schema contains discriminator but missing oneOf or discriminator mapping.
+      Please consider adding oneOf or discriminator mapping section to object: ${parentName}`);
+    }
+    console.info(
+      `Setting oneOf based on discriminator for allOf transformation in ${parentName}`
+    );
+    // FIXME - This should be removed once we fix this problem in OpenAPI
+    // Ignore objects that point to themselves
+    oneOfReferences = Object.values(parentObject.discriminator.mapping);
+    // Remove duplicates in referneces
+    oneOfReferences = [...new Set(oneOfReferences)];
+
+
+    parentObject.oneOf = oneOfReferences.map((obj) => {
+      return { $ref: obj };
+    });
+    console.error("parentObject.oneOf ");
   }
 }
 
@@ -219,7 +237,7 @@ function transformOneOfProperties(parentObject, api) {
 }
 
 function isAllOfTransformable(obj) {
-  return obj.properties && obj.oneOf;
+  return (obj.properties && obj.discriminator) || (obj.properties && obj.oneOf);
 }
 
 function canApplyOneOfTransformation(obj, api) {

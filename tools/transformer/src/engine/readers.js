@@ -1,5 +1,6 @@
 /**
  * Fetch all children JS objects and their paths that have a property which satisfies a set of conditions
+ *
  * @param {Object} apiObject - object to be searched
  * @param {String} key - the property that is searched
  * @param {(key, value) => boolean} [predicate] - validation function for the property
@@ -16,6 +17,13 @@ function getAllObjectsWithProperty(
   );
 }
 
+/**
+ * Fetch all transformation objects
+ *
+ * @param {*} object
+ * @param {*} filter
+ * @returns
+ */
 function getAllObjects(object, filter = (_obj) => true) {
   const objs = [];
 
@@ -71,6 +79,14 @@ function filterObjectProperties(object, filter = (_k, _v) => true) {
   return filteredObj;
 }
 
+function getObjectProperties(obj) {
+  const exclusionList = ["oneOf", "discriminator"];
+
+  return filterObjectProperties(obj, (key, _v) => {
+    return !(key in exclusionList);
+  });
+}
+
 function getObjectFromReference(obj, api) {
   if (obj.type || obj.properties) {
     // We dealing with object
@@ -90,97 +106,6 @@ function getObjectNameFromReference(obj) {
   if (obj && obj["$ref"]) {
     return obj["$ref"].replace("#/components/schemas/", "");
   }
-}
-
-function detectDuplicates(objArray) {
-  const allKeys = new Set();
-  const duplicates = [];
-  for (const obj of objArray) {
-    if (obj) {
-      for (const key of Object.keys(obj)) {
-        if (allKeys.has(key)) {
-          duplicates.push(key);
-        } else {
-          allKeys.add(key);
-        }
-      }
-    }
-  }
-  return duplicates;
-}
-
-function expandReference(obj, apiObject) {
-  if (!obj || !obj["$ref"]) {
-    return obj;
-  }
-
-  const dereferencedObj = getObjectFromReference(obj, apiObject);
-  delete obj["$ref"];
-
-  Object.keys(dereferencedObj).forEach((key) => {
-    obj[key] = dereferencedObj[key];
-  });
-
-  return obj;
-}
-
-function flattenAllOfObject(obj, apiObject) {
-  if (!obj.allOf) {
-    return obj;
-  }
-
-  if (!obj.properties) {
-    obj.properties = {};
-  }
-
-  if (!obj.required) {
-    obj.required = new Set();
-  } else {
-    obj.required = new Set(obj.required);
-  }
-
-  for (let parent of obj.allOf) {
-    parent = expandReference(parent, apiObject);
-    obj.properties = mergeObjects(obj.properties, parent.properties);
-
-    if (parent.required) {
-      parent.required.forEach((item) => obj.required.add(item));
-    }
-  }
-  obj.required = [...obj.required];
-  delete obj.allOf;
-
-  return obj;
-}
-
-function mergeObjects(...objs) {
-  let mergedObj = {};
-
-  for (let obj of objs) {
-    if (obj) {
-      mergedObj = { ...mergedObj, ...obj };
-    }
-  }
-
-  return mergedObj;
-}
-
-function removeParentFromAllOf(child, parent, api) {
-  if (!child.allOf) {
-    return false;
-  }
-
-  const initialLength = child.allOf.length;
-  child.allOf = child.allOf.filter((childAllOfItem) => {
-    const obj = getObjectFromReference(childAllOfItem, api);
-    return obj !== parent;
-  });
-
-  if (initialLength === child.allOf.length) {
-    return false;
-  }
-
-  return true;
 }
 
 function getNameFromYamlPath(path) {
@@ -218,10 +143,5 @@ module.exports = {
   getObjectFromReference,
   getAllObjectsWithProperty,
   getAllObjects,
-  removeParentFromAllOf,
   getObjectNameFromReference,
-  detectDuplicates,
-  mergeObjects,
-  filterObjectProperties,
-  flattenAllOfObject,
 };
