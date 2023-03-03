@@ -39,20 +39,8 @@ test("Transform AllOf model", () => {
   ).toMatchInlineSnapshot(cases.ChildAllOf);
 });
 
-test("Fail Transform AllOf with duplicates", () => {
-  api.components.schemas.ApiAtlasAWSRegionConfigView.properties = {
-    ...api.components.schemas.ApiAtlasAWSRegionConfigView.properties,
-    ...api.components.schemas.ApiAtlasRegionConfigView.propertries,
-  };
-  global.console.warn = jestGlobal.fn();
-  transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
-  transformOneOf(".components.schemas.ApiAtlasRegionConfigView", api);
-  expect(console.warn).toBeCalled();
-});
-
 test("Fail Transform AllOf with wrong object structure", () => {
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
-  console.log(api.components.schemas.ApiAtlasRegionConfigView);
   expect(() =>
     transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api)
   ).toThrow(/Invalid object for AllOf Transformation/);

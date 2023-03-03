@@ -5,6 +5,7 @@
   "private": "true",
   "main": "transformer/src/index.js",
   "dependencies": {
+    "simple-node-logger": "^21.8.12",
     "yaml": "2.2.1"
   },
   "devDependencies": {
