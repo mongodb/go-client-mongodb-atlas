@@ -235,14 +235,14 @@ type NetworkPeeringApiCreatePeeringConnectionRequest struct {
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	atlasContainerPeerViewRequest *AtlasContainerPeerViewRequest
+	containerPeerViewRequest *ContainerPeerViewRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Create one network peering connection.
-func (r NetworkPeeringApiCreatePeeringConnectionRequest) AtlasContainerPeerViewRequest(atlasContainerPeerViewRequest AtlasContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
-	r.atlasContainerPeerViewRequest = &atlasContainerPeerViewRequest
+func (r NetworkPeeringApiCreatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
+	r.containerPeerViewRequest = &containerPeerViewRequest
 	return r
 }
 
@@ -306,8 +306,8 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.atlasContainerPeerViewRequest == nil {
-		return localVarReturnValue, nil, reportError("atlasContainerPeerViewRequest is required and must be specified")
+	if r.containerPeerViewRequest == nil {
+		return localVarReturnValue, nil, reportError("containerPeerViewRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -334,7 +334,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.atlasContainerPeerViewRequest
+	localVarPostBody = r.containerPeerViewRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2069,14 +2069,14 @@ type NetworkPeeringApiUpdatePeeringConnectionRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	peerId string
-	atlasContainerPeerViewRequest *AtlasContainerPeerViewRequest
+	containerPeerViewRequest *ContainerPeerViewRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Modify one network peering connection.
-func (r NetworkPeeringApiUpdatePeeringConnectionRequest) AtlasContainerPeerViewRequest(atlasContainerPeerViewRequest AtlasContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
-	r.atlasContainerPeerViewRequest = &atlasContainerPeerViewRequest
+func (r NetworkPeeringApiUpdatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
+	r.containerPeerViewRequest = &containerPeerViewRequest
 	return r
 }
 
@@ -2149,8 +2149,8 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 	if strlen(r.peerId) > 24 {
 		return localVarReturnValue, nil, reportError("peerId must have less than 24 elements")
 	}
-	if r.atlasContainerPeerViewRequest == nil {
-		return localVarReturnValue, nil, reportError("atlasContainerPeerViewRequest is required and must be specified")
+	if r.containerPeerViewRequest == nil {
+		return localVarReturnValue, nil, reportError("containerPeerViewRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2177,7 +2177,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.atlasContainerPeerViewRequest
+	localVarPostBody = r.containerPeerViewRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
