@@ -5,7 +5,7 @@ import (
 )
 
 func TestProjectIPAcessListModelRegression() {
-	_ = mongodbatlas.PaginatedNetworkAccessView{
+	_ = mongodbatlas.PaginatedNetworkAccess{
 		TotalCount: nil,
 		Results:    []mongodbatlas.NetworkPermissionEntry{},
 		Links: []mongodbatlas.Link{

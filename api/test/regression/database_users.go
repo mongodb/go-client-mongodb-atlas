@@ -5,7 +5,7 @@ import (
 )
 
 func TestDatabaseUsersModelRegression() {
-	_ = mongodbatlas.PaginatedApiAtlasDatabaseUserView{
+	_ = mongodbatlas.PaginatedApiAtlasDatabaseUser{
 		TotalCount: nil,
 		Results:    []mongodbatlas.DatabaseUser{},
 		Links:      []mongodbatlas.Link{},

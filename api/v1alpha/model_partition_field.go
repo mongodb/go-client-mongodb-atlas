@@ -17,11 +17,13 @@ import (
 // checks if the PartitionField type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartitionField{}
 
-// PartitionField Partition Field in the Data Lake Storage provider for a Data Lake Pipeline.
+// PartitionField Metadata to partition this online archive.
 type PartitionField struct {
-	// Human-readable label that identifies the field name used to partition data.
+	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
 	FieldName string `json:"fieldName"`
-	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+	// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type [UUID](http://bsonspec.org/spec.html) must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3.
+	FieldType *string `json:"fieldType,omitempty"`
+	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the **criteria.dateField** parameter defaults as the first item in the partition sequence.
 	Order int32 `json:"order"`
 }
 
@@ -70,6 +72,38 @@ func (o *PartitionField) SetFieldName(v string) {
 	o.FieldName = v
 }
 
+// GetFieldType returns the FieldType field value if set, zero value otherwise.
+func (o *PartitionField) GetFieldType() string {
+	if o == nil || IsNil(o.FieldType) {
+		var ret string
+		return ret
+	}
+	return *o.FieldType
+}
+
+// GetFieldTypeOk returns a tuple with the FieldType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartitionField) GetFieldTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.FieldType) {
+		return nil, false
+	}
+	return o.FieldType, true
+}
+
+// HasFieldType returns a boolean if a field has been set.
+func (o *PartitionField) HasFieldType() bool {
+	if o != nil && !IsNil(o.FieldType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFieldType gets a reference to the given string and assigns it to the FieldType field.
+func (o *PartitionField) SetFieldType(v string) {
+	o.FieldType = &v
+}
+
 // GetOrder returns the Order field value
 func (o *PartitionField) GetOrder() int32 {
 	if o == nil {
@@ -105,6 +139,7 @@ func (o PartitionField) MarshalJSON() ([]byte, error) {
 func (o PartitionField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fieldName"] = o.FieldName
+	// skip: fieldType is readOnly
 	toSerialize["order"] = o.Order
 	return toSerialize, nil
 }
