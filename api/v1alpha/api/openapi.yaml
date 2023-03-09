@@ -41617,7 +41617,7 @@ components:
       readOnly: true
       type: array
     BasicDBObject:
-      $ref: '#/components/schemas/FTSMappingsView'
+      $ref: '#/components/schemas/FTSMappings'
     BillingEventTypeViewAlertableWithThreshold:
       description: Event type that triggers an alert.
       enum:
@@ -67075,7 +67075,7 @@ components:
             description: Custom Atlas Search Analyzers
             url: https://docs.atlas.mongodb.com/atlas-search/analyzers/custom/
           items:
-            $ref: '#/components/schemas/FTSAnalyzersView'
+            $ref: '#/components/schemas/FTSAnalyzers'
           type: array
         collectionName:
           description: Human-readable label that identifies the collection that contains
@@ -67095,7 +67095,7 @@ components:
           readOnly: true
           type: string
         mappings:
-          $ref: '#/components/schemas/FTSMappingsView'
+          $ref: '#/components/schemas/FTSMappings'
         name:
           description: "Human-readable label that identifies this index. Within each\
             \ namespace, names of all indexes in the namespace must be unique."
@@ -71446,7 +71446,7 @@ components:
       - zone
       title: Global Cluster Zone
       type: object
-    FTSAnalyzersView:
+    FTSAnalyzers:
       description: Settings that describe one Atlas Search custom analyzer.
       example:
         charFilters:
@@ -71462,7 +71462,7 @@ components:
           description: Filters that examine text one character at a time and perform
             filtering operations.
           items:
-            $ref: '#/components/schemas/FTSAnalyzersView_charFilters_inner'
+            $ref: '#/components/schemas/FTSAnalyzers_charFilters_inner'
           type: array
         name:
           description: |-
@@ -71479,16 +71479,16 @@ components:
 
             - Redaction, the removal of sensitive information from public documents.
           items:
-            $ref: '#/components/schemas/FTSAnalyzersView_tokenFilters_inner'
+            $ref: '#/components/schemas/FTSAnalyzers_tokenFilters_inner'
           type: array
         tokenizer:
-          $ref: '#/components/schemas/FTSAnalyzersView_tokenizer'
+          $ref: '#/components/schemas/FTSAnalyzers_tokenizer'
       required:
       - name
       - tokenizer
       title: analyzers
       type: object
-    FTSMappingsView:
+    FTSMappings:
       description: Index specifications for the collection's fields.
       example:
         dynamic: false
@@ -71602,14 +71602,14 @@ components:
           writeOnly: true
       type: object
       example: null
-    FTSAnalyzersView_charFilters_inner:
+    FTSAnalyzers_charFilters_inner:
       oneOf:
       - $ref: '#/components/schemas/charFilterhtmlStrip'
       - $ref: '#/components/schemas/charFiltericuNormalize'
       - $ref: '#/components/schemas/charFiltermapping'
       - $ref: '#/components/schemas/charFilterpersian'
       type: object
-    FTSAnalyzersView_tokenFilters_inner:
+    FTSAnalyzers_tokenFilters_inner:
       anyOf:
       - $ref: '#/components/schemas/tokenFilterasciiFolding'
       - $ref: '#/components/schemas/tokenFilterdaitchMokotoffSoundex'
@@ -71625,7 +71625,7 @@ components:
       - $ref: '#/components/schemas/tokenFiltersnowballStemming'
       - $ref: '#/components/schemas/tokenFilterstopword'
       - $ref: '#/components/schemas/tokenFiltertrim'
-    FTSAnalyzersView_tokenizer:
+    FTSAnalyzers_tokenizer:
       description: Tokenizer that you want to use to create tokens. Tokens determine
         how Atlas Search splits up text into discrete chunks for indexing.
       oneOf:

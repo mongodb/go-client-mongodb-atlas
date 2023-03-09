@@ -14,43 +14,43 @@ import (
 	"encoding/json"
 )
 
-// checks if the FTSAnalyzersView type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FTSAnalyzersView{}
+// checks if the FTSAnalyzers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FTSAnalyzers{}
 
-// FTSAnalyzersView Settings that describe one Atlas Search custom analyzer.
-type FTSAnalyzersView struct {
+// FTSAnalyzers Settings that describe one Atlas Search custom analyzer.
+type FTSAnalyzers struct {
 	// Filters that examine text one character at a time and perform filtering operations.
-	CharFilters []FTSAnalyzersViewCharFiltersInner `json:"charFilters,omitempty"`
+	CharFilters []FTSAnalyzersCharFiltersInner `json:"charFilters,omitempty"`
 	// Human-readable name that identifies the custom analyzer. Names must be unique within an index, and must not start with any of the following strings: - `lucene.` - `builtin.` - `mongodb.`
 	Name string `json:"name"`
 	// Filter that performs operations such as:  - Stemming, which reduces related words, such as \"talking\", \"talked\", and \"talks\" to their root word \"talk\".  - Redaction, the removal of sensitive information from public documents.
-	TokenFilters []FTSAnalyzersViewTokenFiltersInner `json:"tokenFilters,omitempty"`
-	Tokenizer FTSAnalyzersViewTokenizer `json:"tokenizer"`
+	TokenFilters []FTSAnalyzersTokenFiltersInner `json:"tokenFilters,omitempty"`
+	Tokenizer FTSAnalyzersTokenizer `json:"tokenizer"`
 }
 
-// NewFTSAnalyzersView instantiates a new FTSAnalyzersView object
+// NewFTSAnalyzers instantiates a new FTSAnalyzers object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFTSAnalyzersView(name string, tokenizer FTSAnalyzersViewTokenizer) *FTSAnalyzersView {
-	this := FTSAnalyzersView{}
+func NewFTSAnalyzers(name string, tokenizer FTSAnalyzersTokenizer) *FTSAnalyzers {
+	this := FTSAnalyzers{}
 	this.Name = name
 	this.Tokenizer = tokenizer
 	return &this
 }
 
-// NewFTSAnalyzersViewWithDefaults instantiates a new FTSAnalyzersView object
+// NewFTSAnalyzersWithDefaults instantiates a new FTSAnalyzers object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFTSAnalyzersViewWithDefaults() *FTSAnalyzersView {
-	this := FTSAnalyzersView{}
+func NewFTSAnalyzersWithDefaults() *FTSAnalyzers {
+	this := FTSAnalyzers{}
 	return &this
 }
 
 // GetCharFilters returns the CharFilters field value if set, zero value otherwise.
-func (o *FTSAnalyzersView) GetCharFilters() []FTSAnalyzersViewCharFiltersInner {
+func (o *FTSAnalyzers) GetCharFilters() []FTSAnalyzersCharFiltersInner {
 	if o == nil || IsNil(o.CharFilters) {
-		var ret []FTSAnalyzersViewCharFiltersInner
+		var ret []FTSAnalyzersCharFiltersInner
 		return ret
 	}
 	return o.CharFilters
@@ -58,7 +58,7 @@ func (o *FTSAnalyzersView) GetCharFilters() []FTSAnalyzersViewCharFiltersInner {
 
 // GetCharFiltersOk returns a tuple with the CharFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FTSAnalyzersView) GetCharFiltersOk() ([]FTSAnalyzersViewCharFiltersInner, bool) {
+func (o *FTSAnalyzers) GetCharFiltersOk() ([]FTSAnalyzersCharFiltersInner, bool) {
 	if o == nil || IsNil(o.CharFilters) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *FTSAnalyzersView) GetCharFiltersOk() ([]FTSAnalyzersViewCharFiltersInne
 }
 
 // HasCharFilters returns a boolean if a field has been set.
-func (o *FTSAnalyzersView) HasCharFilters() bool {
+func (o *FTSAnalyzers) HasCharFilters() bool {
 	if o != nil && !IsNil(o.CharFilters) {
 		return true
 	}
@@ -74,13 +74,13 @@ func (o *FTSAnalyzersView) HasCharFilters() bool {
 	return false
 }
 
-// SetCharFilters gets a reference to the given []FTSAnalyzersViewCharFiltersInner and assigns it to the CharFilters field.
-func (o *FTSAnalyzersView) SetCharFilters(v []FTSAnalyzersViewCharFiltersInner) {
+// SetCharFilters gets a reference to the given []FTSAnalyzersCharFiltersInner and assigns it to the CharFilters field.
+func (o *FTSAnalyzers) SetCharFilters(v []FTSAnalyzersCharFiltersInner) {
 	o.CharFilters = v
 }
 
 // GetName returns the Name field value
-func (o *FTSAnalyzersView) GetName() string {
+func (o *FTSAnalyzers) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -91,7 +91,7 @@ func (o *FTSAnalyzersView) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *FTSAnalyzersView) GetNameOk() (*string, bool) {
+func (o *FTSAnalyzers) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,14 +99,14 @@ func (o *FTSAnalyzersView) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *FTSAnalyzersView) SetName(v string) {
+func (o *FTSAnalyzers) SetName(v string) {
 	o.Name = v
 }
 
 // GetTokenFilters returns the TokenFilters field value if set, zero value otherwise.
-func (o *FTSAnalyzersView) GetTokenFilters() []FTSAnalyzersViewTokenFiltersInner {
+func (o *FTSAnalyzers) GetTokenFilters() []FTSAnalyzersTokenFiltersInner {
 	if o == nil || IsNil(o.TokenFilters) {
-		var ret []FTSAnalyzersViewTokenFiltersInner
+		var ret []FTSAnalyzersTokenFiltersInner
 		return ret
 	}
 	return o.TokenFilters
@@ -114,7 +114,7 @@ func (o *FTSAnalyzersView) GetTokenFilters() []FTSAnalyzersViewTokenFiltersInner
 
 // GetTokenFiltersOk returns a tuple with the TokenFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FTSAnalyzersView) GetTokenFiltersOk() ([]FTSAnalyzersViewTokenFiltersInner, bool) {
+func (o *FTSAnalyzers) GetTokenFiltersOk() ([]FTSAnalyzersTokenFiltersInner, bool) {
 	if o == nil || IsNil(o.TokenFilters) {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *FTSAnalyzersView) GetTokenFiltersOk() ([]FTSAnalyzersViewTokenFiltersIn
 }
 
 // HasTokenFilters returns a boolean if a field has been set.
-func (o *FTSAnalyzersView) HasTokenFilters() bool {
+func (o *FTSAnalyzers) HasTokenFilters() bool {
 	if o != nil && !IsNil(o.TokenFilters) {
 		return true
 	}
@@ -130,15 +130,15 @@ func (o *FTSAnalyzersView) HasTokenFilters() bool {
 	return false
 }
 
-// SetTokenFilters gets a reference to the given []FTSAnalyzersViewTokenFiltersInner and assigns it to the TokenFilters field.
-func (o *FTSAnalyzersView) SetTokenFilters(v []FTSAnalyzersViewTokenFiltersInner) {
+// SetTokenFilters gets a reference to the given []FTSAnalyzersTokenFiltersInner and assigns it to the TokenFilters field.
+func (o *FTSAnalyzers) SetTokenFilters(v []FTSAnalyzersTokenFiltersInner) {
 	o.TokenFilters = v
 }
 
 // GetTokenizer returns the Tokenizer field value
-func (o *FTSAnalyzersView) GetTokenizer() FTSAnalyzersViewTokenizer {
+func (o *FTSAnalyzers) GetTokenizer() FTSAnalyzersTokenizer {
 	if o == nil {
-		var ret FTSAnalyzersViewTokenizer
+		var ret FTSAnalyzersTokenizer
 		return ret
 	}
 
@@ -147,7 +147,7 @@ func (o *FTSAnalyzersView) GetTokenizer() FTSAnalyzersViewTokenizer {
 
 // GetTokenizerOk returns a tuple with the Tokenizer field value
 // and a boolean to check if the value has been set.
-func (o *FTSAnalyzersView) GetTokenizerOk() (*FTSAnalyzersViewTokenizer, bool) {
+func (o *FTSAnalyzers) GetTokenizerOk() (*FTSAnalyzersTokenizer, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,11 +155,11 @@ func (o *FTSAnalyzersView) GetTokenizerOk() (*FTSAnalyzersViewTokenizer, bool) {
 }
 
 // SetTokenizer sets field value
-func (o *FTSAnalyzersView) SetTokenizer(v FTSAnalyzersViewTokenizer) {
+func (o *FTSAnalyzers) SetTokenizer(v FTSAnalyzersTokenizer) {
 	o.Tokenizer = v
 }
 
-func (o FTSAnalyzersView) MarshalJSON() ([]byte, error) {
+func (o FTSAnalyzers) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -167,7 +167,7 @@ func (o FTSAnalyzersView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FTSAnalyzersView) ToMap() (map[string]interface{}, error) {
+func (o FTSAnalyzers) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CharFilters) {
 		toSerialize["charFilters"] = o.CharFilters
@@ -180,38 +180,38 @@ func (o FTSAnalyzersView) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableFTSAnalyzersView struct {
-	value *FTSAnalyzersView
+type NullableFTSAnalyzers struct {
+	value *FTSAnalyzers
 	isSet bool
 }
 
-func (v NullableFTSAnalyzersView) Get() *FTSAnalyzersView {
+func (v NullableFTSAnalyzers) Get() *FTSAnalyzers {
 	return v.value
 }
 
-func (v *NullableFTSAnalyzersView) Set(val *FTSAnalyzersView) {
+func (v *NullableFTSAnalyzers) Set(val *FTSAnalyzers) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFTSAnalyzersView) IsSet() bool {
+func (v NullableFTSAnalyzers) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFTSAnalyzersView) Unset() {
+func (v *NullableFTSAnalyzers) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFTSAnalyzersView(val *FTSAnalyzersView) *NullableFTSAnalyzersView {
-	return &NullableFTSAnalyzersView{value: val, isSet: true}
+func NewNullableFTSAnalyzers(val *FTSAnalyzers) *NullableFTSAnalyzers {
+	return &NullableFTSAnalyzers{value: val, isSet: true}
 }
 
-func (v NullableFTSAnalyzersView) MarshalJSON() ([]byte, error) {
+func (v NullableFTSAnalyzers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFTSAnalyzersView) UnmarshalJSON(src []byte) error {
+func (v *NullableFTSAnalyzers) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

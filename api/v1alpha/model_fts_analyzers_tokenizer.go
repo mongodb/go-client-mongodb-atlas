@@ -15,8 +15,8 @@ import (
 	"fmt"
 )
 
-// FTSAnalyzersViewTokenizer - Tokenizer that you want to use to create tokens. Tokens determine how Atlas Search splits up text into discrete chunks for indexing.
-type FTSAnalyzersViewTokenizer struct {
+// FTSAnalyzersTokenizer - Tokenizer that you want to use to create tokens. Tokens determine how Atlas Search splits up text into discrete chunks for indexing.
+type FTSAnalyzersTokenizer struct {
 	TokenizeredgeGram *TokenizeredgeGram
 	Tokenizerkeyword *Tokenizerkeyword
 	TokenizernGram *TokenizernGram
@@ -27,65 +27,65 @@ type FTSAnalyzersViewTokenizer struct {
 	Tokenizerwhitespace *Tokenizerwhitespace
 }
 
-// TokenizeredgeGramAsFTSAnalyzersViewTokenizer is a convenience function that returns TokenizeredgeGram wrapped in FTSAnalyzersViewTokenizer
-func TokenizeredgeGramAsFTSAnalyzersViewTokenizer(v *TokenizeredgeGram) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizeredgeGramAsFTSAnalyzersTokenizer is a convenience function that returns TokenizeredgeGram wrapped in FTSAnalyzersTokenizer
+func TokenizeredgeGramAsFTSAnalyzersTokenizer(v *TokenizeredgeGram) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		TokenizeredgeGram: v,
 	}
 }
 
-// TokenizerkeywordAsFTSAnalyzersViewTokenizer is a convenience function that returns Tokenizerkeyword wrapped in FTSAnalyzersViewTokenizer
-func TokenizerkeywordAsFTSAnalyzersViewTokenizer(v *Tokenizerkeyword) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizerkeywordAsFTSAnalyzersTokenizer is a convenience function that returns Tokenizerkeyword wrapped in FTSAnalyzersTokenizer
+func TokenizerkeywordAsFTSAnalyzersTokenizer(v *Tokenizerkeyword) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		Tokenizerkeyword: v,
 	}
 }
 
-// TokenizernGramAsFTSAnalyzersViewTokenizer is a convenience function that returns TokenizernGram wrapped in FTSAnalyzersViewTokenizer
-func TokenizernGramAsFTSAnalyzersViewTokenizer(v *TokenizernGram) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizernGramAsFTSAnalyzersTokenizer is a convenience function that returns TokenizernGram wrapped in FTSAnalyzersTokenizer
+func TokenizernGramAsFTSAnalyzersTokenizer(v *TokenizernGram) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		TokenizernGram: v,
 	}
 }
 
-// TokenizerregexCaptureGroupAsFTSAnalyzersViewTokenizer is a convenience function that returns TokenizerregexCaptureGroup wrapped in FTSAnalyzersViewTokenizer
-func TokenizerregexCaptureGroupAsFTSAnalyzersViewTokenizer(v *TokenizerregexCaptureGroup) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizerregexCaptureGroupAsFTSAnalyzersTokenizer is a convenience function that returns TokenizerregexCaptureGroup wrapped in FTSAnalyzersTokenizer
+func TokenizerregexCaptureGroupAsFTSAnalyzersTokenizer(v *TokenizerregexCaptureGroup) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		TokenizerregexCaptureGroup: v,
 	}
 }
 
-// TokenizerregexSplitAsFTSAnalyzersViewTokenizer is a convenience function that returns TokenizerregexSplit wrapped in FTSAnalyzersViewTokenizer
-func TokenizerregexSplitAsFTSAnalyzersViewTokenizer(v *TokenizerregexSplit) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizerregexSplitAsFTSAnalyzersTokenizer is a convenience function that returns TokenizerregexSplit wrapped in FTSAnalyzersTokenizer
+func TokenizerregexSplitAsFTSAnalyzersTokenizer(v *TokenizerregexSplit) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		TokenizerregexSplit: v,
 	}
 }
 
-// TokenizerstandardAsFTSAnalyzersViewTokenizer is a convenience function that returns Tokenizerstandard wrapped in FTSAnalyzersViewTokenizer
-func TokenizerstandardAsFTSAnalyzersViewTokenizer(v *Tokenizerstandard) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizerstandardAsFTSAnalyzersTokenizer is a convenience function that returns Tokenizerstandard wrapped in FTSAnalyzersTokenizer
+func TokenizerstandardAsFTSAnalyzersTokenizer(v *Tokenizerstandard) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		Tokenizerstandard: v,
 	}
 }
 
-// TokenizeruaxUrlEmailAsFTSAnalyzersViewTokenizer is a convenience function that returns TokenizeruaxUrlEmail wrapped in FTSAnalyzersViewTokenizer
-func TokenizeruaxUrlEmailAsFTSAnalyzersViewTokenizer(v *TokenizeruaxUrlEmail) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizeruaxUrlEmailAsFTSAnalyzersTokenizer is a convenience function that returns TokenizeruaxUrlEmail wrapped in FTSAnalyzersTokenizer
+func TokenizeruaxUrlEmailAsFTSAnalyzersTokenizer(v *TokenizeruaxUrlEmail) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		TokenizeruaxUrlEmail: v,
 	}
 }
 
-// TokenizerwhitespaceAsFTSAnalyzersViewTokenizer is a convenience function that returns Tokenizerwhitespace wrapped in FTSAnalyzersViewTokenizer
-func TokenizerwhitespaceAsFTSAnalyzersViewTokenizer(v *Tokenizerwhitespace) FTSAnalyzersViewTokenizer {
-	return FTSAnalyzersViewTokenizer{
+// TokenizerwhitespaceAsFTSAnalyzersTokenizer is a convenience function that returns Tokenizerwhitespace wrapped in FTSAnalyzersTokenizer
+func TokenizerwhitespaceAsFTSAnalyzersTokenizer(v *Tokenizerwhitespace) FTSAnalyzersTokenizer {
+	return FTSAnalyzersTokenizer{
 		Tokenizerwhitespace: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *FTSAnalyzersViewTokenizer) UnmarshalJSON(data []byte) error {
+func (dst *FTSAnalyzersTokenizer) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into TokenizeredgeGram
@@ -203,16 +203,16 @@ func (dst *FTSAnalyzersViewTokenizer) UnmarshalJSON(data []byte) error {
 		dst.TokenizeruaxUrlEmail = nil
 		dst.Tokenizerwhitespace = nil
 
-		return fmt.Errorf("data matches more than one schema in oneOf(FTSAnalyzersViewTokenizer)")
+		return fmt.Errorf("data matches more than one schema in oneOf(FTSAnalyzersTokenizer)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(FTSAnalyzersViewTokenizer)")
+		return fmt.Errorf("data failed to match schemas in oneOf(FTSAnalyzersTokenizer)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src FTSAnalyzersViewTokenizer) MarshalJSON() ([]byte, error) {
+func (src FTSAnalyzersTokenizer) MarshalJSON() ([]byte, error) {
 	if src.TokenizeredgeGram != nil {
 		return json.Marshal(&src.TokenizeredgeGram)
 	}
@@ -249,7 +249,7 @@ func (src FTSAnalyzersViewTokenizer) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FTSAnalyzersViewTokenizer) GetActualInstance() (interface{}) {
+func (obj *FTSAnalyzersTokenizer) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -289,38 +289,38 @@ func (obj *FTSAnalyzersViewTokenizer) GetActualInstance() (interface{}) {
 	return nil
 }
 
-type NullableFTSAnalyzersViewTokenizer struct {
-	value *FTSAnalyzersViewTokenizer
+type NullableFTSAnalyzersTokenizer struct {
+	value *FTSAnalyzersTokenizer
 	isSet bool
 }
 
-func (v NullableFTSAnalyzersViewTokenizer) Get() *FTSAnalyzersViewTokenizer {
+func (v NullableFTSAnalyzersTokenizer) Get() *FTSAnalyzersTokenizer {
 	return v.value
 }
 
-func (v *NullableFTSAnalyzersViewTokenizer) Set(val *FTSAnalyzersViewTokenizer) {
+func (v *NullableFTSAnalyzersTokenizer) Set(val *FTSAnalyzersTokenizer) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFTSAnalyzersViewTokenizer) IsSet() bool {
+func (v NullableFTSAnalyzersTokenizer) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFTSAnalyzersViewTokenizer) Unset() {
+func (v *NullableFTSAnalyzersTokenizer) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFTSAnalyzersViewTokenizer(val *FTSAnalyzersViewTokenizer) *NullableFTSAnalyzersViewTokenizer {
-	return &NullableFTSAnalyzersViewTokenizer{value: val, isSet: true}
+func NewNullableFTSAnalyzersTokenizer(val *FTSAnalyzersTokenizer) *NullableFTSAnalyzersTokenizer {
+	return &NullableFTSAnalyzersTokenizer{value: val, isSet: true}
 }
 
-func (v NullableFTSAnalyzersViewTokenizer) MarshalJSON() ([]byte, error) {
+func (v NullableFTSAnalyzersTokenizer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFTSAnalyzersViewTokenizer) UnmarshalJSON(src []byte) error {
+func (v *NullableFTSAnalyzersTokenizer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

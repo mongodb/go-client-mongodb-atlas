@@ -15770,7 +15770,7 @@ components:
         readOnly: true
       readOnly: true
     BasicDBObject:
-      $ref: "#/components/schemas/FTSMappingsView"
+      $ref: "#/components/schemas/FTSMappings"
     BillingEventTypeViewAlertableWithThreshold:
       type: string
       description: Event type that triggers an alert.
@@ -37617,7 +37617,7 @@ components:
             description: Custom Atlas Search Analyzers
             url: https://docs.atlas.mongodb.com/atlas-search/analyzers/custom/
           items:
-            $ref: "#/components/schemas/FTSAnalyzersView"
+            $ref: "#/components/schemas/FTSAnalyzers"
         collectionName:
           type: string
           description: Human-readable label that identifies the collection that contains
@@ -37636,7 +37636,7 @@ components:
           pattern: ^([a-f0-9]{24})$
           readOnly: true
         mappings:
-          $ref: "#/components/schemas/FTSMappingsView"
+          $ref: "#/components/schemas/FTSMappings"
         name:
           type: string
           description: Human-readable label that identifies this index. Within each
@@ -41537,7 +41537,7 @@ components:
         - location
         - zone
       title: Global Cluster Zone
-    FTSAnalyzersView:
+    FTSAnalyzers:
       type: object
       description: Settings that describe one Atlas Search custom analyzer.
       properties:
@@ -41607,7 +41607,7 @@ components:
         - name
         - tokenizer
       title: analyzers
-    FTSMappingsView:
+    FTSMappings:
       type: object
       description: Index specifications for the collection's fields.
       properties:

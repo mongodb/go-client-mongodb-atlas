@@ -22,14 +22,14 @@ type FTSIndex struct {
 	// Specific pre-defined method chosen to convert database field text into searchable words. This conversion reduces the text of fields into the smallest units of text. These units are called a **term** or **token**. This process, known as tokenization, involves a variety of changes made to the text in fields:  - extracting words - removing punctuation - removing accents - changing to lowercase - removing common words - reducing words to their root form (stemming) - changing words to their base form (lemmatization)  MongoDB Cloud uses the selected process to build the Atlas Search index.
 	Analyzer *string `json:"analyzer,omitempty"`
 	// List of user-defined methods to convert database field text into searchable words.
-	Analyzers []FTSAnalyzersView `json:"analyzers,omitempty"`
+	Analyzers []FTSAnalyzers `json:"analyzers,omitempty"`
 	// Human-readable label that identifies the collection that contains one or more Atlas Search indexes.
 	CollectionName string `json:"collectionName"`
 	// Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
 	Database string `json:"database"`
 	// Unique 24-hexadecimal digit string that identifies this Atlas Search index.
 	IndexID *string `json:"indexID,omitempty"`
-	Mappings *FTSMappingsView `json:"mappings,omitempty"`
+	Mappings *FTSMappings `json:"mappings,omitempty"`
 	// Human-readable label that identifies this index. Within each namespace, names of all indexes in the namespace must be unique.
 	Name string `json:"name"`
 	// Method applied to identify words when searching this index.
@@ -101,9 +101,9 @@ func (o *FTSIndex) SetAnalyzer(v string) {
 }
 
 // GetAnalyzers returns the Analyzers field value if set, zero value otherwise.
-func (o *FTSIndex) GetAnalyzers() []FTSAnalyzersView {
+func (o *FTSIndex) GetAnalyzers() []FTSAnalyzers {
 	if o == nil || IsNil(o.Analyzers) {
-		var ret []FTSAnalyzersView
+		var ret []FTSAnalyzers
 		return ret
 	}
 	return o.Analyzers
@@ -111,7 +111,7 @@ func (o *FTSIndex) GetAnalyzers() []FTSAnalyzersView {
 
 // GetAnalyzersOk returns a tuple with the Analyzers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FTSIndex) GetAnalyzersOk() ([]FTSAnalyzersView, bool) {
+func (o *FTSIndex) GetAnalyzersOk() ([]FTSAnalyzers, bool) {
 	if o == nil || IsNil(o.Analyzers) {
 		return nil, false
 	}
@@ -127,8 +127,8 @@ func (o *FTSIndex) HasAnalyzers() bool {
 	return false
 }
 
-// SetAnalyzers gets a reference to the given []FTSAnalyzersView and assigns it to the Analyzers field.
-func (o *FTSIndex) SetAnalyzers(v []FTSAnalyzersView) {
+// SetAnalyzers gets a reference to the given []FTSAnalyzers and assigns it to the Analyzers field.
+func (o *FTSIndex) SetAnalyzers(v []FTSAnalyzers) {
 	o.Analyzers = v
 }
 
@@ -213,9 +213,9 @@ func (o *FTSIndex) SetIndexID(v string) {
 }
 
 // GetMappings returns the Mappings field value if set, zero value otherwise.
-func (o *FTSIndex) GetMappings() FTSMappingsView {
+func (o *FTSIndex) GetMappings() FTSMappings {
 	if o == nil || IsNil(o.Mappings) {
-		var ret FTSMappingsView
+		var ret FTSMappings
 		return ret
 	}
 	return *o.Mappings
@@ -223,7 +223,7 @@ func (o *FTSIndex) GetMappings() FTSMappingsView {
 
 // GetMappingsOk returns a tuple with the Mappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FTSIndex) GetMappingsOk() (*FTSMappingsView, bool) {
+func (o *FTSIndex) GetMappingsOk() (*FTSMappings, bool) {
 	if o == nil || IsNil(o.Mappings) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *FTSIndex) HasMappings() bool {
 	return false
 }
 
-// SetMappings gets a reference to the given FTSMappingsView and assigns it to the Mappings field.
-func (o *FTSIndex) SetMappings(v FTSMappingsView) {
+// SetMappings gets a reference to the given FTSMappings and assigns it to the Mappings field.
+func (o *FTSIndex) SetMappings(v FTSMappings) {
 	o.Mappings = &v
 }
 

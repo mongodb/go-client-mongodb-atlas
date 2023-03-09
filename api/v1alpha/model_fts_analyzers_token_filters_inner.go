@@ -15,8 +15,8 @@ import (
 	"fmt"
 )
 
-// FTSAnalyzersViewTokenFiltersInner struct for FTSAnalyzersViewTokenFiltersInner
-type FTSAnalyzersViewTokenFiltersInner struct {
+// FTSAnalyzersTokenFiltersInner struct for FTSAnalyzersTokenFiltersInner
+type FTSAnalyzersTokenFiltersInner struct {
 	TokenFilterasciiFolding *TokenFilterasciiFolding
 	TokenFilterdaitchMokotoffSoundex *TokenFilterdaitchMokotoffSoundex
 	TokenFilteredgeGram *TokenFilteredgeGram
@@ -34,7 +34,7 @@ type FTSAnalyzersViewTokenFiltersInner struct {
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
-func (dst *FTSAnalyzersViewTokenFiltersInner) UnmarshalJSON(data []byte) error {
+func (dst *FTSAnalyzersTokenFiltersInner) UnmarshalJSON(data []byte) error {
 	var err error
 	// try to unmarshal JSON data into TokenFilterasciiFolding
 	err = json.Unmarshal(data, &dst.TokenFilterasciiFolding);
@@ -218,11 +218,11 @@ func (dst *FTSAnalyzersViewTokenFiltersInner) UnmarshalJSON(data []byte) error {
 		dst.TokenFiltertrim = nil
 	}
 
-	return fmt.Errorf("data failed to match schemas in anyOf(FTSAnalyzersViewTokenFiltersInner)")
+	return fmt.Errorf("data failed to match schemas in anyOf(FTSAnalyzersTokenFiltersInner)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *FTSAnalyzersViewTokenFiltersInner) MarshalJSON() ([]byte, error) {
+func (src *FTSAnalyzersTokenFiltersInner) MarshalJSON() ([]byte, error) {
 	if src.TokenFilterasciiFolding != nil {
 		return json.Marshal(&src.TokenFilterasciiFolding)
 	}
@@ -282,38 +282,38 @@ func (src *FTSAnalyzersViewTokenFiltersInner) MarshalJSON() ([]byte, error) {
 	return nil, nil // no data in anyOf schemas
 }
 
-type NullableFTSAnalyzersViewTokenFiltersInner struct {
-	value *FTSAnalyzersViewTokenFiltersInner
+type NullableFTSAnalyzersTokenFiltersInner struct {
+	value *FTSAnalyzersTokenFiltersInner
 	isSet bool
 }
 
-func (v NullableFTSAnalyzersViewTokenFiltersInner) Get() *FTSAnalyzersViewTokenFiltersInner {
+func (v NullableFTSAnalyzersTokenFiltersInner) Get() *FTSAnalyzersTokenFiltersInner {
 	return v.value
 }
 
-func (v *NullableFTSAnalyzersViewTokenFiltersInner) Set(val *FTSAnalyzersViewTokenFiltersInner) {
+func (v *NullableFTSAnalyzersTokenFiltersInner) Set(val *FTSAnalyzersTokenFiltersInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFTSAnalyzersViewTokenFiltersInner) IsSet() bool {
+func (v NullableFTSAnalyzersTokenFiltersInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFTSAnalyzersViewTokenFiltersInner) Unset() {
+func (v *NullableFTSAnalyzersTokenFiltersInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFTSAnalyzersViewTokenFiltersInner(val *FTSAnalyzersViewTokenFiltersInner) *NullableFTSAnalyzersViewTokenFiltersInner {
-	return &NullableFTSAnalyzersViewTokenFiltersInner{value: val, isSet: true}
+func NewNullableFTSAnalyzersTokenFiltersInner(val *FTSAnalyzersTokenFiltersInner) *NullableFTSAnalyzersTokenFiltersInner {
+	return &NullableFTSAnalyzersTokenFiltersInner{value: val, isSet: true}
 }
 
-func (v NullableFTSAnalyzersViewTokenFiltersInner) MarshalJSON() ([]byte, error) {
+func (v NullableFTSAnalyzersTokenFiltersInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFTSAnalyzersViewTokenFiltersInner) UnmarshalJSON(src []byte) error {
+func (v *NullableFTSAnalyzersTokenFiltersInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

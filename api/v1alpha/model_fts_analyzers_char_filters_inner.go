@@ -15,45 +15,45 @@ import (
 	"fmt"
 )
 
-// FTSAnalyzersViewCharFiltersInner - struct for FTSAnalyzersViewCharFiltersInner
-type FTSAnalyzersViewCharFiltersInner struct {
+// FTSAnalyzersCharFiltersInner - struct for FTSAnalyzersCharFiltersInner
+type FTSAnalyzersCharFiltersInner struct {
 	CharFilterhtmlStrip *CharFilterhtmlStrip
 	CharFiltericuNormalize *CharFiltericuNormalize
 	CharFiltermapping *CharFiltermapping
 	CharFilterpersian *CharFilterpersian
 }
 
-// CharFilterhtmlStripAsFTSAnalyzersViewCharFiltersInner is a convenience function that returns CharFilterhtmlStrip wrapped in FTSAnalyzersViewCharFiltersInner
-func CharFilterhtmlStripAsFTSAnalyzersViewCharFiltersInner(v *CharFilterhtmlStrip) FTSAnalyzersViewCharFiltersInner {
-	return FTSAnalyzersViewCharFiltersInner{
+// CharFilterhtmlStripAsFTSAnalyzersCharFiltersInner is a convenience function that returns CharFilterhtmlStrip wrapped in FTSAnalyzersCharFiltersInner
+func CharFilterhtmlStripAsFTSAnalyzersCharFiltersInner(v *CharFilterhtmlStrip) FTSAnalyzersCharFiltersInner {
+	return FTSAnalyzersCharFiltersInner{
 		CharFilterhtmlStrip: v,
 	}
 }
 
-// CharFiltericuNormalizeAsFTSAnalyzersViewCharFiltersInner is a convenience function that returns CharFiltericuNormalize wrapped in FTSAnalyzersViewCharFiltersInner
-func CharFiltericuNormalizeAsFTSAnalyzersViewCharFiltersInner(v *CharFiltericuNormalize) FTSAnalyzersViewCharFiltersInner {
-	return FTSAnalyzersViewCharFiltersInner{
+// CharFiltericuNormalizeAsFTSAnalyzersCharFiltersInner is a convenience function that returns CharFiltericuNormalize wrapped in FTSAnalyzersCharFiltersInner
+func CharFiltericuNormalizeAsFTSAnalyzersCharFiltersInner(v *CharFiltericuNormalize) FTSAnalyzersCharFiltersInner {
+	return FTSAnalyzersCharFiltersInner{
 		CharFiltericuNormalize: v,
 	}
 }
 
-// CharFiltermappingAsFTSAnalyzersViewCharFiltersInner is a convenience function that returns CharFiltermapping wrapped in FTSAnalyzersViewCharFiltersInner
-func CharFiltermappingAsFTSAnalyzersViewCharFiltersInner(v *CharFiltermapping) FTSAnalyzersViewCharFiltersInner {
-	return FTSAnalyzersViewCharFiltersInner{
+// CharFiltermappingAsFTSAnalyzersCharFiltersInner is a convenience function that returns CharFiltermapping wrapped in FTSAnalyzersCharFiltersInner
+func CharFiltermappingAsFTSAnalyzersCharFiltersInner(v *CharFiltermapping) FTSAnalyzersCharFiltersInner {
+	return FTSAnalyzersCharFiltersInner{
 		CharFiltermapping: v,
 	}
 }
 
-// CharFilterpersianAsFTSAnalyzersViewCharFiltersInner is a convenience function that returns CharFilterpersian wrapped in FTSAnalyzersViewCharFiltersInner
-func CharFilterpersianAsFTSAnalyzersViewCharFiltersInner(v *CharFilterpersian) FTSAnalyzersViewCharFiltersInner {
-	return FTSAnalyzersViewCharFiltersInner{
+// CharFilterpersianAsFTSAnalyzersCharFiltersInner is a convenience function that returns CharFilterpersian wrapped in FTSAnalyzersCharFiltersInner
+func CharFilterpersianAsFTSAnalyzersCharFiltersInner(v *CharFilterpersian) FTSAnalyzersCharFiltersInner {
+	return FTSAnalyzersCharFiltersInner{
 		CharFilterpersian: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *FTSAnalyzersViewCharFiltersInner) UnmarshalJSON(data []byte) error {
+func (dst *FTSAnalyzersCharFiltersInner) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CharFilterhtmlStrip
@@ -115,16 +115,16 @@ func (dst *FTSAnalyzersViewCharFiltersInner) UnmarshalJSON(data []byte) error {
 		dst.CharFiltermapping = nil
 		dst.CharFilterpersian = nil
 
-		return fmt.Errorf("data matches more than one schema in oneOf(FTSAnalyzersViewCharFiltersInner)")
+		return fmt.Errorf("data matches more than one schema in oneOf(FTSAnalyzersCharFiltersInner)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(FTSAnalyzersViewCharFiltersInner)")
+		return fmt.Errorf("data failed to match schemas in oneOf(FTSAnalyzersCharFiltersInner)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src FTSAnalyzersViewCharFiltersInner) MarshalJSON() ([]byte, error) {
+func (src FTSAnalyzersCharFiltersInner) MarshalJSON() ([]byte, error) {
 	if src.CharFilterhtmlStrip != nil {
 		return json.Marshal(&src.CharFilterhtmlStrip)
 	}
@@ -145,7 +145,7 @@ func (src FTSAnalyzersViewCharFiltersInner) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FTSAnalyzersViewCharFiltersInner) GetActualInstance() (interface{}) {
+func (obj *FTSAnalyzersCharFiltersInner) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -169,38 +169,38 @@ func (obj *FTSAnalyzersViewCharFiltersInner) GetActualInstance() (interface{}) {
 	return nil
 }
 
-type NullableFTSAnalyzersViewCharFiltersInner struct {
-	value *FTSAnalyzersViewCharFiltersInner
+type NullableFTSAnalyzersCharFiltersInner struct {
+	value *FTSAnalyzersCharFiltersInner
 	isSet bool
 }
 
-func (v NullableFTSAnalyzersViewCharFiltersInner) Get() *FTSAnalyzersViewCharFiltersInner {
+func (v NullableFTSAnalyzersCharFiltersInner) Get() *FTSAnalyzersCharFiltersInner {
 	return v.value
 }
 
-func (v *NullableFTSAnalyzersViewCharFiltersInner) Set(val *FTSAnalyzersViewCharFiltersInner) {
+func (v *NullableFTSAnalyzersCharFiltersInner) Set(val *FTSAnalyzersCharFiltersInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFTSAnalyzersViewCharFiltersInner) IsSet() bool {
+func (v NullableFTSAnalyzersCharFiltersInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFTSAnalyzersViewCharFiltersInner) Unset() {
+func (v *NullableFTSAnalyzersCharFiltersInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFTSAnalyzersViewCharFiltersInner(val *FTSAnalyzersViewCharFiltersInner) *NullableFTSAnalyzersViewCharFiltersInner {
-	return &NullableFTSAnalyzersViewCharFiltersInner{value: val, isSet: true}
+func NewNullableFTSAnalyzersCharFiltersInner(val *FTSAnalyzersCharFiltersInner) *NullableFTSAnalyzersCharFiltersInner {
+	return &NullableFTSAnalyzersCharFiltersInner{value: val, isSet: true}
 }
 
-func (v NullableFTSAnalyzersViewCharFiltersInner) MarshalJSON() ([]byte, error) {
+func (v NullableFTSAnalyzersCharFiltersInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFTSAnalyzersViewCharFiltersInner) UnmarshalJSON(src []byte) error {
+func (v *NullableFTSAnalyzersCharFiltersInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
