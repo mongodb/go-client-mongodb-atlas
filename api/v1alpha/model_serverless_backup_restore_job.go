@@ -26,7 +26,7 @@ type ServerlessBackupRestoreJob struct {
 	DeliveryType string `json:"deliveryType"`
 	// One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `\"deliveryType\" : \"download\"`.
 	DeliveryUrl []string `json:"deliveryUrl,omitempty"`
-	DesiredTimestamp *ApiBSONTimestampView `json:"desiredTimestamp,omitempty"`
+	DesiredTimestamp *BSONTimestamp `json:"desiredTimestamp,omitempty"`
 	// Flag that indicates whether the restore job expired.
 	Expired *bool `json:"expired,omitempty"`
 	// Date and time when the restore job expires. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -164,9 +164,9 @@ func (o *ServerlessBackupRestoreJob) SetDeliveryUrl(v []string) {
 }
 
 // GetDesiredTimestamp returns the DesiredTimestamp field value if set, zero value otherwise.
-func (o *ServerlessBackupRestoreJob) GetDesiredTimestamp() ApiBSONTimestampView {
+func (o *ServerlessBackupRestoreJob) GetDesiredTimestamp() BSONTimestamp {
 	if o == nil || IsNil(o.DesiredTimestamp) {
-		var ret ApiBSONTimestampView
+		var ret BSONTimestamp
 		return ret
 	}
 	return *o.DesiredTimestamp
@@ -174,7 +174,7 @@ func (o *ServerlessBackupRestoreJob) GetDesiredTimestamp() ApiBSONTimestampView 
 
 // GetDesiredTimestampOk returns a tuple with the DesiredTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerlessBackupRestoreJob) GetDesiredTimestampOk() (*ApiBSONTimestampView, bool) {
+func (o *ServerlessBackupRestoreJob) GetDesiredTimestampOk() (*BSONTimestamp, bool) {
 	if o == nil || IsNil(o.DesiredTimestamp) {
 		return nil, false
 	}
@@ -190,8 +190,8 @@ func (o *ServerlessBackupRestoreJob) HasDesiredTimestamp() bool {
 	return false
 }
 
-// SetDesiredTimestamp gets a reference to the given ApiBSONTimestampView and assigns it to the DesiredTimestamp field.
-func (o *ServerlessBackupRestoreJob) SetDesiredTimestamp(v ApiBSONTimestampView) {
+// SetDesiredTimestamp gets a reference to the given BSONTimestamp and assigns it to the DesiredTimestamp field.
+func (o *ServerlessBackupRestoreJob) SetDesiredTimestamp(v BSONTimestamp) {
 	o.DesiredTimestamp = &v
 }
 

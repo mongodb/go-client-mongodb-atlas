@@ -32,8 +32,8 @@ type AppServiceMetricAlertConfigViewForNdsGroup struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []AppServiceMetricMatcherView `json:"matchers,omitempty"`
-	MetricThreshold *AppServiceMetricThresholdView `json:"metricThreshold,omitempty"`
+	Matchers []AppServiceMetricMatcher `json:"matchers,omitempty"`
+	MetricThreshold *AppServiceMetricThreshold `json:"metricThreshold,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -247,9 +247,9 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchers() []AppServiceMetricMatcherView {
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchers() []AppServiceMetricMatcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []AppServiceMetricMatcherView
+		var ret []AppServiceMetricMatcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +257,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchers() []AppServiceM
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchersOk() ([]AppServiceMetricMatcherView, bool) {
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMatchersOk() ([]AppServiceMetricMatcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,15 +273,15 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []AppServiceMetricMatcherView and assigns it to the Matchers field.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMatchers(v []AppServiceMetricMatcherView) {
+// SetMatchers gets a reference to the given []AppServiceMetricMatcher and assigns it to the Matchers field.
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMatchers(v []AppServiceMetricMatcher) {
 	o.Matchers = v
 }
 
 // GetMetricThreshold returns the MetricThreshold field value if set, zero value otherwise.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThreshold() AppServiceMetricThresholdView {
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThreshold() AppServiceMetricThreshold {
 	if o == nil || IsNil(o.MetricThreshold) {
-		var ret AppServiceMetricThresholdView
+		var ret AppServiceMetricThreshold
 		return ret
 	}
 	return *o.MetricThreshold
@@ -289,7 +289,7 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThreshold() AppSer
 
 // GetMetricThresholdOk returns a tuple with the MetricThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThresholdOk() (*AppServiceMetricThresholdView, bool) {
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetMetricThresholdOk() (*AppServiceMetricThreshold, bool) {
 	if o == nil || IsNil(o.MetricThreshold) {
 		return nil, false
 	}
@@ -305,8 +305,8 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) HasMetricThreshold() bool {
 	return false
 }
 
-// SetMetricThreshold gets a reference to the given AppServiceMetricThresholdView and assigns it to the MetricThreshold field.
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMetricThreshold(v AppServiceMetricThresholdView) {
+// SetMetricThreshold gets a reference to the given AppServiceMetricThreshold and assigns it to the MetricThreshold field.
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetMetricThreshold(v AppServiceMetricThreshold) {
 	o.MetricThreshold = &v
 }
 

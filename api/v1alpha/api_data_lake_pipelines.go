@@ -115,8 +115,8 @@ type DataLakePipelinesApi interface {
 	ListPipelineRuns(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineRunsRequest
 
 	// ListPipelineRunsExecute executes the request
-	//  @return PaginatedPipelineRunView
-	ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRunView, *http.Response, error)
+	//  @return PaginatedPipelineRun
+	ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRun, *http.Response, error)
 
 	/*
 	ListPipelineSchedules Return Available Ingestion Schedules for One Data Lake Pipeline
@@ -131,8 +131,8 @@ type DataLakePipelinesApi interface {
 	ListPipelineSchedules(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSchedulesRequest
 
 	// ListPipelineSchedulesExecute executes the request
-	//  @return []ApiPolicyItemView
-	ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]ApiPolicyItemView, *http.Response, error)
+	//  @return []PolicyItem
+	ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]PolicyItem, *http.Response, error)
 
 	/*
 	ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
@@ -147,8 +147,8 @@ type DataLakePipelinesApi interface {
 	ListPipelineSnapshots(ctx context.Context, groupId string, pipelineName string) DataLakePipelinesApiListPipelineSnapshotsRequest
 
 	// ListPipelineSnapshotsExecute executes the request
-	//  @return PaginatedBackupSnapshotView
-	ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshotView, *http.Response, error)
+	//  @return PaginatedBackupSnapshot
+	ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshot, *http.Response, error)
 
 	/*
 	ListPipelines Return All Data Lake Pipelines from One Project
@@ -350,7 +350,7 @@ func (a *DataLakePipelinesApiService) CreatePipelineExecute(r DataLakePipelinesA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -361,7 +361,7 @@ func (a *DataLakePipelinesApiService) CreatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -372,7 +372,7 @@ func (a *DataLakePipelinesApiService) CreatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -383,7 +383,7 @@ func (a *DataLakePipelinesApiService) CreatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -520,7 +520,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineExecute(r DataLakePipelinesA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -531,7 +531,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineExecute(r DataLakePipelinesA
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -542,7 +542,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineExecute(r DataLakePipelinesA
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -690,7 +690,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetExecute(r DataLake
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -701,7 +701,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetExecute(r DataLake
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -712,7 +712,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetExecute(r DataLake
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -852,7 +852,7 @@ func (a *DataLakePipelinesApiService) GetPipelineExecute(r DataLakePipelinesApiG
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -863,7 +863,7 @@ func (a *DataLakePipelinesApiService) GetPipelineExecute(r DataLakePipelinesApiG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -874,7 +874,7 @@ func (a *DataLakePipelinesApiService) GetPipelineExecute(r DataLakePipelinesApiG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1033,7 +1033,7 @@ func (a *DataLakePipelinesApiService) GetPipelineRunExecute(r DataLakePipelinesA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1044,7 +1044,7 @@ func (a *DataLakePipelinesApiService) GetPipelineRunExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1055,7 +1055,7 @@ func (a *DataLakePipelinesApiService) GetPipelineRunExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1128,7 +1128,7 @@ func (r DataLakePipelinesApiListPipelineRunsRequest) CreatedBefore(createdBefore
 	return r
 }
 
-func (r DataLakePipelinesApiListPipelineRunsRequest) Execute() (*PaginatedPipelineRunView, *http.Response, error) {
+func (r DataLakePipelinesApiListPipelineRunsRequest) Execute() (*PaginatedPipelineRun, *http.Response, error) {
 	return r.ApiService.ListPipelineRunsExecute(r)
 }
 
@@ -1152,13 +1152,13 @@ func (a *DataLakePipelinesApiService) ListPipelineRuns(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return PaginatedPipelineRunView
-func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRunView, *http.Response, error) {
+//  @return PaginatedPipelineRun
+func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipelinesApiListPipelineRunsRequest) (*PaginatedPipelineRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedPipelineRunView
+		localVarReturnValue  *PaginatedPipelineRun
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineRuns")
@@ -1244,7 +1244,7 @@ func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipeline
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1255,7 +1255,7 @@ func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipeline
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1266,7 +1266,7 @@ func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipeline
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1311,7 +1311,7 @@ func (r DataLakePipelinesApiListPipelineSchedulesRequest) Pretty(pretty bool) Da
 	return r
 }
 
-func (r DataLakePipelinesApiListPipelineSchedulesRequest) Execute() ([]ApiPolicyItemView, *http.Response, error) {
+func (r DataLakePipelinesApiListPipelineSchedulesRequest) Execute() ([]PolicyItem, *http.Response, error) {
 	return r.ApiService.ListPipelineSchedulesExecute(r)
 }
 
@@ -1335,13 +1335,13 @@ func (a *DataLakePipelinesApiService) ListPipelineSchedules(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []ApiPolicyItemView
-func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]ApiPolicyItemView, *http.Response, error) {
+//  @return []PolicyItem
+func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePipelinesApiListPipelineSchedulesRequest) ([]PolicyItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiPolicyItemView
+		localVarReturnValue  []PolicyItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineSchedules")
@@ -1415,7 +1415,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePip
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1426,7 +1426,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePip
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1437,7 +1437,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r DataLakePip
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1510,7 +1510,7 @@ func (r DataLakePipelinesApiListPipelineSnapshotsRequest) CompletedAfter(complet
 	return r
 }
 
-func (r DataLakePipelinesApiListPipelineSnapshotsRequest) Execute() (*PaginatedBackupSnapshotView, *http.Response, error) {
+func (r DataLakePipelinesApiListPipelineSnapshotsRequest) Execute() (*PaginatedBackupSnapshot, *http.Response, error) {
 	return r.ApiService.ListPipelineSnapshotsExecute(r)
 }
 
@@ -1534,13 +1534,13 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshots(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return PaginatedBackupSnapshotView
-func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshotView, *http.Response, error) {
+//  @return PaginatedBackupSnapshot
+func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePipelinesApiListPipelineSnapshotsRequest) (*PaginatedBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedBackupSnapshotView
+		localVarReturnValue  *PaginatedBackupSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataLakePipelinesApiService.ListPipelineSnapshots")
@@ -1626,7 +1626,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePip
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1637,7 +1637,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePip
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1648,7 +1648,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePip
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1777,7 +1777,7 @@ func (a *DataLakePipelinesApiService) ListPipelinesExecute(r DataLakePipelinesAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1788,7 +1788,7 @@ func (a *DataLakePipelinesApiService) ListPipelinesExecute(r DataLakePipelinesAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1799,7 +1799,7 @@ func (a *DataLakePipelinesApiService) ListPipelinesExecute(r DataLakePipelinesAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1948,7 +1948,7 @@ func (a *DataLakePipelinesApiService) PausePipelineExecute(r DataLakePipelinesAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1959,7 +1959,7 @@ func (a *DataLakePipelinesApiService) PausePipelineExecute(r DataLakePipelinesAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1970,7 +1970,7 @@ func (a *DataLakePipelinesApiService) PausePipelineExecute(r DataLakePipelinesAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2119,7 +2119,7 @@ func (a *DataLakePipelinesApiService) ResumePipelineExecute(r DataLakePipelinesA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2130,7 +2130,7 @@ func (a *DataLakePipelinesApiService) ResumePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2141,7 +2141,7 @@ func (a *DataLakePipelinesApiService) ResumePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2302,7 +2302,7 @@ func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionExecute(r DataLake
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2313,7 +2313,7 @@ func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionExecute(r DataLake
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2324,7 +2324,7 @@ func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionExecute(r DataLake
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2475,7 +2475,7 @@ func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2486,7 +2486,7 @@ func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2497,7 +2497,7 @@ func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2508,7 +2508,7 @@ func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2519,7 +2519,7 @@ func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r DataLakePipelinesA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

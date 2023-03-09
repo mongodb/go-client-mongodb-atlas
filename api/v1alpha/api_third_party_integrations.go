@@ -35,8 +35,8 @@ type ThirdPartyIntegrationsApi interface {
 	CreateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest
 
 	// CreateThirdPartyIntegrationExecute executes the request
-	//  @return GroupPaginatedIntegrationView
-	CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
+	//  @return GroupPaginatedIntegration
+	CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error)
 
 	/*
 	DeleteThirdPartyIntegration Remove One Third-Party Service Integration
@@ -81,8 +81,8 @@ type ThirdPartyIntegrationsApi interface {
 	ListThirdPartyIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest
 
 	// ListThirdPartyIntegrationsExecute executes the request
-	//  @return GroupPaginatedIntegrationView
-	ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
+	//  @return GroupPaginatedIntegration
+	ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegration, *http.Response, error)
 
 	/*
 	UpdateThirdPartyIntegration Update One Third-Party Service Integration
@@ -97,8 +97,8 @@ type ThirdPartyIntegrationsApi interface {
 	UpdateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest
 
 	// UpdateThirdPartyIntegrationExecute executes the request
-	//  @return GroupPaginatedIntegrationView
-	UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error)
+	//  @return GroupPaginatedIntegration
+	UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error)
 }
 
 // ThirdPartyIntegrationsApiService ThirdPartyIntegrationsApi service
@@ -153,7 +153,7 @@ func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Pretty(pret
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
 	return r.ApiService.CreateThirdPartyIntegrationExecute(r)
 }
 
@@ -177,13 +177,13 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegration(ctx conte
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.CreateThirdPartyIntegration")
@@ -265,7 +265,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -276,7 +276,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -287,7 +287,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -298,7 +298,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -309,7 +309,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -450,7 +450,7 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -461,7 +461,7 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r 
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -472,7 +472,7 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r 
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -483,7 +483,7 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r 
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -617,7 +617,7 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r Thi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -628,7 +628,7 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r Thi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -639,7 +639,7 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r Thi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -650,7 +650,7 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r Thi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -715,7 +715,7 @@ func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Pretty(prett
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
 	return r.ApiService.ListThirdPartyIntegrationsExecute(r)
 }
 
@@ -737,13 +737,13 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrations(ctx contex
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ListThirdPartyIntegrations")
@@ -819,7 +819,7 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -830,7 +830,7 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -841,7 +841,7 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -852,7 +852,7 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -925,7 +925,7 @@ func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Pretty(pret
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegrationView, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
 	return r.ApiService.UpdateThirdPartyIntegrationExecute(r)
 }
 
@@ -949,13 +949,13 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegration(ctx conte
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegrationView
-func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegrationView, *http.Response, error) {
+//  @return GroupPaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegrationView
+		localVarReturnValue  *GroupPaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.UpdateThirdPartyIntegration")
@@ -1037,7 +1037,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1048,7 +1048,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1059,7 +1059,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1070,7 +1070,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

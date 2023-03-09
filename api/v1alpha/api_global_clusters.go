@@ -233,7 +233,7 @@ func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r GlobalCluste
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -244,7 +244,7 @@ func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r GlobalCluste
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,13 +273,13 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
-	managedNamespaceView *ManagedNamespaceView
+	managedNamespace *ManagedNamespace
 	envelope *bool
 }
 
 // Managed namespace to create within the specified global cluster.
-func (r GlobalClustersApiCreateManagedNamespaceRequest) ManagedNamespaceView(managedNamespaceView ManagedNamespaceView) GlobalClustersApiCreateManagedNamespaceRequest {
-	r.managedNamespaceView = &managedNamespaceView
+func (r GlobalClustersApiCreateManagedNamespaceRequest) ManagedNamespace(managedNamespace ManagedNamespace) GlobalClustersApiCreateManagedNamespaceRequest {
+	r.managedNamespace = &managedNamespace
 	return r
 }
 
@@ -346,8 +346,8 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
-	if r.managedNamespaceView == nil {
-		return localVarReturnValue, nil, reportError("managedNamespaceView is required and must be specified")
+	if r.managedNamespace == nil {
+		return localVarReturnValue, nil, reportError("managedNamespace is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -371,7 +371,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.managedNamespaceView
+	localVarPostBody = r.managedNamespace
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -395,7 +395,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -406,7 +406,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -417,7 +417,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -556,7 +556,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalCl
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +567,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalCl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -736,7 +736,7 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -747,7 +747,7 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -886,7 +886,7 @@ func (a *GlobalClustersApiService) GetManagedNamespaceExecute(r GlobalClustersAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

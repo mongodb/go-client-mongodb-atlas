@@ -17,117 +17,117 @@ import (
 
 // NotificationViewForNdsGroup - One target that MongoDB Cloud sends notifications when an alert triggers.
 type NotificationViewForNdsGroup struct {
-	DatadogNotificationView *DatadogNotificationView
-	EmailNotificationView *EmailNotificationView
-	GroupNotificationView *GroupNotificationView
-	HipChatNotificationView *HipChatNotificationView
-	MicrosoftTeamsNotificationView *MicrosoftTeamsNotificationView
-	OpsGenieNotificationView *OpsGenieNotificationView
-	OrgNotificationView *OrgNotificationView
-	PagerDutyNotificationView *PagerDutyNotificationView
-	SMSNotificationView *SMSNotificationView
-	SlackNotificationView *SlackNotificationView
-	TeamNotificationView *TeamNotificationView
-	UserNotificationView *UserNotificationView
-	VictorOpsNotificationView *VictorOpsNotificationView
-	WebhookNotificationView *WebhookNotificationView
+	DatadogNotification *DatadogNotification
+	EmailNotification *EmailNotification
+	GroupNotification *GroupNotification
+	HipChatNotification *HipChatNotification
+	MicrosoftTeamsNotification *MicrosoftTeamsNotification
+	OpsGenieNotification *OpsGenieNotification
+	OrgNotification *OrgNotification
+	PagerDutyNotification *PagerDutyNotification
+	SMSNotification *SMSNotification
+	SlackNotification *SlackNotification
+	TeamNotification *TeamNotification
+	UserNotification *UserNotification
+	VictorOpsNotification *VictorOpsNotification
+	WebhookNotification *WebhookNotification
 }
 
-// DatadogNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns DatadogNotificationView wrapped in NotificationViewForNdsGroup
-func DatadogNotificationViewAsNotificationViewForNdsGroup(v *DatadogNotificationView) NotificationViewForNdsGroup {
+// DatadogNotificationAsNotificationViewForNdsGroup is a convenience function that returns DatadogNotification wrapped in NotificationViewForNdsGroup
+func DatadogNotificationAsNotificationViewForNdsGroup(v *DatadogNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		DatadogNotificationView: v,
+		DatadogNotification: v,
 	}
 }
 
-// EmailNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns EmailNotificationView wrapped in NotificationViewForNdsGroup
-func EmailNotificationViewAsNotificationViewForNdsGroup(v *EmailNotificationView) NotificationViewForNdsGroup {
+// EmailNotificationAsNotificationViewForNdsGroup is a convenience function that returns EmailNotification wrapped in NotificationViewForNdsGroup
+func EmailNotificationAsNotificationViewForNdsGroup(v *EmailNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		EmailNotificationView: v,
+		EmailNotification: v,
 	}
 }
 
-// GroupNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns GroupNotificationView wrapped in NotificationViewForNdsGroup
-func GroupNotificationViewAsNotificationViewForNdsGroup(v *GroupNotificationView) NotificationViewForNdsGroup {
+// GroupNotificationAsNotificationViewForNdsGroup is a convenience function that returns GroupNotification wrapped in NotificationViewForNdsGroup
+func GroupNotificationAsNotificationViewForNdsGroup(v *GroupNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		GroupNotificationView: v,
+		GroupNotification: v,
 	}
 }
 
-// HipChatNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns HipChatNotificationView wrapped in NotificationViewForNdsGroup
-func HipChatNotificationViewAsNotificationViewForNdsGroup(v *HipChatNotificationView) NotificationViewForNdsGroup {
+// HipChatNotificationAsNotificationViewForNdsGroup is a convenience function that returns HipChatNotification wrapped in NotificationViewForNdsGroup
+func HipChatNotificationAsNotificationViewForNdsGroup(v *HipChatNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		HipChatNotificationView: v,
+		HipChatNotification: v,
 	}
 }
 
-// MicrosoftTeamsNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns MicrosoftTeamsNotificationView wrapped in NotificationViewForNdsGroup
-func MicrosoftTeamsNotificationViewAsNotificationViewForNdsGroup(v *MicrosoftTeamsNotificationView) NotificationViewForNdsGroup {
+// MicrosoftTeamsNotificationAsNotificationViewForNdsGroup is a convenience function that returns MicrosoftTeamsNotification wrapped in NotificationViewForNdsGroup
+func MicrosoftTeamsNotificationAsNotificationViewForNdsGroup(v *MicrosoftTeamsNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		MicrosoftTeamsNotificationView: v,
+		MicrosoftTeamsNotification: v,
 	}
 }
 
-// OpsGenieNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns OpsGenieNotificationView wrapped in NotificationViewForNdsGroup
-func OpsGenieNotificationViewAsNotificationViewForNdsGroup(v *OpsGenieNotificationView) NotificationViewForNdsGroup {
+// OpsGenieNotificationAsNotificationViewForNdsGroup is a convenience function that returns OpsGenieNotification wrapped in NotificationViewForNdsGroup
+func OpsGenieNotificationAsNotificationViewForNdsGroup(v *OpsGenieNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		OpsGenieNotificationView: v,
+		OpsGenieNotification: v,
 	}
 }
 
-// OrgNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns OrgNotificationView wrapped in NotificationViewForNdsGroup
-func OrgNotificationViewAsNotificationViewForNdsGroup(v *OrgNotificationView) NotificationViewForNdsGroup {
+// OrgNotificationAsNotificationViewForNdsGroup is a convenience function that returns OrgNotification wrapped in NotificationViewForNdsGroup
+func OrgNotificationAsNotificationViewForNdsGroup(v *OrgNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		OrgNotificationView: v,
+		OrgNotification: v,
 	}
 }
 
-// PagerDutyNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns PagerDutyNotificationView wrapped in NotificationViewForNdsGroup
-func PagerDutyNotificationViewAsNotificationViewForNdsGroup(v *PagerDutyNotificationView) NotificationViewForNdsGroup {
+// PagerDutyNotificationAsNotificationViewForNdsGroup is a convenience function that returns PagerDutyNotification wrapped in NotificationViewForNdsGroup
+func PagerDutyNotificationAsNotificationViewForNdsGroup(v *PagerDutyNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		PagerDutyNotificationView: v,
+		PagerDutyNotification: v,
 	}
 }
 
-// SMSNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns SMSNotificationView wrapped in NotificationViewForNdsGroup
-func SMSNotificationViewAsNotificationViewForNdsGroup(v *SMSNotificationView) NotificationViewForNdsGroup {
+// SMSNotificationAsNotificationViewForNdsGroup is a convenience function that returns SMSNotification wrapped in NotificationViewForNdsGroup
+func SMSNotificationAsNotificationViewForNdsGroup(v *SMSNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		SMSNotificationView: v,
+		SMSNotification: v,
 	}
 }
 
-// SlackNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns SlackNotificationView wrapped in NotificationViewForNdsGroup
-func SlackNotificationViewAsNotificationViewForNdsGroup(v *SlackNotificationView) NotificationViewForNdsGroup {
+// SlackNotificationAsNotificationViewForNdsGroup is a convenience function that returns SlackNotification wrapped in NotificationViewForNdsGroup
+func SlackNotificationAsNotificationViewForNdsGroup(v *SlackNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		SlackNotificationView: v,
+		SlackNotification: v,
 	}
 }
 
-// TeamNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns TeamNotificationView wrapped in NotificationViewForNdsGroup
-func TeamNotificationViewAsNotificationViewForNdsGroup(v *TeamNotificationView) NotificationViewForNdsGroup {
+// TeamNotificationAsNotificationViewForNdsGroup is a convenience function that returns TeamNotification wrapped in NotificationViewForNdsGroup
+func TeamNotificationAsNotificationViewForNdsGroup(v *TeamNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		TeamNotificationView: v,
+		TeamNotification: v,
 	}
 }
 
-// UserNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns UserNotificationView wrapped in NotificationViewForNdsGroup
-func UserNotificationViewAsNotificationViewForNdsGroup(v *UserNotificationView) NotificationViewForNdsGroup {
+// UserNotificationAsNotificationViewForNdsGroup is a convenience function that returns UserNotification wrapped in NotificationViewForNdsGroup
+func UserNotificationAsNotificationViewForNdsGroup(v *UserNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		UserNotificationView: v,
+		UserNotification: v,
 	}
 }
 
-// VictorOpsNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns VictorOpsNotificationView wrapped in NotificationViewForNdsGroup
-func VictorOpsNotificationViewAsNotificationViewForNdsGroup(v *VictorOpsNotificationView) NotificationViewForNdsGroup {
+// VictorOpsNotificationAsNotificationViewForNdsGroup is a convenience function that returns VictorOpsNotification wrapped in NotificationViewForNdsGroup
+func VictorOpsNotificationAsNotificationViewForNdsGroup(v *VictorOpsNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		VictorOpsNotificationView: v,
+		VictorOpsNotification: v,
 	}
 }
 
-// WebhookNotificationViewAsNotificationViewForNdsGroup is a convenience function that returns WebhookNotificationView wrapped in NotificationViewForNdsGroup
-func WebhookNotificationViewAsNotificationViewForNdsGroup(v *WebhookNotificationView) NotificationViewForNdsGroup {
+// WebhookNotificationAsNotificationViewForNdsGroup is a convenience function that returns WebhookNotification wrapped in NotificationViewForNdsGroup
+func WebhookNotificationAsNotificationViewForNdsGroup(v *WebhookNotification) NotificationViewForNdsGroup {
 	return NotificationViewForNdsGroup{
-		WebhookNotificationView: v,
+		WebhookNotification: v,
 	}
 }
 
@@ -136,204 +136,204 @@ func WebhookNotificationViewAsNotificationViewForNdsGroup(v *WebhookNotification
 func (dst *NotificationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into DatadogNotificationView
-	err = json.Unmarshal(data, &dst.DatadogNotificationView)
+	// try to unmarshal data into DatadogNotification
+	err = json.Unmarshal(data, &dst.DatadogNotification)
 	if err == nil {
-		jsonDatadogNotificationView, _ := json.Marshal(dst.DatadogNotificationView)
-		if string(jsonDatadogNotificationView) == "{}" { // empty struct
-			dst.DatadogNotificationView = nil
+		jsonDatadogNotification, _ := json.Marshal(dst.DatadogNotification)
+		if string(jsonDatadogNotification) == "{}" { // empty struct
+			dst.DatadogNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.DatadogNotificationView = nil
+		dst.DatadogNotification = nil
 	}
 
-	// try to unmarshal data into EmailNotificationView
-	err = json.Unmarshal(data, &dst.EmailNotificationView)
+	// try to unmarshal data into EmailNotification
+	err = json.Unmarshal(data, &dst.EmailNotification)
 	if err == nil {
-		jsonEmailNotificationView, _ := json.Marshal(dst.EmailNotificationView)
-		if string(jsonEmailNotificationView) == "{}" { // empty struct
-			dst.EmailNotificationView = nil
+		jsonEmailNotification, _ := json.Marshal(dst.EmailNotification)
+		if string(jsonEmailNotification) == "{}" { // empty struct
+			dst.EmailNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.EmailNotificationView = nil
+		dst.EmailNotification = nil
 	}
 
-	// try to unmarshal data into GroupNotificationView
-	err = json.Unmarshal(data, &dst.GroupNotificationView)
+	// try to unmarshal data into GroupNotification
+	err = json.Unmarshal(data, &dst.GroupNotification)
 	if err == nil {
-		jsonGroupNotificationView, _ := json.Marshal(dst.GroupNotificationView)
-		if string(jsonGroupNotificationView) == "{}" { // empty struct
-			dst.GroupNotificationView = nil
+		jsonGroupNotification, _ := json.Marshal(dst.GroupNotification)
+		if string(jsonGroupNotification) == "{}" { // empty struct
+			dst.GroupNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.GroupNotificationView = nil
+		dst.GroupNotification = nil
 	}
 
-	// try to unmarshal data into HipChatNotificationView
-	err = json.Unmarshal(data, &dst.HipChatNotificationView)
+	// try to unmarshal data into HipChatNotification
+	err = json.Unmarshal(data, &dst.HipChatNotification)
 	if err == nil {
-		jsonHipChatNotificationView, _ := json.Marshal(dst.HipChatNotificationView)
-		if string(jsonHipChatNotificationView) == "{}" { // empty struct
-			dst.HipChatNotificationView = nil
+		jsonHipChatNotification, _ := json.Marshal(dst.HipChatNotification)
+		if string(jsonHipChatNotification) == "{}" { // empty struct
+			dst.HipChatNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.HipChatNotificationView = nil
+		dst.HipChatNotification = nil
 	}
 
-	// try to unmarshal data into MicrosoftTeamsNotificationView
-	err = json.Unmarshal(data, &dst.MicrosoftTeamsNotificationView)
+	// try to unmarshal data into MicrosoftTeamsNotification
+	err = json.Unmarshal(data, &dst.MicrosoftTeamsNotification)
 	if err == nil {
-		jsonMicrosoftTeamsNotificationView, _ := json.Marshal(dst.MicrosoftTeamsNotificationView)
-		if string(jsonMicrosoftTeamsNotificationView) == "{}" { // empty struct
-			dst.MicrosoftTeamsNotificationView = nil
+		jsonMicrosoftTeamsNotification, _ := json.Marshal(dst.MicrosoftTeamsNotification)
+		if string(jsonMicrosoftTeamsNotification) == "{}" { // empty struct
+			dst.MicrosoftTeamsNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.MicrosoftTeamsNotificationView = nil
+		dst.MicrosoftTeamsNotification = nil
 	}
 
-	// try to unmarshal data into OpsGenieNotificationView
-	err = json.Unmarshal(data, &dst.OpsGenieNotificationView)
+	// try to unmarshal data into OpsGenieNotification
+	err = json.Unmarshal(data, &dst.OpsGenieNotification)
 	if err == nil {
-		jsonOpsGenieNotificationView, _ := json.Marshal(dst.OpsGenieNotificationView)
-		if string(jsonOpsGenieNotificationView) == "{}" { // empty struct
-			dst.OpsGenieNotificationView = nil
+		jsonOpsGenieNotification, _ := json.Marshal(dst.OpsGenieNotification)
+		if string(jsonOpsGenieNotification) == "{}" { // empty struct
+			dst.OpsGenieNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.OpsGenieNotificationView = nil
+		dst.OpsGenieNotification = nil
 	}
 
-	// try to unmarshal data into OrgNotificationView
-	err = json.Unmarshal(data, &dst.OrgNotificationView)
+	// try to unmarshal data into OrgNotification
+	err = json.Unmarshal(data, &dst.OrgNotification)
 	if err == nil {
-		jsonOrgNotificationView, _ := json.Marshal(dst.OrgNotificationView)
-		if string(jsonOrgNotificationView) == "{}" { // empty struct
-			dst.OrgNotificationView = nil
+		jsonOrgNotification, _ := json.Marshal(dst.OrgNotification)
+		if string(jsonOrgNotification) == "{}" { // empty struct
+			dst.OrgNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.OrgNotificationView = nil
+		dst.OrgNotification = nil
 	}
 
-	// try to unmarshal data into PagerDutyNotificationView
-	err = json.Unmarshal(data, &dst.PagerDutyNotificationView)
+	// try to unmarshal data into PagerDutyNotification
+	err = json.Unmarshal(data, &dst.PagerDutyNotification)
 	if err == nil {
-		jsonPagerDutyNotificationView, _ := json.Marshal(dst.PagerDutyNotificationView)
-		if string(jsonPagerDutyNotificationView) == "{}" { // empty struct
-			dst.PagerDutyNotificationView = nil
+		jsonPagerDutyNotification, _ := json.Marshal(dst.PagerDutyNotification)
+		if string(jsonPagerDutyNotification) == "{}" { // empty struct
+			dst.PagerDutyNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.PagerDutyNotificationView = nil
+		dst.PagerDutyNotification = nil
 	}
 
-	// try to unmarshal data into SMSNotificationView
-	err = json.Unmarshal(data, &dst.SMSNotificationView)
+	// try to unmarshal data into SMSNotification
+	err = json.Unmarshal(data, &dst.SMSNotification)
 	if err == nil {
-		jsonSMSNotificationView, _ := json.Marshal(dst.SMSNotificationView)
-		if string(jsonSMSNotificationView) == "{}" { // empty struct
-			dst.SMSNotificationView = nil
+		jsonSMSNotification, _ := json.Marshal(dst.SMSNotification)
+		if string(jsonSMSNotification) == "{}" { // empty struct
+			dst.SMSNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.SMSNotificationView = nil
+		dst.SMSNotification = nil
 	}
 
-	// try to unmarshal data into SlackNotificationView
-	err = json.Unmarshal(data, &dst.SlackNotificationView)
+	// try to unmarshal data into SlackNotification
+	err = json.Unmarshal(data, &dst.SlackNotification)
 	if err == nil {
-		jsonSlackNotificationView, _ := json.Marshal(dst.SlackNotificationView)
-		if string(jsonSlackNotificationView) == "{}" { // empty struct
-			dst.SlackNotificationView = nil
+		jsonSlackNotification, _ := json.Marshal(dst.SlackNotification)
+		if string(jsonSlackNotification) == "{}" { // empty struct
+			dst.SlackNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.SlackNotificationView = nil
+		dst.SlackNotification = nil
 	}
 
-	// try to unmarshal data into TeamNotificationView
-	err = json.Unmarshal(data, &dst.TeamNotificationView)
+	// try to unmarshal data into TeamNotification
+	err = json.Unmarshal(data, &dst.TeamNotification)
 	if err == nil {
-		jsonTeamNotificationView, _ := json.Marshal(dst.TeamNotificationView)
-		if string(jsonTeamNotificationView) == "{}" { // empty struct
-			dst.TeamNotificationView = nil
+		jsonTeamNotification, _ := json.Marshal(dst.TeamNotification)
+		if string(jsonTeamNotification) == "{}" { // empty struct
+			dst.TeamNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.TeamNotificationView = nil
+		dst.TeamNotification = nil
 	}
 
-	// try to unmarshal data into UserNotificationView
-	err = json.Unmarshal(data, &dst.UserNotificationView)
+	// try to unmarshal data into UserNotification
+	err = json.Unmarshal(data, &dst.UserNotification)
 	if err == nil {
-		jsonUserNotificationView, _ := json.Marshal(dst.UserNotificationView)
-		if string(jsonUserNotificationView) == "{}" { // empty struct
-			dst.UserNotificationView = nil
+		jsonUserNotification, _ := json.Marshal(dst.UserNotification)
+		if string(jsonUserNotification) == "{}" { // empty struct
+			dst.UserNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.UserNotificationView = nil
+		dst.UserNotification = nil
 	}
 
-	// try to unmarshal data into VictorOpsNotificationView
-	err = json.Unmarshal(data, &dst.VictorOpsNotificationView)
+	// try to unmarshal data into VictorOpsNotification
+	err = json.Unmarshal(data, &dst.VictorOpsNotification)
 	if err == nil {
-		jsonVictorOpsNotificationView, _ := json.Marshal(dst.VictorOpsNotificationView)
-		if string(jsonVictorOpsNotificationView) == "{}" { // empty struct
-			dst.VictorOpsNotificationView = nil
+		jsonVictorOpsNotification, _ := json.Marshal(dst.VictorOpsNotification)
+		if string(jsonVictorOpsNotification) == "{}" { // empty struct
+			dst.VictorOpsNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.VictorOpsNotificationView = nil
+		dst.VictorOpsNotification = nil
 	}
 
-	// try to unmarshal data into WebhookNotificationView
-	err = json.Unmarshal(data, &dst.WebhookNotificationView)
+	// try to unmarshal data into WebhookNotification
+	err = json.Unmarshal(data, &dst.WebhookNotification)
 	if err == nil {
-		jsonWebhookNotificationView, _ := json.Marshal(dst.WebhookNotificationView)
-		if string(jsonWebhookNotificationView) == "{}" { // empty struct
-			dst.WebhookNotificationView = nil
+		jsonWebhookNotification, _ := json.Marshal(dst.WebhookNotification)
+		if string(jsonWebhookNotification) == "{}" { // empty struct
+			dst.WebhookNotification = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.WebhookNotificationView = nil
+		dst.WebhookNotification = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.DatadogNotificationView = nil
-		dst.EmailNotificationView = nil
-		dst.GroupNotificationView = nil
-		dst.HipChatNotificationView = nil
-		dst.MicrosoftTeamsNotificationView = nil
-		dst.OpsGenieNotificationView = nil
-		dst.OrgNotificationView = nil
-		dst.PagerDutyNotificationView = nil
-		dst.SMSNotificationView = nil
-		dst.SlackNotificationView = nil
-		dst.TeamNotificationView = nil
-		dst.UserNotificationView = nil
-		dst.VictorOpsNotificationView = nil
-		dst.WebhookNotificationView = nil
+		dst.DatadogNotification = nil
+		dst.EmailNotification = nil
+		dst.GroupNotification = nil
+		dst.HipChatNotification = nil
+		dst.MicrosoftTeamsNotification = nil
+		dst.OpsGenieNotification = nil
+		dst.OrgNotification = nil
+		dst.PagerDutyNotification = nil
+		dst.SMSNotification = nil
+		dst.SlackNotification = nil
+		dst.TeamNotification = nil
+		dst.UserNotification = nil
+		dst.VictorOpsNotification = nil
+		dst.WebhookNotification = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(NotificationViewForNdsGroup)")
 	} else if match == 1 {
@@ -345,60 +345,60 @@ func (dst *NotificationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src NotificationViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	if src.DatadogNotificationView != nil {
-		return json.Marshal(&src.DatadogNotificationView)
+	if src.DatadogNotification != nil {
+		return json.Marshal(&src.DatadogNotification)
 	}
 
-	if src.EmailNotificationView != nil {
-		return json.Marshal(&src.EmailNotificationView)
+	if src.EmailNotification != nil {
+		return json.Marshal(&src.EmailNotification)
 	}
 
-	if src.GroupNotificationView != nil {
-		return json.Marshal(&src.GroupNotificationView)
+	if src.GroupNotification != nil {
+		return json.Marshal(&src.GroupNotification)
 	}
 
-	if src.HipChatNotificationView != nil {
-		return json.Marshal(&src.HipChatNotificationView)
+	if src.HipChatNotification != nil {
+		return json.Marshal(&src.HipChatNotification)
 	}
 
-	if src.MicrosoftTeamsNotificationView != nil {
-		return json.Marshal(&src.MicrosoftTeamsNotificationView)
+	if src.MicrosoftTeamsNotification != nil {
+		return json.Marshal(&src.MicrosoftTeamsNotification)
 	}
 
-	if src.OpsGenieNotificationView != nil {
-		return json.Marshal(&src.OpsGenieNotificationView)
+	if src.OpsGenieNotification != nil {
+		return json.Marshal(&src.OpsGenieNotification)
 	}
 
-	if src.OrgNotificationView != nil {
-		return json.Marshal(&src.OrgNotificationView)
+	if src.OrgNotification != nil {
+		return json.Marshal(&src.OrgNotification)
 	}
 
-	if src.PagerDutyNotificationView != nil {
-		return json.Marshal(&src.PagerDutyNotificationView)
+	if src.PagerDutyNotification != nil {
+		return json.Marshal(&src.PagerDutyNotification)
 	}
 
-	if src.SMSNotificationView != nil {
-		return json.Marshal(&src.SMSNotificationView)
+	if src.SMSNotification != nil {
+		return json.Marshal(&src.SMSNotification)
 	}
 
-	if src.SlackNotificationView != nil {
-		return json.Marshal(&src.SlackNotificationView)
+	if src.SlackNotification != nil {
+		return json.Marshal(&src.SlackNotification)
 	}
 
-	if src.TeamNotificationView != nil {
-		return json.Marshal(&src.TeamNotificationView)
+	if src.TeamNotification != nil {
+		return json.Marshal(&src.TeamNotification)
 	}
 
-	if src.UserNotificationView != nil {
-		return json.Marshal(&src.UserNotificationView)
+	if src.UserNotification != nil {
+		return json.Marshal(&src.UserNotification)
 	}
 
-	if src.VictorOpsNotificationView != nil {
-		return json.Marshal(&src.VictorOpsNotificationView)
+	if src.VictorOpsNotification != nil {
+		return json.Marshal(&src.VictorOpsNotification)
 	}
 
-	if src.WebhookNotificationView != nil {
-		return json.Marshal(&src.WebhookNotificationView)
+	if src.WebhookNotification != nil {
+		return json.Marshal(&src.WebhookNotification)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -409,60 +409,60 @@ func (obj *NotificationViewForNdsGroup) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.DatadogNotificationView != nil {
-		return obj.DatadogNotificationView
+	if obj.DatadogNotification != nil {
+		return obj.DatadogNotification
 	}
 
-	if obj.EmailNotificationView != nil {
-		return obj.EmailNotificationView
+	if obj.EmailNotification != nil {
+		return obj.EmailNotification
 	}
 
-	if obj.GroupNotificationView != nil {
-		return obj.GroupNotificationView
+	if obj.GroupNotification != nil {
+		return obj.GroupNotification
 	}
 
-	if obj.HipChatNotificationView != nil {
-		return obj.HipChatNotificationView
+	if obj.HipChatNotification != nil {
+		return obj.HipChatNotification
 	}
 
-	if obj.MicrosoftTeamsNotificationView != nil {
-		return obj.MicrosoftTeamsNotificationView
+	if obj.MicrosoftTeamsNotification != nil {
+		return obj.MicrosoftTeamsNotification
 	}
 
-	if obj.OpsGenieNotificationView != nil {
-		return obj.OpsGenieNotificationView
+	if obj.OpsGenieNotification != nil {
+		return obj.OpsGenieNotification
 	}
 
-	if obj.OrgNotificationView != nil {
-		return obj.OrgNotificationView
+	if obj.OrgNotification != nil {
+		return obj.OrgNotification
 	}
 
-	if obj.PagerDutyNotificationView != nil {
-		return obj.PagerDutyNotificationView
+	if obj.PagerDutyNotification != nil {
+		return obj.PagerDutyNotification
 	}
 
-	if obj.SMSNotificationView != nil {
-		return obj.SMSNotificationView
+	if obj.SMSNotification != nil {
+		return obj.SMSNotification
 	}
 
-	if obj.SlackNotificationView != nil {
-		return obj.SlackNotificationView
+	if obj.SlackNotification != nil {
+		return obj.SlackNotification
 	}
 
-	if obj.TeamNotificationView != nil {
-		return obj.TeamNotificationView
+	if obj.TeamNotification != nil {
+		return obj.TeamNotification
 	}
 
-	if obj.UserNotificationView != nil {
-		return obj.UserNotificationView
+	if obj.UserNotification != nil {
+		return obj.UserNotification
 	}
 
-	if obj.VictorOpsNotificationView != nil {
-		return obj.VictorOpsNotificationView
+	if obj.VictorOpsNotification != nil {
+		return obj.VictorOpsNotification
 	}
 
-	if obj.WebhookNotificationView != nil {
-		return obj.WebhookNotificationView
+	if obj.WebhookNotification != nil {
+		return obj.WebhookNotification
 	}
 
 	// all schemas are nil

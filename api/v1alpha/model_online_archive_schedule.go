@@ -17,37 +17,37 @@ import (
 
 // OnlineArchiveSchedule - Regular frequency and duration when archiving process occurs.
 type OnlineArchiveSchedule struct {
-	DailyScheduleView *DailyScheduleView
-	DefaultScheduleView *DefaultScheduleView
-	MonthlyScheduleView *MonthlyScheduleView
-	WeeklyScheduleView *WeeklyScheduleView
+	DailySchedule *DailySchedule
+	DefaultSchedule *DefaultSchedule
+	MonthlySchedule *MonthlySchedule
+	WeeklySchedule *WeeklySchedule
 }
 
-// DailyScheduleViewAsOnlineArchiveSchedule is a convenience function that returns DailyScheduleView wrapped in OnlineArchiveSchedule
-func DailyScheduleViewAsOnlineArchiveSchedule(v *DailyScheduleView) OnlineArchiveSchedule {
+// DailyScheduleAsOnlineArchiveSchedule is a convenience function that returns DailySchedule wrapped in OnlineArchiveSchedule
+func DailyScheduleAsOnlineArchiveSchedule(v *DailySchedule) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
-		DailyScheduleView: v,
+		DailySchedule: v,
 	}
 }
 
-// DefaultScheduleViewAsOnlineArchiveSchedule is a convenience function that returns DefaultScheduleView wrapped in OnlineArchiveSchedule
-func DefaultScheduleViewAsOnlineArchiveSchedule(v *DefaultScheduleView) OnlineArchiveSchedule {
+// DefaultScheduleAsOnlineArchiveSchedule is a convenience function that returns DefaultSchedule wrapped in OnlineArchiveSchedule
+func DefaultScheduleAsOnlineArchiveSchedule(v *DefaultSchedule) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
-		DefaultScheduleView: v,
+		DefaultSchedule: v,
 	}
 }
 
-// MonthlyScheduleViewAsOnlineArchiveSchedule is a convenience function that returns MonthlyScheduleView wrapped in OnlineArchiveSchedule
-func MonthlyScheduleViewAsOnlineArchiveSchedule(v *MonthlyScheduleView) OnlineArchiveSchedule {
+// MonthlyScheduleAsOnlineArchiveSchedule is a convenience function that returns MonthlySchedule wrapped in OnlineArchiveSchedule
+func MonthlyScheduleAsOnlineArchiveSchedule(v *MonthlySchedule) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
-		MonthlyScheduleView: v,
+		MonthlySchedule: v,
 	}
 }
 
-// WeeklyScheduleViewAsOnlineArchiveSchedule is a convenience function that returns WeeklyScheduleView wrapped in OnlineArchiveSchedule
-func WeeklyScheduleViewAsOnlineArchiveSchedule(v *WeeklyScheduleView) OnlineArchiveSchedule {
+// WeeklyScheduleAsOnlineArchiveSchedule is a convenience function that returns WeeklySchedule wrapped in OnlineArchiveSchedule
+func WeeklyScheduleAsOnlineArchiveSchedule(v *WeeklySchedule) OnlineArchiveSchedule {
 	return OnlineArchiveSchedule{
-		WeeklyScheduleView: v,
+		WeeklySchedule: v,
 	}
 }
 
@@ -64,97 +64,97 @@ func (dst *OnlineArchiveSchedule) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'DAILY'
 	if jsonDict["type"] == "DAILY" {
-		// try to unmarshal JSON data into DailyScheduleView
-		err = json.Unmarshal(data, &dst.DailyScheduleView)
+		// try to unmarshal JSON data into DailySchedule
+		err = json.Unmarshal(data, &dst.DailySchedule)
 		if err == nil {
-			return nil // data stored in dst.DailyScheduleView, return on the first match
+			return nil // data stored in dst.DailySchedule, return on the first match
 		} else {
-			dst.DailyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DailyScheduleView: %s", err.Error())
+			dst.DailySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DailySchedule: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'DEFAULT'
 	if jsonDict["type"] == "DEFAULT" {
-		// try to unmarshal JSON data into DefaultScheduleView
-		err = json.Unmarshal(data, &dst.DefaultScheduleView)
+		// try to unmarshal JSON data into DefaultSchedule
+		err = json.Unmarshal(data, &dst.DefaultSchedule)
 		if err == nil {
-			return nil // data stored in dst.DefaultScheduleView, return on the first match
+			return nil // data stored in dst.DefaultSchedule, return on the first match
 		} else {
-			dst.DefaultScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DefaultScheduleView: %s", err.Error())
+			dst.DefaultSchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DefaultSchedule: %s", err.Error())
 		}
 	}
 
-	// check if the discriminator value is 'DailyScheduleView'
-	if jsonDict["type"] == "DailyScheduleView" {
-		// try to unmarshal JSON data into DailyScheduleView
-		err = json.Unmarshal(data, &dst.DailyScheduleView)
+	// check if the discriminator value is 'DailySchedule'
+	if jsonDict["type"] == "DailySchedule" {
+		// try to unmarshal JSON data into DailySchedule
+		err = json.Unmarshal(data, &dst.DailySchedule)
 		if err == nil {
-			return nil // data stored in dst.DailyScheduleView, return on the first match
+			return nil // data stored in dst.DailySchedule, return on the first match
 		} else {
-			dst.DailyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DailyScheduleView: %s", err.Error())
+			dst.DailySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DailySchedule: %s", err.Error())
 		}
 	}
 
-	// check if the discriminator value is 'DefaultScheduleView'
-	if jsonDict["type"] == "DefaultScheduleView" {
-		// try to unmarshal JSON data into DefaultScheduleView
-		err = json.Unmarshal(data, &dst.DefaultScheduleView)
+	// check if the discriminator value is 'DefaultSchedule'
+	if jsonDict["type"] == "DefaultSchedule" {
+		// try to unmarshal JSON data into DefaultSchedule
+		err = json.Unmarshal(data, &dst.DefaultSchedule)
 		if err == nil {
-			return nil // data stored in dst.DefaultScheduleView, return on the first match
+			return nil // data stored in dst.DefaultSchedule, return on the first match
 		} else {
-			dst.DefaultScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DefaultScheduleView: %s", err.Error())
+			dst.DefaultSchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as DefaultSchedule: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'MONTHLY'
 	if jsonDict["type"] == "MONTHLY" {
-		// try to unmarshal JSON data into MonthlyScheduleView
-		err = json.Unmarshal(data, &dst.MonthlyScheduleView)
+		// try to unmarshal JSON data into MonthlySchedule
+		err = json.Unmarshal(data, &dst.MonthlySchedule)
 		if err == nil {
-			return nil // data stored in dst.MonthlyScheduleView, return on the first match
+			return nil // data stored in dst.MonthlySchedule, return on the first match
 		} else {
-			dst.MonthlyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as MonthlyScheduleView: %s", err.Error())
+			dst.MonthlySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as MonthlySchedule: %s", err.Error())
 		}
 	}
 
-	// check if the discriminator value is 'MonthlyScheduleView'
-	if jsonDict["type"] == "MonthlyScheduleView" {
-		// try to unmarshal JSON data into MonthlyScheduleView
-		err = json.Unmarshal(data, &dst.MonthlyScheduleView)
+	// check if the discriminator value is 'MonthlySchedule'
+	if jsonDict["type"] == "MonthlySchedule" {
+		// try to unmarshal JSON data into MonthlySchedule
+		err = json.Unmarshal(data, &dst.MonthlySchedule)
 		if err == nil {
-			return nil // data stored in dst.MonthlyScheduleView, return on the first match
+			return nil // data stored in dst.MonthlySchedule, return on the first match
 		} else {
-			dst.MonthlyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as MonthlyScheduleView: %s", err.Error())
+			dst.MonthlySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as MonthlySchedule: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'WEEKLY'
 	if jsonDict["type"] == "WEEKLY" {
-		// try to unmarshal JSON data into WeeklyScheduleView
-		err = json.Unmarshal(data, &dst.WeeklyScheduleView)
+		// try to unmarshal JSON data into WeeklySchedule
+		err = json.Unmarshal(data, &dst.WeeklySchedule)
 		if err == nil {
-			return nil // data stored in dst.WeeklyScheduleView, return on the first match
+			return nil // data stored in dst.WeeklySchedule, return on the first match
 		} else {
-			dst.WeeklyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as WeeklyScheduleView: %s", err.Error())
+			dst.WeeklySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as WeeklySchedule: %s", err.Error())
 		}
 	}
 
-	// check if the discriminator value is 'WeeklyScheduleView'
-	if jsonDict["type"] == "WeeklyScheduleView" {
-		// try to unmarshal JSON data into WeeklyScheduleView
-		err = json.Unmarshal(data, &dst.WeeklyScheduleView)
+	// check if the discriminator value is 'WeeklySchedule'
+	if jsonDict["type"] == "WeeklySchedule" {
+		// try to unmarshal JSON data into WeeklySchedule
+		err = json.Unmarshal(data, &dst.WeeklySchedule)
 		if err == nil {
-			return nil // data stored in dst.WeeklyScheduleView, return on the first match
+			return nil // data stored in dst.WeeklySchedule, return on the first match
 		} else {
-			dst.WeeklyScheduleView = nil
-			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as WeeklyScheduleView: %s", err.Error())
+			dst.WeeklySchedule = nil
+			return fmt.Errorf("failed to unmarshal OnlineArchiveSchedule as WeeklySchedule: %s", err.Error())
 		}
 	}
 
@@ -163,20 +163,20 @@ func (dst *OnlineArchiveSchedule) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src OnlineArchiveSchedule) MarshalJSON() ([]byte, error) {
-	if src.DailyScheduleView != nil {
-		return json.Marshal(&src.DailyScheduleView)
+	if src.DailySchedule != nil {
+		return json.Marshal(&src.DailySchedule)
 	}
 
-	if src.DefaultScheduleView != nil {
-		return json.Marshal(&src.DefaultScheduleView)
+	if src.DefaultSchedule != nil {
+		return json.Marshal(&src.DefaultSchedule)
 	}
 
-	if src.MonthlyScheduleView != nil {
-		return json.Marshal(&src.MonthlyScheduleView)
+	if src.MonthlySchedule != nil {
+		return json.Marshal(&src.MonthlySchedule)
 	}
 
-	if src.WeeklyScheduleView != nil {
-		return json.Marshal(&src.WeeklyScheduleView)
+	if src.WeeklySchedule != nil {
+		return json.Marshal(&src.WeeklySchedule)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -187,20 +187,20 @@ func (obj *OnlineArchiveSchedule) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.DailyScheduleView != nil {
-		return obj.DailyScheduleView
+	if obj.DailySchedule != nil {
+		return obj.DailySchedule
 	}
 
-	if obj.DefaultScheduleView != nil {
-		return obj.DefaultScheduleView
+	if obj.DefaultSchedule != nil {
+		return obj.DefaultSchedule
 	}
 
-	if obj.MonthlyScheduleView != nil {
-		return obj.MonthlyScheduleView
+	if obj.MonthlySchedule != nil {
+		return obj.MonthlySchedule
 	}
 
-	if obj.WeeklyScheduleView != nil {
-		return obj.WeeklyScheduleView
+	if obj.WeeklySchedule != nil {
+		return obj.WeeklySchedule
 	}
 
 	// all schemas are nil

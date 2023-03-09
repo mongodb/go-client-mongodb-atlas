@@ -31,7 +31,7 @@ type Checkpoint struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Metadata that describes the complete snapshot.  - For a replica set, this array contains a single document. - For a sharded cluster, this array contains one document for each shard plus one document for the config host.
-	Parts []ApiCheckpointPartView `json:"parts,omitempty"`
+	Parts []CheckpointPart `json:"parts,omitempty"`
 	// Flag that indicates whether MongoDB Cloud can use the checkpoint for a restore.
 	Restorable *bool `json:"restorable,omitempty"`
 	// Date and time when the balancer stopped and began the checkpoint. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -218,9 +218,9 @@ func (o *Checkpoint) SetLinks(v []Link) {
 }
 
 // GetParts returns the Parts field value if set, zero value otherwise.
-func (o *Checkpoint) GetParts() []ApiCheckpointPartView {
+func (o *Checkpoint) GetParts() []CheckpointPart {
 	if o == nil || IsNil(o.Parts) {
-		var ret []ApiCheckpointPartView
+		var ret []CheckpointPart
 		return ret
 	}
 	return o.Parts
@@ -228,7 +228,7 @@ func (o *Checkpoint) GetParts() []ApiCheckpointPartView {
 
 // GetPartsOk returns a tuple with the Parts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Checkpoint) GetPartsOk() ([]ApiCheckpointPartView, bool) {
+func (o *Checkpoint) GetPartsOk() ([]CheckpointPart, bool) {
 	if o == nil || IsNil(o.Parts) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *Checkpoint) HasParts() bool {
 	return false
 }
 
-// SetParts gets a reference to the given []ApiCheckpointPartView and assigns it to the Parts field.
-func (o *Checkpoint) SetParts(v []ApiCheckpointPartView) {
+// SetParts gets a reference to the given []CheckpointPart and assigns it to the Parts field.
+func (o *Checkpoint) SetParts(v []CheckpointPart) {
 	o.Parts = v
 }
 

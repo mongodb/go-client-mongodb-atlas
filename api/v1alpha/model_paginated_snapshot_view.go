@@ -22,7 +22,7 @@ type PaginatedSnapshotView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []ApiSnapshotView `json:"results,omitempty"`
+	Results []SnapshotView `json:"results,omitempty"`
 	// Number of documents returned in this response.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -77,9 +77,9 @@ func (o *PaginatedSnapshotView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedSnapshotView) GetResults() []ApiSnapshotView {
+func (o *PaginatedSnapshotView) GetResults() []SnapshotView {
 	if o == nil || IsNil(o.Results) {
-		var ret []ApiSnapshotView
+		var ret []SnapshotView
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *PaginatedSnapshotView) GetResults() []ApiSnapshotView {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedSnapshotView) GetResultsOk() ([]ApiSnapshotView, bool) {
+func (o *PaginatedSnapshotView) GetResultsOk() ([]SnapshotView, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PaginatedSnapshotView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []ApiSnapshotView and assigns it to the Results field.
-func (o *PaginatedSnapshotView) SetResults(v []ApiSnapshotView) {
+// SetResults gets a reference to the given []SnapshotView and assigns it to the Results field.
+func (o *PaginatedSnapshotView) SetResults(v []SnapshotView) {
 	o.Results = v
 }
 

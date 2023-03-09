@@ -36,8 +36,8 @@ type AccessTrackingApi interface {
 	ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiListAccessLogsByClusterNameRequest
 
 	// ListAccessLogsByClusterNameExecute executes the request
-	//  @return ApiMongoDBAccessLogsListView
-	ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
+	//  @return MongoDBAccessLogsList
+	ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*MongoDBAccessLogsList, *http.Response, error)
 
 	/*
 	ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
@@ -52,8 +52,8 @@ type AccessTrackingApi interface {
 	ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiListAccessLogsByHostnameRequest
 
 	// ListAccessLogsByHostnameExecute executes the request
-	//  @return ApiMongoDBAccessLogsListView
-	ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error)
+	//  @return MongoDBAccessLogsList
+	ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*MongoDBAccessLogsList, *http.Response, error)
 }
 
 // AccessTrackingApiService AccessTrackingApi service
@@ -115,7 +115,7 @@ func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Start(start time.Ti
 	return r
 }
 
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
 	return r.ApiService.ListAccessLogsByClusterNameExecute(r)
 }
 
@@ -139,13 +139,13 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ApiMongoDBAccessLogsListView
-func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+//  @return MongoDBAccessLogsList
+func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiMongoDBAccessLogsListView
+		localVarReturnValue  *MongoDBAccessLogsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ListAccessLogsByClusterName")
@@ -234,7 +234,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -245,7 +245,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -256,7 +256,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -336,7 +336,7 @@ func (r AccessTrackingApiListAccessLogsByHostnameRequest) Start(start time.Time)
 	return r
 }
 
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) Execute() (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+func (r AccessTrackingApiListAccessLogsByHostnameRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
 	return r.ApiService.ListAccessLogsByHostnameExecute(r)
 }
 
@@ -360,13 +360,13 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ApiMongoDBAccessLogsListView
-func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*ApiMongoDBAccessLogsListView, *http.Response, error) {
+//  @return MongoDBAccessLogsList
+func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiMongoDBAccessLogsListView
+		localVarReturnValue  *MongoDBAccessLogsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessTrackingApiService.ListAccessLogsByHostname")
@@ -449,7 +449,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -460,7 +460,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -471,7 +471,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

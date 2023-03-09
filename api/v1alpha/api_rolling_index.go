@@ -46,14 +46,14 @@ type RollingIndexApiCreateRollingIndexRequest struct {
 	ApiService RollingIndexApi
 	groupId string
 	clusterName string
-	apiIndexRequestView *ApiIndexRequestView
+	indexRequest *IndexRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Rolling index to create on the specified cluster.
-func (r RollingIndexApiCreateRollingIndexRequest) ApiIndexRequestView(apiIndexRequestView ApiIndexRequestView) RollingIndexApiCreateRollingIndexRequest {
-	r.apiIndexRequestView = &apiIndexRequestView
+func (r RollingIndexApiCreateRollingIndexRequest) IndexRequest(indexRequest IndexRequest) RollingIndexApiCreateRollingIndexRequest {
+	r.indexRequest = &indexRequest
 	return r
 }
 
@@ -124,8 +124,8 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 	if strlen(r.clusterName) > 64 {
 		return nil, reportError("clusterName must have less than 64 elements")
 	}
-	if r.apiIndexRequestView == nil {
-		return nil, reportError("apiIndexRequestView is required and must be specified")
+	if r.indexRequest == nil {
+		return nil, reportError("indexRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -152,7 +152,7 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiIndexRequestView
+	localVarPostBody = r.indexRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -176,7 +176,7 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -187,7 +187,7 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -198,7 +198,7 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
