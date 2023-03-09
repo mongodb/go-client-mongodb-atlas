@@ -24,7 +24,7 @@ type ApiUserEventViewForOrg struct {
 	ApiKeyId *string `json:"apiKeyId,omitempty"`
 	// Date and time when this event occurred. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Created time.Time `json:"created"`
-	EventTypeName ApiUserEventTypeViewForOrg `json:"eventTypeName"`
+	EventTypeName UserEventTypeViewForOrg `json:"eventTypeName"`
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
@@ -50,7 +50,7 @@ type ApiUserEventViewForOrg struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiUserEventViewForOrg(created time.Time, eventTypeName ApiUserEventTypeViewForOrg, id string) *ApiUserEventViewForOrg {
+func NewApiUserEventViewForOrg(created time.Time, eventTypeName UserEventTypeViewForOrg, id string) *ApiUserEventViewForOrg {
 	this := ApiUserEventViewForOrg{}
 	this.Created = created
 	this.EventTypeName = eventTypeName
@@ -123,9 +123,9 @@ func (o *ApiUserEventViewForOrg) SetCreated(v time.Time) {
 }
 
 // GetEventTypeName returns the EventTypeName field value
-func (o *ApiUserEventViewForOrg) GetEventTypeName() ApiUserEventTypeViewForOrg {
+func (o *ApiUserEventViewForOrg) GetEventTypeName() UserEventTypeViewForOrg {
 	if o == nil {
-		var ret ApiUserEventTypeViewForOrg
+		var ret UserEventTypeViewForOrg
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *ApiUserEventViewForOrg) GetEventTypeName() ApiUserEventTypeViewForOrg {
 
 // GetEventTypeNameOk returns a tuple with the EventTypeName field value
 // and a boolean to check if the value has been set.
-func (o *ApiUserEventViewForOrg) GetEventTypeNameOk() (*ApiUserEventTypeViewForOrg, bool) {
+func (o *ApiUserEventViewForOrg) GetEventTypeNameOk() (*UserEventTypeViewForOrg, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,7 +142,7 @@ func (o *ApiUserEventViewForOrg) GetEventTypeNameOk() (*ApiUserEventTypeViewForO
 }
 
 // SetEventTypeName sets field value
-func (o *ApiUserEventViewForOrg) SetEventTypeName(v ApiUserEventTypeViewForOrg) {
+func (o *ApiUserEventViewForOrg) SetEventTypeName(v UserEventTypeViewForOrg) {
 	o.EventTypeName = v
 }
 

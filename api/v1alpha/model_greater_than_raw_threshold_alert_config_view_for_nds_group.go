@@ -32,10 +32,10 @@ type GreaterThanRawThresholdAlertConfigViewForNdsGroup struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []ReplicaSetMatcherView `json:"matchers,omitempty"`
+	Matchers []ReplicaSetMatcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *GreaterThanRawThresholdView `json:"threshold,omitempty"`
+	Threshold *GreaterThanRawThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -247,9 +247,9 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcherView {
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []ReplicaSetMatcherView
+		var ret []ReplicaSetMatcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +257,7 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetMatchers() []Repl
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcherView, bool) {
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,8 +273,8 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []ReplicaSetMatcherView and assigns it to the Matchers field.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcherView) {
+// SetMatchers gets a reference to the given []ReplicaSetMatcher and assigns it to the Matchers field.
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcher) {
 	o.Matchers = v
 }
 
@@ -311,9 +311,9 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetNotifications(v [
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanRawThresholdView {
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanRawThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret GreaterThanRawThresholdView
+		var ret GreaterThanRawThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -321,7 +321,7 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetThreshold() Great
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanRawThresholdView, bool) {
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanRawThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -337,8 +337,8 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) HasThreshold() bool 
 	return false
 }
 
-// SetThreshold gets a reference to the given GreaterThanRawThresholdView and assigns it to the Threshold field.
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanRawThresholdView) {
+// SetThreshold gets a reference to the given GreaterThanRawThreshold and assigns it to the Threshold field.
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanRawThreshold) {
 	o.Threshold = &v
 }
 

@@ -35,8 +35,8 @@ type ProgrammaticAPIKeysApi interface {
 	AddProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAddProjectApiKeyRequest
 
 	// AddProjectApiKeyExecute executes the request
-	//  @return ApiApiUserView
-	AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*User, *http.Response, error)
 
 	/*
 	CreateApiKey Create One Organization API Key
@@ -50,8 +50,8 @@ type ProgrammaticAPIKeysApi interface {
 	CreateApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateApiKeyRequest
 
 	// CreateApiKeyExecute executes the request
-	//  @return ApiApiUserView
-	CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*User, *http.Response, error)
 
 	/*
 	CreateApiKeyAccessList Create Access List Entries for One Organization API Key
@@ -66,8 +66,8 @@ type ProgrammaticAPIKeysApi interface {
 	CreateApiKeyAccessList(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest
 
 	// CreateApiKeyAccessListExecute executes the request
-	//  @return ApiUserAccessListView
-	CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error)
+	//  @return UserAccessList
+	CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*UserAccessList, *http.Response, error)
 
 	/*
 	CreateProjectApiKey Create and Assign One Organization API Key to One Project
@@ -81,8 +81,8 @@ type ProgrammaticAPIKeysApi interface {
 	CreateProjectApiKey(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest
 
 	// CreateProjectApiKeyExecute executes the request
-	//  @return ApiApiUserView
-	CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*User, *http.Response, error)
 
 	/*
 	DeleteApiKey Remove One Organization API Key
@@ -128,8 +128,8 @@ type ProgrammaticAPIKeysApi interface {
 	GetApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyRequest
 
 	// GetApiKeyExecute executes the request
-	//  @return ApiApiUserView
-	GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*User, *http.Response, error)
 
 	/*
 	GetApiKeyAccessList Return One Access List Entry for One Organization API Key
@@ -145,8 +145,8 @@ type ProgrammaticAPIKeysApi interface {
 	GetApiKeyAccessList(ctx context.Context, orgId string, ipAddress string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest
 
 	// GetApiKeyAccessListExecute executes the request
-	//  @return ApiUserAccessListView
-	GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error)
+	//  @return UserAccessList
+	GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*UserAccessList, *http.Response, error)
 
 	/*
 	ListApiKeyAccessListsEntries Return All Access List Entries for One Organization API Key
@@ -161,8 +161,8 @@ type ProgrammaticAPIKeysApi interface {
 	ListApiKeyAccessListsEntries(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest
 
 	// ListApiKeyAccessListsEntriesExecute executes the request
-	//  @return PaginatedApiUserAccessListView
-	ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessListView, *http.Response, error)
+	//  @return PaginatedApiUserAccessList
+	ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessList, *http.Response, error)
 
 	/*
 	ListApiKeys Return All Organization API Keys
@@ -176,8 +176,8 @@ type ProgrammaticAPIKeysApi interface {
 	ListApiKeys(ctx context.Context, orgId string) ProgrammaticAPIKeysApiListApiKeysRequest
 
 	// ListApiKeysExecute executes the request
-	//  @return PaginatedApiApiUserView
-	ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error)
+	//  @return PaginatedApiApiUser
+	ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUser, *http.Response, error)
 
 	/*
 	ListProjectApiKeys Return All Organization API Keys Assigned to One Project
@@ -191,8 +191,8 @@ type ProgrammaticAPIKeysApi interface {
 	ListProjectApiKeys(ctx context.Context, groupId string) ProgrammaticAPIKeysApiListProjectApiKeysRequest
 
 	// ListProjectApiKeysExecute executes the request
-	//  @return PaginatedApiApiUserView
-	ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error)
+	//  @return PaginatedApiApiUser
+	ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUser, *http.Response, error)
 
 	/*
 	RemoveProjectApiKey Unassign One Organization API Key from One Project
@@ -222,8 +222,8 @@ type ProgrammaticAPIKeysApi interface {
 	UpdateApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRequest
 
 	// UpdateApiKeyExecute executes the request
-	//  @return ApiApiUserView
-	UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*User, *http.Response, error)
 
 	/*
 	UpdateApiKeyRoles Update Roles of One Organization API Key to One Project
@@ -238,8 +238,8 @@ type ProgrammaticAPIKeysApi interface {
 	UpdateApiKeyRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest
 
 	// UpdateApiKeyRolesExecute executes the request
-	//  @return ApiApiUserView
-	UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiApiUserView, *http.Response, error)
+	//  @return User
+	UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*User, *http.Response, error)
 }
 
 // ProgrammaticAPIKeysApiService ProgrammaticAPIKeysApi service
@@ -250,14 +250,14 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
 	apiUserId string
-	apiUserRoleAssignment *[]ApiUserRoleAssignment
+	userRoleAssignment *[]UserRoleAssignment
 	envelope *bool
 	pretty *bool
 }
 
 // Organization API key to be assigned to the specified project.
-func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) ApiUserRoleAssignment(apiUserRoleAssignment []ApiUserRoleAssignment) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
-	r.apiUserRoleAssignment = &apiUserRoleAssignment
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) UserRoleAssignment(userRoleAssignment []UserRoleAssignment) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
+	r.userRoleAssignment = &userRoleAssignment
 	return r
 }
 
@@ -273,7 +273,7 @@ func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Pretty(pretty bool) Progr
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.AddProjectApiKeyExecute(r)
 }
 
@@ -297,13 +297,13 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKey(ctx context.Context, gr
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.AddProjectApiKey")
@@ -330,8 +330,8 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 	if strlen(r.apiUserId) > 24 {
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
-	if r.apiUserRoleAssignment == nil {
-		return localVarReturnValue, nil, reportError("apiUserRoleAssignment is required and must be specified")
+	if r.userRoleAssignment == nil {
+		return localVarReturnValue, nil, reportError("userRoleAssignment is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -358,7 +358,7 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiUserRoleAssignment
+	localVarPostBody = r.userRoleAssignment
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -382,7 +382,7 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -393,7 +393,7 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -421,14 +421,14 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
-	apiCreateApiKeyView *ApiCreateApiKeyView
+	createApiKey *CreateApiKey
 	envelope *bool
 	pretty *bool
 }
 
 // Organization API Key to be created. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateApiKeyRequest {
-	r.apiCreateApiKeyView = &apiCreateApiKeyView
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateApiKeyRequest {
+	r.createApiKey = &createApiKey
 	return r
 }
 
@@ -444,7 +444,7 @@ func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Pretty(pretty bool) Programma
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.CreateApiKeyExecute(r)
 }
 
@@ -466,13 +466,13 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKey(ctx context.Context, orgId 
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateApiKey")
@@ -492,8 +492,8 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.apiCreateApiKeyView == nil {
-		return localVarReturnValue, nil, reportError("apiCreateApiKeyView is required and must be specified")
+	if r.createApiKey == nil {
+		return localVarReturnValue, nil, reportError("createApiKey is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -520,7 +520,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiCreateApiKeyView
+	localVarPostBody = r.createApiKey
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -544,7 +544,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -555,7 +555,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -584,7 +584,7 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	apiUserAccessListView *[]ApiUserAccessListView
+	userAccessList *[]UserAccessList
 	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
@@ -593,8 +593,8 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 }
 
 // Access list entries to be created for the specified organization API key.
-func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) ApiUserAccessListView(apiUserAccessListView []ApiUserAccessListView) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
-	r.apiUserAccessListView = &apiUserAccessListView
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) UserAccessList(userAccessList []UserAccessList) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
+	r.userAccessList = &userAccessList
 	return r
 }
 
@@ -628,7 +628,7 @@ func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Pretty(pretty bool)
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Execute() (*UserAccessList, *http.Response, error) {
 	return r.ApiService.CreateApiKeyAccessListExecute(r)
 }
 
@@ -652,13 +652,13 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessList(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error) {
+//  @return UserAccessList
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) (*UserAccessList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserAccessListView
+		localVarReturnValue  *UserAccessList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateApiKeyAccessList")
@@ -685,8 +685,8 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 	if strlen(r.apiUserId) > 24 {
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
-	if r.apiUserAccessListView == nil {
-		return localVarReturnValue, nil, reportError("apiUserAccessListView is required and must be specified")
+	if r.userAccessList == nil {
+		return localVarReturnValue, nil, reportError("userAccessList is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -722,7 +722,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiUserAccessListView
+	localVarPostBody = r.userAccessList
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -746,7 +746,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -757,7 +757,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -768,7 +768,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -779,7 +779,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -807,14 +807,14 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
-	apiCreateApiKeyView *ApiCreateApiKeyView
+	createApiKey *CreateApiKey
 	envelope *bool
 	pretty *bool
 }
 
 // Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
-	r.apiCreateApiKeyView = &apiCreateApiKeyView
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
+	r.createApiKey = &createApiKey
 	return r
 }
 
@@ -830,7 +830,7 @@ func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Pretty(pretty bool) Pr
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.CreateProjectApiKeyExecute(r)
 }
 
@@ -852,13 +852,13 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKey(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateProjectApiKey")
@@ -878,8 +878,8 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiCreateApiKeyView == nil {
-		return localVarReturnValue, nil, reportError("apiCreateApiKeyView is required and must be specified")
+	if r.createApiKey == nil {
+		return localVarReturnValue, nil, reportError("createApiKey is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -906,7 +906,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiCreateApiKeyView
+	localVarPostBody = r.createApiKey
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -930,7 +930,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -941,7 +941,7 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1088,7 +1088,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1099,7 +1099,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKey
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1241,7 +1241,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r Programma
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1252,7 +1252,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r Programma
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1263,7 +1263,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r Programma
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1274,7 +1274,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r Programma
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1310,7 +1310,7 @@ func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Pretty(pretty bool) Programmatic
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.GetApiKeyExecute(r)
 }
 
@@ -1334,13 +1334,13 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKey(ctx context.Context, orgId str
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.GetApiKey")
@@ -1414,7 +1414,7 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1425,7 +1425,7 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1471,7 +1471,7 @@ func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Pretty(pretty bool) Pr
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*ApiUserAccessListView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*UserAccessList, *http.Response, error) {
 	return r.ApiService.GetApiKeyAccessListExecute(r)
 }
 
@@ -1497,13 +1497,13 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessList(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*ApiUserAccessListView, *http.Response, error) {
+//  @return UserAccessList
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) (*UserAccessList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserAccessListView
+		localVarReturnValue  *UserAccessList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.GetApiKeyAccessList")
@@ -1578,7 +1578,7 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r Programmati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1589,7 +1589,7 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r Programmati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1600,7 +1600,7 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r Programmati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1666,7 +1666,7 @@ func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Pretty(pretty
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Execute() (*PaginatedApiUserAccessListView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Execute() (*PaginatedApiUserAccessList, *http.Response, error) {
 	return r.ApiService.ListApiKeyAccessListsEntriesExecute(r)
 }
 
@@ -1690,13 +1690,13 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntries(ctx context
 }
 
 // Execute executes the request
-//  @return PaginatedApiUserAccessListView
-func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessListView, *http.Response, error) {
+//  @return PaginatedApiUserAccessList
+func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) (*PaginatedApiUserAccessList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiUserAccessListView
+		localVarReturnValue  *PaginatedApiUserAccessList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListApiKeyAccessListsEntries")
@@ -1779,7 +1779,7 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r Pr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1790,7 +1790,7 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r Pr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1855,7 +1855,7 @@ func (r ProgrammaticAPIKeysApiListApiKeysRequest) Pretty(pretty bool) Programmat
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiListApiKeysRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiListApiKeysRequest) Execute() (*PaginatedApiApiUser, *http.Response, error) {
 	return r.ApiService.ListApiKeysExecute(r)
 }
 
@@ -1877,13 +1877,13 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeys(ctx context.Context, orgId s
 }
 
 // Execute executes the request
-//  @return PaginatedApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error) {
+//  @return PaginatedApiApiUser
+func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeysApiListApiKeysRequest) (*PaginatedApiApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiApiUserView
+		localVarReturnValue  *PaginatedApiApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListApiKeys")
@@ -1959,7 +1959,7 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeys
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1970,7 +1970,7 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeys
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2035,7 +2035,7 @@ func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Pretty(pretty bool) Pro
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Execute() (*PaginatedApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Execute() (*PaginatedApiApiUser, *http.Response, error) {
 	return r.ApiService.ListProjectApiKeysExecute(r)
 }
 
@@ -2057,13 +2057,13 @@ func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeys(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return PaginatedApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUserView, *http.Response, error) {
+//  @return PaginatedApiApiUser
+func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r ProgrammaticAPIKeysApiListProjectApiKeysRequest) (*PaginatedApiApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiApiUserView
+		localVarReturnValue  *PaginatedApiApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.ListProjectApiKeys")
@@ -2139,7 +2139,7 @@ func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r Programmatic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2150,7 +2150,7 @@ func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r Programmatic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2297,7 +2297,7 @@ func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKeyExecute(r Programmati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2308,7 +2308,7 @@ func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKeyExecute(r Programmati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2319,7 +2319,7 @@ func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKeyExecute(r Programmati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2339,14 +2339,14 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	apiApiUserView *ApiApiUserView
+	user *User
 	envelope *bool
 	pretty *bool
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) ApiApiUserView(apiApiUserView ApiApiUserView) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
-	r.apiApiUserView = &apiApiUserView
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) User(user User) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
+	r.user = &user
 	return r
 }
 
@@ -2362,7 +2362,7 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Pretty(pretty bool) Programma
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyExecute(r)
 }
 
@@ -2386,13 +2386,13 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKey(ctx context.Context, orgId 
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKey")
@@ -2419,8 +2419,8 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 	if strlen(r.apiUserId) > 24 {
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
-	if r.apiApiUserView == nil {
-		return localVarReturnValue, nil, reportError("apiApiUserView is required and must be specified")
+	if r.user == nil {
+		return localVarReturnValue, nil, reportError("user is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2447,7 +2447,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiApiUserView
+	localVarPostBody = r.user
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2471,7 +2471,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2482,7 +2482,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2493,7 +2493,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2522,7 +2522,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
 	apiUserId string
-	apiCreateApiKeyView *ApiCreateApiKeyView
+	createApiKey *CreateApiKey
 	pageNum *int32
 	itemsPerPage *int32
 	includeCount *bool
@@ -2531,8 +2531,8 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) ApiCreateApiKeyView(apiCreateApiKeyView ApiCreateApiKeyView) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
-	r.apiCreateApiKeyView = &apiCreateApiKeyView
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
+	r.createApiKey = &createApiKey
 	return r
 }
 
@@ -2566,7 +2566,7 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Envelope(envelope bool) 
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Execute() (*ApiApiUserView, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyRolesExecute(r)
 }
 
@@ -2590,13 +2590,13 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRoles(ctx context.Context, g
 }
 
 // Execute executes the request
-//  @return ApiApiUserView
-func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiApiUserView, *http.Response, error) {
+//  @return User
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiApiUserView
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKeyRoles")
@@ -2623,8 +2623,8 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 	if strlen(r.apiUserId) > 24 {
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
-	if r.apiCreateApiKeyView == nil {
-		return localVarReturnValue, nil, reportError("apiCreateApiKeyView is required and must be specified")
+	if r.createApiKey == nil {
+		return localVarReturnValue, nil, reportError("createApiKey is required and must be specified")
 	}
 
 	if r.pageNum != nil {
@@ -2660,7 +2660,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiCreateApiKeyView
+	localVarPostBody = r.createApiKey
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2684,7 +2684,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2695,7 +2695,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2706,7 +2706,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

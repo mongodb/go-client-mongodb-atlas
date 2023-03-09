@@ -34,8 +34,8 @@ type TeamsApi interface {
 	AddAllTeamsToProject(ctx context.Context, groupId string) TeamsApiAddAllTeamsToProjectRequest
 
 	// AddAllTeamsToProjectExecute executes the request
-	//  @return PaginatedTeamRoleView
-	AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRoleView, *http.Response, error)
+	//  @return PaginatedTeamRole
+	AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRole, *http.Response, error)
 
 	/*
 	AddTeamUser Assign MongoDB Cloud Users from One Organization to One Team
@@ -50,8 +50,8 @@ type TeamsApi interface {
 	AddTeamUser(ctx context.Context, orgId string, teamId string) TeamsApiAddTeamUserRequest
 
 	// AddTeamUserExecute executes the request
-	//  @return PaginatedApiAppUserView
-	AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUserView, *http.Response, error)
+	//  @return PaginatedApiAppUser
+	AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	CreateTeam Create One Team in One Organization
@@ -65,8 +65,8 @@ type TeamsApi interface {
 	CreateTeam(ctx context.Context, orgId string) TeamsApiCreateTeamRequest
 
 	// CreateTeamExecute executes the request
-	//  @return ApiTeamView
-	CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTeamView, *http.Response, error)
+	//  @return Team
+	CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team, *http.Response, error)
 
 	/*
 	DeleteTeam Remove One Team from One Organization
@@ -96,8 +96,8 @@ type TeamsApi interface {
 	GetTeamById(ctx context.Context, orgId string, teamId string) TeamsApiGetTeamByIdRequest
 
 	// GetTeamByIdExecute executes the request
-	//  @return ApiTeamResponseView
-	GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*ApiTeamResponseView, *http.Response, error)
+	//  @return TeamResponse
+	GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	GetTeamByName Return One Team using its Name
@@ -112,8 +112,8 @@ type TeamsApi interface {
 	GetTeamByName(ctx context.Context, orgId string, teamName string) TeamsApiGetTeamByNameRequest
 
 	// GetTeamByNameExecute executes the request
-	//  @return ApiTeamResponseView
-	GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*ApiTeamResponseView, *http.Response, error)
+	//  @return TeamResponse
+	GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	ListOrganizationTeams Return All Teams in One Organization
@@ -127,8 +127,8 @@ type TeamsApi interface {
 	ListOrganizationTeams(ctx context.Context, orgId string) TeamsApiListOrganizationTeamsRequest
 
 	// ListOrganizationTeamsExecute executes the request
-	//  @return PaginatedTeamView
-	ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeamView, *http.Response, error)
+	//  @return PaginatedTeam
+	ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeam, *http.Response, error)
 
 	/*
 	ListProjectTeams Return All Teams in One Project
@@ -142,8 +142,8 @@ type TeamsApi interface {
 	ListProjectTeams(ctx context.Context, groupId string) TeamsApiListProjectTeamsRequest
 
 	// ListProjectTeamsExecute executes the request
-	//  @return PaginatedTeamRoleView
-	ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error)
+	//  @return PaginatedTeamRole
+	ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRole, *http.Response, error)
 
 	/*
 	ListTeamUsers Return All MongoDB Cloud Users Assigned to One Team
@@ -158,8 +158,8 @@ type TeamsApi interface {
 	ListTeamUsers(ctx context.Context, orgId string, teamId string) TeamsApiListTeamUsersRequest
 
 	// ListTeamUsersExecute executes the request
-	//  @return PaginatedApiAppUserView
-	ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUserView, *http.Response, error)
+	//  @return PaginatedApiAppUser
+	ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	RemoveProjectTeam Remove One Team from One Project
@@ -205,8 +205,8 @@ type TeamsApi interface {
 	RenameTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameTeamRequest
 
 	// RenameTeamExecute executes the request
-	//  @return ApiTeamResponseView
-	RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTeamResponseView, *http.Response, error)
+	//  @return TeamResponse
+	RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	UpdateTeamRoles Update Team Roles in One Project
@@ -221,8 +221,8 @@ type TeamsApi interface {
 	UpdateTeamRoles(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesRequest
 
 	// UpdateTeamRolesExecute executes the request
-	//  @return PaginatedTeamRoleView
-	UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRoleView, *http.Response, error)
+	//  @return PaginatedTeamRole
+	UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRole, *http.Response, error)
 }
 
 // TeamsApiService TeamsApi service
@@ -232,14 +232,14 @@ type TeamsApiAddAllTeamsToProjectRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
-	apiTeamRoleView *[]ApiTeamRoleView
+	teamRole *[]TeamRole
 	envelope *bool
 	pretty *bool
 }
 
 // Team to add to the specified project.
-func (r TeamsApiAddAllTeamsToProjectRequest) ApiTeamRoleView(apiTeamRoleView []ApiTeamRoleView) TeamsApiAddAllTeamsToProjectRequest {
-	r.apiTeamRoleView = &apiTeamRoleView
+func (r TeamsApiAddAllTeamsToProjectRequest) TeamRole(teamRole []TeamRole) TeamsApiAddAllTeamsToProjectRequest {
+	r.teamRole = &teamRole
 	return r
 }
 
@@ -255,7 +255,7 @@ func (r TeamsApiAddAllTeamsToProjectRequest) Pretty(pretty bool) TeamsApiAddAllT
 	return r
 }
 
-func (r TeamsApiAddAllTeamsToProjectRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+func (r TeamsApiAddAllTeamsToProjectRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.AddAllTeamsToProjectExecute(r)
 }
 
@@ -277,13 +277,13 @@ func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId stri
 }
 
 // Execute executes the request
-//  @return PaginatedTeamRoleView
-func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRoleView, *http.Response, error) {
+//  @return PaginatedTeamRole
+func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamRoleView
+		localVarReturnValue  *PaginatedTeamRole
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AddAllTeamsToProject")
@@ -303,8 +303,8 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiTeamRoleView == nil {
-		return localVarReturnValue, nil, reportError("apiTeamRoleView is required and must be specified")
+	if r.teamRole == nil {
+		return localVarReturnValue, nil, reportError("teamRole is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -331,7 +331,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiTeamRoleView
+	localVarPostBody = r.teamRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -355,7 +355,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -377,7 +377,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -388,7 +388,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -399,7 +399,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -428,14 +428,14 @@ type TeamsApiAddTeamUserRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamId string
-	apiAddUserToTeamView *[]ApiAddUserToTeamView
+	addUserToTeam *[]AddUserToTeam
 	envelope *bool
 	pretty *bool
 }
 
 // One or more MongoDB Cloud users that you want to add to the specified team.
-func (r TeamsApiAddTeamUserRequest) ApiAddUserToTeamView(apiAddUserToTeamView []ApiAddUserToTeamView) TeamsApiAddTeamUserRequest {
-	r.apiAddUserToTeamView = &apiAddUserToTeamView
+func (r TeamsApiAddTeamUserRequest) AddUserToTeam(addUserToTeam []AddUserToTeam) TeamsApiAddTeamUserRequest {
+	r.addUserToTeam = &addUserToTeam
 	return r
 }
 
@@ -451,7 +451,7 @@ func (r TeamsApiAddTeamUserRequest) Pretty(pretty bool) TeamsApiAddTeamUserReque
 	return r
 }
 
-func (r TeamsApiAddTeamUserRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+func (r TeamsApiAddTeamUserRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.AddTeamUserExecute(r)
 }
 
@@ -475,13 +475,13 @@ func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId 
 }
 
 // Execute executes the request
-//  @return PaginatedApiAppUserView
-func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+//  @return PaginatedApiAppUser
+func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAppUserView
+		localVarReturnValue  *PaginatedApiAppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.AddTeamUser")
@@ -508,8 +508,8 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 	if strlen(r.teamId) > 24 {
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
-	if r.apiAddUserToTeamView == nil {
-		return localVarReturnValue, nil, reportError("apiAddUserToTeamView is required and must be specified")
+	if r.addUserToTeam == nil {
+		return localVarReturnValue, nil, reportError("addUserToTeam is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -536,7 +536,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAddUserToTeamView
+	localVarPostBody = r.addUserToTeam
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -560,7 +560,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -571,7 +571,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -582,7 +582,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -593,7 +593,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -604,7 +604,7 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -632,14 +632,14 @@ type TeamsApiCreateTeamRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
-	apiTeamView *ApiTeamView
+	team *Team
 	envelope *bool
 	pretty *bool
 }
 
 // Team that you want to create in the specified organization.
-func (r TeamsApiCreateTeamRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiCreateTeamRequest {
-	r.apiTeamView = &apiTeamView
+func (r TeamsApiCreateTeamRequest) Team(team Team) TeamsApiCreateTeamRequest {
+	r.team = &team
 	return r
 }
 
@@ -655,7 +655,7 @@ func (r TeamsApiCreateTeamRequest) Pretty(pretty bool) TeamsApiCreateTeamRequest
 	return r
 }
 
-func (r TeamsApiCreateTeamRequest) Execute() (*ApiTeamView, *http.Response, error) {
+func (r TeamsApiCreateTeamRequest) Execute() (*Team, *http.Response, error) {
 	return r.ApiService.CreateTeamExecute(r)
 }
 
@@ -677,13 +677,13 @@ func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) TeamsApi
 }
 
 // Execute executes the request
-//  @return ApiTeamView
-func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTeamView, *http.Response, error) {
+//  @return Team
+func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTeamView
+		localVarReturnValue  *Team
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.CreateTeam")
@@ -703,8 +703,8 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.apiTeamView == nil {
-		return localVarReturnValue, nil, reportError("apiTeamView is required and must be specified")
+	if r.team == nil {
+		return localVarReturnValue, nil, reportError("team is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -731,7 +731,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiTeamView
+	localVarPostBody = r.team
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -755,7 +755,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -766,7 +766,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -777,7 +777,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -788,7 +788,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -799,7 +799,7 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -946,7 +946,7 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -957,7 +957,7 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -968,7 +968,7 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -979,7 +979,7 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1015,7 +1015,7 @@ func (r TeamsApiGetTeamByIdRequest) Pretty(pretty bool) TeamsApiGetTeamByIdReque
 	return r
 }
 
-func (r TeamsApiGetTeamByIdRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+func (r TeamsApiGetTeamByIdRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByIdExecute(r)
 }
 
@@ -1039,13 +1039,13 @@ func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId 
 }
 
 // Execute executes the request
-//  @return ApiTeamResponseView
-func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*ApiTeamResponseView, *http.Response, error) {
+//  @return TeamResponse
+func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTeamResponseView
+		localVarReturnValue  *TeamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.GetTeamById")
@@ -1119,7 +1119,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1130,7 +1130,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1141,7 +1141,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1152,7 +1152,7 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1197,7 +1197,7 @@ func (r TeamsApiGetTeamByNameRequest) Pretty(pretty bool) TeamsApiGetTeamByNameR
 	return r
 }
 
-func (r TeamsApiGetTeamByNameRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+func (r TeamsApiGetTeamByNameRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByNameExecute(r)
 }
 
@@ -1221,13 +1221,13 @@ func (a *TeamsApiService) GetTeamByName(ctx context.Context, orgId string, teamN
 }
 
 // Execute executes the request
-//  @return ApiTeamResponseView
-func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*ApiTeamResponseView, *http.Response, error) {
+//  @return TeamResponse
+func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTeamResponseView
+		localVarReturnValue  *TeamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.GetTeamByName")
@@ -1295,7 +1295,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1306,7 +1306,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1317,7 +1317,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1328,7 +1328,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1393,7 +1393,7 @@ func (r TeamsApiListOrganizationTeamsRequest) Pretty(pretty bool) TeamsApiListOr
 	return r
 }
 
-func (r TeamsApiListOrganizationTeamsRequest) Execute() (*PaginatedTeamView, *http.Response, error) {
+func (r TeamsApiListOrganizationTeamsRequest) Execute() (*PaginatedTeam, *http.Response, error) {
 	return r.ApiService.ListOrganizationTeamsExecute(r)
 }
 
@@ -1415,13 +1415,13 @@ func (a *TeamsApiService) ListOrganizationTeams(ctx context.Context, orgId strin
 }
 
 // Execute executes the request
-//  @return PaginatedTeamView
-func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeamView, *http.Response, error) {
+//  @return PaginatedTeam
+func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeam, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamView
+		localVarReturnValue  *PaginatedTeam
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListOrganizationTeams")
@@ -1497,7 +1497,7 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1508,7 +1508,7 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1519,7 +1519,7 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1530,7 +1530,7 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1595,7 +1595,7 @@ func (r TeamsApiListProjectTeamsRequest) PageNum(pageNum int32) TeamsApiListProj
 	return r
 }
 
-func (r TeamsApiListProjectTeamsRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+func (r TeamsApiListProjectTeamsRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.ListProjectTeamsExecute(r)
 }
 
@@ -1617,13 +1617,13 @@ func (a *TeamsApiService) ListProjectTeams(ctx context.Context, groupId string) 
 }
 
 // Execute executes the request
-//  @return PaginatedTeamRoleView
-func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRoleView, *http.Response, error) {
+//  @return PaginatedTeamRole
+func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamRoleView
+		localVarReturnValue  *PaginatedTeamRole
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListProjectTeams")
@@ -1699,7 +1699,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1710,7 +1710,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1721,7 +1721,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1732,7 +1732,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1743,7 +1743,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1802,7 +1802,7 @@ func (r TeamsApiListTeamUsersRequest) Pretty(pretty bool) TeamsApiListTeamUsersR
 	return r
 }
 
-func (r TeamsApiListTeamUsersRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+func (r TeamsApiListTeamUsersRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.ListTeamUsersExecute(r)
 }
 
@@ -1826,13 +1826,13 @@ func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamI
 }
 
 // Execute executes the request
-//  @return PaginatedApiAppUserView
-func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+//  @return PaginatedApiAppUser
+func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAppUserView
+		localVarReturnValue  *PaginatedApiAppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.ListTeamUsers")
@@ -1912,7 +1912,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1923,7 +1923,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1934,7 +1934,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1945,7 +1945,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1956,7 +1956,7 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2093,7 +2093,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2104,7 +2104,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2115,7 +2115,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2126,7 +2126,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2137,7 +2137,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2285,7 +2285,7 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2296,7 +2296,7 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2307,7 +2307,7 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2318,7 +2318,7 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2338,14 +2338,14 @@ type TeamsApiRenameTeamRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamId string
-	apiTeamView *ApiTeamView
+	team *Team
 	envelope *bool
 	pretty *bool
 }
 
 // Details to update on the specified team.
-func (r TeamsApiRenameTeamRequest) ApiTeamView(apiTeamView ApiTeamView) TeamsApiRenameTeamRequest {
-	r.apiTeamView = &apiTeamView
+func (r TeamsApiRenameTeamRequest) Team(team Team) TeamsApiRenameTeamRequest {
+	r.team = &team
 	return r
 }
 
@@ -2361,7 +2361,7 @@ func (r TeamsApiRenameTeamRequest) Pretty(pretty bool) TeamsApiRenameTeamRequest
 	return r
 }
 
-func (r TeamsApiRenameTeamRequest) Execute() (*ApiTeamResponseView, *http.Response, error) {
+func (r TeamsApiRenameTeamRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.RenameTeamExecute(r)
 }
 
@@ -2385,13 +2385,13 @@ func (a *TeamsApiService) RenameTeam(ctx context.Context, orgId string, teamId s
 }
 
 // Execute executes the request
-//  @return ApiTeamResponseView
-func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTeamResponseView, *http.Response, error) {
+//  @return TeamResponse
+func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTeamResponseView
+		localVarReturnValue  *TeamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.RenameTeam")
@@ -2418,8 +2418,8 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 	if strlen(r.teamId) > 24 {
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
-	if r.apiTeamView == nil {
-		return localVarReturnValue, nil, reportError("apiTeamView is required and must be specified")
+	if r.team == nil {
+		return localVarReturnValue, nil, reportError("team is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2446,7 +2446,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiTeamView
+	localVarPostBody = r.team
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2470,7 +2470,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2481,7 +2481,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2492,7 +2492,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2503,7 +2503,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2514,7 +2514,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*ApiTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2543,14 +2543,14 @@ type TeamsApiUpdateTeamRolesRequest struct {
 	ApiService TeamsApi
 	groupId string
 	teamId string
-	apiTeamRoleView *ApiTeamRoleView
+	teamRole *TeamRole
 	envelope *bool
 	pretty *bool
 }
 
 // The project roles assigned to the specified team.
-func (r TeamsApiUpdateTeamRolesRequest) ApiTeamRoleView(apiTeamRoleView ApiTeamRoleView) TeamsApiUpdateTeamRolesRequest {
-	r.apiTeamRoleView = &apiTeamRoleView
+func (r TeamsApiUpdateTeamRolesRequest) TeamRole(teamRole TeamRole) TeamsApiUpdateTeamRolesRequest {
+	r.teamRole = &teamRole
 	return r
 }
 
@@ -2566,7 +2566,7 @@ func (r TeamsApiUpdateTeamRolesRequest) Pretty(pretty bool) TeamsApiUpdateTeamRo
 	return r
 }
 
-func (r TeamsApiUpdateTeamRolesRequest) Execute() (*PaginatedTeamRoleView, *http.Response, error) {
+func (r TeamsApiUpdateTeamRolesRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.UpdateTeamRolesExecute(r)
 }
 
@@ -2590,13 +2590,13 @@ func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, t
 }
 
 // Execute executes the request
-//  @return PaginatedTeamRoleView
-func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRoleView, *http.Response, error) {
+//  @return PaginatedTeamRole
+func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTeamRoleView
+		localVarReturnValue  *PaginatedTeamRole
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsApiService.UpdateTeamRoles")
@@ -2623,8 +2623,8 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 	if strlen(r.teamId) > 24 {
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
-	if r.apiTeamRoleView == nil {
-		return localVarReturnValue, nil, reportError("apiTeamRoleView is required and must be specified")
+	if r.teamRole == nil {
+		return localVarReturnValue, nil, reportError("teamRole is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2651,7 +2651,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiTeamRoleView
+	localVarPostBody = r.teamRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2675,7 +2675,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2686,7 +2686,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2697,7 +2697,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2708,7 +2708,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2719,7 +2719,7 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

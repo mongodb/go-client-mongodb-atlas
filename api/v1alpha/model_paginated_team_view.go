@@ -22,7 +22,7 @@ type PaginatedTeamView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []ApiTeamResponseView `json:"results,omitempty"`
+	Results []TeamResponseView `json:"results,omitempty"`
 	// Number of documents returned in this response.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -77,9 +77,9 @@ func (o *PaginatedTeamView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedTeamView) GetResults() []ApiTeamResponseView {
+func (o *PaginatedTeamView) GetResults() []TeamResponseView {
 	if o == nil || IsNil(o.Results) {
-		var ret []ApiTeamResponseView
+		var ret []TeamResponseView
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *PaginatedTeamView) GetResults() []ApiTeamResponseView {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedTeamView) GetResultsOk() ([]ApiTeamResponseView, bool) {
+func (o *PaginatedTeamView) GetResultsOk() ([]TeamResponseView, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PaginatedTeamView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []ApiTeamResponseView and assigns it to the Results field.
-func (o *PaginatedTeamView) SetResults(v []ApiTeamResponseView) {
+// SetResults gets a reference to the given []TeamResponseView and assigns it to the Results field.
+func (o *PaginatedTeamView) SetResults(v []TeamResponseView) {
 	o.Results = v
 }
 

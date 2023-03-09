@@ -20,7 +20,7 @@ var _ MappedNullable = &PemFileInfoView{}
 // PemFileInfoView PEM file information for the identity provider's current certificates.
 type PemFileInfoView struct {
 	// List of certificates in the file.
-	Certificates []X509CertificateView `json:"certificates,omitempty"`
+	Certificates []X509Certificate `json:"certificates,omitempty"`
 	// Human-readable label given to the file.
 	FileName *string `json:"fileName,omitempty"`
 }
@@ -43,9 +43,9 @@ func NewPemFileInfoViewWithDefaults() *PemFileInfoView {
 }
 
 // GetCertificates returns the Certificates field value if set, zero value otherwise.
-func (o *PemFileInfoView) GetCertificates() []X509CertificateView {
+func (o *PemFileInfoView) GetCertificates() []X509Certificate {
 	if o == nil || IsNil(o.Certificates) {
-		var ret []X509CertificateView
+		var ret []X509Certificate
 		return ret
 	}
 	return o.Certificates
@@ -53,7 +53,7 @@ func (o *PemFileInfoView) GetCertificates() []X509CertificateView {
 
 // GetCertificatesOk returns a tuple with the Certificates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PemFileInfoView) GetCertificatesOk() ([]X509CertificateView, bool) {
+func (o *PemFileInfoView) GetCertificatesOk() ([]X509Certificate, bool) {
 	if o == nil || IsNil(o.Certificates) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *PemFileInfoView) HasCertificates() bool {
 	return false
 }
 
-// SetCertificates gets a reference to the given []X509CertificateView and assigns it to the Certificates field.
-func (o *PemFileInfoView) SetCertificates(v []X509CertificateView) {
+// SetCertificates gets a reference to the given []X509Certificate and assigns it to the Certificates field.
+func (o *PemFileInfoView) SetCertificates(v []X509Certificate) {
 	o.Certificates = v
 }
 

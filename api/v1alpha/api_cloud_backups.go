@@ -326,8 +326,8 @@ type CloudBackupsApi interface {
 	ListBackupExportJobs(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListBackupExportJobsRequest
 
 	// ListBackupExportJobsExecute executes the request
-	//  @return PaginatedApiAtlasDiskBackupExportJobView
-	ListBackupExportJobsExecute(r CloudBackupsApiListBackupExportJobsRequest) (*PaginatedApiAtlasDiskBackupExportJobView, *http.Response, error)
+	//  @return PaginatedApiAtlasDiskBackupExportJob
+	ListBackupExportJobsExecute(r CloudBackupsApiListBackupExportJobsRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error)
 
 	/*
 	ListBackupRestoreJobs Return All Restore Jobs for One Cluster
@@ -342,8 +342,8 @@ type CloudBackupsApi interface {
 	ListBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListBackupRestoreJobsRequest
 
 	// ListBackupRestoreJobsExecute executes the request
-	//  @return PaginatedCloudBackupRestoreJobView
-	ListBackupRestoreJobsExecute(r CloudBackupsApiListBackupRestoreJobsRequest) (*PaginatedCloudBackupRestoreJobView, *http.Response, error)
+	//  @return PaginatedCloudBackupRestoreJob
+	ListBackupRestoreJobsExecute(r CloudBackupsApiListBackupRestoreJobsRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error)
 
 	/*
 	ListExportBuckets Return All AWS S3 Buckets Used for Cloud Backup Snapshot Exports
@@ -357,8 +357,8 @@ type CloudBackupsApi interface {
 	ListExportBuckets(ctx context.Context, groupId string) CloudBackupsApiListExportBucketsRequest
 
 	// ListExportBucketsExecute executes the request
-	//  @return PaginatedBackupSnapshotExportBucketView
-	ListExportBucketsExecute(r CloudBackupsApiListExportBucketsRequest) (*PaginatedBackupSnapshotExportBucketView, *http.Response, error)
+	//  @return PaginatedBackupSnapshotExportBucket
+	ListExportBucketsExecute(r CloudBackupsApiListExportBucketsRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error)
 
 	/*
 	ListReplicaSetBackups Return All Replica Set Cloud Backups
@@ -373,8 +373,8 @@ type CloudBackupsApi interface {
 	ListReplicaSetBackups(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListReplicaSetBackupsRequest
 
 	// ListReplicaSetBackupsExecute executes the request
-	//  @return PaginatedCloudBackupReplicaSetView
-	ListReplicaSetBackupsExecute(r CloudBackupsApiListReplicaSetBackupsRequest) (*PaginatedCloudBackupReplicaSetView, *http.Response, error)
+	//  @return PaginatedCloudBackupReplicaSet
+	ListReplicaSetBackupsExecute(r CloudBackupsApiListReplicaSetBackupsRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error)
 
 	/*
 	ListServerlessBackupRestoreJobs Return All Restore Jobs for One Serverless Instance
@@ -389,8 +389,8 @@ type CloudBackupsApi interface {
 	ListServerlessBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListServerlessBackupRestoreJobsRequest
 
 	// ListServerlessBackupRestoreJobsExecute executes the request
-	//  @return PaginatedApiAtlasServerlessBackupRestoreJobView
-	ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error)
+	//  @return PaginatedApiAtlasServerlessBackupRestoreJob
+	ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	ListServerlessBackups Return All Snapshots of One Serverless Instance
@@ -405,8 +405,8 @@ type CloudBackupsApi interface {
 	ListServerlessBackups(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListServerlessBackupsRequest
 
 	// ListServerlessBackupsExecute executes the request
-	//  @return PaginatedApiAtlasServerlessBackupSnapshotView
-	ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error)
+	//  @return PaginatedApiAtlasServerlessBackupSnapshot
+	ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error)
 
 	/*
 	ListShardedClusterBackups Return All Sharded Cluster Cloud Backups
@@ -421,8 +421,8 @@ type CloudBackupsApi interface {
 	ListShardedClusterBackups(ctx context.Context, groupId string, clusterName string) CloudBackupsApiListShardedClusterBackupsRequest
 
 	// ListShardedClusterBackupsExecute executes the request
-	//  @return PaginatedCloudBackupShardedClusterSnapshotView
-	ListShardedClusterBackupsExecute(r CloudBackupsApiListShardedClusterBackupsRequest) (*PaginatedCloudBackupShardedClusterSnapshotView, *http.Response, error)
+	//  @return PaginatedCloudBackupShardedClusterSnapshot
+	ListShardedClusterBackupsExecute(r CloudBackupsApiListShardedClusterBackupsRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error)
 
 	/*
 	TakeSnapshot Take One On-Demand Snapshot
@@ -625,7 +625,7 @@ func (a *CloudBackupsApiService) CancelBackupRestoreJobExecute(r CloudBackupsApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -636,7 +636,7 @@ func (a *CloudBackupsApiService) CancelBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -647,7 +647,7 @@ func (a *CloudBackupsApiService) CancelBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -789,7 +789,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -800,7 +800,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -811,7 +811,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -822,7 +822,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -833,7 +833,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -994,7 +994,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1005,7 +1005,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1016,7 +1016,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1027,7 +1027,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1038,7 +1038,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1189,7 +1189,7 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1200,7 +1200,7 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1211,7 +1211,7 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1222,7 +1222,7 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1383,7 +1383,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1394,7 +1394,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1405,7 +1405,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1416,7 +1416,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1427,7 +1427,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1566,7 +1566,7 @@ func (a *CloudBackupsApiService) DeleteAllBackupSchedulesExecute(r CloudBackupsA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1577,7 +1577,7 @@ func (a *CloudBackupsApiService) DeleteAllBackupSchedulesExecute(r CloudBackupsA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1588,7 +1588,7 @@ func (a *CloudBackupsApiService) DeleteAllBackupSchedulesExecute(r CloudBackupsA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1725,7 +1725,7 @@ func (a *CloudBackupsApiService) DeleteExportBucketExecute(r CloudBackupsApiDele
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1736,7 +1736,7 @@ func (a *CloudBackupsApiService) DeleteExportBucketExecute(r CloudBackupsApiDele
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1747,7 +1747,7 @@ func (a *CloudBackupsApiService) DeleteExportBucketExecute(r CloudBackupsApiDele
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1758,7 +1758,7 @@ func (a *CloudBackupsApiService) DeleteExportBucketExecute(r CloudBackupsApiDele
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1906,7 +1906,7 @@ func (a *CloudBackupsApiService) DeleteReplicaSetBackupExecute(r CloudBackupsApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1917,7 +1917,7 @@ func (a *CloudBackupsApiService) DeleteReplicaSetBackupExecute(r CloudBackupsApi
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1928,7 +1928,7 @@ func (a *CloudBackupsApiService) DeleteReplicaSetBackupExecute(r CloudBackupsApi
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2076,7 +2076,7 @@ func (a *CloudBackupsApiService) DeleteShardedClusterBackupExecute(r CloudBackup
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2087,7 +2087,7 @@ func (a *CloudBackupsApiService) DeleteShardedClusterBackupExecute(r CloudBackup
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2221,7 +2221,7 @@ func (a *CloudBackupsApiService) GetBackupExportJobExecute(r CloudBackupsApiGetB
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2232,7 +2232,7 @@ func (a *CloudBackupsApiService) GetBackupExportJobExecute(r CloudBackupsApiGetB
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2391,7 +2391,7 @@ func (a *CloudBackupsApiService) GetBackupRestoreJobExecute(r CloudBackupsApiGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2402,7 +2402,7 @@ func (a *CloudBackupsApiService) GetBackupRestoreJobExecute(r CloudBackupsApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2551,7 +2551,7 @@ func (a *CloudBackupsApiService) GetBackupScheduleExecute(r CloudBackupsApiGetBa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2562,7 +2562,7 @@ func (a *CloudBackupsApiService) GetBackupScheduleExecute(r CloudBackupsApiGetBa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2701,7 +2701,7 @@ func (a *CloudBackupsApiService) GetDataProtectionSettingsExecute(r CloudBackups
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2712,7 +2712,7 @@ func (a *CloudBackupsApiService) GetDataProtectionSettingsExecute(r CloudBackups
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2723,7 +2723,7 @@ func (a *CloudBackupsApiService) GetDataProtectionSettingsExecute(r CloudBackups
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2862,7 +2862,7 @@ func (a *CloudBackupsApiService) GetExportBucketExecute(r CloudBackupsApiGetExpo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2873,7 +2873,7 @@ func (a *CloudBackupsApiService) GetExportBucketExecute(r CloudBackupsApiGetExpo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2884,7 +2884,7 @@ func (a *CloudBackupsApiService) GetExportBucketExecute(r CloudBackupsApiGetExpo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3043,7 +3043,7 @@ func (a *CloudBackupsApiService) GetReplicaSetBackupExecute(r CloudBackupsApiGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3054,7 +3054,7 @@ func (a *CloudBackupsApiService) GetReplicaSetBackupExecute(r CloudBackupsApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3065,7 +3065,7 @@ func (a *CloudBackupsApiService) GetReplicaSetBackupExecute(r CloudBackupsApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3214,7 +3214,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3225,7 +3225,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3236,7 +3236,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3395,7 +3395,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBac
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3406,7 +3406,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3417,7 +3417,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3576,7 +3576,7 @@ func (a *CloudBackupsApiService) GetShardedClusterBackupExecute(r CloudBackupsAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3587,7 +3587,7 @@ func (a *CloudBackupsApiService) GetShardedClusterBackupExecute(r CloudBackupsAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3598,7 +3598,7 @@ func (a *CloudBackupsApiService) GetShardedClusterBackupExecute(r CloudBackupsAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3664,7 +3664,7 @@ func (r CloudBackupsApiListBackupExportJobsRequest) PageNum(pageNum int32) Cloud
 	return r
 }
 
-func (r CloudBackupsApiListBackupExportJobsRequest) Execute() (*PaginatedApiAtlasDiskBackupExportJobView, *http.Response, error) {
+func (r CloudBackupsApiListBackupExportJobsRequest) Execute() (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error) {
 	return r.ApiService.ListBackupExportJobsExecute(r)
 }
 
@@ -3688,13 +3688,13 @@ func (a *CloudBackupsApiService) ListBackupExportJobs(ctx context.Context, group
 }
 
 // Execute executes the request
-//  @return PaginatedApiAtlasDiskBackupExportJobView
-func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r CloudBackupsApiListBackupExportJobsRequest) (*PaginatedApiAtlasDiskBackupExportJobView, *http.Response, error) {
+//  @return PaginatedApiAtlasDiskBackupExportJob
+func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r CloudBackupsApiListBackupExportJobsRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasDiskBackupExportJobView
+		localVarReturnValue  *PaginatedApiAtlasDiskBackupExportJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListBackupExportJobs")
@@ -3777,7 +3777,7 @@ func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r CloudBackupsApiLi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3788,7 +3788,7 @@ func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r CloudBackupsApiLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3854,7 +3854,7 @@ func (r CloudBackupsApiListBackupRestoreJobsRequest) Pretty(pretty bool) CloudBa
 	return r
 }
 
-func (r CloudBackupsApiListBackupRestoreJobsRequest) Execute() (*PaginatedCloudBackupRestoreJobView, *http.Response, error) {
+func (r CloudBackupsApiListBackupRestoreJobsRequest) Execute() (*PaginatedCloudBackupRestoreJob, *http.Response, error) {
 	return r.ApiService.ListBackupRestoreJobsExecute(r)
 }
 
@@ -3878,13 +3878,13 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobs(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return PaginatedCloudBackupRestoreJobView
-func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiListBackupRestoreJobsRequest) (*PaginatedCloudBackupRestoreJobView, *http.Response, error) {
+//  @return PaginatedCloudBackupRestoreJob
+func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiListBackupRestoreJobsRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedCloudBackupRestoreJobView
+		localVarReturnValue  *PaginatedCloudBackupRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListBackupRestoreJobs")
@@ -3967,7 +3967,7 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiL
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3978,7 +3978,7 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4022,7 +4022,7 @@ func (r CloudBackupsApiListExportBucketsRequest) Pretty(pretty bool) CloudBackup
 	return r
 }
 
-func (r CloudBackupsApiListExportBucketsRequest) Execute() (*PaginatedBackupSnapshotExportBucketView, *http.Response, error) {
+func (r CloudBackupsApiListExportBucketsRequest) Execute() (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
 	return r.ApiService.ListExportBucketsExecute(r)
 }
 
@@ -4044,13 +4044,13 @@ func (a *CloudBackupsApiService) ListExportBuckets(ctx context.Context, groupId 
 }
 
 // Execute executes the request
-//  @return PaginatedBackupSnapshotExportBucketView
-func (a *CloudBackupsApiService) ListExportBucketsExecute(r CloudBackupsApiListExportBucketsRequest) (*PaginatedBackupSnapshotExportBucketView, *http.Response, error) {
+//  @return PaginatedBackupSnapshotExportBucket
+func (a *CloudBackupsApiService) ListExportBucketsExecute(r CloudBackupsApiListExportBucketsRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedBackupSnapshotExportBucketView
+		localVarReturnValue  *PaginatedBackupSnapshotExportBucket
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListExportBuckets")
@@ -4117,7 +4117,7 @@ func (a *CloudBackupsApiService) ListExportBucketsExecute(r CloudBackupsApiListE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4128,7 +4128,7 @@ func (a *CloudBackupsApiService) ListExportBucketsExecute(r CloudBackupsApiListE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4194,7 +4194,7 @@ func (r CloudBackupsApiListReplicaSetBackupsRequest) Pretty(pretty bool) CloudBa
 	return r
 }
 
-func (r CloudBackupsApiListReplicaSetBackupsRequest) Execute() (*PaginatedCloudBackupReplicaSetView, *http.Response, error) {
+func (r CloudBackupsApiListReplicaSetBackupsRequest) Execute() (*PaginatedCloudBackupReplicaSet, *http.Response, error) {
 	return r.ApiService.ListReplicaSetBackupsExecute(r)
 }
 
@@ -4218,13 +4218,13 @@ func (a *CloudBackupsApiService) ListReplicaSetBackups(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return PaginatedCloudBackupReplicaSetView
-func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiListReplicaSetBackupsRequest) (*PaginatedCloudBackupReplicaSetView, *http.Response, error) {
+//  @return PaginatedCloudBackupReplicaSet
+func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiListReplicaSetBackupsRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedCloudBackupReplicaSetView
+		localVarReturnValue  *PaginatedCloudBackupReplicaSet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListReplicaSetBackups")
@@ -4307,7 +4307,7 @@ func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiL
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4318,7 +4318,7 @@ func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4329,7 +4329,7 @@ func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4374,7 +4374,7 @@ func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Pretty(pretty boo
 	return r
 }
 
-func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error) {
+func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
 	return r.ApiService.ListServerlessBackupRestoreJobsExecute(r)
 }
 
@@ -4398,13 +4398,13 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobs(ctx context.Con
 }
 
 // Execute executes the request
-//  @return PaginatedApiAtlasServerlessBackupRestoreJobView
-func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJobView, *http.Response, error) {
+//  @return PaginatedApiAtlasServerlessBackupRestoreJob
+func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudBackupsApiListServerlessBackupRestoreJobsRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasServerlessBackupRestoreJobView
+		localVarReturnValue  *PaginatedApiAtlasServerlessBackupRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListServerlessBackupRestoreJobs")
@@ -4478,7 +4478,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudB
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4489,7 +4489,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudB
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4500,7 +4500,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudB
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4566,7 +4566,7 @@ func (r CloudBackupsApiListServerlessBackupsRequest) PageNum(pageNum int32) Clou
 	return r
 }
 
-func (r CloudBackupsApiListServerlessBackupsRequest) Execute() (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error) {
+func (r CloudBackupsApiListServerlessBackupsRequest) Execute() (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error) {
 	return r.ApiService.ListServerlessBackupsExecute(r)
 }
 
@@ -4590,13 +4590,13 @@ func (a *CloudBackupsApiService) ListServerlessBackups(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return PaginatedApiAtlasServerlessBackupSnapshotView
-func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshotView, *http.Response, error) {
+//  @return PaginatedApiAtlasServerlessBackupSnapshot
+func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiListServerlessBackupsRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasServerlessBackupSnapshotView
+		localVarReturnValue  *PaginatedApiAtlasServerlessBackupSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListServerlessBackups")
@@ -4679,7 +4679,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiL
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4690,7 +4690,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4701,7 +4701,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiL
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4746,7 +4746,7 @@ func (r CloudBackupsApiListShardedClusterBackupsRequest) Pretty(pretty bool) Clo
 	return r
 }
 
-func (r CloudBackupsApiListShardedClusterBackupsRequest) Execute() (*PaginatedCloudBackupShardedClusterSnapshotView, *http.Response, error) {
+func (r CloudBackupsApiListShardedClusterBackupsRequest) Execute() (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
 	return r.ApiService.ListShardedClusterBackupsExecute(r)
 }
 
@@ -4770,13 +4770,13 @@ func (a *CloudBackupsApiService) ListShardedClusterBackups(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return PaginatedCloudBackupShardedClusterSnapshotView
-func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackupsApiListShardedClusterBackupsRequest) (*PaginatedCloudBackupShardedClusterSnapshotView, *http.Response, error) {
+//  @return PaginatedCloudBackupShardedClusterSnapshot
+func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackupsApiListShardedClusterBackupsRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedCloudBackupShardedClusterSnapshotView
+		localVarReturnValue  *PaginatedCloudBackupShardedClusterSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudBackupsApiService.ListShardedClusterBackups")
@@ -4850,7 +4850,7 @@ func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackups
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4861,7 +4861,7 @@ func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackups
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4872,7 +4872,7 @@ func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackups
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5033,7 +5033,7 @@ func (a *CloudBackupsApiService) TakeSnapshotExecute(r CloudBackupsApiTakeSnapsh
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5044,7 +5044,7 @@ func (a *CloudBackupsApiService) TakeSnapshotExecute(r CloudBackupsApiTakeSnapsh
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5055,7 +5055,7 @@ func (a *CloudBackupsApiService) TakeSnapshotExecute(r CloudBackupsApiTakeSnapsh
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5216,7 +5216,7 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5227,7 +5227,7 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5238,7 +5238,7 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5389,7 +5389,7 @@ func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r CloudBack
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5400,7 +5400,7 @@ func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r CloudBack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5411,7 +5411,7 @@ func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r CloudBack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5582,7 +5582,7 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r CloudBackupsAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5593,7 +5593,7 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r CloudBackupsAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5604,7 +5604,7 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r CloudBackupsAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

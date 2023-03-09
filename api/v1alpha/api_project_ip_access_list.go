@@ -34,8 +34,8 @@ type ProjectIPAccessListApi interface {
 	CreateProjectIpAccessList(ctx context.Context, groupId string) ProjectIPAccessListApiCreateProjectIpAccessListRequest
 
 	// CreateProjectIpAccessListExecute executes the request
-	//  @return PaginatedNetworkAccessView
-	CreateProjectIpAccessListExecute(r ProjectIPAccessListApiCreateProjectIpAccessListRequest) (*PaginatedNetworkAccessView, *http.Response, error)
+	//  @return PaginatedNetworkAccess
+	CreateProjectIpAccessListExecute(r ProjectIPAccessListApiCreateProjectIpAccessListRequest) (*PaginatedNetworkAccess, *http.Response, error)
 
 	/*
 	DeleteProjectIpAccessList Remove One Entry from One Project IP Access List
@@ -96,8 +96,8 @@ type ProjectIPAccessListApi interface {
 	ListProjectIpAccessLists(ctx context.Context, groupId string) ProjectIPAccessListApiListProjectIpAccessListsRequest
 
 	// ListProjectIpAccessListsExecute executes the request
-	//  @return PaginatedNetworkAccessView
-	ListProjectIpAccessListsExecute(r ProjectIPAccessListApiListProjectIpAccessListsRequest) (*PaginatedNetworkAccessView, *http.Response, error)
+	//  @return PaginatedNetworkAccess
+	ListProjectIpAccessListsExecute(r ProjectIPAccessListApiListProjectIpAccessListsRequest) (*PaginatedNetworkAccess, *http.Response, error)
 }
 
 // ProjectIPAccessListApiService ProjectIPAccessListApi service
@@ -151,7 +151,7 @@ func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) Pretty(pretty bo
 	return r
 }
 
-func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) Execute() (*PaginatedNetworkAccessView, *http.Response, error) {
+func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) Execute() (*PaginatedNetworkAccess, *http.Response, error) {
 	return r.ApiService.CreateProjectIpAccessListExecute(r)
 }
 
@@ -173,13 +173,13 @@ func (a *ProjectIPAccessListApiService) CreateProjectIpAccessList(ctx context.Co
 }
 
 // Execute executes the request
-//  @return PaginatedNetworkAccessView
-func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r ProjectIPAccessListApiCreateProjectIpAccessListRequest) (*PaginatedNetworkAccessView, *http.Response, error) {
+//  @return PaginatedNetworkAccess
+func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r ProjectIPAccessListApiCreateProjectIpAccessListRequest) (*PaginatedNetworkAccess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedNetworkAccessView
+		localVarReturnValue  *PaginatedNetworkAccess
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectIPAccessListApiService.CreateProjectIpAccessList")
@@ -260,7 +260,7 @@ func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r Proje
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -271,7 +271,7 @@ func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r Proje
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -282,7 +282,7 @@ func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r Proje
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -293,7 +293,7 @@ func (a *ProjectIPAccessListApiService) CreateProjectIpAccessListExecute(r Proje
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -434,7 +434,7 @@ func (a *ProjectIPAccessListApiService) DeleteProjectIpAccessListExecute(r Proje
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *ProjectIPAccessListApiService) DeleteProjectIpAccessListExecute(r Proje
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -456,7 +456,7 @@ func (a *ProjectIPAccessListApiService) DeleteProjectIpAccessListExecute(r Proje
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -590,7 +590,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpAccessListStatusExecute(r Pr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -601,7 +601,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpAccessListStatusExecute(r Pr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -612,7 +612,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpAccessListStatusExecute(r Pr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -623,7 +623,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpAccessListStatusExecute(r Pr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -634,7 +634,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpAccessListStatusExecute(r Pr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -777,7 +777,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpListExecute(r ProjectIPAcces
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -788,7 +788,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpListExecute(r ProjectIPAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -799,7 +799,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpListExecute(r ProjectIPAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -810,7 +810,7 @@ func (a *ProjectIPAccessListApiService) GetProjectIpListExecute(r ProjectIPAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -875,7 +875,7 @@ func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) Pretty(pretty boo
 	return r
 }
 
-func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) Execute() (*PaginatedNetworkAccessView, *http.Response, error) {
+func (r ProjectIPAccessListApiListProjectIpAccessListsRequest) Execute() (*PaginatedNetworkAccess, *http.Response, error) {
 	return r.ApiService.ListProjectIpAccessListsExecute(r)
 }
 
@@ -897,13 +897,13 @@ func (a *ProjectIPAccessListApiService) ListProjectIpAccessLists(ctx context.Con
 }
 
 // Execute executes the request
-//  @return PaginatedNetworkAccessView
-func (a *ProjectIPAccessListApiService) ListProjectIpAccessListsExecute(r ProjectIPAccessListApiListProjectIpAccessListsRequest) (*PaginatedNetworkAccessView, *http.Response, error) {
+//  @return PaginatedNetworkAccess
+func (a *ProjectIPAccessListApiService) ListProjectIpAccessListsExecute(r ProjectIPAccessListApiListProjectIpAccessListsRequest) (*PaginatedNetworkAccess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedNetworkAccessView
+		localVarReturnValue  *PaginatedNetworkAccess
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectIPAccessListApiService.ListProjectIpAccessLists")
@@ -979,7 +979,7 @@ func (a *ProjectIPAccessListApiService) ListProjectIpAccessListsExecute(r Projec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -990,7 +990,7 @@ func (a *ProjectIPAccessListApiService) ListProjectIpAccessListsExecute(r Projec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

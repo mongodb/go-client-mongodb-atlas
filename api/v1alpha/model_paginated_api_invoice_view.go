@@ -22,7 +22,7 @@ type PaginatedApiInvoiceView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []ApiInvoiceView `json:"results,omitempty"`
+	Results []InvoiceView `json:"results,omitempty"`
 	// Number of documents returned in this response.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -77,9 +77,9 @@ func (o *PaginatedApiInvoiceView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedApiInvoiceView) GetResults() []ApiInvoiceView {
+func (o *PaginatedApiInvoiceView) GetResults() []InvoiceView {
 	if o == nil || IsNil(o.Results) {
-		var ret []ApiInvoiceView
+		var ret []InvoiceView
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *PaginatedApiInvoiceView) GetResults() []ApiInvoiceView {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedApiInvoiceView) GetResultsOk() ([]ApiInvoiceView, bool) {
+func (o *PaginatedApiInvoiceView) GetResultsOk() ([]InvoiceView, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PaginatedApiInvoiceView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []ApiInvoiceView and assigns it to the Results field.
-func (o *PaginatedApiInvoiceView) SetResults(v []ApiInvoiceView) {
+// SetResults gets a reference to the given []InvoiceView and assigns it to the Results field.
+func (o *PaginatedApiInvoiceView) SetResults(v []InvoiceView) {
 	o.Results = v
 }
 

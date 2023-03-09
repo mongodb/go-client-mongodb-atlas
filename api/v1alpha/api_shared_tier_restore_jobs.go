@@ -68,8 +68,8 @@ type SharedTierRestoreJobsApi interface {
 	ListSharedClusterBackupRestoreJobs(ctx context.Context, clusterName string, groupId string) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest
 
 	// ListSharedClusterBackupRestoreJobsExecute executes the request
-	//  @return PaginatedTenantRestoreView
-	ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestoreView, *http.Response, error)
+	//  @return PaginatedTenantRestore
+	ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestore, *http.Response, error)
 }
 
 // SharedTierRestoreJobsApiService SharedTierRestoreJobsApi service
@@ -212,7 +212,7 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -223,7 +223,7 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -234,7 +234,7 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -245,7 +245,7 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -256,7 +256,7 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -415,7 +415,7 @@ func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJobExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -426,7 +426,7 @@ func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJobExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -437,7 +437,7 @@ func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJobExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -482,7 +482,7 @@ func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Prett
 	return r
 }
 
-func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Execute() (*PaginatedTenantRestoreView, *http.Response, error) {
+func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Execute() (*PaginatedTenantRestore, *http.Response, error) {
 	return r.ApiService.ListSharedClusterBackupRestoreJobsExecute(r)
 }
 
@@ -506,13 +506,13 @@ func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobs(ctx
 }
 
 // Execute executes the request
-//  @return PaginatedTenantRestoreView
-func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestoreView, *http.Response, error) {
+//  @return PaginatedTenantRestore
+func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExecute(r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) (*PaginatedTenantRestore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTenantRestoreView
+		localVarReturnValue  *PaginatedTenantRestore
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierRestoreJobsApiService.ListSharedClusterBackupRestoreJobs")
@@ -586,7 +586,7 @@ func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -597,7 +597,7 @@ func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -608,7 +608,7 @@ func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

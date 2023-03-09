@@ -24,7 +24,7 @@ type DataProtectionSettings struct {
 	CopyProtectionEnabled *bool `json:"copyProtectionEnabled,omitempty"`
 	// Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters with a Data Protection Policy.
 	EncryptionAtRestEnabled *bool `json:"encryptionAtRestEnabled,omitempty"`
-	OnDemandPolicyItem *ApiPolicyItemView `json:"onDemandPolicyItem,omitempty"`
+	OnDemandPolicyItem *PolicyItem `json:"onDemandPolicyItem,omitempty"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Data Protection Policy.
 	PitEnabled *bool `json:"pitEnabled,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project for the Data Protection Policy.
@@ -32,7 +32,7 @@ type DataProtectionSettings struct {
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Data Protection Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Data Protection Policy.
 	RestoreWindowDays *int32 `json:"restoreWindowDays,omitempty"`
 	// List that contains the specifications for one scheduled policy.
-	ScheduledPolicyItems []ApiPolicyItemView `json:"scheduledPolicyItems,omitempty"`
+	ScheduledPolicyItems []PolicyItem `json:"scheduledPolicyItems,omitempty"`
 	// Label that indicates the state of the Data Protection Policy settings.
 	State *string `json:"state,omitempty"`
 	// ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings.
@@ -123,9 +123,9 @@ func (o *DataProtectionSettings) SetEncryptionAtRestEnabled(v bool) {
 }
 
 // GetOnDemandPolicyItem returns the OnDemandPolicyItem field value if set, zero value otherwise.
-func (o *DataProtectionSettings) GetOnDemandPolicyItem() ApiPolicyItemView {
+func (o *DataProtectionSettings) GetOnDemandPolicyItem() PolicyItem {
 	if o == nil || IsNil(o.OnDemandPolicyItem) {
-		var ret ApiPolicyItemView
+		var ret PolicyItem
 		return ret
 	}
 	return *o.OnDemandPolicyItem
@@ -133,7 +133,7 @@ func (o *DataProtectionSettings) GetOnDemandPolicyItem() ApiPolicyItemView {
 
 // GetOnDemandPolicyItemOk returns a tuple with the OnDemandPolicyItem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataProtectionSettings) GetOnDemandPolicyItemOk() (*ApiPolicyItemView, bool) {
+func (o *DataProtectionSettings) GetOnDemandPolicyItemOk() (*PolicyItem, bool) {
 	if o == nil || IsNil(o.OnDemandPolicyItem) {
 		return nil, false
 	}
@@ -149,8 +149,8 @@ func (o *DataProtectionSettings) HasOnDemandPolicyItem() bool {
 	return false
 }
 
-// SetOnDemandPolicyItem gets a reference to the given ApiPolicyItemView and assigns it to the OnDemandPolicyItem field.
-func (o *DataProtectionSettings) SetOnDemandPolicyItem(v ApiPolicyItemView) {
+// SetOnDemandPolicyItem gets a reference to the given PolicyItem and assigns it to the OnDemandPolicyItem field.
+func (o *DataProtectionSettings) SetOnDemandPolicyItem(v PolicyItem) {
 	o.OnDemandPolicyItem = &v
 }
 
@@ -251,9 +251,9 @@ func (o *DataProtectionSettings) SetRestoreWindowDays(v int32) {
 }
 
 // GetScheduledPolicyItems returns the ScheduledPolicyItems field value if set, zero value otherwise.
-func (o *DataProtectionSettings) GetScheduledPolicyItems() []ApiPolicyItemView {
+func (o *DataProtectionSettings) GetScheduledPolicyItems() []PolicyItem {
 	if o == nil || IsNil(o.ScheduledPolicyItems) {
-		var ret []ApiPolicyItemView
+		var ret []PolicyItem
 		return ret
 	}
 	return o.ScheduledPolicyItems
@@ -261,7 +261,7 @@ func (o *DataProtectionSettings) GetScheduledPolicyItems() []ApiPolicyItemView {
 
 // GetScheduledPolicyItemsOk returns a tuple with the ScheduledPolicyItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataProtectionSettings) GetScheduledPolicyItemsOk() ([]ApiPolicyItemView, bool) {
+func (o *DataProtectionSettings) GetScheduledPolicyItemsOk() ([]PolicyItem, bool) {
 	if o == nil || IsNil(o.ScheduledPolicyItems) {
 		return nil, false
 	}
@@ -277,8 +277,8 @@ func (o *DataProtectionSettings) HasScheduledPolicyItems() bool {
 	return false
 }
 
-// SetScheduledPolicyItems gets a reference to the given []ApiPolicyItemView and assigns it to the ScheduledPolicyItems field.
-func (o *DataProtectionSettings) SetScheduledPolicyItems(v []ApiPolicyItemView) {
+// SetScheduledPolicyItems gets a reference to the given []PolicyItem and assigns it to the ScheduledPolicyItems field.
+func (o *DataProtectionSettings) SetScheduledPolicyItems(v []PolicyItem) {
 	o.ScheduledPolicyItems = v
 }
 

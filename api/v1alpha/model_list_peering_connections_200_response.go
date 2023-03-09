@@ -17,29 +17,29 @@ import (
 
 // ListPeeringConnections200Response - struct for ListPeeringConnections200Response
 type ListPeeringConnections200Response struct {
-	PaginatedAWSPeerVpcView *PaginatedAWSPeerVpcView
-	PaginatedAzurePeerNetworkView *PaginatedAzurePeerNetworkView
-	PaginatedGCPPeerVpcView *PaginatedGCPPeerVpcView
+	PaginatedAWSPeerVpc *PaginatedAWSPeerVpc
+	PaginatedAzurePeerNetwork *PaginatedAzurePeerNetwork
+	PaginatedGCPPeerVpc *PaginatedGCPPeerVpc
 }
 
-// PaginatedAWSPeerVpcViewAsListPeeringConnections200Response is a convenience function that returns PaginatedAWSPeerVpcView wrapped in ListPeeringConnections200Response
-func PaginatedAWSPeerVpcViewAsListPeeringConnections200Response(v *PaginatedAWSPeerVpcView) ListPeeringConnections200Response {
+// PaginatedAWSPeerVpcAsListPeeringConnections200Response is a convenience function that returns PaginatedAWSPeerVpc wrapped in ListPeeringConnections200Response
+func PaginatedAWSPeerVpcAsListPeeringConnections200Response(v *PaginatedAWSPeerVpc) ListPeeringConnections200Response {
 	return ListPeeringConnections200Response{
-		PaginatedAWSPeerVpcView: v,
+		PaginatedAWSPeerVpc: v,
 	}
 }
 
-// PaginatedAzurePeerNetworkViewAsListPeeringConnections200Response is a convenience function that returns PaginatedAzurePeerNetworkView wrapped in ListPeeringConnections200Response
-func PaginatedAzurePeerNetworkViewAsListPeeringConnections200Response(v *PaginatedAzurePeerNetworkView) ListPeeringConnections200Response {
+// PaginatedAzurePeerNetworkAsListPeeringConnections200Response is a convenience function that returns PaginatedAzurePeerNetwork wrapped in ListPeeringConnections200Response
+func PaginatedAzurePeerNetworkAsListPeeringConnections200Response(v *PaginatedAzurePeerNetwork) ListPeeringConnections200Response {
 	return ListPeeringConnections200Response{
-		PaginatedAzurePeerNetworkView: v,
+		PaginatedAzurePeerNetwork: v,
 	}
 }
 
-// PaginatedGCPPeerVpcViewAsListPeeringConnections200Response is a convenience function that returns PaginatedGCPPeerVpcView wrapped in ListPeeringConnections200Response
-func PaginatedGCPPeerVpcViewAsListPeeringConnections200Response(v *PaginatedGCPPeerVpcView) ListPeeringConnections200Response {
+// PaginatedGCPPeerVpcAsListPeeringConnections200Response is a convenience function that returns PaginatedGCPPeerVpc wrapped in ListPeeringConnections200Response
+func PaginatedGCPPeerVpcAsListPeeringConnections200Response(v *PaginatedGCPPeerVpc) ListPeeringConnections200Response {
 	return ListPeeringConnections200Response{
-		PaginatedGCPPeerVpcView: v,
+		PaginatedGCPPeerVpc: v,
 	}
 }
 
@@ -48,50 +48,50 @@ func PaginatedGCPPeerVpcViewAsListPeeringConnections200Response(v *PaginatedGCPP
 func (dst *ListPeeringConnections200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into PaginatedAWSPeerVpcView
-	err = json.Unmarshal(data, &dst.PaginatedAWSPeerVpcView)
+	// try to unmarshal data into PaginatedAWSPeerVpc
+	err = json.Unmarshal(data, &dst.PaginatedAWSPeerVpc)
 	if err == nil {
-		jsonPaginatedAWSPeerVpcView, _ := json.Marshal(dst.PaginatedAWSPeerVpcView)
-		if string(jsonPaginatedAWSPeerVpcView) == "{}" { // empty struct
-			dst.PaginatedAWSPeerVpcView = nil
+		jsonPaginatedAWSPeerVpc, _ := json.Marshal(dst.PaginatedAWSPeerVpc)
+		if string(jsonPaginatedAWSPeerVpc) == "{}" { // empty struct
+			dst.PaginatedAWSPeerVpc = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.PaginatedAWSPeerVpcView = nil
+		dst.PaginatedAWSPeerVpc = nil
 	}
 
-	// try to unmarshal data into PaginatedAzurePeerNetworkView
-	err = json.Unmarshal(data, &dst.PaginatedAzurePeerNetworkView)
+	// try to unmarshal data into PaginatedAzurePeerNetwork
+	err = json.Unmarshal(data, &dst.PaginatedAzurePeerNetwork)
 	if err == nil {
-		jsonPaginatedAzurePeerNetworkView, _ := json.Marshal(dst.PaginatedAzurePeerNetworkView)
-		if string(jsonPaginatedAzurePeerNetworkView) == "{}" { // empty struct
-			dst.PaginatedAzurePeerNetworkView = nil
+		jsonPaginatedAzurePeerNetwork, _ := json.Marshal(dst.PaginatedAzurePeerNetwork)
+		if string(jsonPaginatedAzurePeerNetwork) == "{}" { // empty struct
+			dst.PaginatedAzurePeerNetwork = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.PaginatedAzurePeerNetworkView = nil
+		dst.PaginatedAzurePeerNetwork = nil
 	}
 
-	// try to unmarshal data into PaginatedGCPPeerVpcView
-	err = json.Unmarshal(data, &dst.PaginatedGCPPeerVpcView)
+	// try to unmarshal data into PaginatedGCPPeerVpc
+	err = json.Unmarshal(data, &dst.PaginatedGCPPeerVpc)
 	if err == nil {
-		jsonPaginatedGCPPeerVpcView, _ := json.Marshal(dst.PaginatedGCPPeerVpcView)
-		if string(jsonPaginatedGCPPeerVpcView) == "{}" { // empty struct
-			dst.PaginatedGCPPeerVpcView = nil
+		jsonPaginatedGCPPeerVpc, _ := json.Marshal(dst.PaginatedGCPPeerVpc)
+		if string(jsonPaginatedGCPPeerVpc) == "{}" { // empty struct
+			dst.PaginatedGCPPeerVpc = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.PaginatedGCPPeerVpcView = nil
+		dst.PaginatedGCPPeerVpc = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.PaginatedAWSPeerVpcView = nil
-		dst.PaginatedAzurePeerNetworkView = nil
-		dst.PaginatedGCPPeerVpcView = nil
+		dst.PaginatedAWSPeerVpc = nil
+		dst.PaginatedAzurePeerNetwork = nil
+		dst.PaginatedGCPPeerVpc = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ListPeeringConnections200Response)")
 	} else if match == 1 {
@@ -103,16 +103,16 @@ func (dst *ListPeeringConnections200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ListPeeringConnections200Response) MarshalJSON() ([]byte, error) {
-	if src.PaginatedAWSPeerVpcView != nil {
-		return json.Marshal(&src.PaginatedAWSPeerVpcView)
+	if src.PaginatedAWSPeerVpc != nil {
+		return json.Marshal(&src.PaginatedAWSPeerVpc)
 	}
 
-	if src.PaginatedAzurePeerNetworkView != nil {
-		return json.Marshal(&src.PaginatedAzurePeerNetworkView)
+	if src.PaginatedAzurePeerNetwork != nil {
+		return json.Marshal(&src.PaginatedAzurePeerNetwork)
 	}
 
-	if src.PaginatedGCPPeerVpcView != nil {
-		return json.Marshal(&src.PaginatedGCPPeerVpcView)
+	if src.PaginatedGCPPeerVpc != nil {
+		return json.Marshal(&src.PaginatedGCPPeerVpc)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -123,16 +123,16 @@ func (obj *ListPeeringConnections200Response) GetActualInstance() (interface{}) 
 	if obj == nil {
 		return nil
 	}
-	if obj.PaginatedAWSPeerVpcView != nil {
-		return obj.PaginatedAWSPeerVpcView
+	if obj.PaginatedAWSPeerVpc != nil {
+		return obj.PaginatedAWSPeerVpc
 	}
 
-	if obj.PaginatedAzurePeerNetworkView != nil {
-		return obj.PaginatedAzurePeerNetworkView
+	if obj.PaginatedAzurePeerNetwork != nil {
+		return obj.PaginatedAzurePeerNetwork
 	}
 
-	if obj.PaginatedGCPPeerVpcView != nil {
-		return obj.PaginatedGCPPeerVpcView
+	if obj.PaginatedGCPPeerVpc != nil {
+		return obj.PaginatedGCPPeerVpc
 	}
 
 	// all schemas are nil

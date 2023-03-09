@@ -48,8 +48,8 @@ type ProjectsApi interface {
 	CreateProjectInvitation(ctx context.Context, groupId string) ProjectsApiCreateProjectInvitationRequest
 
 	// CreateProjectInvitationExecute executes the request
-	//  @return ApiGroupInvitationView
-	CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
+	//  @return GroupInvitation
+	CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	DeleteProject Remove One Project
@@ -138,8 +138,8 @@ type ProjectsApi interface {
 	GetProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiGetProjectInvitationRequest
 
 	// GetProjectInvitationExecute executes the request
-	//  @return ApiGroupInvitationView
-	GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
+	//  @return GroupInvitation
+	GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	GetProjectLimit Return One Limit for One Project
@@ -154,8 +154,8 @@ type ProjectsApi interface {
 	GetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetProjectLimitRequest
 
 	// GetProjectLimitExecute executes the request
-	//  @return ApiLimitView
-	GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*ApiLimitView, *http.Response, error)
+	//  @return Limit
+	GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*Limit, *http.Response, error)
 
 	/*
 	GetProjectSettings Return One Project Settings
@@ -184,8 +184,8 @@ type ProjectsApi interface {
 	ListProjectInvitations(ctx context.Context, groupId string) ProjectsApiListProjectInvitationsRequest
 
 	// ListProjectInvitationsExecute executes the request
-	//  @return []ApiGroupInvitationView
-	ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error)
+	//  @return []GroupInvitation
+	ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]GroupInvitation, *http.Response, error)
 
 	/*
 	ListProjectLimits Return All Limits for One Project
@@ -199,8 +199,8 @@ type ProjectsApi interface {
 	ListProjectLimits(ctx context.Context, groupId string) ProjectsApiListProjectLimitsRequest
 
 	// ListProjectLimitsExecute executes the request
-	//  @return ApiLimitView
-	ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*ApiLimitView, *http.Response, error)
+	//  @return Limit
+	ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*Limit, *http.Response, error)
 
 	/*
 	ListProjectUsers Return All Users in One Project
@@ -214,8 +214,8 @@ type ProjectsApi interface {
 	ListProjectUsers(ctx context.Context, groupId string) ProjectsApiListProjectUsersRequest
 
 	// ListProjectUsersExecute executes the request
-	//  @return PaginatedApiAppUserView
-	ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUserView, *http.Response, error)
+	//  @return PaginatedApiAppUser
+	ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	ListProjects Return All Projects
@@ -228,8 +228,8 @@ type ProjectsApi interface {
 	ListProjects(ctx context.Context) ProjectsApiListProjectsRequest
 
 	// ListProjectsExecute executes the request
-	//  @return PaginatedAtlasGroupView
-	ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error)
+	//  @return PaginatedAtlasGroup
+	ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroup, *http.Response, error)
 
 	/*
 	RemoveProjectUser Remove One User from One Project
@@ -259,8 +259,8 @@ type ProjectsApi interface {
 	SetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetProjectLimitRequest
 
 	// SetProjectLimitExecute executes the request
-	//  @return ApiLimitView
-	SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*ApiLimitView, *http.Response, error)
+	//  @return Limit
+	SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*Limit, *http.Response, error)
 
 	/*
 	UpdateProject Update One Project Name
@@ -289,8 +289,8 @@ type ProjectsApi interface {
 	UpdateProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateProjectInvitationRequest
 
 	// UpdateProjectInvitationExecute executes the request
-	//  @return ApiGroupInvitationView
-	UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error)
+	//  @return GroupInvitation
+	UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectInvitationById Update One Project Invitation by Invitation ID
@@ -305,8 +305,8 @@ type ProjectsApi interface {
 	UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateProjectInvitationByIdRequest
 
 	// UpdateProjectInvitationByIdExecute executes the request
-	//  @return ApiGroupInvitationView
-	UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*ApiGroupInvitationView, *http.Response, error)
+	//  @return GroupInvitation
+	UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectSettings Update One Project Settings
@@ -454,7 +454,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -465,7 +465,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -476,7 +476,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -487,7 +487,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -498,7 +498,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -509,7 +509,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -537,14 +537,14 @@ type ProjectsApiCreateProjectInvitationRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	apiGroupInvitationRequestView *ApiGroupInvitationRequestView
+	groupInvitationRequest *GroupInvitationRequest
 	pretty *bool
 	envelope *bool
 }
 
 // Invites one MongoDB Cloud user to join the specified project.
-func (r ProjectsApiCreateProjectInvitationRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiCreateProjectInvitationRequest {
-	r.apiGroupInvitationRequestView = &apiGroupInvitationRequestView
+func (r ProjectsApiCreateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiCreateProjectInvitationRequest {
+	r.groupInvitationRequest = &groupInvitationRequest
 	return r
 }
 
@@ -560,7 +560,7 @@ func (r ProjectsApiCreateProjectInvitationRequest) Envelope(envelope bool) Proje
 	return r
 }
 
-func (r ProjectsApiCreateProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+func (r ProjectsApiCreateProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
@@ -582,13 +582,13 @@ func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupI
 }
 
 // Execute executes the request
-//  @return ApiGroupInvitationView
-func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
+//  @return GroupInvitation
+func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiGroupInvitationView
+		localVarReturnValue  *GroupInvitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectInvitation")
@@ -608,8 +608,8 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiGroupInvitationRequestView == nil {
-		return localVarReturnValue, nil, reportError("apiGroupInvitationRequestView is required and must be specified")
+	if r.groupInvitationRequest == nil {
+		return localVarReturnValue, nil, reportError("groupInvitationRequest is required and must be specified")
 	}
 
 	if r.pretty != nil {
@@ -636,7 +636,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiGroupInvitationRequestView
+	localVarPostBody = r.groupInvitationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -660,7 +660,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -671,7 +671,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -808,7 +808,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -819,7 +819,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequ
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -830,7 +830,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequ
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -958,7 +958,7 @@ func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -969,7 +969,7 @@ func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteP
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1101,7 +1101,7 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1112,7 +1112,7 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1123,7 +1123,7 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1134,7 +1134,7 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1264,7 +1264,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1275,7 +1275,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1286,7 +1286,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1425,7 +1425,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1436,7 +1436,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1447,7 +1447,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1458,7 +1458,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1469,7 +1469,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1514,7 +1514,7 @@ func (r ProjectsApiGetProjectInvitationRequest) Pretty(pretty bool) ProjectsApiG
 	return r
 }
 
-func (r ProjectsApiGetProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+func (r ProjectsApiGetProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.GetProjectInvitationExecute(r)
 }
 
@@ -1538,13 +1538,13 @@ func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId s
 }
 
 // Execute executes the request
-//  @return ApiGroupInvitationView
-func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
+//  @return GroupInvitation
+func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiGroupInvitationView
+		localVarReturnValue  *GroupInvitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectInvitation")
@@ -1618,7 +1618,7 @@ func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProject
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1629,7 +1629,7 @@ func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProject
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1640,7 +1640,7 @@ func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProject
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1685,7 +1685,7 @@ func (r ProjectsApiGetProjectLimitRequest) Pretty(pretty bool) ProjectsApiGetPro
 	return r
 }
 
-func (r ProjectsApiGetProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
+func (r ProjectsApiGetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.GetProjectLimitExecute(r)
 }
 
@@ -1709,13 +1709,13 @@ func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName stri
 }
 
 // Execute executes the request
-//  @return ApiLimitView
-func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
+//  @return Limit
+func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiLimitView
+		localVarReturnValue  *Limit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectLimit")
@@ -1783,7 +1783,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1794,7 +1794,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1805,7 +1805,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1816,7 +1816,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1827,7 +1827,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1966,7 +1966,7 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1977,7 +1977,7 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1988,7 +1988,7 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1999,7 +1999,7 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2050,7 +2050,7 @@ func (r ProjectsApiListProjectInvitationsRequest) Username(username string) Proj
 	return r
 }
 
-func (r ProjectsApiListProjectInvitationsRequest) Execute() ([]ApiGroupInvitationView, *http.Response, error) {
+func (r ProjectsApiListProjectInvitationsRequest) Execute() ([]GroupInvitation, *http.Response, error) {
 	return r.ApiService.ListProjectInvitationsExecute(r)
 }
 
@@ -2072,13 +2072,13 @@ func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId
 }
 
 // Execute executes the request
-//  @return []ApiGroupInvitationView
-func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]ApiGroupInvitationView, *http.Response, error) {
+//  @return []GroupInvitation
+func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiGroupInvitationView
+		localVarReturnValue  []GroupInvitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectInvitations")
@@ -2148,7 +2148,7 @@ func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProj
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2159,7 +2159,7 @@ func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProj
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2203,7 +2203,7 @@ func (r ProjectsApiListProjectLimitsRequest) Pretty(pretty bool) ProjectsApiList
 	return r
 }
 
-func (r ProjectsApiListProjectLimitsRequest) Execute() (*ApiLimitView, *http.Response, error) {
+func (r ProjectsApiListProjectLimitsRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.ListProjectLimitsExecute(r)
 }
 
@@ -2225,13 +2225,13 @@ func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId stri
 }
 
 // Execute executes the request
-//  @return ApiLimitView
-func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*ApiLimitView, *http.Response, error) {
+//  @return Limit
+func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiLimitView
+		localVarReturnValue  *Limit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectLimits")
@@ -2298,7 +2298,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2309,7 +2309,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2320,7 +2320,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2331,7 +2331,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2342,7 +2342,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2421,7 +2421,7 @@ func (r ProjectsApiListProjectUsersRequest) IncludeOrgUsers(includeOrgUsers bool
 	return r
 }
 
-func (r ProjectsApiListProjectUsersRequest) Execute() (*PaginatedApiAppUserView, *http.Response, error) {
+func (r ProjectsApiListProjectUsersRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.ListProjectUsersExecute(r)
 }
 
@@ -2443,13 +2443,13 @@ func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId strin
 }
 
 // Execute executes the request
-//  @return PaginatedApiAppUserView
-func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUserView, *http.Response, error) {
+//  @return PaginatedApiAppUser
+func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAppUserView
+		localVarReturnValue  *PaginatedApiAppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjectUsers")
@@ -2531,7 +2531,7 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2542,7 +2542,7 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2606,7 +2606,7 @@ func (r ProjectsApiListProjectsRequest) Pretty(pretty bool) ProjectsApiListProje
 	return r
 }
 
-func (r ProjectsApiListProjectsRequest) Execute() (*PaginatedAtlasGroupView, *http.Response, error) {
+func (r ProjectsApiListProjectsRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
 	return r.ApiService.ListProjectsExecute(r)
 }
 
@@ -2626,13 +2626,13 @@ func (a *ProjectsApiService) ListProjects(ctx context.Context) ProjectsApiListPr
 }
 
 // Execute executes the request
-//  @return PaginatedAtlasGroupView
-func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroupView, *http.Response, error) {
+//  @return PaginatedAtlasGroup
+func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedAtlasGroupView
+		localVarReturnValue  *PaginatedAtlasGroup
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.ListProjects")
@@ -2701,7 +2701,7 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2712,7 +2712,7 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2723,7 +2723,7 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2870,7 +2870,7 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2881,7 +2881,7 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2892,7 +2892,7 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2903,7 +2903,7 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2925,7 +2925,7 @@ type ProjectsApiSetProjectLimitRequest struct {
 	groupId string
 	envelope *bool
 	pretty *bool
-	apiLimitView *ApiLimitView
+	limit *Limit
 }
 
 // Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
@@ -2940,12 +2940,12 @@ func (r ProjectsApiSetProjectLimitRequest) Pretty(pretty bool) ProjectsApiSetPro
 	return r
 }
 
-func (r ProjectsApiSetProjectLimitRequest) ApiLimitView(apiLimitView ApiLimitView) ProjectsApiSetProjectLimitRequest {
-	r.apiLimitView = &apiLimitView
+func (r ProjectsApiSetProjectLimitRequest) Limit(limit Limit) ProjectsApiSetProjectLimitRequest {
+	r.limit = &limit
 	return r
 }
 
-func (r ProjectsApiSetProjectLimitRequest) Execute() (*ApiLimitView, *http.Response, error) {
+func (r ProjectsApiSetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.SetProjectLimitExecute(r)
 }
 
@@ -2969,13 +2969,13 @@ func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName stri
 }
 
 // Execute executes the request
-//  @return ApiLimitView
-func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*ApiLimitView, *http.Response, error) {
+//  @return Limit
+func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiLimitView
+		localVarReturnValue  *Limit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.SetProjectLimit")
@@ -3021,7 +3021,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiLimitView
+	localVarPostBody = r.limit
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3045,7 +3045,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3056,7 +3056,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3067,7 +3067,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3078,7 +3078,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3089,7 +3089,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3236,7 +3236,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3247,7 +3247,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3258,7 +3258,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3269,7 +3269,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3280,7 +3280,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3308,14 +3308,14 @@ type ProjectsApiUpdateProjectInvitationRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	apiGroupInvitationRequestView *ApiGroupInvitationRequestView
+	groupInvitationRequest *GroupInvitationRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateProjectInvitationRequest) ApiGroupInvitationRequestView(apiGroupInvitationRequestView ApiGroupInvitationRequestView) ProjectsApiUpdateProjectInvitationRequest {
-	r.apiGroupInvitationRequestView = &apiGroupInvitationRequestView
+func (r ProjectsApiUpdateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiUpdateProjectInvitationRequest {
+	r.groupInvitationRequest = &groupInvitationRequest
 	return r
 }
 
@@ -3331,7 +3331,7 @@ func (r ProjectsApiUpdateProjectInvitationRequest) Pretty(pretty bool) ProjectsA
 	return r
 }
 
-func (r ProjectsApiUpdateProjectInvitationRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+func (r ProjectsApiUpdateProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationExecute(r)
 }
 
@@ -3353,13 +3353,13 @@ func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupI
 }
 
 // Execute executes the request
-//  @return ApiGroupInvitationView
-func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*ApiGroupInvitationView, *http.Response, error) {
+//  @return GroupInvitation
+func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiGroupInvitationView
+		localVarReturnValue  *GroupInvitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProjectInvitation")
@@ -3379,8 +3379,8 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiGroupInvitationRequestView == nil {
-		return localVarReturnValue, nil, reportError("apiGroupInvitationRequestView is required and must be specified")
+	if r.groupInvitationRequest == nil {
+		return localVarReturnValue, nil, reportError("groupInvitationRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -3407,7 +3407,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiGroupInvitationRequestView
+	localVarPostBody = r.groupInvitationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3431,7 +3431,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3442,7 +3442,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3453,7 +3453,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3464,7 +3464,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3493,13 +3493,13 @@ type ProjectsApiUpdateProjectInvitationByIdRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	invitationId string
-	apiGroupInvitationUpdateRequestView *ApiGroupInvitationUpdateRequestView
+	groupInvitationUpdateRequest *GroupInvitationUpdateRequest
 	envelope *bool
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateProjectInvitationByIdRequest) ApiGroupInvitationUpdateRequestView(apiGroupInvitationUpdateRequestView ApiGroupInvitationUpdateRequestView) ProjectsApiUpdateProjectInvitationByIdRequest {
-	r.apiGroupInvitationUpdateRequestView = &apiGroupInvitationUpdateRequestView
+func (r ProjectsApiUpdateProjectInvitationByIdRequest) GroupInvitationUpdateRequest(groupInvitationUpdateRequest GroupInvitationUpdateRequest) ProjectsApiUpdateProjectInvitationByIdRequest {
+	r.groupInvitationUpdateRequest = &groupInvitationUpdateRequest
 	return r
 }
 
@@ -3509,7 +3509,7 @@ func (r ProjectsApiUpdateProjectInvitationByIdRequest) Envelope(envelope bool) P
 	return r
 }
 
-func (r ProjectsApiUpdateProjectInvitationByIdRequest) Execute() (*ApiGroupInvitationView, *http.Response, error) {
+func (r ProjectsApiUpdateProjectInvitationByIdRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationByIdExecute(r)
 }
 
@@ -3533,13 +3533,13 @@ func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, gr
 }
 
 // Execute executes the request
-//  @return ApiGroupInvitationView
-func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*ApiGroupInvitationView, *http.Response, error) {
+//  @return GroupInvitation
+func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiGroupInvitationView
+		localVarReturnValue  *GroupInvitation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.UpdateProjectInvitationById")
@@ -3566,8 +3566,8 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 	if strlen(r.invitationId) > 24 {
 		return localVarReturnValue, nil, reportError("invitationId must have less than 24 elements")
 	}
-	if r.apiGroupInvitationUpdateRequestView == nil {
-		return localVarReturnValue, nil, reportError("apiGroupInvitationUpdateRequestView is required and must be specified")
+	if r.groupInvitationUpdateRequest == nil {
+		return localVarReturnValue, nil, reportError("groupInvitationUpdateRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -3591,7 +3591,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiGroupInvitationUpdateRequestView
+	localVarPostBody = r.groupInvitationUpdateRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3615,7 +3615,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3626,7 +3626,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3637,7 +3637,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3648,7 +3648,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3795,7 +3795,7 @@ func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdatePro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3806,7 +3806,7 @@ func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdatePro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3817,7 +3817,7 @@ func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdatePro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3828,7 +3828,7 @@ func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdatePro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

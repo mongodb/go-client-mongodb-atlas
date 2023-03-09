@@ -5,6 +5,7 @@ const {
   applyDiscriminatorTransformations,
 } = require("./transformations");
 const { getAPI, saveAPI } = require("./engine/apifile");
+const ignoredModelNames = require("./name.ignore.json").ignoreModels;
 
 const log = require("simple-node-logger").createSimpleLogger();
 
@@ -17,6 +18,10 @@ let { doc, apiFileLocation } = getAPI(process.argv.slice(2));
 doc = applyDiscriminatorTransformations(doc);
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
-doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
+
+doc = applyModelNameTransformations(doc, "ApiAtlas", "View", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "Api", "View", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "", "View", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "Api", "", ignoredModelNames);
 
 saveAPI(doc, apiFileLocation);

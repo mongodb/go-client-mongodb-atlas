@@ -68,8 +68,8 @@ type SharedTierSnapshotsApi interface {
 	ListSharedClusterBackups(ctx context.Context, groupId string, clusterName string) SharedTierSnapshotsApiListSharedClusterBackupsRequest
 
 	// ListSharedClusterBackupsExecute executes the request
-	//  @return PaginatedTenantSnapshotView
-	ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshotView, *http.Response, error)
+	//  @return PaginatedTenantSnapshot
+	ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshot, *http.Response, error)
 }
 
 // SharedTierSnapshotsApiService SharedTierSnapshotsApi service
@@ -212,7 +212,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -223,7 +223,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -234,7 +234,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -245,7 +245,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -256,7 +256,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -267,7 +267,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r Sha
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -426,7 +426,7 @@ func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupExecute(r SharedTi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -437,7 +437,7 @@ func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupExecute(r SharedTi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -448,7 +448,7 @@ func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupExecute(r SharedTi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -493,7 +493,7 @@ func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Pretty(pretty boo
 	return r
 }
 
-func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Execute() (*PaginatedTenantSnapshotView, *http.Response, error) {
+func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Execute() (*PaginatedTenantSnapshot, *http.Response, error) {
 	return r.ApiService.ListSharedClusterBackupsExecute(r)
 }
 
@@ -517,13 +517,13 @@ func (a *SharedTierSnapshotsApiService) ListSharedClusterBackups(ctx context.Con
 }
 
 // Execute executes the request
-//  @return PaginatedTenantSnapshotView
-func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshotView, *http.Response, error) {
+//  @return PaginatedTenantSnapshot
+func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r SharedTierSnapshotsApiListSharedClusterBackupsRequest) (*PaginatedTenantSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTenantSnapshotView
+		localVarReturnValue  *PaginatedTenantSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedTierSnapshotsApiService.ListSharedClusterBackups")
@@ -597,7 +597,7 @@ func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r Shared
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -608,7 +608,7 @@ func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r Shared
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -619,7 +619,7 @@ func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r Shared
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -35,8 +35,8 @@ type FederatedAuthenticationApi interface {
 	CreateRoleMapping(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiCreateRoleMappingRequest
 
 	// CreateRoleMappingExecute executes the request
-	//  @return RoleMappingView
-	CreateRoleMappingExecute(r FederatedAuthenticationApiCreateRoleMappingRequest) (*RoleMappingView, *http.Response, error)
+	//  @return RoleMapping
+	CreateRoleMappingExecute(r FederatedAuthenticationApiCreateRoleMappingRequest) (*RoleMapping, *http.Response, error)
 
 	/*
 	DeleteFederationApp Delete the federation settings instance.
@@ -81,8 +81,8 @@ type FederatedAuthenticationApi interface {
 	GetConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiGetConnectedOrgConfigRequest
 
 	// GetConnectedOrgConfigExecute executes the request
-	//  @return ConnectedOrgConfigView
-	GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
+	//  @return ConnectedOrgConfig
+	GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfig, *http.Response, error)
 
 	/*
 	GetFederationSettings Return Federation Settings for One Organization
@@ -96,8 +96,8 @@ type FederatedAuthenticationApi interface {
 	GetFederationSettings(ctx context.Context, orgId string) FederatedAuthenticationApiGetFederationSettingsRequest
 
 	// GetFederationSettingsExecute executes the request
-	//  @return OrgFederationSettingsView
-	GetFederationSettingsExecute(r FederatedAuthenticationApiGetFederationSettingsRequest) (*OrgFederationSettingsView, *http.Response, error)
+	//  @return OrgFederationSettings
+	GetFederationSettingsExecute(r FederatedAuthenticationApiGetFederationSettingsRequest) (*OrgFederationSettings, *http.Response, error)
 
 	/*
 	GetIdentityProvider Return one identity provider from the specified federation.
@@ -112,8 +112,8 @@ type FederatedAuthenticationApi interface {
 	GetIdentityProvider(ctx context.Context, federationSettingsId string, identityProviderId string) FederatedAuthenticationApiGetIdentityProviderRequest
 
 	// GetIdentityProviderExecute executes the request
-	//  @return IdentityProviderView
-	GetIdentityProviderExecute(r FederatedAuthenticationApiGetIdentityProviderRequest) (*IdentityProviderView, *http.Response, error)
+	//  @return IdentityProvider
+	GetIdentityProviderExecute(r FederatedAuthenticationApiGetIdentityProviderRequest) (*IdentityProvider, *http.Response, error)
 
 	/*
 	GetIdentityProviderMetadata Return the metadata of one identity provider in the specified federation.
@@ -145,8 +145,8 @@ type FederatedAuthenticationApi interface {
 	GetRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiGetRoleMappingRequest
 
 	// GetRoleMappingExecute executes the request
-	//  @return RoleMappingView
-	GetRoleMappingExecute(r FederatedAuthenticationApiGetRoleMappingRequest) (*RoleMappingView, *http.Response, error)
+	//  @return RoleMapping
+	GetRoleMappingExecute(r FederatedAuthenticationApiGetRoleMappingRequest) (*RoleMapping, *http.Response, error)
 
 	/*
 	ListConnectedOrgConfigs Return All Connected Org Configs from the Federation
@@ -160,8 +160,8 @@ type FederatedAuthenticationApi interface {
 	ListConnectedOrgConfigs(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListConnectedOrgConfigsRequest
 
 	// ListConnectedOrgConfigsExecute executes the request
-	//  @return []ConnectedOrgConfigView
-	ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error)
+	//  @return []ConnectedOrgConfig
+	ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfig, *http.Response, error)
 
 	/*
 	ListIdentityProviders Return all identity providers from the specified federation.
@@ -175,8 +175,8 @@ type FederatedAuthenticationApi interface {
 	ListIdentityProviders(ctx context.Context, federationSettingsId string) FederatedAuthenticationApiListIdentityProvidersRequest
 
 	// ListIdentityProvidersExecute executes the request
-	//  @return []IdentityProviderView
-	ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error)
+	//  @return []IdentityProvider
+	ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProvider, *http.Response, error)
 
 	/*
 	ListRoleMappings Return All Role Mappings from One Organization
@@ -191,8 +191,8 @@ type FederatedAuthenticationApi interface {
 	ListRoleMappings(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiListRoleMappingsRequest
 
 	// ListRoleMappingsExecute executes the request
-	//  @return []RoleMappingView
-	ListRoleMappingsExecute(r FederatedAuthenticationApiListRoleMappingsRequest) ([]RoleMappingView, *http.Response, error)
+	//  @return []RoleMapping
+	ListRoleMappingsExecute(r FederatedAuthenticationApiListRoleMappingsRequest) ([]RoleMapping, *http.Response, error)
 
 	/*
 	RemoveConnectedOrgConfig Remove One Org Config Connected to One Federation
@@ -228,8 +228,8 @@ type FederatedAuthenticationApi interface {
 	UpdateConnectedOrgConfig(ctx context.Context, federationSettingsId string, orgId string) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest
 
 	// UpdateConnectedOrgConfigExecute executes the request
-	//  @return ConnectedOrgConfigView
-	UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error)
+	//  @return ConnectedOrgConfig
+	UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfig, *http.Response, error)
 
 	/*
 	UpdateIdentityProvider Update the identity provider.
@@ -244,8 +244,8 @@ type FederatedAuthenticationApi interface {
 	UpdateIdentityProvider(ctx context.Context, federationSettingsId string, identityProviderId string) FederatedAuthenticationApiUpdateIdentityProviderRequest
 
 	// UpdateIdentityProviderExecute executes the request
-	//  @return IdentityProviderView
-	UpdateIdentityProviderExecute(r FederatedAuthenticationApiUpdateIdentityProviderRequest) (*IdentityProviderView, *http.Response, error)
+	//  @return IdentityProvider
+	UpdateIdentityProviderExecute(r FederatedAuthenticationApiUpdateIdentityProviderRequest) (*IdentityProvider, *http.Response, error)
 
 	/*
 	UpdateRoleMapping Update One Role Mapping in One Organization
@@ -261,8 +261,8 @@ type FederatedAuthenticationApi interface {
 	UpdateRoleMapping(ctx context.Context, federationSettingsId string, id string, orgId string) FederatedAuthenticationApiUpdateRoleMappingRequest
 
 	// UpdateRoleMappingExecute executes the request
-	//  @return RoleMappingView
-	UpdateRoleMappingExecute(r FederatedAuthenticationApiUpdateRoleMappingRequest) (*RoleMappingView, *http.Response, error)
+	//  @return RoleMapping
+	UpdateRoleMappingExecute(r FederatedAuthenticationApiUpdateRoleMappingRequest) (*RoleMapping, *http.Response, error)
 }
 
 // FederatedAuthenticationApiService FederatedAuthenticationApi service
@@ -273,13 +273,13 @@ type FederatedAuthenticationApiCreateRoleMappingRequest struct {
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
 	orgId string
-	roleMappingView *RoleMappingView
+	roleMapping *RoleMapping
 	envelope *bool
 }
 
 // The role mapping that you want to create.
-func (r FederatedAuthenticationApiCreateRoleMappingRequest) RoleMappingView(roleMappingView RoleMappingView) FederatedAuthenticationApiCreateRoleMappingRequest {
-	r.roleMappingView = &roleMappingView
+func (r FederatedAuthenticationApiCreateRoleMappingRequest) RoleMapping(roleMapping RoleMapping) FederatedAuthenticationApiCreateRoleMappingRequest {
+	r.roleMapping = &roleMapping
 	return r
 }
 
@@ -289,7 +289,7 @@ func (r FederatedAuthenticationApiCreateRoleMappingRequest) Envelope(envelope bo
 	return r
 }
 
-func (r FederatedAuthenticationApiCreateRoleMappingRequest) Execute() (*RoleMappingView, *http.Response, error) {
+func (r FederatedAuthenticationApiCreateRoleMappingRequest) Execute() (*RoleMapping, *http.Response, error) {
 	return r.ApiService.CreateRoleMappingExecute(r)
 }
 
@@ -313,13 +313,13 @@ func (a *FederatedAuthenticationApiService) CreateRoleMapping(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return RoleMappingView
-func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r FederatedAuthenticationApiCreateRoleMappingRequest) (*RoleMappingView, *http.Response, error) {
+//  @return RoleMapping
+func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r FederatedAuthenticationApiCreateRoleMappingRequest) (*RoleMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RoleMappingView
+		localVarReturnValue  *RoleMapping
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.CreateRoleMapping")
@@ -346,8 +346,8 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.roleMappingView == nil {
-		return localVarReturnValue, nil, reportError("roleMappingView is required and must be specified")
+	if r.roleMapping == nil {
+		return localVarReturnValue, nil, reportError("roleMapping is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -371,7 +371,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.roleMappingView
+	localVarPostBody = r.roleMapping
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -395,7 +395,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -406,7 +406,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -417,7 +417,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -428,7 +428,7 @@ func (a *FederatedAuthenticationApiService) CreateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -545,7 +545,7 @@ func (a *FederatedAuthenticationApiService) DeleteFederationAppExecute(r Federat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -556,7 +556,7 @@ func (a *FederatedAuthenticationApiService) DeleteFederationAppExecute(r Federat
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +567,7 @@ func (a *FederatedAuthenticationApiService) DeleteFederationAppExecute(r Federat
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -578,7 +578,7 @@ func (a *FederatedAuthenticationApiService) DeleteFederationAppExecute(r Federat
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -716,7 +716,7 @@ func (a *FederatedAuthenticationApiService) DeleteRoleMappingExecute(r Federated
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -727,7 +727,7 @@ func (a *FederatedAuthenticationApiService) DeleteRoleMappingExecute(r Federated
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -738,7 +738,7 @@ func (a *FederatedAuthenticationApiService) DeleteRoleMappingExecute(r Federated
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -749,7 +749,7 @@ func (a *FederatedAuthenticationApiService) DeleteRoleMappingExecute(r Federated
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -778,7 +778,7 @@ func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Envelope(envelop
 	return r
 }
 
-func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
+func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfig, *http.Response, error) {
 	return r.ApiService.GetConnectedOrgConfigExecute(r)
 }
 
@@ -802,13 +802,13 @@ func (a *FederatedAuthenticationApiService) GetConnectedOrgConfig(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
+//  @return ConnectedOrgConfig
+func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r FederatedAuthenticationApiGetConnectedOrgConfigRequest) (*ConnectedOrgConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectedOrgConfigView
+		localVarReturnValue  *ConnectedOrgConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetConnectedOrgConfig")
@@ -879,7 +879,7 @@ func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r Feder
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -890,7 +890,7 @@ func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -901,7 +901,7 @@ func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -912,7 +912,7 @@ func (a *FederatedAuthenticationApiService) GetConnectedOrgConfigExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -956,7 +956,7 @@ func (r FederatedAuthenticationApiGetFederationSettingsRequest) Pretty(pretty bo
 	return r
 }
 
-func (r FederatedAuthenticationApiGetFederationSettingsRequest) Execute() (*OrgFederationSettingsView, *http.Response, error) {
+func (r FederatedAuthenticationApiGetFederationSettingsRequest) Execute() (*OrgFederationSettings, *http.Response, error) {
 	return r.ApiService.GetFederationSettingsExecute(r)
 }
 
@@ -978,13 +978,13 @@ func (a *FederatedAuthenticationApiService) GetFederationSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return OrgFederationSettingsView
-func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r FederatedAuthenticationApiGetFederationSettingsRequest) (*OrgFederationSettingsView, *http.Response, error) {
+//  @return OrgFederationSettings
+func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r FederatedAuthenticationApiGetFederationSettingsRequest) (*OrgFederationSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OrgFederationSettingsView
+		localVarReturnValue  *OrgFederationSettings
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetFederationSettings")
@@ -1051,7 +1051,7 @@ func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r Feder
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1062,7 +1062,7 @@ func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1073,7 +1073,7 @@ func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1084,7 +1084,7 @@ func (a *FederatedAuthenticationApiService) GetFederationSettingsExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1122,7 +1122,7 @@ func (r FederatedAuthenticationApiGetIdentityProviderRequest) Envelope(envelope 
 	return r
 }
 
-func (r FederatedAuthenticationApiGetIdentityProviderRequest) Execute() (*IdentityProviderView, *http.Response, error) {
+func (r FederatedAuthenticationApiGetIdentityProviderRequest) Execute() (*IdentityProvider, *http.Response, error) {
 	return r.ApiService.GetIdentityProviderExecute(r)
 }
 
@@ -1146,13 +1146,13 @@ func (a *FederatedAuthenticationApiService) GetIdentityProvider(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return IdentityProviderView
-func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r FederatedAuthenticationApiGetIdentityProviderRequest) (*IdentityProviderView, *http.Response, error) {
+//  @return IdentityProvider
+func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r FederatedAuthenticationApiGetIdentityProviderRequest) (*IdentityProvider, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IdentityProviderView
+		localVarReturnValue  *IdentityProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetIdentityProvider")
@@ -1223,7 +1223,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r Federat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1234,7 +1234,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r Federat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1245,7 +1245,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r Federat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1256,7 +1256,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderExecute(r Federat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1385,7 +1385,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderMetadataExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1396,7 +1396,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderMetadataExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1407,7 +1407,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderMetadataExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1418,7 +1418,7 @@ func (a *FederatedAuthenticationApiService) GetIdentityProviderMetadataExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1457,7 +1457,7 @@ func (r FederatedAuthenticationApiGetRoleMappingRequest) Envelope(envelope bool)
 	return r
 }
 
-func (r FederatedAuthenticationApiGetRoleMappingRequest) Execute() (*RoleMappingView, *http.Response, error) {
+func (r FederatedAuthenticationApiGetRoleMappingRequest) Execute() (*RoleMapping, *http.Response, error) {
 	return r.ApiService.GetRoleMappingExecute(r)
 }
 
@@ -1483,13 +1483,13 @@ func (a *FederatedAuthenticationApiService) GetRoleMapping(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return RoleMappingView
-func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAuthenticationApiGetRoleMappingRequest) (*RoleMappingView, *http.Response, error) {
+//  @return RoleMapping
+func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAuthenticationApiGetRoleMappingRequest) (*RoleMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RoleMappingView
+		localVarReturnValue  *RoleMapping
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.GetRoleMapping")
@@ -1567,7 +1567,7 @@ func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1578,7 +1578,7 @@ func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1589,7 +1589,7 @@ func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1600,7 +1600,7 @@ func (a *FederatedAuthenticationApiService) GetRoleMappingExecute(r FederatedAut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1637,7 +1637,7 @@ func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Envelope(envel
 	return r
 }
 
-func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Execute() ([]ConnectedOrgConfigView, *http.Response, error) {
+func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Execute() ([]ConnectedOrgConfig, *http.Response, error) {
 	return r.ApiService.ListConnectedOrgConfigsExecute(r)
 }
 
@@ -1659,13 +1659,13 @@ func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigs(ctx context.
 }
 
 // Execute executes the request
-//  @return []ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfigView, *http.Response, error) {
+//  @return []ConnectedOrgConfig
+func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r FederatedAuthenticationApiListConnectedOrgConfigsRequest) ([]ConnectedOrgConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ConnectedOrgConfigView
+		localVarReturnValue  []ConnectedOrgConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.ListConnectedOrgConfigs")
@@ -1729,7 +1729,7 @@ func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r Fed
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1740,7 +1740,7 @@ func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r Fed
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1751,7 +1751,7 @@ func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r Fed
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1762,7 +1762,7 @@ func (a *FederatedAuthenticationApiService) ListConnectedOrgConfigsExecute(r Fed
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1799,7 +1799,7 @@ func (r FederatedAuthenticationApiListIdentityProvidersRequest) Envelope(envelop
 	return r
 }
 
-func (r FederatedAuthenticationApiListIdentityProvidersRequest) Execute() ([]IdentityProviderView, *http.Response, error) {
+func (r FederatedAuthenticationApiListIdentityProvidersRequest) Execute() ([]IdentityProvider, *http.Response, error) {
 	return r.ApiService.ListIdentityProvidersExecute(r)
 }
 
@@ -1821,13 +1821,13 @@ func (a *FederatedAuthenticationApiService) ListIdentityProviders(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []IdentityProviderView
-func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProviderView, *http.Response, error) {
+//  @return []IdentityProvider
+func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r FederatedAuthenticationApiListIdentityProvidersRequest) ([]IdentityProvider, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []IdentityProviderView
+		localVarReturnValue  []IdentityProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.ListIdentityProviders")
@@ -1891,7 +1891,7 @@ func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r Feder
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1902,7 +1902,7 @@ func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1913,7 +1913,7 @@ func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1924,7 +1924,7 @@ func (a *FederatedAuthenticationApiService) ListIdentityProvidersExecute(r Feder
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1962,7 +1962,7 @@ func (r FederatedAuthenticationApiListRoleMappingsRequest) Envelope(envelope boo
 	return r
 }
 
-func (r FederatedAuthenticationApiListRoleMappingsRequest) Execute() ([]RoleMappingView, *http.Response, error) {
+func (r FederatedAuthenticationApiListRoleMappingsRequest) Execute() ([]RoleMapping, *http.Response, error) {
 	return r.ApiService.ListRoleMappingsExecute(r)
 }
 
@@ -1986,13 +1986,13 @@ func (a *FederatedAuthenticationApiService) ListRoleMappings(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []RoleMappingView
-func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedAuthenticationApiListRoleMappingsRequest) ([]RoleMappingView, *http.Response, error) {
+//  @return []RoleMapping
+func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedAuthenticationApiListRoleMappingsRequest) ([]RoleMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []RoleMappingView
+		localVarReturnValue  []RoleMapping
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.ListRoleMappings")
@@ -2063,7 +2063,7 @@ func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2074,7 +2074,7 @@ func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2085,7 +2085,7 @@ func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2096,7 +2096,7 @@ func (a *FederatedAuthenticationApiService) ListRoleMappingsExecute(r FederatedA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2233,7 +2233,7 @@ func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfigExecute(r Fe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2244,7 +2244,7 @@ func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfigExecute(r Fe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2255,7 +2255,7 @@ func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfigExecute(r Fe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2266,7 +2266,7 @@ func (a *FederatedAuthenticationApiService) RemoveConnectedOrgConfigExecute(r Fe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2286,13 +2286,13 @@ type FederatedAuthenticationApiUpdateConnectedOrgConfigRequest struct {
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
 	orgId string
-	connectedOrgConfigView *ConnectedOrgConfigView
+	connectedOrgConfig *ConnectedOrgConfig
 	envelope *bool
 }
 
 // The connected organization configuration that you want to update.
-func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) ConnectedOrgConfigView(connectedOrgConfigView ConnectedOrgConfigView) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
-	r.connectedOrgConfigView = &connectedOrgConfigView
+func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) ConnectedOrgConfig(connectedOrgConfig ConnectedOrgConfig) FederatedAuthenticationApiUpdateConnectedOrgConfigRequest {
+	r.connectedOrgConfig = &connectedOrgConfig
 	return r
 }
 
@@ -2302,7 +2302,7 @@ func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) Envelope(enve
 	return r
 }
 
-func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfigView, *http.Response, error) {
+func (r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfig, *http.Response, error) {
 	return r.ApiService.UpdateConnectedOrgConfigExecute(r)
 }
 
@@ -2332,13 +2332,13 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfig(ctx context
 }
 
 // Execute executes the request
-//  @return ConnectedOrgConfigView
-func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfigView, *http.Response, error) {
+//  @return ConnectedOrgConfig
+func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r FederatedAuthenticationApiUpdateConnectedOrgConfigRequest) (*ConnectedOrgConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectedOrgConfigView
+		localVarReturnValue  *ConnectedOrgConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.UpdateConnectedOrgConfig")
@@ -2365,8 +2365,8 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.connectedOrgConfigView == nil {
-		return localVarReturnValue, nil, reportError("connectedOrgConfigView is required and must be specified")
+	if r.connectedOrgConfig == nil {
+		return localVarReturnValue, nil, reportError("connectedOrgConfig is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2390,7 +2390,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectedOrgConfigView
+	localVarPostBody = r.connectedOrgConfig
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2414,7 +2414,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2425,7 +2425,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2436,7 +2436,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2447,7 +2447,7 @@ func (a *FederatedAuthenticationApiService) UpdateConnectedOrgConfigExecute(r Fe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2492,7 +2492,7 @@ func (r FederatedAuthenticationApiUpdateIdentityProviderRequest) Envelope(envelo
 	return r
 }
 
-func (r FederatedAuthenticationApiUpdateIdentityProviderRequest) Execute() (*IdentityProviderView, *http.Response, error) {
+func (r FederatedAuthenticationApiUpdateIdentityProviderRequest) Execute() (*IdentityProvider, *http.Response, error) {
 	return r.ApiService.UpdateIdentityProviderExecute(r)
 }
 
@@ -2516,13 +2516,13 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProvider(ctx context.C
 }
 
 // Execute executes the request
-//  @return IdentityProviderView
-func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r FederatedAuthenticationApiUpdateIdentityProviderRequest) (*IdentityProviderView, *http.Response, error) {
+//  @return IdentityProvider
+func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r FederatedAuthenticationApiUpdateIdentityProviderRequest) (*IdentityProvider, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IdentityProviderView
+		localVarReturnValue  *IdentityProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.UpdateIdentityProvider")
@@ -2598,7 +2598,7 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2609,7 +2609,7 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2620,7 +2620,7 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2631,7 +2631,7 @@ func (a *FederatedAuthenticationApiService) UpdateIdentityProviderExecute(r Fede
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2661,13 +2661,13 @@ type FederatedAuthenticationApiUpdateRoleMappingRequest struct {
 	federationSettingsId string
 	id string
 	orgId string
-	roleMappingView *RoleMappingView
+	roleMapping *RoleMapping
 	envelope *bool
 }
 
 // The role mapping that you want to update.
-func (r FederatedAuthenticationApiUpdateRoleMappingRequest) RoleMappingView(roleMappingView RoleMappingView) FederatedAuthenticationApiUpdateRoleMappingRequest {
-	r.roleMappingView = &roleMappingView
+func (r FederatedAuthenticationApiUpdateRoleMappingRequest) RoleMapping(roleMapping RoleMapping) FederatedAuthenticationApiUpdateRoleMappingRequest {
+	r.roleMapping = &roleMapping
 	return r
 }
 
@@ -2677,7 +2677,7 @@ func (r FederatedAuthenticationApiUpdateRoleMappingRequest) Envelope(envelope bo
 	return r
 }
 
-func (r FederatedAuthenticationApiUpdateRoleMappingRequest) Execute() (*RoleMappingView, *http.Response, error) {
+func (r FederatedAuthenticationApiUpdateRoleMappingRequest) Execute() (*RoleMapping, *http.Response, error) {
 	return r.ApiService.UpdateRoleMappingExecute(r)
 }
 
@@ -2703,13 +2703,13 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMapping(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return RoleMappingView
-func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r FederatedAuthenticationApiUpdateRoleMappingRequest) (*RoleMappingView, *http.Response, error) {
+//  @return RoleMapping
+func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r FederatedAuthenticationApiUpdateRoleMappingRequest) (*RoleMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RoleMappingView
+		localVarReturnValue  *RoleMapping
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FederatedAuthenticationApiService.UpdateRoleMapping")
@@ -2743,8 +2743,8 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.roleMappingView == nil {
-		return localVarReturnValue, nil, reportError("roleMappingView is required and must be specified")
+	if r.roleMapping == nil {
+		return localVarReturnValue, nil, reportError("roleMapping is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2768,7 +2768,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.roleMappingView
+	localVarPostBody = r.roleMapping
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2792,7 +2792,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2803,7 +2803,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2814,7 +2814,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2825,7 +2825,7 @@ func (a *FederatedAuthenticationApiService) UpdateRoleMappingExecute(r Federated
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

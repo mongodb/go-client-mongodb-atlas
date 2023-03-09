@@ -34,8 +34,8 @@ type CloudMigrationServiceApi interface {
 	CreateLinkToken(ctx context.Context, orgId string) CloudMigrationServiceApiCreateLinkTokenRequest
 
 	// CreateLinkTokenExecute executes the request
-	//  @return TargetOrgView
-	CreateLinkTokenExecute(r CloudMigrationServiceApiCreateLinkTokenRequest) (*TargetOrgView, *http.Response, error)
+	//  @return TargetOrg
+	CreateLinkTokenExecute(r CloudMigrationServiceApiCreateLinkTokenRequest) (*TargetOrg, *http.Response, error)
 
 	/*
 	CreatePushMigration Migrate One Local Managed Cluster to MongoDB Atlas
@@ -51,8 +51,8 @@ type CloudMigrationServiceApi interface {
 	CreatePushMigration(ctx context.Context, groupId string) CloudMigrationServiceApiCreatePushMigrationRequest
 
 	// CreatePushMigrationExecute executes the request
-	//  @return LiveMigrationResponseView
-	CreatePushMigrationExecute(r CloudMigrationServiceApiCreatePushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error)
+	//  @return LiveMigrationResponse
+	CreatePushMigrationExecute(r CloudMigrationServiceApiCreatePushMigrationRequest) (*LiveMigrationResponse, *http.Response, error)
 
 	/*
 	CutoverMigration Cut Over the Migrated Cluster
@@ -96,8 +96,8 @@ type CloudMigrationServiceApi interface {
 	GetPushMigration(ctx context.Context, groupId string, liveMigrationId string) CloudMigrationServiceApiGetPushMigrationRequest
 
 	// GetPushMigrationExecute executes the request
-	//  @return LiveMigrationResponseView
-	GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error)
+	//  @return LiveMigrationResponse
+	GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponse, *http.Response, error)
 
 	/*
 	GetValidationStatus Return One Migration Validation Job
@@ -112,8 +112,8 @@ type CloudMigrationServiceApi interface {
 	GetValidationStatus(ctx context.Context, groupId string, validationId string) CloudMigrationServiceApiGetValidationStatusRequest
 
 	// GetValidationStatusExecute executes the request
-	//  @return ValidationView
-	GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*ValidationView, *http.Response, error)
+	//  @return Validation
+	GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*Validation, *http.Response, error)
 
 	/*
 	ListSourceProjects Return All Projects Available for Migration
@@ -127,8 +127,8 @@ type CloudMigrationServiceApi interface {
 	ListSourceProjects(ctx context.Context, orgId string) CloudMigrationServiceApiListSourceProjectsRequest
 
 	// ListSourceProjectsExecute executes the request
-	//  @return []AvailableProjectView
-	ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProjectView, *http.Response, error)
+	//  @return []AvailableProject
+	ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProject, *http.Response, error)
 
 	/*
 	ValidateMigration Validate One Migration Request
@@ -142,8 +142,8 @@ type CloudMigrationServiceApi interface {
 	ValidateMigration(ctx context.Context, groupId string) CloudMigrationServiceApiValidateMigrationRequest
 
 	// ValidateMigrationExecute executes the request
-	//  @return ValidationView
-	ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*ValidationView, *http.Response, error)
+	//  @return Validation
+	ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*Validation, *http.Response, error)
 }
 
 // CloudMigrationServiceApiService CloudMigrationServiceApi service
@@ -153,14 +153,14 @@ type CloudMigrationServiceApiCreateLinkTokenRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	orgId string
-	targetOrgRequestView *TargetOrgRequestView
+	targetOrgRequest *TargetOrgRequest
 	envelope *bool
 	pretty *bool
 }
 
 // IP address access list entries associated with the migration.
-func (r CloudMigrationServiceApiCreateLinkTokenRequest) TargetOrgRequestView(targetOrgRequestView TargetOrgRequestView) CloudMigrationServiceApiCreateLinkTokenRequest {
-	r.targetOrgRequestView = &targetOrgRequestView
+func (r CloudMigrationServiceApiCreateLinkTokenRequest) TargetOrgRequest(targetOrgRequest TargetOrgRequest) CloudMigrationServiceApiCreateLinkTokenRequest {
+	r.targetOrgRequest = &targetOrgRequest
 	return r
 }
 
@@ -176,7 +176,7 @@ func (r CloudMigrationServiceApiCreateLinkTokenRequest) Pretty(pretty bool) Clou
 	return r
 }
 
-func (r CloudMigrationServiceApiCreateLinkTokenRequest) Execute() (*TargetOrgView, *http.Response, error) {
+func (r CloudMigrationServiceApiCreateLinkTokenRequest) Execute() (*TargetOrg, *http.Response, error) {
 	return r.ApiService.CreateLinkTokenExecute(r)
 }
 
@@ -198,13 +198,13 @@ func (a *CloudMigrationServiceApiService) CreateLinkToken(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return TargetOrgView
-func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigrationServiceApiCreateLinkTokenRequest) (*TargetOrgView, *http.Response, error) {
+//  @return TargetOrg
+func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigrationServiceApiCreateLinkTokenRequest) (*TargetOrg, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TargetOrgView
+		localVarReturnValue  *TargetOrg
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.CreateLinkToken")
@@ -224,8 +224,8 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 	if strlen(r.orgId) > 24 {
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
-	if r.targetOrgRequestView == nil {
-		return localVarReturnValue, nil, reportError("targetOrgRequestView is required and must be specified")
+	if r.targetOrgRequest == nil {
+		return localVarReturnValue, nil, reportError("targetOrgRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -252,7 +252,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.targetOrgRequestView
+	localVarPostBody = r.targetOrgRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -276,7 +276,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -287,7 +287,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -298,7 +298,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -326,14 +326,14 @@ type CloudMigrationServiceApiCreatePushMigrationRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
-	liveMigrationRequestView *LiveMigrationRequestView
+	liveMigrationRequest *LiveMigrationRequest
 	envelope *bool
 	pretty *bool
 }
 
 // One migration to be created.
-func (r CloudMigrationServiceApiCreatePushMigrationRequest) LiveMigrationRequestView(liveMigrationRequestView LiveMigrationRequestView) CloudMigrationServiceApiCreatePushMigrationRequest {
-	r.liveMigrationRequestView = &liveMigrationRequestView
+func (r CloudMigrationServiceApiCreatePushMigrationRequest) LiveMigrationRequest(liveMigrationRequest LiveMigrationRequest) CloudMigrationServiceApiCreatePushMigrationRequest {
+	r.liveMigrationRequest = &liveMigrationRequest
 	return r
 }
 
@@ -349,7 +349,7 @@ func (r CloudMigrationServiceApiCreatePushMigrationRequest) Pretty(pretty bool) 
 	return r
 }
 
-func (r CloudMigrationServiceApiCreatePushMigrationRequest) Execute() (*LiveMigrationResponseView, *http.Response, error) {
+func (r CloudMigrationServiceApiCreatePushMigrationRequest) Execute() (*LiveMigrationResponse, *http.Response, error) {
 	return r.ApiService.CreatePushMigrationExecute(r)
 }
 
@@ -373,13 +373,13 @@ func (a *CloudMigrationServiceApiService) CreatePushMigration(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return LiveMigrationResponseView
-func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigrationServiceApiCreatePushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error) {
+//  @return LiveMigrationResponse
+func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigrationServiceApiCreatePushMigrationRequest) (*LiveMigrationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LiveMigrationResponseView
+		localVarReturnValue  *LiveMigrationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.CreatePushMigration")
@@ -399,8 +399,8 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.liveMigrationRequestView == nil {
-		return localVarReturnValue, nil, reportError("liveMigrationRequestView is required and must be specified")
+	if r.liveMigrationRequest == nil {
+		return localVarReturnValue, nil, reportError("liveMigrationRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -427,7 +427,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.liveMigrationRequestView
+	localVarPostBody = r.liveMigrationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -451,7 +451,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -462,7 +462,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -473,7 +473,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -484,7 +484,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -495,7 +495,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -642,7 +642,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -653,7 +653,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -664,7 +664,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -675,7 +675,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -686,7 +686,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -804,7 +804,7 @@ func (a *CloudMigrationServiceApiService) DeleteLinkTokenExecute(r CloudMigratio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -815,7 +815,7 @@ func (a *CloudMigrationServiceApiService) DeleteLinkTokenExecute(r CloudMigratio
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -826,7 +826,7 @@ func (a *CloudMigrationServiceApiService) DeleteLinkTokenExecute(r CloudMigratio
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -862,7 +862,7 @@ func (r CloudMigrationServiceApiGetPushMigrationRequest) Pretty(pretty bool) Clo
 	return r
 }
 
-func (r CloudMigrationServiceApiGetPushMigrationRequest) Execute() (*LiveMigrationResponseView, *http.Response, error) {
+func (r CloudMigrationServiceApiGetPushMigrationRequest) Execute() (*LiveMigrationResponse, *http.Response, error) {
 	return r.ApiService.GetPushMigrationExecute(r)
 }
 
@@ -886,13 +886,13 @@ func (a *CloudMigrationServiceApiService) GetPushMigration(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return LiveMigrationResponseView
-func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponseView, *http.Response, error) {
+//  @return LiveMigrationResponse
+func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrationServiceApiGetPushMigrationRequest) (*LiveMigrationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LiveMigrationResponseView
+		localVarReturnValue  *LiveMigrationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.GetPushMigration")
@@ -966,7 +966,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -977,7 +977,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -988,7 +988,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -999,7 +999,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1037,7 +1037,7 @@ func (r CloudMigrationServiceApiGetValidationStatusRequest) Envelope(envelope bo
 	return r
 }
 
-func (r CloudMigrationServiceApiGetValidationStatusRequest) Execute() (*ValidationView, *http.Response, error) {
+func (r CloudMigrationServiceApiGetValidationStatusRequest) Execute() (*Validation, *http.Response, error) {
 	return r.ApiService.GetValidationStatusExecute(r)
 }
 
@@ -1061,13 +1061,13 @@ func (a *CloudMigrationServiceApiService) GetValidationStatus(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ValidationView
-func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*ValidationView, *http.Response, error) {
+//  @return Validation
+func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigrationServiceApiGetValidationStatusRequest) (*Validation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ValidationView
+		localVarReturnValue  *Validation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.GetValidationStatus")
@@ -1138,7 +1138,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1149,7 +1149,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1160,7 +1160,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1171,7 +1171,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1182,7 +1182,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1226,7 +1226,7 @@ func (r CloudMigrationServiceApiListSourceProjectsRequest) Pretty(pretty bool) C
 	return r
 }
 
-func (r CloudMigrationServiceApiListSourceProjectsRequest) Execute() ([]AvailableProjectView, *http.Response, error) {
+func (r CloudMigrationServiceApiListSourceProjectsRequest) Execute() ([]AvailableProject, *http.Response, error) {
 	return r.ApiService.ListSourceProjectsExecute(r)
 }
 
@@ -1248,13 +1248,13 @@ func (a *CloudMigrationServiceApiService) ListSourceProjects(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []AvailableProjectView
-func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProjectView, *http.Response, error) {
+//  @return []AvailableProject
+func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigrationServiceApiListSourceProjectsRequest) ([]AvailableProject, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []AvailableProjectView
+		localVarReturnValue  []AvailableProject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ListSourceProjects")
@@ -1321,7 +1321,7 @@ func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigra
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1332,7 +1332,7 @@ func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigra
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1343,7 +1343,7 @@ func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigra
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1371,14 +1371,14 @@ type CloudMigrationServiceApiValidateMigrationRequest struct {
 	ctx context.Context
 	ApiService CloudMigrationServiceApi
 	groupId string
-	liveMigrationRequestView *LiveMigrationRequestView
+	liveMigrationRequest *LiveMigrationRequest
 	envelope *bool
 	pretty *bool
 }
 
 // One migration to be validated.
-func (r CloudMigrationServiceApiValidateMigrationRequest) LiveMigrationRequestView(liveMigrationRequestView LiveMigrationRequestView) CloudMigrationServiceApiValidateMigrationRequest {
-	r.liveMigrationRequestView = &liveMigrationRequestView
+func (r CloudMigrationServiceApiValidateMigrationRequest) LiveMigrationRequest(liveMigrationRequest LiveMigrationRequest) CloudMigrationServiceApiValidateMigrationRequest {
+	r.liveMigrationRequest = &liveMigrationRequest
 	return r
 }
 
@@ -1394,7 +1394,7 @@ func (r CloudMigrationServiceApiValidateMigrationRequest) Pretty(pretty bool) Cl
 	return r
 }
 
-func (r CloudMigrationServiceApiValidateMigrationRequest) Execute() (*ValidationView, *http.Response, error) {
+func (r CloudMigrationServiceApiValidateMigrationRequest) Execute() (*Validation, *http.Response, error) {
 	return r.ApiService.ValidateMigrationExecute(r)
 }
 
@@ -1416,13 +1416,13 @@ func (a *CloudMigrationServiceApiService) ValidateMigration(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ValidationView
-func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*ValidationView, *http.Response, error) {
+//  @return Validation
+func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrationServiceApiValidateMigrationRequest) (*Validation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ValidationView
+		localVarReturnValue  *Validation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudMigrationServiceApiService.ValidateMigration")
@@ -1442,8 +1442,8 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.liveMigrationRequestView == nil {
-		return localVarReturnValue, nil, reportError("liveMigrationRequestView is required and must be specified")
+	if r.liveMigrationRequest == nil {
+		return localVarReturnValue, nil, reportError("liveMigrationRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1470,7 +1470,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.liveMigrationRequestView
+	localVarPostBody = r.liveMigrationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1494,7 +1494,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1505,7 +1505,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1516,7 +1516,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1527,7 +1527,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1538,7 +1538,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

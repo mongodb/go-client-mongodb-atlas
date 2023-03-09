@@ -101,8 +101,8 @@ type OnlineArchiveApi interface {
 	ListOnlineArchives(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiListOnlineArchivesRequest
 
 	// ListOnlineArchivesExecute executes the request
-	//  @return PaginatedOnlineArchiveView
-	ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchiveView, *http.Response, error)
+	//  @return PaginatedOnlineArchive
+	ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchive, *http.Response, error)
 
 	/*
 	UpdateOnlineArchive Update One Online Archive
@@ -262,7 +262,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,7 +273,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -295,7 +295,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,7 +306,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -463,7 +463,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiD
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -474,7 +474,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiD
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -485,7 +485,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiD
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -645,7 +645,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -656,7 +656,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -667,7 +667,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -678,7 +678,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -837,7 +837,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -848,7 +848,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -859,7 +859,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -870,7 +870,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -936,7 +936,7 @@ func (r OnlineArchiveApiListOnlineArchivesRequest) Pretty(pretty bool) OnlineArc
 	return r
 }
 
-func (r OnlineArchiveApiListOnlineArchivesRequest) Execute() (*PaginatedOnlineArchiveView, *http.Response, error) {
+func (r OnlineArchiveApiListOnlineArchivesRequest) Execute() (*PaginatedOnlineArchive, *http.Response, error) {
 	return r.ApiService.ListOnlineArchivesExecute(r)
 }
 
@@ -960,13 +960,13 @@ func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupI
 }
 
 // Execute executes the request
-//  @return PaginatedOnlineArchiveView
-func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchiveView, *http.Response, error) {
+//  @return PaginatedOnlineArchive
+func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedOnlineArchiveView
+		localVarReturnValue  *PaginatedOnlineArchive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnlineArchiveApiService.ListOnlineArchives")
@@ -1049,7 +1049,7 @@ func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiLi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1060,7 +1060,7 @@ func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1231,7 +1231,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1242,7 +1242,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1253,7 +1253,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1264,7 +1264,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1275,7 +1275,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

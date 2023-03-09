@@ -19,7 +19,7 @@ var _ MappedNullable = &CreateOrganizationRequest{}
 
 // CreateOrganizationRequest struct for CreateOrganizationRequest
 type CreateOrganizationRequest struct {
-	ApiKey *ApiCreateApiKeyView `json:"apiKey,omitempty"`
+	ApiKey *CreateApiKey `json:"apiKey,omitempty"`
 	// Human-readable label that identifies the organization.
 	Name string `json:"name"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key. This is required if you call the Admin API endpoint directly, but not required when you call through the Atlas CLI.
@@ -45,9 +45,9 @@ func NewCreateOrganizationRequestWithDefaults() *CreateOrganizationRequest {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *CreateOrganizationRequest) GetApiKey() ApiCreateApiKeyView {
+func (o *CreateOrganizationRequest) GetApiKey() CreateApiKey {
 	if o == nil || IsNil(o.ApiKey) {
-		var ret ApiCreateApiKeyView
+		var ret CreateApiKey
 		return ret
 	}
 	return *o.ApiKey
@@ -55,7 +55,7 @@ func (o *CreateOrganizationRequest) GetApiKey() ApiCreateApiKeyView {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrganizationRequest) GetApiKeyOk() (*ApiCreateApiKeyView, bool) {
+func (o *CreateOrganizationRequest) GetApiKeyOk() (*CreateApiKey, bool) {
 	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *CreateOrganizationRequest) HasApiKey() bool {
 	return false
 }
 
-// SetApiKey gets a reference to the given ApiCreateApiKeyView and assigns it to the ApiKey field.
-func (o *CreateOrganizationRequest) SetApiKey(v ApiCreateApiKeyView) {
+// SetApiKey gets a reference to the given CreateApiKey and assigns it to the ApiKey field.
+func (o *CreateOrganizationRequest) SetApiKey(v CreateApiKey) {
 	o.ApiKey = &v
 }
 

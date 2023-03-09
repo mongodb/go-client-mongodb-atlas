@@ -31,10 +31,10 @@ type BillingThresholdAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []MatcherView `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *GreaterThanRawThresholdView `json:"threshold,omitempty"`
+	Threshold *GreaterThanRawThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -246,9 +246,9 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
+func (o *BillingThresholdAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []MatcherView
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +256,7 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) GetMatchers() []MatcherView
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
+func (o *BillingThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []MatcherView and assigns it to the Matchers field.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *BillingThresholdAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -310,9 +310,9 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) SetNotifications(v []Notifi
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanRawThresholdView {
+func (o *BillingThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanRawThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret GreaterThanRawThresholdView
+		var ret GreaterThanRawThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -320,7 +320,7 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanR
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanRawThresholdView, bool) {
+func (o *BillingThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanRawThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) HasThreshold() bool {
 	return false
 }
 
-// SetThreshold gets a reference to the given GreaterThanRawThresholdView and assigns it to the Threshold field.
-func (o *BillingThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanRawThresholdView) {
+// SetThreshold gets a reference to the given GreaterThanRawThreshold and assigns it to the Threshold field.
+func (o *BillingThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanRawThreshold) {
 	o.Threshold = &v
 }
 

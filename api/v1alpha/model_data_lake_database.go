@@ -26,7 +26,7 @@ type DataLakeDatabase struct {
 	// Human-readable label that identifies the database to which the data lake maps data.
 	Name *string `json:"name,omitempty"`
 	// Array of aggregation pipelines that apply to the collection. This only applies to S3 data sources.
-	Views []DataLakeView `json:"views,omitempty"`
+	Views []DataLake `json:"views,omitempty"`
 }
 
 // NewDataLakeDatabase instantiates a new DataLakeDatabase object
@@ -147,9 +147,9 @@ func (o *DataLakeDatabase) SetName(v string) {
 }
 
 // GetViews returns the Views field value if set, zero value otherwise.
-func (o *DataLakeDatabase) GetViews() []DataLakeView {
+func (o *DataLakeDatabase) GetViews() []DataLake {
 	if o == nil || IsNil(o.Views) {
-		var ret []DataLakeView
+		var ret []DataLake
 		return ret
 	}
 	return o.Views
@@ -157,7 +157,7 @@ func (o *DataLakeDatabase) GetViews() []DataLakeView {
 
 // GetViewsOk returns a tuple with the Views field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataLakeDatabase) GetViewsOk() ([]DataLakeView, bool) {
+func (o *DataLakeDatabase) GetViewsOk() ([]DataLake, bool) {
 	if o == nil || IsNil(o.Views) {
 		return nil, false
 	}
@@ -173,8 +173,8 @@ func (o *DataLakeDatabase) HasViews() bool {
 	return false
 }
 
-// SetViews gets a reference to the given []DataLakeView and assigns it to the Views field.
-func (o *DataLakeDatabase) SetViews(v []DataLakeView) {
+// SetViews gets a reference to the given []DataLake and assigns it to the Views field.
+func (o *DataLakeDatabase) SetViews(v []DataLake) {
 	o.Views = v
 }
 

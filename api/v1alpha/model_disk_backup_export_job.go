@@ -30,7 +30,7 @@ type DiskBackupExportJob struct {
 	DeliveryUrl []string `json:"deliveryUrl,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the AWS bucket to which MongoDB Cloud exports the Cloud Backup snapshot.
 	ExportBucketId string `json:"exportBucketId"`
-	ExportStatus *ApiExportStatusView `json:"exportStatus,omitempty"`
+	ExportStatus *ExportStatus `json:"exportStatus,omitempty"`
 	// Date and time when this export job completed. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	FinishedAt *time.Time `json:"finishedAt,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the restore job.
@@ -216,9 +216,9 @@ func (o *DiskBackupExportJob) SetExportBucketId(v string) {
 }
 
 // GetExportStatus returns the ExportStatus field value if set, zero value otherwise.
-func (o *DiskBackupExportJob) GetExportStatus() ApiExportStatusView {
+func (o *DiskBackupExportJob) GetExportStatus() ExportStatus {
 	if o == nil || IsNil(o.ExportStatus) {
-		var ret ApiExportStatusView
+		var ret ExportStatus
 		return ret
 	}
 	return *o.ExportStatus
@@ -226,7 +226,7 @@ func (o *DiskBackupExportJob) GetExportStatus() ApiExportStatusView {
 
 // GetExportStatusOk returns a tuple with the ExportStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiskBackupExportJob) GetExportStatusOk() (*ApiExportStatusView, bool) {
+func (o *DiskBackupExportJob) GetExportStatusOk() (*ExportStatus, bool) {
 	if o == nil || IsNil(o.ExportStatus) {
 		return nil, false
 	}
@@ -242,8 +242,8 @@ func (o *DiskBackupExportJob) HasExportStatus() bool {
 	return false
 }
 
-// SetExportStatus gets a reference to the given ApiExportStatusView and assigns it to the ExportStatus field.
-func (o *DiskBackupExportJob) SetExportStatus(v ApiExportStatusView) {
+// SetExportStatus gets a reference to the given ExportStatus and assigns it to the ExportStatus field.
+func (o *DiskBackupExportJob) SetExportStatus(v ExportStatus) {
 	o.ExportStatus = &v
 }
 

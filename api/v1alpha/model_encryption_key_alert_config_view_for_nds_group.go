@@ -31,10 +31,10 @@ type EncryptionKeyAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []MatcherView `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *GreaterThanDaysThresholdView `json:"threshold,omitempty"`
+	Threshold *GreaterThanDaysThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -246,9 +246,9 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []MatcherView
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +256,7 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []MatcherView and assigns it to the Matchers field.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -310,9 +310,9 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetNotifications(v []Notificat
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetThreshold() GreaterThanDaysThresholdView {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetThreshold() GreaterThanDaysThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret GreaterThanDaysThresholdView
+		var ret GreaterThanDaysThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -320,7 +320,7 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetThreshold() GreaterThanDays
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanDaysThresholdView, bool) {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanDaysThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) HasThreshold() bool {
 	return false
 }
 
-// SetThreshold gets a reference to the given GreaterThanDaysThresholdView and assigns it to the Threshold field.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanDaysThresholdView) {
+// SetThreshold gets a reference to the given GreaterThanDaysThreshold and assigns it to the Threshold field.
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanDaysThreshold) {
 	o.Threshold = &v
 }
 

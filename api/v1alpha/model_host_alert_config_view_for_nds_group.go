@@ -32,7 +32,7 @@ type HostAlertConfigViewForNdsGroup struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []HostMatcherView `json:"matchers,omitempty"`
+	Matchers []HostMatcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
@@ -246,9 +246,9 @@ func (o *HostAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *HostAlertConfigViewForNdsGroup) GetMatchers() []HostMatcherView {
+func (o *HostAlertConfigViewForNdsGroup) GetMatchers() []HostMatcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []HostMatcherView
+		var ret []HostMatcher
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +256,7 @@ func (o *HostAlertConfigViewForNdsGroup) GetMatchers() []HostMatcherView {
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostAlertConfigViewForNdsGroup) GetMatchersOk() ([]HostMatcherView, bool) {
+func (o *HostAlertConfigViewForNdsGroup) GetMatchersOk() ([]HostMatcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *HostAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []HostMatcherView and assigns it to the Matchers field.
-func (o *HostAlertConfigViewForNdsGroup) SetMatchers(v []HostMatcherView) {
+// SetMatchers gets a reference to the given []HostMatcher and assigns it to the Matchers field.
+func (o *HostAlertConfigViewForNdsGroup) SetMatchers(v []HostMatcher) {
 	o.Matchers = v
 }
 

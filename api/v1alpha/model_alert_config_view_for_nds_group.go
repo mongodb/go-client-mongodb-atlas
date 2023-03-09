@@ -31,12 +31,12 @@ type AlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []MatcherView `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
-	MetricThreshold *ServerlessMetricThresholdView `json:"metricThreshold,omitempty"`
+	MetricThreshold *ServerlessMetricThreshold `json:"metricThreshold,omitempty"`
 	Threshold *ThresholdViewInteger `json:"threshold,omitempty"`
 }
 
@@ -254,9 +254,9 @@ func (o *AlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *AlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
+func (o *AlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []MatcherView
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -264,7 +264,7 @@ func (o *AlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
+func (o *AlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -280,8 +280,8 @@ func (o *AlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []MatcherView and assigns it to the Matchers field.
-func (o *AlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *AlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -350,9 +350,9 @@ func (o *AlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
 }
 
 // GetMetricThreshold returns the MetricThreshold field value if set, zero value otherwise.
-func (o *AlertConfigViewForNdsGroup) GetMetricThreshold() ServerlessMetricThresholdView {
+func (o *AlertConfigViewForNdsGroup) GetMetricThreshold() ServerlessMetricThreshold {
 	if o == nil || IsNil(o.MetricThreshold) {
-		var ret ServerlessMetricThresholdView
+		var ret ServerlessMetricThreshold
 		return ret
 	}
 	return *o.MetricThreshold
@@ -360,7 +360,7 @@ func (o *AlertConfigViewForNdsGroup) GetMetricThreshold() ServerlessMetricThresh
 
 // GetMetricThresholdOk returns a tuple with the MetricThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertConfigViewForNdsGroup) GetMetricThresholdOk() (*ServerlessMetricThresholdView, bool) {
+func (o *AlertConfigViewForNdsGroup) GetMetricThresholdOk() (*ServerlessMetricThreshold, bool) {
 	if o == nil || IsNil(o.MetricThreshold) {
 		return nil, false
 	}
@@ -376,8 +376,8 @@ func (o *AlertConfigViewForNdsGroup) HasMetricThreshold() bool {
 	return false
 }
 
-// SetMetricThreshold gets a reference to the given ServerlessMetricThresholdView and assigns it to the MetricThreshold field.
-func (o *AlertConfigViewForNdsGroup) SetMetricThreshold(v ServerlessMetricThresholdView) {
+// SetMetricThreshold gets a reference to the given ServerlessMetricThreshold and assigns it to the MetricThreshold field.
+func (o *AlertConfigViewForNdsGroup) SetMetricThreshold(v ServerlessMetricThreshold) {
 	o.MetricThreshold = &v
 }
 

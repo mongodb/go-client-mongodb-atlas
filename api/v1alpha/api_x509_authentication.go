@@ -72,8 +72,8 @@ Updating this configuration triggers a rolling restart of the database.
 	ListDatabaseUserCertificates(ctx context.Context, groupId string, username string) X509AuthenticationApiListDatabaseUserCertificatesRequest
 
 	// ListDatabaseUserCertificatesExecute executes the request
-	//  @return PaginatedUserCertView
-	ListDatabaseUserCertificatesExecute(r X509AuthenticationApiListDatabaseUserCertificatesRequest) (*PaginatedUserCertView, *http.Response, error)
+	//  @return PaginatedUserCert
+	ListDatabaseUserCertificatesExecute(r X509AuthenticationApiListDatabaseUserCertificatesRequest) (*PaginatedUserCert, *http.Response, error)
 }
 
 // X509AuthenticationApiService X509AuthenticationApi service
@@ -214,7 +214,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -225,7 +225,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -236,7 +236,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -247,7 +247,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -258,7 +258,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -269,7 +269,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -400,7 +400,7 @@ func (a *X509AuthenticationApiService) DisableCustomerManagedX509Execute(r X509A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -411,7 +411,7 @@ func (a *X509AuthenticationApiService) DisableCustomerManagedX509Execute(r X509A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -477,7 +477,7 @@ func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) Pretty(pretty 
 	return r
 }
 
-func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) Execute() (*PaginatedUserCertView, *http.Response, error) {
+func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) Execute() (*PaginatedUserCert, *http.Response, error) {
 	return r.ApiService.ListDatabaseUserCertificatesExecute(r)
 }
 
@@ -501,13 +501,13 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificates(ctx context.
 }
 
 // Execute executes the request
-//  @return PaginatedUserCertView
-func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X509AuthenticationApiListDatabaseUserCertificatesRequest) (*PaginatedUserCertView, *http.Response, error) {
+//  @return PaginatedUserCert
+func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X509AuthenticationApiListDatabaseUserCertificatesRequest) (*PaginatedUserCert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedUserCertView
+		localVarReturnValue  *PaginatedUserCert
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "X509AuthenticationApiService.ListDatabaseUserCertificates")
@@ -584,7 +584,7 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X50
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -595,7 +595,7 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X50
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -606,7 +606,7 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X50
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -20,7 +20,7 @@ var _ MappedNullable = &ApiInstanceSizeView{}
 // ApiInstanceSizeView List of instances sizes that this cloud provider supports.
 type ApiInstanceSizeView struct {
 	// List of regions that this cloud provider supports for this instance size.
-	AvailableRegions []ApiAvailableRegionView `json:"availableRegions,omitempty"`
+	AvailableRegions []AvailableRegion `json:"availableRegions,omitempty"`
 	// Human-readable label that identifies the instance size or cluster tier.
 	Name *string `json:"name,omitempty"`
 }
@@ -43,9 +43,9 @@ func NewApiInstanceSizeViewWithDefaults() *ApiInstanceSizeView {
 }
 
 // GetAvailableRegions returns the AvailableRegions field value if set, zero value otherwise.
-func (o *ApiInstanceSizeView) GetAvailableRegions() []ApiAvailableRegionView {
+func (o *ApiInstanceSizeView) GetAvailableRegions() []AvailableRegion {
 	if o == nil || IsNil(o.AvailableRegions) {
-		var ret []ApiAvailableRegionView
+		var ret []AvailableRegion
 		return ret
 	}
 	return o.AvailableRegions
@@ -53,7 +53,7 @@ func (o *ApiInstanceSizeView) GetAvailableRegions() []ApiAvailableRegionView {
 
 // GetAvailableRegionsOk returns a tuple with the AvailableRegions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiInstanceSizeView) GetAvailableRegionsOk() ([]ApiAvailableRegionView, bool) {
+func (o *ApiInstanceSizeView) GetAvailableRegionsOk() ([]AvailableRegion, bool) {
 	if o == nil || IsNil(o.AvailableRegions) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *ApiInstanceSizeView) HasAvailableRegions() bool {
 	return false
 }
 
-// SetAvailableRegions gets a reference to the given []ApiAvailableRegionView and assigns it to the AvailableRegions field.
-func (o *ApiInstanceSizeView) SetAvailableRegions(v []ApiAvailableRegionView) {
+// SetAvailableRegions gets a reference to the given []AvailableRegion and assigns it to the AvailableRegions field.
+func (o *ApiInstanceSizeView) SetAvailableRegions(v []AvailableRegion) {
 	o.AvailableRegions = v
 }
 

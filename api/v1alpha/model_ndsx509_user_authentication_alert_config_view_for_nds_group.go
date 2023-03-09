@@ -31,10 +31,10 @@ type NDSX509UserAuthenticationAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []MatcherView `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *LessThanDaysThresholdView `json:"threshold,omitempty"`
+	Threshold *LessThanDaysThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -246,9 +246,9 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetLinks(v []Link)
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []MatcherView
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +256,7 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []Ma
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) HasMatchers() bool
 	return false
 }
 
-// SetMatchers gets a reference to the given []MatcherView and assigns it to the Matchers field.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -310,9 +310,9 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetNotifications(v
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetThreshold() LessThanDaysThresholdView {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetThreshold() LessThanDaysThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret LessThanDaysThresholdView
+		var ret LessThanDaysThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -320,7 +320,7 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetThreshold() Les
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetThresholdOk() (*LessThanDaysThresholdView, bool) {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetThresholdOk() (*LessThanDaysThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) HasThreshold() boo
 	return false
 }
 
-// SetThreshold gets a reference to the given LessThanDaysThresholdView and assigns it to the Threshold field.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetThreshold(v LessThanDaysThresholdView) {
+// SetThreshold gets a reference to the given LessThanDaysThreshold and assigns it to the Threshold field.
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetThreshold(v LessThanDaysThreshold) {
 	o.Threshold = &v
 }
 
