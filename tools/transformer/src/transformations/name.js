@@ -1,4 +1,4 @@
-const isModelIgnored = require("../engine/ignoreModel")
+const isModelIgnored = require("../engine/ignoreModel");
 
 /**
  *  Transforms provided API JSON file by removing prefix and suffix from the
@@ -18,18 +18,16 @@ function applyModelNameTransformations(api, prefix, suffix, ignoreModels) {
 
   for (const schemaKey of Object.keys(api.components.schemas)) {
     if (schemaKey.startsWith(prefix) && schemaKey.endsWith(suffix)) {
-      if(isModelIgnored(schemaKey, ignoreModels)){
-        console.warn(
-          "Ignored rename for the object: " + schemaKey
-        );
+      if (isModelIgnored(schemaKey, ignoreModels)) {
+        console.warn("Ignored rename for the object: " + schemaKey);
         continue;
       }
-    
+
       const schemaTransformedName = schemaKey
         .replace(prefix, "")
         .replace(suffix, "");
       if (api.components.schemas[schemaTransformedName]) {
-        console.warn(
+        throw new Error(
           `components.schemas already contain key ${schemaTransformedName}. Please rename ${schemaKey} object to avoid name overlap.`
         );
       }

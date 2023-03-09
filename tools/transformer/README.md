@@ -67,9 +67,8 @@ For parent model containing discriminator
 
 Default: 'warn"
 
-## Model ignore 
+## Model ignore
 
-Some transformations have ability to work with ignore list. 
+Some transformations have ability to work with ignore list.
 When writing transformation developers can use `isModelIgnored` function.
 See [Name transformation](./src/transformations/name.js) for example.
-

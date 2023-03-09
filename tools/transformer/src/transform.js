@@ -5,7 +5,7 @@ const {
   applyDiscriminatorTransformations,
 } = require("./transformations");
 const { getAPI, saveAPI } = require("./engine/apifile");
-const ignoredModelNames = require("./name.ignore.json").ignoreModels
+const ignoredModelNames = require("./name.ignore.json").ignoreModels;
 
 const log = require("simple-node-logger").createSimpleLogger();
 
