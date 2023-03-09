@@ -19,9 +19,9 @@ doc = applyDiscriminatorTransformations(doc);
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
 
-doc = applyModelNameTransformations(doc, "ApiAtlas", "View", ignoredModelNames);
-doc = applyModelNameTransformations(doc, "Api", "View", ignoredModelNames);
-doc = applyModelNameTransformations(doc, "", "View", ignoredModelNames);
 doc = applyModelNameTransformations(doc, "Api", "", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "Atlas", "", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "", "Manual", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "", "View", ignoredModelNames);
 
 saveAPI(doc, apiFileLocation);

@@ -19,7 +19,7 @@ var _ MappedNullable = &CreateOrganizationResponse{}
 
 // CreateOrganizationResponse struct for CreateOrganizationResponse
 type CreateOrganizationResponse struct {
-	ApiKey *User `json:"apiKey,omitempty"`
+	ApiKey *ApiUser `json:"apiKey,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role.
 	OrgOwnerId *string `json:"orgOwnerId,omitempty"`
 	Organization *Organization `json:"organization,omitempty"`
@@ -43,9 +43,9 @@ func NewCreateOrganizationResponseWithDefaults() *CreateOrganizationResponse {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *CreateOrganizationResponse) GetApiKey() User {
+func (o *CreateOrganizationResponse) GetApiKey() ApiUser {
 	if o == nil || IsNil(o.ApiKey) {
-		var ret User
+		var ret ApiUser
 		return ret
 	}
 	return *o.ApiKey
@@ -53,7 +53,7 @@ func (o *CreateOrganizationResponse) GetApiKey() User {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrganizationResponse) GetApiKeyOk() (*User, bool) {
+func (o *CreateOrganizationResponse) GetApiKeyOk() (*ApiUser, bool) {
 	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *CreateOrganizationResponse) HasApiKey() bool {
 	return false
 }
 
-// SetApiKey gets a reference to the given User and assigns it to the ApiKey field.
-func (o *CreateOrganizationResponse) SetApiKey(v User) {
+// SetApiKey gets a reference to the given ApiUser and assigns it to the ApiKey field.
+func (o *CreateOrganizationResponse) SetApiKey(v ApiUser) {
 	o.ApiKey = &v
 }
 

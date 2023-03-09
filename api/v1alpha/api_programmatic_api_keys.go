@@ -35,8 +35,8 @@ type ProgrammaticAPIKeysApi interface {
 	AddProjectApiKey(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiAddProjectApiKeyRequest
 
 	// AddProjectApiKeyExecute executes the request
-	//  @return User
-	AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiUser, *http.Response, error)
 
 	/*
 	CreateApiKey Create One Organization API Key
@@ -50,8 +50,8 @@ type ProgrammaticAPIKeysApi interface {
 	CreateApiKey(ctx context.Context, orgId string) ProgrammaticAPIKeysApiCreateApiKeyRequest
 
 	// CreateApiKeyExecute executes the request
-	//  @return User
-	CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiUser, *http.Response, error)
 
 	/*
 	CreateApiKeyAccessList Create Access List Entries for One Organization API Key
@@ -81,8 +81,8 @@ type ProgrammaticAPIKeysApi interface {
 	CreateProjectApiKey(ctx context.Context, groupId string) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest
 
 	// CreateProjectApiKeyExecute executes the request
-	//  @return User
-	CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiUser, *http.Response, error)
 
 	/*
 	DeleteApiKey Remove One Organization API Key
@@ -128,8 +128,8 @@ type ProgrammaticAPIKeysApi interface {
 	GetApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiGetApiKeyRequest
 
 	// GetApiKeyExecute executes the request
-	//  @return User
-	GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiUser, *http.Response, error)
 
 	/*
 	GetApiKeyAccessList Return One Access List Entry for One Organization API Key
@@ -222,8 +222,8 @@ type ProgrammaticAPIKeysApi interface {
 	UpdateApiKey(ctx context.Context, orgId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRequest
 
 	// UpdateApiKeyExecute executes the request
-	//  @return User
-	UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiUser, *http.Response, error)
 
 	/*
 	UpdateApiKeyRoles Update Roles of One Organization API Key to One Project
@@ -238,8 +238,8 @@ type ProgrammaticAPIKeysApi interface {
 	UpdateApiKeyRoles(ctx context.Context, groupId string, apiUserId string) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest
 
 	// UpdateApiKeyRolesExecute executes the request
-	//  @return User
-	UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*User, *http.Response, error)
+	//  @return ApiUser
+	UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiUser, *http.Response, error)
 }
 
 // ProgrammaticAPIKeysApiService ProgrammaticAPIKeysApi service
@@ -273,7 +273,7 @@ func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Pretty(pretty bool) Progr
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.AddProjectApiKeyExecute(r)
 }
 
@@ -297,13 +297,13 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKey(ctx context.Context, gr
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.AddProjectApiKey")
@@ -444,7 +444,7 @@ func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Pretty(pretty bool) Programma
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.CreateApiKeyExecute(r)
 }
 
@@ -466,13 +466,13 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKey(ctx context.Context, orgId 
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKeysApiCreateApiKeyRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateApiKey")
@@ -830,7 +830,7 @@ func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Pretty(pretty bool) Pr
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.CreateProjectApiKeyExecute(r)
 }
 
@@ -852,13 +852,13 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKey(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.CreateProjectApiKey")
@@ -1310,7 +1310,7 @@ func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Pretty(pretty bool) Programmatic
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.GetApiKeyExecute(r)
 }
 
@@ -1334,13 +1334,13 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKey(ctx context.Context, orgId str
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysApiGetApiKeyRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.GetApiKey")
@@ -2339,14 +2339,14 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	user *User
+	apiUser *ApiUser
 	envelope *bool
 	pretty *bool
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) User(user User) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
-	r.user = &user
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) ApiUser(apiUser ApiUser) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
+	r.apiUser = &apiUser
 	return r
 }
 
@@ -2362,7 +2362,7 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Pretty(pretty bool) Programma
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyExecute(r)
 }
 
@@ -2386,13 +2386,13 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKey(ctx context.Context, orgId 
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKey")
@@ -2419,8 +2419,8 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 	if strlen(r.apiUserId) > 24 {
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
-	if r.user == nil {
-		return localVarReturnValue, nil, reportError("user is required and must be specified")
+	if r.apiUser == nil {
+		return localVarReturnValue, nil, reportError("apiUser is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2447,7 +2447,7 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.user
+	localVarPostBody = r.apiUser
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2566,7 +2566,7 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Envelope(envelope bool) 
 	return r
 }
 
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Execute() (*User, *http.Response, error) {
+func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyRolesExecute(r)
 }
 
@@ -2590,13 +2590,13 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRoles(ctx context.Context, g
 }
 
 // Execute executes the request
-//  @return User
-func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*User, *http.Response, error) {
+//  @return ApiUser
+func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) (*ApiUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *ApiUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.UpdateApiKeyRoles")
