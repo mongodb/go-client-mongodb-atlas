@@ -17,6 +17,10 @@ let { doc, apiFileLocation } = getAPI(process.argv.slice(2));
 doc = applyDiscriminatorTransformations(doc);
 doc = applyOneOfTransformations(doc);
 doc = applyAllOfTransformations(doc);
+
 doc = applyModelNameTransformations(doc, "ApiAtlas", "View");
+doc = applyModelNameTransformations(doc, "Api", "View");
+doc = applyModelNameTransformations(doc, "", "View");
+doc = applyModelNameTransformations(doc, "Api", "");
 
 saveAPI(doc, apiFileLocation);

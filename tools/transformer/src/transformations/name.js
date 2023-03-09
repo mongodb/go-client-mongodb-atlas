@@ -10,7 +10,7 @@
 function applyModelNameTransformations(api, prefix, suffix) {
   const hasSchemas = api && api.components && api.components.schemas;
   if (!hasSchemas) {
-    throw new Error();
+    throw new Error("Missing schemas in openapi");
   }
 
   for (const schemaKey of Object.keys(api.components.schemas)) {
@@ -19,10 +19,11 @@ function applyModelNameTransformations(api, prefix, suffix) {
         .replace(prefix, "")
         .replace(suffix, "");
       if (api.components.schemas[schemaTransformedName]) {
-        throw new Error(
-          "components.schemas already contain key",
-          schemaTransformedName
+        console.warn(
+          "components.schemas already contain key: " + schemaTransformedName
         );
+        // Skipping transformation for that object 
+        continue;
       }
       api.components.schemas[schemaTransformedName] =
         api.components.schemas[schemaKey];
