@@ -2,7 +2,7 @@
   "ignoreModels": [
     "ApiInstanceSizeView",
     "ApiRoleAssignmentView",
-    "PartitionFieldView",
+    "ApiAtlasPartitionFieldView",
     "PemFileInfoView",
     "X509CertificateView",
     "ApiUserEventTypeViewForNdsGroup",

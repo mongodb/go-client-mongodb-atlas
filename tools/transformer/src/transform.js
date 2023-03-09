@@ -22,5 +22,6 @@ doc = applyAllOfTransformations(doc);
 doc = applyModelNameTransformations(doc, "Api", "", ignoredModelNames);
 doc = applyModelNameTransformations(doc, "Atlas", "", ignoredModelNames);
 doc = applyModelNameTransformations(doc, "", "View", ignoredModelNames);
+doc = applyModelNameTransformations(doc, "", "Manual", ignoredModelNames);
 
 saveAPI(doc, apiFileLocation);
