@@ -32,8 +32,8 @@ type RootApi interface {
 	GetSystemStatus(ctx context.Context) RootApiGetSystemStatusRequest
 
 	// GetSystemStatusExecute executes the request
-	//  @return ApiSystemStatusView
-	GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*ApiSystemStatusView, *http.Response, error)
+	//  @return SystemStatus
+	GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*SystemStatus, *http.Response, error)
 }
 
 // RootApiService RootApi service
@@ -58,7 +58,7 @@ func (r RootApiGetSystemStatusRequest) Pretty(pretty bool) RootApiGetSystemStatu
 	return r
 }
 
-func (r RootApiGetSystemStatusRequest) Execute() (*ApiSystemStatusView, *http.Response, error) {
+func (r RootApiGetSystemStatusRequest) Execute() (*SystemStatus, *http.Response, error) {
 	return r.ApiService.GetSystemStatusExecute(r)
 }
 
@@ -78,13 +78,13 @@ func (a *RootApiService) GetSystemStatus(ctx context.Context) RootApiGetSystemSt
 }
 
 // Execute executes the request
-//  @return ApiSystemStatusView
-func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*ApiSystemStatusView, *http.Response, error) {
+//  @return SystemStatus
+func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*SystemStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSystemStatusView
+		localVarReturnValue  *SystemStatus
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootApiService.GetSystemStatus")
@@ -144,7 +144,7 @@ func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -80,8 +80,8 @@ type MultiCloudClustersApi interface {
 	ListClusters(ctx context.Context, groupId string) MultiCloudClustersApiListClustersRequest
 
 	// ListClustersExecute executes the request
-	//  @return PaginatedClusterDescriptionV15View
-	ListClustersExecute(r MultiCloudClustersApiListClustersRequest) (*PaginatedClusterDescriptionV15View, *http.Response, error)
+	//  @return PaginatedClusterDescriptionV15
+	ListClustersExecute(r MultiCloudClustersApiListClustersRequest) (*PaginatedClusterDescriptionV15, *http.Response, error)
 
 	/*
 	TestFailover Test Failover for One Multi-Cloud Cluster
@@ -245,7 +245,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -256,7 +256,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -267,7 +267,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -278,7 +278,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -289,7 +289,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,7 +300,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -447,7 +447,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -458,7 +458,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -469,7 +469,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -480,7 +480,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -491,7 +491,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -631,7 +631,7 @@ func (a *MultiCloudClustersApiService) GetClusterExecute(r MultiCloudClustersApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -642,7 +642,7 @@ func (a *MultiCloudClustersApiService) GetClusterExecute(r MultiCloudClustersApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -707,7 +707,7 @@ func (r MultiCloudClustersApiListClustersRequest) Pretty(pretty bool) MultiCloud
 	return r
 }
 
-func (r MultiCloudClustersApiListClustersRequest) Execute() (*PaginatedClusterDescriptionV15View, *http.Response, error) {
+func (r MultiCloudClustersApiListClustersRequest) Execute() (*PaginatedClusterDescriptionV15, *http.Response, error) {
 	return r.ApiService.ListClustersExecute(r)
 }
 
@@ -729,13 +729,13 @@ func (a *MultiCloudClustersApiService) ListClusters(ctx context.Context, groupId
 }
 
 // Execute executes the request
-//  @return PaginatedClusterDescriptionV15View
-func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersApiListClustersRequest) (*PaginatedClusterDescriptionV15View, *http.Response, error) {
+//  @return PaginatedClusterDescriptionV15
+func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersApiListClustersRequest) (*PaginatedClusterDescriptionV15, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedClusterDescriptionV15View
+		localVarReturnValue  *PaginatedClusterDescriptionV15
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MultiCloudClustersApiService.ListClusters")
@@ -811,7 +811,7 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -822,7 +822,7 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -969,7 +969,7 @@ func (a *MultiCloudClustersApiService) TestFailoverExecute(r MultiCloudClustersA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -980,7 +980,7 @@ func (a *MultiCloudClustersApiService) TestFailoverExecute(r MultiCloudClustersA
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1132,7 +1132,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1143,7 +1143,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1154,7 +1154,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1165,7 +1165,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1176,7 +1176,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

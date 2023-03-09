@@ -37,9 +37,9 @@ type LegacyBackupRestoreJobsApi interface {
 	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest
 
 	// CreateLegacyBackupRestoreJobExecute executes the request
-	//  @return PaginatedRestoreJobView
+	//  @return PaginatedRestoreJob
 	// Deprecated
-	CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error)
+	CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJob, *http.Response, error)
 }
 
 // LegacyBackupRestoreJobsApiService LegacyBackupRestoreJobsApi service
@@ -50,14 +50,14 @@ type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest struct {
 	ApiService LegacyBackupRestoreJobsApi
 	groupId string
 	clusterName string
-	apiRestoreJobView *ApiRestoreJobView
+	restoreJob *RestoreJob
 	envelope *bool
 	pretty *bool
 }
 
 // Legacy backup to restore to one cluster in the specified project.
-func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) ApiRestoreJobView(apiRestoreJobView ApiRestoreJobView) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest {
-	r.apiRestoreJobView = &apiRestoreJobView
+func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) RestoreJob(restoreJob RestoreJob) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest {
+	r.restoreJob = &restoreJob
 	return r
 }
 
@@ -73,7 +73,7 @@ func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) Pretty(pr
 	return r
 }
 
-func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
+func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
 	return r.ApiService.CreateLegacyBackupRestoreJobExecute(r)
 }
 
@@ -99,14 +99,14 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJob(ctx con
 }
 
 // Execute executes the request
-//  @return PaginatedRestoreJobView
+//  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJobView, *http.Response, error) {
+func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedRestoreJobView
+		localVarReturnValue  *PaginatedRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupRestoreJobsApiService.CreateLegacyBackupRestoreJob")
@@ -133,8 +133,8 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(
 	if strlen(r.clusterName) > 64 {
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
-	if r.apiRestoreJobView == nil {
-		return localVarReturnValue, nil, reportError("apiRestoreJobView is required and must be specified")
+	if r.restoreJob == nil {
+		return localVarReturnValue, nil, reportError("restoreJob is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -161,7 +161,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiRestoreJobView
+	localVarPostBody = r.restoreJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -185,7 +185,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -196,7 +196,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -207,7 +207,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

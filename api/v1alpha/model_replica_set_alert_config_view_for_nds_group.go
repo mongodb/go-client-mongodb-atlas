@@ -32,7 +32,7 @@ type ReplicaSetAlertConfigViewForNdsGroup struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []ReplicaSetMatcherView `json:"matchers,omitempty"`
+	Matchers []ReplicaSetMatcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	Threshold *ThresholdViewInteger `json:"threshold,omitempty"`
@@ -247,9 +247,9 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcherView {
+func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []ReplicaSetMatcherView
+		var ret []ReplicaSetMatcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +257,7 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcher
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcherView, bool) {
+func (o *ReplicaSetAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,8 +273,8 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []ReplicaSetMatcherView and assigns it to the Matchers field.
-func (o *ReplicaSetAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcherView) {
+// SetMatchers gets a reference to the given []ReplicaSetMatcher and assigns it to the Matchers field.
+func (o *ReplicaSetAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcher) {
 	o.Matchers = v
 }
 

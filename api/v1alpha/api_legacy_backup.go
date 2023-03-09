@@ -77,9 +77,9 @@ type LegacyBackupApi interface {
 	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiGetLegacyBackupRestoreJobRequest
 
 	// GetLegacyBackupRestoreJobExecute executes the request
-	//  @return ApiRestoreJobView
+	//  @return RestoreJob
 	// Deprecated
-	GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error)
+	GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*RestoreJob, *http.Response, error)
 
 	/*
 	GetLegacySnapshot Return One Legacy Backup Snapshot
@@ -97,9 +97,9 @@ type LegacyBackupApi interface {
 	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiGetLegacySnapshotRequest
 
 	// GetLegacySnapshotExecute executes the request
-	//  @return ApiSnapshotView
+	//  @return Snapshot
 	// Deprecated
-	GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*ApiSnapshotView, *http.Response, error)
+	GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	GetLegacySnapshotSchedule Return One Snapshot Schedule
@@ -135,9 +135,9 @@ type LegacyBackupApi interface {
 	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupCheckpointsRequest
 
 	// ListLegacyBackupCheckpointsExecute executes the request
-	//  @return PaginatedApiAtlasCheckpointView
+	//  @return PaginatedApiAtlasCheckpoint
 	// Deprecated
-	ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error)
+	ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error)
 
 	/*
 	ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
@@ -154,9 +154,9 @@ type LegacyBackupApi interface {
 	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupRestoreJobsRequest
 
 	// ListLegacyBackupRestoreJobsExecute executes the request
-	//  @return PaginatedRestoreJobView
+	//  @return PaginatedRestoreJob
 	// Deprecated
-	ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error)
+	ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJob, *http.Response, error)
 
 	/*
 	ListLegacySnapshots Return All Legacy Backup Snapshots
@@ -173,9 +173,9 @@ type LegacyBackupApi interface {
 	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacySnapshotsRequest
 
 	// ListLegacySnapshotsExecute executes the request
-	//  @return PaginatedSnapshotView
+	//  @return PaginatedSnapshot
 	// Deprecated
-	ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error)
+	ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
@@ -193,9 +193,9 @@ type LegacyBackupApi interface {
 	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiUpdateLegacySnapshotRetentionRequest
 
 	// UpdateLegacySnapshotRetentionExecute executes the request
-	//  @return ApiSnapshotView
+	//  @return Snapshot
 	// Deprecated
-	UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*ApiSnapshotView, *http.Response, error)
+	UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
@@ -356,7 +356,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,7 +367,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -378,7 +378,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -531,7 +531,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -542,7 +542,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +553,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -564,7 +564,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -610,7 +610,7 @@ func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Pretty(pretty bool) Leg
 	return r
 }
 
-func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*ApiRestoreJobView, *http.Response, error) {
+func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*RestoreJob, *http.Response, error) {
 	return r.ApiService.GetLegacyBackupRestoreJobExecute(r)
 }
 
@@ -638,14 +638,14 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return ApiRestoreJobView
+//  @return RestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*ApiRestoreJobView, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*RestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiRestoreJobView
+		localVarReturnValue  *RestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacyBackupRestoreJob")
@@ -726,7 +726,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackup
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -737,7 +737,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -748,7 +748,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -794,7 +794,7 @@ func (r LegacyBackupApiGetLegacySnapshotRequest) Pretty(pretty bool) LegacyBacku
 	return r
 }
 
-func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
+func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*Snapshot, *http.Response, error) {
 	return r.ApiService.GetLegacySnapshotExecute(r)
 }
 
@@ -822,14 +822,14 @@ func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId 
 }
 
 // Execute executes the request
-//  @return ApiSnapshotView
+//  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*ApiSnapshotView, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSnapshotView
+		localVarReturnValue  *Snapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.GetLegacySnapshot")
@@ -910,7 +910,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -921,7 +921,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1073,7 +1073,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackup
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1084,7 +1084,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackup
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1150,7 +1150,7 @@ func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Pretty(pretty bool) L
 	return r
 }
 
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Execute() (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
+func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Execute() (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupCheckpointsExecute(r)
 }
 
@@ -1176,14 +1176,14 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context
 }
 
 // Execute executes the request
-//  @return PaginatedApiAtlasCheckpointView
+//  @return PaginatedApiAtlasCheckpoint
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpointView, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasCheckpointView
+		localVarReturnValue  *PaginatedApiAtlasCheckpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacyBackupCheckpoints")
@@ -1266,7 +1266,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBack
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1277,7 +1277,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1350,7 +1350,7 @@ func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) BatchId(batchId strin
 	return r
 }
 
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Execute() (*PaginatedRestoreJobView, *http.Response, error) {
+func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupRestoreJobsExecute(r)
 }
 
@@ -1376,14 +1376,14 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context
 }
 
 // Execute executes the request
-//  @return PaginatedRestoreJobView
+//  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJobView, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedRestoreJobView
+		localVarReturnValue  *PaginatedRestoreJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacyBackupRestoreJobs")
@@ -1469,7 +1469,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1480,7 +1480,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1491,7 +1491,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1564,7 +1564,7 @@ func (r LegacyBackupApiListLegacySnapshotsRequest) Completed(completed string) L
 	return r
 }
 
-func (r LegacyBackupApiListLegacySnapshotsRequest) Execute() (*PaginatedSnapshotView, *http.Response, error) {
+func (r LegacyBackupApiListLegacySnapshotsRequest) Execute() (*PaginatedSnapshot, *http.Response, error) {
 	return r.ApiService.ListLegacySnapshotsExecute(r)
 }
 
@@ -1590,14 +1590,14 @@ func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupI
 }
 
 // Execute executes the request
-//  @return PaginatedSnapshotView
+//  @return PaginatedSnapshot
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshotView, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedSnapshotView
+		localVarReturnValue  *PaginatedSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.ListLegacySnapshots")
@@ -1683,7 +1683,7 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1694,7 +1694,7 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1724,14 +1724,14 @@ type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	apiSnapshotView *ApiSnapshotView
+	snapshot *Snapshot
 	envelope *bool
 	pretty *bool
 }
 
 // Changes One Legacy Backup Snapshot Expiration.
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) ApiSnapshotView(apiSnapshotView ApiSnapshotView) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
-	r.apiSnapshotView = &apiSnapshotView
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Snapshot(snapshot Snapshot) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+	r.snapshot = &snapshot
 	return r
 }
 
@@ -1747,7 +1747,7 @@ func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Pretty(pretty bool)
 	return r
 }
 
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Execute() (*ApiSnapshotView, *http.Response, error) {
+func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Execute() (*Snapshot, *http.Response, error) {
 	return r.ApiService.UpdateLegacySnapshotRetentionExecute(r)
 }
 
@@ -1775,14 +1775,14 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ApiSnapshotView
+//  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*ApiSnapshotView, *http.Response, error) {
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSnapshotView
+		localVarReturnValue  *Snapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LegacyBackupApiService.UpdateLegacySnapshotRetention")
@@ -1816,8 +1816,8 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 	if strlen(r.snapshotId) > 24 {
 		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
-	if r.apiSnapshotView == nil {
-		return localVarReturnValue, nil, reportError("apiSnapshotView is required and must be specified")
+	if r.snapshot == nil {
+		return localVarReturnValue, nil, reportError("snapshot is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1844,7 +1844,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiSnapshotView
+	localVarPostBody = r.snapshot
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1868,7 +1868,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1879,7 +1879,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2043,7 +2043,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBac
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2054,7 +2054,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

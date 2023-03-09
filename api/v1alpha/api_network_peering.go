@@ -96,9 +96,9 @@ type NetworkPeeringApi interface {
 	DisablePeering(ctx context.Context, groupId string) NetworkPeeringApiDisablePeeringRequest
 
 	// DisablePeeringExecute executes the request
-	//  @return PrivateIPModeView
+	//  @return PrivateIPMode
 	// Deprecated
-	DisablePeeringExecute(r NetworkPeeringApiDisablePeeringRequest) (*PrivateIPModeView, *http.Response, error)
+	DisablePeeringExecute(r NetworkPeeringApiDisablePeeringRequest) (*PrivateIPMode, *http.Response, error)
 
 	/*
 	GetPeeringConnection Return One Network Peering Connection in One Project
@@ -159,8 +159,8 @@ type NetworkPeeringApi interface {
 	ListPeeringContainerByCloudProvider(ctx context.Context, groupId string) NetworkPeeringApiListPeeringContainerByCloudProviderRequest
 
 	// ListPeeringContainerByCloudProviderExecute executes the request
-	//  @return PaginatedCloudProviderContainerView
-	ListPeeringContainerByCloudProviderExecute(r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) (*PaginatedCloudProviderContainerView, *http.Response, error)
+	//  @return PaginatedCloudProviderContainer
+	ListPeeringContainerByCloudProviderExecute(r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) (*PaginatedCloudProviderContainer, *http.Response, error)
 
 	/*
 	ListPeeringContainers Return All Network Peering Containers in One Project
@@ -174,8 +174,8 @@ type NetworkPeeringApi interface {
 	ListPeeringContainers(ctx context.Context, groupId string) NetworkPeeringApiListPeeringContainersRequest
 
 	// ListPeeringContainersExecute executes the request
-	//  @return PaginatedCloudProviderContainerView
-	ListPeeringContainersExecute(r NetworkPeeringApiListPeeringContainersRequest) (*PaginatedCloudProviderContainerView, *http.Response, error)
+	//  @return PaginatedCloudProviderContainer
+	ListPeeringContainersExecute(r NetworkPeeringApiListPeeringContainersRequest) (*PaginatedCloudProviderContainer, *http.Response, error)
 
 	/*
 	UpdatePeeringConnection Update One New Network Peering Connection
@@ -223,9 +223,9 @@ type NetworkPeeringApi interface {
 	VerifyConnectViaPeeringOnlyModeForOneProject(ctx context.Context, groupId string) NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest
 
 	// VerifyConnectViaPeeringOnlyModeForOneProjectExecute executes the request
-	//  @return PrivateIPModeView
+	//  @return PrivateIPMode
 	// Deprecated
-	VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) (*PrivateIPModeView, *http.Response, error)
+	VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) (*PrivateIPMode, *http.Response, error)
 }
 
 // NetworkPeeringApiService NetworkPeeringApi service
@@ -235,14 +235,14 @@ type NetworkPeeringApiCreatePeeringConnectionRequest struct {
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	apiAtlasContainerPeerViewRequest *ApiAtlasContainerPeerViewRequest
+	atlasContainerPeerViewRequest *AtlasContainerPeerViewRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Create one network peering connection.
-func (r NetworkPeeringApiCreatePeeringConnectionRequest) ApiAtlasContainerPeerViewRequest(apiAtlasContainerPeerViewRequest ApiAtlasContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
-	r.apiAtlasContainerPeerViewRequest = &apiAtlasContainerPeerViewRequest
+func (r NetworkPeeringApiCreatePeeringConnectionRequest) AtlasContainerPeerViewRequest(atlasContainerPeerViewRequest AtlasContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
+	r.atlasContainerPeerViewRequest = &atlasContainerPeerViewRequest
 	return r
 }
 
@@ -306,8 +306,8 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.apiAtlasContainerPeerViewRequest == nil {
-		return localVarReturnValue, nil, reportError("apiAtlasContainerPeerViewRequest is required and must be specified")
+	if r.atlasContainerPeerViewRequest == nil {
+		return localVarReturnValue, nil, reportError("atlasContainerPeerViewRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -334,7 +334,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAtlasContainerPeerViewRequest
+	localVarPostBody = r.atlasContainerPeerViewRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -358,7 +358,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -369,7 +369,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -380,7 +380,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -391,7 +391,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -402,7 +402,7 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +553,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -564,7 +564,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -575,7 +575,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -586,7 +586,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -597,7 +597,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -608,7 +608,7 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -755,7 +755,7 @@ func (a *NetworkPeeringApiService) DeletePeeringConnectionExecute(r NetworkPeeri
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -766,7 +766,7 @@ func (a *NetworkPeeringApiService) DeletePeeringConnectionExecute(r NetworkPeeri
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -777,7 +777,7 @@ func (a *NetworkPeeringApiService) DeletePeeringConnectionExecute(r NetworkPeeri
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -915,7 +915,7 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -926,7 +926,7 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -937,7 +937,7 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -948,7 +948,7 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -959,7 +959,7 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -978,14 +978,14 @@ type NetworkPeeringApiDisablePeeringRequest struct {
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	privateIPModeView *PrivateIPModeView
+	privateIPMode *PrivateIPMode
 	envelope *bool
 	pretty *bool
 }
 
 // Disables Connect via Peering Only mode for the specified project.
-func (r NetworkPeeringApiDisablePeeringRequest) PrivateIPModeView(privateIPModeView PrivateIPModeView) NetworkPeeringApiDisablePeeringRequest {
-	r.privateIPModeView = &privateIPModeView
+func (r NetworkPeeringApiDisablePeeringRequest) PrivateIPMode(privateIPMode PrivateIPMode) NetworkPeeringApiDisablePeeringRequest {
+	r.privateIPMode = &privateIPMode
 	return r
 }
 
@@ -1001,7 +1001,7 @@ func (r NetworkPeeringApiDisablePeeringRequest) Pretty(pretty bool) NetworkPeeri
 	return r
 }
 
-func (r NetworkPeeringApiDisablePeeringRequest) Execute() (*PrivateIPModeView, *http.Response, error) {
+func (r NetworkPeeringApiDisablePeeringRequest) Execute() (*PrivateIPMode, *http.Response, error) {
 	return r.ApiService.DisablePeeringExecute(r)
 }
 
@@ -1025,14 +1025,14 @@ func (a *NetworkPeeringApiService) DisablePeering(ctx context.Context, groupId s
 }
 
 // Execute executes the request
-//  @return PrivateIPModeView
+//  @return PrivateIPMode
 // Deprecated
-func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisablePeeringRequest) (*PrivateIPModeView, *http.Response, error) {
+func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisablePeeringRequest) (*PrivateIPMode, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PrivateIPModeView
+		localVarReturnValue  *PrivateIPMode
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkPeeringApiService.DisablePeering")
@@ -1052,8 +1052,8 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.privateIPModeView == nil {
-		return localVarReturnValue, nil, reportError("privateIPModeView is required and must be specified")
+	if r.privateIPMode == nil {
+		return localVarReturnValue, nil, reportError("privateIPMode is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1080,7 +1080,7 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.privateIPModeView
+	localVarPostBody = r.privateIPMode
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1104,7 +1104,7 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1115,7 +1115,7 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1126,7 +1126,7 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1275,7 +1275,7 @@ func (a *NetworkPeeringApiService) GetPeeringConnectionExecute(r NetworkPeeringA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1286,7 +1286,7 @@ func (a *NetworkPeeringApiService) GetPeeringConnectionExecute(r NetworkPeeringA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1297,7 +1297,7 @@ func (a *NetworkPeeringApiService) GetPeeringConnectionExecute(r NetworkPeeringA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1446,7 +1446,7 @@ func (a *NetworkPeeringApiService) GetPeeringContainerExecute(r NetworkPeeringAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1457,7 +1457,7 @@ func (a *NetworkPeeringApiService) GetPeeringContainerExecute(r NetworkPeeringAp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1636,7 +1636,7 @@ func (a *NetworkPeeringApiService) ListPeeringConnectionsExecute(r NetworkPeerin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1647,7 +1647,7 @@ func (a *NetworkPeeringApiService) ListPeeringConnectionsExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1658,7 +1658,7 @@ func (a *NetworkPeeringApiService) ListPeeringConnectionsExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1730,7 +1730,7 @@ func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) Pretty(pret
 	return r
 }
 
-func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) Execute() (*PaginatedCloudProviderContainerView, *http.Response, error) {
+func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) Execute() (*PaginatedCloudProviderContainer, *http.Response, error) {
 	return r.ApiService.ListPeeringContainerByCloudProviderExecute(r)
 }
 
@@ -1752,13 +1752,13 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProvider(ctx conte
 }
 
 // Execute executes the request
-//  @return PaginatedCloudProviderContainerView
-func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) (*PaginatedCloudProviderContainerView, *http.Response, error) {
+//  @return PaginatedCloudProviderContainer
+func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) (*PaginatedCloudProviderContainer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedCloudProviderContainerView
+		localVarReturnValue  *PaginatedCloudProviderContainer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkPeeringApiService.ListPeeringContainerByCloudProvider")
@@ -1838,7 +1838,7 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1849,7 +1849,7 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1860,7 +1860,7 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1925,7 +1925,7 @@ func (r NetworkPeeringApiListPeeringContainersRequest) Pretty(pretty bool) Netwo
 	return r
 }
 
-func (r NetworkPeeringApiListPeeringContainersRequest) Execute() (*PaginatedCloudProviderContainerView, *http.Response, error) {
+func (r NetworkPeeringApiListPeeringContainersRequest) Execute() (*PaginatedCloudProviderContainer, *http.Response, error) {
 	return r.ApiService.ListPeeringContainersExecute(r)
 }
 
@@ -1947,13 +1947,13 @@ func (a *NetworkPeeringApiService) ListPeeringContainers(ctx context.Context, gr
 }
 
 // Execute executes the request
-//  @return PaginatedCloudProviderContainerView
-func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeeringApiListPeeringContainersRequest) (*PaginatedCloudProviderContainerView, *http.Response, error) {
+//  @return PaginatedCloudProviderContainer
+func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeeringApiListPeeringContainersRequest) (*PaginatedCloudProviderContainer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedCloudProviderContainerView
+		localVarReturnValue  *PaginatedCloudProviderContainer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkPeeringApiService.ListPeeringContainers")
@@ -2029,7 +2029,7 @@ func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeering
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2040,7 +2040,7 @@ func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeering
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2069,14 +2069,14 @@ type NetworkPeeringApiUpdatePeeringConnectionRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	peerId string
-	apiAtlasContainerPeerViewRequest *ApiAtlasContainerPeerViewRequest
+	atlasContainerPeerViewRequest *AtlasContainerPeerViewRequest
 	envelope *bool
 	pretty *bool
 }
 
 // Modify one network peering connection.
-func (r NetworkPeeringApiUpdatePeeringConnectionRequest) ApiAtlasContainerPeerViewRequest(apiAtlasContainerPeerViewRequest ApiAtlasContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
-	r.apiAtlasContainerPeerViewRequest = &apiAtlasContainerPeerViewRequest
+func (r NetworkPeeringApiUpdatePeeringConnectionRequest) AtlasContainerPeerViewRequest(atlasContainerPeerViewRequest AtlasContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
+	r.atlasContainerPeerViewRequest = &atlasContainerPeerViewRequest
 	return r
 }
 
@@ -2149,8 +2149,8 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 	if strlen(r.peerId) > 24 {
 		return localVarReturnValue, nil, reportError("peerId must have less than 24 elements")
 	}
-	if r.apiAtlasContainerPeerViewRequest == nil {
-		return localVarReturnValue, nil, reportError("apiAtlasContainerPeerViewRequest is required and must be specified")
+	if r.atlasContainerPeerViewRequest == nil {
+		return localVarReturnValue, nil, reportError("atlasContainerPeerViewRequest is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -2177,7 +2177,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAtlasContainerPeerViewRequest
+	localVarPostBody = r.atlasContainerPeerViewRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2201,7 +2201,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2212,7 +2212,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2223,7 +2223,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2234,7 +2234,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2245,7 +2245,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2406,7 +2406,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2417,7 +2417,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2428,7 +2428,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2439,7 +2439,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2450,7 +2450,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2461,7 +2461,7 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2505,7 +2505,7 @@ func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Pr
 	return r
 }
 
-func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Execute() (*PrivateIPModeView, *http.Response, error) {
+func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Execute() (*PrivateIPMode, *http.Response, error) {
 	return r.ApiService.VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r)
 }
 
@@ -2529,14 +2529,14 @@ func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProject(
 }
 
 // Execute executes the request
-//  @return PrivateIPModeView
+//  @return PrivateIPMode
 // Deprecated
-func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) (*PrivateIPModeView, *http.Response, error) {
+func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) (*PrivateIPMode, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PrivateIPModeView
+		localVarReturnValue  *PrivateIPMode
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkPeeringApiService.VerifyConnectViaPeeringOnlyModeForOneProject")
@@ -2603,7 +2603,7 @@ func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProjectE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2614,7 +2614,7 @@ func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProjectE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

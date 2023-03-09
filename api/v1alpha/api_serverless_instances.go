@@ -80,8 +80,8 @@ type ServerlessInstancesApi interface {
 	ListServerlessInstances(ctx context.Context, groupId string) ServerlessInstancesApiListServerlessInstancesRequest
 
 	// ListServerlessInstancesExecute executes the request
-	//  @return PaginatedServerlessInstanceDescriptionView
-	ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error)
+	//  @return PaginatedServerlessInstanceDescription
+	ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescription, *http.Response, error)
 
 	/*
 	UpdateServerlessInstance Update One Serverless Instance in One Project
@@ -230,7 +230,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -241,7 +241,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -252,7 +252,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -263,7 +263,7 @@ func (a *ServerlessInstancesApiService) CreateServerlessInstanceExecute(r Server
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -410,7 +410,7 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r Server
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -421,7 +421,7 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r Server
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -432,7 +432,7 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r Server
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -443,7 +443,7 @@ func (a *ServerlessInstancesApiService) DeleteServerlessInstanceExecute(r Server
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -583,7 +583,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -594,7 +594,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -605,7 +605,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -616,7 +616,7 @@ func (a *ServerlessInstancesApiService) GetServerlessInstanceExecute(r Serverles
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -681,7 +681,7 @@ func (r ServerlessInstancesApiListServerlessInstancesRequest) Pretty(pretty bool
 	return r
 }
 
-func (r ServerlessInstancesApiListServerlessInstancesRequest) Execute() (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
+func (r ServerlessInstancesApiListServerlessInstancesRequest) Execute() (*PaginatedServerlessInstanceDescription, *http.Response, error) {
 	return r.ApiService.ListServerlessInstancesExecute(r)
 }
 
@@ -703,13 +703,13 @@ func (a *ServerlessInstancesApiService) ListServerlessInstances(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return PaginatedServerlessInstanceDescriptionView
-func (a *ServerlessInstancesApiService) ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescriptionView, *http.Response, error) {
+//  @return PaginatedServerlessInstanceDescription
+func (a *ServerlessInstancesApiService) ListServerlessInstancesExecute(r ServerlessInstancesApiListServerlessInstancesRequest) (*PaginatedServerlessInstanceDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedServerlessInstanceDescriptionView
+		localVarReturnValue  *PaginatedServerlessInstanceDescription
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerlessInstancesApiService.ListServerlessInstances")
@@ -785,7 +785,7 @@ func (a *ServerlessInstancesApiService) ListServerlessInstancesExecute(r Serverl
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -796,7 +796,7 @@ func (a *ServerlessInstancesApiService) ListServerlessInstancesExecute(r Serverl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -957,7 +957,7 @@ func (a *ServerlessInstancesApiService) UpdateServerlessInstanceExecute(r Server
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -968,7 +968,7 @@ func (a *ServerlessInstancesApiService) UpdateServerlessInstanceExecute(r Server
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -979,7 +979,7 @@ func (a *ServerlessInstancesApiService) UpdateServerlessInstanceExecute(r Server
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

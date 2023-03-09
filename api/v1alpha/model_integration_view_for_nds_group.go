@@ -17,77 +17,77 @@ import (
 
 // IntegrationViewForNdsGroup - struct for IntegrationViewForNdsGroup
 type IntegrationViewForNdsGroup struct {
-	ApiDatadogView *ApiDatadogView
-	ApiMicrosoftTeamsView *ApiMicrosoftTeamsView
-	ApiNewRelicView *ApiNewRelicView
-	ApiOpsGenieView *ApiOpsGenieView
-	ApiPagerDutyView *ApiPagerDutyView
-	ApiPrometheusView *ApiPrometheusView
-	ApiSlackView *ApiSlackView
-	ApiVictorOpsView *ApiVictorOpsView
-	ApiWebhookView *ApiWebhookView
+	Datadog *Datadog
+	MicrosoftTeams *MicrosoftTeams
+	NewRelic *NewRelic
+	OpsGenie *OpsGenie
+	PagerDuty *PagerDuty
+	Prometheus *Prometheus
+	Slack *Slack
+	VictorOps *VictorOps
+	Webhook *Webhook
 }
 
-// ApiDatadogViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiDatadogView wrapped in IntegrationViewForNdsGroup
-func ApiDatadogViewAsIntegrationViewForNdsGroup(v *ApiDatadogView) IntegrationViewForNdsGroup {
+// DatadogAsIntegrationViewForNdsGroup is a convenience function that returns Datadog wrapped in IntegrationViewForNdsGroup
+func DatadogAsIntegrationViewForNdsGroup(v *Datadog) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiDatadogView: v,
+		Datadog: v,
 	}
 }
 
-// ApiMicrosoftTeamsViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiMicrosoftTeamsView wrapped in IntegrationViewForNdsGroup
-func ApiMicrosoftTeamsViewAsIntegrationViewForNdsGroup(v *ApiMicrosoftTeamsView) IntegrationViewForNdsGroup {
+// MicrosoftTeamsAsIntegrationViewForNdsGroup is a convenience function that returns MicrosoftTeams wrapped in IntegrationViewForNdsGroup
+func MicrosoftTeamsAsIntegrationViewForNdsGroup(v *MicrosoftTeams) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiMicrosoftTeamsView: v,
+		MicrosoftTeams: v,
 	}
 }
 
-// ApiNewRelicViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiNewRelicView wrapped in IntegrationViewForNdsGroup
-func ApiNewRelicViewAsIntegrationViewForNdsGroup(v *ApiNewRelicView) IntegrationViewForNdsGroup {
+// NewRelicAsIntegrationViewForNdsGroup is a convenience function that returns NewRelic wrapped in IntegrationViewForNdsGroup
+func NewRelicAsIntegrationViewForNdsGroup(v *NewRelic) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiNewRelicView: v,
+		NewRelic: v,
 	}
 }
 
-// ApiOpsGenieViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiOpsGenieView wrapped in IntegrationViewForNdsGroup
-func ApiOpsGenieViewAsIntegrationViewForNdsGroup(v *ApiOpsGenieView) IntegrationViewForNdsGroup {
+// OpsGenieAsIntegrationViewForNdsGroup is a convenience function that returns OpsGenie wrapped in IntegrationViewForNdsGroup
+func OpsGenieAsIntegrationViewForNdsGroup(v *OpsGenie) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiOpsGenieView: v,
+		OpsGenie: v,
 	}
 }
 
-// ApiPagerDutyViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiPagerDutyView wrapped in IntegrationViewForNdsGroup
-func ApiPagerDutyViewAsIntegrationViewForNdsGroup(v *ApiPagerDutyView) IntegrationViewForNdsGroup {
+// PagerDutyAsIntegrationViewForNdsGroup is a convenience function that returns PagerDuty wrapped in IntegrationViewForNdsGroup
+func PagerDutyAsIntegrationViewForNdsGroup(v *PagerDuty) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiPagerDutyView: v,
+		PagerDuty: v,
 	}
 }
 
-// ApiPrometheusViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiPrometheusView wrapped in IntegrationViewForNdsGroup
-func ApiPrometheusViewAsIntegrationViewForNdsGroup(v *ApiPrometheusView) IntegrationViewForNdsGroup {
+// PrometheusAsIntegrationViewForNdsGroup is a convenience function that returns Prometheus wrapped in IntegrationViewForNdsGroup
+func PrometheusAsIntegrationViewForNdsGroup(v *Prometheus) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiPrometheusView: v,
+		Prometheus: v,
 	}
 }
 
-// ApiSlackViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiSlackView wrapped in IntegrationViewForNdsGroup
-func ApiSlackViewAsIntegrationViewForNdsGroup(v *ApiSlackView) IntegrationViewForNdsGroup {
+// SlackAsIntegrationViewForNdsGroup is a convenience function that returns Slack wrapped in IntegrationViewForNdsGroup
+func SlackAsIntegrationViewForNdsGroup(v *Slack) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiSlackView: v,
+		Slack: v,
 	}
 }
 
-// ApiVictorOpsViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiVictorOpsView wrapped in IntegrationViewForNdsGroup
-func ApiVictorOpsViewAsIntegrationViewForNdsGroup(v *ApiVictorOpsView) IntegrationViewForNdsGroup {
+// VictorOpsAsIntegrationViewForNdsGroup is a convenience function that returns VictorOps wrapped in IntegrationViewForNdsGroup
+func VictorOpsAsIntegrationViewForNdsGroup(v *VictorOps) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiVictorOpsView: v,
+		VictorOps: v,
 	}
 }
 
-// ApiWebhookViewAsIntegrationViewForNdsGroup is a convenience function that returns ApiWebhookView wrapped in IntegrationViewForNdsGroup
-func ApiWebhookViewAsIntegrationViewForNdsGroup(v *ApiWebhookView) IntegrationViewForNdsGroup {
+// WebhookAsIntegrationViewForNdsGroup is a convenience function that returns Webhook wrapped in IntegrationViewForNdsGroup
+func WebhookAsIntegrationViewForNdsGroup(v *Webhook) IntegrationViewForNdsGroup {
 	return IntegrationViewForNdsGroup{
-		ApiWebhookView: v,
+		Webhook: v,
 	}
 }
 
@@ -96,134 +96,134 @@ func ApiWebhookViewAsIntegrationViewForNdsGroup(v *ApiWebhookView) IntegrationVi
 func (dst *IntegrationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ApiDatadogView
-	err = json.Unmarshal(data, &dst.ApiDatadogView)
+	// try to unmarshal data into Datadog
+	err = json.Unmarshal(data, &dst.Datadog)
 	if err == nil {
-		jsonApiDatadogView, _ := json.Marshal(dst.ApiDatadogView)
-		if string(jsonApiDatadogView) == "{}" { // empty struct
-			dst.ApiDatadogView = nil
+		jsonDatadog, _ := json.Marshal(dst.Datadog)
+		if string(jsonDatadog) == "{}" { // empty struct
+			dst.Datadog = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiDatadogView = nil
+		dst.Datadog = nil
 	}
 
-	// try to unmarshal data into ApiMicrosoftTeamsView
-	err = json.Unmarshal(data, &dst.ApiMicrosoftTeamsView)
+	// try to unmarshal data into MicrosoftTeams
+	err = json.Unmarshal(data, &dst.MicrosoftTeams)
 	if err == nil {
-		jsonApiMicrosoftTeamsView, _ := json.Marshal(dst.ApiMicrosoftTeamsView)
-		if string(jsonApiMicrosoftTeamsView) == "{}" { // empty struct
-			dst.ApiMicrosoftTeamsView = nil
+		jsonMicrosoftTeams, _ := json.Marshal(dst.MicrosoftTeams)
+		if string(jsonMicrosoftTeams) == "{}" { // empty struct
+			dst.MicrosoftTeams = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiMicrosoftTeamsView = nil
+		dst.MicrosoftTeams = nil
 	}
 
-	// try to unmarshal data into ApiNewRelicView
-	err = json.Unmarshal(data, &dst.ApiNewRelicView)
+	// try to unmarshal data into NewRelic
+	err = json.Unmarshal(data, &dst.NewRelic)
 	if err == nil {
-		jsonApiNewRelicView, _ := json.Marshal(dst.ApiNewRelicView)
-		if string(jsonApiNewRelicView) == "{}" { // empty struct
-			dst.ApiNewRelicView = nil
+		jsonNewRelic, _ := json.Marshal(dst.NewRelic)
+		if string(jsonNewRelic) == "{}" { // empty struct
+			dst.NewRelic = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiNewRelicView = nil
+		dst.NewRelic = nil
 	}
 
-	// try to unmarshal data into ApiOpsGenieView
-	err = json.Unmarshal(data, &dst.ApiOpsGenieView)
+	// try to unmarshal data into OpsGenie
+	err = json.Unmarshal(data, &dst.OpsGenie)
 	if err == nil {
-		jsonApiOpsGenieView, _ := json.Marshal(dst.ApiOpsGenieView)
-		if string(jsonApiOpsGenieView) == "{}" { // empty struct
-			dst.ApiOpsGenieView = nil
+		jsonOpsGenie, _ := json.Marshal(dst.OpsGenie)
+		if string(jsonOpsGenie) == "{}" { // empty struct
+			dst.OpsGenie = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiOpsGenieView = nil
+		dst.OpsGenie = nil
 	}
 
-	// try to unmarshal data into ApiPagerDutyView
-	err = json.Unmarshal(data, &dst.ApiPagerDutyView)
+	// try to unmarshal data into PagerDuty
+	err = json.Unmarshal(data, &dst.PagerDuty)
 	if err == nil {
-		jsonApiPagerDutyView, _ := json.Marshal(dst.ApiPagerDutyView)
-		if string(jsonApiPagerDutyView) == "{}" { // empty struct
-			dst.ApiPagerDutyView = nil
+		jsonPagerDuty, _ := json.Marshal(dst.PagerDuty)
+		if string(jsonPagerDuty) == "{}" { // empty struct
+			dst.PagerDuty = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiPagerDutyView = nil
+		dst.PagerDuty = nil
 	}
 
-	// try to unmarshal data into ApiPrometheusView
-	err = json.Unmarshal(data, &dst.ApiPrometheusView)
+	// try to unmarshal data into Prometheus
+	err = json.Unmarshal(data, &dst.Prometheus)
 	if err == nil {
-		jsonApiPrometheusView, _ := json.Marshal(dst.ApiPrometheusView)
-		if string(jsonApiPrometheusView) == "{}" { // empty struct
-			dst.ApiPrometheusView = nil
+		jsonPrometheus, _ := json.Marshal(dst.Prometheus)
+		if string(jsonPrometheus) == "{}" { // empty struct
+			dst.Prometheus = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiPrometheusView = nil
+		dst.Prometheus = nil
 	}
 
-	// try to unmarshal data into ApiSlackView
-	err = json.Unmarshal(data, &dst.ApiSlackView)
+	// try to unmarshal data into Slack
+	err = json.Unmarshal(data, &dst.Slack)
 	if err == nil {
-		jsonApiSlackView, _ := json.Marshal(dst.ApiSlackView)
-		if string(jsonApiSlackView) == "{}" { // empty struct
-			dst.ApiSlackView = nil
+		jsonSlack, _ := json.Marshal(dst.Slack)
+		if string(jsonSlack) == "{}" { // empty struct
+			dst.Slack = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiSlackView = nil
+		dst.Slack = nil
 	}
 
-	// try to unmarshal data into ApiVictorOpsView
-	err = json.Unmarshal(data, &dst.ApiVictorOpsView)
+	// try to unmarshal data into VictorOps
+	err = json.Unmarshal(data, &dst.VictorOps)
 	if err == nil {
-		jsonApiVictorOpsView, _ := json.Marshal(dst.ApiVictorOpsView)
-		if string(jsonApiVictorOpsView) == "{}" { // empty struct
-			dst.ApiVictorOpsView = nil
+		jsonVictorOps, _ := json.Marshal(dst.VictorOps)
+		if string(jsonVictorOps) == "{}" { // empty struct
+			dst.VictorOps = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiVictorOpsView = nil
+		dst.VictorOps = nil
 	}
 
-	// try to unmarshal data into ApiWebhookView
-	err = json.Unmarshal(data, &dst.ApiWebhookView)
+	// try to unmarshal data into Webhook
+	err = json.Unmarshal(data, &dst.Webhook)
 	if err == nil {
-		jsonApiWebhookView, _ := json.Marshal(dst.ApiWebhookView)
-		if string(jsonApiWebhookView) == "{}" { // empty struct
-			dst.ApiWebhookView = nil
+		jsonWebhook, _ := json.Marshal(dst.Webhook)
+		if string(jsonWebhook) == "{}" { // empty struct
+			dst.Webhook = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.ApiWebhookView = nil
+		dst.Webhook = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ApiDatadogView = nil
-		dst.ApiMicrosoftTeamsView = nil
-		dst.ApiNewRelicView = nil
-		dst.ApiOpsGenieView = nil
-		dst.ApiPagerDutyView = nil
-		dst.ApiPrometheusView = nil
-		dst.ApiSlackView = nil
-		dst.ApiVictorOpsView = nil
-		dst.ApiWebhookView = nil
+		dst.Datadog = nil
+		dst.MicrosoftTeams = nil
+		dst.NewRelic = nil
+		dst.OpsGenie = nil
+		dst.PagerDuty = nil
+		dst.Prometheus = nil
+		dst.Slack = nil
+		dst.VictorOps = nil
+		dst.Webhook = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(IntegrationViewForNdsGroup)")
 	} else if match == 1 {
@@ -235,40 +235,40 @@ func (dst *IntegrationViewForNdsGroup) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src IntegrationViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	if src.ApiDatadogView != nil {
-		return json.Marshal(&src.ApiDatadogView)
+	if src.Datadog != nil {
+		return json.Marshal(&src.Datadog)
 	}
 
-	if src.ApiMicrosoftTeamsView != nil {
-		return json.Marshal(&src.ApiMicrosoftTeamsView)
+	if src.MicrosoftTeams != nil {
+		return json.Marshal(&src.MicrosoftTeams)
 	}
 
-	if src.ApiNewRelicView != nil {
-		return json.Marshal(&src.ApiNewRelicView)
+	if src.NewRelic != nil {
+		return json.Marshal(&src.NewRelic)
 	}
 
-	if src.ApiOpsGenieView != nil {
-		return json.Marshal(&src.ApiOpsGenieView)
+	if src.OpsGenie != nil {
+		return json.Marshal(&src.OpsGenie)
 	}
 
-	if src.ApiPagerDutyView != nil {
-		return json.Marshal(&src.ApiPagerDutyView)
+	if src.PagerDuty != nil {
+		return json.Marshal(&src.PagerDuty)
 	}
 
-	if src.ApiPrometheusView != nil {
-		return json.Marshal(&src.ApiPrometheusView)
+	if src.Prometheus != nil {
+		return json.Marshal(&src.Prometheus)
 	}
 
-	if src.ApiSlackView != nil {
-		return json.Marshal(&src.ApiSlackView)
+	if src.Slack != nil {
+		return json.Marshal(&src.Slack)
 	}
 
-	if src.ApiVictorOpsView != nil {
-		return json.Marshal(&src.ApiVictorOpsView)
+	if src.VictorOps != nil {
+		return json.Marshal(&src.VictorOps)
 	}
 
-	if src.ApiWebhookView != nil {
-		return json.Marshal(&src.ApiWebhookView)
+	if src.Webhook != nil {
+		return json.Marshal(&src.Webhook)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -279,40 +279,40 @@ func (obj *IntegrationViewForNdsGroup) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ApiDatadogView != nil {
-		return obj.ApiDatadogView
+	if obj.Datadog != nil {
+		return obj.Datadog
 	}
 
-	if obj.ApiMicrosoftTeamsView != nil {
-		return obj.ApiMicrosoftTeamsView
+	if obj.MicrosoftTeams != nil {
+		return obj.MicrosoftTeams
 	}
 
-	if obj.ApiNewRelicView != nil {
-		return obj.ApiNewRelicView
+	if obj.NewRelic != nil {
+		return obj.NewRelic
 	}
 
-	if obj.ApiOpsGenieView != nil {
-		return obj.ApiOpsGenieView
+	if obj.OpsGenie != nil {
+		return obj.OpsGenie
 	}
 
-	if obj.ApiPagerDutyView != nil {
-		return obj.ApiPagerDutyView
+	if obj.PagerDuty != nil {
+		return obj.PagerDuty
 	}
 
-	if obj.ApiPrometheusView != nil {
-		return obj.ApiPrometheusView
+	if obj.Prometheus != nil {
+		return obj.Prometheus
 	}
 
-	if obj.ApiSlackView != nil {
-		return obj.ApiSlackView
+	if obj.Slack != nil {
+		return obj.Slack
 	}
 
-	if obj.ApiVictorOpsView != nil {
-		return obj.ApiVictorOpsView
+	if obj.VictorOps != nil {
+		return obj.VictorOps
 	}
 
-	if obj.ApiWebhookView != nil {
-		return obj.ApiWebhookView
+	if obj.Webhook != nil {
+		return obj.Webhook
 	}
 
 	// all schemas are nil

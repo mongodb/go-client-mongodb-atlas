@@ -31,10 +31,10 @@ type CpsBackupThresholdAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []MatcherView `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *GreaterThanTimeThresholdView `json:"threshold,omitempty"`
+	Threshold *GreaterThanTimeThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -246,9 +246,9 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []MatcherView {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []MatcherView
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +256,7 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []MatcherVi
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]MatcherView, bool) {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []MatcherView and assigns it to the Matchers field.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetMatchers(v []MatcherView) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -310,9 +310,9 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetNotifications(v []Noti
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanTimeThresholdView {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterThanTimeThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret GreaterThanTimeThresholdView
+		var ret GreaterThanTimeThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -320,7 +320,7 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetThreshold() GreaterTha
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanTimeThresholdView, bool) {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*GreaterThanTimeThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) HasThreshold() bool {
 	return false
 }
 
-// SetThreshold gets a reference to the given GreaterThanTimeThresholdView and assigns it to the Threshold field.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanTimeThresholdView) {
+// SetThreshold gets a reference to the given GreaterThanTimeThreshold and assigns it to the Threshold field.
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetThreshold(v GreaterThanTimeThreshold) {
 	o.Threshold = &v
 }
 

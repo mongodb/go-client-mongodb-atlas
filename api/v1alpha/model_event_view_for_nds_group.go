@@ -64,7 +64,7 @@ type EventViewForNdsGroup struct {
 	Port *int32 `json:"port,omitempty"`
 	// Human-readable label of the replica set associated with the event.
 	ReplicaSetName *string `json:"replicaSetName,omitempty"`
-	CurrentValue *HostMetricValueView `json:"currentValue,omitempty"`
+	CurrentValue *HostMetricValue `json:"currentValue,omitempty"`
 	// Human-readable label of the metric associated with the **alertId**. This field may change type of **currentValue** field.
 	MetricName *string `json:"metricName,omitempty"`
 	// Entry in the list of source host addresses that the API key accepts and this event targets.
@@ -833,9 +833,9 @@ func (o *EventViewForNdsGroup) SetReplicaSetName(v string) {
 }
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
-func (o *EventViewForNdsGroup) GetCurrentValue() HostMetricValueView {
+func (o *EventViewForNdsGroup) GetCurrentValue() HostMetricValue {
 	if o == nil || IsNil(o.CurrentValue) {
-		var ret HostMetricValueView
+		var ret HostMetricValue
 		return ret
 	}
 	return *o.CurrentValue
@@ -843,7 +843,7 @@ func (o *EventViewForNdsGroup) GetCurrentValue() HostMetricValueView {
 
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) {
+func (o *EventViewForNdsGroup) GetCurrentValueOk() (*HostMetricValue, bool) {
 	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
@@ -859,8 +859,8 @@ func (o *EventViewForNdsGroup) HasCurrentValue() bool {
 	return false
 }
 
-// SetCurrentValue gets a reference to the given HostMetricValueView and assigns it to the CurrentValue field.
-func (o *EventViewForNdsGroup) SetCurrentValue(v HostMetricValueView) {
+// SetCurrentValue gets a reference to the given HostMetricValue and assigns it to the CurrentValue field.
+func (o *EventViewForNdsGroup) SetCurrentValue(v HostMetricValue) {
 	o.CurrentValue = &v
 }
 

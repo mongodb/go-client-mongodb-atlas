@@ -82,8 +82,8 @@ type DatabaseUsersApi interface {
 	ListDatabaseUsers(ctx context.Context, groupId string) DatabaseUsersApiListDatabaseUsersRequest
 
 	// ListDatabaseUsersExecute executes the request
-	//  @return PaginatedApiAtlasDatabaseUserView
-	ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUserView, *http.Response, error)
+	//  @return PaginatedApiAtlasDatabaseUser
+	ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error)
 
 	/*
 	UpdateDatabaseUser Update One Database User in One Project
@@ -233,7 +233,7 @@ func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r DatabaseUsersApiCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -244,7 +244,7 @@ func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r DatabaseUsersApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -389,7 +389,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -400,7 +400,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -411,7 +411,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -422,7 +422,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -560,7 +560,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -571,7 +571,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -582,7 +582,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -647,7 +647,7 @@ func (r DatabaseUsersApiListDatabaseUsersRequest) Pretty(pretty bool) DatabaseUs
 	return r
 }
 
-func (r DatabaseUsersApiListDatabaseUsersRequest) Execute() (*PaginatedApiAtlasDatabaseUserView, *http.Response, error) {
+func (r DatabaseUsersApiListDatabaseUsersRequest) Execute() (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	return r.ApiService.ListDatabaseUsersExecute(r)
 }
 
@@ -669,13 +669,13 @@ func (a *DatabaseUsersApiService) ListDatabaseUsers(ctx context.Context, groupId
 }
 
 // Execute executes the request
-//  @return PaginatedApiAtlasDatabaseUserView
-func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUserView, *http.Response, error) {
+//  @return PaginatedApiAtlasDatabaseUser
+func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiAtlasDatabaseUserView
+		localVarReturnValue  *PaginatedApiAtlasDatabaseUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DatabaseUsersApiService.ListDatabaseUsers")
@@ -751,7 +751,7 @@ func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiLis
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -762,7 +762,7 @@ func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -921,7 +921,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -932,7 +932,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -943,7 +943,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -954,7 +954,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -965,7 +965,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -976,7 +976,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

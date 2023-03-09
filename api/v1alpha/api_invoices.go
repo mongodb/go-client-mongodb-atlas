@@ -50,8 +50,8 @@ type InvoicesApi interface {
 	GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest
 
 	// GetInvoiceExecute executes the request
-	//  @return ApiInvoiceView
-	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*ApiInvoiceView, *http.Response, error)
+	//  @return Invoice
+	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*Invoice, *http.Response, error)
 
 	/*
 	ListInvoices Return All Invoices for One Organization
@@ -65,8 +65,8 @@ type InvoicesApi interface {
 	ListInvoices(ctx context.Context, orgId string) InvoicesApiListInvoicesRequest
 
 	// ListInvoicesExecute executes the request
-	//  @return PaginatedApiInvoiceView
-	ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error)
+	//  @return PaginatedApiInvoice
+	ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error)
 
 	/*
 	ListPendingInvoices Return All Pending Invoices for One Organization
@@ -80,8 +80,8 @@ type InvoicesApi interface {
 	ListPendingInvoices(ctx context.Context, orgId string) InvoicesApiListPendingInvoicesRequest
 
 	// ListPendingInvoicesExecute executes the request
-	//  @return PaginatedApiInvoiceView
-	ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error)
+	//  @return PaginatedApiInvoice
+	ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error)
 }
 
 // InvoicesApiService InvoicesApi service
@@ -204,7 +204,7 @@ func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -215,7 +215,7 @@ func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvo
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -251,7 +251,7 @@ func (r InvoicesApiGetInvoiceRequest) Pretty(pretty bool) InvoicesApiGetInvoiceR
 	return r
 }
 
-func (r InvoicesApiGetInvoiceRequest) Execute() (*ApiInvoiceView, *http.Response, error) {
+func (r InvoicesApiGetInvoiceRequest) Execute() (*Invoice, *http.Response, error) {
 	return r.ApiService.GetInvoiceExecute(r)
 }
 
@@ -275,13 +275,13 @@ func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoi
 }
 
 // Execute executes the request
-//  @return ApiInvoiceView
-func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*ApiInvoiceView, *http.Response, error) {
+//  @return Invoice
+func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*Invoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiInvoiceView
+		localVarReturnValue  *Invoice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoice")
@@ -355,7 +355,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -377,7 +377,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +442,7 @@ func (r InvoicesApiListInvoicesRequest) Pretty(pretty bool) InvoicesApiListInvoi
 	return r
 }
 
-func (r InvoicesApiListInvoicesRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
+func (r InvoicesApiListInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
 	return r.ApiService.ListInvoicesExecute(r)
 }
 
@@ -464,13 +464,13 @@ func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) Inv
 }
 
 // Execute executes the request
-//  @return PaginatedApiInvoiceView
-func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
+//  @return PaginatedApiInvoice
+func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiInvoiceView
+		localVarReturnValue  *PaginatedApiInvoice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ListInvoices")
@@ -546,7 +546,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -557,7 +557,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -568,7 +568,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -612,7 +612,7 @@ func (r InvoicesApiListPendingInvoicesRequest) Pretty(pretty bool) InvoicesApiLi
 	return r
 }
 
-func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoiceView, *http.Response, error) {
+func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
 	return r.ApiService.ListPendingInvoicesExecute(r)
 }
 
@@ -634,13 +634,13 @@ func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId stri
 }
 
 // Execute executes the request
-//  @return PaginatedApiInvoiceView
-func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoiceView, *http.Response, error) {
+//  @return PaginatedApiInvoice
+func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApiInvoiceView
+		localVarReturnValue  *PaginatedApiInvoice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.ListPendingInvoices")
@@ -707,7 +707,7 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -718,7 +718,7 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -729,7 +729,7 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

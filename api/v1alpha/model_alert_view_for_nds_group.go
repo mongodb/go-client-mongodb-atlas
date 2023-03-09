@@ -53,7 +53,7 @@ type AlertViewForNdsGroup struct {
 	HostnameAndPort *string `json:"hostnameAndPort,omitempty"`
 	// Name of the replica set to which this alert applies. The response returns this parameter for alerts of events impacting backups, hosts, or replica sets.
 	ReplicaSetName *string `json:"replicaSetName,omitempty"`
-	CurrentValue *HostMetricValueView `json:"currentValue,omitempty"`
+	CurrentValue *HostMetricValue `json:"currentValue,omitempty"`
 	// Name of the metric against which Atlas checks the configured `metricThreshold.threshold`.  To learn more about the available metrics, see <a href=\"https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#std-label-measurement-types\" target=\"_blank\">Host Metrics</a>.  **NOTE**: If you set eventTypeName to OUTSIDE_SERVERLESS_METRIC_THRESHOLD, you can specify only metrics available for serverless. To learn more, see <a href=\"https://dochub.mongodb.org/core/alert-config-serverless-measurements\" target=\"_blank\">Serverless Measurements</a>.
 	MetricName *string `json:"metricName,omitempty"`
 	NonRunningHostIds []string `json:"nonRunningHostIds,omitempty"`
@@ -623,9 +623,9 @@ func (o *AlertViewForNdsGroup) SetReplicaSetName(v string) {
 }
 
 // GetCurrentValue returns the CurrentValue field value if set, zero value otherwise.
-func (o *AlertViewForNdsGroup) GetCurrentValue() HostMetricValueView {
+func (o *AlertViewForNdsGroup) GetCurrentValue() HostMetricValue {
 	if o == nil || IsNil(o.CurrentValue) {
-		var ret HostMetricValueView
+		var ret HostMetricValue
 		return ret
 	}
 	return *o.CurrentValue
@@ -633,7 +633,7 @@ func (o *AlertViewForNdsGroup) GetCurrentValue() HostMetricValueView {
 
 // GetCurrentValueOk returns a tuple with the CurrentValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlertViewForNdsGroup) GetCurrentValueOk() (*HostMetricValueView, bool) {
+func (o *AlertViewForNdsGroup) GetCurrentValueOk() (*HostMetricValue, bool) {
 	if o == nil || IsNil(o.CurrentValue) {
 		return nil, false
 	}
@@ -649,8 +649,8 @@ func (o *AlertViewForNdsGroup) HasCurrentValue() bool {
 	return false
 }
 
-// SetCurrentValue gets a reference to the given HostMetricValueView and assigns it to the CurrentValue field.
-func (o *AlertViewForNdsGroup) SetCurrentValue(v HostMetricValueView) {
+// SetCurrentValue gets a reference to the given HostMetricValue and assigns it to the CurrentValue field.
+func (o *AlertViewForNdsGroup) SetCurrentValue(v HostMetricValue) {
 	o.CurrentValue = &v
 }
 

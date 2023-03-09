@@ -27,13 +27,13 @@ type OnlineArchive struct {
 	CollName *string `json:"collName,omitempty"`
 	// Classification of MongoDB database collection that you want to return.  If you set this parameter to `TIMESERIES`, set `\"criteria.type\" : \"date\"` and `\"criteria.dateFormat\" : \"ISODATE\"`.
 	CollectionType *string `json:"collectionType,omitempty"`
-	Criteria CriteriaView `json:"criteria"`
+	Criteria Criteria `json:"criteria"`
 	// Human-readable label of the database that contains the collection that contains the online archive.
 	DbName *string `json:"dbName,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project that contains the specified cluster. The specified cluster contains the collection for which to create the online archive.
 	GroupId *string `json:"groupId,omitempty"`
 	// List that contains document parameters to use to logically divide data within a collection. Partitions provide a coarse level of filtering of the underlying collection data. To divide your data, specify up to two parameters that you frequently query. Any queries that don't use these parameters result in a full collection scan of all archived documents. This takes more time and increase your costs.
-	PartitionFields []PartitionFieldView `json:"partitionFields,omitempty"`
+	PartitionFields []PartitionField `json:"partitionFields,omitempty"`
 	Schedule *OnlineArchiveSchedule `json:"schedule,omitempty"`
 	// Phase of the process to create this online archive when you made this request.  | State       | Indication | |-------------|------------| | `PENDING`   | MongoDB Cloud has queued documents for archive. Archiving hasn't started. | | `ARCHIVING` | MongoDB Cloud started archiving documents that meet the archival criteria. | | `IDLE`      | MongoDB Cloud waits to start the next archival job. | | `PAUSING`   | Someone chose to stop archiving. MongoDB Cloud finishes the running archival job then changes the state to `PAUSED` when that job completes. | | `PAUSED`    | MongoDB Cloud has stopped archiving. Archived documents can be queried. The specified archiving operation on the active cluster cannot archive additional documents. You can resume archiving for paused archives at any time. | | `ORPHANED`  | Someone has deleted the collection associated with an active or paused archive. MongoDB Cloud doesn't delete the archived data. You must manually delete the online archives associated with the deleted collection. | | `DELETED`   | Someone has deleted the archive was deleted. When someone deletes an online archive, MongoDB Cloud removes all associated archived documents from the cloud object storage. |
 	State *string `json:"state,omitempty"`
@@ -43,7 +43,7 @@ type OnlineArchive struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOnlineArchive(criteria CriteriaView) *OnlineArchive {
+func NewOnlineArchive(criteria Criteria) *OnlineArchive {
 	this := OnlineArchive{}
 	var collectionType string = "STANDARD"
 	this.CollectionType = &collectionType
@@ -190,9 +190,9 @@ func (o *OnlineArchive) SetCollectionType(v string) {
 }
 
 // GetCriteria returns the Criteria field value
-func (o *OnlineArchive) GetCriteria() CriteriaView {
+func (o *OnlineArchive) GetCriteria() Criteria {
 	if o == nil {
-		var ret CriteriaView
+		var ret Criteria
 		return ret
 	}
 
@@ -201,7 +201,7 @@ func (o *OnlineArchive) GetCriteria() CriteriaView {
 
 // GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *OnlineArchive) GetCriteriaOk() (*CriteriaView, bool) {
+func (o *OnlineArchive) GetCriteriaOk() (*Criteria, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -209,7 +209,7 @@ func (o *OnlineArchive) GetCriteriaOk() (*CriteriaView, bool) {
 }
 
 // SetCriteria sets field value
-func (o *OnlineArchive) SetCriteria(v CriteriaView) {
+func (o *OnlineArchive) SetCriteria(v Criteria) {
 	o.Criteria = v
 }
 
@@ -278,9 +278,9 @@ func (o *OnlineArchive) SetGroupId(v string) {
 }
 
 // GetPartitionFields returns the PartitionFields field value if set, zero value otherwise.
-func (o *OnlineArchive) GetPartitionFields() []PartitionFieldView {
+func (o *OnlineArchive) GetPartitionFields() []PartitionField {
 	if o == nil || IsNil(o.PartitionFields) {
-		var ret []PartitionFieldView
+		var ret []PartitionField
 		return ret
 	}
 	return o.PartitionFields
@@ -288,7 +288,7 @@ func (o *OnlineArchive) GetPartitionFields() []PartitionFieldView {
 
 // GetPartitionFieldsOk returns a tuple with the PartitionFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OnlineArchive) GetPartitionFieldsOk() ([]PartitionFieldView, bool) {
+func (o *OnlineArchive) GetPartitionFieldsOk() ([]PartitionField, bool) {
 	if o == nil || IsNil(o.PartitionFields) {
 		return nil, false
 	}
@@ -304,8 +304,8 @@ func (o *OnlineArchive) HasPartitionFields() bool {
 	return false
 }
 
-// SetPartitionFields gets a reference to the given []PartitionFieldView and assigns it to the PartitionFields field.
-func (o *OnlineArchive) SetPartitionFields(v []PartitionFieldView) {
+// SetPartitionFields gets a reference to the given []PartitionField and assigns it to the PartitionFields field.
+func (o *OnlineArchive) SetPartitionFields(v []PartitionField) {
 	o.PartitionFields = v
 }
 

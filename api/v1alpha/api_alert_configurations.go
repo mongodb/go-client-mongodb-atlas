@@ -85,8 +85,8 @@ type AlertConfigurationsApi interface {
 	ListAlertConfigurationMatchersFieldNames(ctx context.Context) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
 
 	// ListAlertConfigurationMatchersFieldNamesExecute executes the request
-	//  @return []MatcherFieldView
-	ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherFieldView, *http.Response, error)
+	//  @return []MatcherField
+	ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherField, *http.Response, error)
 
 	/*
 	ListAlertConfigurations Return All Alert Configurations for One Project
@@ -102,8 +102,8 @@ type AlertConfigurationsApi interface {
 	ListAlertConfigurations(ctx context.Context, groupId string) AlertConfigurationsApiListAlertConfigurationsRequest
 
 	// ListAlertConfigurationsExecute executes the request
-	//  @return PaginatedAlertConfigView
-	ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfigView, *http.Response, error)
+	//  @return PaginatedAlertConfig
+	ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
@@ -120,8 +120,8 @@ type AlertConfigurationsApi interface {
 	ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
 
 	// ListAlertConfigurationsByAlertIdExecute executes the request
-	//  @return PaginatedAlertConfigView
-	ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfigView, *http.Response, error)
+	//  @return PaginatedAlertConfig
+	ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
@@ -296,7 +296,7 @@ func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -307,7 +307,7 @@ func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -318,7 +318,7 @@ func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -467,7 +467,7 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -478,7 +478,7 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertC
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -489,7 +489,7 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertC
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -631,7 +631,7 @@ func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConf
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -642,7 +642,7 @@ func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -653,7 +653,7 @@ func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -696,7 +696,7 @@ func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) P
 	return r
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherFieldView, *http.Response, error) {
+func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherField, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
 }
 
@@ -716,13 +716,13 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 }
 
 // Execute executes the request
-//  @return []MatcherFieldView
-func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherFieldView, *http.Response, error) {
+//  @return []MatcherField
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherField, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []MatcherFieldView
+		localVarReturnValue  []MatcherField
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurationMatchersFieldNames")
@@ -782,7 +782,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -793,7 +793,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -858,7 +858,7 @@ func (r AlertConfigurationsApiListAlertConfigurationsRequest) Pretty(pretty bool
 	return r
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationsRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
+func (r AlertConfigurationsApiListAlertConfigurationsRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationsExecute(r)
 }
 
@@ -882,13 +882,13 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return PaginatedAlertConfigView
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfigView, *http.Response, error) {
+//  @return PaginatedAlertConfig
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedAlertConfigView
+		localVarReturnValue  *PaginatedAlertConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurations")
@@ -964,7 +964,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertCo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -975,7 +975,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertCo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1041,7 +1041,7 @@ func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) PageNum(p
 	return r
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Execute() (*PaginatedAlertConfigView, *http.Response, error) {
+func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationsByAlertIdExecute(r)
 }
 
@@ -1067,13 +1067,13 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx con
 }
 
 // Execute executes the request
-//  @return PaginatedAlertConfigView
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfigView, *http.Response, error) {
+//  @return PaginatedAlertConfig
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedAlertConfigView
+		localVarReturnValue  *PaginatedAlertConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertConfigurationsApiService.ListAlertConfigurationsByAlertId")
@@ -1156,7 +1156,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1167,7 +1167,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1178,7 +1178,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1207,14 +1207,14 @@ type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
-	toggleView *ToggleView
+	toggle *Toggle
 	envelope *bool
 	pretty *bool
 }
 
 // Enables or disables the specified alert configuration in the specified project.
-func (r AlertConfigurationsApiToggleAlertConfigurationRequest) ToggleView(toggleView ToggleView) AlertConfigurationsApiToggleAlertConfigurationRequest {
-	r.toggleView = &toggleView
+func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Toggle(toggle Toggle) AlertConfigurationsApiToggleAlertConfigurationRequest {
+	r.toggle = &toggle
 	return r
 }
 
@@ -1291,8 +1291,8 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 	if strlen(r.alertConfigId) > 24 {
 		return localVarReturnValue, nil, reportError("alertConfigId must have less than 24 elements")
 	}
-	if r.toggleView == nil {
-		return localVarReturnValue, nil, reportError("toggleView is required and must be specified")
+	if r.toggle == nil {
+		return localVarReturnValue, nil, reportError("toggle is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1319,7 +1319,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.toggleView
+	localVarPostBody = r.toggle
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1343,7 +1343,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1354,7 +1354,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1365,7 +1365,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1530,7 +1530,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1541,7 +1541,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1552,7 +1552,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1563,7 +1563,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

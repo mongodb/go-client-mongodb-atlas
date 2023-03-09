@@ -34,8 +34,8 @@ type AWSClustersDNSApi interface {
 	GetAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiGetAWSCustomDNSRequest
 
 	// GetAWSCustomDNSExecute executes the request
-	//  @return AWSCustomDNSEnabledView
-	GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
+	//  @return AWSCustomDNSEnabled
+	GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabled, *http.Response, error)
 
 	/*
 	ToggleAWSCustomDNS Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
@@ -49,8 +49,8 @@ type AWSClustersDNSApi interface {
 	ToggleAWSCustomDNS(ctx context.Context, groupId string) AWSClustersDNSApiToggleAWSCustomDNSRequest
 
 	// ToggleAWSCustomDNSExecute executes the request
-	//  @return AWSCustomDNSEnabledView
-	ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error)
+	//  @return AWSCustomDNSEnabled
+	ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabled, *http.Response, error)
 }
 
 // AWSClustersDNSApiService AWSClustersDNSApi service
@@ -76,7 +76,7 @@ func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Pretty(pretty bool) AWSClusters
 	return r
 }
 
-func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
+func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
 	return r.ApiService.GetAWSCustomDNSExecute(r)
 }
 
@@ -98,13 +98,13 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNS(ctx context.Context, groupId 
 }
 
 // Execute executes the request
-//  @return AWSCustomDNSEnabledView
-func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
+//  @return AWSCustomDNSEnabled
+func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGetAWSCustomDNSRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AWSCustomDNSEnabledView
+		localVarReturnValue  *AWSCustomDNSEnabled
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.GetAWSCustomDNS")
@@ -171,7 +171,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -182,7 +182,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r AWSClustersDNSApiGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -210,14 +210,14 @@ type AWSClustersDNSApiToggleAWSCustomDNSRequest struct {
 	ctx context.Context
 	ApiService AWSClustersDNSApi
 	groupId string
-	aWSCustomDNSEnabledView *AWSCustomDNSEnabledView
+	aWSCustomDNSEnabled *AWSCustomDNSEnabled
 	envelope *bool
 	pretty *bool
 }
 
 // Enables or disables the custom DNS configuration for AWS clusters in the specified project.
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) AWSCustomDNSEnabledView(aWSCustomDNSEnabledView AWSCustomDNSEnabledView) AWSClustersDNSApiToggleAWSCustomDNSRequest {
-	r.aWSCustomDNSEnabledView = &aWSCustomDNSEnabledView
+func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) AWSCustomDNSEnabled(aWSCustomDNSEnabled AWSCustomDNSEnabled) AWSClustersDNSApiToggleAWSCustomDNSRequest {
+	r.aWSCustomDNSEnabled = &aWSCustomDNSEnabled
 	return r
 }
 
@@ -233,7 +233,7 @@ func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Pretty(pretty bool) AWSClust
 	return r
 }
 
-func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabledView, *http.Response, error) {
+func (r AWSClustersDNSApiToggleAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
 	return r.ApiService.ToggleAWSCustomDNSExecute(r)
 }
 
@@ -255,13 +255,13 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNS(ctx context.Context, group
 }
 
 // Execute executes the request
-//  @return AWSCustomDNSEnabledView
-func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabledView, *http.Response, error) {
+//  @return AWSCustomDNSEnabled
+func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApiToggleAWSCustomDNSRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AWSCustomDNSEnabledView
+		localVarReturnValue  *AWSCustomDNSEnabled
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSClustersDNSApiService.ToggleAWSCustomDNS")
@@ -281,8 +281,8 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApi
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.aWSCustomDNSEnabledView == nil {
-		return localVarReturnValue, nil, reportError("aWSCustomDNSEnabledView is required and must be specified")
+	if r.aWSCustomDNSEnabled == nil {
+		return localVarReturnValue, nil, reportError("aWSCustomDNSEnabled is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -309,7 +309,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.aWSCustomDNSEnabledView
+	localVarPostBody = r.aWSCustomDNSEnabled
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -333,7 +333,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -344,7 +344,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r AWSClustersDNSApi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

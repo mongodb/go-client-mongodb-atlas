@@ -134,8 +134,8 @@ type PrivateEndpointServicesApi interface {
 	GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
 
 	// GetRegionalizedPrivateEndpointSettingExecute executes the request
-	//  @return ProjectSettingItemView
-	GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error)
+	//  @return ProjectSettingItem
+	GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error)
 
 	/*
 	ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
@@ -150,8 +150,8 @@ type PrivateEndpointServicesApi interface {
 	ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiListPrivateEndpointServicesRequest
 
 	// ListPrivateEndpointServicesExecute executes the request
-	//  @return PaginatedPrivateLinkConnectionView
-	ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error)
+	//  @return PaginatedPrivateLinkConnection
+	ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnection, *http.Response, error)
 
 	/*
 	ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
@@ -165,8 +165,8 @@ type PrivateEndpointServicesApi interface {
 	ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
 
 	// ToggleRegionalizedPrivateEndpointSettingExecute executes the request
-	//  @return ProjectSettingItemView
-	ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error)
+	//  @return ProjectSettingItem
+	ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error)
 }
 
 // PrivateEndpointServicesApiService PrivateEndpointServicesApi service
@@ -313,7 +313,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -324,7 +324,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +335,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +346,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +357,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -508,7 +508,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -519,7 +519,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -674,7 +674,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r Priva
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -685,7 +685,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r Priva
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -827,7 +827,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -838,7 +838,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -986,7 +986,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -997,7 +997,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1008,7 +1008,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1161,7 +1161,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r P
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1172,7 +1172,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1183,7 +1183,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1227,7 +1227,7 @@ func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) 
 	return r
 }
 
-func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
+func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
 	return r.ApiService.GetRegionalizedPrivateEndpointSettingExecute(r)
 }
 
@@ -1249,13 +1249,13 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 }
 
 // Execute executes the request
-//  @return ProjectSettingItemView
-func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error) {
+//  @return ProjectSettingItem
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ProjectSettingItemView
+		localVarReturnValue  *ProjectSettingItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.GetRegionalizedPrivateEndpointSetting")
@@ -1322,7 +1322,7 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1333,7 +1333,7 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1344,7 +1344,7 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1389,7 +1389,7 @@ func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Pretty(pre
 	return r
 }
 
-func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Execute() (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
+func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	return r.ApiService.ListPrivateEndpointServicesExecute(r)
 }
 
@@ -1413,13 +1413,13 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx cont
 }
 
 // Execute executes the request
-//  @return PaginatedPrivateLinkConnectionView
-func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnectionView, *http.Response, error) {
+//  @return PaginatedPrivateLinkConnection
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedPrivateLinkConnectionView
+		localVarReturnValue  *PaginatedPrivateLinkConnection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ListPrivateEndpointServices")
@@ -1487,7 +1487,7 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1498,7 +1498,7 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1526,14 +1526,14 @@ type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest s
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
-	projectSettingItemView *ProjectSettingItemView
+	projectSettingItem *ProjectSettingItem
 	envelope *bool
 	pretty *bool
 }
 
 // Enables or disables the ability can create multiple private resources per region in all cloud service providers in one project.
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) ProjectSettingItemView(projectSettingItemView ProjectSettingItemView) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
-	r.projectSettingItemView = &projectSettingItemView
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) ProjectSettingItem(projectSettingItem ProjectSettingItem) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
+	r.projectSettingItem = &projectSettingItem
 	return r
 }
 
@@ -1549,7 +1549,7 @@ func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingReques
 	return r
 }
 
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItemView, *http.Response, error) {
+func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
 	return r.ApiService.ToggleRegionalizedPrivateEndpointSettingExecute(r)
 }
 
@@ -1571,13 +1571,13 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 }
 
 // Execute executes the request
-//  @return ProjectSettingItemView
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItemView, *http.Response, error) {
+//  @return ProjectSettingItem
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ProjectSettingItemView
+		localVarReturnValue  *ProjectSettingItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrivateEndpointServicesApiService.ToggleRegionalizedPrivateEndpointSetting")
@@ -1597,8 +1597,8 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.projectSettingItemView == nil {
-		return localVarReturnValue, nil, reportError("projectSettingItemView is required and must be specified")
+	if r.projectSettingItem == nil {
+		return localVarReturnValue, nil, reportError("projectSettingItem is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -1625,7 +1625,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.projectSettingItemView
+	localVarPostBody = r.projectSettingItem
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1649,7 +1649,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1660,7 +1660,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1671,7 +1671,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

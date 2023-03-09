@@ -29,14 +29,14 @@ type DiskBackupSnapshotSchedule struct {
 	// List that contains a document for each copy setting item in the desired backup policy.
 	CopySettings []DiskBackupCopySetting `json:"copySettings,omitempty"`
 	// List that contains a document for each deleted copy setting whose backup copies you want to delete.
-	DeleteCopiedBackups []ApiDeleteCopiedBackupsView `json:"deleteCopiedBackups,omitempty"`
-	Export *AutoExportPolicyView `json:"export,omitempty"`
+	DeleteCopiedBackups []DeleteCopiedBackups `json:"deleteCopiedBackups,omitempty"`
+	Export *AutoExportPolicy `json:"export,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Date and time when MongoDB Cloud takes the next snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	NextSnapshot *time.Time `json:"nextSnapshot,omitempty"`
 	// Rules set for this backup schedule.
-	Policies []ApiPolicyView `json:"policies,omitempty"`
+	Policies []Policy `json:"policies,omitempty"`
 	// Hour of day in Coordinated Universal Time (UTC) that represents when MongoDB Cloud takes the snapshot.
 	ReferenceHourOfDay *int32 `json:"referenceHourOfDay,omitempty"`
 	// Minute of the **referenceHourOfDay** that represents when MongoDB Cloud takes the snapshot.
@@ -195,9 +195,9 @@ func (o *DiskBackupSnapshotSchedule) SetCopySettings(v []DiskBackupCopySetting) 
 }
 
 // GetDeleteCopiedBackups returns the DeleteCopiedBackups field value if set, zero value otherwise.
-func (o *DiskBackupSnapshotSchedule) GetDeleteCopiedBackups() []ApiDeleteCopiedBackupsView {
+func (o *DiskBackupSnapshotSchedule) GetDeleteCopiedBackups() []DeleteCopiedBackups {
 	if o == nil || IsNil(o.DeleteCopiedBackups) {
-		var ret []ApiDeleteCopiedBackupsView
+		var ret []DeleteCopiedBackups
 		return ret
 	}
 	return o.DeleteCopiedBackups
@@ -205,7 +205,7 @@ func (o *DiskBackupSnapshotSchedule) GetDeleteCopiedBackups() []ApiDeleteCopiedB
 
 // GetDeleteCopiedBackupsOk returns a tuple with the DeleteCopiedBackups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiskBackupSnapshotSchedule) GetDeleteCopiedBackupsOk() ([]ApiDeleteCopiedBackupsView, bool) {
+func (o *DiskBackupSnapshotSchedule) GetDeleteCopiedBackupsOk() ([]DeleteCopiedBackups, bool) {
 	if o == nil || IsNil(o.DeleteCopiedBackups) {
 		return nil, false
 	}
@@ -221,15 +221,15 @@ func (o *DiskBackupSnapshotSchedule) HasDeleteCopiedBackups() bool {
 	return false
 }
 
-// SetDeleteCopiedBackups gets a reference to the given []ApiDeleteCopiedBackupsView and assigns it to the DeleteCopiedBackups field.
-func (o *DiskBackupSnapshotSchedule) SetDeleteCopiedBackups(v []ApiDeleteCopiedBackupsView) {
+// SetDeleteCopiedBackups gets a reference to the given []DeleteCopiedBackups and assigns it to the DeleteCopiedBackups field.
+func (o *DiskBackupSnapshotSchedule) SetDeleteCopiedBackups(v []DeleteCopiedBackups) {
 	o.DeleteCopiedBackups = v
 }
 
 // GetExport returns the Export field value if set, zero value otherwise.
-func (o *DiskBackupSnapshotSchedule) GetExport() AutoExportPolicyView {
+func (o *DiskBackupSnapshotSchedule) GetExport() AutoExportPolicy {
 	if o == nil || IsNil(o.Export) {
-		var ret AutoExportPolicyView
+		var ret AutoExportPolicy
 		return ret
 	}
 	return *o.Export
@@ -237,7 +237,7 @@ func (o *DiskBackupSnapshotSchedule) GetExport() AutoExportPolicyView {
 
 // GetExportOk returns a tuple with the Export field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiskBackupSnapshotSchedule) GetExportOk() (*AutoExportPolicyView, bool) {
+func (o *DiskBackupSnapshotSchedule) GetExportOk() (*AutoExportPolicy, bool) {
 	if o == nil || IsNil(o.Export) {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *DiskBackupSnapshotSchedule) HasExport() bool {
 	return false
 }
 
-// SetExport gets a reference to the given AutoExportPolicyView and assigns it to the Export field.
-func (o *DiskBackupSnapshotSchedule) SetExport(v AutoExportPolicyView) {
+// SetExport gets a reference to the given AutoExportPolicy and assigns it to the Export field.
+func (o *DiskBackupSnapshotSchedule) SetExport(v AutoExportPolicy) {
 	o.Export = &v
 }
 
@@ -323,9 +323,9 @@ func (o *DiskBackupSnapshotSchedule) SetNextSnapshot(v time.Time) {
 }
 
 // GetPolicies returns the Policies field value if set, zero value otherwise.
-func (o *DiskBackupSnapshotSchedule) GetPolicies() []ApiPolicyView {
+func (o *DiskBackupSnapshotSchedule) GetPolicies() []Policy {
 	if o == nil || IsNil(o.Policies) {
-		var ret []ApiPolicyView
+		var ret []Policy
 		return ret
 	}
 	return o.Policies
@@ -333,7 +333,7 @@ func (o *DiskBackupSnapshotSchedule) GetPolicies() []ApiPolicyView {
 
 // GetPoliciesOk returns a tuple with the Policies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiskBackupSnapshotSchedule) GetPoliciesOk() ([]ApiPolicyView, bool) {
+func (o *DiskBackupSnapshotSchedule) GetPoliciesOk() ([]Policy, bool) {
 	if o == nil || IsNil(o.Policies) {
 		return nil, false
 	}
@@ -349,8 +349,8 @@ func (o *DiskBackupSnapshotSchedule) HasPolicies() bool {
 	return false
 }
 
-// SetPolicies gets a reference to the given []ApiPolicyView and assigns it to the Policies field.
-func (o *DiskBackupSnapshotSchedule) SetPolicies(v []ApiPolicyView) {
+// SetPolicies gets a reference to the given []Policy and assigns it to the Policies field.
+func (o *DiskBackupSnapshotSchedule) SetPolicies(v []Policy) {
 	o.Policies = v
 }
 

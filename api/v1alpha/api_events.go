@@ -74,8 +74,8 @@ type EventsApi interface {
 	ListOrganizationEvents(ctx context.Context, orgId string) EventsApiListOrganizationEventsRequest
 
 	// ListOrganizationEventsExecute executes the request
-	//  @return OrgPaginatedEventView
-	ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEventView, *http.Response, error)
+	//  @return OrgPaginatedEvent
+	ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEvent, *http.Response, error)
 
 	/*
 	ListProjectEvents Return All Events from One Project
@@ -91,8 +91,8 @@ type EventsApi interface {
 	ListProjectEvents(ctx context.Context, groupId string) EventsApiListProjectEventsRequest
 
 	// ListProjectEventsExecute executes the request
-	//  @return GroupPaginatedEventView
-	ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEventView, *http.Response, error)
+	//  @return GroupPaginatedEvent
+	ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEvent, *http.Response, error)
 }
 
 // EventsApiService EventsApi service
@@ -235,7 +235,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -246,7 +246,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -257,7 +257,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -418,7 +418,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -429,7 +429,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -440,7 +440,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -533,7 +533,7 @@ func (r EventsApiListOrganizationEventsRequest) MinDate(minDate time.Time) Event
 	return r
 }
 
-func (r EventsApiListOrganizationEventsRequest) Execute() (*OrgPaginatedEventView, *http.Response, error) {
+func (r EventsApiListOrganizationEventsRequest) Execute() (*OrgPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListOrganizationEventsExecute(r)
 }
 
@@ -557,13 +557,13 @@ func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId str
 }
 
 // Execute executes the request
-//  @return OrgPaginatedEventView
-func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEventView, *http.Response, error) {
+//  @return OrgPaginatedEvent
+func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OrgPaginatedEventView
+		localVarReturnValue  *OrgPaginatedEvent
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListOrganizationEvents")
@@ -651,7 +651,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -662,7 +662,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -762,7 +762,7 @@ func (r EventsApiListProjectEventsRequest) MinDate(minDate time.Time) EventsApiL
 	return r
 }
 
-func (r EventsApiListProjectEventsRequest) Execute() (*GroupPaginatedEventView, *http.Response, error) {
+func (r EventsApiListProjectEventsRequest) Execute() (*GroupPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListProjectEventsExecute(r)
 }
 
@@ -786,13 +786,13 @@ func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string
 }
 
 // Execute executes the request
-//  @return GroupPaginatedEventView
-func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEventView, *http.Response, error) {
+//  @return GroupPaginatedEvent
+func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedEventView
+		localVarReturnValue  *GroupPaginatedEvent
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListProjectEvents")
@@ -891,7 +891,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -902,7 +902,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -913,7 +913,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

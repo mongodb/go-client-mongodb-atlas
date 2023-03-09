@@ -64,8 +64,8 @@ type PerformanceAdvisorApi interface {
 	ListSlowQueries(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueriesRequest
 
 	// ListSlowQueriesExecute executes the request
-	//  @return ApiPerformanceAdvisorSlowQueryListView
-	ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error)
+	//  @return PerformanceAdvisorSlowQueryList
+	ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error)
 
 	/*
 	ListSlowQueryNamespaces Return All Namespaces for One Host
@@ -80,8 +80,8 @@ type PerformanceAdvisorApi interface {
 	ListSlowQueryNamespaces(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSlowQueryNamespacesRequest
 
 	// ListSlowQueryNamespacesExecute executes the request
-	//  @return ApiNamespacesView
-	ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*ApiNamespacesView, *http.Response, error)
+	//  @return Namespaces
+	ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*Namespaces, *http.Response, error)
 
 	/*
 	ListSuggestedIndexes Return Suggested Indexes
@@ -96,8 +96,8 @@ type PerformanceAdvisorApi interface {
 	ListSuggestedIndexes(ctx context.Context, groupId string, processId string) PerformanceAdvisorApiListSuggestedIndexesRequest
 
 	// ListSuggestedIndexesExecute executes the request
-	//  @return ApiPerformanceAdvisorResponseView
-	ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error)
+	//  @return PerformanceAdvisorResponse
+	ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*PerformanceAdvisorResponse, *http.Response, error)
 }
 
 // PerformanceAdvisorApiService PerformanceAdvisorApi service
@@ -216,7 +216,7 @@ func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -227,7 +227,7 @@ func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -238,7 +238,7 @@ func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -377,7 +377,7 @@ func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r 
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -388,7 +388,7 @@ func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r 
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -452,7 +452,7 @@ func (r PerformanceAdvisorApiListSlowQueriesRequest) Since(since int64) Performa
 	return r
 }
 
-func (r PerformanceAdvisorApiListSlowQueriesRequest) Execute() (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
+func (r PerformanceAdvisorApiListSlowQueriesRequest) Execute() (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
 	return r.ApiService.ListSlowQueriesExecute(r)
 }
 
@@ -476,13 +476,13 @@ func (a *PerformanceAdvisorApiService) ListSlowQueries(ctx context.Context, grou
 }
 
 // Execute executes the request
-//  @return ApiPerformanceAdvisorSlowQueryListView
-func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*ApiPerformanceAdvisorSlowQueryListView, *http.Response, error) {
+//  @return PerformanceAdvisorSlowQueryList
+func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvisorApiListSlowQueriesRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPerformanceAdvisorSlowQueryListView
+		localVarReturnValue  *PerformanceAdvisorSlowQueryList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSlowQueries")
@@ -570,7 +570,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -581,7 +581,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -640,7 +640,7 @@ func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Since(since int64) 
 	return r
 }
 
-func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Execute() (*ApiNamespacesView, *http.Response, error) {
+func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Execute() (*Namespaces, *http.Response, error) {
 	return r.ApiService.ListSlowQueryNamespacesExecute(r)
 }
 
@@ -664,13 +664,13 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespaces(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ApiNamespacesView
-func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*ApiNamespacesView, *http.Response, error) {
+//  @return Namespaces
+func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r PerformanceAdvisorApiListSlowQueryNamespacesRequest) (*Namespaces, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiNamespacesView
+		localVarReturnValue  *Namespaces
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSlowQueryNamespaces")
@@ -744,7 +744,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r Performa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -755,7 +755,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r Performa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -856,7 +856,7 @@ func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Since(since float32) P
 	return r
 }
 
-func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Execute() (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
+func (r PerformanceAdvisorApiListSuggestedIndexesRequest) Execute() (*PerformanceAdvisorResponse, *http.Response, error) {
 	return r.ApiService.ListSuggestedIndexesExecute(r)
 }
 
@@ -880,13 +880,13 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexes(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ApiPerformanceAdvisorResponseView
-func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*ApiPerformanceAdvisorResponseView, *http.Response, error) {
+//  @return PerformanceAdvisorResponse
+func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r PerformanceAdvisorApiListSuggestedIndexesRequest) (*PerformanceAdvisorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPerformanceAdvisorResponseView
+		localVarReturnValue  *PerformanceAdvisorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceAdvisorApiService.ListSuggestedIndexes")
@@ -986,7 +986,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -997,7 +997,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

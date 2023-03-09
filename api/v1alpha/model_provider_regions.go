@@ -20,7 +20,7 @@ var _ MappedNullable = &ProviderRegions{}
 // ProviderRegions struct for ProviderRegions
 type ProviderRegions struct {
 	// List of instances sizes that this cloud provider supports.
-	InstanceSizes []ApiInstanceSizeView `json:"instanceSizes,omitempty"`
+	InstanceSizes []InstanceSize `json:"instanceSizes,omitempty"`
 	// Human-readable label that identifies the Cloud provider.
 	Provider *string `json:"provider,omitempty"`
 }
@@ -43,9 +43,9 @@ func NewProviderRegionsWithDefaults() *ProviderRegions {
 }
 
 // GetInstanceSizes returns the InstanceSizes field value if set, zero value otherwise.
-func (o *ProviderRegions) GetInstanceSizes() []ApiInstanceSizeView {
+func (o *ProviderRegions) GetInstanceSizes() []InstanceSize {
 	if o == nil || IsNil(o.InstanceSizes) {
-		var ret []ApiInstanceSizeView
+		var ret []InstanceSize
 		return ret
 	}
 	return o.InstanceSizes
@@ -53,7 +53,7 @@ func (o *ProviderRegions) GetInstanceSizes() []ApiInstanceSizeView {
 
 // GetInstanceSizesOk returns a tuple with the InstanceSizes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderRegions) GetInstanceSizesOk() ([]ApiInstanceSizeView, bool) {
+func (o *ProviderRegions) GetInstanceSizesOk() ([]InstanceSize, bool) {
 	if o == nil || IsNil(o.InstanceSizes) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *ProviderRegions) HasInstanceSizes() bool {
 	return false
 }
 
-// SetInstanceSizes gets a reference to the given []ApiInstanceSizeView and assigns it to the InstanceSizes field.
-func (o *ProviderRegions) SetInstanceSizes(v []ApiInstanceSizeView) {
+// SetInstanceSizes gets a reference to the given []InstanceSize and assigns it to the InstanceSizes field.
+func (o *ProviderRegions) SetInstanceSizes(v []InstanceSize) {
 	o.InstanceSizes = v
 }
 

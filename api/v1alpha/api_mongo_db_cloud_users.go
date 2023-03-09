@@ -33,8 +33,8 @@ type MongoDBCloudUsersApi interface {
 	CreateUser(ctx context.Context) MongoDBCloudUsersApiCreateUserRequest
 
 	// CreateUserExecute executes the request
-	//  @return ApiAppUserView
-	CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*ApiAppUserView, *http.Response, error)
+	//  @return AppUser
+	CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*AppUser, *http.Response, error)
 
 	/*
 	GetUser Return One MongoDB Cloud User using Its ID
@@ -48,8 +48,8 @@ type MongoDBCloudUsersApi interface {
 	GetUser(ctx context.Context, userId string) MongoDBCloudUsersApiGetUserRequest
 
 	// GetUserExecute executes the request
-	//  @return ApiAppUserView
-	GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*ApiAppUserView, *http.Response, error)
+	//  @return AppUser
+	GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*AppUser, *http.Response, error)
 
 	/*
 	GetUserByUsername Return One MongoDB Cloud User using Their Username
@@ -63,8 +63,8 @@ type MongoDBCloudUsersApi interface {
 	GetUserByUsername(ctx context.Context, userName string) MongoDBCloudUsersApiGetUserByUsernameRequest
 
 	// GetUserByUsernameExecute executes the request
-	//  @return ApiAppUserView
-	GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*ApiAppUserView, *http.Response, error)
+	//  @return AppUser
+	GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*AppUser, *http.Response, error)
 }
 
 // MongoDBCloudUsersApiService MongoDBCloudUsersApi service
@@ -73,14 +73,14 @@ type MongoDBCloudUsersApiService service
 type MongoDBCloudUsersApiCreateUserRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
-	apiAppUserView *ApiAppUserView
+	appUser *AppUser
 	envelope *bool
 	pretty *bool
 }
 
 // MongoDB Cloud user account to create.
-func (r MongoDBCloudUsersApiCreateUserRequest) ApiAppUserView(apiAppUserView ApiAppUserView) MongoDBCloudUsersApiCreateUserRequest {
-	r.apiAppUserView = &apiAppUserView
+func (r MongoDBCloudUsersApiCreateUserRequest) AppUser(appUser AppUser) MongoDBCloudUsersApiCreateUserRequest {
+	r.appUser = &appUser
 	return r
 }
 
@@ -96,7 +96,7 @@ func (r MongoDBCloudUsersApiCreateUserRequest) Pretty(pretty bool) MongoDBCloudU
 	return r
 }
 
-func (r MongoDBCloudUsersApiCreateUserRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+func (r MongoDBCloudUsersApiCreateUserRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.CreateUserExecute(r)
 }
 
@@ -116,13 +116,13 @@ func (a *MongoDBCloudUsersApiService) CreateUser(ctx context.Context) MongoDBClo
 }
 
 // Execute executes the request
-//  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*ApiAppUserView, *http.Response, error) {
+//  @return AppUser
+func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAppUserView
+		localVarReturnValue  *AppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.CreateUser")
@@ -135,8 +135,8 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiAppUserView == nil {
-		return localVarReturnValue, nil, reportError("apiAppUserView is required and must be specified")
+	if r.appUser == nil {
+		return localVarReturnValue, nil, reportError("appUser is required and must be specified")
 	}
 
 	if r.envelope != nil {
@@ -163,7 +163,7 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiAppUserView
+	localVarPostBody = r.appUser
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -187,7 +187,7 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -198,7 +198,7 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -209,7 +209,7 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -253,7 +253,7 @@ func (r MongoDBCloudUsersApiGetUserRequest) Pretty(pretty bool) MongoDBCloudUser
 	return r
 }
 
-func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserExecute(r)
 }
 
@@ -275,13 +275,13 @@ func (a *MongoDBCloudUsersApiService) GetUser(ctx context.Context, userId string
 }
 
 // Execute executes the request
-//  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*ApiAppUserView, *http.Response, error) {
+//  @return AppUser
+func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAppUserView
+		localVarReturnValue  *AppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.GetUser")
@@ -348,7 +348,7 @@ func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUs
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUs
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUs
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -414,7 +414,7 @@ func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Pretty(pretty bool) MongoD
 	return r
 }
 
-func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*ApiAppUserView, *http.Response, error) {
+func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserByUsernameExecute(r)
 }
 
@@ -436,13 +436,13 @@ func (a *MongoDBCloudUsersApiService) GetUserByUsername(ctx context.Context, use
 }
 
 // Execute executes the request
-//  @return ApiAppUserView
-func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*ApiAppUserView, *http.Response, error) {
+//  @return AppUser
+func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiAppUserView
+		localVarReturnValue  *AppUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MongoDBCloudUsersApiService.GetUserByUsername")
@@ -503,7 +503,7 @@ func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUse
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -514,7 +514,7 @@ func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUse
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -525,7 +525,7 @@ func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUse
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -19,10 +19,10 @@ var _ MappedNullable = &CreateOrganizationResponse{}
 
 // CreateOrganizationResponse struct for CreateOrganizationResponse
 type CreateOrganizationResponse struct {
-	ApiKey *ApiApiUserView `json:"apiKey,omitempty"`
+	ApiKey *User `json:"apiKey,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role.
 	OrgOwnerId *string `json:"orgOwnerId,omitempty"`
-	Organization *ApiOrganizationView `json:"organization,omitempty"`
+	Organization *Organization `json:"organization,omitempty"`
 }
 
 // NewCreateOrganizationResponse instantiates a new CreateOrganizationResponse object
@@ -43,9 +43,9 @@ func NewCreateOrganizationResponseWithDefaults() *CreateOrganizationResponse {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *CreateOrganizationResponse) GetApiKey() ApiApiUserView {
+func (o *CreateOrganizationResponse) GetApiKey() User {
 	if o == nil || IsNil(o.ApiKey) {
-		var ret ApiApiUserView
+		var ret User
 		return ret
 	}
 	return *o.ApiKey
@@ -53,7 +53,7 @@ func (o *CreateOrganizationResponse) GetApiKey() ApiApiUserView {
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrganizationResponse) GetApiKeyOk() (*ApiApiUserView, bool) {
+func (o *CreateOrganizationResponse) GetApiKeyOk() (*User, bool) {
 	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *CreateOrganizationResponse) HasApiKey() bool {
 	return false
 }
 
-// SetApiKey gets a reference to the given ApiApiUserView and assigns it to the ApiKey field.
-func (o *CreateOrganizationResponse) SetApiKey(v ApiApiUserView) {
+// SetApiKey gets a reference to the given User and assigns it to the ApiKey field.
+func (o *CreateOrganizationResponse) SetApiKey(v User) {
 	o.ApiKey = &v
 }
 
@@ -107,9 +107,9 @@ func (o *CreateOrganizationResponse) SetOrgOwnerId(v string) {
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *CreateOrganizationResponse) GetOrganization() ApiOrganizationView {
+func (o *CreateOrganizationResponse) GetOrganization() Organization {
 	if o == nil || IsNil(o.Organization) {
-		var ret ApiOrganizationView
+		var ret Organization
 		return ret
 	}
 	return *o.Organization
@@ -117,7 +117,7 @@ func (o *CreateOrganizationResponse) GetOrganization() ApiOrganizationView {
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrganizationResponse) GetOrganizationOk() (*ApiOrganizationView, bool) {
+func (o *CreateOrganizationResponse) GetOrganizationOk() (*Organization, bool) {
 	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *CreateOrganizationResponse) HasOrganization() bool {
 	return false
 }
 
-// SetOrganization gets a reference to the given ApiOrganizationView and assigns it to the Organization field.
-func (o *CreateOrganizationResponse) SetOrganization(v ApiOrganizationView) {
+// SetOrganization gets a reference to the given Organization and assigns it to the Organization field.
+func (o *CreateOrganizationResponse) SetOrganization(v Organization) {
 	o.Organization = &v
 }
 

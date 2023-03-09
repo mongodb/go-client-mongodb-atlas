@@ -22,7 +22,7 @@ type PaginatedTeamRoleView struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []ApiTeamRoleView `json:"results,omitempty"`
+	Results []TeamRoleView `json:"results,omitempty"`
 	// Number of documents returned in this response.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
@@ -77,9 +77,9 @@ func (o *PaginatedTeamRoleView) SetLinks(v []Link) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedTeamRoleView) GetResults() []ApiTeamRoleView {
+func (o *PaginatedTeamRoleView) GetResults() []TeamRoleView {
 	if o == nil || IsNil(o.Results) {
-		var ret []ApiTeamRoleView
+		var ret []TeamRoleView
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *PaginatedTeamRoleView) GetResults() []ApiTeamRoleView {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedTeamRoleView) GetResultsOk() ([]ApiTeamRoleView, bool) {
+func (o *PaginatedTeamRoleView) GetResultsOk() ([]TeamRoleView, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PaginatedTeamRoleView) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []ApiTeamRoleView and assigns it to the Results field.
-func (o *PaginatedTeamRoleView) SetResults(v []ApiTeamRoleView) {
+// SetResults gets a reference to the given []TeamRoleView and assigns it to the Results field.
+func (o *PaginatedTeamRoleView) SetResults(v []TeamRoleView) {
 	o.Results = v
 }
 

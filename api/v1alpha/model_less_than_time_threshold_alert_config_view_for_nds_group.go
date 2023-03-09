@@ -32,10 +32,10 @@ type LessThanTimeThresholdAlertConfigViewForNdsGroup struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the **eventTypeName** specifies an event for a host, replica set, or sharded cluster.
-	Matchers []ReplicaSetMatcherView `json:"matchers,omitempty"`
+	Matchers []ReplicaSetMatcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
-	Threshold *LessThanTimeThresholdView `json:"threshold,omitempty"`
+	Threshold *LessThanTimeThreshold `json:"threshold,omitempty"`
 	// Date and time when someone last updated this alert configuration. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp format in UTC.
 	Updated *time.Time `json:"updated,omitempty"`
 }
@@ -247,9 +247,9 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcherView {
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetMatchers() []ReplicaSetMatcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []ReplicaSetMatcherView
+		var ret []ReplicaSetMatcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +257,7 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetMatchers() []Replic
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcherView, bool) {
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]ReplicaSetMatcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,8 +273,8 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []ReplicaSetMatcherView and assigns it to the Matchers field.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcherView) {
+// SetMatchers gets a reference to the given []ReplicaSetMatcher and assigns it to the Matchers field.
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetMatchers(v []ReplicaSetMatcher) {
 	o.Matchers = v
 }
 
@@ -311,9 +311,9 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetNotifications(v []N
 }
 
 // GetThreshold returns the Threshold field value if set, zero value otherwise.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetThreshold() LessThanTimeThresholdView {
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetThreshold() LessThanTimeThreshold {
 	if o == nil || IsNil(o.Threshold) {
-		var ret LessThanTimeThresholdView
+		var ret LessThanTimeThreshold
 		return ret
 	}
 	return *o.Threshold
@@ -321,7 +321,7 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetThreshold() LessTha
 
 // GetThresholdOk returns a tuple with the Threshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*LessThanTimeThresholdView, bool) {
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) GetThresholdOk() (*LessThanTimeThreshold, bool) {
 	if o == nil || IsNil(o.Threshold) {
 		return nil, false
 	}
@@ -337,8 +337,8 @@ func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) HasThreshold() bool {
 	return false
 }
 
-// SetThreshold gets a reference to the given LessThanTimeThresholdView and assigns it to the Threshold field.
-func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetThreshold(v LessThanTimeThresholdView) {
+// SetThreshold gets a reference to the given LessThanTimeThreshold and assigns it to the Threshold field.
+func (o *LessThanTimeThresholdAlertConfigViewForNdsGroup) SetThreshold(v LessThanTimeThreshold) {
 	o.Threshold = &v
 }
 
