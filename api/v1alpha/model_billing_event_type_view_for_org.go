@@ -183,39 +183,4 @@ func (v BillingEventTypeViewForOrg) Ptr() *BillingEventTypeViewForOrg {
 	return &v
 }
 
-type NullableBillingEventTypeViewForOrg struct {
-	value *BillingEventTypeViewForOrg
-	isSet bool
-}
-
-func (v NullableBillingEventTypeViewForOrg) Get() *BillingEventTypeViewForOrg {
-	return v.value
-}
-
-func (v *NullableBillingEventTypeViewForOrg) Set(val *BillingEventTypeViewForOrg) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableBillingEventTypeViewForOrg) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableBillingEventTypeViewForOrg) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableBillingEventTypeViewForOrg(val *BillingEventTypeViewForOrg) *NullableBillingEventTypeViewForOrg {
-	return &NullableBillingEventTypeViewForOrg{value: val, isSet: true}
-}
-
-func (v NullableBillingEventTypeViewForOrg) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableBillingEventTypeViewForOrg) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

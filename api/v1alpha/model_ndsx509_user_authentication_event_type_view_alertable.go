@@ -75,39 +75,4 @@ func (v NDSX509UserAuthenticationEventTypeViewAlertable) Ptr() *NDSX509UserAuthe
 	return &v
 }
 
-type NullableNDSX509UserAuthenticationEventTypeViewAlertable struct {
-	value *NDSX509UserAuthenticationEventTypeViewAlertable
-	isSet bool
-}
-
-func (v NullableNDSX509UserAuthenticationEventTypeViewAlertable) Get() *NDSX509UserAuthenticationEventTypeViewAlertable {
-	return v.value
-}
-
-func (v *NullableNDSX509UserAuthenticationEventTypeViewAlertable) Set(val *NDSX509UserAuthenticationEventTypeViewAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSX509UserAuthenticationEventTypeViewAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSX509UserAuthenticationEventTypeViewAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSX509UserAuthenticationEventTypeViewAlertable(val *NDSX509UserAuthenticationEventTypeViewAlertable) *NullableNDSX509UserAuthenticationEventTypeViewAlertable {
-	return &NullableNDSX509UserAuthenticationEventTypeViewAlertable{value: val, isSet: true}
-}
-
-func (v NullableNDSX509UserAuthenticationEventTypeViewAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSX509UserAuthenticationEventTypeViewAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

@@ -91,39 +91,4 @@ func (v AppServiceEventTypeViewAlertable) Ptr() *AppServiceEventTypeViewAlertabl
 	return &v
 }
 
-type NullableAppServiceEventTypeViewAlertable struct {
-	value *AppServiceEventTypeViewAlertable
-	isSet bool
-}
-
-func (v NullableAppServiceEventTypeViewAlertable) Get() *AppServiceEventTypeViewAlertable {
-	return v.value
-}
-
-func (v *NullableAppServiceEventTypeViewAlertable) Set(val *AppServiceEventTypeViewAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAppServiceEventTypeViewAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAppServiceEventTypeViewAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAppServiceEventTypeViewAlertable(val *AppServiceEventTypeViewAlertable) *NullableAppServiceEventTypeViewAlertable {
-	return &NullableAppServiceEventTypeViewAlertable{value: val, isSet: true}
-}
-
-func (v NullableAppServiceEventTypeViewAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAppServiceEventTypeViewAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

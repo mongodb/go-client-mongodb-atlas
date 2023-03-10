@@ -79,39 +79,4 @@ func (v HostMatcherField) Ptr() *HostMatcherField {
 	return &v
 }
 
-type NullableHostMatcherField struct {
-	value *HostMatcherField
-	isSet bool
-}
-
-func (v NullableHostMatcherField) Get() *HostMatcherField {
-	return v.value
-}
-
-func (v *NullableHostMatcherField) Set(val *HostMatcherField) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMatcherField) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMatcherField) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMatcherField(val *HostMatcherField) *NullableHostMatcherField {
-	return &NullableHostMatcherField{value: val, isSet: true}
-}
-
-func (v NullableHostMatcherField) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMatcherField) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

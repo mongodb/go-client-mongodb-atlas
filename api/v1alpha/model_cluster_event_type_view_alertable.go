@@ -71,39 +71,4 @@ func (v ClusterEventTypeViewAlertable) Ptr() *ClusterEventTypeViewAlertable {
 	return &v
 }
 
-type NullableClusterEventTypeViewAlertable struct {
-	value *ClusterEventTypeViewAlertable
-	isSet bool
-}
-
-func (v NullableClusterEventTypeViewAlertable) Get() *ClusterEventTypeViewAlertable {
-	return v.value
-}
-
-func (v *NullableClusterEventTypeViewAlertable) Set(val *ClusterEventTypeViewAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableClusterEventTypeViewAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableClusterEventTypeViewAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableClusterEventTypeViewAlertable(val *ClusterEventTypeViewAlertable) *NullableClusterEventTypeViewAlertable {
-	return &NullableClusterEventTypeViewAlertable{value: val, isSet: true}
-}
-
-func (v NullableClusterEventTypeViewAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableClusterEventTypeViewAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

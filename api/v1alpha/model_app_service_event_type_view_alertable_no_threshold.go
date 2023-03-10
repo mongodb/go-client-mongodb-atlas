@@ -89,39 +89,4 @@ func (v AppServiceEventTypeViewAlertableNoThreshold) Ptr() *AppServiceEventTypeV
 	return &v
 }
 
-type NullableAppServiceEventTypeViewAlertableNoThreshold struct {
-	value *AppServiceEventTypeViewAlertableNoThreshold
-	isSet bool
-}
-
-func (v NullableAppServiceEventTypeViewAlertableNoThreshold) Get() *AppServiceEventTypeViewAlertableNoThreshold {
-	return v.value
-}
-
-func (v *NullableAppServiceEventTypeViewAlertableNoThreshold) Set(val *AppServiceEventTypeViewAlertableNoThreshold) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAppServiceEventTypeViewAlertableNoThreshold) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAppServiceEventTypeViewAlertableNoThreshold) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAppServiceEventTypeViewAlertableNoThreshold(val *AppServiceEventTypeViewAlertableNoThreshold) *NullableAppServiceEventTypeViewAlertableNoThreshold {
-	return &NullableAppServiceEventTypeViewAlertableNoThreshold{value: val, isSet: true}
-}
-
-func (v NullableAppServiceEventTypeViewAlertableNoThreshold) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAppServiceEventTypeViewAlertableNoThreshold) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

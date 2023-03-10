@@ -967,39 +967,4 @@ func (v EventTypeForNdsGroup) Ptr() *EventTypeForNdsGroup {
 	return &v
 }
 
-type NullableEventTypeForNdsGroup struct {
-	value *EventTypeForNdsGroup
-	isSet bool
-}
-
-func (v NullableEventTypeForNdsGroup) Get() *EventTypeForNdsGroup {
-	return v.value
-}
-
-func (v *NullableEventTypeForNdsGroup) Set(val *EventTypeForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventTypeForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventTypeForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventTypeForNdsGroup(val *EventTypeForNdsGroup) *NullableEventTypeForNdsGroup {
-	return &NullableEventTypeForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableEventTypeForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventTypeForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

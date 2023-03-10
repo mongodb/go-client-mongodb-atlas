@@ -71,39 +71,4 @@ func (v ClusterMatcherField) Ptr() *ClusterMatcherField {
 	return &v
 }
 
-type NullableClusterMatcherField struct {
-	value *ClusterMatcherField
-	isSet bool
-}
-
-func (v NullableClusterMatcherField) Get() *ClusterMatcherField {
-	return v.value
-}
-
-func (v *NullableClusterMatcherField) Set(val *ClusterMatcherField) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableClusterMatcherField) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableClusterMatcherField) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableClusterMatcherField(val *ClusterMatcherField) *NullableClusterMatcherField {
-	return &NullableClusterMatcherField{value: val, isSet: true}
-}
-
-func (v NullableClusterMatcherField) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableClusterMatcherField) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

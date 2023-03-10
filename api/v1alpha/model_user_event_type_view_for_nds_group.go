@@ -85,39 +85,4 @@ func (v UserEventTypeViewForNdsGroup) Ptr() *UserEventTypeViewForNdsGroup {
 	return &v
 }
 
-type NullableUserEventTypeViewForNdsGroup struct {
-	value *UserEventTypeViewForNdsGroup
-	isSet bool
-}
-
-func (v NullableUserEventTypeViewForNdsGroup) Get() *UserEventTypeViewForNdsGroup {
-	return v.value
-}
-
-func (v *NullableUserEventTypeViewForNdsGroup) Set(val *UserEventTypeViewForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserEventTypeViewForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserEventTypeViewForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserEventTypeViewForNdsGroup(val *UserEventTypeViewForNdsGroup) *NullableUserEventTypeViewForNdsGroup {
-	return &NullableUserEventTypeViewForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableUserEventTypeViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserEventTypeViewForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

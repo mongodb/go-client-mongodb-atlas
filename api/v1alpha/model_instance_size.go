@@ -131,39 +131,4 @@ func (v InstanceSize) Ptr() *InstanceSize {
 	return &v
 }
 
-type NullableInstanceSize struct {
-	value *InstanceSize
-	isSet bool
-}
-
-func (v NullableInstanceSize) Get() *InstanceSize {
-	return v.value
-}
-
-func (v *NullableInstanceSize) Set(val *InstanceSize) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInstanceSize) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInstanceSize) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInstanceSize(val *InstanceSize) *NullableInstanceSize {
-	return &NullableInstanceSize{value: val, isSet: true}
-}
-
-func (v NullableInstanceSize) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInstanceSize) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

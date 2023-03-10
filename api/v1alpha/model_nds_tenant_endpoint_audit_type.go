@@ -89,39 +89,4 @@ func (v NDSTenantEndpointAuditType) Ptr() *NDSTenantEndpointAuditType {
 	return &v
 }
 
-type NullableNDSTenantEndpointAuditType struct {
-	value *NDSTenantEndpointAuditType
-	isSet bool
-}
-
-func (v NullableNDSTenantEndpointAuditType) Get() *NDSTenantEndpointAuditType {
-	return v.value
-}
-
-func (v *NullableNDSTenantEndpointAuditType) Set(val *NDSTenantEndpointAuditType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSTenantEndpointAuditType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSTenantEndpointAuditType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSTenantEndpointAuditType(val *NDSTenantEndpointAuditType) *NullableNDSTenantEndpointAuditType {
-	return &NullableNDSTenantEndpointAuditType{value: val, isSet: true}
-}
-
-func (v NullableNDSTenantEndpointAuditType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSTenantEndpointAuditType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

@@ -73,39 +73,4 @@ func (v ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) Ptr() *ReplicaSe
 	return &v
 }
 
-type NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold struct {
-	value *ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold
-	isSet bool
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) Get() *ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold {
-	return v.value
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) Set(val *ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold(val *ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) *NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold {
-	return &NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold{value: val, isSet: true}
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

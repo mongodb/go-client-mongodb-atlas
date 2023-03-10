@@ -71,39 +71,4 @@ func (v ServerlessEventTypeViewAlertable) Ptr() *ServerlessEventTypeViewAlertabl
 	return &v
 }
 
-type NullableServerlessEventTypeViewAlertable struct {
-	value *ServerlessEventTypeViewAlertable
-	isSet bool
-}
-
-func (v NullableServerlessEventTypeViewAlertable) Get() *ServerlessEventTypeViewAlertable {
-	return v.value
-}
-
-func (v *NullableServerlessEventTypeViewAlertable) Set(val *ServerlessEventTypeViewAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServerlessEventTypeViewAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServerlessEventTypeViewAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServerlessEventTypeViewAlertable(val *ServerlessEventTypeViewAlertable) *NullableServerlessEventTypeViewAlertable {
-	return &NullableServerlessEventTypeViewAlertable{value: val, isSet: true}
-}
-
-func (v NullableServerlessEventTypeViewAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServerlessEventTypeViewAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

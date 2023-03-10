@@ -71,39 +71,4 @@ func (v AutomationConfigEventType) Ptr() *AutomationConfigEventType {
 	return &v
 }
 
-type NullableAutomationConfigEventType struct {
-	value *AutomationConfigEventType
-	isSet bool
-}
-
-func (v NullableAutomationConfigEventType) Get() *AutomationConfigEventType {
-	return v.value
-}
-
-func (v *NullableAutomationConfigEventType) Set(val *AutomationConfigEventType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAutomationConfigEventType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAutomationConfigEventType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAutomationConfigEventType(val *AutomationConfigEventType) *NullableAutomationConfigEventType {
-	return &NullableAutomationConfigEventType{value: val, isSet: true}
-}
-
-func (v NullableAutomationConfigEventType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAutomationConfigEventType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
