@@ -48,7 +48,7 @@ function transformAllOf(objectPath, api) {
     const childObject = getObjectFromReference(childRef, api);
     const childName = getObjectNameFromReference(childRef);
     if (!childObject) {
-      console.warn(`DEBUG ${childRef}`);
+      throw new Error(`Missing object reference: ${childRef} for ${parentName}`);
     }
     if (removeParentFromAllOf(childObject, parentObject, api)) {
       console.debug(
