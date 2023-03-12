@@ -5,6 +5,8 @@ const {
   getObjectNameFromReferenceString,
 } = require("../engine/readers");
 
+const isModelIgnored = require("../engine/ignoreModel");
+const ignoreModels = require("../discriminator.ignore.json").ignoreModels;
 const { filterObjectProperties } = require("../engine/transformers");
 
 /**
@@ -51,9 +53,12 @@ function transformDiscriminatorOneOf(objectPath, api) {
 
     for (referenceObj of oneOfReferences) {
       if (getObjectNameFromReferenceString(referenceObj) == parentName) {
-        // FIXME circular reference found. We can remove that once we fix api
-        console.warn("circular discriminator reference " + parentName);
-        return;
+        if (isModelIgnored(parentName, ignoreModels)) {
+          console.warn("Ignored discriminator reference for: " + parentName);
+          return;
+        }
+        throw new Error(`${parentName}.discriminator.mapping contains $ref to itself.
+        Please consider replacing reference with new type.`);
       }
     }
 
