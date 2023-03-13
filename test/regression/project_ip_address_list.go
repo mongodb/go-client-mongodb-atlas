@@ -1,7 +1,7 @@
 package regression
 
 import (
-	mongodbatlas "go.mongodb.org/atlas/api/v1alpha"
+	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2/latest"
 )
 
 func TestProjectIPAcessListModelRegression() {
