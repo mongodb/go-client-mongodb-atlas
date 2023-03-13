@@ -24,7 +24,7 @@ API_BASE_URL=${API_BASE_URL:-"https://cloud.mongodb.com/api/openapi"}
 ## Folder used for fetching files
 OPENAPI_FOLDER=${OPENAPI_FOLDER:-"../openapi"}
 
-openapi_url="$API_BASE_URL/spec/2.0?version=$CURRENT_REVISION"
+openapi_url="$API_BASE_URL/spec/2.0?version=$CURRENT_REVISION&filter=sdk"
 versions_url="$API_BASE_URL/versions"
 
 pushd "$OPENAPI_FOLDER"
