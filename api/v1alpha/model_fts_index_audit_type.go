@@ -81,39 +81,4 @@ func (v FTSIndexAuditType) Ptr() *FTSIndexAuditType {
 	return &v
 }
 
-type NullableFTSIndexAuditType struct {
-	value *FTSIndexAuditType
-	isSet bool
-}
-
-func (v NullableFTSIndexAuditType) Get() *FTSIndexAuditType {
-	return v.value
-}
-
-func (v *NullableFTSIndexAuditType) Set(val *FTSIndexAuditType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFTSIndexAuditType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFTSIndexAuditType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFTSIndexAuditType(val *FTSIndexAuditType) *NullableFTSIndexAuditType {
-	return &NullableFTSIndexAuditType{value: val, isSet: true}
-}
-
-func (v NullableFTSIndexAuditType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFTSIndexAuditType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

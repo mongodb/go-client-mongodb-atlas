@@ -77,39 +77,4 @@ func (v NDSAutoScalingAuditTypeViewForNdsGroup) Ptr() *NDSAutoScalingAuditTypeVi
 	return &v
 }
 
-type NullableNDSAutoScalingAuditTypeViewForNdsGroup struct {
-	value *NDSAutoScalingAuditTypeViewForNdsGroup
-	isSet bool
-}
-
-func (v NullableNDSAutoScalingAuditTypeViewForNdsGroup) Get() *NDSAutoScalingAuditTypeViewForNdsGroup {
-	return v.value
-}
-
-func (v *NullableNDSAutoScalingAuditTypeViewForNdsGroup) Set(val *NDSAutoScalingAuditTypeViewForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSAutoScalingAuditTypeViewForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSAutoScalingAuditTypeViewForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSAutoScalingAuditTypeViewForNdsGroup(val *NDSAutoScalingAuditTypeViewForNdsGroup) *NullableNDSAutoScalingAuditTypeViewForNdsGroup {
-	return &NullableNDSAutoScalingAuditTypeViewForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableNDSAutoScalingAuditTypeViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSAutoScalingAuditTypeViewForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

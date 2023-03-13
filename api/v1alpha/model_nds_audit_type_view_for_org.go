@@ -71,39 +71,4 @@ func (v NDSAuditTypeViewForOrg) Ptr() *NDSAuditTypeViewForOrg {
 	return &v
 }
 
-type NullableNDSAuditTypeViewForOrg struct {
-	value *NDSAuditTypeViewForOrg
-	isSet bool
-}
-
-func (v NullableNDSAuditTypeViewForOrg) Get() *NDSAuditTypeViewForOrg {
-	return v.value
-}
-
-func (v *NullableNDSAuditTypeViewForOrg) Set(val *NDSAuditTypeViewForOrg) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSAuditTypeViewForOrg) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSAuditTypeViewForOrg) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSAuditTypeViewForOrg(val *NDSAuditTypeViewForOrg) *NullableNDSAuditTypeViewForOrg {
-	return &NullableNDSAuditTypeViewForOrg{value: val, isSet: true}
-}
-
-func (v NullableNDSAuditTypeViewForOrg) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSAuditTypeViewForOrg) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

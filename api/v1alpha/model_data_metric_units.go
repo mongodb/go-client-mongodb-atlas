@@ -89,39 +89,4 @@ func (v DataMetricUnits) Ptr() *DataMetricUnits {
 	return &v
 }
 
-type NullableDataMetricUnits struct {
-	value *DataMetricUnits
-	isSet bool
-}
-
-func (v NullableDataMetricUnits) Get() *DataMetricUnits {
-	return v.value
-}
-
-func (v *NullableDataMetricUnits) Set(val *DataMetricUnits) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDataMetricUnits) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDataMetricUnits) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDataMetricUnits(val *DataMetricUnits) *NullableDataMetricUnits {
-	return &NullableDataMetricUnits{value: val, isSet: true}
-}
-
-func (v NullableDataMetricUnits) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDataMetricUnits) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

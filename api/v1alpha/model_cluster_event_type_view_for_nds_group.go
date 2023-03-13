@@ -73,39 +73,4 @@ func (v ClusterEventTypeViewForNdsGroup) Ptr() *ClusterEventTypeViewForNdsGroup 
 	return &v
 }
 
-type NullableClusterEventTypeViewForNdsGroup struct {
-	value *ClusterEventTypeViewForNdsGroup
-	isSet bool
-}
-
-func (v NullableClusterEventTypeViewForNdsGroup) Get() *ClusterEventTypeViewForNdsGroup {
-	return v.value
-}
-
-func (v *NullableClusterEventTypeViewForNdsGroup) Set(val *ClusterEventTypeViewForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableClusterEventTypeViewForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableClusterEventTypeViewForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableClusterEventTypeViewForNdsGroup(val *ClusterEventTypeViewForNdsGroup) *NullableClusterEventTypeViewForNdsGroup {
-	return &NullableClusterEventTypeViewForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableClusterEventTypeViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableClusterEventTypeViewForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

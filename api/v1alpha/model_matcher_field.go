@@ -85,39 +85,4 @@ func (v MatcherField) Ptr() *MatcherField {
 	return &v
 }
 
-type NullableMatcherField struct {
-	value *MatcherField
-	isSet bool
-}
-
-func (v NullableMatcherField) Get() *MatcherField {
-	return v.value
-}
-
-func (v *NullableMatcherField) Set(val *MatcherField) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMatcherField) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMatcherField) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMatcherField(val *MatcherField) *NullableMatcherField {
-	return &NullableMatcherField{value: val, isSet: true}
-}
-
-func (v NullableMatcherField) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMatcherField) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

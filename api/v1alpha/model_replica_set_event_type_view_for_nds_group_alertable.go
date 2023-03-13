@@ -77,39 +77,4 @@ func (v ReplicaSetEventTypeViewForNdsGroupAlertable) Ptr() *ReplicaSetEventTypeV
 	return &v
 }
 
-type NullableReplicaSetEventTypeViewForNdsGroupAlertable struct {
-	value *ReplicaSetEventTypeViewForNdsGroupAlertable
-	isSet bool
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertable) Get() *ReplicaSetEventTypeViewForNdsGroupAlertable {
-	return v.value
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertable) Set(val *ReplicaSetEventTypeViewForNdsGroupAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableReplicaSetEventTypeViewForNdsGroupAlertable(val *ReplicaSetEventTypeViewForNdsGroupAlertable) *NullableReplicaSetEventTypeViewForNdsGroupAlertable {
-	return &NullableReplicaSetEventTypeViewForNdsGroupAlertable{value: val, isSet: true}
-}
-
-func (v NullableReplicaSetEventTypeViewForNdsGroupAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableReplicaSetEventTypeViewForNdsGroupAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

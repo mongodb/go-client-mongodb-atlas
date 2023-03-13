@@ -71,39 +71,4 @@ func (v RawMetricUnits) Ptr() *RawMetricUnits {
 	return &v
 }
 
-type NullableRawMetricUnits struct {
-	value *RawMetricUnits
-	isSet bool
-}
-
-func (v NullableRawMetricUnits) Get() *RawMetricUnits {
-	return v.value
-}
-
-func (v *NullableRawMetricUnits) Set(val *RawMetricUnits) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRawMetricUnits) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRawMetricUnits) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRawMetricUnits(val *RawMetricUnits) *NullableRawMetricUnits {
-	return &NullableRawMetricUnits{value: val, isSet: true}
-}
-
-func (v NullableRawMetricUnits) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRawMetricUnits) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
