@@ -85,25 +85,11 @@ type X509AuthenticationApiCreateDatabaseUserCertificateRequest struct {
 	groupId string
 	username string
 	userCert *UserCert
-	envelope *bool
-	pretty *bool
 }
 
 // Generates one X.509 certificate for the specified MongoDB user.
 func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) UserCert(userCert UserCert) X509AuthenticationApiCreateDatabaseUserCertificateRequest {
 	r.userCert = &userCert
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) Envelope(envelope bool) X509AuthenticationApiCreateDatabaseUserCertificateRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) Pretty(pretty bool) X509AuthenticationApiCreateDatabaseUserCertificateRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -166,12 +152,6 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 		return localVarReturnValue, nil, reportError("userCert is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -297,13 +277,6 @@ type X509AuthenticationApiDisableCustomerManagedX509Request struct {
 	ctx context.Context
 	ApiService X509AuthenticationApi
 	groupId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r X509AuthenticationApiDisableCustomerManagedX509Request) Envelope(envelope bool) X509AuthenticationApiDisableCustomerManagedX509Request {
-	r.envelope = &envelope
-	return r
 }
 
 func (r X509AuthenticationApiDisableCustomerManagedX509Request) Execute() (*UserSecurity, *http.Response, error) {
@@ -357,9 +330,6 @@ func (a *X509AuthenticationApiService) DisableCustomerManagedX509Execute(r X509A
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -440,17 +410,9 @@ type X509AuthenticationApiListDatabaseUserCertificatesRequest struct {
 	ApiService X509AuthenticationApi
 	groupId string
 	username string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) Envelope(envelope bool) X509AuthenticationApiListDatabaseUserCertificatesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -468,12 +430,6 @@ func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) ItemsPerPage(i
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) PageNum(pageNum int32) X509AuthenticationApiListDatabaseUserCertificatesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r X509AuthenticationApiListDatabaseUserCertificatesRequest) Pretty(pretty bool) X509AuthenticationApiListDatabaseUserCertificatesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -529,9 +485,6 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X50
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -540,9 +493,6 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r X50
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

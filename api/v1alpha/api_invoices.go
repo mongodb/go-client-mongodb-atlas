@@ -92,20 +92,6 @@ type InvoicesApiDownloadInvoiceCSVRequest struct {
 	ApiService InvoicesApi
 	orgId string
 	invoiceId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiDownloadInvoiceCSVRequest) Envelope(envelope bool) InvoicesApiDownloadInvoiceCSVRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiDownloadInvoiceCSVRequest) Pretty(pretty bool) InvoicesApiDownloadInvoiceCSVRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r InvoicesApiDownloadInvoiceCSVRequest) Execute() (*http.Response, error) {
@@ -158,12 +144,6 @@ func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvo
 		return nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -235,20 +215,6 @@ type InvoicesApiGetInvoiceRequest struct {
 	ApiService InvoicesApi
 	orgId string
 	invoiceId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiGetInvoiceRequest) Envelope(envelope bool) InvoicesApiGetInvoiceRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiGetInvoiceRequest) Pretty(pretty bool) InvoicesApiGetInvoiceRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r InvoicesApiGetInvoiceRequest) Execute() (*Invoice, *http.Response, error) {
@@ -309,12 +275,6 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 		return localVarReturnValue, nil, reportError("invoiceId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -405,17 +365,9 @@ type InvoicesApiListInvoicesRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiListInvoicesRequest) Envelope(envelope bool) InvoicesApiListInvoicesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -433,12 +385,6 @@ func (r InvoicesApiListInvoicesRequest) ItemsPerPage(itemsPerPage int32) Invoice
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r InvoicesApiListInvoicesRequest) PageNum(pageNum int32) InvoicesApiListInvoicesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiListInvoicesRequest) Pretty(pretty bool) InvoicesApiListInvoicesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -491,9 +437,6 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -502,9 +445,6 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -596,20 +536,6 @@ type InvoicesApiListPendingInvoicesRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r InvoicesApiListPendingInvoicesRequest) Envelope(envelope bool) InvoicesApiListPendingInvoicesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r InvoicesApiListPendingInvoicesRequest) Pretty(pretty bool) InvoicesApiListPendingInvoicesRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
@@ -661,12 +587,6 @@ func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPending
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

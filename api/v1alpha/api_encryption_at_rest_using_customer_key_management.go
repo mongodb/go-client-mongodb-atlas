@@ -64,20 +64,6 @@ type EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncry
 	ctx context.Context
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Envelope(envelope bool) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
@@ -131,12 +117,6 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigur
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -217,25 +197,11 @@ type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest 
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
 	encryptionAtRest *EncryptionAtRest
-	envelope *bool
-	pretty *bool
 }
 
 // Required parameters depend on whether someone has enabled Encryption at Rest using Customer Key Management:  If you have enabled Encryption at Rest using Customer Key Management (CMK), Atlas requires all of the parameters for the desired encryption provider.  - To use AWS Key Management Service (KMS), MongoDB Cloud requires all the fields in the **awsKms** object. - To use Azure Key Vault, MongoDB Cloud requires all the fields in the **azureKeyVault** object. - To use Google Cloud Key Management Service (KMS), MongoDB Cloud requires all the fields in the **googleCloudKms** object.  If you enabled Encryption at Rest using Customer Key  Management, administrators can pass only the changed fields for the **awsKms**, **azureKeyVault**, or **googleCloudKms** object to update the configuration to this endpoint.
 func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
 	r.encryptionAtRest = &encryptionAtRest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Envelope(envelope bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Pretty(pretty bool) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -293,12 +259,6 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 		return localVarReturnValue, nil, reportError("encryptionAtRest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

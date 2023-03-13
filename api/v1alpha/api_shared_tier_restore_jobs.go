@@ -81,25 +81,11 @@ type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest struct {
 	clusterName string
 	groupId string
 	tenantRestore *TenantRestore
-	envelope *bool
-	pretty *bool
 }
 
 // The restore job details.
 func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) TenantRestore(tenantRestore TenantRestore) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
 	r.tenantRestore = &tenantRestore
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) Envelope(envelope bool) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) Pretty(pretty bool) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -164,12 +150,6 @@ func (a *SharedTierRestoreJobsApiService) CreateSharedClusterBackupRestoreJobExe
 		return localVarReturnValue, nil, reportError("tenantRestore is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -286,20 +266,6 @@ type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest struct {
 	clusterName string
 	groupId string
 	restoreId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Envelope(envelope bool) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Pretty(pretty bool) SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Execute() (*TenantRestore, *http.Response, error) {
@@ -369,12 +335,6 @@ func (a *SharedTierRestoreJobsApiService) GetSharedClusterBackupRestoreJobExecut
 		return localVarReturnValue, nil, reportError("restoreId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -466,20 +426,6 @@ type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest struct {
 	ApiService SharedTierRestoreJobsApi
 	clusterName string
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Envelope(envelope bool) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Pretty(pretty bool) SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Execute() (*PaginatedTenantRestore, *http.Response, error) {
@@ -540,12 +486,6 @@ func (a *SharedTierRestoreJobsApiService) ListSharedClusterBackupRestoreJobsExec
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

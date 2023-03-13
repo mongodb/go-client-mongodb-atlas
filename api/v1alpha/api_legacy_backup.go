@@ -226,20 +226,6 @@ type LegacyBackupApiDeleteLegacySnapshotRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiDeleteLegacySnapshotRequest) Envelope(envelope bool) LegacyBackupApiDeleteLegacySnapshotRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiDeleteLegacySnapshotRequest) Pretty(pretty bool) LegacyBackupApiDeleteLegacySnapshotRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r LegacyBackupApiDeleteLegacySnapshotRequest) Execute() (*http.Response, error) {
@@ -310,12 +296,6 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDe
 		return nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -399,20 +379,6 @@ type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
 	groupId string
 	checkpointId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Envelope(envelope bool) LegacyBackupApiGetLegacyBackupCheckpointRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Pretty(pretty bool) LegacyBackupApiGetLegacyBackupCheckpointRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Execute() (*Checkpoint, *http.Response, error) {
@@ -485,12 +451,6 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -594,20 +554,6 @@ type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	jobId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Envelope(envelope bool) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Pretty(pretty bool) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*RestoreJob, *http.Response, error) {
@@ -680,12 +626,6 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackup
 		return localVarReturnValue, nil, reportError("jobId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -778,20 +718,6 @@ type LegacyBackupApiGetLegacySnapshotRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiGetLegacySnapshotRequest) Envelope(envelope bool) LegacyBackupApiGetLegacySnapshotRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiGetLegacySnapshotRequest) Pretty(pretty bool) LegacyBackupApiGetLegacySnapshotRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*Snapshot, *http.Response, error) {
@@ -864,12 +790,6 @@ func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLe
 		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -950,20 +870,6 @@ type LegacyBackupApiGetLegacySnapshotScheduleRequest struct {
 	ApiService LegacyBackupApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Envelope(envelope bool) LegacyBackupApiGetLegacySnapshotScheduleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiGetLegacySnapshotScheduleRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
@@ -1027,12 +933,6 @@ func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackup
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1113,17 +1013,9 @@ type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
 	ApiService LegacyBackupApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Envelope(envelope bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1141,12 +1033,6 @@ func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) ItemsPerPage(itemsPer
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupCheckpointsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Pretty(pretty bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1211,9 +1097,6 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBack
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1222,9 +1105,6 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBack
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1306,18 +1186,10 @@ type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
 	ApiService LegacyBackupApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 	batchId *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Envelope(envelope bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1335,12 +1207,6 @@ func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) ItemsPerPage(itemsPer
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Pretty(pretty bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1411,9 +1277,6 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1422,9 +1285,6 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.batchId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "batchId", r.batchId, "")
@@ -1520,18 +1380,10 @@ type LegacyBackupApiListLegacySnapshotsRequest struct {
 	ApiService LegacyBackupApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 	completed *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiListLegacySnapshotsRequest) Envelope(envelope bool) LegacyBackupApiListLegacySnapshotsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1549,12 +1401,6 @@ func (r LegacyBackupApiListLegacySnapshotsRequest) ItemsPerPage(itemsPerPage int
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r LegacyBackupApiListLegacySnapshotsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacySnapshotsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiListLegacySnapshotsRequest) Pretty(pretty bool) LegacyBackupApiListLegacySnapshotsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1625,9 +1471,6 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1636,9 +1479,6 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.completed != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "completed", r.completed, "")
@@ -1725,25 +1565,11 @@ type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
 	clusterName string
 	snapshotId string
 	snapshot *Snapshot
-	envelope *bool
-	pretty *bool
 }
 
 // Changes One Legacy Backup Snapshot Expiration.
 func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Snapshot(snapshot Snapshot) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
 	r.snapshot = &snapshot
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Envelope(envelope bool) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Pretty(pretty bool) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1820,12 +1646,6 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 		return localVarReturnValue, nil, reportError("snapshot is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1909,25 +1729,11 @@ type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
 	groupId string
 	clusterName string
 	snapshotSchedule *SnapshotSchedule
-	envelope *bool
-	pretty *bool
 }
 
 // Update the snapshot schedule for one cluster in the specified project.
 func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
 	r.snapshotSchedule = &snapshotSchedule
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Envelope(envelope bool) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Pretty(pretty bool) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1995,12 +1801,6 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBac
 		return localVarReturnValue, nil, reportError("snapshotSchedule is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

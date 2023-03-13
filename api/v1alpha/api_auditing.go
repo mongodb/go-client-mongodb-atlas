@@ -60,20 +60,6 @@ type AuditingApiGetAuditingConfigurationRequest struct {
 	ctx context.Context
 	ApiService AuditingApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AuditingApiGetAuditingConfigurationRequest) Envelope(envelope bool) AuditingApiGetAuditingConfigurationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AuditingApiGetAuditingConfigurationRequest) Pretty(pretty bool) AuditingApiGetAuditingConfigurationRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r AuditingApiGetAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
@@ -125,12 +111,6 @@ func (a *AuditingApiService) GetAuditingConfigurationExecute(r AuditingApiGetAud
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -211,25 +191,11 @@ type AuditingApiUpdateAuditingConfigurationRequest struct {
 	ApiService AuditingApi
 	groupId string
 	auditLog *AuditLog
-	envelope *bool
-	pretty *bool
 }
 
 // Updated auditing configuration for the specified project.
 func (r AuditingApiUpdateAuditingConfigurationRequest) AuditLog(auditLog AuditLog) AuditingApiUpdateAuditingConfigurationRequest {
 	r.auditLog = &auditLog
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r AuditingApiUpdateAuditingConfigurationRequest) Envelope(envelope bool) AuditingApiUpdateAuditingConfigurationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r AuditingApiUpdateAuditingConfigurationRequest) Pretty(pretty bool) AuditingApiUpdateAuditingConfigurationRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -285,12 +251,6 @@ func (a *AuditingApiService) UpdateAuditingConfigurationExecute(r AuditingApiUpd
 		return localVarReturnValue, nil, reportError("auditLog is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

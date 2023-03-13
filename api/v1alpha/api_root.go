@@ -42,20 +42,6 @@ type RootApiService service
 type RootApiGetSystemStatusRequest struct {
 	ctx context.Context
 	ApiService RootApi
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r RootApiGetSystemStatusRequest) Envelope(envelope bool) RootApiGetSystemStatusRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r RootApiGetSystemStatusRequest) Pretty(pretty bool) RootApiGetSystemStatusRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r RootApiGetSystemStatusRequest) Execute() (*SystemStatus, *http.Response, error) {
@@ -98,12 +84,6 @@ func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
