@@ -131,25 +131,11 @@ type OnlineArchiveApiCreateOnlineArchiveRequest struct {
 	groupId string
 	clusterName string
 	onlineArchive *OnlineArchive
-	envelope *bool
-	pretty *bool
 }
 
 // Creates one online archive.
 func (r OnlineArchiveApiCreateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiCreateOnlineArchiveRequest {
 	r.onlineArchive = &onlineArchive
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiCreateOnlineArchiveRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiCreateOnlineArchiveRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -214,12 +200,6 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 		return localVarReturnValue, nil, reportError("onlineArchive is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -336,20 +316,6 @@ type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
 	groupId string
 	archiveId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Execute() (*http.Response, error) {
@@ -417,12 +383,6 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiD
 		return nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -505,16 +465,9 @@ type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	ApiService OnlineArchiveApi
 	groupId string
 	clusterName string
-	envelope *bool
 	startDate *int64
 	endDate *int64
 	archiveOnly *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) Envelope(envelope bool) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
@@ -593,9 +546,6 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
 	}
@@ -708,20 +658,6 @@ type OnlineArchiveApiGetOnlineArchiveRequest struct {
 	groupId string
 	archiveId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiGetOnlineArchiveRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiGetOnlineArchiveRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r OnlineArchiveApiGetOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
@@ -791,12 +727,6 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -899,17 +829,9 @@ type OnlineArchiveApiListOnlineArchivesRequest struct {
 	ApiService OnlineArchiveApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiListOnlineArchivesRequest) Envelope(envelope bool) OnlineArchiveApiListOnlineArchivesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -927,12 +849,6 @@ func (r OnlineArchiveApiListOnlineArchivesRequest) ItemsPerPage(itemsPerPage int
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r OnlineArchiveApiListOnlineArchivesRequest) PageNum(pageNum int32) OnlineArchiveApiListOnlineArchivesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiListOnlineArchivesRequest) Pretty(pretty bool) OnlineArchiveApiListOnlineArchivesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -994,9 +910,6 @@ func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiLi
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1005,9 +918,6 @@ func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiLi
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1091,25 +1001,11 @@ type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
 	archiveId string
 	clusterName string
 	onlineArchive *OnlineArchive
-	envelope *bool
-	pretty *bool
 }
 
 // Updates, pauses, or resumes one online archive.
 func (r OnlineArchiveApiUpdateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiUpdateOnlineArchiveRequest {
 	r.onlineArchive = &onlineArchive
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Envelope(envelope bool) OnlineArchiveApiUpdateOnlineArchiveRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Pretty(pretty bool) OnlineArchiveApiUpdateOnlineArchiveRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1183,12 +1079,6 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiU
 		return localVarReturnValue, nil, reportError("onlineArchive is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

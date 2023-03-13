@@ -285,20 +285,6 @@ type MonitoringAndLogsApiGetAtlasProcessRequest struct {
 	ApiService MonitoringAndLogsApi
 	groupId string
 	processId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetAtlasProcessRequest) Envelope(envelope bool) MonitoringAndLogsApiGetAtlasProcessRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiGetAtlasProcessRequest) Pretty(pretty bool) MonitoringAndLogsApiGetAtlasProcessRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r MonitoringAndLogsApiGetAtlasProcessRequest) Execute() (*HostViewAtlas, *http.Response, error) {
@@ -353,12 +339,6 @@ func (a *MonitoringAndLogsApiService) GetAtlasProcessExecute(r MonitoringAndLogs
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -440,20 +420,6 @@ type MonitoringAndLogsApiGetDatabaseRequest struct {
 	groupId string
 	databaseName string
 	processId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetDatabaseRequest) Envelope(envelope bool) MonitoringAndLogsApiGetDatabaseRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiGetDatabaseRequest) Pretty(pretty bool) MonitoringAndLogsApiGetDatabaseRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r MonitoringAndLogsApiGetDatabaseRequest) Execute() (*Database, *http.Response, error) {
@@ -511,12 +477,6 @@ func (a *MonitoringAndLogsApiService) GetDatabaseExecute(r MonitoringAndLogsApiG
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -598,21 +558,7 @@ type MonitoringAndLogsApiGetDatabaseMeasurementsRequest struct {
 	groupId string
 	databaseName string
 	processId string
-	envelope *bool
-	pretty *bool
 	m *[]string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetDatabaseMeasurementsRequest) Envelope(envelope bool) MonitoringAndLogsApiGetDatabaseMeasurementsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiGetDatabaseMeasurementsRequest) Pretty(pretty bool) MonitoringAndLogsApiGetDatabaseMeasurementsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -676,12 +622,6 @@ func (a *MonitoringAndLogsApiService) GetDatabaseMeasurementsExecute(r Monitorin
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.m != nil {
 		t := *r.m
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -774,21 +714,7 @@ type MonitoringAndLogsApiGetDiskMeasurementsRequest struct {
 	groupId string
 	partitionName string
 	processId string
-	envelope *bool
-	pretty *bool
 	m *[]string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetDiskMeasurementsRequest) Envelope(envelope bool) MonitoringAndLogsApiGetDiskMeasurementsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiGetDiskMeasurementsRequest) Pretty(pretty bool) MonitoringAndLogsApiGetDiskMeasurementsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -858,12 +784,6 @@ func (a *MonitoringAndLogsApiService) GetDiskMeasurementsExecute(r MonitoringAnd
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.m != nil {
 		t := *r.m
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1157,22 +1077,8 @@ type MonitoringAndLogsApiGetHostMeasurementsRequest struct {
 	ApiService MonitoringAndLogsApi
 	groupId string
 	processId string
-	envelope *bool
-	pretty *bool
 	m *[]string
 	period *time.Time
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetHostMeasurementsRequest) Envelope(envelope bool) MonitoringAndLogsApiGetHostMeasurementsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiGetHostMeasurementsRequest) Pretty(pretty bool) MonitoringAndLogsApiGetHostMeasurementsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -1245,12 +1151,6 @@ func (a *MonitoringAndLogsApiService) GetHostMeasurementsExecute(r MonitoringAnd
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.m != nil {
 		t := *r.m
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1353,7 +1253,6 @@ type MonitoringAndLogsApiGetIndexMetricsRequest struct {
 	period *string
 	start *time.Time
 	end *time.Time
-	envelope *bool
 }
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
@@ -1383,12 +1282,6 @@ func (r MonitoringAndLogsApiGetIndexMetricsRequest) Start(start time.Time) Monit
 // Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
 func (r MonitoringAndLogsApiGetIndexMetricsRequest) End(end time.Time) MonitoringAndLogsApiGetIndexMetricsRequest {
 	r.end = &end
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetIndexMetricsRequest) Envelope(envelope bool) MonitoringAndLogsApiGetIndexMetricsRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -1471,9 +1364,6 @@ func (a *MonitoringAndLogsApiService) GetIndexMetricsExecute(r MonitoringAndLogs
 	}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	{
 		t := *r.metrics
@@ -1582,7 +1472,6 @@ type MonitoringAndLogsApiGetMeasurementsRequest struct {
 	period *string
 	start *time.Time
 	end *time.Time
-	envelope *bool
 }
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
@@ -1612,12 +1501,6 @@ func (r MonitoringAndLogsApiGetMeasurementsRequest) Start(start time.Time) Monit
 // Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
 func (r MonitoringAndLogsApiGetMeasurementsRequest) End(end time.Time) MonitoringAndLogsApiGetMeasurementsRequest {
 	r.end = &end
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiGetMeasurementsRequest) Envelope(envelope bool) MonitoringAndLogsApiGetMeasurementsRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -1691,9 +1574,6 @@ func (a *MonitoringAndLogsApiService) GetMeasurementsExecute(r MonitoringAndLogs
 	}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	{
 		t := *r.metrics
@@ -1796,17 +1676,9 @@ type MonitoringAndLogsApiListAtlasProcessesRequest struct {
 	ctx context.Context
 	ApiService MonitoringAndLogsApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListAtlasProcessesRequest) Envelope(envelope bool) MonitoringAndLogsApiListAtlasProcessesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1824,12 +1696,6 @@ func (r MonitoringAndLogsApiListAtlasProcessesRequest) ItemsPerPage(itemsPerPage
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r MonitoringAndLogsApiListAtlasProcessesRequest) PageNum(pageNum int32) MonitoringAndLogsApiListAtlasProcessesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiListAtlasProcessesRequest) Pretty(pretty bool) MonitoringAndLogsApiListAtlasProcessesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1882,9 +1748,6 @@ func (a *MonitoringAndLogsApiService) ListAtlasProcessesExecute(r MonitoringAndL
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1893,9 +1756,6 @@ func (a *MonitoringAndLogsApiService) ListAtlasProcessesExecute(r MonitoringAndL
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1977,17 +1837,9 @@ type MonitoringAndLogsApiListDatabasesRequest struct {
 	ApiService MonitoringAndLogsApi
 	groupId string
 	processId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListDatabasesRequest) Envelope(envelope bool) MonitoringAndLogsApiListDatabasesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2005,12 +1857,6 @@ func (r MonitoringAndLogsApiListDatabasesRequest) ItemsPerPage(itemsPerPage int3
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r MonitoringAndLogsApiListDatabasesRequest) PageNum(pageNum int32) MonitoringAndLogsApiListDatabasesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiListDatabasesRequest) Pretty(pretty bool) MonitoringAndLogsApiListDatabasesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2066,9 +1912,6 @@ func (a *MonitoringAndLogsApiService) ListDatabasesExecute(r MonitoringAndLogsAp
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -2077,9 +1920,6 @@ func (a *MonitoringAndLogsApiService) ListDatabasesExecute(r MonitoringAndLogsAp
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2162,13 +2002,6 @@ type MonitoringAndLogsApiListDiskMeasurementsRequest struct {
 	partitionName string
 	groupId string
 	processId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListDiskMeasurementsRequest) Envelope(envelope bool) MonitoringAndLogsApiListDiskMeasurementsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r MonitoringAndLogsApiListDiskMeasurementsRequest) Execute() (*DiskPartition, *http.Response, error) {
@@ -2232,9 +2065,6 @@ func (a *MonitoringAndLogsApiService) ListDiskMeasurementsExecute(r MonitoringAn
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2315,17 +2145,9 @@ type MonitoringAndLogsApiListDiskPartitionsRequest struct {
 	ApiService MonitoringAndLogsApi
 	groupId string
 	processId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListDiskPartitionsRequest) Envelope(envelope bool) MonitoringAndLogsApiListDiskPartitionsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2343,12 +2165,6 @@ func (r MonitoringAndLogsApiListDiskPartitionsRequest) ItemsPerPage(itemsPerPage
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r MonitoringAndLogsApiListDiskPartitionsRequest) PageNum(pageNum int32) MonitoringAndLogsApiListDiskPartitionsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r MonitoringAndLogsApiListDiskPartitionsRequest) Pretty(pretty bool) MonitoringAndLogsApiListDiskPartitionsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2404,9 +2220,6 @@ func (a *MonitoringAndLogsApiService) ListDiskPartitionsExecute(r MonitoringAndL
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -2415,9 +2228,6 @@ func (a *MonitoringAndLogsApiService) ListDiskPartitionsExecute(r MonitoringAndL
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2506,7 +2316,6 @@ type MonitoringAndLogsApiListIndexMetricsRequest struct {
 	period *string
 	start *time.Time
 	end *time.Time
-	envelope *bool
 }
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
@@ -2536,12 +2345,6 @@ func (r MonitoringAndLogsApiListIndexMetricsRequest) Start(start time.Time) Moni
 // Date and time when MongoDB Cloud stops reporting the metrics. This parameter expresses its value in the ISO 8601 timestamp format in UTC. Include this parameter when you do not set **period**.
 func (r MonitoringAndLogsApiListIndexMetricsRequest) End(end time.Time) MonitoringAndLogsApiListIndexMetricsRequest {
 	r.end = &end
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListIndexMetricsRequest) Envelope(envelope bool) MonitoringAndLogsApiListIndexMetricsRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -2621,9 +2424,6 @@ func (a *MonitoringAndLogsApiService) ListIndexMetricsExecute(r MonitoringAndLog
 	}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	{
 		t := *r.metrics
@@ -2727,13 +2527,6 @@ type MonitoringAndLogsApiListMetricTypesRequest struct {
 	ApiService MonitoringAndLogsApi
 	processId string
 	groupId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r MonitoringAndLogsApiListMetricTypesRequest) Envelope(envelope bool) MonitoringAndLogsApiListMetricTypesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r MonitoringAndLogsApiListMetricTypesRequest) Execute() (*FTSMetrics, *http.Response, error) {
@@ -2788,9 +2581,6 @@ func (a *MonitoringAndLogsApiService) ListMetricTypesExecute(r MonitoringAndLogs
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

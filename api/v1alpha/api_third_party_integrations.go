@@ -110,22 +110,14 @@ type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	integrationType string
 	groupId string
 	integrationViewForNdsGroup *IntegrationViewForNdsGroup
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 }
 
 // Third-party integration that you want to configure for your project.
 func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -144,12 +136,6 @@ func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) ItemsPerPag
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -208,9 +194,6 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -219,9 +202,6 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
@@ -338,20 +318,6 @@ type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest struct {
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Execute() (*http.Response, error) {
@@ -404,12 +370,6 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r 
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -503,20 +463,6 @@ type ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest struct {
 	ApiService ThirdPartyIntegrationsApi
 	groupId string
 	integrationType string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Execute() (*IntegrationViewForNdsGroup, *http.Response, error) {
@@ -571,12 +517,6 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r Thi
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -678,17 +618,9 @@ type ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest struct {
 	ctx context.Context
 	ApiService ThirdPartyIntegrationsApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -706,12 +638,6 @@ func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) ItemsPerPage
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -764,9 +690,6 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -775,9 +698,6 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r T
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -882,22 +802,14 @@ type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	integrationType string
 	groupId string
 	integrationViewForNdsGroup *IntegrationViewForNdsGroup
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 }
 
 // Third-party integration that you want to configure for your project.
 func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Envelope(envelope bool) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -916,12 +828,6 @@ func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) ItemsPerPag
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) PageNum(pageNum int32) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Pretty(pretty bool) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -980,9 +886,6 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -991,9 +894,6 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}

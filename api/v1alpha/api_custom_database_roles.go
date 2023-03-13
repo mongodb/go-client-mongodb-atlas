@@ -108,25 +108,11 @@ type CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 	customDBRole *CustomDBRole
-	envelope *bool
-	pretty *bool
 }
 
 // Creates one custom role in the specified project.
 func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) CustomDBRole(customDBRole CustomDBRole) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
 	r.customDBRole = &customDBRole
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -182,12 +168,6 @@ func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRoleExecute(r Custom
 		return localVarReturnValue, nil, reportError("customDBRole is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -314,20 +294,6 @@ type CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 	roleName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Execute() (*http.Response, error) {
@@ -380,12 +346,6 @@ func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRoleExecute(r Custom
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -490,20 +450,6 @@ type CustomDatabaseRolesApiGetCustomDatabaseRoleRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 	roleName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiGetCustomDatabaseRoleRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
@@ -558,12 +504,6 @@ func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRoleExecute(r CustomDat
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -654,20 +594,6 @@ type CustomDatabaseRolesApiListCustomDatabaseRolesRequest struct {
 	ctx context.Context
 	ApiService CustomDatabaseRolesApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Envelope(envelope bool) CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Pretty(pretty bool) CustomDatabaseRolesApiListCustomDatabaseRolesRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Execute() ([]CustomDBRole, *http.Response, error) {
@@ -719,12 +645,6 @@ func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRolesExecute(r CustomD
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -806,25 +726,11 @@ type CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest struct {
 	groupId string
 	roleName string
 	updateCustomDBRole *UpdateCustomDBRole
-	envelope *bool
-	pretty *bool
 }
 
 // Updates one custom role in the specified project.
 func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) UpdateCustomDBRole(updateCustomDBRole UpdateCustomDBRole) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
 	r.updateCustomDBRole = &updateCustomDBRole
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) Envelope(envelope bool) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest) Pretty(pretty bool) CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -883,12 +789,6 @@ func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRoleExecute(r Custom
 		return localVarReturnValue, nil, reportError("updateCustomDBRole is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

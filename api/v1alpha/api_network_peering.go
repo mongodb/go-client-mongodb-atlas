@@ -236,25 +236,11 @@ type NetworkPeeringApiCreatePeeringConnectionRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	containerPeerViewRequest *ContainerPeerViewRequest
-	envelope *bool
-	pretty *bool
 }
 
 // Create one network peering connection.
 func (r NetworkPeeringApiCreatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
 	r.containerPeerViewRequest = &containerPeerViewRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiCreatePeeringConnectionRequest) Envelope(envelope bool) NetworkPeeringApiCreatePeeringConnectionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiCreatePeeringConnectionRequest) Pretty(pretty bool) NetworkPeeringApiCreatePeeringConnectionRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -310,12 +296,6 @@ func (a *NetworkPeeringApiService) CreatePeeringConnectionExecute(r NetworkPeeri
 		return localVarReturnValue, nil, reportError("containerPeerViewRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -431,25 +411,11 @@ type NetworkPeeringApiCreatePeeringContainerRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	cloudProviderContainer *CloudProviderContainer
-	envelope *bool
-	pretty *bool
 }
 
 // Creates one new network peering container in the specified project.
 func (r NetworkPeeringApiCreatePeeringContainerRequest) CloudProviderContainer(cloudProviderContainer CloudProviderContainer) NetworkPeeringApiCreatePeeringContainerRequest {
 	r.cloudProviderContainer = &cloudProviderContainer
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiCreatePeeringContainerRequest) Envelope(envelope bool) NetworkPeeringApiCreatePeeringContainerRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiCreatePeeringContainerRequest) Pretty(pretty bool) NetworkPeeringApiCreatePeeringContainerRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -505,12 +471,6 @@ func (a *NetworkPeeringApiService) CreatePeeringContainerExecute(r NetworkPeerin
 		return localVarReturnValue, nil, reportError("cloudProviderContainer is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -637,20 +597,6 @@ type NetworkPeeringApiDeletePeeringConnectionRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	peerId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiDeletePeeringConnectionRequest) Envelope(envelope bool) NetworkPeeringApiDeletePeeringConnectionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiDeletePeeringConnectionRequest) Pretty(pretty bool) NetworkPeeringApiDeletePeeringConnectionRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r NetworkPeeringApiDeletePeeringConnectionRequest) Execute() (*http.Response, error) {
@@ -709,12 +655,6 @@ func (a *NetworkPeeringApiService) DeletePeeringConnectionExecute(r NetworkPeeri
 		return nil, reportError("peerId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -797,20 +737,6 @@ type NetworkPeeringApiDeletePeeringContainerRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	containerId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiDeletePeeringContainerRequest) Envelope(envelope bool) NetworkPeeringApiDeletePeeringContainerRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiDeletePeeringContainerRequest) Pretty(pretty bool) NetworkPeeringApiDeletePeeringContainerRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r NetworkPeeringApiDeletePeeringContainerRequest) Execute() (*http.Response, error) {
@@ -869,12 +795,6 @@ func (a *NetworkPeeringApiService) DeletePeeringContainerExecute(r NetworkPeerin
 		return nil, reportError("containerId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -979,25 +899,11 @@ type NetworkPeeringApiDisablePeeringRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	privateIPMode *PrivateIPMode
-	envelope *bool
-	pretty *bool
 }
 
 // Disables Connect via Peering Only mode for the specified project.
 func (r NetworkPeeringApiDisablePeeringRequest) PrivateIPMode(privateIPMode PrivateIPMode) NetworkPeeringApiDisablePeeringRequest {
 	r.privateIPMode = &privateIPMode
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiDisablePeeringRequest) Envelope(envelope bool) NetworkPeeringApiDisablePeeringRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiDisablePeeringRequest) Pretty(pretty bool) NetworkPeeringApiDisablePeeringRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1056,12 +962,6 @@ func (a *NetworkPeeringApiService) DisablePeeringExecute(r NetworkPeeringApiDisa
 		return localVarReturnValue, nil, reportError("privateIPMode is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1155,20 +1055,6 @@ type NetworkPeeringApiGetPeeringConnectionRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	peerId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiGetPeeringConnectionRequest) Envelope(envelope bool) NetworkPeeringApiGetPeeringConnectionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiGetPeeringConnectionRequest) Pretty(pretty bool) NetworkPeeringApiGetPeeringConnectionRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r NetworkPeeringApiGetPeeringConnectionRequest) Execute() (*GetPeeringConnection200Response, *http.Response, error) {
@@ -1229,12 +1115,6 @@ func (a *NetworkPeeringApiService) GetPeeringConnectionExecute(r NetworkPeeringA
 		return localVarReturnValue, nil, reportError("peerId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1326,20 +1206,6 @@ type NetworkPeeringApiGetPeeringContainerRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	containerId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiGetPeeringContainerRequest) Envelope(envelope bool) NetworkPeeringApiGetPeeringContainerRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiGetPeeringContainerRequest) Pretty(pretty bool) NetworkPeeringApiGetPeeringContainerRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r NetworkPeeringApiGetPeeringContainerRequest) Execute() (*CloudProviderContainer, *http.Response, error) {
@@ -1400,12 +1266,6 @@ func (a *NetworkPeeringApiService) GetPeeringContainerExecute(r NetworkPeeringAp
 		return localVarReturnValue, nil, reportError("containerId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1485,18 +1345,10 @@ type NetworkPeeringApiListPeeringConnectionsRequest struct {
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 	providerName *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiListPeeringConnectionsRequest) Envelope(envelope bool) NetworkPeeringApiListPeeringConnectionsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1514,12 +1366,6 @@ func (r NetworkPeeringApiListPeeringConnectionsRequest) ItemsPerPage(itemsPerPag
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r NetworkPeeringApiListPeeringConnectionsRequest) PageNum(pageNum int32) NetworkPeeringApiListPeeringConnectionsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiListPeeringConnectionsRequest) Pretty(pretty bool) NetworkPeeringApiListPeeringConnectionsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1578,9 +1424,6 @@ func (a *NetworkPeeringApiService) ListPeeringConnectionsExecute(r NetworkPeerin
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1589,9 +1432,6 @@ func (a *NetworkPeeringApiService) ListPeeringConnectionsExecute(r NetworkPeerin
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.providerName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "providerName", r.providerName, "")
@@ -1687,22 +1527,14 @@ type NetworkPeeringApiListPeeringContainerByCloudProviderRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	providerName *string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 }
 
 // Cloud service provider that serves the desired network peering containers.
 func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) ProviderName(providerName string) NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
 	r.providerName = &providerName
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) Envelope(envelope bool) NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -1721,12 +1553,6 @@ func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) ItemsPerPag
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) PageNum(pageNum int32) NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) Pretty(pretty bool) NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1782,9 +1608,6 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r 
 		return localVarReturnValue, nil, reportError("providerName is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1793,9 +1616,6 @@ func (a *NetworkPeeringApiService) ListPeeringContainerByCloudProviderExecute(r 
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "providerName", r.providerName, "")
 	// to determine the Content-Type header
@@ -1888,17 +1708,9 @@ type NetworkPeeringApiListPeeringContainersRequest struct {
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiListPeeringContainersRequest) Envelope(envelope bool) NetworkPeeringApiListPeeringContainersRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1916,12 +1728,6 @@ func (r NetworkPeeringApiListPeeringContainersRequest) ItemsPerPage(itemsPerPage
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r NetworkPeeringApiListPeeringContainersRequest) PageNum(pageNum int32) NetworkPeeringApiListPeeringContainersRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiListPeeringContainersRequest) Pretty(pretty bool) NetworkPeeringApiListPeeringContainersRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1974,9 +1780,6 @@ func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeering
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1985,9 +1788,6 @@ func (a *NetworkPeeringApiService) ListPeeringContainersExecute(r NetworkPeering
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2070,25 +1870,11 @@ type NetworkPeeringApiUpdatePeeringConnectionRequest struct {
 	groupId string
 	peerId string
 	containerPeerViewRequest *ContainerPeerViewRequest
-	envelope *bool
-	pretty *bool
 }
 
 // Modify one network peering connection.
 func (r NetworkPeeringApiUpdatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
 	r.containerPeerViewRequest = &containerPeerViewRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiUpdatePeeringConnectionRequest) Envelope(envelope bool) NetworkPeeringApiUpdatePeeringConnectionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiUpdatePeeringConnectionRequest) Pretty(pretty bool) NetworkPeeringApiUpdatePeeringConnectionRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2153,12 +1939,6 @@ func (a *NetworkPeeringApiService) UpdatePeeringConnectionExecute(r NetworkPeeri
 		return localVarReturnValue, nil, reportError("containerPeerViewRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -2275,25 +2055,11 @@ type NetworkPeeringApiUpdatePeeringContainerRequest struct {
 	groupId string
 	containerId string
 	cloudProviderContainer *CloudProviderContainer
-	envelope *bool
-	pretty *bool
 }
 
 // Updates the network details and labels of one specified network peering container in the specified project.
 func (r NetworkPeeringApiUpdatePeeringContainerRequest) CloudProviderContainer(cloudProviderContainer CloudProviderContainer) NetworkPeeringApiUpdatePeeringContainerRequest {
 	r.cloudProviderContainer = &cloudProviderContainer
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiUpdatePeeringContainerRequest) Envelope(envelope bool) NetworkPeeringApiUpdatePeeringContainerRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiUpdatePeeringContainerRequest) Pretty(pretty bool) NetworkPeeringApiUpdatePeeringContainerRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2358,12 +2124,6 @@ func (a *NetworkPeeringApiService) UpdatePeeringContainerExecute(r NetworkPeerin
 		return localVarReturnValue, nil, reportError("cloudProviderContainer is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -2489,20 +2249,6 @@ type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest struct
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Envelope(envelope bool) NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Pretty(pretty bool) NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Execute() (*PrivateIPMode, *http.Response, error) {
@@ -2557,12 +2303,6 @@ func (a *NetworkPeeringApiService) VerifyConnectViaPeeringOnlyModeForOneProjectE
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
