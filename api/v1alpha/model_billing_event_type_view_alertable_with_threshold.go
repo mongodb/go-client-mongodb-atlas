@@ -73,39 +73,4 @@ func (v BillingEventTypeViewAlertableWithThreshold) Ptr() *BillingEventTypeViewA
 	return &v
 }
 
-type NullableBillingEventTypeViewAlertableWithThreshold struct {
-	value *BillingEventTypeViewAlertableWithThreshold
-	isSet bool
-}
-
-func (v NullableBillingEventTypeViewAlertableWithThreshold) Get() *BillingEventTypeViewAlertableWithThreshold {
-	return v.value
-}
-
-func (v *NullableBillingEventTypeViewAlertableWithThreshold) Set(val *BillingEventTypeViewAlertableWithThreshold) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableBillingEventTypeViewAlertableWithThreshold) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableBillingEventTypeViewAlertableWithThreshold) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableBillingEventTypeViewAlertableWithThreshold(val *BillingEventTypeViewAlertableWithThreshold) *NullableBillingEventTypeViewAlertableWithThreshold {
-	return &NullableBillingEventTypeViewAlertableWithThreshold{value: val, isSet: true}
-}
-
-func (v NullableBillingEventTypeViewAlertableWithThreshold) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableBillingEventTypeViewAlertableWithThreshold) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

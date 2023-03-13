@@ -389,39 +389,4 @@ func (v NDSAuditTypeViewForNdsGroup) Ptr() *NDSAuditTypeViewForNdsGroup {
 	return &v
 }
 
-type NullableNDSAuditTypeViewForNdsGroup struct {
-	value *NDSAuditTypeViewForNdsGroup
-	isSet bool
-}
-
-func (v NullableNDSAuditTypeViewForNdsGroup) Get() *NDSAuditTypeViewForNdsGroup {
-	return v.value
-}
-
-func (v *NullableNDSAuditTypeViewForNdsGroup) Set(val *NDSAuditTypeViewForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSAuditTypeViewForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSAuditTypeViewForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSAuditTypeViewForNdsGroup(val *NDSAuditTypeViewForNdsGroup) *NullableNDSAuditTypeViewForNdsGroup {
-	return &NullableNDSAuditTypeViewForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableNDSAuditTypeViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSAuditTypeViewForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

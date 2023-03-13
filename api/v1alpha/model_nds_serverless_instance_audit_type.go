@@ -83,39 +83,4 @@ func (v NDSServerlessInstanceAuditType) Ptr() *NDSServerlessInstanceAuditType {
 	return &v
 }
 
-type NullableNDSServerlessInstanceAuditType struct {
-	value *NDSServerlessInstanceAuditType
-	isSet bool
-}
-
-func (v NullableNDSServerlessInstanceAuditType) Get() *NDSServerlessInstanceAuditType {
-	return v.value
-}
-
-func (v *NullableNDSServerlessInstanceAuditType) Set(val *NDSServerlessInstanceAuditType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNDSServerlessInstanceAuditType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNDSServerlessInstanceAuditType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNDSServerlessInstanceAuditType(val *NDSServerlessInstanceAuditType) *NullableNDSServerlessInstanceAuditType {
-	return &NullableNDSServerlessInstanceAuditType{value: val, isSet: true}
-}
-
-func (v NullableNDSServerlessInstanceAuditType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNDSServerlessInstanceAuditType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

@@ -79,39 +79,4 @@ func (v AlertConfigAuditType) Ptr() *AlertConfigAuditType {
 	return &v
 }
 
-type NullableAlertConfigAuditType struct {
-	value *AlertConfigAuditType
-	isSet bool
-}
-
-func (v NullableAlertConfigAuditType) Get() *AlertConfigAuditType {
-	return v.value
-}
-
-func (v *NullableAlertConfigAuditType) Set(val *AlertConfigAuditType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAlertConfigAuditType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAlertConfigAuditType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAlertConfigAuditType(val *AlertConfigAuditType) *NullableAlertConfigAuditType {
-	return &NullableAlertConfigAuditType{value: val, isSet: true}
-}
-
-func (v NullableAlertConfigAuditType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAlertConfigAuditType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

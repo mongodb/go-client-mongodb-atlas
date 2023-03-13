@@ -85,39 +85,4 @@ func (v ApiUserEventTypeViewForOrg) Ptr() *ApiUserEventTypeViewForOrg {
 	return &v
 }
 
-type NullableApiUserEventTypeViewForOrg struct {
-	value *ApiUserEventTypeViewForOrg
-	isSet bool
-}
-
-func (v NullableApiUserEventTypeViewForOrg) Get() *ApiUserEventTypeViewForOrg {
-	return v.value
-}
-
-func (v *NullableApiUserEventTypeViewForOrg) Set(val *ApiUserEventTypeViewForOrg) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableApiUserEventTypeViewForOrg) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableApiUserEventTypeViewForOrg) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableApiUserEventTypeViewForOrg(val *ApiUserEventTypeViewForOrg) *NullableApiUserEventTypeViewForOrg {
-	return &NullableApiUserEventTypeViewForOrg{value: val, isSet: true}
-}
-
-func (v NullableApiUserEventTypeViewForOrg) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableApiUserEventTypeViewForOrg) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

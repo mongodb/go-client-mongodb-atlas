@@ -71,39 +71,4 @@ func (v AppServiceMetricMatcherField) Ptr() *AppServiceMetricMatcherField {
 	return &v
 }
 
-type NullableAppServiceMetricMatcherField struct {
-	value *AppServiceMetricMatcherField
-	isSet bool
-}
-
-func (v NullableAppServiceMetricMatcherField) Get() *AppServiceMetricMatcherField {
-	return v.value
-}
-
-func (v *NullableAppServiceMetricMatcherField) Set(val *AppServiceMetricMatcherField) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAppServiceMetricMatcherField) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAppServiceMetricMatcherField) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAppServiceMetricMatcherField(val *AppServiceMetricMatcherField) *NullableAppServiceMetricMatcherField {
-	return &NullableAppServiceMetricMatcherField{value: val, isSet: true}
-}
-
-func (v NullableAppServiceMetricMatcherField) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAppServiceMetricMatcherField) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

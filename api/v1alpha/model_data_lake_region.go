@@ -87,39 +87,4 @@ func (v DataLakeRegion) Ptr() *DataLakeRegion {
 	return &v
 }
 
-type NullableDataLakeRegion struct {
-	value *DataLakeRegion
-	isSet bool
-}
-
-func (v NullableDataLakeRegion) Get() *DataLakeRegion {
-	return v.value
-}
-
-func (v *NullableDataLakeRegion) Set(val *DataLakeRegion) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDataLakeRegion) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDataLakeRegion) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDataLakeRegion(val *DataLakeRegion) *NullableDataLakeRegion {
-	return &NullableDataLakeRegion{value: val, isSet: true}
-}
-
-func (v NullableDataLakeRegion) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDataLakeRegion) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

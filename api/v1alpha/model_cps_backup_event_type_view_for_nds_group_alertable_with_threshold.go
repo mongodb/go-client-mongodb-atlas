@@ -71,39 +71,4 @@ func (v CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) Ptr() *CpsBacku
 	return &v
 }
 
-type NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold struct {
-	value *CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold
-	isSet bool
-}
-
-func (v NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) Get() *CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold {
-	return v.value
-}
-
-func (v *NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) Set(val *CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold(val *CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) *NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold {
-	return &NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold{value: val, isSet: true}
-}
-
-func (v NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCpsBackupEventTypeViewForNdsGroupAlertableWithThreshold) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

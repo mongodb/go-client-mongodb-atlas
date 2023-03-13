@@ -81,39 +81,4 @@ func (v ServerlessMetricUnits) Ptr() *ServerlessMetricUnits {
 	return &v
 }
 
-type NullableServerlessMetricUnits struct {
-	value *ServerlessMetricUnits
-	isSet bool
-}
-
-func (v NullableServerlessMetricUnits) Get() *ServerlessMetricUnits {
-	return v.value
-}
-
-func (v *NullableServerlessMetricUnits) Set(val *ServerlessMetricUnits) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServerlessMetricUnits) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServerlessMetricUnits) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServerlessMetricUnits(val *ServerlessMetricUnits) *NullableServerlessMetricUnits {
-	return &NullableServerlessMetricUnits{value: val, isSet: true}
-}
-
-func (v NullableServerlessMetricUnits) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServerlessMetricUnits) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

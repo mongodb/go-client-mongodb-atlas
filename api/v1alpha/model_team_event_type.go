@@ -83,39 +83,4 @@ func (v TeamEventType) Ptr() *TeamEventType {
 	return &v
 }
 
-type NullableTeamEventType struct {
-	value *TeamEventType
-	isSet bool
-}
-
-func (v NullableTeamEventType) Get() *TeamEventType {
-	return v.value
-}
-
-func (v *NullableTeamEventType) Set(val *TeamEventType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTeamEventType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTeamEventType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTeamEventType(val *TeamEventType) *NullableTeamEventType {
-	return &NullableTeamEventType{value: val, isSet: true}
-}
-
-func (v NullableTeamEventType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTeamEventType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

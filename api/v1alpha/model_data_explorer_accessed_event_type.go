@@ -77,39 +77,4 @@ func (v DataExplorerAccessedEventType) Ptr() *DataExplorerAccessedEventType {
 	return &v
 }
 
-type NullableDataExplorerAccessedEventType struct {
-	value *DataExplorerAccessedEventType
-	isSet bool
-}
-
-func (v NullableDataExplorerAccessedEventType) Get() *DataExplorerAccessedEventType {
-	return v.value
-}
-
-func (v *NullableDataExplorerAccessedEventType) Set(val *DataExplorerAccessedEventType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDataExplorerAccessedEventType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDataExplorerAccessedEventType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDataExplorerAccessedEventType(val *DataExplorerAccessedEventType) *NullableDataExplorerAccessedEventType {
-	return &NullableDataExplorerAccessedEventType{value: val, isSet: true}
-}
-
-func (v NullableDataExplorerAccessedEventType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDataExplorerAccessedEventType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

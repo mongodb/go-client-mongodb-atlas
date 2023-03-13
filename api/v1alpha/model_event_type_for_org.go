@@ -449,39 +449,4 @@ func (v EventTypeForOrg) Ptr() *EventTypeForOrg {
 	return &v
 }
 
-type NullableEventTypeForOrg struct {
-	value *EventTypeForOrg
-	isSet bool
-}
-
-func (v NullableEventTypeForOrg) Get() *EventTypeForOrg {
-	return v.value
-}
-
-func (v *NullableEventTypeForOrg) Set(val *EventTypeForOrg) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventTypeForOrg) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventTypeForOrg) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventTypeForOrg(val *EventTypeForOrg) *NullableEventTypeForOrg {
-	return &NullableEventTypeForOrg{value: val, isSet: true}
-}
-
-func (v NullableEventTypeForOrg) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventTypeForOrg) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

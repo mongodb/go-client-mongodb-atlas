@@ -75,39 +75,4 @@ func (v TeamEventTypeViewForNdsGroup) Ptr() *TeamEventTypeViewForNdsGroup {
 	return &v
 }
 
-type NullableTeamEventTypeViewForNdsGroup struct {
-	value *TeamEventTypeViewForNdsGroup
-	isSet bool
-}
-
-func (v NullableTeamEventTypeViewForNdsGroup) Get() *TeamEventTypeViewForNdsGroup {
-	return v.value
-}
-
-func (v *NullableTeamEventTypeViewForNdsGroup) Set(val *TeamEventTypeViewForNdsGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTeamEventTypeViewForNdsGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTeamEventTypeViewForNdsGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTeamEventTypeViewForNdsGroup(val *TeamEventTypeViewForNdsGroup) *NullableTeamEventTypeViewForNdsGroup {
-	return &NullableTeamEventTypeViewForNdsGroup{value: val, isSet: true}
-}
-
-func (v NullableTeamEventTypeViewForNdsGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTeamEventTypeViewForNdsGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

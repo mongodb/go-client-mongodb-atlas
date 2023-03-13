@@ -83,39 +83,4 @@ func (v TimeMetricUnits) Ptr() *TimeMetricUnits {
 	return &v
 }
 
-type NullableTimeMetricUnits struct {
-	value *TimeMetricUnits
-	isSet bool
-}
-
-func (v NullableTimeMetricUnits) Get() *TimeMetricUnits {
-	return v.value
-}
-
-func (v *NullableTimeMetricUnits) Set(val *TimeMetricUnits) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTimeMetricUnits) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTimeMetricUnits) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTimeMetricUnits(val *TimeMetricUnits) *NullableTimeMetricUnits {
-	return &NullableTimeMetricUnits{value: val, isSet: true}
-}
-
-func (v NullableTimeMetricUnits) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTimeMetricUnits) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

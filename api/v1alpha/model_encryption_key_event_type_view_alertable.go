@@ -75,39 +75,4 @@ func (v EncryptionKeyEventTypeViewAlertable) Ptr() *EncryptionKeyEventTypeViewAl
 	return &v
 }
 
-type NullableEncryptionKeyEventTypeViewAlertable struct {
-	value *EncryptionKeyEventTypeViewAlertable
-	isSet bool
-}
-
-func (v NullableEncryptionKeyEventTypeViewAlertable) Get() *EncryptionKeyEventTypeViewAlertable {
-	return v.value
-}
-
-func (v *NullableEncryptionKeyEventTypeViewAlertable) Set(val *EncryptionKeyEventTypeViewAlertable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEncryptionKeyEventTypeViewAlertable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEncryptionKeyEventTypeViewAlertable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEncryptionKeyEventTypeViewAlertable(val *EncryptionKeyEventTypeViewAlertable) *NullableEncryptionKeyEventTypeViewAlertable {
-	return &NullableEncryptionKeyEventTypeViewAlertable{value: val, isSet: true}
-}
-
-func (v NullableEncryptionKeyEventTypeViewAlertable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEncryptionKeyEventTypeViewAlertable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 

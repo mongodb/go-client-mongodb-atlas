@@ -73,39 +73,4 @@ func (v HostMetricEventType) Ptr() *HostMetricEventType {
 	return &v
 }
 
-type NullableHostMetricEventType struct {
-	value *HostMetricEventType
-	isSet bool
-}
-
-func (v NullableHostMetricEventType) Get() *HostMetricEventType {
-	return v.value
-}
-
-func (v *NullableHostMetricEventType) Set(val *HostMetricEventType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMetricEventType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMetricEventType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMetricEventType(val *HostMetricEventType) *NullableHostMetricEventType {
-	return &NullableHostMetricEventType{value: val, isSet: true}
-}
-
-func (v NullableHostMetricEventType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMetricEventType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
