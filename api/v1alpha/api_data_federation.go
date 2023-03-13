@@ -252,25 +252,11 @@ type DataFederationApiCreateDataFederationPrivateEndpointRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	privateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
-	envelope *bool
-	pretty *bool
 }
 
 // Private endpoint for Federated Database Instances and Online Archives to add to the specified project.
 func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) PrivateNetworkEndpointIdEntry(privateNetworkEndpointIdEntry PrivateNetworkEndpointIdEntry) DataFederationApiCreateDataFederationPrivateEndpointRequest {
 	r.privateNetworkEndpointIdEntry = &privateNetworkEndpointIdEntry
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiCreateDataFederationPrivateEndpointRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiCreateDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiCreateDataFederationPrivateEndpointRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -326,12 +312,6 @@ func (a *DataFederationApiService) CreateDataFederationPrivateEndpointExecute(r 
 		return localVarReturnValue, nil, reportError("privateNetworkEndpointIdEntry is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -425,26 +405,12 @@ type DataFederationApiCreateFederatedDatabaseRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	dataLakeTenant *DataLakeTenant
-	envelope *bool
-	pretty *bool
 	skipRoleValidation *bool
 }
 
 // Details to create one federated database instance in the specified project.
 func (r DataFederationApiCreateFederatedDatabaseRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiCreateFederatedDatabaseRequest {
 	r.dataLakeTenant = &dataLakeTenant
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiCreateFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiCreateFederatedDatabaseRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiCreateFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiCreateFederatedDatabaseRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -506,12 +472,6 @@ func (a *DataFederationApiService) CreateFederatedDatabaseExecute(r DataFederati
 		return localVarReturnValue, nil, reportError("dataLakeTenant is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.skipRoleValidation != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skipRoleValidation", r.skipRoleValidation, "")
 	}
@@ -599,18 +559,11 @@ type DataFederationApiCreateOneDataFederationQueryLimitRequest struct {
 	tenantName string
 	limitName string
 	dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
-	envelope *bool
 }
 
 // Creates or updates one query limit for one federated database instance.
 func (r DataFederationApiCreateOneDataFederationQueryLimitRequest) DataFederationTenantQueryLimit(dataFederationTenantQueryLimit DataFederationTenantQueryLimit) DataFederationApiCreateOneDataFederationQueryLimitRequest {
 	r.dataFederationTenantQueryLimit = &dataFederationTenantQueryLimit
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiCreateOneDataFederationQueryLimitRequest) Envelope(envelope bool) DataFederationApiCreateOneDataFederationQueryLimitRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -672,9 +625,6 @@ func (a *DataFederationApiService) CreateOneDataFederationQueryLimitExecute(r Da
 		return localVarReturnValue, nil, reportError("dataFederationTenantQueryLimit is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -779,20 +729,6 @@ type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	endpointId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiDeleteDataFederationPrivateEndpointRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiDeleteDataFederationPrivateEndpointRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Execute() (*http.Response, error) {
@@ -851,12 +787,6 @@ func (a *DataFederationApiService) DeleteDataFederationPrivateEndpointExecute(r 
 		return nil, reportError("endpointId must have less than 22 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -939,20 +869,6 @@ type DataFederationApiDeleteFederatedDatabaseRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	tenantName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiDeleteFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiDeleteFederatedDatabaseRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiDeleteFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiDeleteFederatedDatabaseRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiDeleteFederatedDatabaseRequest) Execute() (*http.Response, error) {
@@ -1005,12 +921,6 @@ func (a *DataFederationApiService) DeleteFederatedDatabaseExecute(r DataFederati
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1083,13 +993,6 @@ type DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest struct {
 	groupId string
 	tenantName string
 	limitName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) Envelope(envelope bool) DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) Execute() (*http.Response, error) {
@@ -1145,9 +1048,6 @@ func (a *DataFederationApiService) DeleteOneDataFederationInstanceQueryLimitExec
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1417,20 +1317,6 @@ type DataFederationApiGetDataFederationPrivateEndpointRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	endpointId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Envelope(envelope bool) DataFederationApiGetDataFederationPrivateEndpointRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Pretty(pretty bool) DataFederationApiGetDataFederationPrivateEndpointRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Execute() (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
@@ -1491,12 +1377,6 @@ func (a *DataFederationApiService) GetDataFederationPrivateEndpointExecute(r Dat
 		return localVarReturnValue, nil, reportError("endpointId must have less than 22 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1599,13 +1479,6 @@ type DataFederationApiGetFederatedDatabaseRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	tenantName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiGetFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiGetFederatedDatabaseRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r DataFederationApiGetFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
@@ -1660,9 +1533,6 @@ func (a *DataFederationApiService) GetFederatedDatabaseExecute(r DataFederationA
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1764,20 +1634,6 @@ type DataFederationApiListDataFederationPrivateEndpointsRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Envelope(envelope bool) DataFederationApiListDataFederationPrivateEndpointsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Pretty(pretty bool) DataFederationApiListDataFederationPrivateEndpointsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
@@ -1829,12 +1685,6 @@ func (a *DataFederationApiService) ListDataFederationPrivateEndpointsExecute(r D
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1936,21 +1786,7 @@ type DataFederationApiListFederatedDatabasesRequest struct {
 	ctx context.Context
 	ApiService DataFederationApi
 	groupId string
-	envelope *bool
-	pretty *bool
 	type_ *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiListFederatedDatabasesRequest) Envelope(envelope bool) DataFederationApiListFederatedDatabasesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiListFederatedDatabasesRequest) Pretty(pretty bool) DataFederationApiListFederatedDatabasesRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Type of Federated Database Instances to return.
@@ -2008,12 +1844,6 @@ func (a *DataFederationApiService) ListFederatedDatabasesExecute(r DataFederatio
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
 	}
@@ -2098,20 +1928,6 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitRequest struct {
 	groupId string
 	tenantName string
 	limitName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Envelope(envelope bool) DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Pretty(pretty bool) DataFederationApiReturnFederatedDatabaseQueryLimitRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
@@ -2169,12 +1985,6 @@ func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimitExecute(r Da
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2255,20 +2065,6 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitsRequest struct {
 	ApiService DataFederationApi
 	groupId string
 	tenantName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Envelope(envelope bool) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Pretty(pretty bool) DataFederationApiReturnFederatedDatabaseQueryLimitsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
@@ -2323,12 +2119,6 @@ func (a *DataFederationApiService) ReturnFederatedDatabaseQueryLimitsExecute(r D
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2422,8 +2212,6 @@ type DataFederationApiUpdateFederatedDatabaseRequest struct {
 	tenantName string
 	skipRoleValidation *bool
 	dataLakeTenant *DataLakeTenant
-	envelope *bool
-	pretty *bool
 }
 
 // Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.
@@ -2435,18 +2223,6 @@ func (r DataFederationApiUpdateFederatedDatabaseRequest) SkipRoleValidation(skip
 // Details of one Federated Database to update in the specified project.
 func (r DataFederationApiUpdateFederatedDatabaseRequest) DataLakeTenant(dataLakeTenant DataLakeTenant) DataFederationApiUpdateFederatedDatabaseRequest {
 	r.dataLakeTenant = &dataLakeTenant
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DataFederationApiUpdateFederatedDatabaseRequest) Envelope(envelope bool) DataFederationApiUpdateFederatedDatabaseRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DataFederationApiUpdateFederatedDatabaseRequest) Pretty(pretty bool) DataFederationApiUpdateFederatedDatabaseRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2508,12 +2284,6 @@ func (a *DataFederationApiService) UpdateFederatedDatabaseExecute(r DataFederati
 		return localVarReturnValue, nil, reportError("dataLakeTenant is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "skipRoleValidation", r.skipRoleValidation, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}

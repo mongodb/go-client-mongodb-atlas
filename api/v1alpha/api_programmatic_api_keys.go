@@ -251,25 +251,11 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	groupId string
 	apiUserId string
 	userRoleAssignment *[]UserRoleAssignment
-	envelope *bool
-	pretty *bool
 }
 
 // Organization API key to be assigned to the specified project.
 func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) UserRoleAssignment(userRoleAssignment []UserRoleAssignment) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
 	r.userRoleAssignment = &userRoleAssignment
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -334,12 +320,6 @@ func (a *ProgrammaticAPIKeysApiService) AddProjectApiKeyExecute(r ProgrammaticAP
 		return localVarReturnValue, nil, reportError("userRoleAssignment is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -422,25 +402,11 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	createApiKey *CreateApiKey
-	envelope *bool
-	pretty *bool
 }
 
 // Organization API Key to be created. This request requires a minimum of one of the two body parameters.
 func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateApiKeyRequest {
 	r.createApiKey = &createApiKey
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateApiKeyRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -496,12 +462,6 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyExecute(r ProgrammaticAPIKey
 		return localVarReturnValue, nil, reportError("createApiKey is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -585,22 +545,14 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	orgId string
 	apiUserId string
 	userAccessList *[]UserAccessList
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 }
 
 // Access list entries to be created for the specified organization API key.
 func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) UserAccessList(userAccessList []UserAccessList) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.userAccessList = &userAccessList
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -619,12 +571,6 @@ func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) ItemsPerPage(itemsP
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -689,9 +635,6 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 		return localVarReturnValue, nil, reportError("userAccessList is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -700,9 +643,6 @@ func (a *ProgrammaticAPIKeysApiService) CreateApiKeyAccessListExecute(r Programm
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
@@ -808,25 +748,11 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
 	createApiKey *CreateApiKey
-	envelope *bool
-	pretty *bool
 }
 
 // Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
 func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
 	r.createApiKey = &createApiKey
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -882,12 +808,6 @@ func (a *ProgrammaticAPIKeysApiService) CreateProjectApiKeyExecute(r Programmati
 		return localVarReturnValue, nil, reportError("createApiKey is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -970,20 +890,6 @@ type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiDeleteApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiDeleteApiKeyRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Execute() (*http.Response, error) {
@@ -1042,12 +948,6 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKey
 		return nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1120,20 +1020,6 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest struct {
 	orgId string
 	apiUserId string
 	ipAddress string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Execute() (*http.Response, error) {
@@ -1195,12 +1081,6 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r Programma
 		return nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1294,20 +1174,6 @@ type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiGetApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiGetApiKeyRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
@@ -1368,12 +1234,6 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyExecute(r ProgrammaticAPIKeysAp
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1455,20 +1315,6 @@ type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
 	orgId string
 	ipAddress string
 	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiGetApiKeyAccessListRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*UserAccessList, *http.Response, error) {
@@ -1532,12 +1378,6 @@ func (a *ProgrammaticAPIKeysApiService) GetApiKeyAccessListExecute(r Programmati
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1629,17 +1469,9 @@ type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1657,12 +1489,6 @@ func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) ItemsPerPage(
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1724,9 +1550,6 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r Pr
 		return localVarReturnValue, nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1735,9 +1558,6 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeyAccessListsEntriesExecute(r Pr
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1818,17 +1638,9 @@ type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiListApiKeysRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListApiKeysRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1846,12 +1658,6 @@ func (r ProgrammaticAPIKeysApiListApiKeysRequest) ItemsPerPage(itemsPerPage int3
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProgrammaticAPIKeysApiListApiKeysRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListApiKeysRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiListApiKeysRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListApiKeysRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1904,9 +1710,6 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeys
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1915,9 +1718,6 @@ func (a *ProgrammaticAPIKeysApiService) ListApiKeysExecute(r ProgrammaticAPIKeys
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1998,17 +1798,9 @@ type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2026,12 +1818,6 @@ func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) ItemsPerPage(itemsPerPa
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) PageNum(pageNum int32) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2084,9 +1870,6 @@ func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r Programmatic
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -2095,9 +1878,6 @@ func (a *ProgrammaticAPIKeysApiService) ListProjectApiKeysExecute(r Programmatic
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2179,20 +1959,6 @@ type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	groupId string
 	apiUserId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Execute() (*http.Response, error) {
@@ -2251,12 +2017,6 @@ func (a *ProgrammaticAPIKeysApiService) RemoveProjectApiKeyExecute(r Programmati
 		return nil, reportError("apiUserId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2340,25 +2100,11 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	orgId string
 	apiUserId string
 	apiUser *ApiUser
-	envelope *bool
-	pretty *bool
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
 func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) ApiUser(apiUser ApiUser) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
 	r.apiUser = &apiUser
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateApiKeyRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2423,12 +2169,6 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyExecute(r ProgrammaticAPIKey
 		return localVarReturnValue, nil, reportError("apiUser is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -2526,8 +2266,6 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	pageNum *int32
 	itemsPerPage *int32
 	includeCount *bool
-	pretty *bool
-	envelope *bool
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.
@@ -2551,18 +2289,6 @@ func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) ItemsPerPage(itemsPerPag
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
 	r.includeCount = &includeCount
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Pretty(pretty bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest) Envelope(envelope bool) ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -2635,12 +2361,6 @@ func (a *ProgrammaticAPIKeysApiService) UpdateApiKeyRolesExecute(r ProgrammaticA
 	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}

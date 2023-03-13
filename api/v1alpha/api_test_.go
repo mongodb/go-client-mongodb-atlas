@@ -42,14 +42,7 @@ type TestApiService service
 type TestApiVersionedExampleRequest struct {
 	ctx context.Context
 	ApiService TestApi
-	envelope *bool
 	additionalInfo *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TestApiVersionedExampleRequest) Envelope(envelope bool) TestApiVersionedExampleRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r TestApiVersionedExampleRequest) AdditionalInfo(additionalInfo bool) TestApiVersionedExampleRequest {
@@ -97,9 +90,6 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.additionalInfo != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "additionalInfo", r.additionalInfo, "")
 	}

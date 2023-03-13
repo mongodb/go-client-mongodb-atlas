@@ -233,25 +233,11 @@ type TeamsApiAddAllTeamsToProjectRequest struct {
 	ApiService TeamsApi
 	groupId string
 	teamRole *[]TeamRole
-	envelope *bool
-	pretty *bool
 }
 
 // Team to add to the specified project.
 func (r TeamsApiAddAllTeamsToProjectRequest) TeamRole(teamRole []TeamRole) TeamsApiAddAllTeamsToProjectRequest {
 	r.teamRole = &teamRole
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiAddAllTeamsToProjectRequest) Envelope(envelope bool) TeamsApiAddAllTeamsToProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiAddAllTeamsToProjectRequest) Pretty(pretty bool) TeamsApiAddAllTeamsToProjectRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -307,12 +293,6 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 		return localVarReturnValue, nil, reportError("teamRole is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -429,25 +409,11 @@ type TeamsApiAddTeamUserRequest struct {
 	orgId string
 	teamId string
 	addUserToTeam *[]AddUserToTeam
-	envelope *bool
-	pretty *bool
 }
 
 // One or more MongoDB Cloud users that you want to add to the specified team.
 func (r TeamsApiAddTeamUserRequest) AddUserToTeam(addUserToTeam []AddUserToTeam) TeamsApiAddTeamUserRequest {
 	r.addUserToTeam = &addUserToTeam
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiAddTeamUserRequest) Envelope(envelope bool) TeamsApiAddTeamUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiAddTeamUserRequest) Pretty(pretty bool) TeamsApiAddTeamUserRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -512,12 +478,6 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 		return localVarReturnValue, nil, reportError("addUserToTeam is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -633,25 +593,11 @@ type TeamsApiCreateTeamRequest struct {
 	ApiService TeamsApi
 	orgId string
 	team *Team
-	envelope *bool
-	pretty *bool
 }
 
 // Team that you want to create in the specified organization.
 func (r TeamsApiCreateTeamRequest) Team(team Team) TeamsApiCreateTeamRequest {
 	r.team = &team
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiCreateTeamRequest) Envelope(envelope bool) TeamsApiCreateTeamRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiCreateTeamRequest) Pretty(pretty bool) TeamsApiCreateTeamRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -707,12 +653,6 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team,
 		return localVarReturnValue, nil, reportError("team is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -828,20 +768,6 @@ type TeamsApiDeleteTeamRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiDeleteTeamRequest) Envelope(envelope bool) TeamsApiDeleteTeamRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiDeleteTeamRequest) Pretty(pretty bool) TeamsApiDeleteTeamRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r TeamsApiDeleteTeamRequest) Execute() (*http.Response, error) {
@@ -900,12 +826,6 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 		return nil, reportError("teamId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -999,20 +919,6 @@ type TeamsApiGetTeamByIdRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiGetTeamByIdRequest) Envelope(envelope bool) TeamsApiGetTeamByIdRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiGetTeamByIdRequest) Pretty(pretty bool) TeamsApiGetTeamByIdRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r TeamsApiGetTeamByIdRequest) Execute() (*TeamResponse, *http.Response, error) {
@@ -1073,12 +979,6 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Tea
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1181,20 +1081,6 @@ type TeamsApiGetTeamByNameRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiGetTeamByNameRequest) Envelope(envelope bool) TeamsApiGetTeamByNameRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiGetTeamByNameRequest) Pretty(pretty bool) TeamsApiGetTeamByNameRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r TeamsApiGetTeamByNameRequest) Execute() (*TeamResponse, *http.Response, error) {
@@ -1249,12 +1135,6 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1356,17 +1236,9 @@ type TeamsApiListOrganizationTeamsRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
-	envelope *bool
 	itemsPerPage *int32
 	includeCount *bool
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListOrganizationTeamsRequest) Envelope(envelope bool) TeamsApiListOrganizationTeamsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Number of items that the response returns per page.
@@ -1384,12 +1256,6 @@ func (r TeamsApiListOrganizationTeamsRequest) IncludeCount(includeCount bool) Te
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r TeamsApiListOrganizationTeamsRequest) PageNum(pageNum int32) TeamsApiListOrganizationTeamsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListOrganizationTeamsRequest) Pretty(pretty bool) TeamsApiListOrganizationTeamsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1442,9 +1308,6 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
@@ -1453,9 +1316,6 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1558,23 +1418,9 @@ type TeamsApiListProjectTeamsRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
-	envelope *bool
-	pretty *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListProjectTeamsRequest) Envelope(envelope bool) TeamsApiListProjectTeamsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListProjectTeamsRequest) Pretty(pretty bool) TeamsApiListProjectTeamsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1644,12 +1490,6 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -1772,16 +1612,8 @@ type TeamsApiListTeamUsersRequest struct {
 	ApiService TeamsApi
 	orgId string
 	teamId string
-	envelope *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiListTeamUsersRequest) Envelope(envelope bool) TeamsApiListTeamUsersRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Number of items that the response returns per page.
@@ -1793,12 +1625,6 @@ func (r TeamsApiListTeamUsersRequest) ItemsPerPage(itemsPerPage int32) TeamsApiL
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r TeamsApiListTeamUsersRequest) PageNum(pageNum int32) TeamsApiListTeamUsersRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiListTeamUsersRequest) Pretty(pretty bool) TeamsApiListTeamUsersRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1860,17 +1686,11 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 		return localVarReturnValue, nil, reportError("teamId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1985,13 +1805,6 @@ type TeamsApiRemoveProjectTeamRequest struct {
 	ApiService TeamsApi
 	groupId string
 	teamId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRemoveProjectTeamRequest) Envelope(envelope bool) TeamsApiRemoveProjectTeamRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r TeamsApiRemoveProjectTeamRequest) Execute() (*http.Response, error) {
@@ -2050,9 +1863,6 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 		return nil, reportError("teamId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2158,20 +1968,6 @@ type TeamsApiRemoveTeamUserRequest struct {
 	orgId string
 	teamId string
 	userId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRemoveTeamUserRequest) Envelope(envelope bool) TeamsApiRemoveTeamUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiRemoveTeamUserRequest) Pretty(pretty bool) TeamsApiRemoveTeamUserRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r TeamsApiRemoveTeamUserRequest) Execute() (*http.Response, error) {
@@ -2239,12 +2035,6 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 		return nil, reportError("userId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2339,25 +2129,11 @@ type TeamsApiRenameTeamRequest struct {
 	orgId string
 	teamId string
 	team *Team
-	envelope *bool
-	pretty *bool
 }
 
 // Details to update on the specified team.
 func (r TeamsApiRenameTeamRequest) Team(team Team) TeamsApiRenameTeamRequest {
 	r.team = &team
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiRenameTeamRequest) Envelope(envelope bool) TeamsApiRenameTeamRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiRenameTeamRequest) Pretty(pretty bool) TeamsApiRenameTeamRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2422,12 +2198,6 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamR
 		return localVarReturnValue, nil, reportError("team is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -2544,25 +2314,11 @@ type TeamsApiUpdateTeamRolesRequest struct {
 	groupId string
 	teamId string
 	teamRole *TeamRole
-	envelope *bool
-	pretty *bool
 }
 
 // The project roles assigned to the specified team.
 func (r TeamsApiUpdateTeamRolesRequest) TeamRole(teamRole TeamRole) TeamsApiUpdateTeamRolesRequest {
 	r.teamRole = &teamRole
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r TeamsApiUpdateTeamRolesRequest) Envelope(envelope bool) TeamsApiUpdateTeamRolesRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r TeamsApiUpdateTeamRolesRequest) Pretty(pretty bool) TeamsApiUpdateTeamRolesRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2627,12 +2383,6 @@ func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesReques
 		return localVarReturnValue, nil, reportError("teamRole is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

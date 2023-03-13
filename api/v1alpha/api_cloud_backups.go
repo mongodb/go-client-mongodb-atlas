@@ -498,20 +498,6 @@ type CloudBackupsApiCancelBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	restoreJobId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiCancelBackupRestoreJobRequest) Envelope(envelope bool) CloudBackupsApiCancelBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiCancelBackupRestoreJobRequest) Pretty(pretty bool) CloudBackupsApiCancelBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiCancelBackupRestoreJobRequest) Execute() (*http.Response, error) {
@@ -579,12 +565,6 @@ func (a *CloudBackupsApiService) CancelBackupRestoreJobExecute(r CloudBackupsApi
 		return nil, reportError("restoreJobId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -668,18 +648,11 @@ type CloudBackupsApiCreateBackupExportJobRequest struct {
 	groupId string
 	clusterName string
 	diskBackupExportJobRequest *DiskBackupExportJobRequest
-	envelope *bool
 }
 
 // Information about the Cloud Backup Snapshot Export Job to create.
 func (r CloudBackupsApiCreateBackupExportJobRequest) DiskBackupExportJobRequest(diskBackupExportJobRequest DiskBackupExportJobRequest) CloudBackupsApiCreateBackupExportJobRequest {
 	r.diskBackupExportJobRequest = &diskBackupExportJobRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiCreateBackupExportJobRequest) Envelope(envelope bool) CloudBackupsApiCreateBackupExportJobRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -744,9 +717,6 @@ func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CloudBackupsApiC
 		return localVarReturnValue, nil, reportError("diskBackupExportJobRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -863,25 +833,11 @@ type CloudBackupsApiCreateBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	diskBackupRestoreJob *DiskBackupRestoreJob
-	envelope *bool
-	pretty *bool
 }
 
 // Restores one snapshot of one cluster from the specified project.
 func (r CloudBackupsApiCreateBackupRestoreJobRequest) DiskBackupRestoreJob(diskBackupRestoreJob DiskBackupRestoreJob) CloudBackupsApiCreateBackupRestoreJobRequest {
 	r.diskBackupRestoreJob = &diskBackupRestoreJob
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiCreateBackupRestoreJobRequest) Envelope(envelope bool) CloudBackupsApiCreateBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiCreateBackupRestoreJobRequest) Pretty(pretty bool) CloudBackupsApiCreateBackupRestoreJobRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -946,12 +902,6 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CloudBackupsApi
 		return localVarReturnValue, nil, reportError("diskBackupRestoreJob is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1067,25 +1017,11 @@ type CloudBackupsApiCreateExportBucketRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	diskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
-	envelope *bool
-	pretty *bool
 }
 
 // Grants MongoDB Cloud access to the specified AWS S3 bucket.
 func (r CloudBackupsApiCreateExportBucketRequest) DiskBackupSnapshotAWSExportBucket(diskBackupSnapshotAWSExportBucket DiskBackupSnapshotAWSExportBucket) CloudBackupsApiCreateExportBucketRequest {
 	r.diskBackupSnapshotAWSExportBucket = &diskBackupSnapshotAWSExportBucket
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiCreateExportBucketRequest) Envelope(envelope bool) CloudBackupsApiCreateExportBucketRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiCreateExportBucketRequest) Pretty(pretty bool) CloudBackupsApiCreateExportBucketRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1141,12 +1077,6 @@ func (a *CloudBackupsApiService) CreateExportBucketExecute(r CloudBackupsApiCrea
 		return localVarReturnValue, nil, reportError("diskBackupSnapshotAWSExportBucket is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1252,25 +1182,11 @@ type CloudBackupsApiCreateServerlessBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	serverlessBackupRestoreJob *ServerlessBackupRestoreJob
-	envelope *bool
-	pretty *bool
 }
 
 // Restores one snapshot of one serverless instance from the specified project.
 func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) ServerlessBackupRestoreJob(serverlessBackupRestoreJob ServerlessBackupRestoreJob) CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
 	r.serverlessBackupRestoreJob = &serverlessBackupRestoreJob
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) Envelope(envelope bool) CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiCreateServerlessBackupRestoreJobRequest) Pretty(pretty bool) CloudBackupsApiCreateServerlessBackupRestoreJobRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -1335,12 +1251,6 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r Cloud
 		return localVarReturnValue, nil, reportError("serverlessBackupRestoreJob is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1456,13 +1366,6 @@ type CloudBackupsApiDeleteAllBackupSchedulesRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiDeleteAllBackupSchedulesRequest) Envelope(envelope bool) CloudBackupsApiDeleteAllBackupSchedulesRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r CloudBackupsApiDeleteAllBackupSchedulesRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
@@ -1523,9 +1426,6 @@ func (a *CloudBackupsApiService) DeleteAllBackupSchedulesExecute(r CloudBackupsA
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1617,13 +1517,6 @@ type CloudBackupsApiDeleteExportBucketRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	exportBucketId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiDeleteExportBucketRequest) Envelope(envelope bool) CloudBackupsApiDeleteExportBucketRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r CloudBackupsApiDeleteExportBucketRequest) Execute() (*http.Response, error) {
@@ -1682,9 +1575,6 @@ func (a *CloudBackupsApiService) DeleteExportBucketExecute(r CloudBackupsApiDele
 		return nil, reportError("exportBucketId must have less than 63 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1779,20 +1669,6 @@ type CloudBackupsApiDeleteReplicaSetBackupRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiDeleteReplicaSetBackupRequest) Envelope(envelope bool) CloudBackupsApiDeleteReplicaSetBackupRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiDeleteReplicaSetBackupRequest) Pretty(pretty bool) CloudBackupsApiDeleteReplicaSetBackupRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiDeleteReplicaSetBackupRequest) Execute() (*http.Response, error) {
@@ -1860,12 +1736,6 @@ func (a *CloudBackupsApiService) DeleteReplicaSetBackupExecute(r CloudBackupsApi
 		return nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1949,20 +1819,6 @@ type CloudBackupsApiDeleteShardedClusterBackupRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiDeleteShardedClusterBackupRequest) Envelope(envelope bool) CloudBackupsApiDeleteShardedClusterBackupRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiDeleteShardedClusterBackupRequest) Pretty(pretty bool) CloudBackupsApiDeleteShardedClusterBackupRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiDeleteShardedClusterBackupRequest) Execute() (*http.Response, error) {
@@ -2030,12 +1886,6 @@ func (a *CloudBackupsApiService) DeleteShardedClusterBackupExecute(r CloudBackup
 		return nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2108,13 +1958,6 @@ type CloudBackupsApiGetBackupExportJobRequest struct {
 	groupId string
 	clusterName string
 	exportId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetBackupExportJobRequest) Envelope(envelope bool) CloudBackupsApiGetBackupExportJobRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r CloudBackupsApiGetBackupExportJobRequest) Execute() (*DiskBackupExportJob, *http.Response, error) {
@@ -2178,9 +2021,6 @@ func (a *CloudBackupsApiService) GetBackupExportJobExecute(r CloudBackupsApiGetB
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2262,20 +2102,6 @@ type CloudBackupsApiGetBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	restoreJobId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetBackupRestoreJobRequest) Envelope(envelope bool) CloudBackupsApiGetBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetBackupRestoreJobRequest) Pretty(pretty bool) CloudBackupsApiGetBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetBackupRestoreJobRequest) Execute() (*DiskBackupRestoreJob, *http.Response, error) {
@@ -2345,12 +2171,6 @@ func (a *CloudBackupsApiService) GetBackupRestoreJobExecute(r CloudBackupsApiGet
 		return localVarReturnValue, nil, reportError("restoreJobId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2431,20 +2251,6 @@ type CloudBackupsApiGetBackupScheduleRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetBackupScheduleRequest) Envelope(envelope bool) CloudBackupsApiGetBackupScheduleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetBackupScheduleRequest) Pretty(pretty bool) CloudBackupsApiGetBackupScheduleRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetBackupScheduleRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
@@ -2505,12 +2311,6 @@ func (a *CloudBackupsApiService) GetBackupScheduleExecute(r CloudBackupsApiGetBa
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2590,20 +2390,6 @@ type CloudBackupsApiGetDataProtectionSettingsRequest struct {
 	ctx context.Context
 	ApiService CloudBackupsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetDataProtectionSettingsRequest) Envelope(envelope bool) CloudBackupsApiGetDataProtectionSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetDataProtectionSettingsRequest) Pretty(pretty bool) CloudBackupsApiGetDataProtectionSettingsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetDataProtectionSettingsRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
@@ -2655,12 +2441,6 @@ func (a *CloudBackupsApiService) GetDataProtectionSettingsExecute(r CloudBackups
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2752,13 +2532,6 @@ type CloudBackupsApiGetExportBucketRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	exportBucketId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetExportBucketRequest) Envelope(envelope bool) CloudBackupsApiGetExportBucketRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r CloudBackupsApiGetExportBucketRequest) Execute() (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
@@ -2819,9 +2592,6 @@ func (a *CloudBackupsApiService) GetExportBucketExecute(r CloudBackupsApiGetExpo
 		return localVarReturnValue, nil, reportError("exportBucketId must have less than 63 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2914,20 +2684,6 @@ type CloudBackupsApiGetReplicaSetBackupRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetReplicaSetBackupRequest) Envelope(envelope bool) CloudBackupsApiGetReplicaSetBackupRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetReplicaSetBackupRequest) Pretty(pretty bool) CloudBackupsApiGetReplicaSetBackupRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetReplicaSetBackupRequest) Execute() (*DiskBackupReplicaSet, *http.Response, error) {
@@ -2997,12 +2753,6 @@ func (a *CloudBackupsApiService) GetReplicaSetBackupExecute(r CloudBackupsApiGet
 		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3095,13 +2845,6 @@ type CloudBackupsApiGetServerlessBackupRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetServerlessBackupRequest) Envelope(envelope bool) CloudBackupsApiGetServerlessBackupRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r CloudBackupsApiGetServerlessBackupRequest) Execute() (*ServerlessBackupSnapshot, *http.Response, error) {
@@ -3171,9 +2914,6 @@ func (a *CloudBackupsApiService) GetServerlessBackupExecute(r CloudBackupsApiGet
 		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3266,20 +3006,6 @@ type CloudBackupsApiGetServerlessBackupRestoreJobRequest struct {
 	groupId string
 	clusterName string
 	restoreJobId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Envelope(envelope bool) CloudBackupsApiGetServerlessBackupRestoreJobRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Pretty(pretty bool) CloudBackupsApiGetServerlessBackupRestoreJobRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
@@ -3349,12 +3075,6 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r CloudBac
 		return localVarReturnValue, nil, reportError("restoreJobId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3447,20 +3167,6 @@ type CloudBackupsApiGetShardedClusterBackupRequest struct {
 	groupId string
 	clusterName string
 	snapshotId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiGetShardedClusterBackupRequest) Envelope(envelope bool) CloudBackupsApiGetShardedClusterBackupRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiGetShardedClusterBackupRequest) Pretty(pretty bool) CloudBackupsApiGetShardedClusterBackupRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiGetShardedClusterBackupRequest) Execute() (*DiskBackupShardedClusterSnapshot, *http.Response, error) {
@@ -3530,12 +3236,6 @@ func (a *CloudBackupsApiService) GetShardedClusterBackupExecute(r CloudBackupsAp
 		return localVarReturnValue, nil, reportError("snapshotId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3627,23 +3327,9 @@ type CloudBackupsApiListBackupExportJobsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListBackupExportJobsRequest) Envelope(envelope bool) CloudBackupsApiListBackupExportJobsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListBackupExportJobsRequest) Pretty(pretty bool) CloudBackupsApiListBackupExportJobsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3722,12 +3408,6 @@ func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r CloudBackupsApiLi
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -3817,17 +3497,9 @@ type CloudBackupsApiListBackupRestoreJobsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListBackupRestoreJobsRequest) Envelope(envelope bool) CloudBackupsApiListBackupRestoreJobsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3845,12 +3517,6 @@ func (r CloudBackupsApiListBackupRestoreJobsRequest) ItemsPerPage(itemsPerPage i
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r CloudBackupsApiListBackupRestoreJobsRequest) PageNum(pageNum int32) CloudBackupsApiListBackupRestoreJobsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListBackupRestoreJobsRequest) Pretty(pretty bool) CloudBackupsApiListBackupRestoreJobsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -3912,9 +3578,6 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiL
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -3923,9 +3586,6 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r CloudBackupsApiL
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4006,20 +3666,6 @@ type CloudBackupsApiListExportBucketsRequest struct {
 	ctx context.Context
 	ApiService CloudBackupsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListExportBucketsRequest) Envelope(envelope bool) CloudBackupsApiListExportBucketsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListExportBucketsRequest) Pretty(pretty bool) CloudBackupsApiListExportBucketsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiListExportBucketsRequest) Execute() (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
@@ -4071,12 +3717,6 @@ func (a *CloudBackupsApiService) ListExportBucketsExecute(r CloudBackupsApiListE
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4157,17 +3797,9 @@ type CloudBackupsApiListReplicaSetBackupsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListReplicaSetBackupsRequest) Envelope(envelope bool) CloudBackupsApiListReplicaSetBackupsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -4185,12 +3817,6 @@ func (r CloudBackupsApiListReplicaSetBackupsRequest) ItemsPerPage(itemsPerPage i
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r CloudBackupsApiListReplicaSetBackupsRequest) PageNum(pageNum int32) CloudBackupsApiListReplicaSetBackupsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListReplicaSetBackupsRequest) Pretty(pretty bool) CloudBackupsApiListReplicaSetBackupsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -4252,9 +3878,6 @@ func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiL
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -4263,9 +3886,6 @@ func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r CloudBackupsApiL
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4358,20 +3978,6 @@ type CloudBackupsApiListServerlessBackupRestoreJobsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Envelope(envelope bool) CloudBackupsApiListServerlessBackupRestoreJobsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Pretty(pretty bool) CloudBackupsApiListServerlessBackupRestoreJobsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
@@ -4432,12 +4038,6 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r CloudB
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4529,23 +4129,9 @@ type CloudBackupsApiListServerlessBackupsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListServerlessBackupsRequest) Envelope(envelope bool) CloudBackupsApiListServerlessBackupsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListServerlessBackupsRequest) Pretty(pretty bool) CloudBackupsApiListServerlessBackupsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -4624,12 +4210,6 @@ func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r CloudBackupsApiL
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -4730,20 +4310,6 @@ type CloudBackupsApiListShardedClusterBackupsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	clusterName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiListShardedClusterBackupsRequest) Envelope(envelope bool) CloudBackupsApiListShardedClusterBackupsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiListShardedClusterBackupsRequest) Pretty(pretty bool) CloudBackupsApiListShardedClusterBackupsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r CloudBackupsApiListShardedClusterBackupsRequest) Execute() (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
@@ -4804,12 +4370,6 @@ func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r CloudBackups
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4902,25 +4462,11 @@ type CloudBackupsApiTakeSnapshotRequest struct {
 	groupId string
 	clusterName string
 	diskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
-	envelope *bool
-	pretty *bool
 }
 
 // Takes one on-demand snapshot.
 func (r CloudBackupsApiTakeSnapshotRequest) DiskBackupOnDemandSnapshotRequest(diskBackupOnDemandSnapshotRequest DiskBackupOnDemandSnapshotRequest) CloudBackupsApiTakeSnapshotRequest {
 	r.diskBackupOnDemandSnapshotRequest = &diskBackupOnDemandSnapshotRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiTakeSnapshotRequest) Envelope(envelope bool) CloudBackupsApiTakeSnapshotRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiTakeSnapshotRequest) Pretty(pretty bool) CloudBackupsApiTakeSnapshotRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -4985,12 +4531,6 @@ func (a *CloudBackupsApiService) TakeSnapshotExecute(r CloudBackupsApiTakeSnapsh
 		return localVarReturnValue, nil, reportError("diskBackupOnDemandSnapshotRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -5085,25 +4625,11 @@ type CloudBackupsApiUpdateBackupScheduleRequest struct {
 	groupId string
 	clusterName string
 	diskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
-	envelope *bool
-	pretty *bool
 }
 
 // Updates the cloud backup schedule for one cluster within the specified project.  **Note**: In the request body, provide only the fields that you want to update.
 func (r CloudBackupsApiUpdateBackupScheduleRequest) DiskBackupSnapshotSchedule(diskBackupSnapshotSchedule DiskBackupSnapshotSchedule) CloudBackupsApiUpdateBackupScheduleRequest {
 	r.diskBackupSnapshotSchedule = &diskBackupSnapshotSchedule
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiUpdateBackupScheduleRequest) Envelope(envelope bool) CloudBackupsApiUpdateBackupScheduleRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiUpdateBackupScheduleRequest) Pretty(pretty bool) CloudBackupsApiUpdateBackupScheduleRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -5168,12 +4694,6 @@ func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r CloudBackupsApiUp
 		return localVarReturnValue, nil, reportError("diskBackupSnapshotSchedule is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -5267,25 +4787,11 @@ type CloudBackupsApiUpdateDataProtectionSettingsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 	dataProtectionSettings *DataProtectionSettings
-	envelope *bool
-	pretty *bool
 }
 
 // The new Data Protection Policy settings.
 func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) DataProtectionSettings(dataProtectionSettings DataProtectionSettings) CloudBackupsApiUpdateDataProtectionSettingsRequest {
 	r.dataProtectionSettings = &dataProtectionSettings
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) Envelope(envelope bool) CloudBackupsApiUpdateDataProtectionSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiUpdateDataProtectionSettingsRequest) Pretty(pretty bool) CloudBackupsApiUpdateDataProtectionSettingsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -5341,12 +4847,6 @@ func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r CloudBack
 		return localVarReturnValue, nil, reportError("dataProtectionSettings is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -5442,25 +4942,11 @@ type CloudBackupsApiUpdateSnapshotRetentionRequest struct {
 	clusterName string
 	snapshotId string
 	snapshotRetention *SnapshotRetention
-	envelope *bool
-	pretty *bool
 }
 
 // Changes the expiration date for one cloud backup snapshot for one cluster in the specified project.
 func (r CloudBackupsApiUpdateSnapshotRetentionRequest) SnapshotRetention(snapshotRetention SnapshotRetention) CloudBackupsApiUpdateSnapshotRetentionRequest {
 	r.snapshotRetention = &snapshotRetention
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r CloudBackupsApiUpdateSnapshotRetentionRequest) Envelope(envelope bool) CloudBackupsApiUpdateSnapshotRetentionRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r CloudBackupsApiUpdateSnapshotRetentionRequest) Pretty(pretty bool) CloudBackupsApiUpdateSnapshotRetentionRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -5534,12 +5020,6 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r CloudBackupsAp
 		return localVarReturnValue, nil, reportError("snapshotRetention is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

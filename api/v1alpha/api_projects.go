@@ -331,26 +331,12 @@ type ProjectsApiCreateProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	group *Group
-	envelope *bool
-	pretty *bool
 	projectOwnerId *string
 }
 
 // Creates one project.
 func (r ProjectsApiCreateProjectRequest) Group(group Group) ProjectsApiCreateProjectRequest {
 	r.group = &group
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiCreateProjectRequest) Envelope(envelope bool) ProjectsApiCreateProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiCreateProjectRequest) Pretty(pretty bool) ProjectsApiCreateProjectRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -403,12 +389,6 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 		return localVarReturnValue, nil, reportError("group is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.projectOwnerId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "projectOwnerId", r.projectOwnerId, "")
 	}
@@ -538,25 +518,11 @@ type ProjectsApiCreateProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	groupInvitationRequest *GroupInvitationRequest
-	pretty *bool
-	envelope *bool
 }
 
 // Invites one MongoDB Cloud user to join the specified project.
 func (r ProjectsApiCreateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiCreateProjectInvitationRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiCreateProjectInvitationRequest) Pretty(pretty bool) ProjectsApiCreateProjectInvitationRequest {
-	r.pretty = &pretty
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiCreateProjectInvitationRequest) Envelope(envelope bool) ProjectsApiCreateProjectInvitationRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -612,12 +578,6 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 		return localVarReturnValue, nil, reportError("groupInvitationRequest is required and must be specified")
 	}
 
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -699,20 +659,6 @@ type ProjectsApiDeleteProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiDeleteProjectRequest) Envelope(envelope bool) ProjectsApiDeleteProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiDeleteProjectRequest) Pretty(pretty bool) ProjectsApiDeleteProjectRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiDeleteProjectRequest) Execute() (*http.Response, error) {
@@ -762,12 +708,6 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequ
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -850,13 +790,6 @@ type ProjectsApiDeleteProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	invitationId string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiDeleteProjectInvitationRequest) Envelope(envelope bool) ProjectsApiDeleteProjectInvitationRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r ProjectsApiDeleteProjectInvitationRequest) Execute() (*http.Response, error) {
@@ -915,9 +848,6 @@ func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteP
 		return nil, reportError("invitationId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -989,20 +919,6 @@ type ProjectsApiDeleteProjectLimitRequest struct {
 	ApiService ProjectsApi
 	limitName string
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiDeleteProjectLimitRequest) Envelope(envelope bool) ProjectsApiDeleteProjectLimitRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiDeleteProjectLimitRequest) Pretty(pretty bool) ProjectsApiDeleteProjectLimitRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiDeleteProjectLimitRequest) Execute() (*http.Response, error) {
@@ -1055,12 +971,6 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1153,20 +1063,6 @@ type ProjectsApiGetProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetProjectRequest) Envelope(envelope bool) ProjectsApiGetProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiGetProjectRequest) Pretty(pretty bool) ProjectsApiGetProjectRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiGetProjectRequest) Execute() (*Group, *http.Response, error) {
@@ -1218,12 +1114,6 @@ func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1314,20 +1204,6 @@ type ProjectsApiGetProjectByNameRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupName string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetProjectByNameRequest) Envelope(envelope bool) ProjectsApiGetProjectByNameRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiGetProjectByNameRequest) Pretty(pretty bool) ProjectsApiGetProjectByNameRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiGetProjectByNameRequest) Execute() (*Group, *http.Response, error) {
@@ -1379,12 +1255,6 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 		return localVarReturnValue, nil, reportError("groupName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1498,20 +1368,6 @@ type ProjectsApiGetProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	invitationId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetProjectInvitationRequest) Envelope(envelope bool) ProjectsApiGetProjectInvitationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiGetProjectInvitationRequest) Pretty(pretty bool) ProjectsApiGetProjectInvitationRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiGetProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
@@ -1572,12 +1428,6 @@ func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProject
 		return localVarReturnValue, nil, reportError("invitationId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1669,20 +1519,6 @@ type ProjectsApiGetProjectLimitRequest struct {
 	ApiService ProjectsApi
 	limitName string
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetProjectLimitRequest) Envelope(envelope bool) ProjectsApiGetProjectLimitRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiGetProjectLimitRequest) Pretty(pretty bool) ProjectsApiGetProjectLimitRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiGetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
@@ -1737,12 +1573,6 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1855,20 +1685,6 @@ type ProjectsApiGetProjectSettingsRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiGetProjectSettingsRequest) Envelope(envelope bool) ProjectsApiGetProjectSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiGetProjectSettingsRequest) Pretty(pretty bool) ProjectsApiGetProjectSettingsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiGetProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
@@ -1920,12 +1736,6 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2027,21 +1837,7 @@ type ProjectsApiListProjectInvitationsRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
 	username *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiListProjectInvitationsRequest) Envelope(envelope bool) ProjectsApiListProjectInvitationsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiListProjectInvitationsRequest) Pretty(pretty bool) ProjectsApiListProjectInvitationsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Email address of the user account invited to this project.
@@ -2099,12 +1895,6 @@ func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProj
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.username != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
 	}
@@ -2187,20 +1977,6 @@ type ProjectsApiListProjectLimitsRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiListProjectLimitsRequest) Envelope(envelope bool) ProjectsApiListProjectLimitsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiListProjectLimitsRequest) Pretty(pretty bool) ProjectsApiListProjectLimitsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiListProjectLimitsRequest) Execute() (*Limit, *http.Response, error) {
@@ -2252,12 +2028,6 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2370,19 +2140,11 @@ type ProjectsApiListProjectUsersRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
 	flattenTeams *bool
 	includeOrgUsers *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiListProjectUsersRequest) Envelope(envelope bool) ProjectsApiListProjectUsersRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2400,12 +2162,6 @@ func (r ProjectsApiListProjectUsersRequest) ItemsPerPage(itemsPerPage int32) Pro
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProjectsApiListProjectUsersRequest) PageNum(pageNum int32) ProjectsApiListProjectUsersRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiListProjectUsersRequest) Pretty(pretty bool) ProjectsApiListProjectUsersRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2470,9 +2226,6 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -2481,9 +2234,6 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	if r.flattenTeams != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "flattenTeams", r.flattenTeams, "")
@@ -2569,17 +2319,9 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 type ProjectsApiListProjectsRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiListProjectsRequest) Envelope(envelope bool) ProjectsApiListProjectsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2597,12 +2339,6 @@ func (r ProjectsApiListProjectsRequest) ItemsPerPage(itemsPerPage int32) Project
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r ProjectsApiListProjectsRequest) PageNum(pageNum int32) ProjectsApiListProjectsRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiListProjectsRequest) Pretty(pretty bool) ProjectsApiListProjectsRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -2646,9 +2382,6 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -2657,9 +2390,6 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2752,20 +2482,6 @@ type ProjectsApiRemoveProjectUserRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	userId string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiRemoveProjectUserRequest) Envelope(envelope bool) ProjectsApiRemoveProjectUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiRemoveProjectUserRequest) Pretty(pretty bool) ProjectsApiRemoveProjectUserRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiRemoveProjectUserRequest) Execute() (*http.Response, error) {
@@ -2824,12 +2540,6 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 		return nil, reportError("userId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2923,21 +2633,7 @@ type ProjectsApiSetProjectLimitRequest struct {
 	ApiService ProjectsApi
 	limitName string
 	groupId string
-	envelope *bool
-	pretty *bool
 	limit *Limit
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiSetProjectLimitRequest) Envelope(envelope bool) ProjectsApiSetProjectLimitRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiSetProjectLimitRequest) Pretty(pretty bool) ProjectsApiSetProjectLimitRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiSetProjectLimitRequest) Limit(limit Limit) ProjectsApiSetProjectLimitRequest {
@@ -2997,12 +2693,6 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -3117,21 +2807,7 @@ type ProjectsApiUpdateProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
 	groupName *GroupName
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateProjectRequest) Envelope(envelope bool) ProjectsApiUpdateProjectRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiUpdateProjectRequest) Pretty(pretty bool) ProjectsApiUpdateProjectRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiUpdateProjectRequest) GroupName(groupName GroupName) ProjectsApiUpdateProjectRequest {
@@ -3188,12 +2864,6 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -3309,25 +2979,11 @@ type ProjectsApiUpdateProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	groupInvitationRequest *GroupInvitationRequest
-	envelope *bool
-	pretty *bool
 }
 
 // Updates the details of one pending invitation to the specified project.
 func (r ProjectsApiUpdateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiUpdateProjectInvitationRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateProjectInvitationRequest) Envelope(envelope bool) ProjectsApiUpdateProjectInvitationRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiUpdateProjectInvitationRequest) Pretty(pretty bool) ProjectsApiUpdateProjectInvitationRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -3383,12 +3039,6 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 		return localVarReturnValue, nil, reportError("groupInvitationRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -3494,18 +3144,11 @@ type ProjectsApiUpdateProjectInvitationByIdRequest struct {
 	groupId string
 	invitationId string
 	groupInvitationUpdateRequest *GroupInvitationUpdateRequest
-	envelope *bool
 }
 
 // Updates the details of one pending invitation to the specified project.
 func (r ProjectsApiUpdateProjectInvitationByIdRequest) GroupInvitationUpdateRequest(groupInvitationUpdateRequest GroupInvitationUpdateRequest) ProjectsApiUpdateProjectInvitationByIdRequest {
 	r.groupInvitationUpdateRequest = &groupInvitationUpdateRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateProjectInvitationByIdRequest) Envelope(envelope bool) ProjectsApiUpdateProjectInvitationByIdRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -3570,9 +3213,6 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 		return localVarReturnValue, nil, reportError("groupInvitationUpdateRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -3676,21 +3316,7 @@ type ProjectsApiUpdateProjectSettingsRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
-	envelope *bool
-	pretty *bool
 	groupSettings *GroupSettings
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r ProjectsApiUpdateProjectSettingsRequest) Envelope(envelope bool) ProjectsApiUpdateProjectSettingsRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r ProjectsApiUpdateProjectSettingsRequest) Pretty(pretty bool) ProjectsApiUpdateProjectSettingsRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r ProjectsApiUpdateProjectSettingsRequest) GroupSettings(groupSettings GroupSettings) ProjectsApiUpdateProjectSettingsRequest {
@@ -3747,12 +3373,6 @@ func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdatePro
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

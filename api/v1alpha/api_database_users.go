@@ -111,25 +111,11 @@ type DatabaseUsersApiCreateDatabaseUserRequest struct {
 	ApiService DatabaseUsersApi
 	groupId string
 	databaseUser *DatabaseUser
-	envelope *bool
-	pretty *bool
 }
 
 // Creates one database user in the specified project.
 func (r DatabaseUsersApiCreateDatabaseUserRequest) DatabaseUser(databaseUser DatabaseUser) DatabaseUsersApiCreateDatabaseUserRequest {
 	r.databaseUser = &databaseUser
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DatabaseUsersApiCreateDatabaseUserRequest) Envelope(envelope bool) DatabaseUsersApiCreateDatabaseUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DatabaseUsersApiCreateDatabaseUserRequest) Pretty(pretty bool) DatabaseUsersApiCreateDatabaseUserRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -185,12 +171,6 @@ func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r DatabaseUsersApiCr
 		return localVarReturnValue, nil, reportError("databaseUser is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -274,20 +254,6 @@ type DatabaseUsersApiDeleteDatabaseUserRequest struct {
 	groupId string
 	databaseName string
 	username string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DatabaseUsersApiDeleteDatabaseUserRequest) Envelope(envelope bool) DatabaseUsersApiDeleteDatabaseUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DatabaseUsersApiDeleteDatabaseUserRequest) Pretty(pretty bool) DatabaseUsersApiDeleteDatabaseUserRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DatabaseUsersApiDeleteDatabaseUserRequest) Execute() (*http.Response, error) {
@@ -343,12 +309,6 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 		return nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -443,20 +403,6 @@ type DatabaseUsersApiGetDatabaseUserRequest struct {
 	groupId string
 	databaseName string
 	username string
-	envelope *bool
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DatabaseUsersApiGetDatabaseUserRequest) Envelope(envelope bool) DatabaseUsersApiGetDatabaseUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DatabaseUsersApiGetDatabaseUserRequest) Pretty(pretty bool) DatabaseUsersApiGetDatabaseUserRequest {
-	r.pretty = &pretty
-	return r
 }
 
 func (r DatabaseUsersApiGetDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
@@ -514,12 +460,6 @@ func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDa
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -610,17 +550,9 @@ type DatabaseUsersApiListDatabaseUsersRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
-	envelope *bool
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
-	pretty *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DatabaseUsersApiListDatabaseUsersRequest) Envelope(envelope bool) DatabaseUsersApiListDatabaseUsersRequest {
-	r.envelope = &envelope
-	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -638,12 +570,6 @@ func (r DatabaseUsersApiListDatabaseUsersRequest) ItemsPerPage(itemsPerPage int3
 // Number of the page that displays the current set of the total objects that the response returns.
 func (r DatabaseUsersApiListDatabaseUsersRequest) PageNum(pageNum int32) DatabaseUsersApiListDatabaseUsersRequest {
 	r.pageNum = &pageNum
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DatabaseUsersApiListDatabaseUsersRequest) Pretty(pretty bool) DatabaseUsersApiListDatabaseUsersRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -696,9 +622,6 @@ func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiLis
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
@@ -707,9 +630,6 @@ func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiLis
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -793,25 +713,11 @@ type DatabaseUsersApiUpdateDatabaseUserRequest struct {
 	databaseName string
 	username string
 	databaseUser *DatabaseUser
-	envelope *bool
-	pretty *bool
 }
 
 // Updates one database user that belongs to the specified project.
 func (r DatabaseUsersApiUpdateDatabaseUserRequest) DatabaseUser(databaseUser DatabaseUser) DatabaseUsersApiUpdateDatabaseUserRequest {
 	r.databaseUser = &databaseUser
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r DatabaseUsersApiUpdateDatabaseUserRequest) Envelope(envelope bool) DatabaseUsersApiUpdateDatabaseUserRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r DatabaseUsersApiUpdateDatabaseUserRequest) Pretty(pretty bool) DatabaseUsersApiUpdateDatabaseUserRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -873,12 +779,6 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUp
 		return localVarReturnValue, nil, reportError("databaseUser is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

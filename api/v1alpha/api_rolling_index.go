@@ -47,25 +47,11 @@ type RollingIndexApiCreateRollingIndexRequest struct {
 	groupId string
 	clusterName string
 	indexRequest *IndexRequest
-	envelope *bool
-	pretty *bool
 }
 
 // Rolling index to create on the specified cluster.
 func (r RollingIndexApiCreateRollingIndexRequest) IndexRequest(indexRequest IndexRequest) RollingIndexApiCreateRollingIndexRequest {
 	r.indexRequest = &indexRequest
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r RollingIndexApiCreateRollingIndexRequest) Envelope(envelope bool) RollingIndexApiCreateRollingIndexRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r RollingIndexApiCreateRollingIndexRequest) Pretty(pretty bool) RollingIndexApiCreateRollingIndexRequest {
-	r.pretty = &pretty
 	return r
 }
 
@@ -128,12 +114,6 @@ func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCrea
 		return nil, reportError("indexRequest is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 

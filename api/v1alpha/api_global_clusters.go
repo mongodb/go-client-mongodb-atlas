@@ -112,18 +112,11 @@ type GlobalClustersApiCreateCustomZoneMappingRequest struct {
 	groupId string
 	clusterName string
 	geoSharding *GeoSharding
-	envelope *bool
 }
 
 // Custom zone mapping to add to the specified global cluster.
 func (r GlobalClustersApiCreateCustomZoneMappingRequest) GeoSharding(geoSharding GeoSharding) GlobalClustersApiCreateCustomZoneMappingRequest {
 	r.geoSharding = &geoSharding
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r GlobalClustersApiCreateCustomZoneMappingRequest) Envelope(envelope bool) GlobalClustersApiCreateCustomZoneMappingRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -188,9 +181,6 @@ func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r GlobalCluste
 		return localVarReturnValue, nil, reportError("geoSharding is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-02-01+json"}
 
@@ -274,18 +264,11 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	groupId string
 	clusterName string
 	managedNamespace *ManagedNamespace
-	envelope *bool
 }
 
 // Managed namespace to create within the specified global cluster.
 func (r GlobalClustersApiCreateManagedNamespaceRequest) ManagedNamespace(managedNamespace ManagedNamespace) GlobalClustersApiCreateManagedNamespaceRequest {
 	r.managedNamespace = &managedNamespace
-	return r
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r GlobalClustersApiCreateManagedNamespaceRequest) Envelope(envelope bool) GlobalClustersApiCreateManagedNamespaceRequest {
-	r.envelope = &envelope
 	return r
 }
 
@@ -350,9 +333,6 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 		return localVarReturnValue, nil, reportError("managedNamespace is required and must be specified")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-02-01+json"}
 
@@ -446,13 +426,6 @@ type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) Envelope(envelope bool) GlobalClustersApiDeleteAllCustomZoneMappingsRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) Execute() (*GeoSharding, *http.Response, error) {
@@ -513,9 +486,6 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalCl
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -596,22 +566,8 @@ type GlobalClustersApiDeleteManagedNamespaceRequest struct {
 	ApiService GlobalClustersApi
 	clusterName string
 	groupId string
-	envelope *bool
-	pretty *bool
 	db *string
 	collection *string
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Envelope(envelope bool) GlobalClustersApiDeleteManagedNamespaceRequest {
-	r.envelope = &envelope
-	return r
-}
-
-// Flag that indicates whether the response body should be in the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/Prettyprint\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;prettyprint&lt;/a&gt; format.
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Pretty(pretty bool) GlobalClustersApiDeleteManagedNamespaceRequest {
-	r.pretty = &pretty
-	return r
 }
 
 // Human-readable label that identifies the database that contains the collection.
@@ -684,12 +640,6 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
-	if r.pretty != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pretty", r.pretty, "")
-	}
 	if r.db != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "db", r.db, "")
 	}
@@ -776,13 +726,6 @@ type GlobalClustersApiGetManagedNamespaceRequest struct {
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
-	envelope *bool
-}
-
-// Flag that indicates whether Application wraps the response in an &#x60;envelope&#x60; JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope&#x3D;true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body.
-func (r GlobalClustersApiGetManagedNamespaceRequest) Envelope(envelope bool) GlobalClustersApiGetManagedNamespaceRequest {
-	r.envelope = &envelope
-	return r
 }
 
 func (r GlobalClustersApiGetManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {
@@ -843,9 +786,6 @@ func (a *GlobalClustersApiService) GetManagedNamespaceExecute(r GlobalClustersAp
 		return localVarReturnValue, nil, reportError("clusterName must have less than 64 elements")
 	}
 
-	if r.envelope != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "envelope", r.envelope, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
