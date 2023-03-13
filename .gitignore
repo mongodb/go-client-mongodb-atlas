@@ -37,3 +37,5 @@ node_modules
 # Output of the go coverage tool
 *.out
 example_cluster_aws
+mongodbatlasv2/api
+mongodbatlasv2/.openapi-generator

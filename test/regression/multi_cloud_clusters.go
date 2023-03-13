@@ -2,7 +2,7 @@ package regression
 
 import (
 	"github.com/openlyinc/pointy"
-	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2/latest"
+	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2"
 )
 
 func TestMultiCloudClustersModelRegression() {

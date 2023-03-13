@@ -21,14 +21,14 @@ go install go.mongodb.org/atlas
 ### Using in the code
 
 ```go
-mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2/latest"
+mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2"
 ```
 
 Construct a new Atlas client, then use the various services on the client to
 access different parts of the Atlas API. For example:
 
 ```go
-	mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2/latest"
+	mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2"
 
    	apiKey := os.Getenv("MDB_API_KEY")
 	apiSecret := os.Getenv("MDB_API_SECRET")
