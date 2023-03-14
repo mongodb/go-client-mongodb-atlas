@@ -1,4 +1,4 @@
-name: Generate Client
+name: Generate Client Dev
 on:
   workflow_dispatch:
   
