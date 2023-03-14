@@ -1,12 +1,12 @@
 export OPENAPI_FOLDER=../openapi
 export OPENAPI_FILE_NAME=atlas-api.yaml
-export SDK_FOLDER=../api/v1alpha
+export SDK_FOLDER=../mongodbatlasv2
 
 .DEFAULT_GOAL := generate_client
 
 .PHONY: clean_client
 clean_client:
-	rm -Rf ../api/v1alpha
+	rm -Rf ../mongodbatlasv2
 
 .PHONY: fetch_openapi
 fetch_openapi:

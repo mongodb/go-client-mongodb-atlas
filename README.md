@@ -6,7 +6,52 @@ A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/
 
 Note that `go-client-mongodb-atlas` only supports the two most recent major versions of Go.
 
+> NOTE: Atlas API v2 client is still under development. 
+> Please consider using v1 client: `go.mongodb.org/atlas/mongodbatlas` for production usage.
+
+
 ## Usage
+
+### Adding Dependency
+
+```
+go install go.mongodb.org/atlas
+```
+
+### Using in the code
+
+```go
+mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2"
+```
+
+Construct a new Atlas client, then use the various services on the client to
+access different parts of the Atlas API. For example:
+
+```go
+	mongodbatlas import "go.mongodb.org/atlas/mongodbatlasv2"
+
+   	apiKey := os.Getenv("MDB_API_KEY")
+	apiSecret := os.Getenv("MDB_API_SECRET")
+
+	sdk := mongodbatlas.NewClient(mongodbatlas.UseDigestAuth(apiKey, apiSecret))
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
+```
+
+For documentation about obtaining private and public API token go to
+https://docs.atlas.mongodb.com/configure-api-access.
+The services of a client divide the API into logical chunks and correspond to
+the structure of the Atlas API documentation at
+https://www.mongodb.com/docs/atlas/reference/api-resources-spec/.
+
+## Examples
+
+Example for creating an dedicated MongoDB cluster on AWS infrastructure
+
+```
+go run ./examples/example_cluster_aws.go
+```
+
+## Usage for v1 client
 
 ```go
 import "go.mongodb.org/atlas/mongodbatlas"
