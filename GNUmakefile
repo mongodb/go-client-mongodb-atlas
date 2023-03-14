@@ -2,7 +2,6 @@ SOURCE_FILES?=./...
 PKG_NAME=mongodbatlas
 GOLANGCI_VERSION=v1.50.1
 COVERAGE=coverage.out
-APIV2_FOLDER=./api
 
 export GO111MODULE := on
 export PATH := ./bin:$(PATH)
@@ -63,4 +62,4 @@ openapi-pipeline:
 
 .PHONY: v2-examples-build
 v2-examples-build:
-	go build "$(APIV2_FOLDER)/examples/example_cluster_aws.go"
+	go build "./examples/example_cluster_aws.go"
