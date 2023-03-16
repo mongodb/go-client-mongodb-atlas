@@ -40,7 +40,7 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**GetBackupExportJob**](docs/CloudBackupsApi.md#getbackupexportjob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/exports/{exportId} | Return One Cloud Backup Snapshot Export Job
 *CloudBackupsApi* | [**GetBackupRestoreJob**](docs/CloudBackupsApi.md#getbackuprestorejob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/restoreJobs/{restoreJobId} | Return One Restore Job of One Cluster
 *CloudBackupsApi* | [**GetBackupSchedule**](docs/CloudBackupsApi.md#getbackupschedule) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Return One Cloud Backup Schedule
-*CloudBackupsApi* | [**GetDataProtectionSettings**](docs/CloudBackupsApi.md#getdataprotectionsettings) | **Get** /api/atlas/v2/groups/{groupId}/dataProtection | Return the Data Protection Policy settings
+*CloudBackupsApi* | [**GetDataProtectionSettings**](docs/CloudBackupsApi.md#getdataprotectionsettings) | **Get** /api/atlas/v2/groups/{groupId}/backupCompliancePolicy | Return the Backup Compliance Policy settings
 *CloudBackupsApi* | [**GetExportBucket**](docs/CloudBackupsApi.md#getexportbucket) | **Get** /api/atlas/v2/groups/{groupId}/backup/exportBuckets/{exportBucketId} | Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
 *CloudBackupsApi* | [**GetReplicaSetBackup**](docs/CloudBackupsApi.md#getreplicasetbackup) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Return One Replica Set Cloud Backup
 *CloudBackupsApi* | [**GetServerlessBackup**](docs/CloudBackupsApi.md#getserverlessbackup) | **Get** /api/atlas/v2/groups/{groupId}/serverless/{clusterName}/backup/snapshots/{snapshotId} | Return One Snapshot of One Serverless Instance
@@ -55,7 +55,7 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**ListShardedClusterBackups**](docs/CloudBackupsApi.md#listshardedclusterbackups) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/shardedClusters | Return All Sharded Cluster Cloud Backups
 *CloudBackupsApi* | [**TakeSnapshot**](docs/CloudBackupsApi.md#takesnapshot) | **Post** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots | Take One On-Demand Snapshot
 *CloudBackupsApi* | [**UpdateBackupSchedule**](docs/CloudBackupsApi.md#updatebackupschedule) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Update Cloud Backup Schedule for One Cluster
-*CloudBackupsApi* | [**UpdateDataProtectionSettings**](docs/CloudBackupsApi.md#updatedataprotectionsettings) | **Put** /api/atlas/v2/groups/{groupId}/dataProtection | Update or enable the Data Protection Policy settings
+*CloudBackupsApi* | [**UpdateDataProtectionSettings**](docs/CloudBackupsApi.md#updatedataprotectionsettings) | **Put** /api/atlas/v2/groups/{groupId}/backupCompliancePolicy | Update or enable the Backup Compliance Policy settings
 *CloudBackupsApi* | [**UpdateSnapshotRetention**](docs/CloudBackupsApi.md#updatesnapshotretention) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Change Expiration Date for One Cloud Backup
 *CloudMigrationServiceApi* | [**CreateLinkToken**](docs/CloudMigrationServiceApi.md#createlinktoken) | **Post** /api/atlas/v2/orgs/{orgId}/liveMigrations/linkTokens | Create One Link-Token
 *CloudMigrationServiceApi* | [**CreatePushMigration**](docs/CloudMigrationServiceApi.md#createpushmigration) | **Post** /api/atlas/v2/groups/{groupId}/liveMigrations | Migrate One Local Managed Cluster to MongoDB Atlas
@@ -338,8 +338,10 @@ Class | Method | HTTP request | Description
  - [AWSRegionConfig](docs/AWSRegionConfig.md)
  - [AccessListItem](docs/AccessListItem.md)
  - [AddUserToTeam](docs/AddUserToTeam.md)
+ - [Alert](docs/Alert.md)
  - [AlertAudit](docs/AlertAudit.md)
  - [AlertAuditType](docs/AlertAuditType.md)
+ - [AlertConfig](docs/AlertConfig.md)
  - [AlertConfigAudit](docs/AlertConfigAudit.md)
  - [AlertConfigAuditType](docs/AlertConfigAuditType.md)
  - [AlertConfigViewForNdsGroup](docs/AlertConfigViewForNdsGroup.md)
@@ -401,6 +403,7 @@ Class | Method | HTTP request | Description
  - [CheckpointPart](docs/CheckpointPart.md)
  - [CloudProviderAccess](docs/CloudProviderAccess.md)
  - [CloudProviderAccessAWSIAMRole](docs/CloudProviderAccessAWSIAMRole.md)
+ - [CloudProviderAccessAzureServicePrincipal](docs/CloudProviderAccessAzureServicePrincipal.md)
  - [CloudProviderAccessDataLakeFeatureUsage](docs/CloudProviderAccessDataLakeFeatureUsage.md)
  - [CloudProviderAccessEncryptionAtRestFeatureUsage](docs/CloudProviderAccessEncryptionAtRestFeatureUsage.md)
  - [CloudProviderAccessExportSnapshotFeatureUsage](docs/CloudProviderAccessExportSnapshotFeatureUsage.md)
@@ -430,6 +433,7 @@ Class | Method | HTTP request | Description
  - [ComputeAutoScaling](docs/ComputeAutoScaling.md)
  - [ComputeAutoScalingV15](docs/ComputeAutoScalingV15.md)
  - [ConnectedOrgConfig](docs/ConnectedOrgConfig.md)
+ - [ContainerPeer](docs/ContainerPeer.md)
  - [ContainerPeerViewRequest](docs/ContainerPeerViewRequest.md)
  - [CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold](docs/CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold.md)
  - [CpsBackupThresholdAlertConfigViewForNdsGroup](docs/CpsBackupThresholdAlertConfigViewForNdsGroup.md)
@@ -449,6 +453,7 @@ Class | Method | HTTP request | Description
  - [Criteria](docs/Criteria.md)
  - [CustomCriteria](docs/CustomCriteria.md)
  - [CustomDBRole](docs/CustomDBRole.md)
+ - [CustomZoneMappings](docs/CustomZoneMappings.md)
  - [CustomerX509](docs/CustomerX509.md)
  - [DBAction](docs/DBAction.md)
  - [DBResource](docs/DBResource.md)
@@ -491,6 +496,7 @@ Class | Method | HTTP request | Description
  - [DefaultAlertViewForNdsGroup](docs/DefaultAlertViewForNdsGroup.md)
  - [DefaultEventViewForNdsGroup](docs/DefaultEventViewForNdsGroup.md)
  - [DefaultEventViewForOrg](docs/DefaultEventViewForOrg.md)
+ - [DefaultLimit](docs/DefaultLimit.md)
  - [DefaultSchedule](docs/DefaultSchedule.md)
  - [DeleteCopiedBackups](docs/DeleteCopiedBackups.md)
  - [Destination](docs/Destination.md)
@@ -519,6 +525,7 @@ Class | Method | HTTP request | Description
  - [EventTypeForOrg](docs/EventTypeForOrg.md)
  - [EventViewForNdsGroup](docs/EventViewForNdsGroup.md)
  - [EventViewForOrg](docs/EventViewForOrg.md)
+ - [ExampleResourceResponseView20230101](docs/ExampleResourceResponseView20230101.md)
  - [ExampleResourceResponseView20230201](docs/ExampleResourceResponseView20230201.md)
  - [ExportStatus](docs/ExportStatus.md)
  - [FTSAnalyzers](docs/FTSAnalyzers.md)
@@ -592,6 +599,7 @@ Class | Method | HTTP request | Description
  - [IngestionSource](docs/IngestionSource.md)
  - [InheritedRole](docs/InheritedRole.md)
  - [InstanceSize](docs/InstanceSize.md)
+ - [Integration](docs/Integration.md)
  - [IntegrationViewForNdsGroup](docs/IntegrationViewForNdsGroup.md)
  - [Invoice](docs/Invoice.md)
  - [Key](docs/Key.md)
@@ -636,6 +644,7 @@ Class | Method | HTTP request | Description
  - [NDSLDAPVerifyConnectivityJobRequestParams](docs/NDSLDAPVerifyConnectivityJobRequestParams.md)
  - [NDSLDAPVerifyConnectivityJobRequestValidation](docs/NDSLDAPVerifyConnectivityJobRequestValidation.md)
  - [NDSLabel](docs/NDSLabel.md)
+ - [NDSNotification](docs/NDSNotification.md)
  - [NDSServerlessInstanceAudit](docs/NDSServerlessInstanceAudit.md)
  - [NDSServerlessInstanceAuditType](docs/NDSServerlessInstanceAuditType.md)
  - [NDSTenantEndpointAudit](docs/NDSTenantEndpointAudit.md)
@@ -649,6 +658,7 @@ Class | Method | HTTP request | Description
  - [NetworkPermissionEntry](docs/NetworkPermissionEntry.md)
  - [NetworkPermissionEntryStatus](docs/NetworkPermissionEntryStatus.md)
  - [NewRelic](docs/NewRelic.md)
+ - [Notification](docs/Notification.md)
  - [NotificationViewForNdsGroup](docs/NotificationViewForNdsGroup.md)
  - [NumberMetricAlert](docs/NumberMetricAlert.md)
  - [NumberMetricEvent](docs/NumberMetricEvent.md)
@@ -701,6 +711,7 @@ Class | Method | HTTP request | Description
  - [PaginatedDiskPartition](docs/PaginatedDiskPartition.md)
  - [PaginatedGCPPeerVpc](docs/PaginatedGCPPeerVpc.md)
  - [PaginatedHostViewAtlas](docs/PaginatedHostViewAtlas.md)
+ - [PaginatedLegacyCluster](docs/PaginatedLegacyCluster.md)
  - [PaginatedNetworkAccess](docs/PaginatedNetworkAccess.md)
  - [PaginatedOnlineArchive](docs/PaginatedOnlineArchive.md)
  - [PaginatedOrgGroup](docs/PaginatedOrgGroup.md)
@@ -791,6 +802,7 @@ Class | Method | HTTP request | Description
  - [SnapshotRetention](docs/SnapshotRetention.md)
  - [SnapshotSchedule](docs/SnapshotSchedule.md)
  - [Source](docs/Source.md)
+ - [SummaryNotification](docs/SummaryNotification.md)
  - [SynonymSource](docs/SynonymSource.md)
  - [SystemStatus](docs/SystemStatus.md)
  - [TargetOrg](docs/TargetOrg.md)
@@ -856,6 +868,7 @@ Class | Method | HTTP request | Description
  - [WeeklySchedule](docs/WeeklySchedule.md)
  - [X509Certificate](docs/X509Certificate.md)
  - [X509CertificateView](docs/X509CertificateView.md)
+ - [ZoneMapping](docs/ZoneMapping.md)
 
 
 

@@ -12,204 +12,215 @@ package latest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the Limit type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Limit{}
-
-// Limit Details of user managed limits.
+// Limit - Details of user managed limits.
 type Limit struct {
-	// Amount that indicates the current usage of the limit.
-	CurrentUsage *int64 `json:"currentUsage,omitempty"`
-	// Default value of the limit.
-	DefaultLimit *int64 `json:"defaultLimit,omitempty"`
-	// Maximum value of the limit.
-	MaximumLimit *int64 `json:"maximumLimit,omitempty"`
-	// Human-readable label that identifies the user-managed limit to modify.
-	Name string `json:"name"`
-	// Amount to set the limit to.
-	Value int64 `json:"value"`
+	DataFederationQueryLimit *DataFederationQueryLimit
+	DefaultLimit *DefaultLimit
 }
 
-// NewLimit instantiates a new Limit object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLimit(name string, value int64) *Limit {
-	this := Limit{}
-	this.Name = name
-	this.Value = value
-	return &this
-}
-
-// NewLimitWithDefaults instantiates a new Limit object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewLimitWithDefaults() *Limit {
-	this := Limit{}
-	return &this
-}
-
-// GetCurrentUsage returns the CurrentUsage field value if set, zero value otherwise.
-func (o *Limit) GetCurrentUsage() int64 {
-	if o == nil || IsNil(o.CurrentUsage) {
-		var ret int64
-		return ret
+// DataFederationQueryLimitAsLimit is a convenience function that returns DataFederationQueryLimit wrapped in Limit
+func DataFederationQueryLimitAsLimit(v *DataFederationQueryLimit) Limit {
+	return Limit{
+		DataFederationQueryLimit: v,
 	}
-	return *o.CurrentUsage
 }
 
-// GetCurrentUsageOk returns a tuple with the CurrentUsage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Limit) GetCurrentUsageOk() (*int64, bool) {
-	if o == nil || IsNil(o.CurrentUsage) {
-		return nil, false
+// DefaultLimitAsLimit is a convenience function that returns DefaultLimit wrapped in Limit
+func DefaultLimitAsLimit(v *DefaultLimit) Limit {
+	return Limit{
+		DefaultLimit: v,
 	}
-	return o.CurrentUsage, true
 }
 
-// HasCurrentUsage returns a boolean if a field has been set.
-func (o *Limit) HasCurrentUsage() bool {
-	if o != nil && !IsNil(o.CurrentUsage) {
-		return true
-	}
 
-	return false
-}
-
-// SetCurrentUsage gets a reference to the given int64 and assigns it to the CurrentUsage field.
-func (o *Limit) SetCurrentUsage(v int64) {
-	o.CurrentUsage = &v
-}
-
-// GetDefaultLimit returns the DefaultLimit field value if set, zero value otherwise.
-func (o *Limit) GetDefaultLimit() int64 {
-	if o == nil || IsNil(o.DefaultLimit) {
-		var ret int64
-		return ret
-	}
-	return *o.DefaultLimit
-}
-
-// GetDefaultLimitOk returns a tuple with the DefaultLimit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Limit) GetDefaultLimitOk() (*int64, bool) {
-	if o == nil || IsNil(o.DefaultLimit) {
-		return nil, false
-	}
-	return o.DefaultLimit, true
-}
-
-// HasDefaultLimit returns a boolean if a field has been set.
-func (o *Limit) HasDefaultLimit() bool {
-	if o != nil && !IsNil(o.DefaultLimit) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultLimit gets a reference to the given int64 and assigns it to the DefaultLimit field.
-func (o *Limit) SetDefaultLimit(v int64) {
-	o.DefaultLimit = &v
-}
-
-// GetMaximumLimit returns the MaximumLimit field value if set, zero value otherwise.
-func (o *Limit) GetMaximumLimit() int64 {
-	if o == nil || IsNil(o.MaximumLimit) {
-		var ret int64
-		return ret
-	}
-	return *o.MaximumLimit
-}
-
-// GetMaximumLimitOk returns a tuple with the MaximumLimit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Limit) GetMaximumLimitOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaximumLimit) {
-		return nil, false
-	}
-	return o.MaximumLimit, true
-}
-
-// HasMaximumLimit returns a boolean if a field has been set.
-func (o *Limit) HasMaximumLimit() bool {
-	if o != nil && !IsNil(o.MaximumLimit) {
-		return true
-	}
-
-	return false
-}
-
-// SetMaximumLimit gets a reference to the given int64 and assigns it to the MaximumLimit field.
-func (o *Limit) SetMaximumLimit(v int64) {
-	o.MaximumLimit = &v
-}
-
-// GetName returns the Name field value
-func (o *Limit) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Limit) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Limit) SetName(v string) {
-	o.Name = v
-}
-
-// GetValue returns the Value field value
-func (o *Limit) GetValue() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value
-// and a boolean to check if the value has been set.
-func (o *Limit) GetValueOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Value, true
-}
-
-// SetValue sets field value
-func (o *Limit) SetValue(v int64) {
-	o.Value = v
-}
-
-func (o Limit) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *Limit) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'DataFederationQueryLimit'
+	if jsonDict["name"] == "DataFederationQueryLimit" {
+		// try to unmarshal JSON data into DataFederationQueryLimit
+		err = json.Unmarshal(data, &dst.DataFederationQueryLimit)
+		if err == nil {
+			return nil // data stored in dst.DataFederationQueryLimit, return on the first match
+		} else {
+			dst.DataFederationQueryLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DataFederationQueryLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DefaultLimit'
+	if jsonDict["name"] == "DefaultLimit" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.deployment.clusters'
+	if jsonDict["name"] == "atlas.project.deployment.clusters" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.deployment.nodesPerPrivateLinkRegion'
+	if jsonDict["name"] == "atlas.project.deployment.nodesPerPrivateLinkRegion" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.security.databaseAccess.customRoles'
+	if jsonDict["name"] == "atlas.project.security.databaseAccess.customRoles" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.security.databaseAccess.users'
+	if jsonDict["name"] == "atlas.project.security.databaseAccess.users" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.security.networkAccess.crossRegionEntries'
+	if jsonDict["name"] == "atlas.project.security.networkAccess.crossRegionEntries" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'atlas.project.security.networkAccess.entries'
+	if jsonDict["name"] == "atlas.project.security.networkAccess.entries" {
+		// try to unmarshal JSON data into DefaultLimit
+		err = json.Unmarshal(data, &dst.DefaultLimit)
+		if err == nil {
+			return nil // data stored in dst.DefaultLimit, return on the first match
+		} else {
+			dst.DefaultLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DefaultLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'dataFederation.bytesProcessed.daily'
+	if jsonDict["name"] == "dataFederation.bytesProcessed.daily" {
+		// try to unmarshal JSON data into DataFederationQueryLimit
+		err = json.Unmarshal(data, &dst.DataFederationQueryLimit)
+		if err == nil {
+			return nil // data stored in dst.DataFederationQueryLimit, return on the first match
+		} else {
+			dst.DataFederationQueryLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DataFederationQueryLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'dataFederation.bytesProcessed.monthly'
+	if jsonDict["name"] == "dataFederation.bytesProcessed.monthly" {
+		// try to unmarshal JSON data into DataFederationQueryLimit
+		err = json.Unmarshal(data, &dst.DataFederationQueryLimit)
+		if err == nil {
+			return nil // data stored in dst.DataFederationQueryLimit, return on the first match
+		} else {
+			dst.DataFederationQueryLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DataFederationQueryLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'dataFederation.bytesProcessed.query'
+	if jsonDict["name"] == "dataFederation.bytesProcessed.query" {
+		// try to unmarshal JSON data into DataFederationQueryLimit
+		err = json.Unmarshal(data, &dst.DataFederationQueryLimit)
+		if err == nil {
+			return nil // data stored in dst.DataFederationQueryLimit, return on the first match
+		} else {
+			dst.DataFederationQueryLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DataFederationQueryLimit: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'dataFederation.bytesProcessed.weekly'
+	if jsonDict["name"] == "dataFederation.bytesProcessed.weekly" {
+		// try to unmarshal JSON data into DataFederationQueryLimit
+		err = json.Unmarshal(data, &dst.DataFederationQueryLimit)
+		if err == nil {
+			return nil // data stored in dst.DataFederationQueryLimit, return on the first match
+		} else {
+			dst.DataFederationQueryLimit = nil
+			return fmt.Errorf("failed to unmarshal Limit as DataFederationQueryLimit: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
-func (o Limit) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	// skip: currentUsage is readOnly
-	// skip: defaultLimit is readOnly
-	// skip: maximumLimit is readOnly
-	// skip: name is readOnly
-	toSerialize["value"] = o.Value
-	return toSerialize, nil
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src Limit) MarshalJSON() ([]byte, error) {
+	if src.DataFederationQueryLimit != nil {
+		return json.Marshal(&src.DataFederationQueryLimit)
+	}
+
+	if src.DefaultLimit != nil {
+		return json.Marshal(&src.DefaultLimit)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *Limit) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.DataFederationQueryLimit != nil {
+		return obj.DataFederationQueryLimit
+	}
+
+	if obj.DefaultLimit != nil {
+		return obj.DefaultLimit
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableLimit struct {

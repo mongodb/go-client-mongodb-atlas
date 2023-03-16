@@ -27,6 +27,8 @@ type IndexOptions struct {
 	Bits *int32 `json:"bits,omitempty"`
 	// Number of units within which to group the location values. You could group in the same bucket those location values within the specified number of units to each other. This option applies to the geoHaystack index type only.  MongoDB 5.0 removed geoHaystack Indexes and the `geoSearch` command.
 	BucketSize *int32 `json:"bucketSize,omitempty"`
+	// The columnstoreProjection document allows to include or exclude subschemas schema. One cannot combine inclusion and exclusion statements. Accordingly, the <value> can be either of the following: 1 or true to include the field and recursively all fields it is a prefix of in the index 0 or false to exclude the field and recursively all fields it is a prefix of from the index.
+	ColumnstoreProjection *map[string]int32 `json:"columnstoreProjection,omitempty"`
 	// Human language that determines the list of stop words and the rules for the stemmer and tokenizer. This option accepts the supported languages using its name in lowercase english or the ISO 639-2 code. If you set this parameter to `\"none\"`, then the text search uses simple tokenization with no list of stop words and no stemming. This option applies to the **text** index type only.
 	DefaultLanguage *string `json:"default_language,omitempty"`
 	// Number of seconds that MongoDB retains documents in a Time To Live (TTL) index.
@@ -233,6 +235,38 @@ func (o *IndexOptions) HasBucketSize() bool {
 // SetBucketSize gets a reference to the given int32 and assigns it to the BucketSize field.
 func (o *IndexOptions) SetBucketSize(v int32) {
 	o.BucketSize = &v
+}
+
+// GetColumnstoreProjection returns the ColumnstoreProjection field value if set, zero value otherwise.
+func (o *IndexOptions) GetColumnstoreProjection() map[string]int32 {
+	if o == nil || IsNil(o.ColumnstoreProjection) {
+		var ret map[string]int32
+		return ret
+	}
+	return *o.ColumnstoreProjection
+}
+
+// GetColumnstoreProjectionOk returns a tuple with the ColumnstoreProjection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndexOptions) GetColumnstoreProjectionOk() (*map[string]int32, bool) {
+	if o == nil || IsNil(o.ColumnstoreProjection) {
+		return nil, false
+	}
+	return o.ColumnstoreProjection, true
+}
+
+// HasColumnstoreProjection returns a boolean if a field has been set.
+func (o *IndexOptions) HasColumnstoreProjection() bool {
+	if o != nil && !IsNil(o.ColumnstoreProjection) {
+		return true
+	}
+
+	return false
+}
+
+// SetColumnstoreProjection gets a reference to the given map[string]int32 and assigns it to the ColumnstoreProjection field.
+func (o *IndexOptions) SetColumnstoreProjection(v map[string]int32) {
+	o.ColumnstoreProjection = &v
 }
 
 // GetDefaultLanguage returns the DefaultLanguage field value if set, zero value otherwise.
@@ -670,6 +704,9 @@ func (o IndexOptions) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.BucketSize) {
 		toSerialize["bucketSize"] = o.BucketSize
+	}
+	if !IsNil(o.ColumnstoreProjection) {
+		toSerialize["columnstoreProjection"] = o.ColumnstoreProjection
 	}
 	if !IsNil(o.DefaultLanguage) {
 		toSerialize["default_language"] = o.DefaultLanguage

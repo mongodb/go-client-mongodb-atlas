@@ -226,10 +226,9 @@ paths:
       - Root
   /api/atlas/v2/alertConfigs/matchers/fieldNames:
     get:
-      description: "Get all field names that the matchers.fieldName parameter accepts\
-        \ when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration)\
-        \ or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration)\
-        \ an Alert Configuration."
+      description: Get all field names that the `matchers.fieldName` parameter accepts
+        when you create or update an Alert Configuration. You can successfully call
+        this endpoint with any assigned role.
       operationId: listAlertConfigurationMatchersFieldNames
       parameters: []
       responses:
@@ -1937,8 +1936,9 @@ paths:
       description: "Returns the auditing configuration for the specified project.\
         \ The auditing configuration defines the events that MongoDB Cloud records\
         \ in the audit log. To use this resource, the requesting API Key must have\
-        \ the Project Atlas Admin role. This resource doesn't require the API Key\
-        \ to have an Access List."
+        \ the Project Owner role. This resource doesn't require the API Key to have\
+        \ an Access List. This feature isn't available for `M0`, `M2`, `M5`, or serverless\
+        \ clusters."
       operationId: getAuditingConfiguration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -1963,8 +1963,9 @@ paths:
       description: "Updates the auditing configuration for the specified project.\
         \ The auditing configuration defines the events that MongoDB Cloud records\
         \ in the audit log. To use this resource, the requesting API Key must have\
-        \ the Project Atlas Admin role. This resource doesn't require the API Key\
-        \ to have an Access List."
+        \ the Project Owner role. This resource doesn't require the API Key to have\
+        \ an Access List. This feature isn't available for `M0`, `M2`, `M5`, or serverless\
+        \ clusters."
       operationId: updateAuditingConfiguration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -2185,6 +2186,69 @@ paths:
       security:
       - DigestAuth: []
       summary: Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
+      tags:
+      - Cloud Backups
+  /api/atlas/v2/groups/{groupId}/backupCompliancePolicy:
+    get:
+      description: "Returns the Backup Compliance Policy settings with the specified\
+        \ project. To use this resource, the requesting API Key must have the Project\
+        \ Owner role. This resource doesn't require the API Key to have an Access\
+        \ List."
+      operationId: getDataProtectionSettings
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      responses:
+        "200":
+          content:
+            application/vnd.atlas.2023-01-01+json:
+              schema:
+                $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
+              x-xgen-version: 2023-01-01
+          description: OK
+        "401":
+          $ref: '#/components/responses/unauthorized'
+        "404":
+          $ref: '#/components/responses/notFound'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Return the Backup Compliance Policy settings
+      tags:
+      - Cloud Backups
+    put:
+      description: "Updates the Backup Compliance Policy settings for the specified\
+        \ project. To use this resource, the requesting API Key must have the Project\
+        \ Owner role. This resource doesn't require the API Key to have an Access\
+        \ List."
+      operationId: updateDataProtectionSettings
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        content:
+          application/vnd.atlas.2023-01-01+json:
+            schema:
+              $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
+            x-xgen-version: 2023-01-01
+        description: The new Backup Compliance Policy settings.
+        required: true
+      responses:
+        "200":
+          content:
+            application/vnd.atlas.2023-01-01+json:
+              schema:
+                $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
+              x-xgen-version: 2023-01-01
+          description: OK
+        "401":
+          $ref: '#/components/responses/unauthorized'
+        "404":
+          $ref: '#/components/responses/notFound'
+        "500":
+          $ref: '#/components/responses/internalServerError'
+      security:
+      - DigestAuth: []
+      summary: Update or enable the Backup Compliance Policy settings
       tags:
       - Cloud Backups
   /api/atlas/v2/groups/{groupId}/cloudProviderAccess:
@@ -2950,9 +3014,10 @@ paths:
       tags:
       - Cloud Backups
     post:
-      description: "Restores one snapshot of one cluster from the specified project.\
-        \ To use this resource, the requesting API Key must have the Project Owner\
-        \ role and an entry for the project access list."
+      description: |-
+        Restores one snapshot of one cluster from the specified project. Atlas takes on-demand snapshots immediately and scheduled snapshots at regular intervals. If an on-demand snapshot with a status of **queued** or **inProgress** exists, before taking another snapshot, wait until Atlas completes completes processing the previously taken on-demand snapshot.
+
+         To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
       operationId: createBackupRestoreJob
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -3240,9 +3305,10 @@ paths:
       tags:
       - Cloud Backups
     post:
-      description: "Takes one on-demand snapshot for the specified cluster. To use\
-        \ this resource, the requesting API Key must have the Project Owner role and\
-        \ an entry for the project access list."
+      description: |-
+        Takes one on-demand snapshot for the specified cluster. Atlas takes on-demand snapshots immediately and scheduled snapshots at regular intervals. If an on-demand snapshot with a status of **queued** or **inProgress** exists, before taking another snapshot, wait until Atlas completes completes processing the previously taken on-demand snapshot.
+
+         To use this resource, the requesting API Key must have the Project Owner role and an entry for the project access list.
       operationId: takeSnapshot
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -5581,9 +5647,10 @@ paths:
     post:
       description: "Creates one new network peering container in the specified project.\
         \ MongoDB Cloud can deploy Network Peering connections in a network peering\
-        \ container. To use this resource, the requesting API Key must have the Project\
-        \ Atlas Admin role. This resource doesn't require the API Key to have an Access\
-        \ List."
+        \ container. GCP can have one container per project. AWS and Azure can have\
+        \ one container per cloud provider region. To use this resource, the requesting\
+        \ API Key must have the Project Owner role. This resource doesn't require\
+        \ the API Key to have an Access List."
       operationId: createPeeringContainer
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -6418,69 +6485,6 @@ paths:
       summary: Download Query Logs for One Federated Database Instance
       tags:
       - Data Federation
-  /api/atlas/v2/groups/{groupId}/dataProtection:
-    get:
-      description: "Returns the Data Protection Policy settings with the specified\
-        \ project. To use this resource, the requesting API Key must have the Project\
-        \ Read Only role. This resource doesn't require the API Key to have an Access\
-        \ List."
-      operationId: getDataProtectionSettings
-      parameters:
-      - $ref: '#/components/parameters/groupId'
-      responses:
-        "200":
-          content:
-            application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
-              x-xgen-version: 2023-01-01
-          description: OK
-        "401":
-          $ref: '#/components/responses/unauthorized'
-        "404":
-          $ref: '#/components/responses/notFound'
-        "500":
-          $ref: '#/components/responses/internalServerError'
-      security:
-      - DigestAuth: []
-      summary: Return the Data Protection Policy settings
-      tags:
-      - Cloud Backups
-    put:
-      description: "Updates the Data Protection Policy settings for the specified\
-        \ project. To use this resource, the requesting API Key must have the Project\
-        \ Owner role. This resource doesn't require the API Key to have an Access\
-        \ List."
-      operationId: updateDataProtectionSettings
-      parameters:
-      - $ref: '#/components/parameters/groupId'
-      requestBody:
-        content:
-          application/vnd.atlas.2023-01-01+json:
-            schema:
-              $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
-            x-xgen-version: 2023-01-01
-        description: The new Data Protection Policy settings.
-        required: true
-      responses:
-        "200":
-          content:
-            application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: '#/components/schemas/ApiAtlasDataProtectionSettingsView'
-              x-xgen-version: 2023-01-01
-          description: OK
-        "401":
-          $ref: '#/components/responses/unauthorized'
-        "404":
-          $ref: '#/components/responses/notFound'
-        "500":
-          $ref: '#/components/responses/internalServerError'
-      security:
-      - DigestAuth: []
-      summary: Update or enable the Data Protection Policy settings
-      tags:
-      - Cloud Backups
   /api/atlas/v2/groups/{groupId}/databaseUsers:
     get:
       description: "Returns all database users that belong to the specified project.\
@@ -7058,9 +7062,9 @@ paths:
       - Encryption at Rest using Customer Key Management
     patch:
       description: |-
-        Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Atlas Admin role.
+        Updates the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role. This feature isn't available for `M0` free clusters, `M2`, `M5`, or serverless clusters.
 
-        **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
+         After you configure at least one Encryption at Rest using a Customer Key Management provider for the MongoDB Cloud project, Project Owners can enable Encryption at Rest using Customer Key Management for each MongoDB Cloud cluster for which they require encryption. The Encryption at Rest using Customer Key Management provider doesn't have to match the cluster cloud service provider. MongoDB Cloud doesn't automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest using Customer Key Management provider's documentation and guidance for best practices on key rotation. MongoDB Cloud automatically creates a 90-day key rotation alert when you configure Encryption at Rest using Customer Key Management using your Key Management in an MongoDB Cloud project. MongoDB Cloud encrypts all storage whether or not you use your own key management.
       operationId: updateEncryptionAtRest
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8113,7 +8117,9 @@ paths:
       description: |-
         Migrate one cluster that Cloud or Ops Manager manages to MongoDB Atlas.
 
-         Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateMigration) your migration before initiating it.
+         Please make sure to [validate](#tag/Cloud-Migration-Service/operation/validateOneMigration) your migration before initiating it.
+
+         You can use this API endpoint for push live migrations only. Your API Key must have the Organization Owner role to successfully call this resource.
       operationId: createPushMigration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8149,9 +8155,10 @@ paths:
       - Cloud Migration Service
   /api/atlas/v2/groups/{groupId}/liveMigrations/validate:
     post:
-      description: "Check whether the provided credentials, available disk space,\
+      description: "Verifies whether the provided credentials, available disk space,\
         \ MongoDB versions, and so on meet the requirements of the migration request.\
-        \ If the check passes, the migration can proceed."
+        \ If the check passes, the migration can proceed. Your API Key must have the\
+        \ Organization Owner role to successfully call this resource."
       operationId: validateMigration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8187,7 +8194,8 @@ paths:
       - Cloud Migration Service
   /api/atlas/v2/groups/{groupId}/liveMigrations/validate/{validationId}:
     get:
-      description: Return the status of one migration validation job.
+      description: Return the status of one migration validation job. Your API Key
+        must have the Organization Owner role to successfully call this resource.
       operationId: getValidationStatus
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8227,7 +8235,9 @@ paths:
       - Cloud Migration Service
   /api/atlas/v2/groups/{groupId}/liveMigrations/{liveMigrationId}:
     get:
-      description: Return details of one cluster migration job.
+      description: Return details of one cluster migration job. Each push live migration
+        job uses one migration host. Your API Key must have the Organization Member
+        role to successfully call this resource.
       operationId: getPushMigration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8255,9 +8265,11 @@ paths:
       - Cloud Migration Service
   /api/atlas/v2/groups/{groupId}/liveMigrations/{liveMigrationId}/cutover:
     put:
-      description: "Cut over the migrated cluster to MongoDB Cloud. Confirm when the\
-        \ cut over completes. When the cut over completes, MongoDB Cloud completes\
-        \ the live migration process and stops synchronizing with the source cluster."
+      description: "Cut over the migrated cluster to MongoDB Atlas. Confirm when the\
+        \ cut over completes. When the cut over completes, MongoDB Atlas completes\
+        \ the live migration process and stops synchronizing with the source cluster.\
+        \ Your API Key must have the Organization Owner role to successfully call\
+        \ this resource."
       operationId: cutoverMigration
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8286,8 +8298,17 @@ paths:
   /api/atlas/v2/groups/{groupId}/maintenanceWindow:
     delete:
       description: "Resets the maintenance window for the specified project. To use\
-        \ this resource, the requesting API Key must have the Project Atlas Admin\
-        \ role.This resource doesn't require the API Key to have an Access List."
+        \ this resource, the requesting API Key must have the Project Owner role.\
+        \ Urgent maintenance activities such as security patches can't wait for your\
+        \ chosen window. MongoDB Cloud starts those maintenance activities when needed.\
+        \ After you schedule maintenance for your cluster, you can't change your maintenance\
+        \ window until the current maintenance efforts complete. The maintenance procedure\
+        \ that MongoDB Cloud performs requires at least one replica set election during\
+        \ the maintenance window per replica set. Maintenance always begins as close\
+        \ to the scheduled hour as possible, but in-progress cluster updates or unexpected\
+        \ system issues could delay the start time. To use this resource, the requesting\
+        \ API Key must have the Project Owner role. This resource doesn't require\
+        \ the API Key to have an Access List."
       operationId: resetMaintenanceWindow
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8306,9 +8327,16 @@ paths:
       tags:
       - Maintenance Windows
     get:
-      description: "Returns the maintenance window for the specified project. To use\
-        \ this resource, the requesting API Key must have the Project Read Only role.This\
-        \ resource doesn't require the API Key to have an Access List."
+      description: "Returns the maintenance window for the specified project. MongoDB\
+        \ Cloud starts those maintenance activities when needed. You can't change\
+        \ your maintenance window until the current maintenance efforts complete.\
+        \ The maintenance procedure that MongoDB Cloud performs requires at least\
+        \ one replica set election during the maintenance window per replica set.\
+        \ Maintenance always begins as close to the scheduled hour as possible, but\
+        \ in-progress cluster updates or unexpected system issues could delay the\
+        \ start time. To use this resource, the requesting API Key must have the Project\
+        \ Owner role. This resource doesn't require the API Key to have an Access\
+        \ List."
       operationId: getMaintenanceWindow
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8330,9 +8358,17 @@ paths:
       tags:
       - Maintenance Windows
     patch:
-      description: "Updates the maintenance window for the specified project. To use\
-        \ this resource, the requesting API Key must have the Project Atlas Admin\
-        \ role.This resource doesn't require the API Key to have an Access List."
+      description: "Updates the maintenance window for the specified project. Urgent\
+        \ maintenance activities such as security patches can't wait for your chosen\
+        \ window. MongoDB Cloud starts those maintenance activities when needed. After\
+        \ you schedule maintenance for your cluster, you can't change your maintenance\
+        \ window until the current maintenance efforts complete. The maintenance procedure\
+        \ that MongoDB Cloud performs requires at least one replica set election during\
+        \ the maintenance window per replica set. Maintenance always begins as close\
+        \ to the scheduled hour as possible, but in-progress cluster updates or unexpected\
+        \ system issues could delay the start time. To use this resource, the requesting\
+        \ API Key must have the Project Owner role. This resource doesn't require\
+        \ the API Key to have an Access List."
       operationId: updateMaintenanceWindow
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8385,9 +8421,17 @@ paths:
       - Maintenance Windows
   /api/atlas/v2/groups/{groupId}/maintenanceWindow/defer:
     post:
-      description: "Defers the maintenance window for the specified project. To use\
-        \ this resource, the requesting API Key must have the Project Atlas Admin\
-        \ role.This resource doesn't require the API Key to have an Access List."
+      description: "Defers the maintenance window for the specified project. Urgent\
+        \ maintenance activities such as security patches can't wait for your chosen\
+        \ window. MongoDB Cloud starts those maintenance activities when needed. After\
+        \ you schedule maintenance for your cluster, you can't change your maintenance\
+        \ window until the current maintenance efforts complete. The maintenance procedure\
+        \ that MongoDB Cloud performs requires at least one replica set election during\
+        \ the maintenance window per replica set. Maintenance always begins as close\
+        \ to the scheduled hour as possible, but in-progress cluster updates or unexpected\
+        \ system issues could delay the start time. To use this resource, the requesting\
+        \ API Key must have the Project Owner role. This resource doesn't require\
+        \ the API Key to have an Access List."
       operationId: deferMaintenanceWindow
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8412,11 +8456,14 @@ paths:
     delete:
       description: "Disables the slow operation threshold that MongoDB Cloud calculated\
         \ for the specified project. The threshold determines which operations the\
-        \ Performance Advisor and Query Profiler considers slow. When disabled, MongoDB\
-        \ Cloud considers any operation that takes longer than 100 milliseconds to\
-        \ be slow. To use this resource, the requesting API Key must have the Project\
-        \ Owner role. This resource doesn't require the API Key to have an Access\
-        \ List."
+        \ Performance Advisor and Query Profiler considers slow. When enabled, MongoDB\
+        \ Cloud uses the average execution time for operations on your cluster to\
+        \ determine slow-running queries. As a result, the threshold is more pertinent\
+        \ to your cluster workload. The slow operation threshold is enabled by default\
+        \ for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any\
+        \ operation that takes longer than 100 milliseconds to be slow. To use this\
+        \ resource, the requesting API Key must have the Project Owner role. This\
+        \ resource doesn't require the API Key to have an Access List."
       operationId: disableSlowOperationThresholding
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -8443,9 +8490,12 @@ paths:
         \ the specified project. The threshold determines which operations the Performance\
         \ Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses\
         \ the average execution time for operations on your cluster to determine slow-running\
-        \ queries. To use this resource, the requesting API Key must have the Project\
-        \ Owner role. This resource doesn't require the API Key to have an Access\
-        \ List."
+        \ queries. As a result, the threshold is more pertinent to your cluster workload.\
+        \ The slow operation threshold is enabled by default for dedicated clusters\
+        \ (M10+). When disabled, MongoDB Cloud considers any operation that takes\
+        \ longer than 100 milliseconds to be slow. To use this resource, the requesting\
+        \ API Key must have the Project Owner role. This resource doesn't require\
+        \ the API Key to have an Access List."
       operationId: enableSlowOperationThresholding
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -10654,9 +10704,11 @@ paths:
   /api/atlas/v2/groups/{groupId}/processes/{processId}/performanceAdvisor/namespaces:
     get:
       description: "Returns up to 20 namespaces for collections experiencing slow\
-        \ queries on the specified host. To use this resource, the requesting API\
-        \ Key must have the Project Read Only role. This resource doesn't require\
-        \ the API Key to have an Access List."
+        \ queries on the specified host. If you specify a secondary member of a replica\
+        \ set that hasn't received any database read operations, the endpoint doesn't\
+        \ return any namespaces. To use this resource, the requesting API Key must\
+        \ have the Project Read Only role. This resource doesn't require the API Key\
+        \ to have an Access List."
       operationId: listSlowQueryNamespaces
       parameters:
       - $ref: '#/components/parameters/groupId'
@@ -13026,6 +13078,10 @@ paths:
   /api/atlas/v2/orgs/{orgId}/liveMigrations/linkTokens:
     delete:
       description: Remove one organization link and its associated public API key.
+        MongoDB Atlas uses the link-token for push live migrations only. Live migrations
+        (push) let you securely push data from Cloud Manager or Ops Manager into MongoDB
+        Atlas. Your API Key must have the Organization Owner role to successfully
+        call this resource.
       operationId: deleteLinkToken
       parameters:
       - $ref: '#/components/parameters/orgId'
@@ -13045,7 +13101,10 @@ paths:
       - Cloud Migration Service
     post:
       description: Create one link-token that contains all the information required
-        to complete the link.
+        to complete the link. MongoDB Atlas uses the link-token for push live migrations
+        only. Live migration (push) allows you to securely push data from Cloud Manager
+        or Ops Manager into MongoDB Atlas. Your API Key must have the Organization
+        Owner role to successfully call this resource.
       operationId: createLinkToken
       parameters:
       - $ref: '#/components/parameters/orgId'
@@ -13714,6 +13773,19 @@ components:
       schema:
         type: string
         format: date-time
+    envelope:
+      description: "Flag that indicates whether Application wraps the response in\
+        \ an `envelope` JSON object. Some API clients cannot access the HTTP response\
+        \ headers or status code. To remediate this, set envelope=true in the query.\
+        \ Endpoints that return a list of results use the results object as an envelope.\
+        \ Application adds the status parameter to the response body."
+      in: query
+      name: envelope
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
     federationSettingsId:
       description: Unique 24-hexadecimal digit string that identifies your federation.
       in: path
@@ -13836,6 +13908,17 @@ components:
       schema:
         type: string
         example: PT10H
+    pretty:
+      description: Flag that indicates whether the response body should be in the
+        <a href="https://en.wikipedia.org/wiki/Prettyprint" target="_blank" rel="noopener
+        noreferrer">prettyprint</a> format.
+      in: query
+      name: pretty
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
     processId:
       description: "Combination of hostname and IANA port that serves the MongoDB\
         \ process. The host must be the hostname, fully qualified domain name (FQDN),\
@@ -14274,6 +14357,73 @@ components:
       - eventTypeName
       - id
       title: Alert Config Audits
+    AlertConfigView:
+      type: object
+      description: Alert settings allows to select which conditions trigger alerts
+        and how users are notified.
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: Date and time when MongoDB Cloud created the alert configuration.
+            This parameter expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
+            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format
+            in UTC.
+          readOnly: true
+        enabled:
+          type: boolean
+          default: false
+          description: Flag that indicates whether someone enabled this alert configuration
+            for the specified project.
+        eventTypeName:
+          type: string
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project
+            that owns this alert configuration.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        id:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies this alert
+            configuration.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        links:
+          type: array
+          description: "List of one or more Uniform Resource Locators (URLs) that\
+            \ point to API sub-resources, related API resources, or both. RFC 5988\
+            \ outlines these relationships."
+          externalDocs:
+            description: Web Linking Specification (RFC 5988)
+            url: https://datatracker.ietf.org/doc/html/rfc5988
+          items:
+            $ref: '#/components/schemas/Link'
+          readOnly: true
+        matchers:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatcherView'
+        notifications:
+          type: array
+          description: List that contains the targets that MongoDB Cloud sends notifications.
+          items:
+            $ref: '#/components/schemas/NotificationView'
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when someone last updated this alert configuration.
+            This parameter expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
+            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format
+            in UTC.
+          readOnly: true
+      title: Alert Configuration
     AlertConfigViewForNdsGroup:
       type: object
       oneOf:
@@ -14291,6 +14441,133 @@ components:
       - $ref: '#/components/schemas/ReplicaSetThresholdAlertConfigViewForNdsGroup'
       - $ref: '#/components/schemas/ServerlessMetricAlertConfigViewForNdsGroup'
       x-xgen-go-transform: merge-oneOf
+    AlertView:
+      type: object
+      description: "Alert represents a notice of warning, a threat or a problem in\
+        \ the system. It can reflect a certain event or condition in the system. An\
+        \ Alert can be acknowledged by the user, but stays open until alert condition\
+        \ is resolved in the system."
+      properties:
+        acknowledgedUntil:
+          type: string
+          format: date-time
+          description: |-
+            Date and time until which this alert has been acknowledged. This parameter expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format in UTC. The resource returns this parameter if a MongoDB User previously acknowledged this alert.
+
+            - To acknowledge this alert forever, set the parameter value to 100 years in the future.
+
+            - To unacknowledge a previously acknowledged alert, set the parameter value to a date in the past.
+        acknowledgementComment:
+          type: string
+          description: Comment that a MongoDB Cloud user submitted when acknowledging
+            the alert.
+          example: Expiration on 3/19.  Silencing for 7days.
+          maxLength: 200
+        acknowledgingUsername:
+          type: string
+          format: email
+          description: MongoDB Cloud username of the person who acknowledged the alert.
+            The response returns this parameter if a MongoDB Cloud user previously
+            acknowledged this alert.
+          readOnly: true
+        alertConfigId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the alert
+            configuration that sets this alert.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date and time when MongoDB Cloud created this alert. This parameter
+            expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
+            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format
+            in UTC.
+          readOnly: true
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project
+            that owns this alert.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        id:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies this alert.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        lastNotified:
+          type: string
+          format: date-time
+          description: Date and time that any notifications were last sent for this
+            alert. This parameter expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
+            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format
+            in UTC. The resource returns this parameter if MongoDB Cloud has sent
+            notifications for this alert.
+          readOnly: true
+        links:
+          type: array
+          description: "List of one or more Uniform Resource Locators (URLs) that\
+            \ point to API sub-resources, related API resources, or both. RFC 5988\
+            \ outlines these relationships."
+          externalDocs:
+            description: Web Linking Specification (RFC 5988)
+            url: https://datatracker.ietf.org/doc/html/rfc5988
+          items:
+            $ref: '#/components/schemas/Link'
+          readOnly: true
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal character string that identifies the
+            organization that owns the project to which this alert applies.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+        resolved:
+          type: string
+          format: date-time
+          description: "Date and time that this alert changed to `\"status\" : \"\
+            CLOSED\"`. This parameter expresses its value in the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\"\
+            \ target=\"_blank\" rel=\"noopener noreferrer\">ISO 8601</a> timestamp\
+            \ format in UTC. The resource returns this parameter once `\"status\"\
+            \ : \"CLOSED\"`."
+          readOnly: true
+        status:
+          type: string
+          description: State of this alert at the time you requested its details.
+          enum:
+          - CANCELLED
+          - CLOSED
+          - OPEN
+          - TRACKING
+          example: OPEN
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when someone last updated this alert. This parameter
+            expresses its value in the <a href="https://en.wikipedia.org/wiki/ISO_8601"
+            target="_blank" rel="noopener noreferrer">ISO 8601</a> timestamp format
+            in UTC.
+          readOnly: true
+      required:
+      - acknowledgedUntil
+      - alertConfigId
+      - created
+      - id
+      - status
+      - updated
+      title: Alert
     AlertViewForNdsGroup:
       type: object
       oneOf:
@@ -15872,6 +16149,68 @@ components:
         (AWS) Identity and Access Management (IAM) role.
       required:
       - providerName
+    ApiAtlasCloudProviderAccessAzureServicePrincipalView:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ApiAtlasCloudProviderAccessRoleView'
+      - type: object
+        properties:
+          _id:
+            type: string
+            description: Unique 24-hexadecimal digit string that identifies the Azure
+              Service Principal in Atlas.
+            example: 32b6e34b3d91647abb20e7b8
+            maxLength: 24
+            minLength: 24
+            pattern: "^([a-f0-9]{24})$"
+            readOnly: true
+          atlasAzureAppId:
+            type: string
+            description: Azure Active Directory Application ID of Atlas.
+            maxLength: 36
+            minLength: 32
+            pattern: "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\\
+              b-[0-9a-fA-F]{12}$"
+          createdDate:
+            type: string
+            format: date-time
+            description: Date and time when this Azure Service Principal was created.
+              This parameter expresses its value in the ISO 8601 timestamp format
+              in UTC.
+            readOnly: true
+          featureUsages:
+            type: array
+            description: List that contains application features associated with this
+              Azure Service Principal.
+            items:
+              $ref: '#/components/schemas/ApiAtlasCloudProviderAccessFeatureUsageView'
+            readOnly: true
+          lastUpdatedDate:
+            type: string
+            format: date-time
+            description: Date and time when this Azure Service Principal was last
+              updated. This parameter expresses its value in the ISO 8601 timestamp
+              format in UTC.
+            readOnly: true
+          servicePrincipalId:
+            type: string
+            description: UUID string that identifies the Azure Service Principal.
+            maxLength: 36
+            minLength: 32
+            pattern: "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\\
+              b-[0-9a-fA-F]{12}$"
+          tenantId:
+            type: string
+            description: UUID String that identifies the Azure Active Directory Tenant
+              ID.
+            maxLength: 36
+            minLength: 32
+            pattern: "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\\
+              b-[0-9a-fA-F]{12}$"
+      description: Details that describe the features linked to the Azure Service
+        Principal.
+      required:
+      - providerName
     ApiAtlasCloudProviderAccessDataLakeFeatureUsageView:
       type: object
       allOf:
@@ -15975,9 +16314,11 @@ components:
       discriminator:
         mapping:
           AWS: '#/components/schemas/ApiAtlasCloudProviderAccessAWSIAMRoleView'
+          AZURE: '#/components/schemas/ApiAtlasCloudProviderAccessAzureServicePrincipalView'
         propertyName: providerName
       oneOf:
       - $ref: '#/components/schemas/ApiAtlasCloudProviderAccessAWSIAMRoleView'
+      - $ref: '#/components/schemas/ApiAtlasCloudProviderAccessAzureServicePrincipalView'
       properties:
         providerName:
           type: string
@@ -15985,6 +16326,7 @@ components:
             the role.
           enum:
           - AWS
+          - AZURE
       required:
       - providerName
     ApiAtlasCloudProviderAccessView:
@@ -16435,7 +16777,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys
             the cluster with the latest stable release of the specified version.
           enum:
@@ -16672,6 +17014,28 @@ components:
           description: "Flag that indicates whether the cluster tier can scale down.\
             \ This is required if **autoScaling.compute.enabled** is `true`. If you\
             \ enable this option, specify a value for **providerSettings.autoScaling.compute.minInstanceSize**."
+    ApiAtlasContainerPeerView:
+      type: object
+      properties:
+        containerId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the MongoDB
+            Cloud network container that contains the specified network peering connection.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+        id:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the network
+            peering connection.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+          readOnly: true
+      required:
+      - containerId
     ApiAtlasContainerPeerViewRequest:
       type: object
       description: Collection of settings that configures the network connection for
@@ -16857,6 +17221,17 @@ components:
           pattern: "^\\b(?!xgen-)([0-9A-Za-z_\\-]+)\\b(?<!\\atlasAdmin|read|readWrite|dbAdmin|dbOwner|userAdmin|clusterAdmin|clusterManager|clusterMonitor|hostManager|backup|restore|readAnyDatabase|readWriteAnyDatabase|userAdminAnyDatabase|dbAdminAnyDatabase|root|__system)$"
       required:
       - roleName
+    ApiAtlasCustomZoneMappingsView:
+      type: object
+      properties:
+        customZoneMappings:
+          type: array
+          description: |-
+            List that contains comma-separated key value pairs to map zones to geographic regions. These pairs map an ISO 3166-1a2 location code, with an ISO 3166-2 subdivision code when possible, to the human-readable label for the desired custom zone. MongoDB Cloud maps the ISO 3166-1a2 code to the nearest geographical zone by default. Include this parameter to override the default mappings.
+
+            This parameter returns an empty object if no custom zones exist.
+          items:
+            $ref: '#/components/schemas/ApiAtlasZoneMappingView'
     ApiAtlasCustomerX509View:
       type: object
       description: Settings to configure TLS Certificates for database users.
@@ -17579,6 +17954,12 @@ components:
     ApiAtlasDataProtectionSettingsView:
       type: object
       properties:
+        authorizedEmail:
+          type: string
+          format: email
+          description: Email address of the user who authorized to updated the Backup
+            Compliance Policy  settings.
+          readOnly: true
         copyProtectionEnabled:
           type: boolean
           description: Flag that indicates whether to enable additional backup copies
@@ -17586,7 +17967,8 @@ components:
         encryptionAtRestEnabled:
           type: boolean
           description: Flag that indicates whether Encryption at Rest using Customer
-            Key  Management is required for all clusters with a Data Protection Policy.
+            Key  Management is required for all clusters with a Backup Compliance
+            Policy.
           externalDocs:
             description: Encryption at Rest using Customer Key Management
             url: https://www.mongodb.com/docs/atlas/security-kms-encryption/
@@ -17595,14 +17977,14 @@ components:
         pitEnabled:
           type: boolean
           description: Flag that indicates whether the cluster uses Continuous Cloud
-            Backups with a Data Protection Policy.
+            Backups with a Backup Compliance Policy.
           externalDocs:
             description: Continuous Cloud Backups
             url: https://docs.atlas.mongodb.com/backup/cloud-backup/overview/
         projectId:
           type: string
           description: Unique 24-hexadecimal digit string that identifies the project
-            for the Data Protection Policy.
+            for the Backup Compliance Policy.
           example: 32b6e34b3d91647abb20e7b8
           maxLength: 24
           minLength: 24
@@ -17611,10 +17993,10 @@ components:
           type: integer
           format: int32
           description: "Number of previous days that you can restore back to with\
-            \ Continuous Cloud Backup with a Data Protection Policy. You must specify\
+            \ Continuous Cloud Backup with a Backup Compliance Policy. You must specify\
             \ a positive, non-zero integer, and the maximum retention window can't\
             \ exceed the hourly retention time. This parameter applies only to Continuous\
-            \ Cloud Backups with a Data Protection Policy."
+            \ Cloud Backups with a Backup Compliance Policy."
         scheduledPolicyItems:
           type: array
           description: List that contains the specifications for one scheduled policy.
@@ -17622,7 +18004,7 @@ components:
             $ref: '#/components/schemas/ApiPolicyItemView'
         state:
           type: string
-          description: Label that indicates the state of the Data Protection Policy
+          description: Label that indicates the state of the Backup Compliance Policy
             settings.
           enum:
           - ACTIVE
@@ -17639,8 +18021,8 @@ components:
         updatedUser:
           type: string
           format: email
-          description: Email address that identifies the user who updated the Data
-            Protection Policy settings.
+          description: Email address that identifies the user who updated the Backup
+            Compliance Policy settings.
           readOnly: true
     ApiAtlasDatabaseUserView:
       type: object
@@ -20208,7 +20590,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys
             the cluster with the latest stable release of the specified version.
           enum:
@@ -20354,6 +20736,12 @@ components:
           - LTS
           - CONTINUOUS
       title: Cluster Description
+    ApiAtlasLegacyRegionsConfigView:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ApiAtlasRegionSpecView'
+      description: Physical location where MongoDB Cloud provisions cluster nodes.
+      title: Region Configuration
     ApiAtlasLegacyReplicationSpecView:
       type: object
       properties:
@@ -22652,6 +23040,23 @@ components:
           items:
             $ref: '#/components/schemas/Link'
           readOnly: true
+    ApiAtlasZoneMappingView:
+      type: object
+      description: Human-readable label that identifies the subset of a global cluster.
+      properties:
+        location:
+          type: string
+          description: Code that represents a location that maps to a zone in your
+            global cluster. MongoDB Cloud represents this location with a ISO 3166-2
+            location and subdivision codes when possible.
+        zone:
+          type: string
+          description: Human-readable label that identifies the zone in your global
+            cluster. This zone maps to a location code.
+      required:
+      - location
+      - zone
+      title: Global Cluster Zone
     ApiAvailableRegionView:
       type: object
       description: List of regions that this cloud provider supports for this instance
@@ -22798,6 +23203,38 @@ components:
       required:
       - apiKey
       title: DATADOG
+    ApiDefaultLimitView:
+      type: object
+      description: Details of user managed limits
+      properties:
+        currentUsage:
+          type: integer
+          format: int64
+          description: Amount that indicates the current usage of the limit.
+          readOnly: true
+        defaultLimit:
+          type: integer
+          format: int64
+          description: Default value of the limit.
+          readOnly: true
+        maximumLimit:
+          type: integer
+          format: int64
+          description: Maximum value of the limit.
+          readOnly: true
+        name:
+          type: string
+          description: Human-readable label that identifies the user-managed limit
+            to modify.
+          readOnly: true
+        value:
+          type: integer
+          format: int64
+          description: Amount to set the limit to.
+      required:
+      - name
+      - value
+      title: Default Limit
     ApiDeleteCopiedBackupsView:
       type: object
       description: Deleted copy setting whose backup copies need to also be deleted.
@@ -23271,6 +23708,13 @@ components:
             tier.
           readOnly: true
       readOnly: true
+    ApiIntegrationView:
+      type: object
+      description: Collection of settings that describe third-party integrations.
+      properties:
+        type:
+          type: string
+      title: Integration
     ApiInvoiceView:
       type: object
       properties:
@@ -23477,12 +23921,12 @@ components:
       description: Details of user managed limits.
       discriminator:
         mapping:
-          atlas.project.deployment.clusters: '#/components/schemas/ApiLimitView'
-          atlas.project.deployment.nodesPerPrivateLinkRegion: '#/components/schemas/ApiLimitView'
-          atlas.project.security.databaseAccess.customRoles: '#/components/schemas/ApiLimitView'
-          atlas.project.security.databaseAccess.users: '#/components/schemas/ApiLimitView'
-          atlas.project.security.networkAccess.crossRegionEntries: '#/components/schemas/ApiLimitView'
-          atlas.project.security.networkAccess.entries: '#/components/schemas/ApiLimitView'
+          atlas.project.deployment.clusters: '#/components/schemas/ApiDefaultLimitView'
+          atlas.project.deployment.nodesPerPrivateLinkRegion: '#/components/schemas/ApiDefaultLimitView'
+          atlas.project.security.databaseAccess.customRoles: '#/components/schemas/ApiDefaultLimitView'
+          atlas.project.security.databaseAccess.users: '#/components/schemas/ApiDefaultLimitView'
+          atlas.project.security.networkAccess.crossRegionEntries: '#/components/schemas/ApiDefaultLimitView'
+          atlas.project.security.networkAccess.entries: '#/components/schemas/ApiDefaultLimitView'
           dataFederation.bytesProcessed.daily: '#/components/schemas/ApiAtlasDataFederationQueryLimitView'
           dataFederation.bytesProcessed.monthly: '#/components/schemas/ApiAtlasDataFederationQueryLimitView'
           dataFederation.bytesProcessed.query: '#/components/schemas/ApiAtlasDataFederationQueryLimitView'
@@ -23712,6 +24156,7 @@ components:
           - ATLAS_GCP_BACKUP_DOWNLOAD_VM_STORAGE
           - ATLAS_GCP_PRIVATE_ENDPOINT
           - ATLAS_GCP_PRIVATE_ENDPOINT_CAPACITY_UNITS
+          - ATLAS_GCP_SNAPSHOT_COPY_DATA_TRANSFER
           - ATLAS_AZURE_INSTANCE_M10
           - ATLAS_AZURE_INSTANCE_M20
           - ATLAS_AZURE_INSTANCE_M30
@@ -23799,7 +24244,16 @@ components:
           - ATLAS_DATA_LAKE_AWS_DATA_TRANSFERRED_FROM_DIFFERENT_REGION
           - ATLAS_NDS_AWS_DATA_LAKE_STORAGE_ACCESS
           - ATLAS_NDS_AWS_DATA_LAKE_STORAGE
+          - ATLAS_DATA_FEDERATION_AZURE_DATA_RETURNED_SAME_REGION
+          - ATLAS_DATA_FEDERATION_AZURE_DATA_RETURNED_SAME_CONTINENT
+          - ATLAS_DATA_FEDERATION_AZURE_DATA_RETURNED_DIFFERENT_CONTINENT
+          - ATLAS_DATA_FEDERATION_AZURE_DATA_RETURNED_INTERNET
+          - ATLAS_DATA_FEDERATION_AZURE_DATA_SCANNED
+          - ATLAS_NDS_AZURE_DATA_LAKE_STORAGE_ACCESS
+          - ATLAS_NDS_AZURE_DATA_LAKE_STORAGE
           - ATLAS_NDS_AWS_OBJECT_STORAGE_ACCESS
+          - ATLAS_NDS_AZURE_OBJECT_STORAGE_ACCESS
+          - ATLAS_NDS_AZURE_OBJECT_STORAGE
           - ATLAS_ARCHIVE_ACCESS_PARTITION_LOCATE
           - ATLAS_NDS_AWS_PIT_RESTORE_STORAGE_FREE_TIER
           - ATLAS_NDS_AWS_PIT_RESTORE_STORAGE
@@ -23873,14 +24327,6 @@ components:
           - REALM_APP_SYNC
           - REALM_APP_DATA_TRANSFER_FREE_TIER
           - REALM_APP_DATA_TRANSFER
-          - METERING_E2E_BILLING
-          - DATA_LAKE_AWS_DATA_SCANNED_TEST_PRICE_CHANGE
-          - ATLAS_NDS_AWS_INSTANCE_R40_TEST_PRICE_CHANGE
-          - ATLAS_NDS_AZURE_INSTANCE_M30_TEST_PRICE_CHANGE
-          - ATLAS_NDS_AWS_PIT_RESTORE_STORAGE_TEST_PRICE_CHANGE
-          - ATLAS_NDS_GCP_STORAGE_SSD_TEST_PRICE_CHANGE
-          - ATLAS_NDS_GCP_DATA_TRANSFER_INTERNET_TEST_PRICE_CHANGE
-          - BACKUP_STORAGE_TEST_PRICE_CHANGE
           - GCP_SNAPSHOT_COPY_DISK
           readOnly: true
         startDate:
@@ -25887,6 +26333,8 @@ components:
       - API_KEY_DESCRIPTION_CHANGED
       - API_KEY_ADDED_TO_GROUP
       - API_KEY_REMOVED_FROM_GROUP
+      - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED
+      - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED
       example: API_KEY_CREATED
       title: API User Event Types
     ApiUserEventTypeViewForOrg:
@@ -25901,6 +26349,8 @@ components:
       - API_KEY_DESCRIPTION_CHANGED
       - API_KEY_ADDED_TO_GROUP
       - API_KEY_REMOVED_FROM_GROUP
+      - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED
+      - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED
       example: API_KEY_CREATED
       title: API User Event Types
     ApiUserEventViewForNdsGroup:
@@ -26652,9 +27102,14 @@ components:
           REALM_SDK_MQL_COMPUTE_MS: '#/components/schemas/TimeMetricThresholdView'
           REALM_SDK_MQL_EGRESS_BYTES: '#/components/schemas/DataMetricThresholdView'
           REALM_SDK_MQL_RESPONSE_MS: '#/components/schemas/TimeMetricThresholdView'
+          REALM_SYNC_CLIENT_BOOTSTRAP_MS: '#/components/schemas/TimeMetricThresholdView'
+          REALM_SYNC_CLIENT_UPLOADS_FAILED: '#/components/schemas/DataMetricThresholdView'
+          REALM_SYNC_CLIENT_UPLOADS_INVALID: '#/components/schemas/DataMetricThresholdView'
           REALM_SYNC_CURRENT_OPLOG_LAG_MS_SUM: '#/components/schemas/TimeMetricThresholdView'
           REALM_SYNC_EGRESS_BYTES: '#/components/schemas/DataMetricThresholdView'
+          REALM_SYNC_FAILED_REQUESTS: '#/components/schemas/DataMetricThresholdView'
           REALM_SYNC_NUM_UNSYNCABLE_DOCS_PERCENT: '#/components/schemas/RawMetricThresholdView'
+          REALM_SYNC_SESSIONS_ENDED: '#/components/schemas/DataMetricThresholdView'
           REALM_TRIGGERS_COMPUTE_MS: '#/components/schemas/TimeMetricThresholdView'
           REALM_TRIGGERS_CURRENT_OPLOG_LAG_MS_SUM: '#/components/schemas/TimeMetricThresholdView'
           REALM_TRIGGERS_EGRESS_BYTES: '#/components/schemas/DataMetricThresholdView'
@@ -26958,6 +27413,22 @@ components:
       required:
       - name
       - projectId
+    BasicBSONList:
+      type: array
+      description: "List that contains the search criteria that the query uses. To\
+        \ use the values in key-value pairs in these predicates requires **Project\
+        \ Data Access Read Only** permissions or greater. Otherwise, MongoDB Cloud\
+        \ redacts these values."
+      items:
+        type: object
+        description: "List that contains the search criteria that the query uses.\
+          \ To use the values in key-value pairs in these predicates requires **Project\
+          \ Data Access Read Only** permissions or greater. Otherwise, MongoDB Cloud\
+          \ redacts these values."
+        readOnly: true
+      readOnly: true
+    BasicDBObject:
+      $ref: '#/components/schemas/ApiAtlasFTSMappingsViewManual'
     BillingEventTypeViewAlertableWithThreshold:
       type: string
       description: Event type that triggers an alert.
@@ -28084,6 +28555,7 @@ components:
             - GLOBAL_BILLING_ADMIN
             - GLOBAL_LEGAL_ADMIN
             - GLOBAL_FEATURE_FLAG_ADMIN
+            - GLOBAL_APP_SETTING_ADMIN
             - GLOBAL_ATLAS_TSE
             - GLOBAL_ATLAS_OPERATOR
             - GLOBAL_ATLAS_MONGODB_ROLLOUT_ADMIN
@@ -29883,6 +30355,8 @@ components:
         - API_KEY_DESCRIPTION_CHANGED
         - API_KEY_ADDED_TO_GROUP
         - API_KEY_REMOVED_FROM_GROUP
+        - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED
+        - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED
         title: API User Event Types
       - type: string
         enum:
@@ -30261,6 +30735,9 @@ components:
         - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_ADDED
         - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_DELETED
         - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_UPDATED
+        - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_ADDED
+        - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_DELETED
+        - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_UPDATED
         - PENDING_INDEXES_DELETED
         - PENDING_INDEXES_CANCELED
         - PROCESS_RESTART_REQUESTED
@@ -30293,6 +30770,7 @@ components:
         - DATA_FEDERATION_QUERY_LIMIT_CONFIGURED
         - DATA_FEDERATION_QUERY_LIMIT_DELETED
         - DATA_API_SETUP_FOR_VERCEL
+        - ADMIN_CLUSTER_LOCK_UPDATED
         title: NDS Audit Types
       - type: string
         enum:
@@ -30470,6 +30948,8 @@ components:
         - API_KEY_DESCRIPTION_CHANGED
         - API_KEY_ADDED_TO_GROUP
         - API_KEY_REMOVED_FROM_GROUP
+        - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED
+        - API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED
         title: API User Event Types
       - type: string
         enum:
@@ -30715,6 +31195,25 @@ components:
       - $ref: '#/components/schemas/TeamEventView'
       - $ref: '#/components/schemas/UserEventViewForOrg'
       x-xgen-go-transform: merge-oneOf
+    ExampleResourceResponseView20230101:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Dummy data added as response.
+        links:
+          type: array
+          description: "List of one or more Uniform Resource Locators (URLs) that\
+            \ point to API sub-resources, related API resources, or both. RFC 5988\
+            \ outlines these relationships."
+          externalDocs:
+            description: Web Linking Specification (RFC 5988)
+            url: https://datatracker.ietf.org/doc/html/rfc5988
+          items:
+            $ref: '#/components/schemas/Link'
+          readOnly: true
+      required:
+      - data
     ExampleResourceResponseView20230201:
       type: object
       properties:
@@ -32822,6 +33321,19 @@ components:
             Number of units within which to group the location values. You could group in the same bucket those location values within the specified number of units to each other. This option applies to the geoHaystack index type only.
 
             MongoDB 5.0 removed geoHaystack Indexes and the `geoSearch` command.
+        columnstoreProjection:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+            description: |-
+              The columnstoreProjection document allows to include or exclude subschemas schema. One cannot combine inclusion and exclusion statements. Accordingly, the <value> can be either of the following:
+              1 or true to include the field and recursively all fields it is a prefix of in the index
+              0 or false to exclude the field and recursively all fields it is a prefix of from the index.
+          description: |-
+            The columnstoreProjection document allows to include or exclude subschemas schema. One cannot combine inclusion and exclusion statements. Accordingly, the <value> can be either of the following:
+            1 or true to include the field and recursively all fields it is a prefix of in the index
+            0 or false to exclude the field and recursively all fields it is a prefix of from the index.
         default_language:
           type: string
           default: english
@@ -33497,6 +34009,9 @@ components:
       - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_ADDED
       - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_DELETED
       - CLOUD_PROVIDER_ACCESS_AWS_IAM_ROLE_UPDATED
+      - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_ADDED
+      - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_DELETED
+      - CLOUD_PROVIDER_ACCESS_AZURE_SERVICE_PRINCIPAL_UPDATED
       - PENDING_INDEXES_DELETED
       - PENDING_INDEXES_CANCELED
       - PROCESS_RESTART_REQUESTED
@@ -33529,6 +34044,7 @@ components:
       - DATA_FEDERATION_QUERY_LIMIT_CONFIGURED
       - DATA_FEDERATION_QUERY_LIMIT_DELETED
       - DATA_API_SETUP_FOR_VERCEL
+      - ADMIN_CLUSTER_LOCK_UPDATED
       example: CLUSTER_CREATED
       title: NDS Audit Types
     NDSAuditTypeViewForOrg:
@@ -33881,6 +34397,39 @@ components:
       - eventTypeName
       - id
       title: NDS Auto Scaling Audits
+    NDSNotificationView:
+      type: object
+      description: NDS notification configuration for MongoDB Cloud to send information
+        when an event triggers an alert condition.
+      properties:
+        delayMin:
+          type: integer
+          format: int32
+          description: Number of minutes that MongoDB Cloud waits after detecting
+            an alert condition before it sends out the first notification.
+        intervalMin:
+          type: integer
+          format: int32
+          description: |-
+            Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.
+
+            PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
+          minimum: 5
+        severity:
+          type: string
+          description: Degree of seriousness given to this notification.
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+        typeName:
+          type: string
+          description: Human-readable label that displays the alert notification type.
+          enum:
+          - NDS
+      required:
+      - typeName
+      title: NDS Notification
     NDSServerlessInstanceAuditTypeView:
       type: string
       description: Unique identifier of event type.
@@ -34220,6 +34769,27 @@ components:
       - NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK
       example: NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK
       title: NDS x509 User Auth Event Types
+    NotificationView:
+      type: object
+      description: One target that MongoDB Cloud sends notifications when an alert
+        triggers.
+      oneOf:
+      - $ref: '#/components/schemas/DatadogNotificationView'
+      - $ref: '#/components/schemas/EmailNotificationView'
+      - $ref: '#/components/schemas/GroupNotificationView'
+      - $ref: '#/components/schemas/HipChatNotificationView'
+      - $ref: '#/components/schemas/MicrosoftTeamsNotificationView'
+      - $ref: '#/components/schemas/NDSNotificationView'
+      - $ref: '#/components/schemas/OpsGenieNotificationView'
+      - $ref: '#/components/schemas/OrgNotificationView'
+      - $ref: '#/components/schemas/PagerDutyNotificationView'
+      - $ref: '#/components/schemas/SlackNotificationView'
+      - $ref: '#/components/schemas/SMSNotificationView'
+      - $ref: '#/components/schemas/SummaryNotificationView'
+      - $ref: '#/components/schemas/TeamNotificationView'
+      - $ref: '#/components/schemas/UserNotificationView'
+      - $ref: '#/components/schemas/VictorOpsNotificationView'
+      - $ref: '#/components/schemas/WebhookNotificationView'
     NotificationViewForNdsGroup:
       type: object
       description: One target that MongoDB Cloud sends notifications when an alert
@@ -35764,6 +36334,33 @@ components:
           description: Number of documents returned in this response.
           minimum: 0
           readOnly: true
+    PaginatedLegacyClusterView:
+      type: object
+      properties:
+        links:
+          type: array
+          description: "List of one or more Uniform Resource Locators (URLs) that\
+            \ point to API sub-resources, related API resources, or both. RFC 5988\
+            \ outlines these relationships."
+          externalDocs:
+            description: Web Linking Specification (RFC 5988)
+            url: https://datatracker.ietf.org/doc/html/rfc5988
+          items:
+            $ref: '#/components/schemas/Link'
+          readOnly: true
+        results:
+          type: array
+          description: List of returned documents that MongoDB Cloud providers when
+            completing this request.
+          items:
+            $ref: '#/components/schemas/ApiAtlasLegacyClusterDescriptionView'
+          readOnly: true
+        totalCount:
+          type: integer
+          format: int32
+          description: Number of documents returned in this response.
+          minimum: 0
+          readOnly: true
     PaginatedNetworkAccessView:
       type: object
       properties:
@@ -36142,6 +36739,28 @@ components:
           description: Number of documents returned in this response.
           minimum: 0
           readOnly: true
+    PartialFilter:
+      type: object
+      additionalProperties:
+        type: object
+        description: |-
+          Rules that limit the documents that the index references to a filter expression. All MongoDB index types accept a **partialFilterExpression** option. **partialFilterExpression** can include following expressions:
+
+          - equality (`"parameter" : "value"` or using the `$eq` operator)
+          - `"$exists": true`
+          , maximum: `$gt`, `$gte`, `$lt`, `$lte` comparisons
+          - `$type`
+          - `$and` (top-level only)
+           This option applies to all index types.
+      description: |-
+        Rules that limit the documents that the index references to a filter expression. All MongoDB index types accept a **partialFilterExpression** option. **partialFilterExpression** can include following expressions:
+
+        - equality (`"parameter" : "value"` or using the `$eq` operator)
+        - `"$exists": true`
+        , maximum: `$gt`, `$gte`, `$lt`, `$lte` comparisons
+        - `$type`
+        - `$and` (top-level only)
+         This option applies to all index types.
     PartitionFieldView:
       type: object
       description: Metadata to partition this online archive.
@@ -37408,6 +38027,66 @@ components:
       - groupId
       - managedAuthentication
       - ssl
+    StorageEngine:
+      type: object
+      additionalProperties:
+        type: object
+        description: "Storage engine set for the specific index. This value can be\
+          \ set only at creation. This option uses the following format: `\"storageEngine\"\
+          \ : { \"<storage-engine-name>\" : \"<options>\" }` MongoDB validates storage\
+          \ engine configuration options when creating indexes. To support replica\
+          \ sets with members with different storage engines, MongoDB logs these options\
+          \ to the oplog during replication. This option applies to all index types."
+        externalDocs:
+          description: MongoDB Server Storage Engines
+          url: https://docs.mongodb.com/manual/core/storage-engines/
+      description: "Storage engine set for the specific index. This value can be set\
+        \ only at creation. This option uses the following format: `\"storageEngine\"\
+        \ : { \"<storage-engine-name>\" : \"<options>\" }` MongoDB validates storage\
+        \ engine configuration options when creating indexes. To support replica sets\
+        \ with members with different storage engines, MongoDB logs these options\
+        \ to the oplog during replication. This option applies to all index types."
+      externalDocs:
+        description: MongoDB Server Storage Engines
+        url: https://docs.mongodb.com/manual/core/storage-engines/
+    SummaryNotificationView:
+      type: object
+      description: Summary notification configuration for MongoDB Cloud to send information
+        when an event triggers an alert condition.
+      properties:
+        delayMin:
+          type: integer
+          format: int32
+          description: Number of minutes that MongoDB Cloud waits after detecting
+            an alert condition before it sends out the first notification.
+        emailAddress:
+          type: string
+          format: email
+          description: |-
+            Email address to which MongoDB Cloud sends alert notifications. The resource requires this parameter when `"notifications.[n].typeName" : "EMAIL"`. You don’t need to set this value to send emails to individual or groups of MongoDB Cloud users including:
+
+            - specific MongoDB Cloud users (`"notifications.[n].typeName" : "USER"`)
+            - MongoDB Cloud users with specific project roles (`"notifications.[n].typeName" : "GROUP"`)
+            - MongoDB Cloud users with specific organization roles (`"notifications.[n].typeName" : "ORG"`)
+            - MongoDB Cloud teams (`"notifications.[n].typeName" : "TEAM"`)
+
+            To send emails to one MongoDB Cloud user or grouping of users, set the **notifications.[n].emailEnabled** parameter.
+        intervalMin:
+          type: integer
+          format: int32
+          description: |-
+            Number of minutes to wait between successive notifications. MongoDB Cloud sends notifications until someone acknowledges the unacknowledged alert.
+
+            PagerDuty, VictorOps, and OpsGenie notifications don't return this element. Configure and manage the notification interval within each of those services.
+          minimum: 5
+        typeName:
+          type: string
+          description: Human-readable label that displays the alert notification type.
+          enum:
+          - SUMMARY
+      required:
+      - typeName
+      title: Summary Notification
     SynonymSource:
       type: object
       description: Data set that stores the mapping one or more words map to one or
@@ -38634,6 +39313,20 @@ components:
               archive starts.
             maximum: 59
             minimum: 0
+    Weights:
+      type: object
+      additionalProperties:
+        type: object
+        description: "Relative importance to place upon provided index parameters.\
+          \ This object expresses this as key/value pairs of index parameter and weight\
+          \ to apply to that parameter. You can specify weights for some or all the\
+          \ indexed parameters. The weight must be an integer between 1 and 99,999.\
+          \ MongoDB 5.0 and later can apply **weights** to **text** indexes only."
+      description: "Relative importance to place upon provided index parameters. This\
+        \ object expresses this as key/value pairs of index parameter and weight to\
+        \ apply to that parameter. You can specify weights for some or all the indexed\
+        \ parameters. The weight must be an integer between 1 and 99,999. MongoDB\
+        \ 5.0 and later can apply **weights** to **text** indexes only."
     X509Certificate:
       type: object
       properties:
