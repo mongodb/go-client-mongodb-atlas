@@ -25,7 +25,7 @@ We use mustache comments to mark templates as modified:
 - `{{! X-XGEN-CUSTOM }}` - usually present at the top of the file - means that the whole file is currently customized.
 - `{{! X-XGEN-MODIFIED }}` - is put into existing templates to note areas in the code that were customized.
 
-### Generating custom files 
+### Generating custom files
 
 Tools enable us to generate custom files using OpenAPI model.
 We can for example generate unit tests or other helpers that are required.
@@ -41,9 +41,7 @@ files:
 ### Custom templates
 
 By default `./tools/config/go-templates` folder have all available templates as part of the openapi generator.
-This enables us to verify new templates changes. 
+This enables us to verify new templates changes.
 Templates are sourced from openapi generator:
 
 https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator/src/main/resources/go
-
-

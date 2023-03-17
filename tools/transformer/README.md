@@ -14,12 +14,12 @@ Additionally framework enables us to extend it by additional rules per usage to 
 
 ## When to add transformation
 
-Transformations should be generic - they should be reusable across OpenAPI files and be generally unopiniated way of 
+Transformations should be generic - they should be reusable across OpenAPI files and be generally unopiniated way of
 handling OpenAPI file. That means that they would improve any public OpenAPI for.
-Parameters for transformations (actuall scripts) can be more finetuned to current OpenAPI file. 
+Parameters for transformations (actuall scripts) can be more finetuned to current OpenAPI file.
 
 ## Usage
- 
+
 1. Run transformation engine
 
 ```
@@ -31,8 +31,8 @@ OPENAPI_FILE=openapi.yaml node ./transform.js
 
 ## Reviewing and changing parameters for transformations
 
-See [atlas transformations](./src/atlasTransformations.js) to review transformations 
-that are applied to atlas. 
+See [atlas transformations](./src/atlasTransformations.js) to review transformations
+that are applied to atlas.
 
 > NOTE: Order of the transformations matters.
 
@@ -82,10 +82,9 @@ For each model:
 - Remove prefix or suffix from model name
 - Ignore if model name is not matching prefix or suffix
 
-
 ## Transformation Validation
 
-Transformation engine does perform validation for invalid cases. 
+Transformation engine does perform validation for invalid cases.
 If transformation fails it usualy means that OpenAPI file is not correct and has issues that require human attention.
 
 The process of fixing OpenAPI always involves:
@@ -94,16 +93,18 @@ The process of fixing OpenAPI always involves:
 2. Typical errors print path to the OpenAPI file that caused the issue:
 
 For example:
+
 ```
    paths.'/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/exports'(post).requestBody.content is missing
-```  
-3. We look into the line number of the URL path and search for it in the OpenAPI file. In the yaml section of our file, we need to find operationId  a property.
+```
+
+3. We look into the line number of the URL path and search for it in the OpenAPI file. In the yaml section of our file, we need to find operationId a property.
 
 ## Known problems
 
 1. "Missing object reference"
 
-One of the Java annotations has a hardcoded $ref  value that points to an object that is missing. Please review your changes for potential invalid references.
+One of the Java annotations has a hardcoded $ref value that points to an object that is missing. Please review your changes for potential invalid references.
 
 - $ref: "#/components/schemas/InvalidObject"
 
@@ -111,14 +112,15 @@ One of the Java annotations has a hardcoded $ref  value that points to an object
 
 "OpenAPI object schema contains discriminator but missing oneOf or discriminator mapping. Please consider adding a oneOf or discriminator mapping section to the object"
 Discriminator needs a mapping section and oneOf to reflect the proper inheritance structure
-  discriminator:
-      mapping:
-          ...
-   oneOf:
+discriminator:
+mapping:
+...
+oneOf:
 
 3. Recursive reference in mapping
-"discriminator.mapping contains $ref to itself"
-Discriminator base objects cannot be mapped to themselves. This causes circular dependencies in many open-source tools 
+   "discriminator.mapping contains $ref to itself"
+   Discriminator base objects cannot be mapped to themselves. This causes circular dependencies in many open-source tools
+
 ```
        ReplicaSet:
              discriminator:

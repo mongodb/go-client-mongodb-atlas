@@ -2,7 +2,6 @@
 
 Folder contains scripts, generators and other files required to generate Golang client
 
-
 ### Purpose of the project
 
 Tools provides required scripts and intrastructure for generating source code for [OpenAPI generator project](https://github.com/OpenAPITools/openapi-generator).
@@ -26,10 +25,6 @@ make fetch_openapi
 ```
 make clean_and_generate
 ```
-
-
-
-
 
 #### Contributing
 
