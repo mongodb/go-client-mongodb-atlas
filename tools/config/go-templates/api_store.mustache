@@ -1,0 +1,18 @@
+ package {{packageName}}
+
+import (
+	"context"
+	{{goImportAlias}} "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}"
+)
+
+type {{classname}}Store struct {
+}
+
+{{#operations}}
+{{#operation}}
+func {{classname}}Service{{{nickname}}}(apiClient *{{goImportAlias}}.Client) {
+	{{#returnType}}resp, {{/returnType}}httpRes, err := apiClient.{{classname}}.{{operationId}}(context.Background(){{#pathParams}}, {{paramName}}{{/pathParams}}).Execute()
+}
+{{/operation}}
+{{/operations}}
+}
