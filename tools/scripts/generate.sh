@@ -31,7 +31,7 @@ npm exec openapi-generator-cli -- validate -i "$openapiFileLocation"
 echo "# Running Client Generation"
 
 npm exec openapi-generator-cli -- generate \
-    -c "./config/go.yaml" -i "$openapiFileLocation" -o "$SDK_FOLDER" \
+    -c "./config/config.yaml" -i "$openapiFileLocation" -o "$SDK_FOLDER" \
     --package-name="$client_package" \
     --ignore-file-override=config/.go-ignore
 
