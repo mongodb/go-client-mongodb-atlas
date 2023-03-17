@@ -40525,7 +40525,4 @@ components:
             description: Atlas Search Index
             url: https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/
       title: mappings
-  securitySchemes:
-    DigestAuth:
-      scheme: digest
-      type: http
+  securitySchemes: {}

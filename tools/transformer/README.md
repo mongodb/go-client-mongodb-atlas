@@ -82,6 +82,10 @@ For each model:
 - Remove prefix or suffix from model name
 - Ignore if model name is not matching prefix or suffix
 
+5. Digest transformation
+
+Removes digest authentication which is not recognized by many generators
+
 ## Transformation Validation
 
 Transformation engine does perform validation for invalid cases.

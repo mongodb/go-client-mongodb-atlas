@@ -3,6 +3,7 @@ const {
   applyOneOfTransformations,
   applyModelNameTransformations,
   applyDiscriminatorTransformations,
+  applyDigestTransformations,
 } = require("./transformations");
 
 const ignoredModelNames = require("./name.ignore.json").ignoreModels;
@@ -39,6 +40,7 @@ module.exports = function runTransformations(openapi) {
     "View",
     ignoredModelNames
   );
+  openapi = applyDigestTransformations(openapi);
 
   return openapi;
 };
