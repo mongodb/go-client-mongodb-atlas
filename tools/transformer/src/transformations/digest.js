@@ -3,6 +3,13 @@ function applyDigestTransformations(api) {
   if (hasSchemas) {
     delete api.components.securitySchemes.DigestAuth;
   }
+
+  Object.keys(api.paths).forEach((path) => {
+     Object.keys(api.paths[path]).forEach((method)=>{
+      delete api.paths[path][method].security
+     });
+  });
+
   return api;
 }
 
