@@ -1,4 +1,4 @@
-package latest // import "go.mongodb.org/atlas/mongodbatlas/v2"
+package mongodbatlasv2 // import "go.mongodb.org/atlas/mongodbatlas/v2"
 
 import (
 	"fmt"
