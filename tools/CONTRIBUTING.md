@@ -5,7 +5,7 @@
 We need to regenerate our SDK every time tools are changed as - changes might affect the generated clients.
 PR based checks will verify if changes are up to date.
 
-```
+```bash
 make clean_and_generate
 ```
 
@@ -31,7 +31,7 @@ Tools enable us to generate custom files using OpenAPI model.
 We can for example generate unit tests or other helpers that are required.
 To generate custom file add custom template edit config.yaml:
 
-```
+```yaml
 files:
   myclient.mustache:
     templateType: SupportingFiles
