@@ -29,7 +29,7 @@ type GroupInvitation struct {
 	// Human-readable label that identifies the project to which you invited the MongoDB Cloud user.
 	GroupName *string `json:"groupName,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the invitation.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Email address of the MongoDB Cloud user who sent the invitation.
 	InviterUsername *string `json:"inviterUsername,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.

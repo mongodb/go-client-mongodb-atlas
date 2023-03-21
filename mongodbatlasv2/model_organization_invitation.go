@@ -25,7 +25,7 @@ type OrganizationInvitation struct {
 	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this organization.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Email address of the MongoDB Cloud user who sent the invitation to join the organization.
 	InviterUsername *string `json:"inviterUsername,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.

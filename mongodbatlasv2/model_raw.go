@@ -33,7 +33,7 @@ type Raw struct {
 	// Human-readable label that identifies the project.
 	Gn *string `json:"gn,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which these events apply.
 	OrgId *string `json:"orgId,omitempty"`
 	// Human-readable label that identifies the organization that contains the project.

@@ -30,7 +30,7 @@ type AWSPeerVpc struct {
 	// Type of error that can be returned when requesting an Amazon Web Services (AWS) peering connection. The resource returns `null` if the request succeeded.
 	ErrorStateName *string `json:"errorStateName,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the network peering connection.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Internet Protocol (IP) addresses expressed in Classless Inter-Domain Routing (CIDR) notation of the VPC's subnet that you want to peer with the MongoDB Cloud VPC.
 	RouteTableCidrBlock string `json:"routeTableCidrBlock"`
 	// State of the network peering connection at the time you made the request.

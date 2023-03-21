@@ -20,7 +20,7 @@ var _ MappedNullable = &AddUserToTeam{}
 // AddUserToTeam struct for AddUserToTeam
 type AddUserToTeam struct {
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	Id string `json:"id"`
+	ID string `json:"id"`
 }
 
 // NewAddUserToTeam instantiates a new AddUserToTeam object

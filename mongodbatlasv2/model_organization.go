@@ -20,7 +20,7 @@ var _ MappedNullable = &Organization{}
 // Organization struct for Organization
 type Organization struct {
 	// Unique 24-hexadecimal digit string that identifies the organization.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Flag that indicates whether this organization has been deleted.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.

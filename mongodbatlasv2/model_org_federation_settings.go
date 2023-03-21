@@ -24,7 +24,7 @@ type OrgFederationSettings struct {
 	// Flag that indicates whether this organization has role mappings configured.
 	HasRoleMappings *bool `json:"hasRoleMappings,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this federation.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Unique 20-hexadecimal digit string that identifies the identity provider connected to this organization.
 	IdentityProviderId *string `json:"identityProviderId,omitempty"`
 	// String enum that indicates whether the identity provider is active.

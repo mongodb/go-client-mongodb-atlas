@@ -25,7 +25,7 @@ type ClusterOutageSimulation struct {
 	// Unique 24-hexadecimal character string that identifies the project that contains the cluster to undergo outage simulation.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal character string that identifies the outage simulation.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `json:"outageFilters,omitempty"`
 	// Date and time when MongoDB Cloud started the regional outage simulation.

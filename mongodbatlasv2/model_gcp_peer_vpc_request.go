@@ -28,7 +28,7 @@ type GCPPeerVpcRequest struct {
 	// Human-readable label that identifies the GCP project that contains the network that you want to peer with the MongoDB Cloud VPC.
 	GcpProjectId string `json:"gcpProjectId"`
 	// Unique 24-hexadecimal digit string that identifies the network peering connection.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Human-readable label that identifies the network to peer with the MongoDB Cloud VPC.
 	NetworkName string `json:"networkName"`
 	// State of the network peering connection at the time you made the request.

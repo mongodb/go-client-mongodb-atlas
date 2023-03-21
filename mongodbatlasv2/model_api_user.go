@@ -22,7 +22,7 @@ type ApiUser struct {
 	// Purpose or explanation provided when someone created this organization API key.
 	Desc *string `json:"desc,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this organization API key assigned to this project.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Redacted private key returned for this organization API key. This key displays unredacted when first created.

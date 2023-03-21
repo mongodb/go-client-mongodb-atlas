@@ -38,7 +38,7 @@ type RestoreJob struct {
 	// List that contains documents mapping each restore file to a hashed checksum. This parameter applies after you download the corresponding **delivery.url**. If `\"methodName\" : \"HTTP\"`, this list contains one object that represents the hash of the **.tar.gz** file.
 	Hashes []RestoreJobFileHash `json:"hashes,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the restore job.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Universally Unique Identifier (UUID) that identifies the Key Management Interoperability (KMIP) master key used to encrypt the snapshot data. This parameter applies only when `\"encryptionEnabled\" : \"true\"`.

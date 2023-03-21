@@ -24,7 +24,7 @@ type PerformanceAdvisorShape struct {
 	// Number of queries examined that match this shape.
 	Count *int64 `json:"count,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this shape. This string exists only for the duration of this API request.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Average number of documents read for every document that the query returns.
 	InefficiencyScore *int64 `json:"inefficiencyScore,omitempty"`
 	// Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`.

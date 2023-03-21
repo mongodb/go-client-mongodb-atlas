@@ -27,7 +27,7 @@ type ServerlessBackupSnapshot struct {
 	// Human-readable label that identifies how often this snapshot triggers.
 	FrequencyType *string `json:"frequencyType,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Version of the MongoDB host that this snapshot backs up.

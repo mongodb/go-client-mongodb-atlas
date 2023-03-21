@@ -42,7 +42,7 @@ type RestoreJobDelivery struct {
 	TargetGroupId *string `json:"targetGroupId,omitempty"`
 	// Uniform Resource Locator (URL) from which you can download the restored snapshot data. Url includes the verification key. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
 	// Deprecated
-	Url *string `json:"url,omitempty"`
+	URL *string `json:"url,omitempty"`
 	// Uniform Resource Locator (URL) from which you can download the restored snapshot data. This should be preferred over **url**. The verification key must be sent as an HTTP header. The resource returns this parameter when `\"delivery.methodName\" : \"HTTP\"`.
 	UrlV2 *string `json:"urlV2,omitempty"`
 }

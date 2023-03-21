@@ -27,7 +27,7 @@ type TenantRestore struct {
 	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpirationDate *time.Time `json:"expirationDate,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the restore job.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project from which the restore job originated.

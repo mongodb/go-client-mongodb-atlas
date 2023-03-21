@@ -24,7 +24,7 @@ type Webhook struct {
 	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type.
 	Type *string `json:"type,omitempty"`
 	// Endpoint web address to which MongoDB Cloud sends notifications.  **NOTE**: When you view or edit the alert for a webhook notification, the URL appears partially redacted.
-	Url string `json:"url"`
+	URL string `json:"url"`
 }
 
 // NewWebhook instantiates a new Webhook object

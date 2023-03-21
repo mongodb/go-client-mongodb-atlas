@@ -28,7 +28,7 @@ type OrgEventViewForOrg struct {
 	// Unique 24-hexadecimal digit string that identifies the project in which the event occurred. The **eventId** identifies the specific event.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the event.
-	Id string `json:"id"`
+	ID string `json:"id"`
 	// Unique 24-hexadecimal digit string that identifies of the invoice associated with the event.
 	InvoiceId *string `json:"invoiceId,omitempty"`
 	// Flag that indicates whether a MongoDB employee triggered the specified event.

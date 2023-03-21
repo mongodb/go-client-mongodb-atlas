@@ -26,7 +26,7 @@ type AWSCloudProviderContainer struct {
 	// Unique string that identifies the MongoDB Cloud VPC on AWS.
 	VpcId *string `json:"vpcId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the network peering container.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Cloud service provider that serves the requested network peering containers.
 	ProviderName *string `json:"providerName,omitempty"`
 	// Flag that indicates whether MongoDB Cloud clusters exist in the specified network peering container.

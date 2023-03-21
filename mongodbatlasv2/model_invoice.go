@@ -33,7 +33,7 @@ type Invoice struct {
 	// Unique 24-hexadecimal digit string that identifies the project associated to this invoice. This identifying string doesn't appear on all invoices.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List that contains individual services included in this invoice.
 	LineItems []LineItem `json:"lineItems,omitempty"`
 	// List that contains the invoices for organizations linked to the paying organization.

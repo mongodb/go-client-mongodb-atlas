@@ -25,7 +25,7 @@ type Group struct {
 	// Date and time when MongoDB Cloud created this project. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	Created time.Time `json:"created"`
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Human-readable label that identifies the project included in the MongoDB Cloud organization.

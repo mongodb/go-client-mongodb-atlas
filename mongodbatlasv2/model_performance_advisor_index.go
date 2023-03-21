@@ -22,7 +22,7 @@ type PerformanceAdvisorIndex struct {
 	// The average size of an object in the collection of this index.
 	AvgObjSize *float64 `json:"avgObjSize,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies this index.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List that contains unique 24-hexadecimal character string that identifies the query shapes in this response that the Performance Advisor suggests.
 	Impact []string `json:"impact,omitempty"`
 	// List that contains documents that specify a key in the index and its sort order.

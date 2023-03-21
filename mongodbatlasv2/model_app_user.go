@@ -29,7 +29,7 @@ type AppUser struct {
 	// First or given name that belongs to the MongoDB Cloud user.
 	FirstName string `json:"firstName"`
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 	LastAuth *time.Time `json:"lastAuth,omitempty"`
 	// Last name, family name, or surname that belongs to the MongoDB Cloud user.

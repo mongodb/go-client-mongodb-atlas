@@ -24,7 +24,7 @@ type PolicyItem struct {
 	// Human-readable label that identifies the frequency type associated with the backup policy.
 	FrequencyType string `json:"frequencyType"`
 	// Unique 24-hexadecimal digit string that identifies this backup policy item.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Unit of time in which MongoDB Cloud measures snapshot retention.
 	RetentionUnit string `json:"retentionUnit"`
 	// Duration in days, weeks, or months that MongoDB Cloud retains the snapshot. For less frequent policy items, MongoDB Cloud requires that you specify a value greater than or equal to the value specified for more frequent policy items.  For example: If the hourly policy item specifies a retention of two days, you must specify two days or greater for the retention of the weekly policy item.

@@ -20,7 +20,7 @@ var _ MappedNullable = &Policy{}
 // Policy List that contains a document for each backup policy item in the desired backup policy.
 type Policy struct {
 	// Unique 24-hexadecimal digit string that identifies this backup policy.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List that contains the specifications for one policy.
 	PolicyItems []PolicyItem `json:"policyItems,omitempty"`
 }

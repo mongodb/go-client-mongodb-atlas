@@ -32,7 +32,7 @@ type Snapshot struct {
 	// Unique 24-hexadecimal digit string that identifies the project that owns the snapshots.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	LastOplogAppliedTimestamp *BSONTimestamp `json:"lastOplogAppliedTimestamp,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`

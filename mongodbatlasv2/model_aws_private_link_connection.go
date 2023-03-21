@@ -24,7 +24,7 @@ type AWSPrivateLinkConnection struct {
 	// Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of strings that identify private endpoint interfaces applied to the specified project.
 	InterfaceEndpoints []string `json:"interfaceEndpoints,omitempty"`
 	// Cloud provider region that manages this Private Endpoint Service.

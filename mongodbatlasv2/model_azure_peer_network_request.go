@@ -30,7 +30,7 @@ type AzurePeerNetworkRequest struct {
 	// Error message returned when a requested Azure network peering resource returns `\"status\" : \"FAILED\"`. The resource returns `null` if the request succeeded.
 	ErrorState *string `json:"errorState,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the network peering connection.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// Human-readable label that identifies the resource group in which the VNet to peer with the MongoDB Cloud VNet resides.
 	ResourceGroupName string `json:"resourceGroupName"`
 	// State of the network peering connection at the time you made the request.

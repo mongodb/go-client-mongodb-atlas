@@ -20,7 +20,7 @@ var _ MappedNullable = &Team{}
 // Team struct for Team
 type Team struct {
 	// Unique 24-hexadecimal digit string that identifies this team.
-	Id string `json:"id"`
+	ID string `json:"id"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// Human-readable label that identifies the team.

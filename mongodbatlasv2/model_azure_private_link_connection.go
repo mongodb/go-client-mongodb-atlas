@@ -22,7 +22,7 @@ type AzurePrivateLinkConnection struct {
 	// Error message returned when requesting private connection resource. The resource returns `null` if the request succeeded.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
-	Id *string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 	// List of private endpoints assigned to this Azure Private Link Service.
 	PrivateEndpoints []string `json:"privateEndpoints,omitempty"`
 	// Unique string that identifies the Azure Private Link Service that MongoDB Cloud manages.
