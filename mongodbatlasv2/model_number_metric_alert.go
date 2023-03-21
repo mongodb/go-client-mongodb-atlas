@@ -82,8 +82,8 @@ func NewNumberMetricAlertWithDefaults() *NumberMetricAlert {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *NumberMetricAlert) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *NumberMetricAlert) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -170,8 +170,8 @@ func (o *NumberMetricAlert) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *NumberMetricAlert) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *NumberMetricAlert) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -226,8 +226,8 @@ func (o *NumberMetricAlert) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *NumberMetricAlert) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *NumberMetricAlert) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -282,8 +282,8 @@ func (o *NumberMetricAlert) SetCurrentValue(v NumberMetricValue) {
 	o.CurrentValue = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *NumberMetricAlert) GetEventTypeName() HostMetricEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *NumberMetricAlert) EventTypeName() HostMetricEventTypeViewAlertable {
 	if o == nil {
 		var ret HostMetricEventTypeViewAlertable
 		return ret
@@ -370,8 +370,8 @@ func (o *NumberMetricAlert) SetHostnameAndPort(v string) {
 	o.HostnameAndPort = &v
 }
 
-// GetId returns the Id field value
-func (o *NumberMetricAlert) GetId() string {
+// Id returns the Id field value
+func (o *NumberMetricAlert) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -586,8 +586,8 @@ func (o *NumberMetricAlert) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *NumberMetricAlert) GetStatus() string {
+// Status returns the Status field value
+func (o *NumberMetricAlert) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -610,8 +610,8 @@ func (o *NumberMetricAlert) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *NumberMetricAlert) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *NumberMetricAlert) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

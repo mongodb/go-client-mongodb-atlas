@@ -52,8 +52,8 @@ func NewFederatedUserWithDefaults() *FederatedUser {
 	return &this
 }
 
-// GetEmailAddress returns the EmailAddress field value
-func (o *FederatedUser) GetEmailAddress() string {
+// EmailAddress returns the EmailAddress field value
+func (o *FederatedUser) EmailAddress() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,8 +76,8 @@ func (o *FederatedUser) SetEmailAddress(v string) {
 	o.EmailAddress = v
 }
 
-// GetFederationSettingsId returns the FederationSettingsId field value
-func (o *FederatedUser) GetFederationSettingsId() string {
+// FederationSettingsId returns the FederationSettingsId field value
+func (o *FederatedUser) FederationSettingsId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -100,8 +100,8 @@ func (o *FederatedUser) SetFederationSettingsId(v string) {
 	o.FederationSettingsId = v
 }
 
-// GetFirstName returns the FirstName field value
-func (o *FederatedUser) GetFirstName() string {
+// FirstName returns the FirstName field value
+func (o *FederatedUser) FirstName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -124,8 +124,8 @@ func (o *FederatedUser) SetFirstName(v string) {
 	o.FirstName = v
 }
 
-// GetLastName returns the LastName field value
-func (o *FederatedUser) GetLastName() string {
+// LastName returns the LastName field value
+func (o *FederatedUser) LastName() string {
 	if o == nil {
 		var ret string
 		return ret

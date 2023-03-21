@@ -109,8 +109,8 @@ func (o *Webhook) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUrl returns the Url field value
-func (o *Webhook) GetUrl() string {
+// Url returns the Url field value
+func (o *Webhook) Url() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -44,8 +44,8 @@ func NewCreateEndpointServiceRequestWithDefaults() *CreateEndpointServiceRequest
 	return &this
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *CreateEndpointServiceRequest) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *CreateEndpointServiceRequest) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *CreateEndpointServiceRequest) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-// GetRegion returns the Region field value
-func (o *CreateEndpointServiceRequest) GetRegion() string {
+// Region returns the Region field value
+func (o *CreateEndpointServiceRequest) Region() string {
 	if o == nil {
 		var ret string
 		return ret

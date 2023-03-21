@@ -132,8 +132,8 @@ func (o *AlertConfigAudit) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *AlertConfigAudit) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *AlertConfigAudit) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -156,8 +156,8 @@ func (o *AlertConfigAudit) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *AlertConfigAudit) GetEventTypeName() AlertConfigAuditType {
+// EventTypeName returns the EventTypeName field value
+func (o *AlertConfigAudit) EventTypeName() AlertConfigAuditType {
 	if o == nil {
 		var ret AlertConfigAuditType
 		return ret
@@ -212,8 +212,8 @@ func (o *AlertConfigAudit) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *AlertConfigAudit) GetId() string {
+// Id returns the Id field value
+func (o *AlertConfigAudit) Id() string {
 	if o == nil {
 		var ret string
 		return ret

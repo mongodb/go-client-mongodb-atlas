@@ -41,8 +41,8 @@ func NewTokenizerkeywordWithDefaults() *Tokenizerkeyword {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *Tokenizerkeyword) GetType() string {
+// Type returns the Type field value
+func (o *Tokenizerkeyword) Type() string {
 	if o == nil {
 		var ret string
 		return ret

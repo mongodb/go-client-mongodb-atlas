@@ -51,8 +51,8 @@ func NewDataLakeOnlineArchiveStoreWithDefaults() *DataLakeOnlineArchiveStore {
 	return &this
 }
 
-// GetClusterId returns the ClusterId field value
-func (o *DataLakeOnlineArchiveStore) GetClusterId() string {
+// ClusterId returns the ClusterId field value
+func (o *DataLakeOnlineArchiveStore) ClusterId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,8 +75,8 @@ func (o *DataLakeOnlineArchiveStore) SetClusterId(v string) {
 	o.ClusterId = v
 }
 
-// GetClusterName returns the ClusterName field value
-func (o *DataLakeOnlineArchiveStore) GetClusterName() string {
+// ClusterName returns the ClusterName field value
+func (o *DataLakeOnlineArchiveStore) ClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -99,8 +99,8 @@ func (o *DataLakeOnlineArchiveStore) SetClusterName(v string) {
 	o.ClusterName = v
 }
 
-// GetProjectId returns the ProjectId field value
-func (o *DataLakeOnlineArchiveStore) GetProjectId() string {
+// ProjectId returns the ProjectId field value
+func (o *DataLakeOnlineArchiveStore) ProjectId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -155,8 +155,8 @@ func (o *DataLakeOnlineArchiveStore) SetName(v string) {
 	o.Name = &v
 }
 
-// GetProvider returns the Provider field value
-func (o *DataLakeOnlineArchiveStore) GetProvider() string {
+// Provider returns the Provider field value
+func (o *DataLakeOnlineArchiveStore) Provider() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -79,8 +79,8 @@ func (o *TokenizeruaxUrlEmail) SetMaxTokenLength(v int32) {
 	o.MaxTokenLength = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenizeruaxUrlEmail) GetType() string {
+// Type returns the Type field value
+func (o *TokenizeruaxUrlEmail) Type() string {
 	if o == nil {
 		var ret string
 		return ret

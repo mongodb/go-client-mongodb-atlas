@@ -53,8 +53,8 @@ func NewAuditLogWithDefaults() *AuditLog {
 	return &this
 }
 
-// GetAuditAuthorizationSuccess returns the AuditAuthorizationSuccess field value
-func (o *AuditLog) GetAuditAuthorizationSuccess() bool {
+// AuditAuthorizationSuccess returns the AuditAuthorizationSuccess field value
+func (o *AuditLog) AuditAuthorizationSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -77,8 +77,8 @@ func (o *AuditLog) SetAuditAuthorizationSuccess(v bool) {
 	o.AuditAuthorizationSuccess = v
 }
 
-// GetAuditFilter returns the AuditFilter field value
-func (o *AuditLog) GetAuditFilter() string {
+// AuditFilter returns the AuditFilter field value
+func (o *AuditLog) AuditFilter() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -133,8 +133,8 @@ func (o *AuditLog) SetConfigurationType(v string) {
 	o.ConfigurationType = &v
 }
 
-// GetEnabled returns the Enabled field value
-func (o *AuditLog) GetEnabled() bool {
+// Enabled returns the Enabled field value
+func (o *AuditLog) Enabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

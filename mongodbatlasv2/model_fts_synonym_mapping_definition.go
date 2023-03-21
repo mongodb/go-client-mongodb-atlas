@@ -48,8 +48,8 @@ func NewFTSSynonymMappingDefinitionWithDefaults() *FTSSynonymMappingDefinition {
 	return &this
 }
 
-// GetAnalyzer returns the Analyzer field value
-func (o *FTSSynonymMappingDefinition) GetAnalyzer() string {
+// Analyzer returns the Analyzer field value
+func (o *FTSSynonymMappingDefinition) Analyzer() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -72,8 +72,8 @@ func (o *FTSSynonymMappingDefinition) SetAnalyzer(v string) {
 	o.Analyzer = v
 }
 
-// GetName returns the Name field value
-func (o *FTSSynonymMappingDefinition) GetName() string {
+// Name returns the Name field value
+func (o *FTSSynonymMappingDefinition) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -96,8 +96,8 @@ func (o *FTSSynonymMappingDefinition) SetName(v string) {
 	o.Name = v
 }
 
-// GetSource returns the Source field value
-func (o *FTSSynonymMappingDefinition) GetSource() SynonymSource {
+// Source returns the Source field value
+func (o *FTSSynonymMappingDefinition) Source() SynonymSource {
 	if o == nil {
 		var ret SynonymSource
 		return ret

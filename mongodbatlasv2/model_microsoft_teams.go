@@ -43,8 +43,8 @@ func NewMicrosoftTeamsWithDefaults() *MicrosoftTeams {
 	return &this
 }
 
-// GetMicrosoftTeamsWebhookUrl returns the MicrosoftTeamsWebhookUrl field value
-func (o *MicrosoftTeams) GetMicrosoftTeamsWebhookUrl() string {
+// MicrosoftTeamsWebhookUrl returns the MicrosoftTeamsWebhookUrl field value
+func (o *MicrosoftTeams) MicrosoftTeamsWebhookUrl() string {
 	if o == nil {
 		var ret string
 		return ret

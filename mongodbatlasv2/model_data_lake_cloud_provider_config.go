@@ -40,8 +40,8 @@ func NewDataLakeCloudProviderConfigWithDefaults() *DataLakeCloudProviderConfig {
 	return &this
 }
 
-// GetAws returns the Aws field value
-func (o *DataLakeCloudProviderConfig) GetAws() DataLakeAWSCloudProviderConfig {
+// Aws returns the Aws field value
+func (o *DataLakeCloudProviderConfig) Aws() DataLakeAWSCloudProviderConfig {
 	if o == nil {
 		var ret DataLakeAWSCloudProviderConfig
 		return ret

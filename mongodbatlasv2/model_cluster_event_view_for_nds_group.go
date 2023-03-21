@@ -56,8 +56,8 @@ func NewClusterEventViewForNdsGroupWithDefaults() *ClusterEventViewForNdsGroup {
 	return &this
 }
 
-// GetCreated returns the Created field value
-func (o *ClusterEventViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *ClusterEventViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -80,8 +80,8 @@ func (o *ClusterEventViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ClusterEventViewForNdsGroup) GetEventTypeName() ClusterEventTypeViewForNdsGroup {
+// EventTypeName returns the EventTypeName field value
+func (o *ClusterEventViewForNdsGroup) EventTypeName() ClusterEventTypeViewForNdsGroup {
 	if o == nil {
 		var ret ClusterEventTypeViewForNdsGroup
 		return ret
@@ -136,8 +136,8 @@ func (o *ClusterEventViewForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *ClusterEventViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *ClusterEventViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret

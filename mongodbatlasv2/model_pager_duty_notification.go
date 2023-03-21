@@ -181,8 +181,8 @@ func (o *PagerDutyNotification) SetServiceKey(v string) {
 	o.ServiceKey = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *PagerDutyNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *PagerDutyNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

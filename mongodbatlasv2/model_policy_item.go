@@ -52,8 +52,8 @@ func NewPolicyItemWithDefaults() *PolicyItem {
 	return &this
 }
 
-// GetFrequencyInterval returns the FrequencyInterval field value
-func (o *PolicyItem) GetFrequencyInterval() int32 {
+// FrequencyInterval returns the FrequencyInterval field value
+func (o *PolicyItem) FrequencyInterval() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -76,8 +76,8 @@ func (o *PolicyItem) SetFrequencyInterval(v int32) {
 	o.FrequencyInterval = v
 }
 
-// GetFrequencyType returns the FrequencyType field value
-func (o *PolicyItem) GetFrequencyType() string {
+// FrequencyType returns the FrequencyType field value
+func (o *PolicyItem) FrequencyType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -132,8 +132,8 @@ func (o *PolicyItem) SetId(v string) {
 	o.Id = &v
 }
 
-// GetRetentionUnit returns the RetentionUnit field value
-func (o *PolicyItem) GetRetentionUnit() string {
+// RetentionUnit returns the RetentionUnit field value
+func (o *PolicyItem) RetentionUnit() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -156,8 +156,8 @@ func (o *PolicyItem) SetRetentionUnit(v string) {
 	o.RetentionUnit = v
 }
 
-// GetRetentionValue returns the RetentionValue field value
-func (o *PolicyItem) GetRetentionValue() int32 {
+// RetentionValue returns the RetentionValue field value
+func (o *PolicyItem) RetentionValue() int32 {
 	if o == nil {
 		var ret int32
 		return ret

@@ -60,8 +60,8 @@ func NewForNdsGroupWithDefaults() *ForNdsGroup {
 	return &this
 }
 
-// GetCreated returns the Created field value
-func (o *ForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *ForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -84,8 +84,8 @@ func (o *ForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroup {
+// EventTypeName returns the EventTypeName field value
+func (o *ForNdsGroup) EventTypeName() ReplicaSetEventTypeViewForNdsGroup {
 	if o == nil {
 		var ret ReplicaSetEventTypeViewForNdsGroup
 		return ret
@@ -140,8 +140,8 @@ func (o *ForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *ForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *ForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret

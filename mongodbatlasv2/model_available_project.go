@@ -112,8 +112,8 @@ func (o *AvailableProject) SetMigrationHosts(v []string) {
 	o.MigrationHosts = v
 }
 
-// GetName returns the Name field value
-func (o *AvailableProject) GetName() string {
+// Name returns the Name field value
+func (o *AvailableProject) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -136,8 +136,8 @@ func (o *AvailableProject) SetName(v string) {
 	o.Name = v
 }
 
-// GetProjectId returns the ProjectId field value
-func (o *AvailableProject) GetProjectId() string {
+// ProjectId returns the ProjectId field value
+func (o *AvailableProject) ProjectId() string {
 	if o == nil {
 		var ret string
 		return ret

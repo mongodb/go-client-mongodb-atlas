@@ -43,8 +43,8 @@ func NewCustomCriteriaWithDefaults() *CustomCriteria {
 	return &this
 }
 
-// GetQuery returns the Query field value
-func (o *CustomCriteria) GetQuery() string {
+// Query returns the Query field value
+func (o *CustomCriteria) Query() string {
 	if o == nil {
 		var ret string
 		return ret

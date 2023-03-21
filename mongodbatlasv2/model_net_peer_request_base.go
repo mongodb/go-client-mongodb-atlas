@@ -44,8 +44,8 @@ func NewNetPeerRequestBaseWithDefaults() *NetPeerRequestBase {
 	return &this
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *NetPeerRequestBase) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *NetPeerRequestBase) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *NetPeerRequestBase) SetContainerId(v string) {
 	o.ContainerId = v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *NetPeerRequestBase) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *NetPeerRequestBase) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

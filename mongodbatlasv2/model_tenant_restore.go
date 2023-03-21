@@ -357,8 +357,8 @@ func (o *TenantRestore) SetSnapshotFinishedDate(v time.Time) {
 	o.SnapshotFinishedDate = &v
 }
 
-// GetSnapshotId returns the SnapshotId field value
-func (o *TenantRestore) GetSnapshotId() string {
+// SnapshotId returns the SnapshotId field value
+func (o *TenantRestore) SnapshotId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -445,8 +445,8 @@ func (o *TenantRestore) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetTargetDeploymentItemName returns the TargetDeploymentItemName field value
-func (o *TenantRestore) GetTargetDeploymentItemName() string {
+// TargetDeploymentItemName returns the TargetDeploymentItemName field value
+func (o *TenantRestore) TargetDeploymentItemName() string {
 	if o == nil {
 		var ret string
 		return ret

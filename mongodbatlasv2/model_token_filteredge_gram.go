@@ -53,8 +53,8 @@ func NewTokenFilteredgeGramWithDefaults() *TokenFilteredgeGram {
 	return &this
 }
 
-// GetMaxGram returns the MaxGram field value
-func (o *TokenFilteredgeGram) GetMaxGram() int32 {
+// MaxGram returns the MaxGram field value
+func (o *TokenFilteredgeGram) MaxGram() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -77,8 +77,8 @@ func (o *TokenFilteredgeGram) SetMaxGram(v int32) {
 	o.MaxGram = v
 }
 
-// GetMinGram returns the MinGram field value
-func (o *TokenFilteredgeGram) GetMinGram() int32 {
+// MinGram returns the MinGram field value
+func (o *TokenFilteredgeGram) MinGram() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -133,8 +133,8 @@ func (o *TokenFilteredgeGram) SetTermNotInBounds(v string) {
 	o.TermNotInBounds = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilteredgeGram) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilteredgeGram) Type() string {
 	if o == nil {
 		var ret string
 		return ret

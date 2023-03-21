@@ -47,8 +47,8 @@ func NewTokenFiltershingleWithDefaults() *TokenFiltershingle {
 	return &this
 }
 
-// GetMaxShingleSize returns the MaxShingleSize field value
-func (o *TokenFiltershingle) GetMaxShingleSize() int32 {
+// MaxShingleSize returns the MaxShingleSize field value
+func (o *TokenFiltershingle) MaxShingleSize() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -71,8 +71,8 @@ func (o *TokenFiltershingle) SetMaxShingleSize(v int32) {
 	o.MaxShingleSize = v
 }
 
-// GetMinShingleSize returns the MinShingleSize field value
-func (o *TokenFiltershingle) GetMinShingleSize() int32 {
+// MinShingleSize returns the MinShingleSize field value
+func (o *TokenFiltershingle) MinShingleSize() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -95,8 +95,8 @@ func (o *TokenFiltershingle) SetMinShingleSize(v int32) {
 	o.MinShingleSize = v
 }
 
-// GetType returns the Type field value
-func (o *TokenFiltershingle) GetType() string {
+// Type returns the Type field value
+func (o *TokenFiltershingle) Type() string {
 	if o == nil {
 		var ret string
 		return ret

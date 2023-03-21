@@ -75,8 +75,8 @@ func (o *AccessListItem) SetCidrBlock(v string) {
 	o.CidrBlock = &v
 }
 
-// GetIpAddress returns the IpAddress field value
-func (o *AccessListItem) GetIpAddress() string {
+// IpAddress returns the IpAddress field value
+func (o *AccessListItem) IpAddress() string {
 	if o == nil {
 		var ret string
 		return ret

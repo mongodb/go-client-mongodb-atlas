@@ -181,8 +181,8 @@ func (o *OpsGenieNotification) SetOpsGenieRegion(v string) {
 	o.OpsGenieRegion = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *OpsGenieNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *OpsGenieNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

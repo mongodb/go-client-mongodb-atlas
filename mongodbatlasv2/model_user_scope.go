@@ -44,8 +44,8 @@ func NewUserScopeWithDefaults() *UserScope {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *UserScope) GetName() string {
+// Name returns the Name field value
+func (o *UserScope) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *UserScope) SetName(v string) {
 	o.Name = v
 }
 
-// GetType returns the Type field value
-func (o *UserScope) GetType() string {
+// Type returns the Type field value
+func (o *UserScope) Type() string {
 	if o == nil {
 		var ret string
 		return ret

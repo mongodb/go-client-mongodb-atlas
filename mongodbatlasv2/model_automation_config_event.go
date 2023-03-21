@@ -98,8 +98,8 @@ func (o *AutomationConfigEvent) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *AutomationConfigEvent) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *AutomationConfigEvent) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -122,8 +122,8 @@ func (o *AutomationConfigEvent) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *AutomationConfigEvent) GetEventTypeName() AutomationConfigEventType {
+// EventTypeName returns the EventTypeName field value
+func (o *AutomationConfigEvent) EventTypeName() AutomationConfigEventType {
 	if o == nil {
 		var ret AutomationConfigEventType
 		return ret
@@ -178,8 +178,8 @@ func (o *AutomationConfigEvent) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *AutomationConfigEvent) GetId() string {
+// Id returns the Id field value
+func (o *AutomationConfigEvent) Id() string {
 	if o == nil {
 		var ret string
 		return ret

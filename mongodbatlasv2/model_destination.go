@@ -51,8 +51,8 @@ func NewDestinationWithDefaults() *Destination {
 	return &this
 }
 
-// GetClusterName returns the ClusterName field value
-func (o *Destination) GetClusterName() string {
+// ClusterName returns the ClusterName field value
+func (o *Destination) ClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,8 +75,8 @@ func (o *Destination) SetClusterName(v string) {
 	o.ClusterName = v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *Destination) GetGroupId() string {
+// GroupId returns the GroupId field value
+func (o *Destination) GroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -99,8 +99,8 @@ func (o *Destination) SetGroupId(v string) {
 	o.GroupId = v
 }
 
-// GetHostnameSchemaType returns the HostnameSchemaType field value
-func (o *Destination) GetHostnameSchemaType() string {
+// HostnameSchemaType returns the HostnameSchemaType field value
+func (o *Destination) HostnameSchemaType() string {
 	if o == nil {
 		var ret string
 		return ret

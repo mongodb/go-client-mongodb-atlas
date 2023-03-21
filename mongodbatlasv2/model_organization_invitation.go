@@ -252,8 +252,8 @@ func (o *OrganizationInvitation) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
-// GetOrgName returns the OrgName field value
-func (o *OrganizationInvitation) GetOrgName() string {
+// OrgName returns the OrgName field value
+func (o *OrganizationInvitation) OrgName() string {
 	if o == nil {
 		var ret string
 		return ret

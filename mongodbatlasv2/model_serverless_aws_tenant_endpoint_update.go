@@ -108,8 +108,8 @@ func (o *ServerlessAWSTenantEndpointUpdate) SetComment(v string) {
 	o.Comment = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *ServerlessAWSTenantEndpointUpdate) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *ServerlessAWSTenantEndpointUpdate) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

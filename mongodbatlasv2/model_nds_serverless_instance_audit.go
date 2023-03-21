@@ -98,8 +98,8 @@ func (o *NDSServerlessInstanceAudit) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *NDSServerlessInstanceAudit) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *NDSServerlessInstanceAudit) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -122,8 +122,8 @@ func (o *NDSServerlessInstanceAudit) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *NDSServerlessInstanceAudit) GetEventTypeName() NDSServerlessInstanceAuditType {
+// EventTypeName returns the EventTypeName field value
+func (o *NDSServerlessInstanceAudit) EventTypeName() NDSServerlessInstanceAuditType {
 	if o == nil {
 		var ret NDSServerlessInstanceAuditType
 		return ret
@@ -178,8 +178,8 @@ func (o *NDSServerlessInstanceAudit) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *NDSServerlessInstanceAudit) GetId() string {
+// Id returns the Id field value
+func (o *NDSServerlessInstanceAudit) Id() string {
 	if o == nil {
 		var ret string
 		return ret

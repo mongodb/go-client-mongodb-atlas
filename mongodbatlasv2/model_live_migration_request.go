@@ -81,8 +81,8 @@ func (o *LiveMigrationRequest) SetId(v string) {
 	o.Id = &v
 }
 
-// GetDestination returns the Destination field value
-func (o *LiveMigrationRequest) GetDestination() Destination {
+// Destination returns the Destination field value
+func (o *LiveMigrationRequest) Destination() Destination {
 	if o == nil {
 		var ret Destination
 		return ret
@@ -105,8 +105,8 @@ func (o *LiveMigrationRequest) SetDestination(v Destination) {
 	o.Destination = v
 }
 
-// GetDropEnabled returns the DropEnabled field value
-func (o *LiveMigrationRequest) GetDropEnabled() bool {
+// DropEnabled returns the DropEnabled field value
+func (o *LiveMigrationRequest) DropEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -161,8 +161,8 @@ func (o *LiveMigrationRequest) SetMigrationHosts(v []string) {
 	o.MigrationHosts = v
 }
 
-// GetSource returns the Source field value
-func (o *LiveMigrationRequest) GetSource() Source {
+// Source returns the Source field value
+func (o *LiveMigrationRequest) Source() Source {
 	if o == nil {
 		var ret Source
 		return ret

@@ -112,8 +112,8 @@ func (o *DatabaseUser) SetAwsIAMType(v string) {
 	o.AwsIAMType = &v
 }
 
-// GetDatabaseName returns the DatabaseName field value
-func (o *DatabaseUser) GetDatabaseName() string {
+// DatabaseName returns the DatabaseName field value
+func (o *DatabaseUser) DatabaseName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -168,8 +168,8 @@ func (o *DatabaseUser) SetDeleteAfterDate(v time.Time) {
 	o.DeleteAfterDate = &v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *DatabaseUser) GetGroupId() string {
+// GroupId returns the GroupId field value
+func (o *DatabaseUser) GroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -384,8 +384,8 @@ func (o *DatabaseUser) SetScopes(v []UserScope) {
 	o.Scopes = v
 }
 
-// GetUsername returns the Username field value
-func (o *DatabaseUser) GetUsername() string {
+// Username returns the Username field value
+func (o *DatabaseUser) Username() string {
 	if o == nil {
 		var ret string
 		return ret

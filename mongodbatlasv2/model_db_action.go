@@ -43,8 +43,8 @@ func NewDBActionWithDefaults() *DBAction {
 	return &this
 }
 
-// GetAction returns the Action field value
-func (o *DBAction) GetAction() string {
+// Action returns the Action field value
+func (o *DBAction) Action() string {
 	if o == nil {
 		var ret string
 		return ret

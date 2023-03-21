@@ -41,8 +41,8 @@ func NewProjectSettingItemWithDefaults() *ProjectSettingItem {
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
-func (o *ProjectSettingItem) GetEnabled() bool {
+// Enabled returns the Enabled field value
+func (o *ProjectSettingItem) Enabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

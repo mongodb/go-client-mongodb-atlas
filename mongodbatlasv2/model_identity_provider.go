@@ -256,8 +256,8 @@ func (o *IdentityProvider) SetIssuerUri(v string) {
 	o.IssuerUri = &v
 }
 
-// GetOktaIdpId returns the OktaIdpId field value
-func (o *IdentityProvider) GetOktaIdpId() string {
+// OktaIdpId returns the OktaIdpId field value
+func (o *IdentityProvider) OktaIdpId() string {
 	if o == nil {
 		var ret string
 		return ret

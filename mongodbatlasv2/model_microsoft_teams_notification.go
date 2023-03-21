@@ -143,8 +143,8 @@ func (o *MicrosoftTeamsNotification) SetMicrosoftTeamsWebhookUrl(v string) {
 	o.MicrosoftTeamsWebhookUrl = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *MicrosoftTeamsNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *MicrosoftTeamsNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

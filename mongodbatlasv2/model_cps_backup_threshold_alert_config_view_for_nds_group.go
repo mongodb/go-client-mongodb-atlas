@@ -125,8 +125,8 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetEventTypeName() CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold {
+// EventTypeName returns the EventTypeName field value
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) EventTypeName() CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold {
 	if o == nil {
 		var ret CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold
 		return ret

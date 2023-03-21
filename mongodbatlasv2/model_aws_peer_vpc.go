@@ -61,8 +61,8 @@ func NewAWSPeerVpcWithDefaults() *AWSPeerVpc {
 	return &this
 }
 
-// GetAccepterRegionName returns the AccepterRegionName field value
-func (o *AWSPeerVpc) GetAccepterRegionName() string {
+// AccepterRegionName returns the AccepterRegionName field value
+func (o *AWSPeerVpc) AccepterRegionName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,8 +85,8 @@ func (o *AWSPeerVpc) SetAccepterRegionName(v string) {
 	o.AccepterRegionName = v
 }
 
-// GetAwsAccountId returns the AwsAccountId field value
-func (o *AWSPeerVpc) GetAwsAccountId() string {
+// AwsAccountId returns the AwsAccountId field value
+func (o *AWSPeerVpc) AwsAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -141,8 +141,8 @@ func (o *AWSPeerVpc) SetConnectionId(v string) {
 	o.ConnectionId = &v
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *AWSPeerVpc) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *AWSPeerVpc) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -229,8 +229,8 @@ func (o *AWSPeerVpc) SetId(v string) {
 	o.Id = &v
 }
 
-// GetRouteTableCidrBlock returns the RouteTableCidrBlock field value
-func (o *AWSPeerVpc) GetRouteTableCidrBlock() string {
+// RouteTableCidrBlock returns the RouteTableCidrBlock field value
+func (o *AWSPeerVpc) RouteTableCidrBlock() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -285,8 +285,8 @@ func (o *AWSPeerVpc) SetStatusName(v string) {
 	o.StatusName = &v
 }
 
-// GetVpcId returns the VpcId field value
-func (o *AWSPeerVpc) GetVpcId() string {
+// VpcId returns the VpcId field value
+func (o *AWSPeerVpc) VpcId() string {
 	if o == nil {
 		var ret string
 		return ret

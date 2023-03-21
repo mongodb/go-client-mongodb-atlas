@@ -175,8 +175,8 @@ func (o *DataLakeAtlasStore) SetName(v string) {
 	o.Name = &v
 }
 
-// GetProvider returns the Provider field value
-func (o *DataLakeAtlasStore) GetProvider() string {
+// Provider returns the Provider field value
+func (o *DataLakeAtlasStore) Provider() string {
 	if o == nil {
 		var ret string
 		return ret

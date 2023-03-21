@@ -82,8 +82,8 @@ func NewRawMetricAlertWithDefaults() *RawMetricAlert {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *RawMetricAlert) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *RawMetricAlert) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -170,8 +170,8 @@ func (o *RawMetricAlert) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *RawMetricAlert) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *RawMetricAlert) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -226,8 +226,8 @@ func (o *RawMetricAlert) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *RawMetricAlert) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *RawMetricAlert) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -282,8 +282,8 @@ func (o *RawMetricAlert) SetCurrentValue(v RawMetricValue) {
 	o.CurrentValue = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *RawMetricAlert) GetEventTypeName() HostMetricEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *RawMetricAlert) EventTypeName() HostMetricEventTypeViewAlertable {
 	if o == nil {
 		var ret HostMetricEventTypeViewAlertable
 		return ret
@@ -370,8 +370,8 @@ func (o *RawMetricAlert) SetHostnameAndPort(v string) {
 	o.HostnameAndPort = &v
 }
 
-// GetId returns the Id field value
-func (o *RawMetricAlert) GetId() string {
+// Id returns the Id field value
+func (o *RawMetricAlert) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -586,8 +586,8 @@ func (o *RawMetricAlert) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *RawMetricAlert) GetStatus() string {
+// Status returns the Status field value
+func (o *RawMetricAlert) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -610,8 +610,8 @@ func (o *RawMetricAlert) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *RawMetricAlert) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *RawMetricAlert) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

@@ -143,8 +143,8 @@ func (o *Organization) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetName returns the Name field value
-func (o *Organization) GetName() string {
+// Name returns the Name field value
+func (o *Organization) Name() string {
 	if o == nil {
 		var ret string
 		return ret

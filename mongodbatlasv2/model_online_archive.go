@@ -189,8 +189,8 @@ func (o *OnlineArchive) SetCollectionType(v string) {
 	o.CollectionType = &v
 }
 
-// GetCriteria returns the Criteria field value
-func (o *OnlineArchive) GetCriteria() Criteria {
+// Criteria returns the Criteria field value
+func (o *OnlineArchive) Criteria() Criteria {
 	if o == nil {
 		var ret Criteria
 		return ret

@@ -191,8 +191,8 @@ func (o *DiskBackupExportJob) SetDeliveryUrl(v []string) {
 	o.DeliveryUrl = v
 }
 
-// GetExportBucketId returns the ExportBucketId field value
-func (o *DiskBackupExportJob) GetExportBucketId() string {
+// ExportBucketId returns the ExportBucketId field value
+func (o *DiskBackupExportJob) ExportBucketId() string {
 	if o == nil {
 		var ret string
 		return ret

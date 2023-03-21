@@ -136,8 +136,8 @@ func (o *DataExplorerAccessedEvent) SetCollection(v string) {
 	o.Collection = &v
 }
 
-// GetCreated returns the Created field value
-func (o *DataExplorerAccessedEvent) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *DataExplorerAccessedEvent) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -192,8 +192,8 @@ func (o *DataExplorerAccessedEvent) SetDatabase(v string) {
 	o.Database = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DataExplorerAccessedEvent) GetEventTypeName() DataExplorerAccessedEventType {
+// EventTypeName returns the EventTypeName field value
+func (o *DataExplorerAccessedEvent) EventTypeName() DataExplorerAccessedEventType {
 	if o == nil {
 		var ret DataExplorerAccessedEventType
 		return ret
@@ -248,8 +248,8 @@ func (o *DataExplorerAccessedEvent) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *DataExplorerAccessedEvent) GetId() string {
+// Id returns the Id field value
+func (o *DataExplorerAccessedEvent) Id() string {
 	if o == nil {
 		var ret string
 		return ret

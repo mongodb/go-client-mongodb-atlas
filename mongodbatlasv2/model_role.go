@@ -47,8 +47,8 @@ func NewRoleWithDefaults() *Role {
 	return &this
 }
 
-// GetCollectionName returns the CollectionName field value
-func (o *Role) GetCollectionName() string {
+// CollectionName returns the CollectionName field value
+func (o *Role) CollectionName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,8 +71,8 @@ func (o *Role) SetCollectionName(v string) {
 	o.CollectionName = v
 }
 
-// GetDatabaseName returns the DatabaseName field value
-func (o *Role) GetDatabaseName() string {
+// DatabaseName returns the DatabaseName field value
+func (o *Role) DatabaseName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -95,8 +95,8 @@ func (o *Role) SetDatabaseName(v string) {
 	o.DatabaseName = v
 }
 
-// GetRoleName returns the RoleName field value
-func (o *Role) GetRoleName() string {
+// RoleName returns the RoleName field value
+func (o *Role) RoleName() string {
 	if o == nil {
 		var ret string
 		return ret

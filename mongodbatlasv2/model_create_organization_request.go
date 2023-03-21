@@ -76,8 +76,8 @@ func (o *CreateOrganizationRequest) SetApiKey(v CreateApiKey) {
 	o.ApiKey = &v
 }
 
-// GetName returns the Name field value
-func (o *CreateOrganizationRequest) GetName() string {
+// Name returns the Name field value
+func (o *CreateOrganizationRequest) Name() string {
 	if o == nil {
 		var ret string
 		return ret

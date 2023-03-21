@@ -80,8 +80,8 @@ func (o *GroupMaintenanceWindow) SetAutoDeferOnceEnabled(v bool) {
 	o.AutoDeferOnceEnabled = &v
 }
 
-// GetDayOfWeek returns the DayOfWeek field value
-func (o *GroupMaintenanceWindow) GetDayOfWeek() int32 {
+// DayOfWeek returns the DayOfWeek field value
+func (o *GroupMaintenanceWindow) DayOfWeek() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -104,8 +104,8 @@ func (o *GroupMaintenanceWindow) SetDayOfWeek(v int32) {
 	o.DayOfWeek = v
 }
 
-// GetHourOfDay returns the HourOfDay field value
-func (o *GroupMaintenanceWindow) GetHourOfDay() int32 {
+// HourOfDay returns the HourOfDay field value
+func (o *GroupMaintenanceWindow) HourOfDay() int32 {
 	if o == nil {
 		var ret int32
 		return ret

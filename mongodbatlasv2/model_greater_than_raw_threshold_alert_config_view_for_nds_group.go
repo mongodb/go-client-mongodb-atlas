@@ -126,8 +126,8 @@ func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold {
+// EventTypeName returns the EventTypeName field value
+func (o *GreaterThanRawThresholdAlertConfigViewForNdsGroup) EventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold {
 	if o == nil {
 		var ret ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold
 		return ret

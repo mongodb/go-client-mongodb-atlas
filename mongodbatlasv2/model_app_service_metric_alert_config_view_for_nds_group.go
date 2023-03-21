@@ -126,8 +126,8 @@ func (o *AppServiceMetricAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *AppServiceMetricAlertConfigViewForNdsGroup) GetEventTypeName() AppServiceEventTypeViewAlertableWithThreshold {
+// EventTypeName returns the EventTypeName field value
+func (o *AppServiceMetricAlertConfigViewForNdsGroup) EventTypeName() AppServiceEventTypeViewAlertableWithThreshold {
 	if o == nil {
 		var ret AppServiceEventTypeViewAlertableWithThreshold
 		return ret

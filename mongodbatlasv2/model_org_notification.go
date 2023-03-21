@@ -211,8 +211,8 @@ func (o *OrgNotification) SetSmsEnabled(v bool) {
 	o.SmsEnabled = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *OrgNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *OrgNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

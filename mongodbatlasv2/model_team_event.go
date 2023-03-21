@@ -100,8 +100,8 @@ func (o *TeamEvent) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *TeamEvent) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *TeamEvent) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -124,8 +124,8 @@ func (o *TeamEvent) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *TeamEvent) GetEventTypeName() TeamEventType {
+// EventTypeName returns the EventTypeName field value
+func (o *TeamEvent) EventTypeName() TeamEventType {
 	if o == nil {
 		var ret TeamEventType
 		return ret
@@ -180,8 +180,8 @@ func (o *TeamEvent) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *TeamEvent) GetId() string {
+// Id returns the Id field value
+func (o *TeamEvent) Id() string {
 	if o == nil {
 		var ret string
 		return ret

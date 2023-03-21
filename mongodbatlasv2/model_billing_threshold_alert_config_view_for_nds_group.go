@@ -125,8 +125,8 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *BillingThresholdAlertConfigViewForNdsGroup) GetEventTypeName() BillingEventTypeViewAlertableWithThreshold {
+// EventTypeName returns the EventTypeName field value
+func (o *BillingThresholdAlertConfigViewForNdsGroup) EventTypeName() BillingEventTypeViewAlertableWithThreshold {
 	if o == nil {
 		var ret BillingEventTypeViewAlertableWithThreshold
 		return ret

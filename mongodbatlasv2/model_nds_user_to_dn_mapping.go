@@ -47,8 +47,8 @@ func NewNDSUserToDNMappingWithDefaults() *NDSUserToDNMapping {
 	return &this
 }
 
-// GetLdapQuery returns the LdapQuery field value
-func (o *NDSUserToDNMapping) GetLdapQuery() string {
+// LdapQuery returns the LdapQuery field value
+func (o *NDSUserToDNMapping) LdapQuery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,8 +71,8 @@ func (o *NDSUserToDNMapping) SetLdapQuery(v string) {
 	o.LdapQuery = v
 }
 
-// GetMatch returns the Match field value
-func (o *NDSUserToDNMapping) GetMatch() string {
+// Match returns the Match field value
+func (o *NDSUserToDNMapping) Match() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -95,8 +95,8 @@ func (o *NDSUserToDNMapping) SetMatch(v string) {
 	o.Match = v
 }
 
-// GetSubstitution returns the Substitution field value
-func (o *NDSUserToDNMapping) GetSubstitution() string {
+// Substitution returns the Substitution field value
+func (o *NDSUserToDNMapping) Substitution() string {
 	if o == nil {
 		var ret string
 		return ret

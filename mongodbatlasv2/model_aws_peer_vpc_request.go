@@ -64,8 +64,8 @@ func NewAWSPeerVpcRequestWithDefaults() *AWSPeerVpcRequest {
 	return &this
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *AWSPeerVpcRequest) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *AWSPeerVpcRequest) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -88,8 +88,8 @@ func (o *AWSPeerVpcRequest) SetContainerId(v string) {
 	o.ContainerId = v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *AWSPeerVpcRequest) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *AWSPeerVpcRequest) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -112,8 +112,8 @@ func (o *AWSPeerVpcRequest) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-// GetAccepterRegionName returns the AccepterRegionName field value
-func (o *AWSPeerVpcRequest) GetAccepterRegionName() string {
+// AccepterRegionName returns the AccepterRegionName field value
+func (o *AWSPeerVpcRequest) AccepterRegionName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -136,8 +136,8 @@ func (o *AWSPeerVpcRequest) SetAccepterRegionName(v string) {
 	o.AccepterRegionName = v
 }
 
-// GetAwsAccountId returns the AwsAccountId field value
-func (o *AWSPeerVpcRequest) GetAwsAccountId() string {
+// AwsAccountId returns the AwsAccountId field value
+func (o *AWSPeerVpcRequest) AwsAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -256,8 +256,8 @@ func (o *AWSPeerVpcRequest) SetId(v string) {
 	o.Id = &v
 }
 
-// GetRouteTableCidrBlock returns the RouteTableCidrBlock field value
-func (o *AWSPeerVpcRequest) GetRouteTableCidrBlock() string {
+// RouteTableCidrBlock returns the RouteTableCidrBlock field value
+func (o *AWSPeerVpcRequest) RouteTableCidrBlock() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -312,8 +312,8 @@ func (o *AWSPeerVpcRequest) SetStatusName(v string) {
 	o.StatusName = &v
 }
 
-// GetVpcId returns the VpcId field value
-func (o *AWSPeerVpcRequest) GetVpcId() string {
+// VpcId returns the VpcId field value
+func (o *AWSPeerVpcRequest) VpcId() string {
 	if o == nil {
 		var ret string
 		return ret

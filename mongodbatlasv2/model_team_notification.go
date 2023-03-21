@@ -245,8 +245,8 @@ func (o *TeamNotification) SetTeamName(v string) {
 	o.TeamName = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *TeamNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *TeamNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

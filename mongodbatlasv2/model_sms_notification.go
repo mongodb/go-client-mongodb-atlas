@@ -143,8 +143,8 @@ func (o *SMSNotification) SetMobileNumber(v string) {
 	o.MobileNumber = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *SMSNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *SMSNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

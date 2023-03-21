@@ -141,8 +141,8 @@ func (o *DiskBackupRestoreJob) SetComponents(v []DiskBackupBaseRestoreMember) {
 	o.Components = v
 }
 
-// GetDeliveryType returns the DeliveryType field value
-func (o *DiskBackupRestoreJob) GetDeliveryType() string {
+// DeliveryType returns the DeliveryType field value
+func (o *DiskBackupRestoreJob) DeliveryType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -549,8 +549,8 @@ func (o *DiskBackupRestoreJob) SetSnapshotId(v string) {
 	o.SnapshotId = &v
 }
 
-// GetTargetClusterName returns the TargetClusterName field value
-func (o *DiskBackupRestoreJob) GetTargetClusterName() string {
+// TargetClusterName returns the TargetClusterName field value
+func (o *DiskBackupRestoreJob) TargetClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -573,8 +573,8 @@ func (o *DiskBackupRestoreJob) SetTargetClusterName(v string) {
 	o.TargetClusterName = v
 }
 
-// GetTargetGroupId returns the TargetGroupId field value
-func (o *DiskBackupRestoreJob) GetTargetGroupId() string {
+// TargetGroupId returns the TargetGroupId field value
+func (o *DiskBackupRestoreJob) TargetGroupId() string {
 	if o == nil {
 		var ret string
 		return ret

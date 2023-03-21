@@ -57,8 +57,8 @@ func NewGroupWithDefaults() *Group {
 	return &this
 }
 
-// GetClusterCount returns the ClusterCount field value
-func (o *Group) GetClusterCount() int64 {
+// ClusterCount returns the ClusterCount field value
+func (o *Group) ClusterCount() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -81,8 +81,8 @@ func (o *Group) SetClusterCount(v int64) {
 	o.ClusterCount = v
 }
 
-// GetCreated returns the Created field value
-func (o *Group) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *Group) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -169,8 +169,8 @@ func (o *Group) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetName returns the Name field value
-func (o *Group) GetName() string {
+// Name returns the Name field value
+func (o *Group) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -193,8 +193,8 @@ func (o *Group) SetName(v string) {
 	o.Name = v
 }
 
-// GetOrgId returns the OrgId field value
-func (o *Group) GetOrgId() string {
+// OrgId returns the OrgId field value
+func (o *Group) OrgId() string {
 	if o == nil {
 		var ret string
 		return ret

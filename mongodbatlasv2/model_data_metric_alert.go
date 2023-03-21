@@ -82,8 +82,8 @@ func NewDataMetricAlertWithDefaults() *DataMetricAlert {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *DataMetricAlert) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *DataMetricAlert) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -170,8 +170,8 @@ func (o *DataMetricAlert) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *DataMetricAlert) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *DataMetricAlert) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -226,8 +226,8 @@ func (o *DataMetricAlert) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *DataMetricAlert) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *DataMetricAlert) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -282,8 +282,8 @@ func (o *DataMetricAlert) SetCurrentValue(v DataMetricValue) {
 	o.CurrentValue = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DataMetricAlert) GetEventTypeName() HostMetricEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *DataMetricAlert) EventTypeName() HostMetricEventTypeViewAlertable {
 	if o == nil {
 		var ret HostMetricEventTypeViewAlertable
 		return ret
@@ -370,8 +370,8 @@ func (o *DataMetricAlert) SetHostnameAndPort(v string) {
 	o.HostnameAndPort = &v
 }
 
-// GetId returns the Id field value
-func (o *DataMetricAlert) GetId() string {
+// Id returns the Id field value
+func (o *DataMetricAlert) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -586,8 +586,8 @@ func (o *DataMetricAlert) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *DataMetricAlert) GetStatus() string {
+// Status returns the Status field value
+func (o *DataMetricAlert) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -610,8 +610,8 @@ func (o *DataMetricAlert) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *DataMetricAlert) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *DataMetricAlert) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

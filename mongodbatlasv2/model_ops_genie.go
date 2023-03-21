@@ -49,8 +49,8 @@ func NewOpsGenieWithDefaults() *OpsGenie {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value
-func (o *OpsGenie) GetApiKey() string {
+// ApiKey returns the ApiKey field value
+func (o *OpsGenie) ApiKey() string {
 	if o == nil {
 		var ret string
 		return ret

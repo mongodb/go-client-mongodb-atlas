@@ -75,8 +75,8 @@ func NewClusterAlertWithDefaults() *ClusterAlert {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *ClusterAlert) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *ClusterAlert) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -163,8 +163,8 @@ func (o *ClusterAlert) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *ClusterAlert) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *ClusterAlert) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -219,8 +219,8 @@ func (o *ClusterAlert) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *ClusterAlert) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *ClusterAlert) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -243,8 +243,8 @@ func (o *ClusterAlert) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ClusterAlert) GetEventTypeName() ClusterEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *ClusterAlert) EventTypeName() ClusterEventTypeViewAlertable {
 	if o == nil {
 		var ret ClusterEventTypeViewAlertable
 		return ret
@@ -299,8 +299,8 @@ func (o *ClusterAlert) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *ClusterAlert) GetId() string {
+// Id returns the Id field value
+func (o *ClusterAlert) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -451,8 +451,8 @@ func (o *ClusterAlert) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *ClusterAlert) GetStatus() string {
+// Status returns the Status field value
+func (o *ClusterAlert) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -475,8 +475,8 @@ func (o *ClusterAlert) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *ClusterAlert) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *ClusterAlert) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

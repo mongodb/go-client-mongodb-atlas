@@ -73,8 +73,8 @@ func NewAppServiceAlertWithDefaults() *AppServiceAlert {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *AppServiceAlert) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *AppServiceAlert) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -161,8 +161,8 @@ func (o *AppServiceAlert) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *AppServiceAlert) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *AppServiceAlert) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -185,8 +185,8 @@ func (o *AppServiceAlert) SetAlertConfigId(v string) {
 	o.AlertConfigId = v
 }
 
-// GetCreated returns the Created field value
-func (o *AppServiceAlert) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *AppServiceAlert) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -209,8 +209,8 @@ func (o *AppServiceAlert) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *AppServiceAlert) GetEventTypeName() AppServiceEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *AppServiceAlert) EventTypeName() AppServiceEventTypeViewAlertable {
 	if o == nil {
 		var ret AppServiceEventTypeViewAlertable
 		return ret
@@ -265,8 +265,8 @@ func (o *AppServiceAlert) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *AppServiceAlert) GetId() string {
+// Id returns the Id field value
+func (o *AppServiceAlert) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -417,8 +417,8 @@ func (o *AppServiceAlert) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *AppServiceAlert) GetStatus() string {
+// Status returns the Status field value
+func (o *AppServiceAlert) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -441,8 +441,8 @@ func (o *AppServiceAlert) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *AppServiceAlert) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *AppServiceAlert) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

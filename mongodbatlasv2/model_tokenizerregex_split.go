@@ -44,8 +44,8 @@ func NewTokenizerregexSplitWithDefaults() *TokenizerregexSplit {
 	return &this
 }
 
-// GetPattern returns the Pattern field value
-func (o *TokenizerregexSplit) GetPattern() string {
+// Pattern returns the Pattern field value
+func (o *TokenizerregexSplit) Pattern() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *TokenizerregexSplit) SetPattern(v string) {
 	o.Pattern = v
 }
 
-// GetType returns the Type field value
-func (o *TokenizerregexSplit) GetType() string {
+// Type returns the Type field value
+func (o *TokenizerregexSplit) Type() string {
 	if o == nil {
 		var ret string
 		return ret

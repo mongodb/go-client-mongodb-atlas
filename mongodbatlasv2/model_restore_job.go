@@ -234,8 +234,8 @@ func (o *RestoreJob) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
-// GetDelivery returns the Delivery field value
-func (o *RestoreJob) GetDelivery() RestoreJobDelivery {
+// Delivery returns the Delivery field value
+func (o *RestoreJob) Delivery() RestoreJobDelivery {
 	if o == nil {
 		var ret RestoreJobDelivery
 		return ret

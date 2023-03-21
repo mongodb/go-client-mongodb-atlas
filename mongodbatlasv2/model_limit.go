@@ -146,8 +146,8 @@ func (o *Limit) SetMaximumLimit(v int64) {
 	o.MaximumLimit = &v
 }
 
-// GetName returns the Name field value
-func (o *Limit) GetName() string {
+// Name returns the Name field value
+func (o *Limit) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -170,8 +170,8 @@ func (o *Limit) SetName(v string) {
 	o.Name = v
 }
 
-// GetValue returns the Value field value
-func (o *Limit) GetValue() int64 {
+// Value returns the Value field value
+func (o *Limit) Value() int64 {
 	if o == nil {
 		var ret int64
 		return ret

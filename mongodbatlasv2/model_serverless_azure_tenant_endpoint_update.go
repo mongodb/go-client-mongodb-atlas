@@ -142,8 +142,8 @@ func (o *ServerlessAzureTenantEndpointUpdate) SetComment(v string) {
 	o.Comment = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *ServerlessAzureTenantEndpointUpdate) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *ServerlessAzureTenantEndpointUpdate) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

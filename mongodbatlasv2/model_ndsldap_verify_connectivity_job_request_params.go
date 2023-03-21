@@ -94,8 +94,8 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetAuthzQueryTemplate(v stri
 	o.AuthzQueryTemplate = &v
 }
 
-// GetBindPassword returns the BindPassword field value
-func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetBindPassword() string {
+// BindPassword returns the BindPassword field value
+func (o *NDSLDAPVerifyConnectivityJobRequestParams) BindPassword() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -118,8 +118,8 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetBindPassword(v string) {
 	o.BindPassword = v
 }
 
-// GetBindUsername returns the BindUsername field value
-func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetBindUsername() string {
+// BindUsername returns the BindUsername field value
+func (o *NDSLDAPVerifyConnectivityJobRequestParams) BindUsername() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -174,8 +174,8 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetCaCertificate(v string) {
 	o.CaCertificate = &v
 }
 
-// GetHostname returns the Hostname field value
-func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetHostname() string {
+// Hostname returns the Hostname field value
+func (o *NDSLDAPVerifyConnectivityJobRequestParams) Hostname() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -230,8 +230,8 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetPort returns the Port field value
-func (o *NDSLDAPVerifyConnectivityJobRequestParams) GetPort() int32 {
+// Port returns the Port field value
+func (o *NDSLDAPVerifyConnectivityJobRequestParams) Port() int32 {
 	if o == nil {
 		var ret int32
 		return ret

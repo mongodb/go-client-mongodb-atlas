@@ -88,8 +88,8 @@ func (o *Source) SetCaCertificatePath(v string) {
 	o.CaCertificatePath = &v
 }
 
-// GetClusterName returns the ClusterName field value
-func (o *Source) GetClusterName() string {
+// ClusterName returns the ClusterName field value
+func (o *Source) ClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -112,8 +112,8 @@ func (o *Source) SetClusterName(v string) {
 	o.ClusterName = v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *Source) GetGroupId() string {
+// GroupId returns the GroupId field value
+func (o *Source) GroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -136,8 +136,8 @@ func (o *Source) SetGroupId(v string) {
 	o.GroupId = v
 }
 
-// GetManagedAuthentication returns the ManagedAuthentication field value
-func (o *Source) GetManagedAuthentication() bool {
+// ManagedAuthentication returns the ManagedAuthentication field value
+func (o *Source) ManagedAuthentication() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -192,8 +192,8 @@ func (o *Source) SetPassword(v string) {
 	o.Password = &v
 }
 
-// GetSsl returns the Ssl field value
-func (o *Source) GetSsl() bool {
+// Ssl returns the Ssl field value
+func (o *Source) Ssl() bool {
 	if o == nil {
 		var ret bool
 		return ret

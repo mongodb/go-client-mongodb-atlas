@@ -48,8 +48,8 @@ func NewTeamWithDefaults() *Team {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *Team) GetId() string {
+// Id returns the Id field value
+func (o *Team) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -104,8 +104,8 @@ func (o *Team) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetName returns the Name field value
-func (o *Team) GetName() string {
+// Name returns the Name field value
+func (o *Team) Name() string {
 	if o == nil {
 		var ret string
 		return ret

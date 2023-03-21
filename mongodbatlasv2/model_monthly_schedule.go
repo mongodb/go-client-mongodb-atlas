@@ -210,8 +210,8 @@ func (o *MonthlySchedule) SetStartMinute(v int32) {
 	o.StartMinute = &v
 }
 
-// GetType returns the Type field value
-func (o *MonthlySchedule) GetType() string {
+// Type returns the Type field value
+func (o *MonthlySchedule) Type() string {
 	if o == nil {
 		var ret string
 		return ret

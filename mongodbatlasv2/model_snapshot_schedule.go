@@ -67,8 +67,8 @@ func NewSnapshotScheduleWithDefaults() *SnapshotSchedule {
 	return &this
 }
 
-// GetClusterCheckpointIntervalMin returns the ClusterCheckpointIntervalMin field value
-func (o *SnapshotSchedule) GetClusterCheckpointIntervalMin() int32 {
+// ClusterCheckpointIntervalMin returns the ClusterCheckpointIntervalMin field value
+func (o *SnapshotSchedule) ClusterCheckpointIntervalMin() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -91,8 +91,8 @@ func (o *SnapshotSchedule) SetClusterCheckpointIntervalMin(v int32) {
 	o.ClusterCheckpointIntervalMin = v
 }
 
-// GetClusterId returns the ClusterId field value
-func (o *SnapshotSchedule) GetClusterId() string {
+// ClusterId returns the ClusterId field value
+func (o *SnapshotSchedule) ClusterId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -115,8 +115,8 @@ func (o *SnapshotSchedule) SetClusterId(v string) {
 	o.ClusterId = v
 }
 
-// GetDailySnapshotRetentionDays returns the DailySnapshotRetentionDays field value
-func (o *SnapshotSchedule) GetDailySnapshotRetentionDays() int32 {
+// DailySnapshotRetentionDays returns the DailySnapshotRetentionDays field value
+func (o *SnapshotSchedule) DailySnapshotRetentionDays() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -139,8 +139,8 @@ func (o *SnapshotSchedule) SetDailySnapshotRetentionDays(v int32) {
 	o.DailySnapshotRetentionDays = v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *SnapshotSchedule) GetGroupId() string {
+// GroupId returns the GroupId field value
+func (o *SnapshotSchedule) GroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -195,8 +195,8 @@ func (o *SnapshotSchedule) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetMonthlySnapshotRetentionMonths returns the MonthlySnapshotRetentionMonths field value
-func (o *SnapshotSchedule) GetMonthlySnapshotRetentionMonths() int32 {
+// MonthlySnapshotRetentionMonths returns the MonthlySnapshotRetentionMonths field value
+func (o *SnapshotSchedule) MonthlySnapshotRetentionMonths() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -219,8 +219,8 @@ func (o *SnapshotSchedule) SetMonthlySnapshotRetentionMonths(v int32) {
 	o.MonthlySnapshotRetentionMonths = v
 }
 
-// GetPointInTimeWindowHours returns the PointInTimeWindowHours field value
-func (o *SnapshotSchedule) GetPointInTimeWindowHours() int32 {
+// PointInTimeWindowHours returns the PointInTimeWindowHours field value
+func (o *SnapshotSchedule) PointInTimeWindowHours() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -243,8 +243,8 @@ func (o *SnapshotSchedule) SetPointInTimeWindowHours(v int32) {
 	o.PointInTimeWindowHours = v
 }
 
-// GetSnapshotIntervalHours returns the SnapshotIntervalHours field value
-func (o *SnapshotSchedule) GetSnapshotIntervalHours() int32 {
+// SnapshotIntervalHours returns the SnapshotIntervalHours field value
+func (o *SnapshotSchedule) SnapshotIntervalHours() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -267,8 +267,8 @@ func (o *SnapshotSchedule) SetSnapshotIntervalHours(v int32) {
 	o.SnapshotIntervalHours = v
 }
 
-// GetSnapshotRetentionDays returns the SnapshotRetentionDays field value
-func (o *SnapshotSchedule) GetSnapshotRetentionDays() int32 {
+// SnapshotRetentionDays returns the SnapshotRetentionDays field value
+func (o *SnapshotSchedule) SnapshotRetentionDays() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -291,8 +291,8 @@ func (o *SnapshotSchedule) SetSnapshotRetentionDays(v int32) {
 	o.SnapshotRetentionDays = v
 }
 
-// GetWeeklySnapshotRetentionWeeks returns the WeeklySnapshotRetentionWeeks field value
-func (o *SnapshotSchedule) GetWeeklySnapshotRetentionWeeks() int32 {
+// WeeklySnapshotRetentionWeeks returns the WeeklySnapshotRetentionWeeks field value
+func (o *SnapshotSchedule) WeeklySnapshotRetentionWeeks() int32 {
 	if o == nil {
 		var ret int32
 		return ret

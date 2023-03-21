@@ -41,8 +41,8 @@ func NewAddUserToTeamWithDefaults() *AddUserToTeam {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *AddUserToTeam) GetId() string {
+// Id returns the Id field value
+func (o *AddUserToTeam) Id() string {
 	if o == nil {
 		var ret string
 		return ret

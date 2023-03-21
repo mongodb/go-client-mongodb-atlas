@@ -113,8 +113,8 @@ func (o *VictorOpsNotification) SetIntervalMin(v int32) {
 	o.IntervalMin = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *VictorOpsNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *VictorOpsNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

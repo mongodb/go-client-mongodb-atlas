@@ -80,8 +80,8 @@ func (o *DiskBackupExportJobRequest) SetCustomData(v []Label) {
 	o.CustomData = v
 }
 
-// GetExportBucketId returns the ExportBucketId field value
-func (o *DiskBackupExportJobRequest) GetExportBucketId() string {
+// ExportBucketId returns the ExportBucketId field value
+func (o *DiskBackupExportJobRequest) ExportBucketId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -136,8 +136,8 @@ func (o *DiskBackupExportJobRequest) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetSnapshotId returns the SnapshotId field value
-func (o *DiskBackupExportJobRequest) GetSnapshotId() string {
+// SnapshotId returns the SnapshotId field value
+func (o *DiskBackupExportJobRequest) SnapshotId() string {
 	if o == nil {
 		var ret string
 		return ret

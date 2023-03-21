@@ -41,8 +41,8 @@ func NewCharFiltericuNormalizeWithDefaults() *CharFiltericuNormalize {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *CharFiltericuNormalize) GetType() string {
+// Type returns the Type field value
+func (o *CharFiltericuNormalize) Type() string {
 	if o == nil {
 		var ret string
 		return ret

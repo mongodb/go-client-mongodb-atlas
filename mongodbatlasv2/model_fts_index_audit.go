@@ -98,8 +98,8 @@ func (o *FTSIndexAudit) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *FTSIndexAudit) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *FTSIndexAudit) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -122,8 +122,8 @@ func (o *FTSIndexAudit) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *FTSIndexAudit) GetEventTypeName() FTSIndexAuditType {
+// EventTypeName returns the EventTypeName field value
+func (o *FTSIndexAudit) EventTypeName() FTSIndexAuditType {
 	if o == nil {
 		var ret FTSIndexAuditType
 		return ret
@@ -178,8 +178,8 @@ func (o *FTSIndexAudit) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *FTSIndexAudit) GetId() string {
+// Id returns the Id field value
+func (o *FTSIndexAudit) Id() string {
 	if o == nil {
 		var ret string
 		return ret

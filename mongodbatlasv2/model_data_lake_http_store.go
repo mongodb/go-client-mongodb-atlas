@@ -180,8 +180,8 @@ func (o *DataLakeHTTPStore) SetName(v string) {
 	o.Name = &v
 }
 
-// GetProvider returns the Provider field value
-func (o *DataLakeHTTPStore) GetProvider() string {
+// Provider returns the Provider field value
+func (o *DataLakeHTTPStore) Provider() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -111,8 +111,8 @@ func (o *ExampleResourceResponseView20230201) SetData(v []string) {
 	o.Data = v
 }
 
-// GetDescription returns the Description field value
-func (o *ExampleResourceResponseView20230201) GetDescription() string {
+// Description returns the Description field value
+func (o *ExampleResourceResponseView20230201) Description() string {
 	if o == nil {
 		var ret string
 		return ret

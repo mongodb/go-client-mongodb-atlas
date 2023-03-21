@@ -62,8 +62,8 @@ func NewAzurePeerNetworkRequestWithDefaults() *AzurePeerNetworkRequest {
 	return &this
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *AzurePeerNetworkRequest) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *AzurePeerNetworkRequest) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -86,8 +86,8 @@ func (o *AzurePeerNetworkRequest) SetContainerId(v string) {
 	o.ContainerId = v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *AzurePeerNetworkRequest) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *AzurePeerNetworkRequest) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -110,8 +110,8 @@ func (o *AzurePeerNetworkRequest) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-// GetAzureDirectoryId returns the AzureDirectoryId field value
-func (o *AzurePeerNetworkRequest) GetAzureDirectoryId() string {
+// AzureDirectoryId returns the AzureDirectoryId field value
+func (o *AzurePeerNetworkRequest) AzureDirectoryId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -134,8 +134,8 @@ func (o *AzurePeerNetworkRequest) SetAzureDirectoryId(v string) {
 	o.AzureDirectoryId = v
 }
 
-// GetAzureSubscriptionId returns the AzureSubscriptionId field value
-func (o *AzurePeerNetworkRequest) GetAzureSubscriptionId() string {
+// AzureSubscriptionId returns the AzureSubscriptionId field value
+func (o *AzurePeerNetworkRequest) AzureSubscriptionId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -222,8 +222,8 @@ func (o *AzurePeerNetworkRequest) SetId(v string) {
 	o.Id = &v
 }
 
-// GetResourceGroupName returns the ResourceGroupName field value
-func (o *AzurePeerNetworkRequest) GetResourceGroupName() string {
+// ResourceGroupName returns the ResourceGroupName field value
+func (o *AzurePeerNetworkRequest) ResourceGroupName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -278,8 +278,8 @@ func (o *AzurePeerNetworkRequest) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetVnetName returns the VnetName field value
-func (o *AzurePeerNetworkRequest) GetVnetName() string {
+// VnetName returns the VnetName field value
+func (o *AzurePeerNetworkRequest) VnetName() string {
 	if o == nil {
 		var ret string
 		return ret

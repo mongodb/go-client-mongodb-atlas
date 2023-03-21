@@ -179,8 +179,8 @@ func (o *UserNotification) SetSmsEnabled(v bool) {
 	o.SmsEnabled = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *UserNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *UserNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

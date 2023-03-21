@@ -41,8 +41,8 @@ func NewNetworkPermissionEntryStatusWithDefaults() *NetworkPermissionEntryStatus
 	return &this
 }
 
-// GetSTATUS returns the STATUS field value
-func (o *NetworkPermissionEntryStatus) GetSTATUS() string {
+// STATUS returns the STATUS field value
+func (o *NetworkPermissionEntryStatus) STATUS() string {
 	if o == nil {
 		var ret string
 		return ret

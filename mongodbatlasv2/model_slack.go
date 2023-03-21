@@ -48,8 +48,8 @@ func NewSlackWithDefaults() *Slack {
 	return &this
 }
 
-// GetApiToken returns the ApiToken field value
-func (o *Slack) GetApiToken() string {
+// ApiToken returns the ApiToken field value
+func (o *Slack) ApiToken() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -72,9 +72,9 @@ func (o *Slack) SetApiToken(v string) {
 	o.ApiToken = v
 }
 
-// GetChannelName returns the ChannelName field value
+// ChannelName returns the ChannelName field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *Slack) GetChannelName() string {
+func (o *Slack) ChannelName() string {
 	if o == nil || o.ChannelName.Get() == nil {
 		var ret string
 		return ret

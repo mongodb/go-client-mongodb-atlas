@@ -47,8 +47,8 @@ func NewDBResourceWithDefaults() *DBResource {
 	return &this
 }
 
-// GetCluster returns the Cluster field value
-func (o *DBResource) GetCluster() bool {
+// Cluster returns the Cluster field value
+func (o *DBResource) Cluster() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -71,8 +71,8 @@ func (o *DBResource) SetCluster(v bool) {
 	o.Cluster = v
 }
 
-// GetCollection returns the Collection field value
-func (o *DBResource) GetCollection() string {
+// Collection returns the Collection field value
+func (o *DBResource) Collection() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -95,8 +95,8 @@ func (o *DBResource) SetCollection(v string) {
 	o.Collection = v
 }
 
-// GetDb returns the Db field value
-func (o *DBResource) GetDb() string {
+// Db returns the Db field value
+func (o *DBResource) Db() string {
 	if o == nil {
 		var ret string
 		return ret

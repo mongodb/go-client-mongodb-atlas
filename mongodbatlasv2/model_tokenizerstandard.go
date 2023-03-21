@@ -79,8 +79,8 @@ func (o *Tokenizerstandard) SetMaxTokenLength(v int32) {
 	o.MaxTokenLength = &v
 }
 
-// GetType returns the Type field value
-func (o *Tokenizerstandard) GetType() string {
+// Type returns the Type field value
+func (o *Tokenizerstandard) Type() string {
 	if o == nil {
 		var ret string
 		return ret

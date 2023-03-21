@@ -43,8 +43,8 @@ func NewCharFiltermappingWithDefaults() *CharFiltermapping {
 	return &this
 }
 
-// GetMappings returns the Mappings field value
-func (o *CharFiltermapping) GetMappings() CharFiltermappingMappings {
+// Mappings returns the Mappings field value
+func (o *CharFiltermapping) Mappings() CharFiltermappingMappings {
 	if o == nil {
 		var ret CharFiltermappingMappings
 		return ret
@@ -67,8 +67,8 @@ func (o *CharFiltermapping) SetMappings(v CharFiltermappingMappings) {
 	o.Mappings = v
 }
 
-// GetType returns the Type field value
-func (o *CharFiltermapping) GetType() string {
+// Type returns the Type field value
+func (o *CharFiltermapping) Type() string {
 	if o == nil {
 		var ret string
 		return ret

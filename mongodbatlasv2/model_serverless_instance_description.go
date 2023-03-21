@@ -287,8 +287,8 @@ func (o *ServerlessInstanceDescription) SetName(v string) {
 	o.Name = &v
 }
 
-// GetProviderSettings returns the ProviderSettings field value
-func (o *ServerlessInstanceDescription) GetProviderSettings() ServerlessProviderSettings {
+// ProviderSettings returns the ProviderSettings field value
+func (o *ServerlessInstanceDescription) ProviderSettings() ServerlessProviderSettings {
 	if o == nil {
 		var ret ServerlessProviderSettings
 		return ret

@@ -99,8 +99,8 @@ func (o *DefaultEventViewForNdsGroup) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *DefaultEventViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *DefaultEventViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -123,8 +123,8 @@ func (o *DefaultEventViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DefaultEventViewForNdsGroup) GetEventTypeName() string {
+// EventTypeName returns the EventTypeName field value
+func (o *DefaultEventViewForNdsGroup) EventTypeName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -179,8 +179,8 @@ func (o *DefaultEventViewForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *DefaultEventViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *DefaultEventViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret

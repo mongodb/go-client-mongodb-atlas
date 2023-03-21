@@ -79,8 +79,8 @@ func (o *FTSAnalyzers) SetCharFilters(v []FTSAnalyzersCharFiltersInner) {
 	o.CharFilters = v
 }
 
-// GetName returns the Name field value
-func (o *FTSAnalyzers) GetName() string {
+// Name returns the Name field value
+func (o *FTSAnalyzers) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -135,8 +135,8 @@ func (o *FTSAnalyzers) SetTokenFilters(v []FTSAnalyzersTokenFiltersInner) {
 	o.TokenFilters = v
 }
 
-// GetTokenizer returns the Tokenizer field value
-func (o *FTSAnalyzers) GetTokenizer() FTSAnalyzersTokenizer {
+// Tokenizer returns the Tokenizer field value
+func (o *FTSAnalyzers) Tokenizer() FTSAnalyzersTokenizer {
 	if o == nil {
 		var ret FTSAnalyzersTokenizer
 		return ret

@@ -50,8 +50,8 @@ func NewServerlessProviderSettingsWithDefaults() *ServerlessProviderSettings {
 	return &this
 }
 
-// GetBackingProviderName returns the BackingProviderName field value
-func (o *ServerlessProviderSettings) GetBackingProviderName() string {
+// BackingProviderName returns the BackingProviderName field value
+func (o *ServerlessProviderSettings) BackingProviderName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -106,8 +106,8 @@ func (o *ServerlessProviderSettings) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
-// GetRegionName returns the RegionName field value
-func (o *ServerlessProviderSettings) GetRegionName() string {
+// RegionName returns the RegionName field value
+func (o *ServerlessProviderSettings) RegionName() string {
 	if o == nil {
 		var ret string
 		return ret

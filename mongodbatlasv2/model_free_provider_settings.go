@@ -175,8 +175,8 @@ func (o *FreeProviderSettings) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *FreeProviderSettings) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *FreeProviderSettings) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

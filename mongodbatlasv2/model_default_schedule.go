@@ -40,8 +40,8 @@ func NewDefaultScheduleWithDefaults() *DefaultSchedule {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *DefaultSchedule) GetType() string {
+// Type returns the Type field value
+func (o *DefaultSchedule) Type() string {
 	if o == nil {
 		var ret string
 		return ret

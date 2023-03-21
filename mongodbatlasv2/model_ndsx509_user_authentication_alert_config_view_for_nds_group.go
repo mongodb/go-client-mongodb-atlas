@@ -125,8 +125,8 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetEnabled(v bool)
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetEventTypeName() NDSX509UserAuthenticationEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) EventTypeName() NDSX509UserAuthenticationEventTypeViewAlertable {
 	if o == nil {
 		var ret NDSX509UserAuthenticationEventTypeViewAlertable
 		return ret

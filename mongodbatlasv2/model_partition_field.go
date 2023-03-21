@@ -48,8 +48,8 @@ func NewPartitionFieldWithDefaults() *PartitionField {
 	return &this
 }
 
-// GetFieldName returns the FieldName field value
-func (o *PartitionField) GetFieldName() string {
+// FieldName returns the FieldName field value
+func (o *PartitionField) FieldName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -104,8 +104,8 @@ func (o *PartitionField) SetFieldType(v string) {
 	o.FieldType = &v
 }
 
-// GetOrder returns the Order field value
-func (o *PartitionField) GetOrder() int32 {
+// Order returns the Order field value
+func (o *PartitionField) Order() int32 {
 	if o == nil {
 		var ret int32
 		return ret

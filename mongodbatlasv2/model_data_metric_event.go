@@ -107,8 +107,8 @@ func (o *DataMetricEvent) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *DataMetricEvent) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *DataMetricEvent) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -163,8 +163,8 @@ func (o *DataMetricEvent) SetCurrentValue(v DataMetricValue) {
 	o.CurrentValue = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DataMetricEvent) GetEventTypeName() HostMetricEventType {
+// EventTypeName returns the EventTypeName field value
+func (o *DataMetricEvent) EventTypeName() HostMetricEventType {
 	if o == nil {
 		var ret HostMetricEventType
 		return ret
@@ -219,8 +219,8 @@ func (o *DataMetricEvent) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *DataMetricEvent) GetId() string {
+// Id returns the Id field value
+func (o *DataMetricEvent) Id() string {
 	if o == nil {
 		var ret string
 		return ret

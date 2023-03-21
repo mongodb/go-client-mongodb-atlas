@@ -41,8 +41,8 @@ func NewSynonymSourceWithDefaults() *SynonymSource {
 	return &this
 }
 
-// GetCollection returns the Collection field value
-func (o *SynonymSource) GetCollection() string {
+// Collection returns the Collection field value
+func (o *SynonymSource) Collection() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -78,8 +78,8 @@ func (o *SnapshotRetention) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetRetentionUnit returns the RetentionUnit field value
-func (o *SnapshotRetention) GetRetentionUnit() string {
+// RetentionUnit returns the RetentionUnit field value
+func (o *SnapshotRetention) RetentionUnit() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -102,8 +102,8 @@ func (o *SnapshotRetention) SetRetentionUnit(v string) {
 	o.RetentionUnit = v
 }
 
-// GetRetentionValue returns the RetentionValue field value
-func (o *SnapshotRetention) GetRetentionValue() int32 {
+// RetentionValue returns the RetentionValue field value
+func (o *SnapshotRetention) RetentionValue() int32 {
 	if o == nil {
 		var ret int32
 		return ret

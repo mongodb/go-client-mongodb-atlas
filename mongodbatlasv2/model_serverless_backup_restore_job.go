@@ -107,8 +107,8 @@ func (o *ServerlessBackupRestoreJob) SetCancelled(v bool) {
 	o.Cancelled = &v
 }
 
-// GetDeliveryType returns the DeliveryType field value
-func (o *ServerlessBackupRestoreJob) GetDeliveryType() string {
+// DeliveryType returns the DeliveryType field value
+func (o *ServerlessBackupRestoreJob) DeliveryType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -515,8 +515,8 @@ func (o *ServerlessBackupRestoreJob) SetSnapshotId(v string) {
 	o.SnapshotId = &v
 }
 
-// GetTargetClusterName returns the TargetClusterName field value
-func (o *ServerlessBackupRestoreJob) GetTargetClusterName() string {
+// TargetClusterName returns the TargetClusterName field value
+func (o *ServerlessBackupRestoreJob) TargetClusterName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -539,8 +539,8 @@ func (o *ServerlessBackupRestoreJob) SetTargetClusterName(v string) {
 	o.TargetClusterName = v
 }
 
-// GetTargetGroupId returns the TargetGroupId field value
-func (o *ServerlessBackupRestoreJob) GetTargetGroupId() string {
+// TargetGroupId returns the TargetGroupId field value
+func (o *ServerlessBackupRestoreJob) TargetGroupId() string {
 	if o == nil {
 		var ret string
 		return ret

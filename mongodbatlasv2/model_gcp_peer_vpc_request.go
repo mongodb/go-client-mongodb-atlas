@@ -56,8 +56,8 @@ func NewGCPPeerVpcRequestWithDefaults() *GCPPeerVpcRequest {
 	return &this
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *GCPPeerVpcRequest) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *GCPPeerVpcRequest) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -80,8 +80,8 @@ func (o *GCPPeerVpcRequest) SetContainerId(v string) {
 	o.ContainerId = v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *GCPPeerVpcRequest) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *GCPPeerVpcRequest) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -136,8 +136,8 @@ func (o *GCPPeerVpcRequest) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
-// GetGcpProjectId returns the GcpProjectId field value
-func (o *GCPPeerVpcRequest) GetGcpProjectId() string {
+// GcpProjectId returns the GcpProjectId field value
+func (o *GCPPeerVpcRequest) GcpProjectId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -192,8 +192,8 @@ func (o *GCPPeerVpcRequest) SetId(v string) {
 	o.Id = &v
 }
 
-// GetNetworkName returns the NetworkName field value
-func (o *GCPPeerVpcRequest) GetNetworkName() string {
+// NetworkName returns the NetworkName field value
+func (o *GCPPeerVpcRequest) NetworkName() string {
 	if o == nil {
 		var ret string
 		return ret

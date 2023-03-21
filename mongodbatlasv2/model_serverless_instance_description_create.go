@@ -52,8 +52,8 @@ func NewServerlessInstanceDescriptionCreateWithDefaults() *ServerlessInstanceDes
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *ServerlessInstanceDescriptionCreate) GetName() string {
+// Name returns the Name field value
+func (o *ServerlessInstanceDescriptionCreate) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,8 +76,8 @@ func (o *ServerlessInstanceDescriptionCreate) SetName(v string) {
 	o.Name = v
 }
 
-// GetProviderSettings returns the ProviderSettings field value
-func (o *ServerlessInstanceDescriptionCreate) GetProviderSettings() ServerlessProviderSettings {
+// ProviderSettings returns the ProviderSettings field value
+func (o *ServerlessInstanceDescriptionCreate) ProviderSettings() ServerlessProviderSettings {
 	if o == nil {
 		var ret ServerlessProviderSettings
 		return ret

@@ -126,8 +126,8 @@ func (o *ReplicaSetAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ReplicaSetAlertConfigViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold {
+// EventTypeName returns the EventTypeName field value
+func (o *ReplicaSetAlertConfigViewForNdsGroup) EventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold {
 	if o == nil {
 		var ret ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold
 		return ret

@@ -225,8 +225,8 @@ func (o *RestoreJobDelivery) SetMaxDownloads(v int32) {
 	o.MaxDownloads = &v
 }
 
-// GetMethodName returns the MethodName field value
-func (o *RestoreJobDelivery) GetMethodName() string {
+// MethodName returns the MethodName field value
+func (o *RestoreJobDelivery) MethodName() string {
 	if o == nil {
 		var ret string
 		return ret

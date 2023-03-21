@@ -213,8 +213,8 @@ func (o *Collation) SetCaseLevel(v bool) {
 	o.CaseLevel = &v
 }
 
-// GetLocale returns the Locale field value
-func (o *Collation) GetLocale() string {
+// Locale returns the Locale field value
+func (o *Collation) Locale() string {
 	if o == nil {
 		var ret string
 		return ret

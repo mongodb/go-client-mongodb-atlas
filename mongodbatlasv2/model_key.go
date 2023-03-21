@@ -80,8 +80,8 @@ func (o *Key) SetAccessList(v []AccessListItem) {
 	o.AccessList = v
 }
 
-// GetId returns the Id field value
-func (o *Key) GetId() string {
+// Id returns the Id field value
+func (o *Key) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -104,8 +104,8 @@ func (o *Key) SetId(v string) {
 	o.Id = v
 }
 
-// GetPublicKey returns the PublicKey field value
-func (o *Key) GetPublicKey() string {
+// PublicKey returns the PublicKey field value
+func (o *Key) PublicKey() string {
 	if o == nil {
 		var ret string
 		return ret

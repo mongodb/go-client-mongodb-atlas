@@ -125,8 +125,8 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetEventTypeName() EncryptionKeyEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) EventTypeName() EncryptionKeyEventTypeViewAlertable {
 	if o == nil {
 		var ret EncryptionKeyEventTypeViewAlertable
 		return ret

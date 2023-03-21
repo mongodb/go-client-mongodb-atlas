@@ -185,8 +185,8 @@ func (o *DataFederationTenantQueryLimit) SetMaximumLimit(v int64) {
 	o.MaximumLimit = &v
 }
 
-// GetName returns the Name field value
-func (o *DataFederationTenantQueryLimit) GetName() string {
+// Name returns the Name field value
+func (o *DataFederationTenantQueryLimit) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -273,8 +273,8 @@ func (o *DataFederationTenantQueryLimit) SetTenantName(v string) {
 	o.TenantName = &v
 }
 
-// GetValue returns the Value field value
-func (o *DataFederationTenantQueryLimit) GetValue() int64 {
+// Value returns the Value field value
+func (o *DataFederationTenantQueryLimit) Value() int64 {
 	if o == nil {
 		var ret int64
 		return ret

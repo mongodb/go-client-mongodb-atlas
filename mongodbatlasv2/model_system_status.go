@@ -51,9 +51,9 @@ func NewSystemStatusWithDefaults() *SystemStatus {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value
+// ApiKey returns the ApiKey field value
 // If the value is explicit nil, the zero value for Key will be returned
-func (o *SystemStatus) GetApiKey() Key {
+func (o *SystemStatus) ApiKey() Key {
 	if o == nil || o.ApiKey.Get() == nil {
 		var ret Key
 		return ret
@@ -77,8 +77,8 @@ func (o *SystemStatus) SetApiKey(v Key) {
 	o.ApiKey.Set(&v)
 }
 
-// GetAppName returns the AppName field value
-func (o *SystemStatus) GetAppName() string {
+// AppName returns the AppName field value
+func (o *SystemStatus) AppName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -101,8 +101,8 @@ func (o *SystemStatus) SetAppName(v string) {
 	o.AppName = v
 }
 
-// GetBuild returns the Build field value
-func (o *SystemStatus) GetBuild() string {
+// Build returns the Build field value
+func (o *SystemStatus) Build() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -157,8 +157,8 @@ func (o *SystemStatus) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetThrottling returns the Throttling field value
-func (o *SystemStatus) GetThrottling() bool {
+// Throttling returns the Throttling field value
+func (o *SystemStatus) Throttling() bool {
 	if o == nil {
 		var ret bool
 		return ret

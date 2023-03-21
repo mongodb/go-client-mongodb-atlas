@@ -41,8 +41,8 @@ func NewAWSCustomDNSEnabledWithDefaults() *AWSCustomDNSEnabled {
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
-func (o *AWSCustomDNSEnabled) GetEnabled() bool {
+// Enabled returns the Enabled field value
+func (o *AWSCustomDNSEnabled) Enabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

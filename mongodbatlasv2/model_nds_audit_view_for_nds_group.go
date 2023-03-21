@@ -100,8 +100,8 @@ func (o *NDSAuditViewForNdsGroup) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *NDSAuditViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *NDSAuditViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -124,8 +124,8 @@ func (o *NDSAuditViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *NDSAuditViewForNdsGroup) GetEventTypeName() NDSAuditTypeViewForNdsGroup {
+// EventTypeName returns the EventTypeName field value
+func (o *NDSAuditViewForNdsGroup) EventTypeName() NDSAuditTypeViewForNdsGroup {
 	if o == nil {
 		var ret NDSAuditTypeViewForNdsGroup
 		return ret
@@ -180,8 +180,8 @@ func (o *NDSAuditViewForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *NDSAuditViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *NDSAuditViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret

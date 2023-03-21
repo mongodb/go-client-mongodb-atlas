@@ -176,8 +176,8 @@ func (o *DailySchedule) SetStartMinute(v int32) {
 	o.StartMinute = &v
 }
 
-// GetType returns the Type field value
-func (o *DailySchedule) GetType() string {
+// Type returns the Type field value
+func (o *DailySchedule) Type() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -102,8 +102,8 @@ func (o *NDSTenantEndpointAudit) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *NDSTenantEndpointAudit) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *NDSTenantEndpointAudit) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -158,8 +158,8 @@ func (o *NDSTenantEndpointAudit) SetEndpointId(v string) {
 	o.EndpointId = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *NDSTenantEndpointAudit) GetEventTypeName() NDSTenantEndpointAuditType {
+// EventTypeName returns the EventTypeName field value
+func (o *NDSTenantEndpointAudit) EventTypeName() NDSTenantEndpointAuditType {
 	if o == nil {
 		var ret NDSTenantEndpointAuditType
 		return ret
@@ -214,8 +214,8 @@ func (o *NDSTenantEndpointAudit) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *NDSTenantEndpointAudit) GetId() string {
+// Id returns the Id field value
+func (o *NDSTenantEndpointAudit) Id() string {
 	if o == nil {
 		var ret string
 		return ret

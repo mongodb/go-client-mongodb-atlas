@@ -75,8 +75,8 @@ func (o *CharFilterhtmlStrip) SetIgnoredTags(v []string) {
 	o.IgnoredTags = v
 }
 
-// GetType returns the Type field value
-func (o *CharFilterhtmlStrip) GetType() string {
+// Type returns the Type field value
+func (o *CharFilterhtmlStrip) Type() string {
 	if o == nil {
 		var ret string
 		return ret

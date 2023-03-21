@@ -320,8 +320,8 @@ func (o *DataLakeS3Store) SetName(v string) {
 	o.Name = &v
 }
 
-// GetProvider returns the Provider field value
-func (o *DataLakeS3Store) GetProvider() string {
+// Provider returns the Provider field value
+func (o *DataLakeS3Store) Provider() string {
 	if o == nil {
 		var ret string
 		return ret

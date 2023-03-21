@@ -79,8 +79,8 @@ func (o *TokenFilterasciiFolding) SetOriginalTokens(v string) {
 	o.OriginalTokens = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterasciiFolding) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterasciiFolding) Type() string {
 	if o == nil {
 		var ret string
 		return ret

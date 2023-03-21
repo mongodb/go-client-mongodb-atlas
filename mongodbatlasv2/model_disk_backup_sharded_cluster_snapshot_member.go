@@ -47,8 +47,8 @@ func NewDiskBackupShardedClusterSnapshotMemberWithDefaults() *DiskBackupShardedC
 	return &this
 }
 
-// GetCloudProvider returns the CloudProvider field value
-func (o *DiskBackupShardedClusterSnapshotMember) GetCloudProvider() string {
+// CloudProvider returns the CloudProvider field value
+func (o *DiskBackupShardedClusterSnapshotMember) CloudProvider() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,8 +71,8 @@ func (o *DiskBackupShardedClusterSnapshotMember) SetCloudProvider(v string) {
 	o.CloudProvider = v
 }
 
-// GetId returns the Id field value
-func (o *DiskBackupShardedClusterSnapshotMember) GetId() string {
+// Id returns the Id field value
+func (o *DiskBackupShardedClusterSnapshotMember) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -95,8 +95,8 @@ func (o *DiskBackupShardedClusterSnapshotMember) SetId(v string) {
 	o.Id = v
 }
 
-// GetReplicaSetName returns the ReplicaSetName field value
-func (o *DiskBackupShardedClusterSnapshotMember) GetReplicaSetName() string {
+// ReplicaSetName returns the ReplicaSetName field value
+func (o *DiskBackupShardedClusterSnapshotMember) ReplicaSetName() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -183,8 +183,8 @@ func (o *DataFederationQueryLimit) SetMaximumLimit(v int64) {
 	o.MaximumLimit = &v
 }
 
-// GetName returns the Name field value
-func (o *DataFederationQueryLimit) GetName() string {
+// Name returns the Name field value
+func (o *DataFederationQueryLimit) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -239,8 +239,8 @@ func (o *DataFederationQueryLimit) SetOverrunPolicy(v string) {
 	o.OverrunPolicy = &v
 }
 
-// GetValue returns the Value field value
-func (o *DataFederationQueryLimit) GetValue() int64 {
+// Value returns the Value field value
+func (o *DataFederationQueryLimit) Value() int64 {
 	if o == nil {
 		var ret int64
 		return ret

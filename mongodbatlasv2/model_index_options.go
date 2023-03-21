@@ -115,8 +115,8 @@ func NewIndexOptionsWithDefaults() *IndexOptions {
 	return &this
 }
 
-// GetVar2dsphereIndexVersion returns the Var2dsphereIndexVersion field value
-func (o *IndexOptions) GetVar2dsphereIndexVersion() int32 {
+// Var2dsphereIndexVersion returns the Var2dsphereIndexVersion field value
+func (o *IndexOptions) Var2dsphereIndexVersion() int32 {
 	if o == nil {
 		var ret int32
 		return ret

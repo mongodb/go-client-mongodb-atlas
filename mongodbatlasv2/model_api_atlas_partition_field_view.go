@@ -46,8 +46,8 @@ func NewApiAtlasPartitionFieldViewWithDefaults() *ApiAtlasPartitionFieldView {
 	return &this
 }
 
-// GetFieldName returns the FieldName field value
-func (o *ApiAtlasPartitionFieldView) GetFieldName() string {
+// FieldName returns the FieldName field value
+func (o *ApiAtlasPartitionFieldView) FieldName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -70,8 +70,8 @@ func (o *ApiAtlasPartitionFieldView) SetFieldName(v string) {
 	o.FieldName = v
 }
 
-// GetOrder returns the Order field value
-func (o *ApiAtlasPartitionFieldView) GetOrder() int32 {
+// Order returns the Order field value
+func (o *ApiAtlasPartitionFieldView) Order() int32 {
 	if o == nil {
 		var ret int32
 		return ret

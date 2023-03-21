@@ -41,8 +41,8 @@ func NewTokenFiltericuFoldingWithDefaults() *TokenFiltericuFolding {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *TokenFiltericuFolding) GetType() string {
+// Type returns the Type field value
+func (o *TokenFiltericuFolding) Type() string {
 	if o == nil {
 		var ret string
 		return ret

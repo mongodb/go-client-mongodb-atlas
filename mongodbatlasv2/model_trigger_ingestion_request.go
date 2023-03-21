@@ -41,8 +41,8 @@ func NewTriggerIngestionRequestWithDefaults() *TriggerIngestionRequest {
 	return &this
 }
 
-// GetSnapshotId returns the SnapshotId field value
-func (o *TriggerIngestionRequest) GetSnapshotId() string {
+// SnapshotId returns the SnapshotId field value
+func (o *TriggerIngestionRequest) SnapshotId() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -117,8 +117,8 @@ func (o *TokenFilterlength) SetMin(v int32) {
 	o.Min = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterlength) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterlength) Type() string {
 	if o == nil {
 		var ret string
 		return ret

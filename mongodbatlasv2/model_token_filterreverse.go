@@ -41,8 +41,8 @@ func NewTokenFilterreverseWithDefaults() *TokenFilterreverse {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterreverse) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterreverse) Type() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -146,8 +146,8 @@ func (o *DataLakeAWSCloudProviderConfig) SetIamUserARN(v string) {
 	o.IamUserARN = &v
 }
 
-// GetRoleId returns the RoleId field value
-func (o *DataLakeAWSCloudProviderConfig) GetRoleId() string {
+// RoleId returns the RoleId field value
+func (o *DataLakeAWSCloudProviderConfig) RoleId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -170,8 +170,8 @@ func (o *DataLakeAWSCloudProviderConfig) SetRoleId(v string) {
 	o.RoleId = v
 }
 
-// GetTestS3Bucket returns the TestS3Bucket field value
-func (o *DataLakeAWSCloudProviderConfig) GetTestS3Bucket() string {
+// TestS3Bucket returns the TestS3Bucket field value
+func (o *DataLakeAWSCloudProviderConfig) TestS3Bucket() string {
 	if o == nil {
 		var ret string
 		return ret

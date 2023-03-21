@@ -41,8 +41,8 @@ func NewCharFilterpersianWithDefaults() *CharFilterpersian {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *CharFilterpersian) GetType() string {
+// Type returns the Type field value
+func (o *CharFilterpersian) Type() string {
 	if o == nil {
 		var ret string
 		return ret

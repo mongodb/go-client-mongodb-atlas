@@ -100,8 +100,8 @@ func (o *UserEventViewForOrg) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *UserEventViewForOrg) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *UserEventViewForOrg) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -124,8 +124,8 @@ func (o *UserEventViewForOrg) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *UserEventViewForOrg) GetEventTypeName() UserEventTypeViewForOrg {
+// EventTypeName returns the EventTypeName field value
+func (o *UserEventViewForOrg) EventTypeName() UserEventTypeViewForOrg {
 	if o == nil {
 		var ret UserEventTypeViewForOrg
 		return ret
@@ -180,8 +180,8 @@ func (o *UserEventViewForOrg) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *UserEventViewForOrg) GetId() string {
+// Id returns the Id field value
+func (o *UserEventViewForOrg) Id() string {
 	if o == nil {
 		var ret string
 		return ret

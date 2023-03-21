@@ -44,8 +44,8 @@ func NewTokenFiltersnowballStemmingWithDefaults() *TokenFiltersnowballStemming {
 	return &this
 }
 
-// GetStemmerName returns the StemmerName field value
-func (o *TokenFiltersnowballStemming) GetStemmerName() string {
+// StemmerName returns the StemmerName field value
+func (o *TokenFiltersnowballStemming) StemmerName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *TokenFiltersnowballStemming) SetStemmerName(v string) {
 	o.StemmerName = v
 }
 
-// GetType returns the Type field value
-func (o *TokenFiltersnowballStemming) GetType() string {
+// Type returns the Type field value
+func (o *TokenFiltersnowballStemming) Type() string {
 	if o == nil {
 		var ret string
 		return ret

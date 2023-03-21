@@ -87,8 +87,8 @@ func (o *PrivateNetworkEndpointIdEntry) SetComment(v string) {
 	o.Comment = &v
 }
 
-// GetEndpointId returns the EndpointId field value
-func (o *PrivateNetworkEndpointIdEntry) GetEndpointId() string {
+// EndpointId returns the EndpointId field value
+func (o *PrivateNetworkEndpointIdEntry) EndpointId() string {
 	if o == nil {
 		var ret string
 		return ret

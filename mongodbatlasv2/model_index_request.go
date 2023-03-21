@@ -80,8 +80,8 @@ func (o *IndexRequest) SetCollation(v Collation) {
 	o.Collation = &v
 }
 
-// GetCollection returns the Collection field value
-func (o *IndexRequest) GetCollection() string {
+// Collection returns the Collection field value
+func (o *IndexRequest) Collection() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -104,8 +104,8 @@ func (o *IndexRequest) SetCollection(v string) {
 	o.Collection = v
 }
 
-// GetDb returns the Db field value
-func (o *IndexRequest) GetDb() string {
+// Db returns the Db field value
+func (o *IndexRequest) Db() string {
 	if o == nil {
 		var ret string
 		return ret

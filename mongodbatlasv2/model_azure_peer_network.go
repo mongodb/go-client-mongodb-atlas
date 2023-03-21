@@ -59,8 +59,8 @@ func NewAzurePeerNetworkWithDefaults() *AzurePeerNetwork {
 	return &this
 }
 
-// GetAzureDirectoryId returns the AzureDirectoryId field value
-func (o *AzurePeerNetwork) GetAzureDirectoryId() string {
+// AzureDirectoryId returns the AzureDirectoryId field value
+func (o *AzurePeerNetwork) AzureDirectoryId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,8 +83,8 @@ func (o *AzurePeerNetwork) SetAzureDirectoryId(v string) {
 	o.AzureDirectoryId = v
 }
 
-// GetAzureSubscriptionId returns the AzureSubscriptionId field value
-func (o *AzurePeerNetwork) GetAzureSubscriptionId() string {
+// AzureSubscriptionId returns the AzureSubscriptionId field value
+func (o *AzurePeerNetwork) AzureSubscriptionId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -107,8 +107,8 @@ func (o *AzurePeerNetwork) SetAzureSubscriptionId(v string) {
 	o.AzureSubscriptionId = v
 }
 
-// GetContainerId returns the ContainerId field value
-func (o *AzurePeerNetwork) GetContainerId() string {
+// ContainerId returns the ContainerId field value
+func (o *AzurePeerNetwork) ContainerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -195,8 +195,8 @@ func (o *AzurePeerNetwork) SetId(v string) {
 	o.Id = &v
 }
 
-// GetResourceGroupName returns the ResourceGroupName field value
-func (o *AzurePeerNetwork) GetResourceGroupName() string {
+// ResourceGroupName returns the ResourceGroupName field value
+func (o *AzurePeerNetwork) ResourceGroupName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -251,8 +251,8 @@ func (o *AzurePeerNetwork) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetVnetName returns the VnetName field value
-func (o *AzurePeerNetwork) GetVnetName() string {
+// VnetName returns the VnetName field value
+func (o *AzurePeerNetwork) VnetName() string {
 	if o == nil {
 		var ret string
 		return ret

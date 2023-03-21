@@ -41,8 +41,8 @@ func NewTokenFilterlowercaseWithDefaults() *TokenFilterlowercase {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterlowercase) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterlowercase) Type() string {
 	if o == nil {
 		var ret string
 		return ret

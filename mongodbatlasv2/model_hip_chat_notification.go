@@ -177,8 +177,8 @@ func (o *HipChatNotification) SetRoomName(v string) {
 	o.RoomName = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *HipChatNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *HipChatNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

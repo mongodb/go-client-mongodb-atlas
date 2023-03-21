@@ -72,8 +72,8 @@ func NewAppUserWithDefaults() *AppUser {
 	return &this
 }
 
-// GetCountry returns the Country field value
-func (o *AppUser) GetCountry() string {
+// Country returns the Country field value
+func (o *AppUser) Country() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -128,8 +128,8 @@ func (o *AppUser) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetEmailAddress returns the EmailAddress field value
-func (o *AppUser) GetEmailAddress() string {
+// EmailAddress returns the EmailAddress field value
+func (o *AppUser) EmailAddress() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -152,8 +152,8 @@ func (o *AppUser) SetEmailAddress(v string) {
 	o.EmailAddress = v
 }
 
-// GetFirstName returns the FirstName field value
-func (o *AppUser) GetFirstName() string {
+// FirstName returns the FirstName field value
+func (o *AppUser) FirstName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -240,8 +240,8 @@ func (o *AppUser) SetLastAuth(v time.Time) {
 	o.LastAuth = &v
 }
 
-// GetLastName returns the LastName field value
-func (o *AppUser) GetLastName() string {
+// LastName returns the LastName field value
+func (o *AppUser) LastName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -296,8 +296,8 @@ func (o *AppUser) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetMobileNumber returns the MobileNumber field value
-func (o *AppUser) GetMobileNumber() string {
+// MobileNumber returns the MobileNumber field value
+func (o *AppUser) MobileNumber() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -320,8 +320,8 @@ func (o *AppUser) SetMobileNumber(v string) {
 	o.MobileNumber = v
 }
 
-// GetPassword returns the Password field value
-func (o *AppUser) GetPassword() string {
+// Password returns the Password field value
+func (o *AppUser) Password() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -408,8 +408,8 @@ func (o *AppUser) SetTeamIds(v []string) {
 	o.TeamIds = v
 }
 
-// GetUsername returns the Username field value
-func (o *AppUser) GetUsername() string {
+// Username returns the Username field value
+func (o *AppUser) Username() string {
 	if o == nil {
 		var ret string
 		return ret

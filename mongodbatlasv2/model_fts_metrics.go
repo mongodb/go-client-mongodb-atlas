@@ -52,8 +52,8 @@ func NewFTSMetricsWithDefaults() *FTSMetrics {
 	return &this
 }
 
-// GetGroupId returns the GroupId field value
-func (o *FTSMetrics) GetGroupId() string {
+// GroupId returns the GroupId field value
+func (o *FTSMetrics) GroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -172,8 +172,8 @@ func (o *FTSMetrics) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetProcessId returns the ProcessId field value
-func (o *FTSMetrics) GetProcessId() string {
+// ProcessId returns the ProcessId field value
+func (o *FTSMetrics) ProcessId() string {
 	if o == nil {
 		var ret string
 		return ret

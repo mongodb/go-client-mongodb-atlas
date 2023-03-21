@@ -50,8 +50,8 @@ func NewTokenFilterregexWithDefaults() *TokenFilterregex {
 	return &this
 }
 
-// GetMatches returns the Matches field value
-func (o *TokenFilterregex) GetMatches() string {
+// Matches returns the Matches field value
+func (o *TokenFilterregex) Matches() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -74,8 +74,8 @@ func (o *TokenFilterregex) SetMatches(v string) {
 	o.Matches = v
 }
 
-// GetPattern returns the Pattern field value
-func (o *TokenFilterregex) GetPattern() string {
+// Pattern returns the Pattern field value
+func (o *TokenFilterregex) Pattern() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -98,8 +98,8 @@ func (o *TokenFilterregex) SetPattern(v string) {
 	o.Pattern = v
 }
 
-// GetReplacement returns the Replacement field value
-func (o *TokenFilterregex) GetReplacement() string {
+// Replacement returns the Replacement field value
+func (o *TokenFilterregex) Replacement() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -122,8 +122,8 @@ func (o *TokenFilterregex) SetReplacement(v string) {
 	o.Replacement = v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterregex) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterregex) Type() string {
 	if o == nil {
 		var ret string
 		return ret

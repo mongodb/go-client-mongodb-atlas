@@ -41,8 +41,8 @@ func NewTokenFiltertrimWithDefaults() *TokenFiltertrim {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *TokenFiltertrim) GetType() string {
+// Type returns the Type field value
+func (o *TokenFiltertrim) Type() string {
 	if o == nil {
 		var ret string
 		return ret

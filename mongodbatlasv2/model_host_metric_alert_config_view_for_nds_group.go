@@ -126,8 +126,8 @@ func (o *HostMetricAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *HostMetricAlertConfigViewForNdsGroup) GetEventTypeName() HostMetricEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *HostMetricAlertConfigViewForNdsGroup) EventTypeName() HostMetricEventTypeViewAlertable {
 	if o == nil {
 		var ret HostMetricEventTypeViewAlertable
 		return ret

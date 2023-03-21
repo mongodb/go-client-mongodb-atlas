@@ -45,8 +45,8 @@ func NewVictorOpsWithDefaults() *VictorOps {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value
-func (o *VictorOps) GetApiKey() string {
+// ApiKey returns the ApiKey field value
+func (o *VictorOps) ApiKey() string {
 	if o == nil {
 		var ret string
 		return ret

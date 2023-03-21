@@ -125,8 +125,8 @@ func (o *ClusterAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ClusterAlertConfigViewForNdsGroup) GetEventTypeName() ClusterEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *ClusterAlertConfigViewForNdsGroup) EventTypeName() ClusterEventTypeViewAlertable {
 	if o == nil {
 		var ret ClusterEventTypeViewAlertable
 		return ret

@@ -175,8 +175,8 @@ func (o *AzureProviderSettings) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *AzureProviderSettings) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *AzureProviderSettings) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

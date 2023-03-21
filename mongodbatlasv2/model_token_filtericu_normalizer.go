@@ -79,8 +79,8 @@ func (o *TokenFiltericuNormalizer) SetNormalizationForm(v string) {
 	o.NormalizationForm = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenFiltericuNormalizer) GetType() string {
+// Type returns the Type field value
+func (o *TokenFiltericuNormalizer) Type() string {
 	if o == nil {
 		var ret string
 		return ret

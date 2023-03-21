@@ -82,8 +82,8 @@ func (o *TokenFilterstopword) SetIgnoreCase(v bool) {
 	o.IgnoreCase = &v
 }
 
-// GetTokens returns the Tokens field value
-func (o *TokenFilterstopword) GetTokens() []string {
+// Tokens returns the Tokens field value
+func (o *TokenFilterstopword) Tokens() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -106,8 +106,8 @@ func (o *TokenFilterstopword) SetTokens(v []string) {
 	o.Tokens = v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterstopword) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterstopword) Type() string {
 	if o == nil {
 		var ret string
 		return ret

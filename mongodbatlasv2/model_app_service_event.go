@@ -54,8 +54,8 @@ func NewAppServiceEventWithDefaults() *AppServiceEvent {
 	return &this
 }
 
-// GetCreated returns the Created field value
-func (o *AppServiceEvent) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *AppServiceEvent) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -78,8 +78,8 @@ func (o *AppServiceEvent) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *AppServiceEvent) GetEventTypeName() AppServiceEventType {
+// EventTypeName returns the EventTypeName field value
+func (o *AppServiceEvent) EventTypeName() AppServiceEventType {
 	if o == nil {
 		var ret AppServiceEventType
 		return ret
@@ -134,8 +134,8 @@ func (o *AppServiceEvent) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *AppServiceEvent) GetId() string {
+// Id returns the Id field value
+func (o *AppServiceEvent) Id() string {
 	if o == nil {
 		var ret string
 		return ret

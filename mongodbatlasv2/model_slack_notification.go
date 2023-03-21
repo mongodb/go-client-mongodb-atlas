@@ -177,8 +177,8 @@ func (o *SlackNotification) SetIntervalMin(v int32) {
 	o.IntervalMin = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *SlackNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *SlackNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

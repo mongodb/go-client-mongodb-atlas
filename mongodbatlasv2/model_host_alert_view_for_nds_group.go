@@ -79,8 +79,8 @@ func NewHostAlertViewForNdsGroupWithDefaults() *HostAlertViewForNdsGroup {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *HostAlertViewForNdsGroup) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *HostAlertViewForNdsGroup) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -167,8 +167,8 @@ func (o *HostAlertViewForNdsGroup) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *HostAlertViewForNdsGroup) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *HostAlertViewForNdsGroup) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -223,8 +223,8 @@ func (o *HostAlertViewForNdsGroup) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *HostAlertViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *HostAlertViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -247,8 +247,8 @@ func (o *HostAlertViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *HostAlertViewForNdsGroup) GetEventTypeName() HostEventTypeViewForNdsGroupAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *HostAlertViewForNdsGroup) EventTypeName() HostEventTypeViewForNdsGroupAlertable {
 	if o == nil {
 		var ret HostEventTypeViewForNdsGroupAlertable
 		return ret
@@ -335,8 +335,8 @@ func (o *HostAlertViewForNdsGroup) SetHostnameAndPort(v string) {
 	o.HostnameAndPort = &v
 }
 
-// GetId returns the Id field value
-func (o *HostAlertViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *HostAlertViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -519,8 +519,8 @@ func (o *HostAlertViewForNdsGroup) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *HostAlertViewForNdsGroup) GetStatus() string {
+// Status returns the Status field value
+func (o *HostAlertViewForNdsGroup) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -543,8 +543,8 @@ func (o *HostAlertViewForNdsGroup) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *HostAlertViewForNdsGroup) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *HostAlertViewForNdsGroup) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

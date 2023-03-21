@@ -54,8 +54,8 @@ func NewAzureCloudProviderContainerWithDefaults() *AzureCloudProviderContainer {
 	return &this
 }
 
-// GetAtlasCidrBlock returns the AtlasCidrBlock field value
-func (o *AzureCloudProviderContainer) GetAtlasCidrBlock() string {
+// AtlasCidrBlock returns the AtlasCidrBlock field value
+func (o *AzureCloudProviderContainer) AtlasCidrBlock() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -110,8 +110,8 @@ func (o *AzureCloudProviderContainer) SetAzureSubscriptionId(v string) {
 	o.AzureSubscriptionId = &v
 }
 
-// GetRegion returns the Region field value
-func (o *AzureCloudProviderContainer) GetRegion() string {
+// Region returns the Region field value
+func (o *AzureCloudProviderContainer) Region() string {
 	if o == nil {
 		var ret string
 		return ret

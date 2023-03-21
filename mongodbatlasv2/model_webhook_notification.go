@@ -113,8 +113,8 @@ func (o *WebhookNotification) SetIntervalMin(v int32) {
 	o.IntervalMin = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *WebhookNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *WebhookNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

@@ -44,8 +44,8 @@ func NewFTSMetricWithDefaults() *FTSMetric {
 	return &this
 }
 
-// GetMetricName returns the MetricName field value
-func (o *FTSMetric) GetMetricName() string {
+// MetricName returns the MetricName field value
+func (o *FTSMetric) MetricName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *FTSMetric) SetMetricName(v string) {
 	o.MetricName = v
 }
 
-// GetUnits returns the Units field value
-func (o *FTSMetric) GetUnits() string {
+// Units returns the Units field value
+func (o *FTSMetric) Units() string {
 	if o == nil {
 		var ret string
 		return ret

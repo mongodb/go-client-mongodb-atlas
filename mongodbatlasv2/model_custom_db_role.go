@@ -109,8 +109,8 @@ func (o *CustomDBRole) SetInheritedRoles(v []InheritedRole) {
 	o.InheritedRoles = v
 }
 
-// GetRoleName returns the RoleName field value
-func (o *CustomDBRole) GetRoleName() string {
+// RoleName returns the RoleName field value
+func (o *CustomDBRole) RoleName() string {
 	if o == nil {
 		var ret string
 		return ret

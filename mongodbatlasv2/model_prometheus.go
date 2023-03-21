@@ -62,8 +62,8 @@ func NewPrometheusWithDefaults() *Prometheus {
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
-func (o *Prometheus) GetEnabled() bool {
+// Enabled returns the Enabled field value
+func (o *Prometheus) Enabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -182,8 +182,8 @@ func (o *Prometheus) SetRateLimitInterval(v int32) {
 	o.RateLimitInterval = &v
 }
 
-// GetScheme returns the Scheme field value
-func (o *Prometheus) GetScheme() string {
+// Scheme returns the Scheme field value
+func (o *Prometheus) Scheme() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -206,8 +206,8 @@ func (o *Prometheus) SetScheme(v string) {
 	o.Scheme = v
 }
 
-// GetServiceDiscovery returns the ServiceDiscovery field value
-func (o *Prometheus) GetServiceDiscovery() string {
+// ServiceDiscovery returns the ServiceDiscovery field value
+func (o *Prometheus) ServiceDiscovery() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -294,8 +294,8 @@ func (o *Prometheus) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUsername returns the Username field value
-func (o *Prometheus) GetUsername() string {
+// Username returns the Username field value
+func (o *Prometheus) Username() string {
 	if o == nil {
 		var ret string
 		return ret

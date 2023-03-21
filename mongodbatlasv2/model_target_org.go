@@ -41,8 +41,8 @@ func NewTargetOrgWithDefaults() *TargetOrg {
 	return &this
 }
 
-// GetLinkToken returns the LinkToken field value
-func (o *TargetOrg) GetLinkToken() string {
+// LinkToken returns the LinkToken field value
+func (o *TargetOrg) LinkToken() string {
 	if o == nil {
 		var ret string
 		return ret

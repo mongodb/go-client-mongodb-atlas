@@ -53,8 +53,8 @@ func NewGCPCloudProviderContainerWithDefaults() *GCPCloudProviderContainer {
 	return &this
 }
 
-// GetAtlasCidrBlock returns the AtlasCidrBlock field value
-func (o *GCPCloudProviderContainer) GetAtlasCidrBlock() string {
+// AtlasCidrBlock returns the AtlasCidrBlock field value
+func (o *GCPCloudProviderContainer) AtlasCidrBlock() string {
 	if o == nil {
 		var ret string
 		return ret

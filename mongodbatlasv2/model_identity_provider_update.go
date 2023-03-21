@@ -248,8 +248,8 @@ func (o *IdentityProviderUpdate) SetResponseSignatureAlgorithm(v string) {
 	o.ResponseSignatureAlgorithm = &v
 }
 
-// GetSsoDebugEnabled returns the SsoDebugEnabled field value
-func (o *IdentityProviderUpdate) GetSsoDebugEnabled() bool {
+// SsoDebugEnabled returns the SsoDebugEnabled field value
+func (o *IdentityProviderUpdate) SsoDebugEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

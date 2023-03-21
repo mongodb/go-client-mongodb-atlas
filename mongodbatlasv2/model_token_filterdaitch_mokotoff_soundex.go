@@ -79,8 +79,8 @@ func (o *TokenFilterdaitchMokotoffSoundex) SetOriginalTokens(v string) {
 	o.OriginalTokens = &v
 }
 
-// GetType returns the Type field value
-func (o *TokenFilterdaitchMokotoffSoundex) GetType() string {
+// Type returns the Type field value
+func (o *TokenFilterdaitchMokotoffSoundex) Type() string {
 	if o == nil {
 		var ret string
 		return ret

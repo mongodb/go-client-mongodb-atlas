@@ -41,8 +41,8 @@ func NewPrivateIPModeWithDefaults() *PrivateIPMode {
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
-func (o *PrivateIPMode) GetEnabled() bool {
+// Enabled returns the Enabled field value
+func (o *PrivateIPMode) Enabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

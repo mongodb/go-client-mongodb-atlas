@@ -47,8 +47,8 @@ func NewTokenizerregexCaptureGroupWithDefaults() *TokenizerregexCaptureGroup {
 	return &this
 }
 
-// GetGroup returns the Group field value
-func (o *TokenizerregexCaptureGroup) GetGroup() int32 {
+// Group returns the Group field value
+func (o *TokenizerregexCaptureGroup) Group() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -71,8 +71,8 @@ func (o *TokenizerregexCaptureGroup) SetGroup(v int32) {
 	o.Group = v
 }
 
-// GetPattern returns the Pattern field value
-func (o *TokenizerregexCaptureGroup) GetPattern() string {
+// Pattern returns the Pattern field value
+func (o *TokenizerregexCaptureGroup) Pattern() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -95,8 +95,8 @@ func (o *TokenizerregexCaptureGroup) SetPattern(v string) {
 	o.Pattern = v
 }
 
-// GetType returns the Type field value
-func (o *TokenizerregexCaptureGroup) GetType() string {
+// Type returns the Type field value
+func (o *TokenizerregexCaptureGroup) Type() string {
 	if o == nil {
 		var ret string
 		return ret

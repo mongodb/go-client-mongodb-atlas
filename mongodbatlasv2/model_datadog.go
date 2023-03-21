@@ -45,8 +45,8 @@ func NewDatadogWithDefaults() *Datadog {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value
-func (o *Datadog) GetApiKey() string {
+// ApiKey returns the ApiKey field value
+func (o *Datadog) ApiKey() string {
 	if o == nil {
 		var ret string
 		return ret

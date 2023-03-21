@@ -67,8 +67,8 @@ func NewManagedNamespacesWithDefaults() *ManagedNamespaces {
 	return &this
 }
 
-// GetCollection returns the Collection field value
-func (o *ManagedNamespaces) GetCollection() string {
+// Collection returns the Collection field value
+func (o *ManagedNamespaces) Collection() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -91,8 +91,8 @@ func (o *ManagedNamespaces) SetCollection(v string) {
 	o.Collection = v
 }
 
-// GetCustomShardKey returns the CustomShardKey field value
-func (o *ManagedNamespaces) GetCustomShardKey() string {
+// CustomShardKey returns the CustomShardKey field value
+func (o *ManagedNamespaces) CustomShardKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -115,8 +115,8 @@ func (o *ManagedNamespaces) SetCustomShardKey(v string) {
 	o.CustomShardKey = v
 }
 
-// GetDb returns the Db field value
-func (o *ManagedNamespaces) GetDb() string {
+// Db returns the Db field value
+func (o *ManagedNamespaces) Db() string {
 	if o == nil {
 		var ret string
 		return ret

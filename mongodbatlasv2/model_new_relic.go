@@ -52,8 +52,8 @@ func NewNewRelicWithDefaults() *NewRelic {
 	return &this
 }
 
-// GetAccountId returns the AccountId field value
-func (o *NewRelic) GetAccountId() string {
+// AccountId returns the AccountId field value
+func (o *NewRelic) AccountId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,8 +76,8 @@ func (o *NewRelic) SetAccountId(v string) {
 	o.AccountId = v
 }
 
-// GetLicenseKey returns the LicenseKey field value
-func (o *NewRelic) GetLicenseKey() string {
+// LicenseKey returns the LicenseKey field value
+func (o *NewRelic) LicenseKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -100,8 +100,8 @@ func (o *NewRelic) SetLicenseKey(v string) {
 	o.LicenseKey = v
 }
 
-// GetReadToken returns the ReadToken field value
-func (o *NewRelic) GetReadToken() string {
+// ReadToken returns the ReadToken field value
+func (o *NewRelic) ReadToken() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -156,8 +156,8 @@ func (o *NewRelic) SetType(v string) {
 	o.Type = &v
 }
 
-// GetWriteToken returns the WriteToken field value
-func (o *NewRelic) GetWriteToken() string {
+// WriteToken returns the WriteToken field value
+func (o *NewRelic) WriteToken() string {
 	if o == nil {
 		var ret string
 		return ret

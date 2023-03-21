@@ -251,8 +251,8 @@ func (o *AWSProviderSettings) SetVolumeType(v string) {
 	o.VolumeType = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *AWSProviderSettings) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *AWSProviderSettings) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

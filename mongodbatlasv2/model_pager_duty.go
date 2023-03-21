@@ -77,8 +77,8 @@ func (o *PagerDuty) SetRegion(v string) {
 	o.Region = &v
 }
 
-// GetServiceKey returns the ServiceKey field value
-func (o *PagerDuty) GetServiceKey() string {
+// ServiceKey returns the ServiceKey field value
+func (o *PagerDuty) ServiceKey() string {
 	if o == nil {
 		var ret string
 		return ret

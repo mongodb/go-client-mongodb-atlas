@@ -211,8 +211,8 @@ func (o *GroupNotification) SetSmsEnabled(v bool) {
 	o.SmsEnabled = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *GroupNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *GroupNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

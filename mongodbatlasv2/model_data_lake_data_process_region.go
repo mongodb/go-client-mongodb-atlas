@@ -43,8 +43,8 @@ func NewDataLakeDataProcessRegionWithDefaults() *DataLakeDataProcessRegion {
 	return &this
 }
 
-// GetCloudProvider returns the CloudProvider field value
-func (o *DataLakeDataProcessRegion) GetCloudProvider() string {
+// CloudProvider returns the CloudProvider field value
+func (o *DataLakeDataProcessRegion) CloudProvider() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -67,8 +67,8 @@ func (o *DataLakeDataProcessRegion) SetCloudProvider(v string) {
 	o.CloudProvider = v
 }
 
-// GetRegion returns the Region field value
-func (o *DataLakeDataProcessRegion) GetRegion() DataLakeRegion {
+// Region returns the Region field value
+func (o *DataLakeDataProcessRegion) Region() DataLakeRegion {
 	if o == nil {
 		var ret DataLakeRegion
 		return ret

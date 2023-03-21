@@ -44,8 +44,8 @@ func NewInheritedRoleWithDefaults() *InheritedRole {
 	return &this
 }
 
-// GetDb returns the Db field value
-func (o *InheritedRole) GetDb() string {
+// Db returns the Db field value
+func (o *InheritedRole) Db() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -68,8 +68,8 @@ func (o *InheritedRole) SetDb(v string) {
 	o.Db = v
 }
 
-// GetRole returns the Role field value
-func (o *InheritedRole) GetRole() string {
+// Role returns the Role field value
+func (o *InheritedRole) Role() string {
 	if o == nil {
 		var ret string
 		return ret

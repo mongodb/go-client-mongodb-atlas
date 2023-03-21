@@ -280,8 +280,8 @@ func (o *CloudProviderAccessAWSIAMRole) SetRoleId(v string) {
 	o.RoleId = &v
 }
 
-// GetProviderName returns the ProviderName field value
-func (o *CloudProviderAccessAWSIAMRole) GetProviderName() string {
+// ProviderName returns the ProviderName field value
+func (o *CloudProviderAccessAWSIAMRole) ProviderName() string {
 	if o == nil {
 		var ret string
 		return ret

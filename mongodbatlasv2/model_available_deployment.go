@@ -162,8 +162,8 @@ func (o *AvailableDeployment) SetDbSizeBytes(v int64) {
 	o.DbSizeBytes = &v
 }
 
-// GetFeatureCompatibilityVersion returns the FeatureCompatibilityVersion field value
-func (o *AvailableDeployment) GetFeatureCompatibilityVersion() string {
+// FeatureCompatibilityVersion returns the FeatureCompatibilityVersion field value
+func (o *AvailableDeployment) FeatureCompatibilityVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -186,8 +186,8 @@ func (o *AvailableDeployment) SetFeatureCompatibilityVersion(v string) {
 	o.FeatureCompatibilityVersion = v
 }
 
-// GetManaged returns the Managed field value
-func (o *AvailableDeployment) GetManaged() bool {
+// Managed returns the Managed field value
+func (o *AvailableDeployment) Managed() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -210,8 +210,8 @@ func (o *AvailableDeployment) SetManaged(v bool) {
 	o.Managed = v
 }
 
-// GetMongoDBVersion returns the MongoDBVersion field value
-func (o *AvailableDeployment) GetMongoDBVersion() string {
+// MongoDBVersion returns the MongoDBVersion field value
+func (o *AvailableDeployment) MongoDBVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -234,8 +234,8 @@ func (o *AvailableDeployment) SetMongoDBVersion(v string) {
 	o.MongoDBVersion = v
 }
 
-// GetName returns the Name field value
-func (o *AvailableDeployment) GetName() string {
+// Name returns the Name field value
+func (o *AvailableDeployment) Name() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -290,8 +290,8 @@ func (o *AvailableDeployment) SetOplogSizeMB(v int32) {
 	o.OplogSizeMB = &v
 }
 
-// GetSharded returns the Sharded field value
-func (o *AvailableDeployment) GetSharded() bool {
+// Sharded returns the Sharded field value
+func (o *AvailableDeployment) Sharded() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -346,8 +346,8 @@ func (o *AvailableDeployment) SetShardsSize(v int32) {
 	o.ShardsSize = &v
 }
 
-// GetTlsEnabled returns the TlsEnabled field value
-func (o *AvailableDeployment) GetTlsEnabled() bool {
+// TlsEnabled returns the TlsEnabled field value
+func (o *AvailableDeployment) TlsEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret

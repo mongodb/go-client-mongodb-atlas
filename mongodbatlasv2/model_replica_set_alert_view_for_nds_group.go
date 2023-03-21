@@ -82,8 +82,8 @@ func NewReplicaSetAlertViewForNdsGroupWithDefaults() *ReplicaSetAlertViewForNdsG
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *ReplicaSetAlertViewForNdsGroup) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -170,8 +170,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *ReplicaSetAlertViewForNdsGroup) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -226,8 +226,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetClusterName(v string) {
 	o.ClusterName = &v
 }
 
-// GetCreated returns the Created field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *ReplicaSetAlertViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -250,8 +250,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetEventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *ReplicaSetAlertViewForNdsGroup) EventTypeName() ReplicaSetEventTypeViewForNdsGroupAlertable {
 	if o == nil {
 		var ret ReplicaSetEventTypeViewForNdsGroupAlertable
 		return ret
@@ -338,8 +338,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetHostnameAndPort(v string) {
 	o.HostnameAndPort = &v
 }
 
-// GetId returns the Id field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *ReplicaSetAlertViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -586,8 +586,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetStatus() string {
+// Status returns the Status field value
+func (o *ReplicaSetAlertViewForNdsGroup) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -610,8 +610,8 @@ func (o *ReplicaSetAlertViewForNdsGroup) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *ReplicaSetAlertViewForNdsGroup) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *ReplicaSetAlertViewForNdsGroup) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

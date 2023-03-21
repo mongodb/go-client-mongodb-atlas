@@ -125,8 +125,8 @@ func (o *DefaultAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DefaultAlertConfigViewForNdsGroup) GetEventTypeName() string {
+// EventTypeName returns the EventTypeName field value
+func (o *DefaultAlertConfigViewForNdsGroup) EventTypeName() string {
 	if o == nil {
 		var ret string
 		return ret

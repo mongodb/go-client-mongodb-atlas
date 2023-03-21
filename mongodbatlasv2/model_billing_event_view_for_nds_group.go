@@ -102,8 +102,8 @@ func (o *BillingEventViewForNdsGroup) SetApiKeyId(v string) {
 	o.ApiKeyId = &v
 }
 
-// GetCreated returns the Created field value
-func (o *BillingEventViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *BillingEventViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -126,8 +126,8 @@ func (o *BillingEventViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *BillingEventViewForNdsGroup) GetEventTypeName() BillingEventTypeViewForNdsGroup {
+// EventTypeName returns the EventTypeName field value
+func (o *BillingEventViewForNdsGroup) EventTypeName() BillingEventTypeViewForNdsGroup {
 	if o == nil {
 		var ret BillingEventTypeViewForNdsGroup
 		return ret
@@ -182,8 +182,8 @@ func (o *BillingEventViewForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *BillingEventViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *BillingEventViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret

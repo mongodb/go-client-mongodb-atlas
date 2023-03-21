@@ -45,8 +45,8 @@ func NewRoleMappingWithDefaults() *RoleMapping {
 	return &this
 }
 
-// GetExternalGroupName returns the ExternalGroupName field value
-func (o *RoleMapping) GetExternalGroupName() string {
+// ExternalGroupName returns the ExternalGroupName field value
+func (o *RoleMapping) ExternalGroupName() string {
 	if o == nil {
 		var ret string
 		return ret

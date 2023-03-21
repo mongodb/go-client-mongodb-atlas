@@ -83,8 +83,8 @@ func (o *AWSCloudProviderContainer) SetAtlasCidrBlock(v string) {
 	o.AtlasCidrBlock = &v
 }
 
-// GetRegionName returns the RegionName field value
-func (o *AWSCloudProviderContainer) GetRegionName() string {
+// RegionName returns the RegionName field value
+func (o *AWSCloudProviderContainer) RegionName() string {
 	if o == nil {
 		var ret string
 		return ret

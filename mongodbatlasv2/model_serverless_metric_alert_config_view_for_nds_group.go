@@ -125,8 +125,8 @@ func (o *ServerlessMetricAlertConfigViewForNdsGroup) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *ServerlessMetricAlertConfigViewForNdsGroup) GetEventTypeName() ServerlessEventTypeViewAlertable {
+// EventTypeName returns the EventTypeName field value
+func (o *ServerlessMetricAlertConfigViewForNdsGroup) EventTypeName() ServerlessEventTypeViewAlertable {
 	if o == nil {
 		var ret ServerlessEventTypeViewAlertable
 		return ret

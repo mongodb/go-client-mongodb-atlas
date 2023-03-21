@@ -132,8 +132,8 @@ func (o *FTSIndex) SetAnalyzers(v []FTSAnalyzers) {
 	o.Analyzers = v
 }
 
-// GetCollectionName returns the CollectionName field value
-func (o *FTSIndex) GetCollectionName() string {
+// CollectionName returns the CollectionName field value
+func (o *FTSIndex) CollectionName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -156,8 +156,8 @@ func (o *FTSIndex) SetCollectionName(v string) {
 	o.CollectionName = v
 }
 
-// GetDatabase returns the Database field value
-func (o *FTSIndex) GetDatabase() string {
+// Database returns the Database field value
+func (o *FTSIndex) Database() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -244,8 +244,8 @@ func (o *FTSIndex) SetMappings(v FTSMappings) {
 	o.Mappings = &v
 }
 
-// GetName returns the Name field value
-func (o *FTSIndex) GetName() string {
+// Name returns the Name field value
+func (o *FTSIndex) Name() string {
 	if o == nil {
 		var ret string
 		return ret

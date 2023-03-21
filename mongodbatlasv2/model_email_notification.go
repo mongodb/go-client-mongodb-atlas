@@ -143,8 +143,8 @@ func (o *EmailNotification) SetIntervalMin(v int32) {
 	o.IntervalMin = &v
 }
 
-// GetTypeName returns the TypeName field value
-func (o *EmailNotification) GetTypeName() string {
+// TypeName returns the TypeName field value
+func (o *EmailNotification) TypeName() string {
 	if o == nil {
 		var ret string
 		return ret

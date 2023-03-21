@@ -74,8 +74,8 @@ func NewDefaultAlertViewForNdsGroupWithDefaults() *DefaultAlertViewForNdsGroup {
 	return &this
 }
 
-// GetAcknowledgedUntil returns the AcknowledgedUntil field value
-func (o *DefaultAlertViewForNdsGroup) GetAcknowledgedUntil() time.Time {
+// AcknowledgedUntil returns the AcknowledgedUntil field value
+func (o *DefaultAlertViewForNdsGroup) AcknowledgedUntil() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -162,8 +162,8 @@ func (o *DefaultAlertViewForNdsGroup) SetAcknowledgingUsername(v string) {
 	o.AcknowledgingUsername = &v
 }
 
-// GetAlertConfigId returns the AlertConfigId field value
-func (o *DefaultAlertViewForNdsGroup) GetAlertConfigId() string {
+// AlertConfigId returns the AlertConfigId field value
+func (o *DefaultAlertViewForNdsGroup) AlertConfigId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -186,8 +186,8 @@ func (o *DefaultAlertViewForNdsGroup) SetAlertConfigId(v string) {
 	o.AlertConfigId = v
 }
 
-// GetCreated returns the Created field value
-func (o *DefaultAlertViewForNdsGroup) GetCreated() time.Time {
+// Created returns the Created field value
+func (o *DefaultAlertViewForNdsGroup) Created() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -210,8 +210,8 @@ func (o *DefaultAlertViewForNdsGroup) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-// GetEventTypeName returns the EventTypeName field value
-func (o *DefaultAlertViewForNdsGroup) GetEventTypeName() string {
+// EventTypeName returns the EventTypeName field value
+func (o *DefaultAlertViewForNdsGroup) EventTypeName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -266,8 +266,8 @@ func (o *DefaultAlertViewForNdsGroup) SetGroupId(v string) {
 	o.GroupId = &v
 }
 
-// GetId returns the Id field value
-func (o *DefaultAlertViewForNdsGroup) GetId() string {
+// Id returns the Id field value
+func (o *DefaultAlertViewForNdsGroup) Id() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -418,8 +418,8 @@ func (o *DefaultAlertViewForNdsGroup) SetResolved(v time.Time) {
 	o.Resolved = &v
 }
 
-// GetStatus returns the Status field value
-func (o *DefaultAlertViewForNdsGroup) GetStatus() string {
+// Status returns the Status field value
+func (o *DefaultAlertViewForNdsGroup) Status() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -442,8 +442,8 @@ func (o *DefaultAlertViewForNdsGroup) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetUpdated returns the Updated field value
-func (o *DefaultAlertViewForNdsGroup) GetUpdated() time.Time {
+// Updated returns the Updated field value
+func (o *DefaultAlertViewForNdsGroup) Updated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret

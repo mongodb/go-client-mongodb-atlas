@@ -87,8 +87,8 @@ func (o *ConnectedOrgConfig) SetDomainAllowList(v []string) {
 	o.DomainAllowList = v
 }
 
-// GetDomainRestrictionEnabled returns the DomainRestrictionEnabled field value
-func (o *ConnectedOrgConfig) GetDomainRestrictionEnabled() bool {
+// DomainRestrictionEnabled returns the DomainRestrictionEnabled field value
+func (o *ConnectedOrgConfig) DomainRestrictionEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -111,8 +111,8 @@ func (o *ConnectedOrgConfig) SetDomainRestrictionEnabled(v bool) {
 	o.DomainRestrictionEnabled = v
 }
 
-// GetIdentityProviderId returns the IdentityProviderId field value
-func (o *ConnectedOrgConfig) GetIdentityProviderId() string {
+// IdentityProviderId returns the IdentityProviderId field value
+func (o *ConnectedOrgConfig) IdentityProviderId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -135,8 +135,8 @@ func (o *ConnectedOrgConfig) SetIdentityProviderId(v string) {
 	o.IdentityProviderId = v
 }
 
-// GetOrgId returns the OrgId field value
-func (o *ConnectedOrgConfig) GetOrgId() string {
+// OrgId returns the OrgId field value
+func (o *ConnectedOrgConfig) OrgId() string {
 	if o == nil {
 		var ret string
 		return ret
