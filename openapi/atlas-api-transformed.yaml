@@ -14382,6 +14382,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -14484,6 +14485,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -14790,6 +14792,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -14899,6 +14902,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -15003,6 +15007,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -15118,6 +15123,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -15333,6 +15339,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         invoiceId:
           type: string
           description: Unique 24-hexadecimal digit string that identifies of the invoice
@@ -15461,6 +15468,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         invoiceId:
           type: string
           description: Unique 24-hexadecimal digit string that identifies of the invoice
@@ -15583,6 +15591,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -15655,6 +15664,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -15739,6 +15749,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -16081,6 +16092,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -16201,6 +16213,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -16345,6 +16358,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -16606,6 +16620,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -16774,6 +16789,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -16910,6 +16926,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -17641,6 +17658,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -17862,6 +17880,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -18042,6 +18061,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -18122,6 +18142,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -18197,6 +18218,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -18319,6 +18341,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -18464,6 +18487,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -18597,6 +18621,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -18937,6 +18962,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -19233,6 +19259,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -19348,6 +19375,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -19473,6 +19501,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -19577,6 +19606,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -19749,6 +19779,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         invoiceId:
           type: string
           description: Unique 24-hexadecimal digit string that identifies of the invoice
@@ -19920,6 +19951,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -20045,6 +20077,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -20326,6 +20359,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -20477,6 +20511,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -20689,6 +20724,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -20805,6 +20841,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -21027,6 +21064,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         orgId:
           type: string
           description: Unique 24-hexadecimal digit string that identifies the organization
@@ -21630,6 +21668,7 @@ components:
             MongoDB process listens for requests.
           pattern: ^([0-9]{1,3}\.){3}[0-9]{1,3}|([0-9a-f]{1,4}\:){7}([0-9a-f]{1,4})|(([a-z0-9]+\.){1,10}[a-z]+)?(\:[0-9]{4,5})$
           readOnly: true
+          x-go-name: ID
         lastPing:
           type: string
           format: date-time
@@ -21982,6 +22021,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -22110,6 +22150,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -22245,6 +22286,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -22362,6 +22404,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -22523,6 +22566,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -22780,6 +22824,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -23205,6 +23250,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -23365,6 +23411,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -23494,6 +23541,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -23833,6 +23881,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -25188,6 +25237,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -25322,6 +25372,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -25480,6 +25531,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -25609,6 +25661,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -25807,6 +25860,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         identityProviderId:
           type: string
           description: Unique 20-hexadecimal digit string that identifies the identity
@@ -27353,6 +27407,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -27482,6 +27537,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -27644,6 +27700,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         roleAssignments:
           type: array
           description: Atlas roles and the unique identifiers of the groups and
@@ -27848,6 +27905,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -28080,6 +28138,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastNotified:
           type: string
           format: date-time
@@ -28209,6 +28268,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isGlobalAdmin:
           type: boolean
           default: false
@@ -28611,6 +28671,7 @@ components:
           maxLength: 24
           minLength: 24
           pattern: ^([a-f0-9]{24})$
+          x-go-name: ID
       required:
         - id
     ApiUser:
@@ -28631,6 +28692,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -28695,6 +28757,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastAuth:
           type: string
           format: date-time
@@ -29161,6 +29224,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         inviterUsername:
           type: string
           format: email
@@ -29303,6 +29367,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lineItems:
           type: array
           description: List that contains individual services included in this invoice.
@@ -29440,6 +29505,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         publicKey:
           type: string
           description: Public API key value set for the specified organization API key.
@@ -30422,6 +30488,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         inviterUsername:
           type: string
           format: email
@@ -30501,6 +30568,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         isDeleted:
           type: boolean
           description: Flag that indicates whether this organization has been deleted.
@@ -30596,6 +30664,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         salesTaxCents:
           type: integer
           format: int64
@@ -30675,6 +30744,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         impact:
           type: array
           description: List that contains unique 24-hexadecimal character string that
@@ -30761,6 +30831,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         inefficiencyScore:
           type: integer
           format: int64
@@ -30875,6 +30946,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         retentionUnit:
           type: string
           description: Unit of time in which MongoDB Cloud measures snapshot retention.
@@ -30910,6 +30982,7 @@ components:
           maxLength: 24
           minLength: 24
           pattern: ^([a-f0-9]{24})$
+          x-go-name: ID
         policyItems:
           type: array
           description: List that contains the specifications for one policy.
@@ -31133,6 +31206,7 @@ components:
             resource returns this parameter when `"delivery.methodName" :
             "HTTP"`.'
           readOnly: true
+          x-go-name: URL
         urlV2:
           type: string
           description: 'Uniform Resource Locator (URL) from which you can download the
@@ -31266,6 +31340,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -31522,6 +31597,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         lastOplogAppliedTimestamp:
           $ref: "#/components/schemas/BSONTimestamp"
         links:
@@ -31597,6 +31673,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -31657,6 +31734,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -31811,6 +31889,7 @@ components:
 
             **NOTE**: When you view or edit the alert for a webhook notification, the URL appears partially redacted.
           example: https://webhook.com/****
+          x-go-name: URL
       required:
         - url
       title: WEBHOOK
@@ -31901,6 +31980,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         providerName:
           type: string
           description: Cloud service provider that serves the requested network peering
@@ -32251,6 +32331,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         routeTableCidrBlock:
           type: string
           description: Internet Protocol (IP) addresses expressed in Classless
@@ -32307,6 +32388,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         interfaceEndpoints:
           type: array
           description: List of strings that identify private endpoint interfaces applied
@@ -32786,6 +32868,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         providerName:
           type: string
           description: Cloud service provider that serves the requested network peering
@@ -33013,6 +33096,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         resourceGroupName:
           type: string
           description: Human-readable label that identifies the resource group in which
@@ -33102,6 +33186,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         privateEndpoints:
           type: array
           description: List of private endpoints assigned to this Azure Private Link
@@ -33480,6 +33565,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -34137,6 +34223,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         labels:
           type: array
           description: Collection of key-value pairs between 1 to 255 characters in length
@@ -34281,6 +34368,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         outageFilters:
           type: array
           description: List of settings that specify the type of cluster outage simulation.
@@ -35778,6 +35866,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -35900,6 +35989,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -36034,6 +36124,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -36130,6 +36221,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         replicaSetName:
           type: string
           description: Human-readable label that identifies the shard or config host from
@@ -36181,6 +36273,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -36885,6 +36978,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         providerName:
           type: string
           description: Cloud service provider that serves the requested network peering
@@ -37058,6 +37152,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         regionName:
           type: string
           description: Cloud provider region that manages this Private Endpoint Service.
@@ -37164,6 +37259,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         networkName:
           type: string
           description: Human-readable label that identifies the network to peer with the
@@ -37600,6 +37696,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -38009,6 +38106,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         labels:
           type: array
           description: Collection of key-value pairs between 1 to 255 characters in length
@@ -38195,6 +38293,7 @@ components:
           maxLength: 24
           minLength: 24
           pattern: ^([a-f0-9]{24})$
+          x-go-name: ID
         numShards:
           type: integer
           format: int32
@@ -38999,6 +39098,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         numShards:
           type: integer
           format: int32
@@ -39356,6 +39456,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -39462,6 +39563,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -39671,6 +39773,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -40157,6 +40260,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
@@ -40268,6 +40372,7 @@ components:
           minLength: 24
           pattern: ^([a-f0-9]{24})$
           readOnly: true
+          x-go-name: ID
         links:
           type: array
           description: List of one or more Uniform Resource Locators (URLs) that point to
