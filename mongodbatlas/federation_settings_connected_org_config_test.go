@@ -57,7 +57,7 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 						 {
 							"groupId":null,
 							"orgId":"627a9683eafda674de306d14",
-							"role":"ORG_OWNER"
+							"roleName":"ORG_OWNER"
 						 }
 					  ]
 				   }
@@ -96,8 +96,8 @@ func TestFederatedSettingsConnectedOrganizationOp_List(t *testing.T) {
 							ID:                "627b1f8f244ad705fd542d81",
 							RoleAssignments: []*RoleAssignments{
 								{
-									OrgID: "627a9683eafda674de306d14",
-									Role:  "ORG_OWNER",
+									OrgID:    "627a9683eafda674de306d14",
+									RoleName: "ORG_OWNER",
 								},
 							},
 						},
@@ -136,7 +136,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
             {
                "groupId":null,
                "orgId":"627a9683eafda674de306d14",
-               "role":"ORG_OWNER"
+               "roleName":"ORG_OWNER"
             }
          ]
       }
@@ -162,8 +162,8 @@ func TestFederatedSettingsConnectedOrganizationOp_Get(t *testing.T) {
 				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: []*RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306d14",
-						Role:  "ORG_OWNER",
+						OrgID:    "627a9683eafda674de306d14",
+						RoleName: "ORG_OWNER",
 					},
 				},
 			},
@@ -198,7 +198,7 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
             {
                "groupId":null,
                "orgId":"627a9683eafda674de306d14",
-               "role":"ORG_OWNER"
+               "roleName":"ORG_OWNER"
             }
          ]
       }
@@ -219,8 +219,8 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: []*RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306d14",
-						Role:  "ORG_OWNER",
+						OrgID:    "627a9683eafda674de306d14",
+						RoleName: "ORG_OWNER",
 					},
 				},
 			},
@@ -244,8 +244,8 @@ func TestFederatedSettingsConnectedOrganizationOp_Update(t *testing.T) {
 				ID:                "627b1f8f244ad705fd542d81",
 				RoleAssignments: []*RoleAssignments{
 					{
-						OrgID: "627a9683eafda674de306d14",
-						Role:  "ORG_OWNER",
+						OrgID:    "627a9683eafda674de306d14",
+						RoleName: "ORG_OWNER",
 					},
 				},
 			},

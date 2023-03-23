@@ -38,9 +38,9 @@ type FederatedSettingsOrganizationRoleMapping struct {
 }
 
 type RoleAssignments struct {
-	GroupID string `json:"groupId,omitempty"`
-	OrgID   string `json:"orgId,omitempty"`
-	Role    string `json:"role,omitempty"`
+	GroupID  string `json:"groupId,omitempty"`
+	OrgID    string `json:"orgId,omitempty"`
+	RoleName string `json:"roleName,omitempty"`
 }
 
 // ListRoleMappings gets all Federated Settings Role Mappings for an organization.

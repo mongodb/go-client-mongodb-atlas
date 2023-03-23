@@ -48,7 +48,7 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 					 {
 					   "groupId": null,
 					   "orgId": "5a0a1e7e0f2912c554080adc",
-					   "role": "ORG_MEMBER"
+					   "roleName": "ORG_MEMBER"
 					 }
 				   ]
 				  }
@@ -75,9 +75,9 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_List(t *testing.T) {
 					ID:                "61e89721b827b56c845ff44c",
 					RoleAssignments: []*RoleAssignments{
 						{
-							GroupID: "",
-							OrgID:   "5a0a1e7e0f2912c554080adc",
-							Role:    "ORG_MEMBER",
+							GroupID:  "",
+							OrgID:    "5a0a1e7e0f2912c554080adc",
+							RoleName: "ORG_MEMBER",
 						},
 					},
 				},
@@ -105,12 +105,12 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Get(t *testing.T) {
 				{
 					"groupId": null,
 					"orgId": "5f86fb11e0079069c9ec3132",
-					"role": "ORG_OWNER"
+					"roleName": "ORG_OWNER"
 				},
 				{
 					"groupId": "5f86fb2ff9c4e56d39502559",
 					"orgId": null,
-					"role": "GROUP_OWNER"
+					"roleName": "GROUP_OWNER"
 				}
 			]
 		   }`)
@@ -126,14 +126,14 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Get(t *testing.T) {
 		ID:                "61d88e15e6cc044270a36fce",
 		RoleAssignments: []*RoleAssignments{
 			{
-				GroupID: "",
-				OrgID:   "5f86fb11e0079069c9ec3132",
-				Role:    "ORG_OWNER",
+				GroupID:  "",
+				OrgID:    "5f86fb11e0079069c9ec3132",
+				RoleName: "ORG_OWNER",
 			},
 			{
-				GroupID: "5f86fb2ff9c4e56d39502559",
-				OrgID:   "",
-				Role:    "GROUP_OWNER",
+				GroupID:  "5f86fb2ff9c4e56d39502559",
+				OrgID:    "",
+				RoleName: "GROUP_OWNER",
 			},
 		},
 	}
@@ -169,12 +169,12 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 				{
 					"groupId": null,
 					"orgId": "5f86fb11e0079069c9ec3132",
-					"role": "ORG_OWNER"
+					"roleName": "ORG_OWNER"
 				},
 				{
 					"groupId": "5f86fb2ff9c4e56d39502559",
 					"orgId": null,
-					"role": "GROUP_OWNER"
+					"roleName": "GROUP_OWNER"
 				}
 			]
 		   }`)
@@ -185,14 +185,14 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 		ID:                "61d88e15e6cc044270a36fce",
 		RoleAssignments: []*RoleAssignments{
 			{
-				GroupID: "",
-				OrgID:   "5f86fb11e0079069c9ec3132",
-				Role:    "ORG_OWNER",
+				GroupID:  "",
+				OrgID:    "5f86fb11e0079069c9ec3132",
+				RoleName: "ORG_OWNER",
 			},
 			{
-				GroupID: "5f86fb2ff9c4e56d39502559",
-				OrgID:   "",
-				Role:    "GROUP_OWNER",
+				GroupID:  "5f86fb2ff9c4e56d39502559",
+				OrgID:    "",
+				RoleName: "GROUP_OWNER",
 			},
 		},
 	}
@@ -207,14 +207,14 @@ func TestFederatedSettingsOrganizationRoleMappingServiceOp_Create(t *testing.T) 
 		ID:                "61d88e15e6cc044270a36fce",
 		RoleAssignments: []*RoleAssignments{
 			{
-				GroupID: "",
-				OrgID:   "5f86fb11e0079069c9ec3132",
-				Role:    "ORG_OWNER",
+				GroupID:  "",
+				OrgID:    "5f86fb11e0079069c9ec3132",
+				RoleName: "ORG_OWNER",
 			},
 			{
-				GroupID: "5f86fb2ff9c4e56d39502559",
-				OrgID:   "",
-				Role:    "GROUP_OWNER",
+				GroupID:  "5f86fb2ff9c4e56d39502559",
+				OrgID:    "",
+				RoleName: "GROUP_OWNER",
 			},
 		},
 	}
