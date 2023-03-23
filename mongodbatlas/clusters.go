@@ -113,10 +113,11 @@ type ReplicationSpec struct {
 // Atlas returns this parameter only if you deployed a private endpoint to all regions
 // to which you deployed this cluster's nodes.
 type PrivateEndpoint struct {
-	ConnectionString    string     `json:"connectionString,omitempty"`
-	Endpoints           []Endpoint `json:"endpoints,omitempty"`
-	SRVConnectionString string     `json:"srvConnectionString,omitempty"`
-	Type                string     `json:"type,omitempty"`
+	ConnectionString                  string     `json:"connectionString,omitempty"`
+	Endpoints                         []Endpoint `json:"endpoints,omitempty"`
+	SRVConnectionString               string     `json:"srvConnectionString,omitempty"`
+	SRVShardOptimizedConnectionString string     `json:"srvShardOptimizedConnectionString,omitempty"`
+	Type                              string     `json:"type,omitempty"`
 }
 
 // Endpoint through which you connect to Atlas.
