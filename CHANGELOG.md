@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.23.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.2) (March 23, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.1...v0.23.2)
+
+**Merged pull requests:**
+
+- CLOUDP-167925: add support for PrivateEndpoint.srvShardOptimizedConnectionString [\#423](https://github.com/mongodb/go-client-mongodb-atlas/pull/423) ([tibulca](https://github.com/tibulca))
+- docs: add release note update [\#422](https://github.com/mongodb/go-client-mongodb-atlas/pull/422) ([wtrocki](https://github.com/wtrocki))
+- chore\(deps\): bump tj-actions/verify-changed-files from 13 to 14 [\#420](https://github.com/mongodb/go-client-mongodb-atlas/pull/420) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/setup-go from 3 to 4 [\#419](https://github.com/mongodb/go-client-mongodb-atlas/pull/419) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: rename master workflow [\#412](https://github.com/mongodb/go-client-mongodb-atlas/pull/412) ([wtrocki](https://github.com/wtrocki))
+- CLOUDP-166138: rename autoupdate file to avoid conflicts with sdkv2 a… [\#411](https://github.com/mongodb/go-client-mongodb-atlas/pull/411) ([wtrocki](https://github.com/wtrocki))
+- CLOUDP-155910: add ability to generate client from api preview [\#409](https://github.com/mongodb/go-client-mongodb-atlas/pull/409) ([wtrocki](https://github.com/wtrocki))
+- CLOUDP-162109: run updates on master [\#397](https://github.com/mongodb/go-client-mongodb-atlas/pull/397) ([wtrocki](https://github.com/wtrocki))
+- task: drop pointy [\#396](https://github.com/mongodb/go-client-mongodb-atlas/pull/396) ([gssbzn](https://github.com/gssbzn))
+
 ## [v0.23.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.1) (March 01, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.0...v0.23.1)
