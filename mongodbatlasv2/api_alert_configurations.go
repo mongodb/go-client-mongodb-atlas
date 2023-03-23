@@ -77,7 +77,7 @@ type AlertConfigurationsApi interface {
 	/*
 	ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
 
-	Get all field names that the matchers.fieldName parameter accepts when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration) or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration) an Alert Configuration.
+	Get all field names that the `matchers.fieldName` parameter accepts when you create or update an Alert Configuration. You can successfully call this endpoint with any assigned role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
@@ -629,7 +629,7 @@ func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) E
 /*
 ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
 
-Get all field names that the matchers.fieldName parameter accepts when you [create](#tag/Alert-Configurations/operation/createAlertConfiguration) or [update](#tag/Alert-Configurations/operation/updateAlertConfiguration) an Alert Configuration.
+Get all field names that the `matchers.fieldName` parameter accepts when you create or update an Alert Configuration. You can successfully call this endpoint with any assigned role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
