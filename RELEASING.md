@@ -22,6 +22,23 @@ Feel free to use the github GUI to release, or run:
 ./scripts/release.sh
 ```
 
+## Post Release Actions for V2 SDK
+
+Merge `master` branch changes into `sdkv2` branch:
+
+```bash
+git checkout master 
+git pull origin master
+git checkout sdkv2
+git pull origin sdkv2
+git merge master
+```
+
+Push changes to branch:
+```
+git push origin sdkv2 
+```
+
 ## Updating the library version
 
 After releasing update the library version to its next desired version:
