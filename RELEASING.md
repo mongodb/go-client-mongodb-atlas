@@ -22,6 +22,11 @@ Feel free to use the github GUI to release, or run:
 ./scripts/release.sh
 ```
 
+## Release and sdkv2
+
+1. When releasing changes we also need to manualy update `sdkv2` branch 
+2. After release please make sure that we merge`master` branch changes into `sdkv2` branch.
+
 ## Updating the library version
 
 After releasing update the library version to its next desired version:
