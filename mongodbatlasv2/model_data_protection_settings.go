@@ -20,24 +20,26 @@ var _ MappedNullable = &DataProtectionSettings{}
 
 // DataProtectionSettings struct for DataProtectionSettings
 type DataProtectionSettings struct {
+	// Email address of the user who authorized to updated the Backup Compliance Policy  settings.
+	AuthorizedEmail *string `json:"authorizedEmail,omitempty"`
 	// Flag that indicates whether to enable additional backup copies for the cluster.
 	CopyProtectionEnabled *bool `json:"copyProtectionEnabled,omitempty"`
-	// Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters with a Data Protection Policy.
+	// Flag that indicates whether Encryption at Rest using Customer Key  Management is required for all clusters with a Backup Compliance Policy.
 	EncryptionAtRestEnabled *bool `json:"encryptionAtRestEnabled,omitempty"`
 	OnDemandPolicyItem *PolicyItem `json:"onDemandPolicyItem,omitempty"`
-	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Data Protection Policy.
+	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy.
 	PitEnabled *bool `json:"pitEnabled,omitempty"`
-	// Unique 24-hexadecimal digit string that identifies the project for the Data Protection Policy.
+	// Unique 24-hexadecimal digit string that identifies the project for the Backup Compliance Policy.
 	ProjectId *string `json:"projectId,omitempty"`
-	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Data Protection Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Data Protection Policy.
+	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays *int32 `json:"restoreWindowDays,omitempty"`
 	// List that contains the specifications for one scheduled policy.
 	ScheduledPolicyItems []PolicyItem `json:"scheduledPolicyItems,omitempty"`
-	// Label that indicates the state of the Data Protection Policy settings.
+	// Label that indicates the state of the Backup Compliance Policy settings.
 	State *string `json:"state,omitempty"`
 	// ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings.
 	UpdatedDate *time.Time `json:"updatedDate,omitempty"`
-	// Email address that identifies the user who updated the Data Protection Policy settings.
+	// Email address that identifies the user who updated the Backup Compliance Policy settings.
 	UpdatedUser *string `json:"updatedUser,omitempty"`
 }
 
@@ -56,6 +58,38 @@ func NewDataProtectionSettings() *DataProtectionSettings {
 func NewDataProtectionSettingsWithDefaults() *DataProtectionSettings {
 	this := DataProtectionSettings{}
 	return &this
+}
+
+// GetAuthorizedEmail returns the AuthorizedEmail field value if set, zero value otherwise.
+func (o *DataProtectionSettings) GetAuthorizedEmail() string {
+	if o == nil || IsNil(o.AuthorizedEmail) {
+		var ret string
+		return ret
+	}
+	return *o.AuthorizedEmail
+}
+
+// GetAuthorizedEmailOk returns a tuple with the AuthorizedEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataProtectionSettings) GetAuthorizedEmailOk() (*string, bool) {
+	if o == nil || IsNil(o.AuthorizedEmail) {
+		return nil, false
+	}
+	return o.AuthorizedEmail, true
+}
+
+// HasAuthorizedEmail returns a boolean if a field has been set.
+func (o *DataProtectionSettings) HasAuthorizedEmail() bool {
+	if o != nil && !IsNil(o.AuthorizedEmail) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizedEmail gets a reference to the given string and assigns it to the AuthorizedEmail field.
+func (o *DataProtectionSettings) SetAuthorizedEmail(v string) {
+	o.AuthorizedEmail = &v
 }
 
 // GetCopyProtectionEnabled returns the CopyProtectionEnabled field value if set, zero value otherwise.
@@ -388,6 +422,7 @@ func (o DataProtectionSettings) MarshalJSON() ([]byte, error) {
 
 func (o DataProtectionSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	// skip: authorizedEmail is readOnly
 	if !IsNil(o.CopyProtectionEnabled) {
 		toSerialize["copyProtectionEnabled"] = o.CopyProtectionEnabled
 	}

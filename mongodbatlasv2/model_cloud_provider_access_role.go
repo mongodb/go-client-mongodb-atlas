@@ -18,12 +18,20 @@ import (
 // CloudProviderAccessRole - Cloud provider access role.
 type CloudProviderAccessRole struct {
 	CloudProviderAccessAWSIAMRole *CloudProviderAccessAWSIAMRole
+	CloudProviderAccessAzureServicePrincipal *CloudProviderAccessAzureServicePrincipal
 }
 
 // CloudProviderAccessAWSIAMRoleAsCloudProviderAccessRole is a convenience function that returns CloudProviderAccessAWSIAMRole wrapped in CloudProviderAccessRole
 func CloudProviderAccessAWSIAMRoleAsCloudProviderAccessRole(v *CloudProviderAccessAWSIAMRole) CloudProviderAccessRole {
 	return CloudProviderAccessRole{
 		CloudProviderAccessAWSIAMRole: v,
+	}
+}
+
+// CloudProviderAccessAzureServicePrincipalAsCloudProviderAccessRole is a convenience function that returns CloudProviderAccessAzureServicePrincipal wrapped in CloudProviderAccessRole
+func CloudProviderAccessAzureServicePrincipalAsCloudProviderAccessRole(v *CloudProviderAccessAzureServicePrincipal) CloudProviderAccessRole {
+	return CloudProviderAccessRole{
+		CloudProviderAccessAzureServicePrincipal: v,
 	}
 }
 
@@ -50,6 +58,18 @@ func (dst *CloudProviderAccessRole) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'AZURE'
+	if jsonDict["providerName"] == "AZURE" {
+		// try to unmarshal JSON data into CloudProviderAccessAzureServicePrincipal
+		err = json.Unmarshal(data, &dst.CloudProviderAccessAzureServicePrincipal)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessAzureServicePrincipal, return on the first match
+		} else {
+			dst.CloudProviderAccessAzureServicePrincipal = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessRole as CloudProviderAccessAzureServicePrincipal: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'CloudProviderAccessAWSIAMRole'
 	if jsonDict["providerName"] == "CloudProviderAccessAWSIAMRole" {
 		// try to unmarshal JSON data into CloudProviderAccessAWSIAMRole
@@ -62,6 +82,18 @@ func (dst *CloudProviderAccessRole) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'CloudProviderAccessAzureServicePrincipal'
+	if jsonDict["providerName"] == "CloudProviderAccessAzureServicePrincipal" {
+		// try to unmarshal JSON data into CloudProviderAccessAzureServicePrincipal
+		err = json.Unmarshal(data, &dst.CloudProviderAccessAzureServicePrincipal)
+		if err == nil {
+			return nil // data stored in dst.CloudProviderAccessAzureServicePrincipal, return on the first match
+		} else {
+			dst.CloudProviderAccessAzureServicePrincipal = nil
+			return fmt.Errorf("failed to unmarshal CloudProviderAccessRole as CloudProviderAccessAzureServicePrincipal: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -69,6 +101,10 @@ func (dst *CloudProviderAccessRole) UnmarshalJSON(data []byte) error {
 func (src CloudProviderAccessRole) MarshalJSON() ([]byte, error) {
 	if src.CloudProviderAccessAWSIAMRole != nil {
 		return json.Marshal(&src.CloudProviderAccessAWSIAMRole)
+	}
+
+	if src.CloudProviderAccessAzureServicePrincipal != nil {
+		return json.Marshal(&src.CloudProviderAccessAzureServicePrincipal)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -81,6 +117,10 @@ func (obj *CloudProviderAccessRole) GetActualInstance() (interface{}) {
 	}
 	if obj.CloudProviderAccessAWSIAMRole != nil {
 		return obj.CloudProviderAccessAWSIAMRole
+	}
+
+	if obj.CloudProviderAccessAzureServicePrincipal != nil {
+		return obj.CloudProviderAccessAzureServicePrincipal
 	}
 
 	// all schemas are nil

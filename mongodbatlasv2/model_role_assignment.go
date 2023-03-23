@@ -17,14 +17,14 @@ import (
 // checks if the RoleAssignment type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RoleAssignment{}
 
-// RoleAssignment struct for RoleAssignment
+// RoleAssignment MongoDB Cloud user's roles and the corresponding organization or project to which that role applies. Each role can apply to one organization or one project but not both.
 type RoleAssignment struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or **orgId** but not both in the same request.
 	GroupId *string `json:"groupId,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or **groupId** but not both in the same request.
 	OrgId *string `json:"orgId,omitempty"`
 	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include organization- and project-level roles.  Organization Roles  * ORG_OWNER * ORG_MEMBER * ORG_GROUP_CREATOR * ORG_BILLING_ADMIN * ORG_READ_ONLY  Project Roles  * GROUP_CLUSTER_MANAGER * GROUP_DATA_ACCESS_ADMIN * GROUP_DATA_ACCESS_READ_ONLY * GROUP_DATA_ACCESS_READ_WRITE * GROUP_OWNER * GROUP_READ_ONLY * GROUP_SEARCH_INDEX_EDITOR  
-	Role *string `json:"role,omitempty"`
+	RoleName *string `json:"roleName,omitempty"`
 }
 
 // NewRoleAssignment instantiates a new RoleAssignment object
@@ -108,36 +108,36 @@ func (o *RoleAssignment) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
-// GetRole returns the Role field value if set, zero value otherwise.
-func (o *RoleAssignment) GetRole() string {
-	if o == nil || IsNil(o.Role) {
+// GetRoleName returns the RoleName field value if set, zero value otherwise.
+func (o *RoleAssignment) GetRoleName() string {
+	if o == nil || IsNil(o.RoleName) {
 		var ret string
 		return ret
 	}
-	return *o.Role
+	return *o.RoleName
 }
 
-// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// GetRoleNameOk returns a tuple with the RoleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleAssignment) GetRoleOk() (*string, bool) {
-	if o == nil || IsNil(o.Role) {
+func (o *RoleAssignment) GetRoleNameOk() (*string, bool) {
+	if o == nil || IsNil(o.RoleName) {
 		return nil, false
 	}
-	return o.Role, true
+	return o.RoleName, true
 }
 
-// HasRole returns a boolean if a field has been set.
-func (o *RoleAssignment) HasRole() bool {
-	if o != nil && !IsNil(o.Role) {
+// HasRoleName returns a boolean if a field has been set.
+func (o *RoleAssignment) HasRoleName() bool {
+	if o != nil && !IsNil(o.RoleName) {
 		return true
 	}
 
 	return false
 }
 
-// SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *RoleAssignment) SetRole(v string) {
-	o.Role = &v
+// SetRoleName gets a reference to the given string and assigns it to the RoleName field.
+func (o *RoleAssignment) SetRoleName(v string) {
+	o.RoleName = &v
 }
 
 func (o RoleAssignment) MarshalJSON() ([]byte, error) {
@@ -156,8 +156,8 @@ func (o RoleAssignment) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrgId) {
 		toSerialize["orgId"] = o.OrgId
 	}
-	if !IsNil(o.Role) {
-		toSerialize["role"] = o.Role
+	if !IsNil(o.RoleName) {
+		toSerialize["roleName"] = o.RoleName
 	}
 	return toSerialize, nil
 }
