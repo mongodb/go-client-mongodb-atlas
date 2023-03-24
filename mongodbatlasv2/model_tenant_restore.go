@@ -501,28 +501,16 @@ func (o *TenantRestore) SetTargetProjectId(v string) {
 	o.TargetProjectId = &v
 }
 
-func (o TenantRestore) MarshalJSON() ([]byte, error) {
+func (o TenantRestore) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TenantRestore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterName is readOnly
-	// skip: deliveryType is readOnly
-	// skip: expirationDate is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: projectId is readOnly
-	// skip: restoreFinishedDate is readOnly
-	// skip: restoreScheduledDate is readOnly
-	// skip: snapshotFinishedDate is readOnly
 	toSerialize["snapshotId"] = o.SnapshotId
-	// skip: snapshotUrl is readOnly
-	// skip: status is readOnly
 	toSerialize["targetDeploymentItemName"] = o.TargetDeploymentItemName
 	if !IsNil(o.TargetProjectId) {
 		toSerialize["targetProjectId"] = o.TargetProjectId

@@ -344,27 +344,18 @@ func (o *MongoDBAccessLogs) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o MongoDBAccessLogs) MarshalJSON() ([]byte, error) {
+func (o MongoDBAccessLogs) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MongoDBAccessLogs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AuthResult) {
 		toSerialize["authResult"] = o.AuthResult
 	}
-	// skip: authSource is readOnly
-	// skip: failureReason is readOnly
-	// skip: groupId is readOnly
-	// skip: hostname is readOnly
-	// skip: ipAddress is readOnly
-	// skip: logLine is readOnly
-	// skip: timestamp is readOnly
-	// skip: username is readOnly
 	return toSerialize, nil
 }
 

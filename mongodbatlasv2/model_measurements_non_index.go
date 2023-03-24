@@ -311,24 +311,15 @@ func (o *MeasurementsNonIndex) SetStatusMeasurements(v []Measurement) {
 	o.StatusMeasurements = v
 }
 
-func (o MeasurementsNonIndex) MarshalJSON() ([]byte, error) {
+func (o MeasurementsNonIndex) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MeasurementsNonIndex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: end is readOnly
-	// skip: granularity is readOnly
-	// skip: groupId is readOnly
-	// skip: hardwareMeasurements is readOnly
-	// skip: links is readOnly
-	// skip: processId is readOnly
-	// skip: start is readOnly
-	// skip: statusMeasurements is readOnly
 	return toSerialize, nil
 }
 

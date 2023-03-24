@@ -439,34 +439,24 @@ func (o *DiskBackupExportJob) SetState(v string) {
 	o.State = &v
 }
 
-func (o DiskBackupExportJob) MarshalJSON() ([]byte, error) {
+func (o DiskBackupExportJob) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupExportJob) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: components is readOnly
-	// skip: createdAt is readOnly
 	if !IsNil(o.CustomData) {
 		toSerialize["customData"] = o.CustomData
 	}
-	// skip: deliveryUrl is readOnly
-	// skip: exportBucketId is readOnly
 	if !IsNil(o.ExportStatus) {
 		toSerialize["exportStatus"] = o.ExportStatus
 	}
-	// skip: finishedAt is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: prefix is readOnly
 	if !IsNil(o.SnapshotId) {
 		toSerialize["snapshotId"] = o.SnapshotId
 	}
-	// skip: state is readOnly
 	return toSerialize, nil
 }
 

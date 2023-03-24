@@ -99,18 +99,16 @@ func (o *ExampleResourceResponseView20230101) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o ExampleResourceResponseView20230101) MarshalJSON() ([]byte, error) {
+func (o ExampleResourceResponseView20230101) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ExampleResourceResponseView20230101) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

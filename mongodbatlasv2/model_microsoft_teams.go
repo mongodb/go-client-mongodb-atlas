@@ -99,14 +99,13 @@ func (o *MicrosoftTeams) SetType(v string) {
 	o.Type = &v
 }
 
-func (o MicrosoftTeams) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeams) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MicrosoftTeams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["microsoftTeamsWebhookUrl"] = o.MicrosoftTeamsWebhookUrl

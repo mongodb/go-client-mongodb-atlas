@@ -315,21 +315,18 @@ func (o *SnapshotSchedule) SetWeeklySnapshotRetentionWeeks(v int32) {
 	o.WeeklySnapshotRetentionWeeks = v
 }
 
-func (o SnapshotSchedule) MarshalJSON() ([]byte, error) {
+func (o SnapshotSchedule) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SnapshotSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["clusterCheckpointIntervalMin"] = o.ClusterCheckpointIntervalMin
 	toSerialize["clusterId"] = o.ClusterId
 	toSerialize["dailySnapshotRetentionDays"] = o.DailySnapshotRetentionDays
-	// skip: groupId is readOnly
-	// skip: links is readOnly
 	toSerialize["monthlySnapshotRetentionMonths"] = o.MonthlySnapshotRetentionMonths
 	toSerialize["pointInTimeWindowHours"] = o.PointInTimeWindowHours
 	toSerialize["snapshotIntervalHours"] = o.SnapshotIntervalHours

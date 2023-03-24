@@ -120,14 +120,13 @@ func (o *FTSSynonymMappingDefinition) SetSource(v SynonymSource) {
 	o.Source = v
 }
 
-func (o FTSSynonymMappingDefinition) MarshalJSON() ([]byte, error) {
+func (o FTSSynonymMappingDefinition) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o FTSSynonymMappingDefinition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["analyzer"] = o.Analyzer

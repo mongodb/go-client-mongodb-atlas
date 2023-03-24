@@ -72,17 +72,15 @@ func (o *DiskBackupBaseRestoreMember) SetReplicaSetName(v string) {
 	o.ReplicaSetName = &v
 }
 
-func (o DiskBackupBaseRestoreMember) MarshalJSON() ([]byte, error) {
+func (o DiskBackupBaseRestoreMember) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupBaseRestoreMember) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: replicaSetName is readOnly
 	return toSerialize, nil
 }
 

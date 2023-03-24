@@ -218,23 +218,18 @@ func (o *LiveMigrationResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o LiveMigrationResponse) MarshalJSON() ([]byte, error) {
+func (o LiveMigrationResponse) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LiveMigrationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
 	if o.LagTimeSeconds.IsSet() {
 		toSerialize["lagTimeSeconds"] = o.LagTimeSeconds.Get()
 	}
-	// skip: migrationHosts is readOnly
-	// skip: readyForCutover is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

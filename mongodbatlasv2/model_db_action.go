@@ -99,14 +99,13 @@ func (o *DBAction) SetResources(v []DBResource) {
 	o.Resources = v
 }
 
-func (o DBAction) MarshalJSON() ([]byte, error) {
+func (o DBAction) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DBAction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["action"] = o.Action

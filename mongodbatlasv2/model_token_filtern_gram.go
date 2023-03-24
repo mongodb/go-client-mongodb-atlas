@@ -157,14 +157,13 @@ func (o *TokenFilternGram) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenFilternGram) MarshalJSON() ([]byte, error) {
+func (o TokenFilternGram) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenFilternGram) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["maxGram"] = o.MaxGram

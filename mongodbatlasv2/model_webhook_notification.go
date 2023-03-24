@@ -201,14 +201,13 @@ func (o *WebhookNotification) SetWebhookUrl(v string) {
 	o.WebhookUrl = &v
 }
 
-func (o WebhookNotification) MarshalJSON() ([]byte, error) {
+func (o WebhookNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o WebhookNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

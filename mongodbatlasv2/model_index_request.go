@@ -192,14 +192,13 @@ func (o *IndexRequest) SetOptions(v IndexOptions) {
 	o.Options = &v
 }
 
-func (o IndexRequest) MarshalJSON() ([]byte, error) {
+func (o IndexRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o IndexRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Collation) {

@@ -201,14 +201,13 @@ func (o *SlackNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o SlackNotification) MarshalJSON() ([]byte, error) {
+func (o SlackNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SlackNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ApiToken) {

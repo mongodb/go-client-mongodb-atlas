@@ -141,14 +141,13 @@ func (o *TokenFilterlength) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenFilterlength) MarshalJSON() ([]byte, error) {
+func (o TokenFilterlength) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenFilterlength) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Max) {

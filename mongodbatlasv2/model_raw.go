@@ -378,30 +378,24 @@ func (o *Raw) SetSeverity(v string) {
 	o.Severity = &v
 }
 
-func (o Raw) MarshalJSON() ([]byte, error) {
+func (o Raw) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Raw) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.T) {
 		toSerialize["_t"] = o.T
 	}
-	// skip: alertConfigId is readOnly
-	// skip: cid is readOnly
-	// skip: cre is readOnly
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.Gn) {
 		toSerialize["gn"] = o.Gn
 	}
-	// skip: id is readOnly
-	// skip: orgId is readOnly
 	if !IsNil(o.OrgName) {
 		toSerialize["orgName"] = o.OrgName
 	}

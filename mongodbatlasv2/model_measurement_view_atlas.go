@@ -140,19 +140,15 @@ func (o *MeasurementViewAtlas) SetUnits(v string) {
 	o.Units = &v
 }
 
-func (o MeasurementViewAtlas) MarshalJSON() ([]byte, error) {
+func (o MeasurementViewAtlas) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MeasurementViewAtlas) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: dataPoints is readOnly
-	// skip: name is readOnly
-	// skip: units is readOnly
 	return toSerialize, nil
 }
 

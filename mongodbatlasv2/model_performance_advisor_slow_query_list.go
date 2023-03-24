@@ -72,17 +72,15 @@ func (o *PerformanceAdvisorSlowQueryList) SetSlowQueries(v []PerformanceAdvisorS
 	o.SlowQueries = v
 }
 
-func (o PerformanceAdvisorSlowQueryList) MarshalJSON() ([]byte, error) {
+func (o PerformanceAdvisorSlowQueryList) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PerformanceAdvisorSlowQueryList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: slowQueries is readOnly
 	return toSerialize, nil
 }
 

@@ -750,14 +750,13 @@ func (o *AlertViewForNdsGroup) SetParentClusterId(v string) {
 	o.ParentClusterId = &v
 }
 
-func (o AlertViewForNdsGroup) MarshalJSON() ([]byte, error) {
+func (o AlertViewForNdsGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AlertViewForNdsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AcknowledgedUntil) {
@@ -766,29 +765,12 @@ func (o AlertViewForNdsGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AcknowledgementComment) {
 		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
 	}
-	// skip: acknowledgingUsername is readOnly
-	// skip: alertConfigId is readOnly
-	// skip: created is readOnly
 	if !IsNil(o.EventTypeName) {
 		toSerialize["eventTypeName"] = o.EventTypeName
 	}
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: lastNotified is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: resolved is readOnly
-	// skip: status is readOnly
-	// skip: updated is readOnly
-	// skip: clusterName is readOnly
-	// skip: hostnameAndPort is readOnly
-	// skip: replicaSetName is readOnly
 	if !IsNil(o.CurrentValue) {
 		toSerialize["currentValue"] = o.CurrentValue
 	}
-	// skip: metricName is readOnly
-	// skip: nonRunningHostIds is readOnly
-	// skip: parentClusterId is readOnly
 	return toSerialize, nil
 }
 

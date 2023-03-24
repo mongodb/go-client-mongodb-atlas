@@ -92,14 +92,13 @@ func (o *ZoneMapping) SetZone(v string) {
 	o.Zone = v
 }
 
-func (o ZoneMapping) MarshalJSON() ([]byte, error) {
+func (o ZoneMapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ZoneMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["location"] = o.Location

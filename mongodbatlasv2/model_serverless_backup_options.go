@@ -76,14 +76,13 @@ func (o *ServerlessBackupOptions) SetServerlessContinuousBackupEnabled(v bool) {
 	o.ServerlessContinuousBackupEnabled = &v
 }
 
-func (o ServerlessBackupOptions) MarshalJSON() ([]byte, error) {
+func (o ServerlessBackupOptions) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessBackupOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ServerlessContinuousBackupEnabled) {

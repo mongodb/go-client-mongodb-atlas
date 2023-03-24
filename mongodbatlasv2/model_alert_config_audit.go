@@ -492,32 +492,19 @@ func (o *AlertConfigAudit) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o AlertConfigAudit) MarshalJSON() ([]byte, error) {
+func (o AlertConfigAudit) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AlertConfigAudit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: alertConfigId is readOnly
-	// skip: apiKeyId is readOnly
-	// skip: created is readOnly
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: isGlobalAdmin is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: publicKey is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}
-	// skip: remoteAddress is readOnly
-	// skip: userId is readOnly
-	// skip: username is readOnly
 	return toSerialize, nil
 }
 

@@ -207,14 +207,13 @@ func (o *TenantRegionConfig) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-func (o TenantRegionConfig) MarshalJSON() ([]byte, error) {
+func (o TenantRegionConfig) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TenantRegionConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BackingProviderName) {

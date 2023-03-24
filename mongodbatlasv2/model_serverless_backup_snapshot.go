@@ -379,26 +379,15 @@ func (o *ServerlessBackupSnapshot) SetStorageSizeBytes(v int64) {
 	o.StorageSizeBytes = &v
 }
 
-func (o ServerlessBackupSnapshot) MarshalJSON() ([]byte, error) {
+func (o ServerlessBackupSnapshot) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessBackupSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: createdAt is readOnly
-	// skip: expiresAt is readOnly
-	// skip: frequencyType is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: mongodVersion is readOnly
-	// skip: serverlessInstanceName is readOnly
-	// skip: snapshotType is readOnly
-	// skip: status is readOnly
-	// skip: storageSizeBytes is readOnly
 	return toSerialize, nil
 }
 

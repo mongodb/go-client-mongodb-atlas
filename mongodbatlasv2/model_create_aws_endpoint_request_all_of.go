@@ -72,14 +72,13 @@ func (o *CreateAWSEndpointRequestAllOf) SetId(v string) {
 	o.Id = &v
 }
 
-func (o CreateAWSEndpointRequestAllOf) MarshalJSON() ([]byte, error) {
+func (o CreateAWSEndpointRequestAllOf) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateAWSEndpointRequestAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {

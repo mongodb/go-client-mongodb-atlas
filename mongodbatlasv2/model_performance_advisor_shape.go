@@ -242,22 +242,15 @@ func (o *PerformanceAdvisorShape) SetOperations(v []PerformanceAdvisorOperation)
 	o.Operations = v
 }
 
-func (o PerformanceAdvisorShape) MarshalJSON() ([]byte, error) {
+func (o PerformanceAdvisorShape) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PerformanceAdvisorShape) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: avgMs is readOnly
-	// skip: count is readOnly
-	// skip: id is readOnly
-	// skip: inefficiencyScore is readOnly
-	// skip: namespace is readOnly
-	// skip: operations is readOnly
 	return toSerialize, nil
 }
 

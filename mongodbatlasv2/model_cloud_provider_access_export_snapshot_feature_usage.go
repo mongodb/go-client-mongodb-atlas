@@ -105,20 +105,18 @@ func (o *CloudProviderAccessExportSnapshotFeatureUsage) SetFeatureType(v string)
 	o.FeatureType = &v
 }
 
-func (o CloudProviderAccessExportSnapshotFeatureUsage) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessExportSnapshotFeatureUsage) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessExportSnapshotFeatureUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FeatureId) {
 		toSerialize["featureId"] = o.FeatureId
 	}
-	// skip: featureType is readOnly
 	return toSerialize, nil
 }
 

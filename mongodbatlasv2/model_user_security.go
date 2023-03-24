@@ -138,14 +138,13 @@ func (o *UserSecurity) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o UserSecurity) MarshalJSON() ([]byte, error) {
+func (o UserSecurity) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o UserSecurity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CustomerX509) {
@@ -154,7 +153,6 @@ func (o UserSecurity) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ldap) {
 		toSerialize["ldap"] = o.Ldap
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

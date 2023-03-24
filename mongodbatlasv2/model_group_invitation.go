@@ -345,27 +345,18 @@ func (o *GroupInvitation) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o GroupInvitation) MarshalJSON() ([]byte, error) {
+func (o GroupInvitation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GroupInvitation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: createdAt is readOnly
-	// skip: expiresAt is readOnly
-	// skip: groupId is readOnly
-	// skip: groupName is readOnly
-	// skip: id is readOnly
-	// skip: inviterUsername is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	// skip: username is readOnly
 	return toSerialize, nil
 }
 

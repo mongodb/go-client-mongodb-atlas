@@ -242,14 +242,13 @@ func (o *PeriodicCpsSnapshotSource) SetType(v string) {
 	o.Type = &v
 }
 
-func (o PeriodicCpsSnapshotSource) MarshalJSON() ([]byte, error) {
+func (o PeriodicCpsSnapshotSource) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PeriodicCpsSnapshotSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ClusterName) {
@@ -261,7 +260,6 @@ func (o PeriodicCpsSnapshotSource) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DatabaseName) {
 		toSerialize["databaseName"] = o.DatabaseName
 	}
-	// skip: groupId is readOnly
 	if !IsNil(o.PolicyItemId) {
 		toSerialize["policyItemId"] = o.PolicyItemId
 	}

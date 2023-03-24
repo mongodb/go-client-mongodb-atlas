@@ -119,19 +119,15 @@ func (o *DiskBackupShardedClusterSnapshotMember) SetReplicaSetName(v string) {
 	o.ReplicaSetName = v
 }
 
-func (o DiskBackupShardedClusterSnapshotMember) MarshalJSON() ([]byte, error) {
+func (o DiskBackupShardedClusterSnapshotMember) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupShardedClusterSnapshotMember) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: cloudProvider is readOnly
-	// skip: id is readOnly
-	// skip: replicaSetName is readOnly
 	return toSerialize, nil
 }
 

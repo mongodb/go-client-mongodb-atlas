@@ -208,21 +208,15 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpoint) SetType(v string) {
 	o.Type = &v
 }
 
-func (o ClusterDescriptionConnectionStringsPrivateEndpoint) MarshalJSON() ([]byte, error) {
+func (o ClusterDescriptionConnectionStringsPrivateEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterDescriptionConnectionStringsPrivateEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: connectionString is readOnly
-	// skip: endpoints is readOnly
-	// skip: srvConnectionString is readOnly
-	// skip: srvShardOptimizedConnectionString is readOnly
-	// skip: type is readOnly
 	return toSerialize, nil
 }
 

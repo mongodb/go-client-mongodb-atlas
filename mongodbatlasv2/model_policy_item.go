@@ -180,19 +180,17 @@ func (o *PolicyItem) SetRetentionValue(v int32) {
 	o.RetentionValue = v
 }
 
-func (o PolicyItem) MarshalJSON() ([]byte, error) {
+func (o PolicyItem) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PolicyItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["frequencyInterval"] = o.FrequencyInterval
 	toSerialize["frequencyType"] = o.FrequencyType
-	// skip: id is readOnly
 	toSerialize["retentionUnit"] = o.RetentionUnit
 	toSerialize["retentionValue"] = o.RetentionValue
 	return toSerialize, nil

@@ -130,14 +130,13 @@ func (o *TokenFilterstopword) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenFilterstopword) MarshalJSON() ([]byte, error) {
+func (o TokenFilterstopword) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenFilterstopword) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IgnoreCase) {

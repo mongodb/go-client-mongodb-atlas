@@ -72,14 +72,13 @@ func (o *FreeAutoScaling) SetCompute(v string) {
 	o.Compute = &v
 }
 
-func (o FreeAutoScaling) MarshalJSON() ([]byte, error) {
+func (o FreeAutoScaling) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o FreeAutoScaling) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Compute) {

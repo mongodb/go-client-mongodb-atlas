@@ -276,23 +276,15 @@ func (o *AzurePrivateLinkConnection) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o AzurePrivateLinkConnection) MarshalJSON() ([]byte, error) {
+func (o AzurePrivateLinkConnection) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzurePrivateLinkConnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: errorMessage is readOnly
-	// skip: id is readOnly
-	// skip: privateEndpoints is readOnly
-	// skip: privateLinkServiceName is readOnly
-	// skip: privateLinkServiceResourceId is readOnly
-	// skip: regionName is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

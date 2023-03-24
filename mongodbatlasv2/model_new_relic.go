@@ -180,14 +180,13 @@ func (o *NewRelic) SetWriteToken(v string) {
 	o.WriteToken = v
 }
 
-func (o NewRelic) MarshalJSON() ([]byte, error) {
+func (o NewRelic) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NewRelic) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accountId"] = o.AccountId

@@ -444,27 +444,22 @@ func (o *RestoreJobDelivery) SetUrlV2(v string) {
 	o.UrlV2 = &v
 }
 
-func (o RestoreJobDelivery) MarshalJSON() ([]byte, error) {
+func (o RestoreJobDelivery) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RestoreJobDelivery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: authHeader is readOnly
-	// skip: authValue is readOnly
 	if !IsNil(o.ExpirationHours) {
 		toSerialize["expirationHours"] = o.ExpirationHours
 	}
-	// skip: expires is readOnly
 	if !IsNil(o.MaxDownloads) {
 		toSerialize["maxDownloads"] = o.MaxDownloads
 	}
 	toSerialize["methodName"] = o.MethodName
-	// skip: statusName is readOnly
 	if !IsNil(o.TargetClusterId) {
 		toSerialize["targetClusterId"] = o.TargetClusterId
 	}
@@ -474,8 +469,6 @@ func (o RestoreJobDelivery) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetGroupId) {
 		toSerialize["targetGroupId"] = o.TargetGroupId
 	}
-	// skip: url is readOnly
-	// skip: urlV2 is readOnly
 	return toSerialize, nil
 }
 

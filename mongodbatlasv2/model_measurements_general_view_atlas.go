@@ -379,26 +379,15 @@ func (o *MeasurementsGeneralViewAtlas) SetStart(v time.Time) {
 	o.Start = &v
 }
 
-func (o MeasurementsGeneralViewAtlas) MarshalJSON() ([]byte, error) {
+func (o MeasurementsGeneralViewAtlas) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MeasurementsGeneralViewAtlas) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: databaseName is readOnly
-	// skip: end is readOnly
-	// skip: granularity is readOnly
-	// skip: groupId is readOnly
-	// skip: hostId is readOnly
-	// skip: links is readOnly
-	// skip: measurements is readOnly
-	// skip: partitionName is readOnly
-	// skip: processId is readOnly
-	// skip: start is readOnly
 	return toSerialize, nil
 }
 

@@ -140,19 +140,15 @@ func (o *PaginatedAWSPeerVpc) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedAWSPeerVpc) MarshalJSON() ([]byte, error) {
+func (o PaginatedAWSPeerVpc) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedAWSPeerVpc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

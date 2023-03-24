@@ -206,14 +206,13 @@ func (o *Error) SetReason(v string) {
 	o.Reason = &v
 }
 
-func (o Error) MarshalJSON() ([]byte, error) {
+func (o Error) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Detail) {

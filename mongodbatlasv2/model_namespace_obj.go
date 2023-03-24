@@ -106,18 +106,15 @@ func (o *NamespaceObj) SetType(v string) {
 	o.Type = &v
 }
 
-func (o NamespaceObj) MarshalJSON() ([]byte, error) {
+func (o NamespaceObj) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NamespaceObj) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: namespace is readOnly
-	// skip: type is readOnly
 	return toSerialize, nil
 }
 

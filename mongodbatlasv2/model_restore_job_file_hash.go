@@ -174,20 +174,15 @@ func (o *RestoreJobFileHash) SetTypeName(v string) {
 	o.TypeName = &v
 }
 
-func (o RestoreJobFileHash) MarshalJSON() ([]byte, error) {
+func (o RestoreJobFileHash) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RestoreJobFileHash) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: fileName is readOnly
-	// skip: hash is readOnly
-	// skip: links is readOnly
-	// skip: typeName is readOnly
 	return toSerialize, nil
 }
 

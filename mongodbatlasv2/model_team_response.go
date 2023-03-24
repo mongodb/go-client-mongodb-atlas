@@ -140,18 +140,15 @@ func (o *TeamResponse) SetName(v string) {
 	o.Name = &v
 }
 
-func (o TeamResponse) MarshalJSON() ([]byte, error) {
+func (o TeamResponse) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TeamResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}

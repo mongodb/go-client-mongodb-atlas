@@ -140,19 +140,15 @@ func (o *PaginatedDiskPartition) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedDiskPartition) MarshalJSON() ([]byte, error) {
+func (o PaginatedDiskPartition) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedDiskPartition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

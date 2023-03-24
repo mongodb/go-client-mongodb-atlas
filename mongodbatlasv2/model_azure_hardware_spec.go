@@ -106,14 +106,13 @@ func (o *AzureHardwareSpec) SetNodeCount(v int32) {
 	o.NodeCount = &v
 }
 
-func (o AzureHardwareSpec) MarshalJSON() ([]byte, error) {
+func (o AzureHardwareSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzureHardwareSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.InstanceSize) {

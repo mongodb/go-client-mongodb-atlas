@@ -199,20 +199,18 @@ func (o *DataLakeAtlasStore) SetProvider(v string) {
 	o.Provider = v
 }
 
-func (o DataLakeAtlasStore) MarshalJSON() ([]byte, error) {
+func (o DataLakeAtlasStore) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeAtlasStore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ClusterName) {
 		toSerialize["clusterName"] = o.ClusterName
 	}
-	// skip: projectId is readOnly
 	if !IsNil(o.ReadPreference) {
 		toSerialize["readPreference"] = o.ReadPreference
 	}

@@ -305,14 +305,13 @@ func (o *AWSRegionConfig) SetRegionName(v string) {
 	o.RegionName = &v
 }
 
-func (o AWSRegionConfig) MarshalJSON() ([]byte, error) {
+func (o AWSRegionConfig) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSRegionConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AnalyticsAutoScaling) {

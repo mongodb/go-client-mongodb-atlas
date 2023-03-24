@@ -370,27 +370,15 @@ func (o *AvailableDeployment) SetTlsEnabled(v bool) {
 	o.TlsEnabled = v
 }
 
-func (o AvailableDeployment) MarshalJSON() ([]byte, error) {
+func (o AvailableDeployment) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AvailableDeployment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: agentVersion is readOnly
-	// skip: clusterId is readOnly
-	// skip: dbSizeBytes is readOnly
-	// skip: featureCompatibilityVersion is readOnly
-	// skip: managed is readOnly
-	// skip: mongoDBVersion is readOnly
-	// skip: name is readOnly
-	// skip: oplogSizeMB is readOnly
-	// skip: sharded is readOnly
-	// skip: shardsSize is readOnly
-	// skip: tlsEnabled is readOnly
 	return toSerialize, nil
 }
 

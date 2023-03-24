@@ -140,19 +140,15 @@ func (o *PaginatedAppUser) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedAppUser) MarshalJSON() ([]byte, error) {
+func (o PaginatedAppUser) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedAppUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

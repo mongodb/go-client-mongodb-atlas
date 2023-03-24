@@ -140,14 +140,13 @@ func (o *Matcher) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o Matcher) MarshalJSON() ([]byte, error) {
+func (o Matcher) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Matcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FieldName) {

@@ -412,26 +412,15 @@ func (o *IngestionPipelineRun) SetStats(v PipelineRunStats) {
 	o.Stats = &v
 }
 
-func (o IngestionPipelineRun) MarshalJSON() ([]byte, error) {
+func (o IngestionPipelineRun) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o IngestionPipelineRun) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
-	// skip: backupFrequencyType is readOnly
-	// skip: createdDate is readOnly
-	// skip: datasetName is readOnly
-	// skip: groupId is readOnly
-	// skip: lastUpdatedDate is readOnly
-	// skip: phase is readOnly
-	// skip: pipelineId is readOnly
-	// skip: snapshotId is readOnly
-	// skip: state is readOnly
 	if !IsNil(o.Stats) {
 		toSerialize["stats"] = o.Stats
 	}

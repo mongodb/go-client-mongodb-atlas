@@ -106,14 +106,13 @@ func (o *UpdateCustomDBRole) SetInheritedRoles(v []InheritedRole) {
 	o.InheritedRoles = v
 }
 
-func (o UpdateCustomDBRole) MarshalJSON() ([]byte, error) {
+func (o UpdateCustomDBRole) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o UpdateCustomDBRole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Actions) {

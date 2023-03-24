@@ -412,17 +412,15 @@ func (o *DataProtectionSettings) SetUpdatedUser(v string) {
 	o.UpdatedUser = &v
 }
 
-func (o DataProtectionSettings) MarshalJSON() ([]byte, error) {
+func (o DataProtectionSettings) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataProtectionSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: authorizedEmail is readOnly
 	if !IsNil(o.CopyProtectionEnabled) {
 		toSerialize["copyProtectionEnabled"] = o.CopyProtectionEnabled
 	}
@@ -444,9 +442,6 @@ func (o DataProtectionSettings) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ScheduledPolicyItems) {
 		toSerialize["scheduledPolicyItems"] = o.ScheduledPolicyItems
 	}
-	// skip: state is readOnly
-	// skip: updatedDate is readOnly
-	// skip: updatedUser is readOnly
 	return toSerialize, nil
 }
 

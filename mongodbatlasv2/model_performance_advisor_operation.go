@@ -105,17 +105,15 @@ func (o *PerformanceAdvisorOperation) SetStats(v PerformanceAdvisorOpStats) {
 	o.Stats = &v
 }
 
-func (o PerformanceAdvisorOperation) MarshalJSON() ([]byte, error) {
+func (o PerformanceAdvisorOperation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PerformanceAdvisorOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: predicates is readOnly
 	if !IsNil(o.Stats) {
 		toSerialize["stats"] = o.Stats
 	}

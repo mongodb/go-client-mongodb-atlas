@@ -210,14 +210,13 @@ func (o *TimeMetricThreshold) SetUnits(v TimeMetricUnits) {
 	o.Units = &v
 }
 
-func (o TimeMetricThreshold) MarshalJSON() ([]byte, error) {
+func (o TimeMetricThreshold) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TimeMetricThreshold) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MetricName) {

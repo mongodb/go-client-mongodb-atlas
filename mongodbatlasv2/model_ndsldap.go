@@ -386,14 +386,13 @@ func (o *NDSLDAP) SetUserToDNMapping(v []NDSUserToDNMapping) {
 	o.UserToDNMapping = v
 }
 
-func (o NDSLDAP) MarshalJSON() ([]byte, error) {
+func (o NDSLDAP) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSLDAP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AuthenticationEnabled) {
@@ -417,7 +416,6 @@ func (o NDSLDAP) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	// skip: links is readOnly
 	if !IsNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}

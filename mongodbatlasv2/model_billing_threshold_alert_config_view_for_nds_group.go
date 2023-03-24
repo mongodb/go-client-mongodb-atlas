@@ -373,24 +373,19 @@ func (o *BillingThresholdAlertConfigViewForNdsGroup) SetUpdated(v time.Time) {
 	o.Updated = &v
 }
 
-func (o BillingThresholdAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
+func (o BillingThresholdAlertConfigViewForNdsGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o BillingThresholdAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.Matchers) {
 		toSerialize["matchers"] = o.Matchers
 	}
@@ -400,7 +395,6 @@ func (o BillingThresholdAlertConfigViewForNdsGroup) ToMap() (map[string]interfac
 	if !IsNil(o.Threshold) {
 		toSerialize["threshold"] = o.Threshold
 	}
-	// skip: updated is readOnly
 	return toSerialize, nil
 }
 

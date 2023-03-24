@@ -106,17 +106,15 @@ func (o *UserRoleAssignment) SetRoles(v []string) {
 	o.Roles = v
 }
 
-func (o UserRoleAssignment) MarshalJSON() ([]byte, error) {
+func (o UserRoleAssignment) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o UserRoleAssignment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: apiUserId is readOnly
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}

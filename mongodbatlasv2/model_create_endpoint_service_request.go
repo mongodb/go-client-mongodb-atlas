@@ -92,14 +92,13 @@ func (o *CreateEndpointServiceRequest) SetRegion(v string) {
 	o.Region = v
 }
 
-func (o CreateEndpointServiceRequest) MarshalJSON() ([]byte, error) {
+func (o CreateEndpointServiceRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateEndpointServiceRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["providerName"] = o.ProviderName

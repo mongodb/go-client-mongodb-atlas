@@ -277,27 +277,21 @@ func (o *UserAccessList) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o UserAccessList) MarshalJSON() ([]byte, error) {
+func (o UserAccessList) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o UserAccessList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CidrBlock) {
 		toSerialize["cidrBlock"] = o.CidrBlock
 	}
-	// skip: count is readOnly
-	// skip: created is readOnly
 	if !IsNil(o.IpAddress) {
 		toSerialize["ipAddress"] = o.IpAddress
 	}
-	// skip: lastUsed is readOnly
-	// skip: lastUsedAddress is readOnly
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

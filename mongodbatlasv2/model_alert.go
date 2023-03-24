@@ -439,31 +439,19 @@ func (o *Alert) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
-func (o Alert) MarshalJSON() ([]byte, error) {
+func (o Alert) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Alert) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
 	if !IsNil(o.AcknowledgementComment) {
 		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
 	}
-	// skip: acknowledgingUsername is readOnly
-	// skip: alertConfigId is readOnly
-	// skip: created is readOnly
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: lastNotified is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: resolved is readOnly
-	// skip: status is readOnly
-	// skip: updated is readOnly
 	return toSerialize, nil
 }
 

@@ -139,14 +139,13 @@ func (o *AppServiceMetricMatcher) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o AppServiceMetricMatcher) MarshalJSON() ([]byte, error) {
+func (o AppServiceMetricMatcher) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AppServiceMetricMatcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FieldName) {

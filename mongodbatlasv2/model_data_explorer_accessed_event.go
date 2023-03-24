@@ -560,34 +560,19 @@ func (o *DataExplorerAccessedEvent) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o DataExplorerAccessedEvent) MarshalJSON() ([]byte, error) {
+func (o DataExplorerAccessedEvent) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataExplorerAccessedEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: apiKeyId is readOnly
-	// skip: collection is readOnly
-	// skip: created is readOnly
-	// skip: database is readOnly
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: isGlobalAdmin is readOnly
-	// skip: links is readOnly
-	// skip: opType is readOnly
-	// skip: orgId is readOnly
-	// skip: publicKey is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}
-	// skip: remoteAddress is readOnly
-	// skip: userId is readOnly
-	// skip: username is readOnly
 	return toSerialize, nil
 }
 

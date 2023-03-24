@@ -132,14 +132,13 @@ func (o *CreateOrganizationRequest) SetOrgOwnerId(v string) {
 	o.OrgOwnerId = &v
 }
 
-func (o CreateOrganizationRequest) MarshalJSON() ([]byte, error) {
+func (o CreateOrganizationRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateOrganizationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ApiKey) {

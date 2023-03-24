@@ -205,14 +205,13 @@ func (o *PagerDutyNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o PagerDutyNotification) MarshalJSON() ([]byte, error) {
+func (o PagerDutyNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PagerDutyNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

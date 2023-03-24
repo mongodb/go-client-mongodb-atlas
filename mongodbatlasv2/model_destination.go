@@ -155,14 +155,13 @@ func (o *Destination) SetPrivateLinkId(v string) {
 	o.PrivateLinkId = &v
 }
 
-func (o Destination) MarshalJSON() ([]byte, error) {
+func (o Destination) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Destination) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["clusterName"] = o.ClusterName

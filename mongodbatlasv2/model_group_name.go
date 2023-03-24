@@ -72,14 +72,13 @@ func (o *GroupName) SetName(v string) {
 	o.Name = &v
 }
 
-func (o GroupName) MarshalJSON() ([]byte, error) {
+func (o GroupName) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GroupName) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {

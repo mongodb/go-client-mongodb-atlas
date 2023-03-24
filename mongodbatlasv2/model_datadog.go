@@ -133,14 +133,13 @@ func (o *Datadog) SetType(v string) {
 	o.Type = &v
 }
 
-func (o Datadog) MarshalJSON() ([]byte, error) {
+func (o Datadog) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Datadog) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["apiKey"] = o.ApiKey

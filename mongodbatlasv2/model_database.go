@@ -106,20 +106,18 @@ func (o *Database) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o Database) MarshalJSON() ([]byte, error) {
+func (o Database) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Database) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DatabaseName) {
 		toSerialize["databaseName"] = o.DatabaseName
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

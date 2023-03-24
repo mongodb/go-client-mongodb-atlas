@@ -356,28 +356,19 @@ func (o *ForNdsGroup) SetShardName(v string) {
 	o.ShardName = &v
 }
 
-func (o ForNdsGroup) MarshalJSON() ([]byte, error) {
+func (o ForNdsGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ForNdsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: port is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}
-	// skip: replicaSetName is readOnly
-	// skip: shardName is readOnly
 	return toSerialize, nil
 }
 

@@ -242,22 +242,15 @@ func (o *PerformanceAdvisorIndex) SetWeight(v float64) {
 	o.Weight = &v
 }
 
-func (o PerformanceAdvisorIndex) MarshalJSON() ([]byte, error) {
+func (o PerformanceAdvisorIndex) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PerformanceAdvisorIndex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: avgObjSize is readOnly
-	// skip: id is readOnly
-	// skip: impact is readOnly
-	// skip: index is readOnly
-	// skip: namespace is readOnly
-	// skip: weight is readOnly
 	return toSerialize, nil
 }
 

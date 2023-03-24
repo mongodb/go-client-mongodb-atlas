@@ -288,26 +288,19 @@ func (o *ClusterEventViewForNdsGroup) SetShardName(v string) {
 	o.ShardName = &v
 }
 
-func (o ClusterEventViewForNdsGroup) MarshalJSON() ([]byte, error) {
+func (o ClusterEventViewForNdsGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterEventViewForNdsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}
-	// skip: shardName is readOnly
 	return toSerialize, nil
 }
 

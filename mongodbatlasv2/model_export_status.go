@@ -106,18 +106,15 @@ func (o *ExportStatus) SetTotalCollections(v int32) {
 	o.TotalCollections = &v
 }
 
-func (o ExportStatus) MarshalJSON() ([]byte, error) {
+func (o ExportStatus) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ExportStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: exportedCollections is readOnly
-	// skip: totalCollections is readOnly
 	return toSerialize, nil
 }
 

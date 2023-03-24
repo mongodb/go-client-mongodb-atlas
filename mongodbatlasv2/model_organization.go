@@ -167,19 +167,15 @@ func (o *Organization) SetName(v string) {
 	o.Name = v
 }
 
-func (o Organization) MarshalJSON() ([]byte, error) {
+func (o Organization) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
-	// skip: isDeleted is readOnly
-	// skip: links is readOnly
 	toSerialize["name"] = o.Name
 	return toSerialize, nil
 }

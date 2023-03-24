@@ -119,14 +119,13 @@ func (o *TokenizerregexCaptureGroup) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenizerregexCaptureGroup) MarshalJSON() ([]byte, error) {
+func (o TokenizerregexCaptureGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenizerregexCaptureGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["group"] = o.Group

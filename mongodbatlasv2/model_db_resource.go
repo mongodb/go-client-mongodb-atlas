@@ -119,14 +119,13 @@ func (o *DBResource) SetDb(v string) {
 	o.Db = v
 }
 
-func (o DBResource) MarshalJSON() ([]byte, error) {
+func (o DBResource) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DBResource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cluster"] = o.Cluster

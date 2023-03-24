@@ -185,17 +185,15 @@ func (o *LiveMigrationRequest) SetSource(v Source) {
 	o.Source = v
 }
 
-func (o LiveMigrationRequest) MarshalJSON() ([]byte, error) {
+func (o LiveMigrationRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LiveMigrationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
 	toSerialize["destination"] = o.Destination
 	toSerialize["dropEnabled"] = o.DropEnabled
 	if !IsNil(o.MigrationHosts) {

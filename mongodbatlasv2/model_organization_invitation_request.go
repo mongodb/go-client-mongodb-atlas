@@ -140,14 +140,13 @@ func (o *OrganizationInvitationRequest) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o OrganizationInvitationRequest) MarshalJSON() ([]byte, error) {
+func (o OrganizationInvitationRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OrganizationInvitationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Roles) {

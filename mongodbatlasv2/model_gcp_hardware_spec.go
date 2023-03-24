@@ -106,14 +106,13 @@ func (o *GCPHardwareSpec) SetNodeCount(v int32) {
 	o.NodeCount = &v
 }
 
-func (o GCPHardwareSpec) MarshalJSON() ([]byte, error) {
+func (o GCPHardwareSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPHardwareSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.InstanceSize) {

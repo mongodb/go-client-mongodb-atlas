@@ -119,14 +119,13 @@ func (o *Role) SetRoleName(v string) {
 	o.RoleName = v
 }
 
-func (o Role) MarshalJSON() ([]byte, error) {
+func (o Role) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Role) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collectionName"] = o.CollectionName

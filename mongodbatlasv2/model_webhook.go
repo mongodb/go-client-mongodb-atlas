@@ -133,14 +133,13 @@ func (o *Webhook) SetUrl(v string) {
 	o.Url = v
 }
 
-func (o Webhook) MarshalJSON() ([]byte, error) {
+func (o Webhook) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Webhook) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Secret) {

@@ -241,24 +241,18 @@ func (o *NDSLDAPVerifyConnectivityJobRequest) SetValidations(v []NDSLDAPVerifyCo
 	o.Validations = v
 }
 
-func (o NDSLDAPVerifyConnectivityJobRequest) MarshalJSON() ([]byte, error) {
+func (o NDSLDAPVerifyConnectivityJobRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSLDAPVerifyConnectivityJobRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: groupId is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.Request) {
 		toSerialize["request"] = o.Request
 	}
-	// skip: requestId is readOnly
-	// skip: status is readOnly
-	// skip: validations is readOnly
 	return toSerialize, nil
 }
 

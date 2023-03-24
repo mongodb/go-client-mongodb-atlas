@@ -382,14 +382,13 @@ func (o *DataLakeDatabaseDataSource) SetUrls(v []string) {
 	o.Urls = v
 }
 
-func (o DataLakeDatabaseDataSource) MarshalJSON() ([]byte, error) {
+func (o DataLakeDatabaseDataSource) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeDatabaseDataSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowInsecure) {

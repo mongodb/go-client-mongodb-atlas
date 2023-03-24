@@ -276,27 +276,21 @@ func (o *OrgGroup) SetTags(v []string) {
 	o.Tags = v
 }
 
-func (o OrgGroup) MarshalJSON() ([]byte, error) {
+func (o OrgGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OrgGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusters is readOnly
-	// skip: groupId is readOnly
 	if !IsNil(o.GroupName) {
 		toSerialize["groupName"] = o.GroupName
 	}
-	// skip: orgId is readOnly
 	if !IsNil(o.OrgName) {
 		toSerialize["orgName"] = o.OrgName
 	}
-	// skip: planType is readOnly
-	// skip: tags is readOnly
 	return toSerialize, nil
 }
 

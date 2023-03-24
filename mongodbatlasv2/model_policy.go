@@ -106,14 +106,13 @@ func (o *Policy) SetPolicyItems(v []PolicyItem) {
 	o.PolicyItems = v
 }
 
-func (o Policy) MarshalJSON() ([]byte, error) {
+func (o Policy) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Policy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {

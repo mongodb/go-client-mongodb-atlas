@@ -106,20 +106,18 @@ func (o *CustomerX509) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o CustomerX509) MarshalJSON() ([]byte, error) {
+func (o CustomerX509) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CustomerX509) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Cas) {
 		toSerialize["cas"] = o.Cas
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

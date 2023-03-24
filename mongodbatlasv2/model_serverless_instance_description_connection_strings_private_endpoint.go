@@ -140,19 +140,15 @@ func (o *ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) SetType(
 	o.Type = &v
 }
 
-func (o ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) MarshalJSON() ([]byte, error) {
+func (o ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessInstanceDescriptionConnectionStringsPrivateEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: endpoints is readOnly
-	// skip: srvConnectionString is readOnly
-	// skip: type is readOnly
 	return toSerialize, nil
 }
 

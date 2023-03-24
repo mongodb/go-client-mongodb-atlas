@@ -106,14 +106,13 @@ func (o *FieldTransformation) SetType(v string) {
 	o.Type = &v
 }
 
-func (o FieldTransformation) MarshalJSON() ([]byte, error) {
+func (o FieldTransformation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o FieldTransformation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Field) {

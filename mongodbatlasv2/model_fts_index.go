@@ -364,14 +364,13 @@ func (o *FTSIndex) SetSynonyms(v []FTSSynonymMappingDefinition) {
 	o.Synonyms = v
 }
 
-func (o FTSIndex) MarshalJSON() ([]byte, error) {
+func (o FTSIndex) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o FTSIndex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Analyzer) {
@@ -382,7 +381,6 @@ func (o FTSIndex) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["collectionName"] = o.CollectionName
 	toSerialize["database"] = o.Database
-	// skip: indexID is readOnly
 	if !IsNil(o.Mappings) {
 		toSerialize["mappings"] = o.Mappings
 	}
@@ -390,7 +388,6 @@ func (o FTSIndex) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SearchAnalyzer) {
 		toSerialize["searchAnalyzer"] = o.SearchAnalyzer
 	}
-	// skip: status is readOnly
 	if !IsNil(o.Synonyms) {
 		toSerialize["synonyms"] = o.Synonyms
 	}

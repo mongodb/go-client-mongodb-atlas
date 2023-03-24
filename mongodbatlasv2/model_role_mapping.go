@@ -133,18 +133,16 @@ func (o *RoleMapping) SetRoleAssignments(v []RoleAssignment) {
 	o.RoleAssignments = v
 }
 
-func (o RoleMapping) MarshalJSON() ([]byte, error) {
+func (o RoleMapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RoleMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["externalGroupName"] = o.ExternalGroupName
-	// skip: id is readOnly
 	if !IsNil(o.RoleAssignments) {
 		toSerialize["roleAssignments"] = o.RoleAssignments
 	}

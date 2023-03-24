@@ -92,14 +92,13 @@ func (o *TokenizerregexSplit) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenizerregexSplit) MarshalJSON() ([]byte, error) {
+func (o TokenizerregexSplit) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenizerregexSplit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["pattern"] = o.Pattern

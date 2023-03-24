@@ -106,18 +106,15 @@ func (o *PipelineRunStats) SetNumDocs(v int64) {
 	o.NumDocs = &v
 }
 
-func (o PipelineRunStats) MarshalJSON() ([]byte, error) {
+func (o PipelineRunStats) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PipelineRunStats) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: bytesExported is readOnly
-	// skip: numDocs is readOnly
 	return toSerialize, nil
 }
 

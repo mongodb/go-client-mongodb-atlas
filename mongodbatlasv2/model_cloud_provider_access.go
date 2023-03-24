@@ -72,14 +72,13 @@ func (o *CloudProviderAccess) SetAwsIamRoles(v []CloudProviderAccessAWSIAMRole) 
 	o.AwsIamRoles = v
 }
 
-func (o CloudProviderAccess) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccess) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccess) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AwsIamRoles) {

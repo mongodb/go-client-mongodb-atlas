@@ -140,14 +140,13 @@ func (o *DeleteCopiedBackups) SetReplicationSpecId(v string) {
 	o.ReplicationSpecId = &v
 }
 
-func (o DeleteCopiedBackups) MarshalJSON() ([]byte, error) {
+func (o DeleteCopiedBackups) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DeleteCopiedBackups) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CloudProvider) {

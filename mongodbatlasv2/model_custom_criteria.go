@@ -99,14 +99,13 @@ func (o *CustomCriteria) SetType(v string) {
 	o.Type = &v
 }
 
-func (o CustomCriteria) MarshalJSON() ([]byte, error) {
+func (o CustomCriteria) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CustomCriteria) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["query"] = o.Query

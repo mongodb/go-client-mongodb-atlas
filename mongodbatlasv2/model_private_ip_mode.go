@@ -65,14 +65,13 @@ func (o *PrivateIPMode) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-func (o PrivateIPMode) MarshalJSON() ([]byte, error) {
+func (o PrivateIPMode) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PrivateIPMode) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled

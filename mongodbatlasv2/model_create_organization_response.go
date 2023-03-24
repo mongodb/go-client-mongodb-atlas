@@ -138,20 +138,18 @@ func (o *CreateOrganizationResponse) SetOrganization(v Organization) {
 	o.Organization = &v
 }
 
-func (o CreateOrganizationResponse) MarshalJSON() ([]byte, error) {
+func (o CreateOrganizationResponse) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateOrganizationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ApiKey) {
 		toSerialize["apiKey"] = o.ApiKey
 	}
-	// skip: orgOwnerId is readOnly
 	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}

@@ -107,20 +107,18 @@ func (o *CloudProviderAccessEncryptionAtRestFeatureUsage) SetFeatureType(v strin
 	o.FeatureType = &v
 }
 
-func (o CloudProviderAccessEncryptionAtRestFeatureUsage) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessEncryptionAtRestFeatureUsage) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessEncryptionAtRestFeatureUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FeatureId != nil {
 		toSerialize["featureId"] = o.FeatureId
 	}
-	// skip: featureType is readOnly
 	return toSerialize, nil
 }
 

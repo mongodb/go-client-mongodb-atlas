@@ -106,14 +106,13 @@ func (o *Label) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o Label) MarshalJSON() ([]byte, error) {
+func (o Label) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Label) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Key) {

@@ -228,22 +228,15 @@ func (o *FTSMetrics) SetStatusMetrics(v []FTSMetric) {
 	o.StatusMetrics = v
 }
 
-func (o FTSMetrics) MarshalJSON() ([]byte, error) {
+func (o FTSMetrics) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o FTSMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: groupId is readOnly
-	// skip: hardwareMetrics is readOnly
-	// skip: indexMetrics is readOnly
-	// skip: links is readOnly
-	// skip: processId is readOnly
-	// skip: statusMetrics is readOnly
 	return toSerialize, nil
 }
 

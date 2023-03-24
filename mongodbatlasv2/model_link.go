@@ -106,14 +106,13 @@ func (o *Link) SetRel(v string) {
 	o.Rel = &v
 }
 
-func (o Link) MarshalJSON() ([]byte, error) {
+func (o Link) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Link) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Href) {

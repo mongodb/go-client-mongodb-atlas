@@ -106,14 +106,13 @@ func (o *GroupInvitationRequest) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o GroupInvitationRequest) MarshalJSON() ([]byte, error) {
+func (o GroupInvitationRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GroupInvitationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Roles) {

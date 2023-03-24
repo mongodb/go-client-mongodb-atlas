@@ -242,26 +242,21 @@ func (o *GCPEndpointService) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o GCPEndpointService) MarshalJSON() ([]byte, error) {
+func (o GCPEndpointService) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPEndpointService) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EndpointGroupNames) {
 		toSerialize["endpointGroupNames"] = o.EndpointGroupNames
 	}
-	// skip: errorMessage is readOnly
-	// skip: id is readOnly
-	// skip: regionName is readOnly
 	if !IsNil(o.ServiceAttachmentNames) {
 		toSerialize["serviceAttachmentNames"] = o.ServiceAttachmentNames
 	}
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

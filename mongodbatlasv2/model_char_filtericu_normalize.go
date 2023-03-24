@@ -65,14 +65,13 @@ func (o *CharFiltericuNormalize) SetType(v string) {
 	o.Type = v
 }
 
-func (o CharFiltericuNormalize) MarshalJSON() ([]byte, error) {
+func (o CharFiltericuNormalize) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CharFiltericuNormalize) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type

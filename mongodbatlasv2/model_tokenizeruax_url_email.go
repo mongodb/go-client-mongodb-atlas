@@ -103,14 +103,13 @@ func (o *TokenizeruaxUrlEmail) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenizeruaxUrlEmail) MarshalJSON() ([]byte, error) {
+func (o TokenizeruaxUrlEmail) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenizeruaxUrlEmail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MaxTokenLength) {

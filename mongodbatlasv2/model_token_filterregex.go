@@ -146,14 +146,13 @@ func (o *TokenFilterregex) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenFilterregex) MarshalJSON() ([]byte, error) {
+func (o TokenFilterregex) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenFilterregex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["matches"] = o.Matches

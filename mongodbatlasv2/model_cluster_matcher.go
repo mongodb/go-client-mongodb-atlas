@@ -139,14 +139,13 @@ func (o *ClusterMatcher) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o ClusterMatcher) MarshalJSON() ([]byte, error) {
+func (o ClusterMatcher) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterMatcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FieldName) {

@@ -106,14 +106,13 @@ func (o *AzureComputeAutoScaling) SetMinInstanceSize(v string) {
 	o.MinInstanceSize = &v
 }
 
-func (o AzureComputeAutoScaling) MarshalJSON() ([]byte, error) {
+func (o AzureComputeAutoScaling) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzureComputeAutoScaling) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MaxInstanceSize) {

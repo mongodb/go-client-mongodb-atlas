@@ -269,27 +269,22 @@ func (o *GCPCloudProviderContainer) SetProvisioned(v bool) {
 	o.Provisioned = &v
 }
 
-func (o GCPCloudProviderContainer) MarshalJSON() ([]byte, error) {
+func (o GCPCloudProviderContainer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPCloudProviderContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
-	// skip: gcpProjectId is readOnly
-	// skip: networkName is readOnly
 	if !IsNil(o.Regions) {
 		toSerialize["regions"] = o.Regions
 	}
-	// skip: id is readOnly
 	if !IsNil(o.ProviderName) {
 		toSerialize["providerName"] = o.ProviderName
 	}
-	// skip: provisioned is readOnly
 	return toSerialize, nil
 }
 

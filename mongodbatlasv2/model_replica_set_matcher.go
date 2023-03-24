@@ -139,14 +139,13 @@ func (o *ReplicaSetMatcher) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o ReplicaSetMatcher) MarshalJSON() ([]byte, error) {
+func (o ReplicaSetMatcher) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ReplicaSetMatcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FieldName) {

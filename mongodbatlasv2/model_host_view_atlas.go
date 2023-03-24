@@ -413,27 +413,15 @@ func (o *HostViewAtlas) SetVersion(v string) {
 	o.Version = &v
 }
 
-func (o HostViewAtlas) MarshalJSON() ([]byte, error) {
+func (o HostViewAtlas) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o HostViewAtlas) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
-	// skip: groupId is readOnly
-	// skip: hostname is readOnly
-	// skip: id is readOnly
-	// skip: lastPing is readOnly
-	// skip: links is readOnly
-	// skip: port is readOnly
-	// skip: replicaSetName is readOnly
-	// skip: typeName is readOnly
-	// skip: userAlias is readOnly
-	// skip: version is readOnly
 	return toSerialize, nil
 }
 

@@ -109,17 +109,15 @@ func (o *TimeMetricValue) SetUnits(v TimeMetricUnits) {
 	o.Units = &v
 }
 
-func (o TimeMetricValue) MarshalJSON() ([]byte, error) {
+func (o TimeMetricValue) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TimeMetricValue) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: number is readOnly
 	if !IsNil(o.Units) {
 		toSerialize["units"] = o.Units
 	}

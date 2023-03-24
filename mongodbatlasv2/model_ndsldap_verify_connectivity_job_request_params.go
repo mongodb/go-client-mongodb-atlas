@@ -254,14 +254,13 @@ func (o *NDSLDAPVerifyConnectivityJobRequestParams) SetPort(v int32) {
 	o.Port = v
 }
 
-func (o NDSLDAPVerifyConnectivityJobRequestParams) MarshalJSON() ([]byte, error) {
+func (o NDSLDAPVerifyConnectivityJobRequestParams) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSLDAPVerifyConnectivityJobRequestParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AuthzQueryTemplate) {
@@ -273,7 +272,6 @@ func (o NDSLDAPVerifyConnectivityJobRequestParams) ToMap() (map[string]interface
 		toSerialize["caCertificate"] = o.CaCertificate
 	}
 	toSerialize["hostname"] = o.Hostname
-	// skip: links is readOnly
 	toSerialize["port"] = o.Port
 	return toSerialize, nil
 }

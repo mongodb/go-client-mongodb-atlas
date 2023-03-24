@@ -174,14 +174,13 @@ func (o *GoogleCloudKMS) SetValid(v bool) {
 	o.Valid = &v
 }
 
-func (o GoogleCloudKMS) MarshalJSON() ([]byte, error) {
+func (o GoogleCloudKMS) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GoogleCloudKMS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Enabled) {
@@ -193,7 +192,6 @@ func (o GoogleCloudKMS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServiceAccountKey) {
 		toSerialize["serviceAccountKey"] = o.ServiceAccountKey
 	}
-	// skip: valid is readOnly
 	return toSerialize, nil
 }
 
