@@ -432,30 +432,24 @@ func (o *AppUser) SetUsername(v string) {
 	o.Username = v
 }
 
-func (o AppUser) MarshalJSON() ([]byte, error) {
+func (o AppUser) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AppUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["country"] = o.Country
-	// skip: createdAt is readOnly
 	toSerialize["emailAddress"] = o.EmailAddress
 	toSerialize["firstName"] = o.FirstName
-	// skip: id is readOnly
-	// skip: lastAuth is readOnly
 	toSerialize["lastName"] = o.LastName
-	// skip: links is readOnly
 	toSerialize["mobileNumber"] = o.MobileNumber
 	toSerialize["password"] = o.Password
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	// skip: teamIds is readOnly
 	toSerialize["username"] = o.Username
 	return toSerialize, nil
 }

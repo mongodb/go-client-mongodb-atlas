@@ -373,24 +373,19 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetUpdated(v time.
 	o.Updated = &v
 }
 
-func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) MarshalJSON() ([]byte, error) {
+func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.Matchers) {
 		toSerialize["matchers"] = o.Matchers
 	}
@@ -400,7 +395,6 @@ func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) ToMap() (map[string
 	if !IsNil(o.Threshold) {
 		toSerialize["threshold"] = o.Threshold
 	}
-	// skip: updated is readOnly
 	return toSerialize, nil
 }
 

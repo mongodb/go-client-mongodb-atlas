@@ -133,14 +133,13 @@ func (o *CustomDBRole) SetRoleName(v string) {
 	o.RoleName = v
 }
 
-func (o CustomDBRole) MarshalJSON() ([]byte, error) {
+func (o CustomDBRole) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CustomDBRole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Actions) {

@@ -235,14 +235,13 @@ func (o *OrgNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o OrgNotification) MarshalJSON() ([]byte, error) {
+func (o OrgNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OrgNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

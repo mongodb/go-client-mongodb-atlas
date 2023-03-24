@@ -178,14 +178,13 @@ func (o *DateCriteria) SetType(v string) {
 	o.Type = &v
 }
 
-func (o DateCriteria) MarshalJSON() ([]byte, error) {
+func (o DateCriteria) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DateCriteria) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DateField) {

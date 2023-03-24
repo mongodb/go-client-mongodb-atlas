@@ -221,22 +221,18 @@ func (o *GCPPeerVpc) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o GCPPeerVpc) MarshalJSON() ([]byte, error) {
+func (o GCPPeerVpc) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPPeerVpc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["containerId"] = o.ContainerId
-	// skip: errorMessage is readOnly
 	toSerialize["gcpProjectId"] = o.GcpProjectId
-	// skip: id is readOnly
 	toSerialize["networkName"] = o.NetworkName
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

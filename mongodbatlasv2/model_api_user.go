@@ -242,23 +242,18 @@ func (o *ApiUser) SetRoles(v []RoleAssignment) {
 	o.Roles = v
 }
 
-func (o ApiUser) MarshalJSON() ([]byte, error) {
+func (o ApiUser) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ApiUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Desc) {
 		toSerialize["desc"] = o.Desc
 	}
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: privateKey is readOnly
-	// skip: publicKey is readOnly
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}

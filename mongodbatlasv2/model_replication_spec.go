@@ -174,17 +174,15 @@ func (o *ReplicationSpec) SetZoneName(v string) {
 	o.ZoneName = &v
 }
 
-func (o ReplicationSpec) MarshalJSON() ([]byte, error) {
+func (o ReplicationSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ReplicationSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
 	if !IsNil(o.NumShards) {
 		toSerialize["numShards"] = o.NumShards
 	}

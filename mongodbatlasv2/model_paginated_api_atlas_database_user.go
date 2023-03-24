@@ -140,19 +140,15 @@ func (o *PaginatedApiAtlasDatabaseUser) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedApiAtlasDatabaseUser) MarshalJSON() ([]byte, error) {
+func (o PaginatedApiAtlasDatabaseUser) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedApiAtlasDatabaseUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

@@ -71,14 +71,13 @@ func (o *AzureAutoScaling) SetCompute(v AzureComputeAutoScaling) {
 	o.Compute = &v
 }
 
-func (o AzureAutoScaling) MarshalJSON() ([]byte, error) {
+func (o AzureAutoScaling) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzureAutoScaling) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Compute) {

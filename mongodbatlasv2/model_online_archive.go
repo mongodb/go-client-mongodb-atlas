@@ -373,18 +373,15 @@ func (o *OnlineArchive) SetState(v string) {
 	o.State = &v
 }
 
-func (o OnlineArchive) MarshalJSON() ([]byte, error) {
+func (o OnlineArchive) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OnlineArchive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
-	// skip: clusterName is readOnly
 	if !IsNil(o.CollName) {
 		toSerialize["collName"] = o.CollName
 	}
@@ -395,14 +392,12 @@ func (o OnlineArchive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DbName) {
 		toSerialize["dbName"] = o.DbName
 	}
-	// skip: groupId is readOnly
 	if !IsNil(o.PartitionFields) {
 		toSerialize["partitionFields"] = o.PartitionFields
 	}
 	if !IsNil(o.Schedule) {
 		toSerialize["schedule"] = o.Schedule
 	}
-	// skip: state is readOnly
 	return toSerialize, nil
 }
 

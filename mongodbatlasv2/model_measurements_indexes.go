@@ -379,26 +379,15 @@ func (o *MeasurementsIndexes) SetStart(v time.Time) {
 	o.Start = &v
 }
 
-func (o MeasurementsIndexes) MarshalJSON() ([]byte, error) {
+func (o MeasurementsIndexes) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MeasurementsIndexes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: collectionName is readOnly
-	// skip: databaseName is readOnly
-	// skip: end is readOnly
-	// skip: granularity is readOnly
-	// skip: groupId is readOnly
-	// skip: indexIds is readOnly
-	// skip: indexStatsMeasurements is readOnly
-	// skip: links is readOnly
-	// skip: processId is readOnly
-	// skip: start is readOnly
 	return toSerialize, nil
 }
 

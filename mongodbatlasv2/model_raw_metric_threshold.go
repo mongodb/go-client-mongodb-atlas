@@ -210,14 +210,13 @@ func (o *RawMetricThreshold) SetUnits(v RawMetricUnits) {
 	o.Units = &v
 }
 
-func (o RawMetricThreshold) MarshalJSON() ([]byte, error) {
+func (o RawMetricThreshold) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RawMetricThreshold) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MetricName) {

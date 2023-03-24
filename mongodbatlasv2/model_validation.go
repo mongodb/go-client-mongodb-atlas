@@ -228,21 +228,18 @@ func (o *Validation) UnsetStatus() {
 	o.Status.Unset()
 }
 
-func (o Validation) MarshalJSON() ([]byte, error) {
+func (o Validation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Validation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
 	}
-	// skip: groupId is readOnly
 	if !IsNil(o.SourceGroupId) {
 		toSerialize["sourceGroupId"] = o.SourceGroupId
 	}

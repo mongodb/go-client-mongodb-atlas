@@ -106,18 +106,15 @@ func (o *NDSLDAPVerifyConnectivityJobRequestValidation) SetValidationType(v stri
 	o.ValidationType = &v
 }
 
-func (o NDSLDAPVerifyConnectivityJobRequestValidation) MarshalJSON() ([]byte, error) {
+func (o NDSLDAPVerifyConnectivityJobRequestValidation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSLDAPVerifyConnectivityJobRequestValidation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: status is readOnly
-	// skip: validationType is readOnly
 	return toSerialize, nil
 }
 

@@ -178,14 +178,13 @@ func (o *DedicatedHardwareSpec) SetInstanceSize(v string) {
 	o.InstanceSize = &v
 }
 
-func (o DedicatedHardwareSpec) MarshalJSON() ([]byte, error) {
+func (o DedicatedHardwareSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DedicatedHardwareSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.NodeCount) {

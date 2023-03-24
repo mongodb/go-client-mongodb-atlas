@@ -65,17 +65,15 @@ func (o *NetworkPermissionEntryStatus) SetSTATUS(v string) {
 	o.STATUS = v
 }
 
-func (o NetworkPermissionEntryStatus) MarshalJSON() ([]byte, error) {
+func (o NetworkPermissionEntryStatus) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NetworkPermissionEntryStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: STATUS is readOnly
 	return toSerialize, nil
 }
 

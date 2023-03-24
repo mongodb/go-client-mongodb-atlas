@@ -205,14 +205,13 @@ func (o *DatadogNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o DatadogNotification) MarshalJSON() ([]byte, error) {
+func (o DatadogNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DatadogNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DatadogApiKey) {

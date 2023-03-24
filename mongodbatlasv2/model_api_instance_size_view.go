@@ -106,18 +106,15 @@ func (o *ApiInstanceSizeView) SetName(v string) {
 	o.Name = &v
 }
 
-func (o ApiInstanceSizeView) MarshalJSON() ([]byte, error) {
+func (o ApiInstanceSizeView) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ApiInstanceSizeView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: availableRegions is readOnly
-	// skip: name is readOnly
 	return toSerialize, nil
 }
 

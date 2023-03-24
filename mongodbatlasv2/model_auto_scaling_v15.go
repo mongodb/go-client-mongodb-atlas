@@ -104,14 +104,13 @@ func (o *AutoScalingV15) SetDiskGB(v DiskGBAutoScaling) {
 	o.DiskGB = &v
 }
 
-func (o AutoScalingV15) MarshalJSON() ([]byte, error) {
+func (o AutoScalingV15) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AutoScalingV15) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Compute) {

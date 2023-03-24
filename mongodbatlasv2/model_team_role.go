@@ -140,17 +140,15 @@ func (o *TeamRole) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
-func (o TeamRole) MarshalJSON() ([]byte, error) {
+func (o TeamRole) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TeamRole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
 	if !IsNil(o.RoleNames) {
 		toSerialize["roleNames"] = o.RoleNames
 	}

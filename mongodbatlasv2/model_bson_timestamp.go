@@ -107,18 +107,15 @@ func (o *BSONTimestamp) SetIncrement(v int32) {
 	o.Increment = &v
 }
 
-func (o BSONTimestamp) MarshalJSON() ([]byte, error) {
+func (o BSONTimestamp) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o BSONTimestamp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: date is readOnly
-	// skip: increment is readOnly
 	return toSerialize, nil
 }
 

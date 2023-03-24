@@ -91,14 +91,13 @@ func (o *CharFiltermapping) SetType(v string) {
 	o.Type = v
 }
 
-func (o CharFiltermapping) MarshalJSON() ([]byte, error) {
+func (o CharFiltermapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CharFiltermapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["mappings"] = o.Mappings

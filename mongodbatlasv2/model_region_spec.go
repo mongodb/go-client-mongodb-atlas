@@ -174,14 +174,13 @@ func (o *RegionSpec) SetReadOnlyNodes(v int32) {
 	o.ReadOnlyNodes = &v
 }
 
-func (o RegionSpec) MarshalJSON() ([]byte, error) {
+func (o RegionSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RegionSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AnalyticsNodes) {

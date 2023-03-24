@@ -178,14 +178,13 @@ func (o *LegacyReplicationSpec) SetZoneName(v string) {
 	o.ZoneName = &v
 }
 
-func (o LegacyReplicationSpec) MarshalJSON() ([]byte, error) {
+func (o LegacyReplicationSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LegacyReplicationSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {

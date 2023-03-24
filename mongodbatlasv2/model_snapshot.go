@@ -377,18 +377,15 @@ func (o *Snapshot) SetParts(v []SnapshotPart) {
 	o.Parts = v
 }
 
-func (o Snapshot) MarshalJSON() ([]byte, error) {
+func (o Snapshot) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Snapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterId is readOnly
-	// skip: complete is readOnly
 	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created
 	}
@@ -398,13 +395,9 @@ func (o Snapshot) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Expires) {
 		toSerialize["expires"] = o.Expires
 	}
-	// skip: groupId is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.LastOplogAppliedTimestamp) {
 		toSerialize["lastOplogAppliedTimestamp"] = o.LastOplogAppliedTimestamp
 	}
-	// skip: links is readOnly
-	// skip: parts is readOnly
 	return toSerialize, nil
 }
 

@@ -208,14 +208,13 @@ func (o *OnDemandCpsSnapshotSource) SetType(v string) {
 	o.Type = &v
 }
 
-func (o OnDemandCpsSnapshotSource) MarshalJSON() ([]byte, error) {
+func (o OnDemandCpsSnapshotSource) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OnDemandCpsSnapshotSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ClusterName) {
@@ -227,7 +226,6 @@ func (o OnDemandCpsSnapshotSource) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DatabaseName) {
 		toSerialize["databaseName"] = o.DatabaseName
 	}
-	// skip: groupId is readOnly
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}

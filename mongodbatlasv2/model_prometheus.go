@@ -318,14 +318,13 @@ func (o *Prometheus) SetUsername(v string) {
 	o.Username = v
 }
 
-func (o Prometheus) MarshalJSON() ([]byte, error) {
+func (o Prometheus) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Prometheus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled

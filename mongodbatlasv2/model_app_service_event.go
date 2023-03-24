@@ -254,22 +254,16 @@ func (o *AppServiceEvent) SetRaw(v Raw) {
 	o.Raw = &v
 }
 
-func (o AppServiceEvent) MarshalJSON() ([]byte, error) {
+func (o AppServiceEvent) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AppServiceEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: created is readOnly
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}

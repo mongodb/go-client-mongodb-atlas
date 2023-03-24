@@ -208,21 +208,15 @@ func (o *GCPEndpointGroup) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o GCPEndpointGroup) MarshalJSON() ([]byte, error) {
+func (o GCPEndpointGroup) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPEndpointGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: deleteRequested is readOnly
-	// skip: endpointGroupName is readOnly
-	// skip: endpoints is readOnly
-	// skip: errorMessage is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

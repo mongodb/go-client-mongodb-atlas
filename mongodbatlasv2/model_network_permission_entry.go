@@ -277,14 +277,13 @@ func (o *NetworkPermissionEntry) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o NetworkPermissionEntry) MarshalJSON() ([]byte, error) {
+func (o NetworkPermissionEntry) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NetworkPermissionEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AwsSecurityGroup) {
@@ -299,11 +298,9 @@ func (o NetworkPermissionEntry) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeleteAfterDate) {
 		toSerialize["deleteAfterDate"] = o.DeleteAfterDate
 	}
-	// skip: groupId is readOnly
 	if !IsNil(o.IpAddress) {
 		toSerialize["ipAddress"] = o.IpAddress
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

@@ -583,32 +583,15 @@ func (o *DiskBackupReplicaSet) SetType(v string) {
 	o.Type = &v
 }
 
-func (o DiskBackupReplicaSet) MarshalJSON() ([]byte, error) {
+func (o DiskBackupReplicaSet) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupReplicaSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: cloudProvider is readOnly
-	// skip: copyRegions is readOnly
-	// skip: createdAt is readOnly
-	// skip: description is readOnly
-	// skip: expiresAt is readOnly
-	// skip: frequencyType is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: masterKeyUUID is readOnly
-	// skip: mongodVersion is readOnly
-	// skip: policyItems is readOnly
-	// skip: replicaSetName is readOnly
-	// skip: snapshotType is readOnly
-	// skip: status is readOnly
-	// skip: storageSizeBytes is readOnly
-	// skip: type is readOnly
 	return toSerialize, nil
 }
 

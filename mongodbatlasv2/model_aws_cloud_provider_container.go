@@ -235,26 +235,22 @@ func (o *AWSCloudProviderContainer) SetProvisioned(v bool) {
 	o.Provisioned = &v
 }
 
-func (o AWSCloudProviderContainer) MarshalJSON() ([]byte, error) {
+func (o AWSCloudProviderContainer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSCloudProviderContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AtlasCidrBlock) {
 		toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
 	}
 	toSerialize["regionName"] = o.RegionName
-	// skip: vpcId is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.ProviderName) {
 		toSerialize["providerName"] = o.ProviderName
 	}
-	// skip: provisioned is readOnly
 	return toSerialize, nil
 }
 

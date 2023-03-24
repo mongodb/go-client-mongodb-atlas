@@ -160,14 +160,13 @@ func (o *AvailableProject) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
-func (o AvailableProject) MarshalJSON() ([]byte, error) {
+func (o AvailableProject) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AvailableProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Deployments) {
@@ -176,8 +175,6 @@ func (o AvailableProject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MigrationHosts) {
 		toSerialize["migrationHosts"] = o.MigrationHosts
 	}
-	// skip: name is readOnly
-	// skip: projectId is readOnly
 	return toSerialize, nil
 }
 

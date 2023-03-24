@@ -106,18 +106,15 @@ func (o *GeoSharding) SetManagedNamespaces(v []ManagedNamespaces) {
 	o.ManagedNamespaces = v
 }
 
-func (o GeoSharding) MarshalJSON() ([]byte, error) {
+func (o GeoSharding) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GeoSharding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: customZoneMapping is readOnly
-	// skip: managedNamespaces is readOnly
 	return toSerialize, nil
 }
 

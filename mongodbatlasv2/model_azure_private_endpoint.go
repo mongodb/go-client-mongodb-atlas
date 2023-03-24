@@ -242,24 +242,18 @@ func (o *AzurePrivateEndpoint) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o AzurePrivateEndpoint) MarshalJSON() ([]byte, error) {
+func (o AzurePrivateEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzurePrivateEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: deleteRequested is readOnly
-	// skip: errorMessage is readOnly
-	// skip: privateEndpointConnectionName is readOnly
 	if !IsNil(o.PrivateEndpointIPAddress) {
 		toSerialize["privateEndpointIPAddress"] = o.PrivateEndpointIPAddress
 	}
-	// skip: privateEndpointResourceId is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

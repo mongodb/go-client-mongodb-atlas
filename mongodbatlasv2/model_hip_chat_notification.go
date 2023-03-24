@@ -201,14 +201,13 @@ func (o *HipChatNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o HipChatNotification) MarshalJSON() ([]byte, error) {
+func (o HipChatNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o HipChatNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

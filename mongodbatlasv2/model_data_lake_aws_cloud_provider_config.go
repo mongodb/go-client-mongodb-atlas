@@ -194,19 +194,15 @@ func (o *DataLakeAWSCloudProviderConfig) SetTestS3Bucket(v string) {
 	o.TestS3Bucket = v
 }
 
-func (o DataLakeAWSCloudProviderConfig) MarshalJSON() ([]byte, error) {
+func (o DataLakeAWSCloudProviderConfig) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeAWSCloudProviderConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: externalId is readOnly
-	// skip: iamAssumedRoleARN is readOnly
-	// skip: iamUserARN is readOnly
 	toSerialize["roleId"] = o.RoleId
 	toSerialize["testS3Bucket"] = o.TestS3Bucket
 	return toSerialize, nil

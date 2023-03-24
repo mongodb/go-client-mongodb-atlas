@@ -204,14 +204,13 @@ func (o *DataLakeHTTPStore) SetProvider(v string) {
 	o.Provider = v
 }
 
-func (o DataLakeHTTPStore) MarshalJSON() ([]byte, error) {
+func (o DataLakeHTTPStore) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeHTTPStore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowInsecure) {

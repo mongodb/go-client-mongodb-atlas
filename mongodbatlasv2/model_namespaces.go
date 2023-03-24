@@ -72,17 +72,15 @@ func (o *Namespaces) SetNamespaces(v []NamespaceObj) {
 	o.Namespaces = v
 }
 
-func (o Namespaces) MarshalJSON() ([]byte, error) {
+func (o Namespaces) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Namespaces) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: namespaces is readOnly
 	return toSerialize, nil
 }
 

@@ -139,14 +139,13 @@ func (o *ThresholdViewInteger) SetUnits(v string) {
 	o.Units = &v
 }
 
-func (o ThresholdViewInteger) MarshalJSON() ([]byte, error) {
+func (o ThresholdViewInteger) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ThresholdViewInteger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Operator) {

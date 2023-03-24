@@ -345,25 +345,15 @@ func (o *Checkpoint) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
-func (o Checkpoint) MarshalJSON() ([]byte, error) {
+func (o Checkpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Checkpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterId is readOnly
-	// skip: completed is readOnly
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: parts is readOnly
-	// skip: restorable is readOnly
-	// skip: started is readOnly
-	// skip: timestamp is readOnly
 	return toSerialize, nil
 }
 

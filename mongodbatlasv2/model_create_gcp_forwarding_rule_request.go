@@ -106,14 +106,13 @@ func (o *CreateGCPForwardingRuleRequest) SetIpAddress(v string) {
 	o.IpAddress = &v
 }
 
-func (o CreateGCPForwardingRuleRequest) MarshalJSON() ([]byte, error) {
+func (o CreateGCPForwardingRuleRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateGCPForwardingRuleRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EndpointName) {

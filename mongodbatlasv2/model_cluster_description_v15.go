@@ -771,14 +771,13 @@ func (o *ClusterDescriptionV15) SetVersionReleaseSystem(v string) {
 	o.VersionReleaseSystem = &v
 }
 
-func (o ClusterDescriptionV15) MarshalJSON() ([]byte, error) {
+func (o ClusterDescriptionV15) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterDescriptionV15) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BackupEnabled) {
@@ -793,23 +792,18 @@ func (o ClusterDescriptionV15) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConnectionStrings) {
 		toSerialize["connectionStrings"] = o.ConnectionStrings
 	}
-	// skip: createDate is readOnly
 	if !IsNil(o.DiskSizeGB) {
 		toSerialize["diskSizeGB"] = o.DiskSizeGB
 	}
 	if !IsNil(o.EncryptionAtRestProvider) {
 		toSerialize["encryptionAtRestProvider"] = o.EncryptionAtRestProvider
 	}
-	// skip: groupId is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	// skip: links is readOnly
 	if !IsNil(o.MongoDBMajorVersion) {
 		toSerialize["mongoDBMajorVersion"] = o.MongoDBMajorVersion
 	}
-	// skip: mongoDBVersion is readOnly
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -825,7 +819,6 @@ func (o ClusterDescriptionV15) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RootCertType) {
 		toSerialize["rootCertType"] = o.RootCertType
 	}
-	// skip: stateName is readOnly
 	if !IsNil(o.TerminationProtectionEnabled) {
 		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
 	}

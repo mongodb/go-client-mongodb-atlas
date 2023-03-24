@@ -275,14 +275,13 @@ func (o *AWSProviderSettings) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-func (o AWSProviderSettings) MarshalJSON() ([]byte, error) {
+func (o AWSProviderSettings) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSProviderSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AutoScaling) {

@@ -595,28 +595,19 @@ func (o *ServerlessBackupRestoreJob) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
-func (o ServerlessBackupRestoreJob) MarshalJSON() ([]byte, error) {
+func (o ServerlessBackupRestoreJob) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessBackupRestoreJob) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: cancelled is readOnly
 	toSerialize["deliveryType"] = o.DeliveryType
-	// skip: deliveryUrl is readOnly
 	if !IsNil(o.DesiredTimestamp) {
 		toSerialize["desiredTimestamp"] = o.DesiredTimestamp
 	}
-	// skip: expired is readOnly
-	// skip: expiresAt is readOnly
-	// skip: failed is readOnly
-	// skip: finishedAt is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
 	if !IsNil(o.OplogInc) {
 		toSerialize["oplogInc"] = o.OplogInc
 	}
@@ -631,7 +622,6 @@ func (o ServerlessBackupRestoreJob) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["targetClusterName"] = o.TargetClusterName
 	toSerialize["targetGroupId"] = o.TargetGroupId
-	// skip: timestamp is readOnly
 	return toSerialize, nil
 }
 

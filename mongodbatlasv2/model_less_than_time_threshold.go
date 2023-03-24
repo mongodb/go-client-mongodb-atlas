@@ -143,14 +143,13 @@ func (o *LessThanTimeThreshold) SetUnits(v TimeMetricUnits) {
 	o.Units = &v
 }
 
-func (o LessThanTimeThreshold) MarshalJSON() ([]byte, error) {
+func (o LessThanTimeThreshold) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LessThanTimeThreshold) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Operator) {

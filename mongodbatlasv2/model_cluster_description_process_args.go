@@ -426,14 +426,13 @@ func (o *ClusterDescriptionProcessArgs) SetSampleSizeBIConnector(v int32) {
 	o.SampleSizeBIConnector = &v
 }
 
-func (o ClusterDescriptionProcessArgs) MarshalJSON() ([]byte, error) {
+func (o ClusterDescriptionProcessArgs) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterDescriptionProcessArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DefaultReadConcern) {

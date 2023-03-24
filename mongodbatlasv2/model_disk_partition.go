@@ -106,18 +106,15 @@ func (o *DiskPartition) SetPartitionName(v string) {
 	o.PartitionName = &v
 }
 
-func (o DiskPartition) MarshalJSON() ([]byte, error) {
+func (o DiskPartition) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskPartition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: partitionName is readOnly
 	return toSerialize, nil
 }
 

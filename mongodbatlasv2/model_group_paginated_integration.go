@@ -140,19 +140,15 @@ func (o *GroupPaginatedIntegration) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o GroupPaginatedIntegration) MarshalJSON() ([]byte, error) {
+func (o GroupPaginatedIntegration) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GroupPaginatedIntegration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

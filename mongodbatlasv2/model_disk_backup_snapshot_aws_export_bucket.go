@@ -208,17 +208,15 @@ func (o *DiskBackupSnapshotAWSExportBucket) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o DiskBackupSnapshotAWSExportBucket) MarshalJSON() ([]byte, error) {
+func (o DiskBackupSnapshotAWSExportBucket) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupSnapshotAWSExportBucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
 	if !IsNil(o.BucketName) {
 		toSerialize["bucketName"] = o.BucketName
 	}
@@ -228,7 +226,6 @@ func (o DiskBackupSnapshotAWSExportBucket) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.IamRoleId) {
 		toSerialize["iamRoleId"] = o.IamRoleId
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

@@ -249,20 +249,15 @@ func (o *Group) SetWithDefaultAlertsSettings(v bool) {
 	o.WithDefaultAlertsSettings = &v
 }
 
-func (o Group) MarshalJSON() ([]byte, error) {
+func (o Group) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Group) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterCount is readOnly
-	// skip: created is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
 	toSerialize["name"] = o.Name
 	toSerialize["orgId"] = o.OrgId
 	if !IsNil(o.WithDefaultAlertsSettings) {

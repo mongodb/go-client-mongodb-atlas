@@ -717,40 +717,21 @@ func (o *EventViewForOrg) SetTargetUsername(v string) {
 	o.TargetUsername = &v
 }
 
-func (o EventViewForOrg) MarshalJSON() ([]byte, error) {
+func (o EventViewForOrg) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o EventViewForOrg) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: apiKeyId is readOnly
-	// skip: created is readOnly
 	if !IsNil(o.EventTypeName) {
 		toSerialize["eventTypeName"] = o.EventTypeName
 	}
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: isGlobalAdmin is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: publicKey is readOnly
 	if !IsNil(o.Raw) {
 		toSerialize["raw"] = o.Raw
 	}
-	// skip: remoteAddress is readOnly
-	// skip: userId is readOnly
-	// skip: username is readOnly
-	// skip: alertId is readOnly
-	// skip: alertConfigId is readOnly
-	// skip: invoiceId is readOnly
-	// skip: paymentId is readOnly
-	// skip: whitelistEntry is readOnly
-	// skip: teamId is readOnly
-	// skip: targetUsername is readOnly
 	return toSerialize, nil
 }
 

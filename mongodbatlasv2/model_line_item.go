@@ -617,35 +617,18 @@ func (o *LineItem) SetUnitPriceDollars(v float64) {
 	o.UnitPriceDollars = &v
 }
 
-func (o LineItem) MarshalJSON() ([]byte, error) {
+func (o LineItem) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LineItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterName is readOnly
-	// skip: created is readOnly
-	// skip: discountCents is readOnly
-	// skip: endDate is readOnly
-	// skip: groupId is readOnly
 	if !IsNil(o.GroupName) {
 		toSerialize["groupName"] = o.GroupName
 	}
-	// skip: note is readOnly
-	// skip: percentDiscount is readOnly
-	// skip: quantity is readOnly
-	// skip: sku is readOnly
-	// skip: startDate is readOnly
-	// skip: stitchAppName is readOnly
-	// skip: tierLowerBound is readOnly
-	// skip: tierUpperBound is readOnly
-	// skip: totalPriceCents is readOnly
-	// skip: unit is readOnly
-	// skip: unitPriceDollars is readOnly
 	return toSerialize, nil
 }
 

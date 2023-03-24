@@ -99,18 +99,16 @@ func (o *ContainerPeer) SetId(v string) {
 	o.Id = &v
 }
 
-func (o ContainerPeer) MarshalJSON() ([]byte, error) {
+func (o ContainerPeer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ContainerPeer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["containerId"] = o.ContainerId
-	// skip: id is readOnly
 	return toSerialize, nil
 }
 

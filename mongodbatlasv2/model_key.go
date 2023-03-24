@@ -160,20 +160,15 @@ func (o *Key) SetRoles(v []RoleAssignment) {
 	o.Roles = v
 }
 
-func (o Key) MarshalJSON() ([]byte, error) {
+func (o Key) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Key) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: accessList is readOnly
-	// skip: id is readOnly
-	// skip: publicKey is readOnly
-	// skip: roles is readOnly
 	return toSerialize, nil
 }
 

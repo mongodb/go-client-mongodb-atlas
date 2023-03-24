@@ -343,20 +343,15 @@ func (o *IngestionPipeline) SetTransformations(v []FieldTransformation) {
 	o.Transformations = v
 }
 
-func (o IngestionPipeline) MarshalJSON() ([]byte, error) {
+func (o IngestionPipeline) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o IngestionPipeline) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
-	// skip: createdDate is readOnly
-	// skip: groupId is readOnly
-	// skip: lastUpdatedDate is readOnly
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -366,7 +361,6 @@ func (o IngestionPipeline) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
-	// skip: state is readOnly
 	if !IsNil(o.Transformations) {
 		toSerialize["transformations"] = o.Transformations
 	}

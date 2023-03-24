@@ -276,23 +276,15 @@ func (o *ServerlessAWSTenantEndpoint) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o ServerlessAWSTenantEndpoint) MarshalJSON() ([]byte, error) {
+func (o ServerlessAWSTenantEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessAWSTenantEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
-	// skip: cloudProviderEndpointId is readOnly
-	// skip: comment is readOnly
-	// skip: endpointServiceName is readOnly
-	// skip: errorMessage is readOnly
-	// skip: providerName is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

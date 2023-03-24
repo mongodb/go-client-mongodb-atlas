@@ -549,31 +549,15 @@ func (o *DiskBackupShardedClusterSnapshot) SetType(v string) {
 	o.Type = &v
 }
 
-func (o DiskBackupShardedClusterSnapshot) MarshalJSON() ([]byte, error) {
+func (o DiskBackupShardedClusterSnapshot) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupShardedClusterSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: createdAt is readOnly
-	// skip: description is readOnly
-	// skip: expiresAt is readOnly
-	// skip: frequencyType is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: masterKeyUUID is readOnly
-	// skip: members is readOnly
-	// skip: mongodVersion is readOnly
-	// skip: policyItems is readOnly
-	// skip: snapshotIds is readOnly
-	// skip: snapshotType is readOnly
-	// skip: status is readOnly
-	// skip: storageSizeBytes is readOnly
-	// skip: type is readOnly
 	return toSerialize, nil
 }
 

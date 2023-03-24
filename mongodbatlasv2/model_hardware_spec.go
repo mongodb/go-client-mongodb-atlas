@@ -178,14 +178,13 @@ func (o *HardwareSpec) SetNodeCount(v int32) {
 	o.NodeCount = &v
 }
 
-func (o HardwareSpec) MarshalJSON() ([]byte, error) {
+func (o HardwareSpec) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o HardwareSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DiskIOPS) {

@@ -304,25 +304,18 @@ func (o *CloudProviderAccessAWSIAMRole) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-func (o CloudProviderAccessAWSIAMRole) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessAWSIAMRole) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessAWSIAMRole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: atlasAWSAccountArn is readOnly
-	// skip: atlasAssumedRoleExternalId is readOnly
-	// skip: authorizedDate is readOnly
-	// skip: createdDate is readOnly
-	// skip: featureUsages is readOnly
 	if !IsNil(o.IamAssumedRoleArn) {
 		toSerialize["iamAssumedRoleArn"] = o.IamAssumedRoleArn
 	}
-	// skip: roleId is readOnly
 	toSerialize["providerName"] = o.ProviderName
 	return toSerialize, nil
 }

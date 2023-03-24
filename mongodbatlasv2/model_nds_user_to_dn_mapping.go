@@ -119,14 +119,13 @@ func (o *NDSUserToDNMapping) SetSubstitution(v string) {
 	o.Substitution = v
 }
 
-func (o NDSUserToDNMapping) MarshalJSON() ([]byte, error) {
+func (o NDSUserToDNMapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NDSUserToDNMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ldapQuery"] = o.LdapQuery

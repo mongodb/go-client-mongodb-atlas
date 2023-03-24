@@ -72,14 +72,13 @@ func (o *ServerlessTenantEndpointCreate) SetComment(v string) {
 	o.Comment = &v
 }
 
-func (o ServerlessTenantEndpointCreate) MarshalJSON() ([]byte, error) {
+func (o ServerlessTenantEndpointCreate) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessTenantEndpointCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Comment) {

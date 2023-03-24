@@ -99,14 +99,13 @@ func (o *CharFilterhtmlStrip) SetType(v string) {
 	o.Type = v
 }
 
-func (o CharFilterhtmlStrip) MarshalJSON() ([]byte, error) {
+func (o CharFilterhtmlStrip) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CharFilterhtmlStrip) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IgnoredTags) {

@@ -71,14 +71,13 @@ func (o *GCPAutoScaling) SetCompute(v GCPComputeAutoScaling) {
 	o.Compute = &v
 }
 
-func (o GCPAutoScaling) MarshalJSON() ([]byte, error) {
+func (o GCPAutoScaling) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o GCPAutoScaling) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Compute) {

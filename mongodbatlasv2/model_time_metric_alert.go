@@ -634,39 +634,23 @@ func (o *TimeMetricAlert) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
-func (o TimeMetricAlert) MarshalJSON() ([]byte, error) {
+func (o TimeMetricAlert) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TimeMetricAlert) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acknowledgedUntil"] = o.AcknowledgedUntil
 	if !IsNil(o.AcknowledgementComment) {
 		toSerialize["acknowledgementComment"] = o.AcknowledgementComment
 	}
-	// skip: acknowledgingUsername is readOnly
-	// skip: alertConfigId is readOnly
-	// skip: clusterName is readOnly
-	// skip: created is readOnly
 	if !IsNil(o.CurrentValue) {
 		toSerialize["currentValue"] = o.CurrentValue
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
-	// skip: groupId is readOnly
-	// skip: hostnameAndPort is readOnly
-	// skip: id is readOnly
-	// skip: lastNotified is readOnly
-	// skip: links is readOnly
-	// skip: metricName is readOnly
-	// skip: orgId is readOnly
-	// skip: replicaSetName is readOnly
-	// skip: resolved is readOnly
-	// skip: status is readOnly
-	// skip: updated is readOnly
 	return toSerialize, nil
 }
 

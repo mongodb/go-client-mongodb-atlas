@@ -104,14 +104,13 @@ func (o *PemFileInfo) SetFileName(v string) {
 	o.FileName = &v
 }
 
-func (o PemFileInfo) MarshalJSON() ([]byte, error) {
+func (o PemFileInfo) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PemFileInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Certificates) {

@@ -196,14 +196,13 @@ func (o *ServerlessInstanceDescriptionCreate) SetTerminationProtectionEnabled(v 
 	o.TerminationProtectionEnabled = &v
 }
 
-func (o ServerlessInstanceDescriptionCreate) MarshalJSON() ([]byte, error) {
+func (o ServerlessInstanceDescriptionCreate) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessInstanceDescriptionCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
@@ -211,7 +210,6 @@ func (o ServerlessInstanceDescriptionCreate) ToMap() (map[string]interface{}, er
 	if !IsNil(o.ServerlessBackupOptions) {
 		toSerialize["serverlessBackupOptions"] = o.ServerlessBackupOptions
 	}
-	// skip: stateName is readOnly
 	if !IsNil(o.TerminationProtectionEnabled) {
 		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
 	}

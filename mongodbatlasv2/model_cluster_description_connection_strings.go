@@ -276,23 +276,15 @@ func (o *ClusterDescriptionConnectionStrings) SetStandardSrv(v string) {
 	o.StandardSrv = &v
 }
 
-func (o ClusterDescriptionConnectionStrings) MarshalJSON() ([]byte, error) {
+func (o ClusterDescriptionConnectionStrings) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterDescriptionConnectionStrings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: awsPrivateLink is readOnly
-	// skip: awsPrivateLinkSrv is readOnly
-	// skip: private is readOnly
-	// skip: privateEndpoint is readOnly
-	// skip: privateSrv is readOnly
-	// skip: standard is readOnly
-	// skip: standardSrv is readOnly
 	return toSerialize, nil
 }
 

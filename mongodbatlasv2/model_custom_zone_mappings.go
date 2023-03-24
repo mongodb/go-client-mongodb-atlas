@@ -72,14 +72,13 @@ func (o *CustomZoneMappings) SetCustomZoneMappings(v []ZoneMapping) {
 	o.CustomZoneMappings = v
 }
 
-func (o CustomZoneMappings) MarshalJSON() ([]byte, error) {
+func (o CustomZoneMappings) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CustomZoneMappings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CustomZoneMappings) {

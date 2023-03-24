@@ -105,20 +105,18 @@ func (o *CloudProviderAccessDataLakeFeatureUsage) SetFeatureType(v string) {
 	o.FeatureType = &v
 }
 
-func (o CloudProviderAccessDataLakeFeatureUsage) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessDataLakeFeatureUsage) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessDataLakeFeatureUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FeatureId) {
 		toSerialize["featureId"] = o.FeatureId
 	}
-	// skip: featureType is readOnly
 	return toSerialize, nil
 }
 

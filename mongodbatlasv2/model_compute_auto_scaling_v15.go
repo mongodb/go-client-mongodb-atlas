@@ -172,14 +172,13 @@ func (o *ComputeAutoScalingV15) SetScaleDownEnabled(v bool) {
 	o.ScaleDownEnabled = &v
 }
 
-func (o ComputeAutoScalingV15) MarshalJSON() ([]byte, error) {
+func (o ComputeAutoScalingV15) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ComputeAutoScalingV15) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Enabled) {

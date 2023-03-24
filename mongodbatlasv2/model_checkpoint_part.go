@@ -207,23 +207,18 @@ func (o *CheckpointPart) SetTypeName(v string) {
 	o.TypeName = &v
 }
 
-func (o CheckpointPart) MarshalJSON() ([]byte, error) {
+func (o CheckpointPart) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CheckpointPart) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: replicaSetName is readOnly
-	// skip: shardName is readOnly
-	// skip: tokenDiscovered is readOnly
 	if !IsNil(o.TokenTimestamp) {
 		toSerialize["tokenTimestamp"] = o.TokenTimestamp
 	}
-	// skip: typeName is readOnly
 	return toSerialize, nil
 }
 

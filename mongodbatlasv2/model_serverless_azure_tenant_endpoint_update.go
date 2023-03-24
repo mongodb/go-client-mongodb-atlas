@@ -166,14 +166,13 @@ func (o *ServerlessAzureTenantEndpointUpdate) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-func (o ServerlessAzureTenantEndpointUpdate) MarshalJSON() ([]byte, error) {
+func (o ServerlessAzureTenantEndpointUpdate) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessAzureTenantEndpointUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CloudProviderEndpointId) {

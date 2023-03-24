@@ -106,17 +106,15 @@ func (o *CloudProviderAccessFeatureUsageDataLakeFeatureId) SetName(v string) {
 	o.Name = &v
 }
 
-func (o CloudProviderAccessFeatureUsageDataLakeFeatureId) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessFeatureUsageDataLakeFeatureId) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessFeatureUsageDataLakeFeatureId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: groupId is readOnly
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}

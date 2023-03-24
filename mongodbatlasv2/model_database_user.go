@@ -440,14 +440,13 @@ func (o *DatabaseUser) SetX509Type(v string) {
 	o.X509Type = &v
 }
 
-func (o DatabaseUser) MarshalJSON() ([]byte, error) {
+func (o DatabaseUser) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DatabaseUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AwsIAMType) {
@@ -464,7 +463,6 @@ func (o DatabaseUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LdapAuthType) {
 		toSerialize["ldapAuthType"] = o.LdapAuthType
 	}
-	// skip: links is readOnly
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}

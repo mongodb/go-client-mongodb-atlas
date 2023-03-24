@@ -106,14 +106,13 @@ func (o *CreateAzureEndpointRequestAllOf) SetPrivateEndpointIPAddress(v string) 
 	o.PrivateEndpointIPAddress = &v
 }
 
-func (o CreateAzureEndpointRequestAllOf) MarshalJSON() ([]byte, error) {
+func (o CreateAzureEndpointRequestAllOf) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateAzureEndpointRequestAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {

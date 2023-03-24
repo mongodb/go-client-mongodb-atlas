@@ -206,14 +206,13 @@ func (o *RPUMetricThreshold) SetUnits(v ServerlessMetricUnits) {
 	o.Units = &v
 }
 
-func (o RPUMetricThreshold) MarshalJSON() ([]byte, error) {
+func (o RPUMetricThreshold) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RPUMetricThreshold) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MetricName) {

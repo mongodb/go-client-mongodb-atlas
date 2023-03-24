@@ -92,14 +92,13 @@ func (o *NetPeerRequestBase) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-func (o NetPeerRequestBase) MarshalJSON() ([]byte, error) {
+func (o NetPeerRequestBase) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NetPeerRequestBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["containerId"] = o.ContainerId

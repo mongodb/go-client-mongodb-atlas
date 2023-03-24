@@ -208,14 +208,13 @@ func (o *DiskBackupCopySetting) SetShouldCopyOplogs(v bool) {
 	o.ShouldCopyOplogs = &v
 }
 
-func (o DiskBackupCopySetting) MarshalJSON() ([]byte, error) {
+func (o DiskBackupCopySetting) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupCopySetting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CloudProvider) {

@@ -140,19 +140,15 @@ func (o *PaginatedCloudProviderContainer) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedCloudProviderContainer) MarshalJSON() ([]byte, error) {
+func (o PaginatedCloudProviderContainer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedCloudProviderContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

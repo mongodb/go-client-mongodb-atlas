@@ -514,21 +514,18 @@ func (o *DiskBackupSnapshotSchedule) SetUseOrgAndGroupNamesInExportPrefix(v bool
 	o.UseOrgAndGroupNamesInExportPrefix = &v
 }
 
-func (o DiskBackupSnapshotSchedule) MarshalJSON() ([]byte, error) {
+func (o DiskBackupSnapshotSchedule) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DiskBackupSnapshotSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AutoExportEnabled) {
 		toSerialize["autoExportEnabled"] = o.AutoExportEnabled
 	}
-	// skip: clusterId is readOnly
-	// skip: clusterName is readOnly
 	if !IsNil(o.CopySettings) {
 		toSerialize["copySettings"] = o.CopySettings
 	}
@@ -538,8 +535,6 @@ func (o DiskBackupSnapshotSchedule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Export) {
 		toSerialize["export"] = o.Export
 	}
-	// skip: links is readOnly
-	// skip: nextSnapshot is readOnly
 	if !IsNil(o.Policies) {
 		toSerialize["policies"] = o.Policies
 	}

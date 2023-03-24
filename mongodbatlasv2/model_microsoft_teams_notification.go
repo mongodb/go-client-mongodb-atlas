@@ -167,14 +167,13 @@ func (o *MicrosoftTeamsNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o MicrosoftTeamsNotification) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o MicrosoftTeamsNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

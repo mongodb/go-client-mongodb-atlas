@@ -311,24 +311,15 @@ func (o *TenantSnapshot) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o TenantSnapshot) MarshalJSON() ([]byte, error) {
+func (o TenantSnapshot) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TenantSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: expiration is readOnly
-	// skip: finishTime is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: mongoDBVersion is readOnly
-	// skip: scheduledTime is readOnly
-	// skip: startTime is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

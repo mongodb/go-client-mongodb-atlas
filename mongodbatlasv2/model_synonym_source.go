@@ -65,14 +65,13 @@ func (o *SynonymSource) SetCollection(v string) {
 	o.Collection = v
 }
 
-func (o SynonymSource) MarshalJSON() ([]byte, error) {
+func (o SynonymSource) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SynonymSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collection"] = o.Collection

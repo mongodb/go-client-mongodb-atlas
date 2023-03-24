@@ -167,14 +167,13 @@ func (o *SMSNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o SMSNotification) MarshalJSON() ([]byte, error) {
+func (o SMSNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SMSNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

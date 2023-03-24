@@ -243,22 +243,15 @@ func (o *SampleDatasetStatus) SetState(v string) {
 	o.State = &v
 }
 
-func (o SampleDatasetStatus) MarshalJSON() ([]byte, error) {
+func (o SampleDatasetStatus) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SampleDatasetStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
-	// skip: clusterName is readOnly
-	// skip: completeDate is readOnly
-	// skip: createDate is readOnly
-	// skip: errorMessage is readOnly
-	// skip: state is readOnly
 	return toSerialize, nil
 }
 

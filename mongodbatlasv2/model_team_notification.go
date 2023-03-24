@@ -269,14 +269,13 @@ func (o *TeamNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o TeamNotification) MarshalJSON() ([]byte, error) {
+func (o TeamNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TeamNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

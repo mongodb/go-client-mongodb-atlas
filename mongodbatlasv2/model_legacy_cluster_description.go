@@ -1121,14 +1121,13 @@ func (o *LegacyClusterDescription) SetVersionReleaseSystem(v string) {
 	o.VersionReleaseSystem = &v
 }
 
-func (o LegacyClusterDescription) MarshalJSON() ([]byte, error) {
+func (o LegacyClusterDescription) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o LegacyClusterDescription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AutoScaling) {
@@ -1146,28 +1145,21 @@ func (o LegacyClusterDescription) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConnectionStrings) {
 		toSerialize["connectionStrings"] = o.ConnectionStrings
 	}
-	// skip: createDate is readOnly
 	if !IsNil(o.DiskSizeGB) {
 		toSerialize["diskSizeGB"] = o.DiskSizeGB
 	}
 	if !IsNil(o.EncryptionAtRestProvider) {
 		toSerialize["encryptionAtRestProvider"] = o.EncryptionAtRestProvider
 	}
-	// skip: groupId is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	// skip: links is readOnly
 	if !IsNil(o.MongoDBMajorVersion) {
 		toSerialize["mongoDBMajorVersion"] = o.MongoDBMajorVersion
 	}
 	if !IsNil(o.MongoDBVersion) {
 		toSerialize["mongoDBVersion"] = o.MongoDBVersion
 	}
-	// skip: mongoURI is readOnly
-	// skip: mongoURIUpdated is readOnly
-	// skip: mongoURIWithOptions is readOnly
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -1198,8 +1190,6 @@ func (o LegacyClusterDescription) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RootCertType) {
 		toSerialize["rootCertType"] = o.RootCertType
 	}
-	// skip: srvAddress is readOnly
-	// skip: stateName is readOnly
 	if !IsNil(o.TerminationProtectionEnabled) {
 		toSerialize["terminationProtectionEnabled"] = o.TerminationProtectionEnabled
 	}

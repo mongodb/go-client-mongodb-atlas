@@ -119,14 +119,13 @@ func (o *TokenizernGram) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenizernGram) MarshalJSON() ([]byte, error) {
+func (o TokenizernGram) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenizernGram) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["maxGram"] = o.MaxGram

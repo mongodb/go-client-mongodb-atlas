@@ -174,20 +174,15 @@ func (o *AWSInterfaceEndpoint) SetInterfaceEndpointId(v string) {
 	o.InterfaceEndpointId = &v
 }
 
-func (o AWSInterfaceEndpoint) MarshalJSON() ([]byte, error) {
+func (o AWSInterfaceEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSInterfaceEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: connectionStatus is readOnly
-	// skip: deleteRequested is readOnly
-	// skip: errorMessage is readOnly
-	// skip: interfaceEndpointId is readOnly
 	return toSerialize, nil
 }
 

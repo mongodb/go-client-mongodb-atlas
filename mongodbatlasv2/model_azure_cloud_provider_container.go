@@ -262,25 +262,20 @@ func (o *AzureCloudProviderContainer) SetProvisioned(v bool) {
 	o.Provisioned = &v
 }
 
-func (o AzureCloudProviderContainer) MarshalJSON() ([]byte, error) {
+func (o AzureCloudProviderContainer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzureCloudProviderContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["atlasCidrBlock"] = o.AtlasCidrBlock
-	// skip: azureSubscriptionId is readOnly
 	toSerialize["region"] = o.Region
-	// skip: vnetName is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.ProviderName) {
 		toSerialize["providerName"] = o.ProviderName
 	}
-	// skip: provisioned is readOnly
 	return toSerialize, nil
 }
 

@@ -472,14 +472,13 @@ func (o *IdentityProvider) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o IdentityProvider) MarshalJSON() ([]byte, error) {
+func (o IdentityProvider) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o IdentityProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AcsUrl) {

@@ -106,14 +106,13 @@ func (o *DataLakeStorage) SetStores(v []DataLakeStore) {
 	o.Stores = v
 }
 
-func (o DataLakeStorage) MarshalJSON() ([]byte, error) {
+func (o DataLakeStorage) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Databases) {

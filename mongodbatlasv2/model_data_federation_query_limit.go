@@ -263,21 +263,15 @@ func (o *DataFederationQueryLimit) SetValue(v int64) {
 	o.Value = v
 }
 
-func (o DataFederationQueryLimit) MarshalJSON() ([]byte, error) {
+func (o DataFederationQueryLimit) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataFederationQueryLimit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: currentUsage is readOnly
-	// skip: defaultLimit is readOnly
-	// skip: lastModifiedDate is readOnly
-	// skip: maximumLimit is readOnly
-	// skip: name is readOnly
 	if !IsNil(o.OverrunPolicy) {
 		toSerialize["overrunPolicy"] = o.OverrunPolicy
 	}

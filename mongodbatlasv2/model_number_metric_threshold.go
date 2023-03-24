@@ -206,14 +206,13 @@ func (o *NumberMetricThreshold) SetUnits(v NumberMetricUnits) {
 	o.Units = &v
 }
 
-func (o NumberMetricThreshold) MarshalJSON() ([]byte, error) {
+func (o NumberMetricThreshold) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o NumberMetricThreshold) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MetricName) {

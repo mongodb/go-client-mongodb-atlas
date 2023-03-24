@@ -275,23 +275,19 @@ func (o *AzurePeerNetwork) SetVnetName(v string) {
 	o.VnetName = v
 }
 
-func (o AzurePeerNetwork) MarshalJSON() ([]byte, error) {
+func (o AzurePeerNetwork) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AzurePeerNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["azureDirectoryId"] = o.AzureDirectoryId
 	toSerialize["azureSubscriptionId"] = o.AzureSubscriptionId
 	toSerialize["containerId"] = o.ContainerId
-	// skip: errorState is readOnly
-	// skip: id is readOnly
 	toSerialize["resourceGroupName"] = o.ResourceGroupName
-	// skip: status is readOnly
 	toSerialize["vnetName"] = o.VnetName
 	return toSerialize, nil
 }

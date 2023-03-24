@@ -205,14 +205,13 @@ func (o *OpsGenieNotification) SetTypeName(v string) {
 	o.TypeName = v
 }
 
-func (o OpsGenieNotification) MarshalJSON() ([]byte, error) {
+func (o OpsGenieNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OpsGenieNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

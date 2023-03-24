@@ -106,18 +106,15 @@ func (o *AvailableRegion) SetName(v string) {
 	o.Name = &v
 }
 
-func (o AvailableRegion) MarshalJSON() ([]byte, error) {
+func (o AvailableRegion) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AvailableRegion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: default is readOnly
-	// skip: name is readOnly
 	return toSerialize, nil
 }
 

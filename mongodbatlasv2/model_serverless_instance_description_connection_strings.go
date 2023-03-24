@@ -106,18 +106,15 @@ func (o *ServerlessInstanceDescriptionConnectionStrings) SetStandardSrv(v string
 	o.StandardSrv = &v
 }
 
-func (o ServerlessInstanceDescriptionConnectionStrings) MarshalJSON() ([]byte, error) {
+func (o ServerlessInstanceDescriptionConnectionStrings) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ServerlessInstanceDescriptionConnectionStrings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: privateEndpoint is readOnly
-	// skip: standardSrv is readOnly
 	return toSerialize, nil
 }
 

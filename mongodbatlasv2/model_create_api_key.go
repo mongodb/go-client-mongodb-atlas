@@ -106,14 +106,13 @@ func (o *CreateApiKey) SetRoles(v []string) {
 	o.Roles = v
 }
 
-func (o CreateApiKey) MarshalJSON() ([]byte, error) {
+func (o CreateApiKey) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Desc) {

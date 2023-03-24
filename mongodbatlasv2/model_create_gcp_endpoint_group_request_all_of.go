@@ -140,14 +140,13 @@ func (o *CreateGCPEndpointGroupRequestAllOf) SetGcpProjectId(v string) {
 	o.GcpProjectId = &v
 }
 
-func (o CreateGCPEndpointGroupRequestAllOf) MarshalJSON() ([]byte, error) {
+func (o CreateGCPEndpointGroupRequestAllOf) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CreateGCPEndpointGroupRequestAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EndpointGroupName) {

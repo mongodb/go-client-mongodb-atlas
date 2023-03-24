@@ -378,26 +378,15 @@ func (o *SnapshotPart) SetTypeName(v string) {
 	o.TypeName = &v
 }
 
-func (o SnapshotPart) MarshalJSON() ([]byte, error) {
+func (o SnapshotPart) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SnapshotPart) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterId is readOnly
-	// skip: compressionSetting is readOnly
-	// skip: dataSizeBytes is readOnly
-	// skip: encryptionEnabled is readOnly
-	// skip: fileSizeBytes is readOnly
-	// skip: masterKeyUUID is readOnly
-	// skip: mongodVersion is readOnly
-	// skip: replicaSetName is readOnly
-	// skip: storageSizeBytes is readOnly
-	// skip: typeName is readOnly
 	return toSerialize, nil
 }
 

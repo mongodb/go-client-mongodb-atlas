@@ -276,14 +276,13 @@ func (o *AWSKMS) SetValid(v bool) {
 	o.Valid = &v
 }
 
-func (o AWSKMS) MarshalJSON() ([]byte, error) {
+func (o AWSKMS) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSKMS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AccessKeyID) {
@@ -304,7 +303,6 @@ func (o AWSKMS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SecretAccessKey) {
 		toSerialize["secretAccessKey"] = o.SecretAccessKey
 	}
-	// skip: valid is readOnly
 	return toSerialize, nil
 }
 

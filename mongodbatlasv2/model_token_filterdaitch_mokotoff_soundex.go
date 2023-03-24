@@ -103,14 +103,13 @@ func (o *TokenFilterdaitchMokotoffSoundex) SetType(v string) {
 	o.Type = v
 }
 
-func (o TokenFilterdaitchMokotoffSoundex) MarshalJSON() ([]byte, error) {
+func (o TokenFilterdaitchMokotoffSoundex) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TokenFilterdaitchMokotoffSoundex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.OriginalTokens) {

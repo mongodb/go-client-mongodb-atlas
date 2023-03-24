@@ -288,14 +288,13 @@ func (o *ManagedNamespace) SetPresplitHashedZones(v bool) {
 	o.PresplitHashedZones = &v
 }
 
-func (o ManagedNamespace) MarshalJSON() ([]byte, error) {
+func (o ManagedNamespace) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ManagedNamespace) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Collection) {

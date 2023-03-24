@@ -255,14 +255,13 @@ func (o *ConnectedOrgConfig) SetUserConflicts(v []FederatedUser) {
 	o.UserConflicts = v
 }
 
-func (o ConnectedOrgConfig) MarshalJSON() ([]byte, error) {
+func (o ConnectedOrgConfig) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ConnectedOrgConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DomainAllowList) {
@@ -270,7 +269,6 @@ func (o ConnectedOrgConfig) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["domainRestrictionEnabled"] = o.DomainRestrictionEnabled
 	toSerialize["identityProviderId"] = o.IdentityProviderId
-	// skip: orgId is readOnly
 	if !IsNil(o.PostAuthRoleGrants) {
 		toSerialize["postAuthRoleGrants"] = o.PostAuthRoleGrants
 	}

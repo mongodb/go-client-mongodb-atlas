@@ -64,14 +64,13 @@ func (o *DataLakeCloudProviderConfig) SetAws(v DataLakeAWSCloudProviderConfig) {
 	o.Aws = v
 }
 
-func (o DataLakeCloudProviderConfig) MarshalJSON() ([]byte, error) {
+func (o DataLakeCloudProviderConfig) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeCloudProviderConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["aws"] = o.Aws

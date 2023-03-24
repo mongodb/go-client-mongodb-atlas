@@ -242,22 +242,15 @@ func (o *AWSPrivateLinkConnection) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o AWSPrivateLinkConnection) MarshalJSON() ([]byte, error) {
+func (o AWSPrivateLinkConnection) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSPrivateLinkConnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: endpointServiceName is readOnly
-	// skip: errorMessage is readOnly
-	// skip: id is readOnly
-	// skip: interfaceEndpoints is readOnly
-	// skip: regionName is readOnly
-	// skip: status is readOnly
 	return toSerialize, nil
 }
 

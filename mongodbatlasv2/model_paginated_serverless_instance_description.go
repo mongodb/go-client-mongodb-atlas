@@ -140,19 +140,15 @@ func (o *PaginatedServerlessInstanceDescription) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o PaginatedServerlessInstanceDescription) MarshalJSON() ([]byte, error) {
+func (o PaginatedServerlessInstanceDescription) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o PaginatedServerlessInstanceDescription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
-	// skip: results is readOnly
-	// skip: totalCount is readOnly
 	return toSerialize, nil
 }
 

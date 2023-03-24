@@ -235,14 +235,13 @@ func (o *UserNotification) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o UserNotification) MarshalJSON() ([]byte, error) {
+func (o UserNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o UserNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

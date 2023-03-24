@@ -106,14 +106,13 @@ func (o *AWSComputeAutoScaling) SetMinInstanceSize(v string) {
 	o.MinInstanceSize = &v
 }
 
-func (o AWSComputeAutoScaling) MarshalJSON() ([]byte, error) {
+func (o AWSComputeAutoScaling) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSComputeAutoScaling) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MaxInstanceSize) {

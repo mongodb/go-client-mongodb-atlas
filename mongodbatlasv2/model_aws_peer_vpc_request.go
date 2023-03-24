@@ -336,25 +336,20 @@ func (o *AWSPeerVpcRequest) SetVpcId(v string) {
 	o.VpcId = v
 }
 
-func (o AWSPeerVpcRequest) MarshalJSON() ([]byte, error) {
+func (o AWSPeerVpcRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o AWSPeerVpcRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["containerId"] = o.ContainerId
 	toSerialize["providerName"] = o.ProviderName
 	toSerialize["accepterRegionName"] = o.AccepterRegionName
 	toSerialize["awsAccountId"] = o.AwsAccountId
-	// skip: connectionId is readOnly
-	// skip: errorStateName is readOnly
-	// skip: id is readOnly
 	toSerialize["routeTableCidrBlock"] = o.RouteTableCidrBlock
-	// skip: statusName is readOnly
 	toSerialize["vpcId"] = o.VpcId
 	return toSerialize, nil
 }

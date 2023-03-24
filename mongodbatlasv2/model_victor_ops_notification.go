@@ -201,14 +201,13 @@ func (o *VictorOpsNotification) SetVictorOpsRoutingKey(v string) {
 	o.VictorOpsRoutingKey = &v
 }
 
-func (o VictorOpsNotification) MarshalJSON() ([]byte, error) {
+func (o VictorOpsNotification) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o VictorOpsNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DelayMin) {

@@ -200,14 +200,13 @@ func (o *DailySchedule) SetType(v string) {
 	o.Type = v
 }
 
-func (o DailySchedule) MarshalJSON() ([]byte, error) {
+func (o DailySchedule) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DailySchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EndHour) {

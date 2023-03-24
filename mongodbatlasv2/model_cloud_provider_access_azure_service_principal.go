@@ -304,23 +304,18 @@ func (o *CloudProviderAccessAzureServicePrincipal) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
-func (o CloudProviderAccessAzureServicePrincipal) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessAzureServicePrincipal) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessAzureServicePrincipal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: _id is readOnly
 	if !IsNil(o.AtlasAzureAppId) {
 		toSerialize["atlasAzureAppId"] = o.AtlasAzureAppId
 	}
-	// skip: createdDate is readOnly
-	// skip: featureUsages is readOnly
-	// skip: lastUpdatedDate is readOnly
 	if !IsNil(o.ServicePrincipalId) {
 		toSerialize["servicePrincipalId"] = o.ServicePrincipalId
 	}

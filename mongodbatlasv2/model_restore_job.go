@@ -642,30 +642,19 @@ func (o *RestoreJob) SetTimestamp(v BSONTimestamp) {
 	o.Timestamp = &v
 }
 
-func (o RestoreJob) MarshalJSON() ([]byte, error) {
+func (o RestoreJob) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o RestoreJob) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: batchId is readOnly
 	if !IsNil(o.CheckpointId) {
 		toSerialize["checkpointId"] = o.CheckpointId
 	}
-	// skip: clusterId is readOnly
-	// skip: clusterName is readOnly
-	// skip: created is readOnly
 	toSerialize["delivery"] = o.Delivery
-	// skip: encryptionEnabled is readOnly
-	// skip: groupId is readOnly
-	// skip: hashes is readOnly
-	// skip: id is readOnly
-	// skip: links is readOnly
-	// skip: masterKeyUUID is readOnly
 	if !IsNil(o.OplogInc) {
 		toSerialize["oplogInc"] = o.OplogInc
 	}
@@ -678,7 +667,6 @@ func (o RestoreJob) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SnapshotId) {
 		toSerialize["snapshotId"] = o.SnapshotId
 	}
-	// skip: statusName is readOnly
 	if !IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}

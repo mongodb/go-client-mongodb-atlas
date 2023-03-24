@@ -194,20 +194,15 @@ func (o *DefaultLimit) SetValue(v int64) {
 	o.Value = v
 }
 
-func (o DefaultLimit) MarshalJSON() ([]byte, error) {
+func (o DefaultLimit) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DefaultLimit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: currentUsage is readOnly
-	// skip: defaultLimit is readOnly
-	// skip: maximumLimit is readOnly
-	// skip: name is readOnly
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
 }

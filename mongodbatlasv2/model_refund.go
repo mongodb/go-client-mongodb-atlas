@@ -175,20 +175,15 @@ func (o *Refund) SetReason(v string) {
 	o.Reason = &v
 }
 
-func (o Refund) MarshalJSON() ([]byte, error) {
+func (o Refund) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Refund) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: amountCents is readOnly
-	// skip: created is readOnly
-	// skip: paymentId is readOnly
-	// skip: reason is readOnly
 	return toSerialize, nil
 }
 

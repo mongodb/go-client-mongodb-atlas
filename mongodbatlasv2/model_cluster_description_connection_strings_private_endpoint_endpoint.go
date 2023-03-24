@@ -140,19 +140,15 @@ func (o *ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) SetRegion(v
 	o.Region = &v
 }
 
-func (o ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) MarshalJSON() ([]byte, error) {
+func (o ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterDescriptionConnectionStringsPrivateEndpointEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: endpointId is readOnly
-	// skip: providerName is readOnly
-	// skip: region is readOnly
 	return toSerialize, nil
 }
 

@@ -344,14 +344,13 @@ func (o *DataLakeS3Store) SetProvider(v string) {
 	o.Provider = v
 }
 
-func (o DataLakeS3Store) MarshalJSON() ([]byte, error) {
+func (o DataLakeS3Store) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeS3Store) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AdditionalStorageClasses) {

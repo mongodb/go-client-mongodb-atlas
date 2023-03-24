@@ -126,17 +126,15 @@ func (o *SnapshotRetention) SetRetentionValue(v int32) {
 	o.RetentionValue = v
 }
 
-func (o SnapshotRetention) MarshalJSON() ([]byte, error) {
+func (o SnapshotRetention) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o SnapshotRetention) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: links is readOnly
 	toSerialize["retentionUnit"] = o.RetentionUnit
 	toSerialize["retentionValue"] = o.RetentionValue
 	return toSerialize, nil

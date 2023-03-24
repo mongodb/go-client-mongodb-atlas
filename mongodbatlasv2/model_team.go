@@ -160,18 +160,15 @@ func (o *Team) SetUsernames(v []string) {
 	o.Usernames = v
 }
 
-func (o Team) MarshalJSON() ([]byte, error) {
+func (o Team) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Team) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
-	// skip: links is readOnly
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Usernames) {
 		toSerialize["usernames"] = o.Usernames

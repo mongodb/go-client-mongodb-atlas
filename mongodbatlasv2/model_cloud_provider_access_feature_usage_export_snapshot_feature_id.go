@@ -106,18 +106,15 @@ func (o *CloudProviderAccessFeatureUsageExportSnapshotFeatureId) SetGroupId(v st
 	o.GroupId = &v
 }
 
-func (o CloudProviderAccessFeatureUsageExportSnapshotFeatureId) MarshalJSON() ([]byte, error) {
+func (o CloudProviderAccessFeatureUsageExportSnapshotFeatureId) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o CloudProviderAccessFeatureUsageExportSnapshotFeatureId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: exportBucketId is readOnly
-	// skip: groupId is readOnly
 	return toSerialize, nil
 }
 

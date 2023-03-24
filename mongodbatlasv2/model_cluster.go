@@ -412,27 +412,15 @@ func (o *Cluster) SetVersions(v []string) {
 	o.Versions = v
 }
 
-func (o Cluster) MarshalJSON() ([]byte, error) {
+func (o Cluster) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Cluster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: alertCount is readOnly
-	// skip: authEnabled is readOnly
-	// skip: availability is readOnly
-	// skip: backupEnabled is readOnly
-	// skip: clusterId is readOnly
-	// skip: dataSizeBytes is readOnly
-	// skip: name is readOnly
-	// skip: nodeCount is readOnly
-	// skip: sslEnabled is readOnly
-	// skip: type is readOnly
-	// skip: versions is readOnly
 	return toSerialize, nil
 }
 

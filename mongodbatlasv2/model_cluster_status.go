@@ -106,20 +106,18 @@ func (o *ClusterStatus) SetLinks(v []Link) {
 	o.Links = v
 }
 
-func (o ClusterStatus) MarshalJSON() ([]byte, error) {
+func (o ClusterStatus) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ChangeStatus) {
 		toSerialize["changeStatus"] = o.ChangeStatus
 	}
-	// skip: links is readOnly
 	return toSerialize, nil
 }
 

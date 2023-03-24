@@ -106,14 +106,13 @@ func (o *DataLakeDatabaseCollection) SetName(v string) {
 	o.Name = &v
 }
 
-func (o DataLakeDatabaseCollection) MarshalJSON() ([]byte, error) {
+func (o DataLakeDatabaseCollection) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o DataLakeDatabaseCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DataSources) {

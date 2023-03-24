@@ -243,24 +243,18 @@ func (o *ClusterOutageSimulation) SetState(v string) {
 	o.State = &v
 }
 
-func (o ClusterOutageSimulation) MarshalJSON() ([]byte, error) {
+func (o ClusterOutageSimulation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ClusterOutageSimulation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: clusterName is readOnly
-	// skip: groupId is readOnly
-	// skip: id is readOnly
 	if !IsNil(o.OutageFilters) {
 		toSerialize["outageFilters"] = o.OutageFilters
 	}
-	// skip: startRequestDate is readOnly
-	// skip: state is readOnly
 	return toSerialize, nil
 }
 

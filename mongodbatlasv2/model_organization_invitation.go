@@ -372,27 +372,19 @@ func (o *OrganizationInvitation) SetUsername(v string) {
 	o.Username = &v
 }
 
-func (o OrganizationInvitation) MarshalJSON() ([]byte, error) {
+func (o OrganizationInvitation) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o OrganizationInvitation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: createdAt is readOnly
-	// skip: expiresAt is readOnly
-	// skip: id is readOnly
-	// skip: inviterUsername is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
 	toSerialize["orgName"] = o.OrgName
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
-	// skip: teamIds is readOnly
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}

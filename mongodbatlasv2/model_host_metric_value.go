@@ -105,17 +105,15 @@ func (o *HostMetricValue) SetUnits(v string) {
 	o.Units = &v
 }
 
-func (o HostMetricValue) MarshalJSON() ([]byte, error) {
+func (o HostMetricValue) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o HostMetricValue) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: number is readOnly
 	if !IsNil(o.Units) {
 		toSerialize["units"] = o.Units
 	}

@@ -72,14 +72,13 @@ func (o *TargetOrgRequest) SetAccessListIps(v []string) {
 	o.AccessListIps = v
 }
 
-func (o TargetOrgRequest) MarshalJSON() ([]byte, error) {
+func (o TargetOrgRequest) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o TargetOrgRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AccessListIps) {

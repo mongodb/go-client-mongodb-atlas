@@ -685,37 +685,18 @@ func (o *Invoice) SetUpdated(v time.Time) {
 	o.Updated = &v
 }
 
-func (o Invoice) MarshalJSON() ([]byte, error) {
+func (o Invoice) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o Invoice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: amountBilledCents is readOnly
-	// skip: amountPaidCents is readOnly
-	// skip: created is readOnly
-	// skip: creditsCents is readOnly
-	// skip: endDate is readOnly
-	// skip: groupId is readOnly
-	// skip: id is readOnly
-	// skip: lineItems is readOnly
-	// skip: linkedInvoices is readOnly
-	// skip: links is readOnly
-	// skip: orgId is readOnly
-	// skip: payments is readOnly
-	// skip: refunds is readOnly
-	// skip: salesTaxCents is readOnly
-	// skip: startDate is readOnly
-	// skip: startingBalanceCents is readOnly
 	if !IsNil(o.StatusName) {
 		toSerialize["statusName"] = o.StatusName
 	}
-	// skip: subtotalCents is readOnly
-	// skip: updated is readOnly
 	return toSerialize, nil
 }
 
