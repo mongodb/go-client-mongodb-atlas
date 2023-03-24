@@ -31,7 +31,8 @@ type CpsBackupThresholdAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []Matcher `json:"matchers,omitempty"`
+	// No matchers are available for these alert types. The list is always empty.
+	Matchers []map[string]interface{} `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	Threshold *GreaterThanTimeThreshold `json:"threshold,omitempty"`
@@ -246,9 +247,9 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []map[string]interface{} {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []Matcher
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +257,7 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) GetMatchersOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +273,8 @@ func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
-func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
+// SetMatchers gets a reference to the given []map[string]interface{} and assigns it to the Matchers field.
+func (o *CpsBackupThresholdAlertConfigViewForNdsGroup) SetMatchers(v []map[string]interface{}) {
 	o.Matchers = v
 }
 
@@ -391,9 +392,7 @@ func (o CpsBackupThresholdAlertConfigViewForNdsGroup) ToMap() (map[string]interf
 	// skip: groupId is readOnly
 	// skip: id is readOnly
 	// skip: links is readOnly
-	if !IsNil(o.Matchers) {
-		toSerialize["matchers"] = o.Matchers
-	}
+	// skip: matchers is readOnly
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
 	}

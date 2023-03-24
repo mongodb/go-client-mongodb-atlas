@@ -7070,10 +7070,9 @@ paths:
         "200":
           content:
             application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: "#/components/schemas/UserCert"
               x-xgen-version: 2023-01-01
-          description: OK
+          description: This endpoint returns a PEM file with the certificate and private
+            key.
         "400":
           $ref: "#/components/responses/badRequest"
         "401":
@@ -12733,12 +12732,13 @@ paths:
       description: Removes the specified access list entry from the specified
         organization API key. Resources require all API requests originate from
         the IP addresses on the API access list. To use this resource, the
-        requesting API Key must have the Read Write role and an entry for the
-        project access list.
+        requesting API Key must have the Read Write role and an entry for it's
+        access list. In addition, you cannot remove the requesting IP address
+        from the requesting organization API key.
       externalDocs:
         description: Configure Atlas API Access
         url: https://docs.atlas.mongodb.com/configure-api-access/#std-label-enable-api-access-list
-      operationId: deleteApiKeyAcessList
+      operationId: deleteApiKeyAccessListEntry
       parameters:
         - $ref: "#/components/parameters/orgId"
         - description: Unique 24-hexadecimal digit string that identifies this
@@ -14492,8 +14492,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -14738,6 +14741,84 @@ components:
             tier.
           readOnly: true
       readOnly: true
+    ApiRoleAssignmentView:
+      type: object
+      description: MongoDB Cloud user's roles and the corresponding organization or
+        project to which that role applies. Each role can apply to one
+        organization or one project but not both.
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project to
+            which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter
+            or **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        roleName:
+          type: string
+          description: >+
+            Human-readable label that identifies the collection of privileges
+            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
+            MongoDB Cloud team. These roles include organization- and
+            project-level roles.
+
+
+            Organization Roles
+
+
+            * ORG_OWNER
+
+            * ORG_MEMBER
+
+            * ORG_GROUP_CREATOR
+
+            * ORG_BILLING_ADMIN
+
+            * ORG_READ_ONLY
+
+
+            Project Roles
+
+
+            * GROUP_CLUSTER_MANAGER
+
+            * GROUP_DATA_ACCESS_ADMIN
+
+            * GROUP_DATA_ACCESS_READ_ONLY
+
+            * GROUP_DATA_ACCESS_READ_WRITE
+
+            * GROUP_OWNER
+
+            * GROUP_READ_ONLY
+
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+            - ORG_OWNER
+            - ORG_MEMBER
+            - ORG_GROUP_CREATOR
+            - ORG_BILLING_ADMIN
+            - ORG_READ_ONLY
+            - GROUP_CLUSTER_MANAGER
+            - GROUP_DATA_ACCESS_ADMIN
+            - GROUP_DATA_ACCESS_READ_ONLY
+            - GROUP_DATA_ACCESS_READ_WRITE
+            - GROUP_OWNER
+            - GROUP_READ_ONLY
+            - GROUP_SEARCH_INDEX_EDITOR
+      title: Role Assignment
     ApiUserEventTypeViewForNdsGroup:
       type: string
       description: Unique identifier of event type.
@@ -15635,8 +15716,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16133,8 +16217,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16253,8 +16340,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16271,7 +16361,7 @@ components:
           readOnly: true
       required:
         - eventTypeName
-      title: Any Other Alerts
+      title: Any Other Alert Configurations
     DefaultAlertViewForNdsGroup:
       type: object
       description: Other alerts which don't have extra details beside of basic one.
@@ -16962,8 +17052,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -19682,8 +19775,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -20337,6 +20433,80 @@ components:
       oneOf:
         - $ref: "#/components/schemas/LessThanTimeThresholdAlertConfigViewForNdsGroup"
         - $ref: "#/components/schemas/GreaterThanRawThresholdAlertConfigViewForNdsGroup"
+    RoleAssignment:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project to
+            which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter
+            or **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        role:
+          type: string
+          description: >+
+            Human-readable label that identifies the collection of privileges
+            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
+            MongoDB Cloud team. These roles include organization- and
+            project-level roles.
+
+
+            Organization Roles
+
+
+            * ORG_OWNER
+
+            * ORG_MEMBER
+
+            * ORG_GROUP_CREATOR
+
+            * ORG_BILLING_ADMIN
+
+            * ORG_READ_ONLY
+
+
+            Project Roles
+
+
+            * GROUP_CLUSTER_MANAGER
+
+            * GROUP_DATA_ACCESS_ADMIN
+
+            * GROUP_DATA_ACCESS_READ_ONLY
+
+            * GROUP_DATA_ACCESS_READ_WRITE
+
+            * GROUP_OWNER
+
+            * GROUP_READ_ONLY
+
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+            - ORG_OWNER
+            - ORG_MEMBER
+            - ORG_GROUP_CREATOR
+            - ORG_BILLING_ADMIN
+            - ORG_READ_ONLY
+            - GROUP_CLUSTER_MANAGER
+            - GROUP_DATA_ACCESS_ADMIN
+            - GROUP_DATA_ACCESS_READ_ONLY
+            - GROUP_DATA_ACCESS_READ_WRITE
+            - GROUP_OWNER
+            - GROUP_READ_ONLY
+            - GROUP_SEARCH_INDEX_EDITOR
     ServerlessEventTypeViewAlertable:
       type: string
       description: Event type that triggers an alert.
@@ -20395,8 +20565,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         metricThreshold:
           $ref: "#/components/schemas/ServerlessMetricThreshold"
         notifications:
@@ -22321,8 +22494,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is always
+            empty.
           items:
-            $ref: "#/components/schemas/Matcher"
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -23306,6 +23482,7 @@ components:
               - GLOBAL_USER_READ_ONLY
               - GLOBAL_ACCOUNT_SUSPENSION_ADMIN
               - GLOBAL_BILLING_ADMIN
+              - GLOBAL_BILLING_READ_ONLY
               - GLOBAL_LEGAL_ADMIN
               - GLOBAL_FEATURE_FLAG_ADMIN
               - GLOBAL_APP_SETTING_ADMIN
@@ -25325,33 +25502,6 @@ components:
         - HOSTNAME_AND_PORT
         - REPLICA_SET_NAME
         - SHARD_NAME
-    Matcher:
-      type: object
-      description: Rules to apply when comparing an target instance against this alert
-        configuration.
-      properties:
-        fieldName:
-          type: string
-          description: Name of the parameter in the target object that MongoDB Cloud
-            checks. The parameter must match all rules for MongoDB Cloud to
-            check for alert configurations.
-        operator:
-          type: string
-          description: Comparison operator to apply when checking the current metric value
-            against **matcher[n].value**.
-          enum:
-            - EQUALS
-            - CONTAINS
-            - STARTS_WITH
-            - ENDS_WITH
-            - NOT_EQUALS
-            - NOT_CONTAINS
-            - REGEX
-        value:
-          type: string
-          description: Value to match or exceed using the specified **matchers.operator**.
-          example: event-replica-set
-      title: Matchers
     MicrosoftTeamsNotification:
       type: object
       description: Microsoft Teams notification configuration for MongoDB Cloud to
@@ -31811,84 +31961,6 @@ components:
           $ref: "#/components/schemas/BSONTimestamp"
       required:
         - delivery
-    RoleAssignment:
-      type: object
-      description: MongoDB Cloud user's roles and the corresponding organization or
-        project to which that role applies. Each role can apply to one
-        organization or one project but not both.
-      properties:
-        groupId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project to
-            which this role belongs. You can set a value for this parameter or
-            **orgId** but not both in the same request.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-        orgId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the organization
-            to which this role belongs. You can set a value for this parameter
-            or **groupId** but not both in the same request.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-        roleName:
-          type: string
-          description: >+
-            Human-readable label that identifies the collection of privileges
-            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
-            MongoDB Cloud team. These roles include organization- and
-            project-level roles.
-
-
-            Organization Roles
-
-
-            * ORG_OWNER
-
-            * ORG_MEMBER
-
-            * ORG_GROUP_CREATOR
-
-            * ORG_BILLING_ADMIN
-
-            * ORG_READ_ONLY
-
-
-            Project Roles
-
-
-            * GROUP_CLUSTER_MANAGER
-
-            * GROUP_DATA_ACCESS_ADMIN
-
-            * GROUP_DATA_ACCESS_READ_ONLY
-
-            * GROUP_DATA_ACCESS_READ_WRITE
-
-            * GROUP_OWNER
-
-            * GROUP_READ_ONLY
-
-            * GROUP_SEARCH_INDEX_EDITOR
-
-          enum:
-            - ORG_OWNER
-            - ORG_MEMBER
-            - ORG_GROUP_CREATOR
-            - ORG_BILLING_ADMIN
-            - ORG_READ_ONLY
-            - GROUP_CLUSTER_MANAGER
-            - GROUP_DATA_ACCESS_ADMIN
-            - GROUP_DATA_ACCESS_READ_ONLY
-            - GROUP_DATA_ACCESS_READ_WRITE
-            - GROUP_OWNER
-            - GROUP_READ_ONLY
-            - GROUP_SEARCH_INDEX_EDITOR
-      title: Role Assignment
     Slack:
       type: object
       description: Details to integrate one Slack account with one MongoDB Cloud project.
@@ -32593,9 +32665,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of read-only nodes for MongoDB Cloud to deploy to the
-            region. Read-only nodes can never become the primary, but can enable
-            local reads.
+          description: Number of nodes of the given type for MongoDB Cloud to deploy to
+            the region.
       title: AWS Cluster Hardware Settings
     AWSInterfaceEndpoint:
       type: object
@@ -33429,9 +33500,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of read-only nodes for MongoDB Cloud to deploy to the
-            region. Read-only nodes can never become the primary, but can enable
-            local reads.
+          description: Number of nodes of the given type for MongoDB Cloud to deploy to
+            the region.
     AzureKeyVault:
       type: object
       description: Details that define the configuration of Encryption at Rest using
@@ -34750,7 +34820,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys the
             cluster with the latest stable release of the specified version.
           enum:
@@ -34938,7 +35008,11 @@ components:
       properties:
         changeStatus:
           type: string
-          description: State of cluster at the time of this request.
+          description: State of cluster at the time of this request. Atlas returns
+            **Applied** if it completed adding a user to, or removing a user
+            from, your cluster. Atlas returns **Pending** if it's still making
+            the requested user changes. When status is **Pending**, new users
+            can't log in.
           enum:
             - PENDING
             - APPLIED
@@ -36195,9 +36269,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of read-only nodes for MongoDB Cloud to deploy to the
-            region. Read-only nodes can never become the primary, but can enable
-            local reads.
+          description: Number of nodes of the given type for MongoDB Cloud to deploy to
+            the region.
         diskIOPS:
           type: integer
           format: int32
@@ -37761,9 +37834,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of read-only nodes for MongoDB Cloud to deploy to the
-            region. Read-only nodes can never become the primary, but can enable
-            local reads.
+          description: Number of nodes of the given type for MongoDB Cloud to deploy to
+            the region.
     GCPPeerVpcRequest:
       type: object
       allOf:
@@ -38336,9 +38408,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of read-only nodes for MongoDB Cloud to deploy to the
-            region. Read-only nodes can never become the primary, but can enable
-            local reads.
+          description: Number of nodes of the given type for MongoDB Cloud to deploy to
+            the region.
     IngestionPipelineRun:
       type: object
       description: Run details of a Data Lake Pipeline.
@@ -38668,7 +38739,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys the
             cluster with the latest stable release of the specified version.
           enum:

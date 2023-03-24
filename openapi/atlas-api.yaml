@@ -6855,10 +6855,9 @@ paths:
         "200":
           content:
             application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: '#/components/schemas/ApiAtlasUserCertView'
               x-xgen-version: 2023-01-01
-          description: OK
+          description: This endpoint returns a PEM file with the certificate and private
+            key.
         "400":
           $ref: '#/components/responses/badRequest'
         "401":
@@ -12391,11 +12390,13 @@ paths:
       description: "Removes the specified access list entry from the specified organization\
         \ API key. Resources require all API requests originate from the IP addresses\
         \ on the API access list. To use this resource, the requesting API Key must\
-        \ have the Read Write role and an entry for the project access list."
+        \ have the Read Write role and an entry for it's access list. In addition,\
+        \ you cannot remove the requesting IP address from the requesting organization\
+        \ API key."
       externalDocs:
         description: Configure Atlas API Access
         url: https://docs.atlas.mongodb.com/configure-api-access/#std-label-enable-api-access-list
-      operationId: deleteApiKeyAcessList
+      operationId: deleteApiKeyAccessListEntry
       parameters:
       - $ref: '#/components/parameters/orgId'
       - description: Unique 24-hexadecimal digit string that identifies this organization
@@ -14408,8 +14409,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -14949,9 +14953,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: "Number of read-only nodes for MongoDB Cloud to deploy to the\
-            \ region. Read-only nodes can never become the primary, but can enable\
-            \ local reads."
+          description: Number of nodes of the given type for MongoDB Cloud to deploy
+            to the region.
       title: AWS Cluster Hardware Settings
     ApiAtlasAWSInterfaceEndpointView:
       type: object
@@ -15607,9 +15610,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: "Number of read-only nodes for MongoDB Cloud to deploy to the\
-            \ region. Read-only nodes can never become the primary, but can enable\
-            \ local reads."
+          description: Number of nodes of the given type for MongoDB Cloud to deploy
+            to the region.
     ApiAtlasAzureKeyVaultView:
       type: object
       description: Details that define the configuration of Encryption at Rest using
@@ -16777,7 +16779,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys
             the cluster with the latest stable release of the specified version.
           enum:
@@ -16961,7 +16963,10 @@ components:
       properties:
         changeStatus:
           type: string
-          description: State of cluster at the time of this request.
+          description: "State of cluster at the time of this request. Atlas returns\
+            \ **Applied** if it completed adding a user to, or removing a user from,\
+            \ your cluster. Atlas returns **Pending** if it's still making the requested\
+            \ user changes. When status is **Pending**, new users can't log in."
           enum:
           - PENDING
           - APPLIED
@@ -18161,9 +18166,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: "Number of read-only nodes for MongoDB Cloud to deploy to the\
-            \ region. Read-only nodes can never become the primary, but can enable\
-            \ local reads."
+          description: Number of nodes of the given type for MongoDB Cloud to deploy
+            to the region.
       x-xgen-go-transform: merge-oneOf
     ApiAtlasDiskBackupBaseRestoreMemberView:
       type: object
@@ -19843,9 +19847,8 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: "Number of read-only nodes for MongoDB Cloud to deploy to the\
-            \ region. Read-only nodes can never become the primary, but can enable\
-            \ local reads."
+          description: Number of nodes of the given type for MongoDB Cloud to deploy
+            to the region.
     ApiAtlasGCPPeerVpcRequestView:
       type: object
       allOf:
@@ -20590,7 +20593,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "5.0"
+          default: "6.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys
             the cluster with the latest stable release of the specified version.
           enum:
@@ -27856,8 +27859,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -28553,6 +28559,7 @@ components:
             - GLOBAL_USER_READ_ONLY
             - GLOBAL_ACCOUNT_SUSPENSION_ADMIN
             - GLOBAL_BILLING_ADMIN
+            - GLOBAL_BILLING_READ_ONLY
             - GLOBAL_LEGAL_ADMIN
             - GLOBAL_FEATURE_FLAG_ADMIN
             - GLOBAL_APP_SETTING_ADMIN
@@ -28667,8 +28674,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -29430,8 +29440,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -29447,7 +29460,7 @@ components:
           readOnly: true
       required:
       - eventTypeName
-      title: Any Other Alerts
+      title: Any Other Alert Configurations
     DefaultAlertViewForNdsGroup:
       type: object
       description: Other alerts which don't have extra details beside of basic one.
@@ -29729,7 +29742,7 @@ components:
             - CPS_DATA_PROTECTION_UPDATED
             - CPS_DATA_PROTECTION_DISABLE_REQUESTED
             - CPS_DATA_PROTECTION_DISABLED
-            title: Cps Backup Event Types
+            title: CPS Backup Compliance Policy Event Types
           - type: string
             enum:
             - CPS_RESTORE_REQUESTED_AUDIT
@@ -30300,8 +30313,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -30491,7 +30507,7 @@ components:
         - CPS_DATA_PROTECTION_UPDATED
         - CPS_DATA_PROTECTION_DISABLE_REQUESTED
         - CPS_DATA_PROTECTION_DISABLED
-        title: Cps Backup Event Types
+        title: CPS Backup Compliance Policy Event Types
       - type: string
         enum:
         - CPS_RESTORE_REQUESTED_AUDIT
@@ -33777,33 +33793,6 @@ components:
       - CONFIG
       example: STANDALONE
       title: Matcher Host Types
-    MatcherView:
-      type: object
-      description: Rules to apply when comparing an target instance against this alert
-        configuration.
-      properties:
-        fieldName:
-          type: string
-          description: Name of the parameter in the target object that MongoDB Cloud
-            checks. The parameter must match all rules for MongoDB Cloud to check
-            for alert configurations.
-        operator:
-          type: string
-          description: "Comparison operator to apply when checking the current metric\
-            \ value against **matcher[n].value**."
-          enum:
-          - EQUALS
-          - CONTAINS
-          - STARTS_WITH
-          - ENDS_WITH
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - REGEX
-        value:
-          type: string
-          description: Value to match or exceed using the specified **matchers.operator**.
-          example: event-replica-set
-      title: Matchers
     MicrosoftTeamsNotificationView:
       type: object
       description: Microsoft Teams notification configuration for MongoDB Cloud to
@@ -34740,8 +34729,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends notifications.
@@ -37653,6 +37645,63 @@ components:
       required:
       - eventTypeName
       title: Replica Set Threshold Alert Configuration
+    RoleAssignment:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project
+            to which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter or
+            **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+        role:
+          type: string
+          description: |+
+            Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include organization- and project-level roles.
+
+            Organization Roles
+
+            * ORG_OWNER
+            * ORG_MEMBER
+            * ORG_GROUP_CREATOR
+            * ORG_BILLING_ADMIN
+            * ORG_READ_ONLY
+
+            Project Roles
+
+            * GROUP_CLUSTER_MANAGER
+            * GROUP_DATA_ACCESS_ADMIN
+            * GROUP_DATA_ACCESS_READ_ONLY
+            * GROUP_DATA_ACCESS_READ_WRITE
+            * GROUP_OWNER
+            * GROUP_READ_ONLY
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+          - ORG_OWNER
+          - ORG_MEMBER
+          - ORG_GROUP_CREATOR
+          - ORG_BILLING_ADMIN
+          - ORG_READ_ONLY
+          - GROUP_CLUSTER_MANAGER
+          - GROUP_DATA_ACCESS_ADMIN
+          - GROUP_DATA_ACCESS_READ_ONLY
+          - GROUP_DATA_ACCESS_READ_WRITE
+          - GROUP_OWNER
+          - GROUP_READ_ONLY
+          - GROUP_SEARCH_INDEX_EDITOR
     RoleMappingView:
       type: object
       description: Mapping settings that link one IdP and MongoDB Cloud.
@@ -37677,7 +37726,7 @@ components:
           description: Atlas roles and the unique identifiers of the groups and organizations
             associated with each role.
           items:
-            $ref: '#/components/schemas/ApiRoleAssignmentView'
+            $ref: '#/components/schemas/RoleAssignment'
           uniqueItems: true
       required:
       - externalGroupName
@@ -37772,8 +37821,11 @@ components:
           readOnly: true
         matchers:
           type: array
+          description: No matchers are available for these alert types. The list is
+            always empty.
           items:
-            $ref: '#/components/schemas/MatcherView'
+            type: object
+          readOnly: true
         metricThreshold:
           $ref: '#/components/schemas/ServerlessMetricThresholdView'
         notifications:

@@ -246,7 +246,7 @@ Class | Method | HTTP request | Description
 *ProgrammaticAPIKeysApi* | [**CreateApiKeyAccessList**](docs/ProgrammaticAPIKeysApi.md#createapikeyaccesslist) | **Post** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList | Create Access List Entries for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**CreateProjectApiKey**](docs/ProgrammaticAPIKeysApi.md#createprojectapikey) | **Post** /api/atlas/v2/groups/{groupId}/apiKeys | Create and Assign One Organization API Key to One Project
 *ProgrammaticAPIKeysApi* | [**DeleteApiKey**](docs/ProgrammaticAPIKeysApi.md#deleteapikey) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId} | Remove One Organization API Key
-*ProgrammaticAPIKeysApi* | [**DeleteApiKeyAcessList**](docs/ProgrammaticAPIKeysApi.md#deleteapikeyacesslist) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Remove One Access List Entry for One Organization API Key
+*ProgrammaticAPIKeysApi* | [**DeleteApiKeyAccessListEntry**](docs/ProgrammaticAPIKeysApi.md#deleteapikeyaccesslistentry) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Remove One Access List Entry for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**GetApiKey**](docs/ProgrammaticAPIKeysApi.md#getapikey) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId} | Return One Organization API Key
 *ProgrammaticAPIKeysApi* | [**GetApiKeyAccessList**](docs/ProgrammaticAPIKeysApi.md#getapikeyaccesslist) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Return One Access List Entry for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**ListApiKeyAccessListsEntries**](docs/ProgrammaticAPIKeysApi.md#listapikeyaccesslistsentries) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList | Return All Access List Entries for One Organization API Key
@@ -348,6 +348,7 @@ Class | Method | HTTP request | Description
  - [AlertViewForNdsGroup](docs/AlertViewForNdsGroup.md)
  - [ApiAtlasPartitionFieldView](docs/ApiAtlasPartitionFieldView.md)
  - [ApiInstanceSizeView](docs/ApiInstanceSizeView.md)
+ - [ApiRoleAssignmentView](docs/ApiRoleAssignmentView.md)
  - [ApiUser](docs/ApiUser.md)
  - [ApiUserEventTypeViewForNdsGroup](docs/ApiUserEventTypeViewForNdsGroup.md)
  - [ApiUserEventTypeViewForOrg](docs/ApiUserEventTypeViewForOrg.md)
@@ -617,7 +618,6 @@ Class | Method | HTTP request | Description
  - [LiveMigrationResponse](docs/LiveMigrationResponse.md)
  - [ManagedNamespace](docs/ManagedNamespace.md)
  - [ManagedNamespaces](docs/ManagedNamespaces.md)
- - [Matcher](docs/Matcher.md)
  - [MatcherField](docs/MatcherField.md)
  - [MatcherHostType](docs/MatcherHostType.md)
  - [Measurement](docs/Measurement.md)
