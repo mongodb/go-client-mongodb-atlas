@@ -348,6 +348,7 @@ Class | Method | HTTP request | Description
  - [AlertViewForNdsGroup](docs/AlertViewForNdsGroup.md)
  - [ApiAtlasPartitionFieldView](docs/ApiAtlasPartitionFieldView.md)
  - [ApiInstanceSizeView](docs/ApiInstanceSizeView.md)
+ - [ApiRoleAssignmentView](docs/ApiRoleAssignmentView.md)
  - [ApiUser](docs/ApiUser.md)
  - [ApiUserEventTypeViewForNdsGroup](docs/ApiUserEventTypeViewForNdsGroup.md)
  - [ApiUserEventTypeViewForOrg](docs/ApiUserEventTypeViewForOrg.md)
