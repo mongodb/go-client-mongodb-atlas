@@ -37653,6 +37653,63 @@ components:
       required:
       - eventTypeName
       title: Replica Set Threshold Alert Configuration
+    RoleAssignment:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project
+            to which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter or
+            **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: "^([a-f0-9]{24})$"
+        role:
+          type: string
+          description: |+
+            Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include organization- and project-level roles.
+
+            Organization Roles
+
+            * ORG_OWNER
+            * ORG_MEMBER
+            * ORG_GROUP_CREATOR
+            * ORG_BILLING_ADMIN
+            * ORG_READ_ONLY
+
+            Project Roles
+
+            * GROUP_CLUSTER_MANAGER
+            * GROUP_DATA_ACCESS_ADMIN
+            * GROUP_DATA_ACCESS_READ_ONLY
+            * GROUP_DATA_ACCESS_READ_WRITE
+            * GROUP_OWNER
+            * GROUP_READ_ONLY
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+          - ORG_OWNER
+          - ORG_MEMBER
+          - ORG_GROUP_CREATOR
+          - ORG_BILLING_ADMIN
+          - ORG_READ_ONLY
+          - GROUP_CLUSTER_MANAGER
+          - GROUP_DATA_ACCESS_ADMIN
+          - GROUP_DATA_ACCESS_READ_ONLY
+          - GROUP_DATA_ACCESS_READ_WRITE
+          - GROUP_OWNER
+          - GROUP_READ_ONLY
+          - GROUP_SEARCH_INDEX_EDITOR
     RoleMappingView:
       type: object
       description: Mapping settings that link one IdP and MongoDB Cloud.
@@ -37677,7 +37734,7 @@ components:
           description: Atlas roles and the unique identifiers of the groups and organizations
             associated with each role.
           items:
-            $ref: '#/components/schemas/ApiRoleAssignmentView'
+            $ref: '#/components/schemas/RoleAssignment'
           uniqueItems: true
       required:
       - externalGroupName

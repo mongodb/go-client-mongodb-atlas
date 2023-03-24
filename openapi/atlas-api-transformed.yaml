@@ -14738,6 +14738,84 @@ components:
             tier.
           readOnly: true
       readOnly: true
+    ApiRoleAssignmentView:
+      type: object
+      description: MongoDB Cloud user's roles and the corresponding organization or
+        project to which that role applies. Each role can apply to one
+        organization or one project but not both.
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project to
+            which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter
+            or **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        roleName:
+          type: string
+          description: >+
+            Human-readable label that identifies the collection of privileges
+            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
+            MongoDB Cloud team. These roles include organization- and
+            project-level roles.
+
+
+            Organization Roles
+
+
+            * ORG_OWNER
+
+            * ORG_MEMBER
+
+            * ORG_GROUP_CREATOR
+
+            * ORG_BILLING_ADMIN
+
+            * ORG_READ_ONLY
+
+
+            Project Roles
+
+
+            * GROUP_CLUSTER_MANAGER
+
+            * GROUP_DATA_ACCESS_ADMIN
+
+            * GROUP_DATA_ACCESS_READ_ONLY
+
+            * GROUP_DATA_ACCESS_READ_WRITE
+
+            * GROUP_OWNER
+
+            * GROUP_READ_ONLY
+
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+            - ORG_OWNER
+            - ORG_MEMBER
+            - ORG_GROUP_CREATOR
+            - ORG_BILLING_ADMIN
+            - ORG_READ_ONLY
+            - GROUP_CLUSTER_MANAGER
+            - GROUP_DATA_ACCESS_ADMIN
+            - GROUP_DATA_ACCESS_READ_ONLY
+            - GROUP_DATA_ACCESS_READ_WRITE
+            - GROUP_OWNER
+            - GROUP_READ_ONLY
+            - GROUP_SEARCH_INDEX_EDITOR
+      title: Role Assignment
     ApiUserEventTypeViewForNdsGroup:
       type: string
       description: Unique identifier of event type.
@@ -20337,6 +20415,80 @@ components:
       oneOf:
         - $ref: "#/components/schemas/LessThanTimeThresholdAlertConfigViewForNdsGroup"
         - $ref: "#/components/schemas/GreaterThanRawThresholdAlertConfigViewForNdsGroup"
+    RoleAssignment:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the project to
+            which this role belongs. You can set a value for this parameter or
+            **orgId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        orgId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            to which this role belongs. You can set a value for this parameter
+            or **groupId** but not both in the same request.
+          example: 32b6e34b3d91647abb20e7b8
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+        role:
+          type: string
+          description: >+
+            Human-readable label that identifies the collection of privileges
+            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
+            MongoDB Cloud team. These roles include organization- and
+            project-level roles.
+
+
+            Organization Roles
+
+
+            * ORG_OWNER
+
+            * ORG_MEMBER
+
+            * ORG_GROUP_CREATOR
+
+            * ORG_BILLING_ADMIN
+
+            * ORG_READ_ONLY
+
+
+            Project Roles
+
+
+            * GROUP_CLUSTER_MANAGER
+
+            * GROUP_DATA_ACCESS_ADMIN
+
+            * GROUP_DATA_ACCESS_READ_ONLY
+
+            * GROUP_DATA_ACCESS_READ_WRITE
+
+            * GROUP_OWNER
+
+            * GROUP_READ_ONLY
+
+            * GROUP_SEARCH_INDEX_EDITOR
+
+          enum:
+            - ORG_OWNER
+            - ORG_MEMBER
+            - ORG_GROUP_CREATOR
+            - ORG_BILLING_ADMIN
+            - ORG_READ_ONLY
+            - GROUP_CLUSTER_MANAGER
+            - GROUP_DATA_ACCESS_ADMIN
+            - GROUP_DATA_ACCESS_READ_ONLY
+            - GROUP_DATA_ACCESS_READ_WRITE
+            - GROUP_OWNER
+            - GROUP_READ_ONLY
+            - GROUP_SEARCH_INDEX_EDITOR
     ServerlessEventTypeViewAlertable:
       type: string
       description: Event type that triggers an alert.
@@ -31811,84 +31963,6 @@ components:
           $ref: "#/components/schemas/BSONTimestamp"
       required:
         - delivery
-    RoleAssignment:
-      type: object
-      description: MongoDB Cloud user's roles and the corresponding organization or
-        project to which that role applies. Each role can apply to one
-        organization or one project but not both.
-      properties:
-        groupId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project to
-            which this role belongs. You can set a value for this parameter or
-            **orgId** but not both in the same request.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-        orgId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the organization
-            to which this role belongs. You can set a value for this parameter
-            or **groupId** but not both in the same request.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-        roleName:
-          type: string
-          description: >+
-            Human-readable label that identifies the collection of privileges
-            that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or
-            MongoDB Cloud team. These roles include organization- and
-            project-level roles.
-
-
-            Organization Roles
-
-
-            * ORG_OWNER
-
-            * ORG_MEMBER
-
-            * ORG_GROUP_CREATOR
-
-            * ORG_BILLING_ADMIN
-
-            * ORG_READ_ONLY
-
-
-            Project Roles
-
-
-            * GROUP_CLUSTER_MANAGER
-
-            * GROUP_DATA_ACCESS_ADMIN
-
-            * GROUP_DATA_ACCESS_READ_ONLY
-
-            * GROUP_DATA_ACCESS_READ_WRITE
-
-            * GROUP_OWNER
-
-            * GROUP_READ_ONLY
-
-            * GROUP_SEARCH_INDEX_EDITOR
-
-          enum:
-            - ORG_OWNER
-            - ORG_MEMBER
-            - ORG_GROUP_CREATOR
-            - ORG_BILLING_ADMIN
-            - ORG_READ_ONLY
-            - GROUP_CLUSTER_MANAGER
-            - GROUP_DATA_ACCESS_ADMIN
-            - GROUP_DATA_ACCESS_READ_ONLY
-            - GROUP_DATA_ACCESS_READ_WRITE
-            - GROUP_OWNER
-            - GROUP_READ_ONLY
-            - GROUP_SEARCH_INDEX_EDITOR
-      title: Role Assignment
     Slack:
       type: object
       description: Details to integrate one Slack account with one MongoDB Cloud project.
