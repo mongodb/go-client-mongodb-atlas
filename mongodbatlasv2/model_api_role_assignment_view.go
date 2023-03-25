@@ -140,14 +140,13 @@ func (o *ApiRoleAssignmentView) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
-func (o ApiRoleAssignmentView) MarshalJSON() ([]byte, error) {
+func (o ApiRoleAssignmentView) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-
 func (o ApiRoleAssignmentView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.GroupId) {

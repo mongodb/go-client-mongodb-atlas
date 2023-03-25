@@ -14398,6 +14398,9 @@ components:
             $ref: "#/components/schemas/Error"
       description: Method Not Allowed
     noBody:
+      content:
+        application/vnd.atlas.2023-01-01+json:
+          example: ""
       description: This endpoint does not return a response body.
     notFound:
       content:
@@ -14441,6 +14444,11 @@ components:
           schema:
             $ref: "#/components/schemas/Error"
       description: Unauthorized
+    nobody:
+      content:
+        application/vnd.atlas.2023-01-01+json:
+          example: ""
+      description: This endpoint does not return a response body
   schemas:
     AlertConfigViewForNdsGroup:
       type: object
