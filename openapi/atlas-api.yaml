@@ -14032,9 +14032,6 @@ components:
             $ref: '#/components/schemas/ApiError'
       description: Method Not Allowed
     noBody:
-      content:
-        application/vnd.atlas.2023-01-01+json:
-          example: ""
       description: This endpoint does not return a response body.
     notFound:
       content:
