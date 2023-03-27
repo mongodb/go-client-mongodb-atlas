@@ -11042,6 +11042,7 @@ paths:
       summary: Return All Serverless Instances from One Project
       tags:
       - Serverless Instances
+      x-xgen-paginated: "true"
     post:
       description: "Creates one serverless instance in the specified project. To use\
         \ this resource, the requesting API Key must have the Project Owner role.\

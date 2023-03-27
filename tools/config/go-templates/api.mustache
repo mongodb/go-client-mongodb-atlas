@@ -59,6 +59,16 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/stru
 {{/allParams}}
 }
 
+{{#vendorExtensions.x-xgen-paginated}}
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) ListOptions(listOptions *ListOptions) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request {
+	r.pageNum = &listOptions.PageNum
+	r.itemsPerPage = &listOptions.ItemsPerPage
+	r.includeCount = &listOptions.IncludeCount
+
+	return r
+}
+
+{{/vendorExtensions.x-xgen-paginated}}
 {{#allParams}}
 {{^isPathParam}}
 {{#description}}

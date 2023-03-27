@@ -589,6 +589,14 @@ type ServerlessInstancesApiListServerlessInstancesRequest struct {
 	pageNum *int32
 }
 
+func (r ServerlessInstancesApiListServerlessInstancesRequest) ListOptions(listOptions *ListOptions) ServerlessInstancesApiListServerlessInstancesRequest {
+	r.pageNum = &listOptions.PageNum
+	r.itemsPerPage = &listOptions.ItemsPerPage
+	r.includeCount = &listOptions.IncludeCount
+
+	return r
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ServerlessInstancesApiListServerlessInstancesRequest) IncludeCount(includeCount bool) ServerlessInstancesApiListServerlessInstancesRequest {
 	r.includeCount = &includeCount

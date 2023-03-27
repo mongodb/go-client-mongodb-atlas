@@ -91,3 +91,16 @@ func UseUserAgent(userAgent string) ClientModifier {
 		return nil
 	}
 }
+
+// ListOptions specifies the optional parameters to List methods that
+// support pagination.
+type ListOptions struct {
+	// For paginated result sets, page of results to retrieve.
+	PageNum int32 `url:"pageNum,omitempty"`
+
+	// For paginated result sets, the number of results to include per page.
+	ItemsPerPage int32 `url:"itemsPerPage,omitempty"`
+
+	// Flag that indicates whether Atlas returns the totalCount parameter in the response body.
+	IncludeCount bool `url:"includeCount,omitempty"`
+}
