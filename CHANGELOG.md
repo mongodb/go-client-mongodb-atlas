@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.24.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.24.0) (March 27, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.2...v0.24.0)
+
+**Merged pull requests:**
+
+- fix: add way to manually dispatch master branch [\#435](https://github.com/mongodb/go-client-mongodb-atlas/pull/435) ([wtrocki](https://github.com/wtrocki))
+- INTMDB-648: Add CollectionType support [\#432](https://github.com/mongodb/go-client-mongodb-atlas/pull/432) ([martinstibbe](https://github.com/martinstibbe))
+- Rename automation PR [\#431](https://github.com/mongodb/go-client-mongodb-atlas/pull/431) ([wtrocki](https://github.com/wtrocki))
+
 ## [v0.23.2](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.23.2) (March 23, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.1...v0.23.2)
