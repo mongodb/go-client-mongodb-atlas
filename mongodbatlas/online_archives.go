@@ -191,6 +191,7 @@ type OnlineArchive struct {
 	ID              string                 `json:"_id,omitempty"`
 	ClusterName     string                 `json:"clusterName,omitempty"`
 	CollName        string                 `json:"collName,omitempty"`
+	CollectionType  string                 `json:"collectionType,omitempty"`
 	Criteria        *OnlineArchiveCriteria `json:"criteria,omitempty"`
 	DBName          string                 `json:"dbName,omitempty"`
 	GroupID         string                 `json:"groupId,omitempty"`

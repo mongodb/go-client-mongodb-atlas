@@ -348,6 +348,106 @@ func TestOnlineArchiveServiceOp_Create(t *testing.T) {
 	}
 }
 
+func TestOnlineArchiveServiceOp_CreateTimeSeries(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "5e2211c17a3e5a48f5497de3"
+	clusterName := "myTestClstr"
+
+	createRequest := &OnlineArchive{
+		CollName:       "employees",
+		CollectionType: "TIMESERIES",
+		Criteria: &OnlineArchiveCriteria{
+			Type:            "DATE",
+			DateFormat:      "ISODATE",
+			DateField:       "created",
+			ExpireAfterDays: pointer(5.0),
+		},
+		DBName: "people",
+		PartitionFields: []*PartitionFields{
+			{
+				FieldName: "created",
+				FieldType: "date",
+				Order:     pointer(0.0),
+			},
+		},
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/onlineArchives", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"collName":       "employees",
+			"collectionType": "TIMESERIES",
+			"criteria": map[string]interface{}{
+				"type":            "DATE",
+				"dateFormat":      "ISODATE",
+				"dateField":       "created",
+				"expireAfterDays": float64(5),
+			},
+			"dbName": "people",
+			"partitionFields": []interface{}{
+				map[string]interface{}{
+					"fieldName": "created",
+					"fieldType": "date",
+					"order":     float64(0),
+				},
+			},
+		}
+
+		var v map[string]interface{}
+		if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Errorf("Clusters.Create Request Body = %v", diff)
+		}
+
+		jsonBlob := `{
+			"_id": "1",
+			"clusterName": "myTestClstr",
+			"collName":"employees",
+			"collectionType": "TIMESERIES",
+			"criteria": {
+                "dateField": "created",
+				"expireAfterDays": 5
+            },
+            "dbName": "people",
+			"groupId": "5e2211c17a3e5a48f5497de3",
+            "partitionFields": [{
+                "fieldName": "created",
+                "fieldType": "date",
+				"order": 0
+            }],
+			"paused": false
+		}`
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	archive, _, err := client.OnlineArchives.Create(ctx, groupID, clusterName, createRequest)
+	if err != nil {
+		t.Fatalf("OnlineArchives.Create returned error: %v", err)
+	}
+
+	const expectedDBName = "people"
+	if archive.DBName != expectedDBName {
+		t.Errorf("expected name '%s', received '%s'", expectedDBName, archive.DBName)
+	}
+
+	const expectedColName = "employees"
+	if archive.CollName != expectedColName {
+		t.Errorf("expected name '%s', received '%s'", expectedColName, archive.CollName)
+	}
+
+	const expectedCollectionType = "TIMESERIES"
+	if archive.CollectionType != expectedCollectionType {
+		t.Errorf("expected name '%s', received '%s'", expectedCollectionType, archive.CollectionType)
+	}
+
+	if id := archive.GroupID; id != groupID {
+		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
+	}
+}
+
 func TestOnlineArchiveServiceOp_Update(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
