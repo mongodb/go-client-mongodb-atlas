@@ -1755,6 +1755,27 @@ type OrganizationsApiListOrganizationUsersRequest struct {
 	ctx context.Context
 	ApiService OrganizationsApi
 	orgId string
+	includeCount *bool
+	itemsPerPage *int32
+	pageNum *int32
+}
+
+// Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
+func (r OrganizationsApiListOrganizationUsersRequest) IncludeCount(includeCount bool) OrganizationsApiListOrganizationUsersRequest {
+	r.includeCount = &includeCount
+	return r
+}
+
+// Number of items that the response returns per page.
+func (r OrganizationsApiListOrganizationUsersRequest) ItemsPerPage(itemsPerPage int32) OrganizationsApiListOrganizationUsersRequest {
+	r.itemsPerPage = &itemsPerPage
+	return r
+}
+
+// Number of the page that displays the current set of the total objects that the response returns.
+func (r OrganizationsApiListOrganizationUsersRequest) PageNum(pageNum int32) OrganizationsApiListOrganizationUsersRequest {
+	r.pageNum = &pageNum
+	return r
 }
 
 func (r OrganizationsApiListOrganizationUsersRequest) Execute() (*PaginatedAppUser, *http.Response, error) {
@@ -1806,6 +1827,15 @@ func (a *OrganizationsApiService) ListOrganizationUsersExecute(r OrganizationsAp
 		return localVarReturnValue, nil, reportError("orgId must have less than 24 elements")
 	}
 
+	if r.includeCount != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
+	}
+	if r.itemsPerPage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
+	}
+	if r.pageNum != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

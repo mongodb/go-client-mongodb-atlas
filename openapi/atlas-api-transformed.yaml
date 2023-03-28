@@ -13983,6 +13983,9 @@ paths:
       operationId: listOrganizationUsers
       parameters:
         - $ref: "#/components/parameters/orgId"
+        - $ref: "#/components/parameters/includeCount"
+        - $ref: "#/components/parameters/itemsPerPage"
+        - $ref: "#/components/parameters/pageNum"
       responses:
         "200":
           content:
