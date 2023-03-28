@@ -51,5 +51,10 @@ module.exports = function runTransformations(openapi) {
     description: "This endpoint does not return a response body",
   };
 
+  // Temp workaround for CLOUDP-168427
+  if (openapi.components.schemas.Error) {
+    openapi.components.schemas.Error.properties.parameters.items = {};
+  }
+
   return openapi;
 };
