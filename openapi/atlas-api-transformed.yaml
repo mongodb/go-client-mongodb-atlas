@@ -2288,69 +2288,6 @@ paths:
       summary: Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
       tags:
         - Cloud Backups
-  "/api/atlas/v2/groups/{groupId}/backupCompliancePolicy":
-    get:
-      description: Returns the Backup Compliance Policy settings with the specified
-        project. To use this resource, the requesting API Key must have the
-        Project Owner role. This resource doesn't require the API Key to have an
-        Access List.
-      operationId: getDataProtectionSettings
-      parameters:
-        - $ref: "#/components/parameters/groupId"
-      responses:
-        "200":
-          content:
-            application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: "#/components/schemas/DataProtectionSettings"
-              x-xgen-version: 2023-01-01
-          description: OK
-        "401":
-          $ref: "#/components/responses/unauthorized"
-        "404":
-          $ref: "#/components/responses/notFound"
-        "500":
-          $ref: "#/components/responses/internalServerError"
-      security:
-        - DigestAuth: []
-      summary: Return the Backup Compliance Policy settings
-      tags:
-        - Cloud Backups
-    put:
-      description: Updates the Backup Compliance Policy settings for the specified
-        project. To use this resource, the requesting API Key must have the
-        Project Owner role. This resource doesn't require the API Key to have an
-        Access List.
-      operationId: updateDataProtectionSettings
-      parameters:
-        - $ref: "#/components/parameters/groupId"
-      requestBody:
-        content:
-          application/vnd.atlas.2023-01-01+json:
-            schema:
-              $ref: "#/components/schemas/DataProtectionSettings"
-            x-xgen-version: 2023-01-01
-        description: The new Backup Compliance Policy settings.
-        required: true
-      responses:
-        "200":
-          content:
-            application/vnd.atlas.2023-01-01+json:
-              schema:
-                $ref: "#/components/schemas/DataProtectionSettings"
-              x-xgen-version: 2023-01-01
-          description: OK
-        "401":
-          $ref: "#/components/responses/unauthorized"
-        "404":
-          $ref: "#/components/responses/notFound"
-        "500":
-          $ref: "#/components/responses/internalServerError"
-      security:
-        - DigestAuth: []
-      summary: Update or enable the Backup Compliance Policy settings
-      tags:
-        - Cloud Backups
   "/api/atlas/v2/groups/{groupId}/cloudProviderAccess":
     get:
       description: Returns all Amazon Web Services (AWS) Identity and Access
@@ -2843,12 +2780,6 @@ paths:
             maxLength: 64
             minLength: 1
             pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]*$
-        - description: Flag that indicates whether to retain backup snapshots for the
-            deleted dedicated cluster.
-          in: query
-          name: retainBackups
-          schema:
-            type: boolean
       responses:
         "204":
           $ref: "#/components/responses/noBody"
@@ -31434,7 +31365,9 @@ components:
             - In a weekly policy item, `1` indicates that the weekly snapshot occurs on Monday and `7` indicates Sunday.
 
 
-            - In an hourly policy item, you can set the frequency interval to `1`, `2`, `4`, `6`, `8`, or `12`. For hourly policy items for NVMe clusters, MongoDB Cloud only accepts `12` as the frequency interval value.
+            - In an hourly policy item, you can set the frequency interval to `1`, `2`, `4`, `6`, `8`, or `12`. For hourly policy items for NVMe clusters, MongoDB Cloud accepts only `12` as the frequency interval value.
+
+             MongoDB Cloud ignores this setting for non-hourly policy items in Backup Compliance Policy settings.
           enum:
             - 1
             - 2
@@ -36049,80 +35982,6 @@ components:
           type: string
           description: Human-readable label that identifies the source collection for the
             view.
-    DataProtectionSettings:
-      type: object
-      properties:
-        authorizedEmail:
-          type: string
-          format: email
-          description: Email address of the user who authorized to updated the Backup
-            Compliance Policy  settings.
-          readOnly: true
-        copyProtectionEnabled:
-          type: boolean
-          description: Flag that indicates whether to enable additional backup copies for
-            the cluster.
-        encryptionAtRestEnabled:
-          type: boolean
-          description: Flag that indicates whether Encryption at Rest using Customer
-            Key  Management is required for all clusters with a Backup
-            Compliance Policy.
-          externalDocs:
-            description: Encryption at Rest using Customer Key Management
-            url: https://www.mongodb.com/docs/atlas/security-kms-encryption/
-        onDemandPolicyItem:
-          $ref: "#/components/schemas/PolicyItem"
-        pitEnabled:
-          type: boolean
-          description: Flag that indicates whether the cluster uses Continuous Cloud
-            Backups with a Backup Compliance Policy.
-          externalDocs:
-            description: Continuous Cloud Backups
-            url: https://docs.atlas.mongodb.com/backup/cloud-backup/overview/
-        projectId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the project for
-            the Backup Compliance Policy.
-          example: 32b6e34b3d91647abb20e7b8
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-        restoreWindowDays:
-          type: integer
-          format: int32
-          description: Number of previous days that you can restore back to with
-            Continuous Cloud Backup with a Backup Compliance Policy. You must
-            specify a positive, non-zero integer, and the maximum retention
-            window can't exceed the hourly retention time. This parameter
-            applies only to Continuous Cloud Backups with a Backup Compliance
-            Policy.
-        scheduledPolicyItems:
-          type: array
-          description: List that contains the specifications for one scheduled policy.
-          items:
-            $ref: "#/components/schemas/PolicyItem"
-        state:
-          type: string
-          description: Label that indicates the state of the Backup Compliance Policy
-            settings.
-          enum:
-            - ACTIVE
-            - ENABLING
-            - UPDATING
-            - DISABLING
-          readOnly: true
-        updatedDate:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp format in UTC that indicates when the user
-            updated the Data Protection Policy settings.
-          readOnly: true
-        updatedUser:
-          type: string
-          format: email
-          description: Email address that identifies the user who updated the Backup
-            Compliance Policy settings.
-          readOnly: true
     DatabaseUser:
       type: object
       properties:
