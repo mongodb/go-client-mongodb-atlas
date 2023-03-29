@@ -40,7 +40,6 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**GetBackupExportJob**](docs/CloudBackupsApi.md#getbackupexportjob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/exports/{exportId} | Return One Cloud Backup Snapshot Export Job
 *CloudBackupsApi* | [**GetBackupRestoreJob**](docs/CloudBackupsApi.md#getbackuprestorejob) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/restoreJobs/{restoreJobId} | Return One Restore Job of One Cluster
 *CloudBackupsApi* | [**GetBackupSchedule**](docs/CloudBackupsApi.md#getbackupschedule) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Return One Cloud Backup Schedule
-*CloudBackupsApi* | [**GetDataProtectionSettings**](docs/CloudBackupsApi.md#getdataprotectionsettings) | **Get** /api/atlas/v2/groups/{groupId}/backupCompliancePolicy | Return the Backup Compliance Policy settings
 *CloudBackupsApi* | [**GetExportBucket**](docs/CloudBackupsApi.md#getexportbucket) | **Get** /api/atlas/v2/groups/{groupId}/backup/exportBuckets/{exportBucketId} | Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
 *CloudBackupsApi* | [**GetReplicaSetBackup**](docs/CloudBackupsApi.md#getreplicasetbackup) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Return One Replica Set Cloud Backup
 *CloudBackupsApi* | [**GetServerlessBackup**](docs/CloudBackupsApi.md#getserverlessbackup) | **Get** /api/atlas/v2/groups/{groupId}/serverless/{clusterName}/backup/snapshots/{snapshotId} | Return One Snapshot of One Serverless Instance
@@ -55,7 +54,6 @@ Class | Method | HTTP request | Description
 *CloudBackupsApi* | [**ListShardedClusterBackups**](docs/CloudBackupsApi.md#listshardedclusterbackups) | **Get** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/shardedClusters | Return All Sharded Cluster Cloud Backups
 *CloudBackupsApi* | [**TakeSnapshot**](docs/CloudBackupsApi.md#takesnapshot) | **Post** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots | Take One On-Demand Snapshot
 *CloudBackupsApi* | [**UpdateBackupSchedule**](docs/CloudBackupsApi.md#updatebackupschedule) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/schedule | Update Cloud Backup Schedule for One Cluster
-*CloudBackupsApi* | [**UpdateDataProtectionSettings**](docs/CloudBackupsApi.md#updatedataprotectionsettings) | **Put** /api/atlas/v2/groups/{groupId}/backupCompliancePolicy | Update or enable the Backup Compliance Policy settings
 *CloudBackupsApi* | [**UpdateSnapshotRetention**](docs/CloudBackupsApi.md#updatesnapshotretention) | **Patch** /api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/snapshots/{snapshotId} | Change Expiration Date for One Cloud Backup
 *CloudMigrationServiceApi* | [**CreateLinkToken**](docs/CloudMigrationServiceApi.md#createlinktoken) | **Post** /api/atlas/v2/orgs/{orgId}/liveMigrations/linkTokens | Create One Link-Token
 *CloudMigrationServiceApi* | [**CreatePushMigration**](docs/CloudMigrationServiceApi.md#createpushmigration) | **Post** /api/atlas/v2/groups/{groupId}/liveMigrations | Migrate One Local Managed Cluster to MongoDB Atlas
@@ -485,7 +483,6 @@ Class | Method | HTTP request | Description
  - [DataMetricThreshold](docs/DataMetricThreshold.md)
  - [DataMetricUnits](docs/DataMetricUnits.md)
  - [DataMetricValue](docs/DataMetricValue.md)
- - [DataProtectionSettings](docs/DataProtectionSettings.md)
  - [Database](docs/Database.md)
  - [DatabaseUser](docs/DatabaseUser.md)
  - [Datadog](docs/Datadog.md)
