@@ -642,10 +642,10 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 
 	if r.db != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "db", r.db, "")
-	}
+		}
 	if r.collection != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "collection", r.collection, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

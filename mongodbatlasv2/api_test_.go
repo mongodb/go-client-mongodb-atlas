@@ -92,6 +92,9 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 
 	if r.additionalInfo != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "additionalInfo", r.additionalInfo, "")
+	} else {
+		var defaultValue bool = false
+		r.additionalInfo = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

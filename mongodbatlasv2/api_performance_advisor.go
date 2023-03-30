@@ -452,7 +452,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-	}
+		}
 	if r.namespaces != nil {
 		t := *r.namespaces
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -463,13 +463,16 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "namespaces", t, "multi")
 		}
-	}
+		}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
+	} else {
+		var defaultValue int64 = 20000
+		r.nLogs = &defaultValue
 	}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -620,10 +623,10 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r Performa
 
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-	}
+		}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -816,16 +819,25 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
+	} else {
+		var defaultValue bool = true
+		r.includeCount = &defaultValue
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
+	} else {
+		var defaultValue int32 = 100
+		r.itemsPerPage = &defaultValue
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
+	} else {
+		var defaultValue int32 = 1
+		r.pageNum = &defaultValue
 	}
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-	}
+		}
 	if r.namespaces != nil {
 		t := *r.namespaces
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -836,16 +848,19 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "namespaces", t, "multi")
 		}
-	}
+		}
 	if r.nExamples != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nExamples", r.nExamples, "")
+	} else {
+		var defaultValue int64 = 5
+		r.nExamples = &defaultValue
 	}
 	if r.nIndexes != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nIndexes", r.nIndexes, "")
-	}
+		}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

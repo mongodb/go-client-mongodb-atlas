@@ -161,19 +161,22 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 
 	if r.authResult != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "authResult", r.authResult, "")
-	}
+		}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
+		}
 	if r.ipAddress != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "")
-	}
+		}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
+	} else {
+		var defaultValue int64 = 20000
+		r.nLogs = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -356,19 +359,22 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 
 	if r.authResult != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "authResult", r.authResult, "")
-	}
+		}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
+		}
 	if r.ipAddress != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "")
-	}
+		}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
+	} else {
+		var defaultValue int32 = 20000
+		r.nLogs = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

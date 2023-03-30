@@ -174,6 +174,9 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
+	} else {
+		var defaultValue bool = false
+		r.includeRaw = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -337,6 +340,9 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
+	} else {
+		var defaultValue bool = false
+		r.includeRaw = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -532,25 +538,37 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
+	} else {
+		var defaultValue bool = true
+		r.includeCount = &defaultValue
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
+	} else {
+		var defaultValue int32 = 100
+		r.itemsPerPage = &defaultValue
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
+	} else {
+		var defaultValue int32 = 1
+		r.pageNum = &defaultValue
 	}
 	if r.eventType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "eventType", r.eventType, "")
-	}
+		}
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
+	} else {
+		var defaultValue bool = false
+		r.includeRaw = &defaultValue
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
-	}
+		}
 	if r.minDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "minDate", r.minDate, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -741,12 +759,21 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 
 	if r.includeCount != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
+	} else {
+		var defaultValue bool = true
+		r.includeCount = &defaultValue
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
+	} else {
+		var defaultValue int32 = 100
+		r.itemsPerPage = &defaultValue
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
+	} else {
+		var defaultValue int32 = 1
+		r.pageNum = &defaultValue
 	}
 	if r.clusterNames != nil {
 		t := *r.clusterNames
@@ -758,19 +785,22 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "clusterNames", t, "multi")
 		}
-	}
+		}
 	if r.eventType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "eventType", r.eventType, "")
-	}
+		}
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
+	} else {
+		var defaultValue bool = false
+		r.includeRaw = &defaultValue
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
-	}
+		}
 	if r.minDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "minDate", r.minDate, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -474,6 +474,9 @@ func (a *DataFederationApiService) CreateFederatedDatabaseExecute(r DataFederati
 
 	if r.skipRoleValidation != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skipRoleValidation", r.skipRoleValidation, "")
+	} else {
+		var defaultValue bool = false
+		r.skipRoleValidation = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
@@ -1189,10 +1192,10 @@ func (a *DataFederationApiService) DownloadFederatedDatabaseQueryLogsExecute(r D
 
 	if r.endDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
-	}
+		}
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
-	}
+		}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1846,6 +1849,9 @@ func (a *DataFederationApiService) ListFederatedDatabasesExecute(r DataFederatio
 
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	} else {
+		var defaultValue string = "USER"
+		r.type_ = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
