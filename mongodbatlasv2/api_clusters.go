@@ -723,10 +723,10 @@ func (a *ClustersApiService) ListCloudProviderRegionsExecute(r ClustersApiListCl
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "providers", t, "multi")
 		}
-		}
+	}
 	if r.tier != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "tier", r.tier, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

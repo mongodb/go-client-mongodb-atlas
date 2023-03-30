@@ -219,8 +219,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 	{{#defaultValue}}} else {
 		var defaultValue {{{dataType}}} = {{{.}}}
 		r.{{paramName}} = &defaultValue
-	{{/defaultValue}}
-	}
+	{{/defaultValue}}}
 	{{/required}}
 	{{/queryParams}}
 	// to determine the Content-Type header

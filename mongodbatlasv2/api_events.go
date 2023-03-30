@@ -556,7 +556,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	}
 	if r.eventType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "eventType", r.eventType, "")
-		}
+	}
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	} else {
@@ -565,10 +565,10 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
-		}
+	}
 	if r.minDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "minDate", r.minDate, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -785,10 +785,10 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "clusterNames", t, "multi")
 		}
-		}
+	}
 	if r.eventType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "eventType", r.eventType, "")
-		}
+	}
 	if r.includeRaw != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	} else {
@@ -797,10 +797,10 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
-		}
+	}
 	if r.minDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "minDate", r.minDate, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

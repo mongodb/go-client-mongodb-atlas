@@ -531,7 +531,7 @@ func (a *AlertsApiService) ListAlertsExecute(r AlertsApiListAlertsRequest) (*Pag
 	}
 	if r.status != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

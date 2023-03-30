@@ -1306,7 +1306,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 	}
 	if r.batchId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "batchId", r.batchId, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

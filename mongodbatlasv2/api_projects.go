@@ -391,7 +391,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 
 	if r.projectOwnerId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "projectOwnerId", r.projectOwnerId, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/vnd.atlas.2023-01-01+json"}
 
@@ -1897,7 +1897,7 @@ func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProj
 
 	if r.username != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -1454,7 +1454,7 @@ func (a *OrganizationsApiService) ListOrganizationInvitationsExecute(r Organizat
 
 	if r.username != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1662,7 +1662,7 @@ func (a *OrganizationsApiService) ListOrganizationProjectsExecute(r Organization
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2044,7 +2044,7 @@ func (a *OrganizationsApiService) ListOrganizationsExecute(r OrganizationsApiLis
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

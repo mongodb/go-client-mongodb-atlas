@@ -452,7 +452,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-		}
+	}
 	if r.namespaces != nil {
 		t := *r.namespaces
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -463,7 +463,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "namespaces", t, "multi")
 		}
-		}
+	}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	} else {
@@ -472,7 +472,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 	}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -623,10 +623,10 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r Performa
 
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-		}
+	}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -837,7 +837,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 	}
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
-		}
+	}
 	if r.namespaces != nil {
 		t := *r.namespaces
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -848,7 +848,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "namespaces", t, "multi")
 		}
-		}
+	}
 	if r.nExamples != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nExamples", r.nExamples, "")
 	} else {
@@ -857,10 +857,10 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 	}
 	if r.nIndexes != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nIndexes", r.nIndexes, "")
-		}
+	}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

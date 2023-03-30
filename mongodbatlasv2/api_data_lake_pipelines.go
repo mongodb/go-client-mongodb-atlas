@@ -1112,7 +1112,7 @@ func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r DataLakePipeline
 	}
 	if r.createdBefore != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "createdBefore", r.createdBefore, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1463,7 +1463,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r DataLakePip
 	}
 	if r.completedAfter != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "completedAfter", r.completedAfter, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

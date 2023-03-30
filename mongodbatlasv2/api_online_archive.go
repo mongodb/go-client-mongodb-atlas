@@ -548,10 +548,10 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
-		}
+	}
 	if r.endDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
-		}
+	}
 	if r.archiveOnly != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "archiveOnly", r.archiveOnly, "")
 	} else {

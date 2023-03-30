@@ -1192,10 +1192,10 @@ func (a *DataFederationApiService) DownloadFederatedDatabaseQueryLogsExecute(r D
 
 	if r.endDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
-		}
+	}
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
-		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
