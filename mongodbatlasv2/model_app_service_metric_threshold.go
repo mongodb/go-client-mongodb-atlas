@@ -306,6 +306,18 @@ func (dst *AppServiceMetricThreshold) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'REALM_SYNC_CLIENT_CHANGESETS_INVALID'
+	if jsonDict["metricName"] == "REALM_SYNC_CLIENT_CHANGESETS_INVALID" {
+		// try to unmarshal JSON data into DataMetricThreshold
+		err = json.Unmarshal(data, &dst.DataMetricThreshold)
+		if err == nil {
+			return nil // data stored in dst.DataMetricThreshold, return on the first match
+		} else {
+			dst.DataMetricThreshold = nil
+			return fmt.Errorf("failed to unmarshal AppServiceMetricThreshold as DataMetricThreshold: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'REALM_SYNC_CLIENT_UPLOADS_FAILED'
 	if jsonDict["metricName"] == "REALM_SYNC_CLIENT_UPLOADS_FAILED" {
 		// try to unmarshal JSON data into DataMetricThreshold
