@@ -23162,7 +23162,9 @@ components:
           example: TOO_MANY_GROUP_NOTIFICATIONS
         parameters:
           type: array
-          description: Parameter uses to give more information about the error.
+          items:
+            type: object
+            description: Parameter uses to give more information about the error.
         reason:
           type: string
           description: Application error message returned with this error.
