@@ -170,6 +170,9 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 	}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
+	} else {
+		var defaultValue int64 = 20000
+		r.nLogs = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
@@ -365,6 +368,9 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 	}
 	if r.nLogs != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
+	} else {
+		var defaultValue int32 = 20000
+		r.nLogs = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")

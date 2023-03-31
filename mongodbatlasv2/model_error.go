@@ -24,6 +24,7 @@ type Error struct {
 	Error *int32 `json:"error,omitempty"`
 	// Application error code returned with this error.
 	ErrorCode *string `json:"errorCode,omitempty"`
+	// Parameter uses to give more information about the error.
 	Parameters []interface{} `json:"parameters,omitempty"`
 	// Application error message returned with this error.
 	Reason *string `json:"reason,omitempty"`

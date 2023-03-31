@@ -21769,6 +21769,7 @@ components:
           example: TOO_MANY_GROUP_NOTIFICATIONS
         parameters:
           type: array
+          description: Parameter uses to give more information about the error.
           items: {}
         reason:
           type: string
