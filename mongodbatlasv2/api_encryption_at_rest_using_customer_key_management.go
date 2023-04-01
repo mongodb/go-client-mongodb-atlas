@@ -23,7 +23,7 @@ import (
 type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	/*
-	GetEncryptionAtRest Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
+	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
 	Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role.
 
@@ -31,13 +31,13 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+	@return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 	*/
-	GetEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 
-	// GetEncryptionAtRestExecute executes the request
+	// ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute executes the request
 	//  @return EncryptionAtRest
-	GetEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error)
+	ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) (*EncryptionAtRest, *http.Response, error)
 
 	/*
 	UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
@@ -60,18 +60,18 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 // EncryptionAtRestUsingCustomerKeyManagementApiService EncryptionAtRestUsingCustomerKeyManagementApi service
 type EncryptionAtRestUsingCustomerKeyManagementApiService service
 
-type EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest struct {
+type EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest struct {
 	ctx context.Context
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
 }
 
-func (r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
-	return r.ApiService.GetEncryptionAtRestExecute(r)
+func (r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
+	return r.ApiService.ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r)
 }
 
 /*
-GetEncryptionAtRest Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
+ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
 Returns the configuration for encryption at rest using the keys you manage through your cloud provider. MongoDB Cloud encrypts all storage even if you don't use your own key management. This resource requires the requesting API Key to have the Project Owner role.
 
@@ -79,10 +79,10 @@ Returns the configuration for encryption at rest using the keys you manage throu
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+ @return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest
 */
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest {
-	return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest{
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest {
+	return EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -91,7 +91,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRe
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectExecute(r EncryptionAtRestUsingCustomerKeyManagementApiReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProjectRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -99,7 +99,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRe
 		localVarReturnValue  *EncryptionAtRest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EncryptionAtRestUsingCustomerKeyManagementApiService.GetEncryptionAtRest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EncryptionAtRestUsingCustomerKeyManagementApiService.ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

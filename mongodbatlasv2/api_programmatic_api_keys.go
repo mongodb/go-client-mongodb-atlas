@@ -100,20 +100,20 @@ type ProgrammaticAPIKeysApi interface {
 	DeleteApiKeyExecute(r ProgrammaticAPIKeysApiDeleteApiKeyRequest) (*http.Response, error)
 
 	/*
-	DeleteApiKeyAccessListEntry Remove One Access List Entry for One Organization API Key
+	DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
 
-	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for it's access list. In addition, you cannot remove the requesting IP address from the requesting organization API key.
+	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
 	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
-	@return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
+	@return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 	*/
-	DeleteApiKeyAccessListEntry(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
+	DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 
-	// DeleteApiKeyAccessListEntryExecute executes the request
-	DeleteApiKeyAccessListEntryExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) (*http.Response, error)
+	// DeleteApiKeyAcessListExecute executes the request
+	DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error)
 
 	/*
 	GetApiKey Return One Organization API Key
@@ -1023,7 +1023,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKey
 	return localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -1031,23 +1031,23 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	ipAddress string
 }
 
-func (r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteApiKeyAccessListEntryExecute(r)
+func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteApiKeyAcessListExecute(r)
 }
 
 /*
-DeleteApiKeyAccessListEntry Remove One Access List Entry for One Organization API Key
+DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
 
-Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for it's access list. In addition, you cannot remove the requesting IP address from the requesting organization API key.
+Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
  @param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
- @return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
+ @return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
 */
-func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAccessListEntry(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest {
-	return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest{
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
+	return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1057,14 +1057,14 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAccessListEntry(ctx context.
 }
 
 // Execute executes the request
-func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAccessListEntryExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) (*http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKeyAccessListEntry")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKeyAcessList")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

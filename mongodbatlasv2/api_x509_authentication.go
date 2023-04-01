@@ -39,7 +39,8 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 	CreateDatabaseUserCertificate(ctx context.Context, groupId string, username string) X509AuthenticationApiCreateDatabaseUserCertificateRequest
 
 	// CreateDatabaseUserCertificateExecute executes the request
-	CreateDatabaseUserCertificateExecute(r X509AuthenticationApiCreateDatabaseUserCertificateRequest) (*http.Response, error)
+	//  @return UserCert
+	CreateDatabaseUserCertificateExecute(r X509AuthenticationApiCreateDatabaseUserCertificateRequest) (*UserCert, *http.Response, error)
 
 	/*
 	DisableCustomerManagedX509 Disable Customer-Managed X.509
@@ -92,7 +93,7 @@ func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) UserCert(user
 	return r
 }
 
-func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) Execute() (*http.Response, error) {
+func (r X509AuthenticationApiCreateDatabaseUserCertificateRequest) Execute() (*UserCert, *http.Response, error) {
 	return r.ApiService.CreateDatabaseUserCertificateExecute(r)
 }
 
@@ -120,16 +121,18 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificate(ctx context
 }
 
 // Execute executes the request
-func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X509AuthenticationApiCreateDatabaseUserCertificateRequest) (*http.Response, error) {
+//  @return UserCert
+func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X509AuthenticationApiCreateDatabaseUserCertificateRequest) (*UserCert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *UserCert
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "X509AuthenticationApiService.CreateDatabaseUserCertificate")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/atlas/v2/groups/{groupId}/databaseUsers/{username}/certs"
@@ -140,13 +143,13 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.groupId) < 24 {
-		return nil, reportError("groupId must have at least 24 elements")
+		return localVarReturnValue, nil, reportError("groupId must have at least 24 elements")
 	}
 	if strlen(r.groupId) > 24 {
-		return nil, reportError("groupId must have less than 24 elements")
+		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
 	if r.userCert == nil {
-		return nil, reportError("userCert is required and must be specified")
+		return localVarReturnValue, nil, reportError("userCert is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -170,19 +173,19 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 	localVarPostBody = r.userCert
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -195,70 +198,79 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r X5
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type X509AuthenticationApiDisableCustomerManagedX509Request struct {

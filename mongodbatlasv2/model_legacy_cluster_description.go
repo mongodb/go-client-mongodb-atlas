@@ -88,7 +88,7 @@ type LegacyClusterDescription struct {
 // will change when the set of required properties is changed
 func NewLegacyClusterDescription() *LegacyClusterDescription {
 	this := LegacyClusterDescription{}
-	var mongoDBMajorVersion string = "6.0"
+	var mongoDBMajorVersion string = "5.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var numShards int32 = 1
 	this.NumShards = &numShards
@@ -108,7 +108,7 @@ func NewLegacyClusterDescription() *LegacyClusterDescription {
 // but it doesn't guarantee that properties required by API are set
 func NewLegacyClusterDescriptionWithDefaults() *LegacyClusterDescription {
 	this := LegacyClusterDescription{}
-	var mongoDBMajorVersion string = "6.0"
+	var mongoDBMajorVersion string = "5.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var numShards int32 = 1
 	this.NumShards = &numShards

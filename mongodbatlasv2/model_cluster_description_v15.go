@@ -70,7 +70,7 @@ func NewClusterDescriptionV15() *ClusterDescriptionV15 {
 	this := ClusterDescriptionV15{}
 	var backupEnabled bool = false
 	this.BackupEnabled = &backupEnabled
-	var mongoDBMajorVersion string = "6.0"
+	var mongoDBMajorVersion string = "5.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var rootCertType string = "ISRGROOTX1"
 	this.RootCertType = &rootCertType
@@ -88,7 +88,7 @@ func NewClusterDescriptionV15WithDefaults() *ClusterDescriptionV15 {
 	this := ClusterDescriptionV15{}
 	var backupEnabled bool = false
 	this.BackupEnabled = &backupEnabled
-	var mongoDBMajorVersion string = "6.0"
+	var mongoDBMajorVersion string = "5.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var rootCertType string = "ISRGROOTX1"
 	this.RootCertType = &rootCertType

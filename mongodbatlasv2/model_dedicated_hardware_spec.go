@@ -19,7 +19,7 @@ var _ MappedNullable = &DedicatedHardwareSpec{}
 
 // DedicatedHardwareSpec Hardware specifications for read-only nodes in the region. Read-only nodes can never become the primary member, but can enable local reads.If you don't specify this parameter, no read-only nodes are deployed to the region.
 type DedicatedHardwareSpec struct {
-	// Number of nodes of the given type for MongoDB Cloud to deploy to the region.
+	// Number of read-only nodes for MongoDB Cloud to deploy to the region. Read-only nodes can never become the primary, but can enable local reads.
 	NodeCount *int32 `json:"nodeCount,omitempty"`
 	// Target throughput desired for storage attached to your AWS-provisioned cluster. Change this parameter only if you:  - set `\"replicationSpecs[n].regionConfigs[m].providerName\" : \"AWS\"`. - set `\"replicationSpecs[n].regionConfigs[m].electableSpecs.instanceSize\" : \"M30\"` or greater not including `Mxx_NVME` tiers.  The maximum input/output operations per second (IOPS) depend on the selected **.instanceSize** and **.diskSizeGB**. This parameter defaults to the cluster tier's standard IOPS value. Changing this value impacts cluster cost. MongoDB Cloud enforces minimum ratios of storage capacity to system memory for given cluster tiers. This keeps cluster performance consistent with large datasets.  - Instance sizes `M10` to `M40` have a ratio of disk capacity to system memory of 60:1. - Instance sizes greater than `M40` have a ratio of 120:1.
 	DiskIOPS *int32 `json:"diskIOPS,omitempty"`
