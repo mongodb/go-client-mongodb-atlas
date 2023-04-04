@@ -2,6 +2,8 @@ name: Generate Client Master
 on:
  schedule:
    - cron: '30 8 * * *'
+ workflow_dispatch:
+  
  
 jobs:
   generate-client:

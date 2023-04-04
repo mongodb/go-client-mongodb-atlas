@@ -30,7 +30,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         with:
-          title: "OpenAPI client update based on OpenAPI file"
+          title: "Test OpenAPI client update"
           commit-message: "openapi client update"
           delete-branch: true
           draft: true

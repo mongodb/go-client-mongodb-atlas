@@ -67,6 +67,7 @@ func TestClusters_ListClusters(t *testing.T) {
 						   }
 						  ],
 						  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+						  "srvShardOptimizedConnectionString": "mongodb+srv://cluster0-pl-0-auylw-lb.mongodb.net",
 						  "type": "MONGOD"
 						 }
 						]
@@ -142,6 +143,7 @@ func TestClusters_ListClusters(t *testing.T) {
 						   }
 						  ],
 						  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+						  "srvShardOptimizedConnectionString": "mongodb+srv://cluster0-pl-0-auylw-lb.mongodb.net",
 						  "type": "MONGOD"
 						 }
 						]
@@ -211,9 +213,10 @@ func TestClusters_ListClusters(t *testing.T) {
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
 			PrivateEndpoint: []PrivateEndpoint{
 				{
-					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
-					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
-					Type:                "MONGOD",
+					ConnectionString:                  "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString:               "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					SRVShardOptimizedConnectionString: "mongodb+srv://cluster0-pl-0-auylw-lb.mongodb.net",
+					Type:                              "MONGOD",
 					Endpoints: []Endpoint{
 						{
 							EndpointID:   "vpce-0d00c26273372c6ef",
@@ -886,6 +889,7 @@ func TestClusters_Get(t *testing.T) {
 				   }
 				  ],
 				  "srvConnectionString": "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+				  "srvShardOptimizedConnectionString": "mongodb+srv://cluster0-pl-0-auylw-lb.mongodb.net",
 				  "type": "MONGOD"
 				 }
 				]
@@ -943,9 +947,10 @@ func TestClusters_Get(t *testing.T) {
 			PrivateSrv:        "mongodb+srv://cluster0-pri.auylw.mongodb.net",
 			PrivateEndpoint: []PrivateEndpoint{
 				{
-					ConnectionString:    "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
-					SRVConnectionString: "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
-					Type:                "MONGOD",
+					ConnectionString:                  "mongodb://pl-0-us-east-1-auylw.mongodb.net:1024,pl-0-us-east-1-auylw.mongodb.net:1025,pl-0-us-east-1-auylw.mongodb.net:1026/?ssl=true&authSource=admin&replicaSet=Cluster0-shard-0-shard-0",
+					SRVConnectionString:               "mongodb+srv://cluster0-pl-0-auylw.mongodb.net",
+					SRVShardOptimizedConnectionString: "mongodb+srv://cluster0-pl-0-auylw-lb.mongodb.net",
+					Type:                              "MONGOD",
 					Endpoints: []Endpoint{
 						{
 							EndpointID:   "vpce-0d00c26273372c6ef",
