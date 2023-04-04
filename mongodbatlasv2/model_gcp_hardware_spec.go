@@ -21,7 +21,7 @@ var _ MappedNullable = &GCPHardwareSpec{}
 type GCPHardwareSpec struct {
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize *string `json:"instanceSize,omitempty"`
-	// Number of nodes of the given type for MongoDB Cloud to deploy to the region.
+	// Number of read-only nodes for MongoDB Cloud to deploy to the region. Read-only nodes can never become the primary, but can enable local reads.
 	NodeCount *int32 `json:"nodeCount,omitempty"`
 }
 

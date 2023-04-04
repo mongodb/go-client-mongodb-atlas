@@ -31,8 +31,7 @@ type EncryptionKeyAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	// No matchers are available for these alert types. The list is always empty.
-	Matchers []map[string]interface{} `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	Threshold *GreaterThanDaysThreshold `json:"threshold,omitempty"`
@@ -247,9 +246,9 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetLinks(v []Link) {
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []map[string]interface{} {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []map[string]interface{}
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +256,7 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchers() []map[string]int
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchersOk() ([]map[string]interface{}, bool) {
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,8 +272,8 @@ func (o *EncryptionKeyAlertConfigViewForNdsGroup) HasMatchers() bool {
 	return false
 }
 
-// SetMatchers gets a reference to the given []map[string]interface{} and assigns it to the Matchers field.
-func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetMatchers(v []map[string]interface{}) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *EncryptionKeyAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -387,6 +386,9 @@ func (o EncryptionKeyAlertConfigViewForNdsGroup) ToMap() (map[string]interface{}
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
 	}

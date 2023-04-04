@@ -7001,9 +7001,10 @@ paths:
         "200":
           content:
             application/vnd.atlas.2023-01-01+json:
+              schema:
+                $ref: "#/components/schemas/UserCert"
               x-xgen-version: 2023-01-01
-          description: This endpoint returns a PEM file with the certificate and private
-            key.
+          description: OK
         "400":
           $ref: "#/components/responses/badRequest"
         "401":
@@ -7186,7 +7187,7 @@ paths:
 
 
         **LIMITED TO M10 OR GREATER:** MongoDB Cloud limits this feature to dedicated cluster tiers of M10 and greater.
-      operationId: getEncryptionAtRest
+      operationId: returnOneConfigurationForEncryptionAtRestUsingCustomer-ManagedKeysForOneProject
       parameters:
         - $ref: "#/components/parameters/groupId"
       responses:
@@ -8109,29 +8110,29 @@ paths:
             Human-readable label that identifies this project limit.
 
 
-            | Limit Name | Description | Default | API Override Limit |
+            | Limit Name | Description | Default |
 
-            | --- | --- | --- | --- |
+            | --- | --- | --- |
 
-            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 |
+            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 |
 
-            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 |
+            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 |
 
-            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 |
+            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 |
 
-            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 |
+            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 |
 
-            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 |
+            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 |
 
-            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 |
+            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 |
 
-            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A |
+            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A |
 
-            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A |
+            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A |
 
-            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A |
+            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A |
 
-            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A |
+            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |
           in: path
           name: limitName
           required: true
@@ -8175,29 +8176,29 @@ paths:
             Human-readable label that identifies this project limit.
 
 
-            | Limit Name | Description | Default | API Override Limit |
+            | Limit Name | Description | Default |
 
-            | --- | --- | --- | --- |
+            | --- | --- | --- |
 
-            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 |
+            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 |
 
-            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 |
+            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 |
 
-            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 |
+            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 |
 
-            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 |
+            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 |
 
-            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 |
+            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 |
 
-            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 |
+            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 |
 
-            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A |
+            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A |
 
-            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A |
+            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A |
 
-            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A |
+            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A |
 
-            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A |
+            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |
           in: path
           name: limitName
           required: true
@@ -8239,42 +8240,38 @@ paths:
       tags:
         - Projects
     patch:
-      description: >-
-        Sets the specified project limit. To use this resource, the
+      description: Sets the specified project limit. To use this resource, the
         requesting API Key must have the Project Owner role. This resource
         doesn't require the API Key to have an Access List.
-
-
-        **NOTE**: Increasing the following configuration limits might lead to slower response times in the MongoDB Cloud UI or increased user management overhead leading to authentication or authorization re-architecture. If possible, we recommend that you create additional projects to gain access to more of these resources for a more sustainable growth pattern.
       operationId: setProjectLimit
       parameters:
         - description: >
             Human-readable label that identifies this project limit.
 
 
-            | Limit Name | Description | Default | API Override Limit |
+            | Limit Name | Description | Default |
 
-            | --- | --- | --- | --- |
+            | --- | --- | --- |
 
-            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 |
+            | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 |
 
-            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 |
+            | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 |
 
-            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 |
+            | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 |
 
-            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 |
+            | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 |
 
-            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 |
+            | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 |
 
-            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 |
+            | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 |
 
-            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A |
+            | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A |
 
-            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A |
+            | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A |
 
-            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A |
+            | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A |
 
-            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A |
+            | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A |
           in: path
           name: limitName
           required: true
@@ -12667,13 +12664,12 @@ paths:
       description: Removes the specified access list entry from the specified
         organization API key. Resources require all API requests originate from
         the IP addresses on the API access list. To use this resource, the
-        requesting API Key must have the Read Write role and an entry for it's
-        access list. In addition, you cannot remove the requesting IP address
-        from the requesting organization API key.
+        requesting API Key must have the Read Write role and an entry for the
+        project access list.
       externalDocs:
         description: Configure Atlas API Access
         url: https://docs.atlas.mongodb.com/configure-api-access/#std-label-enable-api-access-list
-      operationId: deleteApiKeyAccessListEntry
+      operationId: deleteApiKeyAcessList
       parameters:
         - $ref: "#/components/parameters/orgId"
         - description: Unique 24-hexadecimal digit string that identifies this
@@ -14433,11 +14429,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -15657,11 +15650,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16158,11 +16148,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16281,11 +16268,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -16302,7 +16286,7 @@ components:
           readOnly: true
       required:
         - eventTypeName
-      title: Any Other Alert Configurations
+      title: Any Other Alerts
     DefaultAlertViewForNdsGroup:
       type: object
       description: Other alerts which don't have extra details beside of basic one.
@@ -16993,11 +16977,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -19716,11 +19697,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -20506,11 +20484,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         metricThreshold:
           $ref: "#/components/schemas/ServerlessMetricThreshold"
         notifications:
@@ -21794,7 +21769,6 @@ components:
           example: TOO_MANY_GROUP_NOTIFICATIONS
         parameters:
           type: array
-          description: Parameter uses to give more information about the error.
           items: {}
         reason:
           type: string
@@ -22034,6 +22008,32 @@ components:
           description: Value that comprises this data point.
           readOnly: true
       readOnly: true
+    UserRoleAssignment:
+      type: object
+      properties:
+        apiUserId:
+          type: string
+          description: Unique 24-hexadecimal digit string that identifies the organization
+            API key.
+          maxLength: 24
+          minLength: 24
+          pattern: ^([a-f0-9]{24})$
+          readOnly: true
+        roles:
+          type: array
+          description: List of roles to grant this API key. If you provide this list,
+            provide a minimum of one role and ensure each role applies to this
+            project.
+          items:
+            type: string
+            enum:
+              - GROUP_CLUSTER_MANAGER
+              - GROUP_DATA_ACCESS_ADMIN
+              - GROUP_DATA_ACCESS_READ_ONLY
+              - GROUP_DATA_ACCESS_READ_WRITE
+              - GROUP_SEARCH_INDEX_EDITOR
+              - GROUP_OWNER
+              - GROUP_READ_ONLY
     ContainerPeerViewRequest:
       type: object
       description: Collection of settings that configures the network connection for a
@@ -22408,11 +22408,8 @@ components:
           readOnly: true
         matchers:
           type: array
-          description: No matchers are available for these alert types. The list is always
-            empty.
           items:
-            type: object
-          readOnly: true
+            $ref: "#/components/schemas/Matcher"
         notifications:
           type: array
           description: List that contains the targets that MongoDB Cloud sends
@@ -23397,7 +23394,6 @@ components:
               - GLOBAL_USER_READ_ONLY
               - GLOBAL_ACCOUNT_SUSPENSION_ADMIN
               - GLOBAL_BILLING_ADMIN
-              - GLOBAL_BILLING_READ_ONLY
               - GLOBAL_LEGAL_ADMIN
               - GLOBAL_FEATURE_FLAG_ADMIN
               - GLOBAL_APP_SETTING_ADMIN
@@ -23410,7 +23406,6 @@ components:
               - GLOBAL_EXPERIMENT_ASSIGNMENT_USER
               - GLOBAL_STITCH_INTERNAL_ADMIN
               - GLOBAL_BAAS_FEATURE_ADMIN
-              - GLOBAL_BAAS_SUPPORT
               - GLOBAL_SECURITY_ADMIN
               - GLOBAL_QUERY_ENGINE_INTERNAL_ADMIN
               - GLOBAL_PROACTIVE_SUPPORT_ADMIN
@@ -25418,6 +25413,33 @@ components:
         - HOSTNAME_AND_PORT
         - REPLICA_SET_NAME
         - SHARD_NAME
+    Matcher:
+      type: object
+      description: Rules to apply when comparing an target instance against this alert
+        configuration.
+      properties:
+        fieldName:
+          type: string
+          description: Name of the parameter in the target object that MongoDB Cloud
+            checks. The parameter must match all rules for MongoDB Cloud to
+            check for alert configurations.
+        operator:
+          type: string
+          description: Comparison operator to apply when checking the current metric value
+            against **matcher[n].value**.
+          enum:
+            - EQUALS
+            - CONTAINS
+            - STARTS_WITH
+            - ENDS_WITH
+            - NOT_EQUALS
+            - NOT_CONTAINS
+            - REGEX
+        value:
+          type: string
+          description: Value to match or exceed using the specified **matchers.operator**.
+          example: event-replica-set
+      title: Matchers
     MicrosoftTeamsNotification:
       type: object
       description: Microsoft Teams notification configuration for MongoDB Cloud to
@@ -32270,32 +32292,6 @@ components:
           items:
             $ref: "#/components/schemas/Link"
           readOnly: true
-    UserRoleAssignment:
-      type: object
-      properties:
-        apiUserId:
-          type: string
-          description: Unique 24-hexadecimal digit string that identifies the organization
-            API key.
-          maxLength: 24
-          minLength: 24
-          pattern: ^([a-f0-9]{24})$
-          readOnly: true
-        roles:
-          type: array
-          description: List of roles to grant this API key. If you provide this list,
-            provide a minimum of one role and ensure each role applies to this
-            project.
-          items:
-            type: string
-            enum:
-              - GROUP_CLUSTER_MANAGER
-              - GROUP_DATA_ACCESS_ADMIN
-              - GROUP_DATA_ACCESS_READ_ONLY
-              - GROUP_DATA_ACCESS_READ_WRITE
-              - GROUP_SEARCH_INDEX_EDITOR
-              - GROUP_OWNER
-              - GROUP_READ_ONLY
     VictorOps:
       type: object
       description: Details to integrate one Splunk On-Call account with one MongoDB
@@ -32609,8 +32605,9 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of nodes of the given type for MongoDB Cloud to deploy to
-            the region.
+          description: Number of read-only nodes for MongoDB Cloud to deploy to the
+            region. Read-only nodes can never become the primary, but can enable
+            local reads.
       title: AWS Cluster Hardware Settings
     AWSInterfaceEndpoint:
       type: object
@@ -33444,8 +33441,9 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of nodes of the given type for MongoDB Cloud to deploy to
-            the region.
+          description: Number of read-only nodes for MongoDB Cloud to deploy to the
+            region. Read-only nodes can never become the primary, but can enable
+            local reads.
     AzureKeyVault:
       type: object
       description: Details that define the configuration of Encryption at Rest using
@@ -34764,7 +34762,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "6.0"
+          default: "5.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys the
             cluster with the latest stable release of the specified version.
           enum:
@@ -34952,11 +34950,7 @@ components:
       properties:
         changeStatus:
           type: string
-          description: State of cluster at the time of this request. Atlas returns
-            **Applied** if it completed adding a user to, or removing a user
-            from, your cluster. Atlas returns **Pending** if it's still making
-            the requested user changes. When status is **Pending**, new users
-            can't log in.
+          description: State of cluster at the time of this request.
           enum:
             - PENDING
             - APPLIED
@@ -36139,8 +36133,9 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of nodes of the given type for MongoDB Cloud to deploy to
-            the region.
+          description: Number of read-only nodes for MongoDB Cloud to deploy to the
+            region. Read-only nodes can never become the primary, but can enable
+            local reads.
         diskIOPS:
           type: integer
           format: int32
@@ -37704,8 +37699,9 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of nodes of the given type for MongoDB Cloud to deploy to
-            the region.
+          description: Number of read-only nodes for MongoDB Cloud to deploy to the
+            region. Read-only nodes can never become the primary, but can enable
+            local reads.
     GCPPeerVpcRequest:
       type: object
       allOf:
@@ -38278,8 +38274,9 @@ components:
         nodeCount:
           type: integer
           format: int32
-          description: Number of nodes of the given type for MongoDB Cloud to deploy to
-            the region.
+          description: Number of read-only nodes for MongoDB Cloud to deploy to the
+            region. Read-only nodes can never become the primary, but can enable
+            local reads.
     IngestionPipelineRun:
       type: object
       description: Run details of a Data Lake Pipeline.
@@ -38609,7 +38606,7 @@ components:
           readOnly: true
         mongoDBMajorVersion:
           type: string
-          default: "6.0"
+          default: "5.0"
           description: Major MongoDB version of the cluster. MongoDB Cloud deploys the
             cluster with the latest stable release of the specified version.
           enum:
@@ -39383,6 +39380,8 @@ components:
             - DELETED
             - ORPHANED
           readOnly: true
+      required:
+        - criteria
     OrganizationSettings:
       type: object
       description: Collection of settings that configures the organization.

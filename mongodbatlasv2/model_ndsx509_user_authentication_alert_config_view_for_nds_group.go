@@ -31,8 +31,7 @@ type NDSX509UserAuthenticationAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	// No matchers are available for these alert types. The list is always empty.
-	Matchers []map[string]interface{} `json:"matchers,omitempty"`
+	Matchers []Matcher `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	Threshold *LessThanDaysThreshold `json:"threshold,omitempty"`
@@ -247,9 +246,9 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetLinks(v []Link)
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []map[string]interface{} {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []map[string]interface{}
+		var ret []Matcher
 		return ret
 	}
 	return o.Matchers
@@ -257,7 +256,7 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []ma
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]map[string]interface{}, bool) {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -273,8 +272,8 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) HasMatchers() bool
 	return false
 }
 
-// SetMatchers gets a reference to the given []map[string]interface{} and assigns it to the Matchers field.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []map[string]interface{}) {
+// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
 	o.Matchers = v
 }
 
@@ -387,6 +386,9 @@ func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) ToMap() (map[string
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
 	}
