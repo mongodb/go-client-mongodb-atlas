@@ -125,6 +125,7 @@ type Client struct {
 	Checkpoints                         CheckpointsService
 	Alerts                              AlertsService
 	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
+	BackupCompliancePolicy              BackupCompliancePolicyService
 	Events                              EventsService
 	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
@@ -274,6 +275,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Checkpoints = &CheckpointsServiceOp{Client: c}
 	c.Alerts = &AlertsServiceOp{Client: c}
 	c.CloudProviderSnapshotBackupPolicies = &CloudProviderSnapshotBackupPoliciesServiceOp{Client: c}
+	c.BackupCompliancePolicy = &BackupCompliancePolicyServiceOp{Client: c}
 	c.Events = &EventsServiceOp{Client: c}
 	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}
