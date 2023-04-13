@@ -39,6 +39,22 @@ module.exports = function runTransformations(openapi) {
     "View",
     ignoredModelNames
   );
+  
+  // Temp workaround for
+  // https://jira.mongodb.org/browse/CLOUDP-166120
+  openapi.components.responses.noBody = {
+    content: {
+      "application/vnd.atlas.2023-01-01+json": {
+        example: "",
+      },
+    },
+    description: "This endpoint does not return a response body",
+  };
+
+  // Temp workaround for CLOUDP-168427
+  if (openapi.components.schemas.Error) {
+    openapi.components.schemas.Error.properties.parameters.items = {};
+  }
 
   return openapi;
 };
