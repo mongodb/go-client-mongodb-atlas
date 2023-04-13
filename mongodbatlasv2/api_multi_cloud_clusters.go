@@ -309,6 +309,13 @@ type MultiCloudClustersApiDeleteClusterRequest struct {
 	ApiService MultiCloudClustersApi
 	groupId string
 	clusterName string
+	retainBackups *bool
+}
+
+// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+func (r MultiCloudClustersApiDeleteClusterRequest) RetainBackups(retainBackups bool) MultiCloudClustersApiDeleteClusterRequest {
+	r.retainBackups = &retainBackups
+	return r
 }
 
 func (r MultiCloudClustersApiDeleteClusterRequest) Execute() (*http.Response, error) {
@@ -367,6 +374,9 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 		return nil, reportError("clusterName must have less than 64 elements")
 	}
 
+	if r.retainBackups != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retainBackups", r.retainBackups, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -377,7 +387,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.atlas.2023-01-01+json", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
