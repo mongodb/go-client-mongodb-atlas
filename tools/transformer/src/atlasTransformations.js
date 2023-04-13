@@ -39,7 +39,7 @@ module.exports = function runTransformations(openapi) {
     "View",
     ignoredModelNames
   );
-  
+
   // Temp workaround for
   // https://jira.mongodb.org/browse/CLOUDP-166120
   openapi.components.responses.noBody = {
