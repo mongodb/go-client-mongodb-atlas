@@ -161,7 +161,7 @@ func (s *DatabaseUsersServiceOp) Get(ctx context.Context, databaseName, groupID,
 	}
 
 	basePath := fmt.Sprintf(dbUsersBasePath, groupID)
-	escapedEntry := url.PathEscape(username)
+	escapedEntry := url.QueryEscape(username)
 	path := fmt.Sprintf("%s/%s/%s", basePath, databaseName, escapedEntry)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
