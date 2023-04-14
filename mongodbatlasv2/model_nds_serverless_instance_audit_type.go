@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -27,6 +27,8 @@ const (
 	NDSSERVERLESSINSTANCEAUDITTYPE_UPDATE_COMPLETED NDSServerlessInstanceAuditType = "SERVERLESS_INSTANCE_UPDATE_COMPLETED"
 	NDSSERVERLESSINSTANCEAUDITTYPE_DELETE_SUBMITTED NDSServerlessInstanceAuditType = "SERVERLESS_INSTANCE_DELETE_SUBMITTED"
 	NDSSERVERLESSINSTANCEAUDITTYPE_DELETED NDSServerlessInstanceAuditType = "SERVERLESS_INSTANCE_DELETED"
+	NDSSERVERLESSINSTANCEAUDITTYPE_BLOCKED NDSServerlessInstanceAuditType = "SERVERLESS_INSTANCE_BLOCKED"
+	NDSSERVERLESSINSTANCEAUDITTYPE_UNBLOCKED NDSServerlessInstanceAuditType = "SERVERLESS_INSTANCE_UNBLOCKED"
 )
 
 // All allowed values of NDSServerlessInstanceAuditType enum
@@ -38,6 +40,8 @@ var AllowedNDSServerlessInstanceAuditTypeEnumValues = []NDSServerlessInstanceAud
 	"SERVERLESS_INSTANCE_UPDATE_COMPLETED",
 	"SERVERLESS_INSTANCE_DELETE_SUBMITTED",
 	"SERVERLESS_INSTANCE_DELETED",
+	"SERVERLESS_INSTANCE_BLOCKED",
+	"SERVERLESS_INSTANCE_UNBLOCKED",
 }
 
 func (v *NDSServerlessInstanceAuditType) UnmarshalJSON(src []byte) error {

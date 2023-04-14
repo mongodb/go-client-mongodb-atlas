@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -14,38 +14,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the GroupPaginatedIntegration type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GroupPaginatedIntegration{}
+// checks if the PaginatedIntegration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedIntegration{}
 
-// GroupPaginatedIntegration struct for GroupPaginatedIntegration
-type GroupPaginatedIntegration struct {
+// PaginatedIntegration struct for PaginatedIntegration
+type PaginatedIntegration struct {
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
 	// List of returned documents that MongoDB Cloud providers when completing this request.
-	Results []IntegrationViewForNdsGroup `json:"results,omitempty"`
+	Results []Integration `json:"results,omitempty"`
 	// Number of documents returned in this response if **includeCount** query param is true.
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
-// NewGroupPaginatedIntegration instantiates a new GroupPaginatedIntegration object
+// NewPaginatedIntegration instantiates a new PaginatedIntegration object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupPaginatedIntegration() *GroupPaginatedIntegration {
-	this := GroupPaginatedIntegration{}
+func NewPaginatedIntegration() *PaginatedIntegration {
+	this := PaginatedIntegration{}
 	return &this
 }
 
-// NewGroupPaginatedIntegrationWithDefaults instantiates a new GroupPaginatedIntegration object
+// NewPaginatedIntegrationWithDefaults instantiates a new PaginatedIntegration object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGroupPaginatedIntegrationWithDefaults() *GroupPaginatedIntegration {
-	this := GroupPaginatedIntegration{}
+func NewPaginatedIntegrationWithDefaults() *PaginatedIntegration {
+	this := PaginatedIntegration{}
 	return &this
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *GroupPaginatedIntegration) GetLinks() []Link {
+func (o *PaginatedIntegration) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
@@ -55,7 +55,7 @@ func (o *GroupPaginatedIntegration) GetLinks() []Link {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedIntegration) GetLinksOk() ([]Link, bool) {
+func (o *PaginatedIntegration) GetLinksOk() ([]Link, bool) {
 	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *GroupPaginatedIntegration) GetLinksOk() ([]Link, bool) {
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *GroupPaginatedIntegration) HasLinks() bool {
+func (o *PaginatedIntegration) HasLinks() bool {
 	if o != nil && !IsNil(o.Links) {
 		return true
 	}
@@ -72,14 +72,14 @@ func (o *GroupPaginatedIntegration) HasLinks() bool {
 }
 
 // SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *GroupPaginatedIntegration) SetLinks(v []Link) {
+func (o *PaginatedIntegration) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *GroupPaginatedIntegration) GetResults() []IntegrationViewForNdsGroup {
+func (o *PaginatedIntegration) GetResults() []Integration {
 	if o == nil || IsNil(o.Results) {
-		var ret []IntegrationViewForNdsGroup
+		var ret []Integration
 		return ret
 	}
 	return o.Results
@@ -87,7 +87,7 @@ func (o *GroupPaginatedIntegration) GetResults() []IntegrationViewForNdsGroup {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedIntegration) GetResultsOk() ([]IntegrationViewForNdsGroup, bool) {
+func (o *PaginatedIntegration) GetResultsOk() ([]Integration, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *GroupPaginatedIntegration) GetResultsOk() ([]IntegrationViewForNdsGroup
 }
 
 // HasResults returns a boolean if a field has been set.
-func (o *GroupPaginatedIntegration) HasResults() bool {
+func (o *PaginatedIntegration) HasResults() bool {
 	if o != nil && !IsNil(o.Results) {
 		return true
 	}
@@ -103,13 +103,13 @@ func (o *GroupPaginatedIntegration) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []IntegrationViewForNdsGroup and assigns it to the Results field.
-func (o *GroupPaginatedIntegration) SetResults(v []IntegrationViewForNdsGroup) {
+// SetResults gets a reference to the given []Integration and assigns it to the Results field.
+func (o *PaginatedIntegration) SetResults(v []Integration) {
 	o.Results = v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
-func (o *GroupPaginatedIntegration) GetTotalCount() int32 {
+func (o *PaginatedIntegration) GetTotalCount() int32 {
 	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
@@ -119,7 +119,7 @@ func (o *GroupPaginatedIntegration) GetTotalCount() int32 {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPaginatedIntegration) GetTotalCountOk() (*int32, bool) {
+func (o *PaginatedIntegration) GetTotalCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *GroupPaginatedIntegration) GetTotalCountOk() (*int32, bool) {
 }
 
 // HasTotalCount returns a boolean if a field has been set.
-func (o *GroupPaginatedIntegration) HasTotalCount() bool {
+func (o *PaginatedIntegration) HasTotalCount() bool {
 	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
@@ -136,54 +136,54 @@ func (o *GroupPaginatedIntegration) HasTotalCount() bool {
 }
 
 // SetTotalCount gets a reference to the given int32 and assigns it to the TotalCount field.
-func (o *GroupPaginatedIntegration) SetTotalCount(v int32) {
+func (o *PaginatedIntegration) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o GroupPaginatedIntegration) MarshalJSONWithoutReadOnly() ([]byte, error) {
+func (o PaginatedIntegration) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
-func (o GroupPaginatedIntegration) ToMap() (map[string]interface{}, error) {
+func (o PaginatedIntegration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	return toSerialize, nil
 }
 
-type NullableGroupPaginatedIntegration struct {
-	value *GroupPaginatedIntegration
+type NullablePaginatedIntegration struct {
+	value *PaginatedIntegration
 	isSet bool
 }
 
-func (v NullableGroupPaginatedIntegration) Get() *GroupPaginatedIntegration {
+func (v NullablePaginatedIntegration) Get() *PaginatedIntegration {
 	return v.value
 }
 
-func (v *NullableGroupPaginatedIntegration) Set(val *GroupPaginatedIntegration) {
+func (v *NullablePaginatedIntegration) Set(val *PaginatedIntegration) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGroupPaginatedIntegration) IsSet() bool {
+func (v NullablePaginatedIntegration) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGroupPaginatedIntegration) Unset() {
+func (v *NullablePaginatedIntegration) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGroupPaginatedIntegration(val *GroupPaginatedIntegration) *NullableGroupPaginatedIntegration {
-	return &NullableGroupPaginatedIntegration{value: val, isSet: true}
+func NewNullablePaginatedIntegration(val *PaginatedIntegration) *NullablePaginatedIntegration {
+	return &NullablePaginatedIntegration{value: val, isSet: true}
 }
 
-func (v NullableGroupPaginatedIntegration) MarshalJSON() ([]byte, error) {
+func (v NullablePaginatedIntegration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGroupPaginatedIntegration) UnmarshalJSON(src []byte) error {
+func (v *NullablePaginatedIntegration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

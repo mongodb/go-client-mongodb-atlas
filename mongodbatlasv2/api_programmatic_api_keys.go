@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -41,7 +41,7 @@ type ProgrammaticAPIKeysApi interface {
 	/*
 	CreateApiKey Create One Organization API Key
 
-	Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+	Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
@@ -100,20 +100,20 @@ type ProgrammaticAPIKeysApi interface {
 	DeleteApiKeyExecute(r ProgrammaticAPIKeysApiDeleteApiKeyRequest) (*http.Response, error)
 
 	/*
-	DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
+	DeleteApiKeyAccessListEntry Remove One Access List Entry for One Organization API Key
 
-	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
+	Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for it's access list. In addition, you cannot remove the requesting IP address from the requesting organization API key.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
 	@param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
-	@return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
+	@return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
 	*/
-	DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
+	DeleteApiKeyAccessListEntry(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
 
-	// DeleteApiKeyAcessListExecute executes the request
-	DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error)
+	// DeleteApiKeyAccessListEntryExecute executes the request
+	DeleteApiKeyAccessListEntryExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) (*http.Response, error)
 
 	/*
 	GetApiKey Return One Organization API Key
@@ -417,7 +417,7 @@ func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) Execute() (*ApiUser, *http.Re
 /*
 CreateApiKey Create One Organization API Key
 
-Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization User Admin role. This resource doesn't require the API Key to have an Access List.
+Creates one API key for the specified organization. An organization API key grants programmatic access to an organization. You can't use the API key to log into the console. To use this resource, the requesting API Key must have the Organization Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
@@ -1023,7 +1023,7 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyExecute(r ProgrammaticAPIKey
 	return localVarHTTPResponse, nil
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	ctx context.Context
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
@@ -1031,23 +1031,23 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest struct {
 	ipAddress string
 }
 
-func (r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteApiKeyAcessListExecute(r)
+func (r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteApiKeyAccessListEntryExecute(r)
 }
 
 /*
-DeleteApiKeyAcessList Remove One Access List Entry for One Organization API Key
+DeleteApiKeyAccessListEntry Remove One Access List Entry for One Organization API Key
 
-Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for the project access list.
+Removes the specified access list entry from the specified organization API key. Resources require all API requests originate from the IP addresses on the API access list. To use this resource, the requesting API Key must have the Read Write role and an entry for it's access list. In addition, you cannot remove the requesting IP address from the requesting organization API key.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param apiUserId Unique 24-hexadecimal digit string that identifies this organization API key for which you want to remove access list entries.
  @param ipAddress One IP address or multiple IP addresses represented as one CIDR block to limit requests to API resources in the specified organization. When adding a CIDR block with a subnet mask, such as 192.0.2.0/24, use the URL-encoded value %2F for the forward slash /.
- @return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest
+ @return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest
 */
-func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessList(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest {
-	return ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest{
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAccessListEntry(ctx context.Context, orgId string, apiUserId string, ipAddress string) ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest {
+	return ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1057,14 +1057,14 @@ func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessList(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAcessListExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAcessListRequest) (*http.Response, error) {
+func (a *ProgrammaticAPIKeysApiService) DeleteApiKeyAccessListEntryExecute(r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKeyAcessList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProgrammaticAPIKeysApiService.DeleteApiKeyAccessListEntry")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -119,7 +119,7 @@ Class | Method | HTTP request | Description
 *DatabaseUsersApi* | [**GetDatabaseUser**](docs/DatabaseUsersApi.md#getdatabaseuser) | **Get** /api/atlas/v2/groups/{groupId}/databaseUsers/{databaseName}/{username} | Return One Database User from One Project
 *DatabaseUsersApi* | [**ListDatabaseUsers**](docs/DatabaseUsersApi.md#listdatabaseusers) | **Get** /api/atlas/v2/groups/{groupId}/databaseUsers | Return All Database Users from One Project
 *DatabaseUsersApi* | [**UpdateDatabaseUser**](docs/DatabaseUsersApi.md#updatedatabaseuser) | **Patch** /api/atlas/v2/groups/{groupId}/databaseUsers/{databaseName}/{username} | Update One Database User in One Project
-*EncryptionAtRestUsingCustomerKeyManagementApi* | [**ReturnOneConfigurationForEncryptionAtRestUsingCustomerManagedKeysForOneProject**](docs/EncryptionAtRestUsingCustomerKeyManagementApi.md#returnoneconfigurationforencryptionatrestusingcustomermanagedkeysforoneproject) | **Get** /api/atlas/v2/groups/{groupId}/encryptionAtRest | Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
+*EncryptionAtRestUsingCustomerKeyManagementApi* | [**GetEncryptionAtRest**](docs/EncryptionAtRestUsingCustomerKeyManagementApi.md#getencryptionatrest) | **Get** /api/atlas/v2/groups/{groupId}/encryptionAtRest | Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 *EncryptionAtRestUsingCustomerKeyManagementApi* | [**UpdateEncryptionAtRest**](docs/EncryptionAtRestUsingCustomerKeyManagementApi.md#updateencryptionatrest) | **Patch** /api/atlas/v2/groups/{groupId}/encryptionAtRest | Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 *EventsApi* | [**GetOrganizationEvent**](docs/EventsApi.md#getorganizationevent) | **Get** /api/atlas/v2/orgs/{orgId}/events/{eventId} | Return One Event from One Organization
 *EventsApi* | [**GetProjectEvent**](docs/EventsApi.md#getprojectevent) | **Get** /api/atlas/v2/groups/{groupId}/events/{eventId} | Return One Event from One Project
@@ -246,7 +246,7 @@ Class | Method | HTTP request | Description
 *ProgrammaticAPIKeysApi* | [**CreateApiKeyAccessList**](docs/ProgrammaticAPIKeysApi.md#createapikeyaccesslist) | **Post** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList | Create Access List Entries for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**CreateProjectApiKey**](docs/ProgrammaticAPIKeysApi.md#createprojectapikey) | **Post** /api/atlas/v2/groups/{groupId}/apiKeys | Create and Assign One Organization API Key to One Project
 *ProgrammaticAPIKeysApi* | [**DeleteApiKey**](docs/ProgrammaticAPIKeysApi.md#deleteapikey) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId} | Remove One Organization API Key
-*ProgrammaticAPIKeysApi* | [**DeleteApiKeyAcessList**](docs/ProgrammaticAPIKeysApi.md#deleteapikeyacesslist) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Remove One Access List Entry for One Organization API Key
+*ProgrammaticAPIKeysApi* | [**DeleteApiKeyAccessListEntry**](docs/ProgrammaticAPIKeysApi.md#deleteapikeyaccesslistentry) | **Delete** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Remove One Access List Entry for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**GetApiKey**](docs/ProgrammaticAPIKeysApi.md#getapikey) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId} | Return One Organization API Key
 *ProgrammaticAPIKeysApi* | [**GetApiKeyAccessList**](docs/ProgrammaticAPIKeysApi.md#getapikeyaccesslist) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList/{ipAddress} | Return One Access List Entry for One Organization API Key
 *ProgrammaticAPIKeysApi* | [**ListApiKeyAccessListsEntries**](docs/ProgrammaticAPIKeysApi.md#listapikeyaccesslistsentries) | **Get** /api/atlas/v2/orgs/{orgId}/apiKeys/{apiUserId}/accessList | Return All Access List Entries for One Organization API Key
@@ -570,7 +570,6 @@ Class | Method | HTTP request | Description
  - [GroupName](docs/GroupName.md)
  - [GroupNotification](docs/GroupNotification.md)
  - [GroupPaginatedEvent](docs/GroupPaginatedEvent.md)
- - [GroupPaginatedIntegration](docs/GroupPaginatedIntegration.md)
  - [GroupSettings](docs/GroupSettings.md)
  - [HardwareSpec](docs/HardwareSpec.md)
  - [HipChatNotification](docs/HipChatNotification.md)
@@ -600,7 +599,6 @@ Class | Method | HTTP request | Description
  - [InheritedRole](docs/InheritedRole.md)
  - [InstanceSize](docs/InstanceSize.md)
  - [Integration](docs/Integration.md)
- - [IntegrationViewForNdsGroup](docs/IntegrationViewForNdsGroup.md)
  - [Invoice](docs/Invoice.md)
  - [Key](docs/Key.md)
  - [Label](docs/Label.md)
@@ -618,7 +616,6 @@ Class | Method | HTTP request | Description
  - [LiveMigrationResponse](docs/LiveMigrationResponse.md)
  - [ManagedNamespace](docs/ManagedNamespace.md)
  - [ManagedNamespaces](docs/ManagedNamespaces.md)
- - [Matcher](docs/Matcher.md)
  - [MatcherField](docs/MatcherField.md)
  - [MatcherHostType](docs/MatcherHostType.md)
  - [Measurement](docs/Measurement.md)
@@ -711,6 +708,7 @@ Class | Method | HTTP request | Description
  - [PaginatedDiskPartition](docs/PaginatedDiskPartition.md)
  - [PaginatedGCPPeerVpc](docs/PaginatedGCPPeerVpc.md)
  - [PaginatedHostViewAtlas](docs/PaginatedHostViewAtlas.md)
+ - [PaginatedIntegration](docs/PaginatedIntegration.md)
  - [PaginatedLegacyCluster](docs/PaginatedLegacyCluster.md)
  - [PaginatedNetworkAccess](docs/PaginatedNetworkAccess.md)
  - [PaginatedOnlineArchive](docs/PaginatedOnlineArchive.md)

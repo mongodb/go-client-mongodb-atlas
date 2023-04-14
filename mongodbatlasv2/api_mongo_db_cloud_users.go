@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -25,7 +25,11 @@ type MongoDBCloudUsersApi interface {
 	/*
 	CreateUser Create One MongoDB Cloud User
 
-	Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+	Creates one MongoDB Cloud user account. A MongoDB Cloud user account grants access to only the MongoDB Cloud application. To grant database access, create a database user. MongoDB Cloud sends an email to the users you specify, inviting them to join the project. Invited users don't have access to the project until they accept the invitation. Invitations expire after 30 days.
+
+ MongoDB Cloud limits MongoDB Cloud user membership to a maximum of 250 MongoDB Cloud users per team. MongoDB Cloud limits MongoDB Cloud user membership to 500 MongoDB Cloud users per project and 500 MongoDB Cloud users per organization, which includes the combined membership of all projects in the organization. MongoDB Cloud raises an error if an operation exceeds these limits. For example, if you have an organization with five projects, and each project has 100 MongoDB Cloud users, and each MongoDB Cloud user belongs to only one project, you can't add any MongoDB Cloud users to this organization without first removing existing MongoDB Cloud users from the organization.
+
+ To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return MongoDBCloudUsersApiCreateUserRequest
@@ -39,7 +43,7 @@ type MongoDBCloudUsersApi interface {
 	/*
 	GetUser Return One MongoDB Cloud User using Its ID
 
-	Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+	Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. You can't use this endpoint to return information on an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. You can always retrieve your own user account. If you are the owner of a MongoDB Cloud organization or project, you can also retrieve the user profile for any user with membership in that organization or project. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userId Unique 24-hexadecimal digit string that identifies this user.
@@ -54,7 +58,7 @@ type MongoDBCloudUsersApi interface {
 	/*
 	GetUserByUsername Return One MongoDB Cloud User using Their Username
 
-	Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+	Returns the details for one MongoDB Cloud user account with the specified username. You can't use this endpoint to return information about an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
@@ -89,7 +93,11 @@ func (r MongoDBCloudUsersApiCreateUserRequest) Execute() (*AppUser, *http.Respon
 /*
 CreateUser Create One MongoDB Cloud User
 
-Creates one MongoDB Cloud user account. A MongoDB Cloud user account only grants access to the MongoDB Cloud application. To grant database access, create a database user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+Creates one MongoDB Cloud user account. A MongoDB Cloud user account grants access to only the MongoDB Cloud application. To grant database access, create a database user. MongoDB Cloud sends an email to the users you specify, inviting them to join the project. Invited users don't have access to the project until they accept the invitation. Invitations expire after 30 days.
+
+ MongoDB Cloud limits MongoDB Cloud user membership to a maximum of 250 MongoDB Cloud users per team. MongoDB Cloud limits MongoDB Cloud user membership to 500 MongoDB Cloud users per project and 500 MongoDB Cloud users per organization, which includes the combined membership of all projects in the organization. MongoDB Cloud raises an error if an operation exceeds these limits. For example, if you have an organization with five projects, and each project has 100 MongoDB Cloud users, and each MongoDB Cloud user belongs to only one project, you can't add any MongoDB Cloud users to this organization without first removing existing MongoDB Cloud users from the organization.
+
+ To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return MongoDBCloudUsersApiCreateUserRequest
@@ -226,7 +234,7 @@ func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*AppUser, *http.Response,
 /*
 GetUser Return One MongoDB Cloud User using Its ID
 
-Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+Returns the details for one MongoDB Cloud user account with the specified unique identifier for the user. You can't use this endpoint to return information on an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. You can always retrieve your own user account. If you are the owner of a MongoDB Cloud organization or project, you can also retrieve the user profile for any user with membership in that organization or project. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId Unique 24-hexadecimal digit string that identifies this user.
@@ -367,7 +375,7 @@ func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*AppUser, *http
 /*
 GetUserByUsername Return One MongoDB Cloud User using Their Username
 
-Returns the details for one MongoDB Cloud user account with the specified username. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
+Returns the details for one MongoDB Cloud user account with the specified username. You can't use this endpoint to return information about an API Key. To return information about an API Key, use the [Return One Organization](#tag/Organizations/operation/getOrganization) API Key endpoint. To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.

@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -27,7 +27,7 @@ type OnlineArchive struct {
 	CollName *string `json:"collName,omitempty"`
 	// Classification of MongoDB database collection that you want to return.  If you set this parameter to `TIMESERIES`, set `\"criteria.type\" : \"date\"` and `\"criteria.dateFormat\" : \"ISODATE\"`.
 	CollectionType *string `json:"collectionType,omitempty"`
-	Criteria Criteria `json:"criteria"`
+	Criteria *Criteria `json:"criteria,omitempty"`
 	// Human-readable label of the database that contains the collection that contains the online archive.
 	DbName *string `json:"dbName,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the project that contains the specified cluster. The specified cluster contains the collection for which to create the online archive.
@@ -43,11 +43,10 @@ type OnlineArchive struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOnlineArchive(criteria Criteria) *OnlineArchive {
+func NewOnlineArchive() *OnlineArchive {
 	this := OnlineArchive{}
 	var collectionType string = "STANDARD"
 	this.CollectionType = &collectionType
-	this.Criteria = criteria
 	return &this
 }
 
@@ -189,28 +188,36 @@ func (o *OnlineArchive) SetCollectionType(v string) {
 	o.CollectionType = &v
 }
 
-// GetCriteria returns the Criteria field value
+// GetCriteria returns the Criteria field value if set, zero value otherwise.
 func (o *OnlineArchive) GetCriteria() Criteria {
-	if o == nil {
+	if o == nil || IsNil(o.Criteria) {
 		var ret Criteria
 		return ret
 	}
-
-	return o.Criteria
+	return *o.Criteria
 }
 
-// GetCriteriaOk returns a tuple with the Criteria field value
+// GetCriteriaOk returns a tuple with the Criteria field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OnlineArchive) GetCriteriaOk() (*Criteria, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Criteria) {
 		return nil, false
 	}
-	return &o.Criteria, true
+	return o.Criteria, true
 }
 
-// SetCriteria sets field value
+// HasCriteria returns a boolean if a field has been set.
+func (o *OnlineArchive) HasCriteria() bool {
+	if o != nil && !IsNil(o.Criteria) {
+		return true
+	}
+
+	return false
+}
+
+// SetCriteria gets a reference to the given Criteria and assigns it to the Criteria field.
 func (o *OnlineArchive) SetCriteria(v Criteria) {
-	o.Criteria = v
+	o.Criteria = &v
 }
 
 // GetDbName returns the DbName field value if set, zero value otherwise.
@@ -388,7 +395,9 @@ func (o OnlineArchive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CollectionType) {
 		toSerialize["collectionType"] = o.CollectionType
 	}
-	toSerialize["criteria"] = o.Criteria
+	if !IsNil(o.Criteria) {
+		toSerialize["criteria"] = o.Criteria
+	}
 	if !IsNil(o.DbName) {
 		toSerialize["dbName"] = o.DbName
 	}

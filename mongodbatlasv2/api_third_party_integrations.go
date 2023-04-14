@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -25,7 +25,7 @@ type ThirdPartyIntegrationsApi interface {
 	/*
 	CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
-	Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. Each project can have only one configuration per `{INTEGRATION-TYPE}`. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
@@ -35,13 +35,13 @@ type ThirdPartyIntegrationsApi interface {
 	CreateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest
 
 	// CreateThirdPartyIntegrationExecute executes the request
-	//  @return GroupPaginatedIntegration
-	CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error)
+	//  @return PaginatedIntegration
+	CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*PaginatedIntegration, *http.Response, error)
 
 	/*
 	DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
-	Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+	Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. If you delete an integration from a project, you remove that integration configuration only for that project. This action doesn't affect any other project or organization's configured `{INTEGRATION-TYPE}` integrations. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
@@ -66,8 +66,8 @@ type ThirdPartyIntegrationsApi interface {
 	GetThirdPartyIntegration(ctx context.Context, groupId string, integrationType string) ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest
 
 	// GetThirdPartyIntegrationExecute executes the request
-	//  @return IntegrationViewForNdsGroup
-	GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*IntegrationViewForNdsGroup, *http.Response, error)
+	//  @return Integration
+	GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*Integration, *http.Response, error)
 
 	/*
 	ListThirdPartyIntegrations Return All Active Third-Party Service Integrations
@@ -81,8 +81,8 @@ type ThirdPartyIntegrationsApi interface {
 	ListThirdPartyIntegrations(ctx context.Context, groupId string) ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest
 
 	// ListThirdPartyIntegrationsExecute executes the request
-	//  @return GroupPaginatedIntegration
-	ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegration, *http.Response, error)
+	//  @return PaginatedIntegration
+	ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*PaginatedIntegration, *http.Response, error)
 
 	/*
 	UpdateThirdPartyIntegration Update One Third-Party Service Integration
@@ -97,8 +97,8 @@ type ThirdPartyIntegrationsApi interface {
 	UpdateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest
 
 	// UpdateThirdPartyIntegrationExecute executes the request
-	//  @return GroupPaginatedIntegration
-	UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error)
+	//  @return PaginatedIntegration
+	UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*PaginatedIntegration, *http.Response, error)
 }
 
 // ThirdPartyIntegrationsApiService ThirdPartyIntegrationsApi service
@@ -109,15 +109,15 @@ type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
 	groupId string
-	integrationViewForNdsGroup *IntegrationViewForNdsGroup
+	integration *Integration
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
 }
 
 // Third-party integration that you want to configure for your project.
-func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
-	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Integration(integration Integration) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
+	r.integration = &integration
 	return r
 }
 
@@ -139,14 +139,14 @@ func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) PageNum(pag
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
 	return r.ApiService.CreateThirdPartyIntegrationExecute(r)
 }
 
 /*
 CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
-Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+Adds the settings for configuring one third-party service integration. These settings apply to all databases managed in the specified MongoDB Cloud project. Each project can have only one configuration per `{INTEGRATION-TYPE}`. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
@@ -163,13 +163,13 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegration(ctx conte
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error) {
+//  @return PaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegration
+		localVarReturnValue  *PaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.CreateThirdPartyIntegration")
@@ -190,8 +190,8 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.integrationViewForNdsGroup == nil {
-		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
+	if r.integration == nil {
+		return localVarReturnValue, nil, reportError("integration is required and must be specified")
 	}
 
 	if r.includeCount != nil {
@@ -230,7 +230,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.integrationViewForNdsGroup
+	localVarPostBody = r.integration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -336,7 +336,7 @@ func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Execute() (
 /*
 DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
-Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
+Removes the settings that permit configuring one third-party service integration. These settings apply to all databases managed in one MongoDB Cloud project. If you delete an integration from a project, you remove that integration configuration only for that project. This action doesn't affect any other project or organization's configured `{INTEGRATION-TYPE}` integrations. To use this resource, the requesting API Key must have the Organization Owner or Project Owner role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param integrationType Human-readable label that identifies the service which you want to integrate with MongoDB Cloud.
@@ -474,7 +474,7 @@ type ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest struct {
 	integrationType string
 }
 
-func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Execute() (*IntegrationViewForNdsGroup, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Execute() (*Integration, *http.Response, error) {
 	return r.ApiService.GetThirdPartyIntegrationExecute(r)
 }
 
@@ -498,13 +498,13 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegration(ctx context.
 }
 
 // Execute executes the request
-//  @return IntegrationViewForNdsGroup
-func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*IntegrationViewForNdsGroup, *http.Response, error) {
+//  @return Integration
+func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) (*Integration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IntegrationViewForNdsGroup
+		localVarReturnValue  *Integration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.GetThirdPartyIntegration")
@@ -650,7 +650,7 @@ func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) PageNum(page
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
 	return r.ApiService.ListThirdPartyIntegrationsExecute(r)
 }
 
@@ -672,13 +672,13 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrations(ctx contex
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*GroupPaginatedIntegration, *http.Response, error) {
+//  @return PaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegration
+		localVarReturnValue  *PaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.ListThirdPartyIntegrations")
@@ -819,15 +819,15 @@ type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	ApiService ThirdPartyIntegrationsApi
 	integrationType string
 	groupId string
-	integrationViewForNdsGroup *IntegrationViewForNdsGroup
+	integration *Integration
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
 }
 
 // Third-party integration that you want to configure for your project.
-func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) IntegrationViewForNdsGroup(integrationViewForNdsGroup IntegrationViewForNdsGroup) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
-	r.integrationViewForNdsGroup = &integrationViewForNdsGroup
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Integration(integration Integration) ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest {
+	r.integration = &integration
 	return r
 }
 
@@ -849,7 +849,7 @@ func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) PageNum(pag
 	return r
 }
 
-func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Execute() (*GroupPaginatedIntegration, *http.Response, error) {
+func (r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
 	return r.ApiService.UpdateThirdPartyIntegrationExecute(r)
 }
 
@@ -873,13 +873,13 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegration(ctx conte
 }
 
 // Execute executes the request
-//  @return GroupPaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*GroupPaginatedIntegration, *http.Response, error) {
+//  @return PaginatedIntegration
+func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GroupPaginatedIntegration
+		localVarReturnValue  *PaginatedIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyIntegrationsApiService.UpdateThirdPartyIntegration")
@@ -900,8 +900,8 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 	if strlen(r.groupId) > 24 {
 		return localVarReturnValue, nil, reportError("groupId must have less than 24 elements")
 	}
-	if r.integrationViewForNdsGroup == nil {
-		return localVarReturnValue, nil, reportError("integrationViewForNdsGroup is required and must be specified")
+	if r.integration == nil {
+		return localVarReturnValue, nil, reportError("integration is required and must be specified")
 	}
 
 	if r.includeCount != nil {
@@ -940,7 +940,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.integrationViewForNdsGroup
+	localVarPostBody = r.integration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
