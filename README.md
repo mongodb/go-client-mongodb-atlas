@@ -122,7 +122,7 @@ Fetching error code:
 ```go
 import errors "go.mongodb.org/atlas/sdk"
 
-apiError := errors.GetAPIError(err)
+apiError := errors.APIError(err)
 fmt.Println(apiError)
 ```
 
@@ -131,7 +131,7 @@ Checking if error code exists:
 import errors "go.mongodb.org/atlas/sdk"
 
 
-if errors.IsAPIError(err, "code"){
+if errors.IsErrorCode(err, "code"){
  // Do something
 }
 ```

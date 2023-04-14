@@ -11,7 +11,7 @@ func APIError(err error) *mongodbatlasv2.Error {
 	var openapiError mongodbatlasv2.GenericOpenAPIError
 
 	if ok := errors.As(err, &openapiError); !ok {
-		return nil	
+		return nil
 	}
 	errModel := openapiError.Model()
 	transformedError, ok := errModel.(mongodbatlasv2.Error)
@@ -21,10 +21,10 @@ func APIError(err error) *mongodbatlasv2.Error {
 	return &transformedError
 }
 
-// IsAPIError returns true if the error contains the errCode.
+// IsErrorCode returns true if the error contains the errCode.
 // Error code is an code that is returned by the API.
 func IsErrorCode(err error, code string) bool {
-	mappedErr := GetAPIError(err)
+	mappedErr := APIError(err)
 	if mappedErr == nil {
 		return false
 	}

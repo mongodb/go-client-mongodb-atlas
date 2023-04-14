@@ -155,7 +155,7 @@ func handleErr(err error, resp *http.Response) {
 	if resp != nil {
 		fmt.Println(resp.Body)
 	}
-	apiErr := sdk.GetAPIError(err)
+	apiErr := sdk.APIError(err)
 
 	log.Fatalf("Error when performing SDK request: %v", apiErr)
 
