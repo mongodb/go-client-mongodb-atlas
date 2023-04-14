@@ -101,7 +101,7 @@ func (s *BackupCompliancePolicyServiceOp) Update(ctx context.Context, groupID st
 
 	path := fmt.Sprintf(BackupCompliancePolicyBasePath, groupID)
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, createRequest)
+	req, err := s.Client.NewRequest(ctx, http.MethodPut, path, createRequest)
 	if err != nil {
 		return nil, nil, err
 	}
