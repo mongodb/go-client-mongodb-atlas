@@ -6,7 +6,7 @@ import (
 	mongodbatlasv2 "go.mongodb.org/atlas/mongodbatlasv2"
 )
 
-// GetAPIError gets a strongly typed error from an error
+// GetAPIError gets a strongly typed error from an error.
 func GetAPIError(err error) *mongodbatlasv2.Error {
 	var openapiError mongodbatlasv2.GenericOpenAPIError
 
@@ -23,13 +23,13 @@ func GetAPIError(err error) *mongodbatlasv2.Error {
 	return nil
 }
 
-// IsAPIError returns true if the error contains the errCode
-// Error code is an code that is returned by the API
+// IsAPIError returns true if the error contains the errCode.
+// Error code is an code that is returned by the API.
 func IsAPIError(err error, code string) bool {
 	mappedErr := GetAPIError(err)
 	if mappedErr == nil {
 		return false
 	}
 
-	return mappedErr.GetErrorCode() == string(code)
+	return mappedErr.GetErrorCode() == code
 }
