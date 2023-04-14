@@ -116,6 +116,28 @@ To see the list of past versions, run `git tag`.
 To release a new version, first ensure that [Version](./mongodbatlas/mongodbatlas.go) is updated 
 (i.e., before running `git push origin vx.y.z`, verify that `Version=x.y.z` should match the tag being pushed to GitHub)
 
+## Error handling
+
+Fetching error code:
+```go
+import errors "go.mongodb.org/atlas/sdk"
+
+apiError := errors.GetAPIError(err)
+fmt.Println(apiError)
+```
+
+Checking if error code exists:
+```go
+import errors "go.mongodb.org/atlas/sdk"
+
+
+if errors.IsAPIError(err, "code"){
+ // Do something
+}
+```
+
+
+
 ## Roadmap
 
 This library is being initially developed for [mongocli](https://github.com/mongodb/mongocli),
