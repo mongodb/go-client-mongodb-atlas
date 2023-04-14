@@ -24,7 +24,7 @@ type Error struct {
 	Error *int32 `json:"error,omitempty"`
 	// Application error code returned with this error.
 	ErrorCode *string `json:"errorCode,omitempty"`
-	Parameters []map[string]interface{} `json:"parameters,omitempty"`
+	Parameters []interface{} `json:"parameters,omitempty"`
 	// Application error message returned with this error.
 	Reason *string `json:"reason,omitempty"`
 }
@@ -143,9 +143,9 @@ func (o *Error) SetErrorCode(v string) {
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *Error) GetParameters() []map[string]interface{} {
+func (o *Error) GetParameters() []interface{} {
 	if o == nil || IsNil(o.Parameters) {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.Parameters
@@ -153,7 +153,7 @@ func (o *Error) GetParameters() []map[string]interface{} {
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetParametersOk() ([]map[string]interface{}, bool) {
+func (o *Error) GetParametersOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.Parameters) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *Error) HasParameters() bool {
 	return false
 }
 
-// SetParameters gets a reference to the given []map[string]interface{} and assigns it to the Parameters field.
-func (o *Error) SetParameters(v []map[string]interface{}) {
+// SetParameters gets a reference to the given []interface{} and assigns it to the Parameters field.
+func (o *Error) SetParameters(v []interface{}) {
 	o.Parameters = v
 }
 
