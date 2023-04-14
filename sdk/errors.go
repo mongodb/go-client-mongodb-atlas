@@ -23,7 +23,7 @@ func APIError(err error) *mongodbatlasv2.Error {
 
 // IsAPIError returns true if the error contains the errCode.
 // Error code is an code that is returned by the API.
-func IsAPIError(err error, code string) bool {
+func IsErrorCode(err error, code string) bool {
 	mappedErr := GetAPIError(err)
 	if mappedErr == nil {
 		return false
