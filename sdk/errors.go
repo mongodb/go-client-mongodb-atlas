@@ -6,8 +6,8 @@ import (
 	mongodbatlasv2 "go.mongodb.org/atlas/mongodbatlasv2"
 )
 
-// GetAPIError gets a strongly typed error from an error.
-func GetAPIError(err error) *mongodbatlasv2.Error {
+// APIError gets a strongly typed error from an error.
+func APIError(err error) *mongodbatlasv2.Error {
 	var openapiError mongodbatlasv2.GenericOpenAPIError
 
 	if ok := errors.As(err, &openapiError); !ok {
