@@ -45,7 +45,7 @@ func TestBackupCompliancePolicy_Get(t *testing.T) {
 		      },
 		"pitEnabled": false,
 		"projectId": "32b6e34b3d91647abb20e7b8",
-		"restoreWindowDays": 0,
+		"restoreWindowDays": 7,
 		"scheduledPolicyItems": 
 		[
 		  {
@@ -79,7 +79,7 @@ func TestBackupCompliancePolicy_Get(t *testing.T) {
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
-		RestoreWindowDays:       pointer(int64(0)),
+		RestoreWindowDays:       pointer(int64(7)),
 		State:                   "ACTIVE",
 		UpdatedDate:             "2019-08-24T14:15:22Z",
 		UpdatedUser:             "user@example.com",
@@ -131,7 +131,7 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 			"updatedUser":             "user@example.com",
 			"pitEnabled":              false,
 			"projectId":               "32b6e34b3d91647abb20e7b8",
-			"restoreWindowDays":       pointer(float64(1)),
+			"restoreWindowDays":       float64(7),
 			"state":                   "ACTIVE",
 			"onDemandPolicyItem": map[string]interface{}{
 				"id":                "32b6e34b3d91647abb20e7b9",
@@ -182,7 +182,7 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 		      },
 		"pitEnabled": false,
 		"projectId": "32b6e34b3d91647abb20e7b8",
-		"restoreWindowDays": 1,
+		"restoreWindowDays": 7,
 		"scheduledPolicyItems": 
 		[
 		  {
@@ -211,7 +211,7 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
-		RestoreWindowDays:       pointer(int64(1)),
+		RestoreWindowDays:       pointer(int64(7)),
 		State:                   "ACTIVE",
 		UpdatedDate:             "2019-08-24T14:15:22Z",
 		UpdatedUser:             "user@example.com",
@@ -251,7 +251,7 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
-		RestoreWindowDays:       pointer(int64(1)),
+		RestoreWindowDays:       pointer(int64(7)),
 		State:                   "ACTIVE",
 		UpdatedDate:             "2019-08-24T14:15:22Z",
 		UpdatedUser:             "user@example.com",
