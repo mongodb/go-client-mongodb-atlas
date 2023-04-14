@@ -54,7 +54,6 @@ type BackupCompliancePolicy struct {
 	UpdatedUser             string                `json:"updatedUser,omitempty"`
 }
 
-// PolicyItem represents a specifications for a scheduled backup policy and on demand policy.
 
 // PolicyItem represents a specifications for a scheduled backup policy and on demand policy.
 type ScheduledPolicyItem struct {
