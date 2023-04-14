@@ -10,17 +10,15 @@ import (
 func GetAPIError(err error) *mongodbatlasv2.Error {
 	var openapiError mongodbatlasv2.GenericOpenAPIError
 
-	if ok := errors.As(err, &openapiError); ok {
-		errModel := openapiError.Model()
-
-		transformedError, ok := errModel.(mongodbatlasv2.Error)
-		if !ok {
-			return nil
-		}
-		return &transformedError
+	if ok := errors.As(err, &openapiError); !ok {
+		return nil	
 	}
-
-	return nil
+	errModel := openapiError.Model()
+	transformedError, ok := errModel.(mongodbatlasv2.Error)
+	if !ok {
+		return nil
+	}
+	return &transformedError
 }
 
 // IsAPIError returns true if the error contains the errCode.
