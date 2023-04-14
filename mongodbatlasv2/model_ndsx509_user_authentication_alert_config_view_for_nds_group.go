@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -31,7 +31,8 @@ type NDSX509UserAuthenticationAlertConfigViewForNdsGroup struct {
 	Id *string `json:"id,omitempty"`
 	// List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships.
 	Links []Link `json:"links,omitempty"`
-	Matchers []Matcher `json:"matchers,omitempty"`
+	// No matchers are available for these alert types. The list is always empty.
+	Matchers []map[string]interface{} `json:"matchers,omitempty"`
 	// List that contains the targets that MongoDB Cloud sends notifications.
 	Notifications []NotificationViewForNdsGroup `json:"notifications,omitempty"`
 	Threshold *LessThanDaysThreshold `json:"threshold,omitempty"`
@@ -246,9 +247,9 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetLinks(v []Link)
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []Matcher {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []map[string]interface{} {
 	if o == nil || IsNil(o.Matchers) {
-		var ret []Matcher
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Matchers
@@ -256,7 +257,7 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchers() []Ma
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]Matcher, bool) {
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) GetMatchersOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Matchers) {
 		return nil, false
 	}
@@ -272,8 +273,8 @@ func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) HasMatchers() bool
 	return false
 }
 
-// SetMatchers gets a reference to the given []Matcher and assigns it to the Matchers field.
-func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []Matcher) {
+// SetMatchers gets a reference to the given []map[string]interface{} and assigns it to the Matchers field.
+func (o *NDSX509UserAuthenticationAlertConfigViewForNdsGroup) SetMatchers(v []map[string]interface{}) {
 	o.Matchers = v
 }
 
@@ -386,9 +387,6 @@ func (o NDSX509UserAuthenticationAlertConfigViewForNdsGroup) ToMap() (map[string
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["eventTypeName"] = o.EventTypeName
-	if !IsNil(o.Matchers) {
-		toSerialize["matchers"] = o.Matchers
-	}
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
 	}

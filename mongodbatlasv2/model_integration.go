@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -12,78 +12,399 @@ package mongodbatlasv2
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the Integration type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Integration{}
-
-// Integration Collection of settings that describe third-party integrations.
+// Integration - Collection of settings that describe third-party integrations.
 type Integration struct {
-	Type *string `json:"type,omitempty"`
+	Datadog *Datadog
+	MicrosoftTeams *MicrosoftTeams
+	NewRelic *NewRelic
+	OpsGenie *OpsGenie
+	PagerDuty *PagerDuty
+	Prometheus *Prometheus
+	Slack *Slack
+	VictorOps *VictorOps
+	Webhook *Webhook
 }
 
-// NewIntegration instantiates a new Integration object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIntegration() *Integration {
-	this := Integration{}
-	return &this
-}
-
-// NewIntegrationWithDefaults instantiates a new Integration object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewIntegrationWithDefaults() *Integration {
-	this := Integration{}
-	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Integration) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
+// DatadogAsIntegration is a convenience function that returns Datadog wrapped in Integration
+func DatadogAsIntegration(v *Datadog) Integration {
+	return Integration{
+		Datadog: v,
 	}
-	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Integration) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
+// MicrosoftTeamsAsIntegration is a convenience function that returns MicrosoftTeams wrapped in Integration
+func MicrosoftTeamsAsIntegration(v *MicrosoftTeams) Integration {
+	return Integration{
+		MicrosoftTeams: v,
 	}
-	return o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *Integration) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
+// NewRelicAsIntegration is a convenience function that returns NewRelic wrapped in Integration
+func NewRelicAsIntegration(v *NewRelic) Integration {
+	return Integration{
+		NewRelic: v,
 	}
-
-	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Integration) SetType(v string) {
-	o.Type = &v
+// OpsGenieAsIntegration is a convenience function that returns OpsGenie wrapped in Integration
+func OpsGenieAsIntegration(v *OpsGenie) Integration {
+	return Integration{
+		OpsGenie: v,
+	}
 }
 
-func (o Integration) MarshalJSONWithoutReadOnly() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+// PagerDutyAsIntegration is a convenience function that returns PagerDuty wrapped in Integration
+func PagerDutyAsIntegration(v *PagerDuty) Integration {
+	return Integration{
+		PagerDuty: v,
+	}
+}
+
+// PrometheusAsIntegration is a convenience function that returns Prometheus wrapped in Integration
+func PrometheusAsIntegration(v *Prometheus) Integration {
+	return Integration{
+		Prometheus: v,
+	}
+}
+
+// SlackAsIntegration is a convenience function that returns Slack wrapped in Integration
+func SlackAsIntegration(v *Slack) Integration {
+	return Integration{
+		Slack: v,
+	}
+}
+
+// VictorOpsAsIntegration is a convenience function that returns VictorOps wrapped in Integration
+func VictorOpsAsIntegration(v *VictorOps) Integration {
+	return Integration{
+		VictorOps: v,
+	}
+}
+
+// WebhookAsIntegration is a convenience function that returns Webhook wrapped in Integration
+func WebhookAsIntegration(v *Webhook) Integration {
+	return Integration{
+		Webhook: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *Integration) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
-	return json.Marshal(toSerialize)
+
+	// check if the discriminator value is 'DATADOG'
+	if jsonDict["type"] == "DATADOG" {
+		// try to unmarshal JSON data into Datadog
+		err = json.Unmarshal(data, &dst.Datadog)
+		if err == nil {
+			return nil // data stored in dst.Datadog, return on the first match
+		} else {
+			dst.Datadog = nil
+			return fmt.Errorf("failed to unmarshal Integration as Datadog: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'Datadog'
+	if jsonDict["type"] == "Datadog" {
+		// try to unmarshal JSON data into Datadog
+		err = json.Unmarshal(data, &dst.Datadog)
+		if err == nil {
+			return nil // data stored in dst.Datadog, return on the first match
+		} else {
+			dst.Datadog = nil
+			return fmt.Errorf("failed to unmarshal Integration as Datadog: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MICROSOFT_TEAMS'
+	if jsonDict["type"] == "MICROSOFT_TEAMS" {
+		// try to unmarshal JSON data into MicrosoftTeams
+		err = json.Unmarshal(data, &dst.MicrosoftTeams)
+		if err == nil {
+			return nil // data stored in dst.MicrosoftTeams, return on the first match
+		} else {
+			dst.MicrosoftTeams = nil
+			return fmt.Errorf("failed to unmarshal Integration as MicrosoftTeams: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'MicrosoftTeams'
+	if jsonDict["type"] == "MicrosoftTeams" {
+		// try to unmarshal JSON data into MicrosoftTeams
+		err = json.Unmarshal(data, &dst.MicrosoftTeams)
+		if err == nil {
+			return nil // data stored in dst.MicrosoftTeams, return on the first match
+		} else {
+			dst.MicrosoftTeams = nil
+			return fmt.Errorf("failed to unmarshal Integration as MicrosoftTeams: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NEW_RELIC'
+	if jsonDict["type"] == "NEW_RELIC" {
+		// try to unmarshal JSON data into NewRelic
+		err = json.Unmarshal(data, &dst.NewRelic)
+		if err == nil {
+			return nil // data stored in dst.NewRelic, return on the first match
+		} else {
+			dst.NewRelic = nil
+			return fmt.Errorf("failed to unmarshal Integration as NewRelic: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NewRelic'
+	if jsonDict["type"] == "NewRelic" {
+		// try to unmarshal JSON data into NewRelic
+		err = json.Unmarshal(data, &dst.NewRelic)
+		if err == nil {
+			return nil // data stored in dst.NewRelic, return on the first match
+		} else {
+			dst.NewRelic = nil
+			return fmt.Errorf("failed to unmarshal Integration as NewRelic: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OPS_GENIE'
+	if jsonDict["type"] == "OPS_GENIE" {
+		// try to unmarshal JSON data into OpsGenie
+		err = json.Unmarshal(data, &dst.OpsGenie)
+		if err == nil {
+			return nil // data stored in dst.OpsGenie, return on the first match
+		} else {
+			dst.OpsGenie = nil
+			return fmt.Errorf("failed to unmarshal Integration as OpsGenie: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'OpsGenie'
+	if jsonDict["type"] == "OpsGenie" {
+		// try to unmarshal JSON data into OpsGenie
+		err = json.Unmarshal(data, &dst.OpsGenie)
+		if err == nil {
+			return nil // data stored in dst.OpsGenie, return on the first match
+		} else {
+			dst.OpsGenie = nil
+			return fmt.Errorf("failed to unmarshal Integration as OpsGenie: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'PAGER_DUTY'
+	if jsonDict["type"] == "PAGER_DUTY" {
+		// try to unmarshal JSON data into PagerDuty
+		err = json.Unmarshal(data, &dst.PagerDuty)
+		if err == nil {
+			return nil // data stored in dst.PagerDuty, return on the first match
+		} else {
+			dst.PagerDuty = nil
+			return fmt.Errorf("failed to unmarshal Integration as PagerDuty: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'PROMETHEUS'
+	if jsonDict["type"] == "PROMETHEUS" {
+		// try to unmarshal JSON data into Prometheus
+		err = json.Unmarshal(data, &dst.Prometheus)
+		if err == nil {
+			return nil // data stored in dst.Prometheus, return on the first match
+		} else {
+			dst.Prometheus = nil
+			return fmt.Errorf("failed to unmarshal Integration as Prometheus: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'PagerDuty'
+	if jsonDict["type"] == "PagerDuty" {
+		// try to unmarshal JSON data into PagerDuty
+		err = json.Unmarshal(data, &dst.PagerDuty)
+		if err == nil {
+			return nil // data stored in dst.PagerDuty, return on the first match
+		} else {
+			dst.PagerDuty = nil
+			return fmt.Errorf("failed to unmarshal Integration as PagerDuty: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'Prometheus'
+	if jsonDict["type"] == "Prometheus" {
+		// try to unmarshal JSON data into Prometheus
+		err = json.Unmarshal(data, &dst.Prometheus)
+		if err == nil {
+			return nil // data stored in dst.Prometheus, return on the first match
+		} else {
+			dst.Prometheus = nil
+			return fmt.Errorf("failed to unmarshal Integration as Prometheus: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'SLACK'
+	if jsonDict["type"] == "SLACK" {
+		// try to unmarshal JSON data into Slack
+		err = json.Unmarshal(data, &dst.Slack)
+		if err == nil {
+			return nil // data stored in dst.Slack, return on the first match
+		} else {
+			dst.Slack = nil
+			return fmt.Errorf("failed to unmarshal Integration as Slack: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'Slack'
+	if jsonDict["type"] == "Slack" {
+		// try to unmarshal JSON data into Slack
+		err = json.Unmarshal(data, &dst.Slack)
+		if err == nil {
+			return nil // data stored in dst.Slack, return on the first match
+		} else {
+			dst.Slack = nil
+			return fmt.Errorf("failed to unmarshal Integration as Slack: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'VICTOR_OPS'
+	if jsonDict["type"] == "VICTOR_OPS" {
+		// try to unmarshal JSON data into VictorOps
+		err = json.Unmarshal(data, &dst.VictorOps)
+		if err == nil {
+			return nil // data stored in dst.VictorOps, return on the first match
+		} else {
+			dst.VictorOps = nil
+			return fmt.Errorf("failed to unmarshal Integration as VictorOps: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'VictorOps'
+	if jsonDict["type"] == "VictorOps" {
+		// try to unmarshal JSON data into VictorOps
+		err = json.Unmarshal(data, &dst.VictorOps)
+		if err == nil {
+			return nil // data stored in dst.VictorOps, return on the first match
+		} else {
+			dst.VictorOps = nil
+			return fmt.Errorf("failed to unmarshal Integration as VictorOps: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'WEBHOOK'
+	if jsonDict["type"] == "WEBHOOK" {
+		// try to unmarshal JSON data into Webhook
+		err = json.Unmarshal(data, &dst.Webhook)
+		if err == nil {
+			return nil // data stored in dst.Webhook, return on the first match
+		} else {
+			dst.Webhook = nil
+			return fmt.Errorf("failed to unmarshal Integration as Webhook: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'Webhook'
+	if jsonDict["type"] == "Webhook" {
+		// try to unmarshal JSON data into Webhook
+		err = json.Unmarshal(data, &dst.Webhook)
+		if err == nil {
+			return nil // data stored in dst.Webhook, return on the first match
+		} else {
+			dst.Webhook = nil
+			return fmt.Errorf("failed to unmarshal Integration as Webhook: %s", err.Error())
+		}
+	}
+
+	return nil
 }
-func (o Integration) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src Integration) MarshalJSON() ([]byte, error) {
+	if src.Datadog != nil {
+		return json.Marshal(&src.Datadog)
 	}
-	return toSerialize, nil
+
+	if src.MicrosoftTeams != nil {
+		return json.Marshal(&src.MicrosoftTeams)
+	}
+
+	if src.NewRelic != nil {
+		return json.Marshal(&src.NewRelic)
+	}
+
+	if src.OpsGenie != nil {
+		return json.Marshal(&src.OpsGenie)
+	}
+
+	if src.PagerDuty != nil {
+		return json.Marshal(&src.PagerDuty)
+	}
+
+	if src.Prometheus != nil {
+		return json.Marshal(&src.Prometheus)
+	}
+
+	if src.Slack != nil {
+		return json.Marshal(&src.Slack)
+	}
+
+	if src.VictorOps != nil {
+		return json.Marshal(&src.VictorOps)
+	}
+
+	if src.Webhook != nil {
+		return json.Marshal(&src.Webhook)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *Integration) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.Datadog != nil {
+		return obj.Datadog
+	}
+
+	if obj.MicrosoftTeams != nil {
+		return obj.MicrosoftTeams
+	}
+
+	if obj.NewRelic != nil {
+		return obj.NewRelic
+	}
+
+	if obj.OpsGenie != nil {
+		return obj.OpsGenie
+	}
+
+	if obj.PagerDuty != nil {
+		return obj.PagerDuty
+	}
+
+	if obj.Prometheus != nil {
+		return obj.Prometheus
+	}
+
+	if obj.Slack != nil {
+		return obj.Slack
+	}
+
+	if obj.VictorOps != nil {
+		return obj.VictorOps
+	}
+
+	if obj.Webhook != nil {
+		return obj.Webhook
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableIntegration struct {

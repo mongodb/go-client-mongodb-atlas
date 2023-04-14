@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -400,6 +400,8 @@ const (
 	EVENTTYPEFORNDSGROUP_SERVERLESS_INSTANCE_UPDATE_COMPLETED EventTypeForNdsGroup = "SERVERLESS_INSTANCE_UPDATE_COMPLETED"
 	EVENTTYPEFORNDSGROUP_SERVERLESS_INSTANCE_DELETE_SUBMITTED EventTypeForNdsGroup = "SERVERLESS_INSTANCE_DELETE_SUBMITTED"
 	EVENTTYPEFORNDSGROUP_SERVERLESS_INSTANCE_DELETED EventTypeForNdsGroup = "SERVERLESS_INSTANCE_DELETED"
+	EVENTTYPEFORNDSGROUP_SERVERLESS_INSTANCE_BLOCKED EventTypeForNdsGroup = "SERVERLESS_INSTANCE_BLOCKED"
+	EVENTTYPEFORNDSGROUP_SERVERLESS_INSTANCE_UNBLOCKED EventTypeForNdsGroup = "SERVERLESS_INSTANCE_UNBLOCKED"
 	EVENTTYPEFORNDSGROUP_TENANT_ENDPOINT_CREATED EventTypeForNdsGroup = "TENANT_ENDPOINT_CREATED"
 	EVENTTYPEFORNDSGROUP_TENANT_ENDPOINT_RESERVED EventTypeForNdsGroup = "TENANT_ENDPOINT_RESERVED"
 	EVENTTYPEFORNDSGROUP_TENANT_ENDPOINT_RESERVATION_FAILED EventTypeForNdsGroup = "TENANT_ENDPOINT_RESERVATION_FAILED"
@@ -859,6 +861,8 @@ var AllowedEventTypeForNdsGroupEnumValues = []EventTypeForNdsGroup{
 	"SERVERLESS_INSTANCE_UPDATE_COMPLETED",
 	"SERVERLESS_INSTANCE_DELETE_SUBMITTED",
 	"SERVERLESS_INSTANCE_DELETED",
+	"SERVERLESS_INSTANCE_BLOCKED",
+	"SERVERLESS_INSTANCE_UNBLOCKED",
 	"TENANT_ENDPOINT_CREATED",
 	"TENANT_ENDPOINT_RESERVED",
 	"TENANT_ENDPOINT_RESERVATION_FAILED",

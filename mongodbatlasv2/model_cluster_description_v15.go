@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -70,7 +70,7 @@ func NewClusterDescriptionV15() *ClusterDescriptionV15 {
 	this := ClusterDescriptionV15{}
 	var backupEnabled bool = false
 	this.BackupEnabled = &backupEnabled
-	var mongoDBMajorVersion string = "5.0"
+	var mongoDBMajorVersion string = "6.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var rootCertType string = "ISRGROOTX1"
 	this.RootCertType = &rootCertType
@@ -88,7 +88,7 @@ func NewClusterDescriptionV15WithDefaults() *ClusterDescriptionV15 {
 	this := ClusterDescriptionV15{}
 	var backupEnabled bool = false
 	this.BackupEnabled = &backupEnabled
-	var mongoDBMajorVersion string = "5.0"
+	var mongoDBMajorVersion string = "6.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var rootCertType string = "ISRGROOTX1"
 	this.RootCertType = &rootCertType

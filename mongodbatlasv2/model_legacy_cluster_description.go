@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -88,7 +88,7 @@ type LegacyClusterDescription struct {
 // will change when the set of required properties is changed
 func NewLegacyClusterDescription() *LegacyClusterDescription {
 	this := LegacyClusterDescription{}
-	var mongoDBMajorVersion string = "5.0"
+	var mongoDBMajorVersion string = "6.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var numShards int32 = 1
 	this.NumShards = &numShards
@@ -108,7 +108,7 @@ func NewLegacyClusterDescription() *LegacyClusterDescription {
 // but it doesn't guarantee that properties required by API are set
 func NewLegacyClusterDescriptionWithDefaults() *LegacyClusterDescription {
 	this := LegacyClusterDescription{}
-	var mongoDBMajorVersion string = "5.0"
+	var mongoDBMajorVersion string = "6.0"
 	this.MongoDBMajorVersion = &mongoDBMajorVersion
 	var numShards int32 = 1
 	this.NumShards = &numShards

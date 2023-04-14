@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -23,6 +23,8 @@ type ContainerPeer struct {
 	ContainerId string `json:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the network peering connection.
 	Id *string `json:"id,omitempty"`
+	// Cloud service provider that serves the requested network peering connection.
+	ProviderName *string `json:"providerName,omitempty"`
 }
 
 // NewContainerPeer instantiates a new ContainerPeer object
@@ -99,6 +101,38 @@ func (o *ContainerPeer) SetId(v string) {
 	o.Id = &v
 }
 
+// GetProviderName returns the ProviderName field value if set, zero value otherwise.
+func (o *ContainerPeer) GetProviderName() string {
+	if o == nil || IsNil(o.ProviderName) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerPeer) GetProviderNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderName) {
+		return nil, false
+	}
+	return o.ProviderName, true
+}
+
+// HasProviderName returns a boolean if a field has been set.
+func (o *ContainerPeer) HasProviderName() bool {
+	if o != nil && !IsNil(o.ProviderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
+func (o *ContainerPeer) SetProviderName(v string) {
+	o.ProviderName = &v
+}
+
 func (o ContainerPeer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -109,6 +143,9 @@ func (o ContainerPeer) MarshalJSONWithoutReadOnly() ([]byte, error) {
 func (o ContainerPeer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["containerId"] = o.ContainerId
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
 	return toSerialize, nil
 }
 

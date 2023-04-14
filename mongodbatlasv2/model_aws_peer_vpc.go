@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -31,6 +31,8 @@ type AWSPeerVpc struct {
 	ErrorStateName *string `json:"errorStateName,omitempty"`
 	// Unique 24-hexadecimal digit string that identifies the network peering connection.
 	Id *string `json:"id,omitempty"`
+	// Cloud service provider that serves the requested network peering connection.
+	ProviderName *string `json:"providerName,omitempty"`
 	// Internet Protocol (IP) addresses expressed in Classless Inter-Domain Routing (CIDR) notation of the VPC's subnet that you want to peer with the MongoDB Cloud VPC.
 	RouteTableCidrBlock string `json:"routeTableCidrBlock"`
 	// State of the network peering connection at the time you made the request.
@@ -229,6 +231,38 @@ func (o *AWSPeerVpc) SetId(v string) {
 	o.Id = &v
 }
 
+// GetProviderName returns the ProviderName field value if set, zero value otherwise.
+func (o *AWSPeerVpc) GetProviderName() string {
+	if o == nil || IsNil(o.ProviderName) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderName
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSPeerVpc) GetProviderNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderName) {
+		return nil, false
+	}
+	return o.ProviderName, true
+}
+
+// HasProviderName returns a boolean if a field has been set.
+func (o *AWSPeerVpc) HasProviderName() bool {
+	if o != nil && !IsNil(o.ProviderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
+func (o *AWSPeerVpc) SetProviderName(v string) {
+	o.ProviderName = &v
+}
+
 // GetRouteTableCidrBlock returns the RouteTableCidrBlock field value
 func (o *AWSPeerVpc) GetRouteTableCidrBlock() string {
 	if o == nil {
@@ -321,6 +355,9 @@ func (o AWSPeerVpc) ToMap() (map[string]interface{}, error) {
 	toSerialize["accepterRegionName"] = o.AccepterRegionName
 	toSerialize["awsAccountId"] = o.AwsAccountId
 	toSerialize["containerId"] = o.ContainerId
+	if !IsNil(o.ProviderName) {
+		toSerialize["providerName"] = o.ProviderName
+	}
 	toSerialize["routeTableCidrBlock"] = o.RouteTableCidrBlock
 	toSerialize["vpcId"] = o.VpcId
 	return toSerialize, nil

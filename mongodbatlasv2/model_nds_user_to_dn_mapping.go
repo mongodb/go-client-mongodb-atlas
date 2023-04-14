@@ -1,7 +1,7 @@
 /*
 MongoDB Atlas Administration API
 
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas. To learn more, review the [Administration API overview](https://www.mongodb.com/docs/atlas/api/atlas-admin-api/). This OpenAPI specification covers all of the collections with the exception of Alerts, Alert Configurations, and Events. Refer to the [legacy documentation](https://www.mongodb.com/docs/atlas/reference/api-resources/) for the specifications of these resources.
+The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
 
 API version: 2.0
 */
@@ -20,22 +20,20 @@ var _ MappedNullable = &NDSUserToDNMapping{}
 // NDSUserToDNMapping User-to-Distinguished Name (DN) map that MongoDB Cloud uses to transform a Lightweight Directory Access Protocol (LDAP) username into an LDAP DN.
 type NDSUserToDNMapping struct {
 	// Lightweight Directory Access Protocol (LDAP) query template that inserts the LDAP name that the regular expression matches into an LDAP query Uniform Resource Identifier (URI). The formatting for the query must conform to [RFC 4515](https://datatracker.ietf.org/doc/html/rfc4515) and [RFC 4516](https://datatracker.ietf.org/doc/html/rfc4516).
-	LdapQuery string `json:"ldapQuery"`
+	LdapQuery *string `json:"ldapQuery,omitempty"`
 	// Regular expression that MongoDB Cloud uses to match against the provided Lightweight Directory Access Protocol (LDAP) username. Each parenthesis-enclosed section represents a regular expression capture group that the substitution or `ldapQuery` template uses.
 	Match string `json:"match"`
 	// Lightweight Directory Access Protocol (LDAP) Distinguished Name (DN) template that converts the LDAP username that matches regular expression in the *match* parameter into an LDAP Distinguished Name (DN).
-	Substitution string `json:"substitution"`
+	Substitution *string `json:"substitution,omitempty"`
 }
 
 // NewNDSUserToDNMapping instantiates a new NDSUserToDNMapping object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNDSUserToDNMapping(ldapQuery string, match string, substitution string) *NDSUserToDNMapping {
+func NewNDSUserToDNMapping(match string) *NDSUserToDNMapping {
 	this := NDSUserToDNMapping{}
-	this.LdapQuery = ldapQuery
 	this.Match = match
-	this.Substitution = substitution
 	return &this
 }
 
@@ -47,28 +45,36 @@ func NewNDSUserToDNMappingWithDefaults() *NDSUserToDNMapping {
 	return &this
 }
 
-// GetLdapQuery returns the LdapQuery field value
+// GetLdapQuery returns the LdapQuery field value if set, zero value otherwise.
 func (o *NDSUserToDNMapping) GetLdapQuery() string {
-	if o == nil {
+	if o == nil || IsNil(o.LdapQuery) {
 		var ret string
 		return ret
 	}
-
-	return o.LdapQuery
+	return *o.LdapQuery
 }
 
-// GetLdapQueryOk returns a tuple with the LdapQuery field value
+// GetLdapQueryOk returns a tuple with the LdapQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSUserToDNMapping) GetLdapQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LdapQuery) {
 		return nil, false
 	}
-	return &o.LdapQuery, true
+	return o.LdapQuery, true
 }
 
-// SetLdapQuery sets field value
+// HasLdapQuery returns a boolean if a field has been set.
+func (o *NDSUserToDNMapping) HasLdapQuery() bool {
+	if o != nil && !IsNil(o.LdapQuery) {
+		return true
+	}
+
+	return false
+}
+
+// SetLdapQuery gets a reference to the given string and assigns it to the LdapQuery field.
 func (o *NDSUserToDNMapping) SetLdapQuery(v string) {
-	o.LdapQuery = v
+	o.LdapQuery = &v
 }
 
 // GetMatch returns the Match field value
@@ -95,28 +101,36 @@ func (o *NDSUserToDNMapping) SetMatch(v string) {
 	o.Match = v
 }
 
-// GetSubstitution returns the Substitution field value
+// GetSubstitution returns the Substitution field value if set, zero value otherwise.
 func (o *NDSUserToDNMapping) GetSubstitution() string {
-	if o == nil {
+	if o == nil || IsNil(o.Substitution) {
 		var ret string
 		return ret
 	}
-
-	return o.Substitution
+	return *o.Substitution
 }
 
-// GetSubstitutionOk returns a tuple with the Substitution field value
+// GetSubstitutionOk returns a tuple with the Substitution field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NDSUserToDNMapping) GetSubstitutionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Substitution) {
 		return nil, false
 	}
-	return &o.Substitution, true
+	return o.Substitution, true
 }
 
-// SetSubstitution sets field value
+// HasSubstitution returns a boolean if a field has been set.
+func (o *NDSUserToDNMapping) HasSubstitution() bool {
+	if o != nil && !IsNil(o.Substitution) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubstitution gets a reference to the given string and assigns it to the Substitution field.
 func (o *NDSUserToDNMapping) SetSubstitution(v string) {
-	o.Substitution = v
+	o.Substitution = &v
 }
 
 func (o NDSUserToDNMapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
@@ -128,9 +142,13 @@ func (o NDSUserToDNMapping) MarshalJSONWithoutReadOnly() ([]byte, error) {
 }
 func (o NDSUserToDNMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ldapQuery"] = o.LdapQuery
+	if !IsNil(o.LdapQuery) {
+		toSerialize["ldapQuery"] = o.LdapQuery
+	}
 	toSerialize["match"] = o.Match
-	toSerialize["substitution"] = o.Substitution
+	if !IsNil(o.Substitution) {
+		toSerialize["substitution"] = o.Substitution
+	}
 	return toSerialize, nil
 }
 
