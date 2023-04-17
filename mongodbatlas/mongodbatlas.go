@@ -41,7 +41,7 @@ const (
 	gzipMediaType  = "application/gzip"
 	libraryName    = "go-mongodbatlas"
 	// Version the version of the current API client. Should be set to the next version planned to be released.
-	Version = "0.24.0"
+	Version = "0.25.0"
 )
 
 var (
@@ -125,6 +125,7 @@ type Client struct {
 	Checkpoints                         CheckpointsService
 	Alerts                              AlertsService
 	CloudProviderSnapshotBackupPolicies CloudProviderSnapshotBackupPoliciesService
+	BackupCompliancePolicy              BackupCompliancePolicyService
 	Events                              EventsService
 	Processes                           ProcessesService
 	ProcessMeasurements                 ProcessMeasurementsService
@@ -274,6 +275,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Checkpoints = &CheckpointsServiceOp{Client: c}
 	c.Alerts = &AlertsServiceOp{Client: c}
 	c.CloudProviderSnapshotBackupPolicies = &CloudProviderSnapshotBackupPoliciesServiceOp{Client: c}
+	c.BackupCompliancePolicy = &BackupCompliancePolicyServiceOp{Client: c}
 	c.Events = &EventsServiceOp{Client: c}
 	c.Processes = &ProcessesServiceOp{Client: c}
 	c.ProcessMeasurements = &ProcessMeasurementsServiceOp{Client: c}

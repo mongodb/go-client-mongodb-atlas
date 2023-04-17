@@ -27,7 +27,7 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         working-directory: ./tools
         run: make clean_and_generate
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v5
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         with:
           title: "Test OpenAPI client update"

@@ -29,8 +29,9 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/settings", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		_, _ = fmt.Fprint(w, `{
-               "isCollectDatabaseSpecificsStatisticsEnabled": true,
+			   "isCollectDatabaseSpecificsStatisticsEnabled": true,
 			   "isDataExplorerEnabled": true,
+			   "isExtendedStorageSizesEnabled": true,
 			   "isPerformanceAdvisorEnabled": true,
 			   "isRealtimePerformancePanelEnabled": true,
 			   "isSchemaAdvisorEnabled": true
@@ -45,6 +46,7 @@ func TestProjects_GetProjectSettings(t *testing.T) {
 	expected := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
 		IsDataExplorerEnabled:                       pointer(true),
+		IsExtendedStorageSizesEnabled:               pointer(true),
 		IsPerformanceAdvisorEnabled:                 pointer(true),
 		IsRealtimePerformancePanelEnabled:           pointer(true),
 		IsSchemaAdvisorEnabled:                      pointer(true),
@@ -62,8 +64,9 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/settings", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		_, _ = fmt.Fprint(w, `{
-               "isCollectDatabaseSpecificsStatisticsEnabled": true,
+			   "isCollectDatabaseSpecificsStatisticsEnabled": true,
 			   "isDataExplorerEnabled": true,
+			   "isExtendedStorageSizesEnabled": true,
 			   "isPerformanceAdvisorEnabled": true,
 			   "isRealtimePerformancePanelEnabled": true,
 			   "isSchemaAdvisorEnabled": true
@@ -73,6 +76,7 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	body := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
 		IsDataExplorerEnabled:                       pointer(true),
+		IsExtendedStorageSizesEnabled:               pointer(true),
 		IsPerformanceAdvisorEnabled:                 pointer(true),
 		IsRealtimePerformancePanelEnabled:           pointer(true),
 		IsSchemaAdvisorEnabled:                      pointer(true),
@@ -86,6 +90,7 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	expected := &ProjectSettings{
 		IsCollectDatabaseSpecificsStatisticsEnabled: pointer(true),
 		IsDataExplorerEnabled:                       pointer(true),
+		IsExtendedStorageSizesEnabled:               pointer(true),
 		IsPerformanceAdvisorEnabled:                 pointer(true),
 		IsRealtimePerformancePanelEnabled:           pointer(true),
 		IsSchemaAdvisorEnabled:                      pointer(true),
