@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.25.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.25.0) (April 17, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.24.0...v0.25.0)
+
+**Merged pull requests:**
+
+- INTMDB-466: Added IsExtendedStorageSizesEnabled to ProjectSettings [\#457](https://github.com/mongodb/go-client-mongodb-atlas/pull/457) ([evertsd](https://github.com/evertsd))
+- INTMDB-587: New Feature: Backup Compliance Policy Support [\#453](https://github.com/mongodb/go-client-mongodb-atlas/pull/453) ([martinstibbe](https://github.com/martinstibbe))
+- CLOUDP-169104: Fix encoding for AWS IAM usernames [\#452](https://github.com/mongodb/go-client-mongodb-atlas/pull/452) ([andmatei](https://github.com/andmatei))
+- chore\(deps\): bump peter-evans/create-pull-request from 4 to 5 [\#450](https://github.com/mongodb/go-client-mongodb-atlas/pull/450) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/stale from 7 to 8 [\#440](https://github.com/mongodb/go-client-mongodb-atlas/pull/440) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.24.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.24.0) (March 27, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.23.2...v0.24.0)
