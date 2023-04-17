@@ -64,7 +64,7 @@ func TestProjects_UpdateProjectSettings(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/settings", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
 		_, _ = fmt.Fprint(w, `{
-               "isCollectDatabaseSpecificsStatisticsEnabled": true,
+			   "isCollectDatabaseSpecificsStatisticsEnabled": true,
 			   "isDataExplorerEnabled": true,
 			   "isExtendedStorageSizesEnabled": true,
 			   "isPerformanceAdvisorEnabled": true,
