@@ -2,11 +2,12 @@ package sdk
 
 import (
 	"errors"
+	"fmt"
 
 	mongodbatlasv2 "go.mongodb.org/atlas/mongodbatlasv2"
 )
 
-// APIError gets a strongly typed error from an error.
+// APIError checks if error is an error returned by API.
 func APIError(err error) *mongodbatlasv2.Error {
 	var openapiError mongodbatlasv2.GenericOpenAPIError
 
@@ -19,6 +20,15 @@ func APIError(err error) *mongodbatlasv2.Error {
 		return nil
 	}
 	return &transformedError
+}
+
+// APIErrorToErr returns APIError as instance of Go error or nil if passed error is not an API error.
+func APIErrorToErr(err error) error {
+	apiError := APIError(err)
+	if apiError != nil {
+		return fmt.Errorf("%v", apiError)
+	}
+	return nil
 }
 
 // IsErrorCode returns true if the error contains the errCode.
