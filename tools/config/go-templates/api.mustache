@@ -356,45 +356,15 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		{{#responses}}
-		{{#dataType}}
-		{{^is1xx}}
-		{{^is2xx}}
-		{{#range}}
-		{{#is3xx}}
-		if localVarHTTPResponse.StatusCode >= 300 && localVarHTTPResponse.StatusCode < 400 {
-		{{/is3xx}}
-		{{#is4xx}}
-		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
-		{{/is4xx}}
-		{{#is5xx}}
-		if localVarHTTPResponse.StatusCode >= 500 {
-		{{/is5xx}}
-		{{/range}}
-		{{^range}}
-		{{^wildcard}}
-		if localVarHTTPResponse.StatusCode == {{{code}}} {
-		{{/wildcard}}
-		{{/range}}
-			var v {{{dataType}}}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			{{^-last}}
+		}{{!X-GEN-MODIFIED}}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
 			return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
-			{{/-last}}
-		{{^wildcard}}
 		}
-		{{/wildcard}}
-		{{/is2xx}}
-		{{/is1xx}}
-		{{/dataType}}
-		{{/responses}}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
 	}
 
