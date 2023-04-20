@@ -38,7 +38,8 @@ func main() {
 	handleErr(err, nil)
 
 	// -- 1. Get first project
-	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
+		IncludeCount(false).Execute()
 	handleErr(err, response)
 
 	if projects.GetTotalCount() == 0 {
