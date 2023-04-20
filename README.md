@@ -122,7 +122,7 @@ Fetching error code:
 ```go
 import errors "go.mongodb.org/atlas/mongodbatlasv2"
 
-apiError := errors.IsError(err)
+apiError := errors.AsError(err)
 fmt.Println(apiError)
 ```
 

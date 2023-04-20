@@ -155,7 +155,7 @@ func handleErr(err error, resp *http.Response) {
 		// Printing generic message
 		fmt.Println(err.Error())
 	}
-	apiErr, _ := mongodbatlas.IsError(err)
+	apiErr, _ := mongodbatlas.AsError(err)
 	log.Fatalf("Error when performing SDK request: %v", apiErr.GetDetail())
 
 }
