@@ -744,7 +744,7 @@ func strlen(s string) int {
 type GenericOpenAPIError struct {
 	body  []byte
 	error string
-	model interface{}
+	model Error
 }
 
 // Error returns non-empty string if there was an error.
@@ -758,13 +758,13 @@ func (e GenericOpenAPIError) Body() []byte {
 }
 
 // Model returns the unpacked model of the error
-func (e GenericOpenAPIError) Model() interface{} {
+func (e GenericOpenAPIError) Model() Error {
 	return e.model
 }
 
 // format error message using title and detail when model implements Error
 func formatErrorMessage(status, path, method string, v Error) string {
-	return fmt.Sprintf("%v %v: %d (request %q) %v. Reason: %v. Params: %v",
+	return fmt.Sprintf("%v %v: HTTP %d (Error code: %q) Detail: %v Reason: %v. Params: %v",
 			method, path, v.GetError(), v.GetErrorCode(),
 	 		v.GetDetail(), v.GetReason(), v.GetParameters())
 }
