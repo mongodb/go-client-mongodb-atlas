@@ -263,7 +263,7 @@ func (a *CloudMigrationServiceApiService) CreateLinkTokenExecute(r CloudMigratio
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -396,7 +396,7 @@ func (a *CloudMigrationServiceApiService) CreatePushMigrationExecute(r CloudMigr
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -521,7 +521,7 @@ func (a *CloudMigrationServiceApiService) CutoverMigrationExecute(r CloudMigrati
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -627,7 +627,7 @@ func (a *CloudMigrationServiceApiService) DeleteLinkTokenExecute(r CloudMigratio
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -745,7 +745,7 @@ func (a *CloudMigrationServiceApiService) GetPushMigrationExecute(r CloudMigrati
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -872,7 +872,7 @@ func (a *CloudMigrationServiceApiService) GetValidationStatusExecute(r CloudMigr
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -989,7 +989,7 @@ func (a *CloudMigrationServiceApiService) ListSourceProjectsExecute(r CloudMigra
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1118,7 +1118,7 @@ func (a *CloudMigrationServiceApiService) ValidateMigrationExecute(r CloudMigrat
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

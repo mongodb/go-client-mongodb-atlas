@@ -232,7 +232,7 @@ func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r AtlasSearchApiCr
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -367,7 +367,7 @@ func (a *AtlasSearchApiService) DeleteAtlasSearchIndexExecute(r AtlasSearchApiDe
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -495,7 +495,7 @@ func (a *AtlasSearchApiService) GetAtlasSearchIndexExecute(r AtlasSearchApiGetAt
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -630,7 +630,7 @@ func (a *AtlasSearchApiService) ListAtlasSearchIndexesExecute(r AtlasSearchApiLi
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -779,7 +779,7 @@ func (a *AtlasSearchApiService) UpdateAtlasSearchIndexExecute(r AtlasSearchApiUp
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

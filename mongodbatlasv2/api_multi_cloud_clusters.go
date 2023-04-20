@@ -230,7 +230,7 @@ func (a *MultiCloudClustersApiService) CreateClusterExecute(r MultiCloudClusters
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -365,7 +365,7 @@ func (a *MultiCloudClustersApiService) DeleteClusterExecute(r MultiCloudClusters
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -483,7 +483,7 @@ func (a *MultiCloudClustersApiService) GetClusterExecute(r MultiCloudClustersApi
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -581,18 +581,21 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 	} else {
 		var defaultValue bool = true
 		r.includeCount = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	} else {
 		var defaultValue int32 = 100
 		r.itemsPerPage = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	} else {
 		var defaultValue int32 = 1
 		r.pageNum = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -639,7 +642,7 @@ func (a *MultiCloudClustersApiService) ListClustersExecute(r MultiCloudClustersA
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -764,7 +767,7 @@ func (a *MultiCloudClustersApiService) TestFailoverExecute(r MultiCloudClustersA
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -894,7 +897,7 @@ func (a *MultiCloudClustersApiService) UpdateClusterExecute(r MultiCloudClusters
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

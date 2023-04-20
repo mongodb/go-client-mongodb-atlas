@@ -1,6 +1,7 @@
 {{! X-XGEN-CUSTOM }}package {{packageName}} // import "go.mongodb.org/atlas/mongodbatlas/v2"
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"runtime"
@@ -90,4 +91,23 @@ func UseUserAgent(userAgent string) ClientModifier {
 		c.UserAgent = userAgent
 		return nil
 	}
+}
+
+// AsError checks if API returned known error type.
+func AsError(err error) (*Error, bool) {
+	var openapiError *GenericOpenAPIError
+	if ok := errors.As(err, &openapiError); !ok {
+		return nil, false
+	}
+	errModel := openapiError.Model()
+	return &errModel, true
+}
+
+// IsErrorCode returns true if the error contains the specific code.
+func IsErrorCode(err error, code string) bool {
+	mappedErr, _ := AsError(err)
+	if mappedErr == nil {
+		return false
+	}
+	return mappedErr.GetErrorCode() == code
 }

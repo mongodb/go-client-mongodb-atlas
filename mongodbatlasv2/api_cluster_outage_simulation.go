@@ -184,7 +184,7 @@ func (a *ClusterOutageSimulationApiService) EndOutageSimulationExecute(r Cluster
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -311,7 +311,7 @@ func (a *ClusterOutageSimulationApiService) GetOutageSimulationExecute(r Cluster
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -450,7 +450,7 @@ func (a *ClusterOutageSimulationApiService) StartOutageSimulationExecute(r Clust
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

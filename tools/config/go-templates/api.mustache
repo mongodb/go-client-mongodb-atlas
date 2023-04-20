@@ -219,6 +219,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 	{{#defaultValue}}} else {
 		var defaultValue {{{dataType}}} = {{{.}}}
 		r.{{paramName}} = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
 	{{/defaultValue}}}
 	{{/required}}
 	{{/queryParams}}
@@ -363,7 +364,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 			newErr.error = err.Error()
 			return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
 	}

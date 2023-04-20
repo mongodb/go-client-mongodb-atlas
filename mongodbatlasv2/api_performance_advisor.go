@@ -201,7 +201,7 @@ func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -307,7 +307,7 @@ func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r 
 			newErr.error = err.Error()
 			return localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
@@ -421,6 +421,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 	} else {
 		var defaultValue int64 = 20000
 		r.nLogs = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	}
 	if r.since != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
@@ -470,7 +471,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r PerformanceAdvis
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -611,7 +612,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r Performa
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -748,18 +749,21 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 	} else {
 		var defaultValue bool = true
 		r.includeCount = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	} else {
 		var defaultValue int32 = 100
 		r.itemsPerPage = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	} else {
 		var defaultValue int32 = 1
 		r.pageNum = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	}
 	if r.duration != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "")
@@ -780,6 +784,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 	} else {
 		var defaultValue int64 = 5
 		r.nExamples = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nExamples", r.nExamples, "")
 	}
 	if r.nIndexes != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nIndexes", r.nIndexes, "")
@@ -832,7 +837,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r Performance
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

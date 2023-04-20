@@ -120,15 +120,15 @@ To release a new version, first ensure that [Version](./mongodbatlas/mongodbatla
 
 Fetching error code:
 ```go
-import errors "go.mongodb.org/atlas/sdk"
+import errors "go.mongodb.org/atlas/mongodbatlasv2"
 
-apiError := errors.APIError(err)
+apiError := errors.AsError(err)
 fmt.Println(apiError)
 ```
 
 Checking if error code exists:
 ```go
-import errors "go.mongodb.org/atlas/sdk"
+import errors "go.mongodb.org/atlas/mongodbatlasv2"
 
 
 if errors.IsErrorCode(err, "code"){

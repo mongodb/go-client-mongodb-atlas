@@ -173,6 +173,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 	} else {
 		var defaultValue int64 = 20000
 		r.nLogs = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
@@ -222,7 +223,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -347,6 +348,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 	} else {
 		var defaultValue int32 = 20000
 		r.nLogs = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nLogs", r.nLogs, "")
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
@@ -396,7 +398,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrack
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

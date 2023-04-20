@@ -95,6 +95,7 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 	} else {
 		var defaultValue bool = false
 		r.additionalInfo = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "additionalInfo", r.additionalInfo, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -141,7 +142,7 @@ func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleReques
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

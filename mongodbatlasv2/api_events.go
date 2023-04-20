@@ -177,6 +177,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 	} else {
 		var defaultValue bool = false
 		r.includeRaw = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -223,7 +224,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -319,6 +320,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 	} else {
 		var defaultValue bool = false
 		r.includeRaw = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -365,7 +367,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -493,18 +495,21 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	} else {
 		var defaultValue bool = true
 		r.includeCount = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	} else {
 		var defaultValue int32 = 100
 		r.itemsPerPage = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	} else {
 		var defaultValue int32 = 1
 		r.pageNum = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	}
 	if r.eventType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "eventType", r.eventType, "")
@@ -514,6 +519,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	} else {
 		var defaultValue bool = false
 		r.includeRaw = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
@@ -566,7 +572,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -701,18 +707,21 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 	} else {
 		var defaultValue bool = true
 		r.includeCount = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeCount", r.includeCount, "")
 	}
 	if r.itemsPerPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	} else {
 		var defaultValue int32 = 100
 		r.itemsPerPage = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "itemsPerPage", r.itemsPerPage, "")
 	}
 	if r.pageNum != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	} else {
 		var defaultValue int32 = 1
 		r.pageNum = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNum", r.pageNum, "")
 	}
 	if r.clusterNames != nil {
 		t := *r.clusterNames
@@ -733,6 +742,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 	} else {
 		var defaultValue bool = false
 		r.includeRaw = &defaultValue
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeRaw", r.includeRaw, "")
 	}
 	if r.maxDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "maxDate", r.maxDate, "")
@@ -785,7 +795,7 @@ func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEvents
 			newErr.error = err.Error()
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, localVarHTTPMethod, localVarPath, v)
 		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

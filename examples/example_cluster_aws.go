@@ -10,8 +10,6 @@ import (
 	"context"
 
 	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2"
-	"go.mongodb.org/atlas/sdk"
-
 	utils "go.mongodb.org/atlas/test/generators"
 )
 
@@ -38,7 +36,8 @@ func main() {
 	handleErr(err, nil)
 
 	// -- 1. Get first project
-	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
+		IncludeCount(false).Execute()
 	handleErr(err, response)
 
 	if projects.GetTotalCount() == 0 {
@@ -154,10 +153,11 @@ func handleErr(err error, resp *http.Response) {
 
 	if resp != nil {
 		fmt.Println(resp.Body)
+		// Printing generic message
+		fmt.Println(err.Error())
 	}
-	apiErr := sdk.APIError(err)
-
-	log.Fatalf("Error when performing SDK request: %v", apiErr)
+	apiErr, _ := mongodbatlas.AsError(err)
+	log.Fatalf("Error when performing SDK request: %v", apiErr.GetDetail())
 
 }
 
