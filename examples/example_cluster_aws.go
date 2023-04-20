@@ -10,8 +10,6 @@ import (
 	"context"
 
 	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2"
-	"go.mongodb.org/atlas/sdk"
-
 	utils "go.mongodb.org/atlas/test/generators"
 )
 
@@ -154,10 +152,11 @@ func handleErr(err error, resp *http.Response) {
 
 	if resp != nil {
 		fmt.Println(resp.Body)
+		// Printing generic message
+		fmt.Println(err.Error())
 	}
-	apiErr := sdk.APIError(err)
-
-	log.Fatalf("Error when performing SDK request: %v", apiErr)
+	apiErr, _ := mongodbatlas.IsError(err)
+	log.Fatalf("Error when performing SDK request: %v", apiErr.GetDetail())
 
 }
 
