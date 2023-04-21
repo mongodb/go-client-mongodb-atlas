@@ -32,13 +32,13 @@ type MongoDBCloudUsersApi interface {
  To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MongoDBCloudUsersApiCreateUserRequest
+	@return CreateUserApiRequest
 	*/
-	CreateUser(ctx context.Context) MongoDBCloudUsersApiCreateUserRequest
+	CreateUser(ctx context.Context) CreateUserApiRequest
 
 	// CreateUserExecute executes the request
 	//  @return AppUser
-	CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*AppUser, *http.Response, error)
+	CreateUserExecute(r CreateUserApiRequest) (*AppUser, *http.Response, error)
 
 	/*
 	GetUser Return One MongoDB Cloud User using Its ID
@@ -47,13 +47,13 @@ type MongoDBCloudUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userId Unique 24-hexadecimal digit string that identifies this user.
-	@return MongoDBCloudUsersApiGetUserRequest
+	@return GetUserApiRequest
 	*/
-	GetUser(ctx context.Context, userId string) MongoDBCloudUsersApiGetUserRequest
+	GetUser(ctx context.Context, userId string) GetUserApiRequest
 
 	// GetUserExecute executes the request
 	//  @return AppUser
-	GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*AppUser, *http.Response, error)
+	GetUserExecute(r GetUserApiRequest) (*AppUser, *http.Response, error)
 
 	/*
 	GetUserByUsername Return One MongoDB Cloud User using Their Username
@@ -62,19 +62,19 @@ type MongoDBCloudUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
-	@return MongoDBCloudUsersApiGetUserByUsernameRequest
+	@return GetUserByUsernameApiRequest
 	*/
-	GetUserByUsername(ctx context.Context, userName string) MongoDBCloudUsersApiGetUserByUsernameRequest
+	GetUserByUsername(ctx context.Context, userName string) GetUserByUsernameApiRequest
 
 	// GetUserByUsernameExecute executes the request
 	//  @return AppUser
-	GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*AppUser, *http.Response, error)
+	GetUserByUsernameExecute(r GetUserByUsernameApiRequest) (*AppUser, *http.Response, error)
 }
 
 // MongoDBCloudUsersApiService MongoDBCloudUsersApi service
 type MongoDBCloudUsersApiService service
 
-type MongoDBCloudUsersApiCreateUserRequest struct {
+type CreateUserApiRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	appUser *AppUser
@@ -85,12 +85,12 @@ type CreateUserParams struct {
 }
 
 // MongoDB Cloud user account to create.
-func (r MongoDBCloudUsersApiCreateUserRequest) AppUser(appUser AppUser) MongoDBCloudUsersApiCreateUserRequest {
+func (r CreateUserApiRequest) AppUser(appUser AppUser) CreateUserApiRequest {
 	r.appUser = &appUser
 	return r
 }
 
-func (r MongoDBCloudUsersApiCreateUserRequest) Execute() (*AppUser, *http.Response, error) {
+func (r CreateUserApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.CreateUserExecute(r)
 }
 
@@ -104,10 +104,10 @@ Creates one MongoDB Cloud user account. A MongoDB Cloud user account grants acce
  To use this resource, the requesting API Key can have any role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MongoDBCloudUsersApiCreateUserRequest
+ @return CreateUserApiRequest
 */
-func (a *MongoDBCloudUsersApiService) CreateUser(ctx context.Context) MongoDBCloudUsersApiCreateUserRequest {
-	return MongoDBCloudUsersApiCreateUserRequest{
+func (a *MongoDBCloudUsersApiService) CreateUser(ctx context.Context) CreateUserApiRequest {
+	return CreateUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -115,7 +115,7 @@ func (a *MongoDBCloudUsersApiService) CreateUser(ctx context.Context) MongoDBClo
 
 // Execute executes the request
 //  @return AppUser
-func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCreateUserRequest) (*AppUser, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) CreateUserExecute(r CreateUserApiRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -201,7 +201,7 @@ func (a *MongoDBCloudUsersApiService) CreateUserExecute(r MongoDBCloudUsersApiCr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MongoDBCloudUsersApiGetUserRequest struct {
+type GetUserApiRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	userId string
@@ -211,7 +211,7 @@ type GetUserParams struct {
 		UserId string
 }
 
-func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*AppUser, *http.Response, error) {
+func (r GetUserApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserExecute(r)
 }
 
@@ -222,10 +222,10 @@ Returns the details for one MongoDB Cloud user account with the specified unique
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId Unique 24-hexadecimal digit string that identifies this user.
- @return MongoDBCloudUsersApiGetUserRequest
+ @return GetUserApiRequest
 */
-func (a *MongoDBCloudUsersApiService) GetUser(ctx context.Context, userId string) MongoDBCloudUsersApiGetUserRequest {
-	return MongoDBCloudUsersApiGetUserRequest{
+func (a *MongoDBCloudUsersApiService) GetUser(ctx context.Context, userId string) GetUserApiRequest {
+	return GetUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		userId: userId,
@@ -234,7 +234,7 @@ func (a *MongoDBCloudUsersApiService) GetUser(ctx context.Context, userId string
 
 // Execute executes the request
 //  @return AppUser
-func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUserRequest) (*AppUser, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) GetUserExecute(r GetUserApiRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -322,7 +322,7 @@ func (a *MongoDBCloudUsersApiService) GetUserExecute(r MongoDBCloudUsersApiGetUs
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MongoDBCloudUsersApiGetUserByUsernameRequest struct {
+type GetUserByUsernameApiRequest struct {
 	ctx context.Context
 	ApiService MongoDBCloudUsersApi
 	userName string
@@ -332,7 +332,7 @@ type GetUserByUsernameParams struct {
 		UserName string
 }
 
-func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*AppUser, *http.Response, error) {
+func (r GetUserByUsernameApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserByUsernameExecute(r)
 }
 
@@ -343,10 +343,10 @@ Returns the details for one MongoDB Cloud user account with the specified userna
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userName Email address that belongs to the MongoDB Cloud user account. You cannot modify this address after creating the user.
- @return MongoDBCloudUsersApiGetUserByUsernameRequest
+ @return GetUserByUsernameApiRequest
 */
-func (a *MongoDBCloudUsersApiService) GetUserByUsername(ctx context.Context, userName string) MongoDBCloudUsersApiGetUserByUsernameRequest {
-	return MongoDBCloudUsersApiGetUserByUsernameRequest{
+func (a *MongoDBCloudUsersApiService) GetUserByUsername(ctx context.Context, userName string) GetUserByUsernameApiRequest {
+	return GetUserByUsernameApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		userName: userName,
@@ -355,7 +355,7 @@ func (a *MongoDBCloudUsersApiService) GetUserByUsername(ctx context.Context, use
 
 // Execute executes the request
 //  @return AppUser
-func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r MongoDBCloudUsersApiGetUserByUsernameRequest) (*AppUser, *http.Response, error) {
+func (a *MongoDBCloudUsersApiService) GetUserByUsernameExecute(r GetUserByUsernameApiRequest) (*AppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

@@ -30,18 +30,18 @@ type RollingIndexApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster on which MongoDB Cloud creates an index.
-	@return RollingIndexApiCreateRollingIndexRequest
+	@return CreateRollingIndexApiRequest
 	*/
-	CreateRollingIndex(ctx context.Context, groupId string, clusterName string) RollingIndexApiCreateRollingIndexRequest
+	CreateRollingIndex(ctx context.Context, groupId string, clusterName string) CreateRollingIndexApiRequest
 
 	// CreateRollingIndexExecute executes the request
-	CreateRollingIndexExecute(r RollingIndexApiCreateRollingIndexRequest) (*http.Response, error)
+	CreateRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error)
 }
 
 // RollingIndexApiService RollingIndexApi service
 type RollingIndexApiService service
 
-type RollingIndexApiCreateRollingIndexRequest struct {
+type CreateRollingIndexApiRequest struct {
 	ctx context.Context
 	ApiService RollingIndexApi
 	groupId string
@@ -56,12 +56,12 @@ type CreateRollingIndexParams struct {
 }
 
 // Rolling index to create on the specified cluster.
-func (r RollingIndexApiCreateRollingIndexRequest) IndexRequest(indexRequest IndexRequest) RollingIndexApiCreateRollingIndexRequest {
+func (r CreateRollingIndexApiRequest) IndexRequest(indexRequest IndexRequest) CreateRollingIndexApiRequest {
 	r.indexRequest = &indexRequest
 	return r
 }
 
-func (r RollingIndexApiCreateRollingIndexRequest) Execute() (*http.Response, error) {
+func (r CreateRollingIndexApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CreateRollingIndexExecute(r)
 }
 
@@ -73,10 +73,10 @@ Creates an index on the cluster identified by its name in a rolling manner. Crea
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster on which MongoDB Cloud creates an index.
- @return RollingIndexApiCreateRollingIndexRequest
+ @return CreateRollingIndexApiRequest
 */
-func (a *RollingIndexApiService) CreateRollingIndex(ctx context.Context, groupId string, clusterName string) RollingIndexApiCreateRollingIndexRequest {
-	return RollingIndexApiCreateRollingIndexRequest{
+func (a *RollingIndexApiService) CreateRollingIndex(ctx context.Context, groupId string, clusterName string) CreateRollingIndexApiRequest {
+	return CreateRollingIndexApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -85,7 +85,7 @@ func (a *RollingIndexApiService) CreateRollingIndex(ctx context.Context, groupId
 }
 
 // Execute executes the request
-func (a *RollingIndexApiService) CreateRollingIndexExecute(r RollingIndexApiCreateRollingIndexRequest) (*http.Response, error) {
+func (a *RollingIndexApiService) CreateRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

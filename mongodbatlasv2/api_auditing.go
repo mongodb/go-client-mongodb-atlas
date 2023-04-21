@@ -29,13 +29,13 @@ type AuditingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AuditingApiGetAuditingConfigurationRequest
+	@return GetAuditingConfigurationApiRequest
 	*/
-	GetAuditingConfiguration(ctx context.Context, groupId string) AuditingApiGetAuditingConfigurationRequest
+	GetAuditingConfiguration(ctx context.Context, groupId string) GetAuditingConfigurationApiRequest
 
 	// GetAuditingConfigurationExecute executes the request
 	//  @return AuditLog
-	GetAuditingConfigurationExecute(r AuditingApiGetAuditingConfigurationRequest) (*AuditLog, *http.Response, error)
+	GetAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
 
 	/*
 	UpdateAuditingConfiguration Update Auditing Configuration for One Project
@@ -44,19 +44,19 @@ type AuditingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AuditingApiUpdateAuditingConfigurationRequest
+	@return UpdateAuditingConfigurationApiRequest
 	*/
-	UpdateAuditingConfiguration(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationRequest
+	UpdateAuditingConfiguration(ctx context.Context, groupId string) UpdateAuditingConfigurationApiRequest
 
 	// UpdateAuditingConfigurationExecute executes the request
 	//  @return AuditLog
-	UpdateAuditingConfigurationExecute(r AuditingApiUpdateAuditingConfigurationRequest) (*AuditLog, *http.Response, error)
+	UpdateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
 }
 
 // AuditingApiService AuditingApi service
 type AuditingApiService service
 
-type AuditingApiGetAuditingConfigurationRequest struct {
+type GetAuditingConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AuditingApi
 	groupId string
@@ -66,7 +66,7 @@ type GetAuditingConfigurationParams struct {
 		GroupId string
 }
 
-func (r AuditingApiGetAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
+func (r GetAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
 	return r.ApiService.GetAuditingConfigurationExecute(r)
 }
 
@@ -77,10 +77,10 @@ Returns the auditing configuration for the specified project. The auditing confi
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AuditingApiGetAuditingConfigurationRequest
+ @return GetAuditingConfigurationApiRequest
 */
-func (a *AuditingApiService) GetAuditingConfiguration(ctx context.Context, groupId string) AuditingApiGetAuditingConfigurationRequest {
-	return AuditingApiGetAuditingConfigurationRequest{
+func (a *AuditingApiService) GetAuditingConfiguration(ctx context.Context, groupId string) GetAuditingConfigurationApiRequest {
+	return GetAuditingConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -89,7 +89,7 @@ func (a *AuditingApiService) GetAuditingConfiguration(ctx context.Context, group
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) GetAuditingConfigurationExecute(r AuditingApiGetAuditingConfigurationRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) GetAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -177,7 +177,7 @@ func (a *AuditingApiService) GetAuditingConfigurationExecute(r AuditingApiGetAud
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AuditingApiUpdateAuditingConfigurationRequest struct {
+type UpdateAuditingConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AuditingApi
 	groupId string
@@ -190,12 +190,12 @@ type UpdateAuditingConfigurationParams struct {
 }
 
 // Updated auditing configuration for the specified project.
-func (r AuditingApiUpdateAuditingConfigurationRequest) AuditLog(auditLog AuditLog) AuditingApiUpdateAuditingConfigurationRequest {
+func (r UpdateAuditingConfigurationApiRequest) AuditLog(auditLog AuditLog) UpdateAuditingConfigurationApiRequest {
 	r.auditLog = &auditLog
 	return r
 }
 
-func (r AuditingApiUpdateAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
+func (r UpdateAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
 	return r.ApiService.UpdateAuditingConfigurationExecute(r)
 }
 
@@ -206,10 +206,10 @@ Updates the auditing configuration for the specified project. The auditing confi
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AuditingApiUpdateAuditingConfigurationRequest
+ @return UpdateAuditingConfigurationApiRequest
 */
-func (a *AuditingApiService) UpdateAuditingConfiguration(ctx context.Context, groupId string) AuditingApiUpdateAuditingConfigurationRequest {
-	return AuditingApiUpdateAuditingConfigurationRequest{
+func (a *AuditingApiService) UpdateAuditingConfiguration(ctx context.Context, groupId string) UpdateAuditingConfigurationApiRequest {
+	return UpdateAuditingConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -218,7 +218,7 @@ func (a *AuditingApiService) UpdateAuditingConfiguration(ctx context.Context, gr
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) UpdateAuditingConfigurationExecute(r AuditingApiUpdateAuditingConfigurationRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) UpdateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

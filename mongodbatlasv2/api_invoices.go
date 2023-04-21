@@ -30,12 +30,12 @@ type InvoicesApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
-	@return InvoicesApiDownloadInvoiceCSVRequest
+	@return DownloadInvoiceCSVApiRequest
 	*/
-	DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) InvoicesApiDownloadInvoiceCSVRequest
+	DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) DownloadInvoiceCSVApiRequest
 
 	// DownloadInvoiceCSVExecute executes the request
-	DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvoiceCSVRequest) (*http.Response, error)
+	DownloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error)
 
 	/*
 	GetInvoice Return One Organization Invoice
@@ -45,13 +45,13 @@ type InvoicesApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
-	@return InvoicesApiGetInvoiceRequest
+	@return GetInvoiceApiRequest
 	*/
-	GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest
+	GetInvoice(ctx context.Context, orgId string, invoiceId string) GetInvoiceApiRequest
 
 	// GetInvoiceExecute executes the request
 	//  @return Invoice
-	GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*Invoice, *http.Response, error)
+	GetInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error)
 
 	/*
 	ListInvoices Return All Invoices for One Organization
@@ -60,13 +60,13 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return InvoicesApiListInvoicesRequest
+	@return ListInvoicesApiRequest
 	*/
-	ListInvoices(ctx context.Context, orgId string) InvoicesApiListInvoicesRequest
+	ListInvoices(ctx context.Context, orgId string) ListInvoicesApiRequest
 
 	// ListInvoicesExecute executes the request
 	//  @return PaginatedApiInvoice
-	ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error)
+	ListInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
 
 	/*
 	ListPendingInvoices Return All Pending Invoices for One Organization
@@ -75,19 +75,19 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return InvoicesApiListPendingInvoicesRequest
+	@return ListPendingInvoicesApiRequest
 	*/
-	ListPendingInvoices(ctx context.Context, orgId string) InvoicesApiListPendingInvoicesRequest
+	ListPendingInvoices(ctx context.Context, orgId string) ListPendingInvoicesApiRequest
 
 	// ListPendingInvoicesExecute executes the request
 	//  @return PaginatedApiInvoice
-	ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error)
+	ListPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
 }
 
 // InvoicesApiService InvoicesApi service
 type InvoicesApiService service
 
-type InvoicesApiDownloadInvoiceCSVRequest struct {
+type DownloadInvoiceCSVApiRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -99,7 +99,7 @@ type DownloadInvoiceCSVParams struct {
 		InvoiceId string
 }
 
-func (r InvoicesApiDownloadInvoiceCSVRequest) Execute() (*http.Response, error) {
+func (r DownloadInvoiceCSVApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DownloadInvoiceCSVExecute(r)
 }
 
@@ -111,10 +111,10 @@ Returns one invoice that MongoDB issued to the specified organization in CSV for
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
- @return InvoicesApiDownloadInvoiceCSVRequest
+ @return DownloadInvoiceCSVApiRequest
 */
-func (a *InvoicesApiService) DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) InvoicesApiDownloadInvoiceCSVRequest {
-	return InvoicesApiDownloadInvoiceCSVRequest{
+func (a *InvoicesApiService) DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) DownloadInvoiceCSVApiRequest {
+	return DownloadInvoiceCSVApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -123,7 +123,7 @@ func (a *InvoicesApiService) DownloadInvoiceCSV(ctx context.Context, orgId strin
 }
 
 // Execute executes the request
-func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvoiceCSVRequest) (*http.Response, error) {
+func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -202,7 +202,7 @@ func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r InvoicesApiDownloadInvo
 	return localVarHTTPResponse, nil
 }
 
-type InvoicesApiGetInvoiceRequest struct {
+type GetInvoiceApiRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -214,7 +214,7 @@ type GetInvoiceParams struct {
 		InvoiceId string
 }
 
-func (r InvoicesApiGetInvoiceRequest) Execute() (*Invoice, *http.Response, error) {
+func (r GetInvoiceApiRequest) Execute() (*Invoice, *http.Response, error) {
 	return r.ApiService.GetInvoiceExecute(r)
 }
 
@@ -226,10 +226,10 @@ Returns one invoice that MongoDB issued to the specified organization. A unique 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param invoiceId Unique 24-hexadecimal digit string that identifies the invoice submitted to the specified organization. Charges typically post the next day.
- @return InvoicesApiGetInvoiceRequest
+ @return GetInvoiceApiRequest
 */
-func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoiceId string) InvoicesApiGetInvoiceRequest {
-	return InvoicesApiGetInvoiceRequest{
+func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoiceId string) GetInvoiceApiRequest {
+	return GetInvoiceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -239,7 +239,7 @@ func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoi
 
 // Execute executes the request
 //  @return Invoice
-func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (*Invoice, *http.Response, error) {
+func (a *InvoicesApiService) GetInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -334,7 +334,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r InvoicesApiGetInvoiceRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type InvoicesApiListInvoicesRequest struct {
+type ListInvoicesApiRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -351,24 +351,24 @@ type ListInvoicesParams struct {
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r InvoicesApiListInvoicesRequest) IncludeCount(includeCount bool) InvoicesApiListInvoicesRequest {
+func (r ListInvoicesApiRequest) IncludeCount(includeCount bool) ListInvoicesApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r InvoicesApiListInvoicesRequest) ItemsPerPage(itemsPerPage int32) InvoicesApiListInvoicesRequest {
+func (r ListInvoicesApiRequest) ItemsPerPage(itemsPerPage int32) ListInvoicesApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r InvoicesApiListInvoicesRequest) PageNum(pageNum int32) InvoicesApiListInvoicesRequest {
+func (r ListInvoicesApiRequest) PageNum(pageNum int32) ListInvoicesApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r InvoicesApiListInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
+func (r ListInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
 	return r.ApiService.ListInvoicesExecute(r)
 }
 
@@ -379,10 +379,10 @@ Returns all invoices that MongoDB issued to the specified organization. This lis
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return InvoicesApiListInvoicesRequest
+ @return ListInvoicesApiRequest
 */
-func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) InvoicesApiListInvoicesRequest {
-	return InvoicesApiListInvoicesRequest{
+func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) ListInvoicesApiRequest {
+	return ListInvoicesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -391,7 +391,7 @@ func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) Inv
 
 // Execute executes the request
 //  @return PaginatedApiInvoice
-func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error) {
+func (a *InvoicesApiService) ListInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -500,7 +500,7 @@ func (a *InvoicesApiService) ListInvoicesExecute(r InvoicesApiListInvoicesReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type InvoicesApiListPendingInvoicesRequest struct {
+type ListPendingInvoicesApiRequest struct {
 	ctx context.Context
 	ApiService InvoicesApi
 	orgId string
@@ -510,7 +510,7 @@ type ListPendingInvoicesParams struct {
 		OrgId string
 }
 
-func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
+func (r ListPendingInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
 	return r.ApiService.ListPendingInvoicesExecute(r)
 }
 
@@ -521,10 +521,10 @@ Returns all invoices accruing charges for the current billing cycle for the spec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return InvoicesApiListPendingInvoicesRequest
+ @return ListPendingInvoicesApiRequest
 */
-func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId string) InvoicesApiListPendingInvoicesRequest {
-	return InvoicesApiListPendingInvoicesRequest{
+func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId string) ListPendingInvoicesApiRequest {
+	return ListPendingInvoicesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -533,7 +533,7 @@ func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId stri
 
 // Execute executes the request
 //  @return PaginatedApiInvoice
-func (a *InvoicesApiService) ListPendingInvoicesExecute(r InvoicesApiListPendingInvoicesRequest) (*PaginatedApiInvoice, *http.Response, error) {
+func (a *InvoicesApiService) ListPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

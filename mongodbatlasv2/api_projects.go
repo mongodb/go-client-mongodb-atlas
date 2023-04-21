@@ -28,13 +28,13 @@ type ProjectsApi interface {
 	Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectsApiCreateProjectRequest
+	@return CreateProjectApiRequest
 	*/
-	CreateProject(ctx context.Context) ProjectsApiCreateProjectRequest
+	CreateProject(ctx context.Context) CreateProjectApiRequest
 
 	// CreateProjectExecute executes the request
 	//  @return Group
-	CreateProjectExecute(r ProjectsApiCreateProjectRequest) (*Group, *http.Response, error)
+	CreateProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
@@ -43,13 +43,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiCreateProjectInvitationRequest
+	@return CreateProjectInvitationApiRequest
 	*/
-	CreateProjectInvitation(ctx context.Context, groupId string) ProjectsApiCreateProjectInvitationRequest
+	CreateProjectInvitation(ctx context.Context, groupId string) CreateProjectInvitationApiRequest
 
 	// CreateProjectInvitationExecute executes the request
 	//  @return GroupInvitation
-	CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
+	CreateProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	DeleteProject Remove One Project
@@ -58,12 +58,12 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiDeleteProjectRequest
+	@return DeleteProjectApiRequest
 	*/
-	DeleteProject(ctx context.Context, groupId string) ProjectsApiDeleteProjectRequest
+	DeleteProject(ctx context.Context, groupId string) DeleteProjectApiRequest
 
 	// DeleteProjectExecute executes the request
-	DeleteProjectExecute(r ProjectsApiDeleteProjectRequest) (*http.Response, error)
+	DeleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error)
 
 	/*
 	DeleteProjectInvitation Cancel One Project Invitation
@@ -73,12 +73,12 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiDeleteProjectInvitationRequest
+	@return DeleteProjectInvitationApiRequest
 	*/
-	DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiDeleteProjectInvitationRequest
+	DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) DeleteProjectInvitationApiRequest
 
 	// DeleteProjectInvitationExecute executes the request
-	DeleteProjectInvitationExecute(r ProjectsApiDeleteProjectInvitationRequest) (*http.Response, error)
+	DeleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error)
 
 	/*
 	DeleteProjectLimit Remove One Project Limit
@@ -88,12 +88,12 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiDeleteProjectLimitRequest
+	@return DeleteProjectLimitApiRequest
 	*/
-	DeleteProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiDeleteProjectLimitRequest
+	DeleteProjectLimit(ctx context.Context, limitName string, groupId string) DeleteProjectLimitApiRequest
 
 	// DeleteProjectLimitExecute executes the request
-	DeleteProjectLimitExecute(r ProjectsApiDeleteProjectLimitRequest) (*http.Response, error)
+	DeleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error)
 
 	/*
 	GetProject Return One Project
@@ -102,13 +102,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiGetProjectRequest
+	@return GetProjectApiRequest
 	*/
-	GetProject(ctx context.Context, groupId string) ProjectsApiGetProjectRequest
+	GetProject(ctx context.Context, groupId string) GetProjectApiRequest
 
 	// GetProjectExecute executes the request
 	//  @return Group
-	GetProjectExecute(r ProjectsApiGetProjectRequest) (*Group, *http.Response, error)
+	GetProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	GetProjectByName Return One Project using Its Name
@@ -117,13 +117,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupName Human-readable label that identifies this project.
-	@return ProjectsApiGetProjectByNameRequest
+	@return GetProjectByNameApiRequest
 	*/
-	GetProjectByName(ctx context.Context, groupName string) ProjectsApiGetProjectByNameRequest
+	GetProjectByName(ctx context.Context, groupName string) GetProjectByNameApiRequest
 
 	// GetProjectByNameExecute executes the request
 	//  @return Group
-	GetProjectByNameExecute(r ProjectsApiGetProjectByNameRequest) (*Group, *http.Response, error)
+	GetProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error)
 
 	/*
 	GetProjectInvitation Return One Project Invitation
@@ -133,13 +133,13 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiGetProjectInvitationRequest
+	@return GetProjectInvitationApiRequest
 	*/
-	GetProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiGetProjectInvitationRequest
+	GetProjectInvitation(ctx context.Context, groupId string, invitationId string) GetProjectInvitationApiRequest
 
 	// GetProjectInvitationExecute executes the request
 	//  @return GroupInvitation
-	GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
+	GetProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	GetProjectLimit Return One Limit for One Project
@@ -149,13 +149,13 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiGetProjectLimitRequest
+	@return GetProjectLimitApiRequest
 	*/
-	GetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetProjectLimitRequest
+	GetProjectLimit(ctx context.Context, limitName string, groupId string) GetProjectLimitApiRequest
 
 	// GetProjectLimitExecute executes the request
 	//  @return Limit
-	GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*Limit, *http.Response, error)
+	GetProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	GetProjectSettings Return One Project Settings
@@ -164,13 +164,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiGetProjectSettingsRequest
+	@return GetProjectSettingsApiRequest
 	*/
-	GetProjectSettings(ctx context.Context, groupId string) ProjectsApiGetProjectSettingsRequest
+	GetProjectSettings(ctx context.Context, groupId string) GetProjectSettingsApiRequest
 
 	// GetProjectSettingsExecute executes the request
 	//  @return GroupSettings
-	GetProjectSettingsExecute(r ProjectsApiGetProjectSettingsRequest) (*GroupSettings, *http.Response, error)
+	GetProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
 
 	/*
 	ListProjectInvitations Return All Project Invitations
@@ -179,13 +179,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiListProjectInvitationsRequest
+	@return ListProjectInvitationsApiRequest
 	*/
-	ListProjectInvitations(ctx context.Context, groupId string) ProjectsApiListProjectInvitationsRequest
+	ListProjectInvitations(ctx context.Context, groupId string) ListProjectInvitationsApiRequest
 
 	// ListProjectInvitationsExecute executes the request
 	//  @return []GroupInvitation
-	ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]GroupInvitation, *http.Response, error)
+	ListProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error)
 
 	/*
 	ListProjectLimits Return All Limits for One Project
@@ -194,13 +194,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiListProjectLimitsRequest
+	@return ListProjectLimitsApiRequest
 	*/
-	ListProjectLimits(ctx context.Context, groupId string) ProjectsApiListProjectLimitsRequest
+	ListProjectLimits(ctx context.Context, groupId string) ListProjectLimitsApiRequest
 
 	// ListProjectLimitsExecute executes the request
 	//  @return Limit
-	ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*Limit, *http.Response, error)
+	ListProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	ListProjectUsers Return All Users in One Project
@@ -209,13 +209,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiListProjectUsersRequest
+	@return ListProjectUsersApiRequest
 	*/
-	ListProjectUsers(ctx context.Context, groupId string) ProjectsApiListProjectUsersRequest
+	ListProjectUsers(ctx context.Context, groupId string) ListProjectUsersApiRequest
 
 	// ListProjectUsersExecute executes the request
 	//  @return PaginatedApiAppUser
-	ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUser, *http.Response, error)
+	ListProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	ListProjects Return All Projects
@@ -223,13 +223,13 @@ type ProjectsApi interface {
 	Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectsApiListProjectsRequest
+	@return ListProjectsApiRequest
 	*/
-	ListProjects(ctx context.Context) ProjectsApiListProjectsRequest
+	ListProjects(ctx context.Context) ListProjectsApiRequest
 
 	// ListProjectsExecute executes the request
 	//  @return PaginatedAtlasGroup
-	ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroup, *http.Response, error)
+	ListProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error)
 
 	/*
 	RemoveProjectUser Remove One User from One Project
@@ -239,12 +239,12 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param userId Unique 24-hexadecimal string that identifies MongoDB Cloud user you want to remove from the specified project. To return a application user's ID using their application username, use the Get All application users in One Project endpoint.
-	@return ProjectsApiRemoveProjectUserRequest
+	@return RemoveProjectUserApiRequest
 	*/
-	RemoveProjectUser(ctx context.Context, groupId string, userId string) ProjectsApiRemoveProjectUserRequest
+	RemoveProjectUser(ctx context.Context, groupId string, userId string) RemoveProjectUserApiRequest
 
 	// RemoveProjectUserExecute executes the request
-	RemoveProjectUserExecute(r ProjectsApiRemoveProjectUserRequest) (*http.Response, error)
+	RemoveProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error)
 
 	/*
 	SetProjectLimit Set One Project Limit
@@ -256,13 +256,13 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiSetProjectLimitRequest
+	@return SetProjectLimitApiRequest
 	*/
-	SetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetProjectLimitRequest
+	SetProjectLimit(ctx context.Context, limitName string, groupId string) SetProjectLimitApiRequest
 
 	// SetProjectLimitExecute executes the request
 	//  @return Limit
-	SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*Limit, *http.Response, error)
+	SetProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	UpdateProject Update One Project Name
@@ -271,13 +271,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiUpdateProjectRequest
+	@return UpdateProjectApiRequest
 	*/
-	UpdateProject(ctx context.Context, groupId string) ProjectsApiUpdateProjectRequest
+	UpdateProject(ctx context.Context, groupId string) UpdateProjectApiRequest
 
 	// UpdateProjectExecute executes the request
 	//  @return Group
-	UpdateProjectExecute(r ProjectsApiUpdateProjectRequest) (*Group, *http.Response, error)
+	UpdateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	UpdateProjectInvitation Update One Project Invitation
@@ -286,13 +286,13 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiUpdateProjectInvitationRequest
+	@return UpdateProjectInvitationApiRequest
 	*/
-	UpdateProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateProjectInvitationRequest
+	UpdateProjectInvitation(ctx context.Context, groupId string) UpdateProjectInvitationApiRequest
 
 	// UpdateProjectInvitationExecute executes the request
 	//  @return GroupInvitation
-	UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*GroupInvitation, *http.Response, error)
+	UpdateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectInvitationById Update One Project Invitation by Invitation ID
@@ -302,13 +302,13 @@ type ProjectsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
-	@return ProjectsApiUpdateProjectInvitationByIdRequest
+	@return UpdateProjectInvitationByIdApiRequest
 	*/
-	UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateProjectInvitationByIdRequest
+	UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) UpdateProjectInvitationByIdApiRequest
 
 	// UpdateProjectInvitationByIdExecute executes the request
 	//  @return GroupInvitation
-	UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*GroupInvitation, *http.Response, error)
+	UpdateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectSettings Update One Project Settings
@@ -317,19 +317,19 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return ProjectsApiUpdateProjectSettingsRequest
+	@return UpdateProjectSettingsApiRequest
 	*/
-	UpdateProjectSettings(ctx context.Context, groupId string) ProjectsApiUpdateProjectSettingsRequest
+	UpdateProjectSettings(ctx context.Context, groupId string) UpdateProjectSettingsApiRequest
 
 	// UpdateProjectSettingsExecute executes the request
 	//  @return GroupSettings
-	UpdateProjectSettingsExecute(r ProjectsApiUpdateProjectSettingsRequest) (*GroupSettings, *http.Response, error)
+	UpdateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
 }
 
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
-type ProjectsApiCreateProjectRequest struct {
+type CreateProjectApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	group *Group
@@ -342,18 +342,18 @@ type CreateProjectParams struct {
 }
 
 // Creates one project.
-func (r ProjectsApiCreateProjectRequest) Group(group Group) ProjectsApiCreateProjectRequest {
+func (r CreateProjectApiRequest) Group(group Group) CreateProjectApiRequest {
 	r.group = &group
 	return r
 }
 
 // Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user to whom to grant the Project Owner role on the specified project. If you set this parameter, it overrides the default value of the oldest Organization Owner. 
-func (r ProjectsApiCreateProjectRequest) ProjectOwnerId(projectOwnerId string) ProjectsApiCreateProjectRequest {
+func (r CreateProjectApiRequest) ProjectOwnerId(projectOwnerId string) CreateProjectApiRequest {
 	r.projectOwnerId = &projectOwnerId
 	return r
 }
 
-func (r ProjectsApiCreateProjectRequest) Execute() (*Group, *http.Response, error) {
+func (r CreateProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
@@ -363,10 +363,10 @@ CreateProject Create One Project
 Creates one project. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectsApiCreateProjectRequest
+ @return CreateProjectApiRequest
 */
-func (a *ProjectsApiService) CreateProject(ctx context.Context) ProjectsApiCreateProjectRequest {
-	return ProjectsApiCreateProjectRequest{
+func (a *ProjectsApiService) CreateProject(ctx context.Context) CreateProjectApiRequest {
+	return CreateProjectApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -374,7 +374,7 @@ func (a *ProjectsApiService) CreateProject(ctx context.Context) ProjectsApiCreat
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) CreateProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -463,7 +463,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ProjectsApiCreateProjectRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiCreateProjectInvitationRequest struct {
+type CreateProjectInvitationApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -476,12 +476,12 @@ type CreateProjectInvitationParams struct {
 }
 
 // Invites one MongoDB Cloud user to join the specified project.
-func (r ProjectsApiCreateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiCreateProjectInvitationRequest {
+func (r CreateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) CreateProjectInvitationApiRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
 	return r
 }
 
-func (r ProjectsApiCreateProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
+func (r CreateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
@@ -492,10 +492,10 @@ Invites one MongoDB Cloud user to join the specified project. The MongoDB Cloud 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiCreateProjectInvitationRequest
+ @return CreateProjectInvitationApiRequest
 */
-func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupId string) ProjectsApiCreateProjectInvitationRequest {
-	return ProjectsApiCreateProjectInvitationRequest{
+func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupId string) CreateProjectInvitationApiRequest {
+	return CreateProjectInvitationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -504,7 +504,7 @@ func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) CreateProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -597,7 +597,7 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ProjectsApiCreateP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiDeleteProjectRequest struct {
+type DeleteProjectApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -607,7 +607,7 @@ type DeleteProjectParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiDeleteProjectRequest) Execute() (*http.Response, error) {
+func (r DeleteProjectApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectExecute(r)
 }
 
@@ -618,10 +618,10 @@ Removes the specified project. Projects group clusters into logical collections 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiDeleteProjectRequest
+ @return DeleteProjectApiRequest
 */
-func (a *ProjectsApiService) DeleteProject(ctx context.Context, groupId string) ProjectsApiDeleteProjectRequest {
-	return ProjectsApiDeleteProjectRequest{
+func (a *ProjectsApiService) DeleteProject(ctx context.Context, groupId string) DeleteProjectApiRequest {
+	return DeleteProjectApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -629,7 +629,7 @@ func (a *ProjectsApiService) DeleteProject(ctx context.Context, groupId string) 
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequest) (*http.Response, error) {
+func (a *ProjectsApiService) DeleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -707,7 +707,7 @@ func (a *ProjectsApiService) DeleteProjectExecute(r ProjectsApiDeleteProjectRequ
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiDeleteProjectInvitationRequest struct {
+type DeleteProjectInvitationApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -719,7 +719,7 @@ type DeleteProjectInvitationParams struct {
 		InvitationId string
 }
 
-func (r ProjectsApiDeleteProjectInvitationRequest) Execute() (*http.Response, error) {
+func (r DeleteProjectInvitationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectInvitationExecute(r)
 }
 
@@ -731,10 +731,10 @@ Cancels one pending invitation sent to the specified MongoDB Cloud user to join 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiDeleteProjectInvitationRequest
+ @return DeleteProjectInvitationApiRequest
 */
-func (a *ProjectsApiService) DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiDeleteProjectInvitationRequest {
-	return ProjectsApiDeleteProjectInvitationRequest{
+func (a *ProjectsApiService) DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) DeleteProjectInvitationApiRequest {
+	return DeleteProjectInvitationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -743,7 +743,7 @@ func (a *ProjectsApiService) DeleteProjectInvitation(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteProjectInvitationRequest) (*http.Response, error) {
+func (a *ProjectsApiService) DeleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -828,7 +828,7 @@ func (a *ProjectsApiService) DeleteProjectInvitationExecute(r ProjectsApiDeleteP
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiDeleteProjectLimitRequest struct {
+type DeleteProjectLimitApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	limitName string
@@ -840,7 +840,7 @@ type DeleteProjectLimitParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiDeleteProjectLimitRequest) Execute() (*http.Response, error) {
+func (r DeleteProjectLimitApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectLimitExecute(r)
 }
 
@@ -852,10 +852,10 @@ Removes the specified project limit. Depending on the limit, Atlas either resets
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiDeleteProjectLimitRequest
+ @return DeleteProjectLimitApiRequest
 */
-func (a *ProjectsApiService) DeleteProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiDeleteProjectLimitRequest {
-	return ProjectsApiDeleteProjectLimitRequest{
+func (a *ProjectsApiService) DeleteProjectLimit(ctx context.Context, limitName string, groupId string) DeleteProjectLimitApiRequest {
+	return DeleteProjectLimitApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		limitName: limitName,
@@ -864,7 +864,7 @@ func (a *ProjectsApiService) DeleteProjectLimit(ctx context.Context, limitName s
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjectLimitRequest) (*http.Response, error) {
+func (a *ProjectsApiService) DeleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -943,7 +943,7 @@ func (a *ProjectsApiService) DeleteProjectLimitExecute(r ProjectsApiDeleteProjec
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetProjectRequest struct {
+type GetProjectApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -953,7 +953,7 @@ type GetProjectParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiGetProjectRequest) Execute() (*Group, *http.Response, error) {
+func (r GetProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.GetProjectExecute(r)
 }
 
@@ -964,10 +964,10 @@ Returns details about the specified project. Projects group clusters into logica
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiGetProjectRequest
+ @return GetProjectApiRequest
 */
-func (a *ProjectsApiService) GetProject(ctx context.Context, groupId string) ProjectsApiGetProjectRequest {
-	return ProjectsApiGetProjectRequest{
+func (a *ProjectsApiService) GetProject(ctx context.Context, groupId string) GetProjectApiRequest {
+	return GetProjectApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -976,7 +976,7 @@ func (a *ProjectsApiService) GetProject(ctx context.Context, groupId string) Pro
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1064,7 +1064,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ProjectsApiGetProjectRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetProjectByNameRequest struct {
+type GetProjectByNameApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupName string
@@ -1074,7 +1074,7 @@ type GetProjectByNameParams struct {
 		GroupName string
 }
 
-func (r ProjectsApiGetProjectByNameRequest) Execute() (*Group, *http.Response, error) {
+func (r GetProjectByNameApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.GetProjectByNameExecute(r)
 }
 
@@ -1085,10 +1085,10 @@ Returns details about the specified project. Projects group clusters into logica
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupName Human-readable label that identifies this project.
- @return ProjectsApiGetProjectByNameRequest
+ @return GetProjectByNameApiRequest
 */
-func (a *ProjectsApiService) GetProjectByName(ctx context.Context, groupName string) ProjectsApiGetProjectByNameRequest {
-	return ProjectsApiGetProjectByNameRequest{
+func (a *ProjectsApiService) GetProjectByName(ctx context.Context, groupName string) GetProjectByNameApiRequest {
+	return GetProjectByNameApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupName: groupName,
@@ -1097,7 +1097,7 @@ func (a *ProjectsApiService) GetProjectByName(ctx context.Context, groupName str
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNameRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1185,7 +1185,7 @@ func (a *ProjectsApiService) GetProjectByNameExecute(r ProjectsApiGetProjectByNa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetProjectInvitationRequest struct {
+type GetProjectInvitationApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1197,7 +1197,7 @@ type GetProjectInvitationParams struct {
 		InvitationId string
 }
 
-func (r ProjectsApiGetProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
+func (r GetProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.GetProjectInvitationExecute(r)
 }
 
@@ -1209,10 +1209,10 @@ Returns the details of one pending invitation to the specified project. To use t
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiGetProjectInvitationRequest
+ @return GetProjectInvitationApiRequest
 */
-func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId string, invitationId string) ProjectsApiGetProjectInvitationRequest {
-	return ProjectsApiGetProjectInvitationRequest{
+func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId string, invitationId string) GetProjectInvitationApiRequest {
+	return GetProjectInvitationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1222,7 +1222,7 @@ func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1317,7 +1317,7 @@ func (a *ProjectsApiService) GetProjectInvitationExecute(r ProjectsApiGetProject
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetProjectLimitRequest struct {
+type GetProjectLimitApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	limitName string
@@ -1329,7 +1329,7 @@ type GetProjectLimitParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiGetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
+func (r GetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.GetProjectLimitExecute(r)
 }
 
@@ -1341,10 +1341,10 @@ Returns the specified limit for the specified project. To use this resource, the
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiGetProjectLimitRequest
+ @return GetProjectLimitApiRequest
 */
-func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiGetProjectLimitRequest {
-	return ProjectsApiGetProjectLimitRequest{
+func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName string, groupId string) GetProjectLimitApiRequest {
+	return GetProjectLimitApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		limitName: limitName,
@@ -1354,7 +1354,7 @@ func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimitRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1443,7 +1443,7 @@ func (a *ProjectsApiService) GetProjectLimitExecute(r ProjectsApiGetProjectLimit
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiGetProjectSettingsRequest struct {
+type GetProjectSettingsApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1453,7 +1453,7 @@ type GetProjectSettingsParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiGetProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
+func (r GetProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
 	return r.ApiService.GetProjectSettingsExecute(r)
 }
 
@@ -1464,10 +1464,10 @@ Returns details about the specified project's settings. To use this resource, th
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiGetProjectSettingsRequest
+ @return GetProjectSettingsApiRequest
 */
-func (a *ProjectsApiService) GetProjectSettings(ctx context.Context, groupId string) ProjectsApiGetProjectSettingsRequest {
-	return ProjectsApiGetProjectSettingsRequest{
+func (a *ProjectsApiService) GetProjectSettings(ctx context.Context, groupId string) GetProjectSettingsApiRequest {
+	return GetProjectSettingsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1476,7 +1476,7 @@ func (a *ProjectsApiService) GetProjectSettings(ctx context.Context, groupId str
 
 // Execute executes the request
 //  @return GroupSettings
-func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSettingsRequest) (*GroupSettings, *http.Response, error) {
+func (a *ProjectsApiService) GetProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1564,7 +1564,7 @@ func (a *ProjectsApiService) GetProjectSettingsExecute(r ProjectsApiGetProjectSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiListProjectInvitationsRequest struct {
+type ListProjectInvitationsApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1577,12 +1577,12 @@ type ListProjectInvitationsParams struct {
 }
 
 // Email address of the user account invited to this project.
-func (r ProjectsApiListProjectInvitationsRequest) Username(username string) ProjectsApiListProjectInvitationsRequest {
+func (r ListProjectInvitationsApiRequest) Username(username string) ListProjectInvitationsApiRequest {
 	r.username = &username
 	return r
 }
 
-func (r ProjectsApiListProjectInvitationsRequest) Execute() ([]GroupInvitation, *http.Response, error) {
+func (r ListProjectInvitationsApiRequest) Execute() ([]GroupInvitation, *http.Response, error) {
 	return r.ApiService.ListProjectInvitationsExecute(r)
 }
 
@@ -1593,10 +1593,10 @@ Returns all pending invitations to the specified project. To use this resource, 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiListProjectInvitationsRequest
+ @return ListProjectInvitationsApiRequest
 */
-func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId string) ProjectsApiListProjectInvitationsRequest {
-	return ProjectsApiListProjectInvitationsRequest{
+func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId string) ListProjectInvitationsApiRequest {
+	return ListProjectInvitationsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1605,7 +1605,7 @@ func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return []GroupInvitation
-func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProjectInvitationsRequest) ([]GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) ListProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1696,7 +1696,7 @@ func (a *ProjectsApiService) ListProjectInvitationsExecute(r ProjectsApiListProj
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiListProjectLimitsRequest struct {
+type ListProjectLimitsApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1706,7 +1706,7 @@ type ListProjectLimitsParams struct {
 		GroupId string
 }
 
-func (r ProjectsApiListProjectLimitsRequest) Execute() (*Limit, *http.Response, error) {
+func (r ListProjectLimitsApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.ListProjectLimitsExecute(r)
 }
 
@@ -1717,10 +1717,10 @@ Returns all the limits for the specified project. To use this resource, the requ
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiListProjectLimitsRequest
+ @return ListProjectLimitsApiRequest
 */
-func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId string) ProjectsApiListProjectLimitsRequest {
-	return ProjectsApiListProjectLimitsRequest{
+func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId string) ListProjectLimitsApiRequest {
+	return ListProjectLimitsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1729,7 +1729,7 @@ func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLimitsRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) ListProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1817,7 +1817,7 @@ func (a *ProjectsApiService) ListProjectLimitsExecute(r ProjectsApiListProjectLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiListProjectUsersRequest struct {
+type ListProjectUsersApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -1838,36 +1838,36 @@ type ListProjectUsersParams struct {
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProjectsApiListProjectUsersRequest) IncludeCount(includeCount bool) ProjectsApiListProjectUsersRequest {
+func (r ListProjectUsersApiRequest) IncludeCount(includeCount bool) ListProjectUsersApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProjectsApiListProjectUsersRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiListProjectUsersRequest {
+func (r ListProjectUsersApiRequest) ItemsPerPage(itemsPerPage int32) ListProjectUsersApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProjectsApiListProjectUsersRequest) PageNum(pageNum int32) ProjectsApiListProjectUsersRequest {
+func (r ListProjectUsersApiRequest) PageNum(pageNum int32) ListProjectUsersApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Flag that indicates whether the returned list should include users who belong to a team with a role in this project. You might not have assigned the individual users a role in this project. If &#x60;\&quot;flattenTeams\&quot; : false&#x60;, this resource returns only users with a role in the project.  If &#x60;\&quot;flattenTeams\&quot; : true&#x60;, this resource returns both users with roles in the project and users who belong to teams with roles in the project.
-func (r ProjectsApiListProjectUsersRequest) FlattenTeams(flattenTeams bool) ProjectsApiListProjectUsersRequest {
+func (r ListProjectUsersApiRequest) FlattenTeams(flattenTeams bool) ListProjectUsersApiRequest {
 	r.flattenTeams = &flattenTeams
 	return r
 }
 
 // Flag that indicates whether the returned list should include users with implicit access to the project, the Organization Owner or Organization Read Only role. You might not have assigned the individual users a role in this project. If &#x60;\&quot;includeOrgUsers\&quot;: false&#x60;, this resource returns only users with a role in the project. If &#x60;\&quot;includeOrgUsers\&quot;: true&#x60;, this resource returns both users with roles in the project and users who have implicit access to the project through their organization role.
-func (r ProjectsApiListProjectUsersRequest) IncludeOrgUsers(includeOrgUsers bool) ProjectsApiListProjectUsersRequest {
+func (r ListProjectUsersApiRequest) IncludeOrgUsers(includeOrgUsers bool) ListProjectUsersApiRequest {
 	r.includeOrgUsers = &includeOrgUsers
 	return r
 }
 
-func (r ProjectsApiListProjectUsersRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
+func (r ListProjectUsersApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.ListProjectUsersExecute(r)
 }
 
@@ -1878,10 +1878,10 @@ Returns details about all users in the specified project. Users belong to an org
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiListProjectUsersRequest
+ @return ListProjectUsersApiRequest
 */
-func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId string) ProjectsApiListProjectUsersRequest {
-	return ProjectsApiListProjectUsersRequest{
+func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId string) ListProjectUsersApiRequest {
+	return ListProjectUsersApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1890,7 +1890,7 @@ func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId strin
 
 // Execute executes the request
 //  @return PaginatedApiAppUser
-func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUsersRequest) (*PaginatedApiAppUser, *http.Response, error) {
+func (a *ProjectsApiService) ListProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2013,7 +2013,7 @@ func (a *ProjectsApiService) ListProjectUsersExecute(r ProjectsApiListProjectUse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiListProjectsRequest struct {
+type ListProjectsApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	includeCount *bool
@@ -2028,24 +2028,24 @@ type ListProjectsParams struct {
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r ProjectsApiListProjectsRequest) IncludeCount(includeCount bool) ProjectsApiListProjectsRequest {
+func (r ListProjectsApiRequest) IncludeCount(includeCount bool) ListProjectsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r ProjectsApiListProjectsRequest) ItemsPerPage(itemsPerPage int32) ProjectsApiListProjectsRequest {
+func (r ListProjectsApiRequest) ItemsPerPage(itemsPerPage int32) ListProjectsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r ProjectsApiListProjectsRequest) PageNum(pageNum int32) ProjectsApiListProjectsRequest {
+func (r ListProjectsApiRequest) PageNum(pageNum int32) ListProjectsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r ProjectsApiListProjectsRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
+func (r ListProjectsApiRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
 	return r.ApiService.ListProjectsExecute(r)
 }
 
@@ -2055,10 +2055,10 @@ ListProjects Return All Projects
 Returns details about all projects. Projects group clusters into logical collections that support an application environment, workload, or both. Each project can have its own users, teams, security, and alert settings. To use this resource, the requesting API Key must have the Read Write role. This resource doesn't require the API Key to have an Access List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectsApiListProjectsRequest
+ @return ListProjectsApiRequest
 */
-func (a *ProjectsApiService) ListProjects(ctx context.Context) ProjectsApiListProjectsRequest {
-	return ProjectsApiListProjectsRequest{
+func (a *ProjectsApiService) ListProjects(ctx context.Context) ListProjectsApiRequest {
+	return ListProjectsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2066,7 +2066,7 @@ func (a *ProjectsApiService) ListProjects(ctx context.Context) ProjectsApiListPr
 
 // Execute executes the request
 //  @return PaginatedAtlasGroup
-func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsRequest) (*PaginatedAtlasGroup, *http.Response, error) {
+func (a *ProjectsApiService) ListProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2168,7 +2168,7 @@ func (a *ProjectsApiService) ListProjectsExecute(r ProjectsApiListProjectsReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiRemoveProjectUserRequest struct {
+type RemoveProjectUserApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2180,7 +2180,7 @@ type RemoveProjectUserParams struct {
 		UserId string
 }
 
-func (r ProjectsApiRemoveProjectUserRequest) Execute() (*http.Response, error) {
+func (r RemoveProjectUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectUserExecute(r)
 }
 
@@ -2192,10 +2192,10 @@ Removes the specified user from the specified project. To use this resource, the
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param userId Unique 24-hexadecimal string that identifies MongoDB Cloud user you want to remove from the specified project. To return a application user's ID using their application username, use the Get All application users in One Project endpoint.
- @return ProjectsApiRemoveProjectUserRequest
+ @return RemoveProjectUserApiRequest
 */
-func (a *ProjectsApiService) RemoveProjectUser(ctx context.Context, groupId string, userId string) ProjectsApiRemoveProjectUserRequest {
-	return ProjectsApiRemoveProjectUserRequest{
+func (a *ProjectsApiService) RemoveProjectUser(ctx context.Context, groupId string, userId string) RemoveProjectUserApiRequest {
+	return RemoveProjectUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2204,7 +2204,7 @@ func (a *ProjectsApiService) RemoveProjectUser(ctx context.Context, groupId stri
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProjectUserRequest) (*http.Response, error) {
+func (a *ProjectsApiService) RemoveProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2289,7 +2289,7 @@ func (a *ProjectsApiService) RemoveProjectUserExecute(r ProjectsApiRemoveProject
 	return localVarHTTPResponse, nil
 }
 
-type ProjectsApiSetProjectLimitRequest struct {
+type SetProjectLimitApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	limitName string
@@ -2303,12 +2303,12 @@ type SetProjectLimitParams struct {
 		Limit *Limit
 }
 
-func (r ProjectsApiSetProjectLimitRequest) Limit(limit Limit) ProjectsApiSetProjectLimitRequest {
+func (r SetProjectLimitApiRequest) Limit(limit Limit) SetProjectLimitApiRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ProjectsApiSetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
+func (r SetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.SetProjectLimitExecute(r)
 }
 
@@ -2322,10 +2322,10 @@ Sets the specified project limit. To use this resource, the requesting API Key m
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param limitName Human-readable label that identifies this project limit.  | Limit Name | Description | Default | API Override Limit | | --- | --- | --- | --- | | atlas.project.deployment.clusters | Limit on the number of clusters in this project | 25 | 90 | | atlas.project.deployment.nodesPerPrivateLinkRegion | Limit on the number of nodes per Private Link region in this project | 50 | 90 | | atlas.project.security.databaseAccess.customRoles | Limit on the number of custom roles in this project | 100 | 1400 | | atlas.project.security.databaseAccess.users | Limit on the number of database users in this project | 100 | 900 | | atlas.project.security.networkAccess.crossRegionEntries | Limit on the number of cross-region network access entries in this project | 40 | 220 | | atlas.project.security.networkAccess.entries | Limit on the number of network access entries in this project | 200 | 20 | | dataFederation.bytesProcessed.query | Limit on the number of bytes processed during a single Data Federation query | N/A | N/A | | dataFederation.bytesProcessed.daily | Limit on the number of bytes processed across all Data Federation tenants for the current day | N/A | N/A | | dataFederation.bytesProcessed.weekly | Limit on the number of bytes processed across all Data Federation tenants for the current week | N/A | N/A | | dataFederation.bytesProcessed.monthly | Limit on the number of bytes processed across all Data Federation tenants for the current month | N/A | N/A | 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiSetProjectLimitRequest
+ @return SetProjectLimitApiRequest
 */
-func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName string, groupId string) ProjectsApiSetProjectLimitRequest {
-	return ProjectsApiSetProjectLimitRequest{
+func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName string, groupId string) SetProjectLimitApiRequest {
+	return SetProjectLimitApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		limitName: limitName,
@@ -2335,7 +2335,7 @@ func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimitRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) SetProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2426,7 +2426,7 @@ func (a *ProjectsApiService) SetProjectLimitExecute(r ProjectsApiSetProjectLimit
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateProjectRequest struct {
+type UpdateProjectApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2438,12 +2438,12 @@ type UpdateProjectParams struct {
 		GroupName *GroupName
 }
 
-func (r ProjectsApiUpdateProjectRequest) GroupName(groupName GroupName) ProjectsApiUpdateProjectRequest {
+func (r UpdateProjectApiRequest) GroupName(groupName GroupName) UpdateProjectApiRequest {
 	r.groupName = &groupName
 	return r
 }
 
-func (r ProjectsApiUpdateProjectRequest) Execute() (*Group, *http.Response, error) {
+func (r UpdateProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
@@ -2454,10 +2454,10 @@ Updates the human-readable label that identifies the specified project. To use t
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiUpdateProjectRequest
+ @return UpdateProjectApiRequest
 */
-func (a *ProjectsApiService) UpdateProject(ctx context.Context, groupId string) ProjectsApiUpdateProjectRequest {
-	return ProjectsApiUpdateProjectRequest{
+func (a *ProjectsApiService) UpdateProject(ctx context.Context, groupId string) UpdateProjectApiRequest {
+	return UpdateProjectApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2466,7 +2466,7 @@ func (a *ProjectsApiService) UpdateProject(ctx context.Context, groupId string) 
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2556,7 +2556,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ProjectsApiUpdateProjectRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateProjectInvitationRequest struct {
+type UpdateProjectInvitationApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2569,12 +2569,12 @@ type UpdateProjectInvitationParams struct {
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiUpdateProjectInvitationRequest {
+func (r UpdateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) UpdateProjectInvitationApiRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
 	return r
 }
 
-func (r ProjectsApiUpdateProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
+func (r UpdateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationExecute(r)
 }
 
@@ -2585,10 +2585,10 @@ Updates the details of one pending invitation to the specified project. To speci
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiUpdateProjectInvitationRequest
+ @return UpdateProjectInvitationApiRequest
 */
-func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupId string) ProjectsApiUpdateProjectInvitationRequest {
-	return ProjectsApiUpdateProjectInvitationRequest{
+func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupId string) UpdateProjectInvitationApiRequest {
+	return UpdateProjectInvitationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2597,7 +2597,7 @@ func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateProjectInvitationRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2690,7 +2690,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationExecute(r ProjectsApiUpdateP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateProjectInvitationByIdRequest struct {
+type UpdateProjectInvitationByIdApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2705,12 +2705,12 @@ type UpdateProjectInvitationByIdParams struct {
 }
 
 // Updates the details of one pending invitation to the specified project.
-func (r ProjectsApiUpdateProjectInvitationByIdRequest) GroupInvitationUpdateRequest(groupInvitationUpdateRequest GroupInvitationUpdateRequest) ProjectsApiUpdateProjectInvitationByIdRequest {
+func (r UpdateProjectInvitationByIdApiRequest) GroupInvitationUpdateRequest(groupInvitationUpdateRequest GroupInvitationUpdateRequest) UpdateProjectInvitationByIdApiRequest {
 	r.groupInvitationUpdateRequest = &groupInvitationUpdateRequest
 	return r
 }
 
-func (r ProjectsApiUpdateProjectInvitationByIdRequest) Execute() (*GroupInvitation, *http.Response, error) {
+func (r UpdateProjectInvitationByIdApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationByIdExecute(r)
 }
 
@@ -2722,10 +2722,10 @@ Updates the details of one pending invitation to the specified project. To speci
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param invitationId Unique 24-hexadecimal digit string that identifies the invitation.
- @return ProjectsApiUpdateProjectInvitationByIdRequest
+ @return UpdateProjectInvitationByIdApiRequest
 */
-func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) ProjectsApiUpdateProjectInvitationByIdRequest {
-	return ProjectsApiUpdateProjectInvitationByIdRequest{
+func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) UpdateProjectInvitationByIdApiRequest {
+	return UpdateProjectInvitationByIdApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2735,7 +2735,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, gr
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpdateProjectInvitationByIdRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2835,7 +2835,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r ProjectsApiUpd
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectsApiUpdateProjectSettingsRequest struct {
+type UpdateProjectSettingsApiRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
@@ -2847,12 +2847,12 @@ type UpdateProjectSettingsParams struct {
 		GroupSettings *GroupSettings
 }
 
-func (r ProjectsApiUpdateProjectSettingsRequest) GroupSettings(groupSettings GroupSettings) ProjectsApiUpdateProjectSettingsRequest {
+func (r UpdateProjectSettingsApiRequest) GroupSettings(groupSettings GroupSettings) UpdateProjectSettingsApiRequest {
 	r.groupSettings = &groupSettings
 	return r
 }
 
-func (r ProjectsApiUpdateProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
+func (r UpdateProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
 	return r.ApiService.UpdateProjectSettingsExecute(r)
 }
 
@@ -2863,10 +2863,10 @@ Updates the settings of the specified project. You can update any of the options
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return ProjectsApiUpdateProjectSettingsRequest
+ @return UpdateProjectSettingsApiRequest
 */
-func (a *ProjectsApiService) UpdateProjectSettings(ctx context.Context, groupId string) ProjectsApiUpdateProjectSettingsRequest {
-	return ProjectsApiUpdateProjectSettingsRequest{
+func (a *ProjectsApiService) UpdateProjectSettings(ctx context.Context, groupId string) UpdateProjectSettingsApiRequest {
+	return UpdateProjectSettingsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -2875,7 +2875,7 @@ func (a *ProjectsApiService) UpdateProjectSettings(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return GroupSettings
-func (a *ProjectsApiService) UpdateProjectSettingsExecute(r ProjectsApiUpdateProjectSettingsRequest) (*GroupSettings, *http.Response, error) {
+func (a *ProjectsApiService) UpdateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
