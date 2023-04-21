@@ -31,13 +31,13 @@ type OnlineArchiveApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to create one online archive.
-	@return OnlineArchiveApiCreateOnlineArchiveRequest
+	@return CreateOnlineArchiveApiRequest
 	*/
-	CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOnlineArchiveRequest
+	CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) CreateOnlineArchiveApiRequest
 
 	// CreateOnlineArchiveExecute executes the request
 	//  @return OnlineArchive
-	CreateOnlineArchiveExecute(r OnlineArchiveApiCreateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+	CreateOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 
 	/*
 	DeleteOnlineArchive Remove One Online Archive
@@ -48,12 +48,12 @@ type OnlineArchiveApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
-	@return OnlineArchiveApiDeleteOnlineArchiveRequest
+	@return DeleteOnlineArchiveApiRequest
 	*/
-	DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiDeleteOnlineArchiveRequest
+	DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) DeleteOnlineArchiveApiRequest
 
 	// DeleteOnlineArchiveExecute executes the request
-	DeleteOnlineArchiveExecute(r OnlineArchiveApiDeleteOnlineArchiveRequest) (*http.Response, error)
+	DeleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error)
 
 	/*
 	DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
@@ -63,13 +63,13 @@ type OnlineArchiveApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the query logs from one online archive.
-	@return OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest
+	@return DownloadOnlineArchiveQueryLogsApiRequest
 	*/
-	DownloadOnlineArchiveQueryLogs(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest
+	DownloadOnlineArchiveQueryLogs(ctx context.Context, groupId string, clusterName string) DownloadOnlineArchiveQueryLogsApiRequest
 
 	// DownloadOnlineArchiveQueryLogsExecute executes the request
 	//  @return *os.File
-	DownloadOnlineArchiveQueryLogsExecute(r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) (*os.File, *http.Response, error)
+	DownloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error)
 
 	/*
 	GetOnlineArchive Return One Online Archive
@@ -80,13 +80,13 @@ type OnlineArchiveApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to return.
 	@param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
-	@return OnlineArchiveApiGetOnlineArchiveRequest
+	@return GetOnlineArchiveApiRequest
 	*/
-	GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiGetOnlineArchiveRequest
+	GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) GetOnlineArchiveApiRequest
 
 	// GetOnlineArchiveExecute executes the request
 	//  @return OnlineArchive
-	GetOnlineArchiveExecute(r OnlineArchiveApiGetOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+	GetOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 
 	/*
 	ListOnlineArchives Return All Online Archives for One Cluster
@@ -96,13 +96,13 @@ type OnlineArchiveApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the online archives.
-	@return OnlineArchiveApiListOnlineArchivesRequest
+	@return ListOnlineArchivesApiRequest
 	*/
-	ListOnlineArchives(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiListOnlineArchivesRequest
+	ListOnlineArchives(ctx context.Context, groupId string, clusterName string) ListOnlineArchivesApiRequest
 
 	// ListOnlineArchivesExecute executes the request
 	//  @return PaginatedOnlineArchive
-	ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchive, *http.Response, error)
+	ListOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error)
 
 	/*
 	UpdateOnlineArchive Update One Online Archive
@@ -113,19 +113,19 @@ type OnlineArchiveApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param archiveId Unique 24-hexadecimal digit string that identifies the online archive to update.
 	@param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
-	@return OnlineArchiveApiUpdateOnlineArchiveRequest
+	@return UpdateOnlineArchiveApiRequest
 	*/
-	UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOnlineArchiveRequest
+	UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) UpdateOnlineArchiveApiRequest
 
 	// UpdateOnlineArchiveExecute executes the request
 	//  @return OnlineArchive
-	UpdateOnlineArchiveExecute(r OnlineArchiveApiUpdateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error)
+	UpdateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 }
 
 // OnlineArchiveApiService OnlineArchiveApi service
 type OnlineArchiveApiService service
 
-type OnlineArchiveApiCreateOnlineArchiveRequest struct {
+type CreateOnlineArchiveApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -133,13 +133,19 @@ type OnlineArchiveApiCreateOnlineArchiveRequest struct {
 	onlineArchive *OnlineArchive
 }
 
+type CreateOnlineArchiveApiParams struct {
+		GroupId string
+		ClusterName string
+		OnlineArchive *OnlineArchive
+}
+
 // Creates one online archive.
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiCreateOnlineArchiveRequest {
+func (r CreateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive) CreateOnlineArchiveApiRequest {
 	r.onlineArchive = &onlineArchive
 	return r
 }
 
-func (r OnlineArchiveApiCreateOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+func (r CreateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.CreateOnlineArchiveExecute(r)
 }
 
@@ -151,10 +157,10 @@ Creates one online archive. This archive stores data from one cluster within one
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to create one online archive.
- @return OnlineArchiveApiCreateOnlineArchiveRequest
+ @return CreateOnlineArchiveApiRequest
 */
-func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiCreateOnlineArchiveRequest {
-	return OnlineArchiveApiCreateOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) CreateOnlineArchiveApiRequest {
+	return CreateOnlineArchiveApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -164,7 +170,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiCreateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -264,7 +270,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r OnlineArchiveApiC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
+type DeleteOnlineArchiveApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -272,7 +278,13 @@ type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
 	clusterName string
 }
 
-func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Execute() (*http.Response, error) {
+type DeleteOnlineArchiveApiParams struct {
+		GroupId string
+		ArchiveId string
+		ClusterName string
+}
+
+func (r DeleteOnlineArchiveApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOnlineArchiveExecute(r)
 }
 
@@ -285,10 +297,10 @@ Removes one online archive. This archive stores data from one cluster within one
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to delete.
  @param clusterName Human-readable label that identifies the cluster that contains the collection from which you want to remove an online archive.
- @return OnlineArchiveApiDeleteOnlineArchiveRequest
+ @return DeleteOnlineArchiveApiRequest
 */
-func (a *OnlineArchiveApiService) DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiDeleteOnlineArchiveRequest {
-	return OnlineArchiveApiDeleteOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) DeleteOnlineArchiveApiRequest {
+	return DeleteOnlineArchiveApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -298,7 +310,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchive(ctx context.Context, group
 }
 
 // Execute executes the request
-func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiDeleteOnlineArchiveRequest) (*http.Response, error) {
+func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -390,7 +402,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r OnlineArchiveApiD
 	return localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
+type DownloadOnlineArchiveQueryLogsApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -400,25 +412,33 @@ type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	archiveOnly *bool
 }
 
+type DownloadOnlineArchiveQueryLogsApiParams struct {
+		GroupId string
+		ClusterName string
+		StartDate *int64
+		EndDate *int64
+		ArchiveOnly *bool
+}
+
 // Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
-func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) StartDate(startDate int64) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
+func (r DownloadOnlineArchiveQueryLogsApiRequest) StartDate(startDate int64) DownloadOnlineArchiveQueryLogsApiRequest {
 	r.startDate = &startDate
 	return r
 }
 
 // Date and time that specifies the end point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
-func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) EndDate(endDate int64) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
+func (r DownloadOnlineArchiveQueryLogsApiRequest) EndDate(endDate int64) DownloadOnlineArchiveQueryLogsApiRequest {
 	r.endDate = &endDate
 	return r
 }
 
 // Flag that indicates whether to download logs for queries against your online archive only or both your online archive and cluster.
-func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) ArchiveOnly(archiveOnly bool) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
+func (r DownloadOnlineArchiveQueryLogsApiRequest) ArchiveOnly(archiveOnly bool) DownloadOnlineArchiveQueryLogsApiRequest {
 	r.archiveOnly = &archiveOnly
 	return r
 }
 
-func (r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) Execute() (*os.File, *http.Response, error) {
+func (r DownloadOnlineArchiveQueryLogsApiRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.DownloadOnlineArchiveQueryLogsExecute(r)
 }
 
@@ -430,10 +450,10 @@ Downloads query logs for the specified online archive. To use this resource, the
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the query logs from one online archive.
- @return OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest
+ @return DownloadOnlineArchiveQueryLogsApiRequest
 */
-func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogs(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest {
-	return OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest{
+func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogs(ctx context.Context, groupId string, clusterName string) DownloadOnlineArchiveQueryLogsApiRequest {
+	return DownloadOnlineArchiveQueryLogsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -443,7 +463,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogs(ctx context.Con
 
 // Execute executes the request
 //  @return *os.File
-func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest) (*os.File, *http.Response, error) {
+func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -551,7 +571,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r Online
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiGetOnlineArchiveRequest struct {
+type GetOnlineArchiveApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -559,7 +579,13 @@ type OnlineArchiveApiGetOnlineArchiveRequest struct {
 	clusterName string
 }
 
-func (r OnlineArchiveApiGetOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+type GetOnlineArchiveApiParams struct {
+		GroupId string
+		ArchiveId string
+		ClusterName string
+}
+
+func (r GetOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.GetOnlineArchiveExecute(r)
 }
 
@@ -572,10 +598,10 @@ Returns one online archive for one cluster. This archive stores data from one cl
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to return.
  @param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
- @return OnlineArchiveApiGetOnlineArchiveRequest
+ @return GetOnlineArchiveApiRequest
 */
-func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiGetOnlineArchiveRequest {
-	return OnlineArchiveApiGetOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) GetOnlineArchiveApiRequest {
+	return GetOnlineArchiveApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -586,7 +612,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -688,7 +714,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r OnlineArchiveApiGetO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiListOnlineArchivesRequest struct {
+type ListOnlineArchivesApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -698,25 +724,33 @@ type OnlineArchiveApiListOnlineArchivesRequest struct {
 	pageNum *int32
 }
 
+type ListOnlineArchivesApiParams struct {
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r OnlineArchiveApiListOnlineArchivesRequest) IncludeCount(includeCount bool) OnlineArchiveApiListOnlineArchivesRequest {
+func (r ListOnlineArchivesApiRequest) IncludeCount(includeCount bool) ListOnlineArchivesApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r OnlineArchiveApiListOnlineArchivesRequest) ItemsPerPage(itemsPerPage int32) OnlineArchiveApiListOnlineArchivesRequest {
+func (r ListOnlineArchivesApiRequest) ItemsPerPage(itemsPerPage int32) ListOnlineArchivesApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r OnlineArchiveApiListOnlineArchivesRequest) PageNum(pageNum int32) OnlineArchiveApiListOnlineArchivesRequest {
+func (r ListOnlineArchivesApiRequest) PageNum(pageNum int32) ListOnlineArchivesApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r OnlineArchiveApiListOnlineArchivesRequest) Execute() (*PaginatedOnlineArchive, *http.Response, error) {
+func (r ListOnlineArchivesApiRequest) Execute() (*PaginatedOnlineArchive, *http.Response, error) {
 	return r.ApiService.ListOnlineArchivesExecute(r)
 }
 
@@ -728,10 +762,10 @@ Returns details of all online archives. This archive stores data from one cluste
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster that contains the collection for which you want to return the online archives.
- @return OnlineArchiveApiListOnlineArchivesRequest
+ @return ListOnlineArchivesApiRequest
 */
-func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupId string, clusterName string) OnlineArchiveApiListOnlineArchivesRequest {
-	return OnlineArchiveApiListOnlineArchivesRequest{
+func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupId string, clusterName string) ListOnlineArchivesApiRequest {
+	return ListOnlineArchivesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -741,7 +775,7 @@ func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return PaginatedOnlineArchive
-func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiListOnlineArchivesRequest) (*PaginatedOnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -857,7 +891,7 @@ func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r OnlineArchiveApiLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
+type UpdateOnlineArchiveApiRequest struct {
 	ctx context.Context
 	ApiService OnlineArchiveApi
 	groupId string
@@ -866,13 +900,20 @@ type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
 	onlineArchive *OnlineArchive
 }
 
+type UpdateOnlineArchiveApiParams struct {
+		GroupId string
+		ArchiveId string
+		ClusterName string
+		OnlineArchive *OnlineArchive
+}
+
 // Updates, pauses, or resumes one online archive.
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiUpdateOnlineArchiveRequest {
+func (r UpdateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive) UpdateOnlineArchiveApiRequest {
 	r.onlineArchive = &onlineArchive
 	return r
 }
 
-func (r OnlineArchiveApiUpdateOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
+func (r UpdateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.UpdateOnlineArchiveExecute(r)
 }
 
@@ -885,10 +926,10 @@ Updates, pauses, or resumes one online archive. This archive stores data from on
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param archiveId Unique 24-hexadecimal digit string that identifies the online archive to update.
  @param clusterName Human-readable label that identifies the cluster that contains the specified collection from which Application created the online archive.
- @return OnlineArchiveApiUpdateOnlineArchiveRequest
+ @return UpdateOnlineArchiveApiRequest
 */
-func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) OnlineArchiveApiUpdateOnlineArchiveRequest {
-	return OnlineArchiveApiUpdateOnlineArchiveRequest{
+func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) UpdateOnlineArchiveApiRequest {
+	return UpdateOnlineArchiveApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -899,7 +940,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r OnlineArchiveApiUpdateOnlineArchiveRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

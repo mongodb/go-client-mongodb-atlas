@@ -31,15 +31,15 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiDeleteLegacySnapshotRequest
+	@return DeleteLegacySnapshotApiRequest
 
 	Deprecated
 	*/
-	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiDeleteLegacySnapshotRequest
+	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteLegacySnapshotApiRequest
 
 	// DeleteLegacySnapshotExecute executes the request
 	// Deprecated
-	DeleteLegacySnapshotExecute(r LegacyBackupApiDeleteLegacySnapshotRequest) (*http.Response, error)
+	DeleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error)
 
 	/*
 	GetLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
@@ -50,16 +50,16 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-	@return LegacyBackupApiGetLegacyBackupCheckpointRequest
+	@return GetLegacyBackupCheckpointApiRequest
 
 	Deprecated
 	*/
-	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiGetLegacyBackupCheckpointRequest
+	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) GetLegacyBackupCheckpointApiRequest
 
 	// GetLegacyBackupCheckpointExecute executes the request
 	//  @return Checkpoint
 	// Deprecated
-	GetLegacyBackupCheckpointExecute(r LegacyBackupApiGetLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error)
+	GetLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error)
 
 	/*
 	GetLegacyBackupRestoreJob Return One Legacy Backup Restore Job
@@ -72,16 +72,16 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@param jobId Unique 24-hexadecimal digit string that identifies the restore job.
-	@return LegacyBackupApiGetLegacyBackupRestoreJobRequest
+	@return GetLegacyBackupRestoreJobApiRequest
 
 	Deprecated
 	*/
-	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiGetLegacyBackupRestoreJobRequest
+	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) GetLegacyBackupRestoreJobApiRequest
 
 	// GetLegacyBackupRestoreJobExecute executes the request
 	//  @return RestoreJob
 	// Deprecated
-	GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*RestoreJob, *http.Response, error)
+	GetLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error)
 
 	/*
 	GetLegacySnapshot Return One Legacy Backup Snapshot
@@ -92,16 +92,16 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiGetLegacySnapshotRequest
+	@return GetLegacySnapshotApiRequest
 
 	Deprecated
 	*/
-	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiGetLegacySnapshotRequest
+	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) GetLegacySnapshotApiRequest
 
 	// GetLegacySnapshotExecute executes the request
 	//  @return Snapshot
 	// Deprecated
-	GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*Snapshot, *http.Response, error)
+	GetLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	GetLegacySnapshotSchedule Return One Snapshot Schedule
@@ -113,16 +113,16 @@ type LegacyBackupApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiGetLegacySnapshotScheduleRequest
+	@return GetLegacySnapshotScheduleApiRequest
 
 	Deprecated
 	*/
-	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiGetLegacySnapshotScheduleRequest
+	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) GetLegacySnapshotScheduleApiRequest
 
 	// GetLegacySnapshotScheduleExecute executes the request
 	//  @return SnapshotSchedule
 	// Deprecated
-	GetLegacySnapshotScheduleExecute(r LegacyBackupApiGetLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error)
+	GetLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
 
 	/*
 	ListLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
@@ -132,16 +132,16 @@ type LegacyBackupApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
-	@return LegacyBackupApiListLegacyBackupCheckpointsRequest
+	@return ListLegacyBackupCheckpointsApiRequest
 
 	Deprecated
 	*/
-	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupCheckpointsRequest
+	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) ListLegacyBackupCheckpointsApiRequest
 
 	// ListLegacyBackupCheckpointsExecute executes the request
 	//  @return PaginatedApiAtlasCheckpoint
 	// Deprecated
-	ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error)
+	ListLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error)
 
 	/*
 	ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
@@ -153,16 +153,16 @@ type LegacyBackupApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiListLegacyBackupRestoreJobsRequest
+	@return ListLegacyBackupRestoreJobsApiRequest
 
 	Deprecated
 	*/
-	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupRestoreJobsRequest
+	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListLegacyBackupRestoreJobsApiRequest
 
 	// ListLegacyBackupRestoreJobsExecute executes the request
 	//  @return PaginatedRestoreJob
 	// Deprecated
-	ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJob, *http.Response, error)
+	ListLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error)
 
 	/*
 	ListLegacySnapshots Return All Legacy Backup Snapshots
@@ -172,16 +172,16 @@ type LegacyBackupApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
-	@return LegacyBackupApiListLegacySnapshotsRequest
+	@return ListLegacySnapshotsApiRequest
 
 	Deprecated
 	*/
-	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacySnapshotsRequest
+	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) ListLegacySnapshotsApiRequest
 
 	// ListLegacySnapshotsExecute executes the request
 	//  @return PaginatedSnapshot
 	// Deprecated
-	ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshot, *http.Response, error)
+	ListLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
@@ -192,16 +192,16 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
-	@return LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+	@return UpdateLegacySnapshotRetentionApiRequest
 
 	Deprecated
 	*/
-	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateLegacySnapshotRetentionApiRequest
 
 	// UpdateLegacySnapshotRetentionExecute executes the request
 	//  @return Snapshot
 	// Deprecated
-	UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*Snapshot, *http.Response, error)
+	UpdateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
@@ -213,22 +213,22 @@ type LegacyBackupApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupApiUpdateLegacySnapshotScheduleRequest
+	@return UpdateLegacySnapshotScheduleApiRequest
 
 	Deprecated
 	*/
-	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateLegacySnapshotScheduleRequest
+	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) UpdateLegacySnapshotScheduleApiRequest
 
 	// UpdateLegacySnapshotScheduleExecute executes the request
 	//  @return SnapshotSchedule
 	// Deprecated
-	UpdateLegacySnapshotScheduleExecute(r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error)
+	UpdateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
 }
 
 // LegacyBackupApiService LegacyBackupApi service
 type LegacyBackupApiService service
 
-type LegacyBackupApiDeleteLegacySnapshotRequest struct {
+type DeleteLegacySnapshotApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -236,7 +236,13 @@ type LegacyBackupApiDeleteLegacySnapshotRequest struct {
 	snapshotId string
 }
 
-func (r LegacyBackupApiDeleteLegacySnapshotRequest) Execute() (*http.Response, error) {
+type DeleteLegacySnapshotApiParams struct {
+		GroupId string
+		ClusterName string
+		SnapshotId string
+}
+
+func (r DeleteLegacySnapshotApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLegacySnapshotExecute(r)
 }
 
@@ -249,12 +255,12 @@ Removes one legacy backup snapshot for one cluster in the specified project. To 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiDeleteLegacySnapshotRequest
+ @return DeleteLegacySnapshotApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiDeleteLegacySnapshotRequest {
-	return LegacyBackupApiDeleteLegacySnapshotRequest{
+func (a *LegacyBackupApiService) DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteLegacySnapshotApiRequest {
+	return DeleteLegacySnapshotApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -265,7 +271,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshot(ctx context.Context, group
 
 // Execute executes the request
 // Deprecated
-func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDeleteLegacySnapshotRequest) (*http.Response, error) {
+func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -357,7 +363,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r LegacyBackupApiDe
 	return localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
+type GetLegacyBackupCheckpointApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -365,7 +371,13 @@ type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
 	clusterName string
 }
 
-func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Execute() (*Checkpoint, *http.Response, error) {
+type GetLegacyBackupCheckpointApiParams struct {
+		GroupId string
+		CheckpointId string
+		ClusterName string
+}
+
+func (r GetLegacyBackupCheckpointApiRequest) Execute() (*Checkpoint, *http.Response, error) {
 	return r.ApiService.GetLegacyBackupCheckpointExecute(r)
 }
 
@@ -378,12 +390,12 @@ Returns one legacy backup checkpoint for one cluster in the specified project. T
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
  @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
- @return LegacyBackupApiGetLegacyBackupCheckpointRequest
+ @return GetLegacyBackupCheckpointApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) LegacyBackupApiGetLegacyBackupCheckpointRequest {
-	return LegacyBackupApiGetLegacyBackupCheckpointRequest{
+func (a *LegacyBackupApiService) GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) GetLegacyBackupCheckpointApiRequest {
+	return GetLegacyBackupCheckpointApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -395,7 +407,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpoint(ctx context.Context, 
 // Execute executes the request
 //  @return Checkpoint
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackupApiGetLegacyBackupCheckpointRequest) (*Checkpoint, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -497,7 +509,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r LegacyBackup
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
+type GetLegacyBackupRestoreJobApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -505,7 +517,13 @@ type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
 	jobId string
 }
 
-func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*RestoreJob, *http.Response, error) {
+type GetLegacyBackupRestoreJobApiParams struct {
+		GroupId string
+		ClusterName string
+		JobId string
+}
+
+func (r GetLegacyBackupRestoreJobApiRequest) Execute() (*RestoreJob, *http.Response, error) {
 	return r.ApiService.GetLegacyBackupRestoreJobExecute(r)
 }
 
@@ -520,12 +538,12 @@ Returns one legacy backup restore job for one cluster in the specified project. 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
  @param jobId Unique 24-hexadecimal digit string that identifies the restore job.
- @return LegacyBackupApiGetLegacyBackupRestoreJobRequest
+ @return GetLegacyBackupRestoreJobApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) LegacyBackupApiGetLegacyBackupRestoreJobRequest {
-	return LegacyBackupApiGetLegacyBackupRestoreJobRequest{
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) GetLegacyBackupRestoreJobApiRequest {
+	return GetLegacyBackupRestoreJobApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -537,7 +555,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, 
 // Execute executes the request
 //  @return RestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackupApiGetLegacyBackupRestoreJobRequest) (*RestoreJob, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -639,7 +657,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r LegacyBackup
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiGetLegacySnapshotRequest struct {
+type GetLegacySnapshotApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -647,7 +665,13 @@ type LegacyBackupApiGetLegacySnapshotRequest struct {
 	snapshotId string
 }
 
-func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*Snapshot, *http.Response, error) {
+type GetLegacySnapshotApiParams struct {
+		GroupId string
+		ClusterName string
+		SnapshotId string
+}
+
+func (r GetLegacySnapshotApiRequest) Execute() (*Snapshot, *http.Response, error) {
 	return r.ApiService.GetLegacySnapshotExecute(r)
 }
 
@@ -660,12 +684,12 @@ Returns one legacy backup snapshot for one cluster in the specified project. To 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiGetLegacySnapshotRequest
+ @return GetLegacySnapshotApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiGetLegacySnapshotRequest {
-	return LegacyBackupApiGetLegacySnapshotRequest{
+func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) GetLegacySnapshotApiRequest {
+	return GetLegacySnapshotApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -677,7 +701,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId 
 // Execute executes the request
 //  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLegacySnapshotRequest) (*Snapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -779,14 +803,19 @@ func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r LegacyBackupApiGetLe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiGetLegacySnapshotScheduleRequest struct {
+type GetLegacySnapshotScheduleApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
 	clusterName string
 }
 
-func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
+type GetLegacySnapshotScheduleApiParams struct {
+		GroupId string
+		ClusterName string
+}
+
+func (r GetLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
 	return r.ApiService.GetLegacySnapshotScheduleExecute(r)
 }
 
@@ -800,12 +829,12 @@ Returns the snapshot schedule for one cluster in the specified project. To use t
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiGetLegacySnapshotScheduleRequest
+ @return GetLegacySnapshotScheduleApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiGetLegacySnapshotScheduleRequest {
-	return LegacyBackupApiGetLegacySnapshotScheduleRequest{
+func (a *LegacyBackupApiService) GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) GetLegacySnapshotScheduleApiRequest {
+	return GetLegacySnapshotScheduleApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -816,7 +845,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotSchedule(ctx context.Context, 
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackupApiGetLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -911,7 +940,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r LegacyBackup
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
+type ListLegacyBackupCheckpointsApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -921,25 +950,33 @@ type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
 	pageNum *int32
 }
 
+type ListLegacyBackupCheckpointsApiParams struct {
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+func (r ListLegacyBackupCheckpointsApiRequest) IncludeCount(includeCount bool) ListLegacyBackupCheckpointsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+func (r ListLegacyBackupCheckpointsApiRequest) ItemsPerPage(itemsPerPage int32) ListLegacyBackupCheckpointsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupCheckpointsRequest {
+func (r ListLegacyBackupCheckpointsApiRequest) PageNum(pageNum int32) ListLegacyBackupCheckpointsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r LegacyBackupApiListLegacyBackupCheckpointsRequest) Execute() (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
+func (r ListLegacyBackupCheckpointsApiRequest) Execute() (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupCheckpointsExecute(r)
 }
 
@@ -951,12 +988,12 @@ Returns all legacy backup checkpoints for one cluster in the specified project. 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
- @return LegacyBackupApiListLegacyBackupCheckpointsRequest
+ @return ListLegacyBackupCheckpointsApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupCheckpointsRequest {
-	return LegacyBackupApiListLegacyBackupCheckpointsRequest{
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) ListLegacyBackupCheckpointsApiRequest {
+	return ListLegacyBackupCheckpointsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -967,7 +1004,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context
 // Execute executes the request
 //  @return PaginatedApiAtlasCheckpoint
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBackupApiListLegacyBackupCheckpointsRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1083,7 +1120,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r LegacyBack
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
+type ListLegacyBackupRestoreJobsApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1094,31 +1131,40 @@ type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
 	batchId *string
 }
 
+type ListLegacyBackupRestoreJobsApiParams struct {
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		BatchId *string
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+func (r ListLegacyBackupRestoreJobsApiRequest) IncludeCount(includeCount bool) ListLegacyBackupRestoreJobsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+func (r ListLegacyBackupRestoreJobsApiRequest) ItemsPerPage(itemsPerPage int32) ListLegacyBackupRestoreJobsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+func (r ListLegacyBackupRestoreJobsApiRequest) PageNum(pageNum int32) ListLegacyBackupRestoreJobsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Unique 24-hexadecimal digit string that identifies the batch of restore jobs to return. Timestamp in ISO 8601 date and time format in UTC when creating a restore job for a sharded cluster, Application creates a separate job for each shard, plus another for the config host. Each of these jobs comprise one batch. A restore job for a replica set can&#39;t be part of a batch.
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) BatchId(batchId string) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
+func (r ListLegacyBackupRestoreJobsApiRequest) BatchId(batchId string) ListLegacyBackupRestoreJobsApiRequest {
 	r.batchId = &batchId
 	return r
 }
 
-func (r LegacyBackupApiListLegacyBackupRestoreJobsRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
+func (r ListLegacyBackupRestoreJobsApiRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupRestoreJobsExecute(r)
 }
 
@@ -1132,12 +1178,12 @@ Returns all legacy backup restore jobs for one cluster in the specified project.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiListLegacyBackupRestoreJobsRequest
+ @return ListLegacyBackupRestoreJobsApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacyBackupRestoreJobsRequest {
-	return LegacyBackupApiListLegacyBackupRestoreJobsRequest{
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListLegacyBackupRestoreJobsApiRequest {
+	return ListLegacyBackupRestoreJobsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1148,7 +1194,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context
 // Execute executes the request
 //  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBackupApiListLegacyBackupRestoreJobsRequest) (*PaginatedRestoreJob, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1267,7 +1313,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r LegacyBack
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiListLegacySnapshotsRequest struct {
+type ListLegacySnapshotsApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1278,31 +1324,40 @@ type LegacyBackupApiListLegacySnapshotsRequest struct {
 	completed *string
 }
 
+type ListLegacySnapshotsApiParams struct {
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		Completed *string
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r LegacyBackupApiListLegacySnapshotsRequest) IncludeCount(includeCount bool) LegacyBackupApiListLegacySnapshotsRequest {
+func (r ListLegacySnapshotsApiRequest) IncludeCount(includeCount bool) ListLegacySnapshotsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r LegacyBackupApiListLegacySnapshotsRequest) ItemsPerPage(itemsPerPage int32) LegacyBackupApiListLegacySnapshotsRequest {
+func (r ListLegacySnapshotsApiRequest) ItemsPerPage(itemsPerPage int32) ListLegacySnapshotsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r LegacyBackupApiListLegacySnapshotsRequest) PageNum(pageNum int32) LegacyBackupApiListLegacySnapshotsRequest {
+func (r ListLegacySnapshotsApiRequest) PageNum(pageNum int32) ListLegacySnapshotsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Human-readable label that specifies whether to return only completed, incomplete, or all snapshots. By default, MongoDB Cloud only returns completed snapshots.
-func (r LegacyBackupApiListLegacySnapshotsRequest) Completed(completed string) LegacyBackupApiListLegacySnapshotsRequest {
+func (r ListLegacySnapshotsApiRequest) Completed(completed string) ListLegacySnapshotsApiRequest {
 	r.completed = &completed
 	return r
 }
 
-func (r LegacyBackupApiListLegacySnapshotsRequest) Execute() (*PaginatedSnapshot, *http.Response, error) {
+func (r ListLegacySnapshotsApiRequest) Execute() (*PaginatedSnapshot, *http.Response, error) {
 	return r.ApiService.ListLegacySnapshotsExecute(r)
 }
 
@@ -1314,12 +1369,12 @@ Returns all legacy backup snapshots for one cluster in the specified project. To
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
- @return LegacyBackupApiListLegacySnapshotsRequest
+ @return ListLegacySnapshotsApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) LegacyBackupApiListLegacySnapshotsRequest {
-	return LegacyBackupApiListLegacySnapshotsRequest{
+func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) ListLegacySnapshotsApiRequest {
+	return ListLegacySnapshotsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1330,7 +1385,7 @@ func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupI
 // Execute executes the request
 //  @return PaginatedSnapshot
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiListLegacySnapshotsRequest) (*PaginatedSnapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1453,7 +1508,7 @@ func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r LegacyBackupApiLis
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
+type UpdateLegacySnapshotRetentionApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1462,13 +1517,20 @@ type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
 	snapshot *Snapshot
 }
 
+type UpdateLegacySnapshotRetentionApiParams struct {
+		GroupId string
+		ClusterName string
+		SnapshotId string
+		Snapshot *Snapshot
+}
+
 // Changes One Legacy Backup Snapshot Expiration.
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Snapshot(snapshot Snapshot) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
+func (r UpdateLegacySnapshotRetentionApiRequest) Snapshot(snapshot Snapshot) UpdateLegacySnapshotRetentionApiRequest {
 	r.snapshot = &snapshot
 	return r
 }
 
-func (r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) Execute() (*Snapshot, *http.Response, error) {
+func (r UpdateLegacySnapshotRetentionApiRequest) Execute() (*Snapshot, *http.Response, error) {
 	return r.ApiService.UpdateLegacySnapshotRetentionExecute(r)
 }
 
@@ -1481,12 +1543,12 @@ Changes the expiration date for one legacy backup snapshot for one cluster in th
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
  @param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
- @return LegacyBackupApiUpdateLegacySnapshotRetentionRequest
+ @return UpdateLegacySnapshotRetentionApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) LegacyBackupApiUpdateLegacySnapshotRetentionRequest {
-	return LegacyBackupApiUpdateLegacySnapshotRetentionRequest{
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateLegacySnapshotRetentionApiRequest {
+	return UpdateLegacySnapshotRetentionApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1498,7 +1560,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Conte
 // Execute executes the request
 //  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBackupApiUpdateLegacySnapshotRetentionRequest) (*Snapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1605,7 +1667,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r LegacyBa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
+type UpdateLegacySnapshotScheduleApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupApi
 	groupId string
@@ -1613,13 +1675,19 @@ type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
 	snapshotSchedule *SnapshotSchedule
 }
 
+type UpdateLegacySnapshotScheduleApiParams struct {
+		GroupId string
+		ClusterName string
+		SnapshotSchedule *SnapshotSchedule
+}
+
 // Update the snapshot schedule for one cluster in the specified project.
-func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
+func (r UpdateLegacySnapshotScheduleApiRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) UpdateLegacySnapshotScheduleApiRequest {
 	r.snapshotSchedule = &snapshotSchedule
 	return r
 }
 
-func (r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
+func (r UpdateLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
 	return r.ApiService.UpdateLegacySnapshotScheduleExecute(r)
 }
 
@@ -1633,12 +1701,12 @@ Updates the snapshot schedule for one cluster in the specified project. To use t
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupApiUpdateLegacySnapshotScheduleRequest
+ @return UpdateLegacySnapshotScheduleApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupApiService) UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) LegacyBackupApiUpdateLegacySnapshotScheduleRequest {
-	return LegacyBackupApiUpdateLegacySnapshotScheduleRequest{
+func (a *LegacyBackupApiService) UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) UpdateLegacySnapshotScheduleApiRequest {
+	return UpdateLegacySnapshotScheduleApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1649,7 +1717,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotSchedule(ctx context.Contex
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r LegacyBackupApiUpdateLegacySnapshotScheduleRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

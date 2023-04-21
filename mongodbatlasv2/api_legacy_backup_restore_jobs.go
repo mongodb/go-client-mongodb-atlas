@@ -30,22 +30,22 @@ type LegacyBackupRestoreJobsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
-	@return LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest
+	@return CreateLegacyBackupRestoreJobApiRequest
 
 	Deprecated
 	*/
-	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest
+	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateLegacyBackupRestoreJobApiRequest
 
 	// CreateLegacyBackupRestoreJobExecute executes the request
 	//  @return PaginatedRestoreJob
 	// Deprecated
-	CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJob, *http.Response, error)
+	CreateLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error)
 }
 
 // LegacyBackupRestoreJobsApiService LegacyBackupRestoreJobsApi service
 type LegacyBackupRestoreJobsApiService service
 
-type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest struct {
+type CreateLegacyBackupRestoreJobApiRequest struct {
 	ctx context.Context
 	ApiService LegacyBackupRestoreJobsApi
 	groupId string
@@ -53,13 +53,19 @@ type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest struct {
 	restoreJob *RestoreJob
 }
 
+type CreateLegacyBackupRestoreJobApiParams struct {
+		GroupId string
+		ClusterName string
+		RestoreJob *RestoreJob
+}
+
 // Legacy backup to restore to one cluster in the specified project.
-func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) RestoreJob(restoreJob RestoreJob) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest {
+func (r CreateLegacyBackupRestoreJobApiRequest) RestoreJob(restoreJob RestoreJob) CreateLegacyBackupRestoreJobApiRequest {
 	r.restoreJob = &restoreJob
 	return r
 }
 
-func (r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
+func (r CreateLegacyBackupRestoreJobApiRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
 	return r.ApiService.CreateLegacyBackupRestoreJobExecute(r)
 }
 
@@ -71,12 +77,12 @@ Restores one legacy backup for one cluster in the specified project. To use this
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
- @return LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest
+ @return CreateLegacyBackupRestoreJobApiRequest
 
 Deprecated
 */
-func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest {
-	return LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest{
+func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateLegacyBackupRestoreJobApiRequest {
+	return CreateLegacyBackupRestoreJobApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -87,7 +93,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJob(ctx con
 // Execute executes the request
 //  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(r LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest) (*PaginatedRestoreJob, *http.Response, error) {
+func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

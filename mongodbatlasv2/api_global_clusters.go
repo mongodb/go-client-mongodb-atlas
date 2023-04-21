@@ -30,13 +30,13 @@ type GlobalClustersApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies this advanced cluster.
-	@return GlobalClustersApiCreateCustomZoneMappingRequest
+	@return CreateCustomZoneMappingApiRequest
 	*/
-	CreateCustomZoneMapping(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateCustomZoneMappingRequest
+	CreateCustomZoneMapping(ctx context.Context, groupId string, clusterName string) CreateCustomZoneMappingApiRequest
 
 	// CreateCustomZoneMappingExecute executes the request
 	//  @return GeoSharding
-	CreateCustomZoneMappingExecute(r GlobalClustersApiCreateCustomZoneMappingRequest) (*GeoSharding, *http.Response, error)
+	CreateCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	CreateManagedNamespace Create One Managed Namespace in One Global Multi-Cloud Cluster
@@ -46,13 +46,13 @@ type GlobalClustersApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies this advanced cluster.
-	@return GlobalClustersApiCreateManagedNamespaceRequest
+	@return CreateManagedNamespaceApiRequest
 	*/
-	CreateManagedNamespace(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateManagedNamespaceRequest
+	CreateManagedNamespace(ctx context.Context, groupId string, clusterName string) CreateManagedNamespaceApiRequest
 
 	// CreateManagedNamespaceExecute executes the request
 	//  @return GeoSharding
-	CreateManagedNamespaceExecute(r GlobalClustersApiCreateManagedNamespaceRequest) (*GeoSharding, *http.Response, error)
+	CreateManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	DeleteAllCustomZoneMappings Remove All Custom Zone Mappings from One Global Multi-Cloud Cluster
@@ -62,13 +62,13 @@ type GlobalClustersApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies this advanced cluster.
-	@return GlobalClustersApiDeleteAllCustomZoneMappingsRequest
+	@return DeleteAllCustomZoneMappingsApiRequest
 	*/
-	DeleteAllCustomZoneMappings(ctx context.Context, groupId string, clusterName string) GlobalClustersApiDeleteAllCustomZoneMappingsRequest
+	DeleteAllCustomZoneMappings(ctx context.Context, groupId string, clusterName string) DeleteAllCustomZoneMappingsApiRequest
 
 	// DeleteAllCustomZoneMappingsExecute executes the request
 	//  @return GeoSharding
-	DeleteAllCustomZoneMappingsExecute(r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) (*GeoSharding, *http.Response, error)
+	DeleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	DeleteManagedNamespace Remove One Managed Namespace from One Global Multi-Cloud Cluster
@@ -78,13 +78,13 @@ type GlobalClustersApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param clusterName Human-readable label that identifies this advanced cluster.
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return GlobalClustersApiDeleteManagedNamespaceRequest
+	@return DeleteManagedNamespaceApiRequest
 	*/
-	DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) GlobalClustersApiDeleteManagedNamespaceRequest
+	DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) DeleteManagedNamespaceApiRequest
 
 	// DeleteManagedNamespaceExecute executes the request
 	//  @return GeoSharding
-	DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoSharding, *http.Response, error)
+	DeleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	GetManagedNamespace Return One Managed Namespace in One Global Multi-Cloud Cluster
@@ -94,19 +94,19 @@ type GlobalClustersApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies this advanced cluster.
-	@return GlobalClustersApiGetManagedNamespaceRequest
+	@return GetManagedNamespaceApiRequest
 	*/
-	GetManagedNamespace(ctx context.Context, groupId string, clusterName string) GlobalClustersApiGetManagedNamespaceRequest
+	GetManagedNamespace(ctx context.Context, groupId string, clusterName string) GetManagedNamespaceApiRequest
 
 	// GetManagedNamespaceExecute executes the request
 	//  @return GeoSharding
-	GetManagedNamespaceExecute(r GlobalClustersApiGetManagedNamespaceRequest) (*GeoSharding, *http.Response, error)
+	GetManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 }
 
 // GlobalClustersApiService GlobalClustersApi service
 type GlobalClustersApiService service
 
-type GlobalClustersApiCreateCustomZoneMappingRequest struct {
+type CreateCustomZoneMappingApiRequest struct {
 	ctx context.Context
 	ApiService GlobalClustersApi
 	groupId string
@@ -114,13 +114,19 @@ type GlobalClustersApiCreateCustomZoneMappingRequest struct {
 	geoSharding *GeoSharding
 }
 
+type CreateCustomZoneMappingApiParams struct {
+		GroupId string
+		ClusterName string
+		GeoSharding *GeoSharding
+}
+
 // Custom zone mapping to add to the specified global cluster.
-func (r GlobalClustersApiCreateCustomZoneMappingRequest) GeoSharding(geoSharding GeoSharding) GlobalClustersApiCreateCustomZoneMappingRequest {
+func (r CreateCustomZoneMappingApiRequest) GeoSharding(geoSharding GeoSharding) CreateCustomZoneMappingApiRequest {
 	r.geoSharding = &geoSharding
 	return r
 }
 
-func (r GlobalClustersApiCreateCustomZoneMappingRequest) Execute() (*GeoSharding, *http.Response, error) {
+func (r CreateCustomZoneMappingApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.CreateCustomZoneMappingExecute(r)
 }
 
@@ -132,10 +138,10 @@ Creates one custom zone mapping for the specified global cluster. A custom zone 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies this advanced cluster.
- @return GlobalClustersApiCreateCustomZoneMappingRequest
+ @return CreateCustomZoneMappingApiRequest
 */
-func (a *GlobalClustersApiService) CreateCustomZoneMapping(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateCustomZoneMappingRequest {
-	return GlobalClustersApiCreateCustomZoneMappingRequest{
+func (a *GlobalClustersApiService) CreateCustomZoneMapping(ctx context.Context, groupId string, clusterName string) CreateCustomZoneMappingApiRequest {
+	return CreateCustomZoneMappingApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -145,7 +151,7 @@ func (a *GlobalClustersApiService) CreateCustomZoneMapping(ctx context.Context, 
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r GlobalClustersApiCreateCustomZoneMappingRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -245,7 +251,7 @@ func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r GlobalCluste
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type GlobalClustersApiCreateManagedNamespaceRequest struct {
+type CreateManagedNamespaceApiRequest struct {
 	ctx context.Context
 	ApiService GlobalClustersApi
 	groupId string
@@ -253,13 +259,19 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	managedNamespace *ManagedNamespace
 }
 
+type CreateManagedNamespaceApiParams struct {
+		GroupId string
+		ClusterName string
+		ManagedNamespace *ManagedNamespace
+}
+
 // Managed namespace to create within the specified global cluster.
-func (r GlobalClustersApiCreateManagedNamespaceRequest) ManagedNamespace(managedNamespace ManagedNamespace) GlobalClustersApiCreateManagedNamespaceRequest {
+func (r CreateManagedNamespaceApiRequest) ManagedNamespace(managedNamespace ManagedNamespace) CreateManagedNamespaceApiRequest {
 	r.managedNamespace = &managedNamespace
 	return r
 }
 
-func (r GlobalClustersApiCreateManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {
+func (r CreateManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.CreateManagedNamespaceExecute(r)
 }
 
@@ -271,10 +283,10 @@ Creates one managed namespace within the specified global cluster. A managed nam
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies this advanced cluster.
- @return GlobalClustersApiCreateManagedNamespaceRequest
+ @return CreateManagedNamespaceApiRequest
 */
-func (a *GlobalClustersApiService) CreateManagedNamespace(ctx context.Context, groupId string, clusterName string) GlobalClustersApiCreateManagedNamespaceRequest {
-	return GlobalClustersApiCreateManagedNamespaceRequest{
+func (a *GlobalClustersApiService) CreateManagedNamespace(ctx context.Context, groupId string, clusterName string) CreateManagedNamespaceApiRequest {
+	return CreateManagedNamespaceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -284,7 +296,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespace(ctx context.Context, g
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalClustersApiCreateManagedNamespaceRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -384,14 +396,19 @@ func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r GlobalCluster
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
+type DeleteAllCustomZoneMappingsApiRequest struct {
 	ctx context.Context
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
 }
 
-func (r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) Execute() (*GeoSharding, *http.Response, error) {
+type DeleteAllCustomZoneMappingsApiParams struct {
+		GroupId string
+		ClusterName string
+}
+
+func (r DeleteAllCustomZoneMappingsApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.DeleteAllCustomZoneMappingsExecute(r)
 }
 
@@ -403,10 +420,10 @@ Removes all custom zone mappings for the specified global cluster. A custom zone
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies this advanced cluster.
- @return GlobalClustersApiDeleteAllCustomZoneMappingsRequest
+ @return DeleteAllCustomZoneMappingsApiRequest
 */
-func (a *GlobalClustersApiService) DeleteAllCustomZoneMappings(ctx context.Context, groupId string, clusterName string) GlobalClustersApiDeleteAllCustomZoneMappingsRequest {
-	return GlobalClustersApiDeleteAllCustomZoneMappingsRequest{
+func (a *GlobalClustersApiService) DeleteAllCustomZoneMappings(ctx context.Context, groupId string, clusterName string) DeleteAllCustomZoneMappingsApiRequest {
+	return DeleteAllCustomZoneMappingsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -416,7 +433,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappings(ctx context.Conte
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -511,7 +528,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r GlobalCl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type GlobalClustersApiDeleteManagedNamespaceRequest struct {
+type DeleteManagedNamespaceApiRequest struct {
 	ctx context.Context
 	ApiService GlobalClustersApi
 	clusterName string
@@ -520,19 +537,26 @@ type GlobalClustersApiDeleteManagedNamespaceRequest struct {
 	collection *string
 }
 
+type DeleteManagedNamespaceApiParams struct {
+		ClusterName string
+		GroupId string
+		Db *string
+		Collection *string
+}
+
 // Human-readable label that identifies the database that contains the collection.
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Db(db string) GlobalClustersApiDeleteManagedNamespaceRequest {
+func (r DeleteManagedNamespaceApiRequest) Db(db string) DeleteManagedNamespaceApiRequest {
 	r.db = &db
 	return r
 }
 
 // Human-readable label that identifies the collection associated with the managed namespace.
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Collection(collection string) GlobalClustersApiDeleteManagedNamespaceRequest {
+func (r DeleteManagedNamespaceApiRequest) Collection(collection string) DeleteManagedNamespaceApiRequest {
 	r.collection = &collection
 	return r
 }
 
-func (r GlobalClustersApiDeleteManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {
+func (r DeleteManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.DeleteManagedNamespaceExecute(r)
 }
 
@@ -544,10 +568,10 @@ Removes one managed namespace within the specified global cluster. A managed nam
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param clusterName Human-readable label that identifies this advanced cluster.
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return GlobalClustersApiDeleteManagedNamespaceRequest
+ @return DeleteManagedNamespaceApiRequest
 */
-func (a *GlobalClustersApiService) DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) GlobalClustersApiDeleteManagedNamespaceRequest {
-	return GlobalClustersApiDeleteManagedNamespaceRequest{
+func (a *GlobalClustersApiService) DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) DeleteManagedNamespaceApiRequest {
+	return DeleteManagedNamespaceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		clusterName: clusterName,
@@ -557,7 +581,7 @@ func (a *GlobalClustersApiService) DeleteManagedNamespace(ctx context.Context, c
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalClustersApiDeleteManagedNamespaceRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -658,14 +682,19 @@ func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r GlobalCluster
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type GlobalClustersApiGetManagedNamespaceRequest struct {
+type GetManagedNamespaceApiRequest struct {
 	ctx context.Context
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
 }
 
-func (r GlobalClustersApiGetManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {
+type GetManagedNamespaceApiParams struct {
+		GroupId string
+		ClusterName string
+}
+
+func (r GetManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.GetManagedNamespaceExecute(r)
 }
 
@@ -677,10 +706,10 @@ Returns one managed namespace within the specified global cluster. A managed nam
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies this advanced cluster.
- @return GlobalClustersApiGetManagedNamespaceRequest
+ @return GetManagedNamespaceApiRequest
 */
-func (a *GlobalClustersApiService) GetManagedNamespace(ctx context.Context, groupId string, clusterName string) GlobalClustersApiGetManagedNamespaceRequest {
-	return GlobalClustersApiGetManagedNamespaceRequest{
+func (a *GlobalClustersApiService) GetManagedNamespace(ctx context.Context, groupId string, clusterName string) GetManagedNamespaceApiRequest {
+	return GetManagedNamespaceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -690,7 +719,7 @@ func (a *GlobalClustersApiService) GetManagedNamespace(ctx context.Context, grou
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) GetManagedNamespaceExecute(r GlobalClustersApiGetManagedNamespaceRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) GetManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

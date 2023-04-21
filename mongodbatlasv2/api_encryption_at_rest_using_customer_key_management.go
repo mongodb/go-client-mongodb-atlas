@@ -31,13 +31,13 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+	@return GetEncryptionAtRestApiRequest
 	*/
-	GetEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+	GetEncryptionAtRest(ctx context.Context, groupId string) GetEncryptionAtRestApiRequest
 
 	// GetEncryptionAtRestExecute executes the request
 	//  @return EncryptionAtRest
-	GetEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error)
+	GetEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
 
 	/*
 	UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
@@ -48,25 +48,29 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+	@return UpdateEncryptionAtRestApiRequest
 	*/
-	UpdateEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+	UpdateEncryptionAtRest(ctx context.Context, groupId string) UpdateEncryptionAtRestApiRequest
 
 	// UpdateEncryptionAtRestExecute executes the request
 	//  @return EncryptionAtRest
-	UpdateEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error)
+	UpdateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
 }
 
 // EncryptionAtRestUsingCustomerKeyManagementApiService EncryptionAtRestUsingCustomerKeyManagementApi service
 type EncryptionAtRestUsingCustomerKeyManagementApiService service
 
-type EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest struct {
+type GetEncryptionAtRestApiRequest struct {
 	ctx context.Context
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
 }
 
-func (r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
+type GetEncryptionAtRestApiParams struct {
+		GroupId string
+}
+
+func (r GetEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
 	return r.ApiService.GetEncryptionAtRestExecute(r)
 }
 
@@ -79,10 +83,10 @@ Returns the configuration for encryption at rest using the keys you manage throu
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest
+ @return GetEncryptionAtRestApiRequest
 */
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest {
-	return EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest{
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRest(ctx context.Context, groupId string) GetEncryptionAtRestApiRequest {
+	return GetEncryptionAtRestApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -91,7 +95,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRe
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -179,20 +183,25 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest struct {
+type UpdateEncryptionAtRestApiRequest struct {
 	ctx context.Context
 	ApiService EncryptionAtRestUsingCustomerKeyManagementApi
 	groupId string
 	encryptionAtRest *EncryptionAtRest
 }
 
+type UpdateEncryptionAtRestApiParams struct {
+		GroupId string
+		EncryptionAtRest *EncryptionAtRest
+}
+
 // Required parameters depend on whether someone has enabled Encryption at Rest using Customer Key Management:  If you have enabled Encryption at Rest using Customer Key Management (CMK), Atlas requires all of the parameters for the desired encryption provider.  - To use AWS Key Management Service (KMS), MongoDB Cloud requires all the fields in the **awsKms** object. - To use Azure Key Vault, MongoDB Cloud requires all the fields in the **azureKeyVault** object. - To use Google Cloud Key Management Service (KMS), MongoDB Cloud requires all the fields in the **googleCloudKms** object.  If you enabled Encryption at Rest using Customer Key  Management, administrators can pass only the changed fields for the **awsKms**, **azureKeyVault**, or **googleCloudKms** object to update the configuration to this endpoint.
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
+func (r UpdateEncryptionAtRestApiRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) UpdateEncryptionAtRestApiRequest {
 	r.encryptionAtRest = &encryptionAtRest
 	return r
 }
 
-func (r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
+func (r UpdateEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
 	return r.ApiService.UpdateEncryptionAtRestExecute(r)
 }
 
@@ -205,10 +214,10 @@ Updates the configuration for encryption at rest using the keys you manage throu
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest
+ @return UpdateEncryptionAtRestApiRequest
 */
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRest(ctx context.Context, groupId string) EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest {
-	return EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest{
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRest(ctx context.Context, groupId string) UpdateEncryptionAtRestApiRequest {
+	return UpdateEncryptionAtRestApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -217,7 +226,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRestExecute(r EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

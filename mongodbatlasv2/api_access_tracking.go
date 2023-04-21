@@ -31,13 +31,13 @@ type AccessTrackingApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
-	@return AccessTrackingApiListAccessLogsByClusterNameRequest
+	@return ListAccessLogsByClusterNameApiRequest
 	*/
-	ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiListAccessLogsByClusterNameRequest
+	ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) ListAccessLogsByClusterNameApiRequest
 
 	// ListAccessLogsByClusterNameExecute executes the request
 	//  @return MongoDBAccessLogsList
-	ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*MongoDBAccessLogsList, *http.Response, error)
+	ListAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
 
 	/*
 	ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
@@ -47,19 +47,19 @@ type AccessTrackingApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
-	@return AccessTrackingApiListAccessLogsByHostnameRequest
+	@return ListAccessLogsByHostnameApiRequest
 	*/
-	ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiListAccessLogsByHostnameRequest
+	ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) ListAccessLogsByHostnameApiRequest
 
 	// ListAccessLogsByHostnameExecute executes the request
 	//  @return MongoDBAccessLogsList
-	ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*MongoDBAccessLogsList, *http.Response, error)
+	ListAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
 }
 
 // AccessTrackingApiService AccessTrackingApi service
 type AccessTrackingApiService service
 
-type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
+type ListAccessLogsByClusterNameApiRequest struct {
 	ctx context.Context
 	ApiService AccessTrackingApi
 	groupId string
@@ -71,37 +71,47 @@ type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
 	start *time.Time
 }
 
+type ListAccessLogsByClusterNameApiParams struct {
+		GroupId string
+		ClusterName string
+		AuthResult *bool
+		End *string
+		IpAddress *string
+		NLogs *int64
+		Start *time.Time
+}
+
 // Flag that indicates whether the response returns the successful authentication attempts only.
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) AuthResult(authResult bool) AccessTrackingApiListAccessLogsByClusterNameRequest {
+func (r ListAccessLogsByClusterNameApiRequest) AuthResult(authResult bool) ListAccessLogsByClusterNameApiRequest {
 	r.authResult = &authResult
 	return r
 }
 
 // Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) End(end string) AccessTrackingApiListAccessLogsByClusterNameRequest {
+func (r ListAccessLogsByClusterNameApiRequest) End(end string) ListAccessLogsByClusterNameApiRequest {
 	r.end = &end
 	return r
 }
 
 // One Internet Protocol address that attempted to authenticate with the database.
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) IpAddress(ipAddress string) AccessTrackingApiListAccessLogsByClusterNameRequest {
+func (r ListAccessLogsByClusterNameApiRequest) IpAddress(ipAddress string) ListAccessLogsByClusterNameApiRequest {
 	r.ipAddress = &ipAddress
 	return r
 }
 
 // Maximum number of lines from the log to return.
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) NLogs(nLogs int64) AccessTrackingApiListAccessLogsByClusterNameRequest {
+func (r ListAccessLogsByClusterNameApiRequest) NLogs(nLogs int64) ListAccessLogsByClusterNameApiRequest {
 	r.nLogs = &nLogs
 	return r
 }
 
 // Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Start(start time.Time) AccessTrackingApiListAccessLogsByClusterNameRequest {
+func (r ListAccessLogsByClusterNameApiRequest) Start(start time.Time) ListAccessLogsByClusterNameApiRequest {
 	r.start = &start
 	return r
 }
 
-func (r AccessTrackingApiListAccessLogsByClusterNameRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
+func (r ListAccessLogsByClusterNameApiRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
 	return r.ApiService.ListAccessLogsByClusterNameExecute(r)
 }
 
@@ -113,10 +123,10 @@ Returns the access logs of one cluster identified by the cluster's name. Access 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Human-readable label that identifies the cluster.
- @return AccessTrackingApiListAccessLogsByClusterNameRequest
+ @return ListAccessLogsByClusterNameApiRequest
 */
-func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) AccessTrackingApiListAccessLogsByClusterNameRequest {
-	return AccessTrackingApiListAccessLogsByClusterNameRequest{
+func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) ListAccessLogsByClusterNameApiRequest {
+	return ListAccessLogsByClusterNameApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -126,7 +136,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Conte
 
 // Execute executes the request
 //  @return MongoDBAccessLogsList
-func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTrackingApiListAccessLogsByClusterNameRequest) (*MongoDBAccessLogsList, *http.Response, error) {
+func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -240,7 +250,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r AccessTr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AccessTrackingApiListAccessLogsByHostnameRequest struct {
+type ListAccessLogsByHostnameApiRequest struct {
 	ctx context.Context
 	ApiService AccessTrackingApi
 	groupId string
@@ -252,37 +262,47 @@ type AccessTrackingApiListAccessLogsByHostnameRequest struct {
 	start *time.Time
 }
 
+type ListAccessLogsByHostnameApiParams struct {
+		GroupId string
+		Hostname string
+		AuthResult *bool
+		End *time.Time
+		IpAddress *string
+		NLogs *int32
+		Start *time.Time
+}
+
 // Flag that indicates whether the response returns the successful authentication attempts only.
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) AuthResult(authResult bool) AccessTrackingApiListAccessLogsByHostnameRequest {
+func (r ListAccessLogsByHostnameApiRequest) AuthResult(authResult bool) ListAccessLogsByHostnameApiRequest {
 	r.authResult = &authResult
 	return r
 }
 
 // Date and time when to stop retrieving database history. If you specify **end**, you must also specify **start**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) End(end time.Time) AccessTrackingApiListAccessLogsByHostnameRequest {
+func (r ListAccessLogsByHostnameApiRequest) End(end time.Time) ListAccessLogsByHostnameApiRequest {
 	r.end = &end
 	return r
 }
 
 // One Internet Protocol address that attempted to authenticate with the database.
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) IpAddress(ipAddress string) AccessTrackingApiListAccessLogsByHostnameRequest {
+func (r ListAccessLogsByHostnameApiRequest) IpAddress(ipAddress string) ListAccessLogsByHostnameApiRequest {
 	r.ipAddress = &ipAddress
 	return r
 }
 
 // Maximum number of lines from the log to return.
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) NLogs(nLogs int32) AccessTrackingApiListAccessLogsByHostnameRequest {
+func (r ListAccessLogsByHostnameApiRequest) NLogs(nLogs int32) ListAccessLogsByHostnameApiRequest {
 	r.nLogs = &nLogs
 	return r
 }
 
 // Date and time when MongoDB Cloud begins retrieving database history. If you specify **start**, you must also specify **end**. This parameter uses the ISO 8601 timestamp format in UTC.
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) Start(start time.Time) AccessTrackingApiListAccessLogsByHostnameRequest {
+func (r ListAccessLogsByHostnameApiRequest) Start(start time.Time) ListAccessLogsByHostnameApiRequest {
 	r.start = &start
 	return r
 }
 
-func (r AccessTrackingApiListAccessLogsByHostnameRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
+func (r ListAccessLogsByHostnameApiRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
 	return r.ApiService.ListAccessLogsByHostnameExecute(r)
 }
 
@@ -294,10 +314,10 @@ Returns the access logs of one cluster identified by the cluster's hostname. Acc
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param hostname Fully qualified domain name or IP address of the MongoDB host that stores the log files that you want to download.
- @return AccessTrackingApiListAccessLogsByHostnameRequest
+ @return ListAccessLogsByHostnameApiRequest
 */
-func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) AccessTrackingApiListAccessLogsByHostnameRequest {
-	return AccessTrackingApiListAccessLogsByHostnameRequest{
+func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) ListAccessLogsByHostnameApiRequest {
+	return ListAccessLogsByHostnameApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -307,7 +327,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context,
 
 // Execute executes the request
 //  @return MongoDBAccessLogsList
-func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r AccessTrackingApiListAccessLogsByHostnameRequest) (*MongoDBAccessLogsList, *http.Response, error) {
+func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

@@ -31,13 +31,13 @@ type PrivateEndpointServicesApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
-	@return PrivateEndpointServicesApiCreatePrivateEndpointRequest
+	@return CreatePrivateEndpointApiRequest
 	*/
-	CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreatePrivateEndpointRequest
+	CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) CreatePrivateEndpointApiRequest
 
 	// CreatePrivateEndpointExecute executes the request
 	//  @return Endpoint
-	CreatePrivateEndpointExecute(r PrivateEndpointServicesApiCreatePrivateEndpointRequest) (*Endpoint, *http.Response, error)
+	CreatePrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
 
 	/*
 	CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
@@ -46,13 +46,13 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
+	@return CreatePrivateEndpointServiceApiRequest
 	*/
-	CreatePrivateEndpointService(ctx context.Context, groupId string) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
+	CreatePrivateEndpointService(ctx context.Context, groupId string) CreatePrivateEndpointServiceApiRequest
 
 	// CreatePrivateEndpointServiceExecute executes the request
 	//  @return EndpointService
-	CreatePrivateEndpointServiceExecute(r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) (*EndpointService, *http.Response, error)
+	CreatePrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
 
 	/*
 	DeletePrivateEndpoint Remove One Private Endpoint for One Provider
@@ -64,12 +64,12 @@ type PrivateEndpointServicesApi interface {
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
-	@return PrivateEndpointServicesApiDeletePrivateEndpointRequest
+	@return DeletePrivateEndpointApiRequest
 	*/
-	DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointRequest
+	DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) DeletePrivateEndpointApiRequest
 
 	// DeletePrivateEndpointExecute executes the request
-	DeletePrivateEndpointExecute(r PrivateEndpointServicesApiDeletePrivateEndpointRequest) (*http.Response, error)
+	DeletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error)
 
 	/*
 	DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
@@ -80,12 +80,12 @@ type PrivateEndpointServicesApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
-	@return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
+	@return DeletePrivateEndpointServiceApiRequest
 	*/
-	DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
+	DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) DeletePrivateEndpointServiceApiRequest
 
 	// DeletePrivateEndpointServiceExecute executes the request
-	DeletePrivateEndpointServiceExecute(r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) (*http.Response, error)
+	DeletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error)
 
 	/*
 	GetPrivateEndpoint Return One Private Endpoint for One Provider
@@ -97,13 +97,13 @@ type PrivateEndpointServicesApi interface {
 	@param cloudProvider Cloud service provider that manages this private endpoint.
 	@param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
-	@return PrivateEndpointServicesApiGetPrivateEndpointRequest
+	@return GetPrivateEndpointApiRequest
 	*/
-	GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointRequest
+	GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) GetPrivateEndpointApiRequest
 
 	// GetPrivateEndpointExecute executes the request
 	//  @return Endpoint
-	GetPrivateEndpointExecute(r PrivateEndpointServicesApiGetPrivateEndpointRequest) (*Endpoint, *http.Response, error)
+	GetPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
 
 	/*
 	GetPrivateEndpointService Return One Private Endpoint Service for One Provider
@@ -114,13 +114,13 @@ type PrivateEndpointServicesApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
 	@param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
-	@return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
+	@return GetPrivateEndpointServiceApiRequest
 	*/
-	GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
+	GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) GetPrivateEndpointServiceApiRequest
 
 	// GetPrivateEndpointServiceExecute executes the request
 	//  @return EndpointService
-	GetPrivateEndpointServiceExecute(r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) (*EndpointService, *http.Response, error)
+	GetPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
 
 	/*
 	GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
@@ -129,13 +129,13 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
+	@return GetRegionalizedPrivateEndpointSettingApiRequest
 	*/
-	GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
+	GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) GetRegionalizedPrivateEndpointSettingApiRequest
 
 	// GetRegionalizedPrivateEndpointSettingExecute executes the request
 	//  @return ProjectSettingItem
-	GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error)
+	GetRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
 
 	/*
 	ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
@@ -145,13 +145,13 @@ type PrivateEndpointServicesApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param cloudProvider Cloud service provider that manages this private endpoint service.
-	@return PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+	@return ListPrivateEndpointServicesApiRequest
 	*/
-	ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+	ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) ListPrivateEndpointServicesApiRequest
 
 	// ListPrivateEndpointServicesExecute executes the request
 	//  @return PaginatedPrivateLinkConnection
-	ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnection, *http.Response, error)
+	ListPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error)
 
 	/*
 	ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
@@ -160,19 +160,19 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
+	@return ToggleRegionalizedPrivateEndpointSettingApiRequest
 	*/
-	ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
+	ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) ToggleRegionalizedPrivateEndpointSettingApiRequest
 
 	// ToggleRegionalizedPrivateEndpointSettingExecute executes the request
 	//  @return ProjectSettingItem
-	ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error)
+	ToggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
 }
 
 // PrivateEndpointServicesApiService PrivateEndpointServicesApi service
 type PrivateEndpointServicesApiService service
 
-type PrivateEndpointServicesApiCreatePrivateEndpointRequest struct {
+type CreatePrivateEndpointApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -181,13 +181,20 @@ type PrivateEndpointServicesApiCreatePrivateEndpointRequest struct {
 	createPrivateEndpointRequest *CreatePrivateEndpointRequest
 }
 
+type CreatePrivateEndpointApiParams struct {
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
+		CreatePrivateEndpointRequest *CreatePrivateEndpointRequest
+}
+
 // Creates one private endpoint for the specified cloud service provider.
-func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) CreatePrivateEndpointRequest(createPrivateEndpointRequest CreatePrivateEndpointRequest) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
+func (r CreatePrivateEndpointApiRequest) CreatePrivateEndpointRequest(createPrivateEndpointRequest CreatePrivateEndpointRequest) CreatePrivateEndpointApiRequest {
 	r.createPrivateEndpointRequest = &createPrivateEndpointRequest
 	return r
 }
 
-func (r PrivateEndpointServicesApiCreatePrivateEndpointRequest) Execute() (*Endpoint, *http.Response, error) {
+func (r CreatePrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, error) {
 	return r.ApiService.CreatePrivateEndpointExecute(r)
 }
 
@@ -200,10 +207,10 @@ Creates one private endpoint for the specified cloud service provider. This clou
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to create a private endpoint.
- @return PrivateEndpointServicesApiCreatePrivateEndpointRequest
+ @return CreatePrivateEndpointApiRequest
 */
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiCreatePrivateEndpointRequest {
-	return PrivateEndpointServicesApiCreatePrivateEndpointRequest{
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) CreatePrivateEndpointApiRequest {
+	return CreatePrivateEndpointApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -214,7 +221,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpoint(ctx context.Co
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r PrivateEndpointServicesApiCreatePrivateEndpointRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -315,20 +322,25 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r Priva
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest struct {
+type CreatePrivateEndpointServiceApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
 	createEndpointServiceRequest *CreateEndpointServiceRequest
 }
 
+type CreatePrivateEndpointServiceApiParams struct {
+		GroupId string
+		CreateEndpointServiceRequest *CreateEndpointServiceRequest
+}
+
 // Creates one private endpoint for the specified cloud service provider.
-func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) CreateEndpointServiceRequest(createEndpointServiceRequest CreateEndpointServiceRequest) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
+func (r CreatePrivateEndpointServiceApiRequest) CreateEndpointServiceRequest(createEndpointServiceRequest CreateEndpointServiceRequest) CreatePrivateEndpointServiceApiRequest {
 	r.createEndpointServiceRequest = &createEndpointServiceRequest
 	return r
 }
 
-func (r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) Execute() (*EndpointService, *http.Response, error) {
+func (r CreatePrivateEndpointServiceApiRequest) Execute() (*EndpointService, *http.Response, error) {
 	return r.ApiService.CreatePrivateEndpointServiceExecute(r)
 }
 
@@ -339,10 +351,10 @@ Creates one private endpoint service for the specified cloud service provider. T
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest
+ @return CreatePrivateEndpointServiceApiRequest
 */
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointService(ctx context.Context, groupId string) PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest {
-	return PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest{
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointService(ctx context.Context, groupId string) CreatePrivateEndpointServiceApiRequest {
+	return CreatePrivateEndpointServiceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -351,7 +363,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointService(ctx con
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(r PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -444,7 +456,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiDeletePrivateEndpointRequest struct {
+type DeletePrivateEndpointApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -453,7 +465,14 @@ type PrivateEndpointServicesApiDeletePrivateEndpointRequest struct {
 	endpointServiceId string
 }
 
-func (r PrivateEndpointServicesApiDeletePrivateEndpointRequest) Execute() (*http.Response, error) {
+type DeletePrivateEndpointApiParams struct {
+		GroupId string
+		CloudProvider string
+		EndpointId string
+		EndpointServiceId string
+}
+
+func (r DeletePrivateEndpointApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePrivateEndpointExecute(r)
 }
 
@@ -467,10 +486,10 @@ Removes one private endpoint from the specified project. This cloud service prov
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to delete. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service from which you want to delete a private endpoint.
- @return PrivateEndpointServicesApiDeletePrivateEndpointRequest
+ @return DeletePrivateEndpointApiRequest
 */
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointRequest {
-	return PrivateEndpointServicesApiDeletePrivateEndpointRequest{
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) DeletePrivateEndpointApiRequest {
+	return DeletePrivateEndpointApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -481,7 +500,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpoint(ctx context.Co
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r PrivateEndpointServicesApiDeletePrivateEndpointRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -568,7 +587,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r Priva
 	return localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest struct {
+type DeletePrivateEndpointServiceApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -576,7 +595,13 @@ type PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest struct {
 	endpointServiceId string
 }
 
-func (r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) Execute() (*http.Response, error) {
+type DeletePrivateEndpointServiceApiParams struct {
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
+}
+
+func (r DeletePrivateEndpointServiceApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePrivateEndpointServiceExecute(r)
 }
 
@@ -589,10 +614,10 @@ Removes one private endpoint service from the specified project. This cloud serv
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to delete.
- @return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest
+ @return DeletePrivateEndpointServiceApiRequest
 */
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest {
-	return PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest{
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) DeletePrivateEndpointServiceApiRequest {
+	return DeletePrivateEndpointServiceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -602,7 +627,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointService(ctx con
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -688,7 +713,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(
 	return localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiGetPrivateEndpointRequest struct {
+type GetPrivateEndpointApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -697,7 +722,14 @@ type PrivateEndpointServicesApiGetPrivateEndpointRequest struct {
 	endpointServiceId string
 }
 
-func (r PrivateEndpointServicesApiGetPrivateEndpointRequest) Execute() (*Endpoint, *http.Response, error) {
+type GetPrivateEndpointApiParams struct {
+		GroupId string
+		CloudProvider string
+		EndpointId string
+		EndpointServiceId string
+}
+
+func (r GetPrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, error) {
 	return r.ApiService.GetPrivateEndpointExecute(r)
 }
 
@@ -711,10 +743,10 @@ Returns the connection state of the specified private endpoint. The private endp
  @param cloudProvider Cloud service provider that manages this private endpoint.
  @param endpointId Unique string that identifies the private endpoint you want to return. The format of the **endpointId** parameter differs for AWS and Azure. You must URL encode the **endpointId** for Azure private endpoints.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service for which you want to return a private endpoint.
- @return PrivateEndpointServicesApiGetPrivateEndpointRequest
+ @return GetPrivateEndpointApiRequest
 */
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointRequest {
-	return PrivateEndpointServicesApiGetPrivateEndpointRequest{
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) GetPrivateEndpointApiRequest {
+	return GetPrivateEndpointApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -726,7 +758,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpoint(ctx context.Conte
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateEndpointServicesApiGetPrivateEndpointRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -823,7 +855,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r PrivateE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiGetPrivateEndpointServiceRequest struct {
+type GetPrivateEndpointServiceApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
@@ -831,7 +863,13 @@ type PrivateEndpointServicesApiGetPrivateEndpointServiceRequest struct {
 	endpointServiceId string
 }
 
-func (r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) Execute() (*EndpointService, *http.Response, error) {
+type GetPrivateEndpointServiceApiParams struct {
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
+}
+
+func (r GetPrivateEndpointServiceApiRequest) Execute() (*EndpointService, *http.Response, error) {
 	return r.ApiService.GetPrivateEndpointServiceExecute(r)
 }
 
@@ -844,10 +882,10 @@ Returns the name, interfaces, and state of the specified private endpoint servic
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
  @param endpointServiceId Unique 24-hexadecimal digit string that identifies the private endpoint service that you want to return.
- @return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest
+ @return GetPrivateEndpointServiceApiRequest
 */
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) PrivateEndpointServicesApiGetPrivateEndpointServiceRequest {
-	return PrivateEndpointServicesApiGetPrivateEndpointServiceRequest{
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) GetPrivateEndpointServiceApiRequest {
+	return GetPrivateEndpointServiceApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -858,7 +896,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointService(ctx contex
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -954,13 +992,17 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest struct {
+type GetRegionalizedPrivateEndpointSettingApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
 }
 
-func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
+type GetRegionalizedPrivateEndpointSettingApiParams struct {
+		GroupId string
+}
+
+func (r GetRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
 	return r.ApiService.GetRegionalizedPrivateEndpointSettingExecute(r)
 }
 
@@ -971,10 +1013,10 @@ Checks whether each region in the specified cloud service provider can create mu
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest
+ @return GetRegionalizedPrivateEndpointSettingApiRequest
 */
-func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest {
-	return PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest{
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) GetRegionalizedPrivateEndpointSettingApiRequest {
+	return GetRegionalizedPrivateEndpointSettingApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -983,7 +1025,7 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 
 // Execute executes the request
 //  @return ProjectSettingItem
-func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1071,14 +1113,19 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiListPrivateEndpointServicesRequest struct {
+type ListPrivateEndpointServicesApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
 	cloudProvider string
 }
 
-func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
+type ListPrivateEndpointServicesApiParams struct {
+		GroupId string
+		CloudProvider string
+}
+
+func (r ListPrivateEndpointServicesApiRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	return r.ApiService.ListPrivateEndpointServicesExecute(r)
 }
 
@@ -1090,10 +1137,10 @@ Returns the name, interfaces, and state of all private endpoint services for the
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param cloudProvider Cloud service provider that manages this private endpoint service.
- @return PrivateEndpointServicesApiListPrivateEndpointServicesRequest
+ @return ListPrivateEndpointServicesApiRequest
 */
-func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) PrivateEndpointServicesApiListPrivateEndpointServicesRequest {
-	return PrivateEndpointServicesApiListPrivateEndpointServicesRequest{
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) ListPrivateEndpointServicesApiRequest {
+	return ListPrivateEndpointServicesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1103,7 +1150,7 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx cont
 
 // Execute executes the request
 //  @return PaginatedPrivateLinkConnection
-func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) (*PaginatedPrivateLinkConnection, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1192,20 +1239,25 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest struct {
+type ToggleRegionalizedPrivateEndpointSettingApiRequest struct {
 	ctx context.Context
 	ApiService PrivateEndpointServicesApi
 	groupId string
 	projectSettingItem *ProjectSettingItem
 }
 
+type ToggleRegionalizedPrivateEndpointSettingApiParams struct {
+		GroupId string
+		ProjectSettingItem *ProjectSettingItem
+}
+
 // Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project.
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) ProjectSettingItem(projectSettingItem ProjectSettingItem) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
+func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) ProjectSettingItem(projectSettingItem ProjectSettingItem) ToggleRegionalizedPrivateEndpointSettingApiRequest {
 	r.projectSettingItem = &projectSettingItem
 	return r
 }
 
-func (r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
+func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
 	return r.ApiService.ToggleRegionalizedPrivateEndpointSettingExecute(r)
 }
 
@@ -1216,10 +1268,10 @@ Enables or disables the ability to create multiple private endpoints per region 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest
+ @return ToggleRegionalizedPrivateEndpointSettingApiRequest
 */
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest {
-	return PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest{
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) ToggleRegionalizedPrivateEndpointSettingApiRequest {
+	return ToggleRegionalizedPrivateEndpointSettingApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1228,7 +1280,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 
 // Execute executes the request
 //  @return ProjectSettingItem
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest) (*ProjectSettingItem, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

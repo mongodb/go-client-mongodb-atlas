@@ -30,13 +30,13 @@ type AtlasSearchApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Name of the cluster that contains the collection on which to create an Atlas Search index.
-	@return AtlasSearchApiCreateAtlasSearchIndexRequest
+	@return CreateAtlasSearchIndexApiRequest
 	*/
-	CreateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string) AtlasSearchApiCreateAtlasSearchIndexRequest
+	CreateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string) CreateAtlasSearchIndexApiRequest
 
 	// CreateAtlasSearchIndexExecute executes the request
 	//  @return FTSIndex
-	CreateAtlasSearchIndexExecute(r AtlasSearchApiCreateAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error)
+	CreateAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 
 	/*
 	DeleteAtlasSearchIndex Remove One Atlas Search Index
@@ -47,12 +47,12 @@ type AtlasSearchApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Name of the cluster that contains the database and collection with one or more Application Search indexes.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search index. Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
-	@return AtlasSearchApiDeleteAtlasSearchIndexRequest
+	@return DeleteAtlasSearchIndexApiRequest
 	*/
-	DeleteAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiDeleteAtlasSearchIndexRequest
+	DeleteAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) DeleteAtlasSearchIndexApiRequest
 
 	// DeleteAtlasSearchIndexExecute executes the request
-	DeleteAtlasSearchIndexExecute(r AtlasSearchApiDeleteAtlasSearchIndexRequest) (*http.Response, error)
+	DeleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error)
 
 	/*
 	GetAtlasSearchIndex Return One Atlas Search Index
@@ -63,13 +63,13 @@ type AtlasSearchApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Application Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Application Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Application Search indexes.
-	@return AtlasSearchApiGetAtlasSearchIndexRequest
+	@return GetAtlasSearchIndexApiRequest
 	*/
-	GetAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiGetAtlasSearchIndexRequest
+	GetAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) GetAtlasSearchIndexApiRequest
 
 	// GetAtlasSearchIndexExecute executes the request
 	//  @return FTSIndex
-	GetAtlasSearchIndexExecute(r AtlasSearchApiGetAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error)
+	GetAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 
 	/*
 	ListAtlasSearchIndexes Return All Atlas Search Indexes for One Collection
@@ -81,13 +81,13 @@ type AtlasSearchApi interface {
 	@param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
 	@param collectionName Name of the collection that contains one or more Atlas Search indexes.
 	@param databaseName Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
-	@return AtlasSearchApiListAtlasSearchIndexesRequest
+	@return ListAtlasSearchIndexesApiRequest
 	*/
-	ListAtlasSearchIndexes(ctx context.Context, groupId string, clusterName string, collectionName string, databaseName string) AtlasSearchApiListAtlasSearchIndexesRequest
+	ListAtlasSearchIndexes(ctx context.Context, groupId string, clusterName string, collectionName string, databaseName string) ListAtlasSearchIndexesApiRequest
 
 	// ListAtlasSearchIndexesExecute executes the request
 	//  @return []FTSIndex
-	ListAtlasSearchIndexesExecute(r AtlasSearchApiListAtlasSearchIndexesRequest) ([]FTSIndex, *http.Response, error)
+	ListAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error)
 
 	/*
 	UpdateAtlasSearchIndex Update One Atlas Search Index
@@ -98,19 +98,19 @@ type AtlasSearchApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Name of the cluster that contains the collection whose Atlas Search index to update.
 	@param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
-	@return AtlasSearchApiUpdateAtlasSearchIndexRequest
+	@return UpdateAtlasSearchIndexApiRequest
 	*/
-	UpdateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiUpdateAtlasSearchIndexRequest
+	UpdateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) UpdateAtlasSearchIndexApiRequest
 
 	// UpdateAtlasSearchIndexExecute executes the request
 	//  @return FTSIndex
-	UpdateAtlasSearchIndexExecute(r AtlasSearchApiUpdateAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error)
+	UpdateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 }
 
 // AtlasSearchApiService AtlasSearchApi service
 type AtlasSearchApiService service
 
-type AtlasSearchApiCreateAtlasSearchIndexRequest struct {
+type CreateAtlasSearchIndexApiRequest struct {
 	ctx context.Context
 	ApiService AtlasSearchApi
 	groupId string
@@ -118,13 +118,19 @@ type AtlasSearchApiCreateAtlasSearchIndexRequest struct {
 	fTSIndex *FTSIndex
 }
 
+type CreateAtlasSearchIndexApiParams struct {
+		GroupId string
+		ClusterName string
+		FTSIndex *FTSIndex
+}
+
 // Creates one Atlas Search index on the specified collection.
-func (r AtlasSearchApiCreateAtlasSearchIndexRequest) FTSIndex(fTSIndex FTSIndex) AtlasSearchApiCreateAtlasSearchIndexRequest {
+func (r CreateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) CreateAtlasSearchIndexApiRequest {
 	r.fTSIndex = &fTSIndex
 	return r
 }
 
-func (r AtlasSearchApiCreateAtlasSearchIndexRequest) Execute() (*FTSIndex, *http.Response, error) {
+func (r CreateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
 	return r.ApiService.CreateAtlasSearchIndexExecute(r)
 }
 
@@ -136,10 +142,10 @@ Creates one Atlas Search index on the specified collection. Atlas Search indexes
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Name of the cluster that contains the collection on which to create an Atlas Search index.
- @return AtlasSearchApiCreateAtlasSearchIndexRequest
+ @return CreateAtlasSearchIndexApiRequest
 */
-func (a *AtlasSearchApiService) CreateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string) AtlasSearchApiCreateAtlasSearchIndexRequest {
-	return AtlasSearchApiCreateAtlasSearchIndexRequest{
+func (a *AtlasSearchApiService) CreateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string) CreateAtlasSearchIndexApiRequest {
+	return CreateAtlasSearchIndexApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -149,7 +155,7 @@ func (a *AtlasSearchApiService) CreateAtlasSearchIndex(ctx context.Context, grou
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r AtlasSearchApiCreateAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -249,7 +255,7 @@ func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r AtlasSearchApiCr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AtlasSearchApiDeleteAtlasSearchIndexRequest struct {
+type DeleteAtlasSearchIndexApiRequest struct {
 	ctx context.Context
 	ApiService AtlasSearchApi
 	groupId string
@@ -257,7 +263,13 @@ type AtlasSearchApiDeleteAtlasSearchIndexRequest struct {
 	indexId string
 }
 
-func (r AtlasSearchApiDeleteAtlasSearchIndexRequest) Execute() (*http.Response, error) {
+type DeleteAtlasSearchIndexApiParams struct {
+		GroupId string
+		ClusterName string
+		IndexId string
+}
+
+func (r DeleteAtlasSearchIndexApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAtlasSearchIndexExecute(r)
 }
 
@@ -270,10 +282,10 @@ Removes one Atlas Search index that you identified with its unique ID. To use th
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Name of the cluster that contains the database and collection with one or more Application Search indexes.
  @param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search index. Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
- @return AtlasSearchApiDeleteAtlasSearchIndexRequest
+ @return DeleteAtlasSearchIndexApiRequest
 */
-func (a *AtlasSearchApiService) DeleteAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiDeleteAtlasSearchIndexRequest {
-	return AtlasSearchApiDeleteAtlasSearchIndexRequest{
+func (a *AtlasSearchApiService) DeleteAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) DeleteAtlasSearchIndexApiRequest {
+	return DeleteAtlasSearchIndexApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -283,7 +295,7 @@ func (a *AtlasSearchApiService) DeleteAtlasSearchIndex(ctx context.Context, grou
 }
 
 // Execute executes the request
-func (a *AtlasSearchApiService) DeleteAtlasSearchIndexExecute(r AtlasSearchApiDeleteAtlasSearchIndexRequest) (*http.Response, error) {
+func (a *AtlasSearchApiService) DeleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -375,7 +387,7 @@ func (a *AtlasSearchApiService) DeleteAtlasSearchIndexExecute(r AtlasSearchApiDe
 	return localVarHTTPResponse, nil
 }
 
-type AtlasSearchApiGetAtlasSearchIndexRequest struct {
+type GetAtlasSearchIndexApiRequest struct {
 	ctx context.Context
 	ApiService AtlasSearchApi
 	groupId string
@@ -383,7 +395,13 @@ type AtlasSearchApiGetAtlasSearchIndexRequest struct {
 	indexId string
 }
 
-func (r AtlasSearchApiGetAtlasSearchIndexRequest) Execute() (*FTSIndex, *http.Response, error) {
+type GetAtlasSearchIndexApiParams struct {
+		GroupId string
+		ClusterName string
+		IndexId string
+}
+
+func (r GetAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
 	return r.ApiService.GetAtlasSearchIndexExecute(r)
 }
 
@@ -396,10 +414,10 @@ Returns one Atlas Search index in the specified project. You identify this index
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @param indexId Unique 24-hexadecimal digit string that identifies the Application Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Application Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Application Search indexes.
- @return AtlasSearchApiGetAtlasSearchIndexRequest
+ @return GetAtlasSearchIndexApiRequest
 */
-func (a *AtlasSearchApiService) GetAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiGetAtlasSearchIndexRequest {
-	return AtlasSearchApiGetAtlasSearchIndexRequest{
+func (a *AtlasSearchApiService) GetAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) GetAtlasSearchIndexApiRequest {
+	return GetAtlasSearchIndexApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -410,7 +428,7 @@ func (a *AtlasSearchApiService) GetAtlasSearchIndex(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) GetAtlasSearchIndexExecute(r AtlasSearchApiGetAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) GetAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -512,7 +530,7 @@ func (a *AtlasSearchApiService) GetAtlasSearchIndexExecute(r AtlasSearchApiGetAt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AtlasSearchApiListAtlasSearchIndexesRequest struct {
+type ListAtlasSearchIndexesApiRequest struct {
 	ctx context.Context
 	ApiService AtlasSearchApi
 	groupId string
@@ -521,7 +539,14 @@ type AtlasSearchApiListAtlasSearchIndexesRequest struct {
 	databaseName string
 }
 
-func (r AtlasSearchApiListAtlasSearchIndexesRequest) Execute() ([]FTSIndex, *http.Response, error) {
+type ListAtlasSearchIndexesApiParams struct {
+		GroupId string
+		ClusterName string
+		CollectionName string
+		DatabaseName string
+}
+
+func (r ListAtlasSearchIndexesApiRequest) Execute() ([]FTSIndex, *http.Response, error) {
 	return r.ApiService.ListAtlasSearchIndexesExecute(r)
 }
 
@@ -535,10 +560,10 @@ Returns all Atlas Search indexes on the specified collection. Atlas Search index
  @param clusterName Name of the cluster that contains the collection with one or more Atlas Search indexes.
  @param collectionName Name of the collection that contains one or more Atlas Search indexes.
  @param databaseName Human-readable label that identifies the database that contains the collection with one or more Atlas Search indexes.
- @return AtlasSearchApiListAtlasSearchIndexesRequest
+ @return ListAtlasSearchIndexesApiRequest
 */
-func (a *AtlasSearchApiService) ListAtlasSearchIndexes(ctx context.Context, groupId string, clusterName string, collectionName string, databaseName string) AtlasSearchApiListAtlasSearchIndexesRequest {
-	return AtlasSearchApiListAtlasSearchIndexesRequest{
+func (a *AtlasSearchApiService) ListAtlasSearchIndexes(ctx context.Context, groupId string, clusterName string, collectionName string, databaseName string) ListAtlasSearchIndexesApiRequest {
+	return ListAtlasSearchIndexesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -550,7 +575,7 @@ func (a *AtlasSearchApiService) ListAtlasSearchIndexes(ctx context.Context, grou
 
 // Execute executes the request
 //  @return []FTSIndex
-func (a *AtlasSearchApiService) ListAtlasSearchIndexesExecute(r AtlasSearchApiListAtlasSearchIndexesRequest) ([]FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) ListAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -647,7 +672,7 @@ func (a *AtlasSearchApiService) ListAtlasSearchIndexesExecute(r AtlasSearchApiLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AtlasSearchApiUpdateAtlasSearchIndexRequest struct {
+type UpdateAtlasSearchIndexApiRequest struct {
 	ctx context.Context
 	ApiService AtlasSearchApi
 	groupId string
@@ -656,13 +681,20 @@ type AtlasSearchApiUpdateAtlasSearchIndexRequest struct {
 	fTSIndex *FTSIndex
 }
 
+type UpdateAtlasSearchIndexApiParams struct {
+		GroupId string
+		ClusterName string
+		IndexId string
+		FTSIndex *FTSIndex
+}
+
 // Details to update on the Atlas Search index.
-func (r AtlasSearchApiUpdateAtlasSearchIndexRequest) FTSIndex(fTSIndex FTSIndex) AtlasSearchApiUpdateAtlasSearchIndexRequest {
+func (r UpdateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) UpdateAtlasSearchIndexApiRequest {
 	r.fTSIndex = &fTSIndex
 	return r
 }
 
-func (r AtlasSearchApiUpdateAtlasSearchIndexRequest) Execute() (*FTSIndex, *http.Response, error) {
+func (r UpdateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
 	return r.ApiService.UpdateAtlasSearchIndexExecute(r)
 }
 
@@ -675,10 +707,10 @@ Updates one Atlas Search index that you identified with its unique ID. Atlas Sea
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param clusterName Name of the cluster that contains the collection whose Atlas Search index to update.
  @param indexId Unique 24-hexadecimal digit string that identifies the Atlas Search [index](https://docs.atlas.mongodb.com/reference/atlas-search/index-definitions/). Use the [Get All Atlas Search Indexes for a Collection API](https://docs.atlas.mongodb.com/reference/api/fts-indexes-get-all/) endpoint to find the IDs of all Atlas Search indexes.
- @return AtlasSearchApiUpdateAtlasSearchIndexRequest
+ @return UpdateAtlasSearchIndexApiRequest
 */
-func (a *AtlasSearchApiService) UpdateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) AtlasSearchApiUpdateAtlasSearchIndexRequest {
-	return AtlasSearchApiUpdateAtlasSearchIndexRequest{
+func (a *AtlasSearchApiService) UpdateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) UpdateAtlasSearchIndexApiRequest {
+	return UpdateAtlasSearchIndexApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -689,7 +721,7 @@ func (a *AtlasSearchApiService) UpdateAtlasSearchIndex(ctx context.Context, grou
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) UpdateAtlasSearchIndexExecute(r AtlasSearchApiUpdateAtlasSearchIndexRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) UpdateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

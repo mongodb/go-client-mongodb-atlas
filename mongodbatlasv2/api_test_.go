@@ -27,30 +27,34 @@ type TestApi interface {
 	Returns some text dummy data for test purposes. Deprecated versions: v2-{2023-01-01}
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TestApiVersionedExampleRequest
+	@return VersionedExampleApiRequest
 	*/
-	VersionedExample(ctx context.Context) TestApiVersionedExampleRequest
+	VersionedExample(ctx context.Context) VersionedExampleApiRequest
 
 	// VersionedExampleExecute executes the request
 	//  @return ExampleResourceResponseView20230201
-	VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20230201, *http.Response, error)
+	VersionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error)
 }
 
 // TestApiService TestApi service
 type TestApiService service
 
-type TestApiVersionedExampleRequest struct {
+type VersionedExampleApiRequest struct {
 	ctx context.Context
 	ApiService TestApi
 	additionalInfo *bool
 }
 
-func (r TestApiVersionedExampleRequest) AdditionalInfo(additionalInfo bool) TestApiVersionedExampleRequest {
+type VersionedExampleApiParams struct {
+		AdditionalInfo *bool
+}
+
+func (r VersionedExampleApiRequest) AdditionalInfo(additionalInfo bool) VersionedExampleApiRequest {
 	r.additionalInfo = &additionalInfo
 	return r
 }
 
-func (r TestApiVersionedExampleRequest) Execute() (*ExampleResourceResponseView20230201, *http.Response, error) {
+func (r VersionedExampleApiRequest) Execute() (*ExampleResourceResponseView20230201, *http.Response, error) {
 	return r.ApiService.VersionedExampleExecute(r)
 }
 
@@ -60,10 +64,10 @@ VersionedExample Example resource info for versioning of the Atlas API
 Returns some text dummy data for test purposes. Deprecated versions: v2-{2023-01-01}
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TestApiVersionedExampleRequest
+ @return VersionedExampleApiRequest
 */
-func (a *TestApiService) VersionedExample(ctx context.Context) TestApiVersionedExampleRequest {
-	return TestApiVersionedExampleRequest{
+func (a *TestApiService) VersionedExample(ctx context.Context) VersionedExampleApiRequest {
+	return VersionedExampleApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -71,7 +75,7 @@ func (a *TestApiService) VersionedExample(ctx context.Context) TestApiVersionedE
 
 // Execute executes the request
 //  @return ExampleResourceResponseView20230201
-func (a *TestApiService) VersionedExampleExecute(r TestApiVersionedExampleRequest) (*ExampleResourceResponseView20230201, *http.Response, error) {
+func (a *TestApiService) VersionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

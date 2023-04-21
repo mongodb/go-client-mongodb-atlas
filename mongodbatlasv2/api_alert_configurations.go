@@ -31,13 +31,13 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AlertConfigurationsApiCreateAlertConfigurationRequest
+	@return CreateAlertConfigurationApiRequest
 	*/
-	CreateAlertConfiguration(ctx context.Context, groupId string) AlertConfigurationsApiCreateAlertConfigurationRequest
+	CreateAlertConfiguration(ctx context.Context, groupId string) CreateAlertConfigurationApiRequest
 
 	// CreateAlertConfigurationExecute executes the request
 	//  @return AlertConfigViewForNdsGroup
-	CreateAlertConfigurationExecute(r AlertConfigurationsApiCreateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+	CreateAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	DeleteAlertConfiguration Remove One Alert Configuration from One Project
@@ -49,12 +49,12 @@ type AlertConfigurationsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiDeleteAlertConfigurationRequest
+	@return DeleteAlertConfigurationApiRequest
 	*/
-	DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiDeleteAlertConfigurationRequest
+	DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) DeleteAlertConfigurationApiRequest
 
 	// DeleteAlertConfigurationExecute executes the request
-	DeleteAlertConfigurationExecute(r AlertConfigurationsApiDeleteAlertConfigurationRequest) (*http.Response, error)
+	DeleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error)
 
 	/*
 	GetAlertConfiguration Return One Alert Configuration from One Project
@@ -66,13 +66,13 @@ type AlertConfigurationsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiGetAlertConfigurationRequest
+	@return GetAlertConfigurationApiRequest
 	*/
-	GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiGetAlertConfigurationRequest
+	GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) GetAlertConfigurationApiRequest
 
 	// GetAlertConfigurationExecute executes the request
 	//  @return AlertConfigViewForNdsGroup
-	GetAlertConfigurationExecute(r AlertConfigurationsApiGetAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+	GetAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
@@ -80,13 +80,13 @@ type AlertConfigurationsApi interface {
 	Get all field names that the `matchers.fieldName` parameter accepts when you create or update an Alert Configuration. You can successfully call this endpoint with any assigned role.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
+	@return ListAlertConfigurationMatchersFieldNamesApiRequest
 	*/
-	ListAlertConfigurationMatchersFieldNames(ctx context.Context) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
+	ListAlertConfigurationMatchersFieldNames(ctx context.Context) ListAlertConfigurationMatchersFieldNamesApiRequest
 
 	// ListAlertConfigurationMatchersFieldNamesExecute executes the request
 	//  @return []MatcherField
-	ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherField, *http.Response, error)
+	ListAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error)
 
 	/*
 	ListAlertConfigurations Return All Alert Configurations for One Project
@@ -97,13 +97,13 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return AlertConfigurationsApiListAlertConfigurationsRequest
+	@return ListAlertConfigurationsApiRequest
 	*/
-	ListAlertConfigurations(ctx context.Context, groupId string) AlertConfigurationsApiListAlertConfigurationsRequest
+	ListAlertConfigurations(ctx context.Context, groupId string) ListAlertConfigurationsApiRequest
 
 	// ListAlertConfigurationsExecute executes the request
 	//  @return PaginatedAlertConfig
-	ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfig, *http.Response, error)
+	ListAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
@@ -115,13 +115,13 @@ type AlertConfigurationsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
-	@return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
+	@return ListAlertConfigurationsByAlertIdApiRequest
 	*/
-	ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
+	ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) ListAlertConfigurationsByAlertIdApiRequest
 
 	// ListAlertConfigurationsByAlertIdExecute executes the request
 	//  @return PaginatedAlertConfig
-	ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfig, *http.Response, error)
+	ListAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
@@ -135,13 +135,13 @@ This resource remains under revision and may change. Refer to the [legacy docume
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration that triggered this alert. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiToggleAlertConfigurationRequest
+	@return ToggleAlertConfigurationApiRequest
 	*/
-	ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleAlertConfigurationRequest
+	ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) ToggleAlertConfigurationApiRequest
 
 	// ToggleAlertConfigurationExecute executes the request
 	//  @return AlertConfigViewForNdsGroup
-	ToggleAlertConfigurationExecute(r AlertConfigurationsApiToggleAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+	ToggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	UpdateAlertConfiguration Update One Alert Configuration for One Project
@@ -155,32 +155,37 @@ This resource remains under revision and may change. Refer to the [legacy docume
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
-	@return AlertConfigurationsApiUpdateAlertConfigurationRequest
+	@return UpdateAlertConfigurationApiRequest
 	*/
-	UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateAlertConfigurationRequest
+	UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) UpdateAlertConfigurationApiRequest
 
 	// UpdateAlertConfigurationExecute executes the request
 	//  @return AlertConfigViewForNdsGroup
-	UpdateAlertConfigurationExecute(r AlertConfigurationsApiUpdateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+	UpdateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 }
 
 // AlertConfigurationsApiService AlertConfigurationsApi service
 type AlertConfigurationsApiService service
 
-type AlertConfigurationsApiCreateAlertConfigurationRequest struct {
+type CreateAlertConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
+type CreateAlertConfigurationApiParams struct {
+		GroupId string
+		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
+}
+
 // Creates one alert configuration for the specified project.
-func (r AlertConfigurationsApiCreateAlertConfigurationRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) AlertConfigurationsApiCreateAlertConfigurationRequest {
+func (r CreateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) CreateAlertConfigurationApiRequest {
 	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
 	return r
 }
 
-func (r AlertConfigurationsApiCreateAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (r CreateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.CreateAlertConfigurationExecute(r)
 }
 
@@ -193,10 +198,10 @@ Creates one alert configuration for the specified project. Alert configurations 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AlertConfigurationsApiCreateAlertConfigurationRequest
+ @return CreateAlertConfigurationApiRequest
 */
-func (a *AlertConfigurationsApiService) CreateAlertConfiguration(ctx context.Context, groupId string) AlertConfigurationsApiCreateAlertConfigurationRequest {
-	return AlertConfigurationsApiCreateAlertConfigurationRequest{
+func (a *AlertConfigurationsApiService) CreateAlertConfiguration(ctx context.Context, groupId string) CreateAlertConfigurationApiRequest {
+	return CreateAlertConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -205,7 +210,7 @@ func (a *AlertConfigurationsApiService) CreateAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertConfigurationsApiCreateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -298,14 +303,19 @@ func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r AlertC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiDeleteAlertConfigurationRequest struct {
+type DeleteAlertConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
 }
 
-func (r AlertConfigurationsApiDeleteAlertConfigurationRequest) Execute() (*http.Response, error) {
+type DeleteAlertConfigurationApiParams struct {
+		GroupId string
+		AlertConfigId string
+}
+
+func (r DeleteAlertConfigurationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAlertConfigurationExecute(r)
 }
 
@@ -319,10 +329,10 @@ Removes one alert configuration from the specified project. To use this resource
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiDeleteAlertConfigurationRequest
+ @return DeleteAlertConfigurationApiRequest
 */
-func (a *AlertConfigurationsApiService) DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiDeleteAlertConfigurationRequest {
-	return AlertConfigurationsApiDeleteAlertConfigurationRequest{
+func (a *AlertConfigurationsApiService) DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) DeleteAlertConfigurationApiRequest {
+	return DeleteAlertConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -331,7 +341,7 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfiguration(ctx context.Con
 }
 
 // Execute executes the request
-func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertConfigurationsApiDeleteAlertConfigurationRequest) (*http.Response, error) {
+func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -416,14 +426,19 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r AlertC
 	return localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiGetAlertConfigurationRequest struct {
+type GetAlertConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
 }
 
-func (r AlertConfigurationsApiGetAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+type GetAlertConfigurationApiParams struct {
+		GroupId string
+		AlertConfigId string
+}
+
+func (r GetAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetAlertConfigurationExecute(r)
 }
 
@@ -437,10 +452,10 @@ Returns the specified alert configuration from the specified project. To use thi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiGetAlertConfigurationRequest
+ @return GetAlertConfigurationApiRequest
 */
-func (a *AlertConfigurationsApiService) GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiGetAlertConfigurationRequest {
-	return AlertConfigurationsApiGetAlertConfigurationRequest{
+func (a *AlertConfigurationsApiService) GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) GetAlertConfigurationApiRequest {
+	return GetAlertConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -450,7 +465,7 @@ func (a *AlertConfigurationsApiService) GetAlertConfiguration(ctx context.Contex
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConfigurationsApiGetAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -545,12 +560,15 @@ func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r AlertConf
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest struct {
+type ListAlertConfigurationMatchersFieldNamesApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherField, *http.Response, error) {
+type ListAlertConfigurationMatchersFieldNamesApiParams struct {
+}
+
+func (r ListAlertConfigurationMatchersFieldNamesApiRequest) Execute() ([]MatcherField, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
 }
 
@@ -560,10 +578,10 @@ ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Fi
 Get all field names that the `matchers.fieldName` parameter accepts when you create or update an Alert Configuration. You can successfully call this endpoint with any assigned role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest
+ @return ListAlertConfigurationMatchersFieldNamesApiRequest
 */
-func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames(ctx context.Context) AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest {
-	return AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames(ctx context.Context) ListAlertConfigurationMatchersFieldNamesApiRequest {
+	return ListAlertConfigurationMatchersFieldNamesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -571,7 +589,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 
 // Execute executes the request
 //  @return []MatcherField
-func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) ([]MatcherField, *http.Response, error) {
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -652,7 +670,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiListAlertConfigurationsRequest struct {
+type ListAlertConfigurationsApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -661,25 +679,32 @@ type AlertConfigurationsApiListAlertConfigurationsRequest struct {
 	pageNum *int32
 }
 
+type ListAlertConfigurationsApiParams struct {
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r AlertConfigurationsApiListAlertConfigurationsRequest) IncludeCount(includeCount bool) AlertConfigurationsApiListAlertConfigurationsRequest {
+func (r ListAlertConfigurationsApiRequest) IncludeCount(includeCount bool) ListAlertConfigurationsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r AlertConfigurationsApiListAlertConfigurationsRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiListAlertConfigurationsRequest {
+func (r ListAlertConfigurationsApiRequest) ItemsPerPage(itemsPerPage int32) ListAlertConfigurationsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r AlertConfigurationsApiListAlertConfigurationsRequest) PageNum(pageNum int32) AlertConfigurationsApiListAlertConfigurationsRequest {
+func (r ListAlertConfigurationsApiRequest) PageNum(pageNum int32) ListAlertConfigurationsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationsRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
+func (r ListAlertConfigurationsApiRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationsExecute(r)
 }
 
@@ -692,10 +717,10 @@ Returns all alert configurations for one project. These alert configurations app
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return AlertConfigurationsApiListAlertConfigurationsRequest
+ @return ListAlertConfigurationsApiRequest
 */
-func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Context, groupId string) AlertConfigurationsApiListAlertConfigurationsRequest {
-	return AlertConfigurationsApiListAlertConfigurationsRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Context, groupId string) ListAlertConfigurationsApiRequest {
+	return ListAlertConfigurationsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -704,7 +729,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Cont
 
 // Execute executes the request
 //  @return PaginatedAlertConfig
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertConfigurationsApiListAlertConfigurationsRequest) (*PaginatedAlertConfig, *http.Response, error) {
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -813,7 +838,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r AlertCo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest struct {
+type ListAlertConfigurationsByAlertIdApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -823,25 +848,33 @@ type AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest struct {
 	pageNum *int32
 }
 
+type ListAlertConfigurationsByAlertIdApiParams struct {
+		GroupId string
+		AlertId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) IncludeCount(includeCount bool) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+func (r ListAlertConfigurationsByAlertIdApiRequest) IncludeCount(includeCount bool) ListAlertConfigurationsByAlertIdApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) ItemsPerPage(itemsPerPage int32) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+func (r ListAlertConfigurationsByAlertIdApiRequest) ItemsPerPage(itemsPerPage int32) ListAlertConfigurationsByAlertIdApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) PageNum(pageNum int32) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
+func (r ListAlertConfigurationsByAlertIdApiRequest) PageNum(pageNum int32) ListAlertConfigurationsByAlertIdApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
+func (r ListAlertConfigurationsByAlertIdApiRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationsByAlertIdExecute(r)
 }
 
@@ -855,10 +888,10 @@ Returns all alert configurations set for the specified alert. To use this resour
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param alertId Unique 24-hexadecimal digit string that identifies the alert. Use the [/alerts](#tag/Alerts/operation/listAlerts) endpoint to retrieve all alerts to which the authenticated user has access.
- @return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest
+ @return ListAlertConfigurationsByAlertIdApiRequest
 */
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest {
-	return AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest{
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) ListAlertConfigurationsByAlertIdApiRequest {
+	return ListAlertConfigurationsByAlertIdApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -868,7 +901,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx con
 
 // Execute executes the request
 //  @return PaginatedAlertConfig
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest) (*PaginatedAlertConfig, *http.Response, error) {
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -984,7 +1017,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
+type ToggleAlertConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -992,13 +1025,19 @@ type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
 	toggle *Toggle
 }
 
+type ToggleAlertConfigurationApiParams struct {
+		GroupId string
+		AlertConfigId string
+		Toggle *Toggle
+}
+
 // Enables or disables the specified alert configuration in the specified project.
-func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Toggle(toggle Toggle) AlertConfigurationsApiToggleAlertConfigurationRequest {
+func (r ToggleAlertConfigurationApiRequest) Toggle(toggle Toggle) ToggleAlertConfigurationApiRequest {
 	r.toggle = &toggle
 	return r
 }
 
-func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (r ToggleAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.ToggleAlertConfigurationExecute(r)
 }
 
@@ -1014,10 +1053,10 @@ This resource remains under revision and may change. Refer to the [legacy docume
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration that triggered this alert. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiToggleAlertConfigurationRequest
+ @return ToggleAlertConfigurationApiRequest
 */
-func (a *AlertConfigurationsApiService) ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiToggleAlertConfigurationRequest {
-	return AlertConfigurationsApiToggleAlertConfigurationRequest{
+func (a *AlertConfigurationsApiService) ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) ToggleAlertConfigurationApiRequest {
+	return ToggleAlertConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1027,7 +1066,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertConfigurationsApiToggleAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1127,7 +1166,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r AlertC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AlertConfigurationsApiUpdateAlertConfigurationRequest struct {
+type UpdateAlertConfigurationApiRequest struct {
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 	groupId string
@@ -1135,13 +1174,19 @@ type AlertConfigurationsApiUpdateAlertConfigurationRequest struct {
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
+type UpdateAlertConfigurationApiParams struct {
+		GroupId string
+		AlertConfigId string
+		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
+}
+
 // Updates one alert configuration in the specified project.
-func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) AlertConfigurationsApiUpdateAlertConfigurationRequest {
+func (r UpdateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) UpdateAlertConfigurationApiRequest {
 	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
 	return r
 }
 
-func (r AlertConfigurationsApiUpdateAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (r UpdateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.UpdateAlertConfigurationExecute(r)
 }
 
@@ -1157,10 +1202,10 @@ Updates one alert configuration in the specified project. Alert configurations d
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param alertConfigId Unique 24-hexadecimal digit string that identifies the alert configuration. Use the [/alertConfigs](#tag/Alert-Configurations/operation/listAlertConfigurations) endpoint to retrieve all alert configurations to which the authenticated user has access.
- @return AlertConfigurationsApiUpdateAlertConfigurationRequest
+ @return UpdateAlertConfigurationApiRequest
 */
-func (a *AlertConfigurationsApiService) UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) AlertConfigurationsApiUpdateAlertConfigurationRequest {
-	return AlertConfigurationsApiUpdateAlertConfigurationRequest{
+func (a *AlertConfigurationsApiService) UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) UpdateAlertConfigurationApiRequest {
+	return UpdateAlertConfigurationApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1170,7 +1215,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r AlertConfigurationsApiUpdateAlertConfigurationRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}

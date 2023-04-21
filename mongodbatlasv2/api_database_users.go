@@ -29,13 +29,13 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return DatabaseUsersApiCreateDatabaseUserRequest
+	@return CreateDatabaseUserApiRequest
 	*/
-	CreateDatabaseUser(ctx context.Context, groupId string) DatabaseUsersApiCreateDatabaseUserRequest
+	CreateDatabaseUser(ctx context.Context, groupId string) CreateDatabaseUserApiRequest
 
 	// CreateDatabaseUserExecute executes the request
 	//  @return DatabaseUser
-	CreateDatabaseUserExecute(r DatabaseUsersApiCreateDatabaseUserRequest) (*DatabaseUser, *http.Response, error)
+	CreateDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 
 	/*
 	DeleteDatabaseUser Remove One Database User from One Project
@@ -46,12 +46,12 @@ type DatabaseUsersApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
 	@param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
-	@return DatabaseUsersApiDeleteDatabaseUserRequest
+	@return DeleteDatabaseUserApiRequest
 	*/
-	DeleteDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiDeleteDatabaseUserRequest
+	DeleteDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DeleteDatabaseUserApiRequest
 
 	// DeleteDatabaseUserExecute executes the request
-	DeleteDatabaseUserExecute(r DatabaseUsersApiDeleteDatabaseUserRequest) (*http.Response, error)
+	DeleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error)
 
 	/*
 	GetDatabaseUser Return One Database User from One Project
@@ -62,13 +62,13 @@ type DatabaseUsersApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
 	@param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
-	@return DatabaseUsersApiGetDatabaseUserRequest
+	@return GetDatabaseUserApiRequest
 	*/
-	GetDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiGetDatabaseUserRequest
+	GetDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) GetDatabaseUserApiRequest
 
 	// GetDatabaseUserExecute executes the request
 	//  @return DatabaseUser
-	GetDatabaseUserExecute(r DatabaseUsersApiGetDatabaseUserRequest) (*DatabaseUser, *http.Response, error)
+	GetDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 
 	/*
 	ListDatabaseUsers Return All Database Users from One Project
@@ -77,13 +77,13 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return DatabaseUsersApiListDatabaseUsersRequest
+	@return ListDatabaseUsersApiRequest
 	*/
-	ListDatabaseUsers(ctx context.Context, groupId string) DatabaseUsersApiListDatabaseUsersRequest
+	ListDatabaseUsers(ctx context.Context, groupId string) ListDatabaseUsersApiRequest
 
 	// ListDatabaseUsersExecute executes the request
 	//  @return PaginatedApiAtlasDatabaseUser
-	ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error)
+	ListDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error)
 
 	/*
 	UpdateDatabaseUser Update One Database User in One Project
@@ -94,32 +94,37 @@ type DatabaseUsersApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
 	@param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
-	@return DatabaseUsersApiUpdateDatabaseUserRequest
+	@return UpdateDatabaseUserApiRequest
 	*/
-	UpdateDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiUpdateDatabaseUserRequest
+	UpdateDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) UpdateDatabaseUserApiRequest
 
 	// UpdateDatabaseUserExecute executes the request
 	//  @return DatabaseUser
-	UpdateDatabaseUserExecute(r DatabaseUsersApiUpdateDatabaseUserRequest) (*DatabaseUser, *http.Response, error)
+	UpdateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 }
 
 // DatabaseUsersApiService DatabaseUsersApi service
 type DatabaseUsersApiService service
 
-type DatabaseUsersApiCreateDatabaseUserRequest struct {
+type CreateDatabaseUserApiRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
 	databaseUser *DatabaseUser
 }
 
+type CreateDatabaseUserApiParams struct {
+		GroupId string
+		DatabaseUser *DatabaseUser
+}
+
 // Creates one database user in the specified project.
-func (r DatabaseUsersApiCreateDatabaseUserRequest) DatabaseUser(databaseUser DatabaseUser) DatabaseUsersApiCreateDatabaseUserRequest {
+func (r CreateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) CreateDatabaseUserApiRequest {
 	r.databaseUser = &databaseUser
 	return r
 }
 
-func (r DatabaseUsersApiCreateDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
+func (r CreateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
 	return r.ApiService.CreateDatabaseUserExecute(r)
 }
 
@@ -130,10 +135,10 @@ Creates one database user in the specified project. This MongoDB Cloud supports 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return DatabaseUsersApiCreateDatabaseUserRequest
+ @return CreateDatabaseUserApiRequest
 */
-func (a *DatabaseUsersApiService) CreateDatabaseUser(ctx context.Context, groupId string) DatabaseUsersApiCreateDatabaseUserRequest {
-	return DatabaseUsersApiCreateDatabaseUserRequest{
+func (a *DatabaseUsersApiService) CreateDatabaseUser(ctx context.Context, groupId string) CreateDatabaseUserApiRequest {
+	return CreateDatabaseUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -142,7 +147,7 @@ func (a *DatabaseUsersApiService) CreateDatabaseUser(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r DatabaseUsersApiCreateDatabaseUserRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -235,7 +240,7 @@ func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r DatabaseUsersApiCr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DatabaseUsersApiDeleteDatabaseUserRequest struct {
+type DeleteDatabaseUserApiRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
@@ -243,7 +248,13 @@ type DatabaseUsersApiDeleteDatabaseUserRequest struct {
 	username string
 }
 
-func (r DatabaseUsersApiDeleteDatabaseUserRequest) Execute() (*http.Response, error) {
+type DeleteDatabaseUserApiParams struct {
+		GroupId string
+		DatabaseName string
+		Username string
+}
+
+func (r DeleteDatabaseUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDatabaseUserExecute(r)
 }
 
@@ -256,10 +267,10 @@ Removes one database user from the specified project. To use this resource, the 
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
  @param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
- @return DatabaseUsersApiDeleteDatabaseUserRequest
+ @return DeleteDatabaseUserApiRequest
 */
-func (a *DatabaseUsersApiService) DeleteDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiDeleteDatabaseUserRequest {
-	return DatabaseUsersApiDeleteDatabaseUserRequest{
+func (a *DatabaseUsersApiService) DeleteDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DeleteDatabaseUserApiRequest {
+	return DeleteDatabaseUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -269,7 +280,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUser(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDeleteDatabaseUserRequest) (*http.Response, error) {
+func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -349,7 +360,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DatabaseUsersApiDe
 	return localVarHTTPResponse, nil
 }
 
-type DatabaseUsersApiGetDatabaseUserRequest struct {
+type GetDatabaseUserApiRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
@@ -357,7 +368,13 @@ type DatabaseUsersApiGetDatabaseUserRequest struct {
 	username string
 }
 
-func (r DatabaseUsersApiGetDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
+type GetDatabaseUserApiParams struct {
+		GroupId string
+		DatabaseName string
+		Username string
+}
+
+func (r GetDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
 	return r.ApiService.GetDatabaseUserExecute(r)
 }
 
@@ -370,10 +387,10 @@ Returns one database user that belong to the specified project. To use this reso
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
  @param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
- @return DatabaseUsersApiGetDatabaseUserRequest
+ @return GetDatabaseUserApiRequest
 */
-func (a *DatabaseUsersApiService) GetDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiGetDatabaseUserRequest {
-	return DatabaseUsersApiGetDatabaseUserRequest{
+func (a *DatabaseUsersApiService) GetDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) GetDatabaseUserApiRequest {
+	return GetDatabaseUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -384,7 +401,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUser(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDatabaseUserRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -474,7 +491,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r DatabaseUsersApiGetDa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DatabaseUsersApiListDatabaseUsersRequest struct {
+type ListDatabaseUsersApiRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
@@ -483,25 +500,32 @@ type DatabaseUsersApiListDatabaseUsersRequest struct {
 	pageNum *int32
 }
 
+type ListDatabaseUsersApiParams struct {
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r DatabaseUsersApiListDatabaseUsersRequest) IncludeCount(includeCount bool) DatabaseUsersApiListDatabaseUsersRequest {
+func (r ListDatabaseUsersApiRequest) IncludeCount(includeCount bool) ListDatabaseUsersApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r DatabaseUsersApiListDatabaseUsersRequest) ItemsPerPage(itemsPerPage int32) DatabaseUsersApiListDatabaseUsersRequest {
+func (r ListDatabaseUsersApiRequest) ItemsPerPage(itemsPerPage int32) ListDatabaseUsersApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r DatabaseUsersApiListDatabaseUsersRequest) PageNum(pageNum int32) DatabaseUsersApiListDatabaseUsersRequest {
+func (r ListDatabaseUsersApiRequest) PageNum(pageNum int32) ListDatabaseUsersApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r DatabaseUsersApiListDatabaseUsersRequest) Execute() (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
+func (r ListDatabaseUsersApiRequest) Execute() (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	return r.ApiService.ListDatabaseUsersExecute(r)
 }
 
@@ -512,10 +536,10 @@ Returns all database users that belong to the specified project. To use this res
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return DatabaseUsersApiListDatabaseUsersRequest
+ @return ListDatabaseUsersApiRequest
 */
-func (a *DatabaseUsersApiService) ListDatabaseUsers(ctx context.Context, groupId string) DatabaseUsersApiListDatabaseUsersRequest {
-	return DatabaseUsersApiListDatabaseUsersRequest{
+func (a *DatabaseUsersApiService) ListDatabaseUsers(ctx context.Context, groupId string) ListDatabaseUsersApiRequest {
+	return ListDatabaseUsersApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -524,7 +548,7 @@ func (a *DatabaseUsersApiService) ListDatabaseUsers(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return PaginatedApiAtlasDatabaseUser
-func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiListDatabaseUsersRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -633,7 +657,7 @@ func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r DatabaseUsersApiLis
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DatabaseUsersApiUpdateDatabaseUserRequest struct {
+type UpdateDatabaseUserApiRequest struct {
 	ctx context.Context
 	ApiService DatabaseUsersApi
 	groupId string
@@ -642,13 +666,20 @@ type DatabaseUsersApiUpdateDatabaseUserRequest struct {
 	databaseUser *DatabaseUser
 }
 
+type UpdateDatabaseUserApiParams struct {
+		GroupId string
+		DatabaseName string
+		Username string
+		DatabaseUser *DatabaseUser
+}
+
 // Updates one database user that belongs to the specified project.
-func (r DatabaseUsersApiUpdateDatabaseUserRequest) DatabaseUser(databaseUser DatabaseUser) DatabaseUsersApiUpdateDatabaseUserRequest {
+func (r UpdateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) UpdateDatabaseUserApiRequest {
 	r.databaseUser = &databaseUser
 	return r
 }
 
-func (r DatabaseUsersApiUpdateDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
+func (r UpdateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
 	return r.ApiService.UpdateDatabaseUserExecute(r)
 }
 
@@ -661,10 +692,10 @@ Updates one database user that belongs to the specified project. To use this res
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param databaseName Human-readable label that identifies the database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, or LDAP, this value should be `$external`. If the user authenticates with SCRAM-SHA, this value should be `admin`.
  @param username Human-readable label that represents the user that authenticates to MongoDB. The format of this label depends on the method of authentication:  | Authentication Method | Parameter Needed | Parameter Value | username Format | |---|---|---|---| | AWS IAM | awsType | ROLE | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | AWS IAM | awsType | USER | <abbr title=\"Amazon Resource Name\">ARN</abbr> | | x.509 | x509Type | CUSTOMER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | x.509 | x509Type | MANAGED | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | USER | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | LDAP | ldapAuthType | GROUP | [RFC 2253](https://tools.ietf.org/html/2253) Distinguished Name | | SCRAM-SHA | awsType, x509Type, ldapAuthType | NONE | Alphanumeric string | 
- @return DatabaseUsersApiUpdateDatabaseUserRequest
+ @return UpdateDatabaseUserApiRequest
 */
-func (a *DatabaseUsersApiService) UpdateDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DatabaseUsersApiUpdateDatabaseUserRequest {
-	return DatabaseUsersApiUpdateDatabaseUserRequest{
+func (a *DatabaseUsersApiService) UpdateDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) UpdateDatabaseUserApiRequest {
+	return UpdateDatabaseUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -675,7 +706,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUser(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r DatabaseUsersApiUpdateDatabaseUserRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

@@ -34,13 +34,13 @@ type EventsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listOrganizationEvents) endpoint to retrieve all events to which the authenticated user has access.
-	@return EventsApiGetOrganizationEventRequest
+	@return GetOrganizationEventApiRequest
 	*/
-	GetOrganizationEvent(ctx context.Context, orgId string, eventId string) EventsApiGetOrganizationEventRequest
+	GetOrganizationEvent(ctx context.Context, orgId string, eventId string) GetOrganizationEventApiRequest
 
 	// GetOrganizationEventExecute executes the request
 	//  @return EventViewForOrg
-	GetOrganizationEventExecute(r EventsApiGetOrganizationEventRequest) (*EventViewForOrg, *http.Response, error)
+	GetOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error)
 
 	/*
 	GetProjectEvent Return One Event from One Project
@@ -52,13 +52,13 @@ type EventsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listProjectEvents) endpoint to retrieve all events to which the authenticated user has access.
-	@return EventsApiGetProjectEventRequest
+	@return GetProjectEventApiRequest
 	*/
-	GetProjectEvent(ctx context.Context, groupId string, eventId string) EventsApiGetProjectEventRequest
+	GetProjectEvent(ctx context.Context, groupId string, eventId string) GetProjectEventApiRequest
 
 	// GetProjectEventExecute executes the request
 	//  @return EventViewForNdsGroup
-	GetProjectEventExecute(r EventsApiGetProjectEventRequest) (*EventViewForNdsGroup, *http.Response, error)
+	GetProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error)
 
 	/*
 	ListOrganizationEvents Return All Events from One Organization
@@ -69,13 +69,13 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return EventsApiListOrganizationEventsRequest
+	@return ListOrganizationEventsApiRequest
 	*/
-	ListOrganizationEvents(ctx context.Context, orgId string) EventsApiListOrganizationEventsRequest
+	ListOrganizationEvents(ctx context.Context, orgId string) ListOrganizationEventsApiRequest
 
 	// ListOrganizationEventsExecute executes the request
 	//  @return OrgPaginatedEvent
-	ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEvent, *http.Response, error)
+	ListOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error)
 
 	/*
 	ListProjectEvents Return All Events from One Project
@@ -86,19 +86,19 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return EventsApiListProjectEventsRequest
+	@return ListProjectEventsApiRequest
 	*/
-	ListProjectEvents(ctx context.Context, groupId string) EventsApiListProjectEventsRequest
+	ListProjectEvents(ctx context.Context, groupId string) ListProjectEventsApiRequest
 
 	// ListProjectEventsExecute executes the request
 	//  @return GroupPaginatedEvent
-	ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEvent, *http.Response, error)
+	ListProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error)
 }
 
 // EventsApiService EventsApi service
 type EventsApiService service
 
-type EventsApiGetOrganizationEventRequest struct {
+type GetOrganizationEventApiRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	orgId string
@@ -106,13 +106,19 @@ type EventsApiGetOrganizationEventRequest struct {
 	includeRaw *bool
 }
 
+type GetOrganizationEventApiParams struct {
+		OrgId string
+		EventId string
+		IncludeRaw *bool
+}
+
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiGetOrganizationEventRequest) IncludeRaw(includeRaw bool) EventsApiGetOrganizationEventRequest {
+func (r GetOrganizationEventApiRequest) IncludeRaw(includeRaw bool) GetOrganizationEventApiRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
-func (r EventsApiGetOrganizationEventRequest) Execute() (*EventViewForOrg, *http.Response, error) {
+func (r GetOrganizationEventApiRequest) Execute() (*EventViewForOrg, *http.Response, error) {
 	return r.ApiService.GetOrganizationEventExecute(r)
 }
 
@@ -126,10 +132,10 @@ Returns one event for the specified organization. Events identify significant da
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listOrganizationEvents) endpoint to retrieve all events to which the authenticated user has access.
- @return EventsApiGetOrganizationEventRequest
+ @return GetOrganizationEventApiRequest
 */
-func (a *EventsApiService) GetOrganizationEvent(ctx context.Context, orgId string, eventId string) EventsApiGetOrganizationEventRequest {
-	return EventsApiGetOrganizationEventRequest{
+func (a *EventsApiService) GetOrganizationEvent(ctx context.Context, orgId string, eventId string) GetOrganizationEventApiRequest {
+	return GetOrganizationEventApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -139,7 +145,7 @@ func (a *EventsApiService) GetOrganizationEvent(ctx context.Context, orgId strin
 
 // Execute executes the request
 //  @return EventViewForOrg
-func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizationEventRequest) (*EventViewForOrg, *http.Response, error) {
+func (a *EventsApiService) GetOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -241,7 +247,7 @@ func (a *EventsApiService) GetOrganizationEventExecute(r EventsApiGetOrganizatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EventsApiGetProjectEventRequest struct {
+type GetProjectEventApiRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	groupId string
@@ -249,13 +255,19 @@ type EventsApiGetProjectEventRequest struct {
 	includeRaw *bool
 }
 
+type GetProjectEventApiParams struct {
+		GroupId string
+		EventId string
+		IncludeRaw *bool
+}
+
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiGetProjectEventRequest) IncludeRaw(includeRaw bool) EventsApiGetProjectEventRequest {
+func (r GetProjectEventApiRequest) IncludeRaw(includeRaw bool) GetProjectEventApiRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
-func (r EventsApiGetProjectEventRequest) Execute() (*EventViewForNdsGroup, *http.Response, error) {
+func (r GetProjectEventApiRequest) Execute() (*EventViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetProjectEventExecute(r)
 }
 
@@ -269,10 +281,10 @@ Returns one event for the specified project. Events identify significant databas
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param eventId Unique 24-hexadecimal digit string that identifies the event that you want to return. Use the [/events](#tag/Events/operation/listProjectEvents) endpoint to retrieve all events to which the authenticated user has access.
- @return EventsApiGetProjectEventRequest
+ @return GetProjectEventApiRequest
 */
-func (a *EventsApiService) GetProjectEvent(ctx context.Context, groupId string, eventId string) EventsApiGetProjectEventRequest {
-	return EventsApiGetProjectEventRequest{
+func (a *EventsApiService) GetProjectEvent(ctx context.Context, groupId string, eventId string) GetProjectEventApiRequest {
+	return GetProjectEventApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -282,7 +294,7 @@ func (a *EventsApiService) GetProjectEvent(ctx context.Context, groupId string, 
 
 // Execute executes the request
 //  @return EventViewForNdsGroup
-func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequest) (*EventViewForNdsGroup, *http.Response, error) {
+func (a *EventsApiService) GetProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -384,7 +396,7 @@ func (a *EventsApiService) GetProjectEventExecute(r EventsApiGetProjectEventRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EventsApiListOrganizationEventsRequest struct {
+type ListOrganizationEventsApiRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	orgId string
@@ -397,49 +409,60 @@ type EventsApiListOrganizationEventsRequest struct {
 	minDate *time.Time
 }
 
+type ListOrganizationEventsApiParams struct {
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		EventType *EventTypeForOrg
+		IncludeRaw *bool
+		MaxDate *time.Time
+		MinDate *time.Time
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r EventsApiListOrganizationEventsRequest) IncludeCount(includeCount bool) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) IncludeCount(includeCount bool) ListOrganizationEventsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r EventsApiListOrganizationEventsRequest) ItemsPerPage(itemsPerPage int32) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) ItemsPerPage(itemsPerPage int32) ListOrganizationEventsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r EventsApiListOrganizationEventsRequest) PageNum(pageNum int32) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) PageNum(pageNum int32) ListOrganizationEventsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-func (r EventsApiListOrganizationEventsRequest) EventType(eventType EventTypeForOrg) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) EventType(eventType EventTypeForOrg) ListOrganizationEventsApiRequest {
 	r.eventType = &eventType
 	return r
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiListOrganizationEventsRequest) IncludeRaw(includeRaw bool) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) IncludeRaw(includeRaw bool) ListOrganizationEventsApiRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
 // Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListOrganizationEventsRequest) MaxDate(maxDate time.Time) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) MaxDate(maxDate time.Time) ListOrganizationEventsApiRequest {
 	r.maxDate = &maxDate
 	return r
 }
 
 // Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListOrganizationEventsRequest) MinDate(minDate time.Time) EventsApiListOrganizationEventsRequest {
+func (r ListOrganizationEventsApiRequest) MinDate(minDate time.Time) ListOrganizationEventsApiRequest {
 	r.minDate = &minDate
 	return r
 }
 
-func (r EventsApiListOrganizationEventsRequest) Execute() (*OrgPaginatedEvent, *http.Response, error) {
+func (r ListOrganizationEventsApiRequest) Execute() (*OrgPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListOrganizationEventsExecute(r)
 }
 
@@ -452,10 +475,10 @@ Returns all events for the specified organization. Events identify significant d
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return EventsApiListOrganizationEventsRequest
+ @return ListOrganizationEventsApiRequest
 */
-func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId string) EventsApiListOrganizationEventsRequest {
-	return EventsApiListOrganizationEventsRequest{
+func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId string) ListOrganizationEventsApiRequest {
+	return ListOrganizationEventsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -464,7 +487,7 @@ func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId str
 
 // Execute executes the request
 //  @return OrgPaginatedEvent
-func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganizationEventsRequest) (*OrgPaginatedEvent, *http.Response, error) {
+func (a *EventsApiService) ListOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -589,7 +612,7 @@ func (a *EventsApiService) ListOrganizationEventsExecute(r EventsApiListOrganiza
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EventsApiListProjectEventsRequest struct {
+type ListProjectEventsApiRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	groupId string
@@ -603,55 +626,67 @@ type EventsApiListProjectEventsRequest struct {
 	minDate *time.Time
 }
 
+type ListProjectEventsApiParams struct {
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		ClusterNames *[]string
+		EventType *EventTypeForNdsGroup
+		IncludeRaw *bool
+		MaxDate *time.Time
+		MinDate *time.Time
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r EventsApiListProjectEventsRequest) IncludeCount(includeCount bool) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) IncludeCount(includeCount bool) ListProjectEventsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r EventsApiListProjectEventsRequest) ItemsPerPage(itemsPerPage int32) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) ItemsPerPage(itemsPerPage int32) ListProjectEventsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r EventsApiListProjectEventsRequest) PageNum(pageNum int32) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) PageNum(pageNum int32) ListProjectEventsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
 // Human-readable label that identifies the cluster.
-func (r EventsApiListProjectEventsRequest) ClusterNames(clusterNames []string) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) ClusterNames(clusterNames []string) ListProjectEventsApiRequest {
 	r.clusterNames = &clusterNames
 	return r
 }
 
 // Category of incident recorded at this moment in time.  **IMPORTANT**: The complete list of event type values changes frequently.
-func (r EventsApiListProjectEventsRequest) EventType(eventType EventTypeForNdsGroup) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) EventType(eventType EventTypeForNdsGroup) ListProjectEventsApiRequest {
 	r.eventType = &eventType
 	return r
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
-func (r EventsApiListProjectEventsRequest) IncludeRaw(includeRaw bool) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) IncludeRaw(includeRaw bool) ListProjectEventsApiRequest {
 	r.includeRaw = &includeRaw
 	return r
 }
 
 // Date and time from when MongoDB Cloud stops returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListProjectEventsRequest) MaxDate(maxDate time.Time) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) MaxDate(maxDate time.Time) ListProjectEventsApiRequest {
 	r.maxDate = &maxDate
 	return r
 }
 
 // Date and time from when MongoDB Cloud starts returning events. This parameter uses the &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener noreferrer\&quot;&gt;ISO 8601&lt;/a&gt; timestamp format in UTC.
-func (r EventsApiListProjectEventsRequest) MinDate(minDate time.Time) EventsApiListProjectEventsRequest {
+func (r ListProjectEventsApiRequest) MinDate(minDate time.Time) ListProjectEventsApiRequest {
 	r.minDate = &minDate
 	return r
 }
 
-func (r EventsApiListProjectEventsRequest) Execute() (*GroupPaginatedEvent, *http.Response, error) {
+func (r ListProjectEventsApiRequest) Execute() (*GroupPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListProjectEventsExecute(r)
 }
 
@@ -664,10 +699,10 @@ Returns one event for the specified project. Events identify significant databas
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return EventsApiListProjectEventsRequest
+ @return ListProjectEventsApiRequest
 */
-func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string) EventsApiListProjectEventsRequest {
-	return EventsApiListProjectEventsRequest{
+func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string) ListProjectEventsApiRequest {
+	return ListProjectEventsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -676,7 +711,7 @@ func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string
 
 // Execute executes the request
 //  @return GroupPaginatedEvent
-func (a *EventsApiService) ListProjectEventsExecute(r EventsApiListProjectEventsRequest) (*GroupPaginatedEvent, *http.Response, error) {
+func (a *EventsApiService) ListProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

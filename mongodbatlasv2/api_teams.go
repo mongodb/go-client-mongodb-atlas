@@ -29,13 +29,13 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return TeamsApiAddAllTeamsToProjectRequest
+	@return AddAllTeamsToProjectApiRequest
 	*/
-	AddAllTeamsToProject(ctx context.Context, groupId string) TeamsApiAddAllTeamsToProjectRequest
+	AddAllTeamsToProject(ctx context.Context, groupId string) AddAllTeamsToProjectApiRequest
 
 	// AddAllTeamsToProjectExecute executes the request
 	//  @return PaginatedTeamRole
-	AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRole, *http.Response, error)
+	AddAllTeamsToProjectExecute(r AddAllTeamsToProjectApiRequest) (*PaginatedTeamRole, *http.Response, error)
 
 	/*
 	AddTeamUser Assign MongoDB Cloud Users from One Organization to One Team
@@ -45,13 +45,13 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users.
-	@return TeamsApiAddTeamUserRequest
+	@return AddTeamUserApiRequest
 	*/
-	AddTeamUser(ctx context.Context, orgId string, teamId string) TeamsApiAddTeamUserRequest
+	AddTeamUser(ctx context.Context, orgId string, teamId string) AddTeamUserApiRequest
 
 	// AddTeamUserExecute executes the request
 	//  @return PaginatedApiAppUser
-	AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUser, *http.Response, error)
+	AddTeamUserExecute(r AddTeamUserApiRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	CreateTeam Create One Team in One Organization
@@ -60,13 +60,13 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return TeamsApiCreateTeamRequest
+	@return CreateTeamApiRequest
 	*/
-	CreateTeam(ctx context.Context, orgId string) TeamsApiCreateTeamRequest
+	CreateTeam(ctx context.Context, orgId string) CreateTeamApiRequest
 
 	// CreateTeamExecute executes the request
 	//  @return Team
-	CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team, *http.Response, error)
+	CreateTeamExecute(r CreateTeamApiRequest) (*Team, *http.Response, error)
 
 	/*
 	DeleteTeam Remove One Team from One Organization
@@ -76,12 +76,12 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to delete.
-	@return TeamsApiDeleteTeamRequest
+	@return DeleteTeamApiRequest
 	*/
-	DeleteTeam(ctx context.Context, orgId string, teamId string) TeamsApiDeleteTeamRequest
+	DeleteTeam(ctx context.Context, orgId string, teamId string) DeleteTeamApiRequest
 
 	// DeleteTeamExecute executes the request
-	DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.Response, error)
+	DeleteTeamExecute(r DeleteTeamApiRequest) (*http.Response, error)
 
 	/*
 	GetTeamById Return One Team using its ID
@@ -91,13 +91,13 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
-	@return TeamsApiGetTeamByIdRequest
+	@return GetTeamByIdApiRequest
 	*/
-	GetTeamById(ctx context.Context, orgId string, teamId string) TeamsApiGetTeamByIdRequest
+	GetTeamById(ctx context.Context, orgId string, teamId string) GetTeamByIdApiRequest
 
 	// GetTeamByIdExecute executes the request
 	//  @return TeamResponse
-	GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*TeamResponse, *http.Response, error)
+	GetTeamByIdExecute(r GetTeamByIdApiRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	GetTeamByName Return One Team using its Name
@@ -107,13 +107,13 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamName Name of the team whose information you want to return.
-	@return TeamsApiGetTeamByNameRequest
+	@return GetTeamByNameApiRequest
 	*/
-	GetTeamByName(ctx context.Context, orgId string, teamName string) TeamsApiGetTeamByNameRequest
+	GetTeamByName(ctx context.Context, orgId string, teamName string) GetTeamByNameApiRequest
 
 	// GetTeamByNameExecute executes the request
 	//  @return TeamResponse
-	GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*TeamResponse, *http.Response, error)
+	GetTeamByNameExecute(r GetTeamByNameApiRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	ListOrganizationTeams Return All Teams in One Organization
@@ -122,13 +122,13 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-	@return TeamsApiListOrganizationTeamsRequest
+	@return ListOrganizationTeamsApiRequest
 	*/
-	ListOrganizationTeams(ctx context.Context, orgId string) TeamsApiListOrganizationTeamsRequest
+	ListOrganizationTeams(ctx context.Context, orgId string) ListOrganizationTeamsApiRequest
 
 	// ListOrganizationTeamsExecute executes the request
 	//  @return PaginatedTeam
-	ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeam, *http.Response, error)
+	ListOrganizationTeamsExecute(r ListOrganizationTeamsApiRequest) (*PaginatedTeam, *http.Response, error)
 
 	/*
 	ListProjectTeams Return All Teams in One Project
@@ -137,13 +137,13 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
-	@return TeamsApiListProjectTeamsRequest
+	@return ListProjectTeamsApiRequest
 	*/
-	ListProjectTeams(ctx context.Context, groupId string) TeamsApiListProjectTeamsRequest
+	ListProjectTeams(ctx context.Context, groupId string) ListProjectTeamsApiRequest
 
 	// ListProjectTeamsExecute executes the request
 	//  @return PaginatedTeamRole
-	ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRole, *http.Response, error)
+	ListProjectTeamsExecute(r ListProjectTeamsApiRequest) (*PaginatedTeamRole, *http.Response, error)
 
 	/*
 	ListTeamUsers Return All MongoDB Cloud Users Assigned to One Team
@@ -153,13 +153,13 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
-	@return TeamsApiListTeamUsersRequest
+	@return ListTeamUsersApiRequest
 	*/
-	ListTeamUsers(ctx context.Context, orgId string, teamId string) TeamsApiListTeamUsersRequest
+	ListTeamUsers(ctx context.Context, orgId string, teamId string) ListTeamUsersApiRequest
 
 	// ListTeamUsersExecute executes the request
 	//  @return PaginatedApiAppUser
-	ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUser, *http.Response, error)
+	ListTeamUsersExecute(r ListTeamUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	RemoveProjectTeam Remove One Team from One Project
@@ -169,12 +169,12 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
-	@return TeamsApiRemoveProjectTeamRequest
+	@return RemoveProjectTeamApiRequest
 	*/
-	RemoveProjectTeam(ctx context.Context, groupId string, teamId string) TeamsApiRemoveProjectTeamRequest
+	RemoveProjectTeam(ctx context.Context, groupId string, teamId string) RemoveProjectTeamApiRequest
 
 	// RemoveProjectTeamExecute executes the request
-	RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRequest) (*http.Response, error)
+	RemoveProjectTeamExecute(r RemoveProjectTeamApiRequest) (*http.Response, error)
 
 	/*
 	RemoveTeamUser Remove One MongoDB Cloud User from One Team
@@ -185,12 +185,12 @@ type TeamsApi interface {
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
 	@param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
-	@return TeamsApiRemoveTeamUserRequest
+	@return RemoveTeamUserApiRequest
 	*/
-	RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveTeamUserRequest
+	RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) RemoveTeamUserApiRequest
 
 	// RemoveTeamUserExecute executes the request
-	RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest) (*http.Response, error)
+	RemoveTeamUserExecute(r RemoveTeamUserApiRequest) (*http.Response, error)
 
 	/*
 	RenameTeam Rename One Team
@@ -200,13 +200,13 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team that you want to rename.
-	@return TeamsApiRenameTeamRequest
+	@return RenameTeamApiRequest
 	*/
-	RenameTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameTeamRequest
+	RenameTeam(ctx context.Context, orgId string, teamId string) RenameTeamApiRequest
 
 	// RenameTeamExecute executes the request
 	//  @return TeamResponse
-	RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamResponse, *http.Response, error)
+	RenameTeamExecute(r RenameTeamApiRequest) (*TeamResponse, *http.Response, error)
 
 	/*
 	UpdateTeamRoles Update Team Roles in One Project
@@ -216,32 +216,37 @@ type TeamsApi interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param teamId Unique 24-hexadecimal digit string that identifies the team for which you want to update roles.
-	@return TeamsApiUpdateTeamRolesRequest
+	@return UpdateTeamRolesApiRequest
 	*/
-	UpdateTeamRoles(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesRequest
+	UpdateTeamRoles(ctx context.Context, groupId string, teamId string) UpdateTeamRolesApiRequest
 
 	// UpdateTeamRolesExecute executes the request
 	//  @return PaginatedTeamRole
-	UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRole, *http.Response, error)
+	UpdateTeamRolesExecute(r UpdateTeamRolesApiRequest) (*PaginatedTeamRole, *http.Response, error)
 }
 
 // TeamsApiService TeamsApi service
 type TeamsApiService service
 
-type TeamsApiAddAllTeamsToProjectRequest struct {
+type AddAllTeamsToProjectApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
 	teamRole *[]TeamRole
 }
 
+type AddAllTeamsToProjectApiParams struct {
+		GroupId string
+		TeamRole *[]TeamRole
+}
+
 // Team to add to the specified project.
-func (r TeamsApiAddAllTeamsToProjectRequest) TeamRole(teamRole []TeamRole) TeamsApiAddAllTeamsToProjectRequest {
+func (r AddAllTeamsToProjectApiRequest) TeamRole(teamRole []TeamRole) AddAllTeamsToProjectApiRequest {
 	r.teamRole = &teamRole
 	return r
 }
 
-func (r TeamsApiAddAllTeamsToProjectRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
+func (r AddAllTeamsToProjectApiRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.AddAllTeamsToProjectExecute(r)
 }
 
@@ -252,10 +257,10 @@ Adds one team to the specified project. All members of the team share the same p
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return TeamsApiAddAllTeamsToProjectRequest
+ @return AddAllTeamsToProjectApiRequest
 */
-func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId string) TeamsApiAddAllTeamsToProjectRequest {
-	return TeamsApiAddAllTeamsToProjectRequest{
+func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId string) AddAllTeamsToProjectApiRequest {
+	return AddAllTeamsToProjectApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -264,7 +269,7 @@ func (a *TeamsApiService) AddAllTeamsToProject(ctx context.Context, groupId stri
 
 // Execute executes the request
 //  @return PaginatedTeamRole
-func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToProjectRequest) (*PaginatedTeamRole, *http.Response, error) {
+func (a *TeamsApiService) AddAllTeamsToProjectExecute(r AddAllTeamsToProjectApiRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -357,7 +362,7 @@ func (a *TeamsApiService) AddAllTeamsToProjectExecute(r TeamsApiAddAllTeamsToPro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiAddTeamUserRequest struct {
+type AddTeamUserApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -365,13 +370,19 @@ type TeamsApiAddTeamUserRequest struct {
 	addUserToTeam *[]AddUserToTeam
 }
 
+type AddTeamUserApiParams struct {
+		OrgId string
+		TeamId string
+		AddUserToTeam *[]AddUserToTeam
+}
+
 // One or more MongoDB Cloud users that you want to add to the specified team.
-func (r TeamsApiAddTeamUserRequest) AddUserToTeam(addUserToTeam []AddUserToTeam) TeamsApiAddTeamUserRequest {
+func (r AddTeamUserApiRequest) AddUserToTeam(addUserToTeam []AddUserToTeam) AddTeamUserApiRequest {
 	r.addUserToTeam = &addUserToTeam
 	return r
 }
 
-func (r TeamsApiAddTeamUserRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
+func (r AddTeamUserApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.AddTeamUserExecute(r)
 }
 
@@ -383,10 +394,10 @@ Adds one or more MongoDB Cloud users from the specified organization to the spec
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal character string that identifies the team to which you want to add MongoDB Cloud users.
- @return TeamsApiAddTeamUserRequest
+ @return AddTeamUserApiRequest
 */
-func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId string) TeamsApiAddTeamUserRequest {
-	return TeamsApiAddTeamUserRequest{
+func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId string) AddTeamUserApiRequest {
+	return AddTeamUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -396,7 +407,7 @@ func (a *TeamsApiService) AddTeamUser(ctx context.Context, orgId string, teamId 
 
 // Execute executes the request
 //  @return PaginatedApiAppUser
-func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*PaginatedApiAppUser, *http.Response, error) {
+func (a *TeamsApiService) AddTeamUserExecute(r AddTeamUserApiRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -496,20 +507,25 @@ func (a *TeamsApiService) AddTeamUserExecute(r TeamsApiAddTeamUserRequest) (*Pag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiCreateTeamRequest struct {
+type CreateTeamApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
 	team *Team
 }
 
+type CreateTeamApiParams struct {
+		OrgId string
+		Team *Team
+}
+
 // Team that you want to create in the specified organization.
-func (r TeamsApiCreateTeamRequest) Team(team Team) TeamsApiCreateTeamRequest {
+func (r CreateTeamApiRequest) Team(team Team) CreateTeamApiRequest {
 	r.team = &team
 	return r
 }
 
-func (r TeamsApiCreateTeamRequest) Execute() (*Team, *http.Response, error) {
+func (r CreateTeamApiRequest) Execute() (*Team, *http.Response, error) {
 	return r.ApiService.CreateTeamExecute(r)
 }
 
@@ -520,10 +536,10 @@ Creates one team in the specified organization. Teams enable you to grant projec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return TeamsApiCreateTeamRequest
+ @return CreateTeamApiRequest
 */
-func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) TeamsApiCreateTeamRequest {
-	return TeamsApiCreateTeamRequest{
+func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) CreateTeamApiRequest {
+	return CreateTeamApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -532,7 +548,7 @@ func (a *TeamsApiService) CreateTeam(ctx context.Context, orgId string) TeamsApi
 
 // Execute executes the request
 //  @return Team
-func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team, *http.Response, error) {
+func (a *TeamsApiService) CreateTeamExecute(r CreateTeamApiRequest) (*Team, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -625,14 +641,19 @@ func (a *TeamsApiService) CreateTeamExecute(r TeamsApiCreateTeamRequest) (*Team,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiDeleteTeamRequest struct {
+type DeleteTeamApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
 	teamId string
 }
 
-func (r TeamsApiDeleteTeamRequest) Execute() (*http.Response, error) {
+type DeleteTeamApiParams struct {
+		OrgId string
+		TeamId string
+}
+
+func (r DeleteTeamApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteTeamExecute(r)
 }
 
@@ -644,10 +665,10 @@ Removes one team specified using its unique 24-hexadecimal digit identifier from
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to delete.
- @return TeamsApiDeleteTeamRequest
+ @return DeleteTeamApiRequest
 */
-func (a *TeamsApiService) DeleteTeam(ctx context.Context, orgId string, teamId string) TeamsApiDeleteTeamRequest {
-	return TeamsApiDeleteTeamRequest{
+func (a *TeamsApiService) DeleteTeam(ctx context.Context, orgId string, teamId string) DeleteTeamApiRequest {
+	return DeleteTeamApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -656,7 +677,7 @@ func (a *TeamsApiService) DeleteTeam(ctx context.Context, orgId string, teamId s
 }
 
 // Execute executes the request
-func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.Response, error) {
+func (a *TeamsApiService) DeleteTeamExecute(r DeleteTeamApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -741,14 +762,19 @@ func (a *TeamsApiService) DeleteTeamExecute(r TeamsApiDeleteTeamRequest) (*http.
 	return localVarHTTPResponse, nil
 }
 
-type TeamsApiGetTeamByIdRequest struct {
+type GetTeamByIdApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
 	teamId string
 }
 
-func (r TeamsApiGetTeamByIdRequest) Execute() (*TeamResponse, *http.Response, error) {
+type GetTeamByIdApiParams struct {
+		OrgId string
+		TeamId string
+}
+
+func (r GetTeamByIdApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByIdExecute(r)
 }
 
@@ -760,10 +786,10 @@ Returns one team that you identified using its unique 24-hexadecimal digit ID. T
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal digit string that identifies the team whose information you want to return.
- @return TeamsApiGetTeamByIdRequest
+ @return GetTeamByIdApiRequest
 */
-func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId string) TeamsApiGetTeamByIdRequest {
-	return TeamsApiGetTeamByIdRequest{
+func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId string) GetTeamByIdApiRequest {
+	return GetTeamByIdApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -773,7 +799,7 @@ func (a *TeamsApiService) GetTeamById(ctx context.Context, orgId string, teamId 
 
 // Execute executes the request
 //  @return TeamResponse
-func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*TeamResponse, *http.Response, error) {
+func (a *TeamsApiService) GetTeamByIdExecute(r GetTeamByIdApiRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -868,14 +894,19 @@ func (a *TeamsApiService) GetTeamByIdExecute(r TeamsApiGetTeamByIdRequest) (*Tea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiGetTeamByNameRequest struct {
+type GetTeamByNameApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
 	teamName string
 }
 
-func (r TeamsApiGetTeamByNameRequest) Execute() (*TeamResponse, *http.Response, error) {
+type GetTeamByNameApiParams struct {
+		OrgId string
+		TeamName string
+}
+
+func (r GetTeamByNameApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByNameExecute(r)
 }
 
@@ -887,10 +918,10 @@ Returns one team that you identified using its human-readable name. This team be
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamName Name of the team whose information you want to return.
- @return TeamsApiGetTeamByNameRequest
+ @return GetTeamByNameApiRequest
 */
-func (a *TeamsApiService) GetTeamByName(ctx context.Context, orgId string, teamName string) TeamsApiGetTeamByNameRequest {
-	return TeamsApiGetTeamByNameRequest{
+func (a *TeamsApiService) GetTeamByName(ctx context.Context, orgId string, teamName string) GetTeamByNameApiRequest {
+	return GetTeamByNameApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -900,7 +931,7 @@ func (a *TeamsApiService) GetTeamByName(ctx context.Context, orgId string, teamN
 
 // Execute executes the request
 //  @return TeamResponse
-func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (*TeamResponse, *http.Response, error) {
+func (a *TeamsApiService) GetTeamByNameExecute(r GetTeamByNameApiRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -989,7 +1020,7 @@ func (a *TeamsApiService) GetTeamByNameExecute(r TeamsApiGetTeamByNameRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiListOrganizationTeamsRequest struct {
+type ListOrganizationTeamsApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -998,25 +1029,32 @@ type TeamsApiListOrganizationTeamsRequest struct {
 	pageNum *int32
 }
 
+type ListOrganizationTeamsApiParams struct {
+		OrgId string
+		ItemsPerPage *int32
+		IncludeCount *bool
+		PageNum *int32
+}
+
 // Number of items that the response returns per page.
-func (r TeamsApiListOrganizationTeamsRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListOrganizationTeamsRequest {
+func (r ListOrganizationTeamsApiRequest) ItemsPerPage(itemsPerPage int32) ListOrganizationTeamsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r TeamsApiListOrganizationTeamsRequest) IncludeCount(includeCount bool) TeamsApiListOrganizationTeamsRequest {
+func (r ListOrganizationTeamsApiRequest) IncludeCount(includeCount bool) ListOrganizationTeamsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListOrganizationTeamsRequest) PageNum(pageNum int32) TeamsApiListOrganizationTeamsRequest {
+func (r ListOrganizationTeamsApiRequest) PageNum(pageNum int32) ListOrganizationTeamsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r TeamsApiListOrganizationTeamsRequest) Execute() (*PaginatedTeam, *http.Response, error) {
+func (r ListOrganizationTeamsApiRequest) Execute() (*PaginatedTeam, *http.Response, error) {
 	return r.ApiService.ListOrganizationTeamsExecute(r)
 }
 
@@ -1027,10 +1065,10 @@ Returns all teams that belong to the specified organization. Teams enable you to
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
- @return TeamsApiListOrganizationTeamsRequest
+ @return ListOrganizationTeamsApiRequest
 */
-func (a *TeamsApiService) ListOrganizationTeams(ctx context.Context, orgId string) TeamsApiListOrganizationTeamsRequest {
-	return TeamsApiListOrganizationTeamsRequest{
+func (a *TeamsApiService) ListOrganizationTeams(ctx context.Context, orgId string) ListOrganizationTeamsApiRequest {
+	return ListOrganizationTeamsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1039,7 +1077,7 @@ func (a *TeamsApiService) ListOrganizationTeams(ctx context.Context, orgId strin
 
 // Execute executes the request
 //  @return PaginatedTeam
-func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizationTeamsRequest) (*PaginatedTeam, *http.Response, error) {
+func (a *TeamsApiService) ListOrganizationTeamsExecute(r ListOrganizationTeamsApiRequest) (*PaginatedTeam, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1148,7 +1186,7 @@ func (a *TeamsApiService) ListOrganizationTeamsExecute(r TeamsApiListOrganizatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiListProjectTeamsRequest struct {
+type ListProjectTeamsApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
@@ -1157,25 +1195,32 @@ type TeamsApiListProjectTeamsRequest struct {
 	pageNum *int32
 }
 
+type ListProjectTeamsApiParams struct {
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
-func (r TeamsApiListProjectTeamsRequest) IncludeCount(includeCount bool) TeamsApiListProjectTeamsRequest {
+func (r ListProjectTeamsApiRequest) IncludeCount(includeCount bool) ListProjectTeamsApiRequest {
 	r.includeCount = &includeCount
 	return r
 }
 
 // Number of items that the response returns per page.
-func (r TeamsApiListProjectTeamsRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListProjectTeamsRequest {
+func (r ListProjectTeamsApiRequest) ItemsPerPage(itemsPerPage int32) ListProjectTeamsApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListProjectTeamsRequest) PageNum(pageNum int32) TeamsApiListProjectTeamsRequest {
+func (r ListProjectTeamsApiRequest) PageNum(pageNum int32) ListProjectTeamsApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r TeamsApiListProjectTeamsRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
+func (r ListProjectTeamsApiRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.ListProjectTeamsExecute(r)
 }
 
@@ -1186,10 +1231,10 @@ Returns all teams to which the authenticated user has access in the project spec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
- @return TeamsApiListProjectTeamsRequest
+ @return ListProjectTeamsApiRequest
 */
-func (a *TeamsApiService) ListProjectTeams(ctx context.Context, groupId string) TeamsApiListProjectTeamsRequest {
-	return TeamsApiListProjectTeamsRequest{
+func (a *TeamsApiService) ListProjectTeams(ctx context.Context, groupId string) ListProjectTeamsApiRequest {
+	return ListProjectTeamsApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1198,7 +1243,7 @@ func (a *TeamsApiService) ListProjectTeams(ctx context.Context, groupId string) 
 
 // Execute executes the request
 //  @return PaginatedTeamRole
-func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequest) (*PaginatedTeamRole, *http.Response, error) {
+func (a *TeamsApiService) ListProjectTeamsExecute(r ListProjectTeamsApiRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1307,7 +1352,7 @@ func (a *TeamsApiService) ListProjectTeamsExecute(r TeamsApiListProjectTeamsRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiListTeamUsersRequest struct {
+type ListTeamUsersApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -1316,19 +1361,26 @@ type TeamsApiListTeamUsersRequest struct {
 	pageNum *int32
 }
 
+type ListTeamUsersApiParams struct {
+		OrgId string
+		TeamId string
+		ItemsPerPage *int32
+		PageNum *int32
+}
+
 // Number of items that the response returns per page.
-func (r TeamsApiListTeamUsersRequest) ItemsPerPage(itemsPerPage int32) TeamsApiListTeamUsersRequest {
+func (r ListTeamUsersApiRequest) ItemsPerPage(itemsPerPage int32) ListTeamUsersApiRequest {
 	r.itemsPerPage = &itemsPerPage
 	return r
 }
 
 // Number of the page that displays the current set of the total objects that the response returns.
-func (r TeamsApiListTeamUsersRequest) PageNum(pageNum int32) TeamsApiListTeamUsersRequest {
+func (r ListTeamUsersApiRequest) PageNum(pageNum int32) ListTeamUsersApiRequest {
 	r.pageNum = &pageNum
 	return r
 }
 
-func (r TeamsApiListTeamUsersRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
+func (r ListTeamUsersApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.ListTeamUsersExecute(r)
 }
 
@@ -1340,10 +1392,10 @@ Returns all MongoDB Cloud users assigned to the team specified using its unique 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal digit string that identifies the team whose application users you want to return.
- @return TeamsApiListTeamUsersRequest
+ @return ListTeamUsersApiRequest
 */
-func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamId string) TeamsApiListTeamUsersRequest {
-	return TeamsApiListTeamUsersRequest{
+func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamId string) ListTeamUsersApiRequest {
+	return ListTeamUsersApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1353,7 +1405,7 @@ func (a *TeamsApiService) ListTeamUsers(ctx context.Context, orgId string, teamI
 
 // Execute executes the request
 //  @return PaginatedApiAppUser
-func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (*PaginatedApiAppUser, *http.Response, error) {
+func (a *TeamsApiService) ListTeamUsersExecute(r ListTeamUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1462,14 +1514,19 @@ func (a *TeamsApiService) ListTeamUsersExecute(r TeamsApiListTeamUsersRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiRemoveProjectTeamRequest struct {
+type RemoveProjectTeamApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
 	teamId string
 }
 
-func (r TeamsApiRemoveProjectTeamRequest) Execute() (*http.Response, error) {
+type RemoveProjectTeamApiParams struct {
+		GroupId string
+		TeamId string
+}
+
+func (r RemoveProjectTeamApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectTeamExecute(r)
 }
 
@@ -1481,10 +1538,10 @@ Removes one team specified using its unique 24-hexadecimal digit identifier from
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to remove from the specified project.
- @return TeamsApiRemoveProjectTeamRequest
+ @return RemoveProjectTeamApiRequest
 */
-func (a *TeamsApiService) RemoveProjectTeam(ctx context.Context, groupId string, teamId string) TeamsApiRemoveProjectTeamRequest {
-	return TeamsApiRemoveProjectTeamRequest{
+func (a *TeamsApiService) RemoveProjectTeam(ctx context.Context, groupId string, teamId string) RemoveProjectTeamApiRequest {
+	return RemoveProjectTeamApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1493,7 +1550,7 @@ func (a *TeamsApiService) RemoveProjectTeam(ctx context.Context, groupId string,
 }
 
 // Execute executes the request
-func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRequest) (*http.Response, error) {
+func (a *TeamsApiService) RemoveProjectTeamExecute(r RemoveProjectTeamApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1578,7 +1635,7 @@ func (a *TeamsApiService) RemoveProjectTeamExecute(r TeamsApiRemoveProjectTeamRe
 	return localVarHTTPResponse, nil
 }
 
-type TeamsApiRemoveTeamUserRequest struct {
+type RemoveTeamUserApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -1586,7 +1643,13 @@ type TeamsApiRemoveTeamUserRequest struct {
 	userId string
 }
 
-func (r TeamsApiRemoveTeamUserRequest) Execute() (*http.Response, error) {
+type RemoveTeamUserApiParams struct {
+		OrgId string
+		TeamId string
+		UserId string
+}
+
+func (r RemoveTeamUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveTeamUserExecute(r)
 }
 
@@ -1599,10 +1662,10 @@ Removes one MongoDB Cloud user from the specified team. This team belongs to one
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal digit string that identifies the team from which you want to remove one database application user.
  @param userId Unique 24-hexadecimal digit string that identifies MongoDB Cloud user that you want to remove from the specified team.
- @return TeamsApiRemoveTeamUserRequest
+ @return RemoveTeamUserApiRequest
 */
-func (a *TeamsApiService) RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) TeamsApiRemoveTeamUserRequest {
-	return TeamsApiRemoveTeamUserRequest{
+func (a *TeamsApiService) RemoveTeamUser(ctx context.Context, orgId string, teamId string, userId string) RemoveTeamUserApiRequest {
+	return RemoveTeamUserApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1612,7 +1675,7 @@ func (a *TeamsApiService) RemoveTeamUser(ctx context.Context, orgId string, team
 }
 
 // Execute executes the request
-func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest) (*http.Response, error) {
+func (a *TeamsApiService) RemoveTeamUserExecute(r RemoveTeamUserApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1704,7 +1767,7 @@ func (a *TeamsApiService) RemoveTeamUserExecute(r TeamsApiRemoveTeamUserRequest)
 	return localVarHTTPResponse, nil
 }
 
-type TeamsApiRenameTeamRequest struct {
+type RenameTeamApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	orgId string
@@ -1712,13 +1775,19 @@ type TeamsApiRenameTeamRequest struct {
 	team *Team
 }
 
+type RenameTeamApiParams struct {
+		OrgId string
+		TeamId string
+		Team *Team
+}
+
 // Details to update on the specified team.
-func (r TeamsApiRenameTeamRequest) Team(team Team) TeamsApiRenameTeamRequest {
+func (r RenameTeamApiRequest) Team(team Team) RenameTeamApiRequest {
 	r.team = &team
 	return r
 }
 
-func (r TeamsApiRenameTeamRequest) Execute() (*TeamResponse, *http.Response, error) {
+func (r RenameTeamApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.RenameTeamExecute(r)
 }
 
@@ -1730,10 +1799,10 @@ Renames one team in the specified organization. Teams enable you to grant projec
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access.
  @param teamId Unique 24-hexadecimal digit string that identifies the team that you want to rename.
- @return TeamsApiRenameTeamRequest
+ @return RenameTeamApiRequest
 */
-func (a *TeamsApiService) RenameTeam(ctx context.Context, orgId string, teamId string) TeamsApiRenameTeamRequest {
-	return TeamsApiRenameTeamRequest{
+func (a *TeamsApiService) RenameTeam(ctx context.Context, orgId string, teamId string) RenameTeamApiRequest {
+	return RenameTeamApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1743,7 +1812,7 @@ func (a *TeamsApiService) RenameTeam(ctx context.Context, orgId string, teamId s
 
 // Execute executes the request
 //  @return TeamResponse
-func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamResponse, *http.Response, error) {
+func (a *TeamsApiService) RenameTeamExecute(r RenameTeamApiRequest) (*TeamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1843,7 +1912,7 @@ func (a *TeamsApiService) RenameTeamExecute(r TeamsApiRenameTeamRequest) (*TeamR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TeamsApiUpdateTeamRolesRequest struct {
+type UpdateTeamRolesApiRequest struct {
 	ctx context.Context
 	ApiService TeamsApi
 	groupId string
@@ -1851,13 +1920,19 @@ type TeamsApiUpdateTeamRolesRequest struct {
 	teamRole *TeamRole
 }
 
+type UpdateTeamRolesApiParams struct {
+		GroupId string
+		TeamId string
+		TeamRole *TeamRole
+}
+
 // The project roles assigned to the specified team.
-func (r TeamsApiUpdateTeamRolesRequest) TeamRole(teamRole TeamRole) TeamsApiUpdateTeamRolesRequest {
+func (r UpdateTeamRolesApiRequest) TeamRole(teamRole TeamRole) UpdateTeamRolesApiRequest {
 	r.teamRole = &teamRole
 	return r
 }
 
-func (r TeamsApiUpdateTeamRolesRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
+func (r UpdateTeamRolesApiRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.UpdateTeamRolesExecute(r)
 }
 
@@ -1869,10 +1944,10 @@ Updates the project roles assigned to the specified team. You can grant team rol
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
  @param teamId Unique 24-hexadecimal digit string that identifies the team for which you want to update roles.
- @return TeamsApiUpdateTeamRolesRequest
+ @return UpdateTeamRolesApiRequest
 */
-func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, teamId string) TeamsApiUpdateTeamRolesRequest {
-	return TeamsApiUpdateTeamRolesRequest{
+func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, teamId string) UpdateTeamRolesApiRequest {
+	return UpdateTeamRolesApiRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -1882,7 +1957,7 @@ func (a *TeamsApiService) UpdateTeamRoles(ctx context.Context, groupId string, t
 
 // Execute executes the request
 //  @return PaginatedTeamRole
-func (a *TeamsApiService) UpdateTeamRolesExecute(r TeamsApiUpdateTeamRolesRequest) (*PaginatedTeamRole, *http.Response, error) {
+func (a *TeamsApiService) UpdateTeamRolesExecute(r UpdateTeamRolesApiRequest) (*PaginatedTeamRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

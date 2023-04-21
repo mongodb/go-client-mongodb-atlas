@@ -27,24 +27,27 @@ type RootApi interface {
 	This resource returns information about the MongoDB application along with API key meta data.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RootApiGetSystemStatusRequest
+	@return GetSystemStatusApiRequest
 	*/
-	GetSystemStatus(ctx context.Context) RootApiGetSystemStatusRequest
+	GetSystemStatus(ctx context.Context) GetSystemStatusApiRequest
 
 	// GetSystemStatusExecute executes the request
 	//  @return SystemStatus
-	GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*SystemStatus, *http.Response, error)
+	GetSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error)
 }
 
 // RootApiService RootApi service
 type RootApiService service
 
-type RootApiGetSystemStatusRequest struct {
+type GetSystemStatusApiRequest struct {
 	ctx context.Context
 	ApiService RootApi
 }
 
-func (r RootApiGetSystemStatusRequest) Execute() (*SystemStatus, *http.Response, error) {
+type GetSystemStatusApiParams struct {
+}
+
+func (r GetSystemStatusApiRequest) Execute() (*SystemStatus, *http.Response, error) {
 	return r.ApiService.GetSystemStatusExecute(r)
 }
 
@@ -54,10 +57,10 @@ GetSystemStatus Return the status of this MongoDB application
 This resource returns information about the MongoDB application along with API key meta data.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RootApiGetSystemStatusRequest
+ @return GetSystemStatusApiRequest
 */
-func (a *RootApiService) GetSystemStatus(ctx context.Context) RootApiGetSystemStatusRequest {
-	return RootApiGetSystemStatusRequest{
+func (a *RootApiService) GetSystemStatus(ctx context.Context) GetSystemStatusApiRequest {
+	return GetSystemStatusApiRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -65,7 +68,7 @@ func (a *RootApiService) GetSystemStatus(ctx context.Context) RootApiGetSystemSt
 
 // Execute executes the request
 //  @return SystemStatus
-func (a *RootApiService) GetSystemStatusExecute(r RootApiGetSystemStatusRequest) (*SystemStatus, *http.Response, error) {
+func (a *RootApiService) GetSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
