@@ -81,7 +81,7 @@ type ClusterOutageSimulationApiEndOutageSimulationRequest struct {
 	clusterName string
 }
 
-type ClusterOutageSimulationApiEndOutageSimulationParams struct {
+type EndOutageSimulationParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -213,7 +213,7 @@ type ClusterOutageSimulationApiGetOutageSimulationRequest struct {
 	clusterName string
 }
 
-type ClusterOutageSimulationApiGetOutageSimulationParams struct {
+type GetOutageSimulationParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -346,7 +346,7 @@ type ClusterOutageSimulationApiStartOutageSimulationRequest struct {
 	clusterOutageSimulation *ClusterOutageSimulation
 }
 
-type ClusterOutageSimulationApiStartOutageSimulationParams struct {
+type StartOutageSimulationParams struct {
 		GroupId string
 		ClusterName string
 		ClusterOutageSimulation *ClusterOutageSimulation

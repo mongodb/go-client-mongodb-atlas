@@ -158,7 +158,7 @@ type CloudMigrationServiceApiCreateLinkTokenRequest struct {
 	targetOrgRequest *TargetOrgRequest
 }
 
-type CloudMigrationServiceApiCreateLinkTokenParams struct {
+type CreateLinkTokenParams struct {
 		OrgId string
 		TargetOrgRequest *TargetOrgRequest
 }
@@ -292,7 +292,7 @@ type CloudMigrationServiceApiCreatePushMigrationRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type CloudMigrationServiceApiCreatePushMigrationParams struct {
+type CreatePushMigrationParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }
@@ -430,7 +430,7 @@ type CloudMigrationServiceApiCutoverMigrationRequest struct {
 	liveMigrationId string
 }
 
-type CloudMigrationServiceApiCutoverMigrationParams struct {
+type CutoverMigrationParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -550,7 +550,7 @@ type CloudMigrationServiceApiDeleteLinkTokenRequest struct {
 	orgId string
 }
 
-type CloudMigrationServiceApiDeleteLinkTokenParams struct {
+type DeleteLinkTokenParams struct {
 		OrgId string
 }
 
@@ -661,7 +661,7 @@ type CloudMigrationServiceApiGetPushMigrationRequest struct {
 	liveMigrationId string
 }
 
-type CloudMigrationServiceApiGetPushMigrationParams struct {
+type GetPushMigrationParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -793,7 +793,7 @@ type CloudMigrationServiceApiGetValidationStatusRequest struct {
 	validationId string
 }
 
-type CloudMigrationServiceApiGetValidationStatusParams struct {
+type GetValidationStatusParams struct {
 		GroupId string
 		ValidationId string
 }
@@ -924,7 +924,7 @@ type CloudMigrationServiceApiListSourceProjectsRequest struct {
 	orgId string
 }
 
-type CloudMigrationServiceApiListSourceProjectsParams struct {
+type ListSourceProjectsParams struct {
 		OrgId string
 }
 
@@ -1046,7 +1046,7 @@ type CloudMigrationServiceApiValidateMigrationRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type CloudMigrationServiceApiValidateMigrationParams struct {
+type ValidateMigrationParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }

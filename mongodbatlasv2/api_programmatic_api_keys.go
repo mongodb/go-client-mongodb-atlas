@@ -253,7 +253,7 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	userRoleAssignment *[]UserRoleAssignment
 }
 
-type ProgrammaticAPIKeysApiAddProjectApiKeyParams struct {
+type AddProjectApiKeyParams struct {
 		GroupId string
 		ApiUserId string
 		UserRoleAssignment *[]UserRoleAssignment
@@ -397,7 +397,7 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type ProgrammaticAPIKeysApiCreateApiKeyParams struct {
+type CreateApiKeyParams struct {
 		OrgId string
 		CreateApiKey *CreateApiKey
 }
@@ -535,7 +535,7 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiCreateApiKeyAccessListParams struct {
+type CreateApiKeyAccessListParams struct {
 		OrgId string
 		ApiUserId string
 		UserAccessList *[]UserAccessList
@@ -721,7 +721,7 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type ProgrammaticAPIKeysApiCreateProjectApiKeyParams struct {
+type CreateProjectApiKeyParams struct {
 		GroupId string
 		CreateApiKey *CreateApiKey
 }
@@ -855,7 +855,7 @@ type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyParams struct {
+type DeleteApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -977,7 +977,7 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	ipAddress string
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryParams struct {
+type DeleteApiKeyAccessListEntryParams struct {
 		OrgId string
 		ApiUserId string
 		IpAddress string
@@ -1102,7 +1102,7 @@ type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiGetApiKeyParams struct {
+type GetApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -1235,7 +1235,7 @@ type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiGetApiKeyAccessListParams struct {
+type GetApiKeyAccessListParams struct {
 		OrgId string
 		IpAddress string
 		ApiUserId string
@@ -1374,7 +1374,7 @@ type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesParams struct {
+type ListApiKeyAccessListsEntriesParams struct {
 		OrgId string
 		ApiUserId string
 		IncludeCount *bool
@@ -1550,7 +1550,7 @@ type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListApiKeysParams struct {
+type ListApiKeysParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1716,7 +1716,7 @@ type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListProjectApiKeysParams struct {
+type ListProjectApiKeysParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1880,7 +1880,7 @@ type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiRemoveProjectApiKeyParams struct {
+type RemoveProjectApiKeyParams struct {
 		GroupId string
 		ApiUserId string
 }
@@ -2002,7 +2002,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	apiUser *ApiUser
 }
 
-type ProgrammaticAPIKeysApiUpdateApiKeyParams struct {
+type UpdateApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 		ApiUser *ApiUser
@@ -2150,7 +2150,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	includeCount *bool
 }
 
-type ProgrammaticAPIKeysApiUpdateApiKeyRolesParams struct {
+type UpdateApiKeyRolesParams struct {
 		GroupId string
 		ApiUserId string
 		CreateApiKey *CreateApiKey

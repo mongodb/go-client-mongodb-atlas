@@ -53,7 +53,7 @@ type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest struct {
 	restoreJob *RestoreJob
 }
 
-type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobParams struct {
+type CreateLegacyBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		RestoreJob *RestoreJob

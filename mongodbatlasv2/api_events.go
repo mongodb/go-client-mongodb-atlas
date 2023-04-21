@@ -106,7 +106,7 @@ type EventsApiGetOrganizationEventRequest struct {
 	includeRaw *bool
 }
 
-type EventsApiGetOrganizationEventParams struct {
+type GetOrganizationEventParams struct {
 		OrgId string
 		EventId string
 		IncludeRaw *bool
@@ -255,7 +255,7 @@ type EventsApiGetProjectEventRequest struct {
 	includeRaw *bool
 }
 
-type EventsApiGetProjectEventParams struct {
+type GetProjectEventParams struct {
 		GroupId string
 		EventId string
 		IncludeRaw *bool
@@ -409,7 +409,7 @@ type EventsApiListOrganizationEventsRequest struct {
 	minDate *time.Time
 }
 
-type EventsApiListOrganizationEventsParams struct {
+type ListOrganizationEventsParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -626,7 +626,7 @@ type EventsApiListProjectEventsRequest struct {
 	minDate *time.Time
 }
 
-type EventsApiListProjectEventsParams struct {
+type ListProjectEventsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32

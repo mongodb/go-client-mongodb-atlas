@@ -103,7 +103,7 @@ type MaintenanceWindowsApiDeferMaintenanceWindowRequest struct {
 	groupId string
 }
 
-type MaintenanceWindowsApiDeferMaintenanceWindowParams struct {
+type DeferMaintenanceWindowParams struct {
 		GroupId string
 }
 
@@ -213,7 +213,7 @@ type MaintenanceWindowsApiGetMaintenanceWindowRequest struct {
 	groupId string
 }
 
-type MaintenanceWindowsApiGetMaintenanceWindowParams struct {
+type GetMaintenanceWindowParams struct {
 		GroupId string
 }
 
@@ -334,7 +334,7 @@ type MaintenanceWindowsApiResetMaintenanceWindowRequest struct {
 	groupId string
 }
 
-type MaintenanceWindowsApiResetMaintenanceWindowParams struct {
+type ResetMaintenanceWindowParams struct {
 		GroupId string
 }
 
@@ -444,7 +444,7 @@ type MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest struct {
 	groupId string
 }
 
-type MaintenanceWindowsApiToggleMaintenanceAutoDeferParams struct {
+type ToggleMaintenanceAutoDeferParams struct {
 		GroupId string
 }
 
@@ -555,7 +555,7 @@ type MaintenanceWindowsApiUpdateMaintenanceWindowRequest struct {
 	groupMaintenanceWindow *GroupMaintenanceWindow
 }
 
-type MaintenanceWindowsApiUpdateMaintenanceWindowParams struct {
+type UpdateMaintenanceWindowParams struct {
 		GroupId string
 		GroupMaintenanceWindow *GroupMaintenanceWindow
 }

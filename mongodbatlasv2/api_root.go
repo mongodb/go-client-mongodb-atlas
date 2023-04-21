@@ -44,7 +44,7 @@ type RootApiGetSystemStatusRequest struct {
 	ApiService RootApi
 }
 
-type RootApiGetSystemStatusParams struct {
+type GetSystemStatusParams struct {
 }
 
 func (r RootApiGetSystemStatusRequest) Execute() (*SystemStatus, *http.Response, error) {

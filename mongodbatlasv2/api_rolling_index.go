@@ -49,7 +49,7 @@ type RollingIndexApiCreateRollingIndexRequest struct {
 	indexRequest *IndexRequest
 }
 
-type RollingIndexApiCreateRollingIndexParams struct {
+type CreateRollingIndexParams struct {
 		GroupId string
 		ClusterName string
 		IndexRequest *IndexRequest

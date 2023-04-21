@@ -60,7 +60,7 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/stru
 }
 
 {{!X-GEN-CUSTOM}}
-type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Params struct {
+type {{operationId}}Params struct {
 	{{#allParams}}
 		{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
 	{{/allParams}}

@@ -236,7 +236,7 @@ type LegacyBackupApiDeleteLegacySnapshotRequest struct {
 	snapshotId string
 }
 
-type LegacyBackupApiDeleteLegacySnapshotParams struct {
+type DeleteLegacySnapshotParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -371,7 +371,7 @@ type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
 	clusterName string
 }
 
-type LegacyBackupApiGetLegacyBackupCheckpointParams struct {
+type GetLegacyBackupCheckpointParams struct {
 		GroupId string
 		CheckpointId string
 		ClusterName string
@@ -517,7 +517,7 @@ type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
 	jobId string
 }
 
-type LegacyBackupApiGetLegacyBackupRestoreJobParams struct {
+type GetLegacyBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		JobId string
@@ -665,7 +665,7 @@ type LegacyBackupApiGetLegacySnapshotRequest struct {
 	snapshotId string
 }
 
-type LegacyBackupApiGetLegacySnapshotParams struct {
+type GetLegacySnapshotParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -810,7 +810,7 @@ type LegacyBackupApiGetLegacySnapshotScheduleRequest struct {
 	clusterName string
 }
 
-type LegacyBackupApiGetLegacySnapshotScheduleParams struct {
+type GetLegacySnapshotScheduleParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -950,7 +950,7 @@ type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
 	pageNum *int32
 }
 
-type LegacyBackupApiListLegacyBackupCheckpointsParams struct {
+type ListLegacyBackupCheckpointsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -1131,7 +1131,7 @@ type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
 	batchId *string
 }
 
-type LegacyBackupApiListLegacyBackupRestoreJobsParams struct {
+type ListLegacyBackupRestoreJobsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -1324,7 +1324,7 @@ type LegacyBackupApiListLegacySnapshotsRequest struct {
 	completed *string
 }
 
-type LegacyBackupApiListLegacySnapshotsParams struct {
+type ListLegacySnapshotsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -1517,7 +1517,7 @@ type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
 	snapshot *Snapshot
 }
 
-type LegacyBackupApiUpdateLegacySnapshotRetentionParams struct {
+type UpdateLegacySnapshotRetentionParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -1675,7 +1675,7 @@ type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
 	snapshotSchedule *SnapshotSchedule
 }
 
-type LegacyBackupApiUpdateLegacySnapshotScheduleParams struct {
+type UpdateLegacySnapshotScheduleParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotSchedule *SnapshotSchedule

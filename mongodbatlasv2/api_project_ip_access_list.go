@@ -113,7 +113,7 @@ type ProjectIPAccessListApiCreateProjectIpAccessListRequest struct {
 	pageNum *int32
 }
 
-type ProjectIPAccessListApiCreateProjectIpAccessListParams struct {
+type CreateProjectIpAccessListParams struct {
 		GroupId string
 		NetworkPermissionEntry *[]NetworkPermissionEntry
 		IncludeCount *bool
@@ -289,7 +289,7 @@ type ProjectIPAccessListApiDeleteProjectIpAccessListRequest struct {
 	entryValue string
 }
 
-type ProjectIPAccessListApiDeleteProjectIpAccessListParams struct {
+type DeleteProjectIpAccessListParams struct {
 		GroupId string
 		EntryValue string
 }
@@ -404,7 +404,7 @@ type ProjectIPAccessListApiGetProjectIpAccessListStatusRequest struct {
 	entryValue string
 }
 
-type ProjectIPAccessListApiGetProjectIpAccessListStatusParams struct {
+type GetProjectIpAccessListStatusParams struct {
 		GroupId string
 		EntryValue string
 }
@@ -530,7 +530,7 @@ type ProjectIPAccessListApiGetProjectIpListRequest struct {
 	entryValue string
 }
 
-type ProjectIPAccessListApiGetProjectIpListParams struct {
+type GetProjectIpListParams struct {
 		GroupId string
 		EntryValue string
 }
@@ -658,7 +658,7 @@ type ProjectIPAccessListApiListProjectIpAccessListsRequest struct {
 	pageNum *int32
 }
 
-type ProjectIPAccessListApiListProjectIpAccessListsParams struct {
+type ListProjectIpAccessListsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32

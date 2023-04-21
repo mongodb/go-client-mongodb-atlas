@@ -83,7 +83,7 @@ type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest struct {
 	tenantRestore *TenantRestore
 }
 
-type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobParams struct {
+type CreateSharedClusterBackupRestoreJobParams struct {
 		ClusterName string
 		GroupId string
 		TenantRestore *TenantRestore
@@ -228,7 +228,7 @@ type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest struct {
 	restoreId string
 }
 
-type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobParams struct {
+type GetSharedClusterBackupRestoreJobParams struct {
 		ClusterName string
 		GroupId string
 		RestoreId string
@@ -370,7 +370,7 @@ type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest struct {
 	groupId string
 }
 
-type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsParams struct {
+type ListSharedClusterBackupRestoreJobsParams struct {
 		ClusterName string
 		GroupId string
 }

@@ -71,7 +71,7 @@ type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
 	start *time.Time
 }
 
-type AccessTrackingApiListAccessLogsByClusterNameParams struct {
+type ListAccessLogsByClusterNameParams struct {
 		GroupId string
 		ClusterName string
 		AuthResult *bool
@@ -262,7 +262,7 @@ type AccessTrackingApiListAccessLogsByHostnameRequest struct {
 	start *time.Time
 }
 
-type AccessTrackingApiListAccessLogsByHostnameParams struct {
+type ListAccessLogsByHostnameParams struct {
 		GroupId string
 		Hostname string
 		AuthResult *bool

@@ -62,7 +62,7 @@ type AWSClustersDNSApiGetAWSCustomDNSRequest struct {
 	groupId string
 }
 
-type AWSClustersDNSApiGetAWSCustomDNSParams struct {
+type GetAWSCustomDNSParams struct {
 		GroupId string
 }
 
@@ -184,7 +184,7 @@ type AWSClustersDNSApiToggleAWSCustomDNSRequest struct {
 	aWSCustomDNSEnabled *AWSCustomDNSEnabled
 }
 
-type AWSClustersDNSApiToggleAWSCustomDNSParams struct {
+type ToggleAWSCustomDNSParams struct {
 		GroupId string
 		AWSCustomDNSEnabled *AWSCustomDNSEnabled
 }

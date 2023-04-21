@@ -113,7 +113,7 @@ type DatabaseUsersApiCreateDatabaseUserRequest struct {
 	databaseUser *DatabaseUser
 }
 
-type DatabaseUsersApiCreateDatabaseUserParams struct {
+type CreateDatabaseUserParams struct {
 		GroupId string
 		DatabaseUser *DatabaseUser
 }
@@ -248,7 +248,7 @@ type DatabaseUsersApiDeleteDatabaseUserRequest struct {
 	username string
 }
 
-type DatabaseUsersApiDeleteDatabaseUserParams struct {
+type DeleteDatabaseUserParams struct {
 		GroupId string
 		DatabaseName string
 		Username string
@@ -368,7 +368,7 @@ type DatabaseUsersApiGetDatabaseUserRequest struct {
 	username string
 }
 
-type DatabaseUsersApiGetDatabaseUserParams struct {
+type GetDatabaseUserParams struct {
 		GroupId string
 		DatabaseName string
 		Username string
@@ -500,7 +500,7 @@ type DatabaseUsersApiListDatabaseUsersRequest struct {
 	pageNum *int32
 }
 
-type DatabaseUsersApiListDatabaseUsersParams struct {
+type ListDatabaseUsersParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -666,7 +666,7 @@ type DatabaseUsersApiUpdateDatabaseUserRequest struct {
 	databaseUser *DatabaseUser
 }
 
-type DatabaseUsersApiUpdateDatabaseUserParams struct {
+type UpdateDatabaseUserParams struct {
 		GroupId string
 		DatabaseName string
 		Username string

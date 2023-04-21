@@ -62,7 +62,7 @@ type AuditingApiGetAuditingConfigurationRequest struct {
 	groupId string
 }
 
-type AuditingApiGetAuditingConfigurationParams struct {
+type GetAuditingConfigurationParams struct {
 		GroupId string
 }
 
@@ -184,7 +184,7 @@ type AuditingApiUpdateAuditingConfigurationRequest struct {
 	auditLog *AuditLog
 }
 
-type AuditingApiUpdateAuditingConfigurationParams struct {
+type UpdateAuditingConfigurationParams struct {
 		GroupId string
 		AuditLog *AuditLog
 }

@@ -272,7 +272,7 @@ type DataFederationApiCreateDataFederationPrivateEndpointRequest struct {
 	privateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
 
-type DataFederationApiCreateDataFederationPrivateEndpointParams struct {
+type CreateDataFederationPrivateEndpointParams struct {
 		GroupId string
 		PrivateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
@@ -425,7 +425,7 @@ type DataFederationApiCreateFederatedDatabaseRequest struct {
 	skipRoleValidation *bool
 }
 
-type DataFederationApiCreateFederatedDatabaseParams struct {
+type CreateFederatedDatabaseParams struct {
 		GroupId string
 		DataLakeTenant *DataLakeTenant
 		SkipRoleValidation *bool
@@ -575,7 +575,7 @@ type DataFederationApiCreateOneDataFederationQueryLimitRequest struct {
 	dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
 }
 
-type DataFederationApiCreateOneDataFederationQueryLimitParams struct {
+type CreateOneDataFederationQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -717,7 +717,7 @@ type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
 	endpointId string
 }
 
-type DataFederationApiDeleteDataFederationPrivateEndpointParams struct {
+type DeleteDataFederationPrivateEndpointParams struct {
 		GroupId string
 		EndpointId string
 }
@@ -838,7 +838,7 @@ type DataFederationApiDeleteFederatedDatabaseRequest struct {
 	tenantName string
 }
 
-type DataFederationApiDeleteFederatedDatabaseParams struct {
+type DeleteFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 }
@@ -954,7 +954,7 @@ type DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest struct {
 	limitName string
 }
 
-type DataFederationApiDeleteOneDataFederationInstanceQueryLimitParams struct {
+type DeleteOneDataFederationInstanceQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -1075,7 +1075,7 @@ type DataFederationApiDownloadFederatedDatabaseQueryLogsRequest struct {
 	startDate *int64
 }
 
-type DataFederationApiDownloadFederatedDatabaseQueryLogsParams struct {
+type DownloadFederatedDatabaseQueryLogsParams struct {
 		GroupId string
 		TenantName string
 		EndDate *int64
@@ -1221,7 +1221,7 @@ type DataFederationApiGetDataFederationPrivateEndpointRequest struct {
 	endpointId string
 }
 
-type DataFederationApiGetDataFederationPrivateEndpointParams struct {
+type GetDataFederationPrivateEndpointParams struct {
 		GroupId string
 		EndpointId string
 }
@@ -1353,7 +1353,7 @@ type DataFederationApiGetFederatedDatabaseRequest struct {
 	tenantName string
 }
 
-type DataFederationApiGetFederatedDatabaseParams struct {
+type GetFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 }
@@ -1478,7 +1478,7 @@ type DataFederationApiListDataFederationPrivateEndpointsRequest struct {
 	groupId string
 }
 
-type DataFederationApiListDataFederationPrivateEndpointsParams struct {
+type ListDataFederationPrivateEndpointsParams struct {
 		GroupId string
 }
 
@@ -1600,7 +1600,7 @@ type DataFederationApiListFederatedDatabasesRequest struct {
 	type_ *string
 }
 
-type DataFederationApiListFederatedDatabasesParams struct {
+type ListFederatedDatabasesParams struct {
 		GroupId string
 		Type_ *string
 }
@@ -1737,7 +1737,7 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitRequest struct {
 	limitName string
 }
 
-type DataFederationApiReturnFederatedDatabaseQueryLimitParams struct {
+type ReturnFederatedDatabaseQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -1867,7 +1867,7 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitsRequest struct {
 	tenantName string
 }
 
-type DataFederationApiReturnFederatedDatabaseQueryLimitsParams struct {
+type ReturnFederatedDatabaseQueryLimitsParams struct {
 		GroupId string
 		TenantName string
 }
@@ -1995,7 +1995,7 @@ type DataFederationApiUpdateFederatedDatabaseRequest struct {
 	dataLakeTenant *DataLakeTenant
 }
 
-type DataFederationApiUpdateFederatedDatabaseParams struct {
+type UpdateFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 		SkipRoleValidation *bool

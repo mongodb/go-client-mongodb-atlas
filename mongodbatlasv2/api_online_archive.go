@@ -133,7 +133,7 @@ type OnlineArchiveApiCreateOnlineArchiveRequest struct {
 	onlineArchive *OnlineArchive
 }
 
-type OnlineArchiveApiCreateOnlineArchiveParams struct {
+type CreateOnlineArchiveParams struct {
 		GroupId string
 		ClusterName string
 		OnlineArchive *OnlineArchive
@@ -278,7 +278,7 @@ type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
 	clusterName string
 }
 
-type OnlineArchiveApiDeleteOnlineArchiveParams struct {
+type DeleteOnlineArchiveParams struct {
 		GroupId string
 		ArchiveId string
 		ClusterName string
@@ -412,7 +412,7 @@ type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	archiveOnly *bool
 }
 
-type OnlineArchiveApiDownloadOnlineArchiveQueryLogsParams struct {
+type DownloadOnlineArchiveQueryLogsParams struct {
 		GroupId string
 		ClusterName string
 		StartDate *int64
@@ -579,7 +579,7 @@ type OnlineArchiveApiGetOnlineArchiveRequest struct {
 	clusterName string
 }
 
-type OnlineArchiveApiGetOnlineArchiveParams struct {
+type GetOnlineArchiveParams struct {
 		GroupId string
 		ArchiveId string
 		ClusterName string
@@ -724,7 +724,7 @@ type OnlineArchiveApiListOnlineArchivesRequest struct {
 	pageNum *int32
 }
 
-type OnlineArchiveApiListOnlineArchivesParams struct {
+type ListOnlineArchivesParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -900,7 +900,7 @@ type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
 	onlineArchive *OnlineArchive
 }
 
-type OnlineArchiveApiUpdateOnlineArchiveParams struct {
+type UpdateOnlineArchiveParams struct {
 		GroupId string
 		ArchiveId string
 		ClusterName string
