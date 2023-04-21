@@ -51,6 +51,26 @@ Example for creating an dedicated MongoDB cluster on AWS infrastructure
 go run ./examples/example_cluster_aws.go
 ```
 
+## Fluent and Struct Based API
+
+Generated client support different use cases:
+- Supplying arguments using chain of functions (Fluent API)
+- Suppling request arguments as single structure
+
+### Fluent API example
+```go
+    projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
+	    ItemsPerPage(1).Execute()
+```  
+
+### Struct based API example
+```go
+	listParams := &mongodbatlas.ListProjectsApiParams{ItemsPerPage: mongodbatlas.PtrInt32(1)}
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).ExecuteWithParams(listParams)
+```    
+
+
+
 ## Usage for v1 client
 
 ```go
