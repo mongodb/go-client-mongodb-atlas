@@ -83,7 +83,7 @@ type SharedTierSnapshotsApiDownloadSharedClusterBackupRequest struct {
 	tenantRestore *TenantRestore
 }
 
-type SharedTierSnapshotsApiDownloadSharedClusterBackupQueryParams struct {
+type SharedTierSnapshotsApiDownloadSharedClusterBackupParams struct {
 		ClusterName string
 		GroupId string
 		TenantRestore *TenantRestore
@@ -228,7 +228,7 @@ type SharedTierSnapshotsApiGetSharedClusterBackupRequest struct {
 	snapshotId string
 }
 
-type SharedTierSnapshotsApiGetSharedClusterBackupQueryParams struct {
+type SharedTierSnapshotsApiGetSharedClusterBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -370,7 +370,7 @@ type SharedTierSnapshotsApiListSharedClusterBackupsRequest struct {
 	clusterName string
 }
 
-type SharedTierSnapshotsApiListSharedClusterBackupsQueryParams struct {
+type SharedTierSnapshotsApiListSharedClusterBackupsParams struct {
 		GroupId string
 		ClusterName string
 }

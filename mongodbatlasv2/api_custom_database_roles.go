@@ -110,7 +110,7 @@ type CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest struct {
 	customDBRole *CustomDBRole
 }
 
-type CustomDatabaseRolesApiCreateCustomDatabaseRoleQueryParams struct {
+type CustomDatabaseRolesApiCreateCustomDatabaseRoleParams struct {
 		GroupId string
 		CustomDBRole *CustomDBRole
 }
@@ -244,7 +244,7 @@ type CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest struct {
 	roleName string
 }
 
-type CustomDatabaseRolesApiDeleteCustomDatabaseRoleQueryParams struct {
+type CustomDatabaseRolesApiDeleteCustomDatabaseRoleParams struct {
 		GroupId string
 		RoleName string
 }
@@ -359,7 +359,7 @@ type CustomDatabaseRolesApiGetCustomDatabaseRoleRequest struct {
 	roleName string
 }
 
-type CustomDatabaseRolesApiGetCustomDatabaseRoleQueryParams struct {
+type CustomDatabaseRolesApiGetCustomDatabaseRoleParams struct {
 		GroupId string
 		RoleName string
 }
@@ -484,7 +484,7 @@ type CustomDatabaseRolesApiListCustomDatabaseRolesRequest struct {
 	groupId string
 }
 
-type CustomDatabaseRolesApiListCustomDatabaseRolesQueryParams struct {
+type CustomDatabaseRolesApiListCustomDatabaseRolesParams struct {
 		GroupId string
 }
 
@@ -607,7 +607,7 @@ type CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest struct {
 	updateCustomDBRole *UpdateCustomDBRole
 }
 
-type CustomDatabaseRolesApiUpdateCustomDatabaseRoleQueryParams struct {
+type CustomDatabaseRolesApiUpdateCustomDatabaseRoleParams struct {
 		GroupId string
 		RoleName string
 		UpdateCustomDBRole *UpdateCustomDBRole

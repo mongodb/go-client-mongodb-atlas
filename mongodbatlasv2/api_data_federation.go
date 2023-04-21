@@ -272,7 +272,7 @@ type DataFederationApiCreateDataFederationPrivateEndpointRequest struct {
 	privateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
 
-type DataFederationApiCreateDataFederationPrivateEndpointQueryParams struct {
+type DataFederationApiCreateDataFederationPrivateEndpointParams struct {
 		GroupId string
 		PrivateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
@@ -425,7 +425,7 @@ type DataFederationApiCreateFederatedDatabaseRequest struct {
 	skipRoleValidation *bool
 }
 
-type DataFederationApiCreateFederatedDatabaseQueryParams struct {
+type DataFederationApiCreateFederatedDatabaseParams struct {
 		GroupId string
 		DataLakeTenant *DataLakeTenant
 		SkipRoleValidation *bool
@@ -575,7 +575,7 @@ type DataFederationApiCreateOneDataFederationQueryLimitRequest struct {
 	dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
 }
 
-type DataFederationApiCreateOneDataFederationQueryLimitQueryParams struct {
+type DataFederationApiCreateOneDataFederationQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -717,7 +717,7 @@ type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
 	endpointId string
 }
 
-type DataFederationApiDeleteDataFederationPrivateEndpointQueryParams struct {
+type DataFederationApiDeleteDataFederationPrivateEndpointParams struct {
 		GroupId string
 		EndpointId string
 }
@@ -838,7 +838,7 @@ type DataFederationApiDeleteFederatedDatabaseRequest struct {
 	tenantName string
 }
 
-type DataFederationApiDeleteFederatedDatabaseQueryParams struct {
+type DataFederationApiDeleteFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 }
@@ -954,7 +954,7 @@ type DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest struct {
 	limitName string
 }
 
-type DataFederationApiDeleteOneDataFederationInstanceQueryLimitQueryParams struct {
+type DataFederationApiDeleteOneDataFederationInstanceQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -1075,7 +1075,7 @@ type DataFederationApiDownloadFederatedDatabaseQueryLogsRequest struct {
 	startDate *int64
 }
 
-type DataFederationApiDownloadFederatedDatabaseQueryLogsQueryParams struct {
+type DataFederationApiDownloadFederatedDatabaseQueryLogsParams struct {
 		GroupId string
 		TenantName string
 		EndDate *int64
@@ -1221,7 +1221,7 @@ type DataFederationApiGetDataFederationPrivateEndpointRequest struct {
 	endpointId string
 }
 
-type DataFederationApiGetDataFederationPrivateEndpointQueryParams struct {
+type DataFederationApiGetDataFederationPrivateEndpointParams struct {
 		GroupId string
 		EndpointId string
 }
@@ -1353,7 +1353,7 @@ type DataFederationApiGetFederatedDatabaseRequest struct {
 	tenantName string
 }
 
-type DataFederationApiGetFederatedDatabaseQueryParams struct {
+type DataFederationApiGetFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 }
@@ -1478,7 +1478,7 @@ type DataFederationApiListDataFederationPrivateEndpointsRequest struct {
 	groupId string
 }
 
-type DataFederationApiListDataFederationPrivateEndpointsQueryParams struct {
+type DataFederationApiListDataFederationPrivateEndpointsParams struct {
 		GroupId string
 }
 
@@ -1600,7 +1600,7 @@ type DataFederationApiListFederatedDatabasesRequest struct {
 	type_ *string
 }
 
-type DataFederationApiListFederatedDatabasesQueryParams struct {
+type DataFederationApiListFederatedDatabasesParams struct {
 		GroupId string
 		Type_ *string
 }
@@ -1737,7 +1737,7 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitRequest struct {
 	limitName string
 }
 
-type DataFederationApiReturnFederatedDatabaseQueryLimitQueryParams struct {
+type DataFederationApiReturnFederatedDatabaseQueryLimitParams struct {
 		GroupId string
 		TenantName string
 		LimitName string
@@ -1867,7 +1867,7 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitsRequest struct {
 	tenantName string
 }
 
-type DataFederationApiReturnFederatedDatabaseQueryLimitsQueryParams struct {
+type DataFederationApiReturnFederatedDatabaseQueryLimitsParams struct {
 		GroupId string
 		TenantName string
 }
@@ -1995,7 +1995,7 @@ type DataFederationApiUpdateFederatedDatabaseRequest struct {
 	dataLakeTenant *DataLakeTenant
 }
 
-type DataFederationApiUpdateFederatedDatabaseQueryParams struct {
+type DataFederationApiUpdateFederatedDatabaseParams struct {
 		GroupId string
 		TenantName string
 		SkipRoleValidation *bool

@@ -80,7 +80,7 @@ type MongoDBCloudUsersApiCreateUserRequest struct {
 	appUser *AppUser
 }
 
-type MongoDBCloudUsersApiCreateUserQueryParams struct {
+type MongoDBCloudUsersApiCreateUserParams struct {
 		AppUser *AppUser
 }
 
@@ -207,7 +207,7 @@ type MongoDBCloudUsersApiGetUserRequest struct {
 	userId string
 }
 
-type MongoDBCloudUsersApiGetUserQueryParams struct {
+type MongoDBCloudUsersApiGetUserParams struct {
 		UserId string
 }
 
@@ -328,7 +328,7 @@ type MongoDBCloudUsersApiGetUserByUsernameRequest struct {
 	userName string
 }
 
-type MongoDBCloudUsersApiGetUserByUsernameQueryParams struct {
+type MongoDBCloudUsersApiGetUserByUsernameParams struct {
 		UserName string
 }
 

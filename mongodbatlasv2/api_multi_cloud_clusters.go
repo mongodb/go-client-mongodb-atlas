@@ -125,7 +125,7 @@ type MultiCloudClustersApiCreateClusterRequest struct {
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
 
-type MultiCloudClustersApiCreateClusterQueryParams struct {
+type MultiCloudClustersApiCreateClusterParams struct {
 		GroupId string
 		ClusterDescriptionV15 *ClusterDescriptionV15
 }
@@ -260,7 +260,7 @@ type MultiCloudClustersApiDeleteClusterRequest struct {
 	retainBackups *bool
 }
 
-type MultiCloudClustersApiDeleteClusterQueryParams struct {
+type MultiCloudClustersApiDeleteClusterParams struct {
 		GroupId string
 		ClusterName string
 		RetainBackups *bool
@@ -391,7 +391,7 @@ type MultiCloudClustersApiGetClusterRequest struct {
 	clusterName string
 }
 
-type MultiCloudClustersApiGetClusterQueryParams struct {
+type MultiCloudClustersApiGetClusterParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -525,7 +525,7 @@ type MultiCloudClustersApiListClustersRequest struct {
 	pageNum *int32
 }
 
-type MultiCloudClustersApiListClustersQueryParams struct {
+type MultiCloudClustersApiListClustersParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -689,7 +689,7 @@ type MultiCloudClustersApiTestFailoverRequest struct {
 	clusterName string
 }
 
-type MultiCloudClustersApiTestFailoverQueryParams struct {
+type MultiCloudClustersApiTestFailoverParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -811,7 +811,7 @@ type MultiCloudClustersApiUpdateClusterRequest struct {
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
 
-type MultiCloudClustersApiUpdateClusterQueryParams struct {
+type MultiCloudClustersApiUpdateClusterParams struct {
 		GroupId string
 		ClusterName string
 		ClusterDescriptionV15 *ClusterDescriptionV15

@@ -86,7 +86,7 @@ type X509AuthenticationApiCreateDatabaseUserCertificateRequest struct {
 	userCert *UserCert
 }
 
-type X509AuthenticationApiCreateDatabaseUserCertificateQueryParams struct {
+type X509AuthenticationApiCreateDatabaseUserCertificateParams struct {
 		GroupId string
 		Username string
 		UserCert *UserCert
@@ -216,7 +216,7 @@ type X509AuthenticationApiDisableCustomerManagedX509Request struct {
 	groupId string
 }
 
-type X509AuthenticationApiDisableCustomerManagedX509QueryParams struct {
+type X509AuthenticationApiDisableCustomerManagedX509Params struct {
 		GroupId string
 }
 
@@ -343,7 +343,7 @@ type X509AuthenticationApiListDatabaseUserCertificatesRequest struct {
 	pageNum *int32
 }
 
-type X509AuthenticationApiListDatabaseUserCertificatesQueryParams struct {
+type X509AuthenticationApiListDatabaseUserCertificatesParams struct {
 		GroupId string
 		Username string
 		IncludeCount *bool

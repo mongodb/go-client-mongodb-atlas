@@ -114,7 +114,7 @@ type GlobalClustersApiCreateCustomZoneMappingRequest struct {
 	geoSharding *GeoSharding
 }
 
-type GlobalClustersApiCreateCustomZoneMappingQueryParams struct {
+type GlobalClustersApiCreateCustomZoneMappingParams struct {
 		GroupId string
 		ClusterName string
 		GeoSharding *GeoSharding
@@ -259,7 +259,7 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	managedNamespace *ManagedNamespace
 }
 
-type GlobalClustersApiCreateManagedNamespaceQueryParams struct {
+type GlobalClustersApiCreateManagedNamespaceParams struct {
 		GroupId string
 		ClusterName string
 		ManagedNamespace *ManagedNamespace
@@ -403,7 +403,7 @@ type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
 	clusterName string
 }
 
-type GlobalClustersApiDeleteAllCustomZoneMappingsQueryParams struct {
+type GlobalClustersApiDeleteAllCustomZoneMappingsParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -537,7 +537,7 @@ type GlobalClustersApiDeleteManagedNamespaceRequest struct {
 	collection *string
 }
 
-type GlobalClustersApiDeleteManagedNamespaceQueryParams struct {
+type GlobalClustersApiDeleteManagedNamespaceParams struct {
 		ClusterName string
 		GroupId string
 		Db *string
@@ -689,7 +689,7 @@ type GlobalClustersApiGetManagedNamespaceRequest struct {
 	clusterName string
 }
 
-type GlobalClustersApiGetManagedNamespaceQueryParams struct {
+type GlobalClustersApiGetManagedNamespaceParams struct {
 		GroupId string
 		ClusterName string
 }

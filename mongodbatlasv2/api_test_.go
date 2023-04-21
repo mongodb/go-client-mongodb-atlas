@@ -45,7 +45,7 @@ type TestApiVersionedExampleRequest struct {
 	additionalInfo *bool
 }
 
-type TestApiVersionedExampleQueryParams struct {
+type TestApiVersionedExampleParams struct {
 		AdditionalInfo *bool
 }
 

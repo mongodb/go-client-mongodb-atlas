@@ -66,7 +66,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestRequest str
 	groupId string
 }
 
-type EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestQueryParams struct {
+type EncryptionAtRestUsingCustomerKeyManagementApiGetEncryptionAtRestParams struct {
 		GroupId string
 }
 
@@ -190,7 +190,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestRequest 
 	encryptionAtRest *EncryptionAtRest
 }
 
-type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestQueryParams struct {
+type EncryptionAtRestUsingCustomerKeyManagementApiUpdateEncryptionAtRestParams struct {
 		GroupId string
 		EncryptionAtRest *EncryptionAtRest
 }

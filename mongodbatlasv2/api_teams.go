@@ -235,7 +235,7 @@ type TeamsApiAddAllTeamsToProjectRequest struct {
 	teamRole *[]TeamRole
 }
 
-type TeamsApiAddAllTeamsToProjectQueryParams struct {
+type TeamsApiAddAllTeamsToProjectParams struct {
 		GroupId string
 		TeamRole *[]TeamRole
 }
@@ -370,7 +370,7 @@ type TeamsApiAddTeamUserRequest struct {
 	addUserToTeam *[]AddUserToTeam
 }
 
-type TeamsApiAddTeamUserQueryParams struct {
+type TeamsApiAddTeamUserParams struct {
 		OrgId string
 		TeamId string
 		AddUserToTeam *[]AddUserToTeam
@@ -514,7 +514,7 @@ type TeamsApiCreateTeamRequest struct {
 	team *Team
 }
 
-type TeamsApiCreateTeamQueryParams struct {
+type TeamsApiCreateTeamParams struct {
 		OrgId string
 		Team *Team
 }
@@ -648,7 +648,7 @@ type TeamsApiDeleteTeamRequest struct {
 	teamId string
 }
 
-type TeamsApiDeleteTeamQueryParams struct {
+type TeamsApiDeleteTeamParams struct {
 		OrgId string
 		TeamId string
 }
@@ -769,7 +769,7 @@ type TeamsApiGetTeamByIdRequest struct {
 	teamId string
 }
 
-type TeamsApiGetTeamByIdQueryParams struct {
+type TeamsApiGetTeamByIdParams struct {
 		OrgId string
 		TeamId string
 }
@@ -901,7 +901,7 @@ type TeamsApiGetTeamByNameRequest struct {
 	teamName string
 }
 
-type TeamsApiGetTeamByNameQueryParams struct {
+type TeamsApiGetTeamByNameParams struct {
 		OrgId string
 		TeamName string
 }
@@ -1029,7 +1029,7 @@ type TeamsApiListOrganizationTeamsRequest struct {
 	pageNum *int32
 }
 
-type TeamsApiListOrganizationTeamsQueryParams struct {
+type TeamsApiListOrganizationTeamsParams struct {
 		OrgId string
 		ItemsPerPage *int32
 		IncludeCount *bool
@@ -1195,7 +1195,7 @@ type TeamsApiListProjectTeamsRequest struct {
 	pageNum *int32
 }
 
-type TeamsApiListProjectTeamsQueryParams struct {
+type TeamsApiListProjectTeamsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1361,7 +1361,7 @@ type TeamsApiListTeamUsersRequest struct {
 	pageNum *int32
 }
 
-type TeamsApiListTeamUsersQueryParams struct {
+type TeamsApiListTeamUsersParams struct {
 		OrgId string
 		TeamId string
 		ItemsPerPage *int32
@@ -1521,7 +1521,7 @@ type TeamsApiRemoveProjectTeamRequest struct {
 	teamId string
 }
 
-type TeamsApiRemoveProjectTeamQueryParams struct {
+type TeamsApiRemoveProjectTeamParams struct {
 		GroupId string
 		TeamId string
 }
@@ -1643,7 +1643,7 @@ type TeamsApiRemoveTeamUserRequest struct {
 	userId string
 }
 
-type TeamsApiRemoveTeamUserQueryParams struct {
+type TeamsApiRemoveTeamUserParams struct {
 		OrgId string
 		TeamId string
 		UserId string
@@ -1775,7 +1775,7 @@ type TeamsApiRenameTeamRequest struct {
 	team *Team
 }
 
-type TeamsApiRenameTeamQueryParams struct {
+type TeamsApiRenameTeamParams struct {
 		OrgId string
 		TeamId string
 		Team *Team
@@ -1920,7 +1920,7 @@ type TeamsApiUpdateTeamRolesRequest struct {
 	teamRole *TeamRole
 }
 
-type TeamsApiUpdateTeamRolesQueryParams struct {
+type TeamsApiUpdateTeamRolesParams struct {
 		GroupId string
 		TeamId string
 		TeamRole *TeamRole

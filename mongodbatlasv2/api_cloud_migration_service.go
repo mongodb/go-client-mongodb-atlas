@@ -158,7 +158,7 @@ type CloudMigrationServiceApiCreateLinkTokenRequest struct {
 	targetOrgRequest *TargetOrgRequest
 }
 
-type CloudMigrationServiceApiCreateLinkTokenQueryParams struct {
+type CloudMigrationServiceApiCreateLinkTokenParams struct {
 		OrgId string
 		TargetOrgRequest *TargetOrgRequest
 }
@@ -292,7 +292,7 @@ type CloudMigrationServiceApiCreatePushMigrationRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type CloudMigrationServiceApiCreatePushMigrationQueryParams struct {
+type CloudMigrationServiceApiCreatePushMigrationParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }
@@ -430,7 +430,7 @@ type CloudMigrationServiceApiCutoverMigrationRequest struct {
 	liveMigrationId string
 }
 
-type CloudMigrationServiceApiCutoverMigrationQueryParams struct {
+type CloudMigrationServiceApiCutoverMigrationParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -550,7 +550,7 @@ type CloudMigrationServiceApiDeleteLinkTokenRequest struct {
 	orgId string
 }
 
-type CloudMigrationServiceApiDeleteLinkTokenQueryParams struct {
+type CloudMigrationServiceApiDeleteLinkTokenParams struct {
 		OrgId string
 }
 
@@ -661,7 +661,7 @@ type CloudMigrationServiceApiGetPushMigrationRequest struct {
 	liveMigrationId string
 }
 
-type CloudMigrationServiceApiGetPushMigrationQueryParams struct {
+type CloudMigrationServiceApiGetPushMigrationParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -793,7 +793,7 @@ type CloudMigrationServiceApiGetValidationStatusRequest struct {
 	validationId string
 }
 
-type CloudMigrationServiceApiGetValidationStatusQueryParams struct {
+type CloudMigrationServiceApiGetValidationStatusParams struct {
 		GroupId string
 		ValidationId string
 }
@@ -924,7 +924,7 @@ type CloudMigrationServiceApiListSourceProjectsRequest struct {
 	orgId string
 }
 
-type CloudMigrationServiceApiListSourceProjectsQueryParams struct {
+type CloudMigrationServiceApiListSourceProjectsParams struct {
 		OrgId string
 }
 
@@ -1046,7 +1046,7 @@ type CloudMigrationServiceApiValidateMigrationRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type CloudMigrationServiceApiValidateMigrationQueryParams struct {
+type CloudMigrationServiceApiValidateMigrationParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }

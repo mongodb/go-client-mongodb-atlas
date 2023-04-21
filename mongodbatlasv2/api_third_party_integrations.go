@@ -115,7 +115,7 @@ type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	pageNum *int32
 }
 
-type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationQueryParams struct {
+type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationParams struct {
 		IntegrationType string
 		GroupId string
 		Integration *Integration
@@ -295,7 +295,7 @@ type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest struct {
 	groupId string
 }
 
-type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationQueryParams struct {
+type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationParams struct {
 		IntegrationType string
 		GroupId string
 }
@@ -410,7 +410,7 @@ type ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest struct {
 	integrationType string
 }
 
-type ThirdPartyIntegrationsApiGetThirdPartyIntegrationQueryParams struct {
+type ThirdPartyIntegrationsApiGetThirdPartyIntegrationParams struct {
 		GroupId string
 		IntegrationType string
 }
@@ -538,7 +538,7 @@ type ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest struct {
 	pageNum *int32
 }
 
-type ThirdPartyIntegrationsApiListThirdPartyIntegrationsQueryParams struct {
+type ThirdPartyIntegrationsApiListThirdPartyIntegrationsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -706,7 +706,7 @@ type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	pageNum *int32
 }
 
-type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationQueryParams struct {
+type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationParams struct {
 		IntegrationType string
 		GroupId string
 		Integration *Integration

@@ -253,7 +253,7 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	userRoleAssignment *[]UserRoleAssignment
 }
 
-type ProgrammaticAPIKeysApiAddProjectApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiAddProjectApiKeyParams struct {
 		GroupId string
 		ApiUserId string
 		UserRoleAssignment *[]UserRoleAssignment
@@ -397,7 +397,7 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type ProgrammaticAPIKeysApiCreateApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiCreateApiKeyParams struct {
 		OrgId string
 		CreateApiKey *CreateApiKey
 }
@@ -535,7 +535,7 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiCreateApiKeyAccessListQueryParams struct {
+type ProgrammaticAPIKeysApiCreateApiKeyAccessListParams struct {
 		OrgId string
 		ApiUserId string
 		UserAccessList *[]UserAccessList
@@ -721,7 +721,7 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type ProgrammaticAPIKeysApiCreateProjectApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiCreateProjectApiKeyParams struct {
 		GroupId string
 		CreateApiKey *CreateApiKey
 }
@@ -855,7 +855,7 @@ type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -977,7 +977,7 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	ipAddress string
 }
 
-type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryQueryParams struct {
+type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryParams struct {
 		OrgId string
 		ApiUserId string
 		IpAddress string
@@ -1102,7 +1102,7 @@ type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiGetApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiGetApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -1235,7 +1235,7 @@ type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiGetApiKeyAccessListQueryParams struct {
+type ProgrammaticAPIKeysApiGetApiKeyAccessListParams struct {
 		OrgId string
 		IpAddress string
 		ApiUserId string
@@ -1374,7 +1374,7 @@ type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesQueryParams struct {
+type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesParams struct {
 		OrgId string
 		ApiUserId string
 		IncludeCount *bool
@@ -1550,7 +1550,7 @@ type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListApiKeysQueryParams struct {
+type ProgrammaticAPIKeysApiListApiKeysParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1716,7 +1716,7 @@ type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	pageNum *int32
 }
 
-type ProgrammaticAPIKeysApiListProjectApiKeysQueryParams struct {
+type ProgrammaticAPIKeysApiListProjectApiKeysParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1880,7 +1880,7 @@ type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	apiUserId string
 }
 
-type ProgrammaticAPIKeysApiRemoveProjectApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiRemoveProjectApiKeyParams struct {
 		GroupId string
 		ApiUserId string
 }
@@ -2002,7 +2002,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	apiUser *ApiUser
 }
 
-type ProgrammaticAPIKeysApiUpdateApiKeyQueryParams struct {
+type ProgrammaticAPIKeysApiUpdateApiKeyParams struct {
 		OrgId string
 		ApiUserId string
 		ApiUser *ApiUser
@@ -2150,7 +2150,7 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	includeCount *bool
 }
 
-type ProgrammaticAPIKeysApiUpdateApiKeyRolesQueryParams struct {
+type ProgrammaticAPIKeysApiUpdateApiKeyRolesParams struct {
 		GroupId string
 		ApiUserId string
 		CreateApiKey *CreateApiKey

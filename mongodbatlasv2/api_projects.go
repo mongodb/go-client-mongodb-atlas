@@ -336,7 +336,7 @@ type ProjectsApiCreateProjectRequest struct {
 	projectOwnerId *string
 }
 
-type ProjectsApiCreateProjectQueryParams struct {
+type ProjectsApiCreateProjectParams struct {
 		Group *Group
 		ProjectOwnerId *string
 }
@@ -470,7 +470,7 @@ type ProjectsApiCreateProjectInvitationRequest struct {
 	groupInvitationRequest *GroupInvitationRequest
 }
 
-type ProjectsApiCreateProjectInvitationQueryParams struct {
+type ProjectsApiCreateProjectInvitationParams struct {
 		GroupId string
 		GroupInvitationRequest *GroupInvitationRequest
 }
@@ -603,7 +603,7 @@ type ProjectsApiDeleteProjectRequest struct {
 	groupId string
 }
 
-type ProjectsApiDeleteProjectQueryParams struct {
+type ProjectsApiDeleteProjectParams struct {
 		GroupId string
 }
 
@@ -714,7 +714,7 @@ type ProjectsApiDeleteProjectInvitationRequest struct {
 	invitationId string
 }
 
-type ProjectsApiDeleteProjectInvitationQueryParams struct {
+type ProjectsApiDeleteProjectInvitationParams struct {
 		GroupId string
 		InvitationId string
 }
@@ -835,7 +835,7 @@ type ProjectsApiDeleteProjectLimitRequest struct {
 	groupId string
 }
 
-type ProjectsApiDeleteProjectLimitQueryParams struct {
+type ProjectsApiDeleteProjectLimitParams struct {
 		LimitName string
 		GroupId string
 }
@@ -949,7 +949,7 @@ type ProjectsApiGetProjectRequest struct {
 	groupId string
 }
 
-type ProjectsApiGetProjectQueryParams struct {
+type ProjectsApiGetProjectParams struct {
 		GroupId string
 }
 
@@ -1070,7 +1070,7 @@ type ProjectsApiGetProjectByNameRequest struct {
 	groupName string
 }
 
-type ProjectsApiGetProjectByNameQueryParams struct {
+type ProjectsApiGetProjectByNameParams struct {
 		GroupName string
 }
 
@@ -1192,7 +1192,7 @@ type ProjectsApiGetProjectInvitationRequest struct {
 	invitationId string
 }
 
-type ProjectsApiGetProjectInvitationQueryParams struct {
+type ProjectsApiGetProjectInvitationParams struct {
 		GroupId string
 		InvitationId string
 }
@@ -1324,7 +1324,7 @@ type ProjectsApiGetProjectLimitRequest struct {
 	groupId string
 }
 
-type ProjectsApiGetProjectLimitQueryParams struct {
+type ProjectsApiGetProjectLimitParams struct {
 		LimitName string
 		GroupId string
 }
@@ -1449,7 +1449,7 @@ type ProjectsApiGetProjectSettingsRequest struct {
 	groupId string
 }
 
-type ProjectsApiGetProjectSettingsQueryParams struct {
+type ProjectsApiGetProjectSettingsParams struct {
 		GroupId string
 }
 
@@ -1571,7 +1571,7 @@ type ProjectsApiListProjectInvitationsRequest struct {
 	username *string
 }
 
-type ProjectsApiListProjectInvitationsQueryParams struct {
+type ProjectsApiListProjectInvitationsParams struct {
 		GroupId string
 		Username *string
 }
@@ -1702,7 +1702,7 @@ type ProjectsApiListProjectLimitsRequest struct {
 	groupId string
 }
 
-type ProjectsApiListProjectLimitsQueryParams struct {
+type ProjectsApiListProjectLimitsParams struct {
 		GroupId string
 }
 
@@ -1828,7 +1828,7 @@ type ProjectsApiListProjectUsersRequest struct {
 	includeOrgUsers *bool
 }
 
-type ProjectsApiListProjectUsersQueryParams struct {
+type ProjectsApiListProjectUsersParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -2021,7 +2021,7 @@ type ProjectsApiListProjectsRequest struct {
 	pageNum *int32
 }
 
-type ProjectsApiListProjectsQueryParams struct {
+type ProjectsApiListProjectsParams struct {
 		IncludeCount *bool
 		ItemsPerPage *int32
 		PageNum *int32
@@ -2175,7 +2175,7 @@ type ProjectsApiRemoveProjectUserRequest struct {
 	userId string
 }
 
-type ProjectsApiRemoveProjectUserQueryParams struct {
+type ProjectsApiRemoveProjectUserParams struct {
 		GroupId string
 		UserId string
 }
@@ -2297,7 +2297,7 @@ type ProjectsApiSetProjectLimitRequest struct {
 	limit *Limit
 }
 
-type ProjectsApiSetProjectLimitQueryParams struct {
+type ProjectsApiSetProjectLimitParams struct {
 		LimitName string
 		GroupId string
 		Limit *Limit
@@ -2433,7 +2433,7 @@ type ProjectsApiUpdateProjectRequest struct {
 	groupName *GroupName
 }
 
-type ProjectsApiUpdateProjectQueryParams struct {
+type ProjectsApiUpdateProjectParams struct {
 		GroupId string
 		GroupName *GroupName
 }
@@ -2563,7 +2563,7 @@ type ProjectsApiUpdateProjectInvitationRequest struct {
 	groupInvitationRequest *GroupInvitationRequest
 }
 
-type ProjectsApiUpdateProjectInvitationQueryParams struct {
+type ProjectsApiUpdateProjectInvitationParams struct {
 		GroupId string
 		GroupInvitationRequest *GroupInvitationRequest
 }
@@ -2698,7 +2698,7 @@ type ProjectsApiUpdateProjectInvitationByIdRequest struct {
 	groupInvitationUpdateRequest *GroupInvitationUpdateRequest
 }
 
-type ProjectsApiUpdateProjectInvitationByIdQueryParams struct {
+type ProjectsApiUpdateProjectInvitationByIdParams struct {
 		GroupId string
 		InvitationId string
 		GroupInvitationUpdateRequest *GroupInvitationUpdateRequest
@@ -2842,7 +2842,7 @@ type ProjectsApiUpdateProjectSettingsRequest struct {
 	groupSettings *GroupSettings
 }
 
-type ProjectsApiUpdateProjectSettingsQueryParams struct {
+type ProjectsApiUpdateProjectSettingsParams struct {
 		GroupId string
 		GroupSettings *GroupSettings
 }

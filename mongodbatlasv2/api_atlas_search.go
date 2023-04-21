@@ -118,7 +118,7 @@ type AtlasSearchApiCreateAtlasSearchIndexRequest struct {
 	fTSIndex *FTSIndex
 }
 
-type AtlasSearchApiCreateAtlasSearchIndexQueryParams struct {
+type AtlasSearchApiCreateAtlasSearchIndexParams struct {
 		GroupId string
 		ClusterName string
 		FTSIndex *FTSIndex
@@ -263,7 +263,7 @@ type AtlasSearchApiDeleteAtlasSearchIndexRequest struct {
 	indexId string
 }
 
-type AtlasSearchApiDeleteAtlasSearchIndexQueryParams struct {
+type AtlasSearchApiDeleteAtlasSearchIndexParams struct {
 		GroupId string
 		ClusterName string
 		IndexId string
@@ -395,7 +395,7 @@ type AtlasSearchApiGetAtlasSearchIndexRequest struct {
 	indexId string
 }
 
-type AtlasSearchApiGetAtlasSearchIndexQueryParams struct {
+type AtlasSearchApiGetAtlasSearchIndexParams struct {
 		GroupId string
 		ClusterName string
 		IndexId string
@@ -539,7 +539,7 @@ type AtlasSearchApiListAtlasSearchIndexesRequest struct {
 	databaseName string
 }
 
-type AtlasSearchApiListAtlasSearchIndexesQueryParams struct {
+type AtlasSearchApiListAtlasSearchIndexesParams struct {
 		GroupId string
 		ClusterName string
 		CollectionName string
@@ -681,7 +681,7 @@ type AtlasSearchApiUpdateAtlasSearchIndexRequest struct {
 	fTSIndex *FTSIndex
 }
 
-type AtlasSearchApiUpdateAtlasSearchIndexQueryParams struct {
+type AtlasSearchApiUpdateAtlasSearchIndexParams struct {
 		GroupId string
 		ClusterName string
 		IndexId string

@@ -94,7 +94,7 @@ type InvoicesApiDownloadInvoiceCSVRequest struct {
 	invoiceId string
 }
 
-type InvoicesApiDownloadInvoiceCSVQueryParams struct {
+type InvoicesApiDownloadInvoiceCSVParams struct {
 		OrgId string
 		InvoiceId string
 }
@@ -209,7 +209,7 @@ type InvoicesApiGetInvoiceRequest struct {
 	invoiceId string
 }
 
-type InvoicesApiGetInvoiceQueryParams struct {
+type InvoicesApiGetInvoiceParams struct {
 		OrgId string
 		InvoiceId string
 }
@@ -343,7 +343,7 @@ type InvoicesApiListInvoicesRequest struct {
 	pageNum *int32
 }
 
-type InvoicesApiListInvoicesQueryParams struct {
+type InvoicesApiListInvoicesParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -506,7 +506,7 @@ type InvoicesApiListPendingInvoicesRequest struct {
 	orgId string
 }
 
-type InvoicesApiListPendingInvoicesQueryParams struct {
+type InvoicesApiListPendingInvoicesParams struct {
 		OrgId string
 }
 

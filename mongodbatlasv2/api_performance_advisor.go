@@ -109,7 +109,7 @@ type PerformanceAdvisorApiDisableSlowOperationThresholdingRequest struct {
 	groupId string
 }
 
-type PerformanceAdvisorApiDisableSlowOperationThresholdingQueryParams struct {
+type PerformanceAdvisorApiDisableSlowOperationThresholdingParams struct {
 		GroupId string
 }
 
@@ -219,7 +219,7 @@ type PerformanceAdvisorApiEnableSlowOperationThresholdingRequest struct {
 	groupId string
 }
 
-type PerformanceAdvisorApiEnableSlowOperationThresholdingQueryParams struct {
+type PerformanceAdvisorApiEnableSlowOperationThresholdingParams struct {
 		GroupId string
 }
 
@@ -334,7 +334,7 @@ type PerformanceAdvisorApiListSlowQueriesRequest struct {
 	since *int64
 }
 
-type PerformanceAdvisorApiListSlowQueriesQueryParams struct {
+type PerformanceAdvisorApiListSlowQueriesParams struct {
 		GroupId string
 		ProcessId string
 		Duration *int64
@@ -514,7 +514,7 @@ type PerformanceAdvisorApiListSlowQueryNamespacesRequest struct {
 	since *int64
 }
 
-type PerformanceAdvisorApiListSlowQueryNamespacesQueryParams struct {
+type PerformanceAdvisorApiListSlowQueryNamespacesParams struct {
 		GroupId string
 		ProcessId string
 		Duration *int64
@@ -668,7 +668,7 @@ type PerformanceAdvisorApiListSuggestedIndexesRequest struct {
 	since *float32
 }
 
-type PerformanceAdvisorApiListSuggestedIndexesQueryParams struct {
+type PerformanceAdvisorApiListSuggestedIndexesParams struct {
 		GroupId string
 		ProcessId string
 		IncludeCount *bool

@@ -181,7 +181,7 @@ type PrivateEndpointServicesApiCreatePrivateEndpointRequest struct {
 	createPrivateEndpointRequest *CreatePrivateEndpointRequest
 }
 
-type PrivateEndpointServicesApiCreatePrivateEndpointQueryParams struct {
+type PrivateEndpointServicesApiCreatePrivateEndpointParams struct {
 		GroupId string
 		CloudProvider string
 		EndpointServiceId string
@@ -329,7 +329,7 @@ type PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest struct {
 	createEndpointServiceRequest *CreateEndpointServiceRequest
 }
 
-type PrivateEndpointServicesApiCreatePrivateEndpointServiceQueryParams struct {
+type PrivateEndpointServicesApiCreatePrivateEndpointServiceParams struct {
 		GroupId string
 		CreateEndpointServiceRequest *CreateEndpointServiceRequest
 }
@@ -465,7 +465,7 @@ type PrivateEndpointServicesApiDeletePrivateEndpointRequest struct {
 	endpointServiceId string
 }
 
-type PrivateEndpointServicesApiDeletePrivateEndpointQueryParams struct {
+type PrivateEndpointServicesApiDeletePrivateEndpointParams struct {
 		GroupId string
 		CloudProvider string
 		EndpointId string
@@ -595,7 +595,7 @@ type PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest struct {
 	endpointServiceId string
 }
 
-type PrivateEndpointServicesApiDeletePrivateEndpointServiceQueryParams struct {
+type PrivateEndpointServicesApiDeletePrivateEndpointServiceParams struct {
 		GroupId string
 		CloudProvider string
 		EndpointServiceId string
@@ -722,7 +722,7 @@ type PrivateEndpointServicesApiGetPrivateEndpointRequest struct {
 	endpointServiceId string
 }
 
-type PrivateEndpointServicesApiGetPrivateEndpointQueryParams struct {
+type PrivateEndpointServicesApiGetPrivateEndpointParams struct {
 		GroupId string
 		CloudProvider string
 		EndpointId string
@@ -863,7 +863,7 @@ type PrivateEndpointServicesApiGetPrivateEndpointServiceRequest struct {
 	endpointServiceId string
 }
 
-type PrivateEndpointServicesApiGetPrivateEndpointServiceQueryParams struct {
+type PrivateEndpointServicesApiGetPrivateEndpointServiceParams struct {
 		GroupId string
 		CloudProvider string
 		EndpointServiceId string
@@ -998,7 +998,7 @@ type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest stru
 	groupId string
 }
 
-type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingQueryParams struct {
+type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingParams struct {
 		GroupId string
 }
 
@@ -1120,7 +1120,7 @@ type PrivateEndpointServicesApiListPrivateEndpointServicesRequest struct {
 	cloudProvider string
 }
 
-type PrivateEndpointServicesApiListPrivateEndpointServicesQueryParams struct {
+type PrivateEndpointServicesApiListPrivateEndpointServicesParams struct {
 		GroupId string
 		CloudProvider string
 }
@@ -1246,7 +1246,7 @@ type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest s
 	projectSettingItem *ProjectSettingItem
 }
 
-type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingQueryParams struct {
+type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingParams struct {
 		GroupId string
 		ProjectSettingItem *ProjectSettingItem
 }

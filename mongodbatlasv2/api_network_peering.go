@@ -238,7 +238,7 @@ type NetworkPeeringApiCreatePeeringConnectionRequest struct {
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
 
-type NetworkPeeringApiCreatePeeringConnectionQueryParams struct {
+type NetworkPeeringApiCreatePeeringConnectionParams struct {
 		GroupId string
 		ContainerPeerViewRequest *ContainerPeerViewRequest
 }
@@ -372,7 +372,7 @@ type NetworkPeeringApiCreatePeeringContainerRequest struct {
 	cloudProviderContainer *CloudProviderContainer
 }
 
-type NetworkPeeringApiCreatePeeringContainerQueryParams struct {
+type NetworkPeeringApiCreatePeeringContainerParams struct {
 		GroupId string
 		CloudProviderContainer *CloudProviderContainer
 }
@@ -506,7 +506,7 @@ type NetworkPeeringApiDeletePeeringConnectionRequest struct {
 	peerId string
 }
 
-type NetworkPeeringApiDeletePeeringConnectionQueryParams struct {
+type NetworkPeeringApiDeletePeeringConnectionParams struct {
 		GroupId string
 		PeerId string
 }
@@ -627,7 +627,7 @@ type NetworkPeeringApiDeletePeeringContainerRequest struct {
 	containerId string
 }
 
-type NetworkPeeringApiDeletePeeringContainerQueryParams struct {
+type NetworkPeeringApiDeletePeeringContainerParams struct {
 		GroupId string
 		ContainerId string
 }
@@ -748,7 +748,7 @@ type NetworkPeeringApiDisablePeeringRequest struct {
 	privateIPMode *PrivateIPMode
 }
 
-type NetworkPeeringApiDisablePeeringQueryParams struct {
+type NetworkPeeringApiDisablePeeringParams struct {
 		GroupId string
 		PrivateIPMode *PrivateIPMode
 }
@@ -885,7 +885,7 @@ type NetworkPeeringApiGetPeeringConnectionRequest struct {
 	peerId string
 }
 
-type NetworkPeeringApiGetPeeringConnectionQueryParams struct {
+type NetworkPeeringApiGetPeeringConnectionParams struct {
 		GroupId string
 		PeerId string
 }
@@ -1017,7 +1017,7 @@ type NetworkPeeringApiGetPeeringContainerRequest struct {
 	containerId string
 }
 
-type NetworkPeeringApiGetPeeringContainerQueryParams struct {
+type NetworkPeeringApiGetPeeringContainerParams struct {
 		GroupId string
 		ContainerId string
 }
@@ -1152,7 +1152,7 @@ type NetworkPeeringApiListPeeringConnectionsRequest struct {
 	providerName *string
 }
 
-type NetworkPeeringApiListPeeringConnectionsQueryParams struct {
+type NetworkPeeringApiListPeeringConnectionsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1333,7 +1333,7 @@ type NetworkPeeringApiListPeeringContainerByCloudProviderRequest struct {
 	pageNum *int32
 }
 
-type NetworkPeeringApiListPeeringContainerByCloudProviderQueryParams struct {
+type NetworkPeeringApiListPeeringContainerByCloudProviderParams struct {
 		GroupId string
 		ProviderName *string
 		IncludeCount *bool
@@ -1510,7 +1510,7 @@ type NetworkPeeringApiListPeeringContainersRequest struct {
 	pageNum *int32
 }
 
-type NetworkPeeringApiListPeeringContainersQueryParams struct {
+type NetworkPeeringApiListPeeringContainersParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1675,7 +1675,7 @@ type NetworkPeeringApiUpdatePeeringConnectionRequest struct {
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
 
-type NetworkPeeringApiUpdatePeeringConnectionQueryParams struct {
+type NetworkPeeringApiUpdatePeeringConnectionParams struct {
 		GroupId string
 		PeerId string
 		ContainerPeerViewRequest *ContainerPeerViewRequest
@@ -1820,7 +1820,7 @@ type NetworkPeeringApiUpdatePeeringContainerRequest struct {
 	cloudProviderContainer *CloudProviderContainer
 }
 
-type NetworkPeeringApiUpdatePeeringContainerQueryParams struct {
+type NetworkPeeringApiUpdatePeeringContainerParams struct {
 		GroupId string
 		ContainerId string
 		CloudProviderContainer *CloudProviderContainer
@@ -1963,7 +1963,7 @@ type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest struct
 	groupId string
 }
 
-type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectQueryParams struct {
+type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectParams struct {
 		GroupId string
 }
 

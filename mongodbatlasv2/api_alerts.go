@@ -105,7 +105,7 @@ type AlertsApiAcknowledgeAlertRequest struct {
 	alertViewForNdsGroup *AlertViewForNdsGroup
 }
 
-type AlertsApiAcknowledgeAlertQueryParams struct {
+type AlertsApiAcknowledgeAlertParams struct {
 		GroupId string
 		AlertId string
 		AlertViewForNdsGroup *AlertViewForNdsGroup
@@ -251,7 +251,7 @@ type AlertsApiGetAlertRequest struct {
 	alertId string
 }
 
-type AlertsApiGetAlertQueryParams struct {
+type AlertsApiGetAlertParams struct {
 		GroupId string
 		AlertId string
 }
@@ -388,7 +388,7 @@ type AlertsApiListAlertsRequest struct {
 	status *string
 }
 
-type AlertsApiListAlertsQueryParams struct {
+type AlertsApiListAlertsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -567,7 +567,7 @@ type AlertsApiListAlertsByAlertConfigurationIdRequest struct {
 	pageNum *int32
 }
 
-type AlertsApiListAlertsByAlertConfigurationIdQueryParams struct {
+type AlertsApiListAlertsByAlertConfigurationIdParams struct {
 		GroupId string
 		AlertConfigId string
 		IncludeCount *bool

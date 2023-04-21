@@ -504,7 +504,7 @@ type CloudBackupsApiCancelBackupRestoreJobRequest struct {
 	restoreJobId string
 }
 
-type CloudBackupsApiCancelBackupRestoreJobQueryParams struct {
+type CloudBackupsApiCancelBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		RestoreJobId string
@@ -636,7 +636,7 @@ type CloudBackupsApiCreateBackupExportJobRequest struct {
 	diskBackupExportJobRequest *DiskBackupExportJobRequest
 }
 
-type CloudBackupsApiCreateBackupExportJobQueryParams struct {
+type CloudBackupsApiCreateBackupExportJobParams struct {
 		GroupId string
 		ClusterName string
 		DiskBackupExportJobRequest *DiskBackupExportJobRequest
@@ -781,7 +781,7 @@ type CloudBackupsApiCreateBackupRestoreJobRequest struct {
 	diskBackupRestoreJob *DiskBackupRestoreJob
 }
 
-type CloudBackupsApiCreateBackupRestoreJobQueryParams struct {
+type CloudBackupsApiCreateBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		DiskBackupRestoreJob *DiskBackupRestoreJob
@@ -927,7 +927,7 @@ type CloudBackupsApiCreateExportBucketRequest struct {
 	diskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
 }
 
-type CloudBackupsApiCreateExportBucketQueryParams struct {
+type CloudBackupsApiCreateExportBucketParams struct {
 		GroupId string
 		DiskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
 }
@@ -1062,7 +1062,7 @@ type CloudBackupsApiCreateServerlessBackupRestoreJobRequest struct {
 	serverlessBackupRestoreJob *ServerlessBackupRestoreJob
 }
 
-type CloudBackupsApiCreateServerlessBackupRestoreJobQueryParams struct {
+type CloudBackupsApiCreateServerlessBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		ServerlessBackupRestoreJob *ServerlessBackupRestoreJob
@@ -1206,7 +1206,7 @@ type CloudBackupsApiDeleteAllBackupSchedulesRequest struct {
 	clusterName string
 }
 
-type CloudBackupsApiDeleteAllBackupSchedulesQueryParams struct {
+type CloudBackupsApiDeleteAllBackupSchedulesParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -1338,7 +1338,7 @@ type CloudBackupsApiDeleteExportBucketRequest struct {
 	exportBucketId string
 }
 
-type CloudBackupsApiDeleteExportBucketQueryParams struct {
+type CloudBackupsApiDeleteExportBucketParams struct {
 		GroupId string
 		ExportBucketId string
 }
@@ -1460,7 +1460,7 @@ type CloudBackupsApiDeleteReplicaSetBackupRequest struct {
 	snapshotId string
 }
 
-type CloudBackupsApiDeleteReplicaSetBackupQueryParams struct {
+type CloudBackupsApiDeleteReplicaSetBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -1592,7 +1592,7 @@ type CloudBackupsApiDeleteShardedClusterBackupRequest struct {
 	snapshotId string
 }
 
-type CloudBackupsApiDeleteShardedClusterBackupQueryParams struct {
+type CloudBackupsApiDeleteShardedClusterBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -1724,7 +1724,7 @@ type CloudBackupsApiGetBackupExportJobRequest struct {
 	exportId string
 }
 
-type CloudBackupsApiGetBackupExportJobQueryParams struct {
+type CloudBackupsApiGetBackupExportJobParams struct {
 		GroupId string
 		ClusterName string
 		ExportId string
@@ -1861,7 +1861,7 @@ type CloudBackupsApiGetBackupRestoreJobRequest struct {
 	restoreJobId string
 }
 
-type CloudBackupsApiGetBackupRestoreJobQueryParams struct {
+type CloudBackupsApiGetBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		RestoreJobId string
@@ -2003,7 +2003,7 @@ type CloudBackupsApiGetBackupScheduleRequest struct {
 	clusterName string
 }
 
-type CloudBackupsApiGetBackupScheduleQueryParams struct {
+type CloudBackupsApiGetBackupScheduleParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -2134,7 +2134,7 @@ type CloudBackupsApiGetDataProtectionSettingsRequest struct {
 	groupId string
 }
 
-type CloudBackupsApiGetDataProtectionSettingsQueryParams struct {
+type CloudBackupsApiGetDataProtectionSettingsParams struct {
 		GroupId string
 }
 
@@ -2256,7 +2256,7 @@ type CloudBackupsApiGetExportBucketRequest struct {
 	exportBucketId string
 }
 
-type CloudBackupsApiGetExportBucketQueryParams struct {
+type CloudBackupsApiGetExportBucketParams struct {
 		GroupId string
 		ExportBucketId string
 }
@@ -2389,7 +2389,7 @@ type CloudBackupsApiGetReplicaSetBackupRequest struct {
 	snapshotId string
 }
 
-type CloudBackupsApiGetReplicaSetBackupQueryParams struct {
+type CloudBackupsApiGetReplicaSetBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -2532,7 +2532,7 @@ type CloudBackupsApiGetServerlessBackupRequest struct {
 	snapshotId string
 }
 
-type CloudBackupsApiGetServerlessBackupQueryParams struct {
+type CloudBackupsApiGetServerlessBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -2675,7 +2675,7 @@ type CloudBackupsApiGetServerlessBackupRestoreJobRequest struct {
 	restoreJobId string
 }
 
-type CloudBackupsApiGetServerlessBackupRestoreJobQueryParams struct {
+type CloudBackupsApiGetServerlessBackupRestoreJobParams struct {
 		GroupId string
 		ClusterName string
 		RestoreJobId string
@@ -2818,7 +2818,7 @@ type CloudBackupsApiGetShardedClusterBackupRequest struct {
 	snapshotId string
 }
 
-type CloudBackupsApiGetShardedClusterBackupQueryParams struct {
+type CloudBackupsApiGetShardedClusterBackupParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -2963,7 +2963,7 @@ type CloudBackupsApiListBackupExportJobsRequest struct {
 	pageNum *int32
 }
 
-type CloudBackupsApiListBackupExportJobsQueryParams struct {
+type CloudBackupsApiListBackupExportJobsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -3140,7 +3140,7 @@ type CloudBackupsApiListBackupRestoreJobsRequest struct {
 	pageNum *int32
 }
 
-type CloudBackupsApiListBackupRestoreJobsQueryParams struct {
+type CloudBackupsApiListBackupRestoreJobsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -3313,7 +3313,7 @@ type CloudBackupsApiListExportBucketsRequest struct {
 	groupId string
 }
 
-type CloudBackupsApiListExportBucketsQueryParams struct {
+type CloudBackupsApiListExportBucketsParams struct {
 		GroupId string
 }
 
@@ -3438,7 +3438,7 @@ type CloudBackupsApiListReplicaSetBackupsRequest struct {
 	pageNum *int32
 }
 
-type CloudBackupsApiListReplicaSetBackupsQueryParams struct {
+type CloudBackupsApiListReplicaSetBackupsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -3612,7 +3612,7 @@ type CloudBackupsApiListServerlessBackupRestoreJobsRequest struct {
 	clusterName string
 }
 
-type CloudBackupsApiListServerlessBackupRestoreJobsQueryParams struct {
+type CloudBackupsApiListServerlessBackupRestoreJobsParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -3747,7 +3747,7 @@ type CloudBackupsApiListServerlessBackupsRequest struct {
 	pageNum *int32
 }
 
-type CloudBackupsApiListServerlessBackupsQueryParams struct {
+type CloudBackupsApiListServerlessBackupsParams struct {
 		GroupId string
 		ClusterName string
 		IncludeCount *bool
@@ -3921,7 +3921,7 @@ type CloudBackupsApiListShardedClusterBackupsRequest struct {
 	clusterName string
 }
 
-type CloudBackupsApiListShardedClusterBackupsQueryParams struct {
+type CloudBackupsApiListShardedClusterBackupsParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -4054,7 +4054,7 @@ type CloudBackupsApiTakeSnapshotRequest struct {
 	diskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
 }
 
-type CloudBackupsApiTakeSnapshotQueryParams struct {
+type CloudBackupsApiTakeSnapshotParams struct {
 		GroupId string
 		ClusterName string
 		DiskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
@@ -4201,7 +4201,7 @@ type CloudBackupsApiUpdateBackupScheduleRequest struct {
 	diskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
 }
 
-type CloudBackupsApiUpdateBackupScheduleQueryParams struct {
+type CloudBackupsApiUpdateBackupScheduleParams struct {
 		GroupId string
 		ClusterName string
 		DiskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
@@ -4345,7 +4345,7 @@ type CloudBackupsApiUpdateDataProtectionSettingsRequest struct {
 	dataProtectionSettings *DataProtectionSettings
 }
 
-type CloudBackupsApiUpdateDataProtectionSettingsQueryParams struct {
+type CloudBackupsApiUpdateDataProtectionSettingsParams struct {
 		GroupId string
 		DataProtectionSettings *DataProtectionSettings
 }
@@ -4481,7 +4481,7 @@ type CloudBackupsApiUpdateSnapshotRetentionRequest struct {
 	snapshotRetention *SnapshotRetention
 }
 
-type CloudBackupsApiUpdateSnapshotRetentionQueryParams struct {
+type CloudBackupsApiUpdateSnapshotRetentionParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string

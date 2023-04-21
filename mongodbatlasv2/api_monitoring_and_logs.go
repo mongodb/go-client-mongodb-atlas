@@ -287,7 +287,7 @@ type MonitoringAndLogsApiGetAtlasProcessRequest struct {
 	processId string
 }
 
-type MonitoringAndLogsApiGetAtlasProcessQueryParams struct {
+type MonitoringAndLogsApiGetAtlasProcessParams struct {
 		GroupId string
 		ProcessId string
 }
@@ -414,7 +414,7 @@ type MonitoringAndLogsApiGetDatabaseRequest struct {
 	processId string
 }
 
-type MonitoringAndLogsApiGetDatabaseQueryParams struct {
+type MonitoringAndLogsApiGetDatabaseParams struct {
 		GroupId string
 		DatabaseName string
 		ProcessId string
@@ -546,7 +546,7 @@ type MonitoringAndLogsApiGetDatabaseMeasurementsRequest struct {
 	m *[]string
 }
 
-type MonitoringAndLogsApiGetDatabaseMeasurementsQueryParams struct {
+type MonitoringAndLogsApiGetDatabaseMeasurementsParams struct {
 		GroupId string
 		DatabaseName string
 		ProcessId string
@@ -696,7 +696,7 @@ type MonitoringAndLogsApiGetDiskMeasurementsRequest struct {
 	m *[]string
 }
 
-type MonitoringAndLogsApiGetDiskMeasurementsQueryParams struct {
+type MonitoringAndLogsApiGetDiskMeasurementsParams struct {
 		GroupId string
 		PartitionName string
 		ProcessId string
@@ -853,7 +853,7 @@ type MonitoringAndLogsApiGetHostLogsRequest struct {
 	startDate *int64
 }
 
-type MonitoringAndLogsApiGetHostLogsQueryParams struct {
+type MonitoringAndLogsApiGetHostLogsParams struct {
 		GroupId string
 		HostName string
 		LogName string
@@ -1005,7 +1005,7 @@ type MonitoringAndLogsApiGetHostMeasurementsRequest struct {
 	period *time.Time
 }
 
-type MonitoringAndLogsApiGetHostMeasurementsQueryParams struct {
+type MonitoringAndLogsApiGetHostMeasurementsParams struct {
 		GroupId string
 		ProcessId string
 		M *[]string
@@ -1173,7 +1173,7 @@ type MonitoringAndLogsApiGetIndexMetricsRequest struct {
 	end *time.Time
 }
 
-type MonitoringAndLogsApiGetIndexMetricsQueryParams struct {
+type MonitoringAndLogsApiGetIndexMetricsParams struct {
 		ProcessId string
 		IndexName string
 		DatabaseName string
@@ -1381,7 +1381,7 @@ type MonitoringAndLogsApiGetMeasurementsRequest struct {
 	end *time.Time
 }
 
-type MonitoringAndLogsApiGetMeasurementsQueryParams struct {
+type MonitoringAndLogsApiGetMeasurementsParams struct {
 		ProcessId string
 		GroupId string
 		Granularity *string
@@ -1574,7 +1574,7 @@ type MonitoringAndLogsApiListAtlasProcessesRequest struct {
 	pageNum *int32
 }
 
-type MonitoringAndLogsApiListAtlasProcessesQueryParams struct {
+type MonitoringAndLogsApiListAtlasProcessesParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1741,7 +1741,7 @@ type MonitoringAndLogsApiListDatabasesRequest struct {
 	pageNum *int32
 }
 
-type MonitoringAndLogsApiListDatabasesQueryParams struct {
+type MonitoringAndLogsApiListDatabasesParams struct {
 		GroupId string
 		ProcessId string
 		IncludeCount *bool
@@ -1910,7 +1910,7 @@ type MonitoringAndLogsApiListDiskMeasurementsRequest struct {
 	processId string
 }
 
-type MonitoringAndLogsApiListDiskMeasurementsQueryParams struct {
+type MonitoringAndLogsApiListDiskMeasurementsParams struct {
 		PartitionName string
 		GroupId string
 		ProcessId string
@@ -2049,7 +2049,7 @@ type MonitoringAndLogsApiListDiskPartitionsRequest struct {
 	pageNum *int32
 }
 
-type MonitoringAndLogsApiListDiskPartitionsQueryParams struct {
+type MonitoringAndLogsApiListDiskPartitionsParams struct {
 		GroupId string
 		ProcessId string
 		IncludeCount *bool
@@ -2224,7 +2224,7 @@ type MonitoringAndLogsApiListIndexMetricsRequest struct {
 	end *time.Time
 }
 
-type MonitoringAndLogsApiListIndexMetricsQueryParams struct {
+type MonitoringAndLogsApiListIndexMetricsParams struct {
 		ProcessId string
 		DatabaseName string
 		CollectionName string
@@ -2423,7 +2423,7 @@ type MonitoringAndLogsApiListMetricTypesRequest struct {
 	groupId string
 }
 
-type MonitoringAndLogsApiListMetricTypesQueryParams struct {
+type MonitoringAndLogsApiListMetricTypesParams struct {
 		ProcessId string
 		GroupId string
 }

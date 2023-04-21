@@ -276,7 +276,7 @@ type FederatedAuthenticationApiCreateRoleMappingRequest struct {
 	roleMapping *RoleMapping
 }
 
-type FederatedAuthenticationApiCreateRoleMappingQueryParams struct {
+type FederatedAuthenticationApiCreateRoleMappingParams struct {
 		FederationSettingsId string
 		OrgId string
 		RoleMapping *RoleMapping
@@ -419,7 +419,7 @@ type FederatedAuthenticationApiDeleteFederationAppRequest struct {
 	federationSettingsId string
 }
 
-type FederatedAuthenticationApiDeleteFederationAppQueryParams struct {
+type FederatedAuthenticationApiDeleteFederationAppParams struct {
 		FederationSettingsId string
 }
 
@@ -531,7 +531,7 @@ type FederatedAuthenticationApiDeleteRoleMappingRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiDeleteRoleMappingQueryParams struct {
+type FederatedAuthenticationApiDeleteRoleMappingParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string
@@ -662,7 +662,7 @@ type FederatedAuthenticationApiGetConnectedOrgConfigRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiGetConnectedOrgConfigQueryParams struct {
+type FederatedAuthenticationApiGetConnectedOrgConfigParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -793,7 +793,7 @@ type FederatedAuthenticationApiGetFederationSettingsRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiGetFederationSettingsQueryParams struct {
+type FederatedAuthenticationApiGetFederationSettingsParams struct {
 		OrgId string
 }
 
@@ -915,7 +915,7 @@ type FederatedAuthenticationApiGetIdentityProviderRequest struct {
 	identityProviderId string
 }
 
-type FederatedAuthenticationApiGetIdentityProviderQueryParams struct {
+type FederatedAuthenticationApiGetIdentityProviderParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 }
@@ -1047,7 +1047,7 @@ type FederatedAuthenticationApiGetIdentityProviderMetadataRequest struct {
 	identityProviderId string
 }
 
-type FederatedAuthenticationApiGetIdentityProviderMetadataQueryParams struct {
+type FederatedAuthenticationApiGetIdentityProviderMetadataParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 }
@@ -1180,7 +1180,7 @@ type FederatedAuthenticationApiGetRoleMappingRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiGetRoleMappingQueryParams struct {
+type FederatedAuthenticationApiGetRoleMappingParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string
@@ -1321,7 +1321,7 @@ type FederatedAuthenticationApiListConnectedOrgConfigsRequest struct {
 	federationSettingsId string
 }
 
-type FederatedAuthenticationApiListConnectedOrgConfigsQueryParams struct {
+type FederatedAuthenticationApiListConnectedOrgConfigsParams struct {
 		FederationSettingsId string
 }
 
@@ -1442,7 +1442,7 @@ type FederatedAuthenticationApiListIdentityProvidersRequest struct {
 	federationSettingsId string
 }
 
-type FederatedAuthenticationApiListIdentityProvidersQueryParams struct {
+type FederatedAuthenticationApiListIdentityProvidersParams struct {
 		FederationSettingsId string
 }
 
@@ -1564,7 +1564,7 @@ type FederatedAuthenticationApiListRoleMappingsRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiListRoleMappingsQueryParams struct {
+type FederatedAuthenticationApiListRoleMappingsParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -1696,7 +1696,7 @@ type FederatedAuthenticationApiRemoveConnectedOrgConfigRequest struct {
 	orgId string
 }
 
-type FederatedAuthenticationApiRemoveConnectedOrgConfigQueryParams struct {
+type FederatedAuthenticationApiRemoveConnectedOrgConfigParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -1818,7 +1818,7 @@ type FederatedAuthenticationApiUpdateConnectedOrgConfigRequest struct {
 	connectedOrgConfig *ConnectedOrgConfig
 }
 
-type FederatedAuthenticationApiUpdateConnectedOrgConfigQueryParams struct {
+type FederatedAuthenticationApiUpdateConnectedOrgConfigParams struct {
 		FederationSettingsId string
 		OrgId string
 		ConnectedOrgConfig *ConnectedOrgConfig
@@ -1969,7 +1969,7 @@ type FederatedAuthenticationApiUpdateIdentityProviderRequest struct {
 	identityProviderUpdate *IdentityProviderUpdate
 }
 
-type FederatedAuthenticationApiUpdateIdentityProviderQueryParams struct {
+type FederatedAuthenticationApiUpdateIdentityProviderParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 		IdentityProviderUpdate *IdentityProviderUpdate
@@ -2115,7 +2115,7 @@ type FederatedAuthenticationApiUpdateRoleMappingRequest struct {
 	roleMapping *RoleMapping
 }
 
-type FederatedAuthenticationApiUpdateRoleMappingQueryParams struct {
+type FederatedAuthenticationApiUpdateRoleMappingParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string

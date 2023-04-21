@@ -240,7 +240,7 @@ type DataLakePipelinesApiCreatePipelineRequest struct {
 	ingestionPipeline *IngestionPipeline
 }
 
-type DataLakePipelinesApiCreatePipelineQueryParams struct {
+type DataLakePipelinesApiCreatePipelineParams struct {
 		GroupId string
 		IngestionPipeline *IngestionPipeline
 }
@@ -374,7 +374,7 @@ type DataLakePipelinesApiDeletePipelineRequest struct {
 	pipelineName string
 }
 
-type DataLakePipelinesApiDeletePipelineQueryParams struct {
+type DataLakePipelinesApiDeletePipelineParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -496,7 +496,7 @@ type DataLakePipelinesApiDeletePipelineRunDatasetRequest struct {
 	pipelineRunId string
 }
 
-type DataLakePipelinesApiDeletePipelineRunDatasetQueryParams struct {
+type DataLakePipelinesApiDeletePipelineRunDatasetParams struct {
 		GroupId string
 		PipelineName string
 		PipelineRunId string
@@ -627,7 +627,7 @@ type DataLakePipelinesApiGetPipelineRequest struct {
 	pipelineName string
 }
 
-type DataLakePipelinesApiGetPipelineQueryParams struct {
+type DataLakePipelinesApiGetPipelineParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -760,7 +760,7 @@ type DataLakePipelinesApiGetPipelineRunRequest struct {
 	pipelineRunId string
 }
 
-type DataLakePipelinesApiGetPipelineRunQueryParams struct {
+type DataLakePipelinesApiGetPipelineRunParams struct {
 		GroupId string
 		PipelineName string
 		PipelineRunId string
@@ -906,7 +906,7 @@ type DataLakePipelinesApiListPipelineRunsRequest struct {
 	createdBefore *time.Time
 }
 
-type DataLakePipelinesApiListPipelineRunsQueryParams struct {
+type DataLakePipelinesApiListPipelineRunsParams struct {
 		GroupId string
 		PipelineName string
 		IncludeCount *bool
@@ -1090,7 +1090,7 @@ type DataLakePipelinesApiListPipelineSchedulesRequest struct {
 	pipelineName string
 }
 
-type DataLakePipelinesApiListPipelineSchedulesQueryParams struct {
+type DataLakePipelinesApiListPipelineSchedulesParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1226,7 +1226,7 @@ type DataLakePipelinesApiListPipelineSnapshotsRequest struct {
 	completedAfter *time.Time
 }
 
-type DataLakePipelinesApiListPipelineSnapshotsQueryParams struct {
+type DataLakePipelinesApiListPipelineSnapshotsParams struct {
 		GroupId string
 		PipelineName string
 		IncludeCount *bool
@@ -1409,7 +1409,7 @@ type DataLakePipelinesApiListPipelinesRequest struct {
 	groupId string
 }
 
-type DataLakePipelinesApiListPipelinesQueryParams struct {
+type DataLakePipelinesApiListPipelinesParams struct {
 		GroupId string
 }
 
@@ -1531,7 +1531,7 @@ type DataLakePipelinesApiPausePipelineRequest struct {
 	pipelineName string
 }
 
-type DataLakePipelinesApiPausePipelineQueryParams struct {
+type DataLakePipelinesApiPausePipelineParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1663,7 +1663,7 @@ type DataLakePipelinesApiResumePipelineRequest struct {
 	pipelineName string
 }
 
-type DataLakePipelinesApiResumePipelineQueryParams struct {
+type DataLakePipelinesApiResumePipelineParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1796,7 +1796,7 @@ type DataLakePipelinesApiTriggerSnapshotIngestionRequest struct {
 	triggerIngestionRequest *TriggerIngestionRequest
 }
 
-type DataLakePipelinesApiTriggerSnapshotIngestionQueryParams struct {
+type DataLakePipelinesApiTriggerSnapshotIngestionParams struct {
 		GroupId string
 		PipelineName string
 		TriggerIngestionRequest *TriggerIngestionRequest
@@ -1941,7 +1941,7 @@ type DataLakePipelinesApiUpdatePipelineRequest struct {
 	ingestionPipeline *IngestionPipeline
 }
 
-type DataLakePipelinesApiUpdatePipelineQueryParams struct {
+type DataLakePipelinesApiUpdatePipelineParams struct {
 		GroupId string
 		PipelineName string
 		IngestionPipeline *IngestionPipeline

@@ -174,7 +174,7 @@ type AlertConfigurationsApiCreateAlertConfigurationRequest struct {
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
-type AlertConfigurationsApiCreateAlertConfigurationQueryParams struct {
+type AlertConfigurationsApiCreateAlertConfigurationParams struct {
 		GroupId string
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
@@ -310,7 +310,7 @@ type AlertConfigurationsApiDeleteAlertConfigurationRequest struct {
 	alertConfigId string
 }
 
-type AlertConfigurationsApiDeleteAlertConfigurationQueryParams struct {
+type AlertConfigurationsApiDeleteAlertConfigurationParams struct {
 		GroupId string
 		AlertConfigId string
 }
@@ -433,7 +433,7 @@ type AlertConfigurationsApiGetAlertConfigurationRequest struct {
 	alertConfigId string
 }
 
-type AlertConfigurationsApiGetAlertConfigurationQueryParams struct {
+type AlertConfigurationsApiGetAlertConfigurationParams struct {
 		GroupId string
 		AlertConfigId string
 }
@@ -565,7 +565,7 @@ type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest struc
 	ApiService AlertConfigurationsApi
 }
 
-type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesQueryParams struct {
+type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesParams struct {
 }
 
 func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherField, *http.Response, error) {
@@ -679,7 +679,7 @@ type AlertConfigurationsApiListAlertConfigurationsRequest struct {
 	pageNum *int32
 }
 
-type AlertConfigurationsApiListAlertConfigurationsQueryParams struct {
+type AlertConfigurationsApiListAlertConfigurationsParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -848,7 +848,7 @@ type AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest struct {
 	pageNum *int32
 }
 
-type AlertConfigurationsApiListAlertConfigurationsByAlertIdQueryParams struct {
+type AlertConfigurationsApiListAlertConfigurationsByAlertIdParams struct {
 		GroupId string
 		AlertId string
 		IncludeCount *bool
@@ -1025,7 +1025,7 @@ type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
 	toggle *Toggle
 }
 
-type AlertConfigurationsApiToggleAlertConfigurationQueryParams struct {
+type AlertConfigurationsApiToggleAlertConfigurationParams struct {
 		GroupId string
 		AlertConfigId string
 		Toggle *Toggle
@@ -1174,7 +1174,7 @@ type AlertConfigurationsApiUpdateAlertConfigurationRequest struct {
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
-type AlertConfigurationsApiUpdateAlertConfigurationQueryParams struct {
+type AlertConfigurationsApiUpdateAlertConfigurationParams struct {
 		GroupId string
 		AlertConfigId string
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
