@@ -60,7 +60,7 @@ type {{operationId}}ApiRequest struct {
 }
 
 {{!X-GEN-CUSTOM}}
-type {{operationId}}Params struct {
+type {{operationId}}ApiParams struct {
 	{{#allParams}}
 		{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
 	{{/allParams}}
