@@ -172,9 +172,10 @@ type ClustersApiGetClusterAdvancedConfigurationRequest struct {
 	groupId string
 	clusterName string
 }
+
 type ClustersApiGetClusterAdvancedConfigurationQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r ClustersApiGetClusterAdvancedConfigurationRequest) Execute() (*ClusterDescriptionProcessArgs, *http.Response, error) {
@@ -303,9 +304,10 @@ type ClustersApiGetClusterStatusRequest struct {
 	groupId string
 	clusterName string
 }
+
 type ClustersApiGetClusterStatusQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r ClustersApiGetClusterStatusRequest) Execute() (*ClusterStatus, *http.Response, error) {
@@ -434,9 +436,10 @@ type ClustersApiGetSampleDatasetLoadStatusRequest struct {
 	groupId string
 	sampleDatasetId string
 }
+
 type ClustersApiGetSampleDatasetLoadStatusQueryParams struct {
-		groupId string
-		sampleDatasetId string
+		GroupId string
+		SampleDatasetId string
 }
 
 func (r ClustersApiGetSampleDatasetLoadStatusRequest) Execute() (*SampleDatasetStatus, *http.Response, error) {
@@ -569,13 +572,14 @@ type ClustersApiListCloudProviderRegionsRequest struct {
 	providers *[]string
 	tier *string
 }
+
 type ClustersApiListCloudProviderRegionsQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		providers *[]string
-		tier *string
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		Providers *[]string
+		Tier *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -761,10 +765,11 @@ type ClustersApiListClustersForAllProjectsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ClustersApiListClustersForAllProjectsQueryParams struct {
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -915,10 +920,11 @@ type ClustersApiLoadSampleDatasetRequest struct {
 	name string
 	sampleDatasetStatus *SampleDatasetStatus
 }
+
 type ClustersApiLoadSampleDatasetQueryParams struct {
-		groupId string
-		name string
-		sampleDatasetStatus *SampleDatasetStatus
+		GroupId string
+		Name string
+		SampleDatasetStatus *SampleDatasetStatus
 }
 
 // Cluster into which to load the sample dataset.
@@ -1059,10 +1065,11 @@ type ClustersApiUpdateClusterAdvancedConfigurationRequest struct {
 	clusterName string
 	clusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
 }
+
 type ClustersApiUpdateClusterAdvancedConfigurationQueryParams struct {
-		groupId string
-		clusterName string
-		clusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
+		GroupId string
+		ClusterName string
+		ClusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
 }
 
 // Advanced configuration details to add for one cluster in the specified project.
@@ -1202,9 +1209,10 @@ type ClustersApiUpgradeSharedClusterRequest struct {
 	groupId string
 	legacyClusterDescription *LegacyClusterDescription
 }
+
 type ClustersApiUpgradeSharedClusterQueryParams struct {
-		groupId string
-		legacyClusterDescription *LegacyClusterDescription
+		GroupId string
+		LegacyClusterDescription *LegacyClusterDescription
 }
 
 // Details of the shared-tier cluster upgrade in the specified project.
@@ -1335,9 +1343,10 @@ type ClustersApiUpgradeSharedClusterToServerlessRequest struct {
 	groupId string
 	serverlessInstanceDescription *ServerlessInstanceDescription
 }
+
 type ClustersApiUpgradeSharedClusterToServerlessQueryParams struct {
-		groupId string
-		serverlessInstanceDescription *ServerlessInstanceDescription
+		GroupId string
+		ServerlessInstanceDescription *ServerlessInstanceDescription
 }
 
 // Details of the shared-tier cluster upgrade in the specified project.

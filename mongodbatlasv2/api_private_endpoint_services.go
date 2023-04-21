@@ -180,11 +180,12 @@ type PrivateEndpointServicesApiCreatePrivateEndpointRequest struct {
 	endpointServiceId string
 	createPrivateEndpointRequest *CreatePrivateEndpointRequest
 }
+
 type PrivateEndpointServicesApiCreatePrivateEndpointQueryParams struct {
-		groupId string
-		cloudProvider string
-		endpointServiceId string
-		createPrivateEndpointRequest *CreatePrivateEndpointRequest
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
+		CreatePrivateEndpointRequest *CreatePrivateEndpointRequest
 }
 
 // Creates one private endpoint for the specified cloud service provider.
@@ -327,9 +328,10 @@ type PrivateEndpointServicesApiCreatePrivateEndpointServiceRequest struct {
 	groupId string
 	createEndpointServiceRequest *CreateEndpointServiceRequest
 }
+
 type PrivateEndpointServicesApiCreatePrivateEndpointServiceQueryParams struct {
-		groupId string
-		createEndpointServiceRequest *CreateEndpointServiceRequest
+		GroupId string
+		CreateEndpointServiceRequest *CreateEndpointServiceRequest
 }
 
 // Creates one private endpoint for the specified cloud service provider.
@@ -462,11 +464,12 @@ type PrivateEndpointServicesApiDeletePrivateEndpointRequest struct {
 	endpointId string
 	endpointServiceId string
 }
+
 type PrivateEndpointServicesApiDeletePrivateEndpointQueryParams struct {
-		groupId string
-		cloudProvider string
-		endpointId string
-		endpointServiceId string
+		GroupId string
+		CloudProvider string
+		EndpointId string
+		EndpointServiceId string
 }
 
 func (r PrivateEndpointServicesApiDeletePrivateEndpointRequest) Execute() (*http.Response, error) {
@@ -591,10 +594,11 @@ type PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest struct {
 	cloudProvider string
 	endpointServiceId string
 }
+
 type PrivateEndpointServicesApiDeletePrivateEndpointServiceQueryParams struct {
-		groupId string
-		cloudProvider string
-		endpointServiceId string
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
 }
 
 func (r PrivateEndpointServicesApiDeletePrivateEndpointServiceRequest) Execute() (*http.Response, error) {
@@ -717,11 +721,12 @@ type PrivateEndpointServicesApiGetPrivateEndpointRequest struct {
 	endpointId string
 	endpointServiceId string
 }
+
 type PrivateEndpointServicesApiGetPrivateEndpointQueryParams struct {
-		groupId string
-		cloudProvider string
-		endpointId string
-		endpointServiceId string
+		GroupId string
+		CloudProvider string
+		EndpointId string
+		EndpointServiceId string
 }
 
 func (r PrivateEndpointServicesApiGetPrivateEndpointRequest) Execute() (*Endpoint, *http.Response, error) {
@@ -857,10 +862,11 @@ type PrivateEndpointServicesApiGetPrivateEndpointServiceRequest struct {
 	cloudProvider string
 	endpointServiceId string
 }
+
 type PrivateEndpointServicesApiGetPrivateEndpointServiceQueryParams struct {
-		groupId string
-		cloudProvider string
-		endpointServiceId string
+		GroupId string
+		CloudProvider string
+		EndpointServiceId string
 }
 
 func (r PrivateEndpointServicesApiGetPrivateEndpointServiceRequest) Execute() (*EndpointService, *http.Response, error) {
@@ -991,8 +997,9 @@ type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest stru
 	ApiService PrivateEndpointServicesApi
 	groupId string
 }
+
 type PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r PrivateEndpointServicesApiGetRegionalizedPrivateEndpointSettingRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
@@ -1112,9 +1119,10 @@ type PrivateEndpointServicesApiListPrivateEndpointServicesRequest struct {
 	groupId string
 	cloudProvider string
 }
+
 type PrivateEndpointServicesApiListPrivateEndpointServicesQueryParams struct {
-		groupId string
-		cloudProvider string
+		GroupId string
+		CloudProvider string
 }
 
 func (r PrivateEndpointServicesApiListPrivateEndpointServicesRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
@@ -1237,9 +1245,10 @@ type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingRequest s
 	groupId string
 	projectSettingItem *ProjectSettingItem
 }
+
 type PrivateEndpointServicesApiToggleRegionalizedPrivateEndpointSettingQueryParams struct {
-		groupId string
-		projectSettingItem *ProjectSettingItem
+		GroupId string
+		ProjectSettingItem *ProjectSettingItem
 }
 
 // Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project.

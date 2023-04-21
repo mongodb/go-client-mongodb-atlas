@@ -43,6 +43,7 @@ type RootApiGetSystemStatusRequest struct {
 	ctx context.Context
 	ApiService RootApi
 }
+
 type RootApiGetSystemStatusQueryParams struct {
 }
 

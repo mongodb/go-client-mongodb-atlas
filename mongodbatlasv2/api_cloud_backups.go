@@ -503,10 +503,11 @@ type CloudBackupsApiCancelBackupRestoreJobRequest struct {
 	clusterName string
 	restoreJobId string
 }
+
 type CloudBackupsApiCancelBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		restoreJobId string
+		GroupId string
+		ClusterName string
+		RestoreJobId string
 }
 
 func (r CloudBackupsApiCancelBackupRestoreJobRequest) Execute() (*http.Response, error) {
@@ -634,10 +635,11 @@ type CloudBackupsApiCreateBackupExportJobRequest struct {
 	clusterName string
 	diskBackupExportJobRequest *DiskBackupExportJobRequest
 }
+
 type CloudBackupsApiCreateBackupExportJobQueryParams struct {
-		groupId string
-		clusterName string
-		diskBackupExportJobRequest *DiskBackupExportJobRequest
+		GroupId string
+		ClusterName string
+		DiskBackupExportJobRequest *DiskBackupExportJobRequest
 }
 
 // Information about the Cloud Backup Snapshot Export Job to create.
@@ -778,10 +780,11 @@ type CloudBackupsApiCreateBackupRestoreJobRequest struct {
 	clusterName string
 	diskBackupRestoreJob *DiskBackupRestoreJob
 }
+
 type CloudBackupsApiCreateBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		diskBackupRestoreJob *DiskBackupRestoreJob
+		GroupId string
+		ClusterName string
+		DiskBackupRestoreJob *DiskBackupRestoreJob
 }
 
 // Restores one snapshot of one cluster from the specified project.
@@ -923,9 +926,10 @@ type CloudBackupsApiCreateExportBucketRequest struct {
 	groupId string
 	diskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
 }
+
 type CloudBackupsApiCreateExportBucketQueryParams struct {
-		groupId string
-		diskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
+		GroupId string
+		DiskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
 }
 
 // Grants MongoDB Cloud access to the specified AWS S3 bucket.
@@ -1057,10 +1061,11 @@ type CloudBackupsApiCreateServerlessBackupRestoreJobRequest struct {
 	clusterName string
 	serverlessBackupRestoreJob *ServerlessBackupRestoreJob
 }
+
 type CloudBackupsApiCreateServerlessBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		serverlessBackupRestoreJob *ServerlessBackupRestoreJob
+		GroupId string
+		ClusterName string
+		ServerlessBackupRestoreJob *ServerlessBackupRestoreJob
 }
 
 // Restores one snapshot of one serverless instance from the specified project.
@@ -1200,9 +1205,10 @@ type CloudBackupsApiDeleteAllBackupSchedulesRequest struct {
 	groupId string
 	clusterName string
 }
+
 type CloudBackupsApiDeleteAllBackupSchedulesQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r CloudBackupsApiDeleteAllBackupSchedulesRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
@@ -1331,9 +1337,10 @@ type CloudBackupsApiDeleteExportBucketRequest struct {
 	groupId string
 	exportBucketId string
 }
+
 type CloudBackupsApiDeleteExportBucketQueryParams struct {
-		groupId string
-		exportBucketId string
+		GroupId string
+		ExportBucketId string
 }
 
 func (r CloudBackupsApiDeleteExportBucketRequest) Execute() (*http.Response, error) {
@@ -1452,10 +1459,11 @@ type CloudBackupsApiDeleteReplicaSetBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type CloudBackupsApiDeleteReplicaSetBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r CloudBackupsApiDeleteReplicaSetBackupRequest) Execute() (*http.Response, error) {
@@ -1583,10 +1591,11 @@ type CloudBackupsApiDeleteShardedClusterBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type CloudBackupsApiDeleteShardedClusterBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r CloudBackupsApiDeleteShardedClusterBackupRequest) Execute() (*http.Response, error) {
@@ -1714,10 +1723,11 @@ type CloudBackupsApiGetBackupExportJobRequest struct {
 	clusterName string
 	exportId string
 }
+
 type CloudBackupsApiGetBackupExportJobQueryParams struct {
-		groupId string
-		clusterName string
-		exportId string
+		GroupId string
+		ClusterName string
+		ExportId string
 }
 
 func (r CloudBackupsApiGetBackupExportJobRequest) Execute() (*DiskBackupExportJob, *http.Response, error) {
@@ -1850,10 +1860,11 @@ type CloudBackupsApiGetBackupRestoreJobRequest struct {
 	clusterName string
 	restoreJobId string
 }
+
 type CloudBackupsApiGetBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		restoreJobId string
+		GroupId string
+		ClusterName string
+		RestoreJobId string
 }
 
 func (r CloudBackupsApiGetBackupRestoreJobRequest) Execute() (*DiskBackupRestoreJob, *http.Response, error) {
@@ -1991,9 +2002,10 @@ type CloudBackupsApiGetBackupScheduleRequest struct {
 	groupId string
 	clusterName string
 }
+
 type CloudBackupsApiGetBackupScheduleQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r CloudBackupsApiGetBackupScheduleRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
@@ -2121,8 +2133,9 @@ type CloudBackupsApiGetDataProtectionSettingsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 }
+
 type CloudBackupsApiGetDataProtectionSettingsQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r CloudBackupsApiGetDataProtectionSettingsRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
@@ -2242,9 +2255,10 @@ type CloudBackupsApiGetExportBucketRequest struct {
 	groupId string
 	exportBucketId string
 }
+
 type CloudBackupsApiGetExportBucketQueryParams struct {
-		groupId string
-		exportBucketId string
+		GroupId string
+		ExportBucketId string
 }
 
 func (r CloudBackupsApiGetExportBucketRequest) Execute() (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
@@ -2374,10 +2388,11 @@ type CloudBackupsApiGetReplicaSetBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type CloudBackupsApiGetReplicaSetBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r CloudBackupsApiGetReplicaSetBackupRequest) Execute() (*DiskBackupReplicaSet, *http.Response, error) {
@@ -2516,10 +2531,11 @@ type CloudBackupsApiGetServerlessBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type CloudBackupsApiGetServerlessBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r CloudBackupsApiGetServerlessBackupRequest) Execute() (*ServerlessBackupSnapshot, *http.Response, error) {
@@ -2658,10 +2674,11 @@ type CloudBackupsApiGetServerlessBackupRestoreJobRequest struct {
 	clusterName string
 	restoreJobId string
 }
+
 type CloudBackupsApiGetServerlessBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		restoreJobId string
+		GroupId string
+		ClusterName string
+		RestoreJobId string
 }
 
 func (r CloudBackupsApiGetServerlessBackupRestoreJobRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
@@ -2800,10 +2817,11 @@ type CloudBackupsApiGetShardedClusterBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type CloudBackupsApiGetShardedClusterBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r CloudBackupsApiGetShardedClusterBackupRequest) Execute() (*DiskBackupShardedClusterSnapshot, *http.Response, error) {
@@ -2944,12 +2962,13 @@ type CloudBackupsApiListBackupExportJobsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type CloudBackupsApiListBackupExportJobsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3120,12 +3139,13 @@ type CloudBackupsApiListBackupRestoreJobsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type CloudBackupsApiListBackupRestoreJobsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3292,8 +3312,9 @@ type CloudBackupsApiListExportBucketsRequest struct {
 	ApiService CloudBackupsApi
 	groupId string
 }
+
 type CloudBackupsApiListExportBucketsQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r CloudBackupsApiListExportBucketsRequest) Execute() (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
@@ -3416,12 +3437,13 @@ type CloudBackupsApiListReplicaSetBackupsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type CloudBackupsApiListReplicaSetBackupsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3589,9 +3611,10 @@ type CloudBackupsApiListServerlessBackupRestoreJobsRequest struct {
 	groupId string
 	clusterName string
 }
+
 type CloudBackupsApiListServerlessBackupRestoreJobsQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r CloudBackupsApiListServerlessBackupRestoreJobsRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
@@ -3723,12 +3746,13 @@ type CloudBackupsApiListServerlessBackupsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type CloudBackupsApiListServerlessBackupsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -3896,9 +3920,10 @@ type CloudBackupsApiListShardedClusterBackupsRequest struct {
 	groupId string
 	clusterName string
 }
+
 type CloudBackupsApiListShardedClusterBackupsQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r CloudBackupsApiListShardedClusterBackupsRequest) Execute() (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
@@ -4028,10 +4053,11 @@ type CloudBackupsApiTakeSnapshotRequest struct {
 	clusterName string
 	diskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
 }
+
 type CloudBackupsApiTakeSnapshotQueryParams struct {
-		groupId string
-		clusterName string
-		diskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
+		GroupId string
+		ClusterName string
+		DiskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
 }
 
 // Takes one on-demand snapshot.
@@ -4174,10 +4200,11 @@ type CloudBackupsApiUpdateBackupScheduleRequest struct {
 	clusterName string
 	diskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
 }
+
 type CloudBackupsApiUpdateBackupScheduleQueryParams struct {
-		groupId string
-		clusterName string
-		diskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
+		GroupId string
+		ClusterName string
+		DiskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
 }
 
 // Updates the cloud backup schedule for one cluster within the specified project.  **Note**: In the request body, provide only the fields that you want to update.
@@ -4317,9 +4344,10 @@ type CloudBackupsApiUpdateDataProtectionSettingsRequest struct {
 	groupId string
 	dataProtectionSettings *DataProtectionSettings
 }
+
 type CloudBackupsApiUpdateDataProtectionSettingsQueryParams struct {
-		groupId string
-		dataProtectionSettings *DataProtectionSettings
+		GroupId string
+		DataProtectionSettings *DataProtectionSettings
 }
 
 // The new Backup Compliance Policy settings.
@@ -4452,11 +4480,12 @@ type CloudBackupsApiUpdateSnapshotRetentionRequest struct {
 	snapshotId string
 	snapshotRetention *SnapshotRetention
 }
+
 type CloudBackupsApiUpdateSnapshotRetentionQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
-		snapshotRetention *SnapshotRetention
+		GroupId string
+		ClusterName string
+		SnapshotId string
+		SnapshotRetention *SnapshotRetention
 }
 
 // Changes the expiration date for one cloud backup snapshot for one cluster in the specified project.

@@ -44,8 +44,9 @@ type TestApiVersionedExampleRequest struct {
 	ApiService TestApi
 	additionalInfo *bool
 }
+
 type TestApiVersionedExampleQueryParams struct {
-		additionalInfo *bool
+		AdditionalInfo *bool
 }
 
 func (r TestApiVersionedExampleRequest) AdditionalInfo(additionalInfo bool) TestApiVersionedExampleRequest {

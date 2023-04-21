@@ -58,10 +58,11 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/stru
 	{{paramName}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
 {{/allParams}}
 }
+
 {{!X-GEN-CUSTOM}}
 type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}QueryParams struct {
 	{{#allParams}}
-		{{paramName}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
+		{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
 	{{/allParams}}
 }
 

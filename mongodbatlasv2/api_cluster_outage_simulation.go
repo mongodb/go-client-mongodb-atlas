@@ -80,9 +80,10 @@ type ClusterOutageSimulationApiEndOutageSimulationRequest struct {
 	groupId string
 	clusterName string
 }
+
 type ClusterOutageSimulationApiEndOutageSimulationQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r ClusterOutageSimulationApiEndOutageSimulationRequest) Execute() (*ClusterOutageSimulation, *http.Response, error) {
@@ -211,9 +212,10 @@ type ClusterOutageSimulationApiGetOutageSimulationRequest struct {
 	groupId string
 	clusterName string
 }
+
 type ClusterOutageSimulationApiGetOutageSimulationQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r ClusterOutageSimulationApiGetOutageSimulationRequest) Execute() (*ClusterOutageSimulation, *http.Response, error) {
@@ -343,10 +345,11 @@ type ClusterOutageSimulationApiStartOutageSimulationRequest struct {
 	clusterName string
 	clusterOutageSimulation *ClusterOutageSimulation
 }
+
 type ClusterOutageSimulationApiStartOutageSimulationQueryParams struct {
-		groupId string
-		clusterName string
-		clusterOutageSimulation *ClusterOutageSimulation
+		GroupId string
+		ClusterName string
+		ClusterOutageSimulation *ClusterOutageSimulation
 }
 
 // Describes the outage simulation.

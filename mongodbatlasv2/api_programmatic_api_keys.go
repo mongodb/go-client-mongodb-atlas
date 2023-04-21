@@ -252,10 +252,11 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	apiUserId string
 	userRoleAssignment *[]UserRoleAssignment
 }
+
 type ProgrammaticAPIKeysApiAddProjectApiKeyQueryParams struct {
-		groupId string
-		apiUserId string
-		userRoleAssignment *[]UserRoleAssignment
+		GroupId string
+		ApiUserId string
+		UserRoleAssignment *[]UserRoleAssignment
 }
 
 // Organization API key to be assigned to the specified project.
@@ -395,9 +396,10 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	orgId string
 	createApiKey *CreateApiKey
 }
+
 type ProgrammaticAPIKeysApiCreateApiKeyQueryParams struct {
-		orgId string
-		createApiKey *CreateApiKey
+		OrgId string
+		CreateApiKey *CreateApiKey
 }
 
 // Organization API Key to be created. This request requires a minimum of one of the two body parameters.
@@ -532,13 +534,14 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ProgrammaticAPIKeysApiCreateApiKeyAccessListQueryParams struct {
-		orgId string
-		apiUserId string
-		userAccessList *[]UserAccessList
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		ApiUserId string
+		UserAccessList *[]UserAccessList
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Access list entries to be created for the specified organization API key.
@@ -717,9 +720,10 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	groupId string
 	createApiKey *CreateApiKey
 }
+
 type ProgrammaticAPIKeysApiCreateProjectApiKeyQueryParams struct {
-		groupId string
-		createApiKey *CreateApiKey
+		GroupId string
+		CreateApiKey *CreateApiKey
 }
 
 // Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
@@ -850,9 +854,10 @@ type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	orgId string
 	apiUserId string
 }
+
 type ProgrammaticAPIKeysApiDeleteApiKeyQueryParams struct {
-		orgId string
-		apiUserId string
+		OrgId string
+		ApiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Execute() (*http.Response, error) {
@@ -971,10 +976,11 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	apiUserId string
 	ipAddress string
 }
+
 type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryQueryParams struct {
-		orgId string
-		apiUserId string
-		ipAddress string
+		OrgId string
+		ApiUserId string
+		IpAddress string
 }
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) Execute() (*http.Response, error) {
@@ -1095,9 +1101,10 @@ type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	orgId string
 	apiUserId string
 }
+
 type ProgrammaticAPIKeysApiGetApiKeyQueryParams struct {
-		orgId string
-		apiUserId string
+		OrgId string
+		ApiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
@@ -1227,10 +1234,11 @@ type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
 	ipAddress string
 	apiUserId string
 }
+
 type ProgrammaticAPIKeysApiGetApiKeyAccessListQueryParams struct {
-		orgId string
-		ipAddress string
-		apiUserId string
+		OrgId string
+		IpAddress string
+		ApiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*UserAccessList, *http.Response, error) {
@@ -1365,12 +1373,13 @@ type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesQueryParams struct {
-		orgId string
-		apiUserId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		ApiUserId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1540,11 +1549,12 @@ type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ProgrammaticAPIKeysApiListApiKeysQueryParams struct {
-		orgId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1705,11 +1715,12 @@ type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ProgrammaticAPIKeysApiListProjectApiKeysQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1868,9 +1879,10 @@ type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	groupId string
 	apiUserId string
 }
+
 type ProgrammaticAPIKeysApiRemoveProjectApiKeyQueryParams struct {
-		groupId string
-		apiUserId string
+		GroupId string
+		ApiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Execute() (*http.Response, error) {
@@ -1989,10 +2001,11 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	apiUserId string
 	apiUser *ApiUser
 }
+
 type ProgrammaticAPIKeysApiUpdateApiKeyQueryParams struct {
-		orgId string
-		apiUserId string
-		apiUser *ApiUser
+		OrgId string
+		ApiUserId string
+		ApiUser *ApiUser
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
@@ -2136,13 +2149,14 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	itemsPerPage *int32
 	includeCount *bool
 }
+
 type ProgrammaticAPIKeysApiUpdateApiKeyRolesQueryParams struct {
-		groupId string
-		apiUserId string
-		createApiKey *CreateApiKey
-		pageNum *int32
-		itemsPerPage *int32
-		includeCount *bool
+		GroupId string
+		ApiUserId string
+		CreateApiKey *CreateApiKey
+		PageNum *int32
+		ItemsPerPage *int32
+		IncludeCount *bool
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.

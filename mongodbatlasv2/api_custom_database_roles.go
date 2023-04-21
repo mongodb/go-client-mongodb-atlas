@@ -109,9 +109,10 @@ type CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest struct {
 	groupId string
 	customDBRole *CustomDBRole
 }
+
 type CustomDatabaseRolesApiCreateCustomDatabaseRoleQueryParams struct {
-		groupId string
-		customDBRole *CustomDBRole
+		GroupId string
+		CustomDBRole *CustomDBRole
 }
 
 // Creates one custom role in the specified project.
@@ -242,9 +243,10 @@ type CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest struct {
 	groupId string
 	roleName string
 }
+
 type CustomDatabaseRolesApiDeleteCustomDatabaseRoleQueryParams struct {
-		groupId string
-		roleName string
+		GroupId string
+		RoleName string
 }
 
 func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Execute() (*http.Response, error) {
@@ -356,9 +358,10 @@ type CustomDatabaseRolesApiGetCustomDatabaseRoleRequest struct {
 	groupId string
 	roleName string
 }
+
 type CustomDatabaseRolesApiGetCustomDatabaseRoleQueryParams struct {
-		groupId string
-		roleName string
+		GroupId string
+		RoleName string
 }
 
 func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
@@ -480,8 +483,9 @@ type CustomDatabaseRolesApiListCustomDatabaseRolesRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 }
+
 type CustomDatabaseRolesApiListCustomDatabaseRolesQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Execute() ([]CustomDBRole, *http.Response, error) {
@@ -602,10 +606,11 @@ type CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest struct {
 	roleName string
 	updateCustomDBRole *UpdateCustomDBRole
 }
+
 type CustomDatabaseRolesApiUpdateCustomDatabaseRoleQueryParams struct {
-		groupId string
-		roleName string
-		updateCustomDBRole *UpdateCustomDBRole
+		GroupId string
+		RoleName string
+		UpdateCustomDBRole *UpdateCustomDBRole
 }
 
 // Updates one custom role in the specified project.

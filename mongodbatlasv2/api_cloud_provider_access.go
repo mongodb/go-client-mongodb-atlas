@@ -113,10 +113,11 @@ type CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest struct {
 	roleId string
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
+
 type CloudProviderAccessApiAuthorizeCloudProviderAccessRoleQueryParams struct {
-		groupId string
-		roleId string
-		cloudProviderAccessRole *CloudProviderAccessRole
+		GroupId string
+		RoleId string
+		CloudProviderAccessRole *CloudProviderAccessRole
 }
 
 // Grants access to the specified project for the specified AWS IAM role.
@@ -256,9 +257,10 @@ type CloudProviderAccessApiCreateCloudProviderAccessRoleRequest struct {
 	groupId string
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
+
 type CloudProviderAccessApiCreateCloudProviderAccessRoleQueryParams struct {
-		groupId string
-		cloudProviderAccessRole *CloudProviderAccessRole
+		GroupId string
+		CloudProviderAccessRole *CloudProviderAccessRole
 }
 
 // Creates one AWS IAM role.
@@ -392,10 +394,11 @@ type CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest struct {
 	cloudProvider string
 	roleId string
 }
+
 type CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleQueryParams struct {
-		groupId string
-		cloudProvider string
-		roleId string
+		GroupId string
+		CloudProvider string
+		RoleId string
 }
 
 func (r CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest) Execute() (*http.Response, error) {
@@ -516,9 +519,10 @@ type CloudProviderAccessApiGetCloudProviderAccessRoleRequest struct {
 	groupId string
 	roleId string
 }
+
 type CloudProviderAccessApiGetCloudProviderAccessRoleQueryParams struct {
-		groupId string
-		roleId string
+		GroupId string
+		RoleId string
 }
 
 func (r CloudProviderAccessApiGetCloudProviderAccessRoleRequest) Execute() (*CloudProviderAccess, *http.Response, error) {
@@ -646,8 +650,9 @@ type CloudProviderAccessApiListCloudProviderAccessRolesRequest struct {
 	ApiService CloudProviderAccessApi
 	groupId string
 }
+
 type CloudProviderAccessApiListCloudProviderAccessRolesQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r CloudProviderAccessApiListCloudProviderAccessRolesRequest) Execute() (*CloudProviderAccess, *http.Response, error) {

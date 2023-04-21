@@ -239,9 +239,10 @@ type DataLakePipelinesApiCreatePipelineRequest struct {
 	groupId string
 	ingestionPipeline *IngestionPipeline
 }
+
 type DataLakePipelinesApiCreatePipelineQueryParams struct {
-		groupId string
-		ingestionPipeline *IngestionPipeline
+		GroupId string
+		IngestionPipeline *IngestionPipeline
 }
 
 // Creates one Data Lake Pipeline.
@@ -372,9 +373,10 @@ type DataLakePipelinesApiDeletePipelineRequest struct {
 	groupId string
 	pipelineName string
 }
+
 type DataLakePipelinesApiDeletePipelineQueryParams struct {
-		groupId string
-		pipelineName string
+		GroupId string
+		PipelineName string
 }
 
 func (r DataLakePipelinesApiDeletePipelineRequest) Execute() (*http.Response, error) {
@@ -493,10 +495,11 @@ type DataLakePipelinesApiDeletePipelineRunDatasetRequest struct {
 	pipelineName string
 	pipelineRunId string
 }
+
 type DataLakePipelinesApiDeletePipelineRunDatasetQueryParams struct {
-		groupId string
-		pipelineName string
-		pipelineRunId string
+		GroupId string
+		PipelineName string
+		PipelineRunId string
 }
 
 func (r DataLakePipelinesApiDeletePipelineRunDatasetRequest) Execute() (*http.Response, error) {
@@ -623,9 +626,10 @@ type DataLakePipelinesApiGetPipelineRequest struct {
 	groupId string
 	pipelineName string
 }
+
 type DataLakePipelinesApiGetPipelineQueryParams struct {
-		groupId string
-		pipelineName string
+		GroupId string
+		PipelineName string
 }
 
 func (r DataLakePipelinesApiGetPipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
@@ -755,10 +759,11 @@ type DataLakePipelinesApiGetPipelineRunRequest struct {
 	pipelineName string
 	pipelineRunId string
 }
+
 type DataLakePipelinesApiGetPipelineRunQueryParams struct {
-		groupId string
-		pipelineName string
-		pipelineRunId string
+		GroupId string
+		PipelineName string
+		PipelineRunId string
 }
 
 func (r DataLakePipelinesApiGetPipelineRunRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
@@ -900,13 +905,14 @@ type DataLakePipelinesApiListPipelineRunsRequest struct {
 	pageNum *int32
 	createdBefore *time.Time
 }
+
 type DataLakePipelinesApiListPipelineRunsQueryParams struct {
-		groupId string
-		pipelineName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		createdBefore *time.Time
+		GroupId string
+		PipelineName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		CreatedBefore *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1083,9 +1089,10 @@ type DataLakePipelinesApiListPipelineSchedulesRequest struct {
 	groupId string
 	pipelineName string
 }
+
 type DataLakePipelinesApiListPipelineSchedulesQueryParams struct {
-		groupId string
-		pipelineName string
+		GroupId string
+		PipelineName string
 }
 
 func (r DataLakePipelinesApiListPipelineSchedulesRequest) Execute() ([]PolicyItem, *http.Response, error) {
@@ -1218,13 +1225,14 @@ type DataLakePipelinesApiListPipelineSnapshotsRequest struct {
 	pageNum *int32
 	completedAfter *time.Time
 }
+
 type DataLakePipelinesApiListPipelineSnapshotsQueryParams struct {
-		groupId string
-		pipelineName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		completedAfter *time.Time
+		GroupId string
+		PipelineName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		CompletedAfter *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1400,8 +1408,9 @@ type DataLakePipelinesApiListPipelinesRequest struct {
 	ApiService DataLakePipelinesApi
 	groupId string
 }
+
 type DataLakePipelinesApiListPipelinesQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r DataLakePipelinesApiListPipelinesRequest) Execute() ([]IngestionPipeline, *http.Response, error) {
@@ -1521,9 +1530,10 @@ type DataLakePipelinesApiPausePipelineRequest struct {
 	groupId string
 	pipelineName string
 }
+
 type DataLakePipelinesApiPausePipelineQueryParams struct {
-		groupId string
-		pipelineName string
+		GroupId string
+		PipelineName string
 }
 
 func (r DataLakePipelinesApiPausePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
@@ -1652,9 +1662,10 @@ type DataLakePipelinesApiResumePipelineRequest struct {
 	groupId string
 	pipelineName string
 }
+
 type DataLakePipelinesApiResumePipelineQueryParams struct {
-		groupId string
-		pipelineName string
+		GroupId string
+		PipelineName string
 }
 
 func (r DataLakePipelinesApiResumePipelineRequest) Execute() (*IngestionPipeline, *http.Response, error) {
@@ -1784,10 +1795,11 @@ type DataLakePipelinesApiTriggerSnapshotIngestionRequest struct {
 	pipelineName string
 	triggerIngestionRequest *TriggerIngestionRequest
 }
+
 type DataLakePipelinesApiTriggerSnapshotIngestionQueryParams struct {
-		groupId string
-		pipelineName string
-		triggerIngestionRequest *TriggerIngestionRequest
+		GroupId string
+		PipelineName string
+		TriggerIngestionRequest *TriggerIngestionRequest
 }
 
 // Triggers a single ingestion run of a snapshot.
@@ -1928,10 +1940,11 @@ type DataLakePipelinesApiUpdatePipelineRequest struct {
 	pipelineName string
 	ingestionPipeline *IngestionPipeline
 }
+
 type DataLakePipelinesApiUpdatePipelineQueryParams struct {
-		groupId string
-		pipelineName string
-		ingestionPipeline *IngestionPipeline
+		GroupId string
+		PipelineName string
+		IngestionPipeline *IngestionPipeline
 }
 
 // Updates one Data Lake Pipeline.

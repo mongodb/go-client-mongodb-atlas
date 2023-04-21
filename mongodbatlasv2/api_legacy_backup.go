@@ -235,10 +235,11 @@ type LegacyBackupApiDeleteLegacySnapshotRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type LegacyBackupApiDeleteLegacySnapshotQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r LegacyBackupApiDeleteLegacySnapshotRequest) Execute() (*http.Response, error) {
@@ -369,10 +370,11 @@ type LegacyBackupApiGetLegacyBackupCheckpointRequest struct {
 	checkpointId string
 	clusterName string
 }
+
 type LegacyBackupApiGetLegacyBackupCheckpointQueryParams struct {
-		groupId string
-		checkpointId string
-		clusterName string
+		GroupId string
+		CheckpointId string
+		ClusterName string
 }
 
 func (r LegacyBackupApiGetLegacyBackupCheckpointRequest) Execute() (*Checkpoint, *http.Response, error) {
@@ -514,10 +516,11 @@ type LegacyBackupApiGetLegacyBackupRestoreJobRequest struct {
 	clusterName string
 	jobId string
 }
+
 type LegacyBackupApiGetLegacyBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		jobId string
+		GroupId string
+		ClusterName string
+		JobId string
 }
 
 func (r LegacyBackupApiGetLegacyBackupRestoreJobRequest) Execute() (*RestoreJob, *http.Response, error) {
@@ -661,10 +664,11 @@ type LegacyBackupApiGetLegacySnapshotRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type LegacyBackupApiGetLegacySnapshotQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r LegacyBackupApiGetLegacySnapshotRequest) Execute() (*Snapshot, *http.Response, error) {
@@ -805,9 +809,10 @@ type LegacyBackupApiGetLegacySnapshotScheduleRequest struct {
 	groupId string
 	clusterName string
 }
+
 type LegacyBackupApiGetLegacySnapshotScheduleQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r LegacyBackupApiGetLegacySnapshotScheduleRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
@@ -944,12 +949,13 @@ type LegacyBackupApiListLegacyBackupCheckpointsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type LegacyBackupApiListLegacyBackupCheckpointsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1124,13 +1130,14 @@ type LegacyBackupApiListLegacyBackupRestoreJobsRequest struct {
 	pageNum *int32
 	batchId *string
 }
+
 type LegacyBackupApiListLegacyBackupRestoreJobsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		batchId *string
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		BatchId *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1316,13 +1323,14 @@ type LegacyBackupApiListLegacySnapshotsRequest struct {
 	pageNum *int32
 	completed *string
 }
+
 type LegacyBackupApiListLegacySnapshotsQueryParams struct {
-		groupId string
-		clusterName string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		completed *string
+		GroupId string
+		ClusterName string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		Completed *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1508,11 +1516,12 @@ type LegacyBackupApiUpdateLegacySnapshotRetentionRequest struct {
 	snapshotId string
 	snapshot *Snapshot
 }
+
 type LegacyBackupApiUpdateLegacySnapshotRetentionQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
-		snapshot *Snapshot
+		GroupId string
+		ClusterName string
+		SnapshotId string
+		Snapshot *Snapshot
 }
 
 // Changes One Legacy Backup Snapshot Expiration.
@@ -1665,10 +1674,11 @@ type LegacyBackupApiUpdateLegacySnapshotScheduleRequest struct {
 	clusterName string
 	snapshotSchedule *SnapshotSchedule
 }
+
 type LegacyBackupApiUpdateLegacySnapshotScheduleQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotSchedule *SnapshotSchedule
+		GroupId string
+		ClusterName string
+		SnapshotSchedule *SnapshotSchedule
 }
 
 // Update the snapshot schedule for one cluster in the specified project.

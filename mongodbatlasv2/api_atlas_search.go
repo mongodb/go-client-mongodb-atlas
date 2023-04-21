@@ -117,10 +117,11 @@ type AtlasSearchApiCreateAtlasSearchIndexRequest struct {
 	clusterName string
 	fTSIndex *FTSIndex
 }
+
 type AtlasSearchApiCreateAtlasSearchIndexQueryParams struct {
-		groupId string
-		clusterName string
-		fTSIndex *FTSIndex
+		GroupId string
+		ClusterName string
+		FTSIndex *FTSIndex
 }
 
 // Creates one Atlas Search index on the specified collection.
@@ -261,10 +262,11 @@ type AtlasSearchApiDeleteAtlasSearchIndexRequest struct {
 	clusterName string
 	indexId string
 }
+
 type AtlasSearchApiDeleteAtlasSearchIndexQueryParams struct {
-		groupId string
-		clusterName string
-		indexId string
+		GroupId string
+		ClusterName string
+		IndexId string
 }
 
 func (r AtlasSearchApiDeleteAtlasSearchIndexRequest) Execute() (*http.Response, error) {
@@ -392,10 +394,11 @@ type AtlasSearchApiGetAtlasSearchIndexRequest struct {
 	clusterName string
 	indexId string
 }
+
 type AtlasSearchApiGetAtlasSearchIndexQueryParams struct {
-		groupId string
-		clusterName string
-		indexId string
+		GroupId string
+		ClusterName string
+		IndexId string
 }
 
 func (r AtlasSearchApiGetAtlasSearchIndexRequest) Execute() (*FTSIndex, *http.Response, error) {
@@ -535,11 +538,12 @@ type AtlasSearchApiListAtlasSearchIndexesRequest struct {
 	collectionName string
 	databaseName string
 }
+
 type AtlasSearchApiListAtlasSearchIndexesQueryParams struct {
-		groupId string
-		clusterName string
-		collectionName string
-		databaseName string
+		GroupId string
+		ClusterName string
+		CollectionName string
+		DatabaseName string
 }
 
 func (r AtlasSearchApiListAtlasSearchIndexesRequest) Execute() ([]FTSIndex, *http.Response, error) {
@@ -676,11 +680,12 @@ type AtlasSearchApiUpdateAtlasSearchIndexRequest struct {
 	indexId string
 	fTSIndex *FTSIndex
 }
+
 type AtlasSearchApiUpdateAtlasSearchIndexQueryParams struct {
-		groupId string
-		clusterName string
-		indexId string
-		fTSIndex *FTSIndex
+		GroupId string
+		ClusterName string
+		IndexId string
+		FTSIndex *FTSIndex
 }
 
 // Details to update on the Atlas Search index.

@@ -124,9 +124,10 @@ type MultiCloudClustersApiCreateClusterRequest struct {
 	groupId string
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
+
 type MultiCloudClustersApiCreateClusterQueryParams struct {
-		groupId string
-		clusterDescriptionV15 *ClusterDescriptionV15
+		GroupId string
+		ClusterDescriptionV15 *ClusterDescriptionV15
 }
 
 // Cluster to create in the specific project.
@@ -258,10 +259,11 @@ type MultiCloudClustersApiDeleteClusterRequest struct {
 	clusterName string
 	retainBackups *bool
 }
+
 type MultiCloudClustersApiDeleteClusterQueryParams struct {
-		groupId string
-		clusterName string
-		retainBackups *bool
+		GroupId string
+		ClusterName string
+		RetainBackups *bool
 }
 
 // Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
@@ -388,9 +390,10 @@ type MultiCloudClustersApiGetClusterRequest struct {
 	groupId string
 	clusterName string
 }
+
 type MultiCloudClustersApiGetClusterQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r MultiCloudClustersApiGetClusterRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
@@ -521,11 +524,12 @@ type MultiCloudClustersApiListClustersRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type MultiCloudClustersApiListClustersQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -684,9 +688,10 @@ type MultiCloudClustersApiTestFailoverRequest struct {
 	groupId string
 	clusterName string
 }
+
 type MultiCloudClustersApiTestFailoverQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r MultiCloudClustersApiTestFailoverRequest) Execute() (*http.Response, error) {
@@ -805,10 +810,11 @@ type MultiCloudClustersApiUpdateClusterRequest struct {
 	clusterName string
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
+
 type MultiCloudClustersApiUpdateClusterQueryParams struct {
-		groupId string
-		clusterName string
-		clusterDescriptionV15 *ClusterDescriptionV15
+		GroupId string
+		ClusterName string
+		ClusterDescriptionV15 *ClusterDescriptionV15
 }
 
 // Cluster to update in the specified project.

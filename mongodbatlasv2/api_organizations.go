@@ -266,8 +266,9 @@ type OrganizationsApiCreateOrganizationRequest struct {
 	ApiService OrganizationsApi
 	createOrganizationRequest *CreateOrganizationRequest
 }
+
 type OrganizationsApiCreateOrganizationQueryParams struct {
-		createOrganizationRequest *CreateOrganizationRequest
+		CreateOrganizationRequest *CreateOrganizationRequest
 }
 
 // Organization that you want to create.
@@ -389,9 +390,10 @@ type OrganizationsApiCreateOrganizationInvitationRequest struct {
 	orgId string
 	organizationInvitationRequest *OrganizationInvitationRequest
 }
+
 type OrganizationsApiCreateOrganizationInvitationQueryParams struct {
-		orgId string
-		organizationInvitationRequest *OrganizationInvitationRequest
+		OrgId string
+		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
 
 // Invites one MongoDB Cloud user to join the specified organization.
@@ -521,8 +523,9 @@ type OrganizationsApiDeleteOrganizationRequest struct {
 	ApiService OrganizationsApi
 	orgId string
 }
+
 type OrganizationsApiDeleteOrganizationQueryParams struct {
-		orgId string
+		OrgId string
 }
 
 func (r OrganizationsApiDeleteOrganizationRequest) Execute() (*http.Response, error) {
@@ -635,9 +638,10 @@ type OrganizationsApiDeleteOrganizationInvitationRequest struct {
 	orgId string
 	invitationId string
 }
+
 type OrganizationsApiDeleteOrganizationInvitationQueryParams struct {
-		orgId string
-		invitationId string
+		OrgId string
+		InvitationId string
 }
 
 func (r OrganizationsApiDeleteOrganizationInvitationRequest) Execute() (*http.Response, error) {
@@ -748,8 +752,9 @@ type OrganizationsApiGetOrganizationRequest struct {
 	ApiService OrganizationsApi
 	orgId string
 }
+
 type OrganizationsApiGetOrganizationQueryParams struct {
-		orgId string
+		OrgId string
 }
 
 func (r OrganizationsApiGetOrganizationRequest) Execute() (*Organization, *http.Response, error) {
@@ -869,9 +874,10 @@ type OrganizationsApiGetOrganizationInvitationRequest struct {
 	orgId string
 	invitationId string
 }
+
 type OrganizationsApiGetOrganizationInvitationQueryParams struct {
-		orgId string
-		invitationId string
+		OrgId string
+		InvitationId string
 }
 
 func (r OrganizationsApiGetOrganizationInvitationRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
@@ -999,8 +1005,9 @@ type OrganizationsApiGetOrganizationSettingsRequest struct {
 	ApiService OrganizationsApi
 	orgId string
 }
+
 type OrganizationsApiGetOrganizationSettingsQueryParams struct {
-		orgId string
+		OrgId string
 }
 
 func (r OrganizationsApiGetOrganizationSettingsRequest) Execute() (*OrganizationSettings, *http.Response, error) {
@@ -1120,9 +1127,10 @@ type OrganizationsApiListOrganizationInvitationsRequest struct {
 	orgId string
 	username *string
 }
+
 type OrganizationsApiListOrganizationInvitationsQueryParams struct {
-		orgId string
-		username *string
+		OrgId string
+		Username *string
 }
 
 // Email address of the user account invited to this organization. If you exclude this parameter, this resource returns all pending invitations.
@@ -1254,12 +1262,13 @@ type OrganizationsApiListOrganizationProjectsRequest struct {
 	pageNum *int32
 	name *string
 }
+
 type OrganizationsApiListOrganizationProjectsQueryParams struct {
-		orgId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		name *string
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		Name *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1436,11 +1445,12 @@ type OrganizationsApiListOrganizationUsersRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type OrganizationsApiListOrganizationUsersQueryParams struct {
-		orgId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1601,11 +1611,12 @@ type OrganizationsApiListOrganizationsRequest struct {
 	pageNum *int32
 	name *string
 }
+
 type OrganizationsApiListOrganizationsQueryParams struct {
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		name *string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		Name *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1764,9 +1775,10 @@ type OrganizationsApiRenameOrganizationRequest struct {
 	orgId string
 	organization *Organization
 }
+
 type OrganizationsApiRenameOrganizationQueryParams struct {
-		orgId string
-		organization *Organization
+		OrgId string
+		Organization *Organization
 }
 
 // Details to update on the specified organization.
@@ -1897,9 +1909,10 @@ type OrganizationsApiUpdateOrganizationInvitationRequest struct {
 	orgId string
 	organizationInvitationRequest *OrganizationInvitationRequest
 }
+
 type OrganizationsApiUpdateOrganizationInvitationQueryParams struct {
-		orgId string
-		organizationInvitationRequest *OrganizationInvitationRequest
+		OrgId string
+		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
 
 // Updates the details of one pending invitation to the specified organization.
@@ -2031,10 +2044,11 @@ type OrganizationsApiUpdateOrganizationInvitationByIdRequest struct {
 	invitationId string
 	organizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
 }
+
 type OrganizationsApiUpdateOrganizationInvitationByIdQueryParams struct {
-		orgId string
-		invitationId string
-		organizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
+		OrgId string
+		InvitationId string
+		OrganizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
 }
 
 // Updates the details of one pending invitation to the specified organization.
@@ -2174,9 +2188,10 @@ type OrganizationsApiUpdateOrganizationSettingsRequest struct {
 	orgId string
 	organizationSettings *OrganizationSettings
 }
+
 type OrganizationsApiUpdateOrganizationSettingsQueryParams struct {
-		orgId string
-		organizationSettings *OrganizationSettings
+		OrgId string
+		OrganizationSettings *OrganizationSettings
 }
 
 // Details to update on the specified organization&#39;s settings.

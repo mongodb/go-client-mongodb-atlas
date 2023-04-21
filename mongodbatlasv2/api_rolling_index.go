@@ -48,10 +48,11 @@ type RollingIndexApiCreateRollingIndexRequest struct {
 	clusterName string
 	indexRequest *IndexRequest
 }
+
 type RollingIndexApiCreateRollingIndexQueryParams struct {
-		groupId string
-		clusterName string
-		indexRequest *IndexRequest
+		GroupId string
+		ClusterName string
+		IndexRequest *IndexRequest
 }
 
 // Rolling index to create on the specified cluster.

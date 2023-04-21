@@ -52,10 +52,11 @@ type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobRequest struct {
 	clusterName string
 	restoreJob *RestoreJob
 }
+
 type LegacyBackupRestoreJobsApiCreateLegacyBackupRestoreJobQueryParams struct {
-		groupId string
-		clusterName string
-		restoreJob *RestoreJob
+		GroupId string
+		ClusterName string
+		RestoreJob *RestoreJob
 }
 
 // Legacy backup to restore to one cluster in the specified project.

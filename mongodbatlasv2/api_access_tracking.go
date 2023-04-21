@@ -70,14 +70,15 @@ type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
 	nLogs *int64
 	start *time.Time
 }
+
 type AccessTrackingApiListAccessLogsByClusterNameQueryParams struct {
-		groupId string
-		clusterName string
-		authResult *bool
-		end *string
-		ipAddress *string
-		nLogs *int64
-		start *time.Time
+		GroupId string
+		ClusterName string
+		AuthResult *bool
+		End *string
+		IpAddress *string
+		NLogs *int64
+		Start *time.Time
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.
@@ -260,14 +261,15 @@ type AccessTrackingApiListAccessLogsByHostnameRequest struct {
 	nLogs *int32
 	start *time.Time
 }
+
 type AccessTrackingApiListAccessLogsByHostnameQueryParams struct {
-		groupId string
-		hostname string
-		authResult *bool
-		end *time.Time
-		ipAddress *string
-		nLogs *int32
-		start *time.Time
+		GroupId string
+		Hostname string
+		AuthResult *bool
+		End *time.Time
+		IpAddress *string
+		NLogs *int32
+		Start *time.Time
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.

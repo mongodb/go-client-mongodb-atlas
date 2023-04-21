@@ -108,8 +108,9 @@ type LDAPConfigurationApiDeleteLDAPConfigurationRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 }
+
 type LDAPConfigurationApiDeleteLDAPConfigurationQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r LDAPConfigurationApiDeleteLDAPConfigurationRequest) Execute() (*http.Response, error) {
@@ -217,8 +218,9 @@ type LDAPConfigurationApiGetLDAPConfigurationRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 }
+
 type LDAPConfigurationApiGetLDAPConfigurationQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r LDAPConfigurationApiGetLDAPConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
@@ -338,9 +340,10 @@ type LDAPConfigurationApiGetLDAPConfigurationStatusRequest struct {
 	groupId string
 	requestId string
 }
+
 type LDAPConfigurationApiGetLDAPConfigurationStatusQueryParams struct {
-		groupId string
-		requestId string
+		GroupId string
+		RequestId string
 }
 
 func (r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
@@ -469,9 +472,10 @@ type LDAPConfigurationApiSaveLDAPConfigurationRequest struct {
 	groupId string
 	userSecurity *UserSecurity
 }
+
 type LDAPConfigurationApiSaveLDAPConfigurationQueryParams struct {
-		groupId string
-		userSecurity *UserSecurity
+		GroupId string
+		UserSecurity *UserSecurity
 }
 
 // Updates the LDAP configuration for the specified project.
@@ -604,9 +608,10 @@ type LDAPConfigurationApiVerifyLDAPConfigurationRequest struct {
 	groupId string
 	nDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
 }
+
 type LDAPConfigurationApiVerifyLDAPConfigurationQueryParams struct {
-		groupId string
-		nDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
+		GroupId string
+		NDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
 }
 
 // The LDAP configuration for the specified project that you want to verify.

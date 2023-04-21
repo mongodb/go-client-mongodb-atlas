@@ -82,10 +82,11 @@ type SharedTierSnapshotsApiDownloadSharedClusterBackupRequest struct {
 	groupId string
 	tenantRestore *TenantRestore
 }
+
 type SharedTierSnapshotsApiDownloadSharedClusterBackupQueryParams struct {
-		clusterName string
-		groupId string
-		tenantRestore *TenantRestore
+		ClusterName string
+		GroupId string
+		TenantRestore *TenantRestore
 }
 
 // Snapshot to be downloaded.
@@ -226,10 +227,11 @@ type SharedTierSnapshotsApiGetSharedClusterBackupRequest struct {
 	clusterName string
 	snapshotId string
 }
+
 type SharedTierSnapshotsApiGetSharedClusterBackupQueryParams struct {
-		groupId string
-		clusterName string
-		snapshotId string
+		GroupId string
+		ClusterName string
+		SnapshotId string
 }
 
 func (r SharedTierSnapshotsApiGetSharedClusterBackupRequest) Execute() (*TenantSnapshot, *http.Response, error) {
@@ -367,9 +369,10 @@ type SharedTierSnapshotsApiListSharedClusterBackupsRequest struct {
 	groupId string
 	clusterName string
 }
+
 type SharedTierSnapshotsApiListSharedClusterBackupsQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r SharedTierSnapshotsApiListSharedClusterBackupsRequest) Execute() (*PaginatedTenantSnapshot, *http.Response, error) {

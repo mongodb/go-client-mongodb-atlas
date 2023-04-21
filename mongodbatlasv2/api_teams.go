@@ -234,9 +234,10 @@ type TeamsApiAddAllTeamsToProjectRequest struct {
 	groupId string
 	teamRole *[]TeamRole
 }
+
 type TeamsApiAddAllTeamsToProjectQueryParams struct {
-		groupId string
-		teamRole *[]TeamRole
+		GroupId string
+		TeamRole *[]TeamRole
 }
 
 // Team to add to the specified project.
@@ -368,10 +369,11 @@ type TeamsApiAddTeamUserRequest struct {
 	teamId string
 	addUserToTeam *[]AddUserToTeam
 }
+
 type TeamsApiAddTeamUserQueryParams struct {
-		orgId string
-		teamId string
-		addUserToTeam *[]AddUserToTeam
+		OrgId string
+		TeamId string
+		AddUserToTeam *[]AddUserToTeam
 }
 
 // One or more MongoDB Cloud users that you want to add to the specified team.
@@ -511,9 +513,10 @@ type TeamsApiCreateTeamRequest struct {
 	orgId string
 	team *Team
 }
+
 type TeamsApiCreateTeamQueryParams struct {
-		orgId string
-		team *Team
+		OrgId string
+		Team *Team
 }
 
 // Team that you want to create in the specified organization.
@@ -644,9 +647,10 @@ type TeamsApiDeleteTeamRequest struct {
 	orgId string
 	teamId string
 }
+
 type TeamsApiDeleteTeamQueryParams struct {
-		orgId string
-		teamId string
+		OrgId string
+		TeamId string
 }
 
 func (r TeamsApiDeleteTeamRequest) Execute() (*http.Response, error) {
@@ -764,9 +768,10 @@ type TeamsApiGetTeamByIdRequest struct {
 	orgId string
 	teamId string
 }
+
 type TeamsApiGetTeamByIdQueryParams struct {
-		orgId string
-		teamId string
+		OrgId string
+		TeamId string
 }
 
 func (r TeamsApiGetTeamByIdRequest) Execute() (*TeamResponse, *http.Response, error) {
@@ -895,9 +900,10 @@ type TeamsApiGetTeamByNameRequest struct {
 	orgId string
 	teamName string
 }
+
 type TeamsApiGetTeamByNameQueryParams struct {
-		orgId string
-		teamName string
+		OrgId string
+		TeamName string
 }
 
 func (r TeamsApiGetTeamByNameRequest) Execute() (*TeamResponse, *http.Response, error) {
@@ -1022,11 +1028,12 @@ type TeamsApiListOrganizationTeamsRequest struct {
 	includeCount *bool
 	pageNum *int32
 }
+
 type TeamsApiListOrganizationTeamsQueryParams struct {
-		orgId string
-		itemsPerPage *int32
-		includeCount *bool
-		pageNum *int32
+		OrgId string
+		ItemsPerPage *int32
+		IncludeCount *bool
+		PageNum *int32
 }
 
 // Number of items that the response returns per page.
@@ -1187,11 +1194,12 @@ type TeamsApiListProjectTeamsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type TeamsApiListProjectTeamsQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1352,11 +1360,12 @@ type TeamsApiListTeamUsersRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type TeamsApiListTeamUsersQueryParams struct {
-		orgId string
-		teamId string
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		TeamId string
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Number of items that the response returns per page.
@@ -1511,9 +1520,10 @@ type TeamsApiRemoveProjectTeamRequest struct {
 	groupId string
 	teamId string
 }
+
 type TeamsApiRemoveProjectTeamQueryParams struct {
-		groupId string
-		teamId string
+		GroupId string
+		TeamId string
 }
 
 func (r TeamsApiRemoveProjectTeamRequest) Execute() (*http.Response, error) {
@@ -1632,10 +1642,11 @@ type TeamsApiRemoveTeamUserRequest struct {
 	teamId string
 	userId string
 }
+
 type TeamsApiRemoveTeamUserQueryParams struct {
-		orgId string
-		teamId string
-		userId string
+		OrgId string
+		TeamId string
+		UserId string
 }
 
 func (r TeamsApiRemoveTeamUserRequest) Execute() (*http.Response, error) {
@@ -1763,10 +1774,11 @@ type TeamsApiRenameTeamRequest struct {
 	teamId string
 	team *Team
 }
+
 type TeamsApiRenameTeamQueryParams struct {
-		orgId string
-		teamId string
-		team *Team
+		OrgId string
+		TeamId string
+		Team *Team
 }
 
 // Details to update on the specified team.
@@ -1907,10 +1919,11 @@ type TeamsApiUpdateTeamRolesRequest struct {
 	teamId string
 	teamRole *TeamRole
 }
+
 type TeamsApiUpdateTeamRolesQueryParams struct {
-		groupId string
-		teamId string
-		teamRole *TeamRole
+		GroupId string
+		TeamId string
+		TeamRole *TeamRole
 }
 
 // The project roles assigned to the specified team.

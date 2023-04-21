@@ -79,8 +79,9 @@ type MongoDBCloudUsersApiCreateUserRequest struct {
 	ApiService MongoDBCloudUsersApi
 	appUser *AppUser
 }
+
 type MongoDBCloudUsersApiCreateUserQueryParams struct {
-		appUser *AppUser
+		AppUser *AppUser
 }
 
 // MongoDB Cloud user account to create.
@@ -205,8 +206,9 @@ type MongoDBCloudUsersApiGetUserRequest struct {
 	ApiService MongoDBCloudUsersApi
 	userId string
 }
+
 type MongoDBCloudUsersApiGetUserQueryParams struct {
-		userId string
+		UserId string
 }
 
 func (r MongoDBCloudUsersApiGetUserRequest) Execute() (*AppUser, *http.Response, error) {
@@ -325,8 +327,9 @@ type MongoDBCloudUsersApiGetUserByUsernameRequest struct {
 	ApiService MongoDBCloudUsersApi
 	userName string
 }
+
 type MongoDBCloudUsersApiGetUserByUsernameQueryParams struct {
-		userName string
+		UserName string
 }
 
 func (r MongoDBCloudUsersApiGetUserByUsernameRequest) Execute() (*AppUser, *http.Response, error) {

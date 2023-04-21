@@ -105,10 +105,11 @@ type EventsApiGetOrganizationEventRequest struct {
 	eventId string
 	includeRaw *bool
 }
+
 type EventsApiGetOrganizationEventQueryParams struct {
-		orgId string
-		eventId string
-		includeRaw *bool
+		OrgId string
+		EventId string
+		IncludeRaw *bool
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
@@ -253,10 +254,11 @@ type EventsApiGetProjectEventRequest struct {
 	eventId string
 	includeRaw *bool
 }
+
 type EventsApiGetProjectEventQueryParams struct {
-		groupId string
-		eventId string
-		includeRaw *bool
+		GroupId string
+		EventId string
+		IncludeRaw *bool
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
@@ -406,15 +408,16 @@ type EventsApiListOrganizationEventsRequest struct {
 	maxDate *time.Time
 	minDate *time.Time
 }
+
 type EventsApiListOrganizationEventsQueryParams struct {
-		orgId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		eventType *EventTypeForOrg
-		includeRaw *bool
-		maxDate *time.Time
-		minDate *time.Time
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		EventType *EventTypeForOrg
+		IncludeRaw *bool
+		MaxDate *time.Time
+		MinDate *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -622,16 +625,17 @@ type EventsApiListProjectEventsRequest struct {
 	maxDate *time.Time
 	minDate *time.Time
 }
+
 type EventsApiListProjectEventsQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
-		clusterNames *[]string
-		eventType *EventTypeForNdsGroup
-		includeRaw *bool
-		maxDate *time.Time
-		minDate *time.Time
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
+		ClusterNames *[]string
+		EventType *EventTypeForNdsGroup
+		IncludeRaw *bool
+		MaxDate *time.Time
+		MinDate *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

@@ -275,10 +275,11 @@ type FederatedAuthenticationApiCreateRoleMappingRequest struct {
 	orgId string
 	roleMapping *RoleMapping
 }
+
 type FederatedAuthenticationApiCreateRoleMappingQueryParams struct {
-		federationSettingsId string
-		orgId string
-		roleMapping *RoleMapping
+		FederationSettingsId string
+		OrgId string
+		RoleMapping *RoleMapping
 }
 
 // The role mapping that you want to create.
@@ -417,8 +418,9 @@ type FederatedAuthenticationApiDeleteFederationAppRequest struct {
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
 }
+
 type FederatedAuthenticationApiDeleteFederationAppQueryParams struct {
-		federationSettingsId string
+		FederationSettingsId string
 }
 
 func (r FederatedAuthenticationApiDeleteFederationAppRequest) Execute() (*http.Response, error) {
@@ -528,10 +530,11 @@ type FederatedAuthenticationApiDeleteRoleMappingRequest struct {
 	id string
 	orgId string
 }
+
 type FederatedAuthenticationApiDeleteRoleMappingQueryParams struct {
-		federationSettingsId string
-		id string
-		orgId string
+		FederationSettingsId string
+		Id string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiDeleteRoleMappingRequest) Execute() (*http.Response, error) {
@@ -658,9 +661,10 @@ type FederatedAuthenticationApiGetConnectedOrgConfigRequest struct {
 	federationSettingsId string
 	orgId string
 }
+
 type FederatedAuthenticationApiGetConnectedOrgConfigQueryParams struct {
-		federationSettingsId string
-		orgId string
+		FederationSettingsId string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiGetConnectedOrgConfigRequest) Execute() (*ConnectedOrgConfig, *http.Response, error) {
@@ -788,8 +792,9 @@ type FederatedAuthenticationApiGetFederationSettingsRequest struct {
 	ApiService FederatedAuthenticationApi
 	orgId string
 }
+
 type FederatedAuthenticationApiGetFederationSettingsQueryParams struct {
-		orgId string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiGetFederationSettingsRequest) Execute() (*OrgFederationSettings, *http.Response, error) {
@@ -909,9 +914,10 @@ type FederatedAuthenticationApiGetIdentityProviderRequest struct {
 	federationSettingsId string
 	identityProviderId string
 }
+
 type FederatedAuthenticationApiGetIdentityProviderQueryParams struct {
-		federationSettingsId string
-		identityProviderId string
+		FederationSettingsId string
+		IdentityProviderId string
 }
 
 func (r FederatedAuthenticationApiGetIdentityProviderRequest) Execute() (*IdentityProvider, *http.Response, error) {
@@ -1040,9 +1046,10 @@ type FederatedAuthenticationApiGetIdentityProviderMetadataRequest struct {
 	federationSettingsId string
 	identityProviderId string
 }
+
 type FederatedAuthenticationApiGetIdentityProviderMetadataQueryParams struct {
-		federationSettingsId string
-		identityProviderId string
+		FederationSettingsId string
+		IdentityProviderId string
 }
 
 func (r FederatedAuthenticationApiGetIdentityProviderMetadataRequest) Execute() (string, *http.Response, error) {
@@ -1172,10 +1179,11 @@ type FederatedAuthenticationApiGetRoleMappingRequest struct {
 	id string
 	orgId string
 }
+
 type FederatedAuthenticationApiGetRoleMappingQueryParams struct {
-		federationSettingsId string
-		id string
-		orgId string
+		FederationSettingsId string
+		Id string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiGetRoleMappingRequest) Execute() (*RoleMapping, *http.Response, error) {
@@ -1312,8 +1320,9 @@ type FederatedAuthenticationApiListConnectedOrgConfigsRequest struct {
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
 }
+
 type FederatedAuthenticationApiListConnectedOrgConfigsQueryParams struct {
-		federationSettingsId string
+		FederationSettingsId string
 }
 
 func (r FederatedAuthenticationApiListConnectedOrgConfigsRequest) Execute() ([]ConnectedOrgConfig, *http.Response, error) {
@@ -1432,8 +1441,9 @@ type FederatedAuthenticationApiListIdentityProvidersRequest struct {
 	ApiService FederatedAuthenticationApi
 	federationSettingsId string
 }
+
 type FederatedAuthenticationApiListIdentityProvidersQueryParams struct {
-		federationSettingsId string
+		FederationSettingsId string
 }
 
 func (r FederatedAuthenticationApiListIdentityProvidersRequest) Execute() ([]IdentityProvider, *http.Response, error) {
@@ -1553,9 +1563,10 @@ type FederatedAuthenticationApiListRoleMappingsRequest struct {
 	federationSettingsId string
 	orgId string
 }
+
 type FederatedAuthenticationApiListRoleMappingsQueryParams struct {
-		federationSettingsId string
-		orgId string
+		FederationSettingsId string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiListRoleMappingsRequest) Execute() ([]RoleMapping, *http.Response, error) {
@@ -1684,9 +1695,10 @@ type FederatedAuthenticationApiRemoveConnectedOrgConfigRequest struct {
 	federationSettingsId string
 	orgId string
 }
+
 type FederatedAuthenticationApiRemoveConnectedOrgConfigQueryParams struct {
-		federationSettingsId string
-		orgId string
+		FederationSettingsId string
+		OrgId string
 }
 
 func (r FederatedAuthenticationApiRemoveConnectedOrgConfigRequest) Execute() (*http.Response, error) {
@@ -1805,10 +1817,11 @@ type FederatedAuthenticationApiUpdateConnectedOrgConfigRequest struct {
 	orgId string
 	connectedOrgConfig *ConnectedOrgConfig
 }
+
 type FederatedAuthenticationApiUpdateConnectedOrgConfigQueryParams struct {
-		federationSettingsId string
-		orgId string
-		connectedOrgConfig *ConnectedOrgConfig
+		FederationSettingsId string
+		OrgId string
+		ConnectedOrgConfig *ConnectedOrgConfig
 }
 
 // The connected organization configuration that you want to update.
@@ -1955,10 +1968,11 @@ type FederatedAuthenticationApiUpdateIdentityProviderRequest struct {
 	identityProviderId string
 	identityProviderUpdate *IdentityProviderUpdate
 }
+
 type FederatedAuthenticationApiUpdateIdentityProviderQueryParams struct {
-		federationSettingsId string
-		identityProviderId string
-		identityProviderUpdate *IdentityProviderUpdate
+		FederationSettingsId string
+		IdentityProviderId string
+		IdentityProviderUpdate *IdentityProviderUpdate
 }
 
 // The identity provider that you want to update.
@@ -2100,11 +2114,12 @@ type FederatedAuthenticationApiUpdateRoleMappingRequest struct {
 	orgId string
 	roleMapping *RoleMapping
 }
+
 type FederatedAuthenticationApiUpdateRoleMappingQueryParams struct {
-		federationSettingsId string
-		id string
-		orgId string
-		roleMapping *RoleMapping
+		FederationSettingsId string
+		Id string
+		OrgId string
+		RoleMapping *RoleMapping
 }
 
 // The role mapping that you want to update.

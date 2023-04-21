@@ -271,9 +271,10 @@ type DataFederationApiCreateDataFederationPrivateEndpointRequest struct {
 	groupId string
 	privateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
+
 type DataFederationApiCreateDataFederationPrivateEndpointQueryParams struct {
-		groupId string
-		privateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
+		GroupId string
+		PrivateNetworkEndpointIdEntry *PrivateNetworkEndpointIdEntry
 }
 
 // Private endpoint for Federated Database Instances and Online Archives to add to the specified project.
@@ -423,10 +424,11 @@ type DataFederationApiCreateFederatedDatabaseRequest struct {
 	dataLakeTenant *DataLakeTenant
 	skipRoleValidation *bool
 }
+
 type DataFederationApiCreateFederatedDatabaseQueryParams struct {
-		groupId string
-		dataLakeTenant *DataLakeTenant
-		skipRoleValidation *bool
+		GroupId string
+		DataLakeTenant *DataLakeTenant
+		SkipRoleValidation *bool
 }
 
 // Details to create one federated database instance in the specified project.
@@ -572,11 +574,12 @@ type DataFederationApiCreateOneDataFederationQueryLimitRequest struct {
 	limitName string
 	dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
 }
+
 type DataFederationApiCreateOneDataFederationQueryLimitQueryParams struct {
-		groupId string
-		tenantName string
-		limitName string
-		dataFederationTenantQueryLimit *DataFederationTenantQueryLimit
+		GroupId string
+		TenantName string
+		LimitName string
+		DataFederationTenantQueryLimit *DataFederationTenantQueryLimit
 }
 
 // Creates or updates one query limit for one federated database instance.
@@ -713,9 +716,10 @@ type DataFederationApiDeleteDataFederationPrivateEndpointRequest struct {
 	groupId string
 	endpointId string
 }
+
 type DataFederationApiDeleteDataFederationPrivateEndpointQueryParams struct {
-		groupId string
-		endpointId string
+		GroupId string
+		EndpointId string
 }
 
 func (r DataFederationApiDeleteDataFederationPrivateEndpointRequest) Execute() (*http.Response, error) {
@@ -833,9 +837,10 @@ type DataFederationApiDeleteFederatedDatabaseRequest struct {
 	groupId string
 	tenantName string
 }
+
 type DataFederationApiDeleteFederatedDatabaseQueryParams struct {
-		groupId string
-		tenantName string
+		GroupId string
+		TenantName string
 }
 
 func (r DataFederationApiDeleteFederatedDatabaseRequest) Execute() (*http.Response, error) {
@@ -948,10 +953,11 @@ type DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest struct {
 	tenantName string
 	limitName string
 }
+
 type DataFederationApiDeleteOneDataFederationInstanceQueryLimitQueryParams struct {
-		groupId string
-		tenantName string
-		limitName string
+		GroupId string
+		TenantName string
+		LimitName string
 }
 
 func (r DataFederationApiDeleteOneDataFederationInstanceQueryLimitRequest) Execute() (*http.Response, error) {
@@ -1068,11 +1074,12 @@ type DataFederationApiDownloadFederatedDatabaseQueryLogsRequest struct {
 	endDate *int64
 	startDate *int64
 }
+
 type DataFederationApiDownloadFederatedDatabaseQueryLogsQueryParams struct {
-		groupId string
-		tenantName string
-		endDate *int64
-		startDate *int64
+		GroupId string
+		TenantName string
+		EndDate *int64
+		StartDate *int64
 }
 
 // Timestamp that specifies the end point for the range of log messages to download.  MongoDB Cloud expresses this timestamp in the number of seconds that have elapsed since the UNIX epoch.
@@ -1213,9 +1220,10 @@ type DataFederationApiGetDataFederationPrivateEndpointRequest struct {
 	groupId string
 	endpointId string
 }
+
 type DataFederationApiGetDataFederationPrivateEndpointQueryParams struct {
-		groupId string
-		endpointId string
+		GroupId string
+		EndpointId string
 }
 
 func (r DataFederationApiGetDataFederationPrivateEndpointRequest) Execute() (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
@@ -1344,9 +1352,10 @@ type DataFederationApiGetFederatedDatabaseRequest struct {
 	groupId string
 	tenantName string
 }
+
 type DataFederationApiGetFederatedDatabaseQueryParams struct {
-		groupId string
-		tenantName string
+		GroupId string
+		TenantName string
 }
 
 func (r DataFederationApiGetFederatedDatabaseRequest) Execute() (*DataLakeTenant, *http.Response, error) {
@@ -1468,8 +1477,9 @@ type DataFederationApiListDataFederationPrivateEndpointsRequest struct {
 	ApiService DataFederationApi
 	groupId string
 }
+
 type DataFederationApiListDataFederationPrivateEndpointsQueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r DataFederationApiListDataFederationPrivateEndpointsRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
@@ -1589,9 +1599,10 @@ type DataFederationApiListFederatedDatabasesRequest struct {
 	groupId string
 	type_ *string
 }
+
 type DataFederationApiListFederatedDatabasesQueryParams struct {
-		groupId string
-		type_ *string
+		GroupId string
+		Type_ *string
 }
 
 // Type of Federated Database Instances to return.
@@ -1725,10 +1736,11 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitRequest struct {
 	tenantName string
 	limitName string
 }
+
 type DataFederationApiReturnFederatedDatabaseQueryLimitQueryParams struct {
-		groupId string
-		tenantName string
-		limitName string
+		GroupId string
+		TenantName string
+		LimitName string
 }
 
 func (r DataFederationApiReturnFederatedDatabaseQueryLimitRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
@@ -1854,9 +1866,10 @@ type DataFederationApiReturnFederatedDatabaseQueryLimitsRequest struct {
 	groupId string
 	tenantName string
 }
+
 type DataFederationApiReturnFederatedDatabaseQueryLimitsQueryParams struct {
-		groupId string
-		tenantName string
+		GroupId string
+		TenantName string
 }
 
 func (r DataFederationApiReturnFederatedDatabaseQueryLimitsRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
@@ -1981,11 +1994,12 @@ type DataFederationApiUpdateFederatedDatabaseRequest struct {
 	skipRoleValidation *bool
 	dataLakeTenant *DataLakeTenant
 }
+
 type DataFederationApiUpdateFederatedDatabaseQueryParams struct {
-		groupId string
-		tenantName string
-		skipRoleValidation *bool
-		dataLakeTenant *DataLakeTenant
+		GroupId string
+		TenantName string
+		SkipRoleValidation *bool
+		DataLakeTenant *DataLakeTenant
 }
 
 // Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket. AWS checks if the role can list the objects in the bucket before writing to it. Some IAM roles only need write permissions. This flag allows you to skip that check.

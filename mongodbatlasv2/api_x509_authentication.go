@@ -85,10 +85,11 @@ type X509AuthenticationApiCreateDatabaseUserCertificateRequest struct {
 	username string
 	userCert *UserCert
 }
+
 type X509AuthenticationApiCreateDatabaseUserCertificateQueryParams struct {
-		groupId string
-		username string
-		userCert *UserCert
+		GroupId string
+		Username string
+		UserCert *UserCert
 }
 
 // Generates one X.509 certificate for the specified MongoDB user.
@@ -214,8 +215,9 @@ type X509AuthenticationApiDisableCustomerManagedX509Request struct {
 	ApiService X509AuthenticationApi
 	groupId string
 }
+
 type X509AuthenticationApiDisableCustomerManagedX509QueryParams struct {
-		groupId string
+		GroupId string
 }
 
 func (r X509AuthenticationApiDisableCustomerManagedX509Request) Execute() (*UserSecurity, *http.Response, error) {
@@ -340,12 +342,13 @@ type X509AuthenticationApiListDatabaseUserCertificatesRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type X509AuthenticationApiListDatabaseUserCertificatesQueryParams struct {
-		groupId string
-		username string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		Username string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

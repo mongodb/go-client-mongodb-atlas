@@ -113,10 +113,11 @@ type GlobalClustersApiCreateCustomZoneMappingRequest struct {
 	clusterName string
 	geoSharding *GeoSharding
 }
+
 type GlobalClustersApiCreateCustomZoneMappingQueryParams struct {
-		groupId string
-		clusterName string
-		geoSharding *GeoSharding
+		GroupId string
+		ClusterName string
+		GeoSharding *GeoSharding
 }
 
 // Custom zone mapping to add to the specified global cluster.
@@ -257,10 +258,11 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	clusterName string
 	managedNamespace *ManagedNamespace
 }
+
 type GlobalClustersApiCreateManagedNamespaceQueryParams struct {
-		groupId string
-		clusterName string
-		managedNamespace *ManagedNamespace
+		GroupId string
+		ClusterName string
+		ManagedNamespace *ManagedNamespace
 }
 
 // Managed namespace to create within the specified global cluster.
@@ -400,9 +402,10 @@ type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
 	groupId string
 	clusterName string
 }
+
 type GlobalClustersApiDeleteAllCustomZoneMappingsQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) Execute() (*GeoSharding, *http.Response, error) {
@@ -533,11 +536,12 @@ type GlobalClustersApiDeleteManagedNamespaceRequest struct {
 	db *string
 	collection *string
 }
+
 type GlobalClustersApiDeleteManagedNamespaceQueryParams struct {
-		clusterName string
-		groupId string
-		db *string
-		collection *string
+		ClusterName string
+		GroupId string
+		Db *string
+		Collection *string
 }
 
 // Human-readable label that identifies the database that contains the collection.
@@ -684,9 +688,10 @@ type GlobalClustersApiGetManagedNamespaceRequest struct {
 	groupId string
 	clusterName string
 }
+
 type GlobalClustersApiGetManagedNamespaceQueryParams struct {
-		groupId string
-		clusterName string
+		GroupId string
+		ClusterName string
 }
 
 func (r GlobalClustersApiGetManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {

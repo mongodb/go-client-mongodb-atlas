@@ -112,9 +112,10 @@ type DatabaseUsersApiCreateDatabaseUserRequest struct {
 	groupId string
 	databaseUser *DatabaseUser
 }
+
 type DatabaseUsersApiCreateDatabaseUserQueryParams struct {
-		groupId string
-		databaseUser *DatabaseUser
+		GroupId string
+		DatabaseUser *DatabaseUser
 }
 
 // Creates one database user in the specified project.
@@ -246,10 +247,11 @@ type DatabaseUsersApiDeleteDatabaseUserRequest struct {
 	databaseName string
 	username string
 }
+
 type DatabaseUsersApiDeleteDatabaseUserQueryParams struct {
-		groupId string
-		databaseName string
-		username string
+		GroupId string
+		DatabaseName string
+		Username string
 }
 
 func (r DatabaseUsersApiDeleteDatabaseUserRequest) Execute() (*http.Response, error) {
@@ -365,10 +367,11 @@ type DatabaseUsersApiGetDatabaseUserRequest struct {
 	databaseName string
 	username string
 }
+
 type DatabaseUsersApiGetDatabaseUserQueryParams struct {
-		groupId string
-		databaseName string
-		username string
+		GroupId string
+		DatabaseName string
+		Username string
 }
 
 func (r DatabaseUsersApiGetDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
@@ -496,11 +499,12 @@ type DatabaseUsersApiListDatabaseUsersRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type DatabaseUsersApiListDatabaseUsersQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -661,11 +665,12 @@ type DatabaseUsersApiUpdateDatabaseUserRequest struct {
 	username string
 	databaseUser *DatabaseUser
 }
+
 type DatabaseUsersApiUpdateDatabaseUserQueryParams struct {
-		groupId string
-		databaseName string
-		username string
-		databaseUser *DatabaseUser
+		GroupId string
+		DatabaseName string
+		Username string
+		DatabaseUser *DatabaseUser
 }
 
 // Updates one database user that belongs to the specified project.

@@ -93,9 +93,10 @@ type InvoicesApiDownloadInvoiceCSVRequest struct {
 	orgId string
 	invoiceId string
 }
+
 type InvoicesApiDownloadInvoiceCSVQueryParams struct {
-		orgId string
-		invoiceId string
+		OrgId string
+		InvoiceId string
 }
 
 func (r InvoicesApiDownloadInvoiceCSVRequest) Execute() (*http.Response, error) {
@@ -207,9 +208,10 @@ type InvoicesApiGetInvoiceRequest struct {
 	orgId string
 	invoiceId string
 }
+
 type InvoicesApiGetInvoiceQueryParams struct {
-		orgId string
-		invoiceId string
+		OrgId string
+		InvoiceId string
 }
 
 func (r InvoicesApiGetInvoiceRequest) Execute() (*Invoice, *http.Response, error) {
@@ -340,11 +342,12 @@ type InvoicesApiListInvoicesRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type InvoicesApiListInvoicesQueryParams struct {
-		orgId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		OrgId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -502,8 +505,9 @@ type InvoicesApiListPendingInvoicesRequest struct {
 	ApiService InvoicesApi
 	orgId string
 }
+
 type InvoicesApiListPendingInvoicesQueryParams struct {
-		orgId string
+		OrgId string
 }
 
 func (r InvoicesApiListPendingInvoicesRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {

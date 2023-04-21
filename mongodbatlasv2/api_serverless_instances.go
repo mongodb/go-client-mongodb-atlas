@@ -109,9 +109,10 @@ type ServerlessInstancesApiCreateServerlessInstanceRequest struct {
 	groupId string
 	serverlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
 }
+
 type ServerlessInstancesApiCreateServerlessInstanceQueryParams struct {
-		groupId string
-		serverlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
+		GroupId string
+		ServerlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
 }
 
 // Create One Serverless Instance in One Project.
@@ -242,9 +243,10 @@ type ServerlessInstancesApiDeleteServerlessInstanceRequest struct {
 	groupId string
 	name string
 }
+
 type ServerlessInstancesApiDeleteServerlessInstanceQueryParams struct {
-		groupId string
-		name string
+		GroupId string
+		Name string
 }
 
 func (r ServerlessInstancesApiDeleteServerlessInstanceRequest) Execute() (*http.Response, error) {
@@ -362,9 +364,10 @@ type ServerlessInstancesApiGetServerlessInstanceRequest struct {
 	groupId string
 	name string
 }
+
 type ServerlessInstancesApiGetServerlessInstanceQueryParams struct {
-		groupId string
-		name string
+		GroupId string
+		Name string
 }
 
 func (r ServerlessInstancesApiGetServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
@@ -495,11 +498,12 @@ type ServerlessInstancesApiListServerlessInstancesRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+
 type ServerlessInstancesApiListServerlessInstancesQueryParams struct {
-		groupId string
-		includeCount *bool
-		itemsPerPage *int32
-		pageNum *int32
+		GroupId string
+		IncludeCount *bool
+		ItemsPerPage *int32
+		PageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -659,10 +663,11 @@ type ServerlessInstancesApiUpdateServerlessInstanceRequest struct {
 	name string
 	serverlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
 }
+
 type ServerlessInstancesApiUpdateServerlessInstanceQueryParams struct {
-		groupId string
-		name string
-		serverlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
+		GroupId string
+		Name string
+		ServerlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
 }
 
 // Update One Serverless Instance in One Project.

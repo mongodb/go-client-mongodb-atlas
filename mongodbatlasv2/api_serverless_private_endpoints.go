@@ -117,10 +117,11 @@ type ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointRequest struct 
 	instanceName string
 	serverlessTenantEndpointCreate *ServerlessTenantEndpointCreate
 }
+
 type ServerlessPrivateEndpointsApiCreateServerlessPrivateEndpointQueryParams struct {
-		groupId string
-		instanceName string
-		serverlessTenantEndpointCreate *ServerlessTenantEndpointCreate
+		GroupId string
+		InstanceName string
+		ServerlessTenantEndpointCreate *ServerlessTenantEndpointCreate
 }
 
 // Information about the Private Endpoint to create for the Serverless Instance.
@@ -260,10 +261,11 @@ type ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest struct 
 	instanceName string
 	endpointId string
 }
+
 type ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointQueryParams struct {
-		groupId string
-		instanceName string
-		endpointId string
+		GroupId string
+		InstanceName string
+		EndpointId string
 }
 
 func (r ServerlessPrivateEndpointsApiDeleteServerlessPrivateEndpointRequest) Execute() (*http.Response, error) {
@@ -388,10 +390,11 @@ type ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest struct {
 	instanceName string
 	endpointId string
 }
+
 type ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointQueryParams struct {
-		groupId string
-		instanceName string
-		endpointId string
+		GroupId string
+		InstanceName string
+		EndpointId string
 }
 
 func (r ServerlessPrivateEndpointsApiGetServerlessPrivateEndpointRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
@@ -526,9 +529,10 @@ type ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest struct {
 	groupId string
 	instanceName string
 }
+
 type ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsQueryParams struct {
-		groupId string
-		instanceName string
+		GroupId string
+		InstanceName string
 }
 
 func (r ServerlessPrivateEndpointsApiListServerlessPrivateEndpointsRequest) Execute() ([]ServerlessTenantEndpoint, *http.Response, error) {
@@ -656,11 +660,12 @@ type ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest struct 
 	endpointId string
 	serverlessTenantEndpointUpdate *ServerlessTenantEndpointUpdate
 }
+
 type ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointQueryParams struct {
-		groupId string
-		instanceName string
-		endpointId string
-		serverlessTenantEndpointUpdate *ServerlessTenantEndpointUpdate
+		GroupId string
+		InstanceName string
+		EndpointId string
+		ServerlessTenantEndpointUpdate *ServerlessTenantEndpointUpdate
 }
 
 func (r ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest) ServerlessTenantEndpointUpdate(serverlessTenantEndpointUpdate ServerlessTenantEndpointUpdate) ServerlessPrivateEndpointsApiUpdateServerlessPrivateEndpointRequest {
