@@ -185,6 +185,12 @@ func (r CreateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGro
 	return r.ApiService.CreateAlertConfigurationExecute(r)
 }
 
+func (r CreateAlertConfigurationApiRequest) ExecuteWithParams(params *CreateAlertConfigurationApiParams) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigViewForNdsGroup = params.AlertConfigViewForNdsGroup 
+	return r.Execute()
+}
+
 /*
 CreateAlertConfiguration Create One Alert Configuration in One Project
 
@@ -315,6 +321,12 @@ func (r DeleteAlertConfigurationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAlertConfigurationExecute(r)
 }
 
+func (r DeleteAlertConfigurationApiRequest) ExecuteWithParams(params *DeleteAlertConfigurationApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigId = params.AlertConfigId 
+	return r.Execute()
+}
+
 /*
 DeleteAlertConfiguration Remove One Alert Configuration from One Project
 
@@ -436,6 +448,12 @@ type GetAlertConfigurationApiParams struct {
 
 func (r GetAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetAlertConfigurationExecute(r)
+}
+
+func (r GetAlertConfigurationApiRequest) ExecuteWithParams(params *GetAlertConfigurationApiParams) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigId = params.AlertConfigId 
+	return r.Execute()
 }
 
 /*
@@ -566,6 +584,10 @@ type ListAlertConfigurationMatchersFieldNamesApiParams struct {
 
 func (r ListAlertConfigurationMatchersFieldNamesApiRequest) Execute() ([]MatcherField, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
+}
+
+func (r ListAlertConfigurationMatchersFieldNamesApiRequest) ExecuteWithParams(params *ListAlertConfigurationMatchersFieldNamesApiParams) ([]MatcherField, *http.Response, error) {
+	return r.Execute()
 }
 
 /*
@@ -702,6 +724,14 @@ func (r ListAlertConfigurationsApiRequest) PageNum(pageNum int32) ListAlertConfi
 
 func (r ListAlertConfigurationsApiRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationsExecute(r)
+}
+
+func (r ListAlertConfigurationsApiRequest) ExecuteWithParams(params *ListAlertConfigurationsApiParams) (*PaginatedAlertConfig, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -874,6 +904,15 @@ func (r ListAlertConfigurationsByAlertIdApiRequest) Execute() (*PaginatedAlertCo
 	return r.ApiService.ListAlertConfigurationsByAlertIdExecute(r)
 }
 
+func (r ListAlertConfigurationsByAlertIdApiRequest) ExecuteWithParams(params *ListAlertConfigurationsByAlertIdApiParams) (*PaginatedAlertConfig, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertId = params.AlertId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
 
@@ -1037,6 +1076,13 @@ func (r ToggleAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGro
 	return r.ApiService.ToggleAlertConfigurationExecute(r)
 }
 
+func (r ToggleAlertConfigurationApiRequest) ExecuteWithParams(params *ToggleAlertConfigurationApiParams) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigId = params.AlertConfigId 
+	r.toggle = params.Toggle 
+	return r.Execute()
+}
+
 /*
 ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
 
@@ -1184,6 +1230,13 @@ func (r UpdateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConf
 
 func (r UpdateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.UpdateAlertConfigurationExecute(r)
+}
+
+func (r UpdateAlertConfigurationApiRequest) ExecuteWithParams(params *UpdateAlertConfigurationApiParams) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigId = params.AlertConfigId 
+	r.alertConfigViewForNdsGroup = params.AlertConfigViewForNdsGroup 
+	return r.Execute()
 }
 
 /*

@@ -288,6 +288,13 @@ func (r CreateRoleMappingApiRequest) Execute() (*RoleMapping, *http.Response, er
 	return r.ApiService.CreateRoleMappingExecute(r)
 }
 
+func (r CreateRoleMappingApiRequest) ExecuteWithParams(params *CreateRoleMappingApiParams) (*RoleMapping, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.orgId = params.OrgId 
+	r.roleMapping = params.RoleMapping 
+	return r.Execute()
+}
+
 /*
 CreateRoleMapping Add One Role Mapping to One Organization
 
@@ -423,6 +430,11 @@ func (r DeleteFederationAppApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteFederationAppExecute(r)
 }
 
+func (r DeleteFederationAppApiRequest) ExecuteWithParams(params *DeleteFederationAppApiParams) (*http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	return r.Execute()
+}
+
 /*
 DeleteFederationApp Delete the federation settings instance.
 
@@ -535,6 +547,13 @@ type DeleteRoleMappingApiParams struct {
 
 func (r DeleteRoleMappingApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteRoleMappingExecute(r)
+}
+
+func (r DeleteRoleMappingApiRequest) ExecuteWithParams(params *DeleteRoleMappingApiParams) (*http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.id = params.Id 
+	r.orgId = params.OrgId 
+	return r.Execute()
 }
 
 /*
@@ -667,6 +686,12 @@ func (r GetConnectedOrgConfigApiRequest) Execute() (*ConnectedOrgConfig, *http.R
 	return r.ApiService.GetConnectedOrgConfigExecute(r)
 }
 
+func (r GetConnectedOrgConfigApiRequest) ExecuteWithParams(params *GetConnectedOrgConfigApiParams) (*ConnectedOrgConfig, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 GetConnectedOrgConfig Return One Org Config Connected to One Federation
 
@@ -797,6 +822,11 @@ func (r GetFederationSettingsApiRequest) Execute() (*OrgFederationSettings, *htt
 	return r.ApiService.GetFederationSettingsExecute(r)
 }
 
+func (r GetFederationSettingsApiRequest) ExecuteWithParams(params *GetFederationSettingsApiParams) (*OrgFederationSettings, *http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 GetFederationSettings Return Federation Settings for One Organization
 
@@ -918,6 +948,12 @@ type GetIdentityProviderApiParams struct {
 
 func (r GetIdentityProviderApiRequest) Execute() (*IdentityProvider, *http.Response, error) {
 	return r.ApiService.GetIdentityProviderExecute(r)
+}
+
+func (r GetIdentityProviderApiRequest) ExecuteWithParams(params *GetIdentityProviderApiParams) (*IdentityProvider, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.identityProviderId = params.IdentityProviderId 
+	return r.Execute()
 }
 
 /*
@@ -1052,6 +1088,12 @@ func (r GetIdentityProviderMetadataApiRequest) Execute() (string, *http.Response
 	return r.ApiService.GetIdentityProviderMetadataExecute(r)
 }
 
+func (r GetIdentityProviderMetadataApiRequest) ExecuteWithParams(params *GetIdentityProviderMetadataApiParams) (string, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.identityProviderId = params.IdentityProviderId 
+	return r.Execute()
+}
+
 /*
 GetIdentityProviderMetadata Return the metadata of one identity provider in the specified federation.
 
@@ -1184,6 +1226,13 @@ type GetRoleMappingApiParams struct {
 
 func (r GetRoleMappingApiRequest) Execute() (*RoleMapping, *http.Response, error) {
 	return r.ApiService.GetRoleMappingExecute(r)
+}
+
+func (r GetRoleMappingApiRequest) ExecuteWithParams(params *GetRoleMappingApiParams) (*RoleMapping, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.id = params.Id 
+	r.orgId = params.OrgId 
+	return r.Execute()
 }
 
 /*
@@ -1325,6 +1374,11 @@ func (r ListConnectedOrgConfigsApiRequest) Execute() ([]ConnectedOrgConfig, *htt
 	return r.ApiService.ListConnectedOrgConfigsExecute(r)
 }
 
+func (r ListConnectedOrgConfigsApiRequest) ExecuteWithParams(params *ListConnectedOrgConfigsApiParams) ([]ConnectedOrgConfig, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	return r.Execute()
+}
+
 /*
 ListConnectedOrgConfigs Return All Connected Org Configs from the Federation
 
@@ -1444,6 +1498,11 @@ type ListIdentityProvidersApiParams struct {
 
 func (r ListIdentityProvidersApiRequest) Execute() ([]IdentityProvider, *http.Response, error) {
 	return r.ApiService.ListIdentityProvidersExecute(r)
+}
+
+func (r ListIdentityProvidersApiRequest) ExecuteWithParams(params *ListIdentityProvidersApiParams) ([]IdentityProvider, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	return r.Execute()
 }
 
 /*
@@ -1567,6 +1626,12 @@ type ListRoleMappingsApiParams struct {
 
 func (r ListRoleMappingsApiRequest) Execute() ([]RoleMapping, *http.Response, error) {
 	return r.ApiService.ListRoleMappingsExecute(r)
+}
+
+func (r ListRoleMappingsApiRequest) ExecuteWithParams(params *ListRoleMappingsApiParams) ([]RoleMapping, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.orgId = params.OrgId 
+	return r.Execute()
 }
 
 /*
@@ -1701,6 +1766,12 @@ func (r RemoveConnectedOrgConfigApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveConnectedOrgConfigExecute(r)
 }
 
+func (r RemoveConnectedOrgConfigApiRequest) ExecuteWithParams(params *RemoveConnectedOrgConfigApiParams) (*http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 RemoveConnectedOrgConfig Remove One Org Config Connected to One Federation
 
@@ -1828,6 +1899,13 @@ func (r UpdateConnectedOrgConfigApiRequest) ConnectedOrgConfig(connectedOrgConfi
 
 func (r UpdateConnectedOrgConfigApiRequest) Execute() (*ConnectedOrgConfig, *http.Response, error) {
 	return r.ApiService.UpdateConnectedOrgConfigExecute(r)
+}
+
+func (r UpdateConnectedOrgConfigApiRequest) ExecuteWithParams(params *UpdateConnectedOrgConfigApiParams) (*ConnectedOrgConfig, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.orgId = params.OrgId 
+	r.connectedOrgConfig = params.ConnectedOrgConfig 
+	return r.Execute()
 }
 
 /*
@@ -1981,6 +2059,13 @@ func (r UpdateIdentityProviderApiRequest) Execute() (*IdentityProvider, *http.Re
 	return r.ApiService.UpdateIdentityProviderExecute(r)
 }
 
+func (r UpdateIdentityProviderApiRequest) ExecuteWithParams(params *UpdateIdentityProviderApiParams) (*IdentityProvider, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.identityProviderId = params.IdentityProviderId 
+	r.identityProviderUpdate = params.IdentityProviderUpdate 
+	return r.Execute()
+}
+
 /*
 UpdateIdentityProvider Update the identity provider.
 
@@ -2126,6 +2211,14 @@ func (r UpdateRoleMappingApiRequest) RoleMapping(roleMapping RoleMapping) Update
 
 func (r UpdateRoleMappingApiRequest) Execute() (*RoleMapping, *http.Response, error) {
 	return r.ApiService.UpdateRoleMappingExecute(r)
+}
+
+func (r UpdateRoleMappingApiRequest) ExecuteWithParams(params *UpdateRoleMappingApiParams) (*RoleMapping, *http.Response, error) {
+	r.federationSettingsId = params.FederationSettingsId 
+	r.id = params.Id 
+	r.orgId = params.OrgId 
+	r.roleMapping = params.RoleMapping 
+	return r.Execute()
 }
 
 /*

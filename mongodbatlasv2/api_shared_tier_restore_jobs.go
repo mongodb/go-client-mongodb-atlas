@@ -95,6 +95,13 @@ func (r CreateSharedClusterBackupRestoreJobApiRequest) Execute() (*TenantRestore
 	return r.ApiService.CreateSharedClusterBackupRestoreJobExecute(r)
 }
 
+func (r CreateSharedClusterBackupRestoreJobApiRequest) ExecuteWithParams(params *CreateSharedClusterBackupRestoreJobApiParams) (*TenantRestore, *http.Response, error) {
+	r.clusterName = params.ClusterName 
+	r.groupId = params.GroupId 
+	r.tenantRestore = params.TenantRestore 
+	return r.Execute()
+}
+
 /*
 CreateSharedClusterBackupRestoreJob Create One Restore Job from One M2 or M5 Cluster
 
@@ -232,6 +239,13 @@ type GetSharedClusterBackupRestoreJobApiParams struct {
 
 func (r GetSharedClusterBackupRestoreJobApiRequest) Execute() (*TenantRestore, *http.Response, error) {
 	return r.ApiService.GetSharedClusterBackupRestoreJobExecute(r)
+}
+
+func (r GetSharedClusterBackupRestoreJobApiRequest) ExecuteWithParams(params *GetSharedClusterBackupRestoreJobApiParams) (*TenantRestore, *http.Response, error) {
+	r.clusterName = params.ClusterName 
+	r.groupId = params.GroupId 
+	r.restoreId = params.RestoreId 
+	return r.Execute()
 }
 
 /*
@@ -373,6 +387,12 @@ type ListSharedClusterBackupRestoreJobsApiParams struct {
 
 func (r ListSharedClusterBackupRestoreJobsApiRequest) Execute() (*PaginatedTenantRestore, *http.Response, error) {
 	return r.ApiService.ListSharedClusterBackupRestoreJobsExecute(r)
+}
+
+func (r ListSharedClusterBackupRestoreJobsApiRequest) ExecuteWithParams(params *ListSharedClusterBackupRestoreJobsApiParams) (*PaginatedTenantRestore, *http.Response, error) {
+	r.clusterName = params.ClusterName 
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*

@@ -246,6 +246,12 @@ func (r AddAllTeamsToProjectApiRequest) Execute() (*PaginatedTeamRole, *http.Res
 	return r.ApiService.AddAllTeamsToProjectExecute(r)
 }
 
+func (r AddAllTeamsToProjectApiRequest) ExecuteWithParams(params *AddAllTeamsToProjectApiParams) (*PaginatedTeamRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.teamRole = params.TeamRole 
+	return r.Execute()
+}
+
 /*
 AddAllTeamsToProject Add One or More Teams to One Project
 
@@ -380,6 +386,13 @@ func (r AddTeamUserApiRequest) AddUserToTeam(addUserToTeam []AddUserToTeam) AddT
 
 func (r AddTeamUserApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.AddTeamUserExecute(r)
+}
+
+func (r AddTeamUserApiRequest) ExecuteWithParams(params *AddTeamUserApiParams) (*PaginatedApiAppUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	r.addUserToTeam = params.AddUserToTeam 
+	return r.Execute()
 }
 
 /*
@@ -525,6 +538,12 @@ func (r CreateTeamApiRequest) Execute() (*Team, *http.Response, error) {
 	return r.ApiService.CreateTeamExecute(r)
 }
 
+func (r CreateTeamApiRequest) ExecuteWithParams(params *CreateTeamApiParams) (*Team, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.team = params.Team 
+	return r.Execute()
+}
+
 /*
 CreateTeam Create One Team in One Organization
 
@@ -653,6 +672,12 @@ func (r DeleteTeamApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteTeamExecute(r)
 }
 
+func (r DeleteTeamApiRequest) ExecuteWithParams(params *DeleteTeamApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	return r.Execute()
+}
+
 /*
 DeleteTeam Remove One Team from One Organization
 
@@ -772,6 +797,12 @@ type GetTeamByIdApiParams struct {
 
 func (r GetTeamByIdApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByIdExecute(r)
+}
+
+func (r GetTeamByIdApiRequest) ExecuteWithParams(params *GetTeamByIdApiParams) (*TeamResponse, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	return r.Execute()
 }
 
 /*
@@ -904,6 +935,12 @@ type GetTeamByNameApiParams struct {
 
 func (r GetTeamByNameApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.GetTeamByNameExecute(r)
+}
+
+func (r GetTeamByNameApiRequest) ExecuteWithParams(params *GetTeamByNameApiParams) (*TeamResponse, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamName = params.TeamName 
+	return r.Execute()
 }
 
 /*
@@ -1052,6 +1089,14 @@ func (r ListOrganizationTeamsApiRequest) PageNum(pageNum int32) ListOrganization
 
 func (r ListOrganizationTeamsApiRequest) Execute() (*PaginatedTeam, *http.Response, error) {
 	return r.ApiService.ListOrganizationTeamsExecute(r)
+}
+
+func (r ListOrganizationTeamsApiRequest) ExecuteWithParams(params *ListOrganizationTeamsApiParams) (*PaginatedTeam, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.includeCount = params.IncludeCount 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -1220,6 +1265,14 @@ func (r ListProjectTeamsApiRequest) Execute() (*PaginatedTeamRole, *http.Respons
 	return r.ApiService.ListProjectTeamsExecute(r)
 }
 
+func (r ListProjectTeamsApiRequest) ExecuteWithParams(params *ListProjectTeamsApiParams) (*PaginatedTeamRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListProjectTeams Return All Teams in One Project
 
@@ -1380,6 +1433,14 @@ func (r ListTeamUsersApiRequest) Execute() (*PaginatedApiAppUser, *http.Response
 	return r.ApiService.ListTeamUsersExecute(r)
 }
 
+func (r ListTeamUsersApiRequest) ExecuteWithParams(params *ListTeamUsersApiParams) (*PaginatedApiAppUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListTeamUsers Return All MongoDB Cloud Users Assigned to One Team
 
@@ -1526,6 +1587,12 @@ func (r RemoveProjectTeamApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectTeamExecute(r)
 }
 
+func (r RemoveProjectTeamApiRequest) ExecuteWithParams(params *RemoveProjectTeamApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.teamId = params.TeamId 
+	return r.Execute()
+}
+
 /*
 RemoveProjectTeam Remove One Team from One Project
 
@@ -1647,6 +1714,13 @@ type RemoveTeamUserApiParams struct {
 
 func (r RemoveTeamUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveTeamUserExecute(r)
+}
+
+func (r RemoveTeamUserApiRequest) ExecuteWithParams(params *RemoveTeamUserApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	r.userId = params.UserId 
+	return r.Execute()
 }
 
 /*
@@ -1785,6 +1859,13 @@ func (r RenameTeamApiRequest) Team(team Team) RenameTeamApiRequest {
 
 func (r RenameTeamApiRequest) Execute() (*TeamResponse, *http.Response, error) {
 	return r.ApiService.RenameTeamExecute(r)
+}
+
+func (r RenameTeamApiRequest) ExecuteWithParams(params *RenameTeamApiParams) (*TeamResponse, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.teamId = params.TeamId 
+	r.team = params.Team 
+	return r.Execute()
 }
 
 /*
@@ -1930,6 +2011,13 @@ func (r UpdateTeamRolesApiRequest) TeamRole(teamRole TeamRole) UpdateTeamRolesAp
 
 func (r UpdateTeamRolesApiRequest) Execute() (*PaginatedTeamRole, *http.Response, error) {
 	return r.ApiService.UpdateTeamRolesExecute(r)
+}
+
+func (r UpdateTeamRolesApiRequest) ExecuteWithParams(params *UpdateTeamRolesApiParams) (*PaginatedTeamRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.teamId = params.TeamId 
+	r.teamRole = params.TeamRole 
+	return r.Execute()
 }
 
 /*

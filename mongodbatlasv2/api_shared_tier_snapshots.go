@@ -95,6 +95,13 @@ func (r DownloadSharedClusterBackupApiRequest) Execute() (*TenantRestore, *http.
 	return r.ApiService.DownloadSharedClusterBackupExecute(r)
 }
 
+func (r DownloadSharedClusterBackupApiRequest) ExecuteWithParams(params *DownloadSharedClusterBackupApiParams) (*TenantRestore, *http.Response, error) {
+	r.clusterName = params.ClusterName 
+	r.groupId = params.GroupId 
+	r.tenantRestore = params.TenantRestore 
+	return r.Execute()
+}
+
 /*
 DownloadSharedClusterBackup Download One M2 or M5 Cluster Snapshot
 
@@ -232,6 +239,13 @@ type GetSharedClusterBackupApiParams struct {
 
 func (r GetSharedClusterBackupApiRequest) Execute() (*TenantSnapshot, *http.Response, error) {
 	return r.ApiService.GetSharedClusterBackupExecute(r)
+}
+
+func (r GetSharedClusterBackupApiRequest) ExecuteWithParams(params *GetSharedClusterBackupApiParams) (*TenantSnapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.snapshotId = params.SnapshotId 
+	return r.Execute()
 }
 
 /*
@@ -373,6 +387,12 @@ type ListSharedClusterBackupsApiParams struct {
 
 func (r ListSharedClusterBackupsApiRequest) Execute() (*PaginatedTenantSnapshot, *http.Response, error) {
 	return r.ApiService.ListSharedClusterBackupsExecute(r)
+}
+
+func (r ListSharedClusterBackupsApiRequest) ExecuteWithParams(params *ListSharedClusterBackupsApiParams) (*PaginatedTenantSnapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*

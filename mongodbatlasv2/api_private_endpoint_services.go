@@ -194,6 +194,14 @@ func (r CreatePrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, e
 	return r.ApiService.CreatePrivateEndpointExecute(r)
 }
 
+func (r CreatePrivateEndpointApiRequest) ExecuteWithParams(params *CreatePrivateEndpointApiParams) (*Endpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.endpointServiceId = params.EndpointServiceId 
+	r.createPrivateEndpointRequest = params.CreatePrivateEndpointRequest 
+	return r.Execute()
+}
+
 /*
 CreatePrivateEndpoint Create One Private Endpoint for One Provider
 
@@ -340,6 +348,12 @@ func (r CreatePrivateEndpointServiceApiRequest) Execute() (*EndpointService, *ht
 	return r.ApiService.CreatePrivateEndpointServiceExecute(r)
 }
 
+func (r CreatePrivateEndpointServiceApiRequest) ExecuteWithParams(params *CreatePrivateEndpointServiceApiParams) (*EndpointService, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.createEndpointServiceRequest = params.CreateEndpointServiceRequest 
+	return r.Execute()
+}
+
 /*
 CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
 
@@ -472,6 +486,14 @@ func (r DeletePrivateEndpointApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePrivateEndpointExecute(r)
 }
 
+func (r DeletePrivateEndpointApiRequest) ExecuteWithParams(params *DeletePrivateEndpointApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.endpointId = params.EndpointId 
+	r.endpointServiceId = params.EndpointServiceId 
+	return r.Execute()
+}
+
 /*
 DeletePrivateEndpoint Remove One Private Endpoint for One Provider
 
@@ -601,6 +623,13 @@ func (r DeletePrivateEndpointServiceApiRequest) Execute() (*http.Response, error
 	return r.ApiService.DeletePrivateEndpointServiceExecute(r)
 }
 
+func (r DeletePrivateEndpointServiceApiRequest) ExecuteWithParams(params *DeletePrivateEndpointServiceApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.endpointServiceId = params.EndpointServiceId 
+	return r.Execute()
+}
+
 /*
 DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
 
@@ -727,6 +756,14 @@ type GetPrivateEndpointApiParams struct {
 
 func (r GetPrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, error) {
 	return r.ApiService.GetPrivateEndpointExecute(r)
+}
+
+func (r GetPrivateEndpointApiRequest) ExecuteWithParams(params *GetPrivateEndpointApiParams) (*Endpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.endpointId = params.EndpointId 
+	r.endpointServiceId = params.EndpointServiceId 
+	return r.Execute()
 }
 
 /*
@@ -869,6 +906,13 @@ func (r GetPrivateEndpointServiceApiRequest) Execute() (*EndpointService, *http.
 	return r.ApiService.GetPrivateEndpointServiceExecute(r)
 }
 
+func (r GetPrivateEndpointServiceApiRequest) ExecuteWithParams(params *GetPrivateEndpointServiceApiParams) (*EndpointService, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.endpointServiceId = params.EndpointServiceId 
+	return r.Execute()
+}
+
 /*
 GetPrivateEndpointService Return One Private Endpoint Service for One Provider
 
@@ -1002,6 +1046,11 @@ func (r GetRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSett
 	return r.ApiService.GetRegionalizedPrivateEndpointSettingExecute(r)
 }
 
+func (r GetRegionalizedPrivateEndpointSettingApiRequest) ExecuteWithParams(params *GetRegionalizedPrivateEndpointSettingApiParams) (*ProjectSettingItem, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
 
@@ -1123,6 +1172,12 @@ type ListPrivateEndpointServicesApiParams struct {
 
 func (r ListPrivateEndpointServicesApiRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	return r.ApiService.ListPrivateEndpointServicesExecute(r)
+}
+
+func (r ListPrivateEndpointServicesApiRequest) ExecuteWithParams(params *ListPrivateEndpointServicesApiParams) (*PaginatedPrivateLinkConnection, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	return r.Execute()
 }
 
 /*
@@ -1255,6 +1310,12 @@ func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) ProjectSettingItem(p
 
 func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
 	return r.ApiService.ToggleRegionalizedPrivateEndpointSettingExecute(r)
+}
+
+func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) ExecuteWithParams(params *ToggleRegionalizedPrivateEndpointSettingApiParams) (*ProjectSettingItem, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.projectSettingItem = params.ProjectSettingItem 
+	return r.Execute()
 }
 
 /*

@@ -86,6 +86,12 @@ func (r EndOutageSimulationApiRequest) Execute() (*ClusterOutageSimulation, *htt
 	return r.ApiService.EndOutageSimulationExecute(r)
 }
 
+func (r EndOutageSimulationApiRequest) ExecuteWithParams(params *EndOutageSimulationApiParams) (*ClusterOutageSimulation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
+}
+
 /*
 EndOutageSimulation End an Outage Simulation
 
@@ -216,6 +222,12 @@ type GetOutageSimulationApiParams struct {
 
 func (r GetOutageSimulationApiRequest) Execute() (*ClusterOutageSimulation, *http.Response, error) {
 	return r.ApiService.GetOutageSimulationExecute(r)
+}
+
+func (r GetOutageSimulationApiRequest) ExecuteWithParams(params *GetOutageSimulationApiParams) (*ClusterOutageSimulation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -356,6 +368,13 @@ func (r StartOutageSimulationApiRequest) ClusterOutageSimulation(clusterOutageSi
 
 func (r StartOutageSimulationApiRequest) Execute() (*ClusterOutageSimulation, *http.Response, error) {
 	return r.ApiService.StartOutageSimulationExecute(r)
+}
+
+func (r StartOutageSimulationApiRequest) ExecuteWithParams(params *StartOutageSimulationApiParams) (*ClusterOutageSimulation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.clusterOutageSimulation = params.ClusterOutageSimulation 
+	return r.Execute()
 }
 
 /*

@@ -136,6 +136,12 @@ func (r CreateClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Respon
 	return r.ApiService.CreateClusterExecute(r)
 }
 
+func (r CreateClusterApiRequest) ExecuteWithParams(params *CreateClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterDescriptionV15 = params.ClusterDescriptionV15 
+	return r.Execute()
+}
+
 /*
 CreateCluster Create One Multi-Cloud Cluster from One Project
 
@@ -272,6 +278,13 @@ func (r DeleteClusterApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteClusterExecute(r)
 }
 
+func (r DeleteClusterApiRequest) ExecuteWithParams(params *DeleteClusterApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.retainBackups = params.RetainBackups 
+	return r.Execute()
+}
+
 /*
 DeleteCluster Remove One Multi-Cloud Cluster from One Project
 
@@ -394,6 +407,12 @@ type GetClusterApiParams struct {
 
 func (r GetClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
 	return r.ApiService.GetClusterExecute(r)
+}
+
+func (r GetClusterApiRequest) ExecuteWithParams(params *GetClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -550,6 +569,14 @@ func (r ListClustersApiRequest) Execute() (*PaginatedClusterDescriptionV15, *htt
 	return r.ApiService.ListClustersExecute(r)
 }
 
+func (r ListClustersApiRequest) ExecuteWithParams(params *ListClustersApiParams) (*PaginatedClusterDescriptionV15, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListClusters Return All Multi-Cloud Clusters from One Project
 
@@ -694,6 +721,12 @@ func (r TestFailoverApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.TestFailoverExecute(r)
 }
 
+func (r TestFailoverApiRequest) ExecuteWithParams(params *TestFailoverApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
+}
+
 /*
 TestFailover Test Failover for One Multi-Cloud Cluster
 
@@ -821,6 +854,13 @@ func (r UpdateClusterApiRequest) ClusterDescriptionV15(clusterDescriptionV15 Clu
 
 func (r UpdateClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
 	return r.ApiService.UpdateClusterExecute(r)
+}
+
+func (r UpdateClusterApiRequest) ExecuteWithParams(params *UpdateClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.clusterDescriptionV15 = params.ClusterDescriptionV15 
+	return r.Execute()
 }
 
 /*

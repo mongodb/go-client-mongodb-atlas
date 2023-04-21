@@ -107,6 +107,11 @@ func (r DeferMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeferMaintenanceWindowExecute(r)
 }
 
+func (r DeferMaintenanceWindowApiRequest) ExecuteWithParams(params *DeferMaintenanceWindowApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DeferMaintenanceWindow Defer One Maintenance Window for One Project
 
@@ -215,6 +220,11 @@ type GetMaintenanceWindowApiParams struct {
 
 func (r GetMaintenanceWindowApiRequest) Execute() (*GroupMaintenanceWindow, *http.Response, error) {
 	return r.ApiService.GetMaintenanceWindowExecute(r)
+}
+
+func (r GetMaintenanceWindowApiRequest) ExecuteWithParams(params *GetMaintenanceWindowApiParams) (*GroupMaintenanceWindow, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -338,6 +348,11 @@ func (r ResetMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ResetMaintenanceWindowExecute(r)
 }
 
+func (r ResetMaintenanceWindowApiRequest) ExecuteWithParams(params *ResetMaintenanceWindowApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 ResetMaintenanceWindow Reset One Maintenance Window for One Project
 
@@ -446,6 +461,11 @@ type ToggleMaintenanceAutoDeferApiParams struct {
 
 func (r ToggleMaintenanceAutoDeferApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ToggleMaintenanceAutoDeferExecute(r)
+}
+
+func (r ToggleMaintenanceAutoDeferApiRequest) ExecuteWithParams(params *ToggleMaintenanceAutoDeferApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -564,6 +584,12 @@ func (r UpdateMaintenanceWindowApiRequest) GroupMaintenanceWindow(groupMaintenan
 
 func (r UpdateMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.UpdateMaintenanceWindowExecute(r)
+}
+
+func (r UpdateMaintenanceWindowApiRequest) ExecuteWithParams(params *UpdateMaintenanceWindowApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.groupMaintenanceWindow = params.GroupMaintenanceWindow 
+	return r.Execute()
 }
 
 /*

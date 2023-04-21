@@ -54,6 +54,11 @@ func (r VersionedExampleApiRequest) Execute() (*ExampleResourceResponseView20230
 	return r.ApiService.VersionedExampleExecute(r)
 }
 
+func (r VersionedExampleApiRequest) ExecuteWithParams(params *VersionedExampleApiParams) (*ExampleResourceResponseView20230201, *http.Response, error) {
+	r.additionalInfo = params.AdditionalInfo 
+	return r.Execute()
+}
+
 /*
 VersionedExample Example resource info for versioning of the Atlas API
 

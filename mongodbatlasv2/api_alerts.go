@@ -117,6 +117,13 @@ func (r AcknowledgeAlertApiRequest) Execute() (*AlertViewForNdsGroup, *http.Resp
 	return r.ApiService.AcknowledgeAlertExecute(r)
 }
 
+func (r AcknowledgeAlertApiRequest) ExecuteWithParams(params *AcknowledgeAlertApiParams) (*AlertViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertId = params.AlertId 
+	r.alertViewForNdsGroup = params.AlertViewForNdsGroup 
+	return r.Execute()
+}
+
 /*
 AcknowledgeAlert Acknowledge One Alert from One Project
 
@@ -254,6 +261,12 @@ type GetAlertApiParams struct {
 
 func (r GetAlertApiRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetAlertExecute(r)
+}
+
+func (r GetAlertApiRequest) ExecuteWithParams(params *GetAlertApiParams) (*AlertViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertId = params.AlertId 
+	return r.Execute()
 }
 
 /*
@@ -418,6 +431,15 @@ func (r ListAlertsApiRequest) Status(status string) ListAlertsApiRequest {
 
 func (r ListAlertsApiRequest) Execute() (*PaginatedAlert, *http.Response, error) {
 	return r.ApiService.ListAlertsExecute(r)
+}
+
+func (r ListAlertsApiRequest) ExecuteWithParams(params *ListAlertsApiParams) (*PaginatedAlert, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.status = params.Status 
+	return r.Execute()
 }
 
 /*
@@ -591,6 +613,15 @@ func (r ListAlertsByAlertConfigurationIdApiRequest) PageNum(pageNum int32) ListA
 
 func (r ListAlertsByAlertConfigurationIdApiRequest) Execute() (*PaginatedAlert, *http.Response, error) {
 	return r.ApiService.ListAlertsByAlertConfigurationIdExecute(r)
+}
+
+func (r ListAlertsByAlertConfigurationIdApiRequest) ExecuteWithParams(params *ListAlertsByAlertConfigurationIdApiParams) (*PaginatedAlert, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.alertConfigId = params.AlertConfigId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*

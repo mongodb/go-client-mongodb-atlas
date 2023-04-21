@@ -251,6 +251,12 @@ func (r CreatePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response,
 	return r.ApiService.CreatePipelineExecute(r)
 }
 
+func (r CreatePipelineApiRequest) ExecuteWithParams(params *CreatePipelineApiParams) (*IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.ingestionPipeline = params.IngestionPipeline 
+	return r.Execute()
+}
+
 /*
 CreatePipeline Create One Data Lake Pipeline
 
@@ -379,6 +385,12 @@ func (r DeletePipelineApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePipelineExecute(r)
 }
 
+func (r DeletePipelineApiRequest) ExecuteWithParams(params *DeletePipelineApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	return r.Execute()
+}
+
 /*
 DeletePipeline Remove One Data Lake Pipeline
 
@@ -500,6 +512,13 @@ type DeletePipelineRunDatasetApiParams struct {
 
 func (r DeletePipelineRunDatasetApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePipelineRunDatasetExecute(r)
+}
+
+func (r DeletePipelineRunDatasetApiRequest) ExecuteWithParams(params *DeletePipelineRunDatasetApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.pipelineRunId = params.PipelineRunId 
+	return r.Execute()
 }
 
 /*
@@ -630,6 +649,12 @@ type GetPipelineApiParams struct {
 
 func (r GetPipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
 	return r.ApiService.GetPipelineExecute(r)
+}
+
+func (r GetPipelineApiRequest) ExecuteWithParams(params *GetPipelineApiParams) (*IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	return r.Execute()
 }
 
 /*
@@ -764,6 +789,13 @@ type GetPipelineRunApiParams struct {
 
 func (r GetPipelineRunApiRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
 	return r.ApiService.GetPipelineRunExecute(r)
+}
+
+func (r GetPipelineRunApiRequest) ExecuteWithParams(params *GetPipelineRunApiParams) (*IngestionPipelineRun, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.pipelineRunId = params.PipelineRunId 
+	return r.Execute()
 }
 
 /*
@@ -939,6 +971,16 @@ func (r ListPipelineRunsApiRequest) Execute() (*PaginatedPipelineRun, *http.Resp
 	return r.ApiService.ListPipelineRunsExecute(r)
 }
 
+func (r ListPipelineRunsApiRequest) ExecuteWithParams(params *ListPipelineRunsApiParams) (*PaginatedPipelineRun, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.createdBefore = params.CreatedBefore 
+	return r.Execute()
+}
+
 /*
 ListPipelineRuns Return All Data Lake Pipeline Runs from One Project
 
@@ -1093,6 +1135,12 @@ type ListPipelineSchedulesApiParams struct {
 
 func (r ListPipelineSchedulesApiRequest) Execute() ([]PolicyItem, *http.Response, error) {
 	return r.ApiService.ListPipelineSchedulesExecute(r)
+}
+
+func (r ListPipelineSchedulesApiRequest) ExecuteWithParams(params *ListPipelineSchedulesApiParams) ([]PolicyItem, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	return r.Execute()
 }
 
 /*
@@ -1259,6 +1307,16 @@ func (r ListPipelineSnapshotsApiRequest) Execute() (*PaginatedBackupSnapshot, *h
 	return r.ApiService.ListPipelineSnapshotsExecute(r)
 }
 
+func (r ListPipelineSnapshotsApiRequest) ExecuteWithParams(params *ListPipelineSnapshotsApiParams) (*PaginatedBackupSnapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.completedAfter = params.CompletedAfter 
+	return r.Execute()
+}
+
 /*
 ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
 
@@ -1413,6 +1471,11 @@ func (r ListPipelinesApiRequest) Execute() ([]IngestionPipeline, *http.Response,
 	return r.ApiService.ListPipelinesExecute(r)
 }
 
+func (r ListPipelinesApiRequest) ExecuteWithParams(params *ListPipelinesApiParams) ([]IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 ListPipelines Return All Data Lake Pipelines from One Project
 
@@ -1534,6 +1597,12 @@ type PausePipelineApiParams struct {
 
 func (r PausePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
 	return r.ApiService.PausePipelineExecute(r)
+}
+
+func (r PausePipelineApiRequest) ExecuteWithParams(params *PausePipelineApiParams) (*IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	return r.Execute()
 }
 
 /*
@@ -1666,6 +1735,12 @@ type ResumePipelineApiParams struct {
 
 func (r ResumePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
 	return r.ApiService.ResumePipelineExecute(r)
+}
+
+func (r ResumePipelineApiRequest) ExecuteWithParams(params *ResumePipelineApiParams) (*IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	return r.Execute()
 }
 
 /*
@@ -1806,6 +1881,13 @@ func (r TriggerSnapshotIngestionApiRequest) TriggerIngestionRequest(triggerInges
 
 func (r TriggerSnapshotIngestionApiRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
 	return r.ApiService.TriggerSnapshotIngestionExecute(r)
+}
+
+func (r TriggerSnapshotIngestionApiRequest) ExecuteWithParams(params *TriggerSnapshotIngestionApiParams) (*IngestionPipelineRun, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.triggerIngestionRequest = params.TriggerIngestionRequest 
+	return r.Execute()
 }
 
 /*
@@ -1951,6 +2033,13 @@ func (r UpdatePipelineApiRequest) IngestionPipeline(ingestionPipeline IngestionP
 
 func (r UpdatePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
 	return r.ApiService.UpdatePipelineExecute(r)
+}
+
+func (r UpdatePipelineApiRequest) ExecuteWithParams(params *UpdatePipelineApiParams) (*IngestionPipeline, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.pipelineName = params.PipelineName 
+	r.ingestionPipeline = params.IngestionPipeline 
+	return r.Execute()
 }
 
 /*

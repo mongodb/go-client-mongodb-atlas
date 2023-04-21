@@ -265,6 +265,13 @@ func (r AddProjectApiKeyApiRequest) Execute() (*ApiUser, *http.Response, error) 
 	return r.ApiService.AddProjectApiKeyExecute(r)
 }
 
+func (r AddProjectApiKeyApiRequest) ExecuteWithParams(params *AddProjectApiKeyApiParams) (*ApiUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.apiUserId = params.ApiUserId 
+	r.userRoleAssignment = params.UserRoleAssignment 
+	return r.Execute()
+}
+
 /*
 AddProjectApiKey Assign One Organization API Key to One Project
 
@@ -406,6 +413,12 @@ func (r CreateApiKeyApiRequest) CreateApiKey(createApiKey CreateApiKey) CreateAp
 
 func (r CreateApiKeyApiRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.CreateApiKeyExecute(r)
+}
+
+func (r CreateApiKeyApiRequest) ExecuteWithParams(params *CreateApiKeyApiParams) (*ApiUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.createApiKey = params.CreateApiKey 
+	return r.Execute()
 }
 
 /*
@@ -566,6 +579,16 @@ func (r CreateApiKeyAccessListApiRequest) PageNum(pageNum int32) CreateApiKeyAcc
 
 func (r CreateApiKeyAccessListApiRequest) Execute() (*UserAccessList, *http.Response, error) {
 	return r.ApiService.CreateApiKeyAccessListExecute(r)
+}
+
+func (r CreateApiKeyAccessListApiRequest) ExecuteWithParams(params *CreateApiKeyAccessListApiParams) (*UserAccessList, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	r.userAccessList = params.UserAccessList 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -732,6 +755,12 @@ func (r CreateProjectApiKeyApiRequest) Execute() (*ApiUser, *http.Response, erro
 	return r.ApiService.CreateProjectApiKeyExecute(r)
 }
 
+func (r CreateProjectApiKeyApiRequest) ExecuteWithParams(params *CreateProjectApiKeyApiParams) (*ApiUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.createApiKey = params.CreateApiKey 
+	return r.Execute()
+}
+
 /*
 CreateProjectApiKey Create and Assign One Organization API Key to One Project
 
@@ -860,6 +889,12 @@ func (r DeleteApiKeyApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApiKeyExecute(r)
 }
 
+func (r DeleteApiKeyApiRequest) ExecuteWithParams(params *DeleteApiKeyApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	return r.Execute()
+}
+
 /*
 DeleteApiKey Remove One Organization API Key
 
@@ -981,6 +1016,13 @@ type DeleteApiKeyAccessListEntryApiParams struct {
 
 func (r DeleteApiKeyAccessListEntryApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApiKeyAccessListEntryExecute(r)
+}
+
+func (r DeleteApiKeyAccessListEntryApiRequest) ExecuteWithParams(params *DeleteApiKeyAccessListEntryApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	r.ipAddress = params.IpAddress 
+	return r.Execute()
 }
 
 /*
@@ -1105,6 +1147,12 @@ type GetApiKeyApiParams struct {
 
 func (r GetApiKeyApiRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.GetApiKeyExecute(r)
+}
+
+func (r GetApiKeyApiRequest) ExecuteWithParams(params *GetApiKeyApiParams) (*ApiUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	return r.Execute()
 }
 
 /*
@@ -1239,6 +1287,13 @@ type GetApiKeyAccessListApiParams struct {
 
 func (r GetApiKeyAccessListApiRequest) Execute() (*UserAccessList, *http.Response, error) {
 	return r.ApiService.GetApiKeyAccessListExecute(r)
+}
+
+func (r GetApiKeyAccessListApiRequest) ExecuteWithParams(params *GetApiKeyAccessListApiParams) (*UserAccessList, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.ipAddress = params.IpAddress 
+	r.apiUserId = params.ApiUserId 
+	return r.Execute()
 }
 
 /*
@@ -1398,6 +1453,15 @@ func (r ListApiKeyAccessListsEntriesApiRequest) PageNum(pageNum int32) ListApiKe
 
 func (r ListApiKeyAccessListsEntriesApiRequest) Execute() (*PaginatedApiUserAccessList, *http.Response, error) {
 	return r.ApiService.ListApiKeyAccessListsEntriesExecute(r)
+}
+
+func (r ListApiKeyAccessListsEntriesApiRequest) ExecuteWithParams(params *ListApiKeyAccessListsEntriesApiParams) (*PaginatedApiUserAccessList, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -1575,6 +1639,14 @@ func (r ListApiKeysApiRequest) Execute() (*PaginatedApiApiUser, *http.Response, 
 	return r.ApiService.ListApiKeysExecute(r)
 }
 
+func (r ListApiKeysApiRequest) ExecuteWithParams(params *ListApiKeysApiParams) (*PaginatedApiApiUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListApiKeys Return All Organization API Keys
 
@@ -1741,6 +1813,14 @@ func (r ListProjectApiKeysApiRequest) Execute() (*PaginatedApiApiUser, *http.Res
 	return r.ApiService.ListProjectApiKeysExecute(r)
 }
 
+func (r ListProjectApiKeysApiRequest) ExecuteWithParams(params *ListProjectApiKeysApiParams) (*PaginatedApiApiUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListProjectApiKeys Return All Organization API Keys Assigned to One Project
 
@@ -1885,6 +1965,12 @@ func (r RemoveProjectApiKeyApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectApiKeyExecute(r)
 }
 
+func (r RemoveProjectApiKeyApiRequest) ExecuteWithParams(params *RemoveProjectApiKeyApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.apiUserId = params.ApiUserId 
+	return r.Execute()
+}
+
 /*
 RemoveProjectApiKey Unassign One Organization API Key from One Project
 
@@ -2012,6 +2098,13 @@ func (r UpdateApiKeyApiRequest) ApiUser(apiUser ApiUser) UpdateApiKeyApiRequest 
 
 func (r UpdateApiKeyApiRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyExecute(r)
+}
+
+func (r UpdateApiKeyApiRequest) ExecuteWithParams(params *UpdateApiKeyApiParams) (*ApiUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.apiUserId = params.ApiUserId 
+	r.apiUser = params.ApiUser 
+	return r.Execute()
 }
 
 /*
@@ -2181,6 +2274,16 @@ func (r UpdateApiKeyRolesApiRequest) IncludeCount(includeCount bool) UpdateApiKe
 
 func (r UpdateApiKeyRolesApiRequest) Execute() (*ApiUser, *http.Response, error) {
 	return r.ApiService.UpdateApiKeyRolesExecute(r)
+}
+
+func (r UpdateApiKeyRolesApiRequest) ExecuteWithParams(params *UpdateApiKeyRolesApiParams) (*ApiUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.apiUserId = params.ApiUserId 
+	r.createApiKey = params.CreateApiKey 
+	r.pageNum = params.PageNum 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.includeCount = params.IncludeCount 
+	return r.Execute()
 }
 
 /*

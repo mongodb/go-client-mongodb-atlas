@@ -126,6 +126,13 @@ func (r CreateCustomZoneMappingApiRequest) Execute() (*GeoSharding, *http.Respon
 	return r.ApiService.CreateCustomZoneMappingExecute(r)
 }
 
+func (r CreateCustomZoneMappingApiRequest) ExecuteWithParams(params *CreateCustomZoneMappingApiParams) (*GeoSharding, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.geoSharding = params.GeoSharding 
+	return r.Execute()
+}
+
 /*
 CreateCustomZoneMapping Add One Entry to One Custom Zone Mapping
 
@@ -271,6 +278,13 @@ func (r CreateManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Respons
 	return r.ApiService.CreateManagedNamespaceExecute(r)
 }
 
+func (r CreateManagedNamespaceApiRequest) ExecuteWithParams(params *CreateManagedNamespaceApiParams) (*GeoSharding, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.managedNamespace = params.ManagedNamespace 
+	return r.Execute()
+}
+
 /*
 CreateManagedNamespace Create One Managed Namespace in One Global Multi-Cloud Cluster
 
@@ -406,6 +420,12 @@ type DeleteAllCustomZoneMappingsApiParams struct {
 
 func (r DeleteAllCustomZoneMappingsApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.DeleteAllCustomZoneMappingsExecute(r)
+}
+
+func (r DeleteAllCustomZoneMappingsApiRequest) ExecuteWithParams(params *DeleteAllCustomZoneMappingsApiParams) (*GeoSharding, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -556,6 +576,14 @@ func (r DeleteManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Respons
 	return r.ApiService.DeleteManagedNamespaceExecute(r)
 }
 
+func (r DeleteManagedNamespaceApiRequest) ExecuteWithParams(params *DeleteManagedNamespaceApiParams) (*GeoSharding, *http.Response, error) {
+	r.clusterName = params.ClusterName 
+	r.groupId = params.GroupId 
+	r.db = params.Db 
+	r.collection = params.Collection 
+	return r.Execute()
+}
+
 /*
 DeleteManagedNamespace Remove One Managed Namespace from One Global Multi-Cloud Cluster
 
@@ -692,6 +720,12 @@ type GetManagedNamespaceApiParams struct {
 
 func (r GetManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.GetManagedNamespaceExecute(r)
+}
+
+func (r GetManagedNamespaceApiRequest) ExecuteWithParams(params *GetManagedNamespaceApiParams) (*GeoSharding, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*

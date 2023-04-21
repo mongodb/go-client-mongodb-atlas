@@ -126,6 +126,13 @@ func (r AuthorizeCloudProviderAccessRoleApiRequest) Execute() (*CloudProviderAcc
 	return r.ApiService.AuthorizeCloudProviderAccessRoleExecute(r)
 }
 
+func (r AuthorizeCloudProviderAccessRoleApiRequest) ExecuteWithParams(params *AuthorizeCloudProviderAccessRoleApiParams) (*CloudProviderAccessRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.roleId = params.RoleId 
+	r.cloudProviderAccessRole = params.CloudProviderAccessRole 
+	return r.Execute()
+}
+
 /*
 AuthorizeCloudProviderAccessRole Authorize One Cloud Provider Access Role
 
@@ -269,6 +276,12 @@ func (r CreateCloudProviderAccessRoleApiRequest) Execute() (*CloudProviderAccess
 	return r.ApiService.CreateCloudProviderAccessRoleExecute(r)
 }
 
+func (r CreateCloudProviderAccessRoleApiRequest) ExecuteWithParams(params *CreateCloudProviderAccessRoleApiParams) (*CloudProviderAccessRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProviderAccessRole = params.CloudProviderAccessRole 
+	return r.Execute()
+}
+
 /*
 CreateCloudProviderAccessRole Create One Cloud Provider Access Role
 
@@ -401,6 +414,13 @@ func (r DeauthorizeCloudProviderAccessRoleApiRequest) Execute() (*http.Response,
 	return r.ApiService.DeauthorizeCloudProviderAccessRoleExecute(r)
 }
 
+func (r DeauthorizeCloudProviderAccessRoleApiRequest) ExecuteWithParams(params *DeauthorizeCloudProviderAccessRoleApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProvider = params.CloudProvider 
+	r.roleId = params.RoleId 
+	return r.Execute()
+}
+
 /*
 DeauthorizeCloudProviderAccessRole Deauthorize One Cloud Provider Access Role
 
@@ -523,6 +543,12 @@ type GetCloudProviderAccessRoleApiParams struct {
 
 func (r GetCloudProviderAccessRoleApiRequest) Execute() (*CloudProviderAccess, *http.Response, error) {
 	return r.ApiService.GetCloudProviderAccessRoleExecute(r)
+}
+
+func (r GetCloudProviderAccessRoleApiRequest) ExecuteWithParams(params *GetCloudProviderAccessRoleApiParams) (*CloudProviderAccess, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.roleId = params.RoleId 
+	return r.Execute()
 }
 
 /*
@@ -653,6 +679,11 @@ type ListCloudProviderAccessRolesApiParams struct {
 
 func (r ListCloudProviderAccessRolesApiRequest) Execute() (*CloudProviderAccess, *http.Response, error) {
 	return r.ApiService.ListCloudProviderAccessRolesExecute(r)
+}
+
+func (r ListCloudProviderAccessRolesApiRequest) ExecuteWithParams(params *ListCloudProviderAccessRolesApiParams) (*CloudProviderAccess, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*

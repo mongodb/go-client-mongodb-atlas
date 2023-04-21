@@ -47,6 +47,10 @@ func (r GetSystemStatusApiRequest) Execute() (*SystemStatus, *http.Response, err
 	return r.ApiService.GetSystemStatusExecute(r)
 }
 
+func (r GetSystemStatusApiRequest) ExecuteWithParams(params *GetSystemStatusApiParams) (*SystemStatus, *http.Response, error) {
+	return r.Execute()
+}
+
 /*
 GetSystemStatus Return the status of this MongoDB application
 

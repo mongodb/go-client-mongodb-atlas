@@ -121,6 +121,12 @@ func (r CreateServerlessInstanceApiRequest) Execute() (*ServerlessInstanceDescri
 	return r.ApiService.CreateServerlessInstanceExecute(r)
 }
 
+func (r CreateServerlessInstanceApiRequest) ExecuteWithParams(params *CreateServerlessInstanceApiParams) (*ServerlessInstanceDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.serverlessInstanceDescriptionCreate = params.ServerlessInstanceDescriptionCreate 
+	return r.Execute()
+}
+
 /*
 CreateServerlessInstance Create One Serverless Instance in One Project
 
@@ -249,6 +255,12 @@ func (r DeleteServerlessInstanceApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteServerlessInstanceExecute(r)
 }
 
+func (r DeleteServerlessInstanceApiRequest) ExecuteWithParams(params *DeleteServerlessInstanceApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.name = params.Name 
+	return r.Execute()
+}
+
 /*
 DeleteServerlessInstance Remove One Serverless Instance from One Project
 
@@ -368,6 +380,12 @@ type GetServerlessInstanceApiParams struct {
 
 func (r GetServerlessInstanceApiRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
 	return r.ApiService.GetServerlessInstanceExecute(r)
+}
+
+func (r GetServerlessInstanceApiRequest) ExecuteWithParams(params *GetServerlessInstanceApiParams) (*ServerlessInstanceDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.name = params.Name 
+	return r.Execute()
 }
 
 /*
@@ -524,6 +542,14 @@ func (r ListServerlessInstancesApiRequest) Execute() (*PaginatedServerlessInstan
 	return r.ApiService.ListServerlessInstancesExecute(r)
 }
 
+func (r ListServerlessInstancesApiRequest) ExecuteWithParams(params *ListServerlessInstancesApiParams) (*PaginatedServerlessInstanceDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListServerlessInstances Return All Serverless Instances from One Project
 
@@ -674,6 +700,13 @@ func (r UpdateServerlessInstanceApiRequest) ServerlessInstanceDescriptionUpdate(
 
 func (r UpdateServerlessInstanceApiRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
 	return r.ApiService.UpdateServerlessInstanceExecute(r)
+}
+
+func (r UpdateServerlessInstanceApiRequest) ExecuteWithParams(params *UpdateServerlessInstanceApiParams) (*ServerlessInstanceDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.name = params.Name 
+	r.serverlessInstanceDescriptionUpdate = params.ServerlessInstanceDescriptionUpdate 
+	return r.Execute()
 }
 
 /*

@@ -145,6 +145,15 @@ func (r CreateProjectIpAccessListApiRequest) Execute() (*PaginatedNetworkAccess,
 	return r.ApiService.CreateProjectIpAccessListExecute(r)
 }
 
+func (r CreateProjectIpAccessListApiRequest) ExecuteWithParams(params *CreateProjectIpAccessListApiParams) (*PaginatedNetworkAccess, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.networkPermissionEntry = params.NetworkPermissionEntry 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 CreateProjectIpAccessList Add Entries to Project IP Access List
 
@@ -294,6 +303,12 @@ func (r DeleteProjectIpAccessListApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectIpAccessListExecute(r)
 }
 
+func (r DeleteProjectIpAccessListApiRequest) ExecuteWithParams(params *DeleteProjectIpAccessListApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.entryValue = params.EntryValue 
+	return r.Execute()
+}
+
 /*
 DeleteProjectIpAccessList Remove One Entry from One Project IP Access List
 
@@ -407,6 +422,12 @@ type GetProjectIpAccessListStatusApiParams struct {
 
 func (r GetProjectIpAccessListStatusApiRequest) Execute() (*NetworkPermissionEntryStatus, *http.Response, error) {
 	return r.ApiService.GetProjectIpAccessListStatusExecute(r)
+}
+
+func (r GetProjectIpAccessListStatusApiRequest) ExecuteWithParams(params *GetProjectIpAccessListStatusApiParams) (*NetworkPermissionEntryStatus, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.entryValue = params.EntryValue 
+	return r.Execute()
 }
 
 /*
@@ -533,6 +554,12 @@ type GetProjectIpListApiParams struct {
 
 func (r GetProjectIpListApiRequest) Execute() (*NetworkPermissionEntry, *http.Response, error) {
 	return r.ApiService.GetProjectIpListExecute(r)
+}
+
+func (r GetProjectIpListApiRequest) ExecuteWithParams(params *GetProjectIpListApiParams) (*NetworkPermissionEntry, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.entryValue = params.EntryValue 
+	return r.Execute()
 }
 
 /*
@@ -681,6 +708,14 @@ func (r ListProjectIpAccessListsApiRequest) PageNum(pageNum int32) ListProjectIp
 
 func (r ListProjectIpAccessListsApiRequest) Execute() (*PaginatedNetworkAccess, *http.Response, error) {
 	return r.ApiService.ListProjectIpAccessListsExecute(r)
+}
+
+func (r ListProjectIpAccessListsApiRequest) ExecuteWithParams(params *ListProjectIpAccessListsApiParams) (*PaginatedNetworkAccess, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*

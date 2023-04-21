@@ -70,6 +70,11 @@ func (r GetEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Respo
 	return r.ApiService.GetEncryptionAtRestExecute(r)
 }
 
+func (r GetEncryptionAtRestApiRequest) ExecuteWithParams(params *GetEncryptionAtRestApiParams) (*EncryptionAtRest, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 GetEncryptionAtRest Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
@@ -199,6 +204,12 @@ func (r UpdateEncryptionAtRestApiRequest) EncryptionAtRest(encryptionAtRest Encr
 
 func (r UpdateEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
 	return r.ApiService.UpdateEncryptionAtRestExecute(r)
+}
+
+func (r UpdateEncryptionAtRestApiRequest) ExecuteWithParams(params *UpdateEncryptionAtRestApiParams) (*EncryptionAtRest, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.encryptionAtRest = params.EncryptionAtRest 
+	return r.Execute()
 }
 
 /*

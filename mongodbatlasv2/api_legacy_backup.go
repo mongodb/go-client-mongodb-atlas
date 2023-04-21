@@ -242,6 +242,13 @@ func (r DeleteLegacySnapshotApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLegacySnapshotExecute(r)
 }
 
+func (r DeleteLegacySnapshotApiRequest) ExecuteWithParams(params *DeleteLegacySnapshotApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.snapshotId = params.SnapshotId 
+	return r.Execute()
+}
+
 /*
 DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
@@ -375,6 +382,13 @@ type GetLegacyBackupCheckpointApiParams struct {
 
 func (r GetLegacyBackupCheckpointApiRequest) Execute() (*Checkpoint, *http.Response, error) {
 	return r.ApiService.GetLegacyBackupCheckpointExecute(r)
+}
+
+func (r GetLegacyBackupCheckpointApiRequest) ExecuteWithParams(params *GetLegacyBackupCheckpointApiParams) (*Checkpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.checkpointId = params.CheckpointId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -521,6 +535,13 @@ type GetLegacyBackupRestoreJobApiParams struct {
 
 func (r GetLegacyBackupRestoreJobApiRequest) Execute() (*RestoreJob, *http.Response, error) {
 	return r.ApiService.GetLegacyBackupRestoreJobExecute(r)
+}
+
+func (r GetLegacyBackupRestoreJobApiRequest) ExecuteWithParams(params *GetLegacyBackupRestoreJobApiParams) (*RestoreJob, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.jobId = params.JobId 
+	return r.Execute()
 }
 
 /*
@@ -671,6 +692,13 @@ func (r GetLegacySnapshotApiRequest) Execute() (*Snapshot, *http.Response, error
 	return r.ApiService.GetLegacySnapshotExecute(r)
 }
 
+func (r GetLegacySnapshotApiRequest) ExecuteWithParams(params *GetLegacySnapshotApiParams) (*Snapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.snapshotId = params.SnapshotId 
+	return r.Execute()
+}
+
 /*
 GetLegacySnapshot Return One Legacy Backup Snapshot
 
@@ -813,6 +841,12 @@ type GetLegacySnapshotScheduleApiParams struct {
 
 func (r GetLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
 	return r.ApiService.GetLegacySnapshotScheduleExecute(r)
+}
+
+func (r GetLegacySnapshotScheduleApiRequest) ExecuteWithParams(params *GetLegacySnapshotScheduleApiParams) (*SnapshotSchedule, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -974,6 +1008,15 @@ func (r ListLegacyBackupCheckpointsApiRequest) PageNum(pageNum int32) ListLegacy
 
 func (r ListLegacyBackupCheckpointsApiRequest) Execute() (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupCheckpointsExecute(r)
+}
+
+func (r ListLegacyBackupCheckpointsApiRequest) ExecuteWithParams(params *ListLegacyBackupCheckpointsApiParams) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -1162,6 +1205,16 @@ func (r ListLegacyBackupRestoreJobsApiRequest) BatchId(batchId string) ListLegac
 
 func (r ListLegacyBackupRestoreJobsApiRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
 	return r.ApiService.ListLegacyBackupRestoreJobsExecute(r)
+}
+
+func (r ListLegacyBackupRestoreJobsApiRequest) ExecuteWithParams(params *ListLegacyBackupRestoreJobsApiParams) (*PaginatedRestoreJob, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.batchId = params.BatchId 
+	return r.Execute()
 }
 
 /*
@@ -1357,6 +1410,16 @@ func (r ListLegacySnapshotsApiRequest) Execute() (*PaginatedSnapshot, *http.Resp
 	return r.ApiService.ListLegacySnapshotsExecute(r)
 }
 
+func (r ListLegacySnapshotsApiRequest) ExecuteWithParams(params *ListLegacySnapshotsApiParams) (*PaginatedSnapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.completed = params.Completed 
+	return r.Execute()
+}
+
 /*
 ListLegacySnapshots Return All Legacy Backup Snapshots
 
@@ -1530,6 +1593,14 @@ func (r UpdateLegacySnapshotRetentionApiRequest) Execute() (*Snapshot, *http.Res
 	return r.ApiService.UpdateLegacySnapshotRetentionExecute(r)
 }
 
+func (r UpdateLegacySnapshotRetentionApiRequest) ExecuteWithParams(params *UpdateLegacySnapshotRetentionApiParams) (*Snapshot, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.snapshotId = params.SnapshotId 
+	r.snapshot = params.Snapshot 
+	return r.Execute()
+}
+
 /*
 UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
 
@@ -1685,6 +1756,13 @@ func (r UpdateLegacySnapshotScheduleApiRequest) SnapshotSchedule(snapshotSchedul
 
 func (r UpdateLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
 	return r.ApiService.UpdateLegacySnapshotScheduleExecute(r)
+}
+
+func (r UpdateLegacySnapshotScheduleApiRequest) ExecuteWithParams(params *UpdateLegacySnapshotScheduleApiParams) (*SnapshotSchedule, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.snapshotSchedule = params.SnapshotSchedule 
+	return r.Execute()
 }
 
 /*

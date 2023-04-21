@@ -111,6 +111,17 @@ func (r ListAccessLogsByClusterNameApiRequest) Execute() (*MongoDBAccessLogsList
 	return r.ApiService.ListAccessLogsByClusterNameExecute(r)
 }
 
+func (r ListAccessLogsByClusterNameApiRequest) ExecuteWithParams(params *ListAccessLogsByClusterNameApiParams) (*MongoDBAccessLogsList, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.authResult = params.AuthResult 
+	r.end = params.End 
+	r.ipAddress = params.IpAddress 
+	r.nLogs = params.NLogs 
+	r.start = params.Start 
+	return r.Execute()
+}
+
 /*
 ListAccessLogsByClusterName Return Database Access History for One Cluster using Its Cluster Name
 
@@ -300,6 +311,17 @@ func (r ListAccessLogsByHostnameApiRequest) Start(start time.Time) ListAccessLog
 
 func (r ListAccessLogsByHostnameApiRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
 	return r.ApiService.ListAccessLogsByHostnameExecute(r)
+}
+
+func (r ListAccessLogsByHostnameApiRequest) ExecuteWithParams(params *ListAccessLogsByHostnameApiParams) (*MongoDBAccessLogsList, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.hostname = params.Hostname 
+	r.authResult = params.AuthResult 
+	r.end = params.End 
+	r.ipAddress = params.IpAddress 
+	r.nLogs = params.NLogs 
+	r.start = params.Start 
+	return r.Execute()
 }
 
 /*

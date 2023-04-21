@@ -130,6 +130,13 @@ func (r CreateServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantE
 	return r.ApiService.CreateServerlessPrivateEndpointExecute(r)
 }
 
+func (r CreateServerlessPrivateEndpointApiRequest) ExecuteWithParams(params *CreateServerlessPrivateEndpointApiParams) (*ServerlessTenantEndpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.instanceName = params.InstanceName 
+	r.serverlessTenantEndpointCreate = params.ServerlessTenantEndpointCreate 
+	return r.Execute()
+}
+
 /*
 CreateServerlessPrivateEndpoint Create One Private Endpoint for One Serverless Instance
 
@@ -268,6 +275,13 @@ func (r DeleteServerlessPrivateEndpointApiRequest) Execute() (*http.Response, er
 	return r.ApiService.DeleteServerlessPrivateEndpointExecute(r)
 }
 
+func (r DeleteServerlessPrivateEndpointApiRequest) ExecuteWithParams(params *DeleteServerlessPrivateEndpointApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.instanceName = params.InstanceName 
+	r.endpointId = params.EndpointId 
+	return r.Execute()
+}
+
 /*
 DeleteServerlessPrivateEndpoint Remove One Private Endpoint for One Serverless Instance
 
@@ -395,6 +409,13 @@ type GetServerlessPrivateEndpointApiParams struct {
 
 func (r GetServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
 	return r.ApiService.GetServerlessPrivateEndpointExecute(r)
+}
+
+func (r GetServerlessPrivateEndpointApiRequest) ExecuteWithParams(params *GetServerlessPrivateEndpointApiParams) (*ServerlessTenantEndpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.instanceName = params.InstanceName 
+	r.endpointId = params.EndpointId 
+	return r.Execute()
 }
 
 /*
@@ -535,6 +556,12 @@ func (r ListServerlessPrivateEndpointsApiRequest) Execute() ([]ServerlessTenantE
 	return r.ApiService.ListServerlessPrivateEndpointsExecute(r)
 }
 
+func (r ListServerlessPrivateEndpointsApiRequest) ExecuteWithParams(params *ListServerlessPrivateEndpointsApiParams) ([]ServerlessTenantEndpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.instanceName = params.InstanceName 
+	return r.Execute()
+}
+
 /*
 ListServerlessPrivateEndpoints Return All Private Endpoints for One Serverless Instance
 
@@ -671,6 +698,14 @@ func (r UpdateServerlessPrivateEndpointApiRequest) ServerlessTenantEndpointUpdat
 
 func (r UpdateServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
 	return r.ApiService.UpdateServerlessPrivateEndpointExecute(r)
+}
+
+func (r UpdateServerlessPrivateEndpointApiRequest) ExecuteWithParams(params *UpdateServerlessPrivateEndpointApiParams) (*ServerlessTenantEndpoint, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.instanceName = params.InstanceName 
+	r.endpointId = params.EndpointId 
+	r.serverlessTenantEndpointUpdate = params.ServerlessTenantEndpointUpdate 
+	return r.Execute()
 }
 
 /*

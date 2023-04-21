@@ -113,6 +113,11 @@ func (r DeleteLDAPConfigurationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLDAPConfigurationExecute(r)
 }
 
+func (r DeleteLDAPConfigurationApiRequest) ExecuteWithParams(params *DeleteLDAPConfigurationApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DeleteLDAPConfiguration Remove the Current LDAP User to DN Mapping
 
@@ -221,6 +226,11 @@ type GetLDAPConfigurationApiParams struct {
 
 func (r GetLDAPConfigurationApiRequest) Execute() (*UserSecurity, *http.Response, error) {
 	return r.ApiService.GetLDAPConfigurationExecute(r)
+}
+
+func (r GetLDAPConfigurationApiRequest) ExecuteWithParams(params *GetLDAPConfigurationApiParams) (*UserSecurity, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -344,6 +354,12 @@ type GetLDAPConfigurationStatusApiParams struct {
 
 func (r GetLDAPConfigurationStatusApiRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
 	return r.ApiService.GetLDAPConfigurationStatusExecute(r)
+}
+
+func (r GetLDAPConfigurationStatusApiRequest) ExecuteWithParams(params *GetLDAPConfigurationStatusApiParams) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.requestId = params.RequestId 
+	return r.Execute()
 }
 
 /*
@@ -484,6 +500,12 @@ func (r SaveLDAPConfigurationApiRequest) Execute() (*UserSecurity, *http.Respons
 	return r.ApiService.SaveLDAPConfigurationExecute(r)
 }
 
+func (r SaveLDAPConfigurationApiRequest) ExecuteWithParams(params *SaveLDAPConfigurationApiParams) (*UserSecurity, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.userSecurity = params.UserSecurity 
+	return r.Execute()
+}
+
 /*
 SaveLDAPConfiguration Edit the LDAP or X.509 Configuration
 
@@ -618,6 +640,12 @@ func (r VerifyLDAPConfigurationApiRequest) NDSLDAPVerifyConnectivityJobRequestPa
 
 func (r VerifyLDAPConfigurationApiRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
 	return r.ApiService.VerifyLDAPConfigurationExecute(r)
+}
+
+func (r VerifyLDAPConfigurationApiRequest) ExecuteWithParams(params *VerifyLDAPConfigurationApiParams) (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.nDSLDAPVerifyConnectivityJobRequestParams = params.NDSLDAPVerifyConnectivityJobRequestParams 
+	return r.Execute()
 }
 
 /*

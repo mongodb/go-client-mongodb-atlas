@@ -249,6 +249,12 @@ func (r CreatePeeringConnectionApiRequest) Execute() (*CreatePeeringConnection20
 	return r.ApiService.CreatePeeringConnectionExecute(r)
 }
 
+func (r CreatePeeringConnectionApiRequest) ExecuteWithParams(params *CreatePeeringConnectionApiParams) (*CreatePeeringConnection200Response, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.containerPeerViewRequest = params.ContainerPeerViewRequest 
+	return r.Execute()
+}
+
 /*
 CreatePeeringConnection Create One New Network Peering Connection
 
@@ -383,6 +389,12 @@ func (r CreatePeeringContainerApiRequest) Execute() (*CloudProviderContainer, *h
 	return r.ApiService.CreatePeeringContainerExecute(r)
 }
 
+func (r CreatePeeringContainerApiRequest) ExecuteWithParams(params *CreatePeeringContainerApiParams) (*CloudProviderContainer, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.cloudProviderContainer = params.CloudProviderContainer 
+	return r.Execute()
+}
+
 /*
 CreatePeeringContainer Create One New Network Peering Container
 
@@ -511,6 +523,12 @@ func (r DeletePeeringConnectionApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePeeringConnectionExecute(r)
 }
 
+func (r DeletePeeringConnectionApiRequest) ExecuteWithParams(params *DeletePeeringConnectionApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.peerId = params.PeerId 
+	return r.Execute()
+}
+
 /*
 DeletePeeringConnection Remove One Existing Network Peering Connection
 
@@ -630,6 +648,12 @@ type DeletePeeringContainerApiParams struct {
 
 func (r DeletePeeringContainerApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePeeringContainerExecute(r)
+}
+
+func (r DeletePeeringContainerApiRequest) ExecuteWithParams(params *DeletePeeringContainerApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.containerId = params.ContainerId 
+	return r.Execute()
 }
 
 /*
@@ -757,6 +781,12 @@ func (r DisablePeeringApiRequest) PrivateIPMode(privateIPMode PrivateIPMode) Dis
 
 func (r DisablePeeringApiRequest) Execute() (*PrivateIPMode, *http.Response, error) {
 	return r.ApiService.DisablePeeringExecute(r)
+}
+
+func (r DisablePeeringApiRequest) ExecuteWithParams(params *DisablePeeringApiParams) (*PrivateIPMode, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.privateIPMode = params.PrivateIPMode 
+	return r.Execute()
 }
 
 /*
@@ -890,6 +920,12 @@ func (r GetPeeringConnectionApiRequest) Execute() (*GetPeeringConnection200Respo
 	return r.ApiService.GetPeeringConnectionExecute(r)
 }
 
+func (r GetPeeringConnectionApiRequest) ExecuteWithParams(params *GetPeeringConnectionApiParams) (*GetPeeringConnection200Response, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.peerId = params.PeerId 
+	return r.Execute()
+}
+
 /*
 GetPeeringConnection Return One Network Peering Connection in One Project
 
@@ -1020,6 +1056,12 @@ type GetPeeringContainerApiParams struct {
 
 func (r GetPeeringContainerApiRequest) Execute() (*CloudProviderContainer, *http.Response, error) {
 	return r.ApiService.GetPeeringContainerExecute(r)
+}
+
+func (r GetPeeringContainerApiRequest) ExecuteWithParams(params *GetPeeringContainerApiParams) (*CloudProviderContainer, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.containerId = params.ContainerId 
+	return r.Execute()
 }
 
 /*
@@ -1182,6 +1224,15 @@ func (r ListPeeringConnectionsApiRequest) ProviderName(providerName string) List
 
 func (r ListPeeringConnectionsApiRequest) Execute() (*ListPeeringConnections200Response, *http.Response, error) {
 	return r.ApiService.ListPeeringConnectionsExecute(r)
+}
+
+func (r ListPeeringConnectionsApiRequest) ExecuteWithParams(params *ListPeeringConnectionsApiParams) (*ListPeeringConnections200Response, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.providerName = params.ProviderName 
+	return r.Execute()
 }
 
 /*
@@ -1365,6 +1416,15 @@ func (r ListPeeringContainerByCloudProviderApiRequest) Execute() (*PaginatedClou
 	return r.ApiService.ListPeeringContainerByCloudProviderExecute(r)
 }
 
+func (r ListPeeringContainerByCloudProviderApiRequest) ExecuteWithParams(params *ListPeeringContainerByCloudProviderApiParams) (*PaginatedCloudProviderContainer, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.providerName = params.ProviderName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListPeeringContainerByCloudProvider Return All Network Peering Containers in One Project for One Cloud Provider
 
@@ -1535,6 +1595,14 @@ func (r ListPeeringContainersApiRequest) Execute() (*PaginatedCloudProviderConta
 	return r.ApiService.ListPeeringContainersExecute(r)
 }
 
+func (r ListPeeringContainersApiRequest) ExecuteWithParams(params *ListPeeringContainersApiParams) (*PaginatedCloudProviderContainer, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListPeeringContainers Return All Network Peering Containers in One Project
 
@@ -1687,6 +1755,13 @@ func (r UpdatePeeringConnectionApiRequest) Execute() (*GetPeeringConnection200Re
 	return r.ApiService.UpdatePeeringConnectionExecute(r)
 }
 
+func (r UpdatePeeringConnectionApiRequest) ExecuteWithParams(params *UpdatePeeringConnectionApiParams) (*GetPeeringConnection200Response, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.peerId = params.PeerId 
+	r.containerPeerViewRequest = params.ContainerPeerViewRequest 
+	return r.Execute()
+}
+
 /*
 UpdatePeeringConnection Update One New Network Peering Connection
 
@@ -1832,6 +1907,13 @@ func (r UpdatePeeringContainerApiRequest) Execute() (*CloudProviderContainer, *h
 	return r.ApiService.UpdatePeeringContainerExecute(r)
 }
 
+func (r UpdatePeeringContainerApiRequest) ExecuteWithParams(params *UpdatePeeringContainerApiParams) (*CloudProviderContainer, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.containerId = params.ContainerId 
+	r.cloudProviderContainer = params.CloudProviderContainer 
+	return r.Execute()
+}
+
 /*
 UpdatePeeringContainer Update One Network Peering Container
 
@@ -1965,6 +2047,11 @@ type VerifyConnectViaPeeringOnlyModeForOneProjectApiParams struct {
 
 func (r VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest) Execute() (*PrivateIPMode, *http.Response, error) {
 	return r.ApiService.VerifyConnectViaPeeringOnlyModeForOneProjectExecute(r)
+}
+
+func (r VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest) ExecuteWithParams(params *VerifyConnectViaPeeringOnlyModeForOneProjectApiParams) (*PrivateIPMode, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*

@@ -61,6 +61,13 @@ func (r CreateRollingIndexApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CreateRollingIndexExecute(r)
 }
 
+func (r CreateRollingIndexApiRequest) ExecuteWithParams(params *CreateRollingIndexApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.indexRequest = params.IndexRequest 
+	return r.Execute()
+}
+
 /*
 CreateRollingIndex Create One Rolling Index
 

@@ -353,6 +353,12 @@ func (r CreateProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
+func (r CreateProjectApiRequest) ExecuteWithParams(params *CreateProjectApiParams) (*Group, *http.Response, error) {
+	r.group = params.Group 
+	r.projectOwnerId = params.ProjectOwnerId 
+	return r.Execute()
+}
+
 /*
 CreateProject Create One Project
 
@@ -481,6 +487,12 @@ func (r CreateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Re
 	return r.ApiService.CreateProjectInvitationExecute(r)
 }
 
+func (r CreateProjectInvitationApiRequest) ExecuteWithParams(params *CreateProjectInvitationApiParams) (*GroupInvitation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.groupInvitationRequest = params.GroupInvitationRequest 
+	return r.Execute()
+}
+
 /*
 CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
 
@@ -607,6 +619,11 @@ func (r DeleteProjectApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectExecute(r)
 }
 
+func (r DeleteProjectApiRequest) ExecuteWithParams(params *DeleteProjectApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DeleteProject Remove One Project
 
@@ -717,6 +734,12 @@ type DeleteProjectInvitationApiParams struct {
 
 func (r DeleteProjectInvitationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectInvitationExecute(r)
+}
+
+func (r DeleteProjectInvitationApiRequest) ExecuteWithParams(params *DeleteProjectInvitationApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.invitationId = params.InvitationId 
+	return r.Execute()
 }
 
 /*
@@ -840,6 +863,12 @@ func (r DeleteProjectLimitApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectLimitExecute(r)
 }
 
+func (r DeleteProjectLimitApiRequest) ExecuteWithParams(params *DeleteProjectLimitApiParams) (*http.Response, error) {
+	r.limitName = params.LimitName 
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DeleteProjectLimit Remove One Project Limit
 
@@ -951,6 +980,11 @@ type GetProjectApiParams struct {
 
 func (r GetProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.GetProjectExecute(r)
+}
+
+func (r GetProjectApiRequest) ExecuteWithParams(params *GetProjectApiParams) (*Group, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -1074,6 +1108,11 @@ func (r GetProjectByNameApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.GetProjectByNameExecute(r)
 }
 
+func (r GetProjectByNameApiRequest) ExecuteWithParams(params *GetProjectByNameApiParams) (*Group, *http.Response, error) {
+	r.groupName = params.GroupName 
+	return r.Execute()
+}
+
 /*
 GetProjectByName Return One Project using Its Name
 
@@ -1195,6 +1234,12 @@ type GetProjectInvitationApiParams struct {
 
 func (r GetProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.GetProjectInvitationExecute(r)
+}
+
+func (r GetProjectInvitationApiRequest) ExecuteWithParams(params *GetProjectInvitationApiParams) (*GroupInvitation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.invitationId = params.InvitationId 
+	return r.Execute()
 }
 
 /*
@@ -1329,6 +1374,12 @@ func (r GetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.GetProjectLimitExecute(r)
 }
 
+func (r GetProjectLimitApiRequest) ExecuteWithParams(params *GetProjectLimitApiParams) (*Limit, *http.Response, error) {
+	r.limitName = params.LimitName 
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 GetProjectLimit Return One Limit for One Project
 
@@ -1451,6 +1502,11 @@ type GetProjectSettingsApiParams struct {
 
 func (r GetProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
 	return r.ApiService.GetProjectSettingsExecute(r)
+}
+
+func (r GetProjectSettingsApiRequest) ExecuteWithParams(params *GetProjectSettingsApiParams) (*GroupSettings, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -1582,6 +1638,12 @@ func (r ListProjectInvitationsApiRequest) Execute() ([]GroupInvitation, *http.Re
 	return r.ApiService.ListProjectInvitationsExecute(r)
 }
 
+func (r ListProjectInvitationsApiRequest) ExecuteWithParams(params *ListProjectInvitationsApiParams) ([]GroupInvitation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.username = params.Username 
+	return r.Execute()
+}
+
 /*
 ListProjectInvitations Return All Project Invitations
 
@@ -1704,6 +1766,11 @@ type ListProjectLimitsApiParams struct {
 
 func (r ListProjectLimitsApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.ListProjectLimitsExecute(r)
+}
+
+func (r ListProjectLimitsApiRequest) ExecuteWithParams(params *ListProjectLimitsApiParams) (*Limit, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -1865,6 +1932,16 @@ func (r ListProjectUsersApiRequest) IncludeOrgUsers(includeOrgUsers bool) ListPr
 
 func (r ListProjectUsersApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
 	return r.ApiService.ListProjectUsersExecute(r)
+}
+
+func (r ListProjectUsersApiRequest) ExecuteWithParams(params *ListProjectUsersApiParams) (*PaginatedApiAppUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.flattenTeams = params.FlattenTeams 
+	r.includeOrgUsers = params.IncludeOrgUsers 
+	return r.Execute()
 }
 
 /*
@@ -2045,6 +2122,13 @@ func (r ListProjectsApiRequest) Execute() (*PaginatedAtlasGroup, *http.Response,
 	return r.ApiService.ListProjectsExecute(r)
 }
 
+func (r ListProjectsApiRequest) ExecuteWithParams(params *ListProjectsApiParams) (*PaginatedAtlasGroup, *http.Response, error) {
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListProjects Return All Projects
 
@@ -2180,6 +2264,12 @@ func (r RemoveProjectUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectUserExecute(r)
 }
 
+func (r RemoveProjectUserApiRequest) ExecuteWithParams(params *RemoveProjectUserApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.userId = params.UserId 
+	return r.Execute()
+}
+
 /*
 RemoveProjectUser Remove One User from One Project
 
@@ -2306,6 +2396,13 @@ func (r SetProjectLimitApiRequest) Limit(limit Limit) SetProjectLimitApiRequest 
 
 func (r SetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.SetProjectLimitExecute(r)
+}
+
+func (r SetProjectLimitApiRequest) ExecuteWithParams(params *SetProjectLimitApiParams) (*Limit, *http.Response, error) {
+	r.limitName = params.LimitName 
+	r.groupId = params.GroupId 
+	r.limit = params.Limit 
+	return r.Execute()
 }
 
 /*
@@ -2443,6 +2540,12 @@ func (r UpdateProjectApiRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
+func (r UpdateProjectApiRequest) ExecuteWithParams(params *UpdateProjectApiParams) (*Group, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.groupName = params.GroupName 
+	return r.Execute()
+}
+
 /*
 UpdateProject Update One Project Name
 
@@ -2572,6 +2675,12 @@ func (r UpdateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitatio
 
 func (r UpdateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationExecute(r)
+}
+
+func (r UpdateProjectInvitationApiRequest) ExecuteWithParams(params *UpdateProjectInvitationApiParams) (*GroupInvitation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.groupInvitationRequest = params.GroupInvitationRequest 
+	return r.Execute()
 }
 
 /*
@@ -2708,6 +2817,13 @@ func (r UpdateProjectInvitationByIdApiRequest) GroupInvitationUpdateRequest(grou
 
 func (r UpdateProjectInvitationByIdApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
 	return r.ApiService.UpdateProjectInvitationByIdExecute(r)
+}
+
+func (r UpdateProjectInvitationByIdApiRequest) ExecuteWithParams(params *UpdateProjectInvitationByIdApiParams) (*GroupInvitation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.invitationId = params.InvitationId 
+	r.groupInvitationUpdateRequest = params.GroupInvitationUpdateRequest 
+	return r.Execute()
 }
 
 /*
@@ -2850,6 +2966,12 @@ func (r UpdateProjectSettingsApiRequest) GroupSettings(groupSettings GroupSettin
 
 func (r UpdateProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
 	return r.ApiService.UpdateProjectSettingsExecute(r)
+}
+
+func (r UpdateProjectSettingsApiRequest) ExecuteWithParams(params *UpdateProjectSettingsApiParams) (*GroupSettings, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.groupSettings = params.GroupSettings 
+	return r.Execute()
 }
 
 /*

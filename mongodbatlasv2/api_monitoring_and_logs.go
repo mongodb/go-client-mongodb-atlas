@@ -292,6 +292,12 @@ func (r GetAtlasProcessApiRequest) Execute() (*HostViewAtlas, *http.Response, er
 	return r.ApiService.GetAtlasProcessExecute(r)
 }
 
+func (r GetAtlasProcessApiRequest) ExecuteWithParams(params *GetAtlasProcessApiParams) (*HostViewAtlas, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	return r.Execute()
+}
+
 /*
 GetAtlasProcess Return One MongoDB Process by ID
 
@@ -418,6 +424,13 @@ type GetDatabaseApiParams struct {
 
 func (r GetDatabaseApiRequest) Execute() (*Database, *http.Response, error) {
 	return r.ApiService.GetDatabaseExecute(r)
+}
+
+func (r GetDatabaseApiRequest) ExecuteWithParams(params *GetDatabaseApiParams) (*Database, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseName = params.DatabaseName 
+	r.processId = params.ProcessId 
+	return r.Execute()
 }
 
 /*
@@ -557,6 +570,14 @@ func (r GetDatabaseMeasurementsApiRequest) M(m []string) GetDatabaseMeasurements
 
 func (r GetDatabaseMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	return r.ApiService.GetDatabaseMeasurementsExecute(r)
+}
+
+func (r GetDatabaseMeasurementsApiRequest) ExecuteWithParams(params *GetDatabaseMeasurementsApiParams) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseName = params.DatabaseName 
+	r.processId = params.ProcessId 
+	r.m = params.M 
+	return r.Execute()
 }
 
 /*
@@ -707,6 +728,14 @@ func (r GetDiskMeasurementsApiRequest) M(m []string) GetDiskMeasurementsApiReque
 
 func (r GetDiskMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	return r.ApiService.GetDiskMeasurementsExecute(r)
+}
+
+func (r GetDiskMeasurementsApiRequest) ExecuteWithParams(params *GetDiskMeasurementsApiParams) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.partitionName = params.PartitionName 
+	r.processId = params.ProcessId 
+	r.m = params.M 
+	return r.Execute()
 }
 
 /*
@@ -873,6 +902,15 @@ func (r GetHostLogsApiRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.GetHostLogsExecute(r)
 }
 
+func (r GetHostLogsApiRequest) ExecuteWithParams(params *GetHostLogsApiParams) (*os.File, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.hostName = params.HostName 
+	r.logName = params.LogName 
+	r.endDate = params.EndDate 
+	r.startDate = params.StartDate 
+	return r.Execute()
+}
+
 /*
 GetHostLogs Download Logs for One Multi-Cloud Cluster Host in One Project
 
@@ -1022,6 +1060,14 @@ func (r GetHostMeasurementsApiRequest) Period(period time.Time) GetHostMeasureme
 
 func (r GetHostMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	return r.ApiService.GetHostMeasurementsExecute(r)
+}
+
+func (r GetHostMeasurementsApiRequest) ExecuteWithParams(params *GetHostMeasurementsApiParams) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.m = params.M 
+	r.period = params.Period 
+	return r.Execute()
 }
 
 /*
@@ -1214,6 +1260,20 @@ func (r GetIndexMetricsApiRequest) End(end time.Time) GetIndexMetricsApiRequest 
 
 func (r GetIndexMetricsApiRequest) Execute() (*MeasurementsIndexes, *http.Response, error) {
 	return r.ApiService.GetIndexMetricsExecute(r)
+}
+
+func (r GetIndexMetricsApiRequest) ExecuteWithParams(params *GetIndexMetricsApiParams) (*MeasurementsIndexes, *http.Response, error) {
+	r.processId = params.ProcessId 
+	r.indexName = params.IndexName 
+	r.databaseName = params.DatabaseName 
+	r.collectionName = params.CollectionName 
+	r.groupId = params.GroupId 
+	r.granularity = params.Granularity 
+	r.metrics = params.Metrics 
+	r.period = params.Period 
+	r.start = params.Start 
+	r.end = params.End 
+	return r.Execute()
 }
 
 /*
@@ -1421,6 +1481,17 @@ func (r GetMeasurementsApiRequest) Execute() (*MeasurementsNonIndex, *http.Respo
 	return r.ApiService.GetMeasurementsExecute(r)
 }
 
+func (r GetMeasurementsApiRequest) ExecuteWithParams(params *GetMeasurementsApiParams) (*MeasurementsNonIndex, *http.Response, error) {
+	r.processId = params.ProcessId 
+	r.groupId = params.GroupId 
+	r.granularity = params.Granularity 
+	r.metrics = params.Metrics 
+	r.period = params.Period 
+	r.start = params.Start 
+	r.end = params.End 
+	return r.Execute()
+}
+
 /*
 GetMeasurements Return Atlas Search Hardware and Status Metrics
 
@@ -1599,6 +1670,14 @@ func (r ListAtlasProcessesApiRequest) Execute() (*PaginatedHostViewAtlas, *http.
 	return r.ApiService.ListAtlasProcessesExecute(r)
 }
 
+func (r ListAtlasProcessesApiRequest) ExecuteWithParams(params *ListAtlasProcessesApiParams) (*PaginatedHostViewAtlas, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListAtlasProcesses Return All MongoDB Processes in One Project
 
@@ -1767,6 +1846,15 @@ func (r ListDatabasesApiRequest) Execute() (*PaginatedDatabase, *http.Response, 
 	return r.ApiService.ListDatabasesExecute(r)
 }
 
+func (r ListDatabasesApiRequest) ExecuteWithParams(params *ListDatabasesApiParams) (*PaginatedDatabase, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListDatabases Return Available Databases for One MongoDB Process
 
@@ -1914,6 +2002,13 @@ type ListDiskMeasurementsApiParams struct {
 
 func (r ListDiskMeasurementsApiRequest) Execute() (*DiskPartition, *http.Response, error) {
 	return r.ApiService.ListDiskMeasurementsExecute(r)
+}
+
+func (r ListDiskMeasurementsApiRequest) ExecuteWithParams(params *ListDiskMeasurementsApiParams) (*DiskPartition, *http.Response, error) {
+	r.partitionName = params.PartitionName 
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	return r.Execute()
 }
 
 /*
@@ -2073,6 +2168,15 @@ func (r ListDiskPartitionsApiRequest) PageNum(pageNum int32) ListDiskPartitionsA
 
 func (r ListDiskPartitionsApiRequest) Execute() (*PaginatedDiskPartition, *http.Response, error) {
 	return r.ApiService.ListDiskPartitionsExecute(r)
+}
+
+func (r ListDiskPartitionsApiRequest) ExecuteWithParams(params *ListDiskPartitionsApiParams) (*PaginatedDiskPartition, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -2266,6 +2370,19 @@ func (r ListIndexMetricsApiRequest) Execute() (*MeasurementsIndexes, *http.Respo
 	return r.ApiService.ListIndexMetricsExecute(r)
 }
 
+func (r ListIndexMetricsApiRequest) ExecuteWithParams(params *ListIndexMetricsApiParams) (*MeasurementsIndexes, *http.Response, error) {
+	r.processId = params.ProcessId 
+	r.databaseName = params.DatabaseName 
+	r.collectionName = params.CollectionName 
+	r.groupId = params.GroupId 
+	r.granularity = params.Granularity 
+	r.metrics = params.Metrics 
+	r.period = params.Period 
+	r.start = params.Start 
+	r.end = params.End 
+	return r.Execute()
+}
+
 /*
 ListIndexMetrics Return All Atlas Search Index Metrics for One Namespace
 
@@ -2426,6 +2543,12 @@ type ListMetricTypesApiParams struct {
 
 func (r ListMetricTypesApiRequest) Execute() (*FTSMetrics, *http.Response, error) {
 	return r.ApiService.ListMetricTypesExecute(r)
+}
+
+func (r ListMetricTypesApiRequest) ExecuteWithParams(params *ListMetricTypesApiParams) (*FTSMetrics, *http.Response, error) {
+	r.processId = params.ProcessId 
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*

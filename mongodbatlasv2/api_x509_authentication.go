@@ -98,6 +98,13 @@ func (r CreateDatabaseUserCertificateApiRequest) Execute() (*http.Response, erro
 	return r.ApiService.CreateDatabaseUserCertificateExecute(r)
 }
 
+func (r CreateDatabaseUserCertificateApiRequest) ExecuteWithParams(params *CreateDatabaseUserCertificateApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.username = params.Username 
+	r.userCert = params.UserCert 
+	return r.Execute()
+}
+
 /*
 CreateDatabaseUserCertificate Create One X.509 Certificate for One MongoDB User
 
@@ -218,6 +225,11 @@ type DisableCustomerManagedX509ApiParams struct {
 
 func (r DisableCustomerManagedX509ApiRequest) Execute() (*UserSecurity, *http.Response, error) {
 	return r.ApiService.DisableCustomerManagedX509Execute(r)
+}
+
+func (r DisableCustomerManagedX509ApiRequest) ExecuteWithParams(params *DisableCustomerManagedX509ApiParams) (*UserSecurity, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -367,6 +379,15 @@ func (r ListDatabaseUserCertificatesApiRequest) PageNum(pageNum int32) ListDatab
 
 func (r ListDatabaseUserCertificatesApiRequest) Execute() (*PaginatedUserCert, *http.Response, error) {
 	return r.ApiService.ListDatabaseUserCertificatesExecute(r)
+}
+
+func (r ListDatabaseUserCertificatesApiRequest) ExecuteWithParams(params *ListDatabaseUserCertificatesApiParams) (*PaginatedUserCert, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.username = params.Username 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*

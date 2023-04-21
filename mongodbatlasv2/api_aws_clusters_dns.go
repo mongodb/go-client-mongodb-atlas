@@ -66,6 +66,11 @@ func (r GetAWSCustomDNSApiRequest) Execute() (*AWSCustomDNSEnabled, *http.Respon
 	return r.ApiService.GetAWSCustomDNSExecute(r)
 }
 
+func (r GetAWSCustomDNSApiRequest) ExecuteWithParams(params *GetAWSCustomDNSApiParams) (*AWSCustomDNSEnabled, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 GetAWSCustomDNS Return One Custom DNS Configuration for Atlas Clusters on AWS
 
@@ -193,6 +198,12 @@ func (r ToggleAWSCustomDNSApiRequest) AWSCustomDNSEnabled(aWSCustomDNSEnabled AW
 
 func (r ToggleAWSCustomDNSApiRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
 	return r.ApiService.ToggleAWSCustomDNSExecute(r)
+}
+
+func (r ToggleAWSCustomDNSApiRequest) ExecuteWithParams(params *ToggleAWSCustomDNSApiParams) (*AWSCustomDNSEnabled, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.aWSCustomDNSEnabled = params.AWSCustomDNSEnabled 
+	return r.Execute()
 }
 
 /*

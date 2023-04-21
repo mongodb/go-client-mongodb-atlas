@@ -113,6 +113,11 @@ func (r DisableSlowOperationThresholdingApiRequest) Execute() (*http.Response, e
 	return r.ApiService.DisableSlowOperationThresholdingExecute(r)
 }
 
+func (r DisableSlowOperationThresholdingApiRequest) ExecuteWithParams(params *DisableSlowOperationThresholdingApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DisableSlowOperationThresholding Disable Managed Slow Operation Threshold
 
@@ -221,6 +226,11 @@ type EnableSlowOperationThresholdingApiParams struct {
 
 func (r EnableSlowOperationThresholdingApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.EnableSlowOperationThresholdingExecute(r)
+}
+
+func (r EnableSlowOperationThresholdingApiRequest) ExecuteWithParams(params *EnableSlowOperationThresholdingApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -365,6 +375,16 @@ func (r ListSlowQueriesApiRequest) Since(since int64) ListSlowQueriesApiRequest 
 
 func (r ListSlowQueriesApiRequest) Execute() (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
 	return r.ApiService.ListSlowQueriesExecute(r)
+}
+
+func (r ListSlowQueriesApiRequest) ExecuteWithParams(params *ListSlowQueriesApiParams) (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.duration = params.Duration 
+	r.namespaces = params.Namespaces 
+	r.nLogs = params.NLogs 
+	r.since = params.Since 
+	return r.Execute()
 }
 
 /*
@@ -531,6 +551,14 @@ func (r ListSlowQueryNamespacesApiRequest) Since(since int64) ListSlowQueryNames
 
 func (r ListSlowQueryNamespacesApiRequest) Execute() (*Namespaces, *http.Response, error) {
 	return r.ApiService.ListSlowQueryNamespacesExecute(r)
+}
+
+func (r ListSlowQueryNamespacesApiRequest) ExecuteWithParams(params *ListSlowQueryNamespacesApiParams) (*Namespaces, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.duration = params.Duration 
+	r.since = params.Since 
+	return r.Execute()
 }
 
 /*
@@ -727,6 +755,20 @@ func (r ListSuggestedIndexesApiRequest) Since(since float32) ListSuggestedIndexe
 
 func (r ListSuggestedIndexesApiRequest) Execute() (*PerformanceAdvisorResponse, *http.Response, error) {
 	return r.ApiService.ListSuggestedIndexesExecute(r)
+}
+
+func (r ListSuggestedIndexesApiRequest) ExecuteWithParams(params *ListSuggestedIndexesApiParams) (*PerformanceAdvisorResponse, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.processId = params.ProcessId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.duration = params.Duration 
+	r.namespaces = params.Namespaces 
+	r.nExamples = params.NExamples 
+	r.nIndexes = params.NIndexes 
+	r.since = params.Since 
+	return r.Execute()
 }
 
 /*

@@ -283,6 +283,12 @@ func (r CreateDataFederationPrivateEndpointApiRequest) Execute() ([]PrivateNetwo
 	return r.ApiService.CreateDataFederationPrivateEndpointExecute(r)
 }
 
+func (r CreateDataFederationPrivateEndpointApiRequest) ExecuteWithParams(params *CreateDataFederationPrivateEndpointApiParams) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.privateNetworkEndpointIdEntry = params.PrivateNetworkEndpointIdEntry 
+	return r.Execute()
+}
+
 /*
 CreateDataFederationPrivateEndpoint Create One Federated Database Instance and Online Archive Private Endpoint for One Project
 
@@ -443,6 +449,13 @@ func (r CreateFederatedDatabaseApiRequest) Execute() (*DataLakeTenant, *http.Res
 	return r.ApiService.CreateFederatedDatabaseExecute(r)
 }
 
+func (r CreateFederatedDatabaseApiRequest) ExecuteWithParams(params *CreateFederatedDatabaseApiParams) (*DataLakeTenant, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.dataLakeTenant = params.DataLakeTenant 
+	r.skipRoleValidation = params.SkipRoleValidation 
+	return r.Execute()
+}
+
 /*
 CreateFederatedDatabase Create One Federated Database Instance in One Project
 
@@ -588,6 +601,14 @@ func (r CreateOneDataFederationQueryLimitApiRequest) Execute() ([]DataFederation
 	return r.ApiService.CreateOneDataFederationQueryLimitExecute(r)
 }
 
+func (r CreateOneDataFederationQueryLimitApiRequest) ExecuteWithParams(params *CreateOneDataFederationQueryLimitApiParams) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	r.limitName = params.LimitName 
+	r.dataFederationTenantQueryLimit = params.DataFederationTenantQueryLimit 
+	return r.Execute()
+}
+
 /*
 CreateOneDataFederationQueryLimit Configure One Query Limit for One Federated Database Instance
 
@@ -722,6 +743,12 @@ func (r DeleteDataFederationPrivateEndpointApiRequest) Execute() (*http.Response
 	return r.ApiService.DeleteDataFederationPrivateEndpointExecute(r)
 }
 
+func (r DeleteDataFederationPrivateEndpointApiRequest) ExecuteWithParams(params *DeleteDataFederationPrivateEndpointApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.endpointId = params.EndpointId 
+	return r.Execute()
+}
+
 /*
 DeleteDataFederationPrivateEndpoint Remove One Federated Database Instance and Online Archive Private Endpoint from One Project
 
@@ -843,6 +870,12 @@ func (r DeleteFederatedDatabaseApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteFederatedDatabaseExecute(r)
 }
 
+func (r DeleteFederatedDatabaseApiRequest) ExecuteWithParams(params *DeleteFederatedDatabaseApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	return r.Execute()
+}
+
 /*
 DeleteFederatedDatabase Remove One Federated Database Instance from One Project
 
@@ -958,6 +991,13 @@ type DeleteOneDataFederationInstanceQueryLimitApiParams struct {
 
 func (r DeleteOneDataFederationInstanceQueryLimitApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOneDataFederationInstanceQueryLimitExecute(r)
+}
+
+func (r DeleteOneDataFederationInstanceQueryLimitApiRequest) ExecuteWithParams(params *DeleteOneDataFederationInstanceQueryLimitApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	r.limitName = params.LimitName 
+	return r.Execute()
 }
 
 /*
@@ -1094,6 +1134,14 @@ func (r DownloadFederatedDatabaseQueryLogsApiRequest) Execute() (*os.File, *http
 	return r.ApiService.DownloadFederatedDatabaseQueryLogsExecute(r)
 }
 
+func (r DownloadFederatedDatabaseQueryLogsApiRequest) ExecuteWithParams(params *DownloadFederatedDatabaseQueryLogsApiParams) (*os.File, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	r.endDate = params.EndDate 
+	r.startDate = params.StartDate 
+	return r.Execute()
+}
+
 /*
 DownloadFederatedDatabaseQueryLogs Download Query Logs for One Federated Database Instance
 
@@ -1224,6 +1272,12 @@ type GetDataFederationPrivateEndpointApiParams struct {
 
 func (r GetDataFederationPrivateEndpointApiRequest) Execute() (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
 	return r.ApiService.GetDataFederationPrivateEndpointExecute(r)
+}
+
+func (r GetDataFederationPrivateEndpointApiRequest) ExecuteWithParams(params *GetDataFederationPrivateEndpointApiParams) (*PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.endpointId = params.EndpointId 
+	return r.Execute()
 }
 
 /*
@@ -1358,6 +1412,12 @@ func (r GetFederatedDatabaseApiRequest) Execute() (*DataLakeTenant, *http.Respon
 	return r.ApiService.GetFederatedDatabaseExecute(r)
 }
 
+func (r GetFederatedDatabaseApiRequest) ExecuteWithParams(params *GetFederatedDatabaseApiParams) (*DataLakeTenant, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	return r.Execute()
+}
+
 /*
 GetFederatedDatabase Return One Federated Database Instance in One Project
 
@@ -1480,6 +1540,11 @@ type ListDataFederationPrivateEndpointsApiParams struct {
 
 func (r ListDataFederationPrivateEndpointsApiRequest) Execute() ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
 	return r.ApiService.ListDataFederationPrivateEndpointsExecute(r)
+}
+
+func (r ListDataFederationPrivateEndpointsApiRequest) ExecuteWithParams(params *ListDataFederationPrivateEndpointsApiParams) ([]PrivateNetworkEndpointIdEntry, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -1609,6 +1674,12 @@ func (r ListFederatedDatabasesApiRequest) Type_(type_ string) ListFederatedDatab
 
 func (r ListFederatedDatabasesApiRequest) Execute() ([]DataLakeTenant, *http.Response, error) {
 	return r.ApiService.ListFederatedDatabasesExecute(r)
+}
+
+func (r ListFederatedDatabasesApiRequest) ExecuteWithParams(params *ListFederatedDatabasesApiParams) ([]DataLakeTenant, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.type_ = params.Type_ 
+	return r.Execute()
 }
 
 /*
@@ -1743,6 +1814,13 @@ func (r ReturnFederatedDatabaseQueryLimitApiRequest) Execute() ([]DataFederation
 	return r.ApiService.ReturnFederatedDatabaseQueryLimitExecute(r)
 }
 
+func (r ReturnFederatedDatabaseQueryLimitApiRequest) ExecuteWithParams(params *ReturnFederatedDatabaseQueryLimitApiParams) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	r.limitName = params.LimitName 
+	return r.Execute()
+}
+
 /*
 ReturnFederatedDatabaseQueryLimit Return One Federated Database Instance Query Limit for One Project
 
@@ -1870,6 +1948,12 @@ type ReturnFederatedDatabaseQueryLimitsApiParams struct {
 
 func (r ReturnFederatedDatabaseQueryLimitsApiRequest) Execute() ([]DataFederationTenantQueryLimit, *http.Response, error) {
 	return r.ApiService.ReturnFederatedDatabaseQueryLimitsExecute(r)
+}
+
+func (r ReturnFederatedDatabaseQueryLimitsApiRequest) ExecuteWithParams(params *ReturnFederatedDatabaseQueryLimitsApiParams) ([]DataFederationTenantQueryLimit, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	return r.Execute()
 }
 
 /*
@@ -2012,6 +2096,14 @@ func (r UpdateFederatedDatabaseApiRequest) DataLakeTenant(dataLakeTenant DataLak
 
 func (r UpdateFederatedDatabaseApiRequest) Execute() (*DataLakeTenant, *http.Response, error) {
 	return r.ApiService.UpdateFederatedDatabaseExecute(r)
+}
+
+func (r UpdateFederatedDatabaseApiRequest) ExecuteWithParams(params *UpdateFederatedDatabaseApiParams) (*DataLakeTenant, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.tenantName = params.TenantName 
+	r.skipRoleValidation = params.SkipRoleValidation 
+	r.dataLakeTenant = params.DataLakeTenant 
+	return r.Execute()
 }
 
 /*

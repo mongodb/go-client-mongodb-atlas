@@ -145,6 +145,13 @@ func (r CreateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response
 	return r.ApiService.CreateOnlineArchiveExecute(r)
 }
 
+func (r CreateOnlineArchiveApiRequest) ExecuteWithParams(params *CreateOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.onlineArchive = params.OnlineArchive 
+	return r.Execute()
+}
+
 /*
 CreateOnlineArchive Create One Online Archive
 
@@ -282,6 +289,13 @@ type DeleteOnlineArchiveApiParams struct {
 
 func (r DeleteOnlineArchiveApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOnlineArchiveExecute(r)
+}
+
+func (r DeleteOnlineArchiveApiRequest) ExecuteWithParams(params *DeleteOnlineArchiveApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.archiveId = params.ArchiveId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -438,6 +452,15 @@ func (r DownloadOnlineArchiveQueryLogsApiRequest) Execute() (*os.File, *http.Res
 	return r.ApiService.DownloadOnlineArchiveQueryLogsExecute(r)
 }
 
+func (r DownloadOnlineArchiveQueryLogsApiRequest) ExecuteWithParams(params *DownloadOnlineArchiveQueryLogsApiParams) (*os.File, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.startDate = params.StartDate 
+	r.endDate = params.EndDate 
+	r.archiveOnly = params.ArchiveOnly 
+	return r.Execute()
+}
+
 /*
 DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
 
@@ -583,6 +606,13 @@ type GetOnlineArchiveApiParams struct {
 
 func (r GetOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.GetOnlineArchiveExecute(r)
+}
+
+func (r GetOnlineArchiveApiRequest) ExecuteWithParams(params *GetOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.archiveId = params.ArchiveId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
 }
 
 /*
@@ -750,6 +780,15 @@ func (r ListOnlineArchivesApiRequest) Execute() (*PaginatedOnlineArchive, *http.
 	return r.ApiService.ListOnlineArchivesExecute(r)
 }
 
+func (r ListOnlineArchivesApiRequest) ExecuteWithParams(params *ListOnlineArchivesApiParams) (*PaginatedOnlineArchive, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListOnlineArchives Return All Online Archives for One Cluster
 
@@ -911,6 +950,14 @@ func (r UpdateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive
 
 func (r UpdateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.UpdateOnlineArchiveExecute(r)
+}
+
+func (r UpdateOnlineArchiveApiRequest) ExecuteWithParams(params *UpdateOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.archiveId = params.ArchiveId 
+	r.clusterName = params.ClusterName 
+	r.onlineArchive = params.OnlineArchive 
+	return r.Execute()
 }
 
 /*

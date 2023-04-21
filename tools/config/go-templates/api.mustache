@@ -85,6 +85,14 @@ func (r {{operationId}}ApiRequest) Execute() ({{#returnType}}{{^isArray}}{{^retu
 	return r.ApiService.{{nickname}}Execute(r)
 }
 
+{{!X-GEN-CUSTOM}}
+func (r {{operationId}}ApiRequest) ExecuteWithParams(params *{{operationId}}ApiParams) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
+{{#allParams}}
+	r.{{paramName}} = params.{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} 
+{{/allParams}}
+	return r.Execute()
+}
+
 /*
 {{operationId}} {{{summary}}}{{^summary}}Method for {{operationId}}{{/summary}}
 {{#notes}}

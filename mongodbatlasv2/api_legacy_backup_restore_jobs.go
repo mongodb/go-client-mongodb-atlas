@@ -65,6 +65,13 @@ func (r CreateLegacyBackupRestoreJobApiRequest) Execute() (*PaginatedRestoreJob,
 	return r.ApiService.CreateLegacyBackupRestoreJobExecute(r)
 }
 
+func (r CreateLegacyBackupRestoreJobApiRequest) ExecuteWithParams(params *CreateLegacyBackupRestoreJobApiParams) (*PaginatedRestoreJob, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.restoreJob = params.RestoreJob 
+	return r.Execute()
+}
+
 /*
 CreateLegacyBackupRestoreJob Create One Legacy Backup Restore Job
 

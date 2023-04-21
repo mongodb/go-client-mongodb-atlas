@@ -130,6 +130,13 @@ func (r CreateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, 
 	return r.ApiService.CreateAtlasSearchIndexExecute(r)
 }
 
+func (r CreateAtlasSearchIndexApiRequest) ExecuteWithParams(params *CreateAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.fTSIndex = params.FTSIndex 
+	return r.Execute()
+}
+
 /*
 CreateAtlasSearchIndex Create One Atlas Search Index
 
@@ -269,6 +276,13 @@ func (r DeleteAtlasSearchIndexApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAtlasSearchIndexExecute(r)
 }
 
+func (r DeleteAtlasSearchIndexApiRequest) ExecuteWithParams(params *DeleteAtlasSearchIndexApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.indexId = params.IndexId 
+	return r.Execute()
+}
+
 /*
 DeleteAtlasSearchIndex Remove One Atlas Search Index
 
@@ -399,6 +413,13 @@ type GetAtlasSearchIndexApiParams struct {
 
 func (r GetAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
 	return r.ApiService.GetAtlasSearchIndexExecute(r)
+}
+
+func (r GetAtlasSearchIndexApiRequest) ExecuteWithParams(params *GetAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.indexId = params.IndexId 
+	return r.Execute()
 }
 
 /*
@@ -544,6 +565,14 @@ type ListAtlasSearchIndexesApiParams struct {
 
 func (r ListAtlasSearchIndexesApiRequest) Execute() ([]FTSIndex, *http.Response, error) {
 	return r.ApiService.ListAtlasSearchIndexesExecute(r)
+}
+
+func (r ListAtlasSearchIndexesApiRequest) ExecuteWithParams(params *ListAtlasSearchIndexesApiParams) ([]FTSIndex, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.collectionName = params.CollectionName 
+	r.databaseName = params.DatabaseName 
+	return r.Execute()
 }
 
 /*
@@ -692,6 +721,14 @@ func (r UpdateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) UpdateAtla
 
 func (r UpdateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
 	return r.ApiService.UpdateAtlasSearchIndexExecute(r)
+}
+
+func (r UpdateAtlasSearchIndexApiRequest) ExecuteWithParams(params *UpdateAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.indexId = params.IndexId 
+	r.fTSIndex = params.FTSIndex 
+	return r.Execute()
 }
 
 /*

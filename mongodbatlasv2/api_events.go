@@ -118,6 +118,13 @@ func (r GetOrganizationEventApiRequest) Execute() (*EventViewForOrg, *http.Respo
 	return r.ApiService.GetOrganizationEventExecute(r)
 }
 
+func (r GetOrganizationEventApiRequest) ExecuteWithParams(params *GetOrganizationEventApiParams) (*EventViewForOrg, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.eventId = params.EventId 
+	r.includeRaw = params.IncludeRaw 
+	return r.Execute()
+}
+
 /*
 GetOrganizationEvent Return One Event from One Organization
 
@@ -265,6 +272,13 @@ func (r GetProjectEventApiRequest) IncludeRaw(includeRaw bool) GetProjectEventAp
 
 func (r GetProjectEventApiRequest) Execute() (*EventViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetProjectEventExecute(r)
+}
+
+func (r GetProjectEventApiRequest) ExecuteWithParams(params *GetProjectEventApiParams) (*EventViewForNdsGroup, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.eventId = params.EventId 
+	r.includeRaw = params.IncludeRaw 
+	return r.Execute()
 }
 
 /*
@@ -460,6 +474,18 @@ func (r ListOrganizationEventsApiRequest) MinDate(minDate time.Time) ListOrganiz
 
 func (r ListOrganizationEventsApiRequest) Execute() (*OrgPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListOrganizationEventsExecute(r)
+}
+
+func (r ListOrganizationEventsApiRequest) ExecuteWithParams(params *ListOrganizationEventsApiParams) (*OrgPaginatedEvent, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.eventType = params.EventType 
+	r.includeRaw = params.IncludeRaw 
+	r.maxDate = params.MaxDate 
+	r.minDate = params.MinDate 
+	return r.Execute()
 }
 
 /*
@@ -684,6 +710,19 @@ func (r ListProjectEventsApiRequest) MinDate(minDate time.Time) ListProjectEvent
 
 func (r ListProjectEventsApiRequest) Execute() (*GroupPaginatedEvent, *http.Response, error) {
 	return r.ApiService.ListProjectEventsExecute(r)
+}
+
+func (r ListProjectEventsApiRequest) ExecuteWithParams(params *ListProjectEventsApiParams) (*GroupPaginatedEvent, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.clusterNames = params.ClusterNames 
+	r.eventType = params.EventType 
+	r.includeRaw = params.IncludeRaw 
+	r.maxDate = params.MaxDate 
+	r.minDate = params.MinDate 
+	return r.Execute()
 }
 
 /*

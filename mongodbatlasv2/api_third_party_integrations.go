@@ -148,6 +148,16 @@ func (r CreateThirdPartyIntegrationApiRequest) Execute() (*PaginatedIntegration,
 	return r.ApiService.CreateThirdPartyIntegrationExecute(r)
 }
 
+func (r CreateThirdPartyIntegrationApiRequest) ExecuteWithParams(params *CreateThirdPartyIntegrationApiParams) (*PaginatedIntegration, *http.Response, error) {
+	r.integrationType = params.IntegrationType 
+	r.groupId = params.GroupId 
+	r.integration = params.Integration 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
@@ -300,6 +310,12 @@ func (r DeleteThirdPartyIntegrationApiRequest) Execute() (*http.Response, error)
 	return r.ApiService.DeleteThirdPartyIntegrationExecute(r)
 }
 
+func (r DeleteThirdPartyIntegrationApiRequest) ExecuteWithParams(params *DeleteThirdPartyIntegrationApiParams) (*http.Response, error) {
+	r.integrationType = params.IntegrationType 
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
@@ -413,6 +429,12 @@ type GetThirdPartyIntegrationApiParams struct {
 
 func (r GetThirdPartyIntegrationApiRequest) Execute() (*Integration, *http.Response, error) {
 	return r.ApiService.GetThirdPartyIntegrationExecute(r)
+}
+
+func (r GetThirdPartyIntegrationApiRequest) ExecuteWithParams(params *GetThirdPartyIntegrationApiParams) (*Integration, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.integrationType = params.IntegrationType 
+	return r.Execute()
 }
 
 /*
@@ -561,6 +583,14 @@ func (r ListThirdPartyIntegrationsApiRequest) PageNum(pageNum int32) ListThirdPa
 
 func (r ListThirdPartyIntegrationsApiRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
 	return r.ApiService.ListThirdPartyIntegrationsExecute(r)
+}
+
+func (r ListThirdPartyIntegrationsApiRequest) ExecuteWithParams(params *ListThirdPartyIntegrationsApiParams) (*PaginatedIntegration, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -737,6 +767,16 @@ func (r UpdateThirdPartyIntegrationApiRequest) PageNum(pageNum int32) UpdateThir
 
 func (r UpdateThirdPartyIntegrationApiRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
 	return r.ApiService.UpdateThirdPartyIntegrationExecute(r)
+}
+
+func (r UpdateThirdPartyIntegrationApiRequest) ExecuteWithParams(params *UpdateThirdPartyIntegrationApiParams) (*PaginatedIntegration, *http.Response, error) {
+	r.integrationType = params.IntegrationType 
+	r.groupId = params.GroupId 
+	r.integration = params.Integration 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*

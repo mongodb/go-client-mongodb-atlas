@@ -121,6 +121,12 @@ func (r CreateCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Resp
 	return r.ApiService.CreateCustomDatabaseRoleExecute(r)
 }
 
+func (r CreateCustomDatabaseRoleApiRequest) ExecuteWithParams(params *CreateCustomDatabaseRoleApiParams) (*CustomDBRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.customDBRole = params.CustomDBRole 
+	return r.Execute()
+}
+
 /*
 CreateCustomDatabaseRole Create One Custom Role
 
@@ -249,6 +255,12 @@ func (r DeleteCustomDatabaseRoleApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteCustomDatabaseRoleExecute(r)
 }
 
+func (r DeleteCustomDatabaseRoleApiRequest) ExecuteWithParams(params *DeleteCustomDatabaseRoleApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.roleName = params.RoleName 
+	return r.Execute()
+}
+
 /*
 DeleteCustomDatabaseRole Remove One Custom Role from One Project
 
@@ -362,6 +374,12 @@ type GetCustomDatabaseRoleApiParams struct {
 
 func (r GetCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Response, error) {
 	return r.ApiService.GetCustomDatabaseRoleExecute(r)
+}
+
+func (r GetCustomDatabaseRoleApiRequest) ExecuteWithParams(params *GetCustomDatabaseRoleApiParams) (*CustomDBRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.roleName = params.RoleName 
+	return r.Execute()
 }
 
 /*
@@ -486,6 +504,11 @@ type ListCustomDatabaseRolesApiParams struct {
 
 func (r ListCustomDatabaseRolesApiRequest) Execute() ([]CustomDBRole, *http.Response, error) {
 	return r.ApiService.ListCustomDatabaseRolesExecute(r)
+}
+
+func (r ListCustomDatabaseRolesApiRequest) ExecuteWithParams(params *ListCustomDatabaseRolesApiParams) ([]CustomDBRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
 }
 
 /*
@@ -617,6 +640,13 @@ func (r UpdateCustomDatabaseRoleApiRequest) UpdateCustomDBRole(updateCustomDBRol
 
 func (r UpdateCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Response, error) {
 	return r.ApiService.UpdateCustomDatabaseRoleExecute(r)
+}
+
+func (r UpdateCustomDatabaseRoleApiRequest) ExecuteWithParams(params *UpdateCustomDatabaseRoleApiParams) (*CustomDBRole, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.roleName = params.RoleName 
+	r.updateCustomDBRole = params.UpdateCustomDBRole 
+	return r.Execute()
 }
 
 /*

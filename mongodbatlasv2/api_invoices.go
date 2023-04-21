@@ -99,6 +99,12 @@ func (r DownloadInvoiceCSVApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DownloadInvoiceCSVExecute(r)
 }
 
+func (r DownloadInvoiceCSVApiRequest) ExecuteWithParams(params *DownloadInvoiceCSVApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.invoiceId = params.InvoiceId 
+	return r.Execute()
+}
+
 /*
 DownloadInvoiceCSV Return One Organization Invoice as CSV
 
@@ -212,6 +218,12 @@ type GetInvoiceApiParams struct {
 
 func (r GetInvoiceApiRequest) Execute() (*Invoice, *http.Response, error) {
 	return r.ApiService.GetInvoiceExecute(r)
+}
+
+func (r GetInvoiceApiRequest) ExecuteWithParams(params *GetInvoiceApiParams) (*Invoice, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.invoiceId = params.InvoiceId 
+	return r.Execute()
 }
 
 /*
@@ -368,6 +380,14 @@ func (r ListInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response,
 	return r.ApiService.ListInvoicesExecute(r)
 }
 
+func (r ListInvoicesApiRequest) ExecuteWithParams(params *ListInvoicesApiParams) (*PaginatedApiInvoice, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListInvoices Return All Invoices for One Organization
 
@@ -508,6 +528,11 @@ type ListPendingInvoicesApiParams struct {
 
 func (r ListPendingInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
 	return r.ApiService.ListPendingInvoicesExecute(r)
+}
+
+func (r ListPendingInvoicesApiRequest) ExecuteWithParams(params *ListPendingInvoicesApiParams) (*PaginatedApiInvoice, *http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
 }
 
 /*

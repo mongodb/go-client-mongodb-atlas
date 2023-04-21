@@ -277,6 +277,11 @@ func (r CreateOrganizationApiRequest) Execute() (*CreateOrganizationResponse, *h
 	return r.ApiService.CreateOrganizationExecute(r)
 }
 
+func (r CreateOrganizationApiRequest) ExecuteWithParams(params *CreateOrganizationApiParams) (*CreateOrganizationResponse, *http.Response, error) {
+	r.createOrganizationRequest = params.CreateOrganizationRequest 
+	return r.Execute()
+}
+
 /*
 CreateOrganization Create One Organization
 
@@ -400,6 +405,12 @@ func (r CreateOrganizationInvitationApiRequest) OrganizationInvitationRequest(or
 
 func (r CreateOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInvitationExecute(r)
+}
+
+func (r CreateOrganizationInvitationApiRequest) ExecuteWithParams(params *CreateOrganizationInvitationApiParams) (*OrganizationInvitation, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.organizationInvitationRequest = params.OrganizationInvitationRequest 
+	return r.Execute()
 }
 
 /*
@@ -528,6 +539,11 @@ func (r DeleteOrganizationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOrganizationExecute(r)
 }
 
+func (r DeleteOrganizationApiRequest) ExecuteWithParams(params *DeleteOrganizationApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 DeleteOrganization Remove One Organization
 
@@ -644,6 +660,12 @@ func (r DeleteOrganizationInvitationApiRequest) Execute() (*http.Response, error
 	return r.ApiService.DeleteOrganizationInvitationExecute(r)
 }
 
+func (r DeleteOrganizationInvitationApiRequest) ExecuteWithParams(params *DeleteOrganizationInvitationApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	r.invitationId = params.InvitationId 
+	return r.Execute()
+}
+
 /*
 DeleteOrganizationInvitation Cancel One Organization Invitation
 
@@ -755,6 +777,11 @@ type GetOrganizationApiParams struct {
 
 func (r GetOrganizationApiRequest) Execute() (*Organization, *http.Response, error) {
 	return r.ApiService.GetOrganizationExecute(r)
+}
+
+func (r GetOrganizationApiRequest) ExecuteWithParams(params *GetOrganizationApiParams) (*Organization, *http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
 }
 
 /*
@@ -878,6 +905,12 @@ type GetOrganizationInvitationApiParams struct {
 
 func (r GetOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
 	return r.ApiService.GetOrganizationInvitationExecute(r)
+}
+
+func (r GetOrganizationInvitationApiRequest) ExecuteWithParams(params *GetOrganizationInvitationApiParams) (*OrganizationInvitation, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.invitationId = params.InvitationId 
+	return r.Execute()
 }
 
 /*
@@ -1010,6 +1043,11 @@ func (r GetOrganizationSettingsApiRequest) Execute() (*OrganizationSettings, *ht
 	return r.ApiService.GetOrganizationSettingsExecute(r)
 }
 
+func (r GetOrganizationSettingsApiRequest) ExecuteWithParams(params *GetOrganizationSettingsApiParams) (*OrganizationSettings, *http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 GetOrganizationSettings Return Settings for One Organization
 
@@ -1137,6 +1175,12 @@ func (r ListOrganizationInvitationsApiRequest) Username(username string) ListOrg
 
 func (r ListOrganizationInvitationsApiRequest) Execute() ([]OrganizationInvitation, *http.Response, error) {
 	return r.ApiService.ListOrganizationInvitationsExecute(r)
+}
+
+func (r ListOrganizationInvitationsApiRequest) ExecuteWithParams(params *ListOrganizationInvitationsApiParams) ([]OrganizationInvitation, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.username = params.Username 
+	return r.Execute()
 }
 
 /*
@@ -1293,6 +1337,15 @@ func (r ListOrganizationProjectsApiRequest) Name(name string) ListOrganizationPr
 
 func (r ListOrganizationProjectsApiRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
 	return r.ApiService.ListOrganizationProjectsExecute(r)
+}
+
+func (r ListOrganizationProjectsApiRequest) ExecuteWithParams(params *ListOrganizationProjectsApiParams) (*PaginatedAtlasGroup, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.name = params.Name 
+	return r.Execute()
 }
 
 /*
@@ -1471,6 +1524,14 @@ func (r ListOrganizationUsersApiRequest) Execute() (*PaginatedAppUser, *http.Res
 	return r.ApiService.ListOrganizationUsersExecute(r)
 }
 
+func (r ListOrganizationUsersApiRequest) ExecuteWithParams(params *ListOrganizationUsersApiParams) (*PaginatedAppUser, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListOrganizationUsers Return All MongoDB Cloud Users in One Organization
 
@@ -1643,6 +1704,14 @@ func (r ListOrganizationsApiRequest) Execute() (*PaginatedOrganization, *http.Re
 	return r.ApiService.ListOrganizationsExecute(r)
 }
 
+func (r ListOrganizationsApiRequest) ExecuteWithParams(params *ListOrganizationsApiParams) (*PaginatedOrganization, *http.Response, error) {
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.name = params.Name 
+	return r.Execute()
+}
+
 /*
 ListOrganizations Return All Organizations
 
@@ -1787,6 +1856,12 @@ func (r RenameOrganizationApiRequest) Execute() (*Organization, *http.Response, 
 	return r.ApiService.RenameOrganizationExecute(r)
 }
 
+func (r RenameOrganizationApiRequest) ExecuteWithParams(params *RenameOrganizationApiParams) (*Organization, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.organization = params.Organization 
+	return r.Execute()
+}
+
 /*
 RenameOrganization Rename One Organization
 
@@ -1919,6 +1994,12 @@ func (r UpdateOrganizationInvitationApiRequest) OrganizationInvitationRequest(or
 
 func (r UpdateOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationInvitationExecute(r)
+}
+
+func (r UpdateOrganizationInvitationApiRequest) ExecuteWithParams(params *UpdateOrganizationInvitationApiParams) (*OrganizationInvitation, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.organizationInvitationRequest = params.OrganizationInvitationRequest 
+	return r.Execute()
 }
 
 /*
@@ -2055,6 +2136,13 @@ func (r UpdateOrganizationInvitationByIdApiRequest) OrganizationInvitationUpdate
 
 func (r UpdateOrganizationInvitationByIdApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationInvitationByIdExecute(r)
+}
+
+func (r UpdateOrganizationInvitationByIdApiRequest) ExecuteWithParams(params *UpdateOrganizationInvitationByIdApiParams) (*OrganizationInvitation, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.invitationId = params.InvitationId 
+	r.organizationInvitationUpdateRequest = params.OrganizationInvitationUpdateRequest 
+	return r.Execute()
 }
 
 /*
@@ -2198,6 +2286,12 @@ func (r UpdateOrganizationSettingsApiRequest) OrganizationSettings(organizationS
 
 func (r UpdateOrganizationSettingsApiRequest) Execute() (*OrganizationSettings, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSettingsExecute(r)
+}
+
+func (r UpdateOrganizationSettingsApiRequest) ExecuteWithParams(params *UpdateOrganizationSettingsApiParams) (*OrganizationSettings, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.organizationSettings = params.OrganizationSettings 
+	return r.Execute()
 }
 
 /*

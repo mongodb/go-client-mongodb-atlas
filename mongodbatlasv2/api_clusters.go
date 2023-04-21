@@ -178,6 +178,12 @@ func (r GetClusterAdvancedConfigurationApiRequest) Execute() (*ClusterDescriptio
 	return r.ApiService.GetClusterAdvancedConfigurationExecute(r)
 }
 
+func (r GetClusterAdvancedConfigurationApiRequest) ExecuteWithParams(params *GetClusterAdvancedConfigurationApiParams) (*ClusterDescriptionProcessArgs, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
+}
+
 /*
 GetClusterAdvancedConfiguration Return One Advanced Configuration Options for One Cluster
 
@@ -310,6 +316,12 @@ func (r GetClusterStatusApiRequest) Execute() (*ClusterStatus, *http.Response, e
 	return r.ApiService.GetClusterStatusExecute(r)
 }
 
+func (r GetClusterStatusApiRequest) ExecuteWithParams(params *GetClusterStatusApiParams) (*ClusterStatus, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	return r.Execute()
+}
+
 /*
 GetClusterStatus Return Status of All Cluster Operations
 
@@ -440,6 +452,12 @@ type GetSampleDatasetLoadStatusApiParams struct {
 
 func (r GetSampleDatasetLoadStatusApiRequest) Execute() (*SampleDatasetStatus, *http.Response, error) {
 	return r.ApiService.GetSampleDatasetLoadStatusExecute(r)
+}
+
+func (r GetSampleDatasetLoadStatusApiRequest) ExecuteWithParams(params *GetSampleDatasetLoadStatusApiParams) (*SampleDatasetStatus, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.sampleDatasetId = params.SampleDatasetId 
+	return r.Execute()
 }
 
 /*
@@ -610,6 +628,16 @@ func (r ListCloudProviderRegionsApiRequest) Tier(tier string) ListCloudProviderR
 
 func (r ListCloudProviderRegionsApiRequest) Execute() (*PaginatedApiAtlasProviderRegions, *http.Response, error) {
 	return r.ApiService.ListCloudProviderRegionsExecute(r)
+}
+
+func (r ListCloudProviderRegionsApiRequest) ExecuteWithParams(params *ListCloudProviderRegionsApiParams) (*PaginatedApiAtlasProviderRegions, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	r.providers = params.Providers 
+	r.tier = params.Tier 
+	return r.Execute()
 }
 
 /*
@@ -790,6 +818,13 @@ func (r ListClustersForAllProjectsApiRequest) Execute() (*PaginatedOrgGroup, *ht
 	return r.ApiService.ListClustersForAllProjectsExecute(r)
 }
 
+func (r ListClustersForAllProjectsApiRequest) ExecuteWithParams(params *ListClustersForAllProjectsApiParams) (*PaginatedOrgGroup, *http.Response, error) {
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
+}
+
 /*
 ListClustersForAllProjects Return All Authorized Clusters in All Projects
 
@@ -931,6 +966,13 @@ func (r LoadSampleDatasetApiRequest) SampleDatasetStatus(sampleDatasetStatus Sam
 
 func (r LoadSampleDatasetApiRequest) Execute() ([]SampleDatasetStatus, *http.Response, error) {
 	return r.ApiService.LoadSampleDatasetExecute(r)
+}
+
+func (r LoadSampleDatasetApiRequest) ExecuteWithParams(params *LoadSampleDatasetApiParams) ([]SampleDatasetStatus, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.name = params.Name 
+	r.sampleDatasetStatus = params.SampleDatasetStatus 
+	return r.Execute()
 }
 
 /*
@@ -1078,6 +1120,13 @@ func (r UpdateClusterAdvancedConfigurationApiRequest) Execute() (*ClusterDescrip
 	return r.ApiService.UpdateClusterAdvancedConfigurationExecute(r)
 }
 
+func (r UpdateClusterAdvancedConfigurationApiRequest) ExecuteWithParams(params *UpdateClusterAdvancedConfigurationApiParams) (*ClusterDescriptionProcessArgs, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.clusterName = params.ClusterName 
+	r.clusterDescriptionProcessArgs = params.ClusterDescriptionProcessArgs 
+	return r.Execute()
+}
+
 /*
 UpdateClusterAdvancedConfiguration Update Advanced Configuration Options for One Cluster
 
@@ -1221,6 +1270,12 @@ func (r UpgradeSharedClusterApiRequest) Execute() (*LegacyClusterDescription, *h
 	return r.ApiService.UpgradeSharedClusterExecute(r)
 }
 
+func (r UpgradeSharedClusterApiRequest) ExecuteWithParams(params *UpgradeSharedClusterApiParams) (*LegacyClusterDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.legacyClusterDescription = params.LegacyClusterDescription 
+	return r.Execute()
+}
+
 /*
 UpgradeSharedCluster Upgrade One Shared-tier Cluster
 
@@ -1353,6 +1408,12 @@ func (r UpgradeSharedClusterToServerlessApiRequest) ServerlessInstanceDescriptio
 
 func (r UpgradeSharedClusterToServerlessApiRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
 	return r.ApiService.UpgradeSharedClusterToServerlessExecute(r)
+}
+
+func (r UpgradeSharedClusterToServerlessApiRequest) ExecuteWithParams(params *UpgradeSharedClusterToServerlessApiParams) (*ServerlessInstanceDescription, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.serverlessInstanceDescription = params.ServerlessInstanceDescription 
+	return r.Execute()
 }
 
 /*

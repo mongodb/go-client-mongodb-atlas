@@ -124,6 +124,12 @@ func (r CreateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, 
 	return r.ApiService.CreateDatabaseUserExecute(r)
 }
 
+func (r CreateDatabaseUserApiRequest) ExecuteWithParams(params *CreateDatabaseUserApiParams) (*DatabaseUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseUser = params.DatabaseUser 
+	return r.Execute()
+}
+
 /*
 CreateDatabaseUser Create One Database User in One Project
 
@@ -254,6 +260,13 @@ func (r DeleteDatabaseUserApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDatabaseUserExecute(r)
 }
 
+func (r DeleteDatabaseUserApiRequest) ExecuteWithParams(params *DeleteDatabaseUserApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseName = params.DatabaseName 
+	r.username = params.Username 
+	return r.Execute()
+}
+
 /*
 DeleteDatabaseUser Remove One Database User from One Project
 
@@ -372,6 +385,13 @@ type GetDatabaseUserApiParams struct {
 
 func (r GetDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
 	return r.ApiService.GetDatabaseUserExecute(r)
+}
+
+func (r GetDatabaseUserApiRequest) ExecuteWithParams(params *GetDatabaseUserApiParams) (*DatabaseUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseName = params.DatabaseName 
+	r.username = params.Username 
+	return r.Execute()
 }
 
 /*
@@ -523,6 +543,14 @@ func (r ListDatabaseUsersApiRequest) PageNum(pageNum int32) ListDatabaseUsersApi
 
 func (r ListDatabaseUsersApiRequest) Execute() (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	return r.ApiService.ListDatabaseUsersExecute(r)
+}
+
+func (r ListDatabaseUsersApiRequest) ExecuteWithParams(params *ListDatabaseUsersApiParams) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.includeCount = params.IncludeCount 
+	r.itemsPerPage = params.ItemsPerPage 
+	r.pageNum = params.PageNum 
+	return r.Execute()
 }
 
 /*
@@ -677,6 +705,14 @@ func (r UpdateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) Up
 
 func (r UpdateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
 	return r.ApiService.UpdateDatabaseUserExecute(r)
+}
+
+func (r UpdateDatabaseUserApiRequest) ExecuteWithParams(params *UpdateDatabaseUserApiParams) (*DatabaseUser, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.databaseName = params.DatabaseName 
+	r.username = params.Username 
+	r.databaseUser = params.DatabaseUser 
+	return r.Execute()
 }
 
 /*

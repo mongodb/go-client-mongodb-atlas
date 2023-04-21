@@ -169,6 +169,12 @@ func (r CreateLinkTokenApiRequest) Execute() (*TargetOrg, *http.Response, error)
 	return r.ApiService.CreateLinkTokenExecute(r)
 }
 
+func (r CreateLinkTokenApiRequest) ExecuteWithParams(params *CreateLinkTokenApiParams) (*TargetOrg, *http.Response, error) {
+	r.orgId = params.OrgId 
+	r.targetOrgRequest = params.TargetOrgRequest 
+	return r.Execute()
+}
+
 /*
 CreateLinkToken Create One Link-Token
 
@@ -303,6 +309,12 @@ func (r CreatePushMigrationApiRequest) Execute() (*LiveMigrationResponse, *http.
 	return r.ApiService.CreatePushMigrationExecute(r)
 }
 
+func (r CreatePushMigrationApiRequest) ExecuteWithParams(params *CreatePushMigrationApiParams) (*LiveMigrationResponse, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.liveMigrationRequest = params.LiveMigrationRequest 
+	return r.Execute()
+}
+
 /*
 CreatePushMigration Migrate One Local Managed Cluster to MongoDB Atlas
 
@@ -435,6 +447,12 @@ func (r CutoverMigrationApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CutoverMigrationExecute(r)
 }
 
+func (r CutoverMigrationApiRequest) ExecuteWithParams(params *CutoverMigrationApiParams) (*http.Response, error) {
+	r.groupId = params.GroupId 
+	r.liveMigrationId = params.LiveMigrationId 
+	return r.Execute()
+}
+
 /*
 CutoverMigration Cut Over the Migrated Cluster
 
@@ -554,6 +572,11 @@ func (r DeleteLinkTokenApiRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLinkTokenExecute(r)
 }
 
+func (r DeleteLinkTokenApiRequest) ExecuteWithParams(params *DeleteLinkTokenApiParams) (*http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 DeleteLinkToken Remove One Link-Token
 
@@ -664,6 +687,12 @@ type GetPushMigrationApiParams struct {
 
 func (r GetPushMigrationApiRequest) Execute() (*LiveMigrationResponse, *http.Response, error) {
 	return r.ApiService.GetPushMigrationExecute(r)
+}
+
+func (r GetPushMigrationApiRequest) ExecuteWithParams(params *GetPushMigrationApiParams) (*LiveMigrationResponse, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.liveMigrationId = params.LiveMigrationId 
+	return r.Execute()
 }
 
 /*
@@ -798,6 +827,12 @@ func (r GetValidationStatusApiRequest) Execute() (*Validation, *http.Response, e
 	return r.ApiService.GetValidationStatusExecute(r)
 }
 
+func (r GetValidationStatusApiRequest) ExecuteWithParams(params *GetValidationStatusApiParams) (*Validation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.validationId = params.ValidationId 
+	return r.Execute()
+}
+
 /*
 GetValidationStatus Return One Migration Validation Job
 
@@ -928,6 +963,11 @@ func (r ListSourceProjectsApiRequest) Execute() ([]AvailableProject, *http.Respo
 	return r.ApiService.ListSourceProjectsExecute(r)
 }
 
+func (r ListSourceProjectsApiRequest) ExecuteWithParams(params *ListSourceProjectsApiParams) ([]AvailableProject, *http.Response, error) {
+	r.orgId = params.OrgId 
+	return r.Execute()
+}
+
 /*
 ListSourceProjects Return All Projects Available for Migration
 
@@ -1055,6 +1095,12 @@ func (r ValidateMigrationApiRequest) LiveMigrationRequest(liveMigrationRequest L
 
 func (r ValidateMigrationApiRequest) Execute() (*Validation, *http.Response, error) {
 	return r.ApiService.ValidateMigrationExecute(r)
+}
+
+func (r ValidateMigrationApiRequest) ExecuteWithParams(params *ValidateMigrationApiParams) (*Validation, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.liveMigrationRequest = params.LiveMigrationRequest 
+	return r.Execute()
 }
 
 /*

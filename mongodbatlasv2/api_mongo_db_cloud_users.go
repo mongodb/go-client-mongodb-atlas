@@ -90,6 +90,11 @@ func (r CreateUserApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.CreateUserExecute(r)
 }
 
+func (r CreateUserApiRequest) ExecuteWithParams(params *CreateUserApiParams) (*AppUser, *http.Response, error) {
+	r.appUser = params.AppUser 
+	return r.Execute()
+}
+
 /*
 CreateUser Create One MongoDB Cloud User
 
@@ -211,6 +216,11 @@ func (r GetUserApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserExecute(r)
 }
 
+func (r GetUserApiRequest) ExecuteWithParams(params *GetUserApiParams) (*AppUser, *http.Response, error) {
+	r.userId = params.UserId 
+	return r.Execute()
+}
+
 /*
 GetUser Return One MongoDB Cloud User using Its ID
 
@@ -330,6 +340,11 @@ type GetUserByUsernameApiParams struct {
 
 func (r GetUserByUsernameApiRequest) Execute() (*AppUser, *http.Response, error) {
 	return r.ApiService.GetUserByUsernameExecute(r)
+}
+
+func (r GetUserByUsernameApiRequest) ExecuteWithParams(params *GetUserByUsernameApiParams) (*AppUser, *http.Response, error) {
+	r.userName = params.UserName 
+	return r.Execute()
 }
 
 /*

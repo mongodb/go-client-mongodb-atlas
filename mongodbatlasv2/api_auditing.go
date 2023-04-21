@@ -66,6 +66,11 @@ func (r GetAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response
 	return r.ApiService.GetAuditingConfigurationExecute(r)
 }
 
+func (r GetAuditingConfigurationApiRequest) ExecuteWithParams(params *GetAuditingConfigurationApiParams) (*AuditLog, *http.Response, error) {
+	r.groupId = params.GroupId 
+	return r.Execute()
+}
+
 /*
 GetAuditingConfiguration Return the Auditing Configuration for One Project
 
@@ -193,6 +198,12 @@ func (r UpdateAuditingConfigurationApiRequest) AuditLog(auditLog AuditLog) Updat
 
 func (r UpdateAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
 	return r.ApiService.UpdateAuditingConfigurationExecute(r)
+}
+
+func (r UpdateAuditingConfigurationApiRequest) ExecuteWithParams(params *UpdateAuditingConfigurationApiParams) (*AuditLog, *http.Response, error) {
+	r.groupId = params.GroupId 
+	r.auditLog = params.AuditLog 
+	return r.Execute()
 }
 
 /*
