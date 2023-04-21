@@ -118,7 +118,7 @@ type CreateServerlessPrivateEndpointApiRequest struct {
 	serverlessTenantEndpointCreate *ServerlessTenantEndpointCreate
 }
 
-type CreateServerlessPrivateEndpointParams struct {
+type CreateServerlessPrivateEndpointApiParams struct {
 		GroupId string
 		InstanceName string
 		ServerlessTenantEndpointCreate *ServerlessTenantEndpointCreate
@@ -262,7 +262,7 @@ type DeleteServerlessPrivateEndpointApiRequest struct {
 	endpointId string
 }
 
-type DeleteServerlessPrivateEndpointParams struct {
+type DeleteServerlessPrivateEndpointApiParams struct {
 		GroupId string
 		InstanceName string
 		EndpointId string
@@ -391,7 +391,7 @@ type GetServerlessPrivateEndpointApiRequest struct {
 	endpointId string
 }
 
-type GetServerlessPrivateEndpointParams struct {
+type GetServerlessPrivateEndpointApiParams struct {
 		GroupId string
 		InstanceName string
 		EndpointId string
@@ -530,7 +530,7 @@ type ListServerlessPrivateEndpointsApiRequest struct {
 	instanceName string
 }
 
-type ListServerlessPrivateEndpointsParams struct {
+type ListServerlessPrivateEndpointsApiParams struct {
 		GroupId string
 		InstanceName string
 }
@@ -661,7 +661,7 @@ type UpdateServerlessPrivateEndpointApiRequest struct {
 	serverlessTenantEndpointUpdate *ServerlessTenantEndpointUpdate
 }
 
-type UpdateServerlessPrivateEndpointParams struct {
+type UpdateServerlessPrivateEndpointApiParams struct {
 		GroupId string
 		InstanceName string
 		EndpointId string

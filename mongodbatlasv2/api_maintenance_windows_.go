@@ -103,7 +103,7 @@ type DeferMaintenanceWindowApiRequest struct {
 	groupId string
 }
 
-type DeferMaintenanceWindowParams struct {
+type DeferMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
@@ -213,7 +213,7 @@ type GetMaintenanceWindowApiRequest struct {
 	groupId string
 }
 
-type GetMaintenanceWindowParams struct {
+type GetMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
@@ -334,7 +334,7 @@ type ResetMaintenanceWindowApiRequest struct {
 	groupId string
 }
 
-type ResetMaintenanceWindowParams struct {
+type ResetMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
@@ -444,7 +444,7 @@ type ToggleMaintenanceAutoDeferApiRequest struct {
 	groupId string
 }
 
-type ToggleMaintenanceAutoDeferParams struct {
+type ToggleMaintenanceAutoDeferApiParams struct {
 		GroupId string
 }
 
@@ -555,7 +555,7 @@ type UpdateMaintenanceWindowApiRequest struct {
 	groupMaintenanceWindow *GroupMaintenanceWindow
 }
 
-type UpdateMaintenanceWindowParams struct {
+type UpdateMaintenanceWindowApiParams struct {
 		GroupId string
 		GroupMaintenanceWindow *GroupMaintenanceWindow
 }

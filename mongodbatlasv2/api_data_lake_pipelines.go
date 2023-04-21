@@ -240,7 +240,7 @@ type CreatePipelineApiRequest struct {
 	ingestionPipeline *IngestionPipeline
 }
 
-type CreatePipelineParams struct {
+type CreatePipelineApiParams struct {
 		GroupId string
 		IngestionPipeline *IngestionPipeline
 }
@@ -374,7 +374,7 @@ type DeletePipelineApiRequest struct {
 	pipelineName string
 }
 
-type DeletePipelineParams struct {
+type DeletePipelineApiParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -496,7 +496,7 @@ type DeletePipelineRunDatasetApiRequest struct {
 	pipelineRunId string
 }
 
-type DeletePipelineRunDatasetParams struct {
+type DeletePipelineRunDatasetApiParams struct {
 		GroupId string
 		PipelineName string
 		PipelineRunId string
@@ -627,7 +627,7 @@ type GetPipelineApiRequest struct {
 	pipelineName string
 }
 
-type GetPipelineParams struct {
+type GetPipelineApiParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -760,7 +760,7 @@ type GetPipelineRunApiRequest struct {
 	pipelineRunId string
 }
 
-type GetPipelineRunParams struct {
+type GetPipelineRunApiParams struct {
 		GroupId string
 		PipelineName string
 		PipelineRunId string
@@ -906,7 +906,7 @@ type ListPipelineRunsApiRequest struct {
 	createdBefore *time.Time
 }
 
-type ListPipelineRunsParams struct {
+type ListPipelineRunsApiParams struct {
 		GroupId string
 		PipelineName string
 		IncludeCount *bool
@@ -1090,7 +1090,7 @@ type ListPipelineSchedulesApiRequest struct {
 	pipelineName string
 }
 
-type ListPipelineSchedulesParams struct {
+type ListPipelineSchedulesApiParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1226,7 +1226,7 @@ type ListPipelineSnapshotsApiRequest struct {
 	completedAfter *time.Time
 }
 
-type ListPipelineSnapshotsParams struct {
+type ListPipelineSnapshotsApiParams struct {
 		GroupId string
 		PipelineName string
 		IncludeCount *bool
@@ -1409,7 +1409,7 @@ type ListPipelinesApiRequest struct {
 	groupId string
 }
 
-type ListPipelinesParams struct {
+type ListPipelinesApiParams struct {
 		GroupId string
 }
 
@@ -1531,7 +1531,7 @@ type PausePipelineApiRequest struct {
 	pipelineName string
 }
 
-type PausePipelineParams struct {
+type PausePipelineApiParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1663,7 +1663,7 @@ type ResumePipelineApiRequest struct {
 	pipelineName string
 }
 
-type ResumePipelineParams struct {
+type ResumePipelineApiParams struct {
 		GroupId string
 		PipelineName string
 }
@@ -1796,7 +1796,7 @@ type TriggerSnapshotIngestionApiRequest struct {
 	triggerIngestionRequest *TriggerIngestionRequest
 }
 
-type TriggerSnapshotIngestionParams struct {
+type TriggerSnapshotIngestionApiParams struct {
 		GroupId string
 		PipelineName string
 		TriggerIngestionRequest *TriggerIngestionRequest
@@ -1941,7 +1941,7 @@ type UpdatePipelineApiRequest struct {
 	ingestionPipeline *IngestionPipeline
 }
 
-type UpdatePipelineParams struct {
+type UpdatePipelineApiParams struct {
 		GroupId string
 		PipelineName string
 		IngestionPipeline *IngestionPipeline

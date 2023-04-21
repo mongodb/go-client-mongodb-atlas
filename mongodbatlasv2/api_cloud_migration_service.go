@@ -158,7 +158,7 @@ type CreateLinkTokenApiRequest struct {
 	targetOrgRequest *TargetOrgRequest
 }
 
-type CreateLinkTokenParams struct {
+type CreateLinkTokenApiParams struct {
 		OrgId string
 		TargetOrgRequest *TargetOrgRequest
 }
@@ -292,7 +292,7 @@ type CreatePushMigrationApiRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type CreatePushMigrationParams struct {
+type CreatePushMigrationApiParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }
@@ -430,7 +430,7 @@ type CutoverMigrationApiRequest struct {
 	liveMigrationId string
 }
 
-type CutoverMigrationParams struct {
+type CutoverMigrationApiParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -550,7 +550,7 @@ type DeleteLinkTokenApiRequest struct {
 	orgId string
 }
 
-type DeleteLinkTokenParams struct {
+type DeleteLinkTokenApiParams struct {
 		OrgId string
 }
 
@@ -661,7 +661,7 @@ type GetPushMigrationApiRequest struct {
 	liveMigrationId string
 }
 
-type GetPushMigrationParams struct {
+type GetPushMigrationApiParams struct {
 		GroupId string
 		LiveMigrationId string
 }
@@ -793,7 +793,7 @@ type GetValidationStatusApiRequest struct {
 	validationId string
 }
 
-type GetValidationStatusParams struct {
+type GetValidationStatusApiParams struct {
 		GroupId string
 		ValidationId string
 }
@@ -924,7 +924,7 @@ type ListSourceProjectsApiRequest struct {
 	orgId string
 }
 
-type ListSourceProjectsParams struct {
+type ListSourceProjectsApiParams struct {
 		OrgId string
 }
 
@@ -1046,7 +1046,7 @@ type ValidateMigrationApiRequest struct {
 	liveMigrationRequest *LiveMigrationRequest
 }
 
-type ValidateMigrationParams struct {
+type ValidateMigrationApiParams struct {
 		GroupId string
 		LiveMigrationRequest *LiveMigrationRequest
 }

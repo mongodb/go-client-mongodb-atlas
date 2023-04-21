@@ -253,7 +253,7 @@ type AddProjectApiKeyApiRequest struct {
 	userRoleAssignment *[]UserRoleAssignment
 }
 
-type AddProjectApiKeyParams struct {
+type AddProjectApiKeyApiParams struct {
 		GroupId string
 		ApiUserId string
 		UserRoleAssignment *[]UserRoleAssignment
@@ -397,7 +397,7 @@ type CreateApiKeyApiRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type CreateApiKeyParams struct {
+type CreateApiKeyApiParams struct {
 		OrgId string
 		CreateApiKey *CreateApiKey
 }
@@ -535,7 +535,7 @@ type CreateApiKeyAccessListApiRequest struct {
 	pageNum *int32
 }
 
-type CreateApiKeyAccessListParams struct {
+type CreateApiKeyAccessListApiParams struct {
 		OrgId string
 		ApiUserId string
 		UserAccessList *[]UserAccessList
@@ -721,7 +721,7 @@ type CreateProjectApiKeyApiRequest struct {
 	createApiKey *CreateApiKey
 }
 
-type CreateProjectApiKeyParams struct {
+type CreateProjectApiKeyApiParams struct {
 		GroupId string
 		CreateApiKey *CreateApiKey
 }
@@ -855,7 +855,7 @@ type DeleteApiKeyApiRequest struct {
 	apiUserId string
 }
 
-type DeleteApiKeyParams struct {
+type DeleteApiKeyApiParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -977,7 +977,7 @@ type DeleteApiKeyAccessListEntryApiRequest struct {
 	ipAddress string
 }
 
-type DeleteApiKeyAccessListEntryParams struct {
+type DeleteApiKeyAccessListEntryApiParams struct {
 		OrgId string
 		ApiUserId string
 		IpAddress string
@@ -1102,7 +1102,7 @@ type GetApiKeyApiRequest struct {
 	apiUserId string
 }
 
-type GetApiKeyParams struct {
+type GetApiKeyApiParams struct {
 		OrgId string
 		ApiUserId string
 }
@@ -1235,7 +1235,7 @@ type GetApiKeyAccessListApiRequest struct {
 	apiUserId string
 }
 
-type GetApiKeyAccessListParams struct {
+type GetApiKeyAccessListApiParams struct {
 		OrgId string
 		IpAddress string
 		ApiUserId string
@@ -1374,7 +1374,7 @@ type ListApiKeyAccessListsEntriesApiRequest struct {
 	pageNum *int32
 }
 
-type ListApiKeyAccessListsEntriesParams struct {
+type ListApiKeyAccessListsEntriesApiParams struct {
 		OrgId string
 		ApiUserId string
 		IncludeCount *bool
@@ -1550,7 +1550,7 @@ type ListApiKeysApiRequest struct {
 	pageNum *int32
 }
 
-type ListApiKeysParams struct {
+type ListApiKeysApiParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1716,7 +1716,7 @@ type ListProjectApiKeysApiRequest struct {
 	pageNum *int32
 }
 
-type ListProjectApiKeysParams struct {
+type ListProjectApiKeysApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1880,7 +1880,7 @@ type RemoveProjectApiKeyApiRequest struct {
 	apiUserId string
 }
 
-type RemoveProjectApiKeyParams struct {
+type RemoveProjectApiKeyApiParams struct {
 		GroupId string
 		ApiUserId string
 }
@@ -2002,7 +2002,7 @@ type UpdateApiKeyApiRequest struct {
 	apiUser *ApiUser
 }
 
-type UpdateApiKeyParams struct {
+type UpdateApiKeyApiParams struct {
 		OrgId string
 		ApiUserId string
 		ApiUser *ApiUser
@@ -2150,7 +2150,7 @@ type UpdateApiKeyRolesApiRequest struct {
 	includeCount *bool
 }
 
-type UpdateApiKeyRolesParams struct {
+type UpdateApiKeyRolesApiParams struct {
 		GroupId string
 		ApiUserId string
 		CreateApiKey *CreateApiKey

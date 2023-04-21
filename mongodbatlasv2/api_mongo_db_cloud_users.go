@@ -80,7 +80,7 @@ type CreateUserApiRequest struct {
 	appUser *AppUser
 }
 
-type CreateUserParams struct {
+type CreateUserApiParams struct {
 		AppUser *AppUser
 }
 
@@ -207,7 +207,7 @@ type GetUserApiRequest struct {
 	userId string
 }
 
-type GetUserParams struct {
+type GetUserApiParams struct {
 		UserId string
 }
 
@@ -328,7 +328,7 @@ type GetUserByUsernameApiRequest struct {
 	userName string
 }
 
-type GetUserByUsernameParams struct {
+type GetUserByUsernameApiParams struct {
 		UserName string
 }
 

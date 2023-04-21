@@ -66,7 +66,7 @@ type GetEncryptionAtRestApiRequest struct {
 	groupId string
 }
 
-type GetEncryptionAtRestParams struct {
+type GetEncryptionAtRestApiParams struct {
 		GroupId string
 }
 
@@ -190,7 +190,7 @@ type UpdateEncryptionAtRestApiRequest struct {
 	encryptionAtRest *EncryptionAtRest
 }
 
-type UpdateEncryptionAtRestParams struct {
+type UpdateEncryptionAtRestApiParams struct {
 		GroupId string
 		EncryptionAtRest *EncryptionAtRest
 }

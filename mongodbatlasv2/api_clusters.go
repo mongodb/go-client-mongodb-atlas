@@ -173,7 +173,7 @@ type GetClusterAdvancedConfigurationApiRequest struct {
 	clusterName string
 }
 
-type GetClusterAdvancedConfigurationParams struct {
+type GetClusterAdvancedConfigurationApiParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -305,7 +305,7 @@ type GetClusterStatusApiRequest struct {
 	clusterName string
 }
 
-type GetClusterStatusParams struct {
+type GetClusterStatusApiParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -437,7 +437,7 @@ type GetSampleDatasetLoadStatusApiRequest struct {
 	sampleDatasetId string
 }
 
-type GetSampleDatasetLoadStatusParams struct {
+type GetSampleDatasetLoadStatusApiParams struct {
 		GroupId string
 		SampleDatasetId string
 }
@@ -573,7 +573,7 @@ type ListCloudProviderRegionsApiRequest struct {
 	tier *string
 }
 
-type ListCloudProviderRegionsParams struct {
+type ListCloudProviderRegionsApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -766,7 +766,7 @@ type ListClustersForAllProjectsApiRequest struct {
 	pageNum *int32
 }
 
-type ListClustersForAllProjectsParams struct {
+type ListClustersForAllProjectsApiParams struct {
 		IncludeCount *bool
 		ItemsPerPage *int32
 		PageNum *int32
@@ -921,7 +921,7 @@ type LoadSampleDatasetApiRequest struct {
 	sampleDatasetStatus *SampleDatasetStatus
 }
 
-type LoadSampleDatasetParams struct {
+type LoadSampleDatasetApiParams struct {
 		GroupId string
 		Name string
 		SampleDatasetStatus *SampleDatasetStatus
@@ -1066,7 +1066,7 @@ type UpdateClusterAdvancedConfigurationApiRequest struct {
 	clusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
 }
 
-type UpdateClusterAdvancedConfigurationParams struct {
+type UpdateClusterAdvancedConfigurationApiParams struct {
 		GroupId string
 		ClusterName string
 		ClusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
@@ -1210,7 +1210,7 @@ type UpgradeSharedClusterApiRequest struct {
 	legacyClusterDescription *LegacyClusterDescription
 }
 
-type UpgradeSharedClusterParams struct {
+type UpgradeSharedClusterApiParams struct {
 		GroupId string
 		LegacyClusterDescription *LegacyClusterDescription
 }
@@ -1344,7 +1344,7 @@ type UpgradeSharedClusterToServerlessApiRequest struct {
 	serverlessInstanceDescription *ServerlessInstanceDescription
 }
 
-type UpgradeSharedClusterToServerlessParams struct {
+type UpgradeSharedClusterToServerlessApiParams struct {
 		GroupId string
 		ServerlessInstanceDescription *ServerlessInstanceDescription
 }

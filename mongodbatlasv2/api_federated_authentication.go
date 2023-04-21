@@ -276,7 +276,7 @@ type CreateRoleMappingApiRequest struct {
 	roleMapping *RoleMapping
 }
 
-type CreateRoleMappingParams struct {
+type CreateRoleMappingApiParams struct {
 		FederationSettingsId string
 		OrgId string
 		RoleMapping *RoleMapping
@@ -419,7 +419,7 @@ type DeleteFederationAppApiRequest struct {
 	federationSettingsId string
 }
 
-type DeleteFederationAppParams struct {
+type DeleteFederationAppApiParams struct {
 		FederationSettingsId string
 }
 
@@ -531,7 +531,7 @@ type DeleteRoleMappingApiRequest struct {
 	orgId string
 }
 
-type DeleteRoleMappingParams struct {
+type DeleteRoleMappingApiParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string
@@ -662,7 +662,7 @@ type GetConnectedOrgConfigApiRequest struct {
 	orgId string
 }
 
-type GetConnectedOrgConfigParams struct {
+type GetConnectedOrgConfigApiParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -793,7 +793,7 @@ type GetFederationSettingsApiRequest struct {
 	orgId string
 }
 
-type GetFederationSettingsParams struct {
+type GetFederationSettingsApiParams struct {
 		OrgId string
 }
 
@@ -915,7 +915,7 @@ type GetIdentityProviderApiRequest struct {
 	identityProviderId string
 }
 
-type GetIdentityProviderParams struct {
+type GetIdentityProviderApiParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 }
@@ -1047,7 +1047,7 @@ type GetIdentityProviderMetadataApiRequest struct {
 	identityProviderId string
 }
 
-type GetIdentityProviderMetadataParams struct {
+type GetIdentityProviderMetadataApiParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 }
@@ -1180,7 +1180,7 @@ type GetRoleMappingApiRequest struct {
 	orgId string
 }
 
-type GetRoleMappingParams struct {
+type GetRoleMappingApiParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string
@@ -1321,7 +1321,7 @@ type ListConnectedOrgConfigsApiRequest struct {
 	federationSettingsId string
 }
 
-type ListConnectedOrgConfigsParams struct {
+type ListConnectedOrgConfigsApiParams struct {
 		FederationSettingsId string
 }
 
@@ -1442,7 +1442,7 @@ type ListIdentityProvidersApiRequest struct {
 	federationSettingsId string
 }
 
-type ListIdentityProvidersParams struct {
+type ListIdentityProvidersApiParams struct {
 		FederationSettingsId string
 }
 
@@ -1564,7 +1564,7 @@ type ListRoleMappingsApiRequest struct {
 	orgId string
 }
 
-type ListRoleMappingsParams struct {
+type ListRoleMappingsApiParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -1696,7 +1696,7 @@ type RemoveConnectedOrgConfigApiRequest struct {
 	orgId string
 }
 
-type RemoveConnectedOrgConfigParams struct {
+type RemoveConnectedOrgConfigApiParams struct {
 		FederationSettingsId string
 		OrgId string
 }
@@ -1818,7 +1818,7 @@ type UpdateConnectedOrgConfigApiRequest struct {
 	connectedOrgConfig *ConnectedOrgConfig
 }
 
-type UpdateConnectedOrgConfigParams struct {
+type UpdateConnectedOrgConfigApiParams struct {
 		FederationSettingsId string
 		OrgId string
 		ConnectedOrgConfig *ConnectedOrgConfig
@@ -1969,7 +1969,7 @@ type UpdateIdentityProviderApiRequest struct {
 	identityProviderUpdate *IdentityProviderUpdate
 }
 
-type UpdateIdentityProviderParams struct {
+type UpdateIdentityProviderApiParams struct {
 		FederationSettingsId string
 		IdentityProviderId string
 		IdentityProviderUpdate *IdentityProviderUpdate
@@ -2115,7 +2115,7 @@ type UpdateRoleMappingApiRequest struct {
 	roleMapping *RoleMapping
 }
 
-type UpdateRoleMappingParams struct {
+type UpdateRoleMappingApiParams struct {
 		FederationSettingsId string
 		Id string
 		OrgId string

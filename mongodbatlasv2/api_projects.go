@@ -336,7 +336,7 @@ type CreateProjectApiRequest struct {
 	projectOwnerId *string
 }
 
-type CreateProjectParams struct {
+type CreateProjectApiParams struct {
 		Group *Group
 		ProjectOwnerId *string
 }
@@ -470,7 +470,7 @@ type CreateProjectInvitationApiRequest struct {
 	groupInvitationRequest *GroupInvitationRequest
 }
 
-type CreateProjectInvitationParams struct {
+type CreateProjectInvitationApiParams struct {
 		GroupId string
 		GroupInvitationRequest *GroupInvitationRequest
 }
@@ -603,7 +603,7 @@ type DeleteProjectApiRequest struct {
 	groupId string
 }
 
-type DeleteProjectParams struct {
+type DeleteProjectApiParams struct {
 		GroupId string
 }
 
@@ -714,7 +714,7 @@ type DeleteProjectInvitationApiRequest struct {
 	invitationId string
 }
 
-type DeleteProjectInvitationParams struct {
+type DeleteProjectInvitationApiParams struct {
 		GroupId string
 		InvitationId string
 }
@@ -835,7 +835,7 @@ type DeleteProjectLimitApiRequest struct {
 	groupId string
 }
 
-type DeleteProjectLimitParams struct {
+type DeleteProjectLimitApiParams struct {
 		LimitName string
 		GroupId string
 }
@@ -949,7 +949,7 @@ type GetProjectApiRequest struct {
 	groupId string
 }
 
-type GetProjectParams struct {
+type GetProjectApiParams struct {
 		GroupId string
 }
 
@@ -1070,7 +1070,7 @@ type GetProjectByNameApiRequest struct {
 	groupName string
 }
 
-type GetProjectByNameParams struct {
+type GetProjectByNameApiParams struct {
 		GroupName string
 }
 
@@ -1192,7 +1192,7 @@ type GetProjectInvitationApiRequest struct {
 	invitationId string
 }
 
-type GetProjectInvitationParams struct {
+type GetProjectInvitationApiParams struct {
 		GroupId string
 		InvitationId string
 }
@@ -1324,7 +1324,7 @@ type GetProjectLimitApiRequest struct {
 	groupId string
 }
 
-type GetProjectLimitParams struct {
+type GetProjectLimitApiParams struct {
 		LimitName string
 		GroupId string
 }
@@ -1449,7 +1449,7 @@ type GetProjectSettingsApiRequest struct {
 	groupId string
 }
 
-type GetProjectSettingsParams struct {
+type GetProjectSettingsApiParams struct {
 		GroupId string
 }
 
@@ -1571,7 +1571,7 @@ type ListProjectInvitationsApiRequest struct {
 	username *string
 }
 
-type ListProjectInvitationsParams struct {
+type ListProjectInvitationsApiParams struct {
 		GroupId string
 		Username *string
 }
@@ -1702,7 +1702,7 @@ type ListProjectLimitsApiRequest struct {
 	groupId string
 }
 
-type ListProjectLimitsParams struct {
+type ListProjectLimitsApiParams struct {
 		GroupId string
 }
 
@@ -1828,7 +1828,7 @@ type ListProjectUsersApiRequest struct {
 	includeOrgUsers *bool
 }
 
-type ListProjectUsersParams struct {
+type ListProjectUsersApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -2021,7 +2021,7 @@ type ListProjectsApiRequest struct {
 	pageNum *int32
 }
 
-type ListProjectsParams struct {
+type ListProjectsApiParams struct {
 		IncludeCount *bool
 		ItemsPerPage *int32
 		PageNum *int32
@@ -2175,7 +2175,7 @@ type RemoveProjectUserApiRequest struct {
 	userId string
 }
 
-type RemoveProjectUserParams struct {
+type RemoveProjectUserApiParams struct {
 		GroupId string
 		UserId string
 }
@@ -2297,7 +2297,7 @@ type SetProjectLimitApiRequest struct {
 	limit *Limit
 }
 
-type SetProjectLimitParams struct {
+type SetProjectLimitApiParams struct {
 		LimitName string
 		GroupId string
 		Limit *Limit
@@ -2433,7 +2433,7 @@ type UpdateProjectApiRequest struct {
 	groupName *GroupName
 }
 
-type UpdateProjectParams struct {
+type UpdateProjectApiParams struct {
 		GroupId string
 		GroupName *GroupName
 }
@@ -2563,7 +2563,7 @@ type UpdateProjectInvitationApiRequest struct {
 	groupInvitationRequest *GroupInvitationRequest
 }
 
-type UpdateProjectInvitationParams struct {
+type UpdateProjectInvitationApiParams struct {
 		GroupId string
 		GroupInvitationRequest *GroupInvitationRequest
 }
@@ -2698,7 +2698,7 @@ type UpdateProjectInvitationByIdApiRequest struct {
 	groupInvitationUpdateRequest *GroupInvitationUpdateRequest
 }
 
-type UpdateProjectInvitationByIdParams struct {
+type UpdateProjectInvitationByIdApiParams struct {
 		GroupId string
 		InvitationId string
 		GroupInvitationUpdateRequest *GroupInvitationUpdateRequest
@@ -2842,7 +2842,7 @@ type UpdateProjectSettingsApiRequest struct {
 	groupSettings *GroupSettings
 }
 
-type UpdateProjectSettingsParams struct {
+type UpdateProjectSettingsApiParams struct {
 		GroupId string
 		GroupSettings *GroupSettings
 }

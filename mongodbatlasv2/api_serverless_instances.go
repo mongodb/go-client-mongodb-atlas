@@ -110,7 +110,7 @@ type CreateServerlessInstanceApiRequest struct {
 	serverlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
 }
 
-type CreateServerlessInstanceParams struct {
+type CreateServerlessInstanceApiParams struct {
 		GroupId string
 		ServerlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
 }
@@ -244,7 +244,7 @@ type DeleteServerlessInstanceApiRequest struct {
 	name string
 }
 
-type DeleteServerlessInstanceParams struct {
+type DeleteServerlessInstanceApiParams struct {
 		GroupId string
 		Name string
 }
@@ -365,7 +365,7 @@ type GetServerlessInstanceApiRequest struct {
 	name string
 }
 
-type GetServerlessInstanceParams struct {
+type GetServerlessInstanceApiParams struct {
 		GroupId string
 		Name string
 }
@@ -499,7 +499,7 @@ type ListServerlessInstancesApiRequest struct {
 	pageNum *int32
 }
 
-type ListServerlessInstancesParams struct {
+type ListServerlessInstancesApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -664,7 +664,7 @@ type UpdateServerlessInstanceApiRequest struct {
 	serverlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
 }
 
-type UpdateServerlessInstanceParams struct {
+type UpdateServerlessInstanceApiParams struct {
 		GroupId string
 		Name string
 		ServerlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate

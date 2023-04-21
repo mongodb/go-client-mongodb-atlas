@@ -235,7 +235,7 @@ type AddAllTeamsToProjectApiRequest struct {
 	teamRole *[]TeamRole
 }
 
-type AddAllTeamsToProjectParams struct {
+type AddAllTeamsToProjectApiParams struct {
 		GroupId string
 		TeamRole *[]TeamRole
 }
@@ -370,7 +370,7 @@ type AddTeamUserApiRequest struct {
 	addUserToTeam *[]AddUserToTeam
 }
 
-type AddTeamUserParams struct {
+type AddTeamUserApiParams struct {
 		OrgId string
 		TeamId string
 		AddUserToTeam *[]AddUserToTeam
@@ -514,7 +514,7 @@ type CreateTeamApiRequest struct {
 	team *Team
 }
 
-type CreateTeamParams struct {
+type CreateTeamApiParams struct {
 		OrgId string
 		Team *Team
 }
@@ -648,7 +648,7 @@ type DeleteTeamApiRequest struct {
 	teamId string
 }
 
-type DeleteTeamParams struct {
+type DeleteTeamApiParams struct {
 		OrgId string
 		TeamId string
 }
@@ -769,7 +769,7 @@ type GetTeamByIdApiRequest struct {
 	teamId string
 }
 
-type GetTeamByIdParams struct {
+type GetTeamByIdApiParams struct {
 		OrgId string
 		TeamId string
 }
@@ -901,7 +901,7 @@ type GetTeamByNameApiRequest struct {
 	teamName string
 }
 
-type GetTeamByNameParams struct {
+type GetTeamByNameApiParams struct {
 		OrgId string
 		TeamName string
 }
@@ -1029,7 +1029,7 @@ type ListOrganizationTeamsApiRequest struct {
 	pageNum *int32
 }
 
-type ListOrganizationTeamsParams struct {
+type ListOrganizationTeamsApiParams struct {
 		OrgId string
 		ItemsPerPage *int32
 		IncludeCount *bool
@@ -1195,7 +1195,7 @@ type ListProjectTeamsApiRequest struct {
 	pageNum *int32
 }
 
-type ListProjectTeamsParams struct {
+type ListProjectTeamsApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1361,7 +1361,7 @@ type ListTeamUsersApiRequest struct {
 	pageNum *int32
 }
 
-type ListTeamUsersParams struct {
+type ListTeamUsersApiParams struct {
 		OrgId string
 		TeamId string
 		ItemsPerPage *int32
@@ -1521,7 +1521,7 @@ type RemoveProjectTeamApiRequest struct {
 	teamId string
 }
 
-type RemoveProjectTeamParams struct {
+type RemoveProjectTeamApiParams struct {
 		GroupId string
 		TeamId string
 }
@@ -1643,7 +1643,7 @@ type RemoveTeamUserApiRequest struct {
 	userId string
 }
 
-type RemoveTeamUserParams struct {
+type RemoveTeamUserApiParams struct {
 		OrgId string
 		TeamId string
 		UserId string
@@ -1775,7 +1775,7 @@ type RenameTeamApiRequest struct {
 	team *Team
 }
 
-type RenameTeamParams struct {
+type RenameTeamApiParams struct {
 		OrgId string
 		TeamId string
 		Team *Team
@@ -1920,7 +1920,7 @@ type UpdateTeamRolesApiRequest struct {
 	teamRole *TeamRole
 }
 
-type UpdateTeamRolesParams struct {
+type UpdateTeamRolesApiParams struct {
 		GroupId string
 		TeamId string
 		TeamRole *TeamRole

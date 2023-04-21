@@ -83,7 +83,7 @@ type DownloadSharedClusterBackupApiRequest struct {
 	tenantRestore *TenantRestore
 }
 
-type DownloadSharedClusterBackupParams struct {
+type DownloadSharedClusterBackupApiParams struct {
 		ClusterName string
 		GroupId string
 		TenantRestore *TenantRestore
@@ -228,7 +228,7 @@ type GetSharedClusterBackupApiRequest struct {
 	snapshotId string
 }
 
-type GetSharedClusterBackupParams struct {
+type GetSharedClusterBackupApiParams struct {
 		GroupId string
 		ClusterName string
 		SnapshotId string
@@ -370,7 +370,7 @@ type ListSharedClusterBackupsApiRequest struct {
 	clusterName string
 }
 
-type ListSharedClusterBackupsParams struct {
+type ListSharedClusterBackupsApiParams struct {
 		GroupId string
 		ClusterName string
 }

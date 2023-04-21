@@ -238,7 +238,7 @@ type CreatePeeringConnectionApiRequest struct {
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
 
-type CreatePeeringConnectionParams struct {
+type CreatePeeringConnectionApiParams struct {
 		GroupId string
 		ContainerPeerViewRequest *ContainerPeerViewRequest
 }
@@ -372,7 +372,7 @@ type CreatePeeringContainerApiRequest struct {
 	cloudProviderContainer *CloudProviderContainer
 }
 
-type CreatePeeringContainerParams struct {
+type CreatePeeringContainerApiParams struct {
 		GroupId string
 		CloudProviderContainer *CloudProviderContainer
 }
@@ -506,7 +506,7 @@ type DeletePeeringConnectionApiRequest struct {
 	peerId string
 }
 
-type DeletePeeringConnectionParams struct {
+type DeletePeeringConnectionApiParams struct {
 		GroupId string
 		PeerId string
 }
@@ -627,7 +627,7 @@ type DeletePeeringContainerApiRequest struct {
 	containerId string
 }
 
-type DeletePeeringContainerParams struct {
+type DeletePeeringContainerApiParams struct {
 		GroupId string
 		ContainerId string
 }
@@ -748,7 +748,7 @@ type DisablePeeringApiRequest struct {
 	privateIPMode *PrivateIPMode
 }
 
-type DisablePeeringParams struct {
+type DisablePeeringApiParams struct {
 		GroupId string
 		PrivateIPMode *PrivateIPMode
 }
@@ -885,7 +885,7 @@ type GetPeeringConnectionApiRequest struct {
 	peerId string
 }
 
-type GetPeeringConnectionParams struct {
+type GetPeeringConnectionApiParams struct {
 		GroupId string
 		PeerId string
 }
@@ -1017,7 +1017,7 @@ type GetPeeringContainerApiRequest struct {
 	containerId string
 }
 
-type GetPeeringContainerParams struct {
+type GetPeeringContainerApiParams struct {
 		GroupId string
 		ContainerId string
 }
@@ -1152,7 +1152,7 @@ type ListPeeringConnectionsApiRequest struct {
 	providerName *string
 }
 
-type ListPeeringConnectionsParams struct {
+type ListPeeringConnectionsApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1333,7 +1333,7 @@ type ListPeeringContainerByCloudProviderApiRequest struct {
 	pageNum *int32
 }
 
-type ListPeeringContainerByCloudProviderParams struct {
+type ListPeeringContainerByCloudProviderApiParams struct {
 		GroupId string
 		ProviderName *string
 		IncludeCount *bool
@@ -1510,7 +1510,7 @@ type ListPeeringContainersApiRequest struct {
 	pageNum *int32
 }
 
-type ListPeeringContainersParams struct {
+type ListPeeringContainersApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1675,7 +1675,7 @@ type UpdatePeeringConnectionApiRequest struct {
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
 
-type UpdatePeeringConnectionParams struct {
+type UpdatePeeringConnectionApiParams struct {
 		GroupId string
 		PeerId string
 		ContainerPeerViewRequest *ContainerPeerViewRequest
@@ -1820,7 +1820,7 @@ type UpdatePeeringContainerApiRequest struct {
 	cloudProviderContainer *CloudProviderContainer
 }
 
-type UpdatePeeringContainerParams struct {
+type UpdatePeeringContainerApiParams struct {
 		GroupId string
 		ContainerId string
 		CloudProviderContainer *CloudProviderContainer
@@ -1963,7 +1963,7 @@ type VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest struct {
 	groupId string
 }
 
-type VerifyConnectViaPeeringOnlyModeForOneProjectParams struct {
+type VerifyConnectViaPeeringOnlyModeForOneProjectApiParams struct {
 		GroupId string
 }
 

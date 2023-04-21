@@ -114,7 +114,7 @@ type AuthorizeCloudProviderAccessRoleApiRequest struct {
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
 
-type AuthorizeCloudProviderAccessRoleParams struct {
+type AuthorizeCloudProviderAccessRoleApiParams struct {
 		GroupId string
 		RoleId string
 		CloudProviderAccessRole *CloudProviderAccessRole
@@ -258,7 +258,7 @@ type CreateCloudProviderAccessRoleApiRequest struct {
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
 
-type CreateCloudProviderAccessRoleParams struct {
+type CreateCloudProviderAccessRoleApiParams struct {
 		GroupId string
 		CloudProviderAccessRole *CloudProviderAccessRole
 }
@@ -395,7 +395,7 @@ type DeauthorizeCloudProviderAccessRoleApiRequest struct {
 	roleId string
 }
 
-type DeauthorizeCloudProviderAccessRoleParams struct {
+type DeauthorizeCloudProviderAccessRoleApiParams struct {
 		GroupId string
 		CloudProvider string
 		RoleId string
@@ -520,7 +520,7 @@ type GetCloudProviderAccessRoleApiRequest struct {
 	roleId string
 }
 
-type GetCloudProviderAccessRoleParams struct {
+type GetCloudProviderAccessRoleApiParams struct {
 		GroupId string
 		RoleId string
 }
@@ -651,7 +651,7 @@ type ListCloudProviderAccessRolesApiRequest struct {
 	groupId string
 }
 
-type ListCloudProviderAccessRolesParams struct {
+type ListCloudProviderAccessRolesApiParams struct {
 		GroupId string
 }
 

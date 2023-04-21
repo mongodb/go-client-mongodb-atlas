@@ -125,7 +125,7 @@ type CreateClusterApiRequest struct {
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
 
-type CreateClusterParams struct {
+type CreateClusterApiParams struct {
 		GroupId string
 		ClusterDescriptionV15 *ClusterDescriptionV15
 }
@@ -260,7 +260,7 @@ type DeleteClusterApiRequest struct {
 	retainBackups *bool
 }
 
-type DeleteClusterParams struct {
+type DeleteClusterApiParams struct {
 		GroupId string
 		ClusterName string
 		RetainBackups *bool
@@ -391,7 +391,7 @@ type GetClusterApiRequest struct {
 	clusterName string
 }
 
-type GetClusterParams struct {
+type GetClusterApiParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -525,7 +525,7 @@ type ListClustersApiRequest struct {
 	pageNum *int32
 }
 
-type ListClustersParams struct {
+type ListClustersApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -689,7 +689,7 @@ type TestFailoverApiRequest struct {
 	clusterName string
 }
 
-type TestFailoverParams struct {
+type TestFailoverApiParams struct {
 		GroupId string
 		ClusterName string
 }
@@ -811,7 +811,7 @@ type UpdateClusterApiRequest struct {
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
 
-type UpdateClusterParams struct {
+type UpdateClusterApiParams struct {
 		GroupId string
 		ClusterName string
 		ClusterDescriptionV15 *ClusterDescriptionV15

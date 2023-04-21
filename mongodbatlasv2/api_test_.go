@@ -45,7 +45,7 @@ type VersionedExampleApiRequest struct {
 	additionalInfo *bool
 }
 
-type VersionedExampleParams struct {
+type VersionedExampleApiParams struct {
 		AdditionalInfo *bool
 }
 

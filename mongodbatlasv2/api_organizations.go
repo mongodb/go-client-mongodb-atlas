@@ -267,7 +267,7 @@ type CreateOrganizationApiRequest struct {
 	createOrganizationRequest *CreateOrganizationRequest
 }
 
-type CreateOrganizationParams struct {
+type CreateOrganizationApiParams struct {
 		CreateOrganizationRequest *CreateOrganizationRequest
 }
 
@@ -391,7 +391,7 @@ type CreateOrganizationInvitationApiRequest struct {
 	organizationInvitationRequest *OrganizationInvitationRequest
 }
 
-type CreateOrganizationInvitationParams struct {
+type CreateOrganizationInvitationApiParams struct {
 		OrgId string
 		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
@@ -524,7 +524,7 @@ type DeleteOrganizationApiRequest struct {
 	orgId string
 }
 
-type DeleteOrganizationParams struct {
+type DeleteOrganizationApiParams struct {
 		OrgId string
 }
 
@@ -639,7 +639,7 @@ type DeleteOrganizationInvitationApiRequest struct {
 	invitationId string
 }
 
-type DeleteOrganizationInvitationParams struct {
+type DeleteOrganizationInvitationApiParams struct {
 		OrgId string
 		InvitationId string
 }
@@ -753,7 +753,7 @@ type GetOrganizationApiRequest struct {
 	orgId string
 }
 
-type GetOrganizationParams struct {
+type GetOrganizationApiParams struct {
 		OrgId string
 }
 
@@ -875,7 +875,7 @@ type GetOrganizationInvitationApiRequest struct {
 	invitationId string
 }
 
-type GetOrganizationInvitationParams struct {
+type GetOrganizationInvitationApiParams struct {
 		OrgId string
 		InvitationId string
 }
@@ -1006,7 +1006,7 @@ type GetOrganizationSettingsApiRequest struct {
 	orgId string
 }
 
-type GetOrganizationSettingsParams struct {
+type GetOrganizationSettingsApiParams struct {
 		OrgId string
 }
 
@@ -1128,7 +1128,7 @@ type ListOrganizationInvitationsApiRequest struct {
 	username *string
 }
 
-type ListOrganizationInvitationsParams struct {
+type ListOrganizationInvitationsApiParams struct {
 		OrgId string
 		Username *string
 }
@@ -1263,7 +1263,7 @@ type ListOrganizationProjectsApiRequest struct {
 	name *string
 }
 
-type ListOrganizationProjectsParams struct {
+type ListOrganizationProjectsApiParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1446,7 +1446,7 @@ type ListOrganizationUsersApiRequest struct {
 	pageNum *int32
 }
 
-type ListOrganizationUsersParams struct {
+type ListOrganizationUsersApiParams struct {
 		OrgId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1612,7 +1612,7 @@ type ListOrganizationsApiRequest struct {
 	name *string
 }
 
-type ListOrganizationsParams struct {
+type ListOrganizationsApiParams struct {
 		IncludeCount *bool
 		ItemsPerPage *int32
 		PageNum *int32
@@ -1776,7 +1776,7 @@ type RenameOrganizationApiRequest struct {
 	organization *Organization
 }
 
-type RenameOrganizationParams struct {
+type RenameOrganizationApiParams struct {
 		OrgId string
 		Organization *Organization
 }
@@ -1910,7 +1910,7 @@ type UpdateOrganizationInvitationApiRequest struct {
 	organizationInvitationRequest *OrganizationInvitationRequest
 }
 
-type UpdateOrganizationInvitationParams struct {
+type UpdateOrganizationInvitationApiParams struct {
 		OrgId string
 		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
@@ -2045,7 +2045,7 @@ type UpdateOrganizationInvitationByIdApiRequest struct {
 	organizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
 }
 
-type UpdateOrganizationInvitationByIdParams struct {
+type UpdateOrganizationInvitationByIdApiParams struct {
 		OrgId string
 		InvitationId string
 		OrganizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
@@ -2189,7 +2189,7 @@ type UpdateOrganizationSettingsApiRequest struct {
 	organizationSettings *OrganizationSettings
 }
 
-type UpdateOrganizationSettingsParams struct {
+type UpdateOrganizationSettingsApiParams struct {
 		OrgId string
 		OrganizationSettings *OrganizationSettings
 }

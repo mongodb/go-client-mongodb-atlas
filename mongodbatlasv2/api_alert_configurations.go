@@ -174,7 +174,7 @@ type CreateAlertConfigurationApiRequest struct {
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
-type CreateAlertConfigurationParams struct {
+type CreateAlertConfigurationApiParams struct {
 		GroupId string
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
@@ -310,7 +310,7 @@ type DeleteAlertConfigurationApiRequest struct {
 	alertConfigId string
 }
 
-type DeleteAlertConfigurationParams struct {
+type DeleteAlertConfigurationApiParams struct {
 		GroupId string
 		AlertConfigId string
 }
@@ -433,7 +433,7 @@ type GetAlertConfigurationApiRequest struct {
 	alertConfigId string
 }
 
-type GetAlertConfigurationParams struct {
+type GetAlertConfigurationApiParams struct {
 		GroupId string
 		AlertConfigId string
 }
@@ -565,7 +565,7 @@ type ListAlertConfigurationMatchersFieldNamesApiRequest struct {
 	ApiService AlertConfigurationsApi
 }
 
-type ListAlertConfigurationMatchersFieldNamesParams struct {
+type ListAlertConfigurationMatchersFieldNamesApiParams struct {
 }
 
 func (r ListAlertConfigurationMatchersFieldNamesApiRequest) Execute() ([]MatcherField, *http.Response, error) {
@@ -679,7 +679,7 @@ type ListAlertConfigurationsApiRequest struct {
 	pageNum *int32
 }
 
-type ListAlertConfigurationsParams struct {
+type ListAlertConfigurationsApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -848,7 +848,7 @@ type ListAlertConfigurationsByAlertIdApiRequest struct {
 	pageNum *int32
 }
 
-type ListAlertConfigurationsByAlertIdParams struct {
+type ListAlertConfigurationsByAlertIdApiParams struct {
 		GroupId string
 		AlertId string
 		IncludeCount *bool
@@ -1025,7 +1025,7 @@ type ToggleAlertConfigurationApiRequest struct {
 	toggle *Toggle
 }
 
-type ToggleAlertConfigurationParams struct {
+type ToggleAlertConfigurationApiParams struct {
 		GroupId string
 		AlertConfigId string
 		Toggle *Toggle
@@ -1174,7 +1174,7 @@ type UpdateAlertConfigurationApiRequest struct {
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
-type UpdateAlertConfigurationParams struct {
+type UpdateAlertConfigurationApiParams struct {
 		GroupId string
 		AlertConfigId string
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup

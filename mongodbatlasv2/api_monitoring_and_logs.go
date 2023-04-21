@@ -287,7 +287,7 @@ type GetAtlasProcessApiRequest struct {
 	processId string
 }
 
-type GetAtlasProcessParams struct {
+type GetAtlasProcessApiParams struct {
 		GroupId string
 		ProcessId string
 }
@@ -414,7 +414,7 @@ type GetDatabaseApiRequest struct {
 	processId string
 }
 
-type GetDatabaseParams struct {
+type GetDatabaseApiParams struct {
 		GroupId string
 		DatabaseName string
 		ProcessId string
@@ -546,7 +546,7 @@ type GetDatabaseMeasurementsApiRequest struct {
 	m *[]string
 }
 
-type GetDatabaseMeasurementsParams struct {
+type GetDatabaseMeasurementsApiParams struct {
 		GroupId string
 		DatabaseName string
 		ProcessId string
@@ -696,7 +696,7 @@ type GetDiskMeasurementsApiRequest struct {
 	m *[]string
 }
 
-type GetDiskMeasurementsParams struct {
+type GetDiskMeasurementsApiParams struct {
 		GroupId string
 		PartitionName string
 		ProcessId string
@@ -853,7 +853,7 @@ type GetHostLogsApiRequest struct {
 	startDate *int64
 }
 
-type GetHostLogsParams struct {
+type GetHostLogsApiParams struct {
 		GroupId string
 		HostName string
 		LogName string
@@ -1005,7 +1005,7 @@ type GetHostMeasurementsApiRequest struct {
 	period *time.Time
 }
 
-type GetHostMeasurementsParams struct {
+type GetHostMeasurementsApiParams struct {
 		GroupId string
 		ProcessId string
 		M *[]string
@@ -1173,7 +1173,7 @@ type GetIndexMetricsApiRequest struct {
 	end *time.Time
 }
 
-type GetIndexMetricsParams struct {
+type GetIndexMetricsApiParams struct {
 		ProcessId string
 		IndexName string
 		DatabaseName string
@@ -1381,7 +1381,7 @@ type GetMeasurementsApiRequest struct {
 	end *time.Time
 }
 
-type GetMeasurementsParams struct {
+type GetMeasurementsApiParams struct {
 		ProcessId string
 		GroupId string
 		Granularity *string
@@ -1574,7 +1574,7 @@ type ListAtlasProcessesApiRequest struct {
 	pageNum *int32
 }
 
-type ListAtlasProcessesParams struct {
+type ListAtlasProcessesApiParams struct {
 		GroupId string
 		IncludeCount *bool
 		ItemsPerPage *int32
@@ -1741,7 +1741,7 @@ type ListDatabasesApiRequest struct {
 	pageNum *int32
 }
 
-type ListDatabasesParams struct {
+type ListDatabasesApiParams struct {
 		GroupId string
 		ProcessId string
 		IncludeCount *bool
@@ -1910,7 +1910,7 @@ type ListDiskMeasurementsApiRequest struct {
 	processId string
 }
 
-type ListDiskMeasurementsParams struct {
+type ListDiskMeasurementsApiParams struct {
 		PartitionName string
 		GroupId string
 		ProcessId string
@@ -2049,7 +2049,7 @@ type ListDiskPartitionsApiRequest struct {
 	pageNum *int32
 }
 
-type ListDiskPartitionsParams struct {
+type ListDiskPartitionsApiParams struct {
 		GroupId string
 		ProcessId string
 		IncludeCount *bool
@@ -2224,7 +2224,7 @@ type ListIndexMetricsApiRequest struct {
 	end *time.Time
 }
 
-type ListIndexMetricsParams struct {
+type ListIndexMetricsApiParams struct {
 		ProcessId string
 		DatabaseName string
 		CollectionName string
@@ -2423,7 +2423,7 @@ type ListMetricTypesApiRequest struct {
 	groupId string
 }
 
-type ListMetricTypesParams struct {
+type ListMetricTypesApiParams struct {
 		ProcessId string
 		GroupId string
 }

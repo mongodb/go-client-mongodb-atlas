@@ -109,7 +109,7 @@ type DeleteLDAPConfigurationApiRequest struct {
 	groupId string
 }
 
-type DeleteLDAPConfigurationParams struct {
+type DeleteLDAPConfigurationApiParams struct {
 		GroupId string
 }
 
@@ -219,7 +219,7 @@ type GetLDAPConfigurationApiRequest struct {
 	groupId string
 }
 
-type GetLDAPConfigurationParams struct {
+type GetLDAPConfigurationApiParams struct {
 		GroupId string
 }
 
@@ -341,7 +341,7 @@ type GetLDAPConfigurationStatusApiRequest struct {
 	requestId string
 }
 
-type GetLDAPConfigurationStatusParams struct {
+type GetLDAPConfigurationStatusApiParams struct {
 		GroupId string
 		RequestId string
 }
@@ -473,7 +473,7 @@ type SaveLDAPConfigurationApiRequest struct {
 	userSecurity *UserSecurity
 }
 
-type SaveLDAPConfigurationParams struct {
+type SaveLDAPConfigurationApiParams struct {
 		GroupId string
 		UserSecurity *UserSecurity
 }
@@ -609,7 +609,7 @@ type VerifyLDAPConfigurationApiRequest struct {
 	nDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
 }
 
-type VerifyLDAPConfigurationParams struct {
+type VerifyLDAPConfigurationApiParams struct {
 		GroupId string
 		NDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
 }
