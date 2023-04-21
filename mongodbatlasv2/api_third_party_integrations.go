@@ -114,6 +114,14 @@ type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ThirdPartyIntegrationsApiCreateThirdPartyIntegrationQueryParams struct {
+		integrationType string
+		groupId string
+		integration *Integration
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Third-party integration that you want to configure for your project.
 func (r ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest) Integration(integration Integration) ThirdPartyIntegrationsApiCreateThirdPartyIntegrationRequest {
@@ -285,6 +293,10 @@ type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest struct {
 	integrationType string
 	groupId string
 }
+type ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationQueryParams struct {
+		integrationType string
+		groupId string
+}
 
 func (r ThirdPartyIntegrationsApiDeleteThirdPartyIntegrationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteThirdPartyIntegrationExecute(r)
@@ -394,6 +406,10 @@ type ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest struct {
 	ApiService ThirdPartyIntegrationsApi
 	groupId string
 	integrationType string
+}
+type ThirdPartyIntegrationsApiGetThirdPartyIntegrationQueryParams struct {
+		groupId string
+		integrationType string
 }
 
 func (r ThirdPartyIntegrationsApiGetThirdPartyIntegrationRequest) Execute() (*Integration, *http.Response, error) {
@@ -517,6 +533,12 @@ type ThirdPartyIntegrationsApiListThirdPartyIntegrationsRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ThirdPartyIntegrationsApiListThirdPartyIntegrationsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -678,6 +700,14 @@ type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ThirdPartyIntegrationsApiUpdateThirdPartyIntegrationQueryParams struct {
+		integrationType string
+		groupId string
+		integration *Integration
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Third-party integration that you want to configure for your project.

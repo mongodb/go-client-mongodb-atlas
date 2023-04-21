@@ -104,6 +104,11 @@ type AlertsApiAcknowledgeAlertRequest struct {
 	alertId string
 	alertViewForNdsGroup *AlertViewForNdsGroup
 }
+type AlertsApiAcknowledgeAlertQueryParams struct {
+		groupId string
+		alertId string
+		alertViewForNdsGroup *AlertViewForNdsGroup
+}
 
 // Confirm one alert.
 func (r AlertsApiAcknowledgeAlertRequest) AlertViewForNdsGroup(alertViewForNdsGroup AlertViewForNdsGroup) AlertsApiAcknowledgeAlertRequest {
@@ -244,6 +249,10 @@ type AlertsApiGetAlertRequest struct {
 	groupId string
 	alertId string
 }
+type AlertsApiGetAlertQueryParams struct {
+		groupId string
+		alertId string
+}
 
 func (r AlertsApiGetAlertRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
 	return r.ApiService.GetAlertExecute(r)
@@ -375,6 +384,13 @@ type AlertsApiListAlertsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 	status *string
+}
+type AlertsApiListAlertsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		status *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -546,6 +562,13 @@ type AlertsApiListAlertsByAlertConfigurationIdRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type AlertsApiListAlertsByAlertConfigurationIdQueryParams struct {
+		groupId string
+		alertConfigId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

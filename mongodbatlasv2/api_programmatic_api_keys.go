@@ -252,6 +252,11 @@ type ProgrammaticAPIKeysApiAddProjectApiKeyRequest struct {
 	apiUserId string
 	userRoleAssignment *[]UserRoleAssignment
 }
+type ProgrammaticAPIKeysApiAddProjectApiKeyQueryParams struct {
+		groupId string
+		apiUserId string
+		userRoleAssignment *[]UserRoleAssignment
+}
 
 // Organization API key to be assigned to the specified project.
 func (r ProgrammaticAPIKeysApiAddProjectApiKeyRequest) UserRoleAssignment(userRoleAssignment []UserRoleAssignment) ProgrammaticAPIKeysApiAddProjectApiKeyRequest {
@@ -390,6 +395,10 @@ type ProgrammaticAPIKeysApiCreateApiKeyRequest struct {
 	orgId string
 	createApiKey *CreateApiKey
 }
+type ProgrammaticAPIKeysApiCreateApiKeyQueryParams struct {
+		orgId string
+		createApiKey *CreateApiKey
+}
 
 // Organization API Key to be created. This request requires a minimum of one of the two body parameters.
 func (r ProgrammaticAPIKeysApiCreateApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateApiKeyRequest {
@@ -522,6 +531,14 @@ type ProgrammaticAPIKeysApiCreateApiKeyAccessListRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ProgrammaticAPIKeysApiCreateApiKeyAccessListQueryParams struct {
+		orgId string
+		apiUserId string
+		userAccessList *[]UserAccessList
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Access list entries to be created for the specified organization API key.
@@ -700,6 +717,10 @@ type ProgrammaticAPIKeysApiCreateProjectApiKeyRequest struct {
 	groupId string
 	createApiKey *CreateApiKey
 }
+type ProgrammaticAPIKeysApiCreateProjectApiKeyQueryParams struct {
+		groupId string
+		createApiKey *CreateApiKey
+}
 
 // Organization API key to be created and assigned to the specified project. This request requires a minimum of one of the two body parameters.
 func (r ProgrammaticAPIKeysApiCreateProjectApiKeyRequest) CreateApiKey(createApiKey CreateApiKey) ProgrammaticAPIKeysApiCreateProjectApiKeyRequest {
@@ -829,6 +850,10 @@ type ProgrammaticAPIKeysApiDeleteApiKeyRequest struct {
 	orgId string
 	apiUserId string
 }
+type ProgrammaticAPIKeysApiDeleteApiKeyQueryParams struct {
+		orgId string
+		apiUserId string
+}
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApiKeyExecute(r)
@@ -945,6 +970,11 @@ type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest struct {
 	orgId string
 	apiUserId string
 	ipAddress string
+}
+type ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryQueryParams struct {
+		orgId string
+		apiUserId string
+		ipAddress string
 }
 
 func (r ProgrammaticAPIKeysApiDeleteApiKeyAccessListEntryRequest) Execute() (*http.Response, error) {
@@ -1064,6 +1094,10 @@ type ProgrammaticAPIKeysApiGetApiKeyRequest struct {
 	ApiService ProgrammaticAPIKeysApi
 	orgId string
 	apiUserId string
+}
+type ProgrammaticAPIKeysApiGetApiKeyQueryParams struct {
+		orgId string
+		apiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyRequest) Execute() (*ApiUser, *http.Response, error) {
@@ -1192,6 +1226,11 @@ type ProgrammaticAPIKeysApiGetApiKeyAccessListRequest struct {
 	orgId string
 	ipAddress string
 	apiUserId string
+}
+type ProgrammaticAPIKeysApiGetApiKeyAccessListQueryParams struct {
+		orgId string
+		ipAddress string
+		apiUserId string
 }
 
 func (r ProgrammaticAPIKeysApiGetApiKeyAccessListRequest) Execute() (*UserAccessList, *http.Response, error) {
@@ -1325,6 +1364,13 @@ type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ProgrammaticAPIKeysApiListApiKeyAccessListsEntriesQueryParams struct {
+		orgId string
+		apiUserId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1494,6 +1540,12 @@ type ProgrammaticAPIKeysApiListApiKeysRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ProgrammaticAPIKeysApiListApiKeysQueryParams struct {
+		orgId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ProgrammaticAPIKeysApiListApiKeysRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiListApiKeysRequest {
@@ -1653,6 +1705,12 @@ type ProgrammaticAPIKeysApiListProjectApiKeysRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ProgrammaticAPIKeysApiListProjectApiKeysQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ProgrammaticAPIKeysApiListProjectApiKeysRequest) IncludeCount(includeCount bool) ProgrammaticAPIKeysApiListProjectApiKeysRequest {
@@ -1810,6 +1868,10 @@ type ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest struct {
 	groupId string
 	apiUserId string
 }
+type ProgrammaticAPIKeysApiRemoveProjectApiKeyQueryParams struct {
+		groupId string
+		apiUserId string
+}
 
 func (r ProgrammaticAPIKeysApiRemoveProjectApiKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectApiKeyExecute(r)
@@ -1926,6 +1988,11 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRequest struct {
 	orgId string
 	apiUserId string
 	apiUser *ApiUser
+}
+type ProgrammaticAPIKeysApiUpdateApiKeyQueryParams struct {
+		orgId string
+		apiUserId string
+		apiUser *ApiUser
 }
 
 // Organization API key to be updated. This request requires a minimum of one of the two body parameters.
@@ -2068,6 +2135,14 @@ type ProgrammaticAPIKeysApiUpdateApiKeyRolesRequest struct {
 	pageNum *int32
 	itemsPerPage *int32
 	includeCount *bool
+}
+type ProgrammaticAPIKeysApiUpdateApiKeyRolesQueryParams struct {
+		groupId string
+		apiUserId string
+		createApiKey *CreateApiKey
+		pageNum *int32
+		itemsPerPage *int32
+		includeCount *bool
 }
 
 // Organization API Key to be updated. This request requires a minimum of one of the two body parameters.

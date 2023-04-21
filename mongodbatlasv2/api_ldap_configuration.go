@@ -108,6 +108,9 @@ type LDAPConfigurationApiDeleteLDAPConfigurationRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 }
+type LDAPConfigurationApiDeleteLDAPConfigurationQueryParams struct {
+		groupId string
+}
 
 func (r LDAPConfigurationApiDeleteLDAPConfigurationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLDAPConfigurationExecute(r)
@@ -213,6 +216,9 @@ type LDAPConfigurationApiGetLDAPConfigurationRequest struct {
 	ctx context.Context
 	ApiService LDAPConfigurationApi
 	groupId string
+}
+type LDAPConfigurationApiGetLDAPConfigurationQueryParams struct {
+		groupId string
 }
 
 func (r LDAPConfigurationApiGetLDAPConfigurationRequest) Execute() (*UserSecurity, *http.Response, error) {
@@ -331,6 +337,10 @@ type LDAPConfigurationApiGetLDAPConfigurationStatusRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 	requestId string
+}
+type LDAPConfigurationApiGetLDAPConfigurationStatusQueryParams struct {
+		groupId string
+		requestId string
 }
 
 func (r LDAPConfigurationApiGetLDAPConfigurationStatusRequest) Execute() (*NDSLDAPVerifyConnectivityJobRequest, *http.Response, error) {
@@ -458,6 +468,10 @@ type LDAPConfigurationApiSaveLDAPConfigurationRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 	userSecurity *UserSecurity
+}
+type LDAPConfigurationApiSaveLDAPConfigurationQueryParams struct {
+		groupId string
+		userSecurity *UserSecurity
 }
 
 // Updates the LDAP configuration for the specified project.
@@ -589,6 +603,10 @@ type LDAPConfigurationApiVerifyLDAPConfigurationRequest struct {
 	ApiService LDAPConfigurationApi
 	groupId string
 	nDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
+}
+type LDAPConfigurationApiVerifyLDAPConfigurationQueryParams struct {
+		groupId string
+		nDSLDAPVerifyConnectivityJobRequestParams *NDSLDAPVerifyConnectivityJobRequestParams
 }
 
 // The LDAP configuration for the specified project that you want to verify.

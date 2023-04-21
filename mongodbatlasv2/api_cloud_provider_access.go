@@ -113,6 +113,11 @@ type CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest struct {
 	roleId string
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
+type CloudProviderAccessApiAuthorizeCloudProviderAccessRoleQueryParams struct {
+		groupId string
+		roleId string
+		cloudProviderAccessRole *CloudProviderAccessRole
+}
 
 // Grants access to the specified project for the specified AWS IAM role.
 func (r CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest) CloudProviderAccessRole(cloudProviderAccessRole CloudProviderAccessRole) CloudProviderAccessApiAuthorizeCloudProviderAccessRoleRequest {
@@ -251,6 +256,10 @@ type CloudProviderAccessApiCreateCloudProviderAccessRoleRequest struct {
 	groupId string
 	cloudProviderAccessRole *CloudProviderAccessRole
 }
+type CloudProviderAccessApiCreateCloudProviderAccessRoleQueryParams struct {
+		groupId string
+		cloudProviderAccessRole *CloudProviderAccessRole
+}
 
 // Creates one AWS IAM role.
 func (r CloudProviderAccessApiCreateCloudProviderAccessRoleRequest) CloudProviderAccessRole(cloudProviderAccessRole CloudProviderAccessRole) CloudProviderAccessApiCreateCloudProviderAccessRoleRequest {
@@ -383,6 +392,11 @@ type CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest struct {
 	cloudProvider string
 	roleId string
 }
+type CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleQueryParams struct {
+		groupId string
+		cloudProvider string
+		roleId string
+}
 
 func (r CloudProviderAccessApiDeauthorizeCloudProviderAccessRoleRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeauthorizeCloudProviderAccessRoleExecute(r)
@@ -501,6 +515,10 @@ type CloudProviderAccessApiGetCloudProviderAccessRoleRequest struct {
 	ApiService CloudProviderAccessApi
 	groupId string
 	roleId string
+}
+type CloudProviderAccessApiGetCloudProviderAccessRoleQueryParams struct {
+		groupId string
+		roleId string
 }
 
 func (r CloudProviderAccessApiGetCloudProviderAccessRoleRequest) Execute() (*CloudProviderAccess, *http.Response, error) {
@@ -627,6 +645,9 @@ type CloudProviderAccessApiListCloudProviderAccessRolesRequest struct {
 	ctx context.Context
 	ApiService CloudProviderAccessApi
 	groupId string
+}
+type CloudProviderAccessApiListCloudProviderAccessRolesQueryParams struct {
+		groupId string
 }
 
 func (r CloudProviderAccessApiListCloudProviderAccessRolesRequest) Execute() (*CloudProviderAccess, *http.Response, error) {

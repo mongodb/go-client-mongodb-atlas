@@ -237,6 +237,10 @@ type NetworkPeeringApiCreatePeeringConnectionRequest struct {
 	groupId string
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
+type NetworkPeeringApiCreatePeeringConnectionQueryParams struct {
+		groupId string
+		containerPeerViewRequest *ContainerPeerViewRequest
+}
 
 // Create one network peering connection.
 func (r NetworkPeeringApiCreatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiCreatePeeringConnectionRequest {
@@ -365,6 +369,10 @@ type NetworkPeeringApiCreatePeeringContainerRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	cloudProviderContainer *CloudProviderContainer
+}
+type NetworkPeeringApiCreatePeeringContainerQueryParams struct {
+		groupId string
+		cloudProviderContainer *CloudProviderContainer
 }
 
 // Creates one new network peering container in the specified project.
@@ -495,6 +503,10 @@ type NetworkPeeringApiDeletePeeringConnectionRequest struct {
 	groupId string
 	peerId string
 }
+type NetworkPeeringApiDeletePeeringConnectionQueryParams struct {
+		groupId string
+		peerId string
+}
 
 func (r NetworkPeeringApiDeletePeeringConnectionRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePeeringConnectionExecute(r)
@@ -611,6 +623,10 @@ type NetworkPeeringApiDeletePeeringContainerRequest struct {
 	groupId string
 	containerId string
 }
+type NetworkPeeringApiDeletePeeringContainerQueryParams struct {
+		groupId string
+		containerId string
+}
 
 func (r NetworkPeeringApiDeletePeeringContainerRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePeeringContainerExecute(r)
@@ -726,6 +742,10 @@ type NetworkPeeringApiDisablePeeringRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	privateIPMode *PrivateIPMode
+}
+type NetworkPeeringApiDisablePeeringQueryParams struct {
+		groupId string
+		privateIPMode *PrivateIPMode
 }
 
 // Disables Connect via Peering Only mode for the specified project.
@@ -859,6 +879,10 @@ type NetworkPeeringApiGetPeeringConnectionRequest struct {
 	groupId string
 	peerId string
 }
+type NetworkPeeringApiGetPeeringConnectionQueryParams struct {
+		groupId string
+		peerId string
+}
 
 func (r NetworkPeeringApiGetPeeringConnectionRequest) Execute() (*GetPeeringConnection200Response, *http.Response, error) {
 	return r.ApiService.GetPeeringConnectionExecute(r)
@@ -985,6 +1009,10 @@ type NetworkPeeringApiGetPeeringContainerRequest struct {
 	ApiService NetworkPeeringApi
 	groupId string
 	containerId string
+}
+type NetworkPeeringApiGetPeeringContainerQueryParams struct {
+		groupId string
+		containerId string
 }
 
 func (r NetworkPeeringApiGetPeeringContainerRequest) Execute() (*CloudProviderContainer, *http.Response, error) {
@@ -1115,6 +1143,13 @@ type NetworkPeeringApiListPeeringConnectionsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 	providerName *string
+}
+type NetworkPeeringApiListPeeringConnectionsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		providerName *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1289,6 +1324,13 @@ type NetworkPeeringApiListPeeringContainerByCloudProviderRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type NetworkPeeringApiListPeeringContainerByCloudProviderQueryParams struct {
+		groupId string
+		providerName *string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Cloud service provider that serves the desired network peering containers.
 func (r NetworkPeeringApiListPeeringContainerByCloudProviderRequest) ProviderName(providerName string) NetworkPeeringApiListPeeringContainerByCloudProviderRequest {
@@ -1458,6 +1500,12 @@ type NetworkPeeringApiListPeeringContainersRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type NetworkPeeringApiListPeeringContainersQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r NetworkPeeringApiListPeeringContainersRequest) IncludeCount(includeCount bool) NetworkPeeringApiListPeeringContainersRequest {
@@ -1616,6 +1664,11 @@ type NetworkPeeringApiUpdatePeeringConnectionRequest struct {
 	peerId string
 	containerPeerViewRequest *ContainerPeerViewRequest
 }
+type NetworkPeeringApiUpdatePeeringConnectionQueryParams struct {
+		groupId string
+		peerId string
+		containerPeerViewRequest *ContainerPeerViewRequest
+}
 
 // Modify one network peering connection.
 func (r NetworkPeeringApiUpdatePeeringConnectionRequest) ContainerPeerViewRequest(containerPeerViewRequest ContainerPeerViewRequest) NetworkPeeringApiUpdatePeeringConnectionRequest {
@@ -1755,6 +1808,11 @@ type NetworkPeeringApiUpdatePeeringContainerRequest struct {
 	containerId string
 	cloudProviderContainer *CloudProviderContainer
 }
+type NetworkPeeringApiUpdatePeeringContainerQueryParams struct {
+		groupId string
+		containerId string
+		cloudProviderContainer *CloudProviderContainer
+}
 
 // Updates the network details and labels of one specified network peering container in the specified project.
 func (r NetworkPeeringApiUpdatePeeringContainerRequest) CloudProviderContainer(cloudProviderContainer CloudProviderContainer) NetworkPeeringApiUpdatePeeringContainerRequest {
@@ -1891,6 +1949,9 @@ type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest struct
 	ctx context.Context
 	ApiService NetworkPeeringApi
 	groupId string
+}
+type NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectQueryParams struct {
+		groupId string
 }
 
 func (r NetworkPeeringApiVerifyConnectViaPeeringOnlyModeForOneProjectRequest) Execute() (*PrivateIPMode, *http.Response, error) {

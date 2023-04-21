@@ -61,6 +61,9 @@ type AWSClustersDNSApiGetAWSCustomDNSRequest struct {
 	ApiService AWSClustersDNSApi
 	groupId string
 }
+type AWSClustersDNSApiGetAWSCustomDNSQueryParams struct {
+		groupId string
+}
 
 func (r AWSClustersDNSApiGetAWSCustomDNSRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
 	return r.ApiService.GetAWSCustomDNSExecute(r)
@@ -178,6 +181,10 @@ type AWSClustersDNSApiToggleAWSCustomDNSRequest struct {
 	ApiService AWSClustersDNSApi
 	groupId string
 	aWSCustomDNSEnabled *AWSCustomDNSEnabled
+}
+type AWSClustersDNSApiToggleAWSCustomDNSQueryParams struct {
+		groupId string
+		aWSCustomDNSEnabled *AWSCustomDNSEnabled
 }
 
 // Enables or disables the custom DNS configuration for AWS clusters in the specified project.

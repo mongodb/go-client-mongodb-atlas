@@ -113,6 +113,11 @@ type GlobalClustersApiCreateCustomZoneMappingRequest struct {
 	clusterName string
 	geoSharding *GeoSharding
 }
+type GlobalClustersApiCreateCustomZoneMappingQueryParams struct {
+		groupId string
+		clusterName string
+		geoSharding *GeoSharding
+}
 
 // Custom zone mapping to add to the specified global cluster.
 func (r GlobalClustersApiCreateCustomZoneMappingRequest) GeoSharding(geoSharding GeoSharding) GlobalClustersApiCreateCustomZoneMappingRequest {
@@ -252,6 +257,11 @@ type GlobalClustersApiCreateManagedNamespaceRequest struct {
 	clusterName string
 	managedNamespace *ManagedNamespace
 }
+type GlobalClustersApiCreateManagedNamespaceQueryParams struct {
+		groupId string
+		clusterName string
+		managedNamespace *ManagedNamespace
+}
 
 // Managed namespace to create within the specified global cluster.
 func (r GlobalClustersApiCreateManagedNamespaceRequest) ManagedNamespace(managedNamespace ManagedNamespace) GlobalClustersApiCreateManagedNamespaceRequest {
@@ -390,6 +400,10 @@ type GlobalClustersApiDeleteAllCustomZoneMappingsRequest struct {
 	groupId string
 	clusterName string
 }
+type GlobalClustersApiDeleteAllCustomZoneMappingsQueryParams struct {
+		groupId string
+		clusterName string
+}
 
 func (r GlobalClustersApiDeleteAllCustomZoneMappingsRequest) Execute() (*GeoSharding, *http.Response, error) {
 	return r.ApiService.DeleteAllCustomZoneMappingsExecute(r)
@@ -518,6 +532,12 @@ type GlobalClustersApiDeleteManagedNamespaceRequest struct {
 	groupId string
 	db *string
 	collection *string
+}
+type GlobalClustersApiDeleteManagedNamespaceQueryParams struct {
+		clusterName string
+		groupId string
+		db *string
+		collection *string
 }
 
 // Human-readable label that identifies the database that contains the collection.
@@ -663,6 +683,10 @@ type GlobalClustersApiGetManagedNamespaceRequest struct {
 	ApiService GlobalClustersApi
 	groupId string
 	clusterName string
+}
+type GlobalClustersApiGetManagedNamespaceQueryParams struct {
+		groupId string
+		clusterName string
 }
 
 func (r GlobalClustersApiGetManagedNamespaceRequest) Execute() (*GeoSharding, *http.Response, error) {

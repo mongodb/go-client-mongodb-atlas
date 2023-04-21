@@ -61,6 +61,9 @@ type AuditingApiGetAuditingConfigurationRequest struct {
 	ApiService AuditingApi
 	groupId string
 }
+type AuditingApiGetAuditingConfigurationQueryParams struct {
+		groupId string
+}
 
 func (r AuditingApiGetAuditingConfigurationRequest) Execute() (*AuditLog, *http.Response, error) {
 	return r.ApiService.GetAuditingConfigurationExecute(r)
@@ -178,6 +181,10 @@ type AuditingApiUpdateAuditingConfigurationRequest struct {
 	ApiService AuditingApi
 	groupId string
 	auditLog *AuditLog
+}
+type AuditingApiUpdateAuditingConfigurationQueryParams struct {
+		groupId string
+		auditLog *AuditLog
 }
 
 // Updated auditing configuration for the specified project.

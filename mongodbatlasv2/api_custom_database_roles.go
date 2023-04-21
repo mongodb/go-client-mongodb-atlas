@@ -109,6 +109,10 @@ type CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest struct {
 	groupId string
 	customDBRole *CustomDBRole
 }
+type CustomDatabaseRolesApiCreateCustomDatabaseRoleQueryParams struct {
+		groupId string
+		customDBRole *CustomDBRole
+}
 
 // Creates one custom role in the specified project.
 func (r CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest) CustomDBRole(customDBRole CustomDBRole) CustomDatabaseRolesApiCreateCustomDatabaseRoleRequest {
@@ -238,6 +242,10 @@ type CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest struct {
 	groupId string
 	roleName string
 }
+type CustomDatabaseRolesApiDeleteCustomDatabaseRoleQueryParams struct {
+		groupId string
+		roleName string
+}
 
 func (r CustomDatabaseRolesApiDeleteCustomDatabaseRoleRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteCustomDatabaseRoleExecute(r)
@@ -347,6 +355,10 @@ type CustomDatabaseRolesApiGetCustomDatabaseRoleRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 	roleName string
+}
+type CustomDatabaseRolesApiGetCustomDatabaseRoleQueryParams struct {
+		groupId string
+		roleName string
 }
 
 func (r CustomDatabaseRolesApiGetCustomDatabaseRoleRequest) Execute() (*CustomDBRole, *http.Response, error) {
@@ -468,6 +480,9 @@ type CustomDatabaseRolesApiListCustomDatabaseRolesRequest struct {
 	ApiService CustomDatabaseRolesApi
 	groupId string
 }
+type CustomDatabaseRolesApiListCustomDatabaseRolesQueryParams struct {
+		groupId string
+}
 
 func (r CustomDatabaseRolesApiListCustomDatabaseRolesRequest) Execute() ([]CustomDBRole, *http.Response, error) {
 	return r.ApiService.ListCustomDatabaseRolesExecute(r)
@@ -586,6 +601,11 @@ type CustomDatabaseRolesApiUpdateCustomDatabaseRoleRequest struct {
 	groupId string
 	roleName string
 	updateCustomDBRole *UpdateCustomDBRole
+}
+type CustomDatabaseRolesApiUpdateCustomDatabaseRoleQueryParams struct {
+		groupId string
+		roleName string
+		updateCustomDBRole *UpdateCustomDBRole
 }
 
 // Updates one custom role in the specified project.

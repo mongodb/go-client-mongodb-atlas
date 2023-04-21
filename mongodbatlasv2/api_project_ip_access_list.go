@@ -112,6 +112,13 @@ type ProjectIPAccessListApiCreateProjectIpAccessListRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ProjectIPAccessListApiCreateProjectIpAccessListQueryParams struct {
+		groupId string
+		networkPermissionEntry *[]NetworkPermissionEntry
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // One or more access list entries to add to the specified project.
 func (r ProjectIPAccessListApiCreateProjectIpAccessListRequest) NetworkPermissionEntry(networkPermissionEntry []NetworkPermissionEntry) ProjectIPAccessListApiCreateProjectIpAccessListRequest {
@@ -280,6 +287,10 @@ type ProjectIPAccessListApiDeleteProjectIpAccessListRequest struct {
 	groupId string
 	entryValue string
 }
+type ProjectIPAccessListApiDeleteProjectIpAccessListQueryParams struct {
+		groupId string
+		entryValue string
+}
 
 func (r ProjectIPAccessListApiDeleteProjectIpAccessListRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectIpAccessListExecute(r)
@@ -389,6 +400,10 @@ type ProjectIPAccessListApiGetProjectIpAccessListStatusRequest struct {
 	ApiService ProjectIPAccessListApi
 	groupId string
 	entryValue string
+}
+type ProjectIPAccessListApiGetProjectIpAccessListStatusQueryParams struct {
+		groupId string
+		entryValue string
 }
 
 func (r ProjectIPAccessListApiGetProjectIpAccessListStatusRequest) Execute() (*NetworkPermissionEntryStatus, *http.Response, error) {
@@ -510,6 +525,10 @@ type ProjectIPAccessListApiGetProjectIpListRequest struct {
 	ApiService ProjectIPAccessListApi
 	groupId string
 	entryValue string
+}
+type ProjectIPAccessListApiGetProjectIpListQueryParams struct {
+		groupId string
+		entryValue string
 }
 
 func (r ProjectIPAccessListApiGetProjectIpListRequest) Execute() (*NetworkPermissionEntry, *http.Response, error) {
@@ -633,6 +652,12 @@ type ProjectIPAccessListApiListProjectIpAccessListsRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ProjectIPAccessListApiListProjectIpAccessListsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

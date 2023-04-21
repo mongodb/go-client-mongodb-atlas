@@ -112,6 +112,10 @@ type DatabaseUsersApiCreateDatabaseUserRequest struct {
 	groupId string
 	databaseUser *DatabaseUser
 }
+type DatabaseUsersApiCreateDatabaseUserQueryParams struct {
+		groupId string
+		databaseUser *DatabaseUser
+}
 
 // Creates one database user in the specified project.
 func (r DatabaseUsersApiCreateDatabaseUserRequest) DatabaseUser(databaseUser DatabaseUser) DatabaseUsersApiCreateDatabaseUserRequest {
@@ -242,6 +246,11 @@ type DatabaseUsersApiDeleteDatabaseUserRequest struct {
 	databaseName string
 	username string
 }
+type DatabaseUsersApiDeleteDatabaseUserQueryParams struct {
+		groupId string
+		databaseName string
+		username string
+}
 
 func (r DatabaseUsersApiDeleteDatabaseUserRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDatabaseUserExecute(r)
@@ -355,6 +364,11 @@ type DatabaseUsersApiGetDatabaseUserRequest struct {
 	groupId string
 	databaseName string
 	username string
+}
+type DatabaseUsersApiGetDatabaseUserQueryParams struct {
+		groupId string
+		databaseName string
+		username string
 }
 
 func (r DatabaseUsersApiGetDatabaseUserRequest) Execute() (*DatabaseUser, *http.Response, error) {
@@ -481,6 +495,12 @@ type DatabaseUsersApiListDatabaseUsersRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type DatabaseUsersApiListDatabaseUsersQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -640,6 +660,12 @@ type DatabaseUsersApiUpdateDatabaseUserRequest struct {
 	databaseName string
 	username string
 	databaseUser *DatabaseUser
+}
+type DatabaseUsersApiUpdateDatabaseUserQueryParams struct {
+		groupId string
+		databaseName string
+		username string
+		databaseUser *DatabaseUser
 }
 
 // Updates one database user that belongs to the specified project.

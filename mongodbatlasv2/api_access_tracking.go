@@ -70,6 +70,15 @@ type AccessTrackingApiListAccessLogsByClusterNameRequest struct {
 	nLogs *int64
 	start *time.Time
 }
+type AccessTrackingApiListAccessLogsByClusterNameQueryParams struct {
+		groupId string
+		clusterName string
+		authResult *bool
+		end *string
+		ipAddress *string
+		nLogs *int64
+		start *time.Time
+}
 
 // Flag that indicates whether the response returns the successful authentication attempts only.
 func (r AccessTrackingApiListAccessLogsByClusterNameRequest) AuthResult(authResult bool) AccessTrackingApiListAccessLogsByClusterNameRequest {
@@ -250,6 +259,15 @@ type AccessTrackingApiListAccessLogsByHostnameRequest struct {
 	ipAddress *string
 	nLogs *int32
 	start *time.Time
+}
+type AccessTrackingApiListAccessLogsByHostnameQueryParams struct {
+		groupId string
+		hostname string
+		authResult *bool
+		end *time.Time
+		ipAddress *string
+		nLogs *int32
+		start *time.Time
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.

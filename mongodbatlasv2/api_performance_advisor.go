@@ -108,6 +108,9 @@ type PerformanceAdvisorApiDisableSlowOperationThresholdingRequest struct {
 	ApiService PerformanceAdvisorApi
 	groupId string
 }
+type PerformanceAdvisorApiDisableSlowOperationThresholdingQueryParams struct {
+		groupId string
+}
 
 func (r PerformanceAdvisorApiDisableSlowOperationThresholdingRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DisableSlowOperationThresholdingExecute(r)
@@ -213,6 +216,9 @@ type PerformanceAdvisorApiEnableSlowOperationThresholdingRequest struct {
 	ctx context.Context
 	ApiService PerformanceAdvisorApi
 	groupId string
+}
+type PerformanceAdvisorApiEnableSlowOperationThresholdingQueryParams struct {
+		groupId string
 }
 
 func (r PerformanceAdvisorApiEnableSlowOperationThresholdingRequest) Execute() (*http.Response, error) {
@@ -324,6 +330,14 @@ type PerformanceAdvisorApiListSlowQueriesRequest struct {
 	namespaces *[]string
 	nLogs *int64
 	since *int64
+}
+type PerformanceAdvisorApiListSlowQueriesQueryParams struct {
+		groupId string
+		processId string
+		duration *int64
+		namespaces *[]string
+		nLogs *int64
+		since *int64
 }
 
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
@@ -496,6 +510,12 @@ type PerformanceAdvisorApiListSlowQueryNamespacesRequest struct {
 	duration *int64
 	since *int64
 }
+type PerformanceAdvisorApiListSlowQueryNamespacesQueryParams struct {
+		groupId string
+		processId string
+		duration *int64
+		since *int64
+}
 
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
 func (r PerformanceAdvisorApiListSlowQueryNamespacesRequest) Duration(duration int64) PerformanceAdvisorApiListSlowQueryNamespacesRequest {
@@ -642,6 +662,18 @@ type PerformanceAdvisorApiListSuggestedIndexesRequest struct {
 	nExamples *int64
 	nIndexes *int64
 	since *float32
+}
+type PerformanceAdvisorApiListSuggestedIndexesQueryParams struct {
+		groupId string
+		processId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		duration *float32
+		namespaces *[]string
+		nExamples *int64
+		nIndexes *int64
+		since *float32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

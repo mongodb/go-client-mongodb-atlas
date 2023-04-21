@@ -172,6 +172,10 @@ type ClustersApiGetClusterAdvancedConfigurationRequest struct {
 	groupId string
 	clusterName string
 }
+type ClustersApiGetClusterAdvancedConfigurationQueryParams struct {
+		groupId string
+		clusterName string
+}
 
 func (r ClustersApiGetClusterAdvancedConfigurationRequest) Execute() (*ClusterDescriptionProcessArgs, *http.Response, error) {
 	return r.ApiService.GetClusterAdvancedConfigurationExecute(r)
@@ -299,6 +303,10 @@ type ClustersApiGetClusterStatusRequest struct {
 	groupId string
 	clusterName string
 }
+type ClustersApiGetClusterStatusQueryParams struct {
+		groupId string
+		clusterName string
+}
 
 func (r ClustersApiGetClusterStatusRequest) Execute() (*ClusterStatus, *http.Response, error) {
 	return r.ApiService.GetClusterStatusExecute(r)
@@ -425,6 +433,10 @@ type ClustersApiGetSampleDatasetLoadStatusRequest struct {
 	ApiService ClustersApi
 	groupId string
 	sampleDatasetId string
+}
+type ClustersApiGetSampleDatasetLoadStatusQueryParams struct {
+		groupId string
+		sampleDatasetId string
 }
 
 func (r ClustersApiGetSampleDatasetLoadStatusRequest) Execute() (*SampleDatasetStatus, *http.Response, error) {
@@ -556,6 +568,14 @@ type ClustersApiListCloudProviderRegionsRequest struct {
 	pageNum *int32
 	providers *[]string
 	tier *string
+}
+type ClustersApiListCloudProviderRegionsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		providers *[]string
+		tier *string
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -741,6 +761,11 @@ type ClustersApiListClustersForAllProjectsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ClustersApiListClustersForAllProjectsQueryParams struct {
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ClustersApiListClustersForAllProjectsRequest) IncludeCount(includeCount bool) ClustersApiListClustersForAllProjectsRequest {
@@ -890,6 +915,11 @@ type ClustersApiLoadSampleDatasetRequest struct {
 	name string
 	sampleDatasetStatus *SampleDatasetStatus
 }
+type ClustersApiLoadSampleDatasetQueryParams struct {
+		groupId string
+		name string
+		sampleDatasetStatus *SampleDatasetStatus
+}
 
 // Cluster into which to load the sample dataset.
 func (r ClustersApiLoadSampleDatasetRequest) SampleDatasetStatus(sampleDatasetStatus SampleDatasetStatus) ClustersApiLoadSampleDatasetRequest {
@@ -1029,6 +1059,11 @@ type ClustersApiUpdateClusterAdvancedConfigurationRequest struct {
 	clusterName string
 	clusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
 }
+type ClustersApiUpdateClusterAdvancedConfigurationQueryParams struct {
+		groupId string
+		clusterName string
+		clusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
+}
 
 // Advanced configuration details to add for one cluster in the specified project.
 func (r ClustersApiUpdateClusterAdvancedConfigurationRequest) ClusterDescriptionProcessArgs(clusterDescriptionProcessArgs ClusterDescriptionProcessArgs) ClustersApiUpdateClusterAdvancedConfigurationRequest {
@@ -1167,6 +1202,10 @@ type ClustersApiUpgradeSharedClusterRequest struct {
 	groupId string
 	legacyClusterDescription *LegacyClusterDescription
 }
+type ClustersApiUpgradeSharedClusterQueryParams struct {
+		groupId string
+		legacyClusterDescription *LegacyClusterDescription
+}
 
 // Details of the shared-tier cluster upgrade in the specified project.
 func (r ClustersApiUpgradeSharedClusterRequest) LegacyClusterDescription(legacyClusterDescription LegacyClusterDescription) ClustersApiUpgradeSharedClusterRequest {
@@ -1295,6 +1334,10 @@ type ClustersApiUpgradeSharedClusterToServerlessRequest struct {
 	ApiService ClustersApi
 	groupId string
 	serverlessInstanceDescription *ServerlessInstanceDescription
+}
+type ClustersApiUpgradeSharedClusterToServerlessQueryParams struct {
+		groupId string
+		serverlessInstanceDescription *ServerlessInstanceDescription
 }
 
 // Details of the shared-tier cluster upgrade in the specified project.

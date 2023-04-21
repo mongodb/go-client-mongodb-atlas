@@ -82,6 +82,11 @@ type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest struct {
 	groupId string
 	tenantRestore *TenantRestore
 }
+type SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobQueryParams struct {
+		clusterName string
+		groupId string
+		tenantRestore *TenantRestore
+}
 
 // The restore job details.
 func (r SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest) TenantRestore(tenantRestore TenantRestore) SharedTierRestoreJobsApiCreateSharedClusterBackupRestoreJobRequest {
@@ -221,6 +226,11 @@ type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest struct {
 	groupId string
 	restoreId string
 }
+type SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobQueryParams struct {
+		clusterName string
+		groupId string
+		restoreId string
+}
 
 func (r SharedTierRestoreJobsApiGetSharedClusterBackupRestoreJobRequest) Execute() (*TenantRestore, *http.Response, error) {
 	return r.ApiService.GetSharedClusterBackupRestoreJobExecute(r)
@@ -356,6 +366,10 @@ type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest struct {
 	ApiService SharedTierRestoreJobsApi
 	clusterName string
 	groupId string
+}
+type SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsQueryParams struct {
+		clusterName string
+		groupId string
 }
 
 func (r SharedTierRestoreJobsApiListSharedClusterBackupRestoreJobsRequest) Execute() (*PaginatedTenantRestore, *http.Response, error) {

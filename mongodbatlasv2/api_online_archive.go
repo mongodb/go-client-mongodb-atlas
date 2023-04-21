@@ -132,6 +132,11 @@ type OnlineArchiveApiCreateOnlineArchiveRequest struct {
 	clusterName string
 	onlineArchive *OnlineArchive
 }
+type OnlineArchiveApiCreateOnlineArchiveQueryParams struct {
+		groupId string
+		clusterName string
+		onlineArchive *OnlineArchive
+}
 
 // Creates one online archive.
 func (r OnlineArchiveApiCreateOnlineArchiveRequest) OnlineArchive(onlineArchive OnlineArchive) OnlineArchiveApiCreateOnlineArchiveRequest {
@@ -271,6 +276,11 @@ type OnlineArchiveApiDeleteOnlineArchiveRequest struct {
 	archiveId string
 	clusterName string
 }
+type OnlineArchiveApiDeleteOnlineArchiveQueryParams struct {
+		groupId string
+		archiveId string
+		clusterName string
+}
 
 func (r OnlineArchiveApiDeleteOnlineArchiveRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOnlineArchiveExecute(r)
@@ -398,6 +408,13 @@ type OnlineArchiveApiDownloadOnlineArchiveQueryLogsRequest struct {
 	startDate *int64
 	endDate *int64
 	archiveOnly *bool
+}
+type OnlineArchiveApiDownloadOnlineArchiveQueryLogsQueryParams struct {
+		groupId string
+		clusterName string
+		startDate *int64
+		endDate *int64
+		archiveOnly *bool
 }
 
 // Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
@@ -558,6 +575,11 @@ type OnlineArchiveApiGetOnlineArchiveRequest struct {
 	archiveId string
 	clusterName string
 }
+type OnlineArchiveApiGetOnlineArchiveQueryParams struct {
+		groupId string
+		archiveId string
+		clusterName string
+}
 
 func (r OnlineArchiveApiGetOnlineArchiveRequest) Execute() (*OnlineArchive, *http.Response, error) {
 	return r.ApiService.GetOnlineArchiveExecute(r)
@@ -696,6 +718,13 @@ type OnlineArchiveApiListOnlineArchivesRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type OnlineArchiveApiListOnlineArchivesQueryParams struct {
+		groupId string
+		clusterName string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -864,6 +893,12 @@ type OnlineArchiveApiUpdateOnlineArchiveRequest struct {
 	archiveId string
 	clusterName string
 	onlineArchive *OnlineArchive
+}
+type OnlineArchiveApiUpdateOnlineArchiveQueryParams struct {
+		groupId string
+		archiveId string
+		clusterName string
+		onlineArchive *OnlineArchive
 }
 
 // Updates, pauses, or resumes one online archive.

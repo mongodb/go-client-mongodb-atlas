@@ -102,6 +102,9 @@ type MaintenanceWindowsApiDeferMaintenanceWindowRequest struct {
 	ApiService MaintenanceWindowsApi
 	groupId string
 }
+type MaintenanceWindowsApiDeferMaintenanceWindowQueryParams struct {
+		groupId string
+}
 
 func (r MaintenanceWindowsApiDeferMaintenanceWindowRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeferMaintenanceWindowExecute(r)
@@ -207,6 +210,9 @@ type MaintenanceWindowsApiGetMaintenanceWindowRequest struct {
 	ctx context.Context
 	ApiService MaintenanceWindowsApi
 	groupId string
+}
+type MaintenanceWindowsApiGetMaintenanceWindowQueryParams struct {
+		groupId string
 }
 
 func (r MaintenanceWindowsApiGetMaintenanceWindowRequest) Execute() (*GroupMaintenanceWindow, *http.Response, error) {
@@ -325,6 +331,9 @@ type MaintenanceWindowsApiResetMaintenanceWindowRequest struct {
 	ApiService MaintenanceWindowsApi
 	groupId string
 }
+type MaintenanceWindowsApiResetMaintenanceWindowQueryParams struct {
+		groupId string
+}
 
 func (r MaintenanceWindowsApiResetMaintenanceWindowRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ResetMaintenanceWindowExecute(r)
@@ -430,6 +439,9 @@ type MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest struct {
 	ctx context.Context
 	ApiService MaintenanceWindowsApi
 	groupId string
+}
+type MaintenanceWindowsApiToggleMaintenanceAutoDeferQueryParams struct {
+		groupId string
 }
 
 func (r MaintenanceWindowsApiToggleMaintenanceAutoDeferRequest) Execute() (*http.Response, error) {
@@ -537,6 +549,10 @@ type MaintenanceWindowsApiUpdateMaintenanceWindowRequest struct {
 	ApiService MaintenanceWindowsApi
 	groupId string
 	groupMaintenanceWindow *GroupMaintenanceWindow
+}
+type MaintenanceWindowsApiUpdateMaintenanceWindowQueryParams struct {
+		groupId string
+		groupMaintenanceWindow *GroupMaintenanceWindow
 }
 
 // Updates the maintenance window for the specified project.

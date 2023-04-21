@@ -43,6 +43,8 @@ type RootApiGetSystemStatusRequest struct {
 	ctx context.Context
 	ApiService RootApi
 }
+type RootApiGetSystemStatusQueryParams struct {
+}
 
 func (r RootApiGetSystemStatusRequest) Execute() (*SystemStatus, *http.Response, error) {
 	return r.ApiService.GetSystemStatusExecute(r)

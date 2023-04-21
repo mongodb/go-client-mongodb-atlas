@@ -335,6 +335,10 @@ type ProjectsApiCreateProjectRequest struct {
 	group *Group
 	projectOwnerId *string
 }
+type ProjectsApiCreateProjectQueryParams struct {
+		group *Group
+		projectOwnerId *string
+}
 
 // Creates one project.
 func (r ProjectsApiCreateProjectRequest) Group(group Group) ProjectsApiCreateProjectRequest {
@@ -464,6 +468,10 @@ type ProjectsApiCreateProjectInvitationRequest struct {
 	groupId string
 	groupInvitationRequest *GroupInvitationRequest
 }
+type ProjectsApiCreateProjectInvitationQueryParams struct {
+		groupId string
+		groupInvitationRequest *GroupInvitationRequest
+}
 
 // Invites one MongoDB Cloud user to join the specified project.
 func (r ProjectsApiCreateProjectInvitationRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) ProjectsApiCreateProjectInvitationRequest {
@@ -592,6 +600,9 @@ type ProjectsApiDeleteProjectRequest struct {
 	ApiService ProjectsApi
 	groupId string
 }
+type ProjectsApiDeleteProjectQueryParams struct {
+		groupId string
+}
 
 func (r ProjectsApiDeleteProjectRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectExecute(r)
@@ -698,6 +709,10 @@ type ProjectsApiDeleteProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	invitationId string
+}
+type ProjectsApiDeleteProjectInvitationQueryParams struct {
+		groupId string
+		invitationId string
 }
 
 func (r ProjectsApiDeleteProjectInvitationRequest) Execute() (*http.Response, error) {
@@ -815,6 +830,10 @@ type ProjectsApiDeleteProjectLimitRequest struct {
 	limitName string
 	groupId string
 }
+type ProjectsApiDeleteProjectLimitQueryParams struct {
+		limitName string
+		groupId string
+}
 
 func (r ProjectsApiDeleteProjectLimitRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteProjectLimitExecute(r)
@@ -923,6 +942,9 @@ type ProjectsApiGetProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectsApi
 	groupId string
+}
+type ProjectsApiGetProjectQueryParams struct {
+		groupId string
 }
 
 func (r ProjectsApiGetProjectRequest) Execute() (*Group, *http.Response, error) {
@@ -1041,6 +1063,9 @@ type ProjectsApiGetProjectByNameRequest struct {
 	ApiService ProjectsApi
 	groupName string
 }
+type ProjectsApiGetProjectByNameQueryParams struct {
+		groupName string
+}
 
 func (r ProjectsApiGetProjectByNameRequest) Execute() (*Group, *http.Response, error) {
 	return r.ApiService.GetProjectByNameExecute(r)
@@ -1158,6 +1183,10 @@ type ProjectsApiGetProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	invitationId string
+}
+type ProjectsApiGetProjectInvitationQueryParams struct {
+		groupId string
+		invitationId string
 }
 
 func (r ProjectsApiGetProjectInvitationRequest) Execute() (*GroupInvitation, *http.Response, error) {
@@ -1286,6 +1315,10 @@ type ProjectsApiGetProjectLimitRequest struct {
 	limitName string
 	groupId string
 }
+type ProjectsApiGetProjectLimitQueryParams struct {
+		limitName string
+		groupId string
+}
 
 func (r ProjectsApiGetProjectLimitRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.GetProjectLimitExecute(r)
@@ -1406,6 +1439,9 @@ type ProjectsApiGetProjectSettingsRequest struct {
 	ApiService ProjectsApi
 	groupId string
 }
+type ProjectsApiGetProjectSettingsQueryParams struct {
+		groupId string
+}
 
 func (r ProjectsApiGetProjectSettingsRequest) Execute() (*GroupSettings, *http.Response, error) {
 	return r.ApiService.GetProjectSettingsExecute(r)
@@ -1523,6 +1559,10 @@ type ProjectsApiListProjectInvitationsRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	username *string
+}
+type ProjectsApiListProjectInvitationsQueryParams struct {
+		groupId string
+		username *string
 }
 
 // Email address of the user account invited to this project.
@@ -1650,6 +1690,9 @@ type ProjectsApiListProjectLimitsRequest struct {
 	ApiService ProjectsApi
 	groupId string
 }
+type ProjectsApiListProjectLimitsQueryParams struct {
+		groupId string
+}
 
 func (r ProjectsApiListProjectLimitsRequest) Execute() (*Limit, *http.Response, error) {
 	return r.ApiService.ListProjectLimitsExecute(r)
@@ -1771,6 +1814,14 @@ type ProjectsApiListProjectUsersRequest struct {
 	pageNum *int32
 	flattenTeams *bool
 	includeOrgUsers *bool
+}
+type ProjectsApiListProjectUsersQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		flattenTeams *bool
+		includeOrgUsers *bool
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1956,6 +2007,11 @@ type ProjectsApiListProjectsRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type ProjectsApiListProjectsQueryParams struct {
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ProjectsApiListProjectsRequest) IncludeCount(includeCount bool) ProjectsApiListProjectsRequest {
@@ -2104,6 +2160,10 @@ type ProjectsApiRemoveProjectUserRequest struct {
 	groupId string
 	userId string
 }
+type ProjectsApiRemoveProjectUserQueryParams struct {
+		groupId string
+		userId string
+}
 
 func (r ProjectsApiRemoveProjectUserRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectUserExecute(r)
@@ -2220,6 +2280,11 @@ type ProjectsApiSetProjectLimitRequest struct {
 	limitName string
 	groupId string
 	limit *Limit
+}
+type ProjectsApiSetProjectLimitQueryParams struct {
+		limitName string
+		groupId string
+		limit *Limit
 }
 
 func (r ProjectsApiSetProjectLimitRequest) Limit(limit Limit) ProjectsApiSetProjectLimitRequest {
@@ -2351,6 +2416,10 @@ type ProjectsApiUpdateProjectRequest struct {
 	groupId string
 	groupName *GroupName
 }
+type ProjectsApiUpdateProjectQueryParams struct {
+		groupId string
+		groupName *GroupName
+}
 
 func (r ProjectsApiUpdateProjectRequest) GroupName(groupName GroupName) ProjectsApiUpdateProjectRequest {
 	r.groupName = &groupName
@@ -2475,6 +2544,10 @@ type ProjectsApiUpdateProjectInvitationRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	groupInvitationRequest *GroupInvitationRequest
+}
+type ProjectsApiUpdateProjectInvitationQueryParams struct {
+		groupId string
+		groupInvitationRequest *GroupInvitationRequest
 }
 
 // Updates the details of one pending invitation to the specified project.
@@ -2605,6 +2678,11 @@ type ProjectsApiUpdateProjectInvitationByIdRequest struct {
 	groupId string
 	invitationId string
 	groupInvitationUpdateRequest *GroupInvitationUpdateRequest
+}
+type ProjectsApiUpdateProjectInvitationByIdQueryParams struct {
+		groupId string
+		invitationId string
+		groupInvitationUpdateRequest *GroupInvitationUpdateRequest
 }
 
 // Updates the details of one pending invitation to the specified project.
@@ -2743,6 +2821,10 @@ type ProjectsApiUpdateProjectSettingsRequest struct {
 	ApiService ProjectsApi
 	groupId string
 	groupSettings *GroupSettings
+}
+type ProjectsApiUpdateProjectSettingsQueryParams struct {
+		groupId string
+		groupSettings *GroupSettings
 }
 
 func (r ProjectsApiUpdateProjectSettingsRequest) GroupSettings(groupSettings GroupSettings) ProjectsApiUpdateProjectSettingsRequest {

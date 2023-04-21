@@ -109,6 +109,10 @@ type ServerlessInstancesApiCreateServerlessInstanceRequest struct {
 	groupId string
 	serverlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
 }
+type ServerlessInstancesApiCreateServerlessInstanceQueryParams struct {
+		groupId string
+		serverlessInstanceDescriptionCreate *ServerlessInstanceDescriptionCreate
+}
 
 // Create One Serverless Instance in One Project.
 func (r ServerlessInstancesApiCreateServerlessInstanceRequest) ServerlessInstanceDescriptionCreate(serverlessInstanceDescriptionCreate ServerlessInstanceDescriptionCreate) ServerlessInstancesApiCreateServerlessInstanceRequest {
@@ -238,6 +242,10 @@ type ServerlessInstancesApiDeleteServerlessInstanceRequest struct {
 	groupId string
 	name string
 }
+type ServerlessInstancesApiDeleteServerlessInstanceQueryParams struct {
+		groupId string
+		name string
+}
 
 func (r ServerlessInstancesApiDeleteServerlessInstanceRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteServerlessInstanceExecute(r)
@@ -353,6 +361,10 @@ type ServerlessInstancesApiGetServerlessInstanceRequest struct {
 	ApiService ServerlessInstancesApi
 	groupId string
 	name string
+}
+type ServerlessInstancesApiGetServerlessInstanceQueryParams struct {
+		groupId string
+		name string
 }
 
 func (r ServerlessInstancesApiGetServerlessInstanceRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
@@ -482,6 +494,12 @@ type ServerlessInstancesApiListServerlessInstancesRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type ServerlessInstancesApiListServerlessInstancesQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -640,6 +658,11 @@ type ServerlessInstancesApiUpdateServerlessInstanceRequest struct {
 	groupId string
 	name string
 	serverlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
+}
+type ServerlessInstancesApiUpdateServerlessInstanceQueryParams struct {
+		groupId string
+		name string
+		serverlessInstanceDescriptionUpdate *ServerlessInstanceDescriptionUpdate
 }
 
 // Update One Serverless Instance in One Project.

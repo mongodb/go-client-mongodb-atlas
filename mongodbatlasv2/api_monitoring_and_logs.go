@@ -286,6 +286,10 @@ type MonitoringAndLogsApiGetAtlasProcessRequest struct {
 	groupId string
 	processId string
 }
+type MonitoringAndLogsApiGetAtlasProcessQueryParams struct {
+		groupId string
+		processId string
+}
 
 func (r MonitoringAndLogsApiGetAtlasProcessRequest) Execute() (*HostViewAtlas, *http.Response, error) {
 	return r.ApiService.GetAtlasProcessExecute(r)
@@ -407,6 +411,11 @@ type MonitoringAndLogsApiGetDatabaseRequest struct {
 	groupId string
 	databaseName string
 	processId string
+}
+type MonitoringAndLogsApiGetDatabaseQueryParams struct {
+		groupId string
+		databaseName string
+		processId string
 }
 
 func (r MonitoringAndLogsApiGetDatabaseRequest) Execute() (*Database, *http.Response, error) {
@@ -533,6 +542,12 @@ type MonitoringAndLogsApiGetDatabaseMeasurementsRequest struct {
 	databaseName string
 	processId string
 	m *[]string
+}
+type MonitoringAndLogsApiGetDatabaseMeasurementsQueryParams struct {
+		groupId string
+		databaseName string
+		processId string
+		m *[]string
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -676,6 +691,12 @@ type MonitoringAndLogsApiGetDiskMeasurementsRequest struct {
 	partitionName string
 	processId string
 	m *[]string
+}
+type MonitoringAndLogsApiGetDiskMeasurementsQueryParams struct {
+		groupId string
+		partitionName string
+		processId string
+		m *[]string
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -827,6 +848,13 @@ type MonitoringAndLogsApiGetHostLogsRequest struct {
 	endDate *int64
 	startDate *int64
 }
+type MonitoringAndLogsApiGetHostLogsQueryParams struct {
+		groupId string
+		hostName string
+		logName string
+		endDate *int64
+		startDate *int64
+}
 
 // Date and time when the period specifies the inclusive ending point for the range of log messages to retrieve. This parameter expresses its value in the number of seconds that have elapsed since the UNIX epoch.
 func (r MonitoringAndLogsApiGetHostLogsRequest) EndDate(endDate int64) MonitoringAndLogsApiGetHostLogsRequest {
@@ -970,6 +998,12 @@ type MonitoringAndLogsApiGetHostMeasurementsRequest struct {
 	processId string
 	m *[]string
 	period *time.Time
+}
+type MonitoringAndLogsApiGetHostMeasurementsQueryParams struct {
+		groupId string
+		processId string
+		m *[]string
+		period *time.Time
 }
 
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
@@ -1131,6 +1165,18 @@ type MonitoringAndLogsApiGetIndexMetricsRequest struct {
 	period *string
 	start *time.Time
 	end *time.Time
+}
+type MonitoringAndLogsApiGetIndexMetricsQueryParams struct {
+		processId string
+		indexName string
+		databaseName string
+		collectionName string
+		groupId string
+		granularity *string
+		metrics *[]string
+		period *string
+		start *time.Time
+		end *time.Time
 }
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
@@ -1327,6 +1373,15 @@ type MonitoringAndLogsApiGetMeasurementsRequest struct {
 	start *time.Time
 	end *time.Time
 }
+type MonitoringAndLogsApiGetMeasurementsQueryParams struct {
+		processId string
+		groupId string
+		granularity *string
+		metrics *[]string
+		period *string
+		start *time.Time
+		end *time.Time
+}
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
 func (r MonitoringAndLogsApiGetMeasurementsRequest) Granularity(granularity string) MonitoringAndLogsApiGetMeasurementsRequest {
@@ -1510,6 +1565,12 @@ type MonitoringAndLogsApiListAtlasProcessesRequest struct {
 	itemsPerPage *int32
 	pageNum *int32
 }
+type MonitoringAndLogsApiListAtlasProcessesQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+}
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r MonitoringAndLogsApiListAtlasProcessesRequest) IncludeCount(includeCount bool) MonitoringAndLogsApiListAtlasProcessesRequest {
@@ -1669,6 +1730,13 @@ type MonitoringAndLogsApiListDatabasesRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type MonitoringAndLogsApiListDatabasesQueryParams struct {
+		groupId string
+		processId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -1831,6 +1899,11 @@ type MonitoringAndLogsApiListDiskMeasurementsRequest struct {
 	groupId string
 	processId string
 }
+type MonitoringAndLogsApiListDiskMeasurementsQueryParams struct {
+		partitionName string
+		groupId string
+		processId string
+}
 
 func (r MonitoringAndLogsApiListDiskMeasurementsRequest) Execute() (*DiskPartition, *http.Response, error) {
 	return r.ApiService.ListDiskMeasurementsExecute(r)
@@ -1963,6 +2036,13 @@ type MonitoringAndLogsApiListDiskPartitionsRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type MonitoringAndLogsApiListDiskPartitionsQueryParams struct {
+		groupId string
+		processId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -2130,6 +2210,17 @@ type MonitoringAndLogsApiListIndexMetricsRequest struct {
 	period *string
 	start *time.Time
 	end *time.Time
+}
+type MonitoringAndLogsApiListIndexMetricsQueryParams struct {
+		processId string
+		databaseName string
+		collectionName string
+		groupId string
+		granularity *string
+		metrics *[]string
+		period *string
+		start *time.Time
+		end *time.Time
 }
 
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
@@ -2317,6 +2408,10 @@ type MonitoringAndLogsApiListMetricTypesRequest struct {
 	ApiService MonitoringAndLogsApi
 	processId string
 	groupId string
+}
+type MonitoringAndLogsApiListMetricTypesQueryParams struct {
+		processId string
+		groupId string
 }
 
 func (r MonitoringAndLogsApiListMetricTypesRequest) Execute() (*FTSMetrics, *http.Response, error) {

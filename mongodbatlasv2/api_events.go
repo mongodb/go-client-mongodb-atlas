@@ -105,6 +105,11 @@ type EventsApiGetOrganizationEventRequest struct {
 	eventId string
 	includeRaw *bool
 }
+type EventsApiGetOrganizationEventQueryParams struct {
+		orgId string
+		eventId string
+		includeRaw *bool
+}
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
 func (r EventsApiGetOrganizationEventRequest) IncludeRaw(includeRaw bool) EventsApiGetOrganizationEventRequest {
@@ -247,6 +252,11 @@ type EventsApiGetProjectEventRequest struct {
 	groupId string
 	eventId string
 	includeRaw *bool
+}
+type EventsApiGetProjectEventQueryParams struct {
+		groupId string
+		eventId string
+		includeRaw *bool
 }
 
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
@@ -395,6 +405,16 @@ type EventsApiListOrganizationEventsRequest struct {
 	includeRaw *bool
 	maxDate *time.Time
 	minDate *time.Time
+}
+type EventsApiListOrganizationEventsQueryParams struct {
+		orgId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		eventType *EventTypeForOrg
+		includeRaw *bool
+		maxDate *time.Time
+		minDate *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -601,6 +621,17 @@ type EventsApiListProjectEventsRequest struct {
 	includeRaw *bool
 	maxDate *time.Time
 	minDate *time.Time
+}
+type EventsApiListProjectEventsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
+		clusterNames *[]string
+		eventType *EventTypeForNdsGroup
+		includeRaw *bool
+		maxDate *time.Time
+		minDate *time.Time
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.

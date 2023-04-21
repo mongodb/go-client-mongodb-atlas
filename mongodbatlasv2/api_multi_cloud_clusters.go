@@ -124,6 +124,10 @@ type MultiCloudClustersApiCreateClusterRequest struct {
 	groupId string
 	clusterDescriptionV15 *ClusterDescriptionV15
 }
+type MultiCloudClustersApiCreateClusterQueryParams struct {
+		groupId string
+		clusterDescriptionV15 *ClusterDescriptionV15
+}
 
 // Cluster to create in the specific project.
 func (r MultiCloudClustersApiCreateClusterRequest) ClusterDescriptionV15(clusterDescriptionV15 ClusterDescriptionV15) MultiCloudClustersApiCreateClusterRequest {
@@ -254,6 +258,11 @@ type MultiCloudClustersApiDeleteClusterRequest struct {
 	clusterName string
 	retainBackups *bool
 }
+type MultiCloudClustersApiDeleteClusterQueryParams struct {
+		groupId string
+		clusterName string
+		retainBackups *bool
+}
 
 // Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
 func (r MultiCloudClustersApiDeleteClusterRequest) RetainBackups(retainBackups bool) MultiCloudClustersApiDeleteClusterRequest {
@@ -378,6 +387,10 @@ type MultiCloudClustersApiGetClusterRequest struct {
 	ApiService MultiCloudClustersApi
 	groupId string
 	clusterName string
+}
+type MultiCloudClustersApiGetClusterQueryParams struct {
+		groupId string
+		clusterName string
 }
 
 func (r MultiCloudClustersApiGetClusterRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
@@ -507,6 +520,12 @@ type MultiCloudClustersApiListClustersRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type MultiCloudClustersApiListClustersQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -665,6 +684,10 @@ type MultiCloudClustersApiTestFailoverRequest struct {
 	groupId string
 	clusterName string
 }
+type MultiCloudClustersApiTestFailoverQueryParams struct {
+		groupId string
+		clusterName string
+}
 
 func (r MultiCloudClustersApiTestFailoverRequest) Execute() (*http.Response, error) {
 	return r.ApiService.TestFailoverExecute(r)
@@ -781,6 +804,11 @@ type MultiCloudClustersApiUpdateClusterRequest struct {
 	groupId string
 	clusterName string
 	clusterDescriptionV15 *ClusterDescriptionV15
+}
+type MultiCloudClustersApiUpdateClusterQueryParams struct {
+		groupId string
+		clusterName string
+		clusterDescriptionV15 *ClusterDescriptionV15
 }
 
 // Cluster to update in the specified project.

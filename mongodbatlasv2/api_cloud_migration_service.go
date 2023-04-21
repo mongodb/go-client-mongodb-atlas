@@ -157,6 +157,10 @@ type CloudMigrationServiceApiCreateLinkTokenRequest struct {
 	orgId string
 	targetOrgRequest *TargetOrgRequest
 }
+type CloudMigrationServiceApiCreateLinkTokenQueryParams struct {
+		orgId string
+		targetOrgRequest *TargetOrgRequest
+}
 
 // IP address access list entries associated with the migration.
 func (r CloudMigrationServiceApiCreateLinkTokenRequest) TargetOrgRequest(targetOrgRequest TargetOrgRequest) CloudMigrationServiceApiCreateLinkTokenRequest {
@@ -285,6 +289,10 @@ type CloudMigrationServiceApiCreatePushMigrationRequest struct {
 	ApiService CloudMigrationServiceApi
 	groupId string
 	liveMigrationRequest *LiveMigrationRequest
+}
+type CloudMigrationServiceApiCreatePushMigrationQueryParams struct {
+		groupId string
+		liveMigrationRequest *LiveMigrationRequest
 }
 
 // One migration to be created.
@@ -419,6 +427,10 @@ type CloudMigrationServiceApiCutoverMigrationRequest struct {
 	groupId string
 	liveMigrationId string
 }
+type CloudMigrationServiceApiCutoverMigrationQueryParams struct {
+		groupId string
+		liveMigrationId string
+}
 
 func (r CloudMigrationServiceApiCutoverMigrationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CutoverMigrationExecute(r)
@@ -534,6 +546,9 @@ type CloudMigrationServiceApiDeleteLinkTokenRequest struct {
 	ApiService CloudMigrationServiceApi
 	orgId string
 }
+type CloudMigrationServiceApiDeleteLinkTokenQueryParams struct {
+		orgId string
+}
 
 func (r CloudMigrationServiceApiDeleteLinkTokenRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLinkTokenExecute(r)
@@ -640,6 +655,10 @@ type CloudMigrationServiceApiGetPushMigrationRequest struct {
 	ApiService CloudMigrationServiceApi
 	groupId string
 	liveMigrationId string
+}
+type CloudMigrationServiceApiGetPushMigrationQueryParams struct {
+		groupId string
+		liveMigrationId string
 }
 
 func (r CloudMigrationServiceApiGetPushMigrationRequest) Execute() (*LiveMigrationResponse, *http.Response, error) {
@@ -768,6 +787,10 @@ type CloudMigrationServiceApiGetValidationStatusRequest struct {
 	groupId string
 	validationId string
 }
+type CloudMigrationServiceApiGetValidationStatusQueryParams struct {
+		groupId string
+		validationId string
+}
 
 func (r CloudMigrationServiceApiGetValidationStatusRequest) Execute() (*Validation, *http.Response, error) {
 	return r.ApiService.GetValidationStatusExecute(r)
@@ -894,6 +917,9 @@ type CloudMigrationServiceApiListSourceProjectsRequest struct {
 	ApiService CloudMigrationServiceApi
 	orgId string
 }
+type CloudMigrationServiceApiListSourceProjectsQueryParams struct {
+		orgId string
+}
 
 func (r CloudMigrationServiceApiListSourceProjectsRequest) Execute() ([]AvailableProject, *http.Response, error) {
 	return r.ApiService.ListSourceProjectsExecute(r)
@@ -1011,6 +1037,10 @@ type CloudMigrationServiceApiValidateMigrationRequest struct {
 	ApiService CloudMigrationServiceApi
 	groupId string
 	liveMigrationRequest *LiveMigrationRequest
+}
+type CloudMigrationServiceApiValidateMigrationQueryParams struct {
+		groupId string
+		liveMigrationRequest *LiveMigrationRequest
 }
 
 // One migration to be validated.

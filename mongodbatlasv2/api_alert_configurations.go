@@ -173,6 +173,10 @@ type AlertConfigurationsApiCreateAlertConfigurationRequest struct {
 	groupId string
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
+type AlertConfigurationsApiCreateAlertConfigurationQueryParams struct {
+		groupId string
+		alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
+}
 
 // Creates one alert configuration for the specified project.
 func (r AlertConfigurationsApiCreateAlertConfigurationRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) AlertConfigurationsApiCreateAlertConfigurationRequest {
@@ -304,6 +308,10 @@ type AlertConfigurationsApiDeleteAlertConfigurationRequest struct {
 	groupId string
 	alertConfigId string
 }
+type AlertConfigurationsApiDeleteAlertConfigurationQueryParams struct {
+		groupId string
+		alertConfigId string
+}
 
 func (r AlertConfigurationsApiDeleteAlertConfigurationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAlertConfigurationExecute(r)
@@ -421,6 +429,10 @@ type AlertConfigurationsApiGetAlertConfigurationRequest struct {
 	ApiService AlertConfigurationsApi
 	groupId string
 	alertConfigId string
+}
+type AlertConfigurationsApiGetAlertConfigurationQueryParams struct {
+		groupId string
+		alertConfigId string
 }
 
 func (r AlertConfigurationsApiGetAlertConfigurationRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
@@ -549,6 +561,8 @@ type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest struc
 	ctx context.Context
 	ApiService AlertConfigurationsApi
 }
+type AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesQueryParams struct {
+}
 
 func (r AlertConfigurationsApiListAlertConfigurationMatchersFieldNamesRequest) Execute() ([]MatcherField, *http.Response, error) {
 	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
@@ -659,6 +673,12 @@ type AlertConfigurationsApiListAlertConfigurationsRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type AlertConfigurationsApiListAlertConfigurationsQueryParams struct {
+		groupId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -821,6 +841,13 @@ type AlertConfigurationsApiListAlertConfigurationsByAlertIdRequest struct {
 	includeCount *bool
 	itemsPerPage *int32
 	pageNum *int32
+}
+type AlertConfigurationsApiListAlertConfigurationsByAlertIdQueryParams struct {
+		groupId string
+		alertId string
+		includeCount *bool
+		itemsPerPage *int32
+		pageNum *int32
 }
 
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
@@ -991,6 +1018,11 @@ type AlertConfigurationsApiToggleAlertConfigurationRequest struct {
 	alertConfigId string
 	toggle *Toggle
 }
+type AlertConfigurationsApiToggleAlertConfigurationQueryParams struct {
+		groupId string
+		alertConfigId string
+		toggle *Toggle
+}
 
 // Enables or disables the specified alert configuration in the specified project.
 func (r AlertConfigurationsApiToggleAlertConfigurationRequest) Toggle(toggle Toggle) AlertConfigurationsApiToggleAlertConfigurationRequest {
@@ -1133,6 +1165,11 @@ type AlertConfigurationsApiUpdateAlertConfigurationRequest struct {
 	groupId string
 	alertConfigId string
 	alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
+}
+type AlertConfigurationsApiUpdateAlertConfigurationQueryParams struct {
+		groupId string
+		alertConfigId string
+		alertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
 // Updates one alert configuration in the specified project.
