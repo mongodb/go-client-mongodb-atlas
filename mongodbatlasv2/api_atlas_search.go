@@ -29,10 +29,18 @@ type AtlasSearchApi interface {
 	@return CreateAtlasSearchIndexApiRequest
 	*/
 	CreateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string) CreateAtlasSearchIndexApiRequest
+	/*
+	CreateAtlasSearchIndex Create One Atlas Search Index
 
-	// CreateAtlasSearchIndexExecute executes the request
-	//  @return FTSIndex
-	CreateAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateAtlasSearchIndexApiParams - Parameters for the request
+	@return CreateAtlasSearchIndexApiRequest}}
+	*/
+	CreateAtlasSearchIndexWithParams(ctx context.Context, args *CreateAtlasSearchIndexApiParams) CreateAtlasSearchIndexApiRequest
+
+	// Interface only available internally
+	createAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 
 	/*
 	DeleteAtlasSearchIndex Remove One Atlas Search Index
@@ -46,9 +54,18 @@ type AtlasSearchApi interface {
 	@return DeleteAtlasSearchIndexApiRequest
 	*/
 	DeleteAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) DeleteAtlasSearchIndexApiRequest
+	/*
+	DeleteAtlasSearchIndex Remove One Atlas Search Index
 
-	// DeleteAtlasSearchIndexExecute executes the request
-	DeleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteAtlasSearchIndexApiParams - Parameters for the request
+	@return DeleteAtlasSearchIndexApiRequest}}
+	*/
+	DeleteAtlasSearchIndexWithParams(ctx context.Context, args *DeleteAtlasSearchIndexApiParams) DeleteAtlasSearchIndexApiRequest
+
+	// Interface only available internally
+	deleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error)
 
 	/*
 	GetAtlasSearchIndex Return One Atlas Search Index
@@ -62,10 +79,18 @@ type AtlasSearchApi interface {
 	@return GetAtlasSearchIndexApiRequest
 	*/
 	GetAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) GetAtlasSearchIndexApiRequest
+	/*
+	GetAtlasSearchIndex Return One Atlas Search Index
 
-	// GetAtlasSearchIndexExecute executes the request
-	//  @return FTSIndex
-	GetAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAtlasSearchIndexApiParams - Parameters for the request
+	@return GetAtlasSearchIndexApiRequest}}
+	*/
+	GetAtlasSearchIndexWithParams(ctx context.Context, args *GetAtlasSearchIndexApiParams) GetAtlasSearchIndexApiRequest
+
+	// Interface only available internally
+	getAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 
 	/*
 	ListAtlasSearchIndexes Return All Atlas Search Indexes for One Collection
@@ -80,10 +105,18 @@ type AtlasSearchApi interface {
 	@return ListAtlasSearchIndexesApiRequest
 	*/
 	ListAtlasSearchIndexes(ctx context.Context, groupId string, clusterName string, collectionName string, databaseName string) ListAtlasSearchIndexesApiRequest
+	/*
+	ListAtlasSearchIndexes Return All Atlas Search Indexes for One Collection
 
-	// ListAtlasSearchIndexesExecute executes the request
-	//  @return []FTSIndex
-	ListAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAtlasSearchIndexesApiParams - Parameters for the request
+	@return ListAtlasSearchIndexesApiRequest}}
+	*/
+	ListAtlasSearchIndexesWithParams(ctx context.Context, args *ListAtlasSearchIndexesApiParams) ListAtlasSearchIndexesApiRequest
+
+	// Interface only available internally
+	listAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error)
 
 	/*
 	UpdateAtlasSearchIndex Update One Atlas Search Index
@@ -97,10 +130,18 @@ type AtlasSearchApi interface {
 	@return UpdateAtlasSearchIndexApiRequest
 	*/
 	UpdateAtlasSearchIndex(ctx context.Context, groupId string, clusterName string, indexId string) UpdateAtlasSearchIndexApiRequest
+	/*
+	UpdateAtlasSearchIndex Update One Atlas Search Index
 
-	// UpdateAtlasSearchIndexExecute executes the request
-	//  @return FTSIndex
-	UpdateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateAtlasSearchIndexApiParams - Parameters for the request
+	@return UpdateAtlasSearchIndexApiRequest}}
+	*/
+	UpdateAtlasSearchIndexWithParams(ctx context.Context, args *UpdateAtlasSearchIndexApiParams) UpdateAtlasSearchIndexApiRequest
+
+	// Interface only available internally
+	updateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error)
 }
 
 // AtlasSearchApiService AtlasSearchApi service
@@ -120,6 +161,16 @@ type CreateAtlasSearchIndexApiParams struct {
 		FTSIndex *FTSIndex
 }
 
+func (a *AtlasSearchApiService) CreateAtlasSearchIndexWithParams(ctx context.Context, args *CreateAtlasSearchIndexApiParams) CreateAtlasSearchIndexApiRequest {
+	return CreateAtlasSearchIndexApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		fTSIndex: args.FTSIndex,
+	}
+}
+
 // Creates one Atlas Search index on the specified collection.
 func (r CreateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) CreateAtlasSearchIndexApiRequest {
 	r.fTSIndex = &fTSIndex
@@ -127,14 +178,7 @@ func (r CreateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) CreateAtla
 }
 
 func (r CreateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
-	return r.ApiService.CreateAtlasSearchIndexExecute(r)
-}
-
-func (r CreateAtlasSearchIndexApiRequest) ExecuteWithParams(params *CreateAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.fTSIndex = params.FTSIndex 
-	return r.Execute()
+	return r.ApiService.createAtlasSearchIndexExecute(r)
 }
 
 /*
@@ -158,7 +202,7 @@ func (a *AtlasSearchApiService) CreateAtlasSearchIndex(ctx context.Context, grou
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) CreateAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) createAtlasSearchIndexExecute(r CreateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -272,15 +316,18 @@ type DeleteAtlasSearchIndexApiParams struct {
 		IndexId string
 }
 
-func (r DeleteAtlasSearchIndexApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteAtlasSearchIndexExecute(r)
+func (a *AtlasSearchApiService) DeleteAtlasSearchIndexWithParams(ctx context.Context, args *DeleteAtlasSearchIndexApiParams) DeleteAtlasSearchIndexApiRequest {
+	return DeleteAtlasSearchIndexApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		indexId: args.IndexId,
+	}
 }
 
-func (r DeleteAtlasSearchIndexApiRequest) ExecuteWithParams(params *DeleteAtlasSearchIndexApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.indexId = params.IndexId 
-	return r.Execute()
+func (r DeleteAtlasSearchIndexApiRequest) Execute() (*http.Response, error) {
+	return r.ApiService.deleteAtlasSearchIndexExecute(r)
 }
 
 /*
@@ -305,7 +352,7 @@ func (a *AtlasSearchApiService) DeleteAtlasSearchIndex(ctx context.Context, grou
 }
 
 // Execute executes the request
-func (a *AtlasSearchApiService) DeleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error) {
+func (a *AtlasSearchApiService) deleteAtlasSearchIndexExecute(r DeleteAtlasSearchIndexApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -411,15 +458,18 @@ type GetAtlasSearchIndexApiParams struct {
 		IndexId string
 }
 
-func (r GetAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
-	return r.ApiService.GetAtlasSearchIndexExecute(r)
+func (a *AtlasSearchApiService) GetAtlasSearchIndexWithParams(ctx context.Context, args *GetAtlasSearchIndexApiParams) GetAtlasSearchIndexApiRequest {
+	return GetAtlasSearchIndexApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		indexId: args.IndexId,
+	}
 }
 
-func (r GetAtlasSearchIndexApiRequest) ExecuteWithParams(params *GetAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.indexId = params.IndexId 
-	return r.Execute()
+func (r GetAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
+	return r.ApiService.getAtlasSearchIndexExecute(r)
 }
 
 /*
@@ -445,7 +495,7 @@ func (a *AtlasSearchApiService) GetAtlasSearchIndex(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) GetAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) getAtlasSearchIndexExecute(r GetAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -563,16 +613,19 @@ type ListAtlasSearchIndexesApiParams struct {
 		DatabaseName string
 }
 
-func (r ListAtlasSearchIndexesApiRequest) Execute() ([]FTSIndex, *http.Response, error) {
-	return r.ApiService.ListAtlasSearchIndexesExecute(r)
+func (a *AtlasSearchApiService) ListAtlasSearchIndexesWithParams(ctx context.Context, args *ListAtlasSearchIndexesApiParams) ListAtlasSearchIndexesApiRequest {
+	return ListAtlasSearchIndexesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		collectionName: args.CollectionName,
+		databaseName: args.DatabaseName,
+	}
 }
 
-func (r ListAtlasSearchIndexesApiRequest) ExecuteWithParams(params *ListAtlasSearchIndexesApiParams) ([]FTSIndex, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.collectionName = params.CollectionName 
-	r.databaseName = params.DatabaseName 
-	return r.Execute()
+func (r ListAtlasSearchIndexesApiRequest) Execute() ([]FTSIndex, *http.Response, error) {
+	return r.ApiService.listAtlasSearchIndexesExecute(r)
 }
 
 /*
@@ -600,7 +653,7 @@ func (a *AtlasSearchApiService) ListAtlasSearchIndexes(ctx context.Context, grou
 
 // Execute executes the request
 //  @return []FTSIndex
-func (a *AtlasSearchApiService) ListAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) listAtlasSearchIndexesExecute(r ListAtlasSearchIndexesApiRequest) ([]FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -713,6 +766,17 @@ type UpdateAtlasSearchIndexApiParams struct {
 		FTSIndex *FTSIndex
 }
 
+func (a *AtlasSearchApiService) UpdateAtlasSearchIndexWithParams(ctx context.Context, args *UpdateAtlasSearchIndexApiParams) UpdateAtlasSearchIndexApiRequest {
+	return UpdateAtlasSearchIndexApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		indexId: args.IndexId,
+		fTSIndex: args.FTSIndex,
+	}
+}
+
 // Details to update on the Atlas Search index.
 func (r UpdateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) UpdateAtlasSearchIndexApiRequest {
 	r.fTSIndex = &fTSIndex
@@ -720,15 +784,7 @@ func (r UpdateAtlasSearchIndexApiRequest) FTSIndex(fTSIndex FTSIndex) UpdateAtla
 }
 
 func (r UpdateAtlasSearchIndexApiRequest) Execute() (*FTSIndex, *http.Response, error) {
-	return r.ApiService.UpdateAtlasSearchIndexExecute(r)
-}
-
-func (r UpdateAtlasSearchIndexApiRequest) ExecuteWithParams(params *UpdateAtlasSearchIndexApiParams) (*FTSIndex, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.indexId = params.IndexId 
-	r.fTSIndex = params.FTSIndex 
-	return r.Execute()
+	return r.ApiService.updateAtlasSearchIndexExecute(r)
 }
 
 /*
@@ -754,7 +810,7 @@ func (a *AtlasSearchApiService) UpdateAtlasSearchIndex(ctx context.Context, grou
 
 // Execute executes the request
 //  @return FTSIndex
-func (a *AtlasSearchApiService) UpdateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
+func (a *AtlasSearchApiService) updateAtlasSearchIndexExecute(r UpdateAtlasSearchIndexApiRequest) (*FTSIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

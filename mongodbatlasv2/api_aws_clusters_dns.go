@@ -28,10 +28,18 @@ type AWSClustersDNSApi interface {
 	@return GetAWSCustomDNSApiRequest
 	*/
 	GetAWSCustomDNS(ctx context.Context, groupId string) GetAWSCustomDNSApiRequest
+	/*
+	GetAWSCustomDNS Return One Custom DNS Configuration for Atlas Clusters on AWS
 
-	// GetAWSCustomDNSExecute executes the request
-	//  @return AWSCustomDNSEnabled
-	GetAWSCustomDNSExecute(r GetAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAWSCustomDNSApiParams - Parameters for the request
+	@return GetAWSCustomDNSApiRequest}}
+	*/
+	GetAWSCustomDNSWithParams(ctx context.Context, args *GetAWSCustomDNSApiParams) GetAWSCustomDNSApiRequest
+
+	// Interface only available internally
+	getAWSCustomDNSExecute(r GetAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error)
 
 	/*
 	ToggleAWSCustomDNS Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
@@ -43,10 +51,18 @@ type AWSClustersDNSApi interface {
 	@return ToggleAWSCustomDNSApiRequest
 	*/
 	ToggleAWSCustomDNS(ctx context.Context, groupId string) ToggleAWSCustomDNSApiRequest
+	/*
+	ToggleAWSCustomDNS Toggle State of One Custom DNS Configuration for Atlas Clusters on AWS
 
-	// ToggleAWSCustomDNSExecute executes the request
-	//  @return AWSCustomDNSEnabled
-	ToggleAWSCustomDNSExecute(r ToggleAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ToggleAWSCustomDNSApiParams - Parameters for the request
+	@return ToggleAWSCustomDNSApiRequest}}
+	*/
+	ToggleAWSCustomDNSWithParams(ctx context.Context, args *ToggleAWSCustomDNSApiParams) ToggleAWSCustomDNSApiRequest
+
+	// Interface only available internally
+	toggleAWSCustomDNSExecute(r ToggleAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error)
 }
 
 // AWSClustersDNSApiService AWSClustersDNSApi service
@@ -62,13 +78,16 @@ type GetAWSCustomDNSApiParams struct {
 		GroupId string
 }
 
-func (r GetAWSCustomDNSApiRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
-	return r.ApiService.GetAWSCustomDNSExecute(r)
+func (a *AWSClustersDNSApiService) GetAWSCustomDNSWithParams(ctx context.Context, args *GetAWSCustomDNSApiParams) GetAWSCustomDNSApiRequest {
+	return GetAWSCustomDNSApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
 }
 
-func (r GetAWSCustomDNSApiRequest) ExecuteWithParams(params *GetAWSCustomDNSApiParams) (*AWSCustomDNSEnabled, *http.Response, error) {
-	r.groupId = params.GroupId 
-	return r.Execute()
+func (r GetAWSCustomDNSApiRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
+	return r.ApiService.getAWSCustomDNSExecute(r)
 }
 
 /*
@@ -90,7 +109,7 @@ func (a *AWSClustersDNSApiService) GetAWSCustomDNS(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return AWSCustomDNSEnabled
-func (a *AWSClustersDNSApiService) GetAWSCustomDNSExecute(r GetAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
+func (a *AWSClustersDNSApiService) getAWSCustomDNSExecute(r GetAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -190,6 +209,15 @@ type ToggleAWSCustomDNSApiParams struct {
 		AWSCustomDNSEnabled *AWSCustomDNSEnabled
 }
 
+func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSWithParams(ctx context.Context, args *ToggleAWSCustomDNSApiParams) ToggleAWSCustomDNSApiRequest {
+	return ToggleAWSCustomDNSApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		aWSCustomDNSEnabled: args.AWSCustomDNSEnabled,
+	}
+}
+
 // Enables or disables the custom DNS configuration for AWS clusters in the specified project.
 func (r ToggleAWSCustomDNSApiRequest) AWSCustomDNSEnabled(aWSCustomDNSEnabled AWSCustomDNSEnabled) ToggleAWSCustomDNSApiRequest {
 	r.aWSCustomDNSEnabled = &aWSCustomDNSEnabled
@@ -197,13 +225,7 @@ func (r ToggleAWSCustomDNSApiRequest) AWSCustomDNSEnabled(aWSCustomDNSEnabled AW
 }
 
 func (r ToggleAWSCustomDNSApiRequest) Execute() (*AWSCustomDNSEnabled, *http.Response, error) {
-	return r.ApiService.ToggleAWSCustomDNSExecute(r)
-}
-
-func (r ToggleAWSCustomDNSApiRequest) ExecuteWithParams(params *ToggleAWSCustomDNSApiParams) (*AWSCustomDNSEnabled, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.aWSCustomDNSEnabled = params.AWSCustomDNSEnabled 
-	return r.Execute()
+	return r.ApiService.toggleAWSCustomDNSExecute(r)
 }
 
 /*
@@ -225,7 +247,7 @@ func (a *AWSClustersDNSApiService) ToggleAWSCustomDNS(ctx context.Context, group
 
 // Execute executes the request
 //  @return AWSCustomDNSEnabled
-func (a *AWSClustersDNSApiService) ToggleAWSCustomDNSExecute(r ToggleAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
+func (a *AWSClustersDNSApiService) toggleAWSCustomDNSExecute(r ToggleAWSCustomDNSApiRequest) (*AWSCustomDNSEnabled, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

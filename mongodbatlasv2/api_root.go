@@ -26,10 +26,18 @@ type RootApi interface {
 	@return GetSystemStatusApiRequest
 	*/
 	GetSystemStatus(ctx context.Context) GetSystemStatusApiRequest
+	/*
+	GetSystemStatus Return the status of this MongoDB application
 
-	// GetSystemStatusExecute executes the request
-	//  @return SystemStatus
-	GetSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetSystemStatusApiParams - Parameters for the request
+	@return GetSystemStatusApiRequest}}
+	*/
+	GetSystemStatusWithParams(ctx context.Context, args *GetSystemStatusApiParams) GetSystemStatusApiRequest
+
+	// Interface only available internally
+	getSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error)
 }
 
 // RootApiService RootApi service
@@ -43,12 +51,15 @@ type GetSystemStatusApiRequest struct {
 type GetSystemStatusApiParams struct {
 }
 
-func (r GetSystemStatusApiRequest) Execute() (*SystemStatus, *http.Response, error) {
-	return r.ApiService.GetSystemStatusExecute(r)
+func (a *RootApiService) GetSystemStatusWithParams(ctx context.Context, args *GetSystemStatusApiParams) GetSystemStatusApiRequest {
+	return GetSystemStatusApiRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
 }
 
-func (r GetSystemStatusApiRequest) ExecuteWithParams(params *GetSystemStatusApiParams) (*SystemStatus, *http.Response, error) {
-	return r.Execute()
+func (r GetSystemStatusApiRequest) Execute() (*SystemStatus, *http.Response, error) {
+	return r.ApiService.getSystemStatusExecute(r)
 }
 
 /*
@@ -68,7 +79,7 @@ func (a *RootApiService) GetSystemStatus(ctx context.Context) GetSystemStatusApi
 
 // Execute executes the request
 //  @return SystemStatus
-func (a *RootApiService) GetSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error) {
+func (a *RootApiService) getSystemStatusExecute(r GetSystemStatusApiRequest) (*SystemStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

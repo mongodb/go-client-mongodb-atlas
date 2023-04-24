@@ -32,10 +32,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteLegacySnapshotApiRequest
+	/*
+	DeleteLegacySnapshot Remove One Legacy Backup Snapshot
 
-	// DeleteLegacySnapshotExecute executes the request
-	// Deprecated
-	DeleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteLegacySnapshotApiParams - Parameters for the request
+	@return DeleteLegacySnapshotApiRequest}}
+
+	Deprecated
+	*/
+	DeleteLegacySnapshotWithParams(ctx context.Context, args *DeleteLegacySnapshotApiParams) DeleteLegacySnapshotApiRequest
+
+	// Interface only available internally
+	deleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error)
 
 	/*
 	GetLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
@@ -51,11 +61,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) GetLegacyBackupCheckpointApiRequest
+	/*
+	GetLegacyBackupCheckpoint Return One Legacy Backup Checkpoint
 
-	// GetLegacyBackupCheckpointExecute executes the request
-	//  @return Checkpoint
-	// Deprecated
-	GetLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetLegacyBackupCheckpointApiParams - Parameters for the request
+	@return GetLegacyBackupCheckpointApiRequest}}
+
+	Deprecated
+	*/
+	GetLegacyBackupCheckpointWithParams(ctx context.Context, args *GetLegacyBackupCheckpointApiParams) GetLegacyBackupCheckpointApiRequest
+
+	// Interface only available internally
+	getLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error)
 
 	/*
 	GetLegacyBackupRestoreJob Return One Legacy Backup Restore Job
@@ -73,11 +92,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) GetLegacyBackupRestoreJobApiRequest
+	/*
+	GetLegacyBackupRestoreJob Return One Legacy Backup Restore Job
 
-	// GetLegacyBackupRestoreJobExecute executes the request
-	//  @return RestoreJob
-	// Deprecated
-	GetLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetLegacyBackupRestoreJobApiParams - Parameters for the request
+	@return GetLegacyBackupRestoreJobApiRequest}}
+
+	Deprecated
+	*/
+	GetLegacyBackupRestoreJobWithParams(ctx context.Context, args *GetLegacyBackupRestoreJobApiParams) GetLegacyBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	getLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error)
 
 	/*
 	GetLegacySnapshot Return One Legacy Backup Snapshot
@@ -93,11 +121,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) GetLegacySnapshotApiRequest
+	/*
+	GetLegacySnapshot Return One Legacy Backup Snapshot
 
-	// GetLegacySnapshotExecute executes the request
-	//  @return Snapshot
-	// Deprecated
-	GetLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetLegacySnapshotApiParams - Parameters for the request
+	@return GetLegacySnapshotApiRequest}}
+
+	Deprecated
+	*/
+	GetLegacySnapshotWithParams(ctx context.Context, args *GetLegacySnapshotApiParams) GetLegacySnapshotApiRequest
+
+	// Interface only available internally
+	getLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	GetLegacySnapshotSchedule Return One Snapshot Schedule
@@ -114,11 +151,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) GetLegacySnapshotScheduleApiRequest
+	/*
+	GetLegacySnapshotSchedule Return One Snapshot Schedule
 
-	// GetLegacySnapshotScheduleExecute executes the request
-	//  @return SnapshotSchedule
-	// Deprecated
-	GetLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetLegacySnapshotScheduleApiParams - Parameters for the request
+	@return GetLegacySnapshotScheduleApiRequest}}
+
+	Deprecated
+	*/
+	GetLegacySnapshotScheduleWithParams(ctx context.Context, args *GetLegacySnapshotScheduleApiParams) GetLegacySnapshotScheduleApiRequest
+
+	// Interface only available internally
+	getLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
 
 	/*
 	ListLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
@@ -133,11 +179,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) ListLegacyBackupCheckpointsApiRequest
+	/*
+	ListLegacyBackupCheckpoints Return All Legacy Backup Checkpoints
 
-	// ListLegacyBackupCheckpointsExecute executes the request
-	//  @return PaginatedApiAtlasCheckpoint
-	// Deprecated
-	ListLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListLegacyBackupCheckpointsApiParams - Parameters for the request
+	@return ListLegacyBackupCheckpointsApiRequest}}
+
+	Deprecated
+	*/
+	ListLegacyBackupCheckpointsWithParams(ctx context.Context, args *ListLegacyBackupCheckpointsApiParams) ListLegacyBackupCheckpointsApiRequest
+
+	// Interface only available internally
+	listLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error)
 
 	/*
 	ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
@@ -154,11 +209,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListLegacyBackupRestoreJobsApiRequest
+	/*
+	ListLegacyBackupRestoreJobs Return All Legacy Backup Restore Jobs
 
-	// ListLegacyBackupRestoreJobsExecute executes the request
-	//  @return PaginatedRestoreJob
-	// Deprecated
-	ListLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListLegacyBackupRestoreJobsApiParams - Parameters for the request
+	@return ListLegacyBackupRestoreJobsApiRequest}}
+
+	Deprecated
+	*/
+	ListLegacyBackupRestoreJobsWithParams(ctx context.Context, args *ListLegacyBackupRestoreJobsApiParams) ListLegacyBackupRestoreJobsApiRequest
+
+	// Interface only available internally
+	listLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error)
 
 	/*
 	ListLegacySnapshots Return All Legacy Backup Snapshots
@@ -173,11 +237,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) ListLegacySnapshotsApiRequest
+	/*
+	ListLegacySnapshots Return All Legacy Backup Snapshots
 
-	// ListLegacySnapshotsExecute executes the request
-	//  @return PaginatedSnapshot
-	// Deprecated
-	ListLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListLegacySnapshotsApiParams - Parameters for the request
+	@return ListLegacySnapshotsApiRequest}}
+
+	Deprecated
+	*/
+	ListLegacySnapshotsWithParams(ctx context.Context, args *ListLegacySnapshotsApiParams) ListLegacySnapshotsApiRequest
+
+	// Interface only available internally
+	listLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
@@ -193,11 +266,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateLegacySnapshotRetentionApiRequest
+	/*
+	UpdateLegacySnapshotRetention Change One Legacy Backup Snapshot Expiration
 
-	// UpdateLegacySnapshotRetentionExecute executes the request
-	//  @return Snapshot
-	// Deprecated
-	UpdateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateLegacySnapshotRetentionApiParams - Parameters for the request
+	@return UpdateLegacySnapshotRetentionApiRequest}}
+
+	Deprecated
+	*/
+	UpdateLegacySnapshotRetentionWithParams(ctx context.Context, args *UpdateLegacySnapshotRetentionApiParams) UpdateLegacySnapshotRetentionApiRequest
+
+	// Interface only available internally
+	updateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error)
 
 	/*
 	UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
@@ -214,11 +296,20 @@ type LegacyBackupApi interface {
 	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) UpdateLegacySnapshotScheduleApiRequest
+	/*
+	UpdateLegacySnapshotSchedule Update Snapshot Schedule for One Cluster
 
-	// UpdateLegacySnapshotScheduleExecute executes the request
-	//  @return SnapshotSchedule
-	// Deprecated
-	UpdateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateLegacySnapshotScheduleApiParams - Parameters for the request
+	@return UpdateLegacySnapshotScheduleApiRequest}}
+
+	Deprecated
+	*/
+	UpdateLegacySnapshotScheduleWithParams(ctx context.Context, args *UpdateLegacySnapshotScheduleApiParams) UpdateLegacySnapshotScheduleApiRequest
+
+	// Interface only available internally
+	updateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error)
 }
 
 // LegacyBackupApiService LegacyBackupApi service
@@ -238,15 +329,18 @@ type DeleteLegacySnapshotApiParams struct {
 		SnapshotId string
 }
 
-func (r DeleteLegacySnapshotApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteLegacySnapshotExecute(r)
+func (a *LegacyBackupApiService) DeleteLegacySnapshotWithParams(ctx context.Context, args *DeleteLegacySnapshotApiParams) DeleteLegacySnapshotApiRequest {
+	return DeleteLegacySnapshotApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
 }
 
-func (r DeleteLegacySnapshotApiRequest) ExecuteWithParams(params *DeleteLegacySnapshotApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.snapshotId = params.SnapshotId 
-	return r.Execute()
+func (r DeleteLegacySnapshotApiRequest) Execute() (*http.Response, error) {
+	return r.ApiService.deleteLegacySnapshotExecute(r)
 }
 
 /*
@@ -274,7 +368,7 @@ func (a *LegacyBackupApiService) DeleteLegacySnapshot(ctx context.Context, group
 
 // Execute executes the request
 // Deprecated
-func (a *LegacyBackupApiService) DeleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error) {
+func (a *LegacyBackupApiService) deleteLegacySnapshotExecute(r DeleteLegacySnapshotApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -380,15 +474,18 @@ type GetLegacyBackupCheckpointApiParams struct {
 		ClusterName string
 }
 
-func (r GetLegacyBackupCheckpointApiRequest) Execute() (*Checkpoint, *http.Response, error) {
-	return r.ApiService.GetLegacyBackupCheckpointExecute(r)
+func (a *LegacyBackupApiService) GetLegacyBackupCheckpointWithParams(ctx context.Context, args *GetLegacyBackupCheckpointApiParams) GetLegacyBackupCheckpointApiRequest {
+	return GetLegacyBackupCheckpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		checkpointId: args.CheckpointId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r GetLegacyBackupCheckpointApiRequest) ExecuteWithParams(params *GetLegacyBackupCheckpointApiParams) (*Checkpoint, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.checkpointId = params.CheckpointId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r GetLegacyBackupCheckpointApiRequest) Execute() (*Checkpoint, *http.Response, error) {
+	return r.ApiService.getLegacyBackupCheckpointExecute(r)
 }
 
 /*
@@ -417,7 +514,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupCheckpoint(ctx context.Context, 
 // Execute executes the request
 //  @return Checkpoint
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error) {
+func (a *LegacyBackupApiService) getLegacyBackupCheckpointExecute(r GetLegacyBackupCheckpointApiRequest) (*Checkpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -533,15 +630,18 @@ type GetLegacyBackupRestoreJobApiParams struct {
 		JobId string
 }
 
-func (r GetLegacyBackupRestoreJobApiRequest) Execute() (*RestoreJob, *http.Response, error) {
-	return r.ApiService.GetLegacyBackupRestoreJobExecute(r)
+func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobWithParams(ctx context.Context, args *GetLegacyBackupRestoreJobApiParams) GetLegacyBackupRestoreJobApiRequest {
+	return GetLegacyBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		jobId: args.JobId,
+	}
 }
 
-func (r GetLegacyBackupRestoreJobApiRequest) ExecuteWithParams(params *GetLegacyBackupRestoreJobApiParams) (*RestoreJob, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.jobId = params.JobId 
-	return r.Execute()
+func (r GetLegacyBackupRestoreJobApiRequest) Execute() (*RestoreJob, *http.Response, error) {
+	return r.ApiService.getLegacyBackupRestoreJobExecute(r)
 }
 
 /*
@@ -572,7 +672,7 @@ func (a *LegacyBackupApiService) GetLegacyBackupRestoreJob(ctx context.Context, 
 // Execute executes the request
 //  @return RestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error) {
+func (a *LegacyBackupApiService) getLegacyBackupRestoreJobExecute(r GetLegacyBackupRestoreJobApiRequest) (*RestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -688,15 +788,18 @@ type GetLegacySnapshotApiParams struct {
 		SnapshotId string
 }
 
-func (r GetLegacySnapshotApiRequest) Execute() (*Snapshot, *http.Response, error) {
-	return r.ApiService.GetLegacySnapshotExecute(r)
+func (a *LegacyBackupApiService) GetLegacySnapshotWithParams(ctx context.Context, args *GetLegacySnapshotApiParams) GetLegacySnapshotApiRequest {
+	return GetLegacySnapshotApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
 }
 
-func (r GetLegacySnapshotApiRequest) ExecuteWithParams(params *GetLegacySnapshotApiParams) (*Snapshot, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.snapshotId = params.SnapshotId 
-	return r.Execute()
+func (r GetLegacySnapshotApiRequest) Execute() (*Snapshot, *http.Response, error) {
+	return r.ApiService.getLegacySnapshotExecute(r)
 }
 
 /*
@@ -725,7 +828,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshot(ctx context.Context, groupId 
 // Execute executes the request
 //  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) getLegacySnapshotExecute(r GetLegacySnapshotApiRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -839,14 +942,17 @@ type GetLegacySnapshotScheduleApiParams struct {
 		ClusterName string
 }
 
-func (r GetLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
-	return r.ApiService.GetLegacySnapshotScheduleExecute(r)
+func (a *LegacyBackupApiService) GetLegacySnapshotScheduleWithParams(ctx context.Context, args *GetLegacySnapshotScheduleApiParams) GetLegacySnapshotScheduleApiRequest {
+	return GetLegacySnapshotScheduleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r GetLegacySnapshotScheduleApiRequest) ExecuteWithParams(params *GetLegacySnapshotScheduleApiParams) (*SnapshotSchedule, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r GetLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
+	return r.ApiService.getLegacySnapshotScheduleExecute(r)
 }
 
 /*
@@ -875,7 +981,7 @@ func (a *LegacyBackupApiService) GetLegacySnapshotSchedule(ctx context.Context, 
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) GetLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) getLegacySnapshotScheduleExecute(r GetLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -988,6 +1094,18 @@ type ListLegacyBackupCheckpointsApiParams struct {
 		PageNum *int32
 }
 
+func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsWithParams(ctx context.Context, args *ListLegacyBackupCheckpointsApiParams) ListLegacyBackupCheckpointsApiRequest {
+	return ListLegacyBackupCheckpointsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListLegacyBackupCheckpointsApiRequest) IncludeCount(includeCount bool) ListLegacyBackupCheckpointsApiRequest {
 	r.includeCount = &includeCount
@@ -1007,16 +1125,7 @@ func (r ListLegacyBackupCheckpointsApiRequest) PageNum(pageNum int32) ListLegacy
 }
 
 func (r ListLegacyBackupCheckpointsApiRequest) Execute() (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
-	return r.ApiService.ListLegacyBackupCheckpointsExecute(r)
-}
-
-func (r ListLegacyBackupCheckpointsApiRequest) ExecuteWithParams(params *ListLegacyBackupCheckpointsApiParams) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listLegacyBackupCheckpointsExecute(r)
 }
 
 /*
@@ -1043,7 +1152,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupCheckpoints(ctx context.Context
 // Execute executes the request
 //  @return PaginatedApiAtlasCheckpoint
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
+func (a *LegacyBackupApiService) listLegacyBackupCheckpointsExecute(r ListLegacyBackupCheckpointsApiRequest) (*PaginatedApiAtlasCheckpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1179,6 +1288,19 @@ type ListLegacyBackupRestoreJobsApiParams struct {
 		BatchId *string
 }
 
+func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsWithParams(ctx context.Context, args *ListLegacyBackupRestoreJobsApiParams) ListLegacyBackupRestoreJobsApiRequest {
+	return ListLegacyBackupRestoreJobsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		batchId: args.BatchId,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListLegacyBackupRestoreJobsApiRequest) IncludeCount(includeCount bool) ListLegacyBackupRestoreJobsApiRequest {
 	r.includeCount = &includeCount
@@ -1204,17 +1326,7 @@ func (r ListLegacyBackupRestoreJobsApiRequest) BatchId(batchId string) ListLegac
 }
 
 func (r ListLegacyBackupRestoreJobsApiRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
-	return r.ApiService.ListLegacyBackupRestoreJobsExecute(r)
-}
-
-func (r ListLegacyBackupRestoreJobsApiRequest) ExecuteWithParams(params *ListLegacyBackupRestoreJobsApiParams) (*PaginatedRestoreJob, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	r.batchId = params.BatchId 
-	return r.Execute()
+	return r.ApiService.listLegacyBackupRestoreJobsExecute(r)
 }
 
 /*
@@ -1243,7 +1355,7 @@ func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobs(ctx context.Context
 // Execute executes the request
 //  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
+func (a *LegacyBackupApiService) listLegacyBackupRestoreJobsExecute(r ListLegacyBackupRestoreJobsApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1382,6 +1494,19 @@ type ListLegacySnapshotsApiParams struct {
 		Completed *string
 }
 
+func (a *LegacyBackupApiService) ListLegacySnapshotsWithParams(ctx context.Context, args *ListLegacySnapshotsApiParams) ListLegacySnapshotsApiRequest {
+	return ListLegacySnapshotsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		completed: args.Completed,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListLegacySnapshotsApiRequest) IncludeCount(includeCount bool) ListLegacySnapshotsApiRequest {
 	r.includeCount = &includeCount
@@ -1407,17 +1532,7 @@ func (r ListLegacySnapshotsApiRequest) Completed(completed string) ListLegacySna
 }
 
 func (r ListLegacySnapshotsApiRequest) Execute() (*PaginatedSnapshot, *http.Response, error) {
-	return r.ApiService.ListLegacySnapshotsExecute(r)
-}
-
-func (r ListLegacySnapshotsApiRequest) ExecuteWithParams(params *ListLegacySnapshotsApiParams) (*PaginatedSnapshot, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	r.completed = params.Completed 
-	return r.Execute()
+	return r.ApiService.listLegacySnapshotsExecute(r)
 }
 
 /*
@@ -1444,7 +1559,7 @@ func (a *LegacyBackupApiService) ListLegacySnapshots(ctx context.Context, groupI
 // Execute executes the request
 //  @return PaginatedSnapshot
 // Deprecated
-func (a *LegacyBackupApiService) ListLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) listLegacySnapshotsExecute(r ListLegacySnapshotsApiRequest) (*PaginatedSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1583,6 +1698,17 @@ type UpdateLegacySnapshotRetentionApiParams struct {
 		Snapshot *Snapshot
 }
 
+func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionWithParams(ctx context.Context, args *UpdateLegacySnapshotRetentionApiParams) UpdateLegacySnapshotRetentionApiRequest {
+	return UpdateLegacySnapshotRetentionApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+		snapshot: args.Snapshot,
+	}
+}
+
 // Changes One Legacy Backup Snapshot Expiration.
 func (r UpdateLegacySnapshotRetentionApiRequest) Snapshot(snapshot Snapshot) UpdateLegacySnapshotRetentionApiRequest {
 	r.snapshot = &snapshot
@@ -1590,15 +1716,7 @@ func (r UpdateLegacySnapshotRetentionApiRequest) Snapshot(snapshot Snapshot) Upd
 }
 
 func (r UpdateLegacySnapshotRetentionApiRequest) Execute() (*Snapshot, *http.Response, error) {
-	return r.ApiService.UpdateLegacySnapshotRetentionExecute(r)
-}
-
-func (r UpdateLegacySnapshotRetentionApiRequest) ExecuteWithParams(params *UpdateLegacySnapshotRetentionApiParams) (*Snapshot, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.snapshotId = params.SnapshotId 
-	r.snapshot = params.Snapshot 
-	return r.Execute()
+	return r.ApiService.updateLegacySnapshotRetentionExecute(r)
 }
 
 /*
@@ -1627,7 +1745,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotRetention(ctx context.Conte
 // Execute executes the request
 //  @return Snapshot
 // Deprecated
-func (a *LegacyBackupApiService) UpdateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error) {
+func (a *LegacyBackupApiService) updateLegacySnapshotRetentionExecute(r UpdateLegacySnapshotRetentionApiRequest) (*Snapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1748,6 +1866,16 @@ type UpdateLegacySnapshotScheduleApiParams struct {
 		SnapshotSchedule *SnapshotSchedule
 }
 
+func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleWithParams(ctx context.Context, args *UpdateLegacySnapshotScheduleApiParams) UpdateLegacySnapshotScheduleApiRequest {
+	return UpdateLegacySnapshotScheduleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotSchedule: args.SnapshotSchedule,
+	}
+}
+
 // Update the snapshot schedule for one cluster in the specified project.
 func (r UpdateLegacySnapshotScheduleApiRequest) SnapshotSchedule(snapshotSchedule SnapshotSchedule) UpdateLegacySnapshotScheduleApiRequest {
 	r.snapshotSchedule = &snapshotSchedule
@@ -1755,14 +1883,7 @@ func (r UpdateLegacySnapshotScheduleApiRequest) SnapshotSchedule(snapshotSchedul
 }
 
 func (r UpdateLegacySnapshotScheduleApiRequest) Execute() (*SnapshotSchedule, *http.Response, error) {
-	return r.ApiService.UpdateLegacySnapshotScheduleExecute(r)
-}
-
-func (r UpdateLegacySnapshotScheduleApiRequest) ExecuteWithParams(params *UpdateLegacySnapshotScheduleApiParams) (*SnapshotSchedule, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.snapshotSchedule = params.SnapshotSchedule 
-	return r.Execute()
+	return r.ApiService.updateLegacySnapshotScheduleExecute(r)
 }
 
 /*
@@ -1791,7 +1912,7 @@ func (a *LegacyBackupApiService) UpdateLegacySnapshotSchedule(ctx context.Contex
 // Execute executes the request
 //  @return SnapshotSchedule
 // Deprecated
-func (a *LegacyBackupApiService) UpdateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
+func (a *LegacyBackupApiService) updateLegacySnapshotScheduleExecute(r UpdateLegacySnapshotScheduleApiRequest) (*SnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

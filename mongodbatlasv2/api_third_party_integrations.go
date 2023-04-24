@@ -29,10 +29,18 @@ type ThirdPartyIntegrationsApi interface {
 	@return CreateThirdPartyIntegrationApiRequest
 	*/
 	CreateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) CreateThirdPartyIntegrationApiRequest
+	/*
+	CreateThirdPartyIntegration Configure One Third-Party Service Integration
 
-	// CreateThirdPartyIntegrationExecute executes the request
-	//  @return PaginatedIntegration
-	CreateThirdPartyIntegrationExecute(r CreateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateThirdPartyIntegrationApiParams - Parameters for the request
+	@return CreateThirdPartyIntegrationApiRequest}}
+	*/
+	CreateThirdPartyIntegrationWithParams(ctx context.Context, args *CreateThirdPartyIntegrationApiParams) CreateThirdPartyIntegrationApiRequest
+
+	// Interface only available internally
+	createThirdPartyIntegrationExecute(r CreateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error)
 
 	/*
 	DeleteThirdPartyIntegration Remove One Third-Party Service Integration
@@ -45,9 +53,18 @@ type ThirdPartyIntegrationsApi interface {
 	@return DeleteThirdPartyIntegrationApiRequest
 	*/
 	DeleteThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) DeleteThirdPartyIntegrationApiRequest
+	/*
+	DeleteThirdPartyIntegration Remove One Third-Party Service Integration
 
-	// DeleteThirdPartyIntegrationExecute executes the request
-	DeleteThirdPartyIntegrationExecute(r DeleteThirdPartyIntegrationApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteThirdPartyIntegrationApiParams - Parameters for the request
+	@return DeleteThirdPartyIntegrationApiRequest}}
+	*/
+	DeleteThirdPartyIntegrationWithParams(ctx context.Context, args *DeleteThirdPartyIntegrationApiParams) DeleteThirdPartyIntegrationApiRequest
+
+	// Interface only available internally
+	deleteThirdPartyIntegrationExecute(r DeleteThirdPartyIntegrationApiRequest) (*http.Response, error)
 
 	/*
 	GetThirdPartyIntegration Return One Third-Party Service Integration
@@ -60,10 +77,18 @@ type ThirdPartyIntegrationsApi interface {
 	@return GetThirdPartyIntegrationApiRequest
 	*/
 	GetThirdPartyIntegration(ctx context.Context, groupId string, integrationType string) GetThirdPartyIntegrationApiRequest
+	/*
+	GetThirdPartyIntegration Return One Third-Party Service Integration
 
-	// GetThirdPartyIntegrationExecute executes the request
-	//  @return Integration
-	GetThirdPartyIntegrationExecute(r GetThirdPartyIntegrationApiRequest) (*Integration, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetThirdPartyIntegrationApiParams - Parameters for the request
+	@return GetThirdPartyIntegrationApiRequest}}
+	*/
+	GetThirdPartyIntegrationWithParams(ctx context.Context, args *GetThirdPartyIntegrationApiParams) GetThirdPartyIntegrationApiRequest
+
+	// Interface only available internally
+	getThirdPartyIntegrationExecute(r GetThirdPartyIntegrationApiRequest) (*Integration, *http.Response, error)
 
 	/*
 	ListThirdPartyIntegrations Return All Active Third-Party Service Integrations
@@ -75,10 +100,18 @@ type ThirdPartyIntegrationsApi interface {
 	@return ListThirdPartyIntegrationsApiRequest
 	*/
 	ListThirdPartyIntegrations(ctx context.Context, groupId string) ListThirdPartyIntegrationsApiRequest
+	/*
+	ListThirdPartyIntegrations Return All Active Third-Party Service Integrations
 
-	// ListThirdPartyIntegrationsExecute executes the request
-	//  @return PaginatedIntegration
-	ListThirdPartyIntegrationsExecute(r ListThirdPartyIntegrationsApiRequest) (*PaginatedIntegration, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListThirdPartyIntegrationsApiParams - Parameters for the request
+	@return ListThirdPartyIntegrationsApiRequest}}
+	*/
+	ListThirdPartyIntegrationsWithParams(ctx context.Context, args *ListThirdPartyIntegrationsApiParams) ListThirdPartyIntegrationsApiRequest
+
+	// Interface only available internally
+	listThirdPartyIntegrationsExecute(r ListThirdPartyIntegrationsApiRequest) (*PaginatedIntegration, *http.Response, error)
 
 	/*
 	UpdateThirdPartyIntegration Update One Third-Party Service Integration
@@ -91,10 +124,18 @@ type ThirdPartyIntegrationsApi interface {
 	@return UpdateThirdPartyIntegrationApiRequest
 	*/
 	UpdateThirdPartyIntegration(ctx context.Context, integrationType string, groupId string) UpdateThirdPartyIntegrationApiRequest
+	/*
+	UpdateThirdPartyIntegration Update One Third-Party Service Integration
 
-	// UpdateThirdPartyIntegrationExecute executes the request
-	//  @return PaginatedIntegration
-	UpdateThirdPartyIntegrationExecute(r UpdateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateThirdPartyIntegrationApiParams - Parameters for the request
+	@return UpdateThirdPartyIntegrationApiRequest}}
+	*/
+	UpdateThirdPartyIntegrationWithParams(ctx context.Context, args *UpdateThirdPartyIntegrationApiParams) UpdateThirdPartyIntegrationApiRequest
+
+	// Interface only available internally
+	updateThirdPartyIntegrationExecute(r UpdateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error)
 }
 
 // ThirdPartyIntegrationsApiService ThirdPartyIntegrationsApi service
@@ -118,6 +159,19 @@ type CreateThirdPartyIntegrationApiParams struct {
 		IncludeCount *bool
 		ItemsPerPage *int32
 		PageNum *int32
+}
+
+func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationWithParams(ctx context.Context, args *CreateThirdPartyIntegrationApiParams) CreateThirdPartyIntegrationApiRequest {
+	return CreateThirdPartyIntegrationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		integrationType: args.IntegrationType,
+		groupId: args.GroupId,
+		integration: args.Integration,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
 }
 
 // Third-party integration that you want to configure for your project.
@@ -145,17 +199,7 @@ func (r CreateThirdPartyIntegrationApiRequest) PageNum(pageNum int32) CreateThir
 }
 
 func (r CreateThirdPartyIntegrationApiRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
-	return r.ApiService.CreateThirdPartyIntegrationExecute(r)
-}
-
-func (r CreateThirdPartyIntegrationApiRequest) ExecuteWithParams(params *CreateThirdPartyIntegrationApiParams) (*PaginatedIntegration, *http.Response, error) {
-	r.integrationType = params.IntegrationType 
-	r.groupId = params.GroupId 
-	r.integration = params.Integration 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.createThirdPartyIntegrationExecute(r)
 }
 
 /*
@@ -179,7 +223,7 @@ func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegration(ctx conte
 
 // Execute executes the request
 //  @return PaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) CreateThirdPartyIntegrationExecute(r CreateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) createThirdPartyIntegrationExecute(r CreateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -306,14 +350,17 @@ type DeleteThirdPartyIntegrationApiParams struct {
 		GroupId string
 }
 
-func (r DeleteThirdPartyIntegrationApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteThirdPartyIntegrationExecute(r)
+func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationWithParams(ctx context.Context, args *DeleteThirdPartyIntegrationApiParams) DeleteThirdPartyIntegrationApiRequest {
+	return DeleteThirdPartyIntegrationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		integrationType: args.IntegrationType,
+		groupId: args.GroupId,
+	}
 }
 
-func (r DeleteThirdPartyIntegrationApiRequest) ExecuteWithParams(params *DeleteThirdPartyIntegrationApiParams) (*http.Response, error) {
-	r.integrationType = params.IntegrationType 
-	r.groupId = params.GroupId 
-	return r.Execute()
+func (r DeleteThirdPartyIntegrationApiRequest) Execute() (*http.Response, error) {
+	return r.ApiService.deleteThirdPartyIntegrationExecute(r)
 }
 
 /*
@@ -336,7 +383,7 @@ func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegration(ctx conte
 }
 
 // Execute executes the request
-func (a *ThirdPartyIntegrationsApiService) DeleteThirdPartyIntegrationExecute(r DeleteThirdPartyIntegrationApiRequest) (*http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) deleteThirdPartyIntegrationExecute(r DeleteThirdPartyIntegrationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -427,14 +474,17 @@ type GetThirdPartyIntegrationApiParams struct {
 		IntegrationType string
 }
 
-func (r GetThirdPartyIntegrationApiRequest) Execute() (*Integration, *http.Response, error) {
-	return r.ApiService.GetThirdPartyIntegrationExecute(r)
+func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationWithParams(ctx context.Context, args *GetThirdPartyIntegrationApiParams) GetThirdPartyIntegrationApiRequest {
+	return GetThirdPartyIntegrationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		integrationType: args.IntegrationType,
+	}
 }
 
-func (r GetThirdPartyIntegrationApiRequest) ExecuteWithParams(params *GetThirdPartyIntegrationApiParams) (*Integration, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.integrationType = params.IntegrationType 
-	return r.Execute()
+func (r GetThirdPartyIntegrationApiRequest) Execute() (*Integration, *http.Response, error) {
+	return r.ApiService.getThirdPartyIntegrationExecute(r)
 }
 
 /*
@@ -458,7 +508,7 @@ func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegration(ctx context.
 
 // Execute executes the request
 //  @return Integration
-func (a *ThirdPartyIntegrationsApiService) GetThirdPartyIntegrationExecute(r GetThirdPartyIntegrationApiRequest) (*Integration, *http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) getThirdPartyIntegrationExecute(r GetThirdPartyIntegrationApiRequest) (*Integration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -563,6 +613,17 @@ type ListThirdPartyIntegrationsApiParams struct {
 		PageNum *int32
 }
 
+func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsWithParams(ctx context.Context, args *ListThirdPartyIntegrationsApiParams) ListThirdPartyIntegrationsApiRequest {
+	return ListThirdPartyIntegrationsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListThirdPartyIntegrationsApiRequest) IncludeCount(includeCount bool) ListThirdPartyIntegrationsApiRequest {
 	r.includeCount = &includeCount
@@ -582,15 +643,7 @@ func (r ListThirdPartyIntegrationsApiRequest) PageNum(pageNum int32) ListThirdPa
 }
 
 func (r ListThirdPartyIntegrationsApiRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
-	return r.ApiService.ListThirdPartyIntegrationsExecute(r)
-}
-
-func (r ListThirdPartyIntegrationsApiRequest) ExecuteWithParams(params *ListThirdPartyIntegrationsApiParams) (*PaginatedIntegration, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listThirdPartyIntegrationsExecute(r)
 }
 
 /*
@@ -612,7 +665,7 @@ func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrations(ctx contex
 
 // Execute executes the request
 //  @return PaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) ListThirdPartyIntegrationsExecute(r ListThirdPartyIntegrationsApiRequest) (*PaginatedIntegration, *http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) listThirdPartyIntegrationsExecute(r ListThirdPartyIntegrationsApiRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -741,6 +794,19 @@ type UpdateThirdPartyIntegrationApiParams struct {
 		PageNum *int32
 }
 
+func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationWithParams(ctx context.Context, args *UpdateThirdPartyIntegrationApiParams) UpdateThirdPartyIntegrationApiRequest {
+	return UpdateThirdPartyIntegrationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		integrationType: args.IntegrationType,
+		groupId: args.GroupId,
+		integration: args.Integration,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Third-party integration that you want to configure for your project.
 func (r UpdateThirdPartyIntegrationApiRequest) Integration(integration Integration) UpdateThirdPartyIntegrationApiRequest {
 	r.integration = &integration
@@ -766,17 +832,7 @@ func (r UpdateThirdPartyIntegrationApiRequest) PageNum(pageNum int32) UpdateThir
 }
 
 func (r UpdateThirdPartyIntegrationApiRequest) Execute() (*PaginatedIntegration, *http.Response, error) {
-	return r.ApiService.UpdateThirdPartyIntegrationExecute(r)
-}
-
-func (r UpdateThirdPartyIntegrationApiRequest) ExecuteWithParams(params *UpdateThirdPartyIntegrationApiParams) (*PaginatedIntegration, *http.Response, error) {
-	r.integrationType = params.IntegrationType 
-	r.groupId = params.GroupId 
-	r.integration = params.Integration 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.updateThirdPartyIntegrationExecute(r)
 }
 
 /*
@@ -800,7 +856,7 @@ func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegration(ctx conte
 
 // Execute executes the request
 //  @return PaginatedIntegration
-func (a *ThirdPartyIntegrationsApiService) UpdateThirdPartyIntegrationExecute(r UpdateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error) {
+func (a *ThirdPartyIntegrationsApiService) updateThirdPartyIntegrationExecute(r UpdateThirdPartyIntegrationApiRequest) (*PaginatedIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}

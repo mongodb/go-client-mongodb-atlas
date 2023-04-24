@@ -29,9 +29,18 @@ type RollingIndexApi interface {
 	@return CreateRollingIndexApiRequest
 	*/
 	CreateRollingIndex(ctx context.Context, groupId string, clusterName string) CreateRollingIndexApiRequest
+	/*
+	CreateRollingIndex Create One Rolling Index
 
-	// CreateRollingIndexExecute executes the request
-	CreateRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateRollingIndexApiParams - Parameters for the request
+	@return CreateRollingIndexApiRequest}}
+	*/
+	CreateRollingIndexWithParams(ctx context.Context, args *CreateRollingIndexApiParams) CreateRollingIndexApiRequest
+
+	// Interface only available internally
+	createRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error)
 }
 
 // RollingIndexApiService RollingIndexApi service
@@ -51,6 +60,16 @@ type CreateRollingIndexApiParams struct {
 		IndexRequest *IndexRequest
 }
 
+func (a *RollingIndexApiService) CreateRollingIndexWithParams(ctx context.Context, args *CreateRollingIndexApiParams) CreateRollingIndexApiRequest {
+	return CreateRollingIndexApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		indexRequest: args.IndexRequest,
+	}
+}
+
 // Rolling index to create on the specified cluster.
 func (r CreateRollingIndexApiRequest) IndexRequest(indexRequest IndexRequest) CreateRollingIndexApiRequest {
 	r.indexRequest = &indexRequest
@@ -58,14 +77,7 @@ func (r CreateRollingIndexApiRequest) IndexRequest(indexRequest IndexRequest) Cr
 }
 
 func (r CreateRollingIndexApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateRollingIndexExecute(r)
-}
-
-func (r CreateRollingIndexApiRequest) ExecuteWithParams(params *CreateRollingIndexApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.indexRequest = params.IndexRequest 
-	return r.Execute()
+	return r.ApiService.createRollingIndexExecute(r)
 }
 
 /*
@@ -88,7 +100,7 @@ func (a *RollingIndexApiService) CreateRollingIndex(ctx context.Context, groupId
 }
 
 // Execute executes the request
-func (a *RollingIndexApiService) CreateRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error) {
+func (a *RollingIndexApiService) createRollingIndexExecute(r CreateRollingIndexApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

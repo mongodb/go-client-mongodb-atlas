@@ -42,7 +42,7 @@ func main() {
 
 	// -- 1.1 Get first project using struct based API
 	listParams := &mongodbatlas.ListProjectsApiParams{ItemsPerPage: mongodbatlas.PtrInt32(1)}
-	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).ExecuteWithParams(listParams)
+	projects, response, err := sdk.ProjectsApi.ListProjectsWithParams(ctx, listParams).Execute()
 	handleErr(err, response)
 
 	if projects.GetTotalCount() == 0 {

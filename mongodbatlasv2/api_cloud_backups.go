@@ -30,9 +30,18 @@ type CloudBackupsApi interface {
 	@return CancelBackupRestoreJobApiRequest
 	*/
 	CancelBackupRestoreJob(ctx context.Context, groupId string, clusterName string, restoreJobId string) CancelBackupRestoreJobApiRequest
+	/*
+	CancelBackupRestoreJob Cancel One Restore Job of One Cluster
 
-	// CancelBackupRestoreJobExecute executes the request
-	CancelBackupRestoreJobExecute(r CancelBackupRestoreJobApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CancelBackupRestoreJobApiParams - Parameters for the request
+	@return CancelBackupRestoreJobApiRequest}}
+	*/
+	CancelBackupRestoreJobWithParams(ctx context.Context, args *CancelBackupRestoreJobApiParams) CancelBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	cancelBackupRestoreJobExecute(r CancelBackupRestoreJobApiRequest) (*http.Response, error)
 
 	/*
 	CreateBackupExportJob Create One Cloud Backup Snapshot Export Job
@@ -45,10 +54,18 @@ type CloudBackupsApi interface {
 	@return CreateBackupExportJobApiRequest
 	*/
 	CreateBackupExportJob(ctx context.Context, groupId string, clusterName string) CreateBackupExportJobApiRequest
+	/*
+	CreateBackupExportJob Create One Cloud Backup Snapshot Export Job
 
-	// CreateBackupExportJobExecute executes the request
-	//  @return DiskBackupExportJob
-	CreateBackupExportJobExecute(r CreateBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateBackupExportJobApiParams - Parameters for the request
+	@return CreateBackupExportJobApiRequest}}
+	*/
+	CreateBackupExportJobWithParams(ctx context.Context, args *CreateBackupExportJobApiParams) CreateBackupExportJobApiRequest
+
+	// Interface only available internally
+	createBackupExportJobExecute(r CreateBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error)
 
 	/*
 	CreateBackupRestoreJob Restore One Snapshot of One Cluster
@@ -63,10 +80,18 @@ type CloudBackupsApi interface {
 	@return CreateBackupRestoreJobApiRequest
 	*/
 	CreateBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateBackupRestoreJobApiRequest
+	/*
+	CreateBackupRestoreJob Restore One Snapshot of One Cluster
 
-	// CreateBackupRestoreJobExecute executes the request
-	//  @return DiskBackupRestoreJob
-	CreateBackupRestoreJobExecute(r CreateBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateBackupRestoreJobApiParams - Parameters for the request
+	@return CreateBackupRestoreJobApiRequest}}
+	*/
+	CreateBackupRestoreJobWithParams(ctx context.Context, args *CreateBackupRestoreJobApiParams) CreateBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	createBackupRestoreJobExecute(r CreateBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error)
 
 	/*
 	CreateExportBucket Grant Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
@@ -78,10 +103,18 @@ type CloudBackupsApi interface {
 	@return CreateExportBucketApiRequest
 	*/
 	CreateExportBucket(ctx context.Context, groupId string) CreateExportBucketApiRequest
+	/*
+	CreateExportBucket Grant Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-	// CreateExportBucketExecute executes the request
-	//  @return DiskBackupSnapshotAWSExportBucket
-	CreateExportBucketExecute(r CreateExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateExportBucketApiParams - Parameters for the request
+	@return CreateExportBucketApiRequest}}
+	*/
+	CreateExportBucketWithParams(ctx context.Context, args *CreateExportBucketApiParams) CreateExportBucketApiRequest
+
+	// Interface only available internally
+	createExportBucketExecute(r CreateExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error)
 
 	/*
 	CreateServerlessBackupRestoreJob Restore One Snapshot of One Serverless Instance
@@ -94,10 +127,18 @@ type CloudBackupsApi interface {
 	@return CreateServerlessBackupRestoreJobApiRequest
 	*/
 	CreateServerlessBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateServerlessBackupRestoreJobApiRequest
+	/*
+	CreateServerlessBackupRestoreJob Restore One Snapshot of One Serverless Instance
 
-	// CreateServerlessBackupRestoreJobExecute executes the request
-	//  @return ServerlessBackupRestoreJob
-	CreateServerlessBackupRestoreJobExecute(r CreateServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateServerlessBackupRestoreJobApiParams - Parameters for the request
+	@return CreateServerlessBackupRestoreJobApiRequest}}
+	*/
+	CreateServerlessBackupRestoreJobWithParams(ctx context.Context, args *CreateServerlessBackupRestoreJobApiParams) CreateServerlessBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	createServerlessBackupRestoreJobExecute(r CreateServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	DeleteAllBackupSchedules Remove All Cloud Backup Schedules
@@ -110,10 +151,18 @@ type CloudBackupsApi interface {
 	@return DeleteAllBackupSchedulesApiRequest
 	*/
 	DeleteAllBackupSchedules(ctx context.Context, groupId string, clusterName string) DeleteAllBackupSchedulesApiRequest
+	/*
+	DeleteAllBackupSchedules Remove All Cloud Backup Schedules
 
-	// DeleteAllBackupSchedulesExecute executes the request
-	//  @return DiskBackupSnapshotSchedule
-	DeleteAllBackupSchedulesExecute(r DeleteAllBackupSchedulesApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteAllBackupSchedulesApiParams - Parameters for the request
+	@return DeleteAllBackupSchedulesApiRequest}}
+	*/
+	DeleteAllBackupSchedulesWithParams(ctx context.Context, args *DeleteAllBackupSchedulesApiParams) DeleteAllBackupSchedulesApiRequest
+
+	// Interface only available internally
+	deleteAllBackupSchedulesExecute(r DeleteAllBackupSchedulesApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
 
 	/*
 	DeleteExportBucket Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
@@ -126,9 +175,18 @@ type CloudBackupsApi interface {
 	@return DeleteExportBucketApiRequest
 	*/
 	DeleteExportBucket(ctx context.Context, groupId string, exportBucketId string) DeleteExportBucketApiRequest
+	/*
+	DeleteExportBucket Revoke Access to AWS S3 Bucket for Cloud Backup Snapshot Exports
 
-	// DeleteExportBucketExecute executes the request
-	DeleteExportBucketExecute(r DeleteExportBucketApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteExportBucketApiParams - Parameters for the request
+	@return DeleteExportBucketApiRequest}}
+	*/
+	DeleteExportBucketWithParams(ctx context.Context, args *DeleteExportBucketApiParams) DeleteExportBucketApiRequest
+
+	// Interface only available internally
+	deleteExportBucketExecute(r DeleteExportBucketApiRequest) (*http.Response, error)
 
 	/*
 	DeleteReplicaSetBackup Remove One Replica Set Cloud Backup
@@ -142,9 +200,18 @@ type CloudBackupsApi interface {
 	@return DeleteReplicaSetBackupApiRequest
 	*/
 	DeleteReplicaSetBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteReplicaSetBackupApiRequest
+	/*
+	DeleteReplicaSetBackup Remove One Replica Set Cloud Backup
 
-	// DeleteReplicaSetBackupExecute executes the request
-	DeleteReplicaSetBackupExecute(r DeleteReplicaSetBackupApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteReplicaSetBackupApiParams - Parameters for the request
+	@return DeleteReplicaSetBackupApiRequest}}
+	*/
+	DeleteReplicaSetBackupWithParams(ctx context.Context, args *DeleteReplicaSetBackupApiParams) DeleteReplicaSetBackupApiRequest
+
+	// Interface only available internally
+	deleteReplicaSetBackupExecute(r DeleteReplicaSetBackupApiRequest) (*http.Response, error)
 
 	/*
 	DeleteShardedClusterBackup Remove One Sharded Cluster Cloud Backup
@@ -158,9 +225,18 @@ type CloudBackupsApi interface {
 	@return DeleteShardedClusterBackupApiRequest
 	*/
 	DeleteShardedClusterBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteShardedClusterBackupApiRequest
+	/*
+	DeleteShardedClusterBackup Remove One Sharded Cluster Cloud Backup
 
-	// DeleteShardedClusterBackupExecute executes the request
-	DeleteShardedClusterBackupExecute(r DeleteShardedClusterBackupApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteShardedClusterBackupApiParams - Parameters for the request
+	@return DeleteShardedClusterBackupApiRequest}}
+	*/
+	DeleteShardedClusterBackupWithParams(ctx context.Context, args *DeleteShardedClusterBackupApiParams) DeleteShardedClusterBackupApiRequest
+
+	// Interface only available internally
+	deleteShardedClusterBackupExecute(r DeleteShardedClusterBackupApiRequest) (*http.Response, error)
 
 	/*
 	GetBackupExportJob Return One Cloud Backup Snapshot Export Job
@@ -174,10 +250,18 @@ type CloudBackupsApi interface {
 	@return GetBackupExportJobApiRequest
 	*/
 	GetBackupExportJob(ctx context.Context, groupId string, clusterName string, exportId string) GetBackupExportJobApiRequest
+	/*
+	GetBackupExportJob Return One Cloud Backup Snapshot Export Job
 
-	// GetBackupExportJobExecute executes the request
-	//  @return DiskBackupExportJob
-	GetBackupExportJobExecute(r GetBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetBackupExportJobApiParams - Parameters for the request
+	@return GetBackupExportJobApiRequest}}
+	*/
+	GetBackupExportJobWithParams(ctx context.Context, args *GetBackupExportJobApiParams) GetBackupExportJobApiRequest
+
+	// Interface only available internally
+	getBackupExportJobExecute(r GetBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error)
 
 	/*
 	GetBackupRestoreJob Return One Restore Job of One Cluster
@@ -191,10 +275,18 @@ type CloudBackupsApi interface {
 	@return GetBackupRestoreJobApiRequest
 	*/
 	GetBackupRestoreJob(ctx context.Context, groupId string, clusterName string, restoreJobId string) GetBackupRestoreJobApiRequest
+	/*
+	GetBackupRestoreJob Return One Restore Job of One Cluster
 
-	// GetBackupRestoreJobExecute executes the request
-	//  @return DiskBackupRestoreJob
-	GetBackupRestoreJobExecute(r GetBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetBackupRestoreJobApiParams - Parameters for the request
+	@return GetBackupRestoreJobApiRequest}}
+	*/
+	GetBackupRestoreJobWithParams(ctx context.Context, args *GetBackupRestoreJobApiParams) GetBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	getBackupRestoreJobExecute(r GetBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error)
 
 	/*
 	GetBackupSchedule Return One Cloud Backup Schedule
@@ -207,10 +299,18 @@ type CloudBackupsApi interface {
 	@return GetBackupScheduleApiRequest
 	*/
 	GetBackupSchedule(ctx context.Context, groupId string, clusterName string) GetBackupScheduleApiRequest
+	/*
+	GetBackupSchedule Return One Cloud Backup Schedule
 
-	// GetBackupScheduleExecute executes the request
-	//  @return DiskBackupSnapshotSchedule
-	GetBackupScheduleExecute(r GetBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetBackupScheduleApiParams - Parameters for the request
+	@return GetBackupScheduleApiRequest}}
+	*/
+	GetBackupScheduleWithParams(ctx context.Context, args *GetBackupScheduleApiParams) GetBackupScheduleApiRequest
+
+	// Interface only available internally
+	getBackupScheduleExecute(r GetBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
 
 	/*
 	GetDataProtectionSettings Return the Backup Compliance Policy settings
@@ -222,10 +322,18 @@ type CloudBackupsApi interface {
 	@return GetDataProtectionSettingsApiRequest
 	*/
 	GetDataProtectionSettings(ctx context.Context, groupId string) GetDataProtectionSettingsApiRequest
+	/*
+	GetDataProtectionSettings Return the Backup Compliance Policy settings
 
-	// GetDataProtectionSettingsExecute executes the request
-	//  @return DataProtectionSettings
-	GetDataProtectionSettingsExecute(r GetDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetDataProtectionSettingsApiParams - Parameters for the request
+	@return GetDataProtectionSettingsApiRequest}}
+	*/
+	GetDataProtectionSettingsWithParams(ctx context.Context, args *GetDataProtectionSettingsApiParams) GetDataProtectionSettingsApiRequest
+
+	// Interface only available internally
+	getDataProtectionSettingsExecute(r GetDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error)
 
 	/*
 	GetExportBucket Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
@@ -238,10 +346,18 @@ type CloudBackupsApi interface {
 	@return GetExportBucketApiRequest
 	*/
 	GetExportBucket(ctx context.Context, groupId string, exportBucketId string) GetExportBucketApiRequest
+	/*
+	GetExportBucket Return One AWS S3 Bucket Used for Cloud Backup Snapshot Exports
 
-	// GetExportBucketExecute executes the request
-	//  @return DiskBackupSnapshotAWSExportBucket
-	GetExportBucketExecute(r GetExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetExportBucketApiParams - Parameters for the request
+	@return GetExportBucketApiRequest}}
+	*/
+	GetExportBucketWithParams(ctx context.Context, args *GetExportBucketApiParams) GetExportBucketApiRequest
+
+	// Interface only available internally
+	getExportBucketExecute(r GetExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error)
 
 	/*
 	GetReplicaSetBackup Return One Replica Set Cloud Backup
@@ -255,10 +371,18 @@ type CloudBackupsApi interface {
 	@return GetReplicaSetBackupApiRequest
 	*/
 	GetReplicaSetBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) GetReplicaSetBackupApiRequest
+	/*
+	GetReplicaSetBackup Return One Replica Set Cloud Backup
 
-	// GetReplicaSetBackupExecute executes the request
-	//  @return DiskBackupReplicaSet
-	GetReplicaSetBackupExecute(r GetReplicaSetBackupApiRequest) (*DiskBackupReplicaSet, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetReplicaSetBackupApiParams - Parameters for the request
+	@return GetReplicaSetBackupApiRequest}}
+	*/
+	GetReplicaSetBackupWithParams(ctx context.Context, args *GetReplicaSetBackupApiParams) GetReplicaSetBackupApiRequest
+
+	// Interface only available internally
+	getReplicaSetBackupExecute(r GetReplicaSetBackupApiRequest) (*DiskBackupReplicaSet, *http.Response, error)
 
 	/*
 	GetServerlessBackup Return One Snapshot of One Serverless Instance
@@ -272,10 +396,18 @@ type CloudBackupsApi interface {
 	@return GetServerlessBackupApiRequest
 	*/
 	GetServerlessBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) GetServerlessBackupApiRequest
+	/*
+	GetServerlessBackup Return One Snapshot of One Serverless Instance
 
-	// GetServerlessBackupExecute executes the request
-	//  @return ServerlessBackupSnapshot
-	GetServerlessBackupExecute(r GetServerlessBackupApiRequest) (*ServerlessBackupSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetServerlessBackupApiParams - Parameters for the request
+	@return GetServerlessBackupApiRequest}}
+	*/
+	GetServerlessBackupWithParams(ctx context.Context, args *GetServerlessBackupApiParams) GetServerlessBackupApiRequest
+
+	// Interface only available internally
+	getServerlessBackupExecute(r GetServerlessBackupApiRequest) (*ServerlessBackupSnapshot, *http.Response, error)
 
 	/*
 	GetServerlessBackupRestoreJob Return One Restore Job for One Serverless Instance
@@ -289,10 +421,18 @@ type CloudBackupsApi interface {
 	@return GetServerlessBackupRestoreJobApiRequest
 	*/
 	GetServerlessBackupRestoreJob(ctx context.Context, groupId string, clusterName string, restoreJobId string) GetServerlessBackupRestoreJobApiRequest
+	/*
+	GetServerlessBackupRestoreJob Return One Restore Job for One Serverless Instance
 
-	// GetServerlessBackupRestoreJobExecute executes the request
-	//  @return ServerlessBackupRestoreJob
-	GetServerlessBackupRestoreJobExecute(r GetServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetServerlessBackupRestoreJobApiParams - Parameters for the request
+	@return GetServerlessBackupRestoreJobApiRequest}}
+	*/
+	GetServerlessBackupRestoreJobWithParams(ctx context.Context, args *GetServerlessBackupRestoreJobApiParams) GetServerlessBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	getServerlessBackupRestoreJobExecute(r GetServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	GetShardedClusterBackup Return One Sharded Cluster Cloud Backup
@@ -306,10 +446,18 @@ type CloudBackupsApi interface {
 	@return GetShardedClusterBackupApiRequest
 	*/
 	GetShardedClusterBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) GetShardedClusterBackupApiRequest
+	/*
+	GetShardedClusterBackup Return One Sharded Cluster Cloud Backup
 
-	// GetShardedClusterBackupExecute executes the request
-	//  @return DiskBackupShardedClusterSnapshot
-	GetShardedClusterBackupExecute(r GetShardedClusterBackupApiRequest) (*DiskBackupShardedClusterSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetShardedClusterBackupApiParams - Parameters for the request
+	@return GetShardedClusterBackupApiRequest}}
+	*/
+	GetShardedClusterBackupWithParams(ctx context.Context, args *GetShardedClusterBackupApiParams) GetShardedClusterBackupApiRequest
+
+	// Interface only available internally
+	getShardedClusterBackupExecute(r GetShardedClusterBackupApiRequest) (*DiskBackupShardedClusterSnapshot, *http.Response, error)
 
 	/*
 	ListBackupExportJobs Return All Cloud Backup Snapshot Export Jobs
@@ -322,10 +470,18 @@ type CloudBackupsApi interface {
 	@return ListBackupExportJobsApiRequest
 	*/
 	ListBackupExportJobs(ctx context.Context, groupId string, clusterName string) ListBackupExportJobsApiRequest
+	/*
+	ListBackupExportJobs Return All Cloud Backup Snapshot Export Jobs
 
-	// ListBackupExportJobsExecute executes the request
-	//  @return PaginatedApiAtlasDiskBackupExportJob
-	ListBackupExportJobsExecute(r ListBackupExportJobsApiRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListBackupExportJobsApiParams - Parameters for the request
+	@return ListBackupExportJobsApiRequest}}
+	*/
+	ListBackupExportJobsWithParams(ctx context.Context, args *ListBackupExportJobsApiParams) ListBackupExportJobsApiRequest
+
+	// Interface only available internally
+	listBackupExportJobsExecute(r ListBackupExportJobsApiRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error)
 
 	/*
 	ListBackupRestoreJobs Return All Restore Jobs for One Cluster
@@ -338,10 +494,18 @@ type CloudBackupsApi interface {
 	@return ListBackupRestoreJobsApiRequest
 	*/
 	ListBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListBackupRestoreJobsApiRequest
+	/*
+	ListBackupRestoreJobs Return All Restore Jobs for One Cluster
 
-	// ListBackupRestoreJobsExecute executes the request
-	//  @return PaginatedCloudBackupRestoreJob
-	ListBackupRestoreJobsExecute(r ListBackupRestoreJobsApiRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListBackupRestoreJobsApiParams - Parameters for the request
+	@return ListBackupRestoreJobsApiRequest}}
+	*/
+	ListBackupRestoreJobsWithParams(ctx context.Context, args *ListBackupRestoreJobsApiParams) ListBackupRestoreJobsApiRequest
+
+	// Interface only available internally
+	listBackupRestoreJobsExecute(r ListBackupRestoreJobsApiRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error)
 
 	/*
 	ListExportBuckets Return All AWS S3 Buckets Used for Cloud Backup Snapshot Exports
@@ -353,10 +517,18 @@ type CloudBackupsApi interface {
 	@return ListExportBucketsApiRequest
 	*/
 	ListExportBuckets(ctx context.Context, groupId string) ListExportBucketsApiRequest
+	/*
+	ListExportBuckets Return All AWS S3 Buckets Used for Cloud Backup Snapshot Exports
 
-	// ListExportBucketsExecute executes the request
-	//  @return PaginatedBackupSnapshotExportBucket
-	ListExportBucketsExecute(r ListExportBucketsApiRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListExportBucketsApiParams - Parameters for the request
+	@return ListExportBucketsApiRequest}}
+	*/
+	ListExportBucketsWithParams(ctx context.Context, args *ListExportBucketsApiParams) ListExportBucketsApiRequest
+
+	// Interface only available internally
+	listExportBucketsExecute(r ListExportBucketsApiRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error)
 
 	/*
 	ListReplicaSetBackups Return All Replica Set Cloud Backups
@@ -369,10 +541,18 @@ type CloudBackupsApi interface {
 	@return ListReplicaSetBackupsApiRequest
 	*/
 	ListReplicaSetBackups(ctx context.Context, groupId string, clusterName string) ListReplicaSetBackupsApiRequest
+	/*
+	ListReplicaSetBackups Return All Replica Set Cloud Backups
 
-	// ListReplicaSetBackupsExecute executes the request
-	//  @return PaginatedCloudBackupReplicaSet
-	ListReplicaSetBackupsExecute(r ListReplicaSetBackupsApiRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListReplicaSetBackupsApiParams - Parameters for the request
+	@return ListReplicaSetBackupsApiRequest}}
+	*/
+	ListReplicaSetBackupsWithParams(ctx context.Context, args *ListReplicaSetBackupsApiParams) ListReplicaSetBackupsApiRequest
+
+	// Interface only available internally
+	listReplicaSetBackupsExecute(r ListReplicaSetBackupsApiRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error)
 
 	/*
 	ListServerlessBackupRestoreJobs Return All Restore Jobs for One Serverless Instance
@@ -385,10 +565,18 @@ type CloudBackupsApi interface {
 	@return ListServerlessBackupRestoreJobsApiRequest
 	*/
 	ListServerlessBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListServerlessBackupRestoreJobsApiRequest
+	/*
+	ListServerlessBackupRestoreJobs Return All Restore Jobs for One Serverless Instance
 
-	// ListServerlessBackupRestoreJobsExecute executes the request
-	//  @return PaginatedApiAtlasServerlessBackupRestoreJob
-	ListServerlessBackupRestoreJobsExecute(r ListServerlessBackupRestoreJobsApiRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListServerlessBackupRestoreJobsApiParams - Parameters for the request
+	@return ListServerlessBackupRestoreJobsApiRequest}}
+	*/
+	ListServerlessBackupRestoreJobsWithParams(ctx context.Context, args *ListServerlessBackupRestoreJobsApiParams) ListServerlessBackupRestoreJobsApiRequest
+
+	// Interface only available internally
+	listServerlessBackupRestoreJobsExecute(r ListServerlessBackupRestoreJobsApiRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error)
 
 	/*
 	ListServerlessBackups Return All Snapshots of One Serverless Instance
@@ -401,10 +589,18 @@ type CloudBackupsApi interface {
 	@return ListServerlessBackupsApiRequest
 	*/
 	ListServerlessBackups(ctx context.Context, groupId string, clusterName string) ListServerlessBackupsApiRequest
+	/*
+	ListServerlessBackups Return All Snapshots of One Serverless Instance
 
-	// ListServerlessBackupsExecute executes the request
-	//  @return PaginatedApiAtlasServerlessBackupSnapshot
-	ListServerlessBackupsExecute(r ListServerlessBackupsApiRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListServerlessBackupsApiParams - Parameters for the request
+	@return ListServerlessBackupsApiRequest}}
+	*/
+	ListServerlessBackupsWithParams(ctx context.Context, args *ListServerlessBackupsApiParams) ListServerlessBackupsApiRequest
+
+	// Interface only available internally
+	listServerlessBackupsExecute(r ListServerlessBackupsApiRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error)
 
 	/*
 	ListShardedClusterBackups Return All Sharded Cluster Cloud Backups
@@ -417,10 +613,18 @@ type CloudBackupsApi interface {
 	@return ListShardedClusterBackupsApiRequest
 	*/
 	ListShardedClusterBackups(ctx context.Context, groupId string, clusterName string) ListShardedClusterBackupsApiRequest
+	/*
+	ListShardedClusterBackups Return All Sharded Cluster Cloud Backups
 
-	// ListShardedClusterBackupsExecute executes the request
-	//  @return PaginatedCloudBackupShardedClusterSnapshot
-	ListShardedClusterBackupsExecute(r ListShardedClusterBackupsApiRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListShardedClusterBackupsApiParams - Parameters for the request
+	@return ListShardedClusterBackupsApiRequest}}
+	*/
+	ListShardedClusterBackupsWithParams(ctx context.Context, args *ListShardedClusterBackupsApiParams) ListShardedClusterBackupsApiRequest
+
+	// Interface only available internally
+	listShardedClusterBackupsExecute(r ListShardedClusterBackupsApiRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error)
 
 	/*
 	TakeSnapshot Take One On-Demand Snapshot
@@ -435,10 +639,18 @@ type CloudBackupsApi interface {
 	@return TakeSnapshotApiRequest
 	*/
 	TakeSnapshot(ctx context.Context, groupId string, clusterName string) TakeSnapshotApiRequest
+	/*
+	TakeSnapshot Take One On-Demand Snapshot
 
-	// TakeSnapshotExecute executes the request
-	//  @return DiskBackupSnapshot
-	TakeSnapshotExecute(r TakeSnapshotApiRequest) (*DiskBackupSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param TakeSnapshotApiParams - Parameters for the request
+	@return TakeSnapshotApiRequest}}
+	*/
+	TakeSnapshotWithParams(ctx context.Context, args *TakeSnapshotApiParams) TakeSnapshotApiRequest
+
+	// Interface only available internally
+	takeSnapshotExecute(r TakeSnapshotApiRequest) (*DiskBackupSnapshot, *http.Response, error)
 
 	/*
 	UpdateBackupSchedule Update Cloud Backup Schedule for One Cluster
@@ -451,10 +663,18 @@ type CloudBackupsApi interface {
 	@return UpdateBackupScheduleApiRequest
 	*/
 	UpdateBackupSchedule(ctx context.Context, groupId string, clusterName string) UpdateBackupScheduleApiRequest
+	/*
+	UpdateBackupSchedule Update Cloud Backup Schedule for One Cluster
 
-	// UpdateBackupScheduleExecute executes the request
-	//  @return DiskBackupSnapshotSchedule
-	UpdateBackupScheduleExecute(r UpdateBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateBackupScheduleApiParams - Parameters for the request
+	@return UpdateBackupScheduleApiRequest}}
+	*/
+	UpdateBackupScheduleWithParams(ctx context.Context, args *UpdateBackupScheduleApiParams) UpdateBackupScheduleApiRequest
+
+	// Interface only available internally
+	updateBackupScheduleExecute(r UpdateBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error)
 
 	/*
 	UpdateDataProtectionSettings Update or enable the Backup Compliance Policy settings
@@ -466,10 +686,18 @@ type CloudBackupsApi interface {
 	@return UpdateDataProtectionSettingsApiRequest
 	*/
 	UpdateDataProtectionSettings(ctx context.Context, groupId string) UpdateDataProtectionSettingsApiRequest
+	/*
+	UpdateDataProtectionSettings Update or enable the Backup Compliance Policy settings
 
-	// UpdateDataProtectionSettingsExecute executes the request
-	//  @return DataProtectionSettings
-	UpdateDataProtectionSettingsExecute(r UpdateDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateDataProtectionSettingsApiParams - Parameters for the request
+	@return UpdateDataProtectionSettingsApiRequest}}
+	*/
+	UpdateDataProtectionSettingsWithParams(ctx context.Context, args *UpdateDataProtectionSettingsApiParams) UpdateDataProtectionSettingsApiRequest
+
+	// Interface only available internally
+	updateDataProtectionSettingsExecute(r UpdateDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error)
 
 	/*
 	UpdateSnapshotRetention Change Expiration Date for One Cloud Backup
@@ -483,10 +711,18 @@ type CloudBackupsApi interface {
 	@return UpdateSnapshotRetentionApiRequest
 	*/
 	UpdateSnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateSnapshotRetentionApiRequest
+	/*
+	UpdateSnapshotRetention Change Expiration Date for One Cloud Backup
 
-	// UpdateSnapshotRetentionExecute executes the request
-	//  @return DiskBackupReplicaSet
-	UpdateSnapshotRetentionExecute(r UpdateSnapshotRetentionApiRequest) (*DiskBackupReplicaSet, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateSnapshotRetentionApiParams - Parameters for the request
+	@return UpdateSnapshotRetentionApiRequest}}
+	*/
+	UpdateSnapshotRetentionWithParams(ctx context.Context, args *UpdateSnapshotRetentionApiParams) UpdateSnapshotRetentionApiRequest
+
+	// Interface only available internally
+	updateSnapshotRetentionExecute(r UpdateSnapshotRetentionApiRequest) (*DiskBackupReplicaSet, *http.Response, error)
 }
 
 // CloudBackupsApiService CloudBackupsApi service
@@ -506,8 +742,18 @@ type CancelBackupRestoreJobApiParams struct {
 		RestoreJobId string
 }
 
+func (a *CloudBackupsApiService) CancelBackupRestoreJobWithParams(ctx context.Context, args *CancelBackupRestoreJobApiParams) CancelBackupRestoreJobApiRequest {
+	return CancelBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		restoreJobId: args.RestoreJobId,
+	}
+}
+
 func (r CancelBackupRestoreJobApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CancelBackupRestoreJobExecute(r)
+	return r.ApiService.cancelBackupRestoreJobExecute(r)
 }
 
 /*
@@ -532,7 +778,7 @@ func (a *CloudBackupsApiService) CancelBackupRestoreJob(ctx context.Context, gro
 }
 
 // Execute executes the request
-func (a *CloudBackupsApiService) CancelBackupRestoreJobExecute(r CancelBackupRestoreJobApiRequest) (*http.Response, error) {
+func (a *CloudBackupsApiService) cancelBackupRestoreJobExecute(r CancelBackupRestoreJobApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -638,6 +884,16 @@ type CreateBackupExportJobApiParams struct {
 		DiskBackupExportJobRequest *DiskBackupExportJobRequest
 }
 
+func (a *CloudBackupsApiService) CreateBackupExportJobWithParams(ctx context.Context, args *CreateBackupExportJobApiParams) CreateBackupExportJobApiRequest {
+	return CreateBackupExportJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		diskBackupExportJobRequest: args.DiskBackupExportJobRequest,
+	}
+}
+
 // Information about the Cloud Backup Snapshot Export Job to create.
 func (r CreateBackupExportJobApiRequest) DiskBackupExportJobRequest(diskBackupExportJobRequest DiskBackupExportJobRequest) CreateBackupExportJobApiRequest {
 	r.diskBackupExportJobRequest = &diskBackupExportJobRequest
@@ -645,7 +901,7 @@ func (r CreateBackupExportJobApiRequest) DiskBackupExportJobRequest(diskBackupEx
 }
 
 func (r CreateBackupExportJobApiRequest) Execute() (*DiskBackupExportJob, *http.Response, error) {
-	return r.ApiService.CreateBackupExportJobExecute(r)
+	return r.ApiService.createBackupExportJobExecute(r)
 }
 
 /*
@@ -669,7 +925,7 @@ func (a *CloudBackupsApiService) CreateBackupExportJob(ctx context.Context, grou
 
 // Execute executes the request
 //  @return DiskBackupExportJob
-func (a *CloudBackupsApiService) CreateBackupExportJobExecute(r CreateBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error) {
+func (a *CloudBackupsApiService) createBackupExportJobExecute(r CreateBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -783,6 +1039,16 @@ type CreateBackupRestoreJobApiParams struct {
 		DiskBackupRestoreJob *DiskBackupRestoreJob
 }
 
+func (a *CloudBackupsApiService) CreateBackupRestoreJobWithParams(ctx context.Context, args *CreateBackupRestoreJobApiParams) CreateBackupRestoreJobApiRequest {
+	return CreateBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		diskBackupRestoreJob: args.DiskBackupRestoreJob,
+	}
+}
+
 // Restores one snapshot of one cluster from the specified project.
 func (r CreateBackupRestoreJobApiRequest) DiskBackupRestoreJob(diskBackupRestoreJob DiskBackupRestoreJob) CreateBackupRestoreJobApiRequest {
 	r.diskBackupRestoreJob = &diskBackupRestoreJob
@@ -790,7 +1056,7 @@ func (r CreateBackupRestoreJobApiRequest) DiskBackupRestoreJob(diskBackupRestore
 }
 
 func (r CreateBackupRestoreJobApiRequest) Execute() (*DiskBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.CreateBackupRestoreJobExecute(r)
+	return r.ApiService.createBackupRestoreJobExecute(r)
 }
 
 /*
@@ -816,7 +1082,7 @@ func (a *CloudBackupsApiService) CreateBackupRestoreJob(ctx context.Context, gro
 
 // Execute executes the request
 //  @return DiskBackupRestoreJob
-func (a *CloudBackupsApiService) CreateBackupRestoreJobExecute(r CreateBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) createBackupRestoreJobExecute(r CreateBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -928,6 +1194,15 @@ type CreateExportBucketApiParams struct {
 		DiskBackupSnapshotAWSExportBucket *DiskBackupSnapshotAWSExportBucket
 }
 
+func (a *CloudBackupsApiService) CreateExportBucketWithParams(ctx context.Context, args *CreateExportBucketApiParams) CreateExportBucketApiRequest {
+	return CreateExportBucketApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		diskBackupSnapshotAWSExportBucket: args.DiskBackupSnapshotAWSExportBucket,
+	}
+}
+
 // Grants MongoDB Cloud access to the specified AWS S3 bucket.
 func (r CreateExportBucketApiRequest) DiskBackupSnapshotAWSExportBucket(diskBackupSnapshotAWSExportBucket DiskBackupSnapshotAWSExportBucket) CreateExportBucketApiRequest {
 	r.diskBackupSnapshotAWSExportBucket = &diskBackupSnapshotAWSExportBucket
@@ -935,7 +1210,7 @@ func (r CreateExportBucketApiRequest) DiskBackupSnapshotAWSExportBucket(diskBack
 }
 
 func (r CreateExportBucketApiRequest) Execute() (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
-	return r.ApiService.CreateExportBucketExecute(r)
+	return r.ApiService.createExportBucketExecute(r)
 }
 
 /*
@@ -957,7 +1232,7 @@ func (a *CloudBackupsApiService) CreateExportBucket(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return DiskBackupSnapshotAWSExportBucket
-func (a *CloudBackupsApiService) CreateExportBucketExecute(r CreateExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
+func (a *CloudBackupsApiService) createExportBucketExecute(r CreateExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1064,6 +1339,16 @@ type CreateServerlessBackupRestoreJobApiParams struct {
 		ServerlessBackupRestoreJob *ServerlessBackupRestoreJob
 }
 
+func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobWithParams(ctx context.Context, args *CreateServerlessBackupRestoreJobApiParams) CreateServerlessBackupRestoreJobApiRequest {
+	return CreateServerlessBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		serverlessBackupRestoreJob: args.ServerlessBackupRestoreJob,
+	}
+}
+
 // Restores one snapshot of one serverless instance from the specified project.
 func (r CreateServerlessBackupRestoreJobApiRequest) ServerlessBackupRestoreJob(serverlessBackupRestoreJob ServerlessBackupRestoreJob) CreateServerlessBackupRestoreJobApiRequest {
 	r.serverlessBackupRestoreJob = &serverlessBackupRestoreJob
@@ -1071,7 +1356,7 @@ func (r CreateServerlessBackupRestoreJobApiRequest) ServerlessBackupRestoreJob(s
 }
 
 func (r CreateServerlessBackupRestoreJobApiRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.CreateServerlessBackupRestoreJobExecute(r)
+	return r.ApiService.createServerlessBackupRestoreJobExecute(r)
 }
 
 /*
@@ -1095,7 +1380,7 @@ func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJob(ctx context.Co
 
 // Execute executes the request
 //  @return ServerlessBackupRestoreJob
-func (a *CloudBackupsApiService) CreateServerlessBackupRestoreJobExecute(r CreateServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) createServerlessBackupRestoreJobExecute(r CreateServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1207,8 +1492,17 @@ type DeleteAllBackupSchedulesApiParams struct {
 		ClusterName string
 }
 
+func (a *CloudBackupsApiService) DeleteAllBackupSchedulesWithParams(ctx context.Context, args *DeleteAllBackupSchedulesApiParams) DeleteAllBackupSchedulesApiRequest {
+	return DeleteAllBackupSchedulesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r DeleteAllBackupSchedulesApiRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
-	return r.ApiService.DeleteAllBackupSchedulesExecute(r)
+	return r.ApiService.deleteAllBackupSchedulesExecute(r)
 }
 
 /*
@@ -1232,7 +1526,7 @@ func (a *CloudBackupsApiService) DeleteAllBackupSchedules(ctx context.Context, g
 
 // Execute executes the request
 //  @return DiskBackupSnapshotSchedule
-func (a *CloudBackupsApiService) DeleteAllBackupSchedulesExecute(r DeleteAllBackupSchedulesApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
+func (a *CloudBackupsApiService) deleteAllBackupSchedulesExecute(r DeleteAllBackupSchedulesApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1339,8 +1633,17 @@ type DeleteExportBucketApiParams struct {
 		ExportBucketId string
 }
 
+func (a *CloudBackupsApiService) DeleteExportBucketWithParams(ctx context.Context, args *DeleteExportBucketApiParams) DeleteExportBucketApiRequest {
+	return DeleteExportBucketApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		exportBucketId: args.ExportBucketId,
+	}
+}
+
 func (r DeleteExportBucketApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteExportBucketExecute(r)
+	return r.ApiService.deleteExportBucketExecute(r)
 }
 
 /*
@@ -1363,7 +1666,7 @@ func (a *CloudBackupsApiService) DeleteExportBucket(ctx context.Context, groupId
 }
 
 // Execute executes the request
-func (a *CloudBackupsApiService) DeleteExportBucketExecute(r DeleteExportBucketApiRequest) (*http.Response, error) {
+func (a *CloudBackupsApiService) deleteExportBucketExecute(r DeleteExportBucketApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1462,8 +1765,18 @@ type DeleteReplicaSetBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *CloudBackupsApiService) DeleteReplicaSetBackupWithParams(ctx context.Context, args *DeleteReplicaSetBackupApiParams) DeleteReplicaSetBackupApiRequest {
+	return DeleteReplicaSetBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r DeleteReplicaSetBackupApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteReplicaSetBackupExecute(r)
+	return r.ApiService.deleteReplicaSetBackupExecute(r)
 }
 
 /*
@@ -1488,7 +1801,7 @@ func (a *CloudBackupsApiService) DeleteReplicaSetBackup(ctx context.Context, gro
 }
 
 // Execute executes the request
-func (a *CloudBackupsApiService) DeleteReplicaSetBackupExecute(r DeleteReplicaSetBackupApiRequest) (*http.Response, error) {
+func (a *CloudBackupsApiService) deleteReplicaSetBackupExecute(r DeleteReplicaSetBackupApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1594,8 +1907,18 @@ type DeleteShardedClusterBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *CloudBackupsApiService) DeleteShardedClusterBackupWithParams(ctx context.Context, args *DeleteShardedClusterBackupApiParams) DeleteShardedClusterBackupApiRequest {
+	return DeleteShardedClusterBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r DeleteShardedClusterBackupApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteShardedClusterBackupExecute(r)
+	return r.ApiService.deleteShardedClusterBackupExecute(r)
 }
 
 /*
@@ -1620,7 +1943,7 @@ func (a *CloudBackupsApiService) DeleteShardedClusterBackup(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *CloudBackupsApiService) DeleteShardedClusterBackupExecute(r DeleteShardedClusterBackupApiRequest) (*http.Response, error) {
+func (a *CloudBackupsApiService) deleteShardedClusterBackupExecute(r DeleteShardedClusterBackupApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1726,8 +2049,18 @@ type GetBackupExportJobApiParams struct {
 		ExportId string
 }
 
+func (a *CloudBackupsApiService) GetBackupExportJobWithParams(ctx context.Context, args *GetBackupExportJobApiParams) GetBackupExportJobApiRequest {
+	return GetBackupExportJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		exportId: args.ExportId,
+	}
+}
+
 func (r GetBackupExportJobApiRequest) Execute() (*DiskBackupExportJob, *http.Response, error) {
-	return r.ApiService.GetBackupExportJobExecute(r)
+	return r.ApiService.getBackupExportJobExecute(r)
 }
 
 /*
@@ -1753,7 +2086,7 @@ func (a *CloudBackupsApiService) GetBackupExportJob(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return DiskBackupExportJob
-func (a *CloudBackupsApiService) GetBackupExportJobExecute(r GetBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error) {
+func (a *CloudBackupsApiService) getBackupExportJobExecute(r GetBackupExportJobApiRequest) (*DiskBackupExportJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1863,8 +2196,18 @@ type GetBackupRestoreJobApiParams struct {
 		RestoreJobId string
 }
 
+func (a *CloudBackupsApiService) GetBackupRestoreJobWithParams(ctx context.Context, args *GetBackupRestoreJobApiParams) GetBackupRestoreJobApiRequest {
+	return GetBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		restoreJobId: args.RestoreJobId,
+	}
+}
+
 func (r GetBackupRestoreJobApiRequest) Execute() (*DiskBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.GetBackupRestoreJobExecute(r)
+	return r.ApiService.getBackupRestoreJobExecute(r)
 }
 
 /*
@@ -1890,7 +2233,7 @@ func (a *CloudBackupsApiService) GetBackupRestoreJob(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DiskBackupRestoreJob
-func (a *CloudBackupsApiService) GetBackupRestoreJobExecute(r GetBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) getBackupRestoreJobExecute(r GetBackupRestoreJobApiRequest) (*DiskBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2004,8 +2347,17 @@ type GetBackupScheduleApiParams struct {
 		ClusterName string
 }
 
+func (a *CloudBackupsApiService) GetBackupScheduleWithParams(ctx context.Context, args *GetBackupScheduleApiParams) GetBackupScheduleApiRequest {
+	return GetBackupScheduleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r GetBackupScheduleApiRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
-	return r.ApiService.GetBackupScheduleExecute(r)
+	return r.ApiService.getBackupScheduleExecute(r)
 }
 
 /*
@@ -2029,7 +2381,7 @@ func (a *CloudBackupsApiService) GetBackupSchedule(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return DiskBackupSnapshotSchedule
-func (a *CloudBackupsApiService) GetBackupScheduleExecute(r GetBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
+func (a *CloudBackupsApiService) getBackupScheduleExecute(r GetBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2134,8 +2486,16 @@ type GetDataProtectionSettingsApiParams struct {
 		GroupId string
 }
 
+func (a *CloudBackupsApiService) GetDataProtectionSettingsWithParams(ctx context.Context, args *GetDataProtectionSettingsApiParams) GetDataProtectionSettingsApiRequest {
+	return GetDataProtectionSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetDataProtectionSettingsApiRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
-	return r.ApiService.GetDataProtectionSettingsExecute(r)
+	return r.ApiService.getDataProtectionSettingsExecute(r)
 }
 
 /*
@@ -2157,7 +2517,7 @@ func (a *CloudBackupsApiService) GetDataProtectionSettings(ctx context.Context, 
 
 // Execute executes the request
 //  @return DataProtectionSettings
-func (a *CloudBackupsApiService) GetDataProtectionSettingsExecute(r GetDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error) {
+func (a *CloudBackupsApiService) getDataProtectionSettingsExecute(r GetDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2257,8 +2617,17 @@ type GetExportBucketApiParams struct {
 		ExportBucketId string
 }
 
+func (a *CloudBackupsApiService) GetExportBucketWithParams(ctx context.Context, args *GetExportBucketApiParams) GetExportBucketApiRequest {
+	return GetExportBucketApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		exportBucketId: args.ExportBucketId,
+	}
+}
+
 func (r GetExportBucketApiRequest) Execute() (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
-	return r.ApiService.GetExportBucketExecute(r)
+	return r.ApiService.getExportBucketExecute(r)
 }
 
 /*
@@ -2282,7 +2651,7 @@ func (a *CloudBackupsApiService) GetExportBucket(ctx context.Context, groupId st
 
 // Execute executes the request
 //  @return DiskBackupSnapshotAWSExportBucket
-func (a *CloudBackupsApiService) GetExportBucketExecute(r GetExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
+func (a *CloudBackupsApiService) getExportBucketExecute(r GetExportBucketApiRequest) (*DiskBackupSnapshotAWSExportBucket, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2391,8 +2760,18 @@ type GetReplicaSetBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *CloudBackupsApiService) GetReplicaSetBackupWithParams(ctx context.Context, args *GetReplicaSetBackupApiParams) GetReplicaSetBackupApiRequest {
+	return GetReplicaSetBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r GetReplicaSetBackupApiRequest) Execute() (*DiskBackupReplicaSet, *http.Response, error) {
-	return r.ApiService.GetReplicaSetBackupExecute(r)
+	return r.ApiService.getReplicaSetBackupExecute(r)
 }
 
 /*
@@ -2418,7 +2797,7 @@ func (a *CloudBackupsApiService) GetReplicaSetBackup(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DiskBackupReplicaSet
-func (a *CloudBackupsApiService) GetReplicaSetBackupExecute(r GetReplicaSetBackupApiRequest) (*DiskBackupReplicaSet, *http.Response, error) {
+func (a *CloudBackupsApiService) getReplicaSetBackupExecute(r GetReplicaSetBackupApiRequest) (*DiskBackupReplicaSet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2534,8 +2913,18 @@ type GetServerlessBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *CloudBackupsApiService) GetServerlessBackupWithParams(ctx context.Context, args *GetServerlessBackupApiParams) GetServerlessBackupApiRequest {
+	return GetServerlessBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r GetServerlessBackupApiRequest) Execute() (*ServerlessBackupSnapshot, *http.Response, error) {
-	return r.ApiService.GetServerlessBackupExecute(r)
+	return r.ApiService.getServerlessBackupExecute(r)
 }
 
 /*
@@ -2561,7 +2950,7 @@ func (a *CloudBackupsApiService) GetServerlessBackup(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return ServerlessBackupSnapshot
-func (a *CloudBackupsApiService) GetServerlessBackupExecute(r GetServerlessBackupApiRequest) (*ServerlessBackupSnapshot, *http.Response, error) {
+func (a *CloudBackupsApiService) getServerlessBackupExecute(r GetServerlessBackupApiRequest) (*ServerlessBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2677,8 +3066,18 @@ type GetServerlessBackupRestoreJobApiParams struct {
 		RestoreJobId string
 }
 
+func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobWithParams(ctx context.Context, args *GetServerlessBackupRestoreJobApiParams) GetServerlessBackupRestoreJobApiRequest {
+	return GetServerlessBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		restoreJobId: args.RestoreJobId,
+	}
+}
+
 func (r GetServerlessBackupRestoreJobApiRequest) Execute() (*ServerlessBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.GetServerlessBackupRestoreJobExecute(r)
+	return r.ApiService.getServerlessBackupRestoreJobExecute(r)
 }
 
 /*
@@ -2704,7 +3103,7 @@ func (a *CloudBackupsApiService) GetServerlessBackupRestoreJob(ctx context.Conte
 
 // Execute executes the request
 //  @return ServerlessBackupRestoreJob
-func (a *CloudBackupsApiService) GetServerlessBackupRestoreJobExecute(r GetServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) getServerlessBackupRestoreJobExecute(r GetServerlessBackupRestoreJobApiRequest) (*ServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2820,8 +3219,18 @@ type GetShardedClusterBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *CloudBackupsApiService) GetShardedClusterBackupWithParams(ctx context.Context, args *GetShardedClusterBackupApiParams) GetShardedClusterBackupApiRequest {
+	return GetShardedClusterBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r GetShardedClusterBackupApiRequest) Execute() (*DiskBackupShardedClusterSnapshot, *http.Response, error) {
-	return r.ApiService.GetShardedClusterBackupExecute(r)
+	return r.ApiService.getShardedClusterBackupExecute(r)
 }
 
 /*
@@ -2847,7 +3256,7 @@ func (a *CloudBackupsApiService) GetShardedClusterBackup(ctx context.Context, gr
 
 // Execute executes the request
 //  @return DiskBackupShardedClusterSnapshot
-func (a *CloudBackupsApiService) GetShardedClusterBackupExecute(r GetShardedClusterBackupApiRequest) (*DiskBackupShardedClusterSnapshot, *http.Response, error) {
+func (a *CloudBackupsApiService) getShardedClusterBackupExecute(r GetShardedClusterBackupApiRequest) (*DiskBackupShardedClusterSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2967,6 +3376,18 @@ type ListBackupExportJobsApiParams struct {
 		PageNum *int32
 }
 
+func (a *CloudBackupsApiService) ListBackupExportJobsWithParams(ctx context.Context, args *ListBackupExportJobsApiParams) ListBackupExportJobsApiRequest {
+	return ListBackupExportJobsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListBackupExportJobsApiRequest) IncludeCount(includeCount bool) ListBackupExportJobsApiRequest {
 	r.includeCount = &includeCount
@@ -2986,7 +3407,7 @@ func (r ListBackupExportJobsApiRequest) PageNum(pageNum int32) ListBackupExportJ
 }
 
 func (r ListBackupExportJobsApiRequest) Execute() (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error) {
-	return r.ApiService.ListBackupExportJobsExecute(r)
+	return r.ApiService.listBackupExportJobsExecute(r)
 }
 
 /*
@@ -3010,7 +3431,7 @@ func (a *CloudBackupsApiService) ListBackupExportJobs(ctx context.Context, group
 
 // Execute executes the request
 //  @return PaginatedApiAtlasDiskBackupExportJob
-func (a *CloudBackupsApiService) ListBackupExportJobsExecute(r ListBackupExportJobsApiRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error) {
+func (a *CloudBackupsApiService) listBackupExportJobsExecute(r ListBackupExportJobsApiRequest) (*PaginatedApiAtlasDiskBackupExportJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3144,6 +3565,18 @@ type ListBackupRestoreJobsApiParams struct {
 		PageNum *int32
 }
 
+func (a *CloudBackupsApiService) ListBackupRestoreJobsWithParams(ctx context.Context, args *ListBackupRestoreJobsApiParams) ListBackupRestoreJobsApiRequest {
+	return ListBackupRestoreJobsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListBackupRestoreJobsApiRequest) IncludeCount(includeCount bool) ListBackupRestoreJobsApiRequest {
 	r.includeCount = &includeCount
@@ -3163,7 +3596,7 @@ func (r ListBackupRestoreJobsApiRequest) PageNum(pageNum int32) ListBackupRestor
 }
 
 func (r ListBackupRestoreJobsApiRequest) Execute() (*PaginatedCloudBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.ListBackupRestoreJobsExecute(r)
+	return r.ApiService.listBackupRestoreJobsExecute(r)
 }
 
 /*
@@ -3187,7 +3620,7 @@ func (a *CloudBackupsApiService) ListBackupRestoreJobs(ctx context.Context, grou
 
 // Execute executes the request
 //  @return PaginatedCloudBackupRestoreJob
-func (a *CloudBackupsApiService) ListBackupRestoreJobsExecute(r ListBackupRestoreJobsApiRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) listBackupRestoreJobsExecute(r ListBackupRestoreJobsApiRequest) (*PaginatedCloudBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3313,8 +3746,16 @@ type ListExportBucketsApiParams struct {
 		GroupId string
 }
 
+func (a *CloudBackupsApiService) ListExportBucketsWithParams(ctx context.Context, args *ListExportBucketsApiParams) ListExportBucketsApiRequest {
+	return ListExportBucketsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ListExportBucketsApiRequest) Execute() (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
-	return r.ApiService.ListExportBucketsExecute(r)
+	return r.ApiService.listExportBucketsExecute(r)
 }
 
 /*
@@ -3336,7 +3777,7 @@ func (a *CloudBackupsApiService) ListExportBuckets(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return PaginatedBackupSnapshotExportBucket
-func (a *CloudBackupsApiService) ListExportBucketsExecute(r ListExportBucketsApiRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
+func (a *CloudBackupsApiService) listExportBucketsExecute(r ListExportBucketsApiRequest) (*PaginatedBackupSnapshotExportBucket, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3442,6 +3883,18 @@ type ListReplicaSetBackupsApiParams struct {
 		PageNum *int32
 }
 
+func (a *CloudBackupsApiService) ListReplicaSetBackupsWithParams(ctx context.Context, args *ListReplicaSetBackupsApiParams) ListReplicaSetBackupsApiRequest {
+	return ListReplicaSetBackupsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListReplicaSetBackupsApiRequest) IncludeCount(includeCount bool) ListReplicaSetBackupsApiRequest {
 	r.includeCount = &includeCount
@@ -3461,7 +3914,7 @@ func (r ListReplicaSetBackupsApiRequest) PageNum(pageNum int32) ListReplicaSetBa
 }
 
 func (r ListReplicaSetBackupsApiRequest) Execute() (*PaginatedCloudBackupReplicaSet, *http.Response, error) {
-	return r.ApiService.ListReplicaSetBackupsExecute(r)
+	return r.ApiService.listReplicaSetBackupsExecute(r)
 }
 
 /*
@@ -3485,7 +3938,7 @@ func (a *CloudBackupsApiService) ListReplicaSetBackups(ctx context.Context, grou
 
 // Execute executes the request
 //  @return PaginatedCloudBackupReplicaSet
-func (a *CloudBackupsApiService) ListReplicaSetBackupsExecute(r ListReplicaSetBackupsApiRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error) {
+func (a *CloudBackupsApiService) listReplicaSetBackupsExecute(r ListReplicaSetBackupsApiRequest) (*PaginatedCloudBackupReplicaSet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3613,8 +4066,17 @@ type ListServerlessBackupRestoreJobsApiParams struct {
 		ClusterName string
 }
 
+func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsWithParams(ctx context.Context, args *ListServerlessBackupRestoreJobsApiParams) ListServerlessBackupRestoreJobsApiRequest {
+	return ListServerlessBackupRestoreJobsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r ListServerlessBackupRestoreJobsApiRequest) Execute() (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
-	return r.ApiService.ListServerlessBackupRestoreJobsExecute(r)
+	return r.ApiService.listServerlessBackupRestoreJobsExecute(r)
 }
 
 /*
@@ -3638,7 +4100,7 @@ func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobs(ctx context.Con
 
 // Execute executes the request
 //  @return PaginatedApiAtlasServerlessBackupRestoreJob
-func (a *CloudBackupsApiService) ListServerlessBackupRestoreJobsExecute(r ListServerlessBackupRestoreJobsApiRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
+func (a *CloudBackupsApiService) listServerlessBackupRestoreJobsExecute(r ListServerlessBackupRestoreJobsApiRequest) (*PaginatedApiAtlasServerlessBackupRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3751,6 +4213,18 @@ type ListServerlessBackupsApiParams struct {
 		PageNum *int32
 }
 
+func (a *CloudBackupsApiService) ListServerlessBackupsWithParams(ctx context.Context, args *ListServerlessBackupsApiParams) ListServerlessBackupsApiRequest {
+	return ListServerlessBackupsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListServerlessBackupsApiRequest) IncludeCount(includeCount bool) ListServerlessBackupsApiRequest {
 	r.includeCount = &includeCount
@@ -3770,7 +4244,7 @@ func (r ListServerlessBackupsApiRequest) PageNum(pageNum int32) ListServerlessBa
 }
 
 func (r ListServerlessBackupsApiRequest) Execute() (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error) {
-	return r.ApiService.ListServerlessBackupsExecute(r)
+	return r.ApiService.listServerlessBackupsExecute(r)
 }
 
 /*
@@ -3794,7 +4268,7 @@ func (a *CloudBackupsApiService) ListServerlessBackups(ctx context.Context, grou
 
 // Execute executes the request
 //  @return PaginatedApiAtlasServerlessBackupSnapshot
-func (a *CloudBackupsApiService) ListServerlessBackupsExecute(r ListServerlessBackupsApiRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error) {
+func (a *CloudBackupsApiService) listServerlessBackupsExecute(r ListServerlessBackupsApiRequest) (*PaginatedApiAtlasServerlessBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3922,8 +4396,17 @@ type ListShardedClusterBackupsApiParams struct {
 		ClusterName string
 }
 
+func (a *CloudBackupsApiService) ListShardedClusterBackupsWithParams(ctx context.Context, args *ListShardedClusterBackupsApiParams) ListShardedClusterBackupsApiRequest {
+	return ListShardedClusterBackupsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r ListShardedClusterBackupsApiRequest) Execute() (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
-	return r.ApiService.ListShardedClusterBackupsExecute(r)
+	return r.ApiService.listShardedClusterBackupsExecute(r)
 }
 
 /*
@@ -3947,7 +4430,7 @@ func (a *CloudBackupsApiService) ListShardedClusterBackups(ctx context.Context, 
 
 // Execute executes the request
 //  @return PaginatedCloudBackupShardedClusterSnapshot
-func (a *CloudBackupsApiService) ListShardedClusterBackupsExecute(r ListShardedClusterBackupsApiRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
+func (a *CloudBackupsApiService) listShardedClusterBackupsExecute(r ListShardedClusterBackupsApiRequest) (*PaginatedCloudBackupShardedClusterSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4056,6 +4539,16 @@ type TakeSnapshotApiParams struct {
 		DiskBackupOnDemandSnapshotRequest *DiskBackupOnDemandSnapshotRequest
 }
 
+func (a *CloudBackupsApiService) TakeSnapshotWithParams(ctx context.Context, args *TakeSnapshotApiParams) TakeSnapshotApiRequest {
+	return TakeSnapshotApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		diskBackupOnDemandSnapshotRequest: args.DiskBackupOnDemandSnapshotRequest,
+	}
+}
+
 // Takes one on-demand snapshot.
 func (r TakeSnapshotApiRequest) DiskBackupOnDemandSnapshotRequest(diskBackupOnDemandSnapshotRequest DiskBackupOnDemandSnapshotRequest) TakeSnapshotApiRequest {
 	r.diskBackupOnDemandSnapshotRequest = &diskBackupOnDemandSnapshotRequest
@@ -4063,7 +4556,7 @@ func (r TakeSnapshotApiRequest) DiskBackupOnDemandSnapshotRequest(diskBackupOnDe
 }
 
 func (r TakeSnapshotApiRequest) Execute() (*DiskBackupSnapshot, *http.Response, error) {
-	return r.ApiService.TakeSnapshotExecute(r)
+	return r.ApiService.takeSnapshotExecute(r)
 }
 
 /*
@@ -4089,7 +4582,7 @@ func (a *CloudBackupsApiService) TakeSnapshot(ctx context.Context, groupId strin
 
 // Execute executes the request
 //  @return DiskBackupSnapshot
-func (a *CloudBackupsApiService) TakeSnapshotExecute(r TakeSnapshotApiRequest) (*DiskBackupSnapshot, *http.Response, error) {
+func (a *CloudBackupsApiService) takeSnapshotExecute(r TakeSnapshotApiRequest) (*DiskBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -4203,6 +4696,16 @@ type UpdateBackupScheduleApiParams struct {
 		DiskBackupSnapshotSchedule *DiskBackupSnapshotSchedule
 }
 
+func (a *CloudBackupsApiService) UpdateBackupScheduleWithParams(ctx context.Context, args *UpdateBackupScheduleApiParams) UpdateBackupScheduleApiRequest {
+	return UpdateBackupScheduleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		diskBackupSnapshotSchedule: args.DiskBackupSnapshotSchedule,
+	}
+}
+
 // Updates the cloud backup schedule for one cluster within the specified project.  **Note**: In the request body, provide only the fields that you want to update.
 func (r UpdateBackupScheduleApiRequest) DiskBackupSnapshotSchedule(diskBackupSnapshotSchedule DiskBackupSnapshotSchedule) UpdateBackupScheduleApiRequest {
 	r.diskBackupSnapshotSchedule = &diskBackupSnapshotSchedule
@@ -4210,7 +4713,7 @@ func (r UpdateBackupScheduleApiRequest) DiskBackupSnapshotSchedule(diskBackupSna
 }
 
 func (r UpdateBackupScheduleApiRequest) Execute() (*DiskBackupSnapshotSchedule, *http.Response, error) {
-	return r.ApiService.UpdateBackupScheduleExecute(r)
+	return r.ApiService.updateBackupScheduleExecute(r)
 }
 
 /*
@@ -4234,7 +4737,7 @@ func (a *CloudBackupsApiService) UpdateBackupSchedule(ctx context.Context, group
 
 // Execute executes the request
 //  @return DiskBackupSnapshotSchedule
-func (a *CloudBackupsApiService) UpdateBackupScheduleExecute(r UpdateBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
+func (a *CloudBackupsApiService) updateBackupScheduleExecute(r UpdateBackupScheduleApiRequest) (*DiskBackupSnapshotSchedule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -4346,6 +4849,15 @@ type UpdateDataProtectionSettingsApiParams struct {
 		DataProtectionSettings *DataProtectionSettings
 }
 
+func (a *CloudBackupsApiService) UpdateDataProtectionSettingsWithParams(ctx context.Context, args *UpdateDataProtectionSettingsApiParams) UpdateDataProtectionSettingsApiRequest {
+	return UpdateDataProtectionSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		dataProtectionSettings: args.DataProtectionSettings,
+	}
+}
+
 // The new Backup Compliance Policy settings.
 func (r UpdateDataProtectionSettingsApiRequest) DataProtectionSettings(dataProtectionSettings DataProtectionSettings) UpdateDataProtectionSettingsApiRequest {
 	r.dataProtectionSettings = &dataProtectionSettings
@@ -4353,7 +4865,7 @@ func (r UpdateDataProtectionSettingsApiRequest) DataProtectionSettings(dataProte
 }
 
 func (r UpdateDataProtectionSettingsApiRequest) Execute() (*DataProtectionSettings, *http.Response, error) {
-	return r.ApiService.UpdateDataProtectionSettingsExecute(r)
+	return r.ApiService.updateDataProtectionSettingsExecute(r)
 }
 
 /*
@@ -4375,7 +4887,7 @@ func (a *CloudBackupsApiService) UpdateDataProtectionSettings(ctx context.Contex
 
 // Execute executes the request
 //  @return DataProtectionSettings
-func (a *CloudBackupsApiService) UpdateDataProtectionSettingsExecute(r UpdateDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error) {
+func (a *CloudBackupsApiService) updateDataProtectionSettingsExecute(r UpdateDataProtectionSettingsApiRequest) (*DataProtectionSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -4484,6 +4996,17 @@ type UpdateSnapshotRetentionApiParams struct {
 		SnapshotRetention *SnapshotRetention
 }
 
+func (a *CloudBackupsApiService) UpdateSnapshotRetentionWithParams(ctx context.Context, args *UpdateSnapshotRetentionApiParams) UpdateSnapshotRetentionApiRequest {
+	return UpdateSnapshotRetentionApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+		snapshotRetention: args.SnapshotRetention,
+	}
+}
+
 // Changes the expiration date for one cloud backup snapshot for one cluster in the specified project.
 func (r UpdateSnapshotRetentionApiRequest) SnapshotRetention(snapshotRetention SnapshotRetention) UpdateSnapshotRetentionApiRequest {
 	r.snapshotRetention = &snapshotRetention
@@ -4491,7 +5014,7 @@ func (r UpdateSnapshotRetentionApiRequest) SnapshotRetention(snapshotRetention S
 }
 
 func (r UpdateSnapshotRetentionApiRequest) Execute() (*DiskBackupReplicaSet, *http.Response, error) {
-	return r.ApiService.UpdateSnapshotRetentionExecute(r)
+	return r.ApiService.updateSnapshotRetentionExecute(r)
 }
 
 /*
@@ -4517,7 +5040,7 @@ func (a *CloudBackupsApiService) UpdateSnapshotRetention(ctx context.Context, gr
 
 // Execute executes the request
 //  @return DiskBackupReplicaSet
-func (a *CloudBackupsApiService) UpdateSnapshotRetentionExecute(r UpdateSnapshotRetentionApiRequest) (*DiskBackupReplicaSet, *http.Response, error) {
+func (a *CloudBackupsApiService) updateSnapshotRetentionExecute(r UpdateSnapshotRetentionApiRequest) (*DiskBackupReplicaSet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

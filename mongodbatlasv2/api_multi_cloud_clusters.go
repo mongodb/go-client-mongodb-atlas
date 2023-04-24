@@ -28,10 +28,18 @@ type MultiCloudClustersApi interface {
 	@return CreateClusterApiRequest
 	*/
 	CreateCluster(ctx context.Context, groupId string) CreateClusterApiRequest
+	/*
+	CreateCluster Create One Multi-Cloud Cluster from One Project
 
-	// CreateClusterExecute executes the request
-	//  @return ClusterDescriptionV15
-	CreateClusterExecute(r CreateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateClusterApiParams - Parameters for the request
+	@return CreateClusterApiRequest}}
+	*/
+	CreateClusterWithParams(ctx context.Context, args *CreateClusterApiParams) CreateClusterApiRequest
+
+	// Interface only available internally
+	createClusterExecute(r CreateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
 
 	/*
 	DeleteCluster Remove One Multi-Cloud Cluster from One Project
@@ -44,9 +52,18 @@ type MultiCloudClustersApi interface {
 	@return DeleteClusterApiRequest
 	*/
 	DeleteCluster(ctx context.Context, groupId string, clusterName string) DeleteClusterApiRequest
+	/*
+	DeleteCluster Remove One Multi-Cloud Cluster from One Project
 
-	// DeleteClusterExecute executes the request
-	DeleteClusterExecute(r DeleteClusterApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteClusterApiParams - Parameters for the request
+	@return DeleteClusterApiRequest}}
+	*/
+	DeleteClusterWithParams(ctx context.Context, args *DeleteClusterApiParams) DeleteClusterApiRequest
+
+	// Interface only available internally
+	deleteClusterExecute(r DeleteClusterApiRequest) (*http.Response, error)
 
 	/*
 	GetCluster Return One Multi-Cloud Cluster from One Project
@@ -59,10 +76,18 @@ type MultiCloudClustersApi interface {
 	@return GetClusterApiRequest
 	*/
 	GetCluster(ctx context.Context, groupId string, clusterName string) GetClusterApiRequest
+	/*
+	GetCluster Return One Multi-Cloud Cluster from One Project
 
-	// GetClusterExecute executes the request
-	//  @return ClusterDescriptionV15
-	GetClusterExecute(r GetClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetClusterApiParams - Parameters for the request
+	@return GetClusterApiRequest}}
+	*/
+	GetClusterWithParams(ctx context.Context, args *GetClusterApiParams) GetClusterApiRequest
+
+	// Interface only available internally
+	getClusterExecute(r GetClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
 
 	/*
 	ListClusters Return All Multi-Cloud Clusters from One Project
@@ -74,10 +99,18 @@ type MultiCloudClustersApi interface {
 	@return ListClustersApiRequest
 	*/
 	ListClusters(ctx context.Context, groupId string) ListClustersApiRequest
+	/*
+	ListClusters Return All Multi-Cloud Clusters from One Project
 
-	// ListClustersExecute executes the request
-	//  @return PaginatedClusterDescriptionV15
-	ListClustersExecute(r ListClustersApiRequest) (*PaginatedClusterDescriptionV15, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListClustersApiParams - Parameters for the request
+	@return ListClustersApiRequest}}
+	*/
+	ListClustersWithParams(ctx context.Context, args *ListClustersApiParams) ListClustersApiRequest
+
+	// Interface only available internally
+	listClustersExecute(r ListClustersApiRequest) (*PaginatedClusterDescriptionV15, *http.Response, error)
 
 	/*
 	TestFailover Test Failover for One Multi-Cloud Cluster
@@ -90,9 +123,18 @@ type MultiCloudClustersApi interface {
 	@return TestFailoverApiRequest
 	*/
 	TestFailover(ctx context.Context, groupId string, clusterName string) TestFailoverApiRequest
+	/*
+	TestFailover Test Failover for One Multi-Cloud Cluster
 
-	// TestFailoverExecute executes the request
-	TestFailoverExecute(r TestFailoverApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param TestFailoverApiParams - Parameters for the request
+	@return TestFailoverApiRequest}}
+	*/
+	TestFailoverWithParams(ctx context.Context, args *TestFailoverApiParams) TestFailoverApiRequest
+
+	// Interface only available internally
+	testFailoverExecute(r TestFailoverApiRequest) (*http.Response, error)
 
 	/*
 	UpdateCluster Modify One Multi-Cloud Cluster from One Project
@@ -105,10 +147,18 @@ type MultiCloudClustersApi interface {
 	@return UpdateClusterApiRequest
 	*/
 	UpdateCluster(ctx context.Context, groupId string, clusterName string) UpdateClusterApiRequest
+	/*
+	UpdateCluster Modify One Multi-Cloud Cluster from One Project
 
-	// UpdateClusterExecute executes the request
-	//  @return ClusterDescriptionV15
-	UpdateClusterExecute(r UpdateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateClusterApiParams - Parameters for the request
+	@return UpdateClusterApiRequest}}
+	*/
+	UpdateClusterWithParams(ctx context.Context, args *UpdateClusterApiParams) UpdateClusterApiRequest
+
+	// Interface only available internally
+	updateClusterExecute(r UpdateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error)
 }
 
 // MultiCloudClustersApiService MultiCloudClustersApi service
@@ -126,6 +176,15 @@ type CreateClusterApiParams struct {
 		ClusterDescriptionV15 *ClusterDescriptionV15
 }
 
+func (a *MultiCloudClustersApiService) CreateClusterWithParams(ctx context.Context, args *CreateClusterApiParams) CreateClusterApiRequest {
+	return CreateClusterApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterDescriptionV15: args.ClusterDescriptionV15,
+	}
+}
+
 // Cluster to create in the specific project.
 func (r CreateClusterApiRequest) ClusterDescriptionV15(clusterDescriptionV15 ClusterDescriptionV15) CreateClusterApiRequest {
 	r.clusterDescriptionV15 = &clusterDescriptionV15
@@ -133,13 +192,7 @@ func (r CreateClusterApiRequest) ClusterDescriptionV15(clusterDescriptionV15 Clu
 }
 
 func (r CreateClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
-	return r.ApiService.CreateClusterExecute(r)
-}
-
-func (r CreateClusterApiRequest) ExecuteWithParams(params *CreateClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterDescriptionV15 = params.ClusterDescriptionV15 
-	return r.Execute()
+	return r.ApiService.createClusterExecute(r)
 }
 
 /*
@@ -161,7 +214,7 @@ func (a *MultiCloudClustersApiService) CreateCluster(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return ClusterDescriptionV15
-func (a *MultiCloudClustersApiService) CreateClusterExecute(r CreateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
+func (a *MultiCloudClustersApiService) createClusterExecute(r CreateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -268,6 +321,16 @@ type DeleteClusterApiParams struct {
 		RetainBackups *bool
 }
 
+func (a *MultiCloudClustersApiService) DeleteClusterWithParams(ctx context.Context, args *DeleteClusterApiParams) DeleteClusterApiRequest {
+	return DeleteClusterApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		retainBackups: args.RetainBackups,
+	}
+}
+
 // Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
 func (r DeleteClusterApiRequest) RetainBackups(retainBackups bool) DeleteClusterApiRequest {
 	r.retainBackups = &retainBackups
@@ -275,14 +338,7 @@ func (r DeleteClusterApiRequest) RetainBackups(retainBackups bool) DeleteCluster
 }
 
 func (r DeleteClusterApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteClusterExecute(r)
-}
-
-func (r DeleteClusterApiRequest) ExecuteWithParams(params *DeleteClusterApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.retainBackups = params.RetainBackups 
-	return r.Execute()
+	return r.ApiService.deleteClusterExecute(r)
 }
 
 /*
@@ -305,7 +361,7 @@ func (a *MultiCloudClustersApiService) DeleteCluster(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *MultiCloudClustersApiService) DeleteClusterExecute(r DeleteClusterApiRequest) (*http.Response, error) {
+func (a *MultiCloudClustersApiService) deleteClusterExecute(r DeleteClusterApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -405,14 +461,17 @@ type GetClusterApiParams struct {
 		ClusterName string
 }
 
-func (r GetClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
-	return r.ApiService.GetClusterExecute(r)
+func (a *MultiCloudClustersApiService) GetClusterWithParams(ctx context.Context, args *GetClusterApiParams) GetClusterApiRequest {
+	return GetClusterApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r GetClusterApiRequest) ExecuteWithParams(params *GetClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r GetClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
+	return r.ApiService.getClusterExecute(r)
 }
 
 /*
@@ -436,7 +495,7 @@ func (a *MultiCloudClustersApiService) GetCluster(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return ClusterDescriptionV15
-func (a *MultiCloudClustersApiService) GetClusterExecute(r GetClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
+func (a *MultiCloudClustersApiService) getClusterExecute(r GetClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -547,6 +606,17 @@ type ListClustersApiParams struct {
 		PageNum *int32
 }
 
+func (a *MultiCloudClustersApiService) ListClustersWithParams(ctx context.Context, args *ListClustersApiParams) ListClustersApiRequest {
+	return ListClustersApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListClustersApiRequest) IncludeCount(includeCount bool) ListClustersApiRequest {
 	r.includeCount = &includeCount
@@ -566,15 +636,7 @@ func (r ListClustersApiRequest) PageNum(pageNum int32) ListClustersApiRequest {
 }
 
 func (r ListClustersApiRequest) Execute() (*PaginatedClusterDescriptionV15, *http.Response, error) {
-	return r.ApiService.ListClustersExecute(r)
-}
-
-func (r ListClustersApiRequest) ExecuteWithParams(params *ListClustersApiParams) (*PaginatedClusterDescriptionV15, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listClustersExecute(r)
 }
 
 /*
@@ -596,7 +658,7 @@ func (a *MultiCloudClustersApiService) ListClusters(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return PaginatedClusterDescriptionV15
-func (a *MultiCloudClustersApiService) ListClustersExecute(r ListClustersApiRequest) (*PaginatedClusterDescriptionV15, *http.Response, error) {
+func (a *MultiCloudClustersApiService) listClustersExecute(r ListClustersApiRequest) (*PaginatedClusterDescriptionV15, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -717,14 +779,17 @@ type TestFailoverApiParams struct {
 		ClusterName string
 }
 
-func (r TestFailoverApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.TestFailoverExecute(r)
+func (a *MultiCloudClustersApiService) TestFailoverWithParams(ctx context.Context, args *TestFailoverApiParams) TestFailoverApiRequest {
+	return TestFailoverApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r TestFailoverApiRequest) ExecuteWithParams(params *TestFailoverApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r TestFailoverApiRequest) Execute() (*http.Response, error) {
+	return r.ApiService.testFailoverExecute(r)
 }
 
 /*
@@ -747,7 +812,7 @@ func (a *MultiCloudClustersApiService) TestFailover(ctx context.Context, groupId
 }
 
 // Execute executes the request
-func (a *MultiCloudClustersApiService) TestFailoverExecute(r TestFailoverApiRequest) (*http.Response, error) {
+func (a *MultiCloudClustersApiService) testFailoverExecute(r TestFailoverApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -846,6 +911,16 @@ type UpdateClusterApiParams struct {
 		ClusterDescriptionV15 *ClusterDescriptionV15
 }
 
+func (a *MultiCloudClustersApiService) UpdateClusterWithParams(ctx context.Context, args *UpdateClusterApiParams) UpdateClusterApiRequest {
+	return UpdateClusterApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		clusterDescriptionV15: args.ClusterDescriptionV15,
+	}
+}
+
 // Cluster to update in the specified project.
 func (r UpdateClusterApiRequest) ClusterDescriptionV15(clusterDescriptionV15 ClusterDescriptionV15) UpdateClusterApiRequest {
 	r.clusterDescriptionV15 = &clusterDescriptionV15
@@ -853,14 +928,7 @@ func (r UpdateClusterApiRequest) ClusterDescriptionV15(clusterDescriptionV15 Clu
 }
 
 func (r UpdateClusterApiRequest) Execute() (*ClusterDescriptionV15, *http.Response, error) {
-	return r.ApiService.UpdateClusterExecute(r)
-}
-
-func (r UpdateClusterApiRequest) ExecuteWithParams(params *UpdateClusterApiParams) (*ClusterDescriptionV15, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.clusterDescriptionV15 = params.ClusterDescriptionV15 
-	return r.Execute()
+	return r.ApiService.updateClusterExecute(r)
 }
 
 /*
@@ -884,7 +952,7 @@ func (a *MultiCloudClustersApiService) UpdateCluster(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return ClusterDescriptionV15
-func (a *MultiCloudClustersApiService) UpdateClusterExecute(r UpdateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
+func (a *MultiCloudClustersApiService) updateClusterExecute(r UpdateClusterApiRequest) (*ClusterDescriptionV15, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

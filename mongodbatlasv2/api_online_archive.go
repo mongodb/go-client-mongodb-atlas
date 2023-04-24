@@ -30,10 +30,18 @@ type OnlineArchiveApi interface {
 	@return CreateOnlineArchiveApiRequest
 	*/
 	CreateOnlineArchive(ctx context.Context, groupId string, clusterName string) CreateOnlineArchiveApiRequest
+	/*
+	CreateOnlineArchive Create One Online Archive
 
-	// CreateOnlineArchiveExecute executes the request
-	//  @return OnlineArchive
-	CreateOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateOnlineArchiveApiParams - Parameters for the request
+	@return CreateOnlineArchiveApiRequest}}
+	*/
+	CreateOnlineArchiveWithParams(ctx context.Context, args *CreateOnlineArchiveApiParams) CreateOnlineArchiveApiRequest
+
+	// Interface only available internally
+	createOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 
 	/*
 	DeleteOnlineArchive Remove One Online Archive
@@ -47,9 +55,18 @@ type OnlineArchiveApi interface {
 	@return DeleteOnlineArchiveApiRequest
 	*/
 	DeleteOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) DeleteOnlineArchiveApiRequest
+	/*
+	DeleteOnlineArchive Remove One Online Archive
 
-	// DeleteOnlineArchiveExecute executes the request
-	DeleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteOnlineArchiveApiParams - Parameters for the request
+	@return DeleteOnlineArchiveApiRequest}}
+	*/
+	DeleteOnlineArchiveWithParams(ctx context.Context, args *DeleteOnlineArchiveApiParams) DeleteOnlineArchiveApiRequest
+
+	// Interface only available internally
+	deleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error)
 
 	/*
 	DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
@@ -62,10 +79,18 @@ type OnlineArchiveApi interface {
 	@return DownloadOnlineArchiveQueryLogsApiRequest
 	*/
 	DownloadOnlineArchiveQueryLogs(ctx context.Context, groupId string, clusterName string) DownloadOnlineArchiveQueryLogsApiRequest
+	/*
+	DownloadOnlineArchiveQueryLogs Download Online Archive Query Logs
 
-	// DownloadOnlineArchiveQueryLogsExecute executes the request
-	//  @return *os.File
-	DownloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DownloadOnlineArchiveQueryLogsApiParams - Parameters for the request
+	@return DownloadOnlineArchiveQueryLogsApiRequest}}
+	*/
+	DownloadOnlineArchiveQueryLogsWithParams(ctx context.Context, args *DownloadOnlineArchiveQueryLogsApiParams) DownloadOnlineArchiveQueryLogsApiRequest
+
+	// Interface only available internally
+	downloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error)
 
 	/*
 	GetOnlineArchive Return One Online Archive
@@ -79,10 +104,18 @@ type OnlineArchiveApi interface {
 	@return GetOnlineArchiveApiRequest
 	*/
 	GetOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) GetOnlineArchiveApiRequest
+	/*
+	GetOnlineArchive Return One Online Archive
 
-	// GetOnlineArchiveExecute executes the request
-	//  @return OnlineArchive
-	GetOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetOnlineArchiveApiParams - Parameters for the request
+	@return GetOnlineArchiveApiRequest}}
+	*/
+	GetOnlineArchiveWithParams(ctx context.Context, args *GetOnlineArchiveApiParams) GetOnlineArchiveApiRequest
+
+	// Interface only available internally
+	getOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 
 	/*
 	ListOnlineArchives Return All Online Archives for One Cluster
@@ -95,10 +128,18 @@ type OnlineArchiveApi interface {
 	@return ListOnlineArchivesApiRequest
 	*/
 	ListOnlineArchives(ctx context.Context, groupId string, clusterName string) ListOnlineArchivesApiRequest
+	/*
+	ListOnlineArchives Return All Online Archives for One Cluster
 
-	// ListOnlineArchivesExecute executes the request
-	//  @return PaginatedOnlineArchive
-	ListOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOnlineArchivesApiParams - Parameters for the request
+	@return ListOnlineArchivesApiRequest}}
+	*/
+	ListOnlineArchivesWithParams(ctx context.Context, args *ListOnlineArchivesApiParams) ListOnlineArchivesApiRequest
+
+	// Interface only available internally
+	listOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error)
 
 	/*
 	UpdateOnlineArchive Update One Online Archive
@@ -112,10 +153,18 @@ type OnlineArchiveApi interface {
 	@return UpdateOnlineArchiveApiRequest
 	*/
 	UpdateOnlineArchive(ctx context.Context, groupId string, archiveId string, clusterName string) UpdateOnlineArchiveApiRequest
+	/*
+	UpdateOnlineArchive Update One Online Archive
 
-	// UpdateOnlineArchiveExecute executes the request
-	//  @return OnlineArchive
-	UpdateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateOnlineArchiveApiParams - Parameters for the request
+	@return UpdateOnlineArchiveApiRequest}}
+	*/
+	UpdateOnlineArchiveWithParams(ctx context.Context, args *UpdateOnlineArchiveApiParams) UpdateOnlineArchiveApiRequest
+
+	// Interface only available internally
+	updateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error)
 }
 
 // OnlineArchiveApiService OnlineArchiveApi service
@@ -135,6 +184,16 @@ type CreateOnlineArchiveApiParams struct {
 		OnlineArchive *OnlineArchive
 }
 
+func (a *OnlineArchiveApiService) CreateOnlineArchiveWithParams(ctx context.Context, args *CreateOnlineArchiveApiParams) CreateOnlineArchiveApiRequest {
+	return CreateOnlineArchiveApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		onlineArchive: args.OnlineArchive,
+	}
+}
+
 // Creates one online archive.
 func (r CreateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive) CreateOnlineArchiveApiRequest {
 	r.onlineArchive = &onlineArchive
@@ -142,14 +201,7 @@ func (r CreateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive
 }
 
 func (r CreateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.CreateOnlineArchiveExecute(r)
-}
-
-func (r CreateOnlineArchiveApiRequest) ExecuteWithParams(params *CreateOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.onlineArchive = params.OnlineArchive 
-	return r.Execute()
+	return r.ApiService.createOnlineArchiveExecute(r)
 }
 
 /*
@@ -173,7 +225,7 @@ func (a *OnlineArchiveApiService) CreateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) CreateOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) createOnlineArchiveExecute(r CreateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -287,15 +339,18 @@ type DeleteOnlineArchiveApiParams struct {
 		ClusterName string
 }
 
-func (r DeleteOnlineArchiveApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteOnlineArchiveExecute(r)
+func (a *OnlineArchiveApiService) DeleteOnlineArchiveWithParams(ctx context.Context, args *DeleteOnlineArchiveApiParams) DeleteOnlineArchiveApiRequest {
+	return DeleteOnlineArchiveApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		archiveId: args.ArchiveId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r DeleteOnlineArchiveApiRequest) ExecuteWithParams(params *DeleteOnlineArchiveApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.archiveId = params.ArchiveId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r DeleteOnlineArchiveApiRequest) Execute() (*http.Response, error) {
+	return r.ApiService.deleteOnlineArchiveExecute(r)
 }
 
 /*
@@ -320,7 +375,7 @@ func (a *OnlineArchiveApiService) DeleteOnlineArchive(ctx context.Context, group
 }
 
 // Execute executes the request
-func (a *OnlineArchiveApiService) DeleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error) {
+func (a *OnlineArchiveApiService) deleteOnlineArchiveExecute(r DeleteOnlineArchiveApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -430,6 +485,18 @@ type DownloadOnlineArchiveQueryLogsApiParams struct {
 		ArchiveOnly *bool
 }
 
+func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsWithParams(ctx context.Context, args *DownloadOnlineArchiveQueryLogsApiParams) DownloadOnlineArchiveQueryLogsApiRequest {
+	return DownloadOnlineArchiveQueryLogsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		startDate: args.StartDate,
+		endDate: args.EndDate,
+		archiveOnly: args.ArchiveOnly,
+	}
+}
+
 // Date and time that specifies the starting point for the range of log messages to return. This resource expresses this value in the number of seconds that have elapsed since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time).
 func (r DownloadOnlineArchiveQueryLogsApiRequest) StartDate(startDate int64) DownloadOnlineArchiveQueryLogsApiRequest {
 	r.startDate = &startDate
@@ -449,16 +516,7 @@ func (r DownloadOnlineArchiveQueryLogsApiRequest) ArchiveOnly(archiveOnly bool) 
 }
 
 func (r DownloadOnlineArchiveQueryLogsApiRequest) Execute() (*os.File, *http.Response, error) {
-	return r.ApiService.DownloadOnlineArchiveQueryLogsExecute(r)
-}
-
-func (r DownloadOnlineArchiveQueryLogsApiRequest) ExecuteWithParams(params *DownloadOnlineArchiveQueryLogsApiParams) (*os.File, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.startDate = params.StartDate 
-	r.endDate = params.EndDate 
-	r.archiveOnly = params.ArchiveOnly 
-	return r.Execute()
+	return r.ApiService.downloadOnlineArchiveQueryLogsExecute(r)
 }
 
 /*
@@ -482,7 +540,7 @@ func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogs(ctx context.Con
 
 // Execute executes the request
 //  @return *os.File
-func (a *OnlineArchiveApiService) DownloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error) {
+func (a *OnlineArchiveApiService) downloadOnlineArchiveQueryLogsExecute(r DownloadOnlineArchiveQueryLogsApiRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -604,15 +662,18 @@ type GetOnlineArchiveApiParams struct {
 		ClusterName string
 }
 
-func (r GetOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.GetOnlineArchiveExecute(r)
+func (a *OnlineArchiveApiService) GetOnlineArchiveWithParams(ctx context.Context, args *GetOnlineArchiveApiParams) GetOnlineArchiveApiRequest {
+	return GetOnlineArchiveApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		archiveId: args.ArchiveId,
+		clusterName: args.ClusterName,
+	}
 }
 
-func (r GetOnlineArchiveApiRequest) ExecuteWithParams(params *GetOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.archiveId = params.ArchiveId 
-	r.clusterName = params.ClusterName 
-	return r.Execute()
+func (r GetOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
+	return r.ApiService.getOnlineArchiveExecute(r)
 }
 
 /*
@@ -638,7 +699,7 @@ func (a *OnlineArchiveApiService) GetOnlineArchive(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) GetOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) getOnlineArchiveExecute(r GetOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -758,6 +819,18 @@ type ListOnlineArchivesApiParams struct {
 		PageNum *int32
 }
 
+func (a *OnlineArchiveApiService) ListOnlineArchivesWithParams(ctx context.Context, args *ListOnlineArchivesApiParams) ListOnlineArchivesApiRequest {
+	return ListOnlineArchivesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListOnlineArchivesApiRequest) IncludeCount(includeCount bool) ListOnlineArchivesApiRequest {
 	r.includeCount = &includeCount
@@ -777,16 +850,7 @@ func (r ListOnlineArchivesApiRequest) PageNum(pageNum int32) ListOnlineArchivesA
 }
 
 func (r ListOnlineArchivesApiRequest) Execute() (*PaginatedOnlineArchive, *http.Response, error) {
-	return r.ApiService.ListOnlineArchivesExecute(r)
-}
-
-func (r ListOnlineArchivesApiRequest) ExecuteWithParams(params *ListOnlineArchivesApiParams) (*PaginatedOnlineArchive, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.clusterName = params.ClusterName 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listOnlineArchivesExecute(r)
 }
 
 /*
@@ -810,7 +874,7 @@ func (a *OnlineArchiveApiService) ListOnlineArchives(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return PaginatedOnlineArchive
-func (a *OnlineArchiveApiService) ListOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) listOnlineArchivesExecute(r ListOnlineArchivesApiRequest) (*PaginatedOnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -942,6 +1006,17 @@ type UpdateOnlineArchiveApiParams struct {
 		OnlineArchive *OnlineArchive
 }
 
+func (a *OnlineArchiveApiService) UpdateOnlineArchiveWithParams(ctx context.Context, args *UpdateOnlineArchiveApiParams) UpdateOnlineArchiveApiRequest {
+	return UpdateOnlineArchiveApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		archiveId: args.ArchiveId,
+		clusterName: args.ClusterName,
+		onlineArchive: args.OnlineArchive,
+	}
+}
+
 // Updates, pauses, or resumes one online archive.
 func (r UpdateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive) UpdateOnlineArchiveApiRequest {
 	r.onlineArchive = &onlineArchive
@@ -949,15 +1024,7 @@ func (r UpdateOnlineArchiveApiRequest) OnlineArchive(onlineArchive OnlineArchive
 }
 
 func (r UpdateOnlineArchiveApiRequest) Execute() (*OnlineArchive, *http.Response, error) {
-	return r.ApiService.UpdateOnlineArchiveExecute(r)
-}
-
-func (r UpdateOnlineArchiveApiRequest) ExecuteWithParams(params *UpdateOnlineArchiveApiParams) (*OnlineArchive, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.archiveId = params.ArchiveId 
-	r.clusterName = params.ClusterName 
-	r.onlineArchive = params.OnlineArchive 
-	return r.Execute()
+	return r.ApiService.updateOnlineArchiveExecute(r)
 }
 
 /*
@@ -983,7 +1050,7 @@ func (a *OnlineArchiveApiService) UpdateOnlineArchive(ctx context.Context, group
 
 // Execute executes the request
 //  @return OnlineArchive
-func (a *OnlineArchiveApiService) UpdateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
+func (a *OnlineArchiveApiService) updateOnlineArchiveExecute(r UpdateOnlineArchiveApiRequest) (*OnlineArchive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

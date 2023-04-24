@@ -33,9 +33,18 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 	@return CreateDatabaseUserCertificateApiRequest
 	*/
 	CreateDatabaseUserCertificate(ctx context.Context, groupId string, username string) CreateDatabaseUserCertificateApiRequest
+	/*
+	CreateDatabaseUserCertificate Create One X.509 Certificate for One MongoDB User
 
-	// CreateDatabaseUserCertificateExecute executes the request
-	CreateDatabaseUserCertificateExecute(r CreateDatabaseUserCertificateApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateDatabaseUserCertificateApiParams - Parameters for the request
+	@return CreateDatabaseUserCertificateApiRequest}}
+	*/
+	CreateDatabaseUserCertificateWithParams(ctx context.Context, args *CreateDatabaseUserCertificateApiParams) CreateDatabaseUserCertificateApiRequest
+
+	// Interface only available internally
+	createDatabaseUserCertificateExecute(r CreateDatabaseUserCertificateApiRequest) (*http.Response, error)
 
 	/*
 	DisableCustomerManagedX509 Disable Customer-Managed X.509
@@ -49,10 +58,18 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 	@return DisableCustomerManagedX509ApiRequest
 	*/
 	DisableCustomerManagedX509(ctx context.Context, groupId string) DisableCustomerManagedX509ApiRequest
+	/*
+	DisableCustomerManagedX509 Disable Customer-Managed X.509
 
-	// DisableCustomerManagedX509Execute executes the request
-	//  @return UserSecurity
-	DisableCustomerManagedX509Execute(r DisableCustomerManagedX509ApiRequest) (*UserSecurity, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DisableCustomerManagedX509ApiParams - Parameters for the request
+	@return DisableCustomerManagedX509ApiRequest}}
+	*/
+	DisableCustomerManagedX509WithParams(ctx context.Context, args *DisableCustomerManagedX509ApiParams) DisableCustomerManagedX509ApiRequest
+
+	// Interface only available internally
+	disableCustomerManagedX509Execute(r DisableCustomerManagedX509ApiRequest) (*UserSecurity, *http.Response, error)
 
 	/*
 	ListDatabaseUserCertificates Return All X.509 Certificates Assigned to One MongoDB User
@@ -65,10 +82,18 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 	@return ListDatabaseUserCertificatesApiRequest
 	*/
 	ListDatabaseUserCertificates(ctx context.Context, groupId string, username string) ListDatabaseUserCertificatesApiRequest
+	/*
+	ListDatabaseUserCertificates Return All X.509 Certificates Assigned to One MongoDB User
 
-	// ListDatabaseUserCertificatesExecute executes the request
-	//  @return PaginatedUserCert
-	ListDatabaseUserCertificatesExecute(r ListDatabaseUserCertificatesApiRequest) (*PaginatedUserCert, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListDatabaseUserCertificatesApiParams - Parameters for the request
+	@return ListDatabaseUserCertificatesApiRequest}}
+	*/
+	ListDatabaseUserCertificatesWithParams(ctx context.Context, args *ListDatabaseUserCertificatesApiParams) ListDatabaseUserCertificatesApiRequest
+
+	// Interface only available internally
+	listDatabaseUserCertificatesExecute(r ListDatabaseUserCertificatesApiRequest) (*PaginatedUserCert, *http.Response, error)
 }
 
 // X509AuthenticationApiService X509AuthenticationApi service
@@ -88,6 +113,16 @@ type CreateDatabaseUserCertificateApiParams struct {
 		UserCert *UserCert
 }
 
+func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateWithParams(ctx context.Context, args *CreateDatabaseUserCertificateApiParams) CreateDatabaseUserCertificateApiRequest {
+	return CreateDatabaseUserCertificateApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		username: args.Username,
+		userCert: args.UserCert,
+	}
+}
+
 // Generates one X.509 certificate for the specified MongoDB user.
 func (r CreateDatabaseUserCertificateApiRequest) UserCert(userCert UserCert) CreateDatabaseUserCertificateApiRequest {
 	r.userCert = &userCert
@@ -95,14 +130,7 @@ func (r CreateDatabaseUserCertificateApiRequest) UserCert(userCert UserCert) Cre
 }
 
 func (r CreateDatabaseUserCertificateApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateDatabaseUserCertificateExecute(r)
-}
-
-func (r CreateDatabaseUserCertificateApiRequest) ExecuteWithParams(params *CreateDatabaseUserCertificateApiParams) (*http.Response, error) {
-	r.groupId = params.GroupId 
-	r.username = params.Username 
-	r.userCert = params.UserCert 
-	return r.Execute()
+	return r.ApiService.createDatabaseUserCertificateExecute(r)
 }
 
 /*
@@ -129,7 +157,7 @@ func (a *X509AuthenticationApiService) CreateDatabaseUserCertificate(ctx context
 }
 
 // Execute executes the request
-func (a *X509AuthenticationApiService) CreateDatabaseUserCertificateExecute(r CreateDatabaseUserCertificateApiRequest) (*http.Response, error) {
+func (a *X509AuthenticationApiService) createDatabaseUserCertificateExecute(r CreateDatabaseUserCertificateApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -223,13 +251,16 @@ type DisableCustomerManagedX509ApiParams struct {
 		GroupId string
 }
 
-func (r DisableCustomerManagedX509ApiRequest) Execute() (*UserSecurity, *http.Response, error) {
-	return r.ApiService.DisableCustomerManagedX509Execute(r)
+func (a *X509AuthenticationApiService) DisableCustomerManagedX509WithParams(ctx context.Context, args *DisableCustomerManagedX509ApiParams) DisableCustomerManagedX509ApiRequest {
+	return DisableCustomerManagedX509ApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
 }
 
-func (r DisableCustomerManagedX509ApiRequest) ExecuteWithParams(params *DisableCustomerManagedX509ApiParams) (*UserSecurity, *http.Response, error) {
-	r.groupId = params.GroupId 
-	return r.Execute()
+func (r DisableCustomerManagedX509ApiRequest) Execute() (*UserSecurity, *http.Response, error) {
+	return r.ApiService.disableCustomerManagedX509Execute(r)
 }
 
 /*
@@ -253,7 +284,7 @@ func (a *X509AuthenticationApiService) DisableCustomerManagedX509(ctx context.Co
 
 // Execute executes the request
 //  @return UserSecurity
-func (a *X509AuthenticationApiService) DisableCustomerManagedX509Execute(r DisableCustomerManagedX509ApiRequest) (*UserSecurity, *http.Response, error) {
+func (a *X509AuthenticationApiService) disableCustomerManagedX509Execute(r DisableCustomerManagedX509ApiRequest) (*UserSecurity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -359,6 +390,18 @@ type ListDatabaseUserCertificatesApiParams struct {
 		PageNum *int32
 }
 
+func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesWithParams(ctx context.Context, args *ListDatabaseUserCertificatesApiParams) ListDatabaseUserCertificatesApiRequest {
+	return ListDatabaseUserCertificatesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		username: args.Username,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListDatabaseUserCertificatesApiRequest) IncludeCount(includeCount bool) ListDatabaseUserCertificatesApiRequest {
 	r.includeCount = &includeCount
@@ -378,16 +421,7 @@ func (r ListDatabaseUserCertificatesApiRequest) PageNum(pageNum int32) ListDatab
 }
 
 func (r ListDatabaseUserCertificatesApiRequest) Execute() (*PaginatedUserCert, *http.Response, error) {
-	return r.ApiService.ListDatabaseUserCertificatesExecute(r)
-}
-
-func (r ListDatabaseUserCertificatesApiRequest) ExecuteWithParams(params *ListDatabaseUserCertificatesApiParams) (*PaginatedUserCert, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.username = params.Username 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listDatabaseUserCertificatesExecute(r)
 }
 
 /*
@@ -411,7 +445,7 @@ func (a *X509AuthenticationApiService) ListDatabaseUserCertificates(ctx context.
 
 // Execute executes the request
 //  @return PaginatedUserCert
-func (a *X509AuthenticationApiService) ListDatabaseUserCertificatesExecute(r ListDatabaseUserCertificatesApiRequest) (*PaginatedUserCert, *http.Response, error) {
+func (a *X509AuthenticationApiService) listDatabaseUserCertificatesExecute(r ListDatabaseUserCertificatesApiRequest) (*PaginatedUserCert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

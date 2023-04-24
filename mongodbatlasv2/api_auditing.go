@@ -28,10 +28,18 @@ type AuditingApi interface {
 	@return GetAuditingConfigurationApiRequest
 	*/
 	GetAuditingConfiguration(ctx context.Context, groupId string) GetAuditingConfigurationApiRequest
+	/*
+	GetAuditingConfiguration Return the Auditing Configuration for One Project
 
-	// GetAuditingConfigurationExecute executes the request
-	//  @return AuditLog
-	GetAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAuditingConfigurationApiParams - Parameters for the request
+	@return GetAuditingConfigurationApiRequest}}
+	*/
+	GetAuditingConfigurationWithParams(ctx context.Context, args *GetAuditingConfigurationApiParams) GetAuditingConfigurationApiRequest
+
+	// Interface only available internally
+	getAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
 
 	/*
 	UpdateAuditingConfiguration Update Auditing Configuration for One Project
@@ -43,10 +51,18 @@ type AuditingApi interface {
 	@return UpdateAuditingConfigurationApiRequest
 	*/
 	UpdateAuditingConfiguration(ctx context.Context, groupId string) UpdateAuditingConfigurationApiRequest
+	/*
+	UpdateAuditingConfiguration Update Auditing Configuration for One Project
 
-	// UpdateAuditingConfigurationExecute executes the request
-	//  @return AuditLog
-	UpdateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateAuditingConfigurationApiParams - Parameters for the request
+	@return UpdateAuditingConfigurationApiRequest}}
+	*/
+	UpdateAuditingConfigurationWithParams(ctx context.Context, args *UpdateAuditingConfigurationApiParams) UpdateAuditingConfigurationApiRequest
+
+	// Interface only available internally
+	updateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error)
 }
 
 // AuditingApiService AuditingApi service
@@ -62,13 +78,16 @@ type GetAuditingConfigurationApiParams struct {
 		GroupId string
 }
 
-func (r GetAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
-	return r.ApiService.GetAuditingConfigurationExecute(r)
+func (a *AuditingApiService) GetAuditingConfigurationWithParams(ctx context.Context, args *GetAuditingConfigurationApiParams) GetAuditingConfigurationApiRequest {
+	return GetAuditingConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
 }
 
-func (r GetAuditingConfigurationApiRequest) ExecuteWithParams(params *GetAuditingConfigurationApiParams) (*AuditLog, *http.Response, error) {
-	r.groupId = params.GroupId 
-	return r.Execute()
+func (r GetAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
+	return r.ApiService.getAuditingConfigurationExecute(r)
 }
 
 /*
@@ -90,7 +109,7 @@ func (a *AuditingApiService) GetAuditingConfiguration(ctx context.Context, group
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) GetAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) getAuditingConfigurationExecute(r GetAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -190,6 +209,15 @@ type UpdateAuditingConfigurationApiParams struct {
 		AuditLog *AuditLog
 }
 
+func (a *AuditingApiService) UpdateAuditingConfigurationWithParams(ctx context.Context, args *UpdateAuditingConfigurationApiParams) UpdateAuditingConfigurationApiRequest {
+	return UpdateAuditingConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		auditLog: args.AuditLog,
+	}
+}
+
 // Updated auditing configuration for the specified project.
 func (r UpdateAuditingConfigurationApiRequest) AuditLog(auditLog AuditLog) UpdateAuditingConfigurationApiRequest {
 	r.auditLog = &auditLog
@@ -197,13 +225,7 @@ func (r UpdateAuditingConfigurationApiRequest) AuditLog(auditLog AuditLog) Updat
 }
 
 func (r UpdateAuditingConfigurationApiRequest) Execute() (*AuditLog, *http.Response, error) {
-	return r.ApiService.UpdateAuditingConfigurationExecute(r)
-}
-
-func (r UpdateAuditingConfigurationApiRequest) ExecuteWithParams(params *UpdateAuditingConfigurationApiParams) (*AuditLog, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.auditLog = params.AuditLog 
-	return r.Execute()
+	return r.ApiService.updateAuditingConfigurationExecute(r)
 }
 
 /*
@@ -225,7 +247,7 @@ func (a *AuditingApiService) UpdateAuditingConfiguration(ctx context.Context, gr
 
 // Execute executes the request
 //  @return AuditLog
-func (a *AuditingApiService) UpdateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
+func (a *AuditingApiService) updateAuditingConfigurationExecute(r UpdateAuditingConfigurationApiRequest) (*AuditLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

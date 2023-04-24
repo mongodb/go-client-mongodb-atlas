@@ -31,10 +31,18 @@ type AlertsApi interface {
 	@return AcknowledgeAlertApiRequest
 	*/
 	AcknowledgeAlert(ctx context.Context, groupId string, alertId string) AcknowledgeAlertApiRequest
+	/*
+	AcknowledgeAlert Acknowledge One Alert from One Project
 
-	// AcknowledgeAlertExecute executes the request
-	//  @return AlertViewForNdsGroup
-	AcknowledgeAlertExecute(r AcknowledgeAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param AcknowledgeAlertApiParams - Parameters for the request
+	@return AcknowledgeAlertApiRequest}}
+	*/
+	AcknowledgeAlertWithParams(ctx context.Context, args *AcknowledgeAlertApiParams) AcknowledgeAlertApiRequest
+
+	// Interface only available internally
+	acknowledgeAlertExecute(r AcknowledgeAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error)
 
 	/*
 	GetAlert Return One Alert from One Project
@@ -49,10 +57,18 @@ type AlertsApi interface {
 	@return GetAlertApiRequest
 	*/
 	GetAlert(ctx context.Context, groupId string, alertId string) GetAlertApiRequest
+	/*
+	GetAlert Return One Alert from One Project
 
-	// GetAlertExecute executes the request
-	//  @return AlertViewForNdsGroup
-	GetAlertExecute(r GetAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAlertApiParams - Parameters for the request
+	@return GetAlertApiRequest}}
+	*/
+	GetAlertWithParams(ctx context.Context, args *GetAlertApiParams) GetAlertApiRequest
+
+	// Interface only available internally
+	getAlertExecute(r GetAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error)
 
 	/*
 	ListAlerts Return All Alerts from One Project
@@ -66,10 +82,18 @@ type AlertsApi interface {
 	@return ListAlertsApiRequest
 	*/
 	ListAlerts(ctx context.Context, groupId string) ListAlertsApiRequest
+	/*
+	ListAlerts Return All Alerts from One Project
 
-	// ListAlertsExecute executes the request
-	//  @return PaginatedAlert
-	ListAlertsExecute(r ListAlertsApiRequest) (*PaginatedAlert, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAlertsApiParams - Parameters for the request
+	@return ListAlertsApiRequest}}
+	*/
+	ListAlertsWithParams(ctx context.Context, args *ListAlertsApiParams) ListAlertsApiRequest
+
+	// Interface only available internally
+	listAlertsExecute(r ListAlertsApiRequest) (*PaginatedAlert, *http.Response, error)
 
 	/*
 	ListAlertsByAlertConfigurationId Return All Open Alerts for Alert Configuration
@@ -84,10 +108,18 @@ type AlertsApi interface {
 	@return ListAlertsByAlertConfigurationIdApiRequest
 	*/
 	ListAlertsByAlertConfigurationId(ctx context.Context, groupId string, alertConfigId string) ListAlertsByAlertConfigurationIdApiRequest
+	/*
+	ListAlertsByAlertConfigurationId Return All Open Alerts for Alert Configuration
 
-	// ListAlertsByAlertConfigurationIdExecute executes the request
-	//  @return PaginatedAlert
-	ListAlertsByAlertConfigurationIdExecute(r ListAlertsByAlertConfigurationIdApiRequest) (*PaginatedAlert, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAlertsByAlertConfigurationIdApiParams - Parameters for the request
+	@return ListAlertsByAlertConfigurationIdApiRequest}}
+	*/
+	ListAlertsByAlertConfigurationIdWithParams(ctx context.Context, args *ListAlertsByAlertConfigurationIdApiParams) ListAlertsByAlertConfigurationIdApiRequest
+
+	// Interface only available internally
+	listAlertsByAlertConfigurationIdExecute(r ListAlertsByAlertConfigurationIdApiRequest) (*PaginatedAlert, *http.Response, error)
 }
 
 // AlertsApiService AlertsApi service
@@ -107,6 +139,16 @@ type AcknowledgeAlertApiParams struct {
 		AlertViewForNdsGroup *AlertViewForNdsGroup
 }
 
+func (a *AlertsApiService) AcknowledgeAlertWithParams(ctx context.Context, args *AcknowledgeAlertApiParams) AcknowledgeAlertApiRequest {
+	return AcknowledgeAlertApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertId: args.AlertId,
+		alertViewForNdsGroup: args.AlertViewForNdsGroup,
+	}
+}
+
 // Confirm one alert.
 func (r AcknowledgeAlertApiRequest) AlertViewForNdsGroup(alertViewForNdsGroup AlertViewForNdsGroup) AcknowledgeAlertApiRequest {
 	r.alertViewForNdsGroup = &alertViewForNdsGroup
@@ -114,14 +156,7 @@ func (r AcknowledgeAlertApiRequest) AlertViewForNdsGroup(alertViewForNdsGroup Al
 }
 
 func (r AcknowledgeAlertApiRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.AcknowledgeAlertExecute(r)
-}
-
-func (r AcknowledgeAlertApiRequest) ExecuteWithParams(params *AcknowledgeAlertApiParams) (*AlertViewForNdsGroup, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.alertId = params.AlertId 
-	r.alertViewForNdsGroup = params.AlertViewForNdsGroup 
-	return r.Execute()
+	return r.ApiService.acknowledgeAlertExecute(r)
 }
 
 /*
@@ -147,7 +182,7 @@ func (a *AlertsApiService) AcknowledgeAlert(ctx context.Context, groupId string,
 
 // Execute executes the request
 //  @return AlertViewForNdsGroup
-func (a *AlertsApiService) AcknowledgeAlertExecute(r AcknowledgeAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error) {
+func (a *AlertsApiService) acknowledgeAlertExecute(r AcknowledgeAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -259,14 +294,17 @@ type GetAlertApiParams struct {
 		AlertId string
 }
 
-func (r GetAlertApiRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.GetAlertExecute(r)
+func (a *AlertsApiService) GetAlertWithParams(ctx context.Context, args *GetAlertApiParams) GetAlertApiRequest {
+	return GetAlertApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertId: args.AlertId,
+	}
 }
 
-func (r GetAlertApiRequest) ExecuteWithParams(params *GetAlertApiParams) (*AlertViewForNdsGroup, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.alertId = params.AlertId 
-	return r.Execute()
+func (r GetAlertApiRequest) Execute() (*AlertViewForNdsGroup, *http.Response, error) {
+	return r.ApiService.getAlertExecute(r)
 }
 
 /*
@@ -292,7 +330,7 @@ func (a *AlertsApiService) GetAlert(ctx context.Context, groupId string, alertId
 
 // Execute executes the request
 //  @return AlertViewForNdsGroup
-func (a *AlertsApiService) GetAlertExecute(r GetAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error) {
+func (a *AlertsApiService) getAlertExecute(r GetAlertApiRequest) (*AlertViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -405,6 +443,18 @@ type ListAlertsApiParams struct {
 		Status *string
 }
 
+func (a *AlertsApiService) ListAlertsWithParams(ctx context.Context, args *ListAlertsApiParams) ListAlertsApiRequest {
+	return ListAlertsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		status: args.Status,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListAlertsApiRequest) IncludeCount(includeCount bool) ListAlertsApiRequest {
 	r.includeCount = &includeCount
@@ -430,16 +480,7 @@ func (r ListAlertsApiRequest) Status(status string) ListAlertsApiRequest {
 }
 
 func (r ListAlertsApiRequest) Execute() (*PaginatedAlert, *http.Response, error) {
-	return r.ApiService.ListAlertsExecute(r)
-}
-
-func (r ListAlertsApiRequest) ExecuteWithParams(params *ListAlertsApiParams) (*PaginatedAlert, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	r.status = params.Status 
-	return r.Execute()
+	return r.ApiService.listAlertsExecute(r)
 }
 
 /*
@@ -463,7 +504,7 @@ func (a *AlertsApiService) ListAlerts(ctx context.Context, groupId string) ListA
 
 // Execute executes the request
 //  @return PaginatedAlert
-func (a *AlertsApiService) ListAlertsExecute(r ListAlertsApiRequest) (*PaginatedAlert, *http.Response, error) {
+func (a *AlertsApiService) listAlertsExecute(r ListAlertsApiRequest) (*PaginatedAlert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -593,6 +634,18 @@ type ListAlertsByAlertConfigurationIdApiParams struct {
 		PageNum *int32
 }
 
+func (a *AlertsApiService) ListAlertsByAlertConfigurationIdWithParams(ctx context.Context, args *ListAlertsByAlertConfigurationIdApiParams) ListAlertsByAlertConfigurationIdApiRequest {
+	return ListAlertsByAlertConfigurationIdApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigId: args.AlertConfigId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListAlertsByAlertConfigurationIdApiRequest) IncludeCount(includeCount bool) ListAlertsByAlertConfigurationIdApiRequest {
 	r.includeCount = &includeCount
@@ -612,16 +665,7 @@ func (r ListAlertsByAlertConfigurationIdApiRequest) PageNum(pageNum int32) ListA
 }
 
 func (r ListAlertsByAlertConfigurationIdApiRequest) Execute() (*PaginatedAlert, *http.Response, error) {
-	return r.ApiService.ListAlertsByAlertConfigurationIdExecute(r)
-}
-
-func (r ListAlertsByAlertConfigurationIdApiRequest) ExecuteWithParams(params *ListAlertsByAlertConfigurationIdApiParams) (*PaginatedAlert, *http.Response, error) {
-	r.groupId = params.GroupId 
-	r.alertConfigId = params.AlertConfigId 
-	r.includeCount = params.IncludeCount 
-	r.itemsPerPage = params.ItemsPerPage 
-	r.pageNum = params.PageNum 
-	return r.Execute()
+	return r.ApiService.listAlertsByAlertConfigurationIdExecute(r)
 }
 
 /*
@@ -647,7 +691,7 @@ func (a *AlertsApiService) ListAlertsByAlertConfigurationId(ctx context.Context,
 
 // Execute executes the request
 //  @return PaginatedAlert
-func (a *AlertsApiService) ListAlertsByAlertConfigurationIdExecute(r ListAlertsByAlertConfigurationIdApiRequest) (*PaginatedAlert, *http.Response, error) {
+func (a *AlertsApiService) listAlertsByAlertConfigurationIdExecute(r ListAlertsByAlertConfigurationIdApiRequest) (*PaginatedAlert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

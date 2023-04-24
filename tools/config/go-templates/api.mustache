@@ -33,13 +33,23 @@ type {{classname}} interface {
 	{{/isDeprecated}}
 	*/
 	{{{nickname}}}(ctx context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{operationId}}ApiRequest
+	{{!X-GEN-CUSTOM}}
+	/*
+	{{operationId}} {{{summary}}}{{^summary}}Method for {{operationId}}{{/summary}}
 
-	// {{nickname}}Execute executes the request{{#returnType}}
-	//  @return {{{.}}}{{/returnType}}
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param {{operationId}}ApiParams - Parameters for the request
+	@return {{operationId}}ApiRequest}}
 	{{#isDeprecated}}
-	// Deprecated
+
+	Deprecated
 	{{/isDeprecated}}
-	{{nickname}}Execute(r {{operationId}}ApiRequest) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error)
+	*/
+	{{nickname}}WithParams(ctx context.Context, args *{{operationId}}ApiParams) {{operationId}}ApiRequest
+
+	// Interface only available internally
+	{{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}Execute(r {{operationId}}ApiRequest) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error)
 	{{/operation}}
 }
 {{/generateInterfaces}}
@@ -61,11 +71,22 @@ type {{operationId}}ApiRequest struct {
 
 {{!X-GEN-CUSTOM}}
 type {{operationId}}ApiParams struct {
-	{{#allParams}}
+{{#allParams}}
 		{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
-	{{/allParams}}
+{{/allParams}}
 }
 
+func (a *{{{classname}}}Service) {{{nickname}}}WithParams(ctx context.Context, args *{{operationId}}ApiParams) {{operationId}}ApiRequest {
+	return {{operationId}}ApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		{{#allParams}}
+		{{paramName}}: args.{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}},
+		{{/allParams}}
+	}
+}
+
+{{!/X-GEN-CUSTOM}}
 {{#allParams}}
 {{^isPathParam}}
 {{#description}}
@@ -82,15 +103,7 @@ func (r {{operationId}}ApiRequest) {{vendorExtensions.x-export-param-name}}({{pa
 {{/isPathParam}}
 {{/allParams}}
 func (r {{operationId}}ApiRequest) Execute() ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
-	return r.ApiService.{{nickname}}Execute(r)
-}
-
-{{!X-GEN-CUSTOM}}
-func (r {{operationId}}ApiRequest) ExecuteWithParams(params *{{operationId}}ApiParams) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
-{{#allParams}}
-	r.{{paramName}} = params.{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} 
-{{/allParams}}
-	return r.Execute()
+	return r.ApiService.{{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}Execute(r)
 }
 
 /*
@@ -123,7 +136,7 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx context.Context{{#pathParams
 {{#isDeprecated}}
 // Deprecated
 {{/isDeprecated}}
-func (a *{{{classname}}}Service) {{nickname}}Execute(r {{operationId}}ApiRequest) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
+func (a *{{{classname}}}Service) {{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}Execute(r {{operationId}}ApiRequest) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.Method{{httpMethod}}
 		localVarPostBody     interface{}
