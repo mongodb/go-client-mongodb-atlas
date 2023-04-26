@@ -58,18 +58,18 @@ Generated client support different use cases:
 - Suppling request arguments as single structure
 
 ### Fluent API example
+
 ```go
     projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
 	    ItemsPerPage(1).Execute()
 ```  
 
 ### Struct based API example
+
 ```go
 	listParams := &mongodbatlas.ListProjectsApiParams{ItemsPerPage: mongodbatlas.PtrInt32(1)}
-	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).ExecuteWithParams(listParams)
+	projects, response, err := sdk.ProjectsApi.ListProjectsWithParams(ctx, listParams).Execute()
 ```    
-
-
 
 ## Usage for v1 client
 
@@ -155,8 +155,6 @@ if errors.IsErrorCode(err, "code"){
  // Do something
 }
 ```
-
-
 
 ## Roadmap
 
