@@ -1,6 +1,5 @@
 {
   "ignoreModels": [
-    "ApiInstanceSizeView",
     "ApiRoleAssignmentView",
     "ApiAtlasPartitionFieldView",
     "PemFileInfoView",
