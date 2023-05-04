@@ -1,5 +1,4 @@
 export OPENAPI_FOLDER=../openapi
-export OPENAPI_FILE_NAME=atlas-api.yaml
 export SDK_FOLDER=../mongodbatlasv2
 
 .DEFAULT_GOAL := generate_client

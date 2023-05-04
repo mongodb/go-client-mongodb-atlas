@@ -19,7 +19,7 @@ client_package="mongodbatlasv2"
 openapiFileLocation="$OPENAPI_FOLDER/$transformed_file"
 
 echo "# Running generation pipeline"
-echo "# Running transformation from $transformed_file OpenAPI from $OPENAPI_FILE_NAME"
+echo "# Running transformation based on $OPENAPI_FILE_NAME to the $transformed_file"
 cp "$OPENAPI_FOLDER/$OPENAPI_FILE_NAME" "$openapiFileLocation"
 
 npm install
