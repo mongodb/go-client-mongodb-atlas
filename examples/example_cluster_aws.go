@@ -35,14 +35,9 @@ func main() {
 		mongodbatlas.UseDebug(false))
 	handleErr(err, nil)
 
-	// -- 1. Get first project using fluent API
-	_, response, err := sdk.ProjectsApi.ListProjects(ctx).
+	// -- 1. Get first project
+	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
 		IncludeCount(false).ItemsPerPage(1).Execute()
-	handleErr(err, response)
-
-	// -- 1.1 Get first project using struct based API
-	listParams := &mongodbatlas.ListProjectsApiParams{ItemsPerPage: mongodbatlas.PtrInt32(1)}
-	projects, response, err := sdk.ProjectsApi.ListProjectsWithParams(ctx, listParams).Execute()
 	handleErr(err, response)
 
 	if projects.GetTotalCount() == 0 {
