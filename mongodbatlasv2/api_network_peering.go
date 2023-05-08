@@ -132,7 +132,7 @@ type NetworkPeeringApi interface {
 	@param DisablePeeringApiParams - Parameters for the request
 	@return DisablePeeringApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	DisablePeeringWithParams(ctx context.Context, args *DisablePeeringApiParams) DisablePeeringApiRequest
 
@@ -324,7 +324,7 @@ type NetworkPeeringApi interface {
 	@param VerifyConnectViaPeeringOnlyModeForOneProjectApiParams - Parameters for the request
 	@return VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	VerifyConnectViaPeeringOnlyModeForOneProjectWithParams(ctx context.Context, args *VerifyConnectViaPeeringOnlyModeForOneProjectApiParams) VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest
 

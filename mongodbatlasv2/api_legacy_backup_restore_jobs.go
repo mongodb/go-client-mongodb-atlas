@@ -39,7 +39,7 @@ type LegacyBackupRestoreJobsApi interface {
 	@param CreateLegacyBackupRestoreJobApiParams - Parameters for the request
 	@return CreateLegacyBackupRestoreJobApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
 	*/
 	CreateLegacyBackupRestoreJobWithParams(ctx context.Context, args *CreateLegacyBackupRestoreJobApiParams) CreateLegacyBackupRestoreJobApiRequest
 

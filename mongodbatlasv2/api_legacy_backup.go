@@ -40,7 +40,7 @@ type LegacyBackupApi interface {
 	@param DeleteLegacySnapshotApiParams - Parameters for the request
 	@return DeleteLegacySnapshotApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	DeleteLegacySnapshotWithParams(ctx context.Context, args *DeleteLegacySnapshotApiParams) DeleteLegacySnapshotApiRequest
 
@@ -69,7 +69,7 @@ type LegacyBackupApi interface {
 	@param GetLegacyBackupCheckpointApiParams - Parameters for the request
 	@return GetLegacyBackupCheckpointApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupCheckpointWithParams(ctx context.Context, args *GetLegacyBackupCheckpointApiParams) GetLegacyBackupCheckpointApiRequest
 
@@ -100,7 +100,7 @@ type LegacyBackupApi interface {
 	@param GetLegacyBackupRestoreJobApiParams - Parameters for the request
 	@return GetLegacyBackupRestoreJobApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupRestoreJobWithParams(ctx context.Context, args *GetLegacyBackupRestoreJobApiParams) GetLegacyBackupRestoreJobApiRequest
 
@@ -129,7 +129,7 @@ type LegacyBackupApi interface {
 	@param GetLegacySnapshotApiParams - Parameters for the request
 	@return GetLegacySnapshotApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotWithParams(ctx context.Context, args *GetLegacySnapshotApiParams) GetLegacySnapshotApiRequest
 
@@ -159,7 +159,7 @@ type LegacyBackupApi interface {
 	@param GetLegacySnapshotScheduleApiParams - Parameters for the request
 	@return GetLegacySnapshotScheduleApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotScheduleWithParams(ctx context.Context, args *GetLegacySnapshotScheduleApiParams) GetLegacySnapshotScheduleApiRequest
 
@@ -187,7 +187,7 @@ type LegacyBackupApi interface {
 	@param ListLegacyBackupCheckpointsApiParams - Parameters for the request
 	@return ListLegacyBackupCheckpointsApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupCheckpointsWithParams(ctx context.Context, args *ListLegacyBackupCheckpointsApiParams) ListLegacyBackupCheckpointsApiRequest
 
@@ -217,7 +217,7 @@ type LegacyBackupApi interface {
 	@param ListLegacyBackupRestoreJobsApiParams - Parameters for the request
 	@return ListLegacyBackupRestoreJobsApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupRestoreJobsWithParams(ctx context.Context, args *ListLegacyBackupRestoreJobsApiParams) ListLegacyBackupRestoreJobsApiRequest
 
@@ -245,7 +245,7 @@ type LegacyBackupApi interface {
 	@param ListLegacySnapshotsApiParams - Parameters for the request
 	@return ListLegacySnapshotsApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacySnapshotsWithParams(ctx context.Context, args *ListLegacySnapshotsApiParams) ListLegacySnapshotsApiRequest
 
@@ -274,7 +274,7 @@ type LegacyBackupApi interface {
 	@param UpdateLegacySnapshotRetentionApiParams - Parameters for the request
 	@return UpdateLegacySnapshotRetentionApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotRetentionWithParams(ctx context.Context, args *UpdateLegacySnapshotRetentionApiParams) UpdateLegacySnapshotRetentionApiRequest
 
@@ -304,7 +304,7 @@ type LegacyBackupApi interface {
 	@param UpdateLegacySnapshotScheduleApiParams - Parameters for the request
 	@return UpdateLegacySnapshotScheduleApiRequest}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotScheduleWithParams(ctx context.Context, args *UpdateLegacySnapshotScheduleApiParams) UpdateLegacySnapshotScheduleApiRequest
 
