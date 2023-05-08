@@ -1,12 +1,12 @@
 package test
 
 import (
-	"testing"
+	"fmt"
 
 	mongodbatlas "go.mongodb.org/atlas/mongodbatlasv2"
 )
 
-func Test_Client_Config(t *testing.T) {
+func ExampleNewClient() {
 	apiKey := "test"
 	apiSecret := "test"
 	host := "https://cloud.mongodb.com"
@@ -17,12 +17,11 @@ func Test_Client_Config(t *testing.T) {
 		mongodbatlas.UseDebug(false))
 
 	if err != nil {
-		t.Error(err)
+		panic(err)
 	}
 
 	serverURL := sdk.GetConfig().Servers[0].URL
-
-	if serverURL != host {
-		t.Errorf("Expected %s, got %s", host, serverURL)
-	}
+	fmt.Println(serverURL)
+	// Output:
+	// https://cloud.mongodb.com
 }
