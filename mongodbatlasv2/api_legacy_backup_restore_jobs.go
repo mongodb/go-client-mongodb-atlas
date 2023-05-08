@@ -1,8 +1,4 @@
 /*
-MongoDB Atlas Administration API
-
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
-
 API version: 2.0
 */
 
@@ -31,8 +27,8 @@ type LegacyBackupRestoreJobsApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return CreateLegacyBackupRestoreJobApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
 	*/
 	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateLegacyBackupRestoreJobApiRequest
 

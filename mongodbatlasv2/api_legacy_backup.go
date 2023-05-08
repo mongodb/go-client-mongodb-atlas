@@ -1,8 +1,4 @@
 /*
-MongoDB Atlas Administration API
-
-The MongoDB Atlas Administration API allows developers to manage all components in MongoDB Atlas.   The Atlas Administration API authenticates using HTTP Digest Authentication. Provide a programmatic API public key and corresponding private key as the username and password when constructing the HTTP request. For example, with [curl](https://en.wikipedia.org/wiki/CURL): `curl --user \"{PUBLIC-KEY}:{PRIVATE-KEY}\" --digest`   To learn more, see [Get Started with the Atlas Administration API](https://www.mongodb.com/docs/atlas/configure-api-access/). For support, see [MongoDB Support](https://www.mongodb.com/support/get-started)
-
 API version: 2.0
 */
 
@@ -32,8 +28,8 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return DeleteLegacySnapshotApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteLegacySnapshotApiRequest
 
@@ -51,8 +47,8 @@ type LegacyBackupApi interface {
 	@param checkpointId Unique 24-hexadecimal digit string that identifies the checkpoint.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return GetLegacyBackupCheckpointApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) GetLegacyBackupCheckpointApiRequest
 
@@ -73,8 +69,8 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@param jobId Unique 24-hexadecimal digit string that identifies the restore job.
 	@return GetLegacyBackupRestoreJobApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) GetLegacyBackupRestoreJobApiRequest
 
@@ -93,8 +89,8 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return GetLegacySnapshotApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) GetLegacySnapshotApiRequest
 
@@ -114,8 +110,8 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return GetLegacySnapshotScheduleApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) GetLegacySnapshotScheduleApiRequest
 
@@ -133,8 +129,8 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return ListLegacyBackupCheckpointsApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) ListLegacyBackupCheckpointsApiRequest
 
@@ -154,8 +150,8 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return ListLegacyBackupRestoreJobsApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListLegacyBackupRestoreJobsApiRequest
 
@@ -173,8 +169,8 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster.
 	@return ListLegacySnapshotsApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) ListLegacySnapshotsApiRequest
 
@@ -193,8 +189,8 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster.
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return UpdateLegacySnapshotRetentionApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateLegacySnapshotRetentionApiRequest
 
@@ -214,8 +210,8 @@ type LegacyBackupApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return UpdateLegacySnapshotScheduleApiRequest
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) UpdateLegacySnapshotScheduleApiRequest
 

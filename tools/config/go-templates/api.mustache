@@ -28,8 +28,8 @@ type {{classname}} interface {
 	@param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
 	@return {{operationId}}ApiRequest
 	{{#isDeprecated}}
-
-	Deprecated
+	
+	Deprecated: Method have been deprecated. Please check the latest resource version for {{classname}}
 	{{/isDeprecated}}
 	*/
 	{{{nickname}}}(ctx context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{operationId}}ApiRequest
