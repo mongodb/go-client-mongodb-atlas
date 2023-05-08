@@ -58,8 +58,5 @@ openapi-pipeline:
 	echo "Running client generation"
 	$(MAKE) -C tools generate_client
 	echo "Validating generated SDK"
-	$(MAKE) v2-examples-build
+	go test go.mongodb.org/atlas/test  
 
-.PHONY: v2-examples-build
-v2-examples-build:
-	go build "./examples/example_cluster_aws.go"
