@@ -43,7 +43,7 @@ type {{classname}} interface {
 	@return {{operationId}}ApiRequest}}
 	{{#isDeprecated}}
 
-	Deprecated
+	Deprecated: Method have been deprecated. Please check the latest resource version for {{classname}}
 	{{/isDeprecated}}
 	*/
 	{{nickname}}WithParams(ctx context.Context, args *{{operationId}}ApiParams) {{operationId}}ApiRequest

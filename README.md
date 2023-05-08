@@ -51,25 +51,32 @@ Example for creating an dedicated MongoDB cluster on AWS infrastructure
 go run ./examples/example_cluster_aws.go
 ```
 
-## Fluent and Struct Based API
+## Advanced usage
 
-Generated client support different use cases:
-- Supplying arguments using chain of functions (Fluent API)
-- Suppling request arguments as single structure
+###  Fluent and Struct Based API
 
-### Fluent API example
+Generated client support two different ways to execute API requests.
+1. Fluent API: where users are supplying arguments using chain of functions (default)
+2. Struct API: Suppling request data using an single go structure containing request body and arguments
+
+#### Fluent API example
+
+Fluent API should be used by default to handle all requests.
 
 ```go
     projects, response, err := sdk.ProjectsApi.ListProjects(ctx).
 	    ItemsPerPage(1).Execute()
 ```  
 
-### Struct based API example
+#### Struct based API example
 
+Struct based API is particularly useful for HTTP GET requests where we need to pass number of arguments to the function without checking 
 ```go
 	listParams := &mongodbatlas.ListProjectsApiParams{ItemsPerPage: mongodbatlas.PtrInt32(1)}
 	projects, response, err := sdk.ProjectsApi.ListProjectsWithParams(ctx, listParams).Execute()
 ```    
+
+> NOTE: Struct based API is an still experimental feature.
 
 ## Usage for v1 client
 
