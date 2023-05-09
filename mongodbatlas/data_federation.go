@@ -55,7 +55,7 @@ type DataFederationStorage struct {
 	Stores    []*DataFederationStore    `json:"stores,omitempty"`
 }
 
-// DataFederationDatabase represents queryable databases and collections for this data federation
+// DataFederationDatabase represents queryable databases and collections for this data federation.
 type DataFederationDatabase struct {
 	Collections            []*DataFederationCollection   `json:"collections,omitempty"`
 	Views                  []*DataFederationDatabaseView `json:"views,omitempty"`
@@ -63,7 +63,7 @@ type DataFederationDatabase struct {
 	Name                   string                        `json:"name,omitempty"`
 }
 
-// DataFederationCollection represents queryable collections for this data federation
+// DataFederationCollection represents queryable collections for this data federation.
 type DataFederationCollection struct {
 	DataSources []*DataFederationDataSource `json:"dataSources,omitempty"`
 	Name        string                      `json:"name,omitempty"`
